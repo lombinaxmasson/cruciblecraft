@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.content.block;
 
+import java.util.List;
+
 import org.jetbrains.annotations.Nullable;
 
 import com.masson.cruciblecraft.content.blockentity.CrucibleEntityMelts;
@@ -8,6 +10,8 @@ import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.heat.TemperatureDamage;
 import com.masson.cruciblecraft.machine.component.CrucibleProcessCore;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
+import com.masson.cruciblecraft.registry.ModComponents;
+import com.masson.cruciblecraft.registry.ModItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,6 +31,8 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 
 /** Facing/ticker shell for the JSON large-crucible thermal controller. */
@@ -98,7 +104,7 @@ public final class LargeCrucibleBlock extends Block implements EntityBlock {
         applyHotContact(level, pos, entity);
     }
 
-    private static void applyHotContact(Level level, BlockPos pos, Entity entity) {
+    static void applyHotContact(Level level, BlockPos pos, Entity entity) {
         if (level.isClientSide
                 || !(level.getBlockEntity(pos) instanceof LargeCrucibleBlockEntity crucible)
                 || !crucible.structureValid()) {
@@ -147,6 +153,21 @@ public final class LargeCrucibleBlock extends Block implements EntityBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new LargeCrucibleBlockEntity(pos, state);
+    }
+
+    @Override
+    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        List<ItemStack> drops = super.getDrops(state, params);
+        if (!(params.getOptionalParameter(LootContextParams.BLOCK_ENTITY)
+                instanceof LargeCrucibleBlockEntity crucible)) {
+            return drops;
+        }
+        for (ItemStack drop : drops) {
+            if (drop.is(ModItems.LARGE_CRUCIBLE.get())) {
+                drop.set(ModComponents.MACHINE_MATERIAL, crucible.process().casing().materialId());
+            }
+        }
+        return drops;
     }
 
     @Nullable

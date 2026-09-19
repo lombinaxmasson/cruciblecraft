@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
@@ -98,17 +99,17 @@ class HeatMachineAcquisitionResourceTest {
         return List.of(
                 distillery(
                         "distillery", "steel",
-                        "constantan/double_wire",
+                        "#c:double_wires/constantan",
                         "steel/machine_casing_double",
                         ModItems.DISTILLERY.getId().toString()),
                 distillery(
                         "invar_distillery", "invar",
-                        "kanthal/quadruple_wire",
+                        "#c:quadruple_wires/kanthal",
                         "steel/machine_casing_double",
                         ModItems.INVAR_DISTILLERY.getId().toString()),
                 distillery(
                         "titanium_distillery", "titanium",
-                        "nichrome/octuple_wire",
+                        "#c:octuple_wires/nichrome",
                         "titanium/machine_casing_double",
                         ModItems.TITANIUM_DISTILLERY.getId().toString()),
                 heatBody(
@@ -153,7 +154,7 @@ class HeatMachineAcquisitionResourceTest {
                         "G", "minecraft:glass",
                         "M", "cruciblecraft:" + casing,
                         "P", "cruciblecraft:" + material + "/plate",
-                        "W", "cruciblecraft:" + wire));
+                        "W", wire));
     }
 
     private static RecipeSpec heatBody(
@@ -168,7 +169,7 @@ class HeatMachineAcquisitionResourceTest {
         key.put("M", "cruciblecraft:" + casing);
         key.put("P", "cruciblecraft:" + material + "/plate");
         if (smelter) {
-            key.put("U", "cruciblecraft:crucible");
+            key.put("U", "#cruciblecraft:smelting_crucibles");
         }
         return recipe(
                 id,
@@ -206,8 +207,7 @@ class HeatMachineAcquisitionResourceTest {
                     .asList().stream().map(value -> value.getAsString()).toList());
             Map<String, String> key = new LinkedHashMap<>();
             recipe.getAsJsonObject("key").entrySet().forEach(entry ->
-                    key.put(entry.getKey(), entry.getValue().getAsJsonObject()
-                            .get("item").getAsString()));
+                    key.put(entry.getKey(), slotId(entry.getValue().getAsJsonObject())));
             assertEquals(expected.key(), key, expected.path());
             assertEquals(expected.result(),
                     recipe.getAsJsonObject("result").get("id").getAsString(),
@@ -224,7 +224,32 @@ class HeatMachineAcquisitionResourceTest {
         }
     }
 
-    private static com.google.gson.JsonObject document(String path)
+    private static String slotId(JsonObject slot) {
+        if (slot.has("tag")) {
+            return "#" + slot.get("tag").getAsString();
+        }
+        if (slot.has("item")) {
+            return slot.get("item").getAsString();
+        }
+        if (slot.has("items") && slot.has("components")) {
+            var items = slot.get("items");
+            String item = items.isJsonArray()
+                    ? items.getAsJsonArray().get(0).getAsString()
+                    : items.getAsString();
+            var components = slot.getAsJsonObject("components");
+            if (components.has("cruciblecraft:prefix_material")) {
+                String material = components
+                        .get("cruciblecraft:prefix_material")
+                        .getAsString();
+                String prefix = item.substring(item.indexOf(':') + 1);
+                return "cruciblecraft:" + material + "/" + prefix;
+            }
+            return item;
+        }
+        throw new IllegalStateException("unsupported recipe slot " + slot);
+    }
+
+    private static JsonObject document(String path)
             throws Exception {
         return JsonParser.parseString(
                 Files.readString(GENERATED.resolve(path))).getAsJsonObject();

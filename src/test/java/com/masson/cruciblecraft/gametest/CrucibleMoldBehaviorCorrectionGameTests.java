@@ -47,7 +47,7 @@ public final class CrucibleMoldBehaviorCorrectionGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void crucibleSucksDroppedIngot(GameTestHelper helper) {
         BlockPos cruciblePos = new BlockPos(2, 2, 2);
-        helper.setBlock(cruciblePos, ModBlocks.CRUCIBLE.get());
+        helper.setBlock(cruciblePos, ModBlocks.steelSmeltingCrucible().get());
         BlockPos absolute = helper.absolutePos(cruciblePos);
         ItemEntity entity = new ItemEntity(
                 helper.getLevel(),
@@ -81,7 +81,7 @@ public final class CrucibleMoldBehaviorCorrectionGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void crucibleAcceptsSixteenIngots(GameTestHelper helper) {
         BlockPos cruciblePos = new BlockPos(2, 2, 2);
-        helper.setBlock(cruciblePos, ModBlocks.CRUCIBLE.get());
+        helper.setBlock(cruciblePos, ModBlocks.steelSmeltingCrucible().get());
         CrucibleBlockEntity crucible = crucibleAt(helper, cruciblePos);
         helper.assertTrue(
                 CrucibleBlockEntity.MAX_INGOTS == 16,
@@ -102,7 +102,7 @@ public final class CrucibleMoldBehaviorCorrectionGameTests {
     public static void crucibleHopperInsertsFromTop(GameTestHelper helper) {
         BlockPos cruciblePos = new BlockPos(2, 2, 2);
         BlockPos hopperPos = cruciblePos.above();
-        helper.setBlock(cruciblePos, ModBlocks.CRUCIBLE.get());
+        helper.setBlock(cruciblePos, ModBlocks.steelSmeltingCrucible().get());
         helper.setBlock(
                 hopperPos,
                 hopperBlock("lead_hopper").defaultBlockState()
@@ -251,7 +251,7 @@ public final class CrucibleMoldBehaviorCorrectionGameTests {
     }
 
     private static void placeMoltenCrucible(GameTestHelper helper, BlockPos pos) {
-        helper.setBlock(pos, ModBlocks.CRUCIBLE.get());
+        helper.setBlock(pos, ModBlocks.steelSmeltingCrucible().get());
         CrucibleBlockEntity crucible = crucibleAt(helper, pos);
         helper.assertTrue(
                 insertIngots(crucible, 1, MELT_TEMPERATURE) == InsertResult.SUCCESS,
@@ -292,7 +292,7 @@ public final class CrucibleMoldBehaviorCorrectionGameTests {
     private static CrucibleBlockEntity crucibleAt(
             GameTestHelper helper, BlockPos pos) {
         if (!(helper.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible)) {
-            helper.fail("missing ceramic crucible at " + pos);
+            helper.fail("missing smelting crucible at " + pos);
             throw new IllegalStateException("unreachable");
         }
         return crucible;

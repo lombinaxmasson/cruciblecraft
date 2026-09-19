@@ -344,7 +344,7 @@ def d0_melter() -> dict[str, Any]:
         "copper_double_plate": _form(
             "OP.plateDouble(ANY.Cu)", prefer=("copper", "annealed_copper")
         ),
-        "crucible": _ok("aRegistry.getItem(1005)", "cruciblecraft:crucible"),
+        "crucible": _ok("aRegistry.getItem(1005)", "cruciblecraft:foundry/smelting_crucible_steel"),
         "pipe": _form("OP.pipeMedium(ANY.Iron)", prefer=("iron", "steel")),
     }
     host = {"host": 22010, **slots, "status": _host_status(slots)}

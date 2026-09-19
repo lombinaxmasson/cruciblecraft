@@ -209,7 +209,7 @@ public final class CrucibleMoldInteractionGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void crucibleMeltdownBecomesLava(GameTestHelper helper) {
         BlockPos pos = new BlockPos(2, 2, 2);
-        helper.setBlock(pos, ModBlocks.CRUCIBLE.get());
+        helper.setBlock(pos, ModBlocks.steelSmeltingCrucible().get());
         CrucibleBlockEntity crucible = crucibleAt(helper, pos);
         helper.assertTrue(
                 insert(crucible, "iron", 1, MELT_TEMPERATURE) == InsertResult.SUCCESS,
@@ -307,7 +307,7 @@ public final class CrucibleMoldInteractionGameTests {
             String materialId,
             int ingots,
             float temperature) {
-        helper.setBlock(pos, ModBlocks.CRUCIBLE.get());
+        helper.setBlock(pos, ModBlocks.steelSmeltingCrucible().get());
         CrucibleBlockEntity crucible = crucibleAt(helper, pos);
         helper.assertTrue(
                 insert(crucible, materialId, ingots, temperature) == InsertResult.SUCCESS,
@@ -398,7 +398,7 @@ public final class CrucibleMoldInteractionGameTests {
 
     private static CrucibleBlockEntity crucibleAt(GameTestHelper helper, BlockPos pos) {
         if (!(helper.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible)) {
-            helper.fail("missing ceramic crucible at " + pos);
+            helper.fail("missing smelting crucible at " + pos);
             throw new IllegalStateException("unreachable");
         }
         return crucible;

@@ -128,10 +128,14 @@ public final class MultiblockStructureValidator {
             case TAG -> state.is(TagKey.create(
                     Registries.BLOCK, predicate.tag().orElseThrow()));
             case CONTROLLER -> target.equals(controller)
-                    && BuiltInRegistries.BLOCK
-                            .getOptional(predicate.block().orElseThrow())
-                            .map(state::is)
-                            .orElse(false);
+                    && (predicate.block().isPresent()
+                            ? BuiltInRegistries.BLOCK
+                                    .getOptional(predicate.block().orElseThrow())
+                                    .map(state::is)
+                                    .orElse(false)
+                            : state.is(TagKey.create(
+                                    Registries.BLOCK,
+                                    predicate.tag().orElseThrow())));
             case PORT -> BuiltInRegistries.BLOCK
                             .getOptional(predicate.block().orElseThrow())
                             .map(state::is)

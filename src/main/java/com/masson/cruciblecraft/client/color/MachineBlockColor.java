@@ -41,7 +41,6 @@ public final class MachineBlockColor {
         blocks.add(ModBlocks.COKE_OVEN.get());
         blocks.add(ModBlocks.LARGE_BOILER.get());
         blocks.add(ModBlocks.TANK_3X3X3.get());
-        blocks.add(ModBlocks.LARGE_CRUCIBLE.get());
         blocks.add(ModBlocks.MORTAR.get());
         blocks.add(ModBlocks.LASER_ENGRAVER.get());
         blocks.add(ModBlocks.FUSION_REACTOR.get());

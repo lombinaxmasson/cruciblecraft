@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.datagen;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
@@ -57,12 +58,27 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(
                 ModBlocks.FIREBRICK.get(),
                 firebrick);
-        simpleBlockWithItem(
-                ModBlocks.CRUCIBLE.get(),
-                models().getExistingFile(modLoc("block/crucible")));
         var anvil = models().getExistingFile(modLoc("block/anvil"));
-        horizontalBlock(ModBlocks.ANVIL.get(), anvil);
-        simpleBlockItem(ModBlocks.ANVIL.get(), anvil);
+        var anvilMetallic = models().getExistingFile(modLoc("block/anvil_metallic"));
+        getVariantBuilder(ModBlocks.ANVIL.get()).forAllStates(state -> {
+            Direction facing = state.getValue(AnvilBlock.FACING);
+            int y = switch (facing) {
+                case SOUTH -> 180;
+                case WEST -> 270;
+                case EAST -> 90;
+                default -> 0;
+            };
+            return ConfiguredModel.builder()
+                    .modelFile(state.getValue(AnvilBlock.METALLIC) ? anvilMetallic : anvil)
+                    .rotationY(y)
+                    .build();
+        });
+        itemModels().getBuilder("anvil")
+                .parent(anvil)
+                .override()
+                .predicate(modLoc("metallic"), 1)
+                .model(anvilMetallic)
+                .end();
         configuredMachine("coke_oven", ModBlocks.COKE_OVEN.get());
         simpleBlockWithItem(
                 ModBlocks.MULTIBLOCK_CASING.get(),
@@ -87,8 +103,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 "large_boiler", ModBlocks.LARGE_BOILER.get());
         configuredMachine(
                 "tank_3x3x3", ModBlocks.TANK_3X3X3.get());
-        configuredMachine(
-                "large_crucible", ModBlocks.LARGE_CRUCIBLE.get());
+        simpleBlockWithItem(
+                ModBlocks.LARGE_CRUCIBLE.get(),
+                models().getExistingFile(modLoc("block/large_crucible")));
         configuredLogisticsCore();
         simpleBlockWithItem(
                 ModBlocks.GALVANIZED_STEEL_WALL.get(),

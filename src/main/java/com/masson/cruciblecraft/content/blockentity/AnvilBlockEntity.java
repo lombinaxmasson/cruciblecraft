@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
+import com.masson.cruciblecraft.content.block.AnvilBlock;
+import com.masson.cruciblecraft.content.block.AnvilHosts;
 import com.masson.cruciblecraft.heat.HeatComponent;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.recipe.AnvilMode;
@@ -46,6 +48,7 @@ public final class AnvilBlockEntity extends BlockEntity {
 
     public AnvilBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.ANVIL.get(), pos, blockState);
+        applyBakedMaterial(blockState);
     }
 
     @Override
@@ -76,7 +79,7 @@ public final class AnvilBlockEntity extends BlockEntity {
         ItemStack inserted = heldStack.copy();
         ItemStack old = workpieces[slot];
         workpieces[slot] = inserted;
-        if (!hasPotentialRecipe()) {
+        if (!AnvilHosts.isHammer(inserted) && !hasPotentialRecipe()) {
             workpieces[slot] = old;
             return false;
         }
@@ -241,14 +244,18 @@ public final class AnvilBlockEntity extends BlockEntity {
     }
 
     public void setMaterial(String materialId, MachineDurabilityComponent savedDurability) {
-        String material = MachineMaterialRules.requireAllowed(Device.ANVIL, materialId);
+        Optional<String> baked = AnvilHosts.bakedMaterial(getBlockState());
+        String material = baked.isPresent()
+                ? baked.orElseThrow()
+                : MachineMaterialRules.requireAllowed(Device.ANVIL, materialId);
         this.materialId = material;
         this.quarantinedMaterialId = "";
-        long expectedMax = MachineMaterialRules.anvilMaxDurability(material);
+        long expectedMax = AnvilHosts.maxDurability(material);
         this.maxDurability = savedDurability == null ? expectedMax : savedDurability.max();
         this.durability = savedDurability == null
                 ? expectedMax
                 : Math.min(savedDurability.current(), this.maxDurability);
+        syncMetallicState();
         setChangedAndSync();
     }
 
@@ -391,14 +398,20 @@ public final class AnvilBlockEntity extends BlockEntity {
                 : ItemStack.EMPTY;
         strikes = tag.getInt("strikes");
         activeRecipe = tag.getString("active_recipe");
+        Optional<String> baked = AnvilHosts.bakedMaterial(getBlockState());
         String requestedMaterial = tag.contains("material_id", Tag.TAG_STRING)
                 ? tag.getString("material_id")
                 : MachineMaterialRules.DEFAULT_ANVIL_MATERIAL;
-        var resolution = MachineMaterialRules.resolveExternal(
-                Device.ANVIL, requestedMaterial);
-        materialId = resolution.effectiveMaterial();
-        quarantinedMaterialId = resolution.quarantinedMaterial().orElse("");
-        long expectedMax = MachineMaterialRules.anvilMaxDurability(materialId);
+        if (baked.isPresent()) {
+            materialId = baked.orElseThrow();
+            quarantinedMaterialId = "";
+        } else {
+            var resolution = MachineMaterialRules.resolveExternal(
+                    Device.ANVIL, requestedMaterial);
+            materialId = resolution.effectiveMaterial();
+            quarantinedMaterialId = resolution.quarantinedMaterial().orElse("");
+        }
+        long expectedMax = AnvilHosts.maxDurability(materialId);
         long savedMax = tag.contains("max_durability", Tag.TAG_LONG)
                 ? tag.getLong("max_durability")
                 : expectedMax;
@@ -407,6 +420,7 @@ public final class AnvilBlockEntity extends BlockEntity {
                 ? tag.getLong("durability")
                 : maxDurability;
         durability = Math.max(0L, Math.min(savedDurability, maxDurability));
+        syncMetallicState();
     }
 
     @Override
@@ -441,9 +455,35 @@ public final class AnvilBlockEntity extends BlockEntity {
         return net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket.create(this);
     }
 
+    private void applyBakedMaterial(BlockState state) {
+        Optional<String> baked = AnvilHosts.bakedMaterial(state);
+        if (baked.isEmpty()) {
+            return;
+        }
+        materialId = baked.orElseThrow();
+        quarantinedMaterialId = "";
+        maxDurability = AnvilHosts.maxDurability(materialId);
+        durability = maxDurability;
+    }
+
+    private void syncMetallicState() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        BlockState state = getBlockState();
+        if (!state.hasProperty(AnvilBlock.METALLIC)) {
+            return;
+        }
+        boolean metallic = AnvilHosts.metallic(materialId);
+        if (state.getValue(AnvilBlock.METALLIC) != metallic) {
+            level.setBlock(worldPosition, state.setValue(AnvilBlock.METALLIC, metallic), Block.UPDATE_CLIENTS);
+        }
+    }
+
     private void setChangedAndSync() {
         setChanged();
         if (level != null && !level.isClientSide) {
+            syncMetallicState();
             BlockState state = getBlockState();
             level.sendBlockUpdated(worldPosition, state, state, Block.UPDATE_CLIENTS);
         }

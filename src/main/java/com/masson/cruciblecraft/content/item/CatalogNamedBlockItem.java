@@ -2,6 +2,9 @@ package com.masson.cruciblecraft.content.item;
 
 import java.util.Objects;
 
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.mte.MteInPlaceDisplayNames;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -24,7 +27,13 @@ public final class CatalogNamedBlockItem extends BlockItem {
 
     @Override
     public Component getName(ItemStack stack) {
+        String path = getBlock() instanceof MteInPlaceBlock inplace
+                ? inplace.spec().registryPath()
+                : null;
         return CatalogDisplayNames.itemName(
-                getDescriptionId(stack), englishName, chineseName);
+                getDescriptionId(stack),
+                MteInPlaceDisplayNames.english(englishName, path),
+                chineseName,
+                CatalogDisplayNames.composedChinese(path));
     }
 }

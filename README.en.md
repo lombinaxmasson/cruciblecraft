@@ -72,7 +72,9 @@ Java 21 is required. The project targets Minecraft 1.21.1 and NeoForge
 .\gradlew.bat test
 ```
 
-Build artifacts are written to `build/libs/`. Development proxies belong in
+Build artifacts are written to `build/libs/`. The current player guide is
+the private small-group snapshot `0.1.0-test.20260919`
+(`.\gradlew.bat jar distBeta`), not a public RC. Development proxies belong in
 the user-level `~/.gradle/gradle.properties`, not in the repository.
 
 ## Development model

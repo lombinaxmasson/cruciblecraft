@@ -57,7 +57,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
 
     public static final EmiRecipeCategory CRUCIBLE = internCategory(
             id("crucible"),
-            EmiStack.of(ModBlocks.CRUCIBLE.get()));
+            EmiStack.of(ModBlocks.steelSmeltingCrucible().get()));
     public static final EmiRecipeCategory ANVIL = internCategory(
             id("anvil"),
             EmiStack.of(ModBlocks.ANVIL.get()));
@@ -83,7 +83,9 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         addCategory(registry, MOLD_CASTING, addedCategories);
         addCategory(registry, CRUSHER, addedCategories);
         addCategory(registry, FUSION, addedCategories);
-        registry.addWorkstation(CRUCIBLE, EmiStack.of(ModBlocks.CRUCIBLE.get()));
+        for (Block smeltery : ModBlocks.crucibleBlockArray()) {
+            registry.addWorkstation(CRUCIBLE, EmiStack.of(smeltery));
+        }
         for (String material : List.of("stone", "iron", "bronze", "steel")) {
             registry.addWorkstation(ANVIL, EmiStacks.ofItem(anvilVariant(material)));
         }

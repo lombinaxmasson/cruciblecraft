@@ -263,7 +263,7 @@ class Gt6CrucibleMoldBehaviorCorrectionTest(unittest.TestCase):
         subset = census.load_json(WAVE / "execution_subset.json")
         self.assertEqual(SLUG, subset["capability_slug"])
         self.assertEqual(
-            {"cruciblecraft:crucible", "cruciblecraft:ceramic_mold"},
+            {"cruciblecraft:foundry/smelting_crucible_steel", "cruciblecraft:ceramic_mold"},
             {row["live_block"] for row in subset["rows"]},
         )
         ns = (

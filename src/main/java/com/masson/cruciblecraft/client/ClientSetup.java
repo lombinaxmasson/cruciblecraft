@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.client.color.AnvilBlockColor;
 import com.masson.cruciblecraft.client.color.BathingPotColor;
 import com.masson.cruciblecraft.client.color.BedrockOreColor;
 import com.masson.cruciblecraft.client.color.ElectricWireRemainderColor;
@@ -13,6 +14,7 @@ import com.masson.cruciblecraft.client.color.FoundryBlockColor;
 import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
 import com.masson.cruciblecraft.client.color.GtBlockDyeColor;
 import com.masson.cruciblecraft.client.color.HopperBlockColor;
+import com.masson.cruciblecraft.client.color.LargeCrucibleBlockColor;
 import com.masson.cruciblecraft.client.color.LogisticsCoreBlockColor;
 import com.masson.cruciblecraft.client.color.MachineBlockColor;
 import com.masson.cruciblecraft.client.color.MaterialCasingColor;
@@ -40,8 +42,7 @@ import com.masson.cruciblecraft.content.item.CableBlockItem;
 import com.masson.cruciblecraft.content.item.ReactorRodItem;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
-import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
-import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
+import com.masson.cruciblecraft.content.block.AnvilHosts;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.material.MaterialColors;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -51,6 +52,7 @@ import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMenus;
 
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -82,6 +84,15 @@ public class ClientSetup {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         CrucibleCraft.LOGGER.info("CrucibleCraft client setup");
+        event.enqueueWork(() -> ItemProperties.register(
+                ModItems.ANVIL.get(),
+                ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "metallic"),
+                (stack, level, entity, seed) -> {
+                    String material = stack.getOrDefault(
+                            ModComponents.MACHINE_MATERIAL.get(),
+                            MachineMaterialRules.DEFAULT_ANVIL_MATERIAL);
+                    return AnvilHosts.metallic(material) ? 1.0F : 0.0F;
+                }));
     }
 
     @SubscribeEvent
@@ -173,16 +184,15 @@ public class ClientSetup {
                     remainderWires.toArray(Item[]::new));
         }
         event.register(
-                (stack, tintIndex) -> tintIndex == 0
-                        ? machineColor(
-                                stack.getOrDefault(
-                                        ModComponents.MACHINE_MATERIAL.get(),
-                                        stack.is(ModItems.CRUCIBLE.get())
-                                                ? MachineMaterialRules.DEFAULT_CRUCIBLE_MATERIAL
-                                                : MachineMaterialRules.DEFAULT_ANVIL_MATERIAL))
-                        : 0xFFFFFFFF,
-                ModItems.CRUCIBLE.get(),
-                ModItems.ANVIL.get());
+                LargeCrucibleBlockColor::itemColor,
+                java.util.Arrays.stream(LargeCrucibleBlockColor.tintedBlocks())
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
+        event.register(
+                AnvilBlockColor::itemColor,
+                java.util.Arrays.stream(AnvilBlockColor.tintedBlocks())
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
         event.register(
                 (stack, tintIndex) -> {
                     if (tintIndex != 0
@@ -300,27 +310,9 @@ public class ClientSetup {
                                 holder.get())
                         .toArray(net.minecraft.world.level.block.Block[]::new));
         event.register(
-                (state, level, pos, tintIndex) -> {
-                    if (tintIndex != 0 || level == null || pos == null) {
-                        return 0xFFFFFFFF;
-                    }
-                    if (level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible) {
-                        return machineColor(crucible.casingMaterialId());
-                    }
-                    return machineColor(MachineMaterialRules.DEFAULT_CRUCIBLE_MATERIAL);
-                },
-                ModBlocks.CRUCIBLE.get());
-        event.register(
-                (state, level, pos, tintIndex) -> {
-                    if (tintIndex != 0 || level == null || pos == null) {
-                        return 0xFFFFFFFF;
-                    }
-                    if (level.getBlockEntity(pos) instanceof AnvilBlockEntity anvil) {
-                        return machineColor(anvil.materialId());
-                    }
-                    return machineColor(MachineMaterialRules.DEFAULT_ANVIL_MATERIAL);
-                },
-                ModBlocks.ANVIL.get());
+                LargeCrucibleBlockColor::blockColor,
+                LargeCrucibleBlockColor.tintedBlocks());
+        event.register(AnvilBlockColor::blockColor, AnvilBlockColor.tintedBlocks());
         event.register(MachineBlockColor::blockColor, MachineBlockColor.tintedBlocks());
         event.register(
                 Gt6OpeningBlockColor::blockColor,

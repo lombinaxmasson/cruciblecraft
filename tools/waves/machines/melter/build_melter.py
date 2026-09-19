@@ -318,8 +318,8 @@ def check() -> list[str]:
     if any(row.get("status") != "source_exact" for row in d0.get("hosts") or []):
         errors.append("Melter D0 host must remain source_exact")
     host = (d0.get("hosts") or [{}])[0]
-    if host.get("crucible", {}).get("cc") != "cruciblecraft:crucible":
-        errors.append("Melter U slot must be the fired CrucibleCraft crucible")
+    if host.get("crucible", {}).get("cc") != "cruciblecraft:foundry/smelting_crucible_steel":
+        errors.append("Melter U slot must be a live smelting crucible")
     if host.get("bricks", {}).get("cc") != "minecraft:bricks":
         errors.append("Melter B slot must be vanilla bricks")
 

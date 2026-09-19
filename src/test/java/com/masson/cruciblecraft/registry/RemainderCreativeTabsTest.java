@@ -31,6 +31,16 @@ class RemainderCreativeTabsTest {
                 RemainderCreativeTabs.of(
                         "processing/automatic_hammer_bronze", "mte_item"));
         assertEquals(
+                RemainderCreativeTabs.Tab.MACHINES,
+                RemainderCreativeTabs.of("foundry/mold_stainless_steel", "block"));
+        assertEquals(
+                RemainderCreativeTabs.Tab.MACHINES,
+                RemainderCreativeTabs.of("steel/wall", "block"));
+        assertEquals(
+                RemainderCreativeTabs.Tab.MACHINES,
+                RemainderCreativeTabs.of(
+                        "multiblock/large_steel_crucible", "block"));
+        assertEquals(
                 RemainderCreativeTabs.Tab.TOOLS,
                 RemainderCreativeTabs.of("heat/protection_suit_helmet", "armor"));
         assertEquals(

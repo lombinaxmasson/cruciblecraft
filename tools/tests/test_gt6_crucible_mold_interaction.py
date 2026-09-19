@@ -78,7 +78,7 @@ CRUCIBLE_BLOCK = (
     / "cruciblecraft"
     / "content"
     / "block"
-    / "CrucibleBlock.java"
+    / "MteInPlaceBlock.java"
 )
 CORE = (
     ROOT
@@ -234,7 +234,7 @@ class Gt6CrucibleMoldInteractionTest(unittest.TestCase):
         self.assertEqual(SLUG, subset["capability_slug"])
         self.assertEqual(
             {
-                "cruciblecraft:crucible",
+                "cruciblecraft:foundry/smelting_crucible_steel",
                 "cruciblecraft:ceramic_mold",
                 "cruciblecraft:fluid_attachment/crucible_faucet_stone",
             },

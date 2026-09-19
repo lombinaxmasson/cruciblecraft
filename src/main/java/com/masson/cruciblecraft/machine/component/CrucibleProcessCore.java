@@ -9,6 +9,8 @@ import com.masson.cruciblecraft.air.AirOutputModel;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
+import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
+import com.masson.cruciblecraft.content.block.SmelteryHosts;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator;
@@ -130,7 +132,8 @@ public final class CrucibleProcessCore {
                     temperature,
                     previousTemperature,
                     steelMutated,
-                    false);
+                    SmelteryHosts.acidProof(casing.materialId())
+                            || LargeCrucibleHosts.acidProof(casing.materialId()));
             boiled = reaction.boiled();
             acidDestroyed = reaction.acidDestroyed();
             if (reaction.exploded()) {

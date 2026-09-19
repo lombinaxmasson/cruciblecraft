@@ -4,8 +4,8 @@ import java.util.Locale;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
-import com.masson.cruciblecraft.content.block.CrucibleBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
 import com.masson.cruciblecraft.content.block.RockBlock;
@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.compat.jade.observation.BatteryObservation;
 import com.masson.cruciblecraft.compat.jade.observation.ConverterObservation;
 import com.masson.cruciblecraft.compat.jade.observation.CrucibleObservation;
+import com.masson.cruciblecraft.compat.jade.observation.JadeDisplayUnits;
 import com.masson.cruciblecraft.compat.jade.observation.ObservationField;
 import com.masson.cruciblecraft.compat.jade.observation.ReactorCoreObservation;
 import com.masson.cruciblecraft.compat.jade.observation.TransformerObservation;
@@ -67,6 +68,8 @@ import snownee.jade.api.ITooltip;
 import snownee.jade.api.IWailaClientRegistration;
 import snownee.jade.api.IWailaCommonRegistration;
 import snownee.jade.api.IWailaPlugin;
+import snownee.jade.api.JadeIds;
+import snownee.jade.api.TooltipPosition;
 import snownee.jade.api.WailaPlugin;
 import snownee.jade.api.config.IPluginConfig;
 
@@ -123,10 +126,12 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
 
     @Override
     public void registerClient(IWailaClientRegistration registration) {
-        registration.registerBlockComponent(CrucibleComponentProvider.INSTANCE, CrucibleBlock.class);
+        registration.registerBlockComponent(
+                CrucibleComponentProvider.INSTANCE, MteInPlaceBlock.class);
         registration.registerBlockComponent(
                 TransformerComponentProvider.INSTANCE, TransformerBlock.class);
         registration.registerBlockComponent(AnvilComponentProvider.INSTANCE, AnvilBlock.class);
+        registration.registerBlockComponent(AnvilComponentProvider.INSTANCE, MteInPlaceBlock.class);
         registration.registerBlockComponent(CokeOvenComponentProvider.INSTANCE, CokeOvenBlock.class);
         registration.registerBlockComponent(CeramicMoldComponentProvider.INSTANCE, CeramicMoldBlock.class);
         registration.registerBlockComponent(BoilerComponentProvider.INSTANCE, BoilerBlock.class);
@@ -427,6 +432,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
             if (!(accessor.getBlockEntity() instanceof CrucibleBlockEntity crucible)) {
                 return;
             }
+            tooltip.remove(JadeIds.UNIVERSAL_FLUID_STORAGE);
             if (crucible.casingMaterialQuarantined()) {
                 tooltip.add(Component.translatable(
                         "jade.cruciblecraft.material_quarantined",
@@ -459,15 +465,21 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                     "jade.cruciblecraft.cache_slot",
                     Component.translatable(
                             "jade.cruciblecraft." + observation.cacheDisplay())));
-            if (observation.contents().available()
-                    && observation.contents().value() != null
-                    && !observation.contents().value().isBlank()) {
-                tooltip.add(Component.translatable(
-                        "jade.cruciblecraft.contents",
-                        observation.contents().value(),
-                        intText(observation.totalUnits()),
-                        intText(observation.maxUnits())));
+            if (observation.metals().available()
+                    && observation.metals().value() != null) {
+                for (CrucibleObservation.MetalAmount metal : observation.metals().value()) {
+                    tooltip.add(Component.translatable(
+                            "jade.cruciblecraft.material_amount",
+                            JadeDisplayUnits.formatIngotAmount(metal.units()),
+                            Component.translatable(
+                                    "material.cruciblecraft." + metal.materialId())));
+                }
             }
+        }
+
+        @Override
+        public int getDefaultPriority() {
+            return TooltipPosition.TAIL;
         }
 
         @Override
@@ -497,13 +509,6 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 return Component.translatable("jade.cruciblecraft.unavailable");
             }
             return Component.literal(Long.toString(field.value()));
-        }
-
-        private static Component intText(ObservationField<Integer> field) {
-            if (!field.available() || field.value() == null) {
-                return Component.translatable("jade.cruciblecraft.unavailable");
-            }
-            return Component.literal(Integer.toString(field.value()));
         }
 
         private static Component percentText(ObservationField<Integer> field) {

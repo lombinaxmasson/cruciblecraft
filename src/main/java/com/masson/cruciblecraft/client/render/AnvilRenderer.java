@@ -1,7 +1,7 @@
 package com.masson.cruciblecraft.client.render;
 
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
-import com.masson.cruciblecraft.content.block.AnvilBlock;
+import com.masson.cruciblecraft.content.block.AnvilHosts;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
@@ -22,7 +22,7 @@ public final class AnvilRenderer implements BlockEntityRenderer<AnvilBlockEntity
             MultiBufferSource buffers,
             int packedLight,
             int packedOverlay) {
-        var facing = anvil.getBlockState().getValue(AnvilBlock.FACING);
+        var facing = AnvilHosts.horizontalFacing(anvil.getBlockState());
         for (int slot = 0; slot < 2; slot++) {
             if (anvil.workpiece(slot).isEmpty()) {
                 continue;

@@ -3,6 +3,8 @@ package com.masson.cruciblecraft.datagen;
 import java.util.concurrent.CompletableFuture;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.block.SmelteryHosts;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.registry.ModItemTags;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -32,6 +34,13 @@ public final class ModItemTagProvider extends TagsProvider<Item> {
         var shapes = tag(ModItemTags.EXTRUDER_SHAPES);
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 shapes.add(ModItems.extruderShape(shape.id()).getKey()));
+        var smeltingCrucibles = tag(ModItemTags.SMELTING_CRUCIBLES);
+        ModItems.mteInPlaceItemsById().values().forEach(holder -> {
+            if (holder.get().getBlock() instanceof MteInPlaceBlock inplace
+                    && SmelteryHosts.isSmeltery(inplace.spec())) {
+                smeltingCrucibles.add(holder.getKey());
+            }
+        });
         var logs = tag(ItemTags.LOGS);
         var logsThatBurn = tag(ItemTags.LOGS_THAT_BURN);
         var leaves = tag(ItemTags.LEAVES);

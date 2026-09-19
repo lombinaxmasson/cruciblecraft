@@ -21,6 +21,8 @@ import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
+import com.masson.cruciblecraft.content.block.AnvilBlock;
+import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ProcessingMachineBlockEntity;
@@ -34,6 +36,7 @@ import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DistillationTowerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
@@ -2753,6 +2756,60 @@ public final class CrucibleCraftGameTests {
         helper.succeed();
     }
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void liveAnvilUsesGt6Collision(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(3, 2, 3);
+        helper.setBlock(pos, ModBlocks.ANVIL.get().defaultBlockState());
+        var state = helper.getBlockState(pos);
+        helper.assertFalse(
+                state.getValue(AnvilBlock.METALLIC),
+                "live anvil defaulted to the metallic iconset");
+        var box = state.getShape(helper.getLevel(), pos).bounds();
+        helper.assertTrue(
+                box.minX == 0.0
+                        && box.maxX == 1.0
+                        && box.minY == 0.0
+                        && box.maxY == 0.75
+                        && box.minZ == 0.25
+                        && box.maxZ == 0.75,
+                "live anvil collision is not GT6 NORTH_SOUTH 12-high");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void uniqueSteelAnvilHostsAnvilBackend(GameTestHelper helper) {
+        MteInPlaceGameTestSupport.assertLive(
+                helper, "steel/anvil", com.masson.cruciblecraft.content.mte.MteInPlaceKind.MISC_TOOL);
+        BlockPos pos = new BlockPos(3, 2, 3);
+        helper.setBlock(
+                pos,
+                ModBlocks.mteInPlaceBlocksById()
+                        .get(MteInPlaceGameTestSupport.id("steel/anvil"))
+                        .get()
+                        .defaultBlockState());
+        AnvilBlockEntity anvil = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                anvil instanceof AnvilBlockEntity
+                        && "steel".equals(anvil.materialId())
+                        && anvil.maxDurability() == 10_000_000L,
+                "steel/anvil did not host the anvil backend");
+        var box = helper.getBlockState(pos).getShape(helper.getLevel(), pos).bounds();
+        helper.assertTrue(box.maxY == 0.75, "unique anvil collision is not 12-high");
+        ItemStack ingot = material("iron", MaterialPrefixes.INGOT, 1);
+        ItemStack expectedPlate = material("iron", MaterialPrefixes.PLATE, 1);
+        helper.assertTrue(anvil.insert(0, ingot.copy()), "unique steel anvil rejected the ingot");
+        AnvilBlockEntity.StrikeResult result = null;
+        for (int hit = 0; hit < 4; hit++) {
+            result = anvil.strike(AnvilMode.ANVIL, 2).orElse(null);
+            helper.assertTrue(result != null, "unique steel anvil failed a strike");
+        }
+        helper.assertTrue(result.completed(), "unique steel anvil did not complete");
+        helper.assertTrue(
+                ItemStack.isSameItemSameComponents(anvil.workpiece(), expectedPlate),
+                "unique steel anvil produced the wrong output");
+        helper.succeed();
+    }
+
     @GameTest(template = TEMPLATE, timeoutTicks = 240)
     public static void crusherPauseRollbackResume(GameTestHelper helper) {
         BlockPos pos = new BlockPos(3, 2, 3);
@@ -4646,13 +4703,8 @@ public final class CrucibleCraftGameTests {
                 LargeCrucibleBlockEntity.STRUCTURE_ID);
         LargeCrucibleBlockEntity crucible = placeLargeCrucible(
                 helper, controllerPos, facing);
-        BlockPos wall = structure.structure().stream()
-                .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.BLOCK)
-                .map(element -> structure.worldPosition(
-                        controllerPos, facing, element.offset()))
-                .findFirst()
-                .orElseThrow();
+        BlockPos wall = firstLargeCrucibleWall(
+                structure, controllerPos, facing, -1);
         helper.setBlock(wall, Blocks.COBBLESTONE.defaultBlockState());
         helper.startSequence()
                 .thenIdle(25)
@@ -4660,7 +4712,7 @@ public final class CrucibleCraftGameTests {
                         !crucible.structureValid(),
                         "Incomplete large crucible formed"))
                 .thenExecute(() -> helper.setBlock(
-                        wall, ModBlocks.MULTIBLOCK_CASING.get()))
+                        wall, LargeCrucibleHosts.wallBlock("steel")))
                 .thenIdle(25)
                 .thenExecute(() -> helper.assertTrue(
                         crucible.structureValid()
@@ -4677,13 +4729,8 @@ public final class CrucibleCraftGameTests {
                 LargeCrucibleBlockEntity.STRUCTURE_ID);
         LargeCrucibleBlockEntity crucible = placeLargeCrucible(
                 helper, controllerPos, facing);
-        BlockPos wall = structure.structure().stream()
-                .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.BLOCK)
-                .map(element -> structure.worldPosition(
-                        controllerPos, facing, element.offset()))
-                .findFirst()
-                .orElseThrow();
+        BlockPos wall = firstLargeCrucibleWall(
+                structure, controllerPos, facing, -1);
         helper.startSequence()
                 .thenIdle(25)
                 .thenExecute(() -> {
@@ -5001,9 +5048,12 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the bottom HU layer");
-                    MultiblockPortBlockEntity port =
+                    MteInPlaceBlockEntity wall =
                             helper.getBlockEntity(itemPort);
-                    ItemStack leftover = port.itemHandler().insertItem(
+                    helper.assertTrue(
+                            wall != null && wall.itemHandler(Direction.UP) != null,
+                            "Top wall did not expose the controller inventory");
+                    ItemStack leftover = wall.itemHandler(Direction.UP).insertItem(
                             LargeCrucibleBlockEntity.SLOT_INPUT,
                             material("iron", MaterialPrefixes.INGOT, 1),
                             false);
@@ -5034,14 +5084,8 @@ public final class CrucibleCraftGameTests {
                 LargeCrucibleBlockEntity.STRUCTURE_ID);
         LargeCrucibleBlockEntity crucible = placeLargeCrucible(
                 helper, controllerPos, facing);
-        BlockPos wall = structure.structure().stream()
-                .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.BLOCK
-                        && element.offset().y() == 1)
-                .map(element -> structure.worldPosition(
-                        controllerPos, facing, element.offset()))
-                .findFirst()
-                .orElseThrow();
+        BlockPos wall = firstLargeCrucibleWall(
+                structure, controllerPos, facing, 1);
         BlockPos moldPos = wall.relative(Direction.WEST);
         if (!helper.getBlockState(moldPos).isAir()) {
             moldPos = wall.relative(Direction.EAST);
@@ -8991,7 +9035,7 @@ public final class CrucibleCraftGameTests {
                 'P',
                 material(material, MaterialPrefixes.PLATE, 1).getItem());
         if (smelter) {
-            key.put('U', ModItems.CRUCIBLE.get());
+            key.put('U', ModBlocks.steelSmeltingCrucible().get().asItem());
         }
         return new MachineCraftingCase(
                 ResourceLocation.fromNamespaceAndPath(
@@ -9020,7 +9064,7 @@ public final class CrucibleCraftGameTests {
                 "iron",
                 MaterialPrefixes.FLUID_PIPE,
                 1).getItem());
-        key.put('U', ModItems.CRUCIBLE.get());
+        key.put('U', ModBlocks.steelSmeltingCrucible().get().asItem());
         key.put('w', ModItems.MATERIAL_WRENCH.get());
         key.put('h', ModItems.SMITHING_HAMMER.get());
         return new MachineCraftingCase(
@@ -10828,6 +10872,21 @@ public final class CrucibleCraftGameTests {
         return false;
     }
 
+    private static BlockPos firstLargeCrucibleWall(
+            com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition structure,
+            BlockPos controllerPos,
+            Direction facing,
+            int y) {
+        return structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.TAG
+                        && (y < 0 || element.offset().y() == y))
+                .map(element -> structure.worldPosition(
+                        controllerPos, facing, element.offset()))
+                .findFirst()
+                .orElseThrow();
+    }
+
     private static LargeCrucibleBlockEntity placeLargeCrucible(
             GameTestHelper helper, BlockPos controllerPos, Direction facing) {
         var structure = MultiblockStructureCatalog.require(
@@ -10843,17 +10902,8 @@ public final class CrucibleCraftGameTests {
                     controllerPos, facing, element.offset());
             switch (predicate.kind()) {
                 case CONTROLLER, AIR -> { }
-                case BLOCK -> helper.setBlock(
-                        world, ModBlocks.MULTIBLOCK_CASING.get());
-                case PORT -> helper.setBlock(
-                        world,
-                        predicate.port().orElseThrow()
-                                        == com.masson.cruciblecraft.content
-                                                .multiblock
-                                                .MultiblockStructureDefinition
-                                                .PortType.ENERGY_INPUT
-                                ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                case TAG -> helper.setBlock(
+                        world, LargeCrucibleHosts.wallBlock("steel"));
                 default -> throw new AssertionError(predicate.kind());
             }
         });

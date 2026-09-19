@@ -53,10 +53,9 @@ public final class FoundryArtGameTests {
         MteInPlaceGameTestSupport.assertLive(
                 helper, "foundry/smelting_crucible_invar", MteInPlaceKind.CRUCIBLE_FOUNDRY);
         helper.assertTrue(
-                ((CatalogNamedBlockItem) MteInPlaceGameTestSupport.item(
-                        "foundry/smelting_crucible_invar")).getBlock()
-                        != ModBlocks.CRUCIBLE.get(),
-                "foundry/smelting_crucible_invar aliased the ceramic crucible");
+                MteInPlaceGameTestSupport.item("foundry/smelting_crucible_invar")
+                        instanceof CatalogNamedBlockItem,
+                "foundry/smelting_crucible_invar is not a unique catalog item");
         String smeltery = resource(
                 "/assets/cruciblecraft/models/block/foundry/smelting_crucible_invar.json");
         String mold = resource(

@@ -130,8 +130,8 @@ class MissingMaterialStackCodecTest {
                 "cruciblecraft:smithing_hammer",
                 MissingMaterialStackNbtAdapter.TOOL_MATERIAL_COMPONENT_ID,
                 "gold");
-        CompoundTag crucible = componentStack(
-                "cruciblecraft:crucible",
+        CompoundTag anvil = componentStack(
+                "cruciblecraft:anvil",
                 MissingMaterialStackNbtAdapter.MACHINE_MATERIAL_COMPONENT_ID,
                 "gold");
         CompoundTag futureGenericTool = componentStack(
@@ -147,7 +147,7 @@ class MissingMaterialStackCodecTest {
         assertEquals(
                 MissingMaterialStackRewriter.UNKNOWN_ITEM_ID,
                 MissingMaterialStackNbtAdapter.rewrite(
-                        crucible, Map.of(), ignored -> true, ignored -> true)
+                        anvil, Map.of(), ignored -> true, ignored -> true)
                         .getString("id"));
         assertEquals(
                 MissingMaterialStackRewriter.UNKNOWN_ITEM_ID,

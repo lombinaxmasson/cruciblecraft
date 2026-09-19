@@ -32,6 +32,9 @@ class MachineMaterialRulesTest {
         assertTrue(MachineMaterialRules.isAllowed(Device.CRUCIBLE, "ceramic"));
         assertTrue(MachineMaterialRules.isAllowed(Device.CRUCIBLE, "bronze"));
         assertTrue(MachineMaterialRules.isAllowed(Device.CRUCIBLE, "steel"));
+        assertTrue(MachineMaterialRules.isAllowed(Device.CRUCIBLE, "stainless_steel"));
+        assertTrue(MachineMaterialRules.isAllowed(Device.CRUCIBLE, "titanium"));
+        assertTrue(MachineMaterialRules.isAllowed(Device.CRUCIBLE, "adamantium"));
         assertFalse(MachineMaterialRules.isAllowed(Device.CRUCIBLE, "iron"));
     }
 

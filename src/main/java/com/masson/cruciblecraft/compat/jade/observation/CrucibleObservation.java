@@ -1,13 +1,15 @@
 package com.masson.cruciblecraft.compat.jade.observation;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 
 /**
  * Source-backed crucible Jade projection. Runtime Celsius is converted to
@@ -20,7 +22,7 @@ public record CrucibleObservation(
         ObservationField<Integer> fillPercent,
         ObservationField<String> renderState,
         ObservationField<Boolean> processActive,
-        ObservationField<String> contents,
+        ObservationField<List<MetalAmount>> metals,
         ObservationField<Integer> totalUnits,
         ObservationField<Integer> maxUnits,
         ObservationField<Boolean> cacheSlotPresent) {
@@ -30,10 +32,12 @@ public record CrucibleObservation(
     public static final String FILL = "cc_crucible_fill";
     public static final String RENDER = "cc_crucible_render";
     public static final String ACTIVE = "cc_crucible_active";
-    public static final String CONTENTS = "cc_crucible_contents";
+    public static final String METALS = "cc_crucible_metals";
     public static final String UNITS = "cc_crucible_units";
     public static final String MAX_UNITS = "cc_crucible_max_units";
     public static final String CACHE = "cc_crucible_cache";
+
+    public record MetalAmount(String materialId, int units) {}
 
     public static CrucibleObservation fromServerData(CompoundTag data) {
         ObservationField<Double> temperature = data.contains(TEMPERATURE_C)
@@ -57,8 +61,8 @@ public record CrucibleObservation(
         ObservationField<Boolean> active = data.contains(ACTIVE)
                 ? ObservationField.of(data.getBoolean(ACTIVE))
                 : ObservationField.unavailable();
-        ObservationField<String> contents = data.contains(CONTENTS)
-                ? ObservationField.of(data.getString(CONTENTS))
+        ObservationField<List<MetalAmount>> metals = data.contains(METALS, Tag.TAG_LIST)
+                ? ObservationField.of(readMetals(data.getList(METALS, Tag.TAG_COMPOUND)))
                 : ObservationField.unavailable();
         ObservationField<Integer> units = data.contains(UNITS)
                 ? ObservationField.of(data.getInt(UNITS))
@@ -76,7 +80,7 @@ public record CrucibleObservation(
                 fill,
                 render,
                 active,
-                contents,
+                metals,
                 units,
                 capacity,
                 cache);
@@ -90,19 +94,16 @@ public record CrucibleObservation(
         data.putFloat(FILL, crucible.fillFraction());
         data.putString(RENDER, crucible.renderState());
         data.putBoolean(ACTIVE, crucible.processActive());
-        data.putString(CONTENTS, formatContents(crucible.composition()));
+        data.put(METALS, writeMetals(crucible.composition()));
         data.putInt(UNITS, crucible.totalUnits());
         data.putInt(MAX_UNITS, CrucibleBlockEntity.maxUnits());
         data.putBoolean(CACHE, crucible.hasCacheSlot());
     }
 
-    public static String formatContents(Map<String, Integer> composition) {
-        if (composition.isEmpty()) {
-            return "";
-        }
-        return composition.entrySet().stream()
-                .map(entry -> entry.getKey() + ": " + entry.getValue() + " u")
-                .collect(Collectors.joining(", "));
+    public static List<MetalAmount> metalAmounts(Map<String, Integer> composition) {
+        List<MetalAmount> metals = new ArrayList<>();
+        composition.forEach((id, units) -> metals.add(new MetalAmount(id, units)));
+        return List.copyOf(metals);
     }
 
     public static CrucibleObservation fromSnapshot(
@@ -116,7 +117,6 @@ public record CrucibleObservation(
             int totalUnits,
             int maxUnits,
             boolean cacheSlotPresent) {
-        Map<String, Integer> copy = new LinkedHashMap<>(composition);
         return new CrucibleObservation(
                 ObservationField.of(JadeDisplayUnits.celsiusToKelvin(
                         temperatureCelsius)),
@@ -126,7 +126,7 @@ public record CrucibleObservation(
                 ObservationField.of(JadeDisplayUnits.fillPercent(fillFraction)),
                 ObservationField.of(renderState),
                 ObservationField.of(processActive),
-                ObservationField.of(formatContents(copy)),
+                ObservationField.of(metalAmounts(composition)),
                 ObservationField.of(totalUnits),
                 ObservationField.of(maxUnits),
                 ObservationField.of(cacheSlotPresent));
@@ -147,5 +147,25 @@ public record CrucibleObservation(
             return "unavailable";
         }
         return renderState.value().toLowerCase(Locale.ROOT);
+    }
+
+    private static List<MetalAmount> readMetals(ListTag list) {
+        List<MetalAmount> metals = new ArrayList<>();
+        for (int index = 0; index < list.size(); index++) {
+            CompoundTag row = list.getCompound(index);
+            metals.add(new MetalAmount(row.getString("id"), row.getInt("u")));
+        }
+        return List.copyOf(metals);
+    }
+
+    private static ListTag writeMetals(Map<String, Integer> composition) {
+        ListTag list = new ListTag();
+        composition.forEach((id, units) -> {
+            CompoundTag row = new CompoundTag();
+            row.putString("id", id);
+            row.putInt("u", units);
+            list.add(row);
+        });
+        return list;
     }
 }

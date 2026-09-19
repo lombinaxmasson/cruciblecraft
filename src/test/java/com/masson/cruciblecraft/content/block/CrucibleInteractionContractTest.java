@@ -30,14 +30,13 @@ class CrucibleInteractionContractTest {
     }
 
     @Test
-    void droppedCrucibleCarriesCasingOnly() throws Exception {
+    void droppedSmelteryDoesNotCopyBlockEntityData() throws Exception {
         String source = Files.readString(Path.of(
-                "src/main/java/com/masson/cruciblecraft/content/block/CrucibleBlock.java"));
+                "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java"));
         String dropMethod = source.substring(
                 source.indexOf("protected List<ItemStack> getDrops"),
                 source.indexOf("@Nullable", source.indexOf("protected List<ItemStack> getDrops")));
 
-        assertTrue(dropMethod.contains("ModComponents.MACHINE_MATERIAL"));
         assertFalse(dropMethod.contains("BLOCK_ENTITY_DATA"));
         assertFalse(dropMethod.contains("saveWithoutMetadata"));
     }

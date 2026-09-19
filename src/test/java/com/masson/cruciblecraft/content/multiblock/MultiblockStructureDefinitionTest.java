@@ -210,8 +210,14 @@ class MultiblockStructureDefinitionTest {
                 resourceDefinition("large_crucible");
         assertEquals(1, definition.schemaVersion());
         assertEquals(27, definition.structure().size());
-        assertEquals(8, definition.portCount(PortType.ENERGY_INPUT));
-        assertEquals(8, definition.portCount(PortType.ITEM_FLUID));
+        assertEquals(0, definition.portCount(PortType.ENERGY_INPUT));
+        assertEquals(0, definition.portCount(PortType.ITEM_FLUID));
+        assertEquals(
+                24,
+                definition.structure().stream()
+                        .filter(element -> definition.predicate(element).kind()
+                                == PredicateKind.TAG)
+                        .count());
         assertEquals(
                 1,
                 definition.structure().stream()
@@ -233,9 +239,9 @@ class MultiblockStructureDefinitionTest {
                         .orElseThrow()
                         .offset());
         assertEquals(
-                "cruciblecraft:large_crucible",
+                "cruciblecraft:large_crucible_controllers",
                 definition.predicate(definition.structure().getFirst())
-                        .block()
+                        .tag()
                         .orElseThrow()
                         .toString());
         java.util.Set<Offset> air = definition.structure().stream()

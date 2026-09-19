@@ -64,6 +64,7 @@
     "test_gt6_crucible_mold_behavior_correction",
     "test_gt6_crucible_mold_interaction",
     "test_gt6_foundry_art",
+    "test_gt6_anvil_art",
     "test_gt6_storage_art",
     "test_gt6_fluid_pipe_runtime",
     "test_gt6_item_pipe_runtime",
@@ -584,7 +585,7 @@
         "tools/capabilities/content/gt6-crucible-mold-behavior-correction/**",
         "tools/waves/content/gt6-crucible-mold-behavior-correction/**",
         "src/main/java/com/masson/cruciblecraft/content/block/CeramicMoldBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/CrucibleBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/CeramicMoldBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
@@ -608,7 +609,7 @@
         "tools/capabilities/content/gt6-crucible-mold-interaction/**",
         "tools/waves/content/gt6-crucible-mold-interaction/**",
         "src/main/java/com/masson/cruciblecraft/content/block/CeramicMoldBlock.java",
-        "src/main/java/com/masson/cruciblecraft/content/block/CrucibleBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/CeramicMoldBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
@@ -649,6 +650,21 @@
         "test_gt6_foundry_art",
         "test_gt6_mte_runtime",
         "test_capability_ledger"
+      ]
+    },
+    {
+      "paths": [
+        "tools/gt6_anvil_art.py",
+        "tools/tests/test_gt6_anvil_art.py",
+        "src/main/resources/assets/cruciblecraft/gt6_anvil_art_manifest.json",
+        "src/main/java/com/masson/cruciblecraft/client/color/AnvilBlockColor.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/AnvilHosts.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/AnvilInteractions.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/AnvilBlock.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/MteMiscToolRuntimeGameTests.java"
+      ],
+      "test_modules": [
+        "test_gt6_anvil_art"
       ]
     },
     {
@@ -1193,6 +1209,7 @@
         "tools/tests/test_gt6_crucible_mold_behavior_correction.py",
         "tools/tests/test_gt6_crucible_mold_interaction.py",
         "tools/tests/test_gt6_foundry_art.py",
+        "tools/tests/test_gt6_anvil_art.py",
         "tools/tests/test_gt6_storage_art.py",
         "tools/tests/test_gt6_fluid_pipe_runtime.py",
         "tools/tests/test_gt6_item_pipe_runtime.py",
@@ -1314,6 +1331,7 @@
         "test_gt6_crucible_mold_behavior_correction",
         "test_gt6_crucible_mold_interaction",
         "test_gt6_foundry_art",
+        "test_gt6_anvil_art",
         "test_gt6_storage_art",
         "test_gt6_insulated_redstone_runtime",
         "test_gt6_fluid_dangerous_media_runtime",

@@ -132,6 +132,12 @@ public final class MachineMaterialRules {
                         materialId)) {
             return Math.max(0, MaterialCatalog.require(materialId).tier());
         }
+        if (device == Device.ANVIL
+                && !DeviceMaterialCatalog.require(device).isAllowed(materialId)) {
+            return MaterialCatalog.find(materialId)
+                    .map(material -> Math.max(0, material.tier()))
+                    .orElse(0);
+        }
         return DeviceMaterialCatalog.require(device)
                 .require(materialId)
                 .processingTier();

@@ -76,9 +76,14 @@ class MachineDeliveryCatalogTest {
         assertTrue(MachineTextureProfiles.hasMachineTextures(host.textureProfile()));
         assertEquals("distillery", MachineTextureProfiles.textureId("distillation_tower"));
         assertEquals("boiler", MachineTextureProfiles.textureId("large_boiler"));
-        assertEquals("coke_oven", MachineTextureProfiles.textureId("large_crucible"));
+        assertEquals("large_crucible", MachineTextureProfiles.textureId("large_crucible"));
         assertEquals("dryer", MachineTextureProfiles.textureId("drying"));
         assertEquals("bath", MachineTextureProfiles.shapedMachineModel("bath"));
+    }
+
+    @Test
+    void largeCrucibleDoesNotAliasCokeOvenTextures() {
+        assertEquals("large_crucible", MachineTextureProfiles.textureId("large_crucible"));
     }
 
     private static Stream<ProcessingMachineSpec> allSpecs() {

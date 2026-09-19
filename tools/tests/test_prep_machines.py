@@ -155,7 +155,7 @@ class PrepMachinesTest(unittest.TestCase):
         melter = census.load_json(prep.common.wave_dir("melter") / "d0_obtain_matrix.json")
         host = melter["hosts"][0]
         self.assertEqual("source_exact", host["status"])
-        self.assertEqual("cruciblecraft:crucible", host["crucible"]["cc"])
+        self.assertEqual("cruciblecraft:foundry/smelting_crucible_steel", host["crucible"]["cc"])
         self.assertEqual("minecraft:bricks", host["bricks"]["cc"])
         self.assertEqual(
             1000,

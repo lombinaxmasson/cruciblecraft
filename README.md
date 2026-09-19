@@ -58,8 +58,9 @@ Gradle Wrapper 构建。
 .\gradlew.bat test
 ```
 
-构建产物位于 `build/libs/`。开发代理应配置在用户级
-`~/.gradle/gradle.properties`，不要写入仓库。
+构建产物位于 `build/libs/`。当前玩家指南对应小群私测
+`0.1.0-test.20260919`（`.\gradlew.bat jar distBeta`），不是公开 RC。
+开发代理应配置在用户级 `~/.gradle/gradle.properties`，不要写入仓库。
 
 ## 开发方式
 

@@ -2,6 +2,8 @@ package com.masson.cruciblecraft.content.blockentity;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
+import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
+import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
@@ -501,7 +503,7 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         if (spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
             return new SteamHandler(side);
         }
-        return null;
+        return LargeCrucibleWalls.fluids(this);
     }
 
     public IItemHandler itemHandler(Direction side) {
@@ -513,7 +515,10 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             return new MassStorageSidedHandler(
                     massStorage, autoOutput() && side == Direction.DOWN);
         }
-        return spec().kind().inventory() ? items : null;
+        if (spec().kind().inventory()) {
+            return items;
+        }
+        return LargeCrucibleWalls.items(this);
     }
 
     public void dropContents() {
@@ -543,6 +548,13 @@ public final class MteInPlaceBlockEntity extends BlockEntity
 
     @Override
     public boolean handles(EnergyType type, Direction side) {
+        if (LargeCrucibleHosts.isWall(spec())) {
+            LargeCrucibleBlockEntity host = LargeCrucibleWalls.controllerAt(
+                    getLevel(), getBlockPos());
+            return host != null
+                    && LargeCrucibleWalls.forwardsEnergy(this)
+                    && host.handles(type, side);
+        }
         return spec().kind().energy() && type == spec().kind().energyType();
     }
 
@@ -563,6 +575,10 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             long amount,
             Direction side,
             boolean simulate) {
+        if (LargeCrucibleHosts.isWall(spec())) {
+            return LargeCrucibleWalls.insertEnergy(
+                    this, type, size, amount, side, simulate);
+        }
         if (!handles(type, side) || amount <= 0L) {
             return 0L;
         }

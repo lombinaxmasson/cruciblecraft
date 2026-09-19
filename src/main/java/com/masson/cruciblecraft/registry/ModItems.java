@@ -79,6 +79,7 @@ import com.masson.cruciblecraft.content.item.MaterialGemPickItem;
 import com.masson.cruciblecraft.content.item.MaterialHoeItem;
 import com.masson.cruciblecraft.content.item.MaterialKnifeItem;
 import com.masson.cruciblecraft.content.item.MaterialMachineBlockItem;
+import com.masson.cruciblecraft.content.item.LargeCrucibleBlockItem;
 import com.masson.cruciblecraft.content.item.MaterialMonkeyWrenchItem;
 import com.masson.cruciblecraft.content.item.MaterialPickaxeItem;
 import com.masson.cruciblecraft.content.item.MaterialPlowItem;
@@ -252,12 +253,6 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> LARGE_IRIDIUM_COIL =
             ITEMS.registerSimpleBlockItem(
                     "large_iridium_coil", ModBlocks.LARGE_IRIDIUM_COIL);
-    public static final DeferredItem<MaterialMachineBlockItem> CRUCIBLE = ITEMS.register(
-            "crucible",
-            () -> new MaterialMachineBlockItem(
-                    ModBlocks.CRUCIBLE.get(),
-                    Device.CRUCIBLE,
-                    new Item.Properties()));
     public static final DeferredItem<MaterialMachineBlockItem> ANVIL = ITEMS.register(
             "anvil",
             () -> new MaterialMachineBlockItem(
@@ -289,9 +284,12 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> TANK_3X3X3 =
             ITEMS.registerSimpleBlockItem(
                     "tank_3x3x3", ModBlocks.TANK_3X3X3);
-    public static final DeferredItem<BlockItem> LARGE_CRUCIBLE =
-            ITEMS.registerSimpleBlockItem(
-                    "large_crucible", ModBlocks.LARGE_CRUCIBLE);
+    public static final DeferredItem<LargeCrucibleBlockItem> LARGE_CRUCIBLE =
+            ITEMS.register(
+                    "large_crucible",
+                    () -> new LargeCrucibleBlockItem(
+                            ModBlocks.LARGE_CRUCIBLE.get(),
+                            new Item.Properties()));
     public static final DeferredItem<BlockItem> LOGISTICS_CORE =
             ITEMS.registerSimpleBlockItem(
                     "logistics_core", ModBlocks.LOGISTICS_CORE);

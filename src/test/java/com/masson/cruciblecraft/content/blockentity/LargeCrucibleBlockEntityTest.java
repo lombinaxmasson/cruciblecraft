@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.multiblock.PluginQuarantinePolicy;
 import com.masson.cruciblecraft.machine.component.CrucibleProcessCore;
 import com.masson.cruciblecraft.registry.ModMultiblockPlugins;
@@ -79,5 +80,49 @@ class LargeCrucibleBlockEntityTest {
         assertTrue(source.contains("queueCooling"));
         assertTrue(source.contains("fillMeltdownLava"));
         assertTrue(source.contains("pourHostAtWall"));
+        assertTrue(source.contains("wallsMatchCasing"));
+    }
+
+    @Test
+    void largeCrucibleMaterialsMatchGt6CatalogedWalls() {
+        assertEquals(7, LargeCrucibleHosts.MATERIALS.size());
+        assertTrue(LargeCrucibleHosts.isAllowed("steel"));
+        assertTrue(LargeCrucibleHosts.isAllowed("stainless_steel"));
+        assertTrue(LargeCrucibleHosts.acidProof("stainless_steel"));
+        assertFalse(LargeCrucibleHosts.acidProof("steel"));
+        assertFalse(LargeCrucibleHosts.isAllowed("ceramic"));
+    }
+
+    @Test
+    void controllerColorAndClientSyncFollowCasingMaterial() throws Exception {
+        String source = java.nio.file.Files.readString(java.nio.file.Path.of(
+                "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeCrucibleBlockEntity.java"));
+        assertTrue(source.contains("getUpdateTag"));
+        assertTrue(source.contains("syncToClient"));
+        String color = java.nio.file.Files.readString(java.nio.file.Path.of(
+                "src/main/java/com/masson/cruciblecraft/client/color/LargeCrucibleBlockColor.java"));
+        assertTrue(color.contains("MACHINE_MATERIAL"));
+        assertTrue(color.contains("isController"));
+        assertTrue(color.contains("isCatalogWall"));
+        String machineColor = java.nio.file.Files.readString(java.nio.file.Path.of(
+                "src/main/java/com/masson/cruciblecraft/client/color/MachineBlockColor.java"));
+        assertFalse(machineColor.contains("LARGE_CRUCIBLE"));
+        String model = java.nio.file.Files.readString(java.nio.file.Path.of(
+                "src/main/resources/assets/cruciblecraft/models/block/large_crucible.json"));
+        assertTrue(model.contains("gt6_import/multiblockmains/crucible"));
+        assertFalse(model.contains("coke_oven"));
+        String delivery = java.nio.file.Files.readString(java.nio.file.Path.of(
+                "src/main/resources/data/cruciblecraft/machine_delivery.json"));
+        assertFalse(delivery.contains("\"large_crucible\": \"coke_oven\""));
+        String tabs = java.nio.file.Files.readString(java.nio.file.Path.of(
+                "src/main/java/com/masson/cruciblecraft/registry/ModCreativeTabs.java"));
+        int building = tabs.indexOf("private static void fillBuilding");
+        int machinesFill = tabs.indexOf("private static void fillMachines");
+        String machinesBody = tabs.substring(machinesFill, building);
+        String buildingBody = tabs.substring(building);
+        assertTrue(machinesBody.contains("STAINLESS_STEEL_WALL"));
+        assertTrue(tabs.contains("CRUCIBLE_FOUNDRY"));
+        assertFalse(buildingBody.contains("STAINLESS_STEEL_WALL"));
+        assertFalse(buildingBody.contains("GALVANIZED_STEEL_WALL"));
     }
 }

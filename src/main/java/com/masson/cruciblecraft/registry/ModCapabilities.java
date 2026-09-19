@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
+import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
 import com.masson.cruciblecraft.content.item.PortableFluidTankItem;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.content.storage.ILogisticsStorage;
@@ -42,6 +43,18 @@ public final class ModCapabilities {
                 (stack, context) -> ModItems.GAS_CELL.get().handler(stack),
                 ModItems.GAS_CELL.get());
         event.registerBlockEntity(ENERGY, ModBlockEntities.CRUCIBLE.get(), (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_CRUCIBLE.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LARGE_CRUCIBLE.get(),
+                (blockEntity, side) -> blockEntity.inventory());
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_CRUCIBLE.get(),
+                (blockEntity, side) -> blockEntity.process().fluids());
         event.registerBlockEntity(ENERGY, ModBlockEntities.BOILER.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.STEAM_ENGINE.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.DYNAMO.get(), (blockEntity, side) -> blockEntity);
@@ -147,10 +160,15 @@ public final class ModCapabilities {
         event.registerBlockEntity(
                 ENERGY,
                 ModBlockEntities.MTE_INPLACE.get(),
-                (blockEntity, side) -> blockEntity.handles(
-                        blockEntity.spec().kind().energyType(), side)
-                        ? blockEntity
-                        : null);
+                (blockEntity, side) -> {
+                    if (LargeCrucibleWalls.forwardsEnergy(blockEntity)) {
+                        return blockEntity;
+                    }
+                    return blockEntity.handles(
+                            blockEntity.spec().kind().energyType(), side)
+                            ? blockEntity
+                            : null;
+                });
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.ITEM_PIPE.get(),

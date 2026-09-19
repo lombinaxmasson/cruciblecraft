@@ -74,14 +74,14 @@ public final class ModBlockEntities {
                     "crucible",
                     () -> BlockEntityType.Builder.of(
                             CrucibleBlockEntity::new,
-                            ModBlocks.CRUCIBLE.get()).build(null));
+                            ModBlocks.crucibleBlockArray()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AnvilBlockEntity>> ANVIL =
             BLOCK_ENTITIES.register(
                     "anvil",
                     () -> BlockEntityType.Builder.of(
                             AnvilBlockEntity::new,
-                            ModBlocks.ANVIL.get()).build(null));
+                            ModBlocks.anvilBlockArray()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CokeOvenBlockEntity>>
             COKE_OVEN = BLOCK_ENTITIES.register(
@@ -142,7 +142,7 @@ public final class ModBlockEntities {
                             "large_crucible",
                             () -> BlockEntityType.Builder.of(
                                     LargeCrucibleBlockEntity::new,
-                                    ModBlocks.LARGE_CRUCIBLE.get())
+                                    ModBlocks.largeCrucibleBlockArray())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

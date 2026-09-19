@@ -157,7 +157,7 @@
     },
     {
       "family": "crucible",
-      "live_identities": ["cruciblecraft:crucible"],
+      "live_identities": ["cruciblecraft:foundry/smelting_crucible_steel"],
       "static_profile_source": "CrucibleBlockEntity casingMaxTemperature/maxUnits; GT6 MultiTileEntityCrucible tooltips use K",
       "dynamic_state_source": "CrucibleProcessCore thermal/composition; buffered HU is storedEnergy, not clientTag",
       "sync_path": "jade_server_data",
@@ -167,7 +167,7 @@
         "meltdown_k",
         "fill_percent",
         "render_state",
-        "contents",
+        "material_amounts",
         "cache_slot"
       ],
       "translation_keys": [
@@ -177,6 +177,7 @@
         "jade.cruciblecraft.fill_level",
         "jade.cruciblecraft.render_state",
         "jade.cruciblecraft.cache_slot",
+        "jade.cruciblecraft.material_amount",
         "jade.cruciblecraft.unavailable",
         "config.jade.plugin_cruciblecraft.crucible"
       ],

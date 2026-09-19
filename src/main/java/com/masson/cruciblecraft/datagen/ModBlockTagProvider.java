@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.concurrent.CompletableFuture;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.registry.ModBlockTags;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
@@ -54,7 +55,6 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.CONVERSION_PROCESSOR_UNIT.getKey(),
                 ModBlocks.FLUID_DEPOSIT_EXTRACTOR.getKey(),
                 ModBlocks.FIREBRICK.getKey(),
-                ModBlocks.CRUCIBLE.getKey(),
                 ModBlocks.ANVIL.getKey(),
                 ModBlocks.COKE_OVEN.getKey(),
                 ModBlocks.LU_FIBER_CABLE.getKey(),
@@ -194,6 +194,18 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         });
         ModBlocks.treeSaplings().forEach(holder -> saplings.add(holder.getKey()));
         hoe.add(ModBlocks.GT_BUSH.getKey());
+        var largeControllers = tag(ModBlockTags.LARGE_CRUCIBLE_CONTROLLERS);
+        largeControllers.add(ModBlocks.LARGE_CRUCIBLE.getKey());
+        var largeWalls = tag(ModBlockTags.LARGE_CRUCIBLE_WALLS);
+        ModBlocks.mteInPlaceBlocksById().values().forEach(holder -> {
+            var spec = holder.get().spec();
+            if (LargeCrucibleHosts.isController(spec)) {
+                largeControllers.add(holder.getKey());
+            }
+            if (LargeCrucibleHosts.isWall(spec)) {
+                largeWalls.add(holder.getKey());
+            }
+        });
     }
 
     private void addGtBlockObjectTags(

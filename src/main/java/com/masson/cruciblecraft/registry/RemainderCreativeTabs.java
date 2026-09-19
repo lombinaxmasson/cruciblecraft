@@ -59,6 +59,12 @@ public final class RemainderCreativeTabs {
         int slash = path.indexOf('/');
         String root = slash < 0 ? path : path.substring(0, slash);
 
+        if (path.startsWith("foundry/")
+                || path.endsWith("/wall")
+                || path.endsWith("_wall")
+                || (path.startsWith("multiblock/large_") && path.endsWith("_crucible"))) {
+            return Tab.MACHINES;
+        }
         if ("armor".equals(normalizedKind)) {
             return Tab.TOOLS;
         }

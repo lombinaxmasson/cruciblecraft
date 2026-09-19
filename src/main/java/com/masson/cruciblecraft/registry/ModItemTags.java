@@ -17,6 +17,10 @@ public final class ModItemTags {
             Registries.ITEM,
             ResourceLocation.fromNamespaceAndPath(
                     CrucibleCraft.MODID, "crafting_firestarter"));
+    public static final TagKey<Item> SMELTING_CRUCIBLES = TagKey.create(
+            Registries.ITEM,
+            ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID, "smelting_crucibles"));
 
     private ModItemTags() {}
 }

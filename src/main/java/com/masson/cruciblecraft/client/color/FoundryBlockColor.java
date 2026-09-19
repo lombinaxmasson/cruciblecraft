@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.client.color;
 
+import com.masson.cruciblecraft.content.block.FoundryHosts;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
@@ -40,15 +41,7 @@ public final class FoundryBlockColor {
     }
 
     static String materialId(MteInPlaceSpec spec) {
-        String path = spec.registryPath();
-        String token = path.startsWith("foundry/")
-                ? path.substring(path.lastIndexOf('_') + 1)
-                : path.substring(0, path.indexOf('/'));
-        if (MaterialCatalog.contains(token)) {
-            return token;
-        }
-        String elemental = token + "_elemental";
-        return MaterialCatalog.contains(elemental) ? elemental : token;
+        return FoundryHosts.materialId(spec);
     }
 
     private static int colorFor(Block block) {

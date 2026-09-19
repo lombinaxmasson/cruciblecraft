@@ -26,7 +26,7 @@ final class AlloyEmiRecipe implements EmiRecipe {
                 CrucibleCraft.MODID,
                 "alloy/" + materialId));
         texture = Gt6EmiGui.texture("alloying");
-        workstation = EmiStack.of(ModBlocks.CRUCIBLE.get());
+        workstation = EmiStack.of(ModBlocks.steelSmeltingCrucible().get());
         this.inputs = List.copyOf(inputs);
         catalysts = List.of(workstation);
         outputs = List.of(output);

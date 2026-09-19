@@ -22,9 +22,6 @@ class CeramicMoldResourceTest {
                 Path.of("src/main/resources/assets/cruciblecraft/models/block/ceramic_mold_filled.json")));
         for (String recipe : List.of(
                 "raw_ceramic_crucible",
-                "crucible_firing",
-                "bronze_crucible_upgrade",
-                "steel_crucible_upgrade",
                 "raw_ceramic_mold",
                 "firebrick",
                 "raw_ingot_mold",

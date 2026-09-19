@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,12 @@ class JadeObservationTest {
                 1.0e-6);
         assertEquals(50, observation.fillPercent().value());
         assertEquals("unavailable", observation.cacheDisplay());
-        assertEquals("copper: 144 u", observation.contents().value());
+        assertEquals(
+                List.of(new CrucibleObservation.MetalAmount("copper", 144)),
+                observation.metals().value());
+        assertEquals("1", JadeDisplayUnits.formatIngotAmount(144));
+        assertEquals("0.111", JadeDisplayUnits.formatIngotAmount(16));
+        assertEquals("0.5", JadeDisplayUnits.formatIngotAmount(72));
     }
 
     @Test

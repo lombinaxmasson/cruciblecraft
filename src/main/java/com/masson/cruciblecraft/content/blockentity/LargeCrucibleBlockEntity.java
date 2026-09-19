@@ -11,6 +11,9 @@ import com.masson.cruciblecraft.air.AirOutputModel;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
+import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
+import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
@@ -19,6 +22,8 @@ import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator;
 import com.masson.cruciblecraft.content.multiblock.PluginQuarantinePolicy;
 import com.masson.cruciblecraft.energy.EnergyPackets;
@@ -29,7 +34,7 @@ import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CrucibleProcessCore;
 import com.masson.cruciblecraft.machine.component.SteelmakingController;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
-import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModBlockTags;
 import com.masson.cruciblecraft.registry.ModMultiblockPlugins;
 
 import net.minecraft.core.BlockPos;
@@ -39,6 +44,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -104,6 +111,17 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
     public LargeCrucibleBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.LARGE_CRUCIBLE.get(), pos, state);
         process.setOnMutation(this::setChanged);
+        process.casing().setMaterialId(LargeCrucibleHosts.DEFAULT_MATERIAL);
+        LargeCrucibleHosts.bakedMaterial(state)
+                .ifPresent(process.casing()::setMaterialId);
+    }
+
+    public void setCasingMaterialId(String materialId) {
+        if (LargeCrucibleHosts.isAllowed(materialId)
+                && process.casing().setMaterialId(materialId)) {
+            setChanged();
+            syncToClient();
+        }
     }
 
     public static void serverTick(
@@ -328,25 +346,11 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
      */
     public static LargeCrucibleBlockEntity pourHostAtWall(
             BlockGetter level, BlockPos wall) {
-        if (level == null
-                || !level.getBlockState(wall).is(ModBlocks.MULTIBLOCK_CASING.get())) {
+        LargeCrucibleBlockEntity host = LargeCrucibleWalls.controllerAt(level, wall);
+        if (host == null) {
             return null;
         }
-        for (int dx = -1; dx <= 1; dx++) {
-            for (int dz = -1; dz <= 1; dz++) {
-                if (dx == 0 && dz == 0) {
-                    continue;
-                }
-                if (!(level.getBlockEntity(wall.offset(-dx, -1, -dz))
-                        instanceof LargeCrucibleBlockEntity crucible)) {
-                    continue;
-                }
-                if (crucible.structureValid() && !crucible.pluginQuarantined()) {
-                    return crucible;
-                }
-            }
-        }
-        return null;
+        return wall.getY() - host.getBlockPos().getY() == 1 ? host : null;
     }
 
     public SteelmakingController.InjectionResult injectAir(long air) {
@@ -369,22 +373,69 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             updateStructureValid(false);
             return;
         }
+        Direction facing = LargeCrucibleHosts.horizontalFacing(state);
         MultiblockStructureValidator.ValidationResult validation =
                 MultiblockStructureValidator.validate(
                         definition.orElseThrow(),
                         level,
                         pos,
-                        state.getValue(ProcessingMachineBlock.FACING));
+                        facing);
         lastValidation = validation;
         boundPorts = MultiblockPortAggregator.refresh(
                 level, pos, STRUCTURE_ID, validation, boundPorts);
-        updateStructureValid(validation.valid());
+        updateStructureValid(
+                validation.valid()
+                        && wallsMatchCasing(
+                                level,
+                                definition.orElseThrow(),
+                                pos,
+                                facing));
+    }
+
+    private boolean wallsMatchCasing(
+            Level level,
+            MultiblockStructureDefinition definition,
+            BlockPos controller,
+            Direction facing) {
+        String material = process.casing().materialId();
+        for (var element : definition.structure()) {
+            var predicate = definition.predicate(element);
+            if (predicate.kind() != PredicateKind.TAG
+                    || !ModBlockTags.LARGE_CRUCIBLE_WALLS.location().equals(
+                            predicate.tag().orElse(null))) {
+                continue;
+            }
+            BlockPos world = definition.worldPosition(controller, facing, element.offset());
+            if (!(level.getBlockState(world).getBlock() instanceof MteInPlaceBlock inplace)
+                    || !LargeCrucibleHosts.isWall(inplace.spec())
+                    || !material.equals(LargeCrucibleHosts.materialId(inplace.spec()))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void updateStructureValid(boolean valid) {
         if (structureValid != valid) {
             structureValid = valid;
             setChanged();
+            if (level != null && !level.isClientSide) {
+                invalidateCrucibleCapabilities();
+            }
+        }
+    }
+
+    private void invalidateCrucibleCapabilities() {
+        level.invalidateCapabilities(worldPosition);
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = 0; dy <= 2; dy++) {
+                for (int dz = -1; dz <= 1; dz++) {
+                    if (dx == 0 && dy == 0 && dz == 0) {
+                        continue;
+                    }
+                    level.invalidateCapabilities(worldPosition.offset(dx, dy, dz));
+                }
+            }
         }
     }
 
@@ -446,8 +497,45 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             index++;
         }
         process.setFrozen(pluginQuarantined);
+        LargeCrucibleHosts.bakedMaterial(getBlockState())
+                .ifPresent(process.casing()::setMaterialId);
         if (pluginQuarantined) {
             setChanged();
+        }
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return process.clientTag();
+    }
+
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
+        process.restore(tag, true);
+        LargeCrucibleHosts.bakedMaterial(getBlockState())
+                .ifPresent(process.casing()::setMaterialId);
+    }
+
+    @Override
+    public void onDataPacket(
+            Connection connection,
+            ClientboundBlockEntityDataPacket packet,
+            HolderLookup.Provider registries) {
+        CompoundTag tag = packet.getTag();
+        if (tag != null) {
+            handleUpdateTag(tag, registries);
+        }
+    }
+
+    private void syncToClient() {
+        if (level != null && !level.isClientSide) {
+            BlockState state = getBlockState();
+            level.sendBlockUpdated(worldPosition, state, state, Block.UPDATE_CLIENTS);
         }
     }
 

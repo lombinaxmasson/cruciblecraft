@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
+import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
 import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
@@ -21,6 +22,8 @@ import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.machine.processing.DeviceMaterialCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
+import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
+import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.worldgen.StoneLayerStones;
 
@@ -202,10 +205,6 @@ public final class ModCreativeTabs {
     private static void fillMachines(
             CreativeModeTab.ItemDisplayParameters parameters,
             CreativeModeTab.Output output) {
-        DeviceMaterialCatalog.require(MachineMaterialRules.Device.CRUCIBLE)
-                .creativeVisible()
-                .forEach(material -> output.accept(
-                        machineVariant(ModItems.CRUCIBLE.get(), material.materialId())));
         DeviceMaterialCatalog.require(MachineMaterialRules.Device.ANVIL)
                 .creativeVisible()
                 .forEach(material -> output.accept(
@@ -218,7 +217,18 @@ public final class ModCreativeTabs {
         output.accept(ModItems.DISTILLATION_TOWER.get());
         output.accept(ModItems.LARGE_BOILER.get());
         output.accept(ModItems.TANK_3X3X3.get());
-        output.accept(ModItems.LARGE_CRUCIBLE.get());
+        output.accept(ModItems.GALVANIZED_STEEL_WALL.get());
+        output.accept(ModItems.TUNGSTENSTEEL_WALL.get());
+        output.accept(ModItems.STAINLESS_STEEL_WALL.get());
+        MteInPlaceCatalog.specs().forEach(spec -> {
+            if (!machinesTabMte(spec)) {
+                return;
+            }
+            var item = ModItems.mteInPlaceItemsById().get(spec.id());
+            if (item != null) {
+                output.accept(item.get());
+            }
+        });
         output.accept(ModItems.LASER_ENGRAVER.get());
         output.accept(ModItems.FUSION_REACTOR.get());
         output.accept(ModItems.LARGE_HEAT_EXCHANGER.get());
@@ -339,9 +349,6 @@ public final class ModCreativeTabs {
             CreativeModeTab.ItemDisplayParameters parameters,
             CreativeModeTab.Output output) {
         output.accept(ModItems.FIREBRICK.get());
-        output.accept(ModItems.GALVANIZED_STEEL_WALL.get());
-        output.accept(ModItems.TUNGSTENSTEEL_WALL.get());
-        output.accept(ModItems.STAINLESS_STEEL_WALL.get());
         output.accept(ModItems.LARGE_IRIDIUM_COIL.get());
         GtWoodCatalog.DEFINITIONS.forEach(wood -> {
             output.accept(ModItems.gtWood(wood.id()).get());
@@ -487,6 +494,12 @@ public final class ModCreativeTabs {
                             SimpleFluidContent.copyOf(new FluidStack(fluid, 1_000)));
                     output.accept(cell);
                 });
+    }
+
+    private static boolean machinesTabMte(MteInPlaceSpec spec) {
+        return LargeCrucibleHosts.isController(spec)
+                || LargeCrucibleHosts.isCatalogWall(spec)
+                || spec.kind() == MteInPlaceKind.CRUCIBLE_FOUNDRY;
     }
 
     private static void acceptRemainder(

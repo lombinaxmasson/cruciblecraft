@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.content.block;
 
+import java.util.List;
+
 import org.jetbrains.annotations.Nullable;
 
 import com.masson.cruciblecraft.api.tool.ToolAction;
@@ -7,12 +9,19 @@ import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CrucibleEntityMelts;
+import com.masson.cruciblecraft.content.blockentity.CruciblePlayerInteraction;
+import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.content.mte.BathingPotRuntime;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.storage.MassStorageClicks;
+import com.masson.cruciblecraft.heat.TemperatureDamage;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
+import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,6 +31,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -41,6 +52,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -99,10 +112,17 @@ public final class MteInPlaceBlock extends Block
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction clicked = context.getClickedFace();
-        Direction facing = spec.kind().attachment()
-                ? clicked.getOpposite()
-                : context.getHorizontalDirection().getOpposite();
-        if (!spec.kind().attachment() && facing.getAxis().isVertical()) {
+        Direction facing;
+        if (AnvilHosts.isAnvil(spec)) {
+            facing = context.getHorizontalDirection();
+        } else if (spec.kind().attachment()) {
+            facing = clicked.getOpposite();
+        } else {
+            facing = context.getHorizontalDirection().getOpposite();
+        }
+        if (!AnvilHosts.isAnvil(spec)
+                && !spec.kind().attachment()
+                && facing.getAxis().isVertical()) {
             facing = context.getHorizontalDirection().getOpposite();
         }
         return defaultBlockState().setValue(FACING, facing);
@@ -125,6 +145,9 @@ public final class MteInPlaceBlock extends Block
             BlockPos pos,
             CollisionContext context) {
         MteInPlaceKind kind = spec.kind();
+        if (AnvilHosts.isAnvil(spec)) {
+            return AnvilHosts.shape(AnvilHosts.horizontalFacing(state));
+        }
         if (BathingPotRuntime.hosts(spec)) {
             return BathingPotRuntime.table(spec) ? Shapes.block() : BATHING_POT;
         }
@@ -184,6 +207,12 @@ public final class MteInPlaceBlock extends Block
 
     @Override
     public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (AnvilHosts.isAnvil(spec)) {
+            ToolResult anvil = AnvilInteractions.useTool(action, context);
+            if (anvil != ToolResult.PASS) {
+                return anvil;
+            }
+        }
         if (spec.kind() == MteInPlaceKind.MASS_STORAGE) {
             ToolResult mass = useMassStorageTool(action, context);
             if (mass != ToolResult.PASS) {
@@ -238,10 +267,49 @@ public final class MteInPlaceBlock extends Block
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
+        if (AnvilHosts.isAnvil(spec)
+                && AnvilHosts.isHammer(stack)
+                && level.getBlockEntity(pos) instanceof AnvilBlockEntity anvil
+                && AnvilInteractions.canPlaceHeld(anvil, stack)) {
+            return AnvilInteractions.useItemOn(stack, level, pos, player, hit);
+        }
         ItemInteractionResult tool = ToolClick.useItemOn(
                 stack, level, player, hand, hit);
         if (tool.consumesAction()) {
             return tool;
+        }
+        if (AnvilHosts.isAnvil(spec)) {
+            ItemInteractionResult placed = AnvilInteractions.useItemOn(
+                    stack, level, pos, player, hit);
+            if (placed.consumesAction()) {
+                return placed;
+            }
+        }
+        if (SmelteryHosts.isSmeltery(spec)
+                && level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible) {
+            return CruciblePlayerInteraction.useItemOn(
+                    level,
+                    player,
+                    hand,
+                    stack,
+                    hit.getDirection(),
+                    crucible.process(),
+                    crucible.inputBuffer(),
+                    crucible.externalFluids(),
+                    true);
+        }
+        if (LargeCrucibleHosts.isController(spec)
+                && level.getBlockEntity(pos) instanceof LargeCrucibleBlockEntity crucible) {
+            return CruciblePlayerInteraction.useItemOn(
+                    level,
+                    player,
+                    hand,
+                    stack,
+                    hit.getDirection(),
+                    crucible.process(),
+                    crucible.inventory(),
+                    crucible.process().fluids(),
+                    crucible.structureValid() && !crucible.pluginQuarantined());
         }
         if (spec.kind() == MteInPlaceKind.MASS_STORAGE
                 && hit.getDirection() == state.getValue(FACING)
@@ -267,6 +335,29 @@ public final class MteInPlaceBlock extends Block
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
+        if (AnvilHosts.isAnvil(spec)) {
+            return AnvilInteractions.useWithoutItem(level, pos, player, hit);
+        }
+        if (SmelteryHosts.isSmeltery(spec)
+                && level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible) {
+            return CruciblePlayerInteraction.useEmpty(
+                    level,
+                    player,
+                    hit.getDirection(),
+                    crucible.process(),
+                    crucible.inputBuffer(),
+                    true);
+        }
+        if (LargeCrucibleHosts.isController(spec)
+                && level.getBlockEntity(pos) instanceof LargeCrucibleBlockEntity crucible) {
+            return CruciblePlayerInteraction.useEmpty(
+                    level,
+                    player,
+                    hit.getDirection(),
+                    crucible.process(),
+                    crucible.inventory(),
+                    crucible.structureValid() && !crucible.pluginQuarantined());
+        }
         MteInPlaceKind kind = spec.kind();
         if (BathingPotRuntime.hosts(spec)
                 && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host
@@ -435,21 +526,106 @@ public final class MteInPlaceBlock extends Block
     }
 
     @Override
+    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+        if (LargeCrucibleHosts.isController(spec)) {
+            LargeCrucibleBlock.applyHotContact(level, pos, entity);
+        }
+        super.stepOn(level, pos, state, entity);
+    }
+
+    @Override
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+        if (SmelteryHosts.isSmeltery(spec)) {
+            if (level.isClientSide
+                    || !(level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible)) {
+                return;
+            }
+            float temperature = crucible.temperature();
+            boolean damaged = TemperatureDamage.apply(entity, temperature, 1.0F, 10.0F);
+            if (damaged && TemperatureDamage.kelvin(temperature) > 320L) {
+                CrucibleEntityMelts.tryMelt(
+                        crucible.process(),
+                        entity,
+                        CrucibleBlockEntity.AMBIENT_TEMPERATURE);
+            }
+            return;
+        }
+        if (LargeCrucibleHosts.isController(spec)) {
+            LargeCrucibleBlock.applyHotContact(level, pos, entity);
+        }
+    }
+
+    @Override
     protected void onRemove(
             BlockState state,
             Level level,
             BlockPos pos,
             BlockState next,
             boolean moved) {
-        if (!state.is(next.getBlock())
-                && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
-            host.dropContents();
+        if (!state.is(next.getBlock())) {
+            if (level.getBlockEntity(pos) instanceof AnvilBlockEntity anvil) {
+                anvil.dropContents();
+            } else if (level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible) {
+                crucible.dropBuffer(level, pos);
+            } else if (level.getBlockEntity(pos) instanceof LargeCrucibleBlockEntity crucible) {
+                crucible.clearBindings();
+            } else if (level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
+                host.dropContents();
+            }
         }
         super.onRemove(state, level, pos, next, moved);
     }
 
     @Override
+    public void setPlacedBy(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            LivingEntity placer,
+            ItemStack stack) {
+        super.setPlacedBy(level, pos, state, placer, stack);
+        if (AnvilHosts.isAnvil(spec)
+                && level.getBlockEntity(pos) instanceof AnvilBlockEntity anvil) {
+            anvil.setMaterial(
+                    AnvilHosts.materialId(spec),
+                    stack.get(ModComponents.MACHINE_DURABILITY));
+        }
+        if (SmelteryHosts.isSmeltery(spec)
+                && level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible) {
+            crucible.setCasingMaterialId(SmelteryHosts.materialId(spec));
+        }
+        if (LargeCrucibleHosts.isController(spec)
+                && level.getBlockEntity(pos) instanceof LargeCrucibleBlockEntity crucible) {
+            crucible.setCasingMaterialId(LargeCrucibleHosts.materialId(spec));
+        }
+    }
+
+    @Override
+    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        List<ItemStack> drops = super.getDrops(state, params);
+        if (AnvilHosts.isAnvil(spec)
+                && params.getOptionalParameter(LootContextParams.BLOCK_ENTITY)
+                        instanceof AnvilBlockEntity anvil) {
+            for (ItemStack drop : drops) {
+                if (drop.getItem() == asItem()) {
+                    drop.set(ModComponents.MACHINE_DURABILITY, anvil.durabilityComponent());
+                }
+            }
+        }
+        return drops;
+    }
+
+    @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        if (AnvilHosts.isAnvil(spec)) {
+            return new AnvilBlockEntity(pos, state);
+        }
+        if (SmelteryHosts.isSmeltery(spec)) {
+            return new CrucibleBlockEntity(pos, state);
+        }
+        if (LargeCrucibleHosts.isController(spec)) {
+            return new LargeCrucibleBlockEntity(pos, state);
+        }
         return new MteInPlaceBlockEntity(pos, state);
     }
 
@@ -459,7 +635,29 @@ public final class MteInPlaceBlock extends Block
             Level level,
             BlockState state,
             BlockEntityType<T> type) {
-        if (type != ModBlockEntities.MTE_INPLACE.get()) {
+        if (SmelteryHosts.isSmeltery(spec)) {
+            return type == ModBlockEntities.CRUCIBLE.get()
+                    ? (lvl, pos, st, be) -> {
+                        if (be instanceof CrucibleBlockEntity crucible) {
+                            if (lvl.isClientSide) {
+                                CrucibleBlockEntity.clientTick(lvl, pos, st, crucible);
+                            } else {
+                                CrucibleBlockEntity.serverTick(lvl, pos, st, crucible);
+                            }
+                        }
+                    }
+                    : null;
+        }
+        if (LargeCrucibleHosts.isController(spec)) {
+            return !level.isClientSide && type == ModBlockEntities.LARGE_CRUCIBLE.get()
+                    ? (lvl, pos, st, be) -> {
+                        if (be instanceof LargeCrucibleBlockEntity crucible) {
+                            LargeCrucibleBlockEntity.serverTick(lvl, pos, st, crucible);
+                        }
+                    }
+                    : null;
+        }
+        if (AnvilHosts.isAnvil(spec) || type != ModBlockEntities.MTE_INPLACE.get()) {
             return null;
         }
         if (level.isClientSide) {

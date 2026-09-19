@@ -5,7 +5,7 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 /**
  * Discriminator for GT6 MTE identities that keep their dummy modern id and
  * become live BlockItems in place. These are not pipe covers, KU axles,
- * vanilla tools, or the single ceramic crucible.
+ * or vanilla tools.
  */
 public enum MteInPlaceKind {
     FAUCET,

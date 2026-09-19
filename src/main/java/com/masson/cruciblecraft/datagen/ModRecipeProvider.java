@@ -53,6 +53,7 @@ import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceAcquisitionCatalog;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
+import com.masson.cruciblecraft.registry.ModItemTags;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 
@@ -2342,7 +2343,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     .pattern(" U ")
                     .pattern("PMP")
                     .pattern("BCB")
-                    .define('U', ModItems.CRUCIBLE.get())
+                    .define('U', ModItemTags.SMELTING_CRUCIBLES)
                     .define('B', Items.BRICKS);
             case "roaster" -> builder
                     .pattern(" P ")
@@ -2395,7 +2396,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         ingredients.put("P", materialIngredient(material, MaterialPrefixes.FLUID_PIPE));
         ingredients.put("C", materialIngredient("copper", MaterialPrefixes.DOUBLE_PLATE));
         ingredients.put("B", Ingredient.of(Items.BRICKS));
-        ingredients.put("U", Ingredient.of(ModItems.CRUCIBLE.get()));
+        ingredients.put("U", Ingredient.of(ModItemTags.SMELTING_CRUCIBLES));
         acceptShapedCatalyst(
                 output,
                 "machines/" + id,

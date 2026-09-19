@@ -12,13 +12,15 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
+import com.masson.cruciblecraft.content.block.AnvilHosts;
+import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
+import com.masson.cruciblecraft.content.block.SmelteryHosts;
 import com.masson.cruciblecraft.content.block.RockBlock;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.content.block.CableBlock;
-import com.masson.cruciblecraft.content.block.CrucibleBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
 import com.masson.cruciblecraft.content.block.DynamoBlock;
 import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
@@ -298,21 +300,14 @@ public final class ModBlocks {
             BLOCKS.registerSimpleBlock(
                     "large_iridium_coil", machineProperties());
 
-    public static final DeferredBlock<CrucibleBlock> CRUCIBLE = BLOCKS.register(
-            "crucible",
-            () -> new CrucibleBlock(BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.COLOR_BLACK)
-                    .strength(3.0F, 8.0F)
-                    .sound(SoundType.STONE)));
-
     public static final DeferredBlock<AnvilBlock> ANVIL = BLOCKS.register(
             "anvil",
             () -> new AnvilBlock(BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.METAL)
-                    .strength(5.0F, 1_200.0F)
+                    .mapColor(MapColor.STONE)
+                    .strength(1.0F, 6.0F)
                     .requiresCorrectToolForDrops()
                     .noOcclusion()
-                    .sound(SoundType.ANVIL)));
+                    .sound(SoundType.STONE)));
 
     public static final DeferredBlock<CokeOvenBlock> COKE_OVEN = BLOCKS.register(
             "coke_oven",
@@ -1471,7 +1466,7 @@ public final class ModBlocks {
                     spec.registryPath(),
                     () -> new MteInPlaceBlock(
                             spec,
-                            machineProperties().noOcclusion()));
+                            inplaceProperties(spec)));
             if (blocks.put(spec.id(), block) != null) {
                 throw new IllegalStateException(
                         "Duplicate in-place MTE block " + spec.id());
@@ -1488,7 +1483,73 @@ public final class ModBlocks {
     public static Block[] mteInPlaceBlockArray() {
         return MTE_INPLACE_BLOCKS.values().stream()
                 .map(DeferredBlock::get)
+                .filter(block -> !AnvilHosts.isAnvil(block.spec()))
+                .filter(block -> !SmelteryHosts.isSmeltery(block.spec()))
+                .filter(block -> !LargeCrucibleHosts.isController(block.spec()))
                 .toArray(Block[]::new);
+    }
+
+    public static Block[] anvilBlockArray() {
+        java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
+        blocks.add(ANVIL.get());
+        MTE_INPLACE_BLOCKS.values().forEach(holder -> {
+            if (AnvilHosts.isAnvil(holder.get().spec())) {
+                blocks.add(holder.get());
+            }
+        });
+        return blocks.toArray(Block[]::new);
+    }
+
+    public static Block[] crucibleBlockArray() {
+        java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
+        MTE_INPLACE_BLOCKS.values().forEach(holder -> {
+            if (SmelteryHosts.isSmeltery(holder.get().spec())) {
+                blocks.add(holder.get());
+            }
+        });
+        return blocks.toArray(Block[]::new);
+    }
+
+    public static DeferredBlock<MteInPlaceBlock> steelSmeltingCrucible() {
+        DeferredBlock<MteInPlaceBlock> holder =
+                MTE_INPLACE_BLOCKS.get(SmelteryHosts.STEEL_ID);
+        if (holder == null) {
+            throw new IllegalStateException("missing steel smelting crucible");
+        }
+        return holder;
+    }
+
+    public static Block[] largeCrucibleBlockArray() {
+        java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
+        blocks.add(LARGE_CRUCIBLE.get());
+        MTE_INPLACE_BLOCKS.values().forEach(holder -> {
+            if (LargeCrucibleHosts.isController(holder.get().spec())) {
+                blocks.add(holder.get());
+            }
+        });
+        return blocks.toArray(Block[]::new);
+    }
+
+    private static BlockBehaviour.Properties inplaceProperties(MteInPlaceSpec spec) {
+        if (!AnvilHosts.isAnvil(spec)) {
+            return machineProperties().noOcclusion();
+        }
+        SoundType sound = switch (AnvilHosts.iconset(spec)) {
+            case STONE -> SoundType.STONE;
+            case WOOD -> SoundType.WOOD;
+            case METALLIC -> SoundType.ANVIL;
+        };
+        net.minecraft.world.level.material.MapColor color = switch (AnvilHosts.iconset(spec)) {
+            case STONE -> MapColor.STONE;
+            case WOOD -> MapColor.WOOD;
+            case METALLIC -> MapColor.METAL;
+        };
+        return BlockBehaviour.Properties.of()
+                .mapColor(color)
+                .strength(1.0F, 6.0F)
+                .requiresCorrectToolForDrops()
+                .noOcclusion()
+                .sound(sound);
     }
 
     private static Map<ResourceLocation, DeferredBlock<SensorBlock>>

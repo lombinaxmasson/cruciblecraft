@@ -1,5 +1,14 @@
 # CrucibleCraft Changelog
 
+## 0.1.0-test.20260919 (2026-09-19)
+
+小群私测快照，不是公开测试、不是 RC、不是 GA。不要上传 CurseForge / Modrinth / GitHub Release。
+
+- 安装文件：`cruciblecraft-0.1.0-test.20260919.jar`（Minecraft 1.21.1、NeoForge 21.1.243、Java 21）。
+- 内容是当前工作树：已超过历史 `0.1.0-rc.1` 冻结（混合材料身份、MTE runtime、裂变、仓储贴图、铸造 hosted 改动等）。
+- **必须新开世界。** 未做 DataFixer；旧 beta/rc 存档会丢公共 16 前缀物品或对不上坩埚方块。
+- 玩家说明：[docs/current/player-guide.md](docs/current/player-guide.md)。
+
 ## Source archive maintenance (2026-08-21)
 
 - License changed from All Rights Reserved to LGPL-3.0-or-later; see `LICENSE`,

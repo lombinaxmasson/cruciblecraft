@@ -48,7 +48,7 @@ public final class LargeHeatExchangerGameTests {
                 "Large HEX did not buffer HU from hot tin");
         Vec3i transmitter = LargeHeatExchangerStructure.transmitters()[0];
         BlockPos sink = CONTROLLER.offset(transmitter).above();
-        helper.setBlock(sink, ModBlocks.CRUCIBLE.get().defaultBlockState());
+        helper.setBlock(sink, ModBlocks.steelSmeltingCrucible().get().defaultBlockState());
         long before = exchanger.energyStored();
         LargeHeatExchangerBlockEntity.serverTick(
                 helper.getLevel(),

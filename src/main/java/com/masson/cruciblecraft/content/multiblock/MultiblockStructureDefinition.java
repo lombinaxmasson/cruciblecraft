@@ -227,8 +227,9 @@ public record MultiblockStructureDefinition(
                         && block.isEmpty() && port.isEmpty(), "tag");
                 case AIR -> require(block.isEmpty()
                         && tag.isEmpty() && port.isEmpty(), "air");
-                case CONTROLLER -> require(block.isPresent()
-                        && tag.isEmpty() && port.isEmpty(), "controller");
+                case CONTROLLER -> require(
+                        (block.isPresent() ^ tag.isPresent()) && port.isEmpty(),
+                        "controller");
                 case PORT -> require(block.isPresent()
                         && tag.isEmpty() && port.isPresent(), "port");
             }
@@ -239,7 +240,9 @@ public record MultiblockStructureDefinition(
                 case BLOCK -> "block " + block.orElseThrow();
                 case TAG -> "tag #" + tag.orElseThrow();
                 case AIR -> "air";
-                case CONTROLLER -> "controller " + block.orElseThrow();
+                case CONTROLLER -> block.isPresent()
+                        ? "controller " + block.orElseThrow()
+                        : "controller tag #" + tag.orElseThrow();
                 case PORT -> port.orElseThrow().serializedName()
                         + " port " + block.orElseThrow();
             };

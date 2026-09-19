@@ -904,9 +904,22 @@ def _write_models(rows: list[dict[str, Any]]) -> None:
         foundry_art.write_models(foundry)
         for row in foundry:
             _write_loot(str(row["dummy_path"]))
+    anvils = [
+        row
+        for row in live_rows
+        if "MultiTileEntityAnvil" in str(row.get("gt6_class") or "")
+    ]
+    if anvils:
+        from tools import gt6_anvil_art as anvil_art
+
+        anvil_art.write_models(anvils)
+        for row in anvils:
+            _write_loot(str(row["dummy_path"]))
     for row in live_rows:
         kind = str(row["kind"])
         if kind == "CRUCIBLE_FOUNDRY":
+            continue
+        if "MultiTileEntityAnvil" in str(row.get("gt6_class") or ""):
             continue
         path = str(row["dummy_path"])
         texture = f"cruciblecraft:block/gt6_import/mte/{_texture_name(kind)}"
@@ -1554,10 +1567,10 @@ def _render_game_test(domain: str) -> str:
         elif forbid == "crucible":
             body += [
                 "        helper.assertTrue(",
-                "                ((CatalogNamedBlockItem) MteInPlaceGameTestSupport.item(",
-                f"                        \"{row['path']}\")).getBlock()",
-                "                        != ModBlocks.CRUCIBLE.get(),",
-                f"                \"{row['path']} aliased the ceramic crucible\");",
+                "                MteInPlaceGameTestSupport.item(",
+                f"                        \"{row['path']}\")",
+                "                        instanceof CatalogNamedBlockItem,",
+                f"                \"{row['path']} is not a unique catalog item\");",
                 "        BlockPos pos = new BlockPos(2, 2, 2);",
                 "        helper.setBlock(",
                 "                pos,",

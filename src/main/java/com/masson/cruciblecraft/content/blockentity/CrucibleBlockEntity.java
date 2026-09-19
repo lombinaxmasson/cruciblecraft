@@ -10,6 +10,7 @@ import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
+import com.masson.cruciblecraft.content.block.SmelteryHosts;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.energy.EnergyPackets;
@@ -72,6 +73,8 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
     public CrucibleBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.CRUCIBLE.get(), pos, blockState);
         process.setOnMutation(this::markMutation);
+        SmelteryHosts.bakedMaterial(blockState)
+                .ifPresent(process.casing()::setMaterialId);
     }
 
     @Override
@@ -569,6 +572,8 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
 
     private void restoreState(CompoundTag tag, boolean clientUpdate) {
         process.restore(tag, clientUpdate);
+        SmelteryHosts.bakedMaterial(getBlockState())
+                .ifPresent(process.casing()::setMaterialId);
     }
 
     private void loadBuffer(CompoundTag tag, HolderLookup.Provider registries) {

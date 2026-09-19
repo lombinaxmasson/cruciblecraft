@@ -64,7 +64,7 @@ class MelterCardTest(unittest.TestCase):
         self.assertEqual([22010], [row["host"] for row in d0["hosts"]])
         host = d0["hosts"][0]
         self.assertEqual("source_exact", host["status"])
-        self.assertEqual("cruciblecraft:crucible", host["crucible"]["cc"])
+        self.assertEqual("cruciblecraft:foundry/smelting_crucible_steel", host["crucible"]["cc"])
         self.assertEqual("minecraft:bricks", host["bricks"]["cc"])
         notes = census.load_json(WAVE / "runtime_notes.json")
         self.assertEqual(1_000, notes["parallel"])

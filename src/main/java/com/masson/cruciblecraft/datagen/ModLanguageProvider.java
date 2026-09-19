@@ -15,6 +15,7 @@ import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
+import com.masson.cruciblecraft.content.mte.MteInPlaceDisplayNames;
 import com.masson.cruciblecraft.content.mte.MteInPlaceMaterials;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
@@ -238,7 +239,6 @@ public class ModLanguageProvider extends LanguageProvider {
                     "空（容量 %s mB）");
             add("tooltip.cruciblecraft.portable_fluid_tank.contents",
                     "%s：%s/%s mB");
-            addBlock(ModBlocks.CRUCIBLE, "坩埚");
             addBlock(ModBlocks.ANVIL, "锻造砧");
             addBlock(ModBlocks.CERAMIC_MOLD, "陶瓷模具");
             addBlock(ModBlocks.GAS_CLOUD, "气云");
@@ -274,6 +274,7 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.LARGE_BOILER, "大型锅炉");
             addBlock(ModBlocks.TANK_3X3X3, "3x3x3 储罐");
             addBlock(ModBlocks.LARGE_CRUCIBLE, "大型坩埚");
+            add("block.cruciblecraft.large_crucible.named", "大型%s坩埚");
             addBlock(ModBlocks.BRONZE_CRUSHER, "青铜破碎机");
             addCatalogMachineNames();
             addBlock(ModBlocks.FLUID_DEPOSIT_EXTRACTOR, "流体矿床抽取机");
@@ -315,6 +316,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.cruciblecraft.fusion.start", "启动：%s LU");
             add("device.cruciblecraft.anvil", "砧");
             add("device.cruciblecraft.crucible", "坩埚");
+            add("device.cruciblecraft.large_crucible", "大型坩埚");
             add("device.cruciblecraft.hammer", "锤");
             add("item.cruciblecraft.material_pickaxe", "%s镐");
             add("item.cruciblecraft.material_shovel", "%s铲");
@@ -446,7 +448,8 @@ public class ModLanguageProvider extends LanguageProvider {
                     "进度：%s / %s tick");
             add("jade.cruciblecraft.coke_oven.structure", "结构：%s");
             add("jade.cruciblecraft.coke_oven.valid", "有效");
-            add("jade.cruciblecraft.contents", "%s（%s/%s 单位）");
+            add("jade.cruciblecraft.contents", "%s");
+            add("jade.cruciblecraft.material_amount", "%s %s");
             add("jade.cruciblecraft.crusher",
                     "功率：%s KU/t，进度：%s/%s（%s）");
             add("jade.cruciblecraft.machine_material", "材质：%s（等级 %s）");
@@ -616,7 +619,6 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.cruciblecraft.gas_cell.filled", "%s Gas Cell");
         add("itemGroup.cruciblecraft.misc", "Crucible Craft: Miscellaneous");
         addBlock(ModBlocks.FIREBRICK, "Firebrick");
-        addBlock(ModBlocks.CRUCIBLE, "Crucible");
         addBlock(ModBlocks.ANVIL, "Smithing Anvil");
         addBlock(ModBlocks.CERAMIC_MOLD, "Ceramic Mold");
         addBlock(ModBlocks.GAS_CLOUD, "Gas Cloud");
@@ -657,6 +659,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.LARGE_BOILER, "Large Boiler");
         addBlock(ModBlocks.TANK_3X3X3, "3x3x3 Tank");
         addBlock(ModBlocks.LARGE_CRUCIBLE, "Large Crucible");
+        add("block.cruciblecraft.large_crucible.named", "Large %s Crucible");
         addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "Unfired Ceramic Crucible");
         addItem(ModItems.RAW_CERAMIC_MOLD, "Unshaped Unfired Ceramic Mold");
         addItem(ModItems.RAW_INGOT_MOLD, "Unfired Ingot Mold");
@@ -1063,7 +1066,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("jade.cruciblecraft.material_quarantined",
                 "%s material quarantined: %s");
         add("jade.cruciblecraft.max_temperature", "Maximum temperature: %s %s");
-        add("jade.cruciblecraft.contents", "%s (%s/%s u)");
+        add("jade.cruciblecraft.contents", "%s");
+        add("jade.cruciblecraft.material_amount", "%s %s");
         add("jade.cruciblecraft.anvil_workpiece", "Workpiece: %s");
         add("jade.cruciblecraft.anvil_slot", "Slot %s: %sx %s");
         add("jade.cruciblecraft.anvil_durability", "Durability: %s / %s");
@@ -1088,6 +1092,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("emi.category.cruciblecraft.mold_casting", "Ceramic Mold Casting");
         add("device.cruciblecraft.anvil", "anvil");
         add("device.cruciblecraft.crucible", "crucible");
+        add("device.cruciblecraft.large_crucible", "large crucible");
         add("device.cruciblecraft.hammer", "hammer");
 
         add("cruciblecraft.configuration.title", "Crucible Craft");
@@ -1129,7 +1134,7 @@ public class ModLanguageProvider extends LanguageProvider {
         String blockKey = LanguageNames.translationKey("block", spec.registryPath());
         String itemKey = LanguageNames.translationKey("item", spec.registryPath());
         if (!chinese) {
-            String english = LanguageNames.playerEnglish(
+            String english = MteInPlaceDisplayNames.english(
                     spec.englishName(), spec.registryPath());
             add(blockKey, english);
             add(itemKey, english);
@@ -1147,6 +1152,10 @@ public class ModLanguageProvider extends LanguageProvider {
         if (LanguageNames.hasCjk(spec.chineseName())
                 && !LanguageNames.isEnglishCopy(spec.chineseName(), spec.englishName())) {
             return spec.chineseName();
+        }
+        String composed = MteInPlaceDisplayNames.chinese(spec.registryPath()).orElse(null);
+        if (composed != null) {
+            return composed;
         }
         String kindZh = switch (spec.kind()) {
             case CHEST -> "箱子";
