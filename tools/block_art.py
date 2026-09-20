@@ -20,6 +20,12 @@ GT6_W_BLOCKS = (
 )
 TEXTURE_ROOT = ROOT / "src/main/resources/assets/cruciblecraft/textures/block/gt6"
 MODEL_GEN = ROOT / "src/generated/resources/assets/cruciblecraft/models"
+GENERATED_ITEM_MODELS = (
+    ROOT / "src/generated/resources/assets/cruciblecraft/models/item"
+)
+# Leftover semantic-block item icons only. Slash-id BlockItems such as bars
+# and rails are written under src/generated after SlashItemModels, because
+# runData already emits models/item/{registry_path}.json there.
 ITEM_MODEL_MAIN = ROOT / "src/main/resources/assets/cruciblecraft/models/item"
 BUNDLED_INDEX = (
     ROOT / "src/main/resources/data/cruciblecraft/block_art_index.json"
@@ -358,7 +364,22 @@ def _copy_rel(rel: str) -> str:
     return census.relative(dest)
 
 
+def generated_twin_of_main_item_model(path: Path) -> Path | None:
+    try:
+        rel = path.resolve().relative_to(ITEM_MODEL_MAIN.resolve())
+    except ValueError:
+        return None
+    twin = GENERATED_ITEM_MODELS / rel
+    return twin if twin.is_file() else None
+
+
 def _write_json(path: Path, document: dict[str, Any]) -> None:
+    twin = generated_twin_of_main_item_model(path)
+    if twin is not None:
+        raise ValueError(
+            "refusing to write "
+            f"{census.relative(path)}; already in {census.relative(twin)}"
+        )
     path.parent.mkdir(parents=True, exist_ok=True)
     census.write_stable(path, document)
 
@@ -396,14 +417,25 @@ def identity_layer0(identity: dict[str, Any]) -> str:
     return multiitem.model_layer0(identity)
 
 
+def uses_main_item_model(row: dict[str, Any]) -> bool:
+    return str(row.get("catalog") or "") == "semantic_block"
+
+
+def item_model_path(row: dict[str, Any]) -> Path:
+    registry = str(row["registry_path"])
+    if uses_main_item_model(row):
+        return ITEM_MODEL_MAIN / f"{registry}.json"
+    return generated_item_model(registry)
+
+
 def write_models(row: dict[str, Any]) -> None:
     sources = [cc_texture(rel) for rel in row["sources"]]
     registry = str(row["registry_path"])
     model = str(row["model"])
     tinted = row.get("tint") == "dye"
-    if str(row.get("catalog") or "") == "semantic_block" or model == "generated":
+    if uses_main_item_model(row) or model == "generated":
         _write_json(
-            ITEM_MODEL_MAIN / f"{registry}.json",
+            item_model_path(row),
             {
                 "parent": "minecraft:item/generated",
                 "textures": {"layer0": sources[0]},
@@ -423,9 +455,7 @@ def write_models(row: dict[str, Any]) -> None:
             row,
         )
         _write_json(
-            ROOT
-            / "src/generated/resources/assets/cruciblecraft/models/item"
-            / f"{registry}.json",
+            generated_item_model(registry),
             {"parent": _model_id(registry)},
         )
         return
@@ -439,9 +469,7 @@ def write_models(row: dict[str, Any]) -> None:
             row,
         )
         _write_json(
-            ROOT
-            / "src/generated/resources/assets/cruciblecraft/models/item"
-            / f"{registry}.json",
+            generated_item_model(registry),
             {"parent": _model_id(registry)},
         )
         return
@@ -478,9 +506,7 @@ def write_models(row: dict[str, Any]) -> None:
             row,
         )
         _write_json(
-            ROOT
-            / "src/generated/resources/assets/cruciblecraft/models/item"
-            / f"{registry}.json",
+            generated_item_model(registry),
             {"parent": _model_id(registry + "_bottom")},
         )
         return
@@ -498,9 +524,7 @@ def write_models(row: dict[str, Any]) -> None:
             },
         )
         _write_json(
-            ROOT
-            / "src/generated/resources/assets/cruciblecraft/models/item"
-            / f"{registry}.json",
+            generated_item_model(registry),
             {"parent": _model_id(registry)},
         )
         return
@@ -508,18 +532,14 @@ def write_models(row: dict[str, Any]) -> None:
 
 
 def generated_item_model(registry_path: str) -> Path:
-    return (
-        ROOT
-        / "src/generated/resources/assets/cruciblecraft/models/item"
-        / f"{registry_path}.json"
-    )
+    return GENERATED_ITEM_MODELS / f"{registry_path}.json"
 
 
 def model_paths(row: dict[str, Any]) -> list[Path]:
     registry = str(row["registry_path"])
     model = str(row["model"])
-    if str(row.get("catalog") or "") == "semantic_block" or model == "generated":
-        return [ITEM_MODEL_MAIN / f"{registry}.json"]
+    if uses_main_item_model(row) or model == "generated":
+        return [item_model_path(row)]
     stem = MODEL_GEN / registry
     item = generated_item_model(registry)
     if model == "slab":
@@ -632,6 +652,15 @@ def check_models_and_pngs(document: dict[str, Any]) -> list[str]:
                 continue
             if expected and expected not in used:
                 errors.append(f"{census.relative(path)} does not reference {expected}")
+        if str(row.get("model") or "") == "generated" and not uses_main_item_model(
+            row
+        ):
+            stray = ITEM_MODEL_MAIN / f"{registry}.json"
+            if stray.is_file():
+                errors.append(
+                    "generated item model also in main: "
+                    + census.relative(stray)
+                )
     return errors
 
 

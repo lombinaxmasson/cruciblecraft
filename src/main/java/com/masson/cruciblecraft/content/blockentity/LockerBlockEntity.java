@@ -124,7 +124,7 @@ public final class LockerBlockEntity extends BlockEntity implements IEnergyHandl
                 continue;
             }
             long stored = stack.getOrDefault(ModComponents.ELECTRIC_CHARGE.get(), 0L);
-            long room = Math.max(0L, CHARGE_CAPACITY - stored);
+            long room = Math.max(0L, chargeCapacity(stack) - stored);
             long take = Math.min(remaining, room);
             if (take <= 0L) {
                 continue;
@@ -178,6 +178,14 @@ public final class LockerBlockEntity extends BlockEntity implements IEnergyHandl
         if (tag.contains("inventory")) {
             inventory.deserializeNBT(registries, tag.getCompound("inventory"));
         }
+    }
+
+    public static long chargeCapacity(ItemStack stack) {
+        if (stack.isEmpty() || !stack.has(ModComponents.ELECTRIC_CHARGE.get())) {
+            return 0L;
+        }
+        long encoded = stack.getOrDefault(ModComponents.ELECTRIC_CAPACITY.get(), 0L);
+        return encoded > 0L ? encoded : CHARGE_CAPACITY;
     }
 
     private static StorageVariant variantOf(BlockState state) {

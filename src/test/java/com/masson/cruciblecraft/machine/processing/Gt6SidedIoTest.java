@@ -32,7 +32,9 @@ class Gt6SidedIoTest {
     void everyLiveHostHasAGt6Profile() {
         Stream.concat(
                         Stream.of(ModProcessingMachines.CRUSHER),
-                        ModProcessingMachines.CONFIGURED_MACHINES.stream())
+                        Stream.concat(
+                                ModProcessingMachines.CONFIGURED_MACHINES.stream(),
+                                ModProcessingMachines.MULTIBLOCK_MENU_HOSTS.stream()))
                 .forEach(ProcessingMachineIoAssertions::assertMatchesProfile);
         ProcessingMachineIoAssertions.assertMatchesProfile(ClusterMillPrepSpec.SPEC);
     }

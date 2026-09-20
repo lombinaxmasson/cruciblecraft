@@ -13,6 +13,7 @@ from typing import Any
 from tools import catalog_modern_ids as modern
 from tools import census_common as census
 from tools import gt6_connector_alias_repair as alias_repair
+from tools import gt6_connector_live_host_dummy_fold as live_host_fold
 from tools import gt6_fluid_combo_pipe_runtime as combo_pipe
 from tools import io_common as io
 
@@ -419,7 +420,11 @@ def check() -> list[str]:
             for row in committed.get("rows") or []
             if row.get("disposition") == "keep_distinct"
         ]
-        repaired = alias_repair.folded_metas() | combo_pipe.folded_metas()
+        repaired = (
+            alias_repair.folded_metas()
+            | combo_pipe.folded_metas()
+            | live_host_fold.folded_metas()
+        )
         for row in keep:
             if int(row["meta"]) in repaired:
                 continue

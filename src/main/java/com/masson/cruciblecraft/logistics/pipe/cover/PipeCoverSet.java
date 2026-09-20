@@ -68,7 +68,7 @@ public final class PipeCoverSet {
         return false;
     }
 
-    /** A valve permits pipe-to-face output and rejects face-to-pipe input. */
+    /** Absent covers allow through; shutter invert 0 is GT6 default-open. */
     public boolean allowsIncoming(Direction side) {
         return allowsIncoming(
                 side, CoverDefinition.Medium.ITEM, 0, 0);

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Nanofab live machine card: 52 selected rows and five blocked hosts."""
+"""Nanofab live machine card: 7 selected rows and five source-exact hosts."""
 from __future__ import annotations
 
 import importlib.util
@@ -50,18 +50,26 @@ class NanofabCardTest(unittest.TestCase):
         self.assertEqual(57, overflow["blocked_rows"])
         self.assertNotIn("programmed_circuit", str(overflow))
 
-    def test_d0_all_hosts_blocked(self) -> None:
+    def test_d0_all_hosts_source_exact(self) -> None:
         document = census.load_json(WAVE / "d0_obtain_matrix.json")
         self.assertEqual(["KAX", "ZMY", "CSC"], document["grid"])
         statuses = {row["host"]: row["status"] for row in document["hosts"]}
         self.assertEqual(
-            {"explicitly_blocked"},
+            {"source_exact"},
             set(statuses.values()),
         )
         self.assertEqual(
             {20441, 20442, 20443, 20444, 20445},
             set(statuses),
         )
+        for row in document["hosts"]:
+            self.assertEqual("cruciblecraft:laser_gas_ar", row["argon_laser"]["cc"])
+            self.assertEqual("cruciblecraft:laser_gas_kr", row["krypton_laser"]["cc"])
+            self.assertEqual("cruciblecraft:laser_gas_xe", row["xenon_laser"]["cc"])
+            self.assertEqual(
+                "cruciblecraft:processor_crystal_sapphire",
+                row["sapphire_processor"]["cc"],
+            )
 
     def test_capability_is_runtime_ready(self) -> None:
         capability = census.load_json(CAPABILITY)

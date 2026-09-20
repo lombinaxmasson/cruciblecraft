@@ -256,6 +256,114 @@ class CompactRecipeShardRouterTest {
         assertFalse(tight.test(other));
     }
 
+    @Test
+    void fatPrefixMaterialLiveIngredientDoesNotOverflowInRouter() {
+        Item crushed = BuiltInRegistries.ITEM.get(
+                ResourceLocation.fromNamespaceAndPath("cruciblecraft", "crushed_ore"));
+        ItemStack fatStack = new ItemStack(crushed);
+        fatStack.set(ModComponents.PREFIX_MATERIAL, "iron");
+        fatStack.set(DataComponents.CUSTOM_NAME, Component.literal("fat-default-patch"));
+        Ingredient fat = DataComponentIngredient.of(false, fatStack);
+        assertFalse(ComponentIngredientIndex.extract(fat).supported());
+        CompactGTRecipeFamilyDefinition.Relation relation = relation(
+                "centrifuge/compact/prefix_fat_live",
+                fat,
+                List.of(new FluidStack(Fluids.WATER, 250)),
+                0);
+        CompactRecipeShardRouter router = router(List.of(relation));
+        assertEquals(0, router.overflowCount());
+        assertEquals(
+                "component:cruciblecraft:crushed_ore/"
+                        + ModComponents.PREFIX_MATERIAL.getId()
+                        + "=iron",
+                router.routeKey(relation.stableId()).orElseThrow());
+    }
+
+    @Test
+    void publicExchangeSlashDecodesToUniqueItemNotTag() {
+        ResourceLocation dustId = ResourceLocation.fromNamespaceAndPath(
+                "cruciblecraft", "iron/dust");
+        JsonObject json = new JsonObject();
+        json.addProperty("item", dustId.toString());
+        Ingredient decoded = CompactRelationItemCodecs.INGREDIENT.parse(
+                JsonOps.INSTANCE, json).getOrThrow();
+        assertTrue(decoded.isSimple());
+        assertEquals(1, decoded.getItems().length);
+        assertFalse(java.util.Arrays.stream(decoded.getValues())
+                .anyMatch(value -> value instanceof Ingredient.TagValue));
+        assertEquals(dustId, BuiltInRegistries.ITEM.getKey(decoded.getItems()[0].getItem()));
+        CompactGTRecipeFamilyDefinition.Relation relation = relation(
+                "centrifuge/compact/unique_dust",
+                decoded,
+                List.of(),
+                0);
+        CompactRecipeShardRouter router = router(List.of(relation));
+        assertEquals(0, router.overflowCount());
+        assertEquals("item:" + dustId, router.routeKey(relation.stableId()).orElseThrow());
+    }
+
+    @Test
+    void leftoverPublicExchangeComponentRewritesToUniqueItem() {
+        JsonObject json = new JsonObject();
+        json.addProperty("type", "neoforge:components");
+        json.addProperty("items", "cruciblecraft:dust");
+        JsonObject components = new JsonObject();
+        components.addProperty("cruciblecraft:prefix_material", "iron");
+        json.add("components", components);
+        Ingredient decoded = CompactRelationItemCodecs.INGREDIENT.parse(
+                JsonOps.INSTANCE, json).getOrThrow();
+        assertTrue(decoded.isSimple());
+        assertEquals(1, decoded.getItems().length);
+        assertFalse(java.util.Arrays.stream(decoded.getValues())
+                .anyMatch(value -> value instanceof Ingredient.TagValue));
+        assertEquals(
+                ResourceLocation.fromNamespaceAndPath("cruciblecraft", "iron/dust"),
+                BuiltInRegistries.ITEM.getKey(decoded.getItems()[0].getItem()));
+        CompactGTRecipeFamilyDefinition.Relation relation = relation(
+                "centrifuge/compact/leftover_dust_component",
+                decoded,
+                List.of(new FluidStack(Fluids.WATER, 250)),
+                0);
+        CompactRecipeShardRouter router = router(List.of(relation));
+        assertEquals(0, router.overflowCount());
+    }
+
+    @Test
+    void publicExchangeTagStaysTagAndDoesNotCollapseOntoUniqueItem() {
+        JsonObject tagJson = new JsonObject();
+        tagJson.addProperty("tag", "c:dusts/iron");
+        Ingredient tagged = PrefixMaterialItemCodecs.INGREDIENT.parse(
+                JsonOps.INSTANCE, tagJson).getOrThrow();
+        assertTrue(java.util.Arrays.stream(tagged.getValues())
+                .anyMatch(value -> value instanceof Ingredient.TagValue));
+
+        JsonObject itemJson = new JsonObject();
+        itemJson.addProperty("item", "cruciblecraft:iron/dust");
+        Ingredient unique = CompactRelationItemCodecs.INGREDIENT.parse(
+                JsonOps.INSTANCE, itemJson).getOrThrow();
+        assertFalse(java.util.Arrays.stream(unique.getValues())
+                .anyMatch(value -> value instanceof Ingredient.TagValue));
+
+        CompactGTRecipeFamilyDefinition.Relation taggedRelation = relation(
+                "centrifuge/compact/tag_dust",
+                tagged,
+                List.of(),
+                0);
+        CompactGTRecipeFamilyDefinition.Relation uniqueRelation = relation(
+                "centrifuge/compact/unique_dust_shadow",
+                unique,
+                List.of(),
+                1);
+        CompactRecipeShardRouter router = router(List.of(taggedRelation, uniqueRelation));
+        assertEquals(1, router.overflowCount());
+        assertEquals(
+                router.overflowShardId(),
+                router.shardId(taggedRelation.stableId()).orElseThrow());
+        assertEquals(
+                "item:cruciblecraft:iron/dust",
+                router.routeKey(uniqueRelation.stableId()).orElseThrow());
+    }
+
     private static CompactRecipeShardRouter router(
             List<CompactGTRecipeFamilyDefinition.Relation> relations) {
         return new CompactRecipeShardRouter(

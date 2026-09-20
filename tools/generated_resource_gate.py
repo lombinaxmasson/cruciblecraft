@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -20,8 +21,12 @@ from tools import registry_identity
 from tools import tree_compare
 
 MANIFEST = io.TOOLS / "generated_resource_gate_manifest.json"
+RESOURCE_ROOTS_MANIFEST = ROOT / "tools/generated_resource_roots.json"
 GENERATED = ROOT / "src/generated/resources"
 MAIN = ROOT / "src/main/resources"
+ROASTER_RECOVERY_PREFIX = (
+    "data/cruciblecraft/recipe/player_path_recovery/roaster/"
+)
 BLOCK_REGISTER_RE = registry_identity.BLOCK_REGISTER_RE
 FLUID_BLOCKS = {"creosote", "steam"}
 NO_LOOT_BLOCKS = {
@@ -87,6 +92,48 @@ def dumps(document: Any) -> bytes:
 
 def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def resource_source_roots() -> list[Path]:
+    roots = [MAIN]
+    document = load_json(RESOURCE_ROOTS_MANIFEST)
+    for row in document.get("roots") or []:
+        path = str(row.get("path") or "")
+        if path:
+            roots.append(ROOT / path)
+    return roots
+
+
+def excluded_resource_rel(rel: str) -> bool:
+    if rel.endswith(".bbmodel") or rel.endswith(".gitkeep"):
+        return True
+    if rel == ".cache" or rel.startswith(".cache/") or "/.cache/" in rel:
+        return True
+    return rel.startswith(ROASTER_RECOVERY_PREFIX)
+
+
+def duplicate_resource_relative_paths() -> list[str]:
+    """Relative paths that would make Gradle processResources fail."""
+    seen: dict[str, str] = {}
+    errors: list[str] = []
+    for root in resource_source_roots():
+        if not root.is_dir():
+            continue
+        root_rel = io.relative(root)
+        for dirpath, dirnames, filenames in os.walk(root):
+            dirnames[:] = [name for name in dirnames if name != ".cache"]
+            base = Path(dirpath)
+            for name in filenames:
+                rel = (base / name).relative_to(root).as_posix()
+                if excluded_resource_rel(rel):
+                    continue
+                previous = seen.get(rel)
+                if previous is not None:
+                    errors.append(f"{rel} duplicated in {previous} and {root_rel}")
+                else:
+                    seen[rel] = root_rel
+    errors.sort()
+    return errors
 
 
 def live_block_paths() -> list[dict[str, str]]:
@@ -425,21 +472,56 @@ def compare_datagen_trees(first: Path, second: Path) -> list[str]:
     ]
 
 
+def _print_errors(errors: list[str]) -> None:
+    print("\n".join(errors[:80]), file=sys.stderr)
+    if len(errors) > 80:
+        print(f"... {len(errors) - 80} more", file=sys.stderr)
+
+
+def write_duplicate_stamp(path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("ok\n", encoding="utf-8")
+
+
+def check_duplicate_relative_paths(stamp: Path | None = None) -> int:
+    errors = duplicate_resource_relative_paths()
+    if errors:
+        _print_errors(errors)
+        return 1
+    if stamp is not None:
+        write_duplicate_stamp(stamp)
+    print("resource roots have no duplicate relative paths")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(
+        prog="tools/build_generated_resource_gate.py",
+        description=__doc__,
+    )
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--check-duplicates", action="store_true")
+    parser.add_argument("--stamp", type=Path)
     parser.add_argument("--compare-isolated", nargs=2, metavar=("FIRST", "SECOND"))
     args = parser.parse_args(argv)
     if args.compare_isolated:
+        if args.write or args.check or args.check_duplicates or args.stamp:
+            parser.error("--compare-isolated cannot mix with other modes")
         errors = compare_datagen_trees(
             Path(args.compare_isolated[0]), Path(args.compare_isolated[1])
         )
         if errors:
-            print("\n".join(errors), file=__import__("sys").stderr)
+            print("\n".join(errors), file=sys.stderr)
             return 1
         print("datagen isolated trees are identical")
         return 0
+    if args.check_duplicates:
+        if args.write or args.check:
+            parser.error("--check-duplicates cannot mix with --write or --check")
+        return check_duplicate_relative_paths(args.stamp)
+    if args.stamp:
+        parser.error("--stamp requires --check-duplicates")
     if args.write == args.check:
         parser.error("choose exactly one of --write or --check")
     manifest = compile_manifest()
@@ -453,23 +535,13 @@ def main(argv: list[str] | None = None) -> int:
     )
     if args.write:
         if manifest["errors"]:
-            print("\n".join(manifest["errors"][:80]), file=__import__("sys").stderr)
-            if len(manifest["errors"]) > 80:
-                print(
-                    f"... {len(manifest['errors']) - 80} more",
-                    file=__import__("sys").stderr,
-                )
+            _print_errors(manifest["errors"])
             return 1
         atomic_io.write_bytes(MANIFEST, encoded)
         print(f"Wrote {io.relative(MANIFEST)}")
         return 0
     if manifest["errors"]:
-        print("\n".join(manifest["errors"][:80]), file=__import__("sys").stderr)
-        if len(manifest["errors"]) > 80:
-            print(
-                f"... {len(manifest['errors']) - 80} more",
-                file=__import__("sys").stderr,
-            )
+        _print_errors(manifest["errors"])
         return 1
     if not MANIFEST.is_file() or MANIFEST.read_bytes() != encoded:
         print("generated resource gate manifest is stale; run --write")

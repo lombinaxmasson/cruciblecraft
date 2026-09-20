@@ -221,6 +221,12 @@ class MaterialPrefixCatalogTest {
         assertEquals(1296, MaterialPrefixes.STORAGE_DUST.units());
         assertEquals(MaterialPrefixes.STORAGE_PLATE, MaterialPrefixCatalog.require("blockPlate"));
         assertEquals(1296, MaterialPrefixes.STORAGE_PLATE.units());
+        assertEquals(MaterialPrefixes.CHUNK, MaterialPrefixCatalog.require("chunkgt"));
+        assertEquals(36, MaterialPrefixes.CHUNK.units());
+        assertEquals(MaterialPrefixes.BILLET, MaterialPrefixCatalog.require("billet"));
+        assertEquals(96, MaterialPrefixes.BILLET.units());
+        assertEquals(MaterialPrefixes.STORAGE_INGOT, MaterialPrefixCatalog.require("storageingot"));
+        assertEquals(1296, MaterialPrefixes.STORAGE_INGOT.units());
         assertEquals(
                 MaterialPrefixes.MACHINE_CASING,
                 MaterialPrefixCatalog.require("casingMachine"));

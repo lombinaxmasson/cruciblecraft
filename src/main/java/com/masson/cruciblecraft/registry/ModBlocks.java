@@ -15,6 +15,7 @@ import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.AnvilHosts;
 import com.masson.cruciblecraft.content.block.CoinageMoldHosts;
 import com.masson.cruciblecraft.content.block.FoundryHosts;
+import com.masson.cruciblecraft.content.block.DistillationTowerParts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.SmelteryHosts;
 import com.masson.cruciblecraft.content.block.RockBlock;
@@ -39,6 +40,7 @@ import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.content.block.MaterialCasingBlock;
 import com.masson.cruciblecraft.content.block.MaterialStorageBlock;
 import com.masson.cruciblecraft.content.block.LargeCentrifugeBlock;
+import com.masson.cruciblecraft.content.block.CryoDistillationTowerBlock;
 import com.masson.cruciblecraft.content.block.DistillationTowerBlock;
 import com.masson.cruciblecraft.content.block.LargeBoilerBlock;
 import com.masson.cruciblecraft.content.block.LargeCrucibleBlock;
@@ -105,6 +107,7 @@ import com.masson.cruciblecraft.content.block.StoneLayerRockOreBlock;
 import com.masson.cruciblecraft.content.block.DustFunnelBlock;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
+import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
 import com.masson.cruciblecraft.content.block.RotationalGearboxBlock;
@@ -136,6 +139,12 @@ import com.masson.cruciblecraft.energy.longdistance.LongDistanceWireProfile;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerBlock;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerProfile;
+import com.masson.cruciblecraft.energy.cooler.CoolerBlock;
+import com.masson.cruciblecraft.energy.cooler.CoolerCatalog;
+import com.masson.cruciblecraft.energy.cooler.CoolerProfile;
+import com.masson.cruciblecraft.energy.flux.FluxBlock;
+import com.masson.cruciblecraft.energy.flux.FluxCatalog;
+import com.masson.cruciblecraft.energy.flux.FluxProfile;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.machine.autotool.AutomaticHammerCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterFuelSpecs;
@@ -369,6 +378,16 @@ public final class ModBlocks {
             DISTILLATION_TOWER = BLOCKS.register(
                     "distillation_tower",
                     () -> new DistillationTowerBlock(machineProperties()));
+    public static final DeferredBlock<CryoDistillationTowerBlock>
+            CRYO_DISTILLATION_TOWER = BLOCKS.register(
+                    "cryo_distillation_tower",
+                    () -> new CryoDistillationTowerBlock(machineProperties()));
+    public static final DeferredBlock<MultiblockPortBlock>
+            MULTIBLOCK_FLUID_OUT_PORT = BLOCKS.register(
+                    "multiblock_fluid_out_port",
+                    () -> new MultiblockPortBlock(
+                            PortType.FLUID_OUT,
+                            machineProperties()));
     public static final DeferredBlock<LargeBoilerBlock>
             LARGE_BOILER = BLOCKS.register(
                     "large_boiler",
@@ -1472,6 +1491,96 @@ public final class ModBlocks {
                 .sound(SoundType.METAL);
     }
 
+    private static final Map<
+            ResourceLocation, DeferredBlock<CoolerBlock>> COOLER_BLOCKS =
+                    registerCoolerBlocks();
+
+    private static Map<ResourceLocation, DeferredBlock<CoolerBlock>>
+            registerCoolerBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<CoolerBlock>> blocks =
+                new LinkedHashMap<>();
+        for (CoolerProfile profile : CoolerCatalog.profiles()) {
+            DeferredBlock<CoolerBlock> block = BLOCKS.register(
+                    profile.id().getPath(),
+                    () -> new CoolerBlock(profile, coolerProperties(profile)));
+            if (blocks.put(profile.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate cooler block " + profile.id());
+            }
+        }
+        if (blocks.size() != CoolerCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Cooler registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<CoolerBlock>>
+            coolerBlocksById() {
+        return COOLER_BLOCKS;
+    }
+
+    public static Block[] coolerBlockArray() {
+        return COOLER_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
+    private static BlockBehaviour.Properties coolerProperties(
+            CoolerProfile profile) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(profile.hardness(), profile.resistance())
+                .sound(SoundType.METAL);
+    }
+
+    private static final Map<
+            ResourceLocation, DeferredBlock<FluxBlock>> FLUX_BLOCKS =
+                    registerFluxBlocks();
+
+    private static Map<ResourceLocation, DeferredBlock<FluxBlock>>
+            registerFluxBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<FluxBlock>> blocks =
+                new LinkedHashMap<>();
+        for (FluxProfile profile : FluxCatalog.profiles()) {
+            DeferredBlock<FluxBlock> block = BLOCKS.register(
+                    profile.id().getPath(),
+                    () -> new FluxBlock(profile, fluxProperties(profile)));
+            if (blocks.put(profile.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate flux block " + profile.id());
+            }
+        }
+        if (blocks.size() != FluxCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Flux registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<FluxBlock>>
+            fluxBlocksById() {
+        return FLUX_BLOCKS;
+    }
+
+    public static Block[] fluxBlockArray() {
+        return FLUX_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
+    private static BlockBehaviour.Properties fluxProperties(
+            FluxProfile profile) {
+        BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(profile.hardness(), profile.resistance())
+                .sound(SoundType.METAL);
+        if (profile.noOcclusion()) {
+            properties = properties.noOcclusion();
+        }
+        return properties;
+    }
+
     private static DeferredBlock<ProcessingMachineBlock> tieredProcessing(
             String path) {
         DeferredBlock<ProcessingMachineBlock> block =
@@ -1551,6 +1660,8 @@ public final class ModBlocks {
                 .filter(block -> !FoundryHosts.isCasting(block.spec()))
                 .filter(block -> !FoundryHosts.isCrossing(block.spec()))
                 .filter(block -> !LargeCrucibleHosts.isController(block.spec()))
+                .filter(block -> !DistillationTowerParts.isLivePort(block.spec()))
+                .filter(block -> block.spec().kind() != MteInPlaceKind.GAS_TURBINE)
                 .toArray(Block[]::new);
     }
 
@@ -1619,6 +1730,16 @@ public final class ModBlocks {
         blocks.add(LARGE_CRUCIBLE.get());
         MTE_INPLACE_BLOCKS.values().forEach(holder -> {
             if (LargeCrucibleHosts.isController(holder.get().spec())) {
+                blocks.add(holder.get());
+            }
+        });
+        return blocks.toArray(Block[]::new);
+    }
+
+    public static Block[] gasTurbineBlockArray() {
+        java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
+        MTE_INPLACE_BLOCKS.values().forEach(holder -> {
+            if (holder.get().spec().kind() == MteInPlaceKind.GAS_TURBINE) {
                 blocks.add(holder.get());
             }
         });

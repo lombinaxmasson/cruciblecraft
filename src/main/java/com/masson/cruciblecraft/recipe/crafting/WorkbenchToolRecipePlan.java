@@ -115,7 +115,9 @@ public final class WorkbenchToolRecipePlan {
             String material,
             boolean persistToolMaterial,
             int count,
-            boolean mirrored) {
+            boolean mirrored,
+            long electricCapacity,
+            long electricVoltage) {
         public JsonObject toJson() {
             JsonObject root = new JsonObject();
             root.addProperty("type", "cruciblecraft:shaped_catalyst");
@@ -130,9 +132,18 @@ public final class WorkbenchToolRecipePlan {
             pattern.forEach(patternJson::add);
             root.add("pattern", patternJson);
             JsonObject result = new JsonObject();
+            JsonObject components = new JsonObject();
             if (persistToolMaterial) {
-                JsonObject components = new JsonObject();
                 components.addProperty("cruciblecraft:tool_material", material);
+            }
+            if (electricCapacity > 0L) {
+                components.addProperty("cruciblecraft:electric_charge", 0);
+                components.addProperty(
+                        "cruciblecraft:electric_capacity", electricCapacity);
+                components.addProperty(
+                        "cruciblecraft:electric_voltage", electricVoltage);
+            }
+            if (persistToolMaterial || electricCapacity > 0L) {
                 result.add("components", components);
             }
             result.addProperty("count", count);
@@ -234,11 +245,19 @@ public final class WorkbenchToolRecipePlan {
             Collection<MaterialDefinition> materials,
             Map<String, List<MaterialPrefix>> registeredForms) {
         LinkedHashMap<String, Recipe> byPath = new LinkedHashMap<>();
+        Map<String, MaterialDefinition> byId = new LinkedHashMap<>();
+        materials.forEach(material -> byId.put(material.id(), material));
         materials.stream()
                 .sorted(Comparator.comparing(MaterialDefinition::id))
-                .forEach(material -> recipesFor(
-                        material, formsOf(material, registeredForms))
-                        .forEach(recipe -> putUnique(byPath, recipe)));
+                .forEach(material -> {
+                    Set<MaterialPrefix> forms = formsOf(material, registeredForms);
+                    recipesFor(material, forms)
+                            .forEach(recipe -> putUnique(byPath, recipe));
+                    List<Recipe> electric = new ArrayList<>();
+                    ElectricToolRecipes.add(
+                            electric, material, forms, registeredForms, byId);
+                    electric.forEach(recipe -> putUnique(byPath, recipe));
+                });
         vanillaFlintHarvest().forEach(recipe -> putUnique(byPath, recipe));
         vanillaBoneClub().forEach(recipe -> putUnique(byPath, recipe));
         return List.copyOf(byPath.values());
@@ -255,7 +274,7 @@ public final class WorkbenchToolRecipePlan {
         }
     }
 
-    private static Set<MaterialPrefix> formsOf(
+    static Set<MaterialPrefix> formsOf(
             MaterialDefinition material,
             Map<String, List<MaterialPrefix>> registeredForms) {
         List<MaterialPrefix> forms = registeredForms.get(material.id());
@@ -1226,7 +1245,7 @@ public final class WorkbenchToolRecipePlan {
                         true));
     }
 
-    private static boolean eligible(MaterialDefinition material, ToolKind kind) {
+    static boolean eligible(MaterialDefinition material, ToolKind kind) {
         return material.gt6Metadata()
                 .filter(metadata -> kind.isEligible(
                         material.id(),
@@ -1241,11 +1260,11 @@ public final class WorkbenchToolRecipePlan {
                 .isPresent();
     }
 
-    private static String item(MaterialDefinition material, MaterialPrefix form) {
+    static String item(MaterialDefinition material, MaterialPrefix form) {
         return MaterialLookup.logicalItemId(material, form, Map.of()).toString();
     }
 
-    private static String path(String material, String tool) {
+    static String path(String material, String tool) {
         return "tools/" + material + "/" + tool;
     }
 
@@ -1259,7 +1278,7 @@ public final class WorkbenchToolRecipePlan {
                 "tools/assemble/" + tool, headPrefix, resultId, kind);
     }
 
-    private static Recipe finished(
+    static Recipe finished(
             String path,
             List<String> pattern,
             Map<String, String> ingredients,
@@ -1270,7 +1289,7 @@ public final class WorkbenchToolRecipePlan {
                 path, pattern, ingredients, catalysts, resultId, material, false);
     }
 
-    private static Recipe finished(
+    static Recipe finished(
             String path,
             List<String> pattern,
             Map<String, String> ingredients,
@@ -1361,7 +1380,32 @@ public final class WorkbenchToolRecipePlan {
                 material,
                 persistToolMaterial,
                 count,
-                mirrored);
+                mirrored,
+                0L,
+                0L);
+    }
+
+    static Recipe electricFinished(
+            String path,
+            List<String> pattern,
+            Map<String, String> ingredients,
+            Map<String, String> catalysts,
+            String resultId,
+            String material,
+            long capacity,
+            long voltage) {
+        return new Recipe(
+                path,
+                List.copyOf(pattern),
+                Map.copyOf(new LinkedHashMap<>(ingredients)),
+                Map.copyOf(new LinkedHashMap<>(catalysts)),
+                resultId,
+                material,
+                true,
+                1,
+                false,
+                capacity,
+                voltage);
     }
 
     private static JsonObject itemKeys(Map<String, String> keys) {
@@ -1386,26 +1430,14 @@ public final class WorkbenchToolRecipePlan {
         return object;
     }
 
-    private static Map<String, String> map(String k1, String v1) {
+    static Map<String, String> map(String... pairs) {
+        if ((pairs.length & 1) != 0) {
+            throw new IllegalArgumentException("map requires even pairs");
+        }
         LinkedHashMap<String, String> values = new LinkedHashMap<>();
-        values.put(k1, v1);
-        return values;
-    }
-
-    private static Map<String, String> map(
-            String k1, String v1, String k2, String v2) {
-        LinkedHashMap<String, String> values = new LinkedHashMap<>();
-        values.put(k1, v1);
-        values.put(k2, v2);
-        return values;
-    }
-
-    private static Map<String, String> map(
-            String k1, String v1, String k2, String v2, String k3, String v3) {
-        LinkedHashMap<String, String> values = new LinkedHashMap<>();
-        values.put(k1, v1);
-        values.put(k2, v2);
-        values.put(k3, v3);
+        for (int index = 0; index < pairs.length; index += 2) {
+            values.put(pairs[index], pairs[index + 1]);
+        }
         return values;
     }
 

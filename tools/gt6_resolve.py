@@ -128,6 +128,18 @@ CIRCUITS: dict[int, str] = {
     6: "cruciblecraft:circuit_ultimate",
     7: "cruciblecraft:circuit_quantum",
 }
+IL_NAMED_ITEMS: dict[str, str] = {
+    "Comp_Laser_Gas_Empty": "cruciblecraft:laser_gas_empty",
+    "Comp_Laser_Gas_HeNe": "cruciblecraft:laser_gas_hene",
+    "Comp_Laser_Gas_Ar": "cruciblecraft:laser_gas_ar",
+    "Comp_Laser_Gas_Kr": "cruciblecraft:laser_gas_kr",
+    "Comp_Laser_Gas_Xe": "cruciblecraft:laser_gas_xe",
+    "Processor_Crystal_Empty": "cruciblecraft:processor_crystal_empty",
+    "Processor_Crystal_Diamond": "cruciblecraft:processor_crystal_diamond",
+    "Processor_Crystal_Ruby": "cruciblecraft:processor_crystal_ruby",
+    "Processor_Crystal_Emerald": "cruciblecraft:processor_crystal_emerald",
+    "Processor_Crystal_Sapphire": "cruciblecraft:processor_crystal_sapphire",
+}
 _DATA_ARRAY = re.compile(
     r"(CABLES_\d+|WIRES_\d+|Kinetic_T|Electric_T|Heat_T|Flux_T)\s*=\s*\{([^;]*?)\}",
     re.S,
@@ -579,7 +591,7 @@ def _item_status(item: str | None, *, kind: str, gt: str, extra: dict[str, Any] 
     if (
         item.startswith("minecraft:")
         or item.startswith("#")
-        or kind in {"circuit", "il_module", "mte_item"}
+        or kind in {"circuit", "il_module", "il_named", "mte_item"}
     ):
         result["live"] = True
         result["status"] = "ok"
@@ -685,6 +697,9 @@ def resolve(query: str) -> dict[str, Any]:
 
     il_named = _IL_NAMED.fullmatch(token)
     if il_named and not token.startswith("IL.Shape_Extruder_"):
+        item = IL_NAMED_ITEMS.get(il_named.group(1))
+        if item:
+            return _item_status(item, kind="il_named", gt=token)
         return {"query": raw, "kind": "il_named", "gt": token, "status": "unmapped"}
 
     if raw.startswith("IL.Shape_Extruder_") or raw.startswith("Shape_Extruder_") or token.startswith("IL.Shape_Extruder_") or token.startswith("Shape_Extruder_"):

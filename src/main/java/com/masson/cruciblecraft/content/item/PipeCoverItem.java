@@ -2,14 +2,19 @@ package com.masson.cruciblecraft.content.item;
 
 import java.util.List;
 
+import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.RedstoneWireBlockEntity;
+import com.masson.cruciblecraft.content.redstonewire.RedstoneWireCovers;
+import com.masson.cruciblecraft.energy.cable.CableCovers;
 import com.masson.cruciblecraft.logistics.displaycpu.DisplayCpuKinds;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinitionCatalog;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverSounds;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverConfig;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverType;
@@ -69,10 +74,40 @@ public final class PipeCoverItem extends Item {
             }
             boolean changed = machine.setCover(
                     context.getClickedFace(), cover);
+            if (changed) {
+                CoverSounds.placed(
+                        context.getLevel(),
+                        context.getClickedPos(),
+                        cover);
+            }
             if (changed
                     && context.getPlayer() != null
                     && !context.getPlayer().getAbilities().instabuild) {
                 context.getItemInHand().shrink(1);
+            }
+            return InteractionResult.sidedSuccess(
+                    context.getLevel().isClientSide);
+        }
+        if (blockEntity instanceof CableBlockEntity) {
+            if (!CableCovers.tryInstall(
+                    context.getLevel(),
+                    context.getClickedPos(),
+                    context.getClickedFace(),
+                    context.getItemInHand(),
+                    context.getPlayer())) {
+                return InteractionResult.FAIL;
+            }
+            return InteractionResult.sidedSuccess(
+                    context.getLevel().isClientSide);
+        }
+        if (blockEntity instanceof RedstoneWireBlockEntity) {
+            if (!RedstoneWireCovers.tryInstall(
+                    context.getLevel(),
+                    context.getClickedPos(),
+                    context.getClickedFace(),
+                    context.getItemInHand(),
+                    context.getPlayer())) {
+                return InteractionResult.FAIL;
             }
             return InteractionResult.sidedSuccess(
                     context.getLevel().isClientSide);
@@ -112,6 +147,12 @@ public final class PipeCoverItem extends Item {
                 && context.getPlayer() != null
                 && !context.getPlayer().getAbilities().instabuild) {
             context.getItemInHand().shrink(1);
+        }
+        if (changed) {
+            CoverSounds.placed(
+                    context.getLevel(),
+                    context.getClickedPos(),
+                    cover);
         }
         return InteractionResult.sidedSuccess(
                 context.getLevel().isClientSide);

@@ -569,6 +569,11 @@ final class CompactGTRecipeFamilyGeneratedSupport {
             if (rewritten.isPresent()) {
                 return rewritten.orElseThrow();
             }
+            Optional<Ingredient> uniqueItem =
+                    PrefixMaterialItemCodecs.rewriteUniqueItem(itemId);
+            if (uniqueItem.isPresent()) {
+                return uniqueItem.orElseThrow();
+            }
             ensureItem(itemId);
             if (!BuiltInRegistries.ITEM.containsKey(itemId)) {
                 return stubIngredient(itemId.toString());
@@ -667,6 +672,8 @@ final class CompactGTRecipeFamilyGeneratedSupport {
     static void installPrefixMaterialRouting() {
         ensureGeneratedIngredientSupport();
         ensureItem(ResourceLocation.fromNamespaceAndPath("cruciblecraft", "crushed_ore"));
+        ensureItem(ResourceLocation.fromNamespaceAndPath("cruciblecraft", "iron/dust"));
+        ensureItem(ResourceLocation.fromNamespaceAndPath("cruciblecraft", "pyrotheum/dust"));
     }
 
     private static void ensureGeneratedIngredientSupport() {

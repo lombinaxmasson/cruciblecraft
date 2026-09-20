@@ -18,12 +18,12 @@ class CoverResourceTest {
             Path.of("src/generated/resources");
     private static final Map<String, String> CHINESE_COVER_NAMES = Map.of(
             "conveyor_cover", "传送带盖板",
-            "retriever_item_cover", "物品检索器盖板",
-            "robot_arm_cover", "机械臂盖板",
-            "pressure_valve_cover", "压力阀盖板",
-            "selector_manual_cover", "手动选择器盖板",
-            "pipe_filter_cover", "管道过滤器盖板",
-            "pipe_valve_cover", "管道单向阀盖板",
+            "retriever_item_cover", "物品抽取覆盖板",
+            "robot_arm_cover", "机械臂",
+            "pressure_valve_cover", "释压安全阀",
+            "selector_manual_cover", "手动选择面板",
+            "pipe_filter_cover", "物品过滤覆盖板",
+            "pipe_valve_cover", "管道封闭覆盖板",
             "pipe_pump_cover", "管道输出泵盖板");
 
     @Test
@@ -132,9 +132,9 @@ class CoverResourceTest {
                 GENERATED.resolve(
                         "assets/cruciblecraft/lang/zh_cn.json"));
         Map<String, String> names = Map.of(
-                "logistics_item_storage_cover", "物品网络存储盖板",
-                "logistics_item_import_cover", "物品网络输入盖板",
-                "logistics_item_export_cover", "物品网络输出盖板");
+                "logistics_item_storage_cover", "过滤物流存储总线(物品)",
+                "logistics_item_import_cover", "过滤物流输入总线(物品)",
+                "logistics_item_export_cover", "过滤物流输出总线(物品)");
         for (var entry : names.entrySet()) {
             String item = entry.getKey();
             Path recipe = GENERATED.resolve(
@@ -168,9 +168,9 @@ class CoverResourceTest {
                 GENERATED.resolve(
                         "assets/cruciblecraft/lang/zh_cn.json"));
         Map<String, String> names = Map.of(
-                "logistics_fluid_storage_cover", "流体网络存储盖板",
-                "logistics_fluid_import_cover", "流体网络输入盖板",
-                "logistics_fluid_export_cover", "流体网络输出盖板");
+                "logistics_fluid_storage_cover", "过滤物流存储总线(流体)",
+                "logistics_fluid_import_cover", "过滤物流输入总线(流体)",
+                "logistics_fluid_export_cover", "过滤物流输出总线(流体)");
         for (var entry : names.entrySet()) {
             String item = entry.getKey();
             Path recipe = GENERATED.resolve(
@@ -210,9 +210,9 @@ class CoverResourceTest {
                 GENERATED.resolve(
                         "assets/cruciblecraft/lang/zh_cn.json"));
         Map<String, String> names = Map.of(
-                "logistics_generic_storage_cover", "通用网络存储盖板",
-                "logistics_generic_import_cover", "通用网络输入盖板",
-                "logistics_generic_export_cover", "通用网络输出盖板");
+                "logistics_generic_storage_cover", "通用物流存储总线",
+                "logistics_generic_import_cover", "通用物流输入总线",
+                "logistics_generic_export_cover", "通用物流输出总线");
         for (var entry : names.entrySet()) {
             String item = entry.getKey();
             Path recipe = GENERATED.resolve(
@@ -263,10 +263,10 @@ class CoverResourceTest {
                 json(recipe).getAsJsonObject("result")
                         .get("id").getAsString());
         assertEquals(
-                "Generic Network Dump Cover",
+                "Logistics Dump Bus (Item)",
                 english.get("item.cruciblecraft." + item).getAsString());
         assertEquals(
-                "通用网络回收盖板",
+                "物流回收总线(物品)",
                 chinese.get("item.cruciblecraft." + item).getAsString());
         JsonObject dumpModel = json(model);
         assertEquals(

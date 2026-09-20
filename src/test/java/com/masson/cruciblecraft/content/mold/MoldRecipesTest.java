@@ -78,8 +78,8 @@ class MoldRecipesTest {
         assertFiring(0b0_01010_11111_01010_11111_01010, MaterialPrefixes.SMALL_GEAR, 144);
         assertFiring(0b0_00000_01110_01010_01110_00000, MaterialPrefixes.RING, 36);
         assertFiring(0b0_10000_01000_00100_00010_00001, MaterialPrefixes.LONG_ROD, 144);
-        assertFiring(0b0_01100_11110_11110_01100_00000, prefix("billet"), 144);
-        assertFiring(0b0_11000_11000_00000_00000_00000, prefix("chunk"), 144);
+        assertFiring(0b0_01100_11110_11110_01100_00000, prefix("billet"), 96);
+        assertFiring(0b0_11000_11000_00000_00000_00000, prefix("chunk"), 36);
         assertFiring(0b0_00000_01110_01110_01110_00000, prefix("tiny_plate"), 16);
         assertFiring(0b0_11101_11101_11101_00001_11100, prefix("small_casing"), 72);
         assertFiring(0b0_00100_01110_01110_01110_01110, prefix("tool_head_raw_sword"), 288);

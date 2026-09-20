@@ -89,6 +89,8 @@ public final class MaterialPrefixes {
     public static final MaterialPrefix HUGE_RESTRICTIVE_ITEM_PIPE =
             builtin("huge_restrictive_item_pipe");
     public static final MaterialPrefix NUGGET = builtin("nugget");
+    public static final MaterialPrefix CHUNK = builtin("chunk");
+    public static final MaterialPrefix BILLET = builtin("billet");
     public static final MaterialPrefix GEM = builtin("gem");
     public static final MaterialPrefix GEM_CHIPPED = builtin("gem_chipped");
     public static final MaterialPrefix GEM_FLAWED = builtin("gem_flawed");
@@ -102,6 +104,7 @@ public final class MaterialPrefixes {
     public static final MaterialPrefix TINY_DUST = builtin("tiny_dust");
     public static final MaterialPrefix DUST_DIV72 = builtin("dust_div72");
     public static final MaterialPrefix STORAGE_DUST = builtin("storage_dust");
+    public static final MaterialPrefix STORAGE_INGOT = builtin("storage_ingot");
     public static final MaterialPrefix STORAGE_PLATE = builtin("storage_plate");
     public static final MaterialPrefix MACHINE_CASING = builtin("machine_casing");
     public static final MaterialPrefix MACHINE_CASING_DOUBLE =

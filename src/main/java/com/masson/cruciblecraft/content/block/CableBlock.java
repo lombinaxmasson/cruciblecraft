@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
+import com.masson.cruciblecraft.energy.cable.CableCovers;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.material.def.GT6MaterialMetadata.ElectricalProperties;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -20,6 +21,7 @@ import com.masson.cruciblecraft.registry.ModCapabilities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -202,11 +204,41 @@ public final class CableBlock extends Block
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        return ToolClick.useItemOn(stack, level, player, hand, hit);
+        ItemInteractionResult tool = ToolClick.useItemOn(
+                stack, level, player, hand, hit);
+        if (tool.consumesAction()) {
+            return tool;
+        }
+        if (CableCovers.tryInstall(
+                level, pos, hit.getDirection(), stack, player)) {
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        if (level.getBlockEntity(pos) instanceof CableBlockEntity cable
+                && CableCovers.onRightClick(cable, hit, player)) {
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        return tool;
     }
 
     @Override
     public ToolResult useTool(ToolAction action, UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        if (level.getBlockEntity(pos) instanceof CableBlockEntity cable) {
+            if (action == ToolAction.CROWBAR) {
+                return pryCover(context);
+            }
+            if (CableCovers.onTool(
+                    cable, context.getClickedFace(), action)) {
+                if (!level.isClientSide) {
+                    ToolClick.hurt(context);
+                }
+                return ToolResult.SUCCESS;
+            }
+        }
+        if (action == ToolAction.CROWBAR) {
+            return pryCover(context);
+        }
         if (action != ToolAction.WIRE_CUTTER) {
             return ToolResult.PASS;
         }
@@ -214,6 +246,20 @@ public final class CableBlock extends Block
                 context.getLevel(),
                 context.getClickedPos(),
                 ToolClick.hit(context));
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            BlockHitResult hit) {
+        if (level.getBlockEntity(pos) instanceof CableBlockEntity cable
+                && CableCovers.onRightClick(cable, hit, player)) {
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -238,7 +284,8 @@ public final class CableBlock extends Block
             BlockGetter level,
             BlockPos pos,
             CollisionContext context) {
-        return connectedShape(state);
+        return com.masson.cruciblecraft.logistics.pipe.cover.CoverCollision.union(
+                connectedShape(state), level.getBlockEntity(pos));
     }
 
     private VoxelShape connectedShape(BlockState state) {
@@ -323,6 +370,109 @@ public final class CableBlock extends Block
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new CableBlockEntity(pos, state);
+    }
+
+    @Override
+    protected boolean isSignalSource(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected int getSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        return coverOutput(level, pos, direction, false);
+    }
+
+    @Override
+    protected int getDirectSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        return coverOutput(level, pos, direction, true);
+    }
+
+    @Override
+    public boolean canConnectRedstone(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            @Nullable Direction direction) {
+        if (direction == null) {
+            return false;
+        }
+        if (!(level.getBlockEntity(pos) instanceof CableBlockEntity cable)) {
+            return false;
+        }
+        return CableCovers.connectsRedstone(cable, direction);
+    }
+
+    @Override
+    protected void neighborChanged(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Block neighborBlock,
+            BlockPos neighborPos,
+            boolean movedByPiston) {
+        super.neighborChanged(
+                state, level, pos, neighborBlock, neighborPos, movedByPiston);
+        if (!level.isClientSide
+                && level.getBlockEntity(pos) instanceof CableBlockEntity cable) {
+            CableCovers.tickOutputs(cable);
+        }
+    }
+
+    @Override
+    protected void onRemove(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            BlockState newState,
+            boolean movedByPiston) {
+        if (!level.isClientSide
+                && state.getBlock() != newState.getBlock()
+                && level.getBlockEntity(pos) instanceof CableBlockEntity cable) {
+            cable.dropCovers();
+        }
+        super.onRemove(state, level, pos, newState, movedByPiston);
+    }
+
+    private static int coverOutput(
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction,
+            boolean strong) {
+        Direction face = direction.getOpposite();
+        if (!(level.getBlockEntity(pos) instanceof CableBlockEntity cable)) {
+            return 0;
+        }
+        int cover = strong
+                ? CableCovers.strongOut(cable, face)
+                : CableCovers.weakOut(cable, face);
+        return Math.max(0, cover);
+    }
+
+    private static ToolResult pryCover(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        if (!(level.getBlockEntity(pos) instanceof CableBlockEntity cable)) {
+            return ToolResult.PASS;
+        }
+        Direction side = context.getClickedFace();
+        if (level.isClientSide) {
+            return cable.covers().get(side).isPresent()
+                    ? ToolResult.SUCCESS
+                    : ToolResult.PASS;
+        }
+        if (!cable.removeCover(side, context.getPlayer())) {
+            return ToolResult.PASS;
+        }
+        ToolClick.hurt(context);
+        return ToolResult.SUCCESS;
     }
 
     @Nullable

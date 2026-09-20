@@ -88,9 +88,7 @@ class Gt6ConnectorArtTest(unittest.TestCase):
             if str(row.get("dummy_path") or "").endswith("2x_blue_alloy_wire")
         )
         model = art.ITEM_MODELS / f"{leftover['dummy_path']}.json"
-        text = model.read_text(encoding="utf-8")
-        self.assertNotIn("iron_ingot", text)
-        self.assertIn("gt6_import/materialicons/copper/wire", text)
+        self.assertFalse(model.is_file())
         folded = art._subset_rows(art.EU_SUBSET, "fold_live_block")[0]
         leftover = art.ITEM_MODELS / f"{folded['dummy_path']}.json"
         self.assertFalse(leftover.is_file())

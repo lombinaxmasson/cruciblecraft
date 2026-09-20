@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.api.tool.ToolAction;
 import com.masson.cruciblecraft.api.tool.ToolActionSource;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverIntercept;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -100,6 +101,14 @@ public final class Gt6StyleConnections {
         if (level.isClientSide) {
             return;
         }
+        if (open
+                && (PipeCoverIntercept.blocksConnect(level, pos, side)
+                        || PipeCoverIntercept.blocksConnect(
+                                level,
+                                pos.relative(side),
+                                side.getOpposite()))) {
+            return;
+        }
         BlockState state = level.getBlockState(pos);
         if (properties(state).isEmpty() || isOpen(state, side) == open) {
             return;
@@ -162,7 +171,16 @@ public final class Gt6StyleConnections {
         }
         BlockState state = level.getBlockState(pos);
         Direction side = sideFromHit(hit);
-        setConnection(level, pos, side, !isOpen(state, side));
+        boolean open = !isOpen(state, side);
+        if (open
+                && (PipeCoverIntercept.blocksConnect(level, pos, side)
+                        || PipeCoverIntercept.blocksConnect(
+                                level,
+                                pos.relative(side),
+                                side.getOpposite()))) {
+            return ToolResult.REJECT;
+        }
+        setConnection(level, pos, side, open);
         return ToolResult.SUCCESS;
     }
 

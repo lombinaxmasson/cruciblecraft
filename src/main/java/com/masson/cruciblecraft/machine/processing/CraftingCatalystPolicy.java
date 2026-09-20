@@ -47,7 +47,18 @@ public final class CraftingCatalystPolicy {
             "material_rolling_pin",
             "material_axe",
             "material_crowbar",
-            "material_scissors");
+            "material_scissors",
+            "material_screwdriver_lv",
+            "material_wrench_lv",
+            "material_wrench_mv",
+            "material_wrench_hv",
+            "material_monkey_wrench_lv",
+            "material_monkey_wrench_mv",
+            "material_monkey_wrench_hv",
+            "material_buzzsaw_lv",
+            "material_chainsaw_lv",
+            "material_chainsaw_mv",
+            "material_chainsaw_hv");
     private static final String TOOL_PATTERN_PREFIX = "tool_pattern_";
 
     private CraftingCatalystPolicy() {}

@@ -1151,7 +1151,10 @@ public final class GTRecipeMapLoader {
     static boolean isHydrocarbonProcessRecipe(ResourceLocation id) {
         return CrucibleCraft.MODID.equals(id.getNamespace())
                 && (id.getPath().startsWith("hydrocarbon/distillery/")
-                        || id.getPath().startsWith("hydrocarbon/generifier/"));
+                        || id.getPath().startsWith("hydrocarbon/generifier/")
+                        || id.getPath().startsWith("hydrocarbon/distillation_tower/")
+                        || id.getPath().startsWith(
+                                "hydrocarbon/cryo_distillation_tower/"));
     }
 
     static boolean isPetroleumRecipe(ResourceLocation id) {
@@ -1190,6 +1193,9 @@ public final class GTRecipeMapLoader {
         return CrucibleCraft.MODID.equals(id.getNamespace())
                 && (id.getPath().startsWith("hydrocarbon/distillery/")
                         || id.getPath().startsWith("hydrocarbon/generifier/")
+                        || id.getPath().startsWith("hydrocarbon/distillation_tower/")
+                        || id.getPath().startsWith(
+                                "hydrocarbon/cryo_distillation_tower/")
                         || id.getPath().startsWith("hydrocarbon/fuels_engine/")
                         || id.getPath().startsWith("hydrocarbon/fuels_gas/")
                         || id.getPath().startsWith(
@@ -1448,7 +1454,9 @@ public final class GTRecipeMapLoader {
             }
             if (hydrocarbonProcess
                     && map != ModRecipeMaps.DISTILLERY
-                    && map != ModRecipeMaps.GENERIFIER) {
+                    && map != ModRecipeMaps.GENERIFIER
+                    && map != ModRecipeMaps.DISTILLATION_TOWER
+                    && map != ModRecipeMaps.CRYO_DISTILLATION_TOWER) {
                 throw new IllegalArgumentException(
                         "Hydrocarbon process recipe " + entry.id()
                                 + " targets unsupported map " + map.id());

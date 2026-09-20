@@ -114,7 +114,7 @@ public abstract class MaterialToolItem extends Item
                 .orElse(DAMAGEABILITY_SENTINEL_MAX_DAMAGE);
     }
 
-    public final boolean canApplyDurabilityDamage(ItemStack stack) {
+    public boolean canApplyDurabilityDamage(ItemStack stack) {
         return material(stack).isPresent();
     }
 

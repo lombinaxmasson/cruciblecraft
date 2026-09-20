@@ -40,6 +40,10 @@ public final class CoverDefinitionCatalog {
             "/data/cruciblecraft/cover_component_tier_definitions.json";
     private static final String MACHINE_COVER_RESOURCE =
             "/data/cruciblecraft/machine_cover_definitions.json";
+    private static final String PLATE_COVER_RESOURCE =
+            "/data/cruciblecraft/cover_plate_definitions.json";
+    private static final String DECORATIVE_COVER_RESOURCE =
+            "/data/cruciblecraft/cover_decorative_definitions.json";
     private static final Set<String> DOCUMENT_FIELDS =
             Set.of("schemaVersion", "definitions");
     private static final Set<String> DEFINITION_FIELDS = Set.of(
@@ -77,6 +81,12 @@ public final class CoverDefinitionCatalog {
             "cruciblecraft:logistics_generic_export");
     private static final Set<String> REQUIRED_DUMP_IDS = Set.of(
             "cruciblecraft:logistics_generic_dump");
+    private static final Set<String> REQUIRED_PLATE_IDS = Set.of(
+            "cruciblecraft:cover_plate");
+    private static final Set<String> REQUIRED_DECORATIVE_IDS = Set.of(
+            "cruciblecraft:cover_asphalt",
+            "cruciblecraft:cover_wood",
+            "cruciblecraft:cover_panel");
     private static final Set<String> REQUIRED_DISPLAY_CPU_IDS = Set.of(
             "cruciblecraft:logistics_display_cpu_logic",
             "cruciblecraft:logistics_display_cpu_control",
@@ -140,10 +150,15 @@ public final class CoverDefinitionCatalog {
                 definitions,
                 MACHINE_COVER_RESOURCE,
                 "machine cover catalog");
+        loadInto(definitions, PLATE_COVER_RESOURCE, "plate cover catalog");
+        loadInto(
+                definitions,
+                DECORATIVE_COVER_RESOURCE,
+                "decorative cover catalog");
         Set<String> ids = definitions.keySet().stream()
                 .map(ResourceLocation::toString)
                 .collect(java.util.stream.Collectors.toSet());
-        int expected = 23
+        int expected = 27
                 + CoverComponentTiers.definitionIds().size()
                 + MachineCoverKinds.DEFINITION_COUNT;
         if (!ids.containsAll(REQUIRED_ITEM_NETWORK_IDS)
@@ -151,6 +166,8 @@ public final class CoverDefinitionCatalog {
                 || !ids.containsAll(REQUIRED_GENERIC_NETWORK_IDS)
                 || !ids.containsAll(REQUIRED_DUMP_IDS)
                 || !ids.containsAll(REQUIRED_DISPLAY_CPU_IDS)
+                || !ids.containsAll(REQUIRED_PLATE_IDS)
+                || !ids.containsAll(REQUIRED_DECORATIVE_IDS)
                 || !ids.containsAll(CoverComponentTiers.definitionIds())
                 || definitions.size() != expected) {
             throw new IllegalStateException(

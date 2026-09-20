@@ -230,6 +230,156 @@ public final class ToolMaterialRules {
                 Integer.MAX_VALUE,
                 WOOD_TAG,
                 BOUNCY_TAG,
+                STRETCHY_TAG),
+        // GT6 Loader_Tools.java:308 mechanical mining drill: typemin(2), Wood.NOT.
+        // Electric grids at 356–378 use tCondition (typemin 3, qualmin 1).
+        MINING_DRILL_LV(
+                "mining_drill_lv",
+                2L,
+                0,
+                Integer.MAX_VALUE,
+                WOOD_TAG),
+        MINING_DRILL_MV(
+                "mining_drill_mv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        MINING_DRILL_HV(
+                "mining_drill_hv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        CHAINSAW_LV(
+                "chainsaw_lv",
+                2L,
+                0,
+                Integer.MAX_VALUE,
+                WOOD_TAG),
+        CHAINSAW_MV(
+                "chainsaw_mv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        CHAINSAW_HV(
+                "chainsaw_hv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        WRENCH_LV(
+                "wrench_lv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        WRENCH_MV(
+                "wrench_mv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        WRENCH_HV(
+                "wrench_hv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        JACKHAMMER_HV(
+                "jackhammer_hv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        JACKHAMMER_HV_NO_ORES(
+                "jackhammer_hv_no_ores",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        BUZZSAW_LV(
+                "buzzsaw_lv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        SCREWDRIVER_LV(
+                "screwdriver_lv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        HAND_DRILL_LV(
+                "hand_drill_lv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        MIXER_LV(
+                "mixer_lv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        MONKEY_WRENCH_LV(
+                "monkey_wrench_lv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        MONKEY_WRENCH_MV(
+                "monkey_wrench_mv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        MONKEY_WRENCH_HV(
+                "monkey_wrench_hv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
+                STRETCHY_TAG),
+        TRIMMER_LV(
+                "trimmer_lv",
+                3L,
+                1,
+                Integer.MAX_VALUE,
+                WOOD_TAG,
+                BOUNCY_TAG,
                 STRETCHY_TAG);
 
         private final String serializedName;
@@ -318,7 +468,26 @@ public final class ToolMaterialRules {
                     || this == SCISSORS
                     || this == ROLLING_PIN
                     || this == FLINT_AND_TINDER
-                    || this == POCKET_MULTITOOL;
+                    || this == POCKET_MULTITOOL
+                    || this == MINING_DRILL_LV
+                    || this == MINING_DRILL_MV
+                    || this == MINING_DRILL_HV
+                    || this == CHAINSAW_LV
+                    || this == CHAINSAW_MV
+                    || this == CHAINSAW_HV
+                    || this == WRENCH_LV
+                    || this == WRENCH_MV
+                    || this == WRENCH_HV
+                    || this == JACKHAMMER_HV
+                    || this == JACKHAMMER_HV_NO_ORES
+                    || this == BUZZSAW_LV
+                    || this == SCREWDRIVER_LV
+                    || this == HAND_DRILL_LV
+                    || this == MIXER_LV
+                    || this == MONKEY_WRENCH_LV
+                    || this == MONKEY_WRENCH_MV
+                    || this == MONKEY_WRENCH_HV
+                    || this == TRIMMER_LV;
         }
     }
 }

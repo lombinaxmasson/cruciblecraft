@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "slug": "energy/large-gas-turbine",
+  "title": "Large Gas Turbine 17231-17234",
+  "maturity": "frozen",
+  "workflow": "active",
+  "survival_access": "partial",
+  "owned_paths": [
+    "docs/history/card-plans/active/大型燃气轮机详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/energy/largegasturbine/**",
+    "src/main/resources/data/cruciblecraft/large_gas_turbines.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_gas_turbine_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/gas_turbine/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/LargeGasTurbineGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/energy/largegasturbine/**",
+    "tools/capabilities/energy/large-gas-turbine/**",
+    "tools/waves/energy/large-gas-turbine/**",
+    "tools/tests/test_large_gas_turbine.py"
+  ],
+  "depends_on": [
+    "energy/steam-turbine",
+    "energy/small-gas-turbine",
+    "energy/batteries",
+    "content/technological-parts-foundation"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "energy/large-gas-turbine",
+  "player_signoff": null,
+  "required_test_ids": [
+    "fourHousingsAreLive",
+    "largeHousingsRequireStructure",
+    "methaneStoresHuAndExhaust",
+    "exhaustAtHalfBlocksFuel",
+    "plungerDumpsTanks"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large_gas_turbine:17231",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:magnalium/gas_turbine_main_housing",
+        "cruciblecraft:trinitanium/gas_turbine_main_housing",
+        "cruciblecraft:graphene/gas_turbine_main_housing",
+        "cruciblecraft:vibramantium/gas_turbine_main_housing"
+      ],
+      "reason": "GT6 MultiTileEntityLargeTurbineGas 17231-17234. Not kTFRUAddon MultiTileEntityGasMotor 10000-10006, not LargeTurbineSteam 17211-17214."
+    }
+  ],
+  "note": "3x3x4 HU-from-FM.Gas to RU. Walls reuse 18022/18026/18023/18025. No wall port binding. Skip recipes whose live forms are missing. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain."
+}

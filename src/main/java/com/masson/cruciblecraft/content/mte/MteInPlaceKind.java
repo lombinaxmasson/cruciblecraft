@@ -16,6 +16,7 @@ public enum MteInPlaceKind {
     TANK_EXTENDER,
     TANK_BRIDGE,
     STEAM_TURBINE,
+    GAS_TURBINE,
     BATTERY_BOX,
     WOOD_PANEL,
     ROPE,
@@ -68,14 +69,21 @@ public enum MteInPlaceKind {
         return switch (this) {
             case CHEST -> 54;
             case SAFE -> 15;
-            case BARREL -> 27;
             case CRAFTING_TABLE, BOTTLE_CRATE -> 9;
             case BOOKSHELF -> 28;
             case DRAWER -> 144;
             case LOCKER -> 4;
-            case MASS_STORAGE -> 1;
+            case BARREL, MASS_STORAGE -> 1;
             default -> 0;
         };
+    }
+
+    /**
+     * GT6 {@code MultiTileEntityMassStorage} and {@code MassStorageBarrel} share
+     * the single-slot bulk store. Furniture BARREL is not a 27-slot chest.
+     */
+    public boolean massStorage() {
+        return this == MASS_STORAGE || this == BARREL;
     }
 
     public boolean playerInventoryGui() {
@@ -93,6 +101,7 @@ public enum MteInPlaceKind {
                     BOTTLE_CRATE,
                     DRAWER,
                     LOCKER,
+                    BARREL,
                     MASS_STORAGE -> true;
             default -> false;
         };

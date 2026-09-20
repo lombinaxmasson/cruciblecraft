@@ -68,6 +68,7 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     public static final int TRANSFER_MB = 1000;
     public static final long ENERGY_CAPACITY = 16_384L;
     public static final int MASS_CAPACITY = 1_000_000;
+    public static final int BARREL_CAPACITY = 10_000;
     private static final int AUTO_OUTPUT = 1;
     private static final int RESET_FILTER = 2;
     private static final int EMIT_OVERFLOW = 4;
@@ -122,13 +123,13 @@ public final class MteInPlaceBlockEntity extends BlockEntity
                 MteInPlaceKind kind = spec().kind();
                 if (kind == MteInPlaceKind.BOOKSHELF
                         || kind == MteInPlaceKind.BOTTLE_CRATE
-                        || kind == MteInPlaceKind.MASS_STORAGE) {
+                        || kind.massStorage()) {
                     StorageClientSync.send(MteInPlaceBlockEntity.this);
                 }
             }
         };
-        this.massStorage = spec.kind() == MteInPlaceKind.MASS_STORAGE
-                ? new MassStorageHandler(MASS_CAPACITY, () -> {
+        this.massStorage = spec.kind().massStorage()
+                ? new MassStorageHandler(massStorageCapacity(spec.kind()), () -> {
                     massInventoryChanged = true;
                     setChanged();
                     StorageClientSync.send(this);
@@ -173,6 +174,10 @@ public final class MteInPlaceBlockEntity extends BlockEntity
 
     public MassStorageHandler massStorage() {
         return massStorage;
+    }
+
+    private static int massStorageCapacity(MteInPlaceKind kind) {
+        return kind == MteInPlaceKind.BARREL ? BARREL_CAPACITY : MASS_CAPACITY;
     }
 
     public int drawerCompartment() {
@@ -495,7 +500,7 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         if (host.rotationEngine != null) {
             host.convertRotationEngine();
         }
-        if (host.spec().kind() == MteInPlaceKind.MASS_STORAGE) {
+        if (host.spec().kind().massStorage()) {
             host.tickMassStorage(level, pos);
         }
         if (host.bathingPot != null) {

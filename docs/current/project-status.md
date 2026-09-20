@@ -6,27 +6,30 @@
 
 ## Unique active
 
-无。`capability.json` 里没有 `workflow=active`。
+`content/gt6-electric-tools`（GT6 Electric Tools，`workflow=active`，`maturity=frozen`）；计划 [GT6 电动工具详细计划](../history/card-plans/active/GT6电动工具详细计划.md)。
 
 ## Prep（不占落地锁）
 
 计划文件存在就会列在这里。不要把本表当剩余待办。读法见 [unimplemented-gap.md](unimplemented-gap.md)。
 
 - `content/puv-omega-tech-line` — [PUV2+ / OMEGA 科技线](../history/card-plans/prep/PUV2OMEGA科技线详细计划.md)
+- `energy/cooler` — [冷却器详细计划](../history/card-plans/prep/冷却器详细计划.md)
+- `energy/flux-converters` — [通量转换器详细计划](../history/card-plans/prep/通量转换器详细计划.md)
 - `energy/small-gas-turbine` — [微型燃气涡轮详细计划](../history/card-plans/prep/微型燃气涡轮详细计划.md)
 - `machines/printer` — [印刷机详细计划](../history/card-plans/prep/印刷机详细计划.md)
 - `registry/material-form-demand-census` — [材料形态需求普查详细计划](../history/card-plans/prep/材料形态需求普查详细计划.md)
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
 - `worldgen/gt-dungeon` — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)
 - `worldgen/gt-planet-rocks` — [GT 行星岩详细计划](../history/card-plans/prep/GT行星岩详细计划.md)
+- `worldgen/gt-small-ores` — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
 ## Playtest cycle
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower
 
-## runtime_ready accepted（78）
+## runtime_ready accepted（79）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -89,6 +92,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `logistics/logistics-core` — Logistics Core
 - `machines/bath` — Bath / Bathing Pot — [洗矿浴池详细计划](../history/card-plans/closed/洗矿浴池详细计划.md)
 - `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
+- `machines/distillation-tower` — Distillation Tower GT6 Alignment — [蒸馏塔 GT6 对齐详细计划](../history/card-plans/closed/蒸馏塔GT6对齐详细计划.md)
 - `machines/hammer-squeezer-laser` — Hammer / Squeezer / Laser — [锤 / 榨汁机 / 激光详细计划](../history/card-plans/closed/锤榨汁机激光详细计划.md)
 - `machines/injector` — Injector — [注射机详细计划](../history/card-plans/closed/注射机详细计划.md)
 - `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)
@@ -109,10 +113,11 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `worldgen/gt-surface-rocks` — GT Surface Rocks — [GT6 地表石子保真](../history/card-plans/closed/GT6地表石子保真详细计划.md)
 - `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
 
-## frozen（10）
+## frozen（11）
 
 分母已冻。`paused` 的 PUV/OMEGA 六张代码已在 `src/main`，是 CC 扩展，不是原版高压线。地牢是结构载体，房间内容仍 blocked。
 
+- `content/gt6-electric-tools` — GT6 Electric Tools（`workflow=active`） — [GT6 电动工具详细计划](../history/card-plans/active/GT6电动工具详细计划.md)
 - `content/puv-omega-parts` — Compact parts, Quantum circuit, wires and transformers to OMEGA（`workflow=paused`）
 - `energy/fusion-quantum` — Fusion execution, QUANTUM, and LU to QU（`workflow=paused`）
 - `energy/large-heat-exchanger` — Large Heat Exchanger 17197（`workflow=paused`）

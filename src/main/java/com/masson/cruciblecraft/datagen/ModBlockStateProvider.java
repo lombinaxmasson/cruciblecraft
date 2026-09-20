@@ -1,6 +1,9 @@
 package com.masson.cruciblecraft.datagen;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.block.DistillationTowerParts;
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.AutomaticHammerBlock;
@@ -86,20 +89,41 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 models().cubeAll(
                         "multiblock_casing",
                         modLoc("block/multiblock_casing")));
-        simpleBlockWithItem(
+        ModelFile towerPart = gt6PartModel(
+                "distillation_tower_part_0", "distillation_tower_part", "0");
+        ModelFile towerHole = gt6PartModel(
+                "distillation_tower_part_1", "distillation_tower_part", "1");
+        ModelFile heatTransmitter = gt6PartModel(
+                "heat_transmitter_0", "heat_transmitter", "0");
+        multiblockPort(
                 ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get(),
-                models().cubeAll(
-                        "multiblock_item_fluid_port",
-                        modLoc("block/multiblock_item_fluid_port")));
-        simpleBlockWithItem(
+                "multiblock_item_fluid_port",
+                towerPart,
+                towerHole);
+        multiblockPort(
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get(),
-                models().cubeAll(
-                        "multiblock_energy_input_port",
-                        modLoc("block/multiblock_energy_input_port")));
+                "multiblock_energy_input_port",
+                heatTransmitter,
+                heatTransmitter);
+        multiblockPort(
+                ModBlocks.MULTIBLOCK_FLUID_OUT_PORT.get(),
+                "multiblock_fluid_out_port",
+                towerPart,
+                towerHole);
+        catalogTowerPart(
+                DistillationTowerParts.towerPart(),
+                towerPart,
+                towerHole);
+        catalogHeatTransmitter(
+                DistillationTowerParts.heatTransmitter(),
+                heatTransmitter);
         configuredMachine(
                 "large_centrifuge", ModBlocks.LARGE_CENTRIFUGE.get());
         configuredMachine(
                 "distillation_tower", ModBlocks.DISTILLATION_TOWER.get());
+        configuredMachine(
+                "cryo_distillation_tower",
+                ModBlocks.CRYO_DISTILLATION_TOWER.get());
         configuredMachine(
                 "large_boiler", ModBlocks.LARGE_BOILER.get());
         configuredMachine(
@@ -163,6 +187,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         registerBatteries();
         registerTransformers();
         registerHeatExchangers();
+        registerCoolers();
+        registerFluxConverters();
         registerLargeHeatExchanger();
         registerBedrockDrill();
         registerQuantumEnergizers();
@@ -1086,6 +1112,34 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
     }
 
+    private void registerCoolers() {
+        for (var profile : com.masson.cruciblecraft.energy.cooler
+                .CoolerCatalog.profiles()) {
+            ModelFile idle = coolerCube(profile.textureFolder(), "overlay");
+            ModelFile active = coolerCube(
+                    profile.textureFolder(), "overlay_active");
+            var block = ModBlocks.coolerBlocksById()
+                    .get(profile.id())
+                    .get();
+            configuredFacingLitAllDirections(block, idle, active);
+            simpleBlockItem(block, idle);
+        }
+    }
+
+    private void registerFluxConverters() {
+        for (var profile : com.masson.cruciblecraft.energy.flux
+                .FluxCatalog.profiles()) {
+            ModelFile idle = fluxCube(profile.textureFolder(), "overlay");
+            ModelFile active = fluxCube(
+                    profile.textureFolder(), "overlay_active");
+            var block = ModBlocks.fluxBlocksById()
+                    .get(profile.id())
+                    .get();
+            configuredFacingLitAllDirections(block, idle, active);
+            simpleBlockItem(block, idle);
+        }
+    }
+
     private void registerLargeHeatExchanger() {
         String base = "block/machine/large_heat_exchanger";
         ModelFile idle = models()
@@ -1361,6 +1415,48 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("top_east", modLoc(base + "/" + overlay + "/right"));
     }
 
+    private ModelFile coolerCube(String family, String overlay) {
+        String name = "cooler/" + family + "/" + overlay;
+        String base = "block/machine/cooler/" + family;
+        return models()
+                .withExistingParent(
+                        name, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/side"))
+                .texture("bot_up", modLoc(base + "/colored/side"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/side"))
+                .texture("bot_east", modLoc(base + "/colored/side"))
+                .texture("top_down", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_up", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_north", modLoc(base + "/" + overlay + "/front"))
+                .texture("top_south", modLoc(base + "/" + overlay + "/back"))
+                .texture("top_west", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_east", modLoc(base + "/" + overlay + "/side"));
+    }
+
+    private ModelFile fluxCube(String family, String overlay) {
+        String name = "flux/" + family + "/" + overlay;
+        String base = "block/machine/" + family;
+        return models()
+                .withExistingParent(
+                        name, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/side"))
+                .texture("bot_up", modLoc(base + "/colored/side"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/side"))
+                .texture("bot_east", modLoc(base + "/colored/side"))
+                .texture("top_down", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_up", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_north", modLoc(base + "/" + overlay + "/front"))
+                .texture("top_south", modLoc(base + "/" + overlay + "/back"))
+                .texture("top_west", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_east", modLoc(base + "/" + overlay + "/side"));
+    }
+
     private ModelFile transformerCube(String overlay) {
         String name = "transformer/electric_" + overlay;
         String base = "block/machine/transformer/electric";
@@ -1576,6 +1672,91 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("top_south", modLoc(base + "/overlay_side"))
                 .texture("top_west", modLoc(base + "/overlay_side"))
                 .texture("top_east", modLoc(base + "/overlay_side"));
+    }
+
+    private ModelFile gt6PartModel(String name, String folder, String design) {
+        String base = "block/machine/" + folder + "/" + design;
+        ResourceLocation side = modLoc(base + "/colored/side");
+        ResourceLocation overlaySide = modLoc(base + "/overlay/side");
+        return models()
+                .withExistingParent(name, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", side)
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", side)
+                .texture("bot_south", side)
+                .texture("bot_west", side)
+                .texture("bot_east", side)
+                .texture("top_down", modLoc(base + "/overlay/bottom"))
+                .texture("top_up", modLoc(base + "/overlay/top"))
+                .texture("top_north", overlaySide)
+                .texture("top_south", overlaySide)
+                .texture("top_west", overlaySide)
+                .texture("top_east", overlaySide);
+    }
+
+    private void multiblockPort(
+            net.minecraft.world.level.block.Block block,
+            String genericName,
+            ModelFile formed,
+            ModelFile hole) {
+        ModelFile generic = models().cubeAll(
+                genericName, modLoc("block/" + genericName));
+        getVariantBuilder(block).forAllStates(state -> {
+            boolean skin = state.getValue(MultiblockPortBlock.TOWER_SKIN);
+            boolean backHole = state.getValue(MultiblockPortBlock.BACK_HOLE);
+            ModelFile model = !skin ? generic : (backHole ? hole : formed);
+            return ConfiguredModel.builder().modelFile(model).build();
+        });
+        simpleBlockItem(block, generic);
+    }
+
+    private void catalogTowerPart(
+            net.minecraft.world.level.block.Block block,
+            ModelFile formed,
+            ModelFile hole) {
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction facing = state.getValue(MteInPlaceBlock.FACING);
+            boolean holeFace = state.getValue(MultiblockPortBlock.BACK_HOLE);
+            int y = switch (facing) {
+                case SOUTH -> 180;
+                case WEST -> 270;
+                case EAST -> 90;
+                default -> 0;
+            };
+            int x = facing == Direction.DOWN ? 90
+                    : facing == Direction.UP ? 270 : 0;
+            return ConfiguredModel.builder()
+                    .modelFile(holeFace ? hole : formed)
+                    .rotationX(x)
+                    .rotationY(y)
+                    .build();
+        });
+        itemModels().getBuilder("item/multiblock/distillation_tower_part")
+                .parent(formed);
+    }
+
+    private void catalogHeatTransmitter(
+            net.minecraft.world.level.block.Block block,
+            ModelFile model) {
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction facing = state.getValue(MteInPlaceBlock.FACING);
+            int y = switch (facing) {
+                case SOUTH -> 180;
+                case WEST -> 270;
+                case EAST -> 90;
+                default -> 0;
+            };
+            int x = facing == Direction.DOWN ? 90
+                    : facing == Direction.UP ? 270 : 0;
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationX(x)
+                    .rotationY(y)
+                    .build();
+        });
+        itemModels().getBuilder("item/multiblock/heat_transmitter")
+                .parent(model);
     }
 
     private void configuredMachine(String id, net.minecraft.world.level.block.Block block) {

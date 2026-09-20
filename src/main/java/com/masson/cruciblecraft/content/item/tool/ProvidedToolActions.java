@@ -16,6 +16,14 @@ public final class ProvidedToolActions {
         EnumMap<ToolKind, Set<ToolAction>> map = new EnumMap<>(ToolKind.class);
         map.put(ToolKind.WRENCH, Set.of(ToolAction.WRENCH));
         map.put(ToolKind.MONKEY_WRENCH, Set.of(ToolAction.MONKEY_WRENCH));
+        map.put(ToolKind.WRENCH_LV, Set.of(ToolAction.WRENCH));
+        map.put(ToolKind.WRENCH_MV, Set.of(ToolAction.WRENCH));
+        map.put(ToolKind.WRENCH_HV, Set.of(ToolAction.WRENCH));
+        map.put(ToolKind.MONKEY_WRENCH_LV, Set.of(ToolAction.MONKEY_WRENCH));
+        map.put(ToolKind.MONKEY_WRENCH_MV, Set.of(ToolAction.MONKEY_WRENCH));
+        map.put(ToolKind.MONKEY_WRENCH_HV, Set.of(ToolAction.MONKEY_WRENCH));
+        map.put(ToolKind.SCREWDRIVER_LV, Set.of(ToolAction.SCREWDRIVER));
+        map.put(ToolKind.HAND_DRILL_LV, Set.of(ToolAction.DRILL));
         map.put(ToolKind.WIRE_CUTTER, Set.of(ToolAction.WIRE_CUTTER));
         map.put(ToolKind.SCREWDRIVER, Set.of(ToolAction.SCREWDRIVER));
         map.put(ToolKind.CROWBAR, Set.of(ToolAction.CROWBAR));

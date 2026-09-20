@@ -66,7 +66,7 @@ class LargeCentrifugeProfileTest {
                                         && !heatKinds.contains(
                                                 entry.kindId().toString()))
                         .count());
-        assertEquals(2, MachineTierCatalog.controllerTierBands().size());
+        assertEquals(3, MachineTierCatalog.controllerTierBands().size());
 
         TierProfile tower =
                 ModMultiblockControllers.DISTILLATION_TOWER_VARIANT
@@ -83,6 +83,20 @@ class LargeCentrifugeProfileTest {
         assertEquals(4_096L, tower.energyCapacity());
         assertEquals(1, tower.parallelLimit());
         assertEquals(10_000, tower.efficiency());
+
+        TierProfile cryo =
+                ModMultiblockControllers.CRYO_DISTILLATION_TOWER_VARIANT
+                        .tierBand();
+        assertEquals(
+                "cruciblecraft:cryo_distillation_tower_profile",
+                cryo.tierBandId().toString());
+        assertEquals(
+                "cruciblecraft:cryo_distillation_tower",
+                cryo.materialId());
+        assertEquals(EnergyType.CU, cryo.energyType());
+        assertEquals(512L, cryo.inputNominal());
+        assertEquals(1_024L, cryo.inputMaximum());
+        assertEquals(4_096L, cryo.energyCapacity());
 
         TierProfile profile =
                 ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT.tierBand();

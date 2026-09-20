@@ -2,6 +2,8 @@ package com.masson.cruciblecraft.content.item;
 
 import java.util.List;
 
+import com.masson.cruciblecraft.content.blockentity.RedstoneWireBlockEntity;
+import com.masson.cruciblecraft.content.redstonewire.RedstoneWireCovers;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
@@ -56,6 +58,18 @@ public final class ProgrammedCircuitItem extends Item {
     public InteractionResult useOn(UseOnContext context) {
         var blockEntity = context.getLevel().getBlockEntity(
                 context.getClickedPos());
+        if (blockEntity instanceof RedstoneWireBlockEntity) {
+            if (!RedstoneWireCovers.tryInstall(
+                    context.getLevel(),
+                    context.getClickedPos(),
+                    context.getClickedFace(),
+                    context.getItemInHand(),
+                    context.getPlayer())) {
+                return InteractionResult.FAIL;
+            }
+            return InteractionResult.sidedSuccess(
+                    context.getLevel().isClientSide);
+        }
         if (!(blockEntity instanceof MachineCoverHost machine)) {
             return InteractionResult.PASS;
         }

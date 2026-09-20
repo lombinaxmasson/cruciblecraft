@@ -13,6 +13,7 @@ from typing import Any
 from tools import catalog_modern_ids as modern
 from tools import census_common as census
 from tools import gt6_connector_alias_repair as alias_repair
+from tools import gt6_connector_live_host_dummy_fold as live_host_fold
 from tools import gt6_eu_missing_wire_gauges_runtime as missing_gauges
 from tools import io_common as io
 
@@ -612,7 +613,11 @@ def check() -> list[str]:
             for row in committed.get("rows") or []
             if row.get("disposition") == "keep_distinct"
         ]
-        repaired = alias_repair.folded_metas() | missing_gauges.folded_metas()
+        repaired = (
+            alias_repair.folded_metas()
+            | missing_gauges.folded_metas()
+            | live_host_fold.folded_metas()
+        )
         for row in keep:
             if int(row["meta"]) in repaired:
                 continue
@@ -654,6 +659,8 @@ def check() -> list[str]:
             if row.get("disposition") == "upgrade_live_item"
         ]
         for row in upgrades:
+            if int(row["meta"]) in repaired:
+                continue
             identity = by_meta.get(int(row["meta"]))
             if identity is None:
                 continue

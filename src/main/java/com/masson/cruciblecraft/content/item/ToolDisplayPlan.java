@@ -9,6 +9,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
+import com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog;
+import com.masson.cruciblecraft.content.item.tool.ElectricToolCharge;
 import com.masson.cruciblecraft.machine.ToolMaterialRules;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -94,15 +96,64 @@ public final class ToolDisplayPlan {
         for (ToolKind kind : ToolKind.values()) {
             MaterialToolItem item = itemFor(kind);
             String resultId = BuiltInRegistries.ITEM.getKey(item).toString();
-            for (String materialId : displayMaterials(
-                    paths, workbench, kind.serializedName(), resultId)) {
+            Set<String> materials = new TreeSet<>(displayMaterials(
+                    paths, workbench, kind.serializedName(), resultId));
+            ElectricToolCatalog.of(kind)
+                    .flatMap(ElectricToolCatalog::switchPartner)
+                    .ifPresent(partner -> {
+                        MaterialToolItem partnerItem = itemFor(partner.kind());
+                        String partnerId = BuiltInRegistries.ITEM
+                                .getKey(partnerItem)
+                                .toString();
+                        materials.addAll(displayMaterials(
+                                paths,
+                                workbench,
+                                partner.kind().serializedName(),
+                                partnerId));
+                    });
+            for (String materialId : materials) {
                 if (!ToolMaterialRules.isAllowed(kind, materialId)) {
                     continue;
                 }
-                stacks.add(item.variant(materialId));
+                stacks.add(displayStack(
+                        item, materialId, workbench, resultId));
             }
         }
         return List.copyOf(stacks);
+    }
+
+    private static ItemStack displayStack(
+            MaterialToolItem item,
+            String materialId,
+            List<WorkbenchToolRecipePlan.Recipe> workbench,
+            String resultId) {
+        ItemStack stack = item.variant(materialId);
+        workbench.stream()
+                .filter(recipe -> recipe.electricCapacity() > 0L)
+                .filter(recipe -> materialId.equals(recipe.material()))
+                .filter(recipe -> resultId.equals(recipe.resultId())
+                        || partnerResult(resultId, recipe.resultId()))
+                .findFirst()
+                .ifPresent(recipe -> ElectricToolCharge.applyEmpty(
+                        stack,
+                        recipe.electricCapacity(),
+                        recipe.electricVoltage()));
+        return stack;
+    }
+
+    private static boolean partnerResult(String displayId, String recipeResult) {
+        for (ElectricToolCatalog spec : ElectricToolCatalog.values()) {
+            if (!("cruciblecraft:" + spec.itemPath()).equals(displayId)) {
+                continue;
+            }
+            if (spec.switchPartner()
+                    .map(partner -> ("cruciblecraft:" + partner.itemPath())
+                            .equals(recipeResult))
+                    .orElse(false)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static List<WorkbenchToolRecipePlan.Recipe> workbenchRecipes() {
@@ -156,6 +207,14 @@ public final class ToolDisplayPlan {
             case ROLLING_PIN -> ModItems.MATERIAL_ROLLING_PIN.get();
             case FLINT_AND_TINDER -> ModItems.MATERIAL_FLINT_AND_TINDER.get();
             case POCKET_MULTITOOL -> ModItems.MATERIAL_POCKET_MULTITOOL.get();
+            case MINING_DRILL_LV, MINING_DRILL_MV, MINING_DRILL_HV,
+                    CHAINSAW_LV, CHAINSAW_MV, CHAINSAW_HV,
+                    WRENCH_LV, WRENCH_MV, WRENCH_HV,
+                    JACKHAMMER_HV, JACKHAMMER_HV_NO_ORES,
+                    BUZZSAW_LV, SCREWDRIVER_LV, HAND_DRILL_LV, MIXER_LV,
+                    MONKEY_WRENCH_LV, MONKEY_WRENCH_MV, MONKEY_WRENCH_HV,
+                    TRIMMER_LV ->
+                    ModItems.electricTool(kind).get();
         };
     }
 

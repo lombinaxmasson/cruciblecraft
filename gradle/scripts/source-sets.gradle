@@ -20,8 +20,37 @@ sourceSets.main.resources {
     exclude("**/.gitkeep")
 }
 
+def generatedResourceRoots = new groovy.json.JsonSlurper().parse(
+        file('tools/generated_resource_roots.json'))
+def resourceSourceRoots = [file('src/main/resources')]
+generatedResourceRoots.roots.each { row ->
+    resourceSourceRoots << file(row.path as String)
+}
+
+def resourceDuplicateStamp = layout.buildDirectory.file(
+        'verification/resource-duplicates.ok')
+def checkResourceDuplicates = tasks.register('checkResourceDuplicates', Exec) {
+    group = 'verification'
+    description = 'Fails if two resource roots share a relative path.'
+    workingDir rootDir
+    commandLine 'python', 'tools/build_generated_resource_gate.py',
+            '--check-duplicates',
+            '--stamp', resourceDuplicateStamp.get().asFile.absolutePath
+    resourceSourceRoots.each { root ->
+        if (root.directory) {
+            inputs.dir(root)
+        }
+    }
+    inputs.files 'tools/generated_resource_roots.json',
+            'tools/generated_resource_gate.py',
+            'tools/build_generated_resource_gate.py'
+    outputs.file resourceDuplicateStamp
+}
+
 tasks.withType(ProcessResources).configureEach {
     includeEmptyDirs = false
+    duplicatesStrategy = DuplicatesStrategy.FAIL
+    dependsOn checkResourceDuplicates
 }
 
 sourceSets {

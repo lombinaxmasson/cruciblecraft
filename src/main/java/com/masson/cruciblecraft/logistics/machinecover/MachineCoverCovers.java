@@ -13,6 +13,9 @@ import net.minecraft.resources.ResourceLocation;
 public final class MachineCoverCovers {
     private static final List<String> BEHAVIOR_PATHS = List.of(
             "cover_blank",
+            "cover_crafting",
+            "cover_drain",
+            "cover_warning",
             "controller_auto",
             "controller_auto_redstone",
             "controller_auto_timer",
@@ -50,7 +53,10 @@ public final class MachineCoverCovers {
     }
 
     private static CoverBehavior behavior(String path) {
-        if ("cover_blank".equals(path)) {
+        if ("cover_blank".equals(path)
+                || "cover_crafting".equals(path)
+                || "cover_drain".equals(path)
+                || "cover_warning".equals(path)) {
             return new CoverBehavior() {};
         }
         return new CoverBehavior() {

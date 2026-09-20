@@ -4,7 +4,6 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
-import com.masson.cruciblecraft.content.item.CatalogNamedItem;
 import com.masson.cruciblecraft.content.item.PipeBlockItem;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -14,7 +13,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -71,11 +69,22 @@ public final class ConnectorAliasRepairGameTests {
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void hslaSteelUngatedGaugesStayDummy(GameTestHelper helper) {
-        Item seven = item("electric_wire/7x_hsla_steel_wire");
         helper.assertTrue(
-                seven instanceof CatalogNamedItem
-                        && !(seven instanceof CableBlockItem),
-                "ungated HSLA 7x wire disappeared or became a live CableBlockItem");
+                liveWire(MaterialPrefixes.DOUBLE_WIRE)
+                        && liveWire(MaterialPrefixes.QUADRUPLE_WIRE)
+                        && liveWire(MaterialPrefixes.OCTUPLE_WIRE)
+                        && liveWire(MaterialPrefixes.DODECUPLE_WIRE)
+                        && liveWire(MaterialPrefixes.HEXADECUPLE_WIRE)
+                        && liveWire(MaterialPrefixes.SEPTUPLE_WIRE),
+                "hslasteel canonical wire gauges lost their CableBlockItems");
+        helper.assertTrue(
+                withdrawn("electric_wire/2x_hsla_steel_wire")
+                        && withdrawn("electric_wire/4x_hsla_steel_wire")
+                        && withdrawn("electric_wire/7x_hsla_steel_wire")
+                        && withdrawn("electric_wire/8x_hsla_steel_wire")
+                        && withdrawn("electric_wire/12x_hsla_steel_wire")
+                        && withdrawn("electric_wire/16x_hsla_steel_wire"),
+                "folded HSLA wire dummies are still registered");
         helper.assertTrue(
                 liveFluid("tiny_fluid_pipe")
                         && ModItems.hasMaterialItem(
@@ -129,11 +138,6 @@ public final class ConnectorAliasRepairGameTests {
 
     private static boolean withdrawn(String path) {
         return !BuiltInRegistries.ITEM.containsKey(
-                ResourceLocation.fromNamespaceAndPath("cruciblecraft", path));
-    }
-
-    private static Item item(String path) {
-        return BuiltInRegistries.ITEM.get(
                 ResourceLocation.fromNamespaceAndPath("cruciblecraft", path));
     }
 }

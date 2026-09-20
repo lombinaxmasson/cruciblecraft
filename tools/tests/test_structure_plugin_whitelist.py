@@ -14,6 +14,7 @@ ALLOWED_CONSUMERS = {
     "large_centrifuge",
     "coke_oven",
     "distillation_tower",
+    "cryo_distillation_tower",
     "large_boiler",
     "tank_3x3x3",
     "large_crucible",

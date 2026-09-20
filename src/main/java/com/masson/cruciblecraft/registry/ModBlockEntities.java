@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.block.DistillationTowerParts;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
@@ -40,6 +41,7 @@ import com.masson.cruciblecraft.content.blockentity.StorageInserterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DustFunnelBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CryoDistillationTowerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DistillationTowerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
@@ -59,7 +61,10 @@ import com.masson.cruciblecraft.content.blockentity.SubsurfaceFluidDepositBlockE
 import com.masson.cruciblecraft.energy.battery.BatteryBlockEntity;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlockEntity;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerBlockEntity;
+import com.masson.cruciblecraft.energy.cooler.CoolerBlockEntity;
+import com.masson.cruciblecraft.energy.flux.FluxBlockEntity;
 import com.masson.cruciblecraft.energy.bedrockdrill.BedrockDrillBlockEntity;
+import com.masson.cruciblecraft.energy.largegasturbine.LargeGasTurbineBlockEntity;
 import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerBlockEntity;
 import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerBlockEntity;
 import com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerBlockEntity;
@@ -120,7 +125,10 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     MultiblockPortBlockEntity::new,
                                     ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get(),
-                                    ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get())
+                                    ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get(),
+                                    ModBlocks.MULTIBLOCK_FLUID_OUT_PORT.get(),
+                                    DistillationTowerParts.heatTransmitter(),
+                                    DistillationTowerParts.towerPart())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
@@ -130,6 +138,15 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     DistillationTowerBlockEntity::new,
                                     ModBlocks.DISTILLATION_TOWER.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<CryoDistillationTowerBlockEntity>>
+                    CRYO_DISTILLATION_TOWER = BLOCK_ENTITIES.register(
+                            "cryo_distillation_tower",
+                            () -> BlockEntityType.Builder.of(
+                                    CryoDistillationTowerBlockEntity::new,
+                                    ModBlocks.CRYO_DISTILLATION_TOWER.get())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
@@ -553,12 +570,39 @@ public final class ModBlockEntities {
                             .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
+            BlockEntityType<CoolerBlockEntity>>
+                    COOLER = BLOCK_ENTITIES.register(
+                            "cooler",
+                            () -> BlockEntityType.Builder.of(
+                                    CoolerBlockEntity::new,
+                                    ModBlocks.coolerBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<FluxBlockEntity>>
+                    FLUX_CONVERTER = BLOCK_ENTITIES.register(
+                            "flux_converter",
+                            () -> BlockEntityType.Builder.of(
+                                    FluxBlockEntity::new,
+                                    ModBlocks.fluxBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
             BlockEntityType<LargeHeatExchangerBlockEntity>>
                     LARGE_HEAT_EXCHANGER = BLOCK_ENTITIES.register(
                             "large_heat_exchanger",
                             () -> BlockEntityType.Builder.of(
                                     LargeHeatExchangerBlockEntity::new,
                                     ModBlocks.LARGE_HEAT_EXCHANGER.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeGasTurbineBlockEntity>>
+                    LARGE_GAS_TURBINE = BLOCK_ENTITIES.register(
+                            "large_gas_turbine",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeGasTurbineBlockEntity::new,
+                                    ModBlocks.gasTurbineBlockArray())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

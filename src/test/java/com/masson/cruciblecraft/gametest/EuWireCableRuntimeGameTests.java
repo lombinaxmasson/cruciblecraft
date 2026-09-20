@@ -164,14 +164,12 @@ public final class EuWireCableRuntimeGameTests {
                 "folded tin wireGt07 dummy is still registered");
         ResourceLocation ungated = ResourceLocation.fromNamespaceAndPath(
                 "cruciblecraft", "electric_wire/2x_blue_alloy_wire");
-        Item leftover = BuiltInRegistries.ITEM.get(ungated);
         helper.assertTrue(
-                BuiltInRegistries.ITEM.containsKey(ungated)
-                        && !(leftover instanceof CableBlockItem)
+                !BuiltInRegistries.ITEM.containsKey(ungated)
                         && ModItems.materialItem(
                                         "blue_alloy", MaterialPrefixes.DOUBLE_WIRE)
                                 .get() instanceof CableBlockItem,
-                "blue_alloy wireGt02 dummy was folded onto a fake BlockItem");
+                "blue_alloy wireGt02 dummy is still registered beside its CableBlock");
         helper.succeed();
     }
 

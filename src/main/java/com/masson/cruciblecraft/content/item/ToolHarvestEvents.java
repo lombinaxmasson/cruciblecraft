@@ -60,7 +60,8 @@ public final class ToolHarvestEvents {
             return;
         }
         if (!(stack.getItem() instanceof MaterialAxeItem)
-                && !(stack.getItem() instanceof MaterialDoubleAxeItem)) {
+                && !(stack.getItem() instanceof MaterialDoubleAxeItem)
+                && !electricChainsaw(stack)) {
             return;
         }
         BlockState origin = event.getState();
@@ -131,7 +132,9 @@ public final class ToolHarvestEvents {
             replaceDrops(event, server, new ItemStack(Blocks.ENDER_CHEST));
             return;
         }
-        if (kind == ToolKind.SMITHING_HAMMER) {
+        if (kind == ToolKind.SMITHING_HAMMER
+                || kind == ToolKind.JACKHAMMER_HV
+                || kind == ToolKind.JACKHAMMER_HV_NO_ORES) {
             hammerDrops(event, server, state);
             return;
         }
@@ -143,11 +146,14 @@ public final class ToolHarvestEvents {
             clubDrops(event, server, state);
             return;
         }
-        if (kind == ToolKind.SAW) {
+        if (kind == ToolKind.SAW
+                || kind == ToolKind.CHAINSAW_LV
+                || kind == ToolKind.CHAINSAW_MV
+                || kind == ToolKind.CHAINSAW_HV) {
             sawDrops(event, server, state);
             return;
         }
-        if (kind == ToolKind.BRANCH_CUTTER) {
+        if (kind == ToolKind.BRANCH_CUTTER || kind == ToolKind.TRIMMER_LV) {
             branchCutterDrops(event, server, state);
             return;
         }
@@ -156,6 +162,16 @@ public final class ToolHarvestEvents {
                 || kind == ToolKind.BUTCHERY_KNIFE) {
             vineSilk(event, server, state);
         }
+    }
+
+    private static boolean electricChainsaw(ItemStack stack) {
+        if (!(stack.getItem() instanceof MaterialElectricToolItem tool)) {
+            return false;
+        }
+        return switch (tool.kind()) {
+            case CHAINSAW_LV, CHAINSAW_MV, CHAINSAW_HV -> true;
+            default -> false;
+        };
     }
 
     private static boolean silkTool(ItemStack tool, BlockState state) {

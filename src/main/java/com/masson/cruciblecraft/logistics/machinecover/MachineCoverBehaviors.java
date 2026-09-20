@@ -4,9 +4,15 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverCrafting;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinitionCatalog;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverDrainLogic;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverFilterLogic;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverTools;
+import com.masson.cruciblecraft.logistics.pipe.cover.DecorativeCovers;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
+import com.masson.cruciblecraft.logistics.pipe.cover.PlateCovers;
 import com.masson.cruciblecraft.registry.ModFluids;
 
 import net.minecraft.core.BlockPos;
@@ -15,6 +21,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.BlockHitResult;
@@ -79,19 +86,23 @@ public final class MachineCoverBehaviors {
         if (!host.allowCover(side)) {
             return false;
         }
+        if (PlateCovers.isPlate(cover) || DecorativeCovers.isDecorative(cover)) {
+            return true;
+        }
         String path = cover.definitionId().getPath();
         String behaviorPath = cover.definition()
                 .map(definition -> definition.behaviorId().getPath())
                 .orElse("");
         if (!"cruciblecraft".equals(cover.definitionId().getNamespace())
                 || !MachineCoverKinds.BEHAVIOR_PATHS.contains(behaviorPath)
-                || MachineCoverKinds.isBlockedWireHost(cover.definitionId())) {
+                || MachineCoverKinds.isWireOnlyCover(cover.definitionId())) {
             return false;
         }
         if (requiresCanTick(path) && !host.canTick()) {
             return false;
         }
-        if ("vent".equals(path) && !host.hasFluidTanks()) {
+        if (MachineCoverKinds.requiresFluids(cover.definitionId())
+                && !host.hasFluidTanks()) {
             return false;
         }
         if (MachineCoverKinds.requiresEnergy(cover.definitionId())
@@ -205,6 +216,7 @@ public final class MachineCoverBehaviors {
     private static boolean requiresCanTick(String path) {
         return "controller_auto".equals(path)
                 || "vent".equals(path)
+                || "cover_drain".equals(path)
                 || "display_energy".equals(path)
                 || DETECTORS.contains(path)
                 || SCALES.contains(path);
@@ -264,10 +276,17 @@ public final class MachineCoverBehaviors {
                     updateDetector(host, side, cover, host.runningActively());
             case "detector_running_successfully" ->
                     updateDetector(host, side, cover, host.runningSuccessfully());
+            case "selector_redstone" -> updateSelectorRedstone(host, side, cover);
             case "selector_button_panel" -> updateButtonPanel(host, side, cover);
             case "redstone_conductor_out" ->
                     updateConductorOut(host, side, cover);
             case "vent" -> tickVent(host, side);
+            case "cover_drain" -> CoverDrainLogic.tick(
+                    host.level(),
+                    host.hostPos(),
+                    side,
+                    host.coversStopped(),
+                    host::fillFluid);
             default -> {
                 // Static and input-only covers have no per-tick work.
             }
@@ -323,6 +342,14 @@ public final class MachineCoverBehaviors {
         updateScale(host, side, cover, fullness(host.progress(), host.duration()));
     }
 
+    private static void updateSelectorRedstone(
+            MachineCoverHost host,
+            Direction side,
+            PipeCover cover) {
+        int incoming = host.incomingRedstone(side);
+        replace(host, side, cover, incoming, incoming);
+    }
+
     private static void updateScale(
             MachineCoverHost host,
             Direction side,
@@ -333,6 +360,18 @@ public final class MachineCoverBehaviors {
             output = 15 - output;
         }
         replace(host, side, cover, cover.config().visual(), output);
+    }
+
+    /**
+     * GT6 {@code CoverScaleProgress}: 0, 15 at full, otherwise
+     * {@code 14 - ((max-value)*14)/max}. Invert is visual bit 1.
+     */
+    public static int scaledRedstone(int visual, long value, long maximum) {
+        int output = fullness(value, maximum);
+        if ((visual & DETECTOR_INVERT) != 0) {
+            output = 15 - output;
+        }
+        return output;
     }
 
     private static void updateDetector(
@@ -452,12 +491,27 @@ public final class MachineCoverBehaviors {
             MachineCoverHost host,
             Direction side,
             BlockHitResult hit) {
+        return onRightClick(host, side, hit, null);
+    }
+
+    public static boolean onRightClick(
+            MachineCoverHost host,
+            Direction side,
+            BlockHitResult hit,
+            Player player) {
         if (host == null || side == null || hit == null) {
             return false;
         }
         PipeCover cover = host.covers().get(side).orElse(null);
         if (cover == null) {
             return false;
+        }
+        if (CoverCrafting.open(player, host.level(), host.hostPos(), cover)) {
+            return true;
+        }
+        if (CoverFilterLogic.onRightClick(
+                player, cover, next -> host.replaceCover(side, next))) {
+            return true;
         }
         String path = cover.definitionId().getPath();
         if ("controller_display".equals(path)) {
@@ -479,12 +533,16 @@ public final class MachineCoverBehaviors {
             return true;
         }
         if ("redstone_emitter".equals(path)) {
-            int next = Math.floorMod(
-                    cover.config().redstone()
-                            + (hit.getDirection() == side
-                                    && hit.getLocation().y % 1.0 < 0.5
-                                    ? -1 : 1),
-                    16);
+            if (hit.getDirection() != side) {
+                return false;
+            }
+            double[] uv = MachineCoverVisuals.faceUv(
+                    host.hostPos(), hit, side);
+            int next = MachineCoverVisuals.emitterClick(
+                    cover.config().redstone(), uv[0], uv[1]);
+            if (next < 0) {
+                return false;
+            }
             host.replaceCover(side, cover.withDisplay(
                     cover.config().visual(), next));
             host.notifyRedstone();
@@ -518,42 +576,7 @@ public final class MachineCoverBehaviors {
             net.minecraft.core.BlockPos pos,
             BlockHitResult hit,
             Direction side) {
-        double x = hit.getLocation().x - pos.getX();
-        double y = hit.getLocation().y - pos.getY();
-        double z = hit.getLocation().z - pos.getZ();
-        double horizontal;
-        double vertical;
-        switch (side) {
-            case NORTH -> {
-                horizontal = 1.0 - x;
-                vertical = y;
-            }
-            case SOUTH -> {
-                horizontal = x;
-                vertical = y;
-            }
-            case WEST -> {
-                horizontal = z;
-                vertical = y;
-            }
-            case EAST -> {
-                horizontal = 1.0 - z;
-                vertical = y;
-            }
-            case UP -> {
-                horizontal = x;
-                vertical = 1.0 - z;
-            }
-            case DOWN -> {
-                horizontal = x;
-                vertical = z;
-            }
-            default -> {
-                horizontal = x;
-                vertical = y;
-            }
-        }
-        return new double[] {horizontal, vertical};
+        return MachineCoverVisuals.faceUv(pos, hit, side);
     }
 
     public static boolean onTool(
@@ -620,7 +643,13 @@ public final class MachineCoverBehaviors {
                             cover.config().redstone()));
             return true;
         }
-        return false;
+        return CoverTools.onTool(
+                host.level(),
+                host.hostPos(),
+                side,
+                action,
+                cover,
+                next -> host.replaceCover(side, next));
     }
 
     private static int energyVisual(long stored, long capacity) {

@@ -9,7 +9,16 @@ import net.minecraft.resources.ResourceLocation;
 public interface MultiblockPort {
     MultiblockStructureDefinition.PortType portType();
 
+    boolean accepts(MultiblockStructureDefinition.PortType type);
+
     void bind(BlockPos controller, ResourceLocation structureId);
+
+    default void bind(
+            BlockPos controller,
+            ResourceLocation structureId,
+            MultiblockStructureDefinition.PortType type) {
+        bind(controller, structureId);
+    }
 
     void unbind(BlockPos controller);
 

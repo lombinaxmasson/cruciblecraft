@@ -10,12 +10,14 @@ import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.RedstoneWireBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
+import com.masson.cruciblecraft.content.redstonewire.RedstoneWireCovers;
 import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -42,8 +44,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
  * GT6 {@code MultiTileEntityWireRedstone}: 2px connector, cutter faces,
- * vanilla redstone in/out with per-material loss. Covers stay on the
- * logistics cover lane.
+ * vanilla redstone in/out with per-material loss. Torch/repeater/blank,
+ * selectors, emitter, conductor, and progress scale attach here the way
+ * GT6 hosts them on redstone connectors.
  */
 public final class RedstoneWireBlock extends Block
         implements EntityBlock, ToolInteractable {
@@ -99,6 +102,23 @@ public final class RedstoneWireBlock extends Block
 
     @Override
     public ToolResult useTool(ToolAction action, UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        if (level.getBlockEntity(pos) instanceof RedstoneWireBlockEntity wire) {
+            if (action == ToolAction.CROWBAR) {
+                return pryCover(context);
+            }
+            if (RedstoneWireCovers.onTool(
+                    wire, context.getClickedFace(), action)) {
+                if (!level.isClientSide) {
+                    ToolClick.hurt(context);
+                }
+                return ToolResult.SUCCESS;
+            }
+        }
+        if (action == ToolAction.CROWBAR) {
+            return pryCover(context);
+        }
         if (action != ToolAction.WIRE_CUTTER) {
             return ToolResult.PASS;
         }
@@ -117,7 +137,34 @@ public final class RedstoneWireBlock extends Block
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        return ToolClick.useItemOn(stack, level, player, hand, hit);
+        ItemInteractionResult tool = ToolClick.useItemOn(
+                stack, level, player, hand, hit);
+        if (tool.consumesAction()) {
+            return tool;
+        }
+        if (RedstoneWireCovers.tryInstall(
+                level, pos, hit.getDirection(), stack, player)) {
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        if (level.getBlockEntity(pos) instanceof RedstoneWireBlockEntity wire
+                && RedstoneWireCovers.onRightClick(wire, hit, player)) {
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        return tool;
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            BlockHitResult hit) {
+        if (level.getBlockEntity(pos) instanceof RedstoneWireBlockEntity wire
+                && RedstoneWireCovers.onRightClick(wire, hit, player)) {
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -142,7 +189,8 @@ public final class RedstoneWireBlock extends Block
             BlockGetter level,
             BlockPos pos,
             CollisionContext context) {
-        return connectedShape(state);
+        return com.masson.cruciblecraft.logistics.pipe.cover.CoverCollision.union(
+                connectedShape(state), level.getBlockEntity(pos));
     }
 
     @Override
@@ -161,7 +209,7 @@ public final class RedstoneWireBlock extends Block
             BlockGetter level,
             BlockPos pos,
             Direction direction) {
-        return vanillaOutput(state, level, pos, direction);
+        return vanillaOutput(state, level, pos, direction, false);
     }
 
     @Override
@@ -170,7 +218,7 @@ public final class RedstoneWireBlock extends Block
             BlockGetter level,
             BlockPos pos,
             Direction direction) {
-        return vanillaOutput(state, level, pos, direction);
+        return vanillaOutput(state, level, pos, direction, true);
     }
 
     @Override
@@ -180,6 +228,10 @@ public final class RedstoneWireBlock extends Block
             BlockPos pos,
             @Nullable Direction direction) {
         if (direction == null) {
+            return true;
+        }
+        if (level.getBlockEntity(pos) instanceof RedstoneWireBlockEntity wire
+                && RedstoneWireCovers.connectsRedstone(wire, direction)) {
             return true;
         }
         return isConnected(state, direction);
@@ -256,15 +308,22 @@ public final class RedstoneWireBlock extends Block
             BlockState state,
             BlockGetter level,
             BlockPos pos,
-            Direction direction) {
+            Direction direction,
+            boolean strong) {
         // 1.21 getSignal direction is the querier's facing toward this
         // block. GT6 isProvidingWeakPower2 flips with OPOS so the face is
         // the side of this wire toward the querier.
         Direction face = direction.getOpposite();
-        if (!isConnected(state, face)) {
+        if (!(level.getBlockEntity(pos) instanceof RedstoneWireBlockEntity wire)) {
             return 0;
         }
-        if (!(level.getBlockEntity(pos) instanceof RedstoneWireBlockEntity wire)) {
+        int cover = strong
+                ? RedstoneWireCovers.strongOut(wire, face)
+                : RedstoneWireCovers.weakOut(wire, face);
+        if (cover >= 0) {
+            return cover;
+        }
+        if (!isConnected(state, face)) {
             return 0;
         }
         if (wire.received() == face) {
@@ -285,6 +344,41 @@ public final class RedstoneWireBlock extends Block
             return Math.max(0, levelValue - 1);
         }
         return levelValue;
+    }
+
+    @Override
+    protected void onRemove(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            BlockState newState,
+            boolean movedByPiston) {
+        if (!level.isClientSide
+                && state.getBlock() != newState.getBlock()
+                && level.getBlockEntity(pos)
+                        instanceof RedstoneWireBlockEntity wire) {
+            wire.dropCovers();
+        }
+        super.onRemove(state, level, pos, newState, movedByPiston);
+    }
+
+    private static ToolResult pryCover(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        if (!(level.getBlockEntity(pos) instanceof RedstoneWireBlockEntity wire)) {
+            return ToolResult.PASS;
+        }
+        Direction side = context.getClickedFace();
+        if (level.isClientSide) {
+            return wire.covers().get(side).isPresent()
+                    ? ToolResult.SUCCESS
+                    : ToolResult.PASS;
+        }
+        if (!wire.removeCover(side, context.getPlayer())) {
+            return ToolResult.PASS;
+        }
+        ToolClick.hurt(context);
+        return ToolResult.SUCCESS;
     }
 
     private VoxelShape connectedShape(BlockState state) {

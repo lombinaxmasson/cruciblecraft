@@ -140,7 +140,7 @@ class HammerSqueezerLaserCardTest(unittest.TestCase):
             ),
             0,
         )
-        self.assertEqual(26, load(CATALOG)["new_item_count"])
+        self.assertEqual(1, load(CATALOG)["new_item_count"])
 
     def test_gui_mapping_and_t1_laser_tint_follow_gt6(self) -> None:
         assets = ROOT / "src/main/resources/assets/cruciblecraft"

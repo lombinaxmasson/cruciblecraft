@@ -87,6 +87,30 @@ class BlockArtTest(unittest.TestCase):
             catalogs,
         )
 
+    def test_generated_item_models_are_not_copied_into_main(self) -> None:
+        rows = [
+            row
+            for row in art.catalog_rows()
+            if row["model"] == "generated" and not art.uses_main_item_model(row)
+        ]
+        self.assertGreaterEqual(len(rows), 15)
+        for row in rows:
+            main = art.ITEM_MODEL_MAIN / f"{row['registry_path']}.json"
+            generated = art.generated_item_model(row["registry_path"])
+            self.assertFalse(main.is_file(), census.relative(main))
+            self.assertTrue(generated.is_file(), census.relative(generated))
+            self.assertEqual(generated, art.item_model_path(row))
+
+    def test_refuses_main_item_model_when_generated_twin_exists(self) -> None:
+        path = art.ITEM_MODEL_MAIN / "bars_adamantium/adamantium_bars.json"
+        twin = art.generated_twin_of_main_item_model(path)
+        self.assertIsNotNone(twin)
+        assert twin is not None
+        self.assertTrue(twin.is_file())
+        with self.assertRaisesRegex(ValueError, "refusing to write"):
+            art._write_json(path, {"parent": "minecraft:item/generated"})
+        self.assertFalse(path.is_file())
+
     def test_committed_manifest_and_models_match_copied_pngs(self) -> None:
         if not art.MANIFEST.is_file():
             self.skipTest("block art manifest not generated")

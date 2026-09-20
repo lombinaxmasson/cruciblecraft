@@ -104,6 +104,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerCrusherRecipes(registry);
         registerFusionRecipes(registry);
         registerProcessingMachines(registry, addedCategories);
+        registerMultiblockMenuHosts(registry, addedCategories);
         registerFuelMaps(registry, addedCategories);
         registerHeatExchangerFuels(registry, addedCategories);
         registerDisplayStacks(registry);
@@ -446,6 +447,46 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                     category,
                     recipe.machine().spec(),
                     recipe.recipe()));
+        }
+    }
+
+    private static void registerMultiblockMenuHosts(
+            EmiRegistry registry, Set<ResourceLocation> addedCategories) {
+        Map<ResourceLocation, Block> workstations = Map.of(
+                ModProcessingMachines.DISTILLATION_TOWER.id(),
+                ModBlocks.DISTILLATION_TOWER.get(),
+                ModProcessingMachines.CRYO_DISTILLATION_TOWER.id(),
+                ModBlocks.CRYO_DISTILLATION_TOWER.get());
+        ProcessingEmiRegistrationPlan plan = ProcessingEmiRegistrationPlan.create(
+                ModProcessingMachines.MULTIBLOCK_MENU_HOSTS);
+        Map<ResourceLocation, EmiRecipeCategory> categories = new HashMap<>();
+        for (ProcessingEmiRegistrationPlan.MachineRegistration machine
+                : plan.machines()) {
+            Block workstationBlock = workstations.get(machine.spec().id());
+            if (workstationBlock == null) {
+                throw new IllegalStateException(
+                        "Missing EMI workstation for " + machine.spec().id());
+            }
+            EmiStack workstation = EmiStack.of(workstationBlock);
+            EmiRecipeCategory category = internCategory(
+                    machine.categoryId(), workstation);
+            categories.put(machine.spec().id(), category);
+            addCategory(registry, category, addedCategories);
+            registry.addWorkstation(category, workstation);
+        }
+        for (ProcessingEmiRegistrationPlan.RecipeRegistration recipe
+                : plan.recipes()) {
+            EmiRecipeCategory category = Objects.requireNonNull(
+                    categories.get(recipe.machine().spec().id()),
+                    "Missing tower EMI category");
+            Block workstationBlock = workstations.get(
+                    recipe.machine().spec().id());
+            registry.addRecipe(new ProcessingEmiRecipe(
+                    recipe.id(),
+                    category,
+                    recipe.machine().spec(),
+                    recipe.recipe(),
+                    workstationBlock));
         }
     }
 

@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
-/** Runtime gate for Nanofab: live map, blocked obtain. */
+/** Runtime gate for Nanofab: live map, source-exact obtain. */
 @GameTestHolder(NanofabGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class NanofabGameTests {
@@ -70,17 +70,17 @@ public final class NanofabGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void fiveHostsAreNotSurvivalCraftable(GameTestHelper helper) {
+    public static void fiveHostsAreSurvivalCraftable(GameTestHelper helper) {
         for (String path : HOSTS) {
             Item result = ModItems.tieredProcessingItemsById()
                     .get(id(path))
                     .get();
             helper.assertTrue(result != null, "Nanofab host item missing: " + path);
-            helper.assertFalse(
+            helper.assertTrue(
                     helper.getLevel().getRecipeManager()
                             .byKey(id("machines/" + path))
                             .isPresent(),
-                    "Nanofab host must not have a survival recipe: " + path);
+                    "Nanofab host is missing its GT6 survival recipe: " + path);
         }
         helper.succeed();
     }

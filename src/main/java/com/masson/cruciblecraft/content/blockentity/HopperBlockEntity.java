@@ -37,7 +37,7 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 /** Shared Hopper / Queue Hopper host. Kind strategy comes from the block variant. */
-public final class HopperBlockEntity extends BlockEntity implements MenuProvider {
+public final class HopperBlockEntity extends MachineCoverHostBlockEntity implements MenuProvider {
     public static final int SCHEMA_VERSION = 1;
     private static final int MAX_MODE = 64;
 
@@ -83,6 +83,11 @@ public final class HopperBlockEntity extends BlockEntity implements MenuProvider
             this.mode = 0;
             this.slotSize = MAX_MODE;
         }
+    }
+
+    @Override
+    public boolean hasEnergyBuffer() {
+        return false;
     }
 
     public HopperVariant variant() {
@@ -221,6 +226,7 @@ public final class HopperBlockEntity extends BlockEntity implements MenuProvider
             BlockPos pos,
             BlockState state,
             HopperBlockEntity hopper) {
+        hopper.tickCovers();
         if (hopper.failClosed || pausedByRedstone(level, pos)) {
             return;
         }

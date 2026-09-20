@@ -7,14 +7,18 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
+import com.masson.cruciblecraft.content.block.Gt6StyleConnections;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
 import com.masson.cruciblecraft.logistics.pipe.PipeTransferDiagnostics;
 import com.masson.cruciblecraft.logistics.pipe.PipeTransferPhase;
 import com.masson.cruciblecraft.logistics.itemnet.ItemNetworkKinds;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverBehavior;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverSounds;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverIntercept;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverSet;
 import com.masson.cruciblecraft.logistics.pipe.item
         .ItemPipeNetworkTraversal;
@@ -287,6 +291,7 @@ public final class ItemPipeBlockEntity extends BlockEntity {
                 }
             }
         }
+        CoverSounds.removed(level, worldPosition, taken.orElseThrow());
         invalidateRoutes();
         setChanged();
         if (level != null && !level.isClientSide) {
@@ -299,11 +304,30 @@ public final class ItemPipeBlockEntity extends BlockEntity {
 
     public boolean setCover(Direction side, PipeCover cover) {
         if (cover != null
-                && !cover.supports(CoverDefinition.Medium.ITEM)) {
+                && (MachineCoverKinds.isWireOnlyCover(cover.definitionId())
+                        || !cover.supports(CoverDefinition.Medium.ITEM))) {
+            return false;
+        }
+        PipeCoverIntercept.NeighborKind neighbor = PipeCoverIntercept.kind(
+                level == null ? null : level.getBlockEntity(
+                        worldPosition.relative(side)));
+        if (cover != null
+                && !PipeCoverIntercept.allowsPlacement(
+                        cover,
+                        PipeCoverIntercept.NeighborKind.ITEM_PIPE,
+                        neighbor,
+                        0)) {
             return false;
         }
         if (!covers.set(side, cover)) {
             return false;
+        }
+        if (cover != null
+                && PipeCoverIntercept.interceptConnect(cover, PipeCoverIntercept.NeighborKind.ITEM_PIPE, neighbor)
+                && level != null
+                && !level.isClientSide) {
+            Gt6StyleConnections.setConnection(
+                    level, worldPosition, side, false);
         }
         invalidateRoutes();
         setChanged();
@@ -313,6 +337,10 @@ public final class ItemPipeBlockEntity extends BlockEntity {
             notifyCoverRedstone(side);
         }
         return true;
+    }
+
+    public void replaceCover(Direction side, PipeCover cover) {
+        replaceCoverQuiet(side, cover);
     }
 
     public boolean replaceCoverQuiet(Direction side, PipeCover cover) {

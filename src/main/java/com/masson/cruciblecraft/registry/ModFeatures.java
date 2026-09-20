@@ -5,6 +5,7 @@ import com.masson.cruciblecraft.worldgen.BedrockOreVeinFeature;
 import com.masson.cruciblecraft.worldgen.FluidSpringFeature;
 import com.masson.cruciblecraft.worldgen.LargeVeinFeature;
 import com.masson.cruciblecraft.worldgen.NetherQuartzLayerFeature;
+import com.masson.cruciblecraft.worldgen.SmallOreFeature;
 import com.masson.cruciblecraft.worldgen.StoneLayerRockFeature;
 import com.masson.cruciblecraft.worldgen.SubsurfaceFluidDepositFeature;
 import com.masson.cruciblecraft.worldgen.SurfaceRockFeature;
@@ -42,6 +43,8 @@ public final class ModFeatures {
                     FEATURES.register(
                             "nether_netherquartz",
                             NetherQuartzLayerFeature::new);
+    public static final DeferredHolder<Feature<?>, SmallOreFeature> SMALL_ORES =
+            FEATURES.register("small_ores", SmallOreFeature::new);
     public static final DeferredHolder<Feature<?>, BedrockOreVeinFeature>
             BEDROCK_ORE_VEINS =
                     FEATURES.register(

@@ -41,5 +41,8 @@ class MachineCoverVisualsTest {
         assertEquals("front", MachineCoverVisuals.ventFront());
         assertEquals("back", MachineCoverVisuals.ventBack());
         assertEquals("sides", MachineCoverVisuals.ventSides());
+        assertEquals(14, MachineCoverVisuals.emitterClick(15, 2.5 / 16, 2.5 / 16));
+        assertEquals(8, MachineCoverVisuals.emitterClick(0, 3.5 / 16, 10.5 / 16));
+        assertEquals(-1, MachineCoverVisuals.emitterClick(3, 0.5, 0.5));
     }
 }

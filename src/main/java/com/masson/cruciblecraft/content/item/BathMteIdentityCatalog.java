@@ -29,7 +29,7 @@ public final class BathMteIdentityCatalog {
     private static final Catalog CATALOG = loadBundled();
 
     public static final int SOURCE_META_COUNT = 118;
-    public static final int NEW_ITEM_COUNT = 76;
+    public static final int NEW_ITEM_COUNT = 48;
 
     private BathMteIdentityCatalog() {}
 

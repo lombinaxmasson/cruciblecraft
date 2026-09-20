@@ -157,9 +157,9 @@ WIRE_FORMS = {
     "octuple_cable",
     "dodecuple_cable",
 }
-# Dummy EU catalog aliases this card already folded. Recipe gauges
-# 02/04/08/12/16 now have live hslasteel CableBlocks, but hsla_steel dummy
-# ids stay until identity/hsla-ungated-gauges owns that fold.
+# Dummy EU catalog aliases this card already folded (wire / triple /
+# quintuple / sextuple). Later leftover HSLA gauges with live hslasteel
+# hosts were withdrawn by the live-host dummy fold overlay.
 ALIAS_EU_FORMS = {
     "wire",
     "triple_wire",

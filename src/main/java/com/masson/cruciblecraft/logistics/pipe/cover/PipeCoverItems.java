@@ -2,6 +2,8 @@ package com.masson.cruciblecraft.logistics.pipe.cover;
 
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
+import com.masson.cruciblecraft.logistics.pipe.cover.DecorativeCovers;
+import com.masson.cruciblecraft.logistics.pipe.cover.PlateCovers;
 import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +18,14 @@ public final class PipeCoverItems {
     public static ItemStack stackFor(PipeCover cover) {
         if (cover == null) {
             return ItemStack.EMPTY;
+        }
+        ItemStack plate = PlateCovers.stackFor(cover);
+        if (!plate.isEmpty()) {
+            return plate;
+        }
+        ItemStack decorative = DecorativeCovers.stackFor(cover);
+        if (!decorative.isEmpty()) {
+            return decorative;
         }
         String path = cover.definitionId().getPath();
         if ("selector_tag".equals(path)) {

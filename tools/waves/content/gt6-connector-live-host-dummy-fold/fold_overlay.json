@@ -1,0 +1,1044 @@
+{
+  "schema": "gt6-connector-live-host-dummy-fold-v1",
+  "capability_slug": "content/gt6-connector-live-host-dummy-fold",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "note": "Fold leftover smelter/bath connector dummies onto already-gated CableBlock / PipeBlock hosts. Does not invent hosts or rewrite R0.",
+  "counts": {
+    "fold_live_block": 53,
+    "keep_distinct": 49,
+    "smelter": 25,
+    "bath": 28
+  },
+  "rows": [
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 26005,
+      "dummy_path": "quadruple/wood_fluid_pipe",
+      "english_name": "Quadruple Wood Fluid Pipe",
+      "recorded_material": "wood",
+      "canonical_material": "wood",
+      "cc_form": "quadruple_fluid_pipe",
+      "live_block": "cruciblecraft:wood/quadruple_fluid_pipe",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 26006,
+      "dummy_path": "nonuple/wood_fluid_pipe",
+      "english_name": "Nonuple Wood Fluid Pipe",
+      "recorded_material": "wood",
+      "canonical_material": "wood",
+      "cc_form": "nonuple_fluid_pipe",
+      "live_block": "cruciblecraft:wood/nonuple_fluid_pipe",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 26025,
+      "dummy_path": "quadruple/treated_wood_fluid_pipe",
+      "english_name": "Quadruple Treated Wood Fluid Pipe",
+      "recorded_material": "treated_wood",
+      "canonical_material": "wood_treated",
+      "cc_form": "quadruple_fluid_pipe",
+      "live_block": "cruciblecraft:wood_treated/quadruple_fluid_pipe",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 26026,
+      "dummy_path": "nonuple/treated_wood_fluid_pipe",
+      "english_name": "Nonuple Treated Wood Fluid Pipe",
+      "recorded_material": "treated_wood",
+      "canonical_material": "wood_treated",
+      "cc_form": "nonuple_fluid_pipe",
+      "live_block": "cruciblecraft:wood_treated/nonuple_fluid_pipe",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 26145,
+      "dummy_path": "fluid_pipe_tile/quadruple_steel_fluid_pipe",
+      "english_name": "Quadruple Steel Fluid Pipe",
+      "recorded_material": "steel",
+      "canonical_material": "steel",
+      "cc_form": "quadruple_fluid_pipe",
+      "live_block": "cruciblecraft:steel/quadruple_fluid_pipe",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 26146,
+      "dummy_path": "fluid_pipe_tile/nonuple_steel_fluid_pipe",
+      "english_name": "Nonuple Steel Fluid Pipe",
+      "recorded_material": "steel",
+      "canonical_material": "steel",
+      "cc_form": "nonuple_fluid_pipe",
+      "live_block": "cruciblecraft:steel/nonuple_fluid_pipe",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 26265,
+      "dummy_path": "fluid_pipe_tile/quadruple_galvanized_steel_fluid_pipe",
+      "english_name": "Quadruple Galvanized Steel Fluid Pipe",
+      "recorded_material": "galvanized_steel",
+      "canonical_material": "steel_galvanized",
+      "cc_form": "quadruple_fluid_pipe",
+      "live_block": "cruciblecraft:steel_galvanized/quadruple_fluid_pipe",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 26266,
+      "dummy_path": "fluid_pipe_tile/nonuple_galvanized_steel_fluid_pipe",
+      "english_name": "Nonuple Galvanized Steel Fluid Pipe",
+      "recorded_material": "galvanized_steel",
+      "canonical_material": "steel_galvanized",
+      "cc_form": "nonuple_fluid_pipe",
+      "live_block": "cruciblecraft:steel_galvanized/nonuple_fluid_pipe",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28102,
+      "dummy_path": "electric_wire/3x_lead_wire",
+      "english_name": "3x Lead Wire",
+      "recorded_material": "lead",
+      "canonical_material": "lead",
+      "cc_form": "triple_wire",
+      "live_block": "cruciblecraft:lead/triple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28104,
+      "dummy_path": "electric_wire/5x_lead_wire",
+      "english_name": "5x Lead Wire",
+      "recorded_material": "lead",
+      "canonical_material": "lead",
+      "cc_form": "quintuple_wire",
+      "live_block": "cruciblecraft:lead/quintuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28105,
+      "dummy_path": "electric_wire/6x_lead_wire",
+      "english_name": "6x Lead Wire",
+      "recorded_material": "lead",
+      "canonical_material": "lead",
+      "cc_form": "sextuple_wire",
+      "live_block": "cruciblecraft:lead/sextuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28106,
+      "dummy_path": "electric_wire/7x_lead_wire",
+      "english_name": "7x Lead Wire",
+      "recorded_material": "lead",
+      "canonical_material": "lead",
+      "cc_form": "septuple_wire",
+      "live_block": "cruciblecraft:lead/septuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28108,
+      "dummy_path": "electric_wire/9x_lead_wire",
+      "english_name": "9x Lead Wire",
+      "recorded_material": "lead",
+      "canonical_material": "lead",
+      "cc_form": "nonuple_wire",
+      "live_block": "cruciblecraft:lead/nonuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28109,
+      "dummy_path": "electric_wire/10x_lead_wire",
+      "english_name": "10x Lead Wire",
+      "recorded_material": "lead",
+      "canonical_material": "lead",
+      "cc_form": "decuple_wire",
+      "live_block": "cruciblecraft:lead/decuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28110,
+      "dummy_path": "electric_wire/11x_lead_wire",
+      "english_name": "11x Lead Wire",
+      "recorded_material": "lead",
+      "canonical_material": "lead",
+      "cc_form": "undecuple_wire",
+      "live_block": "cruciblecraft:lead/undecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28112,
+      "dummy_path": "electric_wire/13x_lead_wire",
+      "english_name": "13x Lead Wire",
+      "recorded_material": "lead",
+      "canonical_material": "lead",
+      "cc_form": "tredecuple_wire",
+      "live_block": "cruciblecraft:lead/tredecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28113,
+      "dummy_path": "electric_wire/14x_lead_wire",
+      "english_name": "14x Lead Wire",
+      "recorded_material": "lead",
+      "canonical_material": "lead",
+      "cc_form": "tetradecuple_wire",
+      "live_block": "cruciblecraft:lead/tetradecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28114,
+      "dummy_path": "electric_wire/15x_lead_wire",
+      "english_name": "15x Lead Wire",
+      "recorded_material": "lead",
+      "canonical_material": "lead",
+      "cc_form": "pentadecuple_wire",
+      "live_block": "cruciblecraft:lead/pentadecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28702,
+      "dummy_path": "electric_wire/3x_gold_wire",
+      "english_name": "3x Gold Wire",
+      "recorded_material": "gold",
+      "canonical_material": "gold",
+      "cc_form": "triple_wire",
+      "live_block": "cruciblecraft:gold/triple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28704,
+      "dummy_path": "electric_wire/5x_gold_wire",
+      "english_name": "5x Gold Wire",
+      "recorded_material": "gold",
+      "canonical_material": "gold",
+      "cc_form": "quintuple_wire",
+      "live_block": "cruciblecraft:gold/quintuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28705,
+      "dummy_path": "electric_wire/6x_gold_wire",
+      "english_name": "6x Gold Wire",
+      "recorded_material": "gold",
+      "canonical_material": "gold",
+      "cc_form": "sextuple_wire",
+      "live_block": "cruciblecraft:gold/sextuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28706,
+      "dummy_path": "electric_wire/7x_gold_wire",
+      "english_name": "7x Gold Wire",
+      "recorded_material": "gold",
+      "canonical_material": "gold",
+      "cc_form": "septuple_wire",
+      "live_block": "cruciblecraft:gold/septuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28708,
+      "dummy_path": "electric_wire/9x_gold_wire",
+      "english_name": "9x Gold Wire",
+      "recorded_material": "gold",
+      "canonical_material": "gold",
+      "cc_form": "nonuple_wire",
+      "live_block": "cruciblecraft:gold/nonuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28709,
+      "dummy_path": "electric_wire/10x_gold_wire",
+      "english_name": "10x Gold Wire",
+      "recorded_material": "gold",
+      "canonical_material": "gold",
+      "cc_form": "decuple_wire",
+      "live_block": "cruciblecraft:gold/decuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28710,
+      "dummy_path": "electric_wire/11x_gold_wire",
+      "english_name": "11x Gold Wire",
+      "recorded_material": "gold",
+      "canonical_material": "gold",
+      "cc_form": "undecuple_wire",
+      "live_block": "cruciblecraft:gold/undecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28712,
+      "dummy_path": "electric_wire/13x_gold_wire",
+      "english_name": "13x Gold Wire",
+      "recorded_material": "gold",
+      "canonical_material": "gold",
+      "cc_form": "tredecuple_wire",
+      "live_block": "cruciblecraft:gold/tredecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28713,
+      "dummy_path": "electric_wire/14x_gold_wire",
+      "english_name": "14x Gold Wire",
+      "recorded_material": "gold",
+      "canonical_material": "gold",
+      "cc_form": "tetradecuple_wire",
+      "live_block": "cruciblecraft:gold/tetradecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 28714,
+      "dummy_path": "electric_wire/15x_gold_wire",
+      "english_name": "15x Gold Wire",
+      "recorded_material": "gold",
+      "canonical_material": "gold",
+      "cc_form": "pentadecuple_wire",
+      "live_block": "cruciblecraft:gold/pentadecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28251,
+      "dummy_path": "electric_wire/2x_hsla_steel_wire",
+      "english_name": "2x HSLA-Steel Wire",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "double_wire",
+      "live_block": "cruciblecraft:hslasteel/double_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28253,
+      "dummy_path": "electric_wire/4x_hsla_steel_wire",
+      "english_name": "4x HSLA-Steel Wire",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "quadruple_wire",
+      "live_block": "cruciblecraft:hslasteel/quadruple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28257,
+      "dummy_path": "electric_wire/8x_hsla_steel_wire",
+      "english_name": "8x HSLA-Steel Wire",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "octuple_wire",
+      "live_block": "cruciblecraft:hslasteel/octuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28261,
+      "dummy_path": "electric_wire/12x_hsla_steel_wire",
+      "english_name": "12x HSLA-Steel Wire",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "dodecuple_wire",
+      "live_block": "cruciblecraft:hslasteel/dodecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28265,
+      "dummy_path": "electric_wire/16x_hsla_steel_wire",
+      "english_name": "16x HSLA-Steel Wire",
+      "recorded_material": "hsla_steel",
+      "canonical_material": "hslasteel",
+      "cc_form": "hexadecuple_wire",
+      "live_block": "cruciblecraft:hslasteel/hexadecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28801,
+      "dummy_path": "electric_wire/2x_blue_alloy_wire",
+      "english_name": "2x Blue Alloy Wire",
+      "recorded_material": "blue_alloy",
+      "canonical_material": "blue_alloy",
+      "cc_form": "double_wire",
+      "live_block": "cruciblecraft:blue_alloy/double_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28803,
+      "dummy_path": "electric_wire/4x_blue_alloy_wire",
+      "english_name": "4x Blue Alloy Wire",
+      "recorded_material": "blue_alloy",
+      "canonical_material": "blue_alloy",
+      "cc_form": "quadruple_wire",
+      "live_block": "cruciblecraft:blue_alloy/quadruple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28807,
+      "dummy_path": "electric_wire/8x_blue_alloy_wire",
+      "english_name": "8x Blue Alloy Wire",
+      "recorded_material": "blue_alloy",
+      "canonical_material": "blue_alloy",
+      "cc_form": "octuple_wire",
+      "live_block": "cruciblecraft:blue_alloy/octuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28811,
+      "dummy_path": "electric_wire/12x_blue_alloy_wire",
+      "english_name": "12x Blue Alloy Wire",
+      "recorded_material": "blue_alloy",
+      "canonical_material": "blue_alloy",
+      "cc_form": "dodecuple_wire",
+      "live_block": "cruciblecraft:blue_alloy/dodecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28815,
+      "dummy_path": "electric_wire/16x_blue_alloy_wire",
+      "english_name": "16x Blue Alloy Wire",
+      "recorded_material": "blue_alloy",
+      "canonical_material": "blue_alloy",
+      "cc_form": "hexadecuple_wire",
+      "live_block": "cruciblecraft:blue_alloy/hexadecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28851,
+      "dummy_path": "electric_wire/2x_electrotine_alloy_wire",
+      "english_name": "2x Electrotine Alloy Wire",
+      "recorded_material": "electrotine_alloy",
+      "canonical_material": "electrotine_alloy",
+      "cc_form": "double_wire",
+      "live_block": "cruciblecraft:electrotine_alloy/double_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28853,
+      "dummy_path": "electric_wire/4x_electrotine_alloy_wire",
+      "english_name": "4x Electrotine Alloy Wire",
+      "recorded_material": "electrotine_alloy",
+      "canonical_material": "electrotine_alloy",
+      "cc_form": "quadruple_wire",
+      "live_block": "cruciblecraft:electrotine_alloy/quadruple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28857,
+      "dummy_path": "electric_wire/8x_electrotine_alloy_wire",
+      "english_name": "8x Electrotine Alloy Wire",
+      "recorded_material": "electrotine_alloy",
+      "canonical_material": "electrotine_alloy",
+      "cc_form": "octuple_wire",
+      "live_block": "cruciblecraft:electrotine_alloy/octuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28861,
+      "dummy_path": "electric_wire/12x_electrotine_alloy_wire",
+      "english_name": "12x Electrotine Alloy Wire",
+      "recorded_material": "electrotine_alloy",
+      "canonical_material": "electrotine_alloy",
+      "cc_form": "dodecuple_wire",
+      "live_block": "cruciblecraft:electrotine_alloy/dodecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 28865,
+      "dummy_path": "electric_wire/16x_electrotine_alloy_wire",
+      "english_name": "16x Electrotine Alloy Wire",
+      "recorded_material": "electrotine_alloy",
+      "canonical_material": "electrotine_alloy",
+      "cc_form": "hexadecuple_wire",
+      "live_block": "cruciblecraft:electrotine_alloy/hexadecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 29501,
+      "dummy_path": "electric_wire/2x_naquadah_wire",
+      "english_name": "2x Naquadah Wire",
+      "recorded_material": "naquadah",
+      "canonical_material": "naquadah",
+      "cc_form": "double_wire",
+      "live_block": "cruciblecraft:naquadah/double_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 29503,
+      "dummy_path": "electric_wire/4x_naquadah_wire",
+      "english_name": "4x Naquadah Wire",
+      "recorded_material": "naquadah",
+      "canonical_material": "naquadah",
+      "cc_form": "quadruple_wire",
+      "live_block": "cruciblecraft:naquadah/quadruple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 29507,
+      "dummy_path": "electric_wire/8x_naquadah_wire",
+      "english_name": "8x Naquadah Wire",
+      "recorded_material": "naquadah",
+      "canonical_material": "naquadah",
+      "cc_form": "octuple_wire",
+      "live_block": "cruciblecraft:naquadah/octuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 29511,
+      "dummy_path": "electric_wire/12x_naquadah_wire",
+      "english_name": "12x Naquadah Wire",
+      "recorded_material": "naquadah",
+      "canonical_material": "naquadah",
+      "cc_form": "dodecuple_wire",
+      "live_block": "cruciblecraft:naquadah/dodecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 29515,
+      "dummy_path": "electric_wire/16x_naquadah_wire",
+      "english_name": "16x Naquadah Wire",
+      "recorded_material": "naquadah",
+      "canonical_material": "naquadah",
+      "cc_form": "hexadecuple_wire",
+      "live_block": "cruciblecraft:naquadah/hexadecuple_wire",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 29666,
+      "dummy_path": "electric_wire/1x_yttrium_barium_cuprate_cable",
+      "english_name": "1x Yttrium-Barium-Cuprate Cable",
+      "recorded_material": "yttrium_barium_cuprate",
+      "canonical_material": "yttrium_barium_cuprate",
+      "cc_form": "cable",
+      "live_block": "cruciblecraft:yttrium_barium_cuprate/cable",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 29667,
+      "dummy_path": "electric_wire/2x_yttrium_barium_cuprate_cable",
+      "english_name": "2x Yttrium-Barium-Cuprate Cable",
+      "recorded_material": "yttrium_barium_cuprate",
+      "canonical_material": "yttrium_barium_cuprate",
+      "cc_form": "double_cable",
+      "live_block": "cruciblecraft:yttrium_barium_cuprate/double_cable",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 29669,
+      "dummy_path": "electric_wire/4x_yttrium_barium_cuprate_cable",
+      "english_name": "4x Yttrium-Barium-Cuprate Cable",
+      "recorded_material": "yttrium_barium_cuprate",
+      "canonical_material": "yttrium_barium_cuprate",
+      "cc_form": "quadruple_cable",
+      "live_block": "cruciblecraft:yttrium_barium_cuprate/quadruple_cable",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 29673,
+      "dummy_path": "electric_wire/8x_yttrium_barium_cuprate_cable",
+      "english_name": "8x Yttrium-Barium-Cuprate Cable",
+      "recorded_material": "yttrium_barium_cuprate",
+      "canonical_material": "yttrium_barium_cuprate",
+      "cc_form": "octuple_cable",
+      "live_block": "cruciblecraft:yttrium_barium_cuprate/octuple_cable",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 29677,
+      "dummy_path": "electric_wire/12x_yttrium_barium_cuprate_cable",
+      "english_name": "12x Yttrium-Barium-Cuprate Cable",
+      "recorded_material": "yttrium_barium_cuprate",
+      "canonical_material": "yttrium_barium_cuprate",
+      "cc_form": "dodecuple_cable",
+      "live_block": "cruciblecraft:yttrium_barium_cuprate/dodecuple_cable",
+      "disposition": "fold_live_block",
+      "collision_reason": "folded onto live connector host"
+    }
+  ],
+  "keep_distinct": [
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32452,
+      "dummy_path": "panel/concrete_white",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32453,
+      "dummy_path": "panel/concrete_orange",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32454,
+      "dummy_path": "panel/concrete_magenta",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32455,
+      "dummy_path": "panel/concrete_light_blue",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32456,
+      "dummy_path": "panel/concrete_yellow",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32457,
+      "dummy_path": "panel/concrete_lime",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32458,
+      "dummy_path": "panel/concrete_pink",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32459,
+      "dummy_path": "panel/concrete_gray",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32460,
+      "dummy_path": "panel/concrete_light_gray",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32461,
+      "dummy_path": "panel/concrete_cyan",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32462,
+      "dummy_path": "panel/concrete_purple",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32463,
+      "dummy_path": "panel/concrete_blue",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32464,
+      "dummy_path": "panel/concrete_brown",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32465,
+      "dummy_path": "panel/concrete_green",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32466,
+      "dummy_path": "panel/concrete_red",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32467,
+      "dummy_path": "panel/concrete_black",
+      "english_name": "Concrete Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32468,
+      "dummy_path": "panel/cfoam_white",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32469,
+      "dummy_path": "panel/cfoam_orange",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32470,
+      "dummy_path": "panel/cfoam_magenta",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32471,
+      "dummy_path": "panel/cfoam_light_blue",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32472,
+      "dummy_path": "panel/cfoam_yellow",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32473,
+      "dummy_path": "panel/cfoam_lime",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32474,
+      "dummy_path": "panel/cfoam_pink",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32475,
+      "dummy_path": "panel/cfoam_gray",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32476,
+      "dummy_path": "panel/cfoam_light_gray",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32477,
+      "dummy_path": "panel/cfoam_cyan",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32478,
+      "dummy_path": "panel/cfoam_purple",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32479,
+      "dummy_path": "panel/cfoam_blue",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32480,
+      "dummy_path": "panel/cfoam_brown",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32481,
+      "dummy_path": "panel/cfoam_green",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32482,
+      "dummy_path": "panel/cfoam_red",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32483,
+      "dummy_path": "panel/cfoam_black",
+      "english_name": "C-Foam Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32484,
+      "dummy_path": "panel/asphalt_white",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32485,
+      "dummy_path": "panel/asphalt_orange",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32486,
+      "dummy_path": "panel/asphalt_magenta",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32487,
+      "dummy_path": "panel/asphalt_light_blue",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32488,
+      "dummy_path": "panel/asphalt_yellow",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32489,
+      "dummy_path": "panel/asphalt_lime",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32490,
+      "dummy_path": "panel/asphalt_pink",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32491,
+      "dummy_path": "panel/asphalt_gray",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32492,
+      "dummy_path": "panel/asphalt_light_gray",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32493,
+      "dummy_path": "panel/asphalt_cyan",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32494,
+      "dummy_path": "panel/asphalt_purple",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32495,
+      "dummy_path": "panel/asphalt_blue",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32496,
+      "dummy_path": "panel/asphalt_brown",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32497,
+      "dummy_path": "panel/asphalt_green",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32498,
+      "dummy_path": "panel/asphalt_red",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "bath_mte_identity_catalog.json",
+      "meta": 32499,
+      "dummy_path": "panel/asphalt_black",
+      "english_name": "Asphalt Panel",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    },
+    {
+      "catalog": "smelter_mte_identity_catalog.json",
+      "meta": 32110,
+      "dummy_path": "untyped/loot_crate",
+      "english_name": "Loot Crate",
+      "disposition": "keep_distinct",
+      "reason": "Not a leftover connector dummy."
+    }
+  ]
+}

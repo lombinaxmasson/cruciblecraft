@@ -6,23 +6,16 @@
         "boundary_notes": [
           "addElectricWires 配方 Loader id 已 320/320 折完；本批不再以 61 为待办。",
           "石墨烯/超导 EU dummy catalog 行不是删除集合。",
-          "HSLA alias / dummy catalog 是独立子任务。",
-          "连接件美术 dummy 不是 runtime identity 工作。"
+          "HSLA alias dummies and connector duals with live hosts are already folded."
         ],
         "does_not_merge_counts": true,
-        "excluded_blocker_ids": [
-          "identity/connector-art-keep-distinct-dummies"
-        ],
+        "excluded_blocker_ids": [],
         "id": "batch/identity-eu-gauge-closure",
         "kind": "shared_identity_audit",
         "members": [
           {
             "blocker_id": "identity/eu-blocked-gauges",
             "role": "primary"
-          },
-          {
-            "blocker_id": "identity/hsla-ungated-gauges",
-            "role": "audit_only"
           }
         ],
         "production_lock_policy": "separate_subtask_validation",
@@ -32,33 +25,6 @@
           "tools/waves/content/gt6-connector-alias-repair/production_lock.json"
         ],
         "title": "EU / 线规身份收口"
-      },
-      {
-        "auto_promote_player_complete": false,
-        "boundary_notes": [
-          "5 个 host 是实现目标。",
-          "57 条 overflow 是重算上下文，不承诺顺便清掉全部行。",
-          "不得用 programmed_circuit 或其它零件替代缺失的激光气体 / 蓝宝石形态。"
-        ],
-        "does_not_merge_counts": true,
-        "excluded_blocker_ids": [],
-        "id": "batch/machines-nanofab-host-closure",
-        "kind": "machine_closure",
-        "members": [
-          {
-            "blocker_id": "obtain/nanofab-hosts",
-            "role": "primary"
-          },
-          {
-            "blocker_id": "recipe/nanofab-overflow",
-            "role": "scale_context"
-          }
-        ],
-        "production_lock_policy": "host_lock_then_overflow_recompute",
-        "production_locks": [
-          "tools/waves/machines/nanofab/production_lock.json"
-        ],
-        "title": "纳米加工机主机获得格收口"
       },
       {
         "auto_promote_player_complete": false,
@@ -142,33 +108,6 @@
         "production_lock_policy": "separate_fluid_identity_validation",
         "production_locks": [],
         "title": "GT 树流体身份收口"
-      },
-      {
-        "auto_promote_player_complete": false,
-        "boundary_notes": [
-          "普通 redstone-wire 与 EU-cable cover policy 要与两个 torch/repeater host 分开审计。",
-          "redstone-not-eu-or-pipe 是 out_of_scope 不变量，不是 missing host 任务。",
-          "不得从已落地的 insulated-redstone identity extras 推导 cover hosting。"
-        ],
-        "does_not_merge_counts": true,
-        "excluded_blocker_ids": [
-          "identity/redstone-not-eu-or-pipe"
-        ],
-        "id": "batch/cover-redstone-host-audit",
-        "kind": "shared_cover_host_audit",
-        "members": [
-          {
-            "blocker_id": "cover/torch-repeater-wire-host",
-            "role": "primary"
-          },
-          {
-            "blocker_id": "cover/redstone-wire-covers",
-            "role": "audit_only"
-          }
-        ],
-        "production_lock_policy": "separate_host_policy_validation",
-        "production_locks": [],
-        "title": "红石盖板宿主审计"
       }
     ],
     "closed_before_batch_selection": [
@@ -206,18 +145,49 @@
           "obtain/mte-inplace-runtime"
         ],
         "resolution": "content/gt6-mte-inplace-acquisition 落地 732 条 source-exact shaped_catalyst 格；150 个缺形态/OD/plank 缺口留在各族 current_gap.json。14 个 runtime 仍 runtime_ready。"
+      },
+      {
+        "authority": [
+          "tools/capabilities/logistics/cover-remainder/capability.json",
+          "tools/capabilities/content/mte-redstone-wire/capability.json",
+          "src/main/java/com/masson/cruciblecraft/content/redstonewire/RedstoneWireCovers.java"
+        ],
+        "blocker_ids": [
+          "cover/torch-repeater-wire-host",
+          "cover/redstone-wire-covers"
+        ],
+        "resolution": "GT6 裸线继承绝缘红石线类，火把/中继器/空白盖板贴到全部六种红石连接件上：火把是非门、中继器是缓冲门，贴上后断开该面且剪线钳不能再打开。EU 电缆盖板仍不在本范围。"
+      },
+      {
+        "authority": [
+          "tools/capabilities/machines/nanofab/capability.json",
+          "tools/waves/machines/nanofab/d0_obtain_matrix.json",
+          "src/main/resources/data/cruciblecraft/technological_parts.json"
+        ],
+        "blocker_ids": [
+          "obtain/nanofab-hosts"
+        ],
+        "resolution": "machines/nanofab 把五档主机获得格落到 GT6 KAX/ZMY/CSC：Ar/Kr/Xe 激光气体件、蓝宝石晶体处理器、EMITTERS[1-5]、SENSORS[1-5]。overflow 57 行仍是规模上下文。"
+      },
+      {
+        "authority": [
+          "tools/gt6_connector_live_host_dummy_fold.py",
+          "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json",
+          "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
+        ],
+        "blocker_ids": [
+          "identity/hsla-ungated-gauges",
+          "identity/connector-art-keep-distinct-dummies"
+        ],
+        "resolution": "Smelter/bath leftover connector CatalogNamedItem dummies with gated CableBlock or PipeBlock hosts were folded onto those live ids. Gold/lead 3x/5x/6x had live hosts; loot crate and decorative panels stay dummy."
       }
     ],
     "ordering_is_not_additive": true,
     "ordering_note": "recommended_order compares current open scopes qualitatively. Bath remainder and Bath identity were closed by T48/T49 and are not batch candidates. Different units and separate production locks must never be added.",
     "recommended_order": [
       {
-        "basis": "EU dummy catalog 与 HSLA hsla_steel 别名仍需审计；Loader id 折回已关闭。",
+        "basis": "EU dummy catalog leftover rows still need audit; HSLA alias dummies and connector duals with live hosts are folded.",
         "batch_id": "batch/identity-eu-gauge-closure"
-      },
-      {
-        "basis": "5 个已冻结 host 是有界的机器获得格目标；57 条 overflow 只保留为规模上下文。",
-        "batch_id": "batch/machines-nanofab-host-closure"
       },
       {
         "basis": "3 个已冻结 host 是有界的机器获得格目标；535 条 overflow 只保留为规模上下文。",
@@ -230,10 +200,6 @@
       {
         "basis": "2 个缺失流体共享 GT 树 worldgen owner 与验收面。",
         "batch_id": "batch/fluid-gt-tree-identity"
-      },
-      {
-        "basis": "2 个 cover host 共享红石宿主审计；无数量的 policy 轨道保持独立。",
-        "batch_id": "batch/cover-redstone-host-audit"
       }
     ],
     "schema_version": 1
@@ -448,23 +414,18 @@
         "tools/capabilities/machines/nanofab/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "semantic_key": "machine:nanofab:host_obtain",
-          "slug": "machines/nanofab"
-        }
-      ],
+      "claimed_by": [],
       "count": 5,
       "discovered_by": "machines/nanofab",
       "id": "obtain/nanofab-hosts",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "IL.Comp_Laser_Gas_Ar/Kr/Xe and sapphire crystal processor. Emitters/sensors already exist.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "IL.Comp_Laser_Gas_Ar/Kr/Xe, Processor_Crystal_Sapphire, EMITTERS[1-5], and SENSORS[1-5] are live. Five GT6 hosts are source-exact.",
+      "planning_bucket": "not_work",
+      "resolved_by": "machines/nanofab",
       "root_cause": "missing_laser_gas_and_sapphire_processor",
       "root_cause_class": "missing_form",
-      "status": "open",
+      "status": "resolved",
       "title": "纳米加工机五档主机获得格仍 blocked",
       "unit": "hosts"
     },
@@ -731,19 +692,19 @@
           "slug": "content/gt6-connector-alias-repair"
         }
       ],
-      "count": null,
+      "count": 0,
       "discovered_by": "content/gt6-connector-alias-repair",
       "id": "identity/hsla-ungated-gauges",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Canonical HSLA 02/04/08/12/16 wires and 01/02/04/08/12 cables are now gated hslasteel CableBlocks. electric_wire/Nx_hsla_steel_* dummy catalog ids remain because the ledger still says hsla_steel.",
-      "planning_bucket": "audit_first",
-      "resolved_by": null,
+      "note": "HSLA 02/04/08/12/16 wire dummies now fold onto gated hslasteel CableBlocks. Closed baseline still records hsla_steel; catalog projection is live.",
+      "planning_bucket": "not_work",
+      "resolved_by": "content/gt6-connector-alias-repair",
       "root_cause": "ungated_hsla_wire_gauges",
       "root_cause_class": "unmapped_identity",
-      "status": "open",
+      "status": "resolved",
       "title": "HSLA 未开门线规仍 dummy",
-      "unit": ""
+      "unit": "dummies"
     },
     {
       "affected_capabilities": [
@@ -759,19 +720,19 @@
           "slug": "content/gt6-connector-art"
         }
       ],
-      "count": null,
+      "count": 0,
       "discovered_by": "content/gt6-connector-art",
       "id": "identity/connector-art-keep-distinct-dummies",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Replace iron-ingot models with the shared GT6 iconset; do not invent BlockItems.",
-      "planning_bucket": "audit_first",
-      "resolved_by": null,
+      "note": "Connector dummies with live CableBlock/PipeBlock hosts were withdrawn. Loot crate and decorative panels stay dummy and are not connector duals.",
+      "planning_bucket": "not_work",
+      "resolved_by": "content/gt6-connector-art",
       "root_cause": "dummy_items_keep_distinct_until_runtime_hosts",
       "root_cause_class": "unmapped_identity",
-      "status": "open",
+      "status": "resolved",
       "title": "连接件美术卡仍保留 dummy 物品",
-      "unit": ""
+      "unit": "dummies"
     },
     {
       "affected_capabilities": [
@@ -926,23 +887,18 @@
         "tools/capabilities/content/mte-redstone-wire/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "semantic_key": "connector:redstone-wire:covers",
-          "slug": "content/mte-redstone-wire"
-        }
-      ],
+      "claimed_by": [],
       "count": null,
       "discovered_by": "content/mte-redstone-wire",
       "id": "cover/redstone-wire-covers",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "CC EU cables also do not host covers. Separate from torch/repeater.",
-      "planning_bucket": "audit_first",
-      "resolved_by": null,
+      "note": "Torch, repeater, blank, selectors, emitter, conductor, and progress scale attach to all six redstone connectors. EU cables still do not host covers.",
+      "planning_bucket": "not_work",
+      "resolved_by": "content/mte-redstone-wire",
       "root_cause": "connector_covers_not_hosted",
       "root_cause_class": "missing_cover_host",
-      "status": "open",
+      "status": "resolved",
       "title": "红石线 MTE 盖板未接入",
       "unit": ""
     },
@@ -954,23 +910,18 @@
         "tools/capabilities/logistics/cover-remainder/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "semantic_key": "cover:redstone_torch_repeater:wire_host",
-          "slug": "logistics/cover-remainder"
-        }
-      ],
+      "claimed_by": [],
       "count": 2,
       "discovered_by": "logistics/cover-remainder",
       "id": "cover/torch-repeater-wire-host",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Insulated metas are live; these covers still refuse current hosts.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "Bare MultiTileEntityWireRedstone extends the insulated class, so torch/repeater attach to all six CC redstone connectors.",
+      "planning_bucket": "not_work",
+      "resolved_by": "logistics/cover-remainder",
       "root_cause": "cover_only_attaches_to_insulated_redstone_wire",
       "root_cause_class": "missing_cover_host",
-      "status": "open",
+      "status": "resolved",
       "title": "红石火把/中继器盖板仍缺绝缘线宿主",
       "unit": "covers"
     },
@@ -1888,7 +1839,8 @@
     {
       "affected_capabilities": [],
       "authority": [
-        "docs/current/unimplemented-gap.md"
+        "src/main/java/com/masson/cruciblecraft/content/storage/MassStoragePrefixUnits.java",
+        "src/main/java/com/masson/cruciblecraft/content/storage/MassStorageHandler.java"
       ],
       "blocks_maturity": "none",
       "claimed_by": [],
@@ -1897,13 +1849,13 @@
       "id": "storage/mass-storage-prefix-units",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "GT6 MassStorage merges prefix units; CC MassStorageHandler only accepts isSameItemSameComponents. Hopper dust 1/4/9 is not the barrel converter.",
-      "planning_bucket": "audit_first",
-      "resolved_by": null,
+      "note": "MassStorageHandler merges GT6 prefix families. Folded CC block joins one material family (ingot, then gem, then plate; never raw-ore). chunk=36 and billet=96. storage_ingot is in the ingot family; remainder still emits block. Stored vanilla glass does not prefix-merge. BARREL kind is 1-slot MassStorage, not a 27-slot chest. skyroot/item_barrel and furniture/mass_storage_lead stay unregistered.",
+      "planning_bucket": "not_work",
+      "resolved_by": "content/gt6-mte-furniture-storage-runtime",
       "root_cause": "prefix_unit_conversion_missing",
       "root_cause_class": "missing_runtime",
-      "status": "open",
-      "title": "仓储桶前缀单位换算仍缺",
+      "status": "resolved",
+      "title": "仓储桶前缀单位换算已按 GT6 落地",
       "unit": ""
     },
     {
@@ -1935,12 +1887,6 @@
       "id": "architecture/combinatorial-leftover",
       "planning_bucket": "not_work",
       "unit": "families"
-    },
-    {
-      "count": 2,
-      "id": "cover/torch-repeater-wire-host",
-      "planning_bucket": "schedulable",
-      "unit": "covers"
     },
     {
       "count": 1,
@@ -1987,12 +1933,6 @@
     {
       "count": 3,
       "id": "obtain/injector-mv-hv-iv-hosts",
-      "planning_bucket": "schedulable",
-      "unit": "hosts"
-    },
-    {
-      "count": 5,
-      "id": "obtain/nanofab-hosts",
       "planning_bucket": "schedulable",
       "unit": "hosts"
     },
@@ -2079,10 +2019,6 @@
     "invariant": [
       "energy/reactor-temperature-kelvin"
     ],
-    "missing_cover_host": [
-      "cover/redstone-wire-covers",
-      "cover/torch-repeater-wire-host"
-    ],
     "missing_fluid": [
       "fluid/ic2-coolant",
       "fluid/resin-rubber",
@@ -2094,8 +2030,7 @@
     "missing_form": [
       "energy/reactor-backpack-radioactivity",
       "material-form/copper-family-curved-plate",
-      "obtain/injector-mv-hv-iv-hosts",
-      "obtain/nanofab-hosts"
+      "obtain/injector-mv-hv-iv-hosts"
     ],
     "missing_mod_bridge": [
       "peripheral/sensors-computercraft"
@@ -2106,7 +2041,6 @@
     "missing_runtime": [
       "energy/cooler",
       "energy/reactor-world-explode",
-      "storage/mass-storage-prefix-units",
       "tools/world-behaviors",
       "worldgen/bees",
       "worldgen/food"
@@ -2121,10 +2055,8 @@
       "architecture/combinatorial-leftover"
     ],
     "unmapped_identity": [
-      "identity/connector-art-keep-distinct-dummies",
       "identity/converter-turbines-battery-boxes",
       "identity/eu-blocked-gauges",
-      "identity/hsla-ungated-gauges",
       "identity/processing-ungated-families"
     ],
     "unmapped_operand": [
@@ -2147,11 +2079,6 @@
       },
       {
         "count": null,
-        "id": "cover/redstone-wire-covers",
-        "unit": ""
-      },
-      {
-        "count": null,
         "id": "energy/cooler",
         "unit": ""
       },
@@ -2167,22 +2094,7 @@
       },
       {
         "count": null,
-        "id": "identity/connector-art-keep-distinct-dummies",
-        "unit": ""
-      },
-      {
-        "count": null,
         "id": "identity/eu-blocked-gauges",
-        "unit": ""
-      },
-      {
-        "count": null,
-        "id": "identity/hsla-ungated-gauges",
-        "unit": ""
-      },
-      {
-        "count": null,
-        "id": "storage/mass-storage-prefix-units",
         "unit": ""
       },
       {
@@ -2257,11 +2169,6 @@
     ],
     "schedulable": [
       {
-        "count": 2,
-        "id": "cover/torch-repeater-wire-host",
-        "unit": "covers"
-      },
-      {
         "count": 1,
         "id": "fluid/ic2-coolant",
         "unit": "fluids"
@@ -2302,11 +2209,6 @@
         "unit": "hosts"
       },
       {
-        "count": 5,
-        "id": "obtain/nanofab-hosts",
-        "unit": "hosts"
-      },
-      {
         "count": 3,
         "id": "obtain/redstone-wiregt01",
         "unit": "items"
@@ -2344,18 +2246,18 @@
     ]
   },
   "planning_counts": {
-    "audit_first": 14,
+    "audit_first": 10,
     "not_work": 3,
     "scale_not_todo": 5,
-    "schedulable": 17
+    "schedulable": 15
   },
   "schema_version": 1,
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "stats": {
-    "open": 37,
+    "open": 31,
     "out_of_scope": 6,
     "partial": 2,
-    "resolved": 12,
+    "resolved": 18,
     "superseded": 5,
     "total": 62
   }

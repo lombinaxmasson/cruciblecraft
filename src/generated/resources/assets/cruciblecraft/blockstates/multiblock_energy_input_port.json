@@ -1,7 +1,16 @@
 {
   "variants": {
-    "": {
+    "tower_skin=false,back_hole=false": {
       "model": "cruciblecraft:block/multiblock_energy_input_port"
+    },
+    "tower_skin=false,back_hole=true": {
+      "model": "cruciblecraft:block/multiblock_energy_input_port"
+    },
+    "tower_skin=true,back_hole=false": {
+      "model": "cruciblecraft:block/heat_transmitter_0"
+    },
+    "tower_skin=true,back_hole=true": {
+      "model": "cruciblecraft:block/heat_transmitter_0"
     }
   }
 }

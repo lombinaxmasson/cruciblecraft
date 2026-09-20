@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 class ModMenusTest {
     @Test
     void everyConfiguredMachineHasAMenu() {
-        for (var spec : ModProcessingMachines.CONFIGURED_MACHINES) {
+        for (var spec : ModMenus.menuHostSpecs()) {
             assertNotNull(ModMenus.forMachine(spec), spec.id().toString());
         }
     }
@@ -21,7 +21,7 @@ class ModMenusTest {
     @Test
     void mappingCountMatchesConfiguredMachines() {
         assertEquals(
-                ModProcessingMachines.CONFIGURED_MACHINES.size(),
+                ModMenus.menuHostSpecs().size(),
                 ModMenus.processingMenuCount());
     }
 

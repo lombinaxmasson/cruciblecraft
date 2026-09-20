@@ -12,6 +12,7 @@ from typing import Any
 
 from tools import census_common as census
 from tools import gt6_connector_alias_repair as alias_repair
+from tools import gt6_connector_live_host_dummy_fold as live_host_fold
 from tools import gt6_eu_missing_wire_gauges_runtime as missing_gauges
 from tools import gt6_fluid_combo_pipe_runtime as combo_pipe
 from tools import gt6_restrictive_item_pipe_runtime as restrictive_pipe
@@ -303,6 +304,7 @@ def _cleanup_folded_models() -> int:
     dummies.update(combo_pipe.folded_dummy_paths())
     dummies.update(restrictive_pipe.folded_dummy_paths())
     dummies.update(missing_gauges.folded_dummy_paths())
+    dummies.update(live_host_fold.folded_dummy_paths())
     for dummy in dummies:
         if not dummy:
             continue
@@ -320,6 +322,7 @@ def _rewrite_keep_models() -> int:
         | combo_pipe.folded_dummy_paths()
         | restrictive_pipe.folded_dummy_paths()
         | missing_gauges.folded_dummy_paths()
+        | live_host_fold.folded_dummy_paths()
     )
     for subset in (FLUID_SUBSET, ITEM_SUBSET, EU_SUBSET):
         for disposition in ("keep_distinct", "upgrade_live_item"):
@@ -572,6 +575,7 @@ def check() -> list[str]:
         | combo_pipe.folded_dummy_paths()
         | restrictive_pipe.folded_dummy_paths()
         | missing_gauges.folded_dummy_paths()
+        | live_host_fold.folded_dummy_paths()
     )
     for subset in (FLUID_SUBSET, ITEM_SUBSET, EU_SUBSET):
         for row in _subset_rows(subset, "keep_distinct") + _subset_rows(

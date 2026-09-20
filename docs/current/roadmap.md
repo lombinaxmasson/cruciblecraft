@@ -69,8 +69,7 @@ semantic wave，不是下一张里程碑编号。
 [project-status.md](project-status.md)。同一时刻只允许一张内容工作处于
 active 状态；prep 不占落地锁，规则见
 [能力交付流程 §8](capability-delivery-workflow.md)。
-第 1–8 项第一张已关。冷却器仍未签发（[blocked.md](blocked.md) C 桶
-`energy/cooler`）。蒸汽涡轮、大型热交换器 17197、聚变 / 量子物质已作为
+第 1–8 项第一张已关。蒸汽涡轮、大型热交换器 17197、聚变 / 量子物质已作为
 CC 扩展落地，capability `frozen`+`paused`，不是 `player_complete`，
 也不要当下一张 unique-active。读法见
 [project-status.md](project-status.md) 的 frozen 表与 [blocked.md](blocked.md)。
@@ -81,7 +80,7 @@ growth-order 档案倒推。缺形态不做到配方才补：prep
 出冻结核，再开 bounded unique-active；禁止按生成旗标全开长尾。
 
 电能转换已关 `runtime_ready`。聚变 18 源行是 `frozen`+`paused` 的 CC 扩展，
-不是「尚未签发」。冷却器仍 blocked。Dump 的来源执行器是 Core，
+不是「尚未签发」。Dump 的来源执行器是 Core，
 不是 Generic 管网；`dump_policy` 见已关闭的
 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
 后继能源卡见已关闭的

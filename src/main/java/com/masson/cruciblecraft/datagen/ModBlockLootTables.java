@@ -43,8 +43,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.MULTIBLOCK_CASING.get());
         dropSelf(ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
         dropSelf(ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get());
+        dropSelf(ModBlocks.MULTIBLOCK_FLUID_OUT_PORT.get());
         dropSelf(ModBlocks.LARGE_CENTRIFUGE.get());
         dropSelf(ModBlocks.DISTILLATION_TOWER.get());
+        dropSelf(ModBlocks.CRYO_DISTILLATION_TOWER.get());
         dropSelf(ModBlocks.LARGE_BOILER.get());
         dropSelf(ModBlocks.TANK_3X3X3.get());
         dropSelf(ModBlocks.LARGE_CRUCIBLE.get());
@@ -77,6 +79,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.longDistanceWireBlocksById().forEach(
                 (id, block) -> dropSelf(block.get()));
         ModBlocks.heatExchangerBlocksById().forEach(
+                (id, block) -> dropSelf(block.get()));
+        ModBlocks.coolerBlocksById().forEach(
+                (id, block) -> dropSelf(block.get()));
+        ModBlocks.fluxBlocksById().forEach(
                 (id, block) -> dropSelf(block.get()));
         ModBlocks.electricalConductorBlocks().forEach(
                 block -> dropSelf(block.get()));
@@ -234,8 +240,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.MULTIBLOCK_CASING.get(),
                 ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get(),
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get(),
+                ModBlocks.MULTIBLOCK_FLUID_OUT_PORT.get(),
                 ModBlocks.LARGE_CENTRIFUGE.get(),
                 ModBlocks.DISTILLATION_TOWER.get(),
+                ModBlocks.CRYO_DISTILLATION_TOWER.get(),
                 ModBlocks.LARGE_BOILER.get(),
                 ModBlocks.TANK_3X3X3.get(),
                 ModBlocks.LARGE_CRUCIBLE.get(),
@@ -282,6 +290,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.longDistanceWireBlocksById().forEach(
                 (id, holder) -> blocks.add(holder.get()));
         ModBlocks.heatExchangerBlocksById().forEach(
+                (id, holder) -> blocks.add(holder.get()));
+        ModBlocks.coolerBlocksById().forEach(
+                (id, holder) -> blocks.add(holder.get()));
+        ModBlocks.fluxBlocksById().forEach(
                 (id, holder) -> blocks.add(holder.get()));
         ModMachineVariants.ALL.forEach(variant ->
                 blocks.add(ModBlocks.configuredProcessingBlock(variant)));

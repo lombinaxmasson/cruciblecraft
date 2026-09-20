@@ -1,0 +1,608 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_path": "Loader_MultiTileEntities.java:823-957",
+  "rf_translation": "NeoForge FE 1:1 with GT6 RF amount; no EnergyType.RF. GT6 receiveEnergy injects RF size=1 amount=FE.",
+  "rows": [
+    {
+      "source_id": 11001,
+      "cc_id": "cruciblecraft:flux_heater_lead",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10001)",
+          "cc": "cruciblecraft:steel_galvanized_electric_heater",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[1])",
+          "cc": "cruciblecraft:lead/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11002,
+      "cc_id": "cruciblecraft:flux_heater_invar",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10002)",
+          "cc": "cruciblecraft:aluminium_electric_heater",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[2])",
+          "cc": "cruciblecraft:invar/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11003,
+      "cc_id": "cruciblecraft:flux_heater_electrum",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10003)",
+          "cc": "cruciblecraft:stainless_steel_electric_heater",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[3])",
+          "cc": "cruciblecraft:electrum/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11004,
+      "cc_id": "cruciblecraft:flux_heater_enderium_base",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10004)",
+          "cc": "cruciblecraft:chromium_electric_heater",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[4])",
+          "cc": "cruciblecraft:enderium_base/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11005,
+      "cc_id": "cruciblecraft:flux_heater_enderium",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10005)",
+          "cc": "cruciblecraft:titanium_electric_heater",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[5])",
+          "cc": "cruciblecraft:enderium/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11011,
+      "cc_id": "cruciblecraft:flux_engine_lead",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10011)",
+          "cc": "cruciblecraft:steel_galvanized_electric_engine",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[1])",
+          "cc": "cruciblecraft:lead/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11012,
+      "cc_id": "cruciblecraft:flux_engine_invar",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10012)",
+          "cc": "cruciblecraft:aluminium_electric_engine",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[2])",
+          "cc": "cruciblecraft:invar/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11013,
+      "cc_id": "cruciblecraft:flux_engine_electrum",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10013)",
+          "cc": "cruciblecraft:stainless_steel_electric_engine",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[3])",
+          "cc": "cruciblecraft:electrum/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11014,
+      "cc_id": "cruciblecraft:flux_engine_enderium_base",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10014)",
+          "cc": "cruciblecraft:chromium_electric_engine",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[4])",
+          "cc": "cruciblecraft:enderium_base/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11015,
+      "cc_id": "cruciblecraft:flux_engine_enderium",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10015)",
+          "cc": "cruciblecraft:titanium_electric_engine",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[5])",
+          "cc": "cruciblecraft:enderium/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11021,
+      "cc_id": "cruciblecraft:flux_motor_lead",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10021)",
+          "cc": "cruciblecraft:steel_galvanized_electric_motor",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[1])",
+          "cc": "cruciblecraft:lead/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11022,
+      "cc_id": "cruciblecraft:flux_motor_invar",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10022)",
+          "cc": "cruciblecraft:aluminium_electric_motor",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[2])",
+          "cc": "cruciblecraft:invar/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11023,
+      "cc_id": "cruciblecraft:flux_motor_electrum",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10023)",
+          "cc": "cruciblecraft:stainless_steel_electric_motor",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[3])",
+          "cc": "cruciblecraft:electrum/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11024,
+      "cc_id": "cruciblecraft:flux_motor_enderium_base",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10024)",
+          "cc": "cruciblecraft:chromium_electric_motor",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[4])",
+          "cc": "cruciblecraft:enderium_base/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11025,
+      "cc_id": "cruciblecraft:flux_motor_enderium",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10025)",
+          "cc": "cruciblecraft:titanium_electric_motor",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[5])",
+          "cc": "cruciblecraft:enderium/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11031,
+      "cc_id": "cruciblecraft:flux_magnet_lead",
+      "status": "explicitly_blocked",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10031)",
+          "cc": "cruciblecraft:steel_galvanized_electromagnet",
+          "status": "explicitly_blocked",
+          "note": "GT6 wraps Electromagnet 10031-10035; CC has no live electromagnet."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[1])",
+          "cc": "cruciblecraft:lead/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11032,
+      "cc_id": "cruciblecraft:flux_magnet_invar",
+      "status": "explicitly_blocked",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10032)",
+          "cc": "cruciblecraft:aluminium_electromagnet",
+          "status": "explicitly_blocked",
+          "note": "GT6 wraps Electromagnet 10031-10035; CC has no live electromagnet."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[2])",
+          "cc": "cruciblecraft:invar/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11033,
+      "cc_id": "cruciblecraft:flux_magnet_electrum",
+      "status": "explicitly_blocked",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10033)",
+          "cc": "cruciblecraft:stainless_steel_electromagnet",
+          "status": "explicitly_blocked",
+          "note": "GT6 wraps Electromagnet 10031-10035; CC has no live electromagnet."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[3])",
+          "cc": "cruciblecraft:electrum/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11034,
+      "cc_id": "cruciblecraft:flux_magnet_enderium_base",
+      "status": "explicitly_blocked",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10034)",
+          "cc": "cruciblecraft:chromium_electromagnet",
+          "status": "explicitly_blocked",
+          "note": "GT6 wraps Electromagnet 10031-10035; CC has no live electromagnet."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[4])",
+          "cc": "cruciblecraft:enderium_base/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11035,
+      "cc_id": "cruciblecraft:flux_magnet_enderium",
+      "status": "explicitly_blocked",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10035)",
+          "cc": "cruciblecraft:titanium_electromagnet",
+          "status": "explicitly_blocked",
+          "note": "GT6 wraps Electromagnet 10031-10035; CC has no live electromagnet."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[5])",
+          "cc": "cruciblecraft:enderium/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11101,
+      "cc_id": "cruciblecraft:flux_laser_lead",
+      "status": "explicitly_blocked",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10101)",
+          "cc": "cruciblecraft:steel_galvanized_electric_co2_laser",
+          "status": "explicitly_blocked",
+          "note": "GT6 wraps Electric CO2 Laser 10101-10105; CC has no live electric laser."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.DATA.Flux_T[1])",
+          "cc": "cruciblecraft:lead/plate",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11102,
+      "cc_id": "cruciblecraft:flux_laser_invar",
+      "status": "explicitly_blocked",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10102)",
+          "cc": "cruciblecraft:aluminium_electric_co2_laser",
+          "status": "explicitly_blocked",
+          "note": "GT6 wraps Electric CO2 Laser 10101-10105; CC has no live electric laser."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.DATA.Flux_T[2])",
+          "cc": "cruciblecraft:invar/plate",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11103,
+      "cc_id": "cruciblecraft:flux_laser_electrum",
+      "status": "explicitly_blocked",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10103)",
+          "cc": "cruciblecraft:stainless_steel_electric_co2_laser",
+          "status": "explicitly_blocked",
+          "note": "GT6 wraps Electric CO2 Laser 10101-10105; CC has no live electric laser."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.DATA.Flux_T[3])",
+          "cc": "cruciblecraft:electrum/plate",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11104,
+      "cc_id": "cruciblecraft:flux_laser_enderium_base",
+      "status": "explicitly_blocked",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10104)",
+          "cc": "cruciblecraft:chromium_electric_co2_laser",
+          "status": "explicitly_blocked",
+          "note": "GT6 wraps Electric CO2 Laser 10101-10105; CC has no live electric laser."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.DATA.Flux_T[4])",
+          "cc": "cruciblecraft:enderium_base/plate",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11105,
+      "cc_id": "cruciblecraft:flux_laser_enderium",
+      "status": "explicitly_blocked",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10105)",
+          "cc": "cruciblecraft:titanium_electric_co2_laser",
+          "status": "explicitly_blocked",
+          "note": "GT6 wraps Electric CO2 Laser 10101-10105; CC has no live electric laser."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.DATA.Flux_T[5])",
+          "cc": "cruciblecraft:enderium/plate",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11111,
+      "cc_id": "cruciblecraft:flux_dynamo_lead",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10111)",
+          "cc": "cruciblecraft:bronze_dynamo",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[1])",
+          "cc": "cruciblecraft:lead/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[1])",
+          "cc": "cruciblecraft:lead/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11112,
+      "cc_id": "cruciblecraft:flux_dynamo_invar",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10112)",
+          "cc": "cruciblecraft:aluminium_dynamo",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[2])",
+          "cc": "cruciblecraft:invar/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[2])",
+          "cc": "cruciblecraft:invar/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11113,
+      "cc_id": "cruciblecraft:flux_dynamo_electrum",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10113)",
+          "cc": "cruciblecraft:stainless_steel_dynamo",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[3])",
+          "cc": "cruciblecraft:electrum/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[3])",
+          "cc": "cruciblecraft:electrum/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11114,
+      "cc_id": "cruciblecraft:flux_dynamo_enderium_base",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10114)",
+          "cc": "cruciblecraft:chromium_dynamo",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[4])",
+          "cc": "cruciblecraft:enderium_base/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[4])",
+          "cc": "cruciblecraft:enderium_base/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    },
+    {
+      "source_id": 11115,
+      "cc_id": "cruciblecraft:flux_dynamo_enderium",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10115)",
+          "cc": "cruciblecraft:titanium_dynamo",
+          "status": "exact",
+          "note": "Wraps the matching Electric_T host already live in CC."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[5])",
+          "cc": "cruciblecraft:enderium/long_rod",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        },
+        "G": {
+          "gt6": "OP.gearGt(MT.DATA.Flux_T[5])",
+          "cc": "cruciblecraft:enderium/gear",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        }
+      }
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build the live Nanofab Source Pack, freeze the lock, and compile 52 rows.
 
-Hosts stay acquisition-blocked (laser gas components, sapphire processor,
-emitters, sensors). This lane does not invent missing parts and does not
+Host obtain is source-exact (Ar/Kr/Xe laser-gas components, sapphire processor,
+emitters, sensors). Overflow stays explicitly_blocked. This lane does not
 claim ``player_complete``.
 """
 from __future__ import annotations
@@ -129,22 +129,20 @@ def _circuit() -> dict[str, str]:
     return _ok("OD_CIRCUITS[6]", "cruciblecraft:circuit_ultimate")
 
 
-def _laser(token: str, reason: str) -> dict[str, str]:
-    return _blocked(token, reason)
+def _il(token: str) -> dict[str, str]:
+    result = resolve(token)
+    item = result.get("item")
+    if result.get("status") == "ok" and item:
+        return _ok(token, str(item))
+    return _blocked(token, str(result.get("status") or "unmapped"))
 
 
 def _emitter(tier: int) -> dict[str, str]:
-    return _blocked(
-        f"IL.EMITTERS[{tier}]",
-        "compact emitter module missing",
-    )
+    return _il(f"IL.EMITTERS[{tier}]")
 
 
 def _sensor(tier: int) -> dict[str, str]:
-    return _blocked(
-        f"IL.SENSORS[{tier}]",
-        "compact sensor module missing",
-    )
+    return _il(f"IL.SENSORS[{tier}]")
 
 
 def _host_status(slots: dict[str, dict[str, str]]) -> str:
@@ -244,26 +242,14 @@ def d0_matrix() -> dict[str, Any]:
     hosts: list[dict[str, Any]] = []
     for host, cc, mt, tier in D0_HOSTS:
         slots = {
-            "argon_laser": _laser(
-                "IL.Comp_Laser_Gas_Ar",
-                "laser gas component missing; Geiger/Canner Ar cell is not this slot",
-            ),
+            "argon_laser": _il("IL.Comp_Laser_Gas_Ar"),
             "casing": _form(f"OP.casingMachine(MT.{mt})"),
             "circuit": _circuit(),
             "emitter": _emitter(tier),
-            "krypton_laser": _laser(
-                "IL.Comp_Laser_Gas_Kr",
-                "laser gas component missing",
-            ),
-            "sapphire_processor": _blocked(
-                "IL.Processor_Crystal_Sapphire",
-                "sapphire crystal processor missing",
-            ),
+            "krypton_laser": _il("IL.Comp_Laser_Gas_Kr"),
+            "sapphire_processor": _il("IL.Processor_Crystal_Sapphire"),
             "sensor": _sensor(tier),
-            "xenon_laser": _laser(
-                "IL.Comp_Laser_Gas_Xe",
-                "laser gas component missing",
-            ),
+            "xenon_laser": _il("IL.Comp_Laser_Gas_Xe"),
         }
         material = ""
         casing_cc = slots["casing"].get("cc") or ""
@@ -389,7 +375,7 @@ def write_wave_sidecars() -> None:
         WAVE / "readiness.json",
         {
             "evidence": {
-                "blocked_host_obtain": 5,
+                "blocked_host_obtain": 0,
                 "blocked_graphene_and_mte_rows": PREP_OVERFLOW_ROWS,
                 "blocked_shadow_rows": PREP_SELECTED_ROWS - SELECTED_ROWS,
                 "prep_selected_rows": PREP_SELECTED_ROWS,
@@ -562,22 +548,31 @@ def check() -> list[str]:
         errors.append("d0 grid must match GT6 KAX / ZMY / CSC")
     statuses = {row["host"]: row["status"] for row in d0.get("hosts") or []}
     if statuses != {
-        20441: "explicitly_blocked",
-        20442: "explicitly_blocked",
-        20443: "explicitly_blocked",
-        20444: "explicitly_blocked",
-        20445: "explicitly_blocked",
+        20441: "source_exact",
+        20442: "source_exact",
+        20443: "source_exact",
+        20444: "source_exact",
+        20445: "source_exact",
     }:
-        errors.append("all five D0 hosts must stay explicitly_blocked")
+        errors.append("all five D0 hosts must be source_exact")
     if "programmed_circuit" in str(d0) or "compact_electric_conveyor" in str(d0):
         errors.append("d0 must not invent programmed_circuit or conveyor-cover stand-ins")
-    lasers = [
-        row.get(key, {}).get("status")
-        for row in d0.get("hosts") or []
-        for key in ("argon_laser", "krypton_laser", "xenon_laser")
-    ]
-    if any(status == "ok" for status in lasers):
-        errors.append("d0 must not use Geiger/Canner cells as laser-gas components")
+    expected_lasers = {
+        "argon_laser": "cruciblecraft:laser_gas_ar",
+        "krypton_laser": "cruciblecraft:laser_gas_kr",
+        "xenon_laser": "cruciblecraft:laser_gas_xe",
+    }
+    for row in d0.get("hosts") or []:
+        for key, item in expected_lasers.items():
+            slot = row.get(key) or {}
+            if slot.get("status") != "ok" or slot.get("cc") != item:
+                errors.append(
+                    f"host {row.get('host')} {key} must be {item}, got {slot}"
+                )
+            if "cell" in str(slot.get("cc") or "").lower():
+                errors.append(
+                    f"host {row.get('host')} {key} must not use a Geiger/Canner cell"
+                )
 
     topology = census.load_json(WAVE / "topology.json")
     readiness = census.load_json(WAVE / "readiness.json")

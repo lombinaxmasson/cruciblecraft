@@ -57,6 +57,12 @@ public interface MachineCoverHost {
 
     int fillAir(int amount);
 
+    default int fillFluid(
+            net.neoforged.neoforge.fluids.FluidStack stack,
+            net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction action) {
+        return 0;
+    }
+
     int incomingRedstone(Direction side);
 
     void notifyRedstone();

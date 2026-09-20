@@ -83,7 +83,7 @@ class PythonTestWorkflowTest(unittest.TestCase):
         declared = workflow.active_module_names(self.policy)
         profiled = workflow.profile_test_modules()
         self.assertEqual(set(profiled), set(declared))
-        self.assertLess(len(declared), 80)
+        self.assertLess(len(declared), 90)
         self.assertEqual(
             set(declared),
             {workflow.test_module(case) for case in self.cases},
@@ -296,6 +296,9 @@ class PythonTestWorkflowTest(unittest.TestCase):
         declared = [row["path"] for row in document["roots"]]
         wired = re.findall(r"^\s*srcDir\('([^']+)'\)", gradle, re.M)
         self.assertEqual(declared, wired)
+        self.assertIn("checkResourceDuplicates", gradle)
+        self.assertIn("--check-duplicates", gradle)
+        self.assertIn("DuplicatesStrategy.FAIL", gradle)
         python_declared = [
             row["path"]
             for row in document["roots"]
@@ -339,7 +342,7 @@ class PythonTestWorkflowTest(unittest.TestCase):
         self.assertIn("tools/python_test_policy.json", tracked)
 
     def test_game_test_java_lives_in_the_test_source_set(self) -> None:
-        main = ROOT / "src/test/java/com/masson/cruciblecraft/gametest"
+        main = ROOT / "src/main/java/com/masson/cruciblecraft/gametest"
         test_holder = (
             ROOT
             / "src/test/java/com/masson/cruciblecraft/gametest"

@@ -43,8 +43,8 @@ public final class MultiblockPortAggregator {
                 continue;
             }
             if (level.getBlockEntity(position) instanceof MultiblockPort port
-                    && port.portType() == matched.type()) {
-                port.bind(controller, structureId);
+                    && port.accepts(matched.type())) {
+                port.bind(controller, structureId, matched.type());
                 bound.add(position.immutable());
             }
         }

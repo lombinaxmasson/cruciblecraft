@@ -29,8 +29,8 @@ import net.neoforged.neoforge.fluids.FluidStack;
  * Deterministic query-addressable routing for one compact publication group.
  *
  * <p>Routing schema {@value #ROUTING_SCHEMA_VERSION} extracts canonical
- * item, component, and fluid keys from every relation. Unsupported or empty
- * key sets use one explicit overflow shard. Indexed relations choose the
+ * item, component, and fluid keys from every relation. Unsupported, empty, or
+ * tag key sets use one explicit overflow shard. Indexed relations choose the
  * least-frequent single key or unordered key pair, preferring a single on a
  * posting tie and then the lexical tuple. The shard id is SHA-256 of target,
  * publication group, schema version, and route key, each separated by a
@@ -289,36 +289,40 @@ public final class CompactRecipeShardRouter {
         TreeSet<String> keys = new TreeSet<>();
         boolean unindexed = false;
         for (Ingredient ingredient : relation.itemInputs()) {
-            if (ingredient.isSimple()) {
-                ItemStack[] stacks = ingredient.getItems();
-                if (stacks.length != 1
-                        || java.util.Arrays.stream(ingredient.getValues())
-                                .anyMatch(value ->
-                                        value instanceof Ingredient.TagValue)) {
-                    unindexed = true;
-                    continue;
-                }
-                ItemStack stack = stacks[0];
-                if (stack.isEmpty()) {
-                    unindexed = true;
-                } else {
-                    keys.add(canonicalItem(stack.getItem()));
-                }
-            } else {
-                ComponentIngredientIndex.Extraction extraction =
-                        ComponentIngredientIndex.extract(ingredient);
+            Ingredient indexed = PrefixMaterialItemCodecs.tightenLiveIngredient(ingredient);
+            if (indexed == null || indexed.isEmpty()) {
+                unindexed = true;
+                continue;
+            }
+            ComponentIngredientIndex.Extraction extraction =
+                    ComponentIngredientIndex.extract(indexed);
+            if (extraction.supported()) {
                 long itemAlternatives = extraction.keys().stream()
                         .map(ComponentIngredientIndex.Key::item)
                         .distinct()
                         .count();
-                if (!extraction.supported() || itemAlternatives != 1L) {
+                if (itemAlternatives != 1L) {
                     unindexed = true;
                 } else {
                     extraction.keys().stream()
                             .map(CompactRecipeShardRouter::canonicalComponent)
                             .forEach(keys::add);
                 }
+                continue;
             }
+            if (!indexed.isSimple()) {
+                unindexed = true;
+                continue;
+            }
+            ItemStack[] stacks = indexed.getItems();
+            if (stacks.length != 1
+                    || stacks[0].isEmpty()
+                    || java.util.Arrays.stream(indexed.getValues())
+                            .anyMatch(value -> value instanceof Ingredient.TagValue)) {
+                unindexed = true;
+                continue;
+            }
+            keys.add(canonicalItem(stacks[0].getItem()));
         }
         for (FluidStack stack : relation.fluidInputs()) {
             if (!stack.isEmpty()) {

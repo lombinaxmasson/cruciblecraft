@@ -63,14 +63,22 @@ public final class CoverBehaviorRegistry {
     };
 
     static {
-        registerBuiltin("filter", matchingBehavior());
+        registerBuiltin("filter", itemFilterBehavior());
         registerBuiltin("shutter", new CoverBehavior() {
             @Override
             public boolean allowsIncoming(
                     PipeCover cover,
                     CoverDefinition definition,
                     Access access) {
-                return false;
+                return cover.config().invert().orElse(0) == 0;
+            }
+
+            @Override
+            public boolean allowsOutgoing(
+                    PipeCover cover,
+                    CoverDefinition definition,
+                    Access access) {
+                return cover.config().invert().orElse(0) == 0;
             }
         });
         registerBuiltin("pump_adapter", activeTransfer(true, true));
@@ -111,6 +119,11 @@ public final class CoverBehaviorRegistry {
             }
         });
         registerBuiltin("selector_manual", new CoverBehavior() {});
+        registerBuiltin("cover_plate", new CoverBehavior() {});
+        registerBuiltin("cover_asphalt", new CoverBehavior() {});
+        registerBuiltin("cover_wood", new CoverBehavior() {});
+        registerBuiltin("cover_panel", new CoverBehavior() {});
+        registerBuiltin("filter_fluid", fluidFilterBehavior());
     }
 
     public static synchronized void register(
@@ -165,6 +178,30 @@ public final class CoverBehaviorRegistry {
             String path, CoverBehavior behavior) {
         register(ResourceLocation.fromNamespaceAndPath(
                 "cruciblecraft", path), behavior);
+    }
+
+    private static CoverBehavior itemFilterBehavior() {
+        return new CoverBehavior() {
+            @Override
+            public boolean matchesItem(
+                    PipeCover cover,
+                    CoverDefinition definition,
+                    ItemStack stack) {
+                return CoverFilterLogic.allowsItem(cover, stack);
+            }
+        };
+    }
+
+    private static CoverBehavior fluidFilterBehavior() {
+        return new CoverBehavior() {
+            @Override
+            public boolean matchesFluid(
+                    PipeCover cover,
+                    CoverDefinition definition,
+                    FluidStack stack) {
+                return CoverFilterLogic.allowsFluid(cover, stack);
+            }
+        };
     }
 
     private static CoverBehavior matchingBehavior() {

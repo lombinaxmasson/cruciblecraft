@@ -78,7 +78,7 @@ public final class CoverComponentTiers {
         public String englishName(int tier) {
             String kind = switch (this) {
                 case CONVEYOR -> "Compact Electric Conveyor";
-                case ROBOT_ARM -> "Compact Electric Robot Arm";
+                case ROBOT_ARM -> "Compact Robot Arm";
                 case PUMP -> "Compact Electric Pump";
             };
             return kind + " (" + VN_LABEL[tier] + ")";
@@ -86,9 +86,9 @@ public final class CoverComponentTiers {
 
         public String chineseName(int tier) {
             String kind = switch (this) {
-                case CONVEYOR -> "紧凑电动传送带";
-                case ROBOT_ARM -> "紧凑电动机械臂";
-                case PUMP -> "紧凑电动泵";
+                case CONVEYOR -> "输送机模块";
+                case ROBOT_ARM -> "机械臂";
+                case PUMP -> "电动泵";
             };
             return kind + "（" + VN_LABEL[tier] + "）";
         }

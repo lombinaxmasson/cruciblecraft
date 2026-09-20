@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverSounds;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverItems;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverSet;
@@ -151,6 +152,7 @@ public abstract class MachineCoverHostBlockEntity extends BlockEntity
                 }
             }
         }
+        CoverSounds.removed(level, worldPosition, removed);
         if (switchableOnOff()
                 && MachineCoverBehaviors.isControllerCover(removed)) {
             setStateOnOff(true);

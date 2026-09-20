@@ -1,19 +1,24 @@
 {
   "schema_version": 1,
   "palette": {
-    "P": {
-      "type": "port",
-      "block": "cruciblecraft:multiblock_item_fluid_port",
-      "port": "item_fluid"
+    "C": {
+      "type": "controller",
+      "tag": "cruciblecraft:distillation_tower_controllers"
     },
     "E": {
       "type": "port",
-      "block": "cruciblecraft:multiblock_energy_input_port",
+      "block": "cruciblecraft:multiblock/heat_transmitter",
       "port": "energy_input"
     },
-    "C": {
-      "type": "controller",
-      "block": "cruciblecraft:distillation_tower"
+    "P": {
+      "type": "port",
+      "block": "cruciblecraft:multiblock/distillation_tower_part",
+      "port": "item_fluid"
+    },
+    "F": {
+      "type": "port",
+      "block": "cruciblecraft:multiblock/distillation_tower_part",
+      "port": "fluid_out"
     }
   },
   "structure": [
@@ -29,54 +34,6 @@
       "offset": [
         -1,
         -1,
-        -2
-      ],
-      "predicate": "E"
-    },
-    {
-      "offset": [
-        0,
-        -1,
-        -2
-      ],
-      "predicate": "E"
-    },
-    {
-      "offset": [
-        1,
-        -1,
-        -2
-      ],
-      "predicate": "E"
-    },
-    {
-      "offset": [
-        -1,
-        -1,
-        -1
-      ],
-      "predicate": "E"
-    },
-    {
-      "offset": [
-        0,
-        -1,
-        -1
-      ],
-      "predicate": "E"
-    },
-    {
-      "offset": [
-        1,
-        -1,
-        -1
-      ],
-      "predicate": "E"
-    },
-    {
-      "offset": [
-        -1,
-        -1,
         0
       ],
       "predicate": "E"
@@ -100,50 +57,50 @@
     {
       "offset": [
         -1,
-        0,
-        -2
+        -1,
+        1
       ],
-      "predicate": "P"
+      "predicate": "E"
     },
     {
       "offset": [
         0,
-        0,
-        -2
+        -1,
+        1
       ],
-      "predicate": "P"
+      "predicate": "E"
     },
     {
       "offset": [
         1,
-        0,
-        -2
+        -1,
+        1
       ],
-      "predicate": "P"
+      "predicate": "E"
     },
     {
       "offset": [
         -1,
-        0,
-        -1
+        -1,
+        2
       ],
-      "predicate": "P"
+      "predicate": "E"
     },
     {
       "offset": [
         0,
-        0,
-        -1
+        -1,
+        2
       ],
-      "predicate": "P"
+      "predicate": "E"
     },
     {
       "offset": [
         1,
-        0,
-        -1
+        -1,
+        2
       ],
-      "predicate": "P"
+      "predicate": "E"
     },
     {
       "offset": [
@@ -164,24 +121,48 @@
     {
       "offset": [
         -1,
-        1,
-        -2
+        0,
+        1
       ],
       "predicate": "P"
     },
     {
       "offset": [
         0,
-        1,
-        -2
+        0,
+        1
       ],
       "predicate": "P"
     },
     {
       "offset": [
         1,
+        0,
+        1
+      ],
+      "predicate": "P"
+    },
+    {
+      "offset": [
+        -1,
+        0,
+        2
+      ],
+      "predicate": "P"
+    },
+    {
+      "offset": [
+        0,
+        0,
+        2
+      ],
+      "predicate": "P"
+    },
+    {
+      "offset": [
         1,
-        -2
+        0,
+        2
       ],
       "predicate": "P"
     },
@@ -189,105 +170,81 @@
       "offset": [
         -1,
         1,
-        -1
+        0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         0,
         1,
-        -1
+        0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         1,
         1,
-        -1
+        0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         -1,
         1,
-        0
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         0,
         1,
-        0
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         1,
         1,
-        0
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        -1,
+        1,
+        2
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        0,
+        1,
+        2
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        1,
+        1,
+        2
+      ],
+      "predicate": "F"
     },
     {
       "offset": [
         -1,
         2,
-        -2
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        0,
-        2,
-        -2
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        2,
-        -2
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        -1,
-        2,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        0,
-        2,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        2,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        -1,
-        2,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -295,7 +252,7 @@
         2,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -303,63 +260,63 @@
         2,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        -1,
+        2,
+        1
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        0,
+        2,
+        1
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        1,
+        2,
+        1
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        -1,
+        2,
+        2
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        0,
+        2,
+        2
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        1,
+        2,
+        2
+      ],
+      "predicate": "F"
     },
     {
       "offset": [
         -1,
         3,
-        -2
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        0,
-        3,
-        -2
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        3,
-        -2
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        -1,
-        3,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        0,
-        3,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        3,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        -1,
-        3,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -367,7 +324,7 @@
         3,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -375,63 +332,63 @@
         3,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        -1,
+        3,
+        1
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        0,
+        3,
+        1
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        1,
+        3,
+        1
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        -1,
+        3,
+        2
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        0,
+        3,
+        2
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        1,
+        3,
+        2
+      ],
+      "predicate": "F"
     },
     {
       "offset": [
         -1,
         4,
-        -2
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        0,
-        4,
-        -2
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        4,
-        -2
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        -1,
-        4,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        0,
-        4,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        4,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        -1,
-        4,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -439,7 +396,7 @@
         4,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -447,55 +404,55 @@
         4,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         -1,
-        5,
-        -2
+        4,
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         0,
-        5,
-        -2
+        4,
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         1,
-        5,
-        -2
+        4,
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         -1,
-        5,
-        -1
+        4,
+        2
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         0,
-        5,
-        -1
+        4,
+        2
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         1,
-        5,
-        -1
+        4,
+        2
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -503,7 +460,7 @@
         5,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -511,7 +468,7 @@
         5,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -519,55 +476,55 @@
         5,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         -1,
-        6,
-        -2
+        5,
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         0,
-        6,
-        -2
+        5,
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         1,
-        6,
-        -2
+        5,
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         -1,
-        6,
-        -1
+        5,
+        2
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         0,
-        6,
-        -1
+        5,
+        2
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         1,
-        6,
-        -1
+        5,
+        2
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -575,7 +532,7 @@
         6,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -583,7 +540,7 @@
         6,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -591,55 +548,55 @@
         6,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         -1,
-        7,
-        -2
+        6,
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         0,
-        7,
-        -2
+        6,
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         1,
-        7,
-        -2
+        6,
+        1
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         -1,
-        7,
-        -1
+        6,
+        2
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         0,
-        7,
-        -1
+        6,
+        2
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
         1,
-        7,
-        -1
+        6,
+        2
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -647,7 +604,7 @@
         7,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -655,7 +612,7 @@
         7,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
     },
     {
       "offset": [
@@ -663,23 +620,76 @@
         7,
         0
       ],
-      "predicate": "P"
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        -1,
+        7,
+        1
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        0,
+        7,
+        1
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        1,
+        7,
+        1
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        -1,
+        7,
+        2
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        0,
+        7,
+        2
+      ],
+      "predicate": "F"
+    },
+    {
+      "offset": [
+        1,
+        7,
+        2
+      ],
+      "predicate": "F"
     }
   ],
   "anchors": {
     "center": [
       0,
-      3,
-      -1
+      0,
+      1
     ],
     "bottom_energy_input": [
       0,
       -1,
-      -1
+      1
+    ],
+    "back_hole": [
+      0,
+      0,
+      3
     ]
   },
   "source": {
-    "repository": "https://github.com/GregTech6/gregtech6",
+    "repository": "gt6_code/gregtech6",
     "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
     "class": "gregtech.tileentity.multiblocks.MultiTileEntityDistillationTower",
     "method": "checkStructure2"

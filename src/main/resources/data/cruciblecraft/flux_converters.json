@@ -1,0 +1,1093 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "rf_per_eu": 4,
+  "machines": [
+    {
+      "id": "cruciblecraft:flux_heater_lead",
+      "source_id": 11001,
+      "source_line": 824,
+      "gt6_class": "MultiTileEntityHeaterFlux",
+      "kind": "heater",
+      "material": "lead",
+      "nbt_input": 128,
+      "nbt_output": 16,
+      "accepts": "RF",
+      "emits": "HU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Heater (Lead)",
+      "lang_zh": "通量加热器（铅）",
+      "texture_folder": "flux_heater",
+      "host_id": "cruciblecraft:steel_galvanized_electric_heater",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "SSS",
+          "SMS",
+          "SSS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:steel_galvanized_electric_heater"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "lead"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_heater_invar",
+      "source_id": 11002,
+      "source_line": 825,
+      "gt6_class": "MultiTileEntityHeaterFlux",
+      "kind": "heater",
+      "material": "invar",
+      "nbt_input": 512,
+      "nbt_output": 64,
+      "accepts": "RF",
+      "emits": "HU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Heater (Invar)",
+      "lang_zh": "通量加热器（殷钢）",
+      "texture_folder": "flux_heater",
+      "host_id": "cruciblecraft:aluminium_electric_heater",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "SSS",
+          "SMS",
+          "SSS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:aluminium_electric_heater"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "invar"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_heater_electrum",
+      "source_id": 11003,
+      "source_line": 826,
+      "gt6_class": "MultiTileEntityHeaterFlux",
+      "kind": "heater",
+      "material": "electrum",
+      "nbt_input": 2048,
+      "nbt_output": 256,
+      "accepts": "RF",
+      "emits": "HU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Heater (Electrum)",
+      "lang_zh": "通量加热器（琥珀金）",
+      "texture_folder": "flux_heater",
+      "host_id": "cruciblecraft:stainless_steel_electric_heater",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "SSS",
+          "SMS",
+          "SSS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:stainless_steel_electric_heater"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "electrum"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_heater_enderium_base",
+      "source_id": 11004,
+      "source_line": 827,
+      "gt6_class": "MultiTileEntityHeaterFlux",
+      "kind": "heater",
+      "material": "enderium_base",
+      "nbt_input": 8192,
+      "nbt_output": 1024,
+      "accepts": "RF",
+      "emits": "HU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Heater (Enderium Base)",
+      "lang_zh": "通量加热器（末影基）",
+      "texture_folder": "flux_heater",
+      "host_id": "cruciblecraft:chromium_electric_heater",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "SSS",
+          "SMS",
+          "SSS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:chromium_electric_heater"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "enderium_base"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_heater_enderium",
+      "source_id": 11005,
+      "source_line": 828,
+      "gt6_class": "MultiTileEntityHeaterFlux",
+      "kind": "heater",
+      "material": "enderium",
+      "nbt_input": 32768,
+      "nbt_output": 4096,
+      "accepts": "RF",
+      "emits": "HU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Heater (Enderium)",
+      "lang_zh": "通量加热器（末影）",
+      "texture_folder": "flux_heater",
+      "host_id": "cruciblecraft:titanium_electric_heater",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "SSS",
+          "SMS",
+          "SSS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:titanium_electric_heater"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "enderium"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_engine_lead",
+      "source_id": 11011,
+      "source_line": 840,
+      "gt6_class": "MultiTileEntityEngineFlux",
+      "kind": "engine",
+      "material": "lead",
+      "nbt_input": 128,
+      "nbt_output": 16,
+      "accepts": "RF",
+      "emits": "KU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Engine (Lead)",
+      "lang_zh": "通量引擎（铅）",
+      "texture_folder": "flux_engine",
+      "host_id": "cruciblecraft:steel_galvanized_electric_engine",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "G",
+          "M",
+          "G"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:steel_galvanized_electric_engine"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "lead"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_engine_invar",
+      "source_id": 11012,
+      "source_line": 841,
+      "gt6_class": "MultiTileEntityEngineFlux",
+      "kind": "engine",
+      "material": "invar",
+      "nbt_input": 512,
+      "nbt_output": 64,
+      "accepts": "RF",
+      "emits": "KU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Engine (Invar)",
+      "lang_zh": "通量引擎（殷钢）",
+      "texture_folder": "flux_engine",
+      "host_id": "cruciblecraft:aluminium_electric_engine",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "G",
+          "M",
+          "G"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:aluminium_electric_engine"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "invar"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_engine_electrum",
+      "source_id": 11013,
+      "source_line": 842,
+      "gt6_class": "MultiTileEntityEngineFlux",
+      "kind": "engine",
+      "material": "electrum",
+      "nbt_input": 2048,
+      "nbt_output": 256,
+      "accepts": "RF",
+      "emits": "KU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Engine (Electrum)",
+      "lang_zh": "通量引擎（琥珀金）",
+      "texture_folder": "flux_engine",
+      "host_id": "cruciblecraft:stainless_steel_electric_engine",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "G",
+          "M",
+          "G"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:stainless_steel_electric_engine"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "electrum"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_engine_enderium_base",
+      "source_id": 11014,
+      "source_line": 843,
+      "gt6_class": "MultiTileEntityEngineFlux",
+      "kind": "engine",
+      "material": "enderium_base",
+      "nbt_input": 8192,
+      "nbt_output": 1024,
+      "accepts": "RF",
+      "emits": "KU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Engine (Enderium Base)",
+      "lang_zh": "通量引擎（末影基）",
+      "texture_folder": "flux_engine",
+      "host_id": "cruciblecraft:chromium_electric_engine",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "G",
+          "M",
+          "G"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:chromium_electric_engine"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "enderium_base"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_engine_enderium",
+      "source_id": 11015,
+      "source_line": 844,
+      "gt6_class": "MultiTileEntityEngineFlux",
+      "kind": "engine",
+      "material": "enderium",
+      "nbt_input": 32768,
+      "nbt_output": 4096,
+      "accepts": "RF",
+      "emits": "KU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Engine (Enderium)",
+      "lang_zh": "通量引擎（末影）",
+      "texture_folder": "flux_engine",
+      "host_id": "cruciblecraft:titanium_electric_engine",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "G",
+          "M",
+          "G"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:titanium_electric_engine"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "enderium"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_motor_lead",
+      "source_id": 11021,
+      "source_line": 856,
+      "gt6_class": "MultiTileEntityMotorFlux",
+      "kind": "motor",
+      "material": "lead",
+      "nbt_input": 128,
+      "nbt_output": 16,
+      "accepts": "RF",
+      "emits": "RU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Motor (Lead)",
+      "lang_zh": "通量电机（铅）",
+      "texture_folder": "flux_motor",
+      "host_id": "cruciblecraft:steel_galvanized_electric_motor",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "GMG"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:steel_galvanized_electric_motor"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "lead"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_motor_invar",
+      "source_id": 11022,
+      "source_line": 857,
+      "gt6_class": "MultiTileEntityMotorFlux",
+      "kind": "motor",
+      "material": "invar",
+      "nbt_input": 512,
+      "nbt_output": 64,
+      "accepts": "RF",
+      "emits": "RU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Motor (Invar)",
+      "lang_zh": "通量电机（殷钢）",
+      "texture_folder": "flux_motor",
+      "host_id": "cruciblecraft:aluminium_electric_motor",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "GMG"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:aluminium_electric_motor"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "invar"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_motor_electrum",
+      "source_id": 11023,
+      "source_line": 858,
+      "gt6_class": "MultiTileEntityMotorFlux",
+      "kind": "motor",
+      "material": "electrum",
+      "nbt_input": 2048,
+      "nbt_output": 256,
+      "accepts": "RF",
+      "emits": "RU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Motor (Electrum)",
+      "lang_zh": "通量电机（琥珀金）",
+      "texture_folder": "flux_motor",
+      "host_id": "cruciblecraft:stainless_steel_electric_motor",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "GMG"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:stainless_steel_electric_motor"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "electrum"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_motor_enderium_base",
+      "source_id": 11024,
+      "source_line": 859,
+      "gt6_class": "MultiTileEntityMotorFlux",
+      "kind": "motor",
+      "material": "enderium_base",
+      "nbt_input": 8192,
+      "nbt_output": 1024,
+      "accepts": "RF",
+      "emits": "RU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Motor (Enderium Base)",
+      "lang_zh": "通量电机（末影基）",
+      "texture_folder": "flux_motor",
+      "host_id": "cruciblecraft:chromium_electric_motor",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "GMG"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:chromium_electric_motor"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "enderium_base"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_motor_enderium",
+      "source_id": 11025,
+      "source_line": 860,
+      "gt6_class": "MultiTileEntityMotorFlux",
+      "kind": "motor",
+      "material": "enderium",
+      "nbt_input": 32768,
+      "nbt_output": 4096,
+      "accepts": "RF",
+      "emits": "RU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Motor (Enderium)",
+      "lang_zh": "通量电机（末影）",
+      "texture_folder": "flux_motor",
+      "host_id": "cruciblecraft:titanium_electric_motor",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "GMG"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:titanium_electric_motor"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "enderium"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_magnet_lead",
+      "source_id": 11031,
+      "source_line": 872,
+      "gt6_class": "MultiTileEntityMagnetFlux",
+      "kind": "magnet",
+      "material": "lead",
+      "nbt_input": 128,
+      "nbt_output": 16,
+      "accepts": "RF",
+      "emits": "MU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Magnet (Lead)",
+      "lang_zh": "通量磁铁（铅）",
+      "texture_folder": "flux_magnet",
+      "host_id": "cruciblecraft:steel_galvanized_electromagnet",
+      "recipe_live": false,
+      "recipe": {
+        "pattern": [
+          "SSS",
+          "SMS",
+          "SSS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:steel_galvanized_electromagnet"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "lead"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_magnet_invar",
+      "source_id": 11032,
+      "source_line": 873,
+      "gt6_class": "MultiTileEntityMagnetFlux",
+      "kind": "magnet",
+      "material": "invar",
+      "nbt_input": 512,
+      "nbt_output": 64,
+      "accepts": "RF",
+      "emits": "MU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Magnet (Invar)",
+      "lang_zh": "通量磁铁（殷钢）",
+      "texture_folder": "flux_magnet",
+      "host_id": "cruciblecraft:aluminium_electromagnet",
+      "recipe_live": false,
+      "recipe": {
+        "pattern": [
+          "SSS",
+          "SMS",
+          "SSS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:aluminium_electromagnet"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "invar"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_magnet_electrum",
+      "source_id": 11033,
+      "source_line": 874,
+      "gt6_class": "MultiTileEntityMagnetFlux",
+      "kind": "magnet",
+      "material": "electrum",
+      "nbt_input": 2048,
+      "nbt_output": 256,
+      "accepts": "RF",
+      "emits": "MU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Magnet (Electrum)",
+      "lang_zh": "通量磁铁（琥珀金）",
+      "texture_folder": "flux_magnet",
+      "host_id": "cruciblecraft:stainless_steel_electromagnet",
+      "recipe_live": false,
+      "recipe": {
+        "pattern": [
+          "SSS",
+          "SMS",
+          "SSS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:stainless_steel_electromagnet"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "electrum"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_magnet_enderium_base",
+      "source_id": 11034,
+      "source_line": 875,
+      "gt6_class": "MultiTileEntityMagnetFlux",
+      "kind": "magnet",
+      "material": "enderium_base",
+      "nbt_input": 8192,
+      "nbt_output": 1024,
+      "accepts": "RF",
+      "emits": "MU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Magnet (Enderium Base)",
+      "lang_zh": "通量磁铁（末影基）",
+      "texture_folder": "flux_magnet",
+      "host_id": "cruciblecraft:chromium_electromagnet",
+      "recipe_live": false,
+      "recipe": {
+        "pattern": [
+          "SSS",
+          "SMS",
+          "SSS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:chromium_electromagnet"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "enderium_base"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_magnet_enderium",
+      "source_id": 11035,
+      "source_line": 876,
+      "gt6_class": "MultiTileEntityMagnetFlux",
+      "kind": "magnet",
+      "material": "enderium",
+      "nbt_input": 32768,
+      "nbt_output": 4096,
+      "accepts": "RF",
+      "emits": "MU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Magnet (Enderium)",
+      "lang_zh": "通量磁铁（末影）",
+      "texture_folder": "flux_magnet",
+      "host_id": "cruciblecraft:titanium_electromagnet",
+      "recipe_live": false,
+      "recipe": {
+        "pattern": [
+          "SSS",
+          "SMS",
+          "SSS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:titanium_electromagnet"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "enderium"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_laser_lead",
+      "source_id": 11101,
+      "source_line": 937,
+      "gt6_class": "MultiTileEntityLaserFlux",
+      "kind": "laser",
+      "material": "lead",
+      "nbt_input": 128,
+      "nbt_output": 16,
+      "accepts": "RF",
+      "emits": "LU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Laser (Lead)",
+      "lang_zh": "通量激光（铅）",
+      "texture_folder": "flux_laser",
+      "host_id": "cruciblecraft:steel_galvanized_electric_co2_laser",
+      "recipe_live": false,
+      "recipe": {
+        "pattern": [
+          "PPP",
+          "PMP",
+          "PPP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:steel_galvanized_electric_co2_laser"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "lead"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_laser_invar",
+      "source_id": 11102,
+      "source_line": 938,
+      "gt6_class": "MultiTileEntityLaserFlux",
+      "kind": "laser",
+      "material": "invar",
+      "nbt_input": 512,
+      "nbt_output": 64,
+      "accepts": "RF",
+      "emits": "LU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Laser (Invar)",
+      "lang_zh": "通量激光（殷钢）",
+      "texture_folder": "flux_laser",
+      "host_id": "cruciblecraft:aluminium_electric_co2_laser",
+      "recipe_live": false,
+      "recipe": {
+        "pattern": [
+          "PPP",
+          "PMP",
+          "PPP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:aluminium_electric_co2_laser"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "invar"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_laser_electrum",
+      "source_id": 11103,
+      "source_line": 939,
+      "gt6_class": "MultiTileEntityLaserFlux",
+      "kind": "laser",
+      "material": "electrum",
+      "nbt_input": 2048,
+      "nbt_output": 256,
+      "accepts": "RF",
+      "emits": "LU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Laser (Electrum)",
+      "lang_zh": "通量激光（琥珀金）",
+      "texture_folder": "flux_laser",
+      "host_id": "cruciblecraft:stainless_steel_electric_co2_laser",
+      "recipe_live": false,
+      "recipe": {
+        "pattern": [
+          "PPP",
+          "PMP",
+          "PPP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:stainless_steel_electric_co2_laser"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "electrum"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_laser_enderium_base",
+      "source_id": 11104,
+      "source_line": 940,
+      "gt6_class": "MultiTileEntityLaserFlux",
+      "kind": "laser",
+      "material": "enderium_base",
+      "nbt_input": 8192,
+      "nbt_output": 1024,
+      "accepts": "RF",
+      "emits": "LU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Laser (Enderium Base)",
+      "lang_zh": "通量激光（末影基）",
+      "texture_folder": "flux_laser",
+      "host_id": "cruciblecraft:chromium_electric_co2_laser",
+      "recipe_live": false,
+      "recipe": {
+        "pattern": [
+          "PPP",
+          "PMP",
+          "PPP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:chromium_electric_co2_laser"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "enderium_base"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_laser_enderium",
+      "source_id": 11105,
+      "source_line": 941,
+      "gt6_class": "MultiTileEntityLaserFlux",
+      "kind": "laser",
+      "material": "enderium",
+      "nbt_input": 32768,
+      "nbt_output": 4096,
+      "accepts": "RF",
+      "emits": "LU",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Laser (Enderium)",
+      "lang_zh": "通量激光（末影）",
+      "texture_folder": "flux_laser",
+      "host_id": "cruciblecraft:titanium_electric_co2_laser",
+      "recipe_live": false,
+      "recipe": {
+        "pattern": [
+          "PPP",
+          "PMP",
+          "PPP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:titanium_electric_co2_laser"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "enderium"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_dynamo_lead",
+      "source_id": 11111,
+      "source_line": 953,
+      "gt6_class": "MultiTileEntityDynamoFlux",
+      "kind": "dynamo",
+      "material": "lead",
+      "nbt_input": 32,
+      "nbt_output": 88,
+      "accepts": "RU",
+      "emits": "RF",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Dynamo (Lead)",
+      "lang_zh": "通量发电机（铅）",
+      "texture_folder": "flux_dynamo",
+      "host_id": "cruciblecraft:bronze_dynamo",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "SMS",
+          "SGS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:bronze_dynamo"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "lead"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "lead"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_dynamo_invar",
+      "source_id": 11112,
+      "source_line": 954,
+      "gt6_class": "MultiTileEntityDynamoFlux",
+      "kind": "dynamo",
+      "material": "invar",
+      "nbt_input": 128,
+      "nbt_output": 352,
+      "accepts": "RU",
+      "emits": "RF",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Dynamo (Invar)",
+      "lang_zh": "通量发电机（殷钢）",
+      "texture_folder": "flux_dynamo",
+      "host_id": "cruciblecraft:aluminium_dynamo",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "SMS",
+          "SGS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:aluminium_dynamo"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "invar"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "invar"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_dynamo_electrum",
+      "source_id": 11113,
+      "source_line": 955,
+      "gt6_class": "MultiTileEntityDynamoFlux",
+      "kind": "dynamo",
+      "material": "electrum",
+      "nbt_input": 512,
+      "nbt_output": 1408,
+      "accepts": "RU",
+      "emits": "RF",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Dynamo (Electrum)",
+      "lang_zh": "通量发电机（琥珀金）",
+      "texture_folder": "flux_dynamo",
+      "host_id": "cruciblecraft:stainless_steel_dynamo",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "SMS",
+          "SGS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:stainless_steel_dynamo"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "electrum"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "electrum"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_dynamo_enderium_base",
+      "source_id": 11114,
+      "source_line": 956,
+      "gt6_class": "MultiTileEntityDynamoFlux",
+      "kind": "dynamo",
+      "material": "enderium_base",
+      "nbt_input": 2048,
+      "nbt_output": 5632,
+      "accepts": "RU",
+      "emits": "RF",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Dynamo (Enderium Base)",
+      "lang_zh": "通量发电机（末影基）",
+      "texture_folder": "flux_dynamo",
+      "host_id": "cruciblecraft:chromium_dynamo",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "SMS",
+          "SGS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:chromium_dynamo"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "enderium_base"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "enderium_base"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:flux_dynamo_enderium",
+      "source_id": 11115,
+      "source_line": 957,
+      "gt6_class": "MultiTileEntityDynamoFlux",
+      "kind": "dynamo",
+      "material": "enderium",
+      "nbt_input": 8192,
+      "nbt_output": 22528,
+      "accepts": "RU",
+      "emits": "RF",
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Flux Dynamo (Enderium)",
+      "lang_zh": "通量发电机（末影）",
+      "texture_folder": "flux_dynamo",
+      "host_id": "cruciblecraft:titanium_dynamo",
+      "recipe_live": true,
+      "recipe": {
+        "pattern": [
+          "SMS",
+          "SGS"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:titanium_dynamo"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "enderium"
+          },
+          "G": {
+            "prefix": "gear",
+            "material": "enderium"
+          }
+        },
+        "catalysts": []
+      }
+    }
+  ]
+}

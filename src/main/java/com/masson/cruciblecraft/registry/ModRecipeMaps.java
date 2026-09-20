@@ -57,6 +57,8 @@ public final class ModRecipeMaps {
     public static final RecipeMap ELECTROLYZER = create("electrolyzer");
     public static final RecipeMap MIXER = create("mixer");
     public static final RecipeMap DISTILLERY = create("distillery");
+    public static final RecipeMap DISTILLATION_TOWER = create("distillation_tower");
+    public static final RecipeMap CRYO_DISTILLATION_TOWER = create("cryo_distillation_tower");
     public static final RecipeMap AUTOCLAVE = create("autoclave");
     public static final RecipeMap DRYING = create("drying");
     public static final RecipeMap COMPRESSOR = create("compressor");
@@ -126,6 +128,8 @@ public final class ModRecipeMaps {
             ELECTROLYZER,
             MIXER,
             DISTILLERY,
+            DISTILLATION_TOWER,
+            CRYO_DISTILLATION_TOWER,
             AUTOCLAVE,
             DRYING,
             COMPRESSOR,

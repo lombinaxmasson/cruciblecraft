@@ -23,6 +23,15 @@ class GeneratedResourceGateTest(unittest.TestCase):
             paths,
         )
 
+    def test_resource_roots_have_no_duplicate_relative_paths(self) -> None:
+        self.assertEqual([], gate.duplicate_resource_relative_paths()[:20])
+
+    def test_check_duplicates_cli_rejects_mixed_modes(self) -> None:
+        with self.assertRaises(SystemExit):
+            gate.main(["--check-duplicates", "--write"])
+        with self.assertRaises(SystemExit):
+            gate.main(["--stamp", "build/verification/resource-duplicates.ok"])
+
     def test_live_catalog_has_no_self_parent_or_missing_item_models(self) -> None:
         manifest = gate.compile_manifest()
         self.assertEqual("PASS", manifest["status"], manifest["errors"][:40])

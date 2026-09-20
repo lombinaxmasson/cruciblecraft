@@ -7,12 +7,17 @@ import java.util.Optional;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
+import com.masson.cruciblecraft.content.block.Gt6StyleConnections;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
 import com.masson.cruciblecraft.logistics.pipe.PipeTransferDiagnostics;
 import com.masson.cruciblecraft.logistics.pipe.PipeTransferPhase;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverBehavior;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverSounds;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverDrainLogic;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverIntercept;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverSet;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeBlockedMedia;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeCadence;
@@ -208,11 +213,30 @@ public final class FluidPipeBlockEntity extends BlockEntity {
 
     public boolean setCover(Direction side, PipeCover cover) {
         if (cover != null
-                && !cover.supports(CoverDefinition.Medium.FLUID)) {
+                && (MachineCoverKinds.isWireOnlyCover(cover.definitionId())
+                        || !cover.supports(CoverDefinition.Medium.FLUID))) {
+            return false;
+        }
+        PipeCoverIntercept.NeighborKind neighbor = PipeCoverIntercept.kind(
+                level == null ? null : level.getBlockEntity(
+                        worldPosition.relative(side)));
+        if (cover != null
+                && !PipeCoverIntercept.allowsPlacement(
+                        cover,
+                        PipeCoverIntercept.NeighborKind.FLUID_PIPE,
+                        neighbor,
+                        tankCount())) {
             return false;
         }
         if (!covers.set(side, cover)) {
             return false;
+        }
+        if (cover != null
+                && PipeCoverIntercept.interceptConnect(cover, PipeCoverIntercept.NeighborKind.FLUID_PIPE, neighbor)
+                && level != null
+                && !level.isClientSide) {
+            Gt6StyleConnections.setConnection(
+                    level, worldPosition, side, false);
         }
         setChanged();
         if (level != null && !level.isClientSide) {
@@ -221,6 +245,10 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             notifyCoverRedstone(side);
         }
         return true;
+    }
+
+    public void replaceCover(Direction side, PipeCover cover) {
+        replaceCoverQuiet(side, cover);
     }
 
     public boolean replaceCoverQuiet(Direction side, PipeCover cover) {
@@ -265,6 +293,7 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                 Block.popResource(level, worldPosition, stack);
             }
         }
+        CoverSounds.removed(level, worldPosition, taken.orElseThrow());
         setChanged();
         if (level != null && !level.isClientSide) {
             PipeTopology.invalidate(level, worldPosition);
@@ -316,6 +345,15 @@ public final class FluidPipeBlockEntity extends BlockEntity {
 
     private void tickCovers(Level level) {
         for (Direction side : Direction.values()) {
+            PipeCover mounted = covers.get(side).orElse(null);
+            if (CoverDrainLogic.isDrain(mounted)) {
+                CoverDrainLogic.tick(
+                        level,
+                        worldPosition,
+                        side,
+                        false,
+                        this::fillInternal);
+            }
             if (!AbstractPipeBlock.isConnected(liveState(), side)) {
                 continue;
             }

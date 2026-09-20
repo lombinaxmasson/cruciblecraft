@@ -1,0 +1,58 @@
+{
+  "schema_version": 2,
+  "slug": "energy/cooler",
+  "title": "Electric and Flux Coolers",
+  "maturity": "runtime_ready",
+  "workflow": "paused",
+  "owned_paths": [
+    "docs/history/card-plans/prep/冷却器详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/energy/cooler/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/EnergyCoolersGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/energy/cooler/**",
+    "src/main/resources/data/cruciblecraft_wave_runtime_cooler/**",
+    "src/main/resources/data/cruciblecraft/coolers.json",
+    "src/main/resources/assets/cruciblecraft/gt6_coolers_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/cooler/**",
+    "tools/capabilities/energy/cooler/**",
+    "tools/waves/runtime/cooler/**",
+    "tools/tests/test_energy_coolers.py",
+    "tools/emit_coolers.py"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "runtime/cooler",
+  "legacy_readiness": "tools/waves/runtime/cooler/readiness.json",
+  "player_signoff": null,
+  "required_test_ids": [
+    "playerSurfaceIsRegistered",
+    "lvElectricConvertsEuToCuAndHu",
+    "underpoweredEuIsWastedWithoutEmit",
+    "fluxLeadConvertsFeToCuAndHu",
+    "screwdriverModeCapsOutput",
+    "reloadPreservesBufferAndMode",
+    "representativeRecipesAreSurvivalCraftable"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "thermal:cooler",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:thermoelectric_cooler_lv",
+        "cruciblecraft:thermoelectric_cooler_mv",
+        "cruciblecraft:thermoelectric_cooler_hv",
+        "cruciblecraft:thermoelectric_cooler_ev",
+        "cruciblecraft:thermoelectric_cooler_iv",
+        "cruciblecraft:thermofluxic_cooler_lead",
+        "cruciblecraft:thermofluxic_cooler_invar",
+        "cruciblecraft:thermofluxic_cooler_electrum",
+        "cruciblecraft:thermofluxic_cooler_enderium_base",
+        "cruciblecraft:thermofluxic_cooler_enderium"
+      ],
+      "reason": "GT6 MultiTileEntityCoolerElectric 10161-10165 and MultiTileEntityCoolerFlux 11161-11165. EU or RF in, CU front + HU back, NBT_WASTE_ENERGY. Flux input is NeoForge FE amount-translated from GT6 RF; not EnergyType.RF."
+    }
+  ],
+  "note": "Ten GT6 coolers. Paused so machines/distillation-tower can occupy unique-active. Flux RF has no CC EnergyType; FE is the platform translation. survival_access is unreviewed.",
+  "survival_access": "unreviewed"
+}

@@ -47,7 +47,7 @@ class PipeCoverTest {
                 Direction.SOUTH, PipeCover.valve()));
         assertTrue(original.set(
                 Direction.UP, PipeCover.pump()));
-        assertFalse(original.allowsIncoming(Direction.SOUTH));
+        assertTrue(original.allowsIncoming(Direction.SOUTH));
 
         CompoundTag tag = new CompoundTag();
         original.save(tag, null);

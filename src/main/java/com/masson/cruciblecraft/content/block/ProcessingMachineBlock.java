@@ -70,6 +70,11 @@ public class ProcessingMachineBlock extends Block
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
+        if (level.getBlockEntity(pos) instanceof MachineCoverHost machine
+                && MachineCoverBlockInteraction.rightClick(
+                        machine, level, pos, player, hit)) {
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
         var fluidContainer = FluidUtil.getFluidHandler(stack);
         if (fluidContainer.isEmpty()) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

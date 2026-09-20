@@ -39,7 +39,7 @@ public final class MteInPlaceStorageRenderer
                     partialTick);
             return;
         }
-        if (kind == MteInPlaceKind.MASS_STORAGE) {
+        if (kind.massStorage()) {
             var inventory = host.massStorage();
             if (inventory == null) {
                 return;
@@ -49,7 +49,9 @@ public final class MteInPlaceStorageRenderer
                     inventory.filter(),
                     inventory.stored(),
                     inventory.capacity(),
-                    "mass_storage_standard",
+                    kind == MteInPlaceKind.BARREL
+                            ? "mass_storage_barrel"
+                            : "mass_storage_standard",
                     poseStack,
                     buffers,
                     packedOverlay);

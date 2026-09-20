@@ -6,6 +6,7 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
+import com.masson.cruciblecraft.content.blockentity.MachineCoverHostBlockEntity;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -18,11 +19,10 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 /** Shared battery runtime: charge NBT, packet window, EU or LU only. */
-public final class BatteryBlockEntity extends BlockEntity implements IEnergyHandler {
+public final class BatteryBlockEntity extends MachineCoverHostBlockEntity implements IEnergyHandler {
     private static final List<Direction> SIDES = List.of(Direction.values());
     private final EnergyBatteryProfile profile;
     private final BatteryEnergyStore store;
@@ -44,6 +44,7 @@ public final class BatteryBlockEntity extends BlockEntity implements IEnergyHand
             BlockPos pos,
             BlockState state,
             BatteryBlockEntity battery) {
+        battery.tickCovers();
         EnergyEmitter.emit(
                 level, pos, battery, battery.profile.energyType(), SIDES);
         battery.syncDisplayed();
@@ -63,7 +64,7 @@ public final class BatteryBlockEntity extends BlockEntity implements IEnergyHand
         if (size <= 0L) {
             return 0L;
         }
-        return outputBudget.claim(gameTime(), size, 1L, true) > 0L ? size : 0L;
+        return outputBudget.claim(budgetGameTime(), size, 1L, true) > 0L ? size : 0L;
     }
 
     @Override
@@ -94,14 +95,14 @@ public final class BatteryBlockEntity extends BlockEntity implements IEnergyHand
             return 0L;
         }
         long permitted = outputBudget.claim(
-                gameTime(), profile.inputSize(), maxAmount, true);
+                budgetGameTime(), profile.inputSize(), maxAmount, true);
         long available = store.extract(size, permitted, true);
         boolean effectiveSimulation = simulate || level == null || level.isClientSide;
         if (effectiveSimulation || available <= 0L) {
             return available;
         }
         long claimed = outputBudget.claim(
-                gameTime(), profile.inputSize(), available, false);
+                budgetGameTime(), profile.inputSize(), available, false);
         if (claimed != available) {
             throw new IllegalStateException(
                     "Battery output budget changed after simulation");
@@ -123,6 +124,16 @@ public final class BatteryBlockEntity extends BlockEntity implements IEnergyHand
     @Override
     public long capacity(EnergyType type) {
         return type == profile.energyType() ? store.capacity() : 0L;
+    }
+
+    @Override
+    public long energyStored() {
+        return store.stored();
+    }
+
+    @Override
+    public long energyCapacity() {
+        return store.capacity();
     }
 
     public void readFromItem(ItemStack stack) {
@@ -163,7 +174,7 @@ public final class BatteryBlockEntity extends BlockEntity implements IEnergyHand
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag tag = new CompoundTag();
+        CompoundTag tag = super.getUpdateTag(registries);
         tag.putByte("displayed", displayedEnergy);
         tag.putLong("gt.energy", store.stored());
         return tag;
@@ -172,6 +183,7 @@ public final class BatteryBlockEntity extends BlockEntity implements IEnergyHand
     @Override
     public void handleUpdateTag(
             CompoundTag tag, HolderLookup.Provider registries) {
+        super.handleUpdateTag(tag, registries);
         store.restore(tag.getLong("gt.energy"));
         displayedEnergy = tag.getByte("displayed");
     }
@@ -208,7 +220,7 @@ public final class BatteryBlockEntity extends BlockEntity implements IEnergyHand
         syncDisplayed();
     }
 
-    private long gameTime() {
+    private long budgetGameTime() {
         if (level == null) {
             outputBudget.reset();
             return 0L;

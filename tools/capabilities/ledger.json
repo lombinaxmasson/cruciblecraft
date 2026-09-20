@@ -172,6 +172,54 @@
     },
     {
       "depends_on": [
+        "energy/batteries",
+        "content/technological-parts-foundation"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6电动工具详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/item/MaterialElectricToolItem.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCharge.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/crafting/ElectricToolRecipes.java",
+        "src/main/java/com/masson/cruciblecraft/machine/ToolMaterialRules.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/tool/ToolMining.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/tool/ProvidedToolActions.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/ToolHarvestEvents.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/ToolDisplayPlan.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/tool/ToolClick.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/crafting/CraftingTools.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/crafting/CraftingToolWear.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/CraftingCatalystPolicy.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModComponents.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LockerBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
+        "src/main/java/com/masson/cruciblecraft/client/color/MaterialItemColor.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModItemModelProvider.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/EmiStackGroupPlan.java",
+        "src/main/resources/assets/cruciblecraft/gt6_electric_tools_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/item/tool/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/ElectricToolGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCatalogTest.java",
+        "tools/capabilities/content/gt6-electric-tools/**",
+        "tools/waves/content/gt6-electric-tools/**",
+        "tools/tests/test_gt6_electric_tools.py"
+      ],
+      "path": "tools/capabilities/content/gt6-electric-tools/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "content/gt6-electric-tools",
+      "survival_access": "partial",
+      "title": "GT6 Electric Tools",
+      "workflow": "paused"
+    },
+    {
+      "depends_on": [
         "registry/catalog-modern-ids",
         "content/gt6-eu-wire-cable-runtime",
         "content/gt6-eu-missing-wire-gauges-runtime"
@@ -1579,6 +1627,65 @@
       "workflow": "accepted"
     },
     {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/prep/冷却器详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/energy/cooler/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/EnergyCoolersGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/energy/cooler/**",
+        "src/main/resources/data/cruciblecraft_wave_runtime_cooler/**",
+        "src/main/resources/data/cruciblecraft/coolers.json",
+        "src/main/resources/assets/cruciblecraft/gt6_coolers_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/cooler/**",
+        "tools/capabilities/energy/cooler/**",
+        "tools/waves/runtime/cooler/**",
+        "tools/tests/test_energy_coolers.py",
+        "tools/emit_coolers.py"
+      ],
+      "path": "tools/capabilities/energy/cooler/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "energy/cooler",
+      "survival_access": "unreviewed",
+      "title": "Electric and Flux Coolers",
+      "workflow": "paused"
+    },
+    {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/prep/通量转换器详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/energy/flux/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/EnergyFluxConvertersGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/energy/flux/**",
+        "src/main/resources/data/cruciblecraft_wave_runtime_flux_converters/**",
+        "src/main/resources/data/cruciblecraft/flux_converters.json",
+        "src/main/resources/assets/cruciblecraft/gt6_flux_converters_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_heater/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_engine/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_motor/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_magnet/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_laser/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_dynamo/**",
+        "tools/capabilities/energy/flux-converters/**",
+        "tools/waves/runtime/flux-converters/**",
+        "tools/tests/test_energy_flux_converters.py",
+        "tools/emit_flux_converters.py"
+      ],
+      "path": "tools/capabilities/energy/flux-converters/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "energy/flux-converters",
+      "survival_access": "unreviewed",
+      "title": "Flux FE to GU Converters",
+      "workflow": "paused"
+    },
+    {
       "depends_on": [
         "energy/steam-turbine"
       ],
@@ -1633,6 +1740,36 @@
       "survival_access": "unreviewed",
       "title": "Heat Exchangers",
       "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "energy/steam-turbine",
+        "energy/small-gas-turbine",
+        "energy/batteries",
+        "content/technological-parts-foundation"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "docs/history/card-plans/active/大型燃气轮机详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/energy/largegasturbine/**",
+        "src/main/resources/data/cruciblecraft/large_gas_turbines.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_gas_turbine_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/gas_turbine/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeGasTurbineGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/energy/largegasturbine/**",
+        "tools/capabilities/energy/large-gas-turbine/**",
+        "tools/waves/energy/large-gas-turbine/**",
+        "tools/tests/test_large_gas_turbine.py"
+      ],
+      "path": "tools/capabilities/energy/large-gas-turbine/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "energy/large-gas-turbine",
+      "survival_access": "partial",
+      "title": "Large Gas Turbine 17231-17234",
+      "workflow": "active"
     },
     {
       "depends_on": [
@@ -2253,6 +2390,59 @@
       "workflow": "accepted"
     },
     {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/蒸馏塔GT6对齐详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/DistillationTowerBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/CryoDistillationTowerBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/MultiblockPortBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/MultiblockPortBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/DistillationTowerParts.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/AbstractDistillationTowerBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/DistillationTowerBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/CryoDistillationTowerBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/DistillationTowerAutoOutput.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/DistillationTowerFluidRouting.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/DistillationTowerPartVisuals.java",
+        "src/main/java/com/masson/cruciblecraft/client/color/DistillationTowerPartColor.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MultiblockPortBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureDefinition.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModMenus.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/distillation_tower.json",
+        "src/main/resources/data/cruciblecraft/recipe/hydrocarbon/distillation_tower/**",
+        "src/main/resources/data/cruciblecraft/recipe/hydrocarbon/cryo_distillation_tower/**",
+        "src/generated/resources/data/cruciblecraft/recipe/multiblock/distillation_tower.json",
+        "src/main/resources/data/cruciblecraft/recipe/machines/cryo_distillation_tower.json",
+        "src/main/resources/data/cruciblecraft/machine_delivery.json",
+        "src/main/resources/assets/cruciblecraft/gt6_distillation_tower_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/gt6_cryo_distillation_tower_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/gt6_distillation_tower_part_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/distillation_tower/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/cryo_distillation_tower/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/distillation_tower_part/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/heat_transmitter/**",
+        "tools/capabilities/machines/distillation-tower/**",
+        "tools/waves/machines/distillation-tower/**",
+        "tools/gt6_distillation_tower.py",
+        "tools/tests/test_distillation_tower.py",
+        "src/test/java/com/masson/cruciblecraft/content/blockentity/DistillationTowerPartVisualsTest.java",
+        "src/test/java/com/masson/cruciblecraft/content/block/DistillationTowerPartsTest.java"
+      ],
+      "path": "tools/capabilities/machines/distillation-tower/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/distillation-tower",
+      "survival_access": "partial",
+      "title": "Distillation Tower GT6 Alignment",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [
         "machines/cluster-mill"
       ],
@@ -2805,6 +2995,50 @@
       "workflow": "paused"
     },
     {
+      "depends_on": [
+        "worldgen/gt-stone-layer-rocks"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/prep/GT6小矿世界生成详细计划.md",
+        "src/test/java/com/masson/cruciblecraft/gametest/GtSmallOresGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreFeature.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModFeatures.java",
+        "src/main/resources/data/cruciblecraft/worldgen_catalog/small_ores.json",
+        "src/main/resources/data/cruciblecraft/worldgen/configured_feature/small_ores.json",
+        "src/main/resources/data/cruciblecraft/worldgen/placed_feature/small_ores.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_small_ores.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_nether_small_ores.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/remove_remaining_overworld_large_veins.json",
+        "src/main/resources/data/cruciblecraft_wave_worldgen_gt_small_ores/**",
+        "tools/capabilities/worldgen/gt-small-ores/**",
+        "tools/waves/worldgen/gt-small-ores/**",
+        "tools/gt_small_ores.py",
+        "tools/build_gt_small_ores.py",
+        "tools/tests/test_gt_small_ores.py",
+        "docs/current/player-guide.md",
+        "src/main/resources/assets/cruciblecraft/gt6_gt_small_ores_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/materialicons/ore_small.png",
+        "src/main/resources/assets/cruciblecraft/models/block/material_small_ore.json",
+        "src/main/resources/assets/cruciblecraft/models/block/ore_small_host/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/gt_small_ore.json",
+        "src/main/resources/assets/cruciblecraft/models/block/gt_small_ore_stone.json",
+        "src/main/resources/assets/cruciblecraft/models/block/gt_small_ore_deepslate.json",
+        "src/main/resources/assets/cruciblecraft/models/block/gt_small_ore_netherrack.json",
+        "src/main/resources/assets/cruciblecraft/models/block/gt_small_bedrock_ore.json"
+      ],
+      "path": "tools/capabilities/worldgen/gt-small-ores/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "worldgen/gt-small-ores",
+      "survival_access": "partial",
+      "title": "GT Small Ores",
+      "workflow": "paused"
+    },
+    {
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
@@ -2963,7 +3197,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 88,
+  "capability_count": 94,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -3006,6 +3240,9 @@
     "content/gt6-crucible-mold-interaction": [
       "content/gt6-crucible-mold-interaction",
       "content/gt6-foundry-art"
+    ],
+    "content/gt6-electric-tools": [
+      "content/gt6-electric-tools"
     ],
     "content/gt6-eu-cable-acquisition": [
       "content/gt6-eu-cable-acquisition"
@@ -3165,9 +3402,11 @@
       "content/sensors"
     ],
     "content/technological-parts-foundation": [
+      "content/gt6-electric-tools",
       "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
+      "energy/large-gas-turbine",
       "machines/puv-omega-matrix",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
@@ -3177,6 +3416,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3191,6 +3431,7 @@
       "energy/batteries",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -3219,6 +3460,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3234,6 +3476,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -3259,6 +3502,12 @@
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
+    "energy/cooler": [
+      "energy/cooler"
+    ],
+    "energy/flux-converters": [
+      "energy/flux-converters"
+    ],
     "energy/fusion-quantum": [
       "content/puv-omega-parts",
       "energy/fusion-quantum",
@@ -3269,6 +3518,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3282,6 +3532,7 @@
       "content/technological-parts-foundation",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/quantum-massfab",
       "energy/steam-turbine",
@@ -3302,9 +3553,13 @@
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
+    "energy/large-gas-turbine": [
+      "energy/large-gas-turbine"
+    ],
     "energy/large-heat-exchanger": [
       "content/puv-omega-parts",
       "energy/fusion-quantum",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/quantum-massfab",
       "energy/steam-turbine",
@@ -3314,6 +3569,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3327,6 +3583,7 @@
       "content/technological-parts-foundation",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -3356,6 +3613,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3369,6 +3627,7 @@
       "content/technological-parts-foundation",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -3398,11 +3657,13 @@
       "machines/puv-omega-matrix"
     ],
     "energy/small-gas-turbine": [
+      "energy/large-gas-turbine",
       "energy/small-gas-turbine"
     ],
     "energy/steam-turbine": [
       "content/puv-omega-parts",
       "energy/fusion-quantum",
+      "energy/large-gas-turbine",
       "energy/quantum-massfab",
       "energy/steam-turbine",
       "machines/puv-omega-matrix"
@@ -3411,6 +3672,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3424,6 +3686,7 @@
       "content/technological-parts-foundation",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -3455,6 +3718,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3470,6 +3734,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -3509,6 +3774,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3524,6 +3790,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -3554,6 +3821,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3569,6 +3837,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -3602,6 +3871,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3617,6 +3887,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -3649,6 +3920,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3664,6 +3936,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -3698,6 +3971,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3713,6 +3987,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -3747,13 +4022,18 @@
       "machines/cluster-mill",
       "machines/hammer-squeezer-laser"
     ],
+    "machines/distillation-tower": [
+      "machines/distillation-tower"
+    ],
     "machines/hammer-squeezer-laser": [
       "machines/hammer-squeezer-laser"
     ],
     "machines/injector": [
+      "content/gt6-electric-tools",
       "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
+      "energy/large-gas-turbine",
       "machines/injector",
       "machines/puv-omega-matrix",
       "worldgen/gt-crops",
@@ -3777,6 +4057,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3787,6 +4068,7 @@
       "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
+      "energy/large-gas-turbine",
       "machines/loom",
       "machines/puv-omega-matrix",
       "worldgen/gt-crops",
@@ -3832,6 +4114,7 @@
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3843,6 +4126,7 @@
       "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
+      "energy/large-gas-turbine",
       "machines/cluster-mill",
       "machines/hammer-squeezer-laser",
       "machines/injector",
@@ -3864,10 +4148,12 @@
       "machines/sanding"
     ],
     "machines/slicer": [
+      "content/gt6-electric-tools",
       "content/gt6-paper-tiny-plate",
       "content/puv-omega-parts",
       "content/sensors",
       "content/technological-parts-foundation",
+      "energy/large-gas-turbine",
       "machines/puv-omega-matrix",
       "machines/slicer",
       "worldgen/gt-crops",
@@ -3935,7 +4221,11 @@
     "worldgen/gt-dungeon": [
       "worldgen/gt-dungeon"
     ],
+    "worldgen/gt-small-ores": [
+      "worldgen/gt-small-ores"
+    ],
     "worldgen/gt-stone-layer-rocks": [
+      "worldgen/gt-small-ores",
       "worldgen/gt-stone-layer-rocks"
     ],
     "worldgen/gt-surface-rocks": [
@@ -3954,6 +4244,7 @@
       "content/gt6-connector-art",
       "content/gt6-crucible-mold-behavior-correction",
       "content/gt6-crucible-mold-interaction",
+      "content/gt6-electric-tools",
       "content/gt6-eu-cable-acquisition",
       "content/gt6-eu-missing-wire-gauges-runtime",
       "content/gt6-eu-wire-cable-runtime",
@@ -3995,8 +4286,11 @@
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/converter-catalog",
+      "energy/cooler",
+      "energy/flux-converters",
       "energy/fusion-quantum",
       "energy/heat-exchangers",
+      "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
       "energy/nuclear-fission-hot-fluids",
       "energy/nuclear-fission-observation-safety",
@@ -4015,6 +4309,7 @@
       "logistics/logistics-core",
       "machines/bath",
       "machines/cluster-mill",
+      "machines/distillation-tower",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
@@ -4034,6 +4329,7 @@
       "registry/tool-head-remainder",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
+      "worldgen/gt-small-ores",
       "worldgen/gt-stone-layer-rocks",
       "worldgen/gt-surface-rocks",
       "worldgen/gt-trees"
@@ -4041,5 +4337,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": null
+  "unique_active_slug": "energy/large-gas-turbine"
 }

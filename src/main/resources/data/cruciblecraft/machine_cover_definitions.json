@@ -15,6 +15,19 @@
       "configurable": []
     },
     {
+      "id": "cruciblecraft:cover_crafting",
+      "behavior": "cruciblecraft:cover_crafting",
+      "medium": "both",
+      "values": {
+        "rate": 0,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": []
+    },
+    {
       "id": "cruciblecraft:controller_display",
       "behavior": "cruciblecraft:controller_display",
       "medium": "both",
@@ -236,6 +249,19 @@
       "configurable": []
     },
     {
+      "id": "cruciblecraft:cover_drain",
+      "behavior": "cruciblecraft:cover_drain",
+      "medium": "fluid",
+      "values": {
+        "rate": 0,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": []
+    },
+    {
       "id": "cruciblecraft:redstone_emitter",
       "behavior": "cruciblecraft:redstone_emitter",
       "medium": "both",
@@ -262,6 +288,21 @@
       "configurable": []
     },
     {
+      "id": "cruciblecraft:filter_fluid",
+      "behavior": "cruciblecraft:filter_fluid",
+      "medium": "fluid",
+      "values": {
+        "rate": 0,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": [
+        "match_id"
+      ]
+    },
+    {
       "id": "cruciblecraft:controller_covers",
       "behavior": "cruciblecraft:controller_covers",
       "medium": "both",
@@ -277,6 +318,19 @@
     {
       "id": "cruciblecraft:selector_button_panel",
       "behavior": "cruciblecraft:selector_button_panel",
+      "medium": "both",
+      "values": {
+        "rate": 0,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": []
+    },
+    {
+      "id": "cruciblecraft:cover_warning",
+      "behavior": "cruciblecraft:cover_warning",
       "medium": "both",
       "values": {
         "rate": 0,

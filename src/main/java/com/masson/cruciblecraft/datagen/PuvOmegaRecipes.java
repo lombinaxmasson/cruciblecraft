@@ -1332,26 +1332,11 @@ final class PuvOmegaRecipes {
                             "d", CraftingTools.of(ModItems.MATERIAL_SCREWDRIVER.get())),
                     new ItemStack(emptyLaser));
         }
-        Optional<Fluid> hene = ModFluids.chemical("helium_neon")
-                .map(entry -> entry.source().get());
+        fillLaserGas(output, emptyLaser, "helium_neon", "laser_gas_hene");
+        fillLaserGas(output, emptyLaser, "argon", "laser_gas_ar");
+        fillLaserGas(output, emptyLaser, "krypton", "laser_gas_kr");
+        fillLaserGas(output, emptyLaser, "xenon", "laser_gas_xe");
         Item filled = part("laser_gas_hene");
-        if (emptyLaser != null && filled != null && hene.isPresent()) {
-            output.accept(
-                    id("chemical/canner/laser_gas_hene"),
-                    new GTRecipeEntry(
-                            ModRecipeMaps.CANNER.id(),
-                            new GTRecipe(
-                                    List.of(Ingredient.of(emptyLaser)),
-                                    List.of(1),
-                                    List.of(new ItemStack(filled)),
-                                    List.of(new FluidStack(hene.orElseThrow(), 1_000)),
-                                    List.of(),
-                                    List.of(GTRecipe.GUARANTEED_CHANCE),
-                                    128,
-                                    16L,
-                                    0L)),
-                    null);
-        }
         Item emptyProcessor = part("processor_crystal_empty");
         Item ultimate = part("circuit_ultimate");
         Item plate = part("circuit_plate_platinum");
@@ -1375,6 +1360,34 @@ final class PuvOmegaRecipes {
         pressProcessor(output, "circuit_crystal_ruby", "processor_crystal_ruby");
         pressProcessor(output, "circuit_crystal_emerald", "processor_crystal_emerald");
         pressProcessor(output, "circuit_crystal_sapphire", "processor_crystal_sapphire");
+    }
+
+    private static void fillLaserGas(
+            RecipeOutput output,
+            Item emptyLaser,
+            String fluidPath,
+            String resultPath) {
+        Optional<Fluid> gas = ModFluids.chemical(fluidPath)
+                .map(entry -> entry.source().get());
+        Item filled = part(resultPath);
+        if (emptyLaser == null || filled == null || gas.isEmpty()) {
+            return;
+        }
+        output.accept(
+                id("chemical/canner/" + resultPath),
+                new GTRecipeEntry(
+                        ModRecipeMaps.CANNER.id(),
+                        new GTRecipe(
+                                List.of(Ingredient.of(emptyLaser)),
+                                List.of(1),
+                                List.of(new ItemStack(filled)),
+                                List.of(new FluidStack(gas.orElseThrow(), 1_000)),
+                                List.of(),
+                                List.of(GTRecipe.GUARANTEED_CHANCE),
+                                128,
+                                16L,
+                                0L)),
+                null);
     }
 
     private static void laserCrystal(

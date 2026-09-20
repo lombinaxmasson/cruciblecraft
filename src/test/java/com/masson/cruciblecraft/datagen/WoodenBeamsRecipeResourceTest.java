@@ -37,8 +37,14 @@ class WoodenBeamsRecipeResourceTest {
                         + GtTreeSpecies.ALL.size(),
                 cokeRows);
         assertEquals(
-                WoodDebark.VANILLA_PAIRS.size() + GtTreeSpecies.ALL.size(),
+                WoodDebark.extraPressureWasherWoodRows(),
                 washerRows);
+        for (var log : WoodDebark.GT6_PRESSURE_WASHER_VANILLA_LOGS) {
+            Path shadowed = washer.resolve(log.getPath() + ".json");
+            assertTrue(
+                    Files.notExists(shadowed),
+                    "GT6 mill already owns this water log: " + shadowed);
+        }
     }
 
     @Test
@@ -56,13 +62,13 @@ class WoodenBeamsRecipeResourceTest {
                         .get(0).getAsJsonObject()
                         .get("amount").getAsInt());
 
-        JsonObject oakWasher = read("pressurewasher/oak_log.json");
+        JsonObject oakWasher = read("pressurewasher/oak_wood.json");
         assertEquals(
                 "cruciblecraft:pressurewasher",
                 oakWasher.get("map").getAsString());
         assertEquals(16, oakWasher.get("eut").getAsInt());
         assertEquals(
-                "minecraft:stripped_oak_log",
+                "minecraft:stripped_oak_wood",
                 oakWasher.getAsJsonArray("item_outputs")
                         .get(0).getAsJsonObject()
                         .get("id").getAsString());

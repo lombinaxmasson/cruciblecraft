@@ -208,23 +208,18 @@
         "tools/capabilities/machines/nanofab/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "semantic_key": "machine:nanofab:host_obtain",
-          "slug": "machines/nanofab"
-        }
-      ],
+      "claimed_by": [],
       "count": 5,
       "discovered_by": "machines/nanofab",
       "id": "obtain/nanofab-hosts",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "IL.Comp_Laser_Gas_Ar/Kr/Xe and sapphire crystal processor. Emitters/sensors already exist.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "IL.Comp_Laser_Gas_Ar/Kr/Xe, Processor_Crystal_Sapphire, EMITTERS[1-5], and SENSORS[1-5] are live. Five GT6 hosts are source-exact.",
+      "planning_bucket": "not_work",
+      "resolved_by": "machines/nanofab",
       "root_cause": "missing_laser_gas_and_sapphire_processor",
       "root_cause_class": "missing_form",
-      "status": "open",
+      "status": "resolved",
       "title": "纳米加工机五档主机获得格仍 blocked",
       "unit": "hosts"
     },
@@ -491,19 +486,19 @@
           "slug": "content/gt6-connector-alias-repair"
         }
       ],
-      "count": null,
+      "count": 0,
       "discovered_by": "content/gt6-connector-alias-repair",
       "id": "identity/hsla-ungated-gauges",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Canonical HSLA 02/04/08/12/16 wires and 01/02/04/08/12 cables are now gated hslasteel CableBlocks. electric_wire/Nx_hsla_steel_* dummy catalog ids remain because the ledger still says hsla_steel.",
-      "planning_bucket": "audit_first",
-      "resolved_by": null,
+      "note": "HSLA 02/04/08/12/16 wire dummies now fold onto gated hslasteel CableBlocks. Closed baseline still records hsla_steel; catalog projection is live.",
+      "planning_bucket": "not_work",
+      "resolved_by": "content/gt6-connector-alias-repair",
       "root_cause": "ungated_hsla_wire_gauges",
       "root_cause_class": "unmapped_identity",
-      "status": "open",
+      "status": "resolved",
       "title": "HSLA 未开门线规仍 dummy",
-      "unit": ""
+      "unit": "dummies"
     },
     {
       "affected_capabilities": [
@@ -519,19 +514,19 @@
           "slug": "content/gt6-connector-art"
         }
       ],
-      "count": null,
+      "count": 0,
       "discovered_by": "content/gt6-connector-art",
       "id": "identity/connector-art-keep-distinct-dummies",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Replace iron-ingot models with the shared GT6 iconset; do not invent BlockItems.",
-      "planning_bucket": "audit_first",
-      "resolved_by": null,
+      "note": "Connector dummies with live CableBlock/PipeBlock hosts were withdrawn. Loot crate and decorative panels stay dummy and are not connector duals.",
+      "planning_bucket": "not_work",
+      "resolved_by": "content/gt6-connector-art",
       "root_cause": "dummy_items_keep_distinct_until_runtime_hosts",
       "root_cause_class": "unmapped_identity",
-      "status": "open",
+      "status": "resolved",
       "title": "连接件美术卡仍保留 dummy 物品",
-      "unit": ""
+      "unit": "dummies"
     },
     {
       "affected_capabilities": [
@@ -686,23 +681,18 @@
         "tools/capabilities/content/mte-redstone-wire/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "semantic_key": "connector:redstone-wire:covers",
-          "slug": "content/mte-redstone-wire"
-        }
-      ],
+      "claimed_by": [],
       "count": null,
       "discovered_by": "content/mte-redstone-wire",
       "id": "cover/redstone-wire-covers",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "CC EU cables also do not host covers. Separate from torch/repeater.",
-      "planning_bucket": "audit_first",
-      "resolved_by": null,
+      "note": "Torch, repeater, blank, selectors, emitter, conductor, and progress scale attach to all six redstone connectors. EU cables still do not host covers.",
+      "planning_bucket": "not_work",
+      "resolved_by": "content/mte-redstone-wire",
       "root_cause": "connector_covers_not_hosted",
       "root_cause_class": "missing_cover_host",
-      "status": "open",
+      "status": "resolved",
       "title": "红石线 MTE 盖板未接入",
       "unit": ""
     },
@@ -714,23 +704,18 @@
         "tools/capabilities/logistics/cover-remainder/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "semantic_key": "cover:redstone_torch_repeater:wire_host",
-          "slug": "logistics/cover-remainder"
-        }
-      ],
+      "claimed_by": [],
       "count": 2,
       "discovered_by": "logistics/cover-remainder",
       "id": "cover/torch-repeater-wire-host",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Insulated metas are live; these covers still refuse current hosts.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "Bare MultiTileEntityWireRedstone extends the insulated class, so torch/repeater attach to all six CC redstone connectors.",
+      "planning_bucket": "not_work",
+      "resolved_by": "logistics/cover-remainder",
       "root_cause": "cover_only_attaches_to_insulated_redstone_wire",
       "root_cause_class": "missing_cover_host",
-      "status": "open",
+      "status": "resolved",
       "title": "红石火把/中继器盖板仍缺绝缘线宿主",
       "unit": "covers"
     },
@@ -1648,7 +1633,8 @@
     {
       "affected_capabilities": [],
       "authority": [
-        "docs/current/unimplemented-gap.md"
+        "src/main/java/com/masson/cruciblecraft/content/storage/MassStoragePrefixUnits.java",
+        "src/main/java/com/masson/cruciblecraft/content/storage/MassStorageHandler.java"
       ],
       "blocks_maturity": "none",
       "claimed_by": [],
@@ -1657,13 +1643,13 @@
       "id": "storage/mass-storage-prefix-units",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "GT6 MassStorage merges prefix units; CC MassStorageHandler only accepts isSameItemSameComponents. Hopper dust 1/4/9 is not the barrel converter.",
-      "planning_bucket": "audit_first",
-      "resolved_by": null,
+      "note": "MassStorageHandler merges GT6 prefix families. Folded CC block joins one material family (ingot, then gem, then plate; never raw-ore). chunk=36 and billet=96. storage_ingot is in the ingot family; remainder still emits block. Stored vanilla glass does not prefix-merge. BARREL kind is 1-slot MassStorage, not a 27-slot chest. skyroot/item_barrel and furniture/mass_storage_lead stay unregistered.",
+      "planning_bucket": "not_work",
+      "resolved_by": "content/gt6-mte-furniture-storage-runtime",
       "root_cause": "prefix_unit_conversion_missing",
       "root_cause_class": "missing_runtime",
-      "status": "open",
-      "title": "仓储桶前缀单位换算仍缺",
+      "status": "resolved",
+      "title": "仓储桶前缀单位换算已按 GT6 落地",
       "unit": ""
     },
     {

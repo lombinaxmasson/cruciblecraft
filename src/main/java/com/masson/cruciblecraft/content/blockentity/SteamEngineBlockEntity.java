@@ -326,6 +326,13 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
     public boolean hasFluidTanks() {
         return true;
     }
+
+    @Override
+    public int fillFluid(
+            net.neoforged.neoforge.fluids.FluidStack stack,
+            net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction action) {
+        return stack == null || stack.isEmpty() ? 0 : steam.fill(stack, action);
+    }
     @Override public boolean handles(EnergyType type, Direction side) {
         Direction front = front();
         return type == EnergyType.KINETIC_PUSH

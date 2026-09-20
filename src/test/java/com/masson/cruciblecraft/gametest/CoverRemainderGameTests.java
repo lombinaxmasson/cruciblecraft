@@ -5,13 +5,26 @@ import java.util.List;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.content.block.CableBlock;
+import com.masson.cruciblecraft.content.block.FluidPipeBlock;
+import com.masson.cruciblecraft.content.block.Gt6StyleConnections;
+import com.masson.cruciblecraft.content.block.ItemPipeBlock;
+import com.masson.cruciblecraft.content.block.RedstoneWireBlock;
+import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.RedstoneWireBlockEntity;
+import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverVisuals;
+import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverBehaviorRegistry;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinitionCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverItems;
+import com.masson.cruciblecraft.logistics.pipe.cover.PlateCovers;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -39,7 +52,9 @@ public final class CoverRemainderGameTests {
             "cruciblecraft_wave_runtime_cover_remainder";
     private static final String TEMPLATE = "empty";
     private static final BlockPos MACHINE_POS = new BlockPos(2, 2, 2);
+    private static final BlockPos WIRE_POS = MACHINE_POS;
     private static final Direction COVER_SIDE = Direction.NORTH;
+    private static final Direction TORCH_SIDE = Direction.EAST;
 
     private CoverRemainderGameTests() {}
 
@@ -179,6 +194,426 @@ public final class CoverRemainderGameTests {
                         COVER_SIDE,
                         PipeCover.of("cruciblecraft:redstone_torch")),
                 "Redstone torch cover attached to an unsupported host");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void torchAttachesToAllRedstoneConnectors(GameTestHelper helper) {
+        PipeCover torch = PipeCover.of("cruciblecraft:redstone_torch");
+        for (RedstoneWireKind kind : RedstoneWireKind.catalog()) {
+            helper.setBlock(WIRE_POS, redstoneWire(kind, Direction.WEST));
+            RedstoneWireBlockEntity wire = helper.getBlockEntity(WIRE_POS);
+            helper.assertTrue(
+                    wire.setCover(TORCH_SIDE, torch),
+                    "Torch cover refused redstone connector " + kind.path());
+            helper.assertTrue(
+                    wire.covers().get(TORCH_SIDE).isPresent()
+                            && !RedstoneWireBlock.isConnected(
+                                    helper.getBlockState(WIRE_POS),
+                                    TORCH_SIDE),
+                    "Torch did not persist on " + kind.path());
+            helper.setBlock(WIRE_POS, Blocks.AIR);
+        }
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void torchRefusesItemPipe(GameTestHelper helper) {
+        ItemPipeBlock block = (ItemPipeBlock) ModBlocks.pipeBlock(
+                "brass",
+                MaterialPrefixes.ITEM_PIPE,
+                PipeCatalog.Kind.ITEM).get();
+        helper.setBlock(WIRE_POS, block.defaultBlockState());
+        ItemPipeBlockEntity pipe = helper.getBlockEntity(WIRE_POS);
+        helper.assertFalse(
+                pipe.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:redstone_torch")),
+                "Torch cover attached to an item pipe");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void torchEmitsWhenWireUnpowered(GameTestHelper helper) {
+        helper.setBlock(
+                WIRE_POS,
+                redstoneWire(RedstoneWireKind.RED_ALLOY, Direction.WEST));
+        RedstoneWireBlockEntity wire = helper.getBlockEntity(WIRE_POS);
+        helper.assertTrue(
+                wire.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:redstone_torch")),
+                "Could not install torch cover");
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> {
+                    var world = helper.absolutePos(WIRE_POS);
+                    var state = helper.getLevel().getBlockState(world);
+                    int weak = state.getSignal(
+                            helper.getLevel(), world, Direction.WEST);
+                    int strong = state.getDirectSignal(
+                            helper.getLevel(), world, Direction.WEST);
+                    helper.assertTrue(
+                            weak == 15 && strong == 15,
+                            "Unpowered torch cover must emit 15 weak+strong: "
+                                    + weak + "/" + strong);
+                    helper.assertFalse(
+                            RedstoneWireBlock.isConnected(
+                                    helper.getBlockState(WIRE_POS),
+                                    TORCH_SIDE),
+                            "Torch cover left the face connected");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void repeaterEmitsWhenWirePowered(GameTestHelper helper) {
+        helper.setBlock(WIRE_POS.relative(Direction.WEST), Blocks.REDSTONE_BLOCK);
+        helper.setBlock(
+                WIRE_POS,
+                redstoneWire(RedstoneWireKind.RED_ALLOY_CABLE, Direction.WEST));
+        RedstoneWireBlockEntity wire = helper.getBlockEntity(WIRE_POS);
+        helper.assertTrue(
+                wire.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:redstone_repeater")),
+                "Could not install repeater cover");
+        helper.startSequence()
+                .thenIdle(4)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            wire.redstoneValue() > 0L,
+                            "Insulated cable did not pick up the redstone block");
+                    var world = helper.absolutePos(WIRE_POS);
+                    var state = helper.getLevel().getBlockState(world);
+                    int weak = state.getSignal(
+                            helper.getLevel(), world, Direction.WEST);
+                    int strong = state.getDirectSignal(
+                            helper.getLevel(), world, Direction.WEST);
+                    helper.assertTrue(
+                            weak == 15 && strong == 15,
+                            "Powered repeater cover must emit 15 weak+strong: "
+                                    + weak + "/" + strong);
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void cutterCannotReopenTorchFace(GameTestHelper helper) {
+        helper.setBlock(
+                WIRE_POS,
+                redstoneWire(
+                        RedstoneWireKind.RED_ALLOY,
+                        Direction.WEST,
+                        TORCH_SIDE));
+        RedstoneWireBlockEntity wire = helper.getBlockEntity(WIRE_POS);
+        helper.assertTrue(
+                wire.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:redstone_torch")),
+                "Could not install torch cover");
+        helper.assertFalse(
+                RedstoneWireBlock.isConnected(
+                        helper.getBlockState(WIRE_POS), TORCH_SIDE),
+                "Torch cover did not disconnect the face");
+        Gt6StyleConnections.setConnection(
+                helper.getLevel(),
+                helper.absolutePos(WIRE_POS),
+                TORCH_SIDE,
+                true);
+        helper.assertFalse(
+                RedstoneWireBlock.isConnected(
+                        helper.getBlockState(WIRE_POS), TORCH_SIDE),
+                "Cutter reopened a torch-intercepted face");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void blankCoverDoesNotDisconnect(GameTestHelper helper) {
+        helper.setBlock(
+                WIRE_POS,
+                redstoneWire(RedstoneWireKind.RED_ALLOY, TORCH_SIDE));
+        RedstoneWireBlockEntity wire = helper.getBlockEntity(WIRE_POS);
+        helper.assertTrue(
+                RedstoneWireBlock.isConnected(
+                        helper.getBlockState(WIRE_POS), TORCH_SIDE),
+                "Bare wire east face started closed");
+        helper.assertTrue(
+                wire.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:cover_blank")),
+                "Could not install blank cover on redstone wire");
+        helper.assertTrue(
+                RedstoneWireBlock.isConnected(
+                        helper.getBlockState(WIRE_POS), TORCH_SIDE),
+                "Blank cover disconnected the redstone face");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void selectorTagFloorsUnpoweredWire(GameTestHelper helper) {
+        helper.setBlock(
+                WIRE_POS,
+                redstoneWire(RedstoneWireKind.RED_ALLOY));
+        RedstoneWireBlockEntity wire = helper.getBlockEntity(WIRE_POS);
+        helper.assertTrue(
+                wire.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:selector_tag")
+                                .withDisplay(0, 2)),
+                "Selector tag refused redstone wire");
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            wire.mode() == 2,
+                            "Selector tag did not write wire mode 2: "
+                                    + wire.mode());
+                    helper.assertTrue(
+                            wire.visual() == 2,
+                            "Selector mode did not floor the unpowered wire: "
+                                    + wire.visual()
+                                    + "/"
+                                    + wire.redstoneValue());
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void emitterDoesNotDisconnectAndEmitsWeak(
+            GameTestHelper helper) {
+        helper.setBlock(
+                WIRE_POS,
+                redstoneWire(RedstoneWireKind.RED_ALLOY, TORCH_SIDE));
+        RedstoneWireBlockEntity wire = helper.getBlockEntity(WIRE_POS);
+        helper.assertTrue(
+                wire.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:redstone_emitter")
+                                .withDisplay(0, 7)),
+                "Emitter refused redstone wire");
+        helper.assertTrue(
+                RedstoneWireBlock.isConnected(
+                        helper.getBlockState(WIRE_POS), TORCH_SIDE),
+                "Emitter disconnected the redstone face");
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> {
+                    var world = helper.absolutePos(WIRE_POS);
+                    var state = helper.getLevel().getBlockState(world);
+                    int weak = state.getSignal(
+                            helper.getLevel(), world, Direction.WEST);
+                    int strong = state.getDirectSignal(
+                            helper.getLevel(), world, Direction.WEST);
+                    helper.assertTrue(
+                            weak == 7 && strong == 0,
+                            "Emitter must emit 7 weak and 0 strong: "
+                                    + weak
+                                    + "/"
+                                    + strong);
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void conductorOutRepeatsIn(GameTestHelper helper) {
+        helper.setBlock(WIRE_POS.relative(Direction.WEST), Blocks.REDSTONE_BLOCK);
+        helper.setBlock(
+                WIRE_POS,
+                redstoneWire(RedstoneWireKind.RED_ALLOY));
+        RedstoneWireBlockEntity wire = helper.getBlockEntity(WIRE_POS);
+        helper.assertTrue(
+                wire.setCover(
+                        Direction.WEST,
+                        PipeCover.of("cruciblecraft:redstone_conductor_in")),
+                "Conductor IN refused redstone wire");
+        helper.assertTrue(
+                wire.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:redstone_conductor_out")),
+                "Conductor OUT refused redstone wire");
+        helper.startSequence()
+                .thenIdle(4)
+                .thenExecute(() -> {
+                    var world = helper.absolutePos(WIRE_POS);
+                    var state = helper.getLevel().getBlockState(world);
+                    int weak = state.getSignal(
+                            helper.getLevel(), world, Direction.WEST);
+                    helper.assertTrue(
+                            weak == 15,
+                            "Conductor OUT did not repeat IN: " + weak);
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void scaleProgressTracksWire(GameTestHelper helper) {
+        helper.setBlock(WIRE_POS.relative(Direction.WEST), Blocks.REDSTONE_BLOCK);
+        helper.setBlock(
+                WIRE_POS,
+                redstoneWire(RedstoneWireKind.RED_ALLOY, Direction.WEST));
+        RedstoneWireBlockEntity wire = helper.getBlockEntity(WIRE_POS);
+        helper.assertTrue(
+                wire.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:scale_progress")),
+                "Progress scale refused redstone wire");
+        helper.startSequence()
+                .thenIdle(4)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            wire.redstoneValue() > 0L,
+                            "Wire did not pick up the redstone block");
+                    var world = helper.absolutePos(WIRE_POS);
+                    var state = helper.getLevel().getBlockState(world);
+                    int weak = state.getSignal(
+                            helper.getLevel(), world, Direction.WEST);
+                    helper.assertTrue(
+                            weak > 0,
+                            "Progress scale did not emit wire fill: " + weak);
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void remainderRefusesControllerOnWire(GameTestHelper helper) {
+        helper.setBlock(
+                WIRE_POS,
+                redstoneWire(RedstoneWireKind.RED_ALLOY));
+        RedstoneWireBlockEntity wire = helper.getBlockEntity(WIRE_POS);
+        helper.assertFalse(
+                wire.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:controller_auto")),
+                "Auto switch attached to a redstone wire");
+        helper.assertFalse(
+                wire.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:scale_energy")),
+                "Energy scale attached to a redstone wire");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void plateCoverDoesNotDisconnectWire(GameTestHelper helper) {
+        helper.setBlock(
+                WIRE_POS,
+                redstoneWire(RedstoneWireKind.RED_ALLOY, TORCH_SIDE));
+        RedstoneWireBlockEntity wire = helper.getBlockEntity(WIRE_POS);
+        PipeCover plate = PlateCovers.fromItem(
+                MaterialLookup.stack("iron", MaterialPrefixes.PLATE));
+        helper.assertTrue(plate != null, "Iron plate is not a cover");
+        helper.assertTrue(
+                wire.setCover(TORCH_SIDE, plate),
+                "Plate cover refused redstone wire");
+        helper.assertTrue(
+                RedstoneWireBlock.isConnected(
+                        helper.getBlockState(WIRE_POS), TORCH_SIDE),
+                "Plate cover disconnected the wire face");
+        ItemStack dropped = PipeCoverItems.stackFor(
+                wire.covers().get(TORCH_SIDE).orElseThrow());
+        helper.assertTrue(
+                MaterialLookup.matches(
+                        dropped, "iron", MaterialPrefixes.PLATE),
+                "Plate cover did not drop the live iron plate");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void dumpCoverDisconnectsItemPipe(GameTestHelper helper) {
+        ItemPipeBlock block = (ItemPipeBlock) ModBlocks.pipeBlock(
+                "brass",
+                MaterialPrefixes.ITEM_PIPE,
+                PipeCatalog.Kind.ITEM).get();
+        BlockPos neighbor = WIRE_POS.relative(TORCH_SIDE);
+        helper.setBlock(WIRE_POS, block.defaultBlockState());
+        helper.setBlock(neighbor, block.defaultBlockState());
+        Gt6StyleConnections.setConnection(
+                helper.getLevel(),
+                helper.absolutePos(WIRE_POS),
+                TORCH_SIDE,
+                true);
+        ItemPipeBlockEntity pipe = helper.getBlockEntity(WIRE_POS);
+        helper.assertTrue(
+                pipe.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:logistics_generic_dump")),
+                "Dump cover refused item pipe");
+        helper.assertFalse(
+                ItemPipeBlock.isConnected(
+                        helper.getBlockState(WIRE_POS), TORCH_SIDE),
+                "Dump cover left the pipe face connected");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void filterRefusesBetweenItemPipes(GameTestHelper helper) {
+        ItemPipeBlock block = (ItemPipeBlock) ModBlocks.pipeBlock(
+                "brass",
+                MaterialPrefixes.ITEM_PIPE,
+                PipeCatalog.Kind.ITEM).get();
+        helper.setBlock(WIRE_POS, block.defaultBlockState());
+        helper.setBlock(
+                WIRE_POS.relative(TORCH_SIDE),
+                block.defaultBlockState());
+        ItemPipeBlockEntity pipe = helper.getBlockEntity(WIRE_POS);
+        helper.assertFalse(
+                pipe.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:filter")),
+                "Filter attached between two item pipes");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void pressureValveRefusesPipeToPipe(GameTestHelper helper) {
+        FluidPipeBlock block = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "bronze",
+                MaterialPrefixes.FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(WIRE_POS, block.defaultBlockState());
+        helper.setBlock(
+                WIRE_POS.relative(TORCH_SIDE),
+                block.defaultBlockState());
+        FluidPipeBlockEntity pipe = helper.getBlockEntity(WIRE_POS);
+        helper.assertFalse(
+                pipe.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:pressure_valve")),
+                "Pressure valve attached between two fluid pipes");
+        helper.setBlock(WIRE_POS.relative(TORCH_SIDE), Blocks.AIR);
+        helper.assertTrue(
+                pipe.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:pressure_valve")),
+                "Pressure valve refused a single-tank fluid pipe");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void euCableHostsPlateAndRefusesTorch(GameTestHelper helper) {
+        CableBlock cableBlock = ModBlocks.electricalConductorBlock(
+                "tin", MaterialPrefixes.CABLE).get();
+        helper.setBlock(WIRE_POS, cableBlock.defaultBlockState());
+        CableBlockEntity cable = helper.getBlockEntity(WIRE_POS);
+        helper.assertTrue(
+                cable.setCover(
+                        TORCH_SIDE,
+                        PipeCover.of("cruciblecraft:cover_blank")),
+                "Blank cover refused EU cable");
+        helper.assertTrue(
+                cable.removeCover(TORCH_SIDE, null),
+                "Could not pry blank cover from EU cable");
+        PipeCover plate = PlateCovers.fromItem(
+                MaterialLookup.stack("iron", MaterialPrefixes.PLATE));
+        helper.assertTrue(
+                cable.setCover(TORCH_SIDE, plate),
+                "Plate cover refused EU cable");
+        helper.assertFalse(
+                cable.setCover(
+                        TORCH_SIDE.getOpposite(),
+                        PipeCover.of("cruciblecraft:redstone_torch")),
+                "Torch cover attached to an EU cable");
         helper.succeed();
     }
 
@@ -379,5 +814,18 @@ public final class CoverRemainderGameTests {
                         input,
                         helper.getLevel().registryAccess()))
                 .orElse(ItemStack.EMPTY);
+    }
+
+    private static net.minecraft.world.level.block.state.BlockState redstoneWire(
+            RedstoneWireKind kind, Direction... sides) {
+        var state = ModBlocks.redstoneWireCatalogById()
+                .get(kind.id())
+                .get()
+                .defaultBlockState();
+        for (Direction side : sides) {
+            state = state.setValue(
+                    RedstoneWireBlock.PROPERTY_BY_DIRECTION.get(side), true);
+        }
+        return state;
     }
 }

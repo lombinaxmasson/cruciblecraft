@@ -5,14 +5,20 @@ import java.util.Map;
 import org.joml.Matrix4f;
 
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
+import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.RedstoneWireBlockEntity;
+import com.masson.cruciblecraft.client.color.MaterialItemColor;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverVisuals;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverItemFilters;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverTextureCycle;
+import com.masson.cruciblecraft.logistics.pipe.cover.DecorativeCovers;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
+import com.masson.cruciblecraft.logistics.pipe.cover.PlateCovers;
 import com.masson.cruciblecraft.logistics.displaycpu.DisplayCpuKinds;
 
 import net.minecraft.client.Minecraft;
@@ -23,8 +29,10 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -53,12 +61,24 @@ public final class PipeCoverRenderer<T extends BlockEntity>
             MultiBufferSource buffers,
             int packedLight,
             int packedOverlay) {
+        renderMounted(blockEntity, poseStack, buffers, packedLight);
+    }
+
+    public static void renderMounted(
+            BlockEntity blockEntity,
+            PoseStack poseStack,
+            MultiBufferSource buffers,
+            int packedLight) {
         Map<Direction, PipeCover> covers;
         float half = 0.5f;
         if (blockEntity instanceof ItemPipeBlockEntity pipe) {
             covers = pipe.coverSnapshot();
         } else if (blockEntity instanceof FluidPipeBlockEntity pipe) {
             covers = pipe.coverSnapshot();
+        } else if (blockEntity instanceof RedstoneWireBlockEntity wire) {
+            covers = wire.covers().snapshot();
+        } else if (blockEntity instanceof CableBlockEntity cable) {
+            covers = cable.covers().snapshot();
         } else if (blockEntity instanceof MachineCoverHost machine) {
             covers = machine.covers().snapshot();
         } else {
@@ -102,6 +122,14 @@ public final class PipeCoverRenderer<T extends BlockEntity>
                         packedLight);
                 continue;
             }
+            if (renderWireTorch(
+                    poseStack,
+                    vertices,
+                    cover,
+                    face,
+                    packedLight)) {
+                continue;
+            }
             if (renderRemainder(
                     poseStack,
                     vertices,
@@ -110,6 +138,26 @@ public final class PipeCoverRenderer<T extends BlockEntity>
                     half,
                     base,
                     packedLight)) {
+                continue;
+            }
+            if (renderPlate(
+                    poseStack,
+                    vertices,
+                    cover,
+                    face,
+                    half,
+                    packedLight,
+                    blockEntity)) {
+                continue;
+            }
+            if (renderDecorative(
+                    poseStack,
+                    vertices,
+                    cover,
+                    face,
+                    half,
+                    packedLight,
+                    blockEntity)) {
                 continue;
             }
             pose(poseStack, vertices, face, half, 0.0f, base, packedLight);
@@ -126,6 +174,93 @@ public final class PipeCoverRenderer<T extends BlockEntity>
                     sprite(overlay),
                     packedLight);
         }
+    }
+
+    private static boolean renderPlate(
+            PoseStack poseStack,
+            VertexConsumer vertices,
+            PipeCover cover,
+            Direction face,
+            float half,
+            int packedLight,
+            BlockEntity blockEntity) {
+        if (!PlateCovers.isPlate(cover)) {
+            return false;
+        }
+        ItemStack stack = CoverTextureCycle.plateSkin(cover);
+        if (stack.isEmpty()) {
+            return false;
+        }
+        BakedModel model = Minecraft.getInstance()
+                .getItemRenderer()
+                .getModel(stack, blockEntity.getLevel(), null, 0);
+        TextureAtlasSprite sprite = model.getParticleIcon();
+        int color = MaterialItemColor.color(stack, 0);
+        pose(
+                poseStack,
+                vertices,
+                face,
+                half,
+                0.0f,
+                sprite,
+                packedLight,
+                color);
+        return true;
+    }
+
+    private static boolean renderDecorative(
+            PoseStack poseStack,
+            VertexConsumer vertices,
+            PipeCover cover,
+            Direction face,
+            float half,
+            int packedLight,
+            BlockEntity blockEntity) {
+        if (!DecorativeCovers.isDecorative(cover)) {
+            return false;
+        }
+        ItemStack stack = DecorativeCovers.stackFor(cover);
+        if (stack.isEmpty()) {
+            return false;
+        }
+        BakedModel model = Minecraft.getInstance()
+                .getItemRenderer()
+                .getModel(stack, blockEntity.getLevel(), null, 0);
+        TextureAtlasSprite sprite = model.getParticleIcon();
+        pose(
+                poseStack,
+                vertices,
+                face,
+                half,
+                0.0f,
+                sprite,
+                packedLight);
+        return true;
+    }
+
+    private static boolean renderWireTorch(
+            PoseStack poseStack,
+            VertexConsumer vertices,
+            PipeCover cover,
+            Direction face,
+            int packedLight) {
+        if (!MachineCoverKinds.isWireOnlyCover(cover.definitionId())) {
+            return false;
+        }
+        String folder = cover.definitionId().getPath();
+        String state = cover.config().visual() == 0 ? "on" : "off";
+        poseCoverSlab(
+                poseStack,
+                vertices,
+                face,
+                1.0f / 16.0f,
+                0.0f,
+                0.5f,
+                sprite(coverTexture(folder + "/" + state, "front")),
+                sprite(coverTexture(folder + "/" + state, "side")),
+                sprite(coverTexture(folder + "/" + state, "side")),
+                packedLight);
+        return true;
     }
 
     private static boolean renderRemainder(
@@ -225,16 +360,16 @@ public final class PipeCoverRenderer<T extends BlockEntity>
                     packedLight);
             return true;
         }
-        if ("vent".equals(path)) {
+        if ("vent".equals(path) || "cover_drain".equals(path)) {
             poseCoverSlab(
                     poseStack,
                     vertices,
                     face,
                     half,
                     0.0f,
-                    sprite(coverTexture(path, MachineCoverVisuals.ventFront())),
-                    sprite(coverTexture(path, MachineCoverVisuals.ventBack())),
-                    sprite(coverTexture(path, MachineCoverVisuals.ventSides())),
+                    sprite(coverTexture(path, "front")),
+                    sprite(coverTexture(path, "back")),
+                    sprite(coverTexture(path, "sides")),
                     packedLight);
             return true;
         }
@@ -255,9 +390,20 @@ public final class PipeCoverRenderer<T extends BlockEntity>
 
     private static ResourceLocation remainderOverlay(PipeCover cover) {
         String path = cover.definitionId().getPath();
-        if ("cover_blank".equals(path)) {
+        if ("cover_blank".equals(path) || "cover_crafting".equals(path)) {
             int frame = Math.floorMod(cover.config().visual(), 6);
             return coverTexture(path, Integer.toString(frame));
+        }
+        if ("cover_warning".equals(path)) {
+            int frame = Math.floorMod(cover.config().visual(), 20);
+            return coverTexture(path, Integer.toString(frame));
+        }
+        if ("filter_fluid".equals(path)) {
+            return coverTexture(
+                    path,
+                    CoverItemFilters.inverted(cover.config())
+                            ? "inverted"
+                            : "normal");
         }
         if ("redstone_conductor_in".equals(path)) {
             return coverTexture(path, "in");
@@ -346,8 +492,32 @@ public final class PipeCoverRenderer<T extends BlockEntity>
             TextureAtlasSprite back,
             TextureAtlasSprite sides,
             int light) {
+        poseCoverSlab(
+                poseStack,
+                vertices,
+                face,
+                half,
+                extraInset,
+                COVER_THICKNESS,
+                front,
+                back,
+                sides,
+                light);
+    }
+
+    private static void poseCoverSlab(
+            PoseStack poseStack,
+            VertexConsumer vertices,
+            Direction face,
+            float half,
+            float extraInset,
+            float thickness,
+            TextureAtlasSprite front,
+            TextureAtlasSprite back,
+            TextureAtlasSprite sides,
+            int light) {
         float outer = INSET + extraInset;
-        float inner = outer + COVER_THICKNESS;
+        float inner = outer + thickness;
         float min = 0.5f - half;
         float max = 0.5f + half;
         Matrix4f pose = poseStack.last().pose();
@@ -453,43 +623,55 @@ public final class PipeCoverRenderer<T extends BlockEntity>
             float extraInset,
             TextureAtlasSprite sprite,
             int light) {
+        pose(poseStack, vertices, face, half, extraInset, sprite, light, 0xFFFFFFFF);
+    }
+
+    private static void pose(
+            PoseStack poseStack,
+            VertexConsumer vertices,
+            Direction face,
+            float half,
+            float extraInset,
+            TextureAtlasSprite sprite,
+            int light,
+            int color) {
         float inset = INSET + extraInset;
         float min = 0.5f - half;
         float max = 0.5f + half;
         Matrix4f pose = poseStack.last().pose();
         switch (face) {
             case NORTH -> quad(
-                    poseStack, vertices, pose, sprite, light, face,
+                    poseStack, vertices, pose, sprite, light, face, color,
                     max, min, inset,
                     max, max, inset,
                     min, max, inset,
                     min, min, inset);
             case SOUTH -> quad(
-                    poseStack, vertices, pose, sprite, light, face,
+                    poseStack, vertices, pose, sprite, light, face, color,
                     min, min, 1.0f - inset,
                     min, max, 1.0f - inset,
                     max, max, 1.0f - inset,
                     max, min, 1.0f - inset);
             case WEST -> quad(
-                    poseStack, vertices, pose, sprite, light, face,
+                    poseStack, vertices, pose, sprite, light, face, color,
                     inset, min, min,
                     inset, max, min,
                     inset, max, max,
                     inset, min, max);
             case EAST -> quad(
-                    poseStack, vertices, pose, sprite, light, face,
+                    poseStack, vertices, pose, sprite, light, face, color,
                     1.0f - inset, min, max,
                     1.0f - inset, max, max,
                     1.0f - inset, max, min,
                     1.0f - inset, min, min);
             case DOWN -> quad(
-                    poseStack, vertices, pose, sprite, light, face,
+                    poseStack, vertices, pose, sprite, light, face, color,
                     min, inset, max,
                     max, inset, max,
                     max, inset, min,
                     min, inset, min);
             case UP -> quad(
-                    poseStack, vertices, pose, sprite, light, face,
+                    poseStack, vertices, pose, sprite, light, face, color,
                     min, 1.0f - inset, min,
                     max, 1.0f - inset, min,
                     max, 1.0f - inset, max,
@@ -508,10 +690,55 @@ public final class PipeCoverRenderer<T extends BlockEntity>
             float x2, float y2, float z2,
             float x3, float y3, float z3,
             float x4, float y4, float z4) {
-        vertex(vertices, poseStack, pose, x1, y1, z1, sprite.getU0(), sprite.getV1(), light, face);
-        vertex(vertices, poseStack, pose, x2, y2, z2, sprite.getU0(), sprite.getV0(), light, face);
-        vertex(vertices, poseStack, pose, x3, y3, z3, sprite.getU1(), sprite.getV0(), light, face);
-        vertex(vertices, poseStack, pose, x4, y4, z4, sprite.getU1(), sprite.getV1(), light, face);
+        quad(
+                poseStack, vertices, pose, sprite, light, face, 0xFFFFFFFF,
+                x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4);
+    }
+
+    private static void quad(
+            PoseStack poseStack,
+            VertexConsumer vertices,
+            Matrix4f pose,
+            TextureAtlasSprite sprite,
+            int light,
+            Direction face,
+            int color,
+            float x1, float y1, float z1,
+            float x2, float y2, float z2,
+            float x3, float y3, float z3,
+            float x4, float y4, float z4) {
+        vertex(vertices, poseStack, pose, x1, y1, z1, sprite.getU0(), sprite.getV1(), light, face, color);
+        vertex(vertices, poseStack, pose, x2, y2, z2, sprite.getU0(), sprite.getV0(), light, face, color);
+        vertex(vertices, poseStack, pose, x3, y3, z3, sprite.getU1(), sprite.getV0(), light, face, color);
+        vertex(vertices, poseStack, pose, x4, y4, z4, sprite.getU1(), sprite.getV1(), light, face, color);
+    }
+
+    private static void vertex(
+            VertexConsumer vertices,
+            PoseStack poseStack,
+            Matrix4f pose,
+            float x,
+            float y,
+            float z,
+            float u,
+            float v,
+            int light,
+            Direction face,
+            int color) {
+        vertices.addVertex(pose, x, y, z)
+                .setColor(
+                        (color >> 16) & 0xFF,
+                        (color >> 8) & 0xFF,
+                        color & 0xFF,
+                        (color >> 24) & 0xFF)
+                .setUv(u, v)
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(light)
+                .setNormal(
+                        poseStack.last(),
+                        face.getStepX(),
+                        face.getStepY(),
+                        face.getStepZ());
     }
 
     private static void vertex(
@@ -525,15 +752,8 @@ public final class PipeCoverRenderer<T extends BlockEntity>
             float v,
             int light,
             Direction face) {
-        vertices.addVertex(pose, x, y, z)
-                .setColor(255, 255, 255, 255)
-                .setUv(u, v)
-                .setOverlay(OverlayTexture.NO_OVERLAY)
-                .setLight(light)
-                .setNormal(
-                        poseStack.last(),
-                        face.getStepX(),
-                        face.getStepY(),
-                        face.getStepZ());
+        vertex(
+                vertices, poseStack, pose, x, y, z, u, v, light, face,
+                0xFFFFFFFF);
     }
 }

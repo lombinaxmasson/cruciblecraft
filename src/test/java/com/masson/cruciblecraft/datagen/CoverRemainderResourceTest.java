@@ -60,7 +60,7 @@ class CoverRemainderResourceTest {
         JsonObject manifest = json(Path.of(
                 "src/main/resources/assets/cruciblecraft/"
                         + "gt6_machine_covers_art_manifest.json"));
-        assertEquals(24, manifest.getAsJsonArray("entries").size());
+        assertEquals(28, manifest.getAsJsonArray("entries").size());
         assertTrue(manifest.getAsJsonArray("block_entries").size() > 0);
         assertEquals(
                 "936083c247a70b1bbc5f19996a83d75c27d196e2",
@@ -91,7 +91,7 @@ class CoverRemainderResourceTest {
         assertFalse(serialized.contains("programmed_circuit"));
         assertTrue(serialized.contains("aluminium/plate"));
         assertTrue(serialized.contains("aluminium/screw"));
-        assertTrue(serialized.contains("smithing_hammer"));
+        assertTrue(serialized.contains("crafting_tools/hammer"));
         assertTrue(serialized.contains("material_screwdriver"));
     }
 

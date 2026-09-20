@@ -61,6 +61,14 @@ def _blocked(gt6: str, reason: str) -> dict[str, str]:
     return {"cc": "", "gt6": gt6, "reason": reason, "status": "blocked"}
 
 
+def _il(token: str) -> dict[str, str]:
+    result = resolve(token)
+    item = result.get("item")
+    if result.get("status") == "ok" and item:
+        return _ok(token, str(item))
+    return _blocked(token, str(result.get("status") or "unmapped"))
+
+
 def _form(token: str, *, prefer: tuple[str, ...] = ()) -> dict[str, str]:
     result = resolve(token)
     status = result.get("status")
@@ -414,24 +422,14 @@ def d0_nanofab() -> dict[str, Any]:
         (20445, "Ti", 5),
     ):
         slots = {
-            "argon_laser": _blocked(
-                "IL.Comp_Laser_Gas_Ar",
-                "laser gas component missing; Geiger/Canner Ar cell is not this slot",
-            ),
+            "argon_laser": _il("IL.Comp_Laser_Gas_Ar"),
             "casing": _form(f"OP.casingMachine(MT.{mt})"),
             "circuit": _circuit(6),
-            "emitter": _blocked(
-                f"IL.EMITTERS[{tier}]", "compact emitter module missing"
-            ),
-            "krypton_laser": _blocked("IL.Comp_Laser_Gas_Kr", "laser gas component missing"),
-            "sapphire_processor": _blocked(
-                "IL.Processor_Crystal_Sapphire",
-                "sapphire crystal processor missing",
-            ),
-            "sensor": _blocked(
-                f"IL.SENSORS[{tier}]", "compact sensor module missing"
-            ),
-            "xenon_laser": _blocked("IL.Comp_Laser_Gas_Xe", "laser gas component missing"),
+            "emitter": _il(f"IL.EMITTERS[{tier}]"),
+            "krypton_laser": _il("IL.Comp_Laser_Gas_Kr"),
+            "sapphire_processor": _il("IL.Processor_Crystal_Sapphire"),
+            "sensor": _il(f"IL.SENSORS[{tier}]"),
+            "xenon_laser": _il("IL.Comp_Laser_Gas_Xe"),
         }
         hosts.append({"host": host, **slots, "status": _host_status(slots)})
     return _matrix("machines/nanofab", ["KAX", "ZMY", "CSC"], hosts, "prep_runtime_ready")

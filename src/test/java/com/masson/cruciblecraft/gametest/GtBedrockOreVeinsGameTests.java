@@ -26,6 +26,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Pig;
@@ -244,6 +245,11 @@ public final class GtBedrockOreVeinsGameTests {
                 com.masson.cruciblecraft.content.item.GtIndicatorFlowerItem.flowerOf(stacked)
                         == IndicatorFlower.PANDANUS_CANDELABRUM,
                 "picked indicator flowers must keep BLOCK_STATE for item models");
+        helper.assertTrue(
+                stacked.getHoverName().getContents() instanceof TranslatableContents name
+                        && name.getKey().equals(
+                                "block.cruciblecraft.gt_indicator_flower.pandanus_candelabrum"),
+                "Jade picked name must be the specific flower, not gt_indicator_flower");
         helper.succeed();
     }
 

@@ -726,6 +726,56 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             next_unassigned=True,
             owns_families=0,
         ),
+        "runtime/cooler": WaveCloseoutSpec(
+            wave_slug="runtime/cooler",
+            census=WAVES_ROOT / "runtime" / "cooler" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "cooler" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "cooler" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "cooler" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                io.ROOT
+                / "src/test/java/com/masson/cruciblecraft/gametest"
+                / "EnergyCoolersGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "cooler" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
+        ),
+        "runtime/flux-converters": WaveCloseoutSpec(
+            wave_slug="runtime/flux-converters",
+            census=WAVES_ROOT / "runtime" / "flux-converters" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "flux-converters" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "flux-converters" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "flux-converters" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                io.ROOT
+                / "src/test/java/com/masson/cruciblecraft/gametest"
+                / "EnergyFluxConvertersGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "flux-converters" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
+        ),
         "runtime/fission-observation-safety": WaveCloseoutSpec(
             wave_slug="runtime/fission-observation-safety",
             census=WAVES_ROOT / "runtime" / "fission-observation-safety" / "census_delta.json",

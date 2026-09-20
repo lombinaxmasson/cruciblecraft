@@ -20,6 +20,7 @@ import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
+import com.masson.cruciblecraft.content.block.MultiblockPortBlocks;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
@@ -357,10 +358,8 @@ public final class ScaleHarness {
                         helper.setBlock(
                                 structure.worldPosition(
                                         controller, FACING, element.offset()),
-                                predicate.port().orElseThrow()
-                                        == MultiblockStructureDefinition.PortType.ENERGY_INPUT
-                                        ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                        : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                                MultiblockPortBlocks.of(
+                                        predicate.port().orElseThrow()));
                     });
         }
         identityMultiblocks = scenario.multiblocks();

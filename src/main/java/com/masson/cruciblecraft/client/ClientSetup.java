@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.client.color.BathingPotColor;
 import com.masson.cruciblecraft.client.color.BedrockOreColor;
 import com.masson.cruciblecraft.client.color.CellItemColor;
 import com.masson.cruciblecraft.client.color.ElectricWireRemainderColor;
+import com.masson.cruciblecraft.client.color.DistillationTowerPartColor;
 import com.masson.cruciblecraft.client.color.FoundryBlockColor;
 import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
 import com.masson.cruciblecraft.client.color.GtBushColor;
@@ -167,6 +168,7 @@ public class ClientSetup {
                 ModItems.MATERIAL_ROLLING_PIN.get(),
                 ModItems.MATERIAL_FLINT_AND_TINDER.get(),
                 ModItems.MATERIAL_POCKET_MULTITOOL.get()));
+        ModItems.electricTools().forEach(holder -> materialItems.add(holder.get()));
         com.masson.cruciblecraft.material.MaterialCatalog.values().forEach(material ->
                 material.formItems().keySet().forEach(form ->
                         MaterialLookup.item(material.id(), form).ifPresent(materialItems::add)));
@@ -205,6 +207,11 @@ public class ClientSetup {
                     ElectricWireRemainderColor::color,
                     remainderWires.toArray(Item[]::new));
         }
+        event.register(
+                DistillationTowerPartColor::itemColor,
+                java.util.Arrays.stream(DistillationTowerPartColor.tintedBlocks())
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
         event.register(
                 LargeCrucibleBlockColor::itemColor,
                 java.util.Arrays.stream(LargeCrucibleBlockColor.tintedBlocks())
@@ -336,6 +343,9 @@ public class ClientSetup {
                                 holder.get())
                         .toArray(net.minecraft.world.level.block.Block[]::new));
         event.register(
+                DistillationTowerPartColor::blockColor,
+                DistillationTowerPartColor.tintedBlocks());
+        event.register(
                 LargeCrucibleBlockColor::blockColor,
                 LargeCrucibleBlockColor.tintedBlocks());
         event.register(AnvilBlockColor::blockColor, AnvilBlockColor.tintedBlocks());
@@ -417,12 +427,19 @@ public class ClientSetup {
         event.registerBlockEntityRenderer(
                 ModBlockEntities.FLUID_PIPE.get(), PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
+                ModBlockEntities.REDSTONE_WIRE.get(), PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.CABLE.get(), PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
                 ModBlockEntities.PROCESSING_MACHINE.get(),
                 PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.CRUSHER.get(), PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.DISTILLATION_TOWER.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.CRYO_DISTILLATION_TOWER.get(),
                 PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.LARGE_CENTRIFUGE.get(),
@@ -440,8 +457,15 @@ public class ClientSetup {
                 ModBlockEntities.ELECTRIC_ENGINE.get(),
                 PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
+                ModBlockEntities.HOPPER.get(), PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.TRANSFORMER.get(), PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
                 ModBlockEntities.BATTERY.get(),
                 com.masson.cruciblecraft.energy.battery.BatteryRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.MULTIBLOCK_PORT.get(),
+                PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.MASS_STORAGE.get(), MassStorageRenderer::new);
         event.registerBlockEntityRenderer(

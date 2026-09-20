@@ -37,16 +37,47 @@
         "tools/waves/prep/gt6-mte-inplace-acquisition/contract.json",
         "tools/waves/content/gt6-mte-inplace-acquisition/gametest_receipt.json"
       ]
+    },
+    {
+      "blocker_ids": [
+        "cover/torch-repeater-wire-host",
+        "cover/redstone-wire-covers"
+      ],
+      "resolution": "GT6 裸线继承绝缘红石线类，火把/中继器/空白盖板贴到全部六种红石连接件上：火把是非门、中继器是缓冲门，贴上后断开该面且剪线钳不能再打开。EU 电缆盖板仍不在本范围。",
+      "authority": [
+        "tools/capabilities/logistics/cover-remainder/capability.json",
+        "tools/capabilities/content/mte-redstone-wire/capability.json",
+        "src/main/java/com/masson/cruciblecraft/content/redstonewire/RedstoneWireCovers.java"
+      ]
+    },
+    {
+      "blocker_ids": [
+        "obtain/nanofab-hosts"
+      ],
+      "resolution": "machines/nanofab 把五档主机获得格落到 GT6 KAX/ZMY/CSC：Ar/Kr/Xe 激光气体件、蓝宝石晶体处理器、EMITTERS[1-5]、SENSORS[1-5]。overflow 57 行仍是规模上下文。",
+      "authority": [
+        "tools/capabilities/machines/nanofab/capability.json",
+        "tools/waves/machines/nanofab/d0_obtain_matrix.json",
+        "src/main/resources/data/cruciblecraft/technological_parts.json"
+      ]
+    },
+    {
+      "blocker_ids": [
+        "identity/hsla-ungated-gauges",
+        "identity/connector-art-keep-distinct-dummies"
+      ],
+      "resolution": "Smelter/bath leftover connector CatalogNamedItem dummies with gated CableBlock or PipeBlock hosts were folded onto those live ids. Gold/lead 3x/5x/6x had live hosts; loot crate and decorative panels stay dummy.",
+      "authority": [
+        "tools/gt6_connector_live_host_dummy_fold.py",
+        "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json",
+        "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
+      ]
     }
   ],
   "recommended_order": [
     {
       "batch_id": "batch/identity-eu-gauge-closure",
-      "basis": "EU dummy catalog 与 HSLA hsla_steel 别名仍需审计；Loader id 折回已关闭。"
-    },
-    {
-      "batch_id": "batch/machines-nanofab-host-closure",
-      "basis": "5 个已冻结 host 是有界的机器获得格目标；57 条 overflow 只保留为规模上下文。"
+      "basis": "EU dummy catalog leftover rows still need audit; HSLA alias dummies and connector duals with live hosts are folded."
     },
     {
       "batch_id": "batch/machines-injector-host-closure",
@@ -59,10 +90,6 @@
     {
       "batch_id": "batch/fluid-gt-tree-identity",
       "basis": "2 个缺失流体共享 GT 树 worldgen owner 与验收面。"
-    },
-    {
-      "batch_id": "batch/cover-redstone-host-audit",
-      "basis": "2 个 cover host 共享红石宿主审计；无数量的 policy 轨道保持独立。"
     }
   ],
   "batches": [
@@ -74,10 +101,6 @@
         {
           "blocker_id": "identity/eu-blocked-gauges",
           "role": "primary"
-        },
-        {
-          "blocker_id": "identity/hsla-ungated-gauges",
-          "role": "audit_only"
         }
       ],
       "production_lock_policy": "separate_subtask_validation",
@@ -86,41 +109,11 @@
         "tools/waves/content/gt6-eu-missing-wire-gauges-runtime/production_lock.json",
         "tools/waves/content/gt6-connector-alias-repair/production_lock.json"
       ],
-      "excluded_blocker_ids": [
-        "identity/connector-art-keep-distinct-dummies"
-      ],
+      "excluded_blocker_ids": [],
       "boundary_notes": [
         "addElectricWires 配方 Loader id 已 320/320 折完；本批不再以 61 为待办。",
         "石墨烯/超导 EU dummy catalog 行不是删除集合。",
-        "HSLA alias / dummy catalog 是独立子任务。",
-        "连接件美术 dummy 不是 runtime identity 工作。"
-      ],
-      "does_not_merge_counts": true,
-      "auto_promote_player_complete": false
-    },
-    {
-      "id": "batch/machines-nanofab-host-closure",
-      "title": "纳米加工机主机获得格收口",
-      "kind": "machine_closure",
-      "members": [
-        {
-          "blocker_id": "obtain/nanofab-hosts",
-          "role": "primary"
-        },
-        {
-          "blocker_id": "recipe/nanofab-overflow",
-          "role": "scale_context"
-        }
-      ],
-      "production_lock_policy": "host_lock_then_overflow_recompute",
-      "production_locks": [
-        "tools/waves/machines/nanofab/production_lock.json"
-      ],
-      "excluded_blocker_ids": [],
-      "boundary_notes": [
-        "5 个 host 是实现目标。",
-        "57 条 overflow 是重算上下文，不承诺顺便清掉全部行。",
-        "不得用 programmed_circuit 或其它零件替代缺失的激光气体 / 蓝宝石形态。"
+        "HSLA alias dummies and connector duals with live hosts are already folded."
       ],
       "does_not_merge_counts": true,
       "auto_promote_player_complete": false
@@ -204,33 +197,6 @@
         "两个 identity 都属于 worldgen/gt-trees owner 及其 freeze / drill source path。",
         "Latex 不是 Resin_Rubber 的 stand-in，另一种树液也不是 Sap_Maple 的 stand-in。",
         "印刷机染料与熔炉油 / XP 保持在 GT 树批次之外。"
-      ],
-      "does_not_merge_counts": true,
-      "auto_promote_player_complete": false
-    },
-    {
-      "id": "batch/cover-redstone-host-audit",
-      "title": "红石盖板宿主审计",
-      "kind": "shared_cover_host_audit",
-      "members": [
-        {
-          "blocker_id": "cover/torch-repeater-wire-host",
-          "role": "primary"
-        },
-        {
-          "blocker_id": "cover/redstone-wire-covers",
-          "role": "audit_only"
-        }
-      ],
-      "production_lock_policy": "separate_host_policy_validation",
-      "production_locks": [],
-      "excluded_blocker_ids": [
-        "identity/redstone-not-eu-or-pipe"
-      ],
-      "boundary_notes": [
-        "普通 redstone-wire 与 EU-cable cover policy 要与两个 torch/repeater host 分开审计。",
-        "redstone-not-eu-or-pipe 是 out_of_scope 不变量，不是 missing host 任务。",
-        "不得从已落地的 insulated-redstone identity extras 推导 cover hosting。"
       ],
       "does_not_merge_counts": true,
       "auto_promote_player_complete": false

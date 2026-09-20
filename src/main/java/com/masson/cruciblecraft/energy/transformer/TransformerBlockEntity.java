@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
+import com.masson.cruciblecraft.content.blockentity.MachineCoverHostBlockEntity;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -18,14 +19,13 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
  * EU-only bidirectional transformer. Front is HV in by default; wrench
  * reverse swaps I/O and clears the buffer.
  */
-public final class TransformerBlockEntity extends BlockEntity
+public final class TransformerBlockEntity extends MachineCoverHostBlockEntity
         implements IEnergyHandler {
     private final EnergyTransformerProfile profile;
     private final TransformerEnergyStore store;
@@ -103,6 +103,7 @@ public final class TransformerBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             TransformerBlockEntity transformer) {
+        transformer.tickCovers();
         boolean inserted = transformer.insertedThisTick;
         transformer.insertedThisTick = false;
         long moved = EnergyEmitter.emit(
@@ -135,7 +136,7 @@ public final class TransformerBlockEntity extends BlockEntity
             return 0L;
         }
         return outputBudget.claim(
-                gameTime(),
+                budgetGameTime(),
                 profile.packetMultiplier(store.reversed()),
                 1L,
                 true) > 0L
@@ -172,7 +173,7 @@ public final class TransformerBlockEntity extends BlockEntity
             return 0L;
         }
         long limit = profile.packetMultiplier(store.reversed());
-        long permitted = outputBudget.claim(gameTime(), limit, maxAmount, true);
+        long permitted = outputBudget.claim(budgetGameTime(), limit, maxAmount, true);
         long available = store.extract(size, permitted, true);
         boolean effectiveSimulation =
                 simulate || level == null || level.isClientSide;
@@ -180,7 +181,7 @@ public final class TransformerBlockEntity extends BlockEntity
             return available;
         }
         long claimed = outputBudget.claim(
-                gameTime(), limit, available, false);
+                budgetGameTime(), limit, available, false);
         if (claimed != available) {
             throw new IllegalStateException(
                     "Transformer output budget changed after simulation");
@@ -202,6 +203,21 @@ public final class TransformerBlockEntity extends BlockEntity
     @Override
     public long capacity(EnergyType type) {
         return type == EnergyType.ELECTRIC ? store.capacity() : 0L;
+    }
+
+    @Override
+    public long energyStored() {
+        return store.stored();
+    }
+
+    @Override
+    public long energyCapacity() {
+        return store.capacity();
+    }
+
+    @Override
+    public boolean runningActively() {
+        return activity.active();
     }
 
     @Override
@@ -233,7 +249,7 @@ public final class TransformerBlockEntity extends BlockEntity
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag tag = new CompoundTag();
+        CompoundTag tag = super.getUpdateTag(registries);
         tag.putLong("gt.energy", store.stored());
         tag.putBoolean("gt.reversed", store.reversed());
         tag.putBoolean("gt.active", activity.active());
@@ -244,6 +260,7 @@ public final class TransformerBlockEntity extends BlockEntity
     @Override
     public void handleUpdateTag(
             CompoundTag tag, HolderLookup.Provider registries) {
+        super.handleUpdateTag(tag, registries);
         store.restore(
                 tag.getLong("gt.energy"),
                 tag.getBoolean("gt.reversed"));
@@ -291,7 +308,7 @@ public final class TransformerBlockEntity extends BlockEntity
                 : Direction.UP;
     }
 
-    private long gameTime() {
+    private long budgetGameTime() {
         if (level == null) {
             outputBudget.reset();
             return 0L;

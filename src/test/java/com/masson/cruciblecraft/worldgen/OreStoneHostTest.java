@@ -70,11 +70,28 @@ class OreStoneHostTest {
             assertTrue(Files.exists(stone), stone.toString());
             assertTrue(Files.exists(cobble), cobble.toString());
         }
-        for (Path state : java.util.List.of(HOSTED_STATE, SMALL_STATE, BROKEN_STATE)) {
+        for (Path state : java.util.List.of(HOSTED_STATE, BROKEN_STATE)) {
             JsonObject variants = JsonParser.parseString(Files.readString(state))
                     .getAsJsonObject()
                     .getAsJsonObject("variants");
             assertEquals(expected, variants.keySet(), state.toString());
+        }
+        JsonObject smallVariants = JsonParser.parseString(Files.readString(SMALL_STATE))
+                .getAsJsonObject()
+                .getAsJsonObject("variants");
+        assertEquals(expected, smallVariants.keySet(), SMALL_STATE.toString());
+        for (OreStoneHost host : OreStoneHost.values()) {
+            Path small = Path.of(
+                    "src/main/resources/assets/cruciblecraft/models/block/ore_small_host/"
+                            + host.getSerializedName()
+                            + ".json");
+            assertTrue(Files.exists(small), small.toString());
+            assertEquals(
+                    "cruciblecraft:block/ore_small_host/" + host.getSerializedName(),
+                    smallVariants
+                            .getAsJsonObject("host=" + host.getSerializedName())
+                            .get("model")
+                            .getAsString());
         }
     }
 

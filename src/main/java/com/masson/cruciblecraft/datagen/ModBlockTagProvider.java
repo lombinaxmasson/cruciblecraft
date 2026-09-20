@@ -47,8 +47,10 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.MULTIBLOCK_CASING.getKey(),
                 ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.getKey(),
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.getKey(),
+                ModBlocks.MULTIBLOCK_FLUID_OUT_PORT.getKey(),
                 ModBlocks.LARGE_CENTRIFUGE.getKey(),
                 ModBlocks.DISTILLATION_TOWER.getKey(),
+                ModBlocks.CRYO_DISTILLATION_TOWER.getKey(),
                 ModBlocks.LARGE_BOILER.getKey(),
                 ModBlocks.TANK_3X3X3.getKey(),
                 ModBlocks.LARGE_CRUCIBLE.getKey(),
@@ -100,6 +102,15 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 .sorted(Comparator.comparing(block -> block.getId().toString()))
                 .forEach(block -> pickaxe.add(block.getKey()));
         ModBlocks.longDistanceTransformerBlocksById().values().stream()
+                .sorted(Comparator.comparing(block -> block.getId().toString()))
+                .forEach(block -> pickaxe.add(block.getKey()));
+        ModBlocks.heatExchangerBlocksById().values().stream()
+                .sorted(Comparator.comparing(block -> block.getId().toString()))
+                .forEach(block -> pickaxe.add(block.getKey()));
+        ModBlocks.coolerBlocksById().values().stream()
+                .sorted(Comparator.comparing(block -> block.getId().toString()))
+                .forEach(block -> pickaxe.add(block.getKey()));
+        ModBlocks.fluxBlocksById().values().stream()
                 .sorted(Comparator.comparing(block -> block.getId().toString()))
                 .forEach(block -> pickaxe.add(block.getKey()));
         ModBlocks.longDistanceWireBlocksById().values().stream()
@@ -223,6 +234,9 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             }
         });
         hoe.add(ModBlocks.GT_BUSH.getKey());
+        var towerControllers = tag(ModBlockTags.DISTILLATION_TOWER_CONTROLLERS);
+        towerControllers.add(ModBlocks.DISTILLATION_TOWER.getKey());
+        towerControllers.add(ModBlocks.CRYO_DISTILLATION_TOWER.getKey());
         var largeControllers = tag(ModBlockTags.LARGE_CRUCIBLE_CONTROLLERS);
         largeControllers.add(ModBlocks.LARGE_CRUCIBLE.getKey());
         var largeWalls = tag(ModBlockTags.LARGE_CRUCIBLE_WALLS);

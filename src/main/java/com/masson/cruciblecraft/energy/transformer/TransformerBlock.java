@@ -6,17 +6,23 @@ import com.masson.cruciblecraft.api.tool.ToolAction;
 import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBlockInteraction;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverCollision;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverInstall;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -32,6 +38,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
  * GT6 electric transformer: 6-way facing, monkey wrench reverses, no wrench
@@ -95,11 +103,48 @@ public final class TransformerBlock extends Block
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        return ToolClick.useItemOn(stack, level, player, hand, hit);
+        ItemInteractionResult tool = ToolClick.useItemOn(
+                stack, level, player, hand, hit);
+        if (tool.consumesAction()) {
+            return tool;
+        }
+        if (CoverInstall.tryPlace(
+                level, pos, hit.getDirection(), stack, player)) {
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        if (level.getBlockEntity(pos) instanceof MachineCoverHost machine
+                && MachineCoverBlockInteraction.rightClick(
+                        machine, level, pos, player, hit)) {
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        return tool;
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            BlockHitResult hit) {
+        if (level.getBlockEntity(pos) instanceof MachineCoverHost machine
+                && MachineCoverBlockInteraction.rightClick(
+                        machine, level, pos, player, hit)) {
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.PASS;
     }
 
     @Override
     public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (context.getLevel().getBlockEntity(context.getClickedPos())
+                instanceof MachineCoverHost machine) {
+            ToolResult cover = MachineCoverBlockInteraction.useTool(
+                    machine, action, context);
+            if (cover != ToolResult.PASS) {
+                return cover;
+            }
+        }
         if (action != ToolAction.MONKEY_WRENCH) {
             return ToolResult.PASS;
         }
@@ -120,6 +165,63 @@ public final class TransformerBlock extends Block
             ToolClick.hurt(context);
         }
         return ToolResult.SUCCESS;
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            CollisionContext context) {
+        return CoverCollision.union(
+                super.getCollisionShape(state, level, pos, context),
+                level.getBlockEntity(pos));
+    }
+
+    @Override
+    protected boolean isSignalSource(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected int getSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        return MachineCoverBlockInteraction.weakRedstone(level, pos, direction);
+    }
+
+    @Override
+    protected int getDirectSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        return MachineCoverBlockInteraction.directRedstone(level, pos, direction);
+    }
+
+    @Override
+    public boolean canConnectRedstone(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            @Nullable Direction direction) {
+        return MachineCoverBlockInteraction.canConnectRedstone(
+                level, pos, direction);
+    }
+
+    @Override
+    protected void onRemove(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            BlockState next,
+            boolean moved) {
+        if (state.getBlock() != next.getBlock()) {
+            MachineCoverBlockInteraction.dropCovers(level, pos);
+        }
+        super.onRemove(state, level, pos, next, moved);
     }
 
     @Override

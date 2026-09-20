@@ -1,0 +1,433 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "machines": [
+    {
+      "id": "cruciblecraft:thermoelectric_cooler_lv",
+      "source_id": 10161,
+      "source_line": 985,
+      "gt6_class": "MultiTileEntityCoolerElectric",
+      "kind": "electric",
+      "voltage": "lv",
+      "material": "steel_galvanized",
+      "nbt_input": 32,
+      "nbt_output": 8,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Thermoelectric Cooler (LV)",
+      "lang_zh": "热电冷却器（低压）",
+      "texture_folder": "cryo_electric",
+      "host_id": null,
+      "recipe": {
+        "pattern": [
+          "WPw",
+          "CMC",
+          "xPW"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing",
+            "material": "steel_galvanized"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "tin"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "silicon"
+          },
+          "C": {
+            "prefix": "plate",
+            "material": "copper",
+            "family": "ANY.Cu"
+          }
+        },
+        "catalysts": [
+          "w",
+          "x"
+        ]
+      }
+    },
+    {
+      "id": "cruciblecraft:thermoelectric_cooler_mv",
+      "source_id": 10162,
+      "source_line": 986,
+      "gt6_class": "MultiTileEntityCoolerElectric",
+      "kind": "electric",
+      "voltage": "mv",
+      "material": "aluminium",
+      "nbt_input": 128,
+      "nbt_output": 32,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Thermoelectric Cooler (MV)",
+      "lang_zh": "热电冷却器（中压）",
+      "texture_folder": "cryo_electric",
+      "host_id": null,
+      "recipe": {
+        "pattern": [
+          "WPw",
+          "CMC",
+          "xPW"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing",
+            "material": "aluminium"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "copper",
+            "family": "ANY.Cu"
+          },
+          "P": {
+            "prefix": "double_plate",
+            "material": "silicon"
+          },
+          "C": {
+            "prefix": "double_plate",
+            "material": "copper",
+            "family": "ANY.Cu"
+          }
+        },
+        "catalysts": [
+          "w",
+          "x"
+        ]
+      }
+    },
+    {
+      "id": "cruciblecraft:thermoelectric_cooler_hv",
+      "source_id": 10163,
+      "source_line": 987,
+      "gt6_class": "MultiTileEntityCoolerElectric",
+      "kind": "electric",
+      "voltage": "hv",
+      "material": "stainless_steel",
+      "nbt_input": 512,
+      "nbt_output": 128,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Thermoelectric Cooler (HV)",
+      "lang_zh": "热电冷却器（高压）",
+      "texture_folder": "cryo_electric",
+      "host_id": null,
+      "recipe": {
+        "pattern": [
+          "WPw",
+          "CMC",
+          "xPW"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing",
+            "material": "stainless_steel"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "gold"
+          },
+          "P": {
+            "prefix": "triple_plate",
+            "material": "silicon"
+          },
+          "C": {
+            "prefix": "triple_plate",
+            "material": "copper",
+            "family": "ANY.Cu"
+          }
+        },
+        "catalysts": [
+          "w",
+          "x"
+        ]
+      }
+    },
+    {
+      "id": "cruciblecraft:thermoelectric_cooler_ev",
+      "source_id": 10164,
+      "source_line": 988,
+      "gt6_class": "MultiTileEntityCoolerElectric",
+      "kind": "electric",
+      "voltage": "ev",
+      "material": "chromium",
+      "nbt_input": 2048,
+      "nbt_output": 512,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Thermoelectric Cooler (EV)",
+      "lang_zh": "热电冷却器（超高压）",
+      "texture_folder": "cryo_electric",
+      "host_id": null,
+      "recipe": {
+        "pattern": [
+          "WPw",
+          "CMC",
+          "xPW"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing",
+            "material": "chromium"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "aluminium"
+          },
+          "P": {
+            "prefix": "quadruple_plate",
+            "material": "silicon"
+          },
+          "C": {
+            "prefix": "quadruple_plate",
+            "material": "copper",
+            "family": "ANY.Cu"
+          }
+        },
+        "catalysts": [
+          "w",
+          "x"
+        ]
+      }
+    },
+    {
+      "id": "cruciblecraft:thermoelectric_cooler_iv",
+      "source_id": 10165,
+      "source_line": 989,
+      "gt6_class": "MultiTileEntityCoolerElectric",
+      "kind": "electric",
+      "voltage": "iv",
+      "material": "titanium",
+      "nbt_input": 8192,
+      "nbt_output": 2048,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Thermoelectric Cooler (IV)",
+      "lang_zh": "热电冷却器（极高压）",
+      "texture_folder": "cryo_electric",
+      "host_id": null,
+      "recipe": {
+        "pattern": [
+          "WPw",
+          "CMC",
+          "xPW"
+        ],
+        "keys": {
+          "M": {
+            "prefix": "machine_casing",
+            "material": "titanium"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "platinum"
+          },
+          "P": {
+            "prefix": "quintuple_plate",
+            "material": "silicon"
+          },
+          "C": {
+            "prefix": "quintuple_plate",
+            "material": "copper",
+            "family": "ANY.Cu"
+          }
+        },
+        "catalysts": [
+          "w",
+          "x"
+        ]
+      }
+    },
+    {
+      "id": "cruciblecraft:thermofluxic_cooler_lead",
+      "source_id": 11161,
+      "source_line": 992,
+      "gt6_class": "MultiTileEntityCoolerFlux",
+      "kind": "flux",
+      "voltage": null,
+      "material": "lead",
+      "nbt_input": 128,
+      "nbt_output": 8,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Thermofluxic Cooler (Lead)",
+      "lang_zh": "热通量冷却器（铅）",
+      "texture_folder": "cryo_flux",
+      "host_id": "cruciblecraft:thermoelectric_cooler_lv",
+      "recipe": {
+        "pattern": [
+          "PSP",
+          "PMP",
+          "PSP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:thermoelectric_cooler_lv"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "lead"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "lead"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:thermofluxic_cooler_invar",
+      "source_id": 11162,
+      "source_line": 993,
+      "gt6_class": "MultiTileEntityCoolerFlux",
+      "kind": "flux",
+      "voltage": null,
+      "material": "invar",
+      "nbt_input": 512,
+      "nbt_output": 32,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Thermofluxic Cooler (Invar)",
+      "lang_zh": "热通量冷却器（殷钢）",
+      "texture_folder": "cryo_flux",
+      "host_id": "cruciblecraft:thermoelectric_cooler_mv",
+      "recipe": {
+        "pattern": [
+          "PSP",
+          "PMP",
+          "PSP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:thermoelectric_cooler_mv"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "invar"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "invar"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:thermofluxic_cooler_electrum",
+      "source_id": 11163,
+      "source_line": 994,
+      "gt6_class": "MultiTileEntityCoolerFlux",
+      "kind": "flux",
+      "voltage": null,
+      "material": "electrum",
+      "nbt_input": 2048,
+      "nbt_output": 128,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Thermofluxic Cooler (Electrum)",
+      "lang_zh": "热通量冷却器（琥珀金）",
+      "texture_folder": "cryo_flux",
+      "host_id": "cruciblecraft:thermoelectric_cooler_hv",
+      "recipe": {
+        "pattern": [
+          "PSP",
+          "PMP",
+          "PSP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:thermoelectric_cooler_hv"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "electrum"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "electrum"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:thermofluxic_cooler_enderium_base",
+      "source_id": 11164,
+      "source_line": 995,
+      "gt6_class": "MultiTileEntityCoolerFlux",
+      "kind": "flux",
+      "voltage": null,
+      "material": "enderium_base",
+      "nbt_input": 8192,
+      "nbt_output": 512,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Thermofluxic Cooler (Enderium Base)",
+      "lang_zh": "热通量冷却器（末影基）",
+      "texture_folder": "cryo_flux",
+      "host_id": "cruciblecraft:thermoelectric_cooler_ev",
+      "recipe": {
+        "pattern": [
+          "PSP",
+          "PMP",
+          "PSP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:thermoelectric_cooler_ev"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "enderium_base"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "enderium_base"
+          }
+        },
+        "catalysts": []
+      }
+    },
+    {
+      "id": "cruciblecraft:thermofluxic_cooler_enderium",
+      "source_id": 11165,
+      "source_line": 996,
+      "gt6_class": "MultiTileEntityCoolerFlux",
+      "kind": "flux",
+      "voltage": null,
+      "material": "enderium",
+      "nbt_input": 32768,
+      "nbt_output": 2048,
+      "hardness": 4.0,
+      "resistance": 4.0,
+      "lang_en": "Thermofluxic Cooler (Enderium)",
+      "lang_zh": "热通量冷却器（末影）",
+      "texture_folder": "cryo_flux",
+      "host_id": "cruciblecraft:thermoelectric_cooler_iv",
+      "recipe": {
+        "pattern": [
+          "PSP",
+          "PMP",
+          "PSP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:thermoelectric_cooler_iv"
+          },
+          "P": {
+            "prefix": "plate",
+            "material": "enderium"
+          },
+          "S": {
+            "prefix": "long_rod",
+            "material": "enderium"
+          }
+        },
+        "catalysts": []
+      }
+    }
+  ]
+}

@@ -11,6 +11,10 @@ import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlockItem;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerBlockItem;
+import com.masson.cruciblecraft.energy.cooler.CoolerBlockItem;
+import com.masson.cruciblecraft.energy.cooler.CoolerCatalog;
+import com.masson.cruciblecraft.energy.flux.FluxBlockItem;
+import com.masson.cruciblecraft.energy.flux.FluxCatalog;
 import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerBlockItem;
 import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerBlockItem;
 import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerCatalog;
@@ -100,6 +104,8 @@ import com.masson.cruciblecraft.content.item.MaterialWorkshopToolItem;
 import com.masson.cruciblecraft.content.item.MaterialBuilderWandItem;
 import com.masson.cruciblecraft.content.item.MaterialPocketMultitoolItem;
 import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
+import com.masson.cruciblecraft.content.item.MaterialElectricToolItem;
+import com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.content.item.LuFiberCableItem;
 import com.masson.cruciblecraft.content.item.PortableFluidTankItem;
@@ -293,12 +299,20 @@ public final class ModItems {
             MULTIBLOCK_ENERGY_INPUT_PORT = ITEMS.registerSimpleBlockItem(
                     "multiblock_energy_input_port",
                     ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT);
+    public static final DeferredItem<BlockItem>
+            MULTIBLOCK_FLUID_OUT_PORT = ITEMS.registerSimpleBlockItem(
+                    "multiblock_fluid_out_port",
+                    ModBlocks.MULTIBLOCK_FLUID_OUT_PORT);
     public static final DeferredItem<BlockItem> LARGE_CENTRIFUGE =
             ITEMS.registerSimpleBlockItem(
                     "large_centrifuge", ModBlocks.LARGE_CENTRIFUGE);
     public static final DeferredItem<BlockItem> DISTILLATION_TOWER =
             ITEMS.registerSimpleBlockItem(
                     "distillation_tower", ModBlocks.DISTILLATION_TOWER);
+    public static final DeferredItem<BlockItem> CRYO_DISTILLATION_TOWER =
+            ITEMS.registerSimpleBlockItem(
+                    "cryo_distillation_tower",
+                    ModBlocks.CRYO_DISTILLATION_TOWER);
     public static final DeferredItem<BlockItem> LARGE_BOILER =
             ITEMS.registerSimpleBlockItem(
                     "large_boiler", ModBlocks.LARGE_BOILER);
@@ -621,6 +635,12 @@ public final class ModItems {
     private static final Map<
             ResourceLocation, DeferredItem<HeatExchangerBlockItem>>
                     HEAT_EXCHANGER_ITEMS = registerHeatExchangerItems();
+    private static final Map<
+            ResourceLocation, DeferredItem<CoolerBlockItem>> COOLER_ITEMS =
+                    registerCoolerItems();
+    private static final Map<
+            ResourceLocation, DeferredItem<FluxBlockItem>> FLUX_ITEMS =
+                    registerFluxItems();
     public static final DeferredItem<BlockItem> BRONZE_BOILER =
             converterItem("bronze_boiler");
     public static final DeferredItem<BlockItem> BRONZE_STEAM_ENGINE =
@@ -995,6 +1015,8 @@ public final class ModItems {
             ITEMS.register(
                     "material_pocket_multitool",
                     () -> new MaterialPocketMultitoolItem(new Item.Properties()));
+    private static final Map<ToolKind, DeferredItem<MaterialElectricToolItem>>
+            ELECTRIC_TOOLS = registerElectricTools();
     public static final DeferredItem<UnknownMaterialItem> UNKNOWN_MATERIAL =
             ITEMS.register("unknown_material", () -> new UnknownMaterialItem(new Item.Properties()));
     public static final DeferredItem<CoinItem> COIN =
@@ -1203,6 +1225,19 @@ public final class ModItems {
                 new java.util.ArrayList<>(MATERIAL_ITEMS.values());
         items.addAll(PREFIX_ITEMS.values());
         return items;
+    }
+
+    public static DeferredItem<MaterialElectricToolItem> electricTool(ToolKind kind) {
+        DeferredItem<MaterialElectricToolItem> item = ELECTRIC_TOOLS.get(kind);
+        if (item == null) {
+            throw new IllegalArgumentException(
+                    "No electric tool for " + kind.serializedName());
+        }
+        return item;
+    }
+
+    public static Collection<DeferredItem<MaterialElectricToolItem>> electricTools() {
+        return ELECTRIC_TOOLS.values();
     }
 
     public static Collection<DeferredItem<PrefixMaterialItem>> prefixMaterialItems() {
@@ -1740,6 +1775,64 @@ public final class ModItems {
         return HEAT_EXCHANGER_ITEMS;
     }
 
+    private static Map<ResourceLocation, DeferredItem<CoolerBlockItem>>
+            registerCoolerItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<CoolerBlockItem>> items =
+                new LinkedHashMap<>();
+        for (var profile : CoolerCatalog.profiles()) {
+            DeferredItem<CoolerBlockItem> item = ITEMS.register(
+                    profile.id().getPath(),
+                    () -> new CoolerBlockItem(
+                            ModBlocks.coolerBlocksById()
+                                    .get(profile.id())
+                                    .get(),
+                            new Item.Properties()));
+            if (items.put(profile.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate cooler item " + profile.id());
+            }
+        }
+        if (items.size() != CoolerCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Cooler item registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<CoolerBlockItem>>
+            coolerItemsById() {
+        return COOLER_ITEMS;
+    }
+
+    private static Map<ResourceLocation, DeferredItem<FluxBlockItem>>
+            registerFluxItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<FluxBlockItem>> items =
+                new LinkedHashMap<>();
+        for (var profile : FluxCatalog.profiles()) {
+            DeferredItem<FluxBlockItem> item = ITEMS.register(
+                    profile.id().getPath(),
+                    () -> new FluxBlockItem(
+                            ModBlocks.fluxBlocksById()
+                                    .get(profile.id())
+                                    .get(),
+                            new Item.Properties()));
+            if (items.put(profile.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate flux item " + profile.id());
+            }
+        }
+        if (items.size() != FluxCatalog.profiles().size()) {
+            throw new IllegalStateException(
+                    "Flux item registration drifted from catalog rows");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<FluxBlockItem>>
+            fluxItemsById() {
+        return FLUX_ITEMS;
+    }
+
     private static Map<ResourceLocation, DeferredItem<BlockItem>>
             registerTieredProcessingItems() {
         LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
@@ -2091,6 +2184,21 @@ public final class ModItems {
                 "empty/tool_head_pickaxe_gem",
                 "empty/tool_head_wrench")) {
             items.put(path, ITEMS.registerSimpleItem(path, new Item.Properties()));
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static Map<ToolKind, DeferredItem<MaterialElectricToolItem>>
+            registerElectricTools() {
+        LinkedHashMap<ToolKind, DeferredItem<MaterialElectricToolItem>> items =
+                new LinkedHashMap<>();
+        for (ElectricToolCatalog spec : ElectricToolCatalog.values()) {
+            items.put(
+                    spec.kind(),
+                    ITEMS.register(
+                            spec.itemPath(),
+                            () -> new MaterialElectricToolItem(
+                                    new Item.Properties(), spec.kind())));
         }
         return java.util.Collections.unmodifiableMap(items);
     }

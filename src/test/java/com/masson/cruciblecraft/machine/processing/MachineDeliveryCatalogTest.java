@@ -90,7 +90,8 @@ class MachineDeliveryCatalogTest {
         assertTrue(host.kindCatalog());
         assertEquals("laser", host.specFamily());
         assertTrue(MachineTextureProfiles.hasMachineTextures(host.textureProfile()));
-        assertEquals("distillery", MachineTextureProfiles.textureId("distillation_tower"));
+        assertEquals("distillation_tower", MachineTextureProfiles.textureId("distillation_tower"));
+        assertEquals("cryo_distillation_tower", MachineTextureProfiles.textureId("cryo_distillation_tower"));
         assertEquals("boiler", MachineTextureProfiles.textureId("large_boiler"));
         assertEquals("large_crucible", MachineTextureProfiles.textureId("large_crucible"));
         assertEquals("dryer", MachineTextureProfiles.textureId("drying"));

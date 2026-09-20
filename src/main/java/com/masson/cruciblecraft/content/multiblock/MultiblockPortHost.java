@@ -2,8 +2,10 @@ package com.masson.cruciblecraft.content.multiblock;
 
 import java.util.List;
 
+import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -33,4 +35,21 @@ public interface MultiblockPortHost extends IEnergyHandler {
     List<Integer> fluidOutputTanks();
 
     BlockState blockState();
+
+    /**
+     * Energy inserted by a bound ENERGY_INPUT part. Controllers whose hull
+     * faces do not accept energy still take packets from 18101.
+     */
+    default long insertFromMultiblockPort(
+            EnergyType type,
+            long size,
+            long amount,
+            boolean simulate) {
+        for (Direction side : Direction.values()) {
+            if (handles(type, side)) {
+                return insert(type, size, amount, side, simulate);
+            }
+        }
+        return 0L;
+    }
 }

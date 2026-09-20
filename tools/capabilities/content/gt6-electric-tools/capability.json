@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "slug": "content/gt6-electric-tools",
+  "title": "GT6 Electric Tools",
+  "maturity": "frozen",
+  "workflow": "paused",
+  "survival_access": "partial",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6电动工具详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/item/MaterialElectricToolItem.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCatalog.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCharge.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/crafting/ElectricToolRecipes.java",
+    "src/main/java/com/masson/cruciblecraft/machine/ToolMaterialRules.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/tool/ToolMining.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/tool/ProvidedToolActions.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/ToolHarvestEvents.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/ToolDisplayPlan.java",
+    "src/main/java/com/masson/cruciblecraft/content/item/tool/ToolClick.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlan.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/crafting/CraftingTools.java",
+    "src/main/java/com/masson/cruciblecraft/recipe/crafting/CraftingToolWear.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/CraftingCatalystPolicy.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModComponents.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LockerBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
+    "src/main/java/com/masson/cruciblecraft/client/color/MaterialItemColor.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModItemModelProvider.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/EmiStackGroupPlan.java",
+    "src/main/resources/assets/cruciblecraft/gt6_electric_tools_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/item/tool/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/ElectricToolGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCatalogTest.java",
+    "tools/capabilities/content/gt6-electric-tools/**",
+    "tools/waves/content/gt6-electric-tools/**",
+    "tools/tests/test_gt6_electric_tools.py"
+  ],
+  "depends_on": [
+    "energy/batteries",
+    "content/technological-parts-foundation"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "content/gt6-electric-tools",
+  "required_test_ids": [
+    "electricMiningDrillSpendsEu",
+    "electricWrenchConvertsToMonkey",
+    "chargingLockerFillsElectricToolCapacity",
+    "jackhammerNoOresSkipsOreBlocks"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "tool:electric:mining-drill",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:material_mining_drill_lv",
+        "cruciblecraft:material_mining_drill_mv",
+        "cruciblecraft:material_mining_drill_hv"
+      ],
+      "reason": "GT6 MININGDRILL_LV/MV/HV. Same item can be mechanical (no energy) or electric (battery recipe)."
+    },
+    {
+      "semantic_key": "tool:electric:chainsaw",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:material_chainsaw_lv",
+        "cruciblecraft:material_chainsaw_mv",
+        "cruciblecraft:material_chainsaw_hv"
+      ],
+      "reason": "GT6 CHAINSAW_LV/MV/HV. LV also has the mechanical WVW recipe."
+    },
+    {
+      "semantic_key": "tool:electric:wrench",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:material_wrench_lv",
+        "cruciblecraft:material_wrench_mv",
+        "cruciblecraft:material_wrench_hv"
+      ],
+      "reason": "GT6 WRENCH_LV/MV/HV. Sneak converts to the matching monkey wrench."
+    },
+    {
+      "semantic_key": "tool:electric:monkey-wrench",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:material_monkey_wrench_lv",
+        "cruciblecraft:material_monkey_wrench_mv",
+        "cruciblecraft:material_monkey_wrench_hv"
+      ],
+      "reason": "GT6 MONKEY_WRENCH_LV/MV/HV. No own electric grid; sneak-converted from the wrench."
+    },
+    {
+      "semantic_key": "tool:electric:jackhammer",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:material_jackhammer_hv",
+        "cruciblecraft:material_jackhammer_hv_no_ores"
+      ],
+      "reason": "GT6 JACKHAMMER_HV_Normal and JACKHAMMER_HV_No_Ores. Two metas, sneak mode switch, hammer-crush drops."
+    },
+    {
+      "semantic_key": "tool:electric:lv-workshop",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:material_buzzsaw_lv",
+        "cruciblecraft:material_screwdriver_lv",
+        "cruciblecraft:material_hand_drill_lv",
+        "cruciblecraft:material_mixer_lv",
+        "cruciblecraft:material_trimmer_lv"
+      ],
+      "reason": "GT6 BUZZSAW_LV, SCREWDRIVER_LV, DRILL_LV, MIXER_LV, TRIMMER_LV."
+    },
+    {
+      "semantic_key": "component:electric-tool-energy",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:electric_charge",
+        "cruciblecraft:electric_capacity",
+        "cruciblecraft:electric_voltage"
+      ],
+      "reason": "Reuse ELECTRIC_CHARGE. Per-stack capacity/voltage replace the locker 10000 helmet sentinel when those components are present."
+    }
+  ],
+  "note": "Full GT6 Loader_Tools electric family. Source is local gt6_code. Skip recipes whose live forms are missing. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain."
+}

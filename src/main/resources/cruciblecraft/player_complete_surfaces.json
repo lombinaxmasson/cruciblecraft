@@ -1,77 +1,8 @@
 {
   "schema_version": 1,
   "surfaces": {
-    "logistics/fluid-network/basic-transfer": {
-      "registry_ids": [
-        "cruciblecraft:logistics_fluid_storage_cover",
-        "cruciblecraft:logistics_fluid_import_cover",
-        "cruciblecraft:logistics_fluid_export_cover"
-      ],
-      "definition_ids": [
-        "cruciblecraft:logistics_fluid_storage",
-        "cruciblecraft:logistics_fluid_import",
-        "cruciblecraft:logistics_fluid_export"
-      ]
-    },
-    "logistics/item-network-core": {
-      "registry_ids": [
-        "cruciblecraft:logistics_item_storage_cover",
-        "cruciblecraft:logistics_item_import_cover",
-        "cruciblecraft:logistics_item_export_cover"
-      ],
-      "definition_ids": [
-        "cruciblecraft:logistics_item_storage",
-        "cruciblecraft:logistics_item_import",
-        "cruciblecraft:logistics_item_export"
-      ]
-    },
-    "logistics/generic-network/core": {
-      "registry_ids": [
-        "cruciblecraft:logistics_generic_storage_cover",
-        "cruciblecraft:logistics_generic_import_cover",
-        "cruciblecraft:logistics_generic_export_cover"
-      ],
-      "definition_ids": [
-        "cruciblecraft:logistics_generic_storage",
-        "cruciblecraft:logistics_generic_import",
-        "cruciblecraft:logistics_generic_export"
-      ]
-    },
-    "logistics/logistics-core": {
-      "registry_ids": [
-        "cruciblecraft:logistics_generic_dump_cover"
-      ],
-      "definition_ids": [
-        "cruciblecraft:logistics_generic_dump"
-      ]
-    },
-    "logistics/display-cpu": {
-      "registry_ids": [
-        "cruciblecraft:logistics_display_cpu_logic_cover",
-        "cruciblecraft:logistics_display_cpu_control_cover",
-        "cruciblecraft:logistics_display_cpu_storage_cover",
-        "cruciblecraft:logistics_display_cpu_conversion_cover"
-      ],
-      "definition_ids": [
-        "cruciblecraft:logistics_display_cpu_logic",
-        "cruciblecraft:logistics_display_cpu_control",
-        "cruciblecraft:logistics_display_cpu_storage",
-        "cruciblecraft:logistics_display_cpu_conversion"
-      ]
-    },
-    "energy/converter-catalog": {
-      "registry_ids": [
-        "cruciblecraft:bronze_burning_box_solid",
-        "cruciblecraft:bronze_burning_box_gas",
-        "cruciblecraft:bronze_boiler",
-        "cruciblecraft:bronze_steam_engine",
-        "cruciblecraft:bronze_fuel_engine",
-        "cruciblecraft:bronze_dynamo",
-        "cruciblecraft:steel_galvanized_electric_motor"
-      ],
-      "definition_ids": []
-    },
     "energy/batteries": {
+      "definition_ids": [],
       "registry_ids": [
         "cruciblecraft:lead_acid_battery_ulv",
         "cruciblecraft:alkaline_battery_lv",
@@ -80,24 +11,37 @@
         "cruciblecraft:lithium_manganese_battery_ev",
         "cruciblecraft:red_energium_crystal_ulv",
         "cruciblecraft:cyan_energium_crystal_iv"
-      ],
-      "definition_ids": []
+      ]
     },
-    "energy/transformers": {
+    "energy/converter-catalog": {
+      "definition_ids": [],
       "registry_ids": [
-        "cruciblecraft:electric_transformer_ulv_lv",
-        "cruciblecraft:electric_transformer_lv_mv",
-        "cruciblecraft:electric_transformer_mv_hv",
-        "cruciblecraft:electric_transformer_hv_ev",
-        "cruciblecraft:electric_transformer_ev_iv",
-        "cruciblecraft:electric_transformer_iv_luv",
-        "cruciblecraft:electric_transformer_luv_zpm",
-        "cruciblecraft:electric_transformer_zpm_uv",
-        "cruciblecraft:electric_transformer_uv_puv1"
-      ],
-      "definition_ids": []
+        "cruciblecraft:bronze_burning_box_solid",
+        "cruciblecraft:bronze_burning_box_gas",
+        "cruciblecraft:bronze_boiler",
+        "cruciblecraft:bronze_steam_engine",
+        "cruciblecraft:bronze_fuel_engine",
+        "cruciblecraft:bronze_dynamo",
+        "cruciblecraft:steel_galvanized_electric_motor"
+      ]
+    },
+    "energy/cooler": {
+      "definition_ids": [],
+      "registry_ids": [
+        "cruciblecraft:thermoelectric_cooler_lv",
+        "cruciblecraft:thermoelectric_cooler_mv",
+        "cruciblecraft:thermoelectric_cooler_hv",
+        "cruciblecraft:thermoelectric_cooler_ev",
+        "cruciblecraft:thermoelectric_cooler_iv",
+        "cruciblecraft:thermofluxic_cooler_lead",
+        "cruciblecraft:thermofluxic_cooler_invar",
+        "cruciblecraft:thermofluxic_cooler_electrum",
+        "cruciblecraft:thermofluxic_cooler_enderium_base",
+        "cruciblecraft:thermofluxic_cooler_enderium"
+      ]
     },
     "energy/heat-exchangers": {
+      "definition_ids": [],
       "registry_ids": [
         "cruciblecraft:heat_exchanger_invar",
         "cruciblecraft:heat_exchanger_tungsten",
@@ -107,44 +51,17 @@
         "cruciblecraft:dense_heat_exchanger_tungsten",
         "cruciblecraft:dense_heat_exchanger_tungstensteel",
         "cruciblecraft:dense_heat_exchanger_tantalum_hafnium_carbide"
-      ],
-      "definition_ids": []
-    },
-    "energy/nuclear-fission-survival": {
-      "registry_ids": [
-        "cruciblecraft:reactor_core_1x1",
-        "cruciblecraft:reactor_core_2x2",
-        "cruciblecraft:compact_electric_piston_ev",
-        "cruciblecraft:compact_electric_pump_lv"
-      ],
-      "definition_ids": []
+      ]
     },
     "energy/nuclear-fission-hot-fluids": {
+      "definition_ids": [],
       "registry_ids": [
         "cruciblecraft:reactor_core_1x1",
         "cruciblecraft:reactor_core_2x2"
-      ],
-      "definition_ids": []
-    },
-    "machines/roll-former": {
-      "registry_ids": [
-        "cruciblecraft:rollformer",
-        "cruciblecraft:steel_rollformer",
-        "cruciblecraft:titanium_rollformer",
-        "cruciblecraft:tungstensteel_rollformer"
-      ],
-      "definition_ids": []
-    },
-    "machines/cluster-mill": {
-      "registry_ids": [
-        "cruciblecraft:clustermill",
-        "cruciblecraft:steel_clustermill",
-        "cruciblecraft:titanium_clustermill",
-        "cruciblecraft:tungstensteel_clustermill"
-      ],
-      "definition_ids": []
+      ]
     },
     "energy/nuclear-fission-observation-safety": {
+      "definition_ids": [],
       "registry_ids": [
         "cruciblecraft:radiation/hazard_suit_helmet",
         "cruciblecraft:radiation/hazard_suit_shirt",
@@ -155,8 +72,106 @@
         "cruciblecraft:heat/protection_suit_pants",
         "cruciblecraft:heat/protection_suit_boots",
         "cruciblecraft:mercury/thermometer_measures_temperature"
+      ]
+    },
+    "energy/nuclear-fission-survival": {
+      "definition_ids": [],
+      "registry_ids": [
+        "cruciblecraft:reactor_core_1x1",
+        "cruciblecraft:reactor_core_2x2",
+        "cruciblecraft:compact_electric_piston_ev",
+        "cruciblecraft:compact_electric_pump_lv"
+      ]
+    },
+    "energy/transformers": {
+      "definition_ids": [],
+      "registry_ids": [
+        "cruciblecraft:electric_transformer_ulv_lv",
+        "cruciblecraft:electric_transformer_lv_mv",
+        "cruciblecraft:electric_transformer_mv_hv",
+        "cruciblecraft:electric_transformer_hv_ev",
+        "cruciblecraft:electric_transformer_ev_iv",
+        "cruciblecraft:electric_transformer_iv_luv",
+        "cruciblecraft:electric_transformer_luv_zpm",
+        "cruciblecraft:electric_transformer_zpm_uv",
+        "cruciblecraft:electric_transformer_uv_puv1"
+      ]
+    },
+    "logistics/display-cpu": {
+      "definition_ids": [
+        "cruciblecraft:logistics_display_cpu_logic",
+        "cruciblecraft:logistics_display_cpu_control",
+        "cruciblecraft:logistics_display_cpu_storage",
+        "cruciblecraft:logistics_display_cpu_conversion"
       ],
-      "definition_ids": []
+      "registry_ids": [
+        "cruciblecraft:logistics_display_cpu_logic_cover",
+        "cruciblecraft:logistics_display_cpu_control_cover",
+        "cruciblecraft:logistics_display_cpu_storage_cover",
+        "cruciblecraft:logistics_display_cpu_conversion_cover"
+      ]
+    },
+    "logistics/fluid-network/basic-transfer": {
+      "definition_ids": [
+        "cruciblecraft:logistics_fluid_storage",
+        "cruciblecraft:logistics_fluid_import",
+        "cruciblecraft:logistics_fluid_export"
+      ],
+      "registry_ids": [
+        "cruciblecraft:logistics_fluid_storage_cover",
+        "cruciblecraft:logistics_fluid_import_cover",
+        "cruciblecraft:logistics_fluid_export_cover"
+      ]
+    },
+    "logistics/generic-network/core": {
+      "definition_ids": [
+        "cruciblecraft:logistics_generic_storage",
+        "cruciblecraft:logistics_generic_import",
+        "cruciblecraft:logistics_generic_export"
+      ],
+      "registry_ids": [
+        "cruciblecraft:logistics_generic_storage_cover",
+        "cruciblecraft:logistics_generic_import_cover",
+        "cruciblecraft:logistics_generic_export_cover"
+      ]
+    },
+    "logistics/item-network-core": {
+      "definition_ids": [
+        "cruciblecraft:logistics_item_storage",
+        "cruciblecraft:logistics_item_import",
+        "cruciblecraft:logistics_item_export"
+      ],
+      "registry_ids": [
+        "cruciblecraft:logistics_item_storage_cover",
+        "cruciblecraft:logistics_item_import_cover",
+        "cruciblecraft:logistics_item_export_cover"
+      ]
+    },
+    "logistics/logistics-core": {
+      "definition_ids": [
+        "cruciblecraft:logistics_generic_dump"
+      ],
+      "registry_ids": [
+        "cruciblecraft:logistics_generic_dump_cover"
+      ]
+    },
+    "machines/cluster-mill": {
+      "definition_ids": [],
+      "registry_ids": [
+        "cruciblecraft:clustermill",
+        "cruciblecraft:steel_clustermill",
+        "cruciblecraft:titanium_clustermill",
+        "cruciblecraft:tungstensteel_clustermill"
+      ]
+    },
+    "machines/roll-former": {
+      "definition_ids": [],
+      "registry_ids": [
+        "cruciblecraft:rollformer",
+        "cruciblecraft:steel_rollformer",
+        "cruciblecraft:titanium_rollformer",
+        "cruciblecraft:tungstensteel_rollformer"
+      ]
     }
   }
 }

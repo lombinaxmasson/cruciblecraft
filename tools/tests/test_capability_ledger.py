@@ -21,6 +21,7 @@ CONVERTER = "energy/converter-catalog"
 BATTERIES = "energy/batteries"
 TRANSFORMERS = "energy/transformers"
 HEAT_EXCHANGERS = "energy/heat-exchangers"
+COOLER = "energy/cooler"
 ROLL_FORMER = "machines/roll-former"
 CLUSTER_MILL = "machines/cluster-mill"
 HAMMER_SQUEEZER_LASER = "machines/hammer-squeezer-laser"
@@ -98,6 +99,7 @@ class CapabilityLedgerTest(unittest.TestCase):
         self.assertIn(BATTERIES, slugs)
         self.assertIn(TRANSFORMERS, slugs)
         self.assertIn(HEAT_EXCHANGERS, slugs)
+        self.assertIn(COOLER, slugs)
         self.assertIn(ROLL_FORMER, slugs)
         self.assertIn(CLUSTER_MILL, slugs)
         self.assertIn(NUCLEAR, slugs)

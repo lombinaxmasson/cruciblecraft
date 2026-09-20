@@ -41,13 +41,13 @@ public final class ToolMining {
         }
         float speed = ToolMaterialRules.miningSpeed(kind, materialId);
         return switch (kind) {
-            case SAW -> sawSpeed(state, speed);
+            case SAW, CHAINSAW_LV, CHAINSAW_MV, CHAINSAW_HV -> sawSpeed(state, speed);
             case FILE -> state.is(Blocks.IRON_BARS) ? speed * 3.0F : speed;
             case CONSTRUCTION_PICK -> constructionSpeed(state, speed);
             case SMITHING_HAMMER ->
                     state.is(Blocks.SPAWNER) ? speed * 128.0F : speed;
             case UNIVERSAL_SPADE -> speed * 0.75F;
-            case BRANCH_CUTTER -> state.is(BlockTags.LEAVES) ? 15.0F : speed * 0.25F;
+            case BRANCH_CUTTER, TRIMMER_LV -> state.is(BlockTags.LEAVES) ? 15.0F : speed * 0.25F;
             case SCISSORS -> (state.is(BlockTags.LEAVES)
                     || state.is(BlockTags.WOOL)
                     || state.is(BlockTags.WOOL_CARPETS))
@@ -64,9 +64,18 @@ public final class ToolMining {
     public static boolean mineable(ToolKind kind, BlockState state) {
         return switch (kind) {
             case SAW -> sawMineable(state);
+            case CHAINSAW_LV, CHAINSAW_MV, CHAINSAW_HV -> chainsawMineable(state);
+            case MINING_DRILL_LV, MINING_DRILL_MV, MINING_DRILL_HV ->
+                    miningDrillMineable(state);
+            case JACKHAMMER_HV -> jackhammerMineable(state);
+            case JACKHAMMER_HV_NO_ORES -> jackhammerNoOresMineable(state);
+            case BUZZSAW_LV -> buzzsawMineable(state);
             case FILE -> state.getBlock() instanceof IronBarsBlock
                     || state.is(Blocks.IRON_BARS);
-            case WRENCH, MONKEY_WRENCH -> wrenchMineable(state);
+            case WRENCH, MONKEY_WRENCH,
+                    WRENCH_LV, WRENCH_MV, WRENCH_HV,
+                    MONKEY_WRENCH_LV, MONKEY_WRENCH_MV, MONKEY_WRENCH_HV ->
+                    wrenchMineable(state);
             case CROWBAR -> state.getBlock() instanceof BaseRailBlock;
             case WIRE_CUTTER -> wireCutterMineable(state);
             case CHISEL -> chiselMineable(state);
@@ -77,7 +86,7 @@ public final class ToolMining {
                             || state.is(Blocks.VINE)
                             || state.is(BlockTags.SWORD_EFFICIENT);
             case UNIVERSAL_SPADE -> universalSpadeMineable(state);
-            case BRANCH_CUTTER ->
+            case BRANCH_CUTTER, TRIMMER_LV ->
                     state.is(BlockTags.LEAVES) || state.is(Blocks.VINE);
             case SCISSORS ->
                     state.is(BlockTags.LEAVES)
@@ -99,7 +108,7 @@ public final class ToolMining {
         }
         return switch (kind) {
             case KNIFE, BUTCHERY_KNIFE -> state.is(Blocks.COBWEB);
-            case SAW ->
+            case SAW, CHAINSAW_LV, CHAINSAW_MV, CHAINSAW_HV ->
                     sawMineable(state) && !state.is(BlockTags.LOGS);
             default -> true;
         };
@@ -151,6 +160,61 @@ public final class ToolMining {
                 || state.is(Blocks.BOOKSHELF)
                 || state.is(Blocks.VINE)
                 || state.is(Blocks.CACTUS)
+                || state.is(Blocks.IRON_BARS);
+    }
+
+    private static boolean chainsawMineable(BlockState state) {
+        return state.is(BlockTags.MINEABLE_WITH_AXE)
+                || state.is(BlockTags.LEAVES)
+                || state.is(BlockTags.ICE)
+                || state.is(Blocks.BOOKSHELF)
+                || state.is(Blocks.VINE)
+                || state.is(Blocks.CACTUS)
+                || state.is(BlockTags.CORAL_BLOCKS)
+                || state.is(BlockTags.CORALS);
+    }
+
+    private static boolean miningDrillMineable(BlockState state) {
+        return state.is(BlockTags.MINEABLE_WITH_PICKAXE)
+                || state.is(BlockTags.MINEABLE_WITH_SHOVEL)
+                || state.getBlock() instanceof InfestedBlock
+                || state.is(Tags.Blocks.GLASS_BLOCKS)
+                || state.is(BlockTags.ICE)
+                || state.is(Blocks.FLOWER_POT);
+    }
+
+    private static boolean jackhammerMineable(BlockState state) {
+        return state.is(BlockTags.MINEABLE_WITH_PICKAXE)
+                || state.getBlock() instanceof InfestedBlock
+                || state.is(Tags.Blocks.GLASS_BLOCKS)
+                || state.is(BlockTags.ICE);
+    }
+
+    private static boolean jackhammerNoOresMineable(BlockState state) {
+        if (state.getBlock() instanceof InfestedBlock) {
+            return true;
+        }
+        if (state.getBlock() instanceof StoneLayerRockOreBlock) {
+            return true;
+        }
+        if (isOre(state)) {
+            return false;
+        }
+        return state.is(BlockTags.MINEABLE_WITH_PICKAXE)
+                && (state.is(Tags.Blocks.STONES)
+                        || state.is(Tags.Blocks.COBBLESTONES)
+                        || state.is(Blocks.STONE)
+                        || state.is(Blocks.COBBLESTONE)
+                        || state.is(Blocks.DEEPSLATE)
+                        || state.is(Blocks.COBBLED_DEEPSLATE)
+                        || state.is(Blocks.NETHERRACK)
+                        || state.is(Blocks.END_STONE)
+                        || state.is(Blocks.BLACKSTONE)
+                        || state.is(Blocks.BASALT));
+    }
+
+    private static boolean buzzsawMineable(BlockState state) {
+        return state.getBlock() instanceof IronBarsBlock
                 || state.is(Blocks.IRON_BARS);
     }
 

@@ -73,18 +73,29 @@
         "cruciblecraft:selector_button_panel",
         "cruciblecraft:redstone_conductor_in",
         "cruciblecraft:redstone_conductor_out",
+        "cruciblecraft:cover_crafting",
+        "cruciblecraft:cover_drain",
+        "cruciblecraft:filter_fluid",
+        "cruciblecraft:cover_warning",
         "cruciblecraft:selector_tag",
         "cruciblecraft:redstone_torch",
         "cruciblecraft:redstone_repeater"
       ],
-      "reason": "GT6 MultiItemTechnological 1000-1030 remainder covers. 24 new items plus programmed_circuit selector_tag and vanilla torch/repeater definitions. Not Display CPU, not logistics net, not compact electric covers."
+      "reason": "GT6 MultiItemTechnological 1000-1030 remainder covers. 28 items plus programmed_circuit selector_tag and vanilla torch/repeater definitions. Decorative asphalt/wood/panel stacks share CoverRegistry-style match_id. Not Display CPU, not logistics net, not compact electric covers."
     },
     {
       "semantic_key": "cover:redstone_torch_repeater:wire_host",
-      "disposition": "blocked",
-      "runtime_ids": [],
-      "reason": "GT6 CoverRedstoneTorch/Repeater only attach to MultiTileEntityWireRedstoneInsulated. CC redstone-wire MTE is still prep. Definitions exist and refuse every current host."
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:red_alloy/wire",
+        "cruciblecraft:signalum/wire",
+        "cruciblecraft:lumium/wire",
+        "cruciblecraft:red_alloy/cable",
+        "cruciblecraft:signalum/cable",
+        "cruciblecraft:lumium/cable"
+      ],
+      "reason": "GT6 CoverRedstoneTorch/Repeater attach to MultiTileEntityWireRedstoneInsulated. Bare 27000/27050/27500 extend that class. Wires are also ITileEntitySwitchableMode and ITileEntityProgress, so selectors, emitter, conductor, progress scale, blank, and decorative plates attach too. EU cables host blank, plates, emitter, conductor, and progress scale."
     }
   ],
-  "note": "27 sidecar cover definitions on processing machines. Java/tick is gt6_code/gregtech6 at 3703e40308c8c030763fd6297dea8b210d2a77b1; art is gt6_referencable_port_code/gregtech6_w at 936083c247a70b1bbc5f19996a83d75c27d196e2. Do not replace either official local source with GT6U. Torch/repeater stay blocked-host. Close at runtime_ready, not player_complete."
+  "note": "31 sidecar cover definitions on processing machines plus decorative cover_plate / cover_asphalt / cover_wood / cover_panel sidecars that store the live stack id. Java/tick is gt6_code/gregtech6 at 3703e40308c8c030763fd6297dea8b210d2a77b1; art is gt6_referencable_port_code/gregtech6_w at 936083c247a70b1bbc5f19996a83d75c27d196e2. Do not replace either official local source with GT6U. Torch/repeater host on the six redstone connectors. Hopper, battery, and transformer host remainder covers. Canvas 16-color covers and IC2 Obscurator / GT6 scanner-printer texture copy stay later cards. Close at runtime_ready, not player_complete."
 }

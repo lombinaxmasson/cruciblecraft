@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.client.color;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.item.MaterialFormItem;
 import com.masson.cruciblecraft.content.item.MaterialToolItem;
+import com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog;
 import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
 import com.masson.cruciblecraft.content.item.CoinItem;
 import com.masson.cruciblecraft.heat.ItemHeat;
@@ -59,6 +60,13 @@ public final class MaterialItemColor {
 
     private static int toolColor(
             ItemStack stack, MaterialToolItem tool, int tintIndex) {
+        if (tintIndex == 2 && ElectricToolCatalog.isElectric(tool.kind())) {
+            return 0xFF000000
+                    | ElectricToolCatalog.of(tool.kind())
+                            .orElseThrow()
+                            .voltage()
+                            .handleColor();
+        }
         if (tintIndex == 2 && isWoodHandleKind(tool.kind())) {
             return 0xFF000000 | woodHandleColor();
         }
@@ -98,6 +106,9 @@ public final class MaterialItemColor {
         if (tintIndex == 0
                 || (tintIndex == 2 && kind == ToolKind.UNIVERSAL_SPADE)) {
             return headColor;
+        }
+        if (tintIndex == 2 && ElectricToolCatalog.isElectric(kind)) {
+            return ElectricToolCatalog.of(kind).orElseThrow().voltage().handleColor();
         }
         if (tintIndex == 2 && isWoodHandleKind(kind)) {
             return woodColor;

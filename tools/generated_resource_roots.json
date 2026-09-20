@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "policy": "Do not add a new src/<name>_generated sibling. New compilers write under an existing frozen root, or under src/generated/resources after an ownership lock that separates Java HashCache from Python artifacts.",
+  "policy": "Do not add a new src/<name>_generated sibling. New compilers write under an existing frozen root, or under src/generated/resources after an ownership lock that separates Java HashCache from Python artifacts. A relative path may exist in only one resource root; processResources depends on checkResourceDuplicates.",
   "gradle_source_sets": "gradle/scripts/source-sets.gradle",
   "roots": [
     {

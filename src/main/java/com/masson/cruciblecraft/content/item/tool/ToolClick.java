@@ -5,6 +5,8 @@ import com.masson.cruciblecraft.api.tool.ToolActionSource;
 import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.item.MaterialToolItem;
+import com.masson.cruciblecraft.content.item.MaterialElectricToolItem;
+import com.masson.cruciblecraft.content.item.tool.ElectricToolCharge;
 import com.masson.cruciblecraft.content.item.ToolBreakScrap;
 
 import net.minecraft.sounds.SoundEvents;
@@ -108,6 +110,14 @@ public final class ToolClick {
         }
         if (stack.getItem() instanceof MaterialToolItem tool
                 && !tool.canApplyDurabilityDamage(stack)) {
+            return;
+        }
+        if (stack.getItem() instanceof MaterialElectricToolItem electric) {
+            ElectricToolCharge.spend(
+                    stack,
+                    electric.spec().damagePerBlock(),
+                    player,
+                    LivingEntity.getSlotForHand(hand));
             return;
         }
         ToolBreakScrap.hurtAndBreak(

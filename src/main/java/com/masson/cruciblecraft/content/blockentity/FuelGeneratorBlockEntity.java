@@ -577,6 +577,13 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
     }
 
     @Override
+    public int fillFluid(
+            net.neoforged.neoforge.fluids.FluidStack stack,
+            net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction action) {
+        return stack == null || stack.isEmpty() ? 0 : input.fill(stack, action);
+    }
+
+    @Override
     protected void onHostChanged() {
         markPersistentMutation();
     }

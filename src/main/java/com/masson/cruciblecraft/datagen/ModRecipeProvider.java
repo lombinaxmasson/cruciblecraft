@@ -50,9 +50,14 @@ import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerTierCatalog;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerProfile;
+import com.masson.cruciblecraft.energy.cooler.CoolerCatalog;
+import com.masson.cruciblecraft.energy.cooler.CoolerProfile;
+import com.masson.cruciblecraft.energy.flux.FluxCatalog;
+import com.masson.cruciblecraft.energy.flux.FluxProfile;
 import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerCatalog;
 import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerProfile;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
+import com.masson.cruciblecraft.energy.largegasturbine.LargeGasTurbineCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceAcquisitionCatalog;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
@@ -367,6 +372,45 @@ public final class ModRecipeProvider extends RecipeProvider {
                             "X", Ingredient.of(selector),
                             "Q", blank(),
                             "C", Ingredient.of(circuitBasic)));
+        }
+        if (blankAvailable) {
+            machineRecipe(
+                    output,
+                    "cover_crafting",
+                    List.of("C", "Q"),
+                    Map.of(
+                            "C", Ingredient.of(Items.CRAFTING_TABLE),
+                            "Q", blank()));
+            machineRecipe(
+                    output,
+                    "cover_warning",
+                    List.of("G ", "YQ"),
+                    Map.of(
+                            "G", Ingredient.of(ModItemTags.CRAFTING_PISTON_GLUE),
+                            "Y", Ingredient.of(Items.YELLOW_DYE),
+                            "Q", blank()));
+        }
+        Item zincFoil = sourceItem("zinc", MaterialPrefixes.FOIL);
+        if (blankAvailable && available(zincFoil)) {
+            machineRecipe(
+                    output,
+                    "filter_fluid",
+                    List.of("Z Z", " Q ", "Z Z"),
+                    Map.of(
+                            "Z", keyedIngredient(
+                                    zincFoil, "zinc", MaterialPrefixes.FOIL),
+                            "Q", blank()));
+        }
+        if (blankAvailable && available(ironRod)) {
+            machineCatalystRecipe(
+                    output,
+                    "cover_drain",
+                    List.of("RRR", "RwR", "RRR"),
+                    Map.of(
+                            "R", keyedIngredient(
+                                    ironRod, "iron", MaterialPrefixes.ROD)),
+                    Map.of(
+                            "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())));
         }
         if (blankAvailable && available(redAlloyWire)) {
             machineRecipe(
@@ -938,7 +982,10 @@ public final class ModRecipeProvider extends RecipeProvider {
         addBatteryRecipes(output);
         addTransformerRecipes(output);
         addHeatExchangerRecipes(output);
+        addCoolerRecipes(output);
+        addFluxConverterRecipes(output);
         addSteamTurbineRecipes(output);
+        addLargeGasTurbineRecipes(output);
         addMteInPlaceAcquisitionRecipes(output);
         ExtruderShapeRecipes.addAll(output);
         addAutomaticHammerRecipes(output);
@@ -987,6 +1034,18 @@ public final class ModRecipeProvider extends RecipeProvider {
                         "has_multiblock_casing",
                         has(ModItems.MULTIBLOCK_CASING.get()))
                 .save(output, id("machines/multiblock_energy_input_port"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.MULTIBLOCK_FLUID_OUT_PORT.get())
+                .pattern(" B ")
+                .pattern("BCB")
+                .pattern(" B ")
+                .define('C', ModItems.MULTIBLOCK_CASING.get())
+                .define('B', Items.BUCKET)
+                .unlockedBy(
+                        "has_multiblock_casing",
+                        has(ModItems.MULTIBLOCK_CASING.get()))
+                .save(output, id("machines/multiblock_fluid_out_port"));
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC,
                         ModItems.LARGE_CENTRIFUGE.get())
@@ -1573,11 +1632,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                     output, result, casing, material, path);
             case "laser_welder" -> laserWelderCrafting(
                     output, result, casing, material, path);
-            case "nanofab" -> {
-                // Native rows are acquisition-blocked. PUV2+/OMEGA rows keep
-                // the GT6 nanofab grid, which needs Ar/Kr/Xe laser cells.
-                return;
-            }
+            case "nanofab" -> nanofabCrafting(
+                    output, result, casing, path);
             case "electrolyzer" -> electrolyzerCrafting(
                     output,
                     result,
@@ -1697,6 +1753,9 @@ public final class ModRecipeProvider extends RecipeProvider {
                     WoodDebark.beamCreosoteMb(species));
         }
         for (WoodDebark.VanillaPair pair : WoodDebark.VANILLA_PAIRS) {
+            if (WoodDebark.GT6_PRESSURE_WASHER_VANILLA_LOGS.contains(pair.log())) {
+                continue;
+            }
             Item log = WoodDebark.requireItem(pair.log());
             Item beam = WoodDebark.requireItem(pair.beam());
             acceptPressureWasherDebark(
@@ -2932,6 +2991,49 @@ public final class ModRecipeProvider extends RecipeProvider {
                 new ItemStack(result));
     }
 
+    private static void nanofabCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String id) {
+        int tier = switch (id) {
+            case "nanofab" -> 1;
+            case "aluminium_nanofab" -> 2;
+            case "stainless_steel_nanofab" -> 3;
+            case "chromium_nanofab" -> 4;
+            case "titanium_nanofab" -> 5;
+            default -> compactIndexOrThrow(id);
+        };
+        Item argon = ModItems.technologicalPart("laser_gas_ar").get();
+        Item krypton = ModItems.technologicalPart("laser_gas_kr").get();
+        Item xenon = ModItems.technologicalPart("laser_gas_xe").get();
+        Item sapphire = ModItems.technologicalPart("processor_crystal_sapphire").get();
+        Item circuit = ModItems.technologicalPart("circuit_ultimate").get();
+        Item emitter = technologicalCompact("compact_signal_emitter", tier);
+        Item sensor = technologicalCompact("compact_sensor", tier);
+        if (emitter == null || sensor == null) {
+            throw new IllegalStateException(
+                    "Missing source machine component nanofab compact " + id);
+        }
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("K", Ingredient.of(krypton));
+        ingredients.put("A", Ingredient.of(argon));
+        ingredients.put("X", Ingredient.of(xenon));
+        ingredients.put("Z", Ingredient.of(sensor));
+        ingredients.put("M", Ingredient.of(casing));
+        ingredients.put("Y", Ingredient.of(emitter));
+        ingredients.put("C", Ingredient.of(circuit));
+        ingredients.put("S", Ingredient.of(sapphire));
+        // GT6 Loader_MultiTileEntities.java:1563-1567 {"KAX","ZMY","CSC"}.
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("KAX", "ZMY", "CSC"),
+                ingredients,
+                Map.of(),
+                new ItemStack(result));
+    }
+
     private static void laserEngraverCrafting(
             RecipeOutput output,
             Item result,
@@ -3132,7 +3234,9 @@ public final class ModRecipeProvider extends RecipeProvider {
                 ? toolStack(
                         resolveRegisteredItem(
                                 ResourceLocation.parse(planned.resultId())),
-                        planned.material())
+                        planned.material(),
+                        planned.electricCapacity(),
+                        planned.electricVoltage())
                 : MaterialLookup.stackFromLogicalId(planned.resultId())
                         .map(stack -> {
                             stack.setCount(planned.count());
@@ -3237,8 +3341,17 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private static ItemStack toolStack(Item tool, String material) {
+        return toolStack(tool, material, 0L, 0L);
+    }
+
+    private static ItemStack toolStack(
+            Item tool, String material, long capacity, long voltage) {
         ItemStack stack = new ItemStack(tool);
         stack.set(ModComponents.TOOL_MATERIAL.get(), material);
+        if (capacity > 0L) {
+            com.masson.cruciblecraft.content.item.tool.ElectricToolCharge
+                    .applyEmpty(stack, capacity, voltage);
+        }
         return stack;
     }
 
@@ -3810,6 +3923,103 @@ public final class ModRecipeProvider extends RecipeProvider {
         return MaterialLookup.ingredient(ingredient.material(), prefix).orElse(null);
     }
 
+    private static void addCoolerRecipes(RecipeOutput output) {
+        for (CoolerProfile profile : CoolerCatalog.profiles()) {
+            emitCoolerRecipe(output, profile);
+        }
+    }
+
+    private static void emitCoolerRecipe(
+            RecipeOutput output, CoolerProfile profile) {
+        LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
+        for (var entry : profile.recipe().keys().entrySet()) {
+            Ingredient item = resolveCoolerIngredient(entry.getValue());
+            if (item == null) {
+                return;
+            }
+            ingredients.put(entry.getKey(), item);
+        }
+        LinkedHashMap<String, Ingredient> catalysts = new LinkedHashMap<>();
+        for (String tool : profile.recipe().catalysts()) {
+            Item catalyst = catalystItem(tool);
+            if (catalyst == null) {
+                return;
+            }
+            catalysts.put(tool, CraftingTools.of(catalyst));
+        }
+        acceptShapedCatalyst(
+                output,
+                profile.id().getPath(),
+                profile.recipe().pattern(),
+                ingredients,
+                catalysts,
+                new ItemStack(
+                        ModItems.coolerItemsById()
+                                .get(profile.id())
+                                .get()));
+    }
+
+    private static Ingredient resolveCoolerIngredient(
+            CoolerProfile.Ingredient ingredient) {
+        if (ingredient.item() != null && !ingredient.item().isBlank()) {
+            return MaterialLookup.ingredientFromLogicalId(ingredient.item())
+                    .orElse(null);
+        }
+        MaterialPrefix prefix;
+        try {
+            prefix = new MaterialPrefix("cruciblecraft:" + ingredient.prefix());
+        } catch (IllegalArgumentException ignored) {
+            return null;
+        }
+        return MaterialLookup.ingredient(ingredient.material(), prefix).orElse(null);
+    }
+
+    private static void addFluxConverterRecipes(RecipeOutput output) {
+        for (FluxProfile profile : FluxCatalog.profiles()) {
+            if (!profile.recipeLive()) {
+                continue;
+            }
+            emitFluxRecipe(output, profile);
+        }
+    }
+
+    private static void emitFluxRecipe(
+            RecipeOutput output, FluxProfile profile) {
+        LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
+        for (var entry : profile.recipe().keys().entrySet()) {
+            Ingredient item = resolveFluxIngredient(entry.getValue());
+            if (item == null) {
+                return;
+            }
+            ingredients.put(entry.getKey(), item);
+        }
+        acceptShapedCatalyst(
+                output,
+                profile.id().getPath(),
+                profile.recipe().pattern(),
+                ingredients,
+                new LinkedHashMap<>(),
+                new ItemStack(
+                        ModItems.fluxItemsById()
+                                .get(profile.id())
+                                .get()));
+    }
+
+    private static Ingredient resolveFluxIngredient(
+            FluxProfile.Ingredient ingredient) {
+        if (ingredient.item() != null && !ingredient.item().isBlank()) {
+            return MaterialLookup.ingredientFromLogicalId(ingredient.item())
+                    .orElse(null);
+        }
+        MaterialPrefix prefix;
+        try {
+            prefix = new MaterialPrefix("cruciblecraft:" + ingredient.prefix());
+        } catch (IllegalArgumentException ignored) {
+            return null;
+        }
+        return MaterialLookup.ingredient(ingredient.material(), prefix).orElse(null);
+    }
+
     private static void addLargeHeatExchangerRecipes(RecipeOutput output) {
         LargeHeatExchangerProfile profile = LargeHeatExchangerCatalog.profile();
         emitCatalogShaped(
@@ -3904,6 +4114,20 @@ public final class ModRecipeProvider extends RecipeProvider {
         }
     }
 
+    private static void addLargeGasTurbineRecipes(RecipeOutput output) {
+        for (LargeGasTurbineCatalog.Profile profile : LargeGasTurbineCatalog.profiles()) {
+            var item = ModItems.mteInPlaceItemsById().get(profile.id());
+            if (item == null) {
+                continue;
+            }
+            emitGasTurbineShaped(
+                    output,
+                    profile.id().getPath(),
+                    profile.recipe(),
+                    new ItemStack(item.get()));
+        }
+    }
+
     private static void emitCatalogShaped(
             RecipeOutput output,
             String path,
@@ -3935,6 +4159,36 @@ public final class ModRecipeProvider extends RecipeProvider {
             RecipeOutput output,
             String path,
             SteamTurbineCatalog.Recipe recipe,
+            ItemStack result) {
+        if (recipe.pattern().isEmpty()) {
+            return;
+        }
+        LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
+        for (var entry : recipe.keys().entrySet()) {
+            Ingredient item = resolveFlexibleIngredient(
+                    entry.getValue().item(),
+                    entry.getValue().prefix(),
+                    entry.getValue().material());
+            if (item == null) {
+                return;
+            }
+            ingredients.put(entry.getKey(), item);
+        }
+        LinkedHashMap<String, Ingredient> catalysts = new LinkedHashMap<>();
+        for (String tool : recipe.catalysts()) {
+            Item catalyst = catalystItem(tool);
+            if (catalyst == null) {
+                return;
+            }
+            catalysts.put(tool, CraftingTools.of(catalyst));
+        }
+        acceptShapedCatalyst(output, path, recipe.pattern(), ingredients, catalysts, result);
+    }
+
+    private static void emitGasTurbineShaped(
+            RecipeOutput output,
+            String path,
+            LargeGasTurbineCatalog.Recipe recipe,
             ItemStack result) {
         if (recipe.pattern().isEmpty()) {
             return;

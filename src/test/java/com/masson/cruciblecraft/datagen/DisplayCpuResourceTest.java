@@ -122,13 +122,13 @@ class DisplayCpuResourceTest {
             assertEquals(
                     switch (item) {
                         case "logistics_display_cpu_logic_cover" ->
-                                "Logistics Monitor (Logic Processor)";
+                                "Logistics Display (CPU Logic)";
                         case "logistics_display_cpu_control_cover" ->
-                                "Logistics Monitor (Control Processor)";
+                                "Logistics Display (CPU Control)";
                         case "logistics_display_cpu_storage_cover" ->
-                                "Logistics Monitor (Storage Processor)";
+                                "Logistics Display (CPU Storage)";
                         case "logistics_display_cpu_conversion_cover" ->
-                                "Logistics Monitor (Conversion Processor)";
+                                "Logistics Display (CPU Conversion)";
                         default -> throw new IllegalStateException(item);
                     },
                     english.get("item.cruciblecraft." + item).getAsString());

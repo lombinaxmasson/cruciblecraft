@@ -141,7 +141,7 @@ public final class MultiblockStructureValidator {
                             .map(state::is)
                             .orElse(false)
                     && blockEntity instanceof MultiblockPort port
-                    && port.portType() == predicate.port().orElseThrow();
+                    && port.accepts(predicate.port().orElseThrow());
         };
     }
 

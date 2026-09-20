@@ -215,8 +215,10 @@ public final class ModCreativeTabs {
         output.accept(ModItems.MULTIBLOCK_CASING.get());
         output.accept(ModItems.MULTIBLOCK_ITEM_FLUID_PORT.get());
         output.accept(ModItems.MULTIBLOCK_ENERGY_INPUT_PORT.get());
+        output.accept(ModItems.MULTIBLOCK_FLUID_OUT_PORT.get());
         output.accept(ModItems.LARGE_CENTRIFUGE.get());
         output.accept(ModItems.DISTILLATION_TOWER.get());
+        output.accept(ModItems.CRYO_DISTILLATION_TOWER.get());
         output.accept(ModItems.LARGE_BOILER.get());
         output.accept(ModItems.TANK_3X3X3.get());
         output.accept(ModItems.GALVANIZED_STEEL_WALL.get());
@@ -286,8 +288,21 @@ public final class ModCreativeTabs {
                 .forEach(item -> output.accept(item.get()));
         ModItems.heatExchangerItemsById().values()
                 .forEach(item -> output.accept(item.get()));
+        ModItems.coolerItemsById().values()
+                .forEach(item -> output.accept(item.get()));
+        ModItems.fluxItemsById().values()
+                .forEach(item -> output.accept(item.get()));
         output.accept(ModItems.ROTATIONAL_AXLE.get());
         output.accept(ModItems.ROTATIONAL_GEARBOX.get());
+        MteInPlaceCatalog.specs().forEach(spec -> {
+            if (spec.kind() != MteInPlaceKind.GAS_TURBINE) {
+                return;
+            }
+            var item = ModItems.mteInPlaceItemsById().get(spec.id());
+            if (item != null) {
+                output.accept(item.get());
+            }
+        });
     }
 
     private static void fillCovers(

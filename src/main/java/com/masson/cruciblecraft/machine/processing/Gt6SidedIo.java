@@ -63,6 +63,8 @@ public final class Gt6SidedIo {
         put("cryo_mixer", p(L | U, LEFT, R | B, RIGHT, L | U, TOP, R | B, BACK, D));
         put("electrolyzer", p(U | F | B, TOP, R | L, RIGHT, U | F | B, TOP, R | L, LEFT, D));
         put("distillery", p(U | L, LEFT, R, RIGHT, U | L, TOP, B, BACK, D));
+        put("distillation_tower", p(U | L, LEFT, R, RIGHT, U | L, TOP, B, BACK, 0));
+        put("cryo_distillation_tower", p(U | L, LEFT, R, RIGHT, U | L, TOP, B, BACK, 0));
         put("drying", p(B | L, LEFT, R, RIGHT, B | L, BACK, U, TOP, D));
         put("roaster", p(B | L, LEFT, R, RIGHT, B | L, BACK, U, TOP, D));
         put("autoclave", p(U | L, LEFT, B | R, RIGHT, D | L, BOTTOM, B | R, BACK, ALL));

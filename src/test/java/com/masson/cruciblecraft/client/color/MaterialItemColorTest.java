@@ -28,6 +28,14 @@ class MaterialItemColorTest {
                 0x888888,
                 MaterialItemColor.layerTint(
                         ToolKind.UNIVERSAL_SPADE, 2, 0x888888, 0x664F2F));
+        assertEquals(
+                0xFF7F00,
+                MaterialItemColor.layerTint(
+                        ToolKind.MINING_DRILL_LV, 2, 0x888888, 0x664F2F));
+        assertEquals(
+                0x888888,
+                MaterialItemColor.layerTint(
+                        ToolKind.MINING_DRILL_LV, 0, 0x888888, 0x664F2F));
         assertTrue(MaterialItemColor.isWoodHandleKind(ToolKind.PICKAXE));
         assertFalse(MaterialItemColor.isWoodHandleKind(ToolKind.WRENCH));
     }

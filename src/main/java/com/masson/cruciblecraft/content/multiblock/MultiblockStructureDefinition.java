@@ -287,7 +287,8 @@ public record MultiblockStructureDefinition(
 
     public enum PortType {
         ITEM_FLUID("item_fluid"),
-        ENERGY_INPUT("energy_input");
+        ENERGY_INPUT("energy_input"),
+        FLUID_OUT("fluid_out");
 
         public static final Codec<PortType> CODEC =
                 Codec.STRING.comapFlatMap(

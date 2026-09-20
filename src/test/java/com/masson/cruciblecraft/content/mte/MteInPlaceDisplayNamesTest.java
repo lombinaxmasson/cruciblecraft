@@ -62,4 +62,11 @@ class MteInPlaceDisplayNamesTest {
                 MteInPlaceDisplayNames.english("Black Granite", null));
         assertEquals("", MteInPlaceDisplayNames.english(null, null));
     }
+
+    @Test
+    void woodenPanelsKeepGt6Title() {
+        assertEquals(
+                "Wooden Panel",
+                MteInPlaceDisplayNames.english("Wooden Panel", "panel/wood_0"));
+    }
 }

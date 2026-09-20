@@ -22,7 +22,7 @@ public final class TechnologicalPartCatalog {
             "/data/cruciblecraft/technological_parts.json";
     private static final String SOURCE_REVISION =
             "3703e40308c8c030763fd6297dea8b210d2a77b1";
-    private static final int PART_COUNT = 157;
+    private static final int PART_COUNT = 160;
     private static final Gson GSON = new Gson();
     private static final Catalog CATALOG = loadBundled();
 

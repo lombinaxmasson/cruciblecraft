@@ -349,6 +349,10 @@ public final class EmiStackGroupPlan {
             molds.add("cruciblecraft:" + CeramicMoldCatalog.firedItemId(variant));
         }
         addIfMany(groups, "mold/ceramic", molds);
+        addIfMany(
+                groups,
+                "energy/large_gas_turbine",
+                mteIds(MteInPlaceKind.GAS_TURBINE));
         return List.copyOf(groups);
     }
 

@@ -7,7 +7,9 @@ import java.util.stream.Collectors;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.block.StorageHostBlock;
 import com.masson.cruciblecraft.content.blockentity.BookshelfBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BottleCrateBlockEntity;
@@ -218,6 +220,105 @@ public final class StorageGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void massStorageIronBlockJoinsIngotFamilyNotPlate(
+            GameTestHelper helper) {
+        helper.assertTrue(
+                ModItems.hasMaterialItem("iron", MaterialPrefixes.INGOT)
+                        && ModItems.hasMaterialItem("iron", MaterialPrefixes.PLATE),
+                "iron ingot/plate forms are missing");
+        ItemStack block = ironBlockStack();
+        helper.assertTrue(
+                MaterialUnits.resolve(block)
+                        .filter(entry -> "iron".equals(entry.materialId())
+                                && MaterialPrefixes.BLOCK.equals(entry.form()))
+                        .isPresent(),
+                "iron block is not indexed as iron/block");
+        BlockPos ingotPos = new BlockPos(1, 2, 2);
+        BlockPos platePos = new BlockPos(3, 2, 2);
+        place(helper, ingotPos, "cruciblecraft:item_barrel_6999");
+        place(helper, platePos, "cruciblecraft:item_barrel_6983");
+        MassStorageBlockEntity ingotBarrel =
+                (MassStorageBlockEntity) helper.getBlockEntity(ingotPos);
+        MassStorageBlockEntity plateBarrel =
+                (MassStorageBlockEntity) helper.getBlockEntity(platePos);
+        ItemStack ingot = new ItemStack(
+                ModItems.materialItem("iron", MaterialPrefixes.INGOT).get());
+        ItemStack plate = new ItemStack(
+                ModItems.materialItem("iron", MaterialPrefixes.PLATE).get());
+        helper.assertTrue(
+                ingotBarrel.inventory().insertAll(ingot, false).isEmpty(),
+                "ingot barrel rejected an iron ingot");
+        helper.assertTrue(
+                ingotBarrel.inventory().insertAll(block.copy(), false).isEmpty(),
+                "ingot barrel rejected an iron block");
+        helper.assertTrue(
+                ingotBarrel.inventory().stored() == 10,
+                "iron block did not convert into 9 stored ingots");
+        helper.assertTrue(
+                plateBarrel.inventory().insertAll(plate, false).isEmpty(),
+                "plate barrel rejected an iron plate");
+        helper.assertTrue(
+                !plateBarrel.inventory().insertAll(block.copy(), false).isEmpty()
+                        && plateBarrel.inventory().stored() == 1,
+                "iron block entered a plate barrel");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void massStorageChunkUnitsAreQuarterIngot(GameTestHelper helper) {
+        helper.assertTrue(
+                ModItems.hasMaterialItem("iron", MaterialPrefixes.INGOT)
+                        && ModItems.hasMaterialItem("iron", MaterialPrefixes.CHUNK),
+                "iron ingot/chunk forms are missing");
+        BlockPos pos = new BlockPos(2, 2, 2);
+        place(helper, pos, "cruciblecraft:item_barrel_6999");
+        MassStorageBlockEntity storage =
+                (MassStorageBlockEntity) helper.getBlockEntity(pos);
+        ItemStack ingot = new ItemStack(
+                ModItems.materialItem("iron", MaterialPrefixes.INGOT).get());
+        ItemStack chunks = new ItemStack(
+                ModItems.materialItem("iron", MaterialPrefixes.CHUNK).get(), 4);
+        helper.assertTrue(
+                storage.inventory().insertAll(ingot, false).isEmpty(),
+                "barrel rejected an iron ingot");
+        helper.assertTrue(
+                storage.inventory().insertAll(chunks, false).isEmpty(),
+                "barrel rejected iron chunks");
+        helper.assertTrue(
+                storage.inventory().stored() == 2,
+                "4 chunks did not convert as one ingot");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void massStorageVanillaGlassDoesNotPrefixMerge(
+            GameTestHelper helper) {
+        ItemStack storedGlass = new ItemStack(Items.GLASS);
+        var resolved = MaterialUnits.resolve(storedGlass);
+        if (resolved.isEmpty()) {
+            helper.succeed();
+            return;
+        }
+        ItemStack incoming = glassFamilyIncoming(resolved.get().form());
+        helper.assertTrue(
+                !incoming.isEmpty(),
+                "glass dust/gem forms are missing");
+        BlockPos pos = new BlockPos(2, 2, 2);
+        place(helper, pos, "cruciblecraft:item_barrel_6999");
+        MassStorageBlockEntity storage =
+                (MassStorageBlockEntity) helper.getBlockEntity(pos);
+        helper.assertTrue(
+                storage.inventory().insertAll(storedGlass, false).isEmpty(),
+                "barrel rejected vanilla glass");
+        helper.assertTrue(
+                !storage.inventory().insertAll(incoming, false).isEmpty()
+                        && storage.inventory().stored() == 1
+                        && storage.inventory().filter().is(Items.GLASS),
+                "vanilla glass prefix-merged a same-family glass form");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void massStorageAutoOutputsDownNotThroughFront(
             GameTestHelper helper) {
         BlockPos pos = new BlockPos(2, 3, 2);
@@ -337,6 +438,42 @@ public final class StorageGameTests {
 
     private static void place(GameTestHelper helper, BlockPos pos, String id) {
         placeFacing(helper, pos, id, Direction.NORTH);
+    }
+
+    private static ItemStack ironBlockStack() {
+        if (ModItems.hasMaterialItem("iron", MaterialPrefixes.BLOCK)) {
+            return new ItemStack(
+                    ModItems.materialItem("iron", MaterialPrefixes.BLOCK).get());
+        }
+        return new ItemStack(Items.IRON_BLOCK);
+    }
+
+    private static ItemStack glassFamilyIncoming(MaterialPrefix storedForm) {
+        if (MaterialPrefixes.GEM.equals(storedForm)
+                || MaterialPrefixes.BLOCK.equals(storedForm)) {
+            if (ModItems.hasMaterialItem("glass", MaterialPrefixes.GEM)) {
+                return new ItemStack(
+                        ModItems.materialItem("glass", MaterialPrefixes.GEM).get());
+            }
+        }
+        if (MaterialPrefixes.DUST.equals(storedForm)
+                || MaterialPrefixes.SMALL_DUST.equals(storedForm)
+                || MaterialPrefixes.TINY_DUST.equals(storedForm)
+                || MaterialPrefixes.DUST_DIV72.equals(storedForm)
+                || MaterialPrefixes.STORAGE_DUST.equals(storedForm)) {
+            if (ModItems.hasMaterialItem("glass", MaterialPrefixes.DUST)) {
+                return new ItemStack(
+                        ModItems.materialItem("glass", MaterialPrefixes.DUST).get());
+            }
+        }
+        if (MaterialPrefixes.PLATE.equals(storedForm)
+                || MaterialPrefixes.STORAGE_PLATE.equals(storedForm)) {
+            if (ModItems.hasMaterialItem("glass", MaterialPrefixes.PLATE)) {
+                return new ItemStack(
+                        ModItems.materialItem("glass", MaterialPrefixes.PLATE).get());
+            }
+        }
+        return ItemStack.EMPTY;
     }
 
     private static Set<String> machineCatalogIds(boolean skipGenericOnly) {

@@ -8,6 +8,8 @@ import java.util.Set;
 
 import com.masson.cruciblecraft.content.item.PipeCoverItem;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
+import com.masson.cruciblecraft.logistics.pipe.cover.DecorativeCovers;
+import com.masson.cruciblecraft.logistics.pipe.cover.PlateCovers;
 import com.masson.cruciblecraft.registry.ModItems;
 
 import net.minecraft.resources.ResourceLocation;
@@ -15,8 +17,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 
 /** GT6 MultiItemTechnological 1000-1030 remainder covers. */
 public final class MachineCoverKinds {
-    public static final int DEFINITION_COUNT = 27;
-    public static final int ITEM_COUNT = 24;
+    public static final int DEFINITION_COUNT = 31;
+    public static final int ITEM_COUNT = 28;
 
     public record ItemCover(
             String definitionPath,
@@ -46,25 +48,28 @@ public final class MachineCoverKinds {
 
     public static final List<ItemCover> ITEMS = List.of(
             item("cover_blank", 1000, "cover_blank",
-                    "Blank Cover", "空白盖板",
+                    "Blank Cover", "空白覆盖板",
+                    CoverDefinition.Medium.BOTH),
+            item("cover_crafting", 1001, "cover_crafting",
+                    "Crafting Table Cover", "工作台覆盖板",
                     CoverDefinition.Medium.BOTH),
             item("controller_display", 1002, "controller_display",
-                    "Machine Status Display Cover", "机器状态显示盖板",
+                    "Machine Status Display Cover", "状态显示覆盖板",
                     CoverDefinition.Medium.BOTH),
             item("controller_auto", 1003, "controller_auto",
                     "Automatic Machine Switch", "自动开关",
                     CoverDefinition.Medium.BOTH),
             item("display_energy", 1004, "display_energy",
-                    "Energy Display Cover", "能量显示盖板",
+                    "Energy Display Cover", "能量显示面板",
                     CoverDefinition.Medium.BOTH),
             item("controller_redstone", 1005, "controller_redstone",
-                    "Redstone Machine Switch", "红石开关",
+                    "Redstone Machine Switch", "红石机器开关",
                     CoverDefinition.Medium.BOTH),
             item("controller_auto_redstone", 1006, "controller_auto_redstone",
-                    "Auto Redstone Machine Switch", "自动红石开关",
+                    "Auto Redstone Machine Switch", "自动式红石机器开关",
                     CoverDefinition.Medium.BOTH),
             item("selector_redstone", 1007, "selector_redstone",
-                    "Redstone Selector", "红石选择器",
+                    "Redstone Selector", "红石选择面板",
                     CoverDefinition.Medium.BOTH),
             item("controller_auto_timer_1m", 1009, "controller_auto_timer",
                     "Auto Reboot Switch (1 min)", "自动重启开关(1分钟)",
@@ -85,37 +90,46 @@ public final class MachineCoverKinds {
                     "Energy Sensor", "能量传感器",
                     CoverDefinition.Medium.BOTH),
             item("detector_running_possible", 1015, "detector_running",
-                    "Activity Detector (Possible)", "活动检测器(可运行)",
+                    "Activity Detector (Possible)", "活动传感器(可运行)",
                     CoverDefinition.Medium.BOTH),
             item("detector_running_passively", 1016, "detector_running",
-                    "Activity Detector (Running)", "活动检测器(待机)",
+                    "Activity Detector (Running)", "活动传感器(待机)",
                     CoverDefinition.Medium.BOTH),
             item("detector_running_actively", 1017, "detector_running",
-                    "Activity Detector (Processing)", "活动检测器(加工中)",
+                    "Activity Detector (Processing)", "活动传感器(加工中)",
                     CoverDefinition.Medium.BOTH),
             item("scale_progress", 1018, "scale_progress",
                     "Progress Sensor", "进度传感器",
                     CoverDefinition.Medium.BOTH),
             item("detector_running_successfully", 1019, "detector_running",
-                    "Activity Detector (Success)", "活动检测器(成功)",
+                    "Activity Detector (Success)", "活动传感器(成功)",
                     CoverDefinition.Medium.BOTH),
+            item("cover_drain", 1020, "cover_drain",
+                    "Drain", "排液口",
+                    CoverDefinition.Medium.FLUID),
             item("redstone_emitter", 1021, "redstone_emitter",
-                    "Redstone Emitter", "红石发射器盖板",
+                    "Redstone Emitter", "红石信号发射器",
                     CoverDefinition.Medium.BOTH),
             item("vent", 1022, "vent",
-                    "Air Vent", "通气盖板",
+                    "Air Vent", "通风口",
+                    CoverDefinition.Medium.FLUID),
+            item("filter_fluid", 1024, "filter_fluid",
+                    "Fluid Filter", "流体过滤覆盖板",
                     CoverDefinition.Medium.FLUID),
             item("controller_covers", 1025, "controller_covers",
-                    "Cover Controller", "盖板控制器",
+                    "Cover Controller", "控制器覆盖板",
                     CoverDefinition.Medium.BOTH),
             item("selector_button_panel", 1027, "selector_button_panel",
-                    "Button Panel Selector", "按钮面板选择器",
+                    "Button Panel Selector", "按钮覆盖板选择器",
+                    CoverDefinition.Medium.BOTH),
+            item("cover_warning", 1028, "cover_warning",
+                    "Warning Cover", "警告标志覆盖板",
                     CoverDefinition.Medium.BOTH),
             item("redstone_conductor_in", 1029, "redstone_conductor_in",
-                    "Redstone Conductor IN", "红石导体(输入)",
+                    "Redstone Conductor Cover (Accept)", "红石传导覆盖板(输入)",
                     CoverDefinition.Medium.BOTH),
             item("redstone_conductor_out", 1030, "redstone_conductor_out",
-                    "Redstone Conductor OUT", "红石导体(输出)",
+                    "Redstone Conductor Cover (Emit)", "红石传导覆盖板(输出)",
                     CoverDefinition.Medium.BOTH));
 
     public static final List<ExtraDefinition> EXTRA = List.of(
@@ -129,6 +143,9 @@ public final class MachineCoverKinds {
 
     public static final Set<String> BEHAVIOR_PATHS = Set.of(
             "cover_blank",
+            "cover_crafting",
+            "cover_drain",
+            "cover_warning",
             "controller_auto",
             "controller_auto_redstone",
             "controller_auto_timer",
@@ -137,6 +154,7 @@ public final class MachineCoverKinds {
             "controller_redstone",
             "detector_running",
             "display_energy",
+            "filter_fluid",
             "redstone_conductor_in",
             "redstone_conductor_out",
             "redstone_emitter",
@@ -233,7 +251,16 @@ public final class MachineCoverKinds {
                 && "controller_covers".equals(definitionId.getPath());
     }
 
-    public static boolean isBlockedWireHost(ResourceLocation definitionId) {
+    public static boolean isBlank(ResourceLocation definitionId) {
+        return definitionId != null && "cover_blank".equals(definitionId.getPath());
+    }
+
+    public static boolean isTorch(ResourceLocation definitionId) {
+        return definitionId != null
+                && "redstone_torch".equals(definitionId.getPath());
+    }
+
+    public static boolean isWireOnlyCover(ResourceLocation definitionId) {
         if (definitionId == null) {
             return false;
         }
@@ -241,17 +268,54 @@ public final class MachineCoverKinds {
         return "redstone_torch".equals(path) || "redstone_repeater".equals(path);
     }
 
+    /**
+     * GT6 redstone connectors are {@code ITileEntitySwitchableMode} and
+     * {@code ITileEntityProgress}. Torch/repeater stay wire-only; selectors,
+     * emitter, conductor, progress scale, blank, decorative plates, crafting,
+     * and warning attach here too. Controllers, detectors, vent, drain, and
+     * energy covers still need a machine or fluid host.
+     */
+    public static boolean attachesToRedstoneWire(ResourceLocation definitionId) {
+        if (definitionId == null) {
+            return false;
+        }
+        if (isBlank(definitionId)
+                || isWireOnlyCover(definitionId)
+                || PlateCovers.isPlate(definitionId)
+                || DecorativeCovers.isDecorative(definitionId)) {
+            return true;
+        }
+        String path = definitionId.getPath();
+        return "selector_redstone".equals(path)
+                || "selector_tag".equals(path)
+                || "selector_button_panel".equals(path)
+                || "redstone_emitter".equals(path)
+                || "redstone_conductor_in".equals(path)
+                || "redstone_conductor_out".equals(path)
+                || "scale_progress".equals(path)
+                || "cover_crafting".equals(path)
+                || "cover_warning".equals(path);
+    }
+
+    public static boolean isBlockedWireHost(ResourceLocation definitionId) {
+        return isWireOnlyCover(definitionId);
+    }
+
     public static boolean requiresMachineHost(ResourceLocation definitionId) {
         if (definitionId == null) {
             return false;
         }
-        String path = definitionId.getPath();
-        if ("cover_blank".equals(path)) {
+        if (isBlank(definitionId) || isWireOnlyCover(definitionId)) {
             return false;
         }
-        return BY_DEFINITION.containsKey(path)
-                || "selector_tag".equals(path)
-                || isBlockedWireHost(definitionId);
+        String path = definitionId.getPath();
+        if ("cover_crafting".equals(path)
+                || "cover_warning".equals(path)
+                || "cover_drain".equals(path)
+                || "filter_fluid".equals(path)) {
+            return false;
+        }
+        return BY_DEFINITION.containsKey(path) || "selector_tag".equals(path);
     }
 
     public static boolean requiresEnergy(ResourceLocation definitionId) {
@@ -263,7 +327,11 @@ public final class MachineCoverKinds {
     }
 
     public static boolean requiresFluids(ResourceLocation definitionId) {
-        return definitionId != null && "vent".equals(definitionId.getPath());
+        if (definitionId == null) {
+            return false;
+        }
+        String path = definitionId.getPath();
+        return "vent".equals(path) || "cover_drain".equals(path);
     }
 
     private static ItemCover item(

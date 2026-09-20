@@ -80,7 +80,13 @@ class MteRedstoneWireCardTest(unittest.TestCase):
             for row in capability["identity_disposition"]
             if row["disposition"] == "reuse_canonical"
         }
-        self.assertEqual({"connector:redstone-wire:27000-27500"}, reused)
+        self.assertEqual(
+            {
+                "connector:redstone-wire:27000-27500",
+                "connector:redstone-wire:covers",
+            },
+            reused,
+        )
         blocked = {
             row["semantic_key"]
             for row in capability["identity_disposition"]
@@ -88,7 +94,6 @@ class MteRedstoneWireCardTest(unittest.TestCase):
         }
         self.assertEqual(
             {
-                "connector:redstone-wire:covers",
                 "connector:redstone-wire:insulated-extras",
             },
             blocked,

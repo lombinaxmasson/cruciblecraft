@@ -32,6 +32,7 @@ GENERATED = ROOT / "src/generated/resources"
 
 ITEM_PATHS = [
     "cover_blank",
+    "cover_crafting",
     "controller_display",
     "controller_auto",
     "display_energy",
@@ -49,10 +50,13 @@ ITEM_PATHS = [
     "detector_running_actively",
     "scale_progress",
     "detector_running_successfully",
+    "cover_drain",
     "redstone_emitter",
     "vent",
+    "filter_fluid",
     "controller_covers",
     "selector_button_panel",
+    "cover_warning",
     "redstone_conductor_in",
     "redstone_conductor_out",
 ]
@@ -118,10 +122,10 @@ class CoverRemainderCardTest(unittest.TestCase):
             receipt["test_ids"],
         )
 
-    def test_sidecar_has_the_exact_27_definitions(self) -> None:
+    def test_sidecar_has_the_exact_31_definitions(self) -> None:
         document = io.load_json(SIDECAR)
         rows = document["definitions"]
-        self.assertEqual(27, len(rows))
+        self.assertEqual(31, len(rows))
         ids = [row["id"].split(":", 1)[-1] for row in rows]
         self.assertEqual(DEFINITION_PATHS, ids)
         self.assertEqual(
@@ -161,7 +165,7 @@ class CoverRemainderCardTest(unittest.TestCase):
             "936083c247a70b1bbc5f19996a83d75c27d196e2",
             manifest["source_revision"],
         )
-        self.assertEqual(24, len(manifest["entries"]))
+        self.assertEqual(28, len(manifest["entries"]))
         self.assertGreater(len(manifest["block_entries"]), 0)
         for row in list(manifest["entries"]) + list(manifest["block_entries"]):
             self.assertTrue(

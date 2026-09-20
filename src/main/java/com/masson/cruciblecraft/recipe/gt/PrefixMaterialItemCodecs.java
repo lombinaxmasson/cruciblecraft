@@ -30,9 +30,8 @@ import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 /**
  * Long-tail slash ids rewrite onto the shared prefix Item plus
- * {@code prefix_material}. Leftover public-exchange or unique-hosted prefix
- * Item + component JSON rewrites onto the unique Item. Unique hosted forms
- * keep their per-material ids.
+ * {@code prefix_material}. Public-exchange slash ids and leftover prefix Item
+ * + component JSON rewrite onto the unique Item, never a {@code c:} tag.
  */
 public final class PrefixMaterialItemCodecs {
     public static final Codec<Ingredient> INGREDIENT = Codec.of(
@@ -50,6 +49,18 @@ public final class PrefixMaterialItemCodecs {
             return Optional.empty();
         }
         return MaterialLookup.ingredient(parsed.material(), parsed.form());
+    }
+
+    /**
+     * Public-exchange and unique-hosted slash ids rewrite onto the live unique
+     * Item. Compact shard routing cannot index {@code c:} tags.
+     */
+    public static Optional<Ingredient> rewriteUniqueItem(ResourceLocation itemId) {
+        Parsed parsed = parseUniqueLiveId(itemId).orElse(null);
+        if (parsed == null) {
+            return Optional.empty();
+        }
+        return MaterialLookup.item(parsed.material(), parsed.form()).map(Ingredient::of);
     }
 
     public static Optional<ItemStack> rewriteStack(ResourceLocation itemId, int count) {
@@ -109,6 +120,18 @@ public final class PrefixMaterialItemCodecs {
     }
 
     static Optional<Parsed> parseSharedInventoryId(ResourceLocation itemId) {
+        return parseSlashId(itemId)
+                .filter(parsed -> MaterialFormHosts.isSharedInventoryForm(
+                        parsed.material(), parsed.form()));
+    }
+
+    static Optional<Parsed> parseUniqueLiveId(ResourceLocation itemId) {
+        return parseSlashId(itemId)
+                .filter(parsed -> !MaterialFormHosts.isSharedInventoryForm(
+                        parsed.material(), parsed.form()));
+    }
+
+    private static Optional<Parsed> parseSlashId(ResourceLocation itemId) {
         if (itemId == null
                 || !CrucibleCraft.MODID.equals(itemId.getNamespace())
                 || !MaterialCatalog.isBootstrapped()) {
@@ -125,7 +148,7 @@ public final class PrefixMaterialItemCodecs {
                 .orElse(null);
         if (material == null
                 || form == null
-                || !MaterialFormHosts.isSharedInventoryForm(material, form)) {
+                || !MaterialCatalog.isFormRegistered(material, form)) {
             return Optional.empty();
         }
         return Optional.of(new Parsed(material, form));
@@ -136,7 +159,7 @@ public final class PrefixMaterialItemCodecs {
         if (parsed == null) {
             return Optional.empty();
         }
-        return MaterialLookup.ingredient(parsed.material(), parsed.form());
+        return MaterialLookup.item(parsed.material(), parsed.form()).map(Ingredient::of);
     }
 
     public static Optional<ItemStack> rewritePublicExchangeStack(JsonElement json) {
@@ -303,6 +326,10 @@ public final class PrefixMaterialItemCodecs {
         Optional<Ingredient> rewritten = rewriteIngredient(itemId(json, "item"));
         if (rewritten.isPresent()) {
             return DataResult.success(Pair.of(rewritten.orElseThrow(), input));
+        }
+        Optional<Ingredient> uniqueItem = rewriteUniqueItem(itemId(json, "item"));
+        if (uniqueItem.isPresent()) {
+            return DataResult.success(Pair.of(uniqueItem.orElseThrow(), input));
         }
         Optional<Ingredient> rewrittenTag = rewriteTag(tagId(json));
         if (rewrittenTag.isPresent()) {

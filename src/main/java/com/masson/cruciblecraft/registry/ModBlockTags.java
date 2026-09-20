@@ -16,6 +16,10 @@ public final class ModBlockTags {
             Registries.BLOCK,
             ResourceLocation.fromNamespaceAndPath(
                     CrucibleCraft.MODID, "gt_block_objects"));
+    public static final TagKey<Block> DISTILLATION_TOWER_CONTROLLERS = TagKey.create(
+            Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID, "distillation_tower_controllers"));
     public static final TagKey<Block> LARGE_CRUCIBLE_CONTROLLERS = TagKey.create(
             Registries.BLOCK,
             ResourceLocation.fromNamespaceAndPath(

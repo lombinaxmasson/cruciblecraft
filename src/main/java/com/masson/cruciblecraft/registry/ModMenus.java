@@ -148,6 +148,14 @@ public final class ModMenus {
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             DISTILLERY = processing("distillery", ModProcessingMachines.DISTILLERY);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            DISTILLATION_TOWER = processing(
+                    "distillation_tower",
+                    ModProcessingMachines.DISTILLATION_TOWER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            CRYO_DISTILLATION_TOWER = processing(
+                    "cryo_distillation_tower",
+                    ModProcessingMachines.CRYO_DISTILLATION_TOWER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             AUTOCLAVE = processing("autoclave", ModProcessingMachines.AUTOCLAVE);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             DRYING = processing("drying", ModProcessingMachines.DRYING);
@@ -199,7 +207,7 @@ public final class ModMenus {
 
     static {
         validateProcessingMenuMapping(
-                ModProcessingMachines.CONFIGURED_MACHINES,
+                menuHostSpecs(),
                 PROCESSING_MENUS);
     }
 
@@ -236,8 +244,15 @@ public final class ModMenus {
 
     public static List<DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>>
             processingMenus() {
-        return ModProcessingMachines.CONFIGURED_MACHINES.stream()
+        return menuHostSpecs().stream()
                 .map(ModMenus::forMachine)
+                .toList();
+    }
+
+    static List<ProcessingMachineSpec> menuHostSpecs() {
+        return java.util.stream.Stream.concat(
+                        ModProcessingMachines.CONFIGURED_MACHINES.stream(),
+                        ModProcessingMachines.MULTIBLOCK_MENU_HOSTS.stream())
                 .toList();
     }
 

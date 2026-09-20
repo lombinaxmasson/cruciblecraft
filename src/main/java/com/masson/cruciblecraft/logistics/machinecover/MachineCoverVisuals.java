@@ -1,5 +1,9 @@
 package com.masson.cruciblecraft.logistics.machinecover;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.phys.BlockHitResult;
+
 /** GT6 visual-bit layout for remainder covers. Renderer and tick share this. */
 public final class MachineCoverVisuals {
     public static final int DISPLAY_STYLE_SHIFT = 10;
@@ -76,6 +80,59 @@ public final class MachineCoverVisuals {
         int nextStyle = (displayStyle(visual) + 1) % DISPLAY_STYLE_COUNT;
         return (visual & DISPLAY_STATUS_MASK)
                 | (nextStyle << DISPLAY_STYLE_SHIFT);
+    }
+
+    /**
+     * GT6 {@code CoverRedstoneEmitter.onCoverClickedRight} hotspots. Returns
+     * {@code -1} when the click missed the minus/plus corners and the four
+     * bit toggles.
+     */
+    public static int emitterClick(int current, double u, double v) {
+        int mode = Math.floorMod(current, 16);
+        if (v >= PX(1) && v <= PX(4)) {
+            if (u >= PX(1) && u <= PX(4)) {
+                return mode == 0 ? 15 : mode - 1;
+            }
+            if (u >= NX(4) && u <= NX(1)) {
+                return mode == 15 ? 0 : mode + 1;
+            }
+        }
+        if (v >= NX(7) && v <= NX(4) && u >= PX(2) && u <= NX(2)) {
+            if (u <= PX(5)) {
+                return mode ^ 8;
+            }
+            if (u <= PX(8)) {
+                return mode ^ 4;
+            }
+            if (u <= NX(5)) {
+                return mode ^ 2;
+            }
+            return mode ^ 1;
+        }
+        return -1;
+    }
+
+    public static double[] faceUv(
+            BlockPos pos, BlockHitResult hit, Direction side) {
+        double x = hit.getLocation().x - pos.getX();
+        double y = hit.getLocation().y - pos.getY();
+        double z = hit.getLocation().z - pos.getZ();
+        return switch (side) {
+            case NORTH -> new double[] {1.0 - x, y};
+            case SOUTH -> new double[] {x, y};
+            case WEST -> new double[] {z, y};
+            case EAST -> new double[] {1.0 - z, y};
+            case UP -> new double[] {x, 1.0 - z};
+            case DOWN -> new double[] {x, z};
+        };
+    }
+
+    private static double PX(int pixels) {
+        return pixels / 16.0;
+    }
+
+    private static double NX(int pixels) {
+        return 1.0 - pixels / 16.0;
     }
 
     public static boolean displaySwitchHotspot(

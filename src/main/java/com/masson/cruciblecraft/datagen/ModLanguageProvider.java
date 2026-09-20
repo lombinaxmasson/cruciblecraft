@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.mold.CeramicMoldCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
+import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceDisplayNames;
 import com.masson.cruciblecraft.content.mte.MteInPlaceMaterials;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
@@ -34,6 +35,8 @@ import com.masson.cruciblecraft.energy.converter.EnergyConverterKindCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
+import com.masson.cruciblecraft.energy.cooler.CoolerCatalog;
+import com.masson.cruciblecraft.energy.flux.FluxCatalog;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.machine.processing.MachineKindCatalog;
 import com.masson.cruciblecraft.compat.emi.EmiStackGroupPlan;
@@ -199,24 +202,24 @@ public class ModLanguageProvider extends LanguageProvider {
                     "空气体单元（容量 %s mB）");
             add("tooltip.cruciblecraft.gas_cell.contents",
                     "%s：%s/%s mB");
-            addItem(ModItems.PIPE_FILTER_COVER, "管道过滤器盖板");
-            addItem(ModItems.PIPE_VALVE_COVER, "管道单向阀盖板");
+            addItem(ModItems.PIPE_FILTER_COVER, "物品过滤覆盖板");
+            addItem(ModItems.PIPE_VALVE_COVER, "管道封闭覆盖板");
             addItem(ModItems.PIPE_PUMP_COVER, "管道输出泵盖板");
             addItem(ModItems.CONVEYOR_COVER, "传送带盖板");
-            addItem(ModItems.RETRIEVER_ITEM_COVER, "物品检索器盖板");
-            addItem(ModItems.ROBOT_ARM_COVER, "机械臂盖板");
-            addItem(ModItems.PRESSURE_VALVE_COVER, "压力阀盖板");
-            addItem(ModItems.SELECTOR_MANUAL_COVER, "手动选择器盖板");
-            addItem(ModItems.LOGISTICS_ITEM_STORAGE_COVER, "物品网络存储盖板");
-            addItem(ModItems.LOGISTICS_ITEM_IMPORT_COVER, "物品网络输入盖板");
-            addItem(ModItems.LOGISTICS_ITEM_EXPORT_COVER, "物品网络输出盖板");
-            addItem(ModItems.LOGISTICS_FLUID_STORAGE_COVER, "流体网络存储盖板");
-            addItem(ModItems.LOGISTICS_FLUID_IMPORT_COVER, "流体网络输入盖板");
-            addItem(ModItems.LOGISTICS_FLUID_EXPORT_COVER, "流体网络输出盖板");
-            addItem(ModItems.LOGISTICS_GENERIC_STORAGE_COVER, "通用网络存储盖板");
-            addItem(ModItems.LOGISTICS_GENERIC_IMPORT_COVER, "通用网络输入盖板");
-            addItem(ModItems.LOGISTICS_GENERIC_EXPORT_COVER, "通用网络输出盖板");
-            addItem(ModItems.LOGISTICS_GENERIC_DUMP_COVER, "通用网络回收盖板");
+            addItem(ModItems.RETRIEVER_ITEM_COVER, "物品抽取覆盖板");
+            addItem(ModItems.ROBOT_ARM_COVER, "机械臂");
+            addItem(ModItems.PRESSURE_VALVE_COVER, "释压安全阀");
+            addItem(ModItems.SELECTOR_MANUAL_COVER, "手动选择面板");
+            addItem(ModItems.LOGISTICS_ITEM_STORAGE_COVER, "过滤物流存储总线(物品)");
+            addItem(ModItems.LOGISTICS_ITEM_IMPORT_COVER, "过滤物流输入总线(物品)");
+            addItem(ModItems.LOGISTICS_ITEM_EXPORT_COVER, "过滤物流输出总线(物品)");
+            addItem(ModItems.LOGISTICS_FLUID_STORAGE_COVER, "过滤物流存储总线(流体)");
+            addItem(ModItems.LOGISTICS_FLUID_IMPORT_COVER, "过滤物流输入总线(流体)");
+            addItem(ModItems.LOGISTICS_FLUID_EXPORT_COVER, "过滤物流输出总线(流体)");
+            addItem(ModItems.LOGISTICS_GENERIC_STORAGE_COVER, "通用物流存储总线");
+            addItem(ModItems.LOGISTICS_GENERIC_IMPORT_COVER, "通用物流输入总线");
+            addItem(ModItems.LOGISTICS_GENERIC_EXPORT_COVER, "通用物流输出总线");
+            addItem(ModItems.LOGISTICS_GENERIC_DUMP_COVER, "物流回收总线(物品)");
             addItem(ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER, "物流监视器(逻辑处理器)");
             addItem(ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER, "物流监视器(控制处理器)");
             addItem(ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER, "物流监视器(存储处理器)");
@@ -297,8 +300,10 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.MULTIBLOCK_CASING, "通用多方块外壳");
             addBlock(ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT, "多方块物品流体端口");
             addBlock(ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT, "多方块能源输入端口");
+            addBlock(ModBlocks.MULTIBLOCK_FLUID_OUT_PORT, "多方块流体输出端口");
             addBlock(ModBlocks.LARGE_CENTRIFUGE, "大型离心机");
             addBlock(ModBlocks.DISTILLATION_TOWER, "蒸馏塔");
+            addBlock(ModBlocks.CRYO_DISTILLATION_TOWER, "低温蒸馏塔");
             addBlock(ModBlocks.LARGE_BOILER, "大型锅炉");
             addBlock(ModBlocks.TANK_3X3X3, "3x3x3 储罐");
             addBlock(ModBlocks.LARGE_CRUCIBLE, "大型坩埚");
@@ -322,6 +327,8 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.category.cruciblecraft.fuels_fluidbed", "流化床燃烧室");
             add("emi.category.cruciblecraft.fuels_hot", "热交换燃料");
             add("emi.category.cruciblecraft.fusion", "聚变反应堆");
+            add("emi.category.cruciblecraft.distillation_tower", "蒸馏塔");
+            add("emi.category.cruciblecraft.cryo_distillation_tower", "低温蒸馏塔");
             add("emi.cruciblecraft.processing.preserved", "保留，不消耗");
             add("emi.cruciblecraft.anvil.hits", "%s · %s 次击打");
             add("emi.cruciblecraft.anvil.hits_with_chance", "%s · %s 次击打 · %s%%");
@@ -383,6 +390,14 @@ public class ModLanguageProvider extends LanguageProvider {
             add("item.cruciblecraft.material_rolling_pin", "%s擀面杖");
             add("item.cruciblecraft.material_flint_and_tinder", "%s火绒");
             add("item.cruciblecraft.material_pocket_multitool", "%s口袋多功能工具");
+            for (com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog spec :
+                    com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog.values()) {
+                add(spec.nameKey(), "%s" + spec.langZh());
+            }
+            add("tooltip.cruciblecraft.electric_tool.charge",
+                    "EU：%s / %s  %sV");
+            add("tooltip.cruciblecraft.electric_tool.sneak_switch",
+                    "潜行右键切换模式");
             add("tooltip.cruciblecraft.pocket_multitool.mode.closed", "收起");
             add("tooltip.cruciblecraft.pocket_multitool.mode.knife", "刀");
             add("tooltip.cruciblecraft.pocket_multitool.mode.saw", "锯");
@@ -557,6 +572,8 @@ public class ModLanguageProvider extends LanguageProvider {
             add("message.cruciblecraft.steam_engine.running", "蒸汽机已启动");
             add("message.cruciblecraft.rotation_engine.stopped", "旋转引擎已停机");
             add("message.cruciblecraft.rotation_engine.running", "旋转引擎已启动");
+            add("message.cruciblecraft.gas_turbine.stopped", "燃气轮机已停机");
+            add("message.cruciblecraft.gas_turbine.running", "燃气轮机已启动");
             add("message.cruciblecraft.thermometer_kelvin", "温度：%s K");
             add("message.cruciblecraft.thermometer_kelvin_too_hot",
                     "温度：%s K（太烫，现在拿不起来！）");
@@ -716,8 +733,12 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT,
                 "Multiblock Energy Input Port");
+        addBlock(
+                ModBlocks.MULTIBLOCK_FLUID_OUT_PORT,
+                "Multiblock Fluid Output Port");
         addBlock(ModBlocks.LARGE_CENTRIFUGE, "Large Centrifuge");
         addBlock(ModBlocks.DISTILLATION_TOWER, "Distillation Tower");
+        addBlock(ModBlocks.CRYO_DISTILLATION_TOWER, "Cryo Distillation Tower");
         addBlock(ModBlocks.LARGE_BOILER, "Large Boiler");
         addBlock(ModBlocks.TANK_3X3X3, "3x3x3 Tank");
         addBlock(ModBlocks.LARGE_CRUCIBLE, "Large Crucible");
@@ -868,32 +889,32 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Emits Redstone and Displays Status of Logistics Core.");
         add("death.attack.electricity",
                 "%s was electrocuted");
-        addItem(ModItems.PIPE_FILTER_COVER, "Pipe Filter Cover");
-        addItem(ModItems.PIPE_VALVE_COVER, "Pipe One-Way Valve Cover");
+        addItem(ModItems.PIPE_FILTER_COVER, "Item Filter");
+        addItem(ModItems.PIPE_VALVE_COVER, "Shutter Cover");
         addItem(ModItems.PIPE_PUMP_COVER, "Pipe Output Pump Cover");
         addItem(ModItems.CONVEYOR_COVER, "Conveyor Cover");
         addItem(ModItems.RETRIEVER_ITEM_COVER, "Item Retriever Cover");
         addItem(ModItems.ROBOT_ARM_COVER, "Robot Arm Cover");
-        addItem(ModItems.PRESSURE_VALVE_COVER, "Pressure Valve Cover");
-        addItem(ModItems.SELECTOR_MANUAL_COVER, "Manual Selector Cover");
-        addItem(ModItems.LOGISTICS_ITEM_STORAGE_COVER, "Item Network Storage Cover");
-        addItem(ModItems.LOGISTICS_ITEM_IMPORT_COVER, "Item Network Import Cover");
-        addItem(ModItems.LOGISTICS_ITEM_EXPORT_COVER, "Item Network Export Cover");
-        addItem(ModItems.LOGISTICS_FLUID_STORAGE_COVER, "Fluid Network Storage Cover");
-        addItem(ModItems.LOGISTICS_FLUID_IMPORT_COVER, "Fluid Network Import Cover");
-        addItem(ModItems.LOGISTICS_FLUID_EXPORT_COVER, "Fluid Network Export Cover");
-        addItem(ModItems.LOGISTICS_GENERIC_STORAGE_COVER, "Generic Network Storage Cover");
-        addItem(ModItems.LOGISTICS_GENERIC_IMPORT_COVER, "Generic Network Import Cover");
-        addItem(ModItems.LOGISTICS_GENERIC_EXPORT_COVER, "Generic Network Export Cover");
-        addItem(ModItems.LOGISTICS_GENERIC_DUMP_COVER, "Generic Network Dump Cover");
+        addItem(ModItems.PRESSURE_VALVE_COVER, "Pressure Valve");
+        addItem(ModItems.SELECTOR_MANUAL_COVER, "Manual Selector");
+        addItem(ModItems.LOGISTICS_ITEM_STORAGE_COVER, "Filtered Logistics Storage Bus (Item)");
+        addItem(ModItems.LOGISTICS_ITEM_IMPORT_COVER, "Filtered Logistics Import Bus (Item)");
+        addItem(ModItems.LOGISTICS_ITEM_EXPORT_COVER, "Filtered Logistics Export Bus (Item)");
+        addItem(ModItems.LOGISTICS_FLUID_STORAGE_COVER, "Filtered Logistics Storage Bus (Fluid)");
+        addItem(ModItems.LOGISTICS_FLUID_IMPORT_COVER, "Filtered Logistics Import Bus (Fluid)");
+        addItem(ModItems.LOGISTICS_FLUID_EXPORT_COVER, "Filtered Logistics Export Bus (Fluid)");
+        addItem(ModItems.LOGISTICS_GENERIC_STORAGE_COVER, "Generic Logistics Storage Bus");
+        addItem(ModItems.LOGISTICS_GENERIC_IMPORT_COVER, "Generic Logistics Import Bus");
+        addItem(ModItems.LOGISTICS_GENERIC_EXPORT_COVER, "Generic Logistics Export Bus");
+        addItem(ModItems.LOGISTICS_GENERIC_DUMP_COVER, "Logistics Dump Bus (Item)");
         addItem(ModItems.LOGISTICS_DISPLAY_CPU_LOGIC_COVER,
-                "Logistics Monitor (Logic Processor)");
+                "Logistics Display (CPU Logic)");
         addItem(ModItems.LOGISTICS_DISPLAY_CPU_CONTROL_COVER,
-                "Logistics Monitor (Control Processor)");
+                "Logistics Display (CPU Control)");
         addItem(ModItems.LOGISTICS_DISPLAY_CPU_STORAGE_COVER,
-                "Logistics Monitor (Storage Processor)");
+                "Logistics Display (CPU Storage)");
         addItem(ModItems.LOGISTICS_DISPLAY_CPU_CONVERSION_COVER,
-                "Logistics Monitor (Conversion Processor)");
+                "Logistics Display (CPU Conversion)");
         CoverComponentTiers.entries().forEach(entry ->
                 addItem(
                         ModItems.compactElectricCover(entry.itemPath()),
@@ -948,6 +969,14 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.cruciblecraft.material_rolling_pin", "%s Rolling Pin");
         add("item.cruciblecraft.material_flint_and_tinder", "%s Flint and Tinder");
         add("item.cruciblecraft.material_pocket_multitool", "%s Pocket Multitool");
+        for (com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog spec :
+                com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog.values()) {
+            add(spec.nameKey(), "%s " + spec.langEn());
+        }
+        add("tooltip.cruciblecraft.electric_tool.charge",
+                "EU: %s / %s  %sV");
+        add("tooltip.cruciblecraft.electric_tool.sneak_switch",
+                "Sneak-use to switch mode");
         add("tooltip.cruciblecraft.pocket_multitool.mode.closed", "Closed");
         add("tooltip.cruciblecraft.pocket_multitool.mode.knife", "Knife");
         add("tooltip.cruciblecraft.pocket_multitool.mode.saw", "Saw");
@@ -1050,6 +1079,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add("emi.category.cruciblecraft.fuels_fluidbed", "Fluid-Bed Burning Box");
         add("emi.category.cruciblecraft.fuels_hot", "Heat Exchanger Fuel");
         add("emi.category.cruciblecraft.fusion", "Fusion Reactor");
+        add("emi.category.cruciblecraft.distillation_tower", "Distillation Tower");
+        add("emi.category.cruciblecraft.cryo_distillation_tower",
+                "Cryo Distillation Tower");
         add("emi.cruciblecraft.processing.preserved", "Preserved, not consumed");
         add("emi.cruciblecraft.anvil.hits", "%s · %s hits");
         add("emi.cruciblecraft.anvil.hits_with_chance", "%s · %s hits · %s%%");
@@ -1118,6 +1150,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("message.cruciblecraft.steam_engine.running", "Steam engine running");
         add("message.cruciblecraft.rotation_engine.stopped", "Rotation engine stopped");
         add("message.cruciblecraft.rotation_engine.running", "Rotation engine running");
+        add("message.cruciblecraft.gas_turbine.stopped", "Gas turbine stopped");
+        add("message.cruciblecraft.gas_turbine.running", "Gas turbine running");
         add("message.cruciblecraft.thermometer_kelvin", "Temperature: %s K");
         add(
                 "message.cruciblecraft.thermometer_kelvin_too_hot",
@@ -1226,6 +1260,9 @@ public class ModLanguageProvider extends LanguageProvider {
         String composed = MteInPlaceDisplayNames.chinese(spec.registryPath()).orElse(null);
         if (composed != null) {
             return composed;
+        }
+        if (spec.kind() == MteInPlaceKind.WOOD_PANEL) {
+            return "木制覆盖板 #" + spec.meta();
         }
         String kindZh = switch (spec.kind()) {
             case CHEST -> "箱子";
@@ -1681,6 +1718,8 @@ public class ModLanguageProvider extends LanguageProvider {
             case "foundry/crucible" -> chinese ? "坩埚" : "Crucible";
             case "foundry/mold" -> chinese ? "铸造模具" : "Foundry Mold";
             case "mold/ceramic" -> chinese ? "模具" : "Mold";
+            case "energy/large_gas_turbine" ->
+                    chinese ? "大型燃气轮机" : "Large Gas Turbine";
             default -> throw new IllegalStateException(
                     "Missing EMI catalog group name for " + resourcePath);
         };
@@ -1739,6 +1778,10 @@ public class ModLanguageProvider extends LanguageProvider {
             case ROLLING_PIN -> "擀面杖";
             case FLINT_AND_TINDER -> "火绒";
             case POCKET_MULTITOOL -> "口袋多功能工具";
+            default -> com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog
+                    .of(kind)
+                    .map(com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog::langZh)
+                    .orElseThrow();
         };
     }
 
@@ -1781,6 +1824,10 @@ public class ModLanguageProvider extends LanguageProvider {
             case ROLLING_PIN -> "Rolling Pin";
             case FLINT_AND_TINDER -> "Flint and Tinder";
             case POCKET_MULTITOOL -> "Pocket Multitool";
+            default -> com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog
+                    .of(kind)
+                    .map(com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog::langEn)
+                    .orElseThrow();
         };
     }
 
@@ -1887,6 +1934,8 @@ public class ModLanguageProvider extends LanguageProvider {
         addBatteryCatalogNames();
         addTransformerCatalogNames();
         addHeatExchangerCatalogNames();
+        addCoolerCatalogNames();
+        addFluxConverterCatalogNames();
         addQuantumEnergizerCatalogNames();
         addLongDistanceCatalogNames();
         BathMteIdentityCatalog.newItems().forEach(identity -> {
@@ -2083,6 +2132,69 @@ public class ModLanguageProvider extends LanguageProvider {
                 "tooltip.cruciblecraft.heat_exchanger.efficiency",
                 chinese ? "效率 %s%%" : "Efficiency %s%%");
         HeatExchangerCatalog.profiles().forEach(profile -> {
+            String path = profile.id().getPath();
+            String name = chinese ? profile.langZh() : profile.langEn();
+            add(LanguageNames.translationKey("block", path), name);
+            add(LanguageNames.translationKey("item", path), name);
+        });
+    }
+
+    private void addCoolerCatalogNames() {
+        add(
+                "tooltip.cruciblecraft.cooler.electric",
+                chinese ? "输入 %s EU/t → 输出 %s CU/t 与 HU/t" : "Inputs %s EU/t → %s CU/t and HU/t");
+        add(
+                "tooltip.cruciblecraft.cooler.flux",
+                chinese ? "输入 %s FE/t → 输出 %s CU/t 与 HU/t" : "Inputs %s FE/t → %s CU/t and HU/t");
+        add(
+                "tooltip.cruciblecraft.cooler.sides",
+                chinese ? "前面 CU，后面 HU；侧面输入" : "CU front, HU back; input on the sides");
+        CoolerCatalog.profiles().forEach(profile -> {
+            String path = profile.id().getPath();
+            String name = chinese ? profile.langZh() : profile.langEn();
+            add(LanguageNames.translationKey("block", path), name);
+            add(LanguageNames.translationKey("item", path), name);
+        });
+    }
+
+    private void addFluxConverterCatalogNames() {
+        add(
+                "tooltip.cruciblecraft.flux.heater",
+                chinese ? "输入 %s FE/t → 输出 %s HU/t" : "Inputs %s FE/t → %s HU/t");
+        add(
+                "tooltip.cruciblecraft.flux.engine",
+                chinese ? "输入 %s FE/t → 输出 %s KU/t" : "Inputs %s FE/t → %s KU/t");
+        add(
+                "tooltip.cruciblecraft.flux.motor",
+                chinese ? "输入 %s FE/t → 输出 %s RU/t" : "Inputs %s FE/t → %s RU/t");
+        add(
+                "tooltip.cruciblecraft.flux.magnet",
+                chinese ? "输入 %s FE/t → 输出 %s MU/t" : "Inputs %s FE/t → %s MU/t");
+        add(
+                "tooltip.cruciblecraft.flux.laser",
+                chinese ? "输入 %s FE/t → 输出 %s LU/t" : "Inputs %s FE/t → %s LU/t");
+        add(
+                "tooltip.cruciblecraft.flux.dynamo",
+                chinese ? "输入 %s RU/t → 输出 %s FE/t" : "Inputs %s RU/t → %s FE/t");
+        add(
+                "tooltip.cruciblecraft.flux.sides.heater",
+                chinese ? "前面 HU；其余面输入 FE" : "HU front; FE on the other faces");
+        add(
+                "tooltip.cruciblecraft.flux.sides.engine",
+                chinese ? "后面 FE，前面 KU" : "FE back, KU front");
+        add(
+                "tooltip.cruciblecraft.flux.sides.motor",
+                chinese ? "前面 RU；其余面输入 FE" : "RU front; FE on the other faces");
+        add(
+                "tooltip.cruciblecraft.flux.sides.magnet",
+                chinese ? "前后 MU；侧面输入 FE" : "MU front and back; FE on the sides");
+        add(
+                "tooltip.cruciblecraft.flux.sides.laser",
+                chinese ? "前面 LU；其余面输入 FE" : "LU front; FE on the other faces");
+        add(
+                "tooltip.cruciblecraft.flux.sides.dynamo",
+                chinese ? "后面 RU，前面 FE" : "RU back, FE front");
+        FluxCatalog.profiles().forEach(profile -> {
             String path = profile.id().getPath();
             String name = chinese ? profile.langZh() : profile.langEn();
             add(LanguageNames.translationKey("block", path), name);

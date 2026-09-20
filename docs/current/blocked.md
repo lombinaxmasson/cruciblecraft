@@ -9,8 +9,8 @@
 
 ## 统计
 
-- 条目 62：open 37，partial 2，resolved 12，superseded 5，out_of_scope 6
-- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 17，有名字，分母未冻成工作量 14，不是活 3
+- 条目 62：open 31，partial 2，resolved 18，superseded 5，out_of_scope 6
+- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 15，有名字，分母未冻成工作量 10，不是活 3
 
 ## 排期分类（未关闭）
 
@@ -25,9 +25,8 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `recipe/nanofab-overflow`：57 rows
 - `worldgen/food`：n/a
 
-### B. 分母已冻，可当卡排（17）
+### B. 分母已冻，可当卡排（15）
 
-- `cover/torch-repeater-wire-host`：2 covers
 - `fluid/ic2-coolant`：1 fluids
 - `fluid/resin-rubber`：1 fluids
 - `fluid/sap-maple`：1 fluids
@@ -36,7 +35,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `identity/processing-ungated-families`：3 families
 - `material-form/copper-family-curved-plate`：n/a
 - `obtain/injector-mv-hv-iv-hosts`：3 hosts
-- `obtain/nanofab-hosts`：5 hosts
 - `obtain/redstone-wiregt01`：3 items
 - `obtain/wooden-bathing-pot-glue`：2 hosts
 - `recipe/laminator-overflow`：12 rows
@@ -45,17 +43,13 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `recipe/printer-dye-fluids`：22 rows
 - `recipe/roll-former-rail-gt`：2 rows
 
-### C. 有名字，分母未冻成工作量（14）
+### C. 有名字，分母未冻成工作量（10）
 
 - `architecture/building-block-identity`：n/a
-- `cover/redstone-wire-covers`：n/a
 - `energy/cooler`：n/a
 - `energy/reactor-backpack-radioactivity`：n/a
 - `energy/reactor-world-explode`：1 behaviors
-- `identity/connector-art-keep-distinct-dummies`：n/a
 - `identity/eu-blocked-gauges`：n/a
-- `identity/hsla-ungated-gauges`：n/a
-- `storage/mass-storage-prefix-units`：n/a
 - `tools/world-behaviors`：n/a
 - `worldgen/bees`：n/a
 - `worldgen/center`：n/a
@@ -81,6 +75,15 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 成员：`obtain/mte-inplace-runtime`
   - 收口：content/gt6-mte-inplace-acquisition 落地 732 条 source-exact shaped_catalyst 格；150 个缺形态/OD/plank 缺口留在各族 current_gap.json。14 个 runtime 仍 runtime_ready。
   - 当前权威：`tools/capabilities/content/gt6-mte-inplace-acquisition/capability.json`, `tools/waves/prep/gt6-mte-inplace-acquisition/contract.json`, `tools/waves/content/gt6-mte-inplace-acquisition/gametest_receipt.json`
+- 成员：`cover/torch-repeater-wire-host`, `cover/redstone-wire-covers`
+  - 收口：GT6 裸线继承绝缘红石线类，火把/中继器/空白盖板贴到全部六种红石连接件上：火把是非门、中继器是缓冲门，贴上后断开该面且剪线钳不能再打开。EU 电缆盖板仍不在本范围。
+  - 当前权威：`tools/capabilities/logistics/cover-remainder/capability.json`, `tools/capabilities/content/mte-redstone-wire/capability.json`, `src/main/java/com/masson/cruciblecraft/content/redstonewire/RedstoneWireCovers.java`
+- 成员：`obtain/nanofab-hosts`
+  - 收口：machines/nanofab 把五档主机获得格落到 GT6 KAX/ZMY/CSC：Ar/Kr/Xe 激光气体件、蓝宝石晶体处理器、EMITTERS[1-5]、SENSORS[1-5]。overflow 57 行仍是规模上下文。
+  - 当前权威：`tools/capabilities/machines/nanofab/capability.json`, `tools/waves/machines/nanofab/d0_obtain_matrix.json`, `src/main/resources/data/cruciblecraft/technological_parts.json`
+- 成员：`identity/hsla-ungated-gauges`, `identity/connector-art-keep-distinct-dummies`
+  - 收口：Smelter/bath leftover connector CatalogNamedItem dummies with gated CableBlock or PipeBlock hosts were folded onto those live ids. Gold/lead 3x/5x/6x had live hosts; loot crate and decorative panels stay dummy.
+  - 当前权威：`tools/gt6_connector_live_host_dummy_fold.py`, `src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json`, `src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json`
 
 ## 批处理关系（不是分母）
 
@@ -88,38 +91,19 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 
 ### `batch/identity-eu-gauge-closure`：EU / 线规身份收口
 
-- 建议排序依据：EU dummy catalog 与 HSLA hsla_steel 别名仍需审计；Loader id 折回已关闭。
+- 建议排序依据：EU dummy catalog leftover rows still need audit; HSLA alias dummies and connector duals with live hosts are folded.
 - 类型：`shared_identity_audit`；成员角色按各 blocker 保留
 - production lock：`separate_subtask_validation`
 - 成员：
   - `identity/eu-blocked-gauges`（`primary`）
-  - `identity/hsla-ungated-gauges`（`audit_only`）
 - 已有 lock：
   - `tools/waves/content/gt6-eu-wire-cable-runtime/production_lock.json`
   - `tools/waves/content/gt6-eu-missing-wire-gauges-runtime/production_lock.json`
   - `tools/waves/content/gt6-connector-alias-repair/production_lock.json`
-- 明确排除：
-  - `identity/connector-art-keep-distinct-dummies`
 - 边界：
   - addElectricWires 配方 Loader id 已 320/320 折完；本批不再以 61 为待办。
   - 石墨烯/超导 EU dummy catalog 行不是删除集合。
-  - HSLA alias / dummy catalog 是独立子任务。
-  - 连接件美术 dummy 不是 runtime identity 工作。
-
-### `batch/machines-nanofab-host-closure`：纳米加工机主机获得格收口
-
-- 建议排序依据：5 个已冻结 host 是有界的机器获得格目标；57 条 overflow 只保留为规模上下文。
-- 类型：`machine_closure`；成员角色按各 blocker 保留
-- production lock：`host_lock_then_overflow_recompute`
-- 成员：
-  - `obtain/nanofab-hosts`（`primary`）
-  - `recipe/nanofab-overflow`（`scale_context`）
-- 已有 lock：
-  - `tools/waves/machines/nanofab/production_lock.json`
-- 边界：
-  - 5 个 host 是实现目标。
-  - 57 条 overflow 是重算上下文，不承诺顺便清掉全部行。
-  - 不得用 programmed_circuit 或其它零件替代缺失的激光气体 / 蓝宝石形态。
+  - HSLA alias dummies and connector duals with live hosts are already folded.
 
 ### `batch/machines-injector-host-closure`：注射机主机获得格收口
 
@@ -170,29 +154,10 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
   - Latex 不是 Resin_Rubber 的 stand-in，另一种树液也不是 Sap_Maple 的 stand-in。
   - 印刷机染料与熔炉油 / XP 保持在 GT 树批次之外。
 
-### `batch/cover-redstone-host-audit`：红石盖板宿主审计
-
-- 建议排序依据：2 个 cover host 共享红石宿主审计；无数量的 policy 轨道保持独立。
-- 类型：`shared_cover_host_audit`；成员角色按各 blocker 保留
-- production lock：`separate_host_policy_validation`
-- 成员：
-  - `cover/torch-repeater-wire-host`（`primary`）
-  - `cover/redstone-wire-covers`（`audit_only`）
-- 已有 lock：无（按能力/流体身份分别验收）
-- 明确排除：
-  - `identity/redstone-not-eu-or-pipe`
-- 边界：
-  - 普通 redstone-wire 与 EU-cable cover policy 要与两个 torch/repeater host 分开审计。
-  - redstone-not-eu-or-pipe 是 out_of_scope 不变量，不是 missing host 任务。
-  - 不得从已落地的 insulated-redstone identity extras 推导 cover hosting。
-
 ## 按根因（未关闭）
 
 - `invariant`（1）
   - `energy/reactor-temperature-kelvin`
-- `missing_cover_host`（2）
-  - `cover/redstone-wire-covers`
-  - `cover/torch-repeater-wire-host`
 - `missing_fluid`（6）
   - `fluid/ic2-coolant`
   - `fluid/resin-rubber`
@@ -200,19 +165,17 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
   - `fluid/thorium-salt`
   - `recipe/oven-cooking-oil-xp`
   - `recipe/printer-dye-fluids`
-- `missing_form`（4）
+- `missing_form`（3）
   - `energy/reactor-backpack-radioactivity`
   - `material-form/copper-family-curved-plate`
   - `obtain/injector-mv-hv-iv-hosts`
-  - `obtain/nanofab-hosts`
 - `missing_mod_bridge`（1）
   - `peripheral/sensors-computercraft`
 - `missing_obtain`（1）
   - `obtain/redstone-wiregt01`
-- `missing_runtime`（6）
+- `missing_runtime`（5）
   - `energy/cooler`
   - `energy/reactor-world-explode`
-  - `storage/mass-storage-prefix-units`
   - `tools/world-behaviors`
   - `worldgen/bees`
   - `worldgen/food`
@@ -223,11 +186,9 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `unclaimed_domain`（2）
   - `architecture/building-block-identity`
   - `architecture/combinatorial-leftover`
-- `unmapped_identity`（5）
-  - `identity/connector-art-keep-distinct-dummies`
+- `unmapped_identity`（3）
   - `identity/converter-turbines-battery-boxes`
   - `identity/eu-blocked-gauges`
-  - `identity/hsla-ungated-gauges`
   - `identity/processing-ungated-families`
 - `unmapped_operand`（8）
   - `obtain/wooden-bathing-pot-glue`
@@ -272,38 +233,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/waves/portfolio/source-capability-map-r0/leftover_later.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：later:assembler_combinatorial + later:electrolyzer_combinatorial. started = false.
-
-### `cover/redstone-wire-covers`
-
-- 标题：红石线 MTE 盖板未接入
-- 状态：`open`
-- 根因：`missing_cover_host` / `connector_covers_not_hosted`
-- 数量：n/a
-- 排期：`audit_first`
-- 挡住：`player_complete`
-- 发现卡：`content/mte-redstone-wire`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`content/mte-redstone-wire`, `logistics/cover-remainder`
-- 权威：`tools/capabilities/content/mte-redstone-wire/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：CC EU cables also do not host covers. Separate from torch/repeater.
-
-### `cover/torch-repeater-wire-host`
-
-- 标题：红石火把/中继器盖板仍缺绝缘线宿主
-- 状态：`open`
-- 根因：`missing_cover_host` / `cover_only_attaches_to_insulated_redstone_wire`
-- 数量：2 covers
-- 排期：`schedulable`
-- 挡住：`player_complete`
-- 发现卡：`logistics/cover-remainder`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`logistics/cover-remainder`
-- 权威：`tools/capabilities/logistics/cover-remainder/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Insulated metas are live; these covers still refuse current hosts.
 
 ### `energy/cooler`
 
@@ -433,22 +362,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Not a hot-fluid output and has no CC-owned input identity.
 
-### `identity/connector-art-keep-distinct-dummies`
-
-- 标题：连接件美术卡仍保留 dummy 物品
-- 状态：`open`
-- 根因：`unmapped_identity` / `dummy_items_keep_distinct_until_runtime_hosts`
-- 数量：n/a
-- 排期：`audit_first`
-- 挡住：`player_complete`
-- 发现卡：`content/gt6-connector-art`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`content/gt6-connector-art`
-- 权威：`tools/capabilities/content/gt6-connector-art/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Replace iron-ingot models with the shared GT6 iconset; do not invent BlockItems.
-
 ### `identity/converter-turbines-battery-boxes`
 
 - 标题：转换机折回 6 轮机 + 2 电池箱
@@ -464,22 +377,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/content/gt6-mte-converter-host-fold/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Keep dummy for a later runtime child. Do not edit R0.
-
-### `identity/hsla-ungated-gauges`
-
-- 标题：HSLA 未开门线规仍 dummy
-- 状态：`open`
-- 根因：`unmapped_identity` / `ungated_hsla_wire_gauges`
-- 数量：n/a
-- 排期：`audit_first`
-- 挡住：`player_complete`
-- 发现卡：`content/gt6-connector-alias-repair`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`content/gt6-connector-alias-repair`
-- 权威：`tools/capabilities/content/gt6-connector-alias-repair/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Canonical HSLA 02/04/08/12/16 wires and 01/02/04/08/12 cables are now gated hslasteel CableBlocks. electric_wire/Nx_hsla_steel_* dummy catalog ids remain because the ledger still says hsla_steel.
 
 ### `identity/processing-ungated-families`
 
@@ -528,22 +425,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/machines/injector/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：LV and Chromium EV hosts are source-exact. Do not stand in other motors.
-
-### `obtain/nanofab-hosts`
-
-- 标题：纳米加工机五档主机获得格仍 blocked
-- 状态：`open`
-- 根因：`missing_form` / `missing_laser_gas_and_sapphire_processor`
-- 数量：5 hosts
-- 排期：`schedulable`
-- 挡住：`player_complete`
-- 发现卡：`machines/nanofab`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`machines/nanofab`
-- 权威：`tools/capabilities/machines/nanofab/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：IL.Comp_Laser_Gas_Ar/Kr/Xe and sapphire crystal processor. Emitters/sensors already exist.
 
 ### `obtain/redstone-wiregt01`
 
@@ -721,22 +602,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Non-blocking tail. Do not stand in tungsten_carbide or obsidian_steel rails.
 
-### `storage/mass-storage-prefix-units`
-
-- 标题：仓储桶前缀单位换算仍缺
-- 状态：`open`
-- 根因：`missing_runtime` / `prefix_unit_conversion_missing`
-- 数量：n/a
-- 排期：`audit_first`
-- 挡住：`none`
-- 发现卡：`registry/catalog-modern-ids`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：—
-- 权威：`docs/current/unimplemented-gap.md`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：GT6 MassStorage merges prefix units; CC MassStorageHandler only accepts isSameItemSameComponents. Hopper dust 1/4/9 is not the barrel converter.
-
 ### `tools/world-behaviors`
 
 - 标题：手持工具世界行为与缺形态仍缺
@@ -865,6 +730,38 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Only a classified subset is verified; the rest is UNVERIFIED_SCALE. Do not copy 2796 into a todo list.
 
+### `cover/redstone-wire-covers`
+
+- 标题：红石线 MTE 盖板未接入
+- 状态：`resolved`
+- 根因：`missing_cover_host` / `connector_covers_not_hosted`
+- 数量：n/a
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`content/mte-redstone-wire`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：content/mte-redstone-wire
+- 影响：`content/mte-redstone-wire`, `logistics/cover-remainder`
+- 权威：`tools/capabilities/content/mte-redstone-wire/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：Torch, repeater, blank, selectors, emitter, conductor, and progress scale attach to all six redstone connectors. EU cables still do not host covers.
+
+### `cover/torch-repeater-wire-host`
+
+- 标题：红石火把/中继器盖板仍缺绝缘线宿主
+- 状态：`resolved`
+- 根因：`missing_cover_host` / `cover_only_attaches_to_insulated_redstone_wire`
+- 数量：2 covers
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`logistics/cover-remainder`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：logistics/cover-remainder
+- 影响：`logistics/cover-remainder`
+- 权威：`tools/capabilities/logistics/cover-remainder/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：Bare MultiTileEntityWireRedstone extends the insulated class, so torch/repeater attach to all six CC redstone connectors.
+
 ### `energy/large-heat-exchanger-17197`
 
 - 标题：大型热交换器 17197
@@ -929,6 +826,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Dedicated 10064-10068 endpoints plus five LongDistWire voltage hosts. Same-voltage EU with max(64, distance/8) loss. Not in the voltage-step transformer catalog.
 
+### `identity/connector-art-keep-distinct-dummies`
+
+- 标题：连接件美术卡仍保留 dummy 物品
+- 状态：`resolved`
+- 根因：`unmapped_identity` / `dummy_items_keep_distinct_until_runtime_hosts`
+- 数量：0 dummies
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`content/gt6-connector-art`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：content/gt6-connector-art
+- 影响：`content/gt6-connector-art`
+- 权威：`tools/capabilities/content/gt6-connector-art/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：Connector dummies with live CableBlock/PipeBlock hosts were withdrawn. Loot crate and decorative panels stay dummy and are not connector duals.
+
 ### `identity/electric-unregistered-gauges`
 
 - 标题：导线电缆 MTE 折回仍有未映射 Loader id
@@ -944,6 +857,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/content/electric-wire-cable-mte-fold/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：addElectricWires recipe gauges now map 320/320. Graphene 02/04/08/12/16, Superconductor 01/02/04/08/12/16, and HSLA/BlueAlloy/ElectrotineAlloy/Naquadah/YBCO canonical wires/cables are gated CableBlocks. Dummy catalog aliases remain a separate identity.
+
+### `identity/hsla-ungated-gauges`
+
+- 标题：HSLA 未开门线规仍 dummy
+- 状态：`resolved`
+- 根因：`unmapped_identity` / `ungated_hsla_wire_gauges`
+- 数量：0 dummies
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`content/gt6-connector-alias-repair`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：content/gt6-connector-alias-repair
+- 影响：`content/gt6-connector-alias-repair`
+- 权威：`tools/capabilities/content/gt6-connector-alias-repair/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：HSLA 02/04/08/12/16 wire dummies now fold onto gated hslasteel CableBlocks. Closed baseline still records hsla_steel; catalog projection is live.
 
 ### `material-form/luv-puv1-parts`
 
@@ -993,6 +922,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Audit complete. Source-exact grids live on content/gt6-mte-inplace-acquisition. Remaining D0 gaps stay in per-family current_gap.json, not this clustered blocker. Closing does not promote the 14 runtimes to player_complete.
 
+### `obtain/nanofab-hosts`
+
+- 标题：纳米加工机五档主机获得格仍 blocked
+- 状态：`resolved`
+- 根因：`missing_form` / `missing_laser_gas_and_sapphire_processor`
+- 数量：5 hosts
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`machines/nanofab`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：machines/nanofab
+- 影响：`machines/nanofab`
+- 权威：`tools/capabilities/machines/nanofab/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：IL.Comp_Laser_Gas_Ar/Kr/Xe, Processor_Crystal_Sapphire, EMITTERS[1-5], and SENSORS[1-5] are live. Five GT6 hosts are source-exact.
+
 ### `recipe/bath-identity-families`
 
 - 标题：Bath identity 5 家族（T49 已完成）
@@ -1040,6 +985,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/blocked_recipe_ledger.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：storage.dust, dust_div72 and needsOutputs:false are live. Must not be added to petroleum 702.
+
+### `storage/mass-storage-prefix-units`
+
+- 标题：仓储桶前缀单位换算已按 GT6 落地
+- 状态：`resolved`
+- 根因：`missing_runtime` / `prefix_unit_conversion_missing`
+- 数量：n/a
+- 排期：`not_work`
+- 挡住：`none`
+- 发现卡：`registry/catalog-modern-ids`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：content/gt6-mte-furniture-storage-runtime
+- 影响：—
+- 权威：`src/main/java/com/masson/cruciblecraft/content/storage/MassStoragePrefixUnits.java`, `src/main/java/com/masson/cruciblecraft/content/storage/MassStorageHandler.java`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：MassStorageHandler merges GT6 prefix families. Folded CC block joins one material family (ingot, then gem, then plate; never raw-ore). chunk=36 and billet=96. storage_ingot is in the ingot family; remainder still emits block. Stored vanilla glass does not prefix-merge. BARREL kind is 1-slot MassStorage, not a 27-slot chest. skyroot/item_barrel and furniture/mass_storage_lead stay unregistered.
 
 ### `worldgen/crops-glowtus-bush`
 

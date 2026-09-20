@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.api.tool.ToolAction;
 import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
+import com.masson.cruciblecraft.energy.largegasturbine.LargeGasTurbineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FoundryCastingBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FoundryCrossingBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
@@ -17,11 +18,13 @@ import com.masson.cruciblecraft.content.blockentity.CoinageMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleEntityMelts;
 import com.masson.cruciblecraft.content.blockentity.CruciblePlayerInteraction;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MultiblockPortBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.content.mte.BathingPotRuntime;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.storage.MassStorageClicks;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBlockInteraction;
 import com.masson.cruciblecraft.heat.TemperatureDamage;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModComponents;
@@ -111,6 +114,11 @@ public final class MteInPlaceBlock extends Block
         if (LargeCrucibleHosts.usesFormedState(spec)) {
             initial = initial.setValue(LargeCrucibleHosts.FORMED, false);
         }
+        if (DistillationTowerParts.usesTowerSkin(spec)) {
+            initial = initial
+                    .setValue(MultiblockPortBlock.TOWER_SKIN, false)
+                    .setValue(MultiblockPortBlock.BACK_HOLE, false);
+        }
         registerDefaultState(initial);
     }
 
@@ -135,6 +143,11 @@ public final class MteInPlaceBlock extends Block
             builder.add(FACING);
             if (LargeCrucibleHosts.usesFormedState(constructingSpec())) {
                 builder.add(LargeCrucibleHosts.FORMED);
+            }
+            if (DistillationTowerParts.usesTowerSkin(constructingSpec())) {
+                builder.add(
+                        MultiblockPortBlock.TOWER_SKIN,
+                        MultiblockPortBlock.BACK_HOLE);
             }
         } finally {
             CONSTRUCTING.remove();
@@ -234,6 +247,50 @@ public final class MteInPlaceBlock extends Block
     }
 
     @Override
+    protected boolean isSignalSource(BlockState state) {
+        return DistillationTowerParts.isLivePort(spec) || super.isSignalSource(state);
+    }
+
+    @Override
+    protected int getSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        if (DistillationTowerParts.isLivePort(spec)) {
+            return MachineCoverBlockInteraction.weakRedstone(
+                    level, pos, direction);
+        }
+        return super.getSignal(state, level, pos, direction);
+    }
+
+    @Override
+    protected int getDirectSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        if (DistillationTowerParts.isLivePort(spec)) {
+            return MachineCoverBlockInteraction.directRedstone(
+                    level, pos, direction);
+        }
+        return super.getDirectSignal(state, level, pos, direction);
+    }
+
+    @Override
+    public boolean canConnectRedstone(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            @Nullable Direction direction) {
+        if (DistillationTowerParts.isLivePort(spec)) {
+            return MachineCoverBlockInteraction.canConnectRedstone(
+                    level, pos, direction);
+        }
+        return super.canConnectRedstone(state, level, pos, direction);
+    }
+
+    @Override
     protected boolean triggerEvent(
             BlockState state, Level level, BlockPos pos, int id, int param) {
         super.triggerEvent(state, level, pos, id, param);
@@ -243,6 +300,9 @@ public final class MteInPlaceBlock extends Block
 
     @Override
     public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (DistillationTowerParts.isLivePort(spec)) {
+            return DistillationTowerParts.useTool(action, context);
+        }
         if (FoundryHosts.isCasting(spec)) {
             ToolResult casting = FoundryCastingInteractions.useTool(action, context);
             if (casting != ToolResult.PASS) {
@@ -261,11 +321,16 @@ public final class MteInPlaceBlock extends Block
                 return anvil;
             }
         }
-        if (spec.kind() == MteInPlaceKind.MASS_STORAGE) {
+        if (spec.kind().massStorage()) {
             ToolResult mass = useMassStorageTool(action, context);
             if (mass != ToolResult.PASS) {
                 return mass;
             }
+        }
+        if (action == ToolAction.PLUNGER
+                && context.getLevel().getBlockEntity(context.getClickedPos())
+                        instanceof LargeGasTurbineBlockEntity gas) {
+            return ToolClick.plunger(context, gas.trashWithPlunger());
         }
         if (action == ToolAction.PLUNGER
                 && context.getLevel().getBlockEntity(context.getClickedPos())
@@ -290,6 +355,25 @@ public final class MteInPlaceBlock extends Block
                         break;
                     }
                 }
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.SOFT_HAMMER
+                && spec.kind() == MteInPlaceKind.GAS_TURBINE
+                && context.getLevel().getBlockEntity(context.getClickedPos())
+                        instanceof LargeGasTurbineBlockEntity gas) {
+            if (!context.getLevel().isClientSide) {
+                boolean running = gas.toggleStopped();
+                Player player = context.getPlayer();
+                if (player != null) {
+                    player.displayClientMessage(
+                            Component.translatable(
+                                    running
+                                            ? "message.cruciblecraft.gas_turbine.running"
+                                            : "message.cruciblecraft.gas_turbine.stopped"),
+                            true);
+                }
+                ToolClick.hurt(context);
             }
             return ToolResult.SUCCESS;
         }
@@ -385,7 +469,7 @@ public final class MteInPlaceBlock extends Block
                 return coinage;
             }
         }
-        if (spec.kind() == MteInPlaceKind.MASS_STORAGE
+        if (spec.kind().massStorage()
                 && hit.getDirection() == state.getValue(FACING)
                 && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
             if (!level.isClientSide) {
@@ -409,6 +493,9 @@ public final class MteInPlaceBlock extends Block
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
+        if (DistillationTowerParts.isLivePort(spec)) {
+            return DistillationTowerParts.useWithoutItem(level, pos, player, hit);
+        }
         if (FoundryHosts.isCasting(spec)) {
             return FoundryCastingInteractions.useWithoutItem(level, pos, player, hit);
         }
@@ -482,7 +569,7 @@ public final class MteInPlaceBlock extends Block
             }
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
-        if (kind == MteInPlaceKind.MASS_STORAGE) {
+        if (kind.massStorage()) {
             if (hit.getDirection() != state.getValue(FACING)) {
                 return InteractionResult.PASS;
             }
@@ -670,7 +757,9 @@ public final class MteInPlaceBlock extends Block
             BlockState next,
             boolean moved) {
         if (!state.is(next.getBlock())) {
-            if (level.getBlockEntity(pos) instanceof AnvilBlockEntity anvil) {
+            if (DistillationTowerParts.isLivePort(spec)) {
+                DistillationTowerParts.dropCovers(level, pos);
+            } else if (level.getBlockEntity(pos) instanceof AnvilBlockEntity anvil) {
                 anvil.dropContents();
             } else if (level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible) {
                 crucible.dropBuffer(level, pos);
@@ -744,6 +833,9 @@ public final class MteInPlaceBlock extends Block
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        if (DistillationTowerParts.isLivePort(spec)) {
+            return new MultiblockPortBlockEntity(pos, state);
+        }
         if (AnvilHosts.isAnvil(spec)) {
             return new AnvilBlockEntity(pos, state);
         }
@@ -761,6 +853,9 @@ public final class MteInPlaceBlock extends Block
         }
         if (CoinageMoldHosts.isCoinage(spec)) {
             return new CoinageMoldBlockEntity(pos, state);
+        }
+        if (spec.kind() == MteInPlaceKind.GAS_TURBINE) {
+            return new LargeGasTurbineBlockEntity(pos, state);
         }
         return new MteInPlaceBlockEntity(pos, state);
     }
@@ -803,6 +898,17 @@ public final class MteInPlaceBlock extends Block
                         if (!lvl.isClientSide
                                 && be instanceof FoundryCastingBlockEntity mold) {
                             FoundryCastingBlockEntity.serverTick(lvl, pos, st, mold);
+                        }
+                    }
+                    : null;
+        }
+        if (spec.kind() == MteInPlaceKind.GAS_TURBINE) {
+            return type == ModBlockEntities.LARGE_GAS_TURBINE.get()
+                    ? (lvl, pos, st, be) -> {
+                        if (!lvl.isClientSide
+                                && be instanceof LargeGasTurbineBlockEntity turbine) {
+                            LargeGasTurbineBlockEntity.serverTick(
+                                    lvl, pos, st, turbine);
                         }
                     }
                     : null;

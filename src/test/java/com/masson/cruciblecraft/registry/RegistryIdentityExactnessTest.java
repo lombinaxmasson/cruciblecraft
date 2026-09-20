@@ -24,10 +24,18 @@ class RegistryIdentityExactnessTest {
             "cruciblecraft:controller_display",
             "cruciblecraft:controller_redstone",
             "cruciblecraft:conveyor",
+            "cruciblecraft:cover_asphalt",
             "cruciblecraft:cover_blank",
+            "cruciblecraft:cover_crafting",
+            "cruciblecraft:cover_drain",
+            "cruciblecraft:cover_panel",
+            "cruciblecraft:cover_plate",
+            "cruciblecraft:cover_warning",
+            "cruciblecraft:cover_wood",
             "cruciblecraft:detector_running",
             "cruciblecraft:display_energy",
             "cruciblecraft:filter",
+            "cruciblecraft:filter_fluid",
             "cruciblecraft:logistics_display_cpu",
             "cruciblecraft:logistics_fluid_storage",
             "cruciblecraft:logistics_fluid_transfer",
@@ -58,8 +66,7 @@ class RegistryIdentityExactnessTest {
     void coverCatalogAndBehaviorsAreExactNotASubset() {
         CoverBehaviorRegistry.validateDefinitions();
         assertEquals(
-                19
-                        + 4
+                27
                         + MachineCoverKinds.DEFINITION_COUNT
                         + CoverComponentTiers.definitionIds().size(),
                 CoverDefinitionCatalog.definitions().size());

@@ -65,6 +65,12 @@ public final class MteInPlaceDisplayNames {
     }
 
     public static String english(String sourceName, String registryPath) {
+        if (registryPath != null && registryPath.startsWith("panel/wood")) {
+            if (sourceName != null && !sourceName.isBlank()) {
+                return sourceName.strip();
+            }
+            return "Wooden Panel";
+        }
         String named = LanguageNames.playerEnglish(sourceName, registryPath);
         if (FoundryHosts.isSmeltingCrucible(registryPath)) {
             return FoundryHosts.englishName(named);

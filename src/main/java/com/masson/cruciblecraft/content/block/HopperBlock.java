@@ -8,6 +8,9 @@ import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBlockInteraction;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverCollision;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverInstall;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
@@ -102,7 +105,7 @@ public final class HopperBlock extends Block
             BlockGetter level,
             BlockPos pos,
             CollisionContext context) {
-        return switch (state.getValue(FACING)) {
+        VoxelShape base = switch (state.getValue(FACING)) {
             case DOWN -> DOWN;
             case NORTH -> NORTH;
             case SOUTH -> SOUTH;
@@ -110,6 +113,7 @@ public final class HopperBlock extends Block
             case EAST -> EAST;
             case UP -> UP;
         };
+        return CoverCollision.union(base, level.getBlockEntity(pos));
     }
 
     @Override
@@ -124,6 +128,11 @@ public final class HopperBlock extends Block
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
+        if (level.getBlockEntity(pos) instanceof HopperBlockEntity hopper
+                && MachineCoverBlockInteraction.rightClick(
+                        hopper, level, pos, player, hit)) {
+            return InteractionResult.SUCCESS;
+        }
         if (!level.isClientSide
                 && player instanceof ServerPlayer serverPlayer
                 && level.getBlockEntity(pos) instanceof HopperBlockEntity hopper) {
@@ -142,7 +151,21 @@ public final class HopperBlock extends Block
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        return ToolClick.useItemOn(stack, level, player, hand, hit);
+        ItemInteractionResult tool = ToolClick.useItemOn(
+                stack, level, player, hand, hit);
+        if (tool.consumesAction()) {
+            return tool;
+        }
+        if (CoverInstall.tryPlace(
+                level, pos, hit.getDirection(), stack, player)) {
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        if (level.getBlockEntity(pos) instanceof HopperBlockEntity hopper
+                && MachineCoverBlockInteraction.rightClick(
+                        hopper, level, pos, player, hit)) {
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        return tool;
     }
 
     @Override
@@ -151,6 +174,11 @@ public final class HopperBlock extends Block
         if (!(level.getBlockEntity(context.getClickedPos())
                 instanceof HopperBlockEntity hopper)) {
             return ToolResult.PASS;
+        }
+        ToolResult cover = MachineCoverBlockInteraction.useTool(
+                hopper, action, context);
+        if (cover != ToolResult.PASS) {
+            return cover;
         }
         if (action == ToolAction.PINCERS) {
             Player player = context.getPlayer();
@@ -238,8 +266,42 @@ public final class HopperBlock extends Block
         if (!state.is(next.getBlock())
                 && level.getBlockEntity(pos) instanceof HopperBlockEntity hopper) {
             hopper.dropContents();
+            hopper.dropCovers();
         }
         super.onRemove(state, level, pos, next, moved);
+    }
+
+    @Override
+    protected boolean isSignalSource(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected int getSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        return MachineCoverBlockInteraction.weakRedstone(level, pos, direction);
+    }
+
+    @Override
+    protected int getDirectSignal(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Direction direction) {
+        return MachineCoverBlockInteraction.directRedstone(level, pos, direction);
+    }
+
+    @Override
+    public boolean canConnectRedstone(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            @Nullable Direction direction) {
+        return MachineCoverBlockInteraction.canConnectRedstone(
+                level, pos, direction);
     }
 
     @Override

@@ -22,7 +22,7 @@ public final class MachineCoverBlockInteraction {
             MachineCoverHost machine,
             BlockHitResult hit) {
         return MachineCoverBehaviors.onRightClick(
-                machine, hit.getDirection(), hit);
+                machine, hit.getDirection(), hit, null);
     }
 
     public static ToolResult useTool(
@@ -86,7 +86,9 @@ public final class MachineCoverBlockInteraction {
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
-        return !player.isShiftKeyDown() && rightClick(machine, hit);
+        return !player.isShiftKeyDown()
+                && MachineCoverBehaviors.onRightClick(
+                        machine, hit.getDirection(), hit, player);
     }
 
     public static void dropCovers(Level level, BlockPos pos) {

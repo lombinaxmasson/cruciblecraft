@@ -20,6 +20,7 @@ import dev.emi.emi.api.widget.SlotWidget;
 import dev.emi.emi.api.widget.WidgetHolder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 /** Generic EMI renderer for every configured processing-machine spec. */
@@ -43,10 +44,24 @@ final class ProcessingEmiRecipe implements EmiRecipe {
             EmiRecipeCategory category,
             ProcessingMachineSpec spec,
             GTRecipe recipe) {
+        this(
+                id,
+                category,
+                spec,
+                recipe,
+                ModBlocks.configuredProcessingBlock(spec));
+    }
+
+    ProcessingEmiRecipe(
+            ResourceLocation id,
+            EmiRecipeCategory category,
+            ProcessingMachineSpec spec,
+            GTRecipe recipe,
+            Block workstationBlock) {
         this.category = Objects.requireNonNull(category, "category");
         this.id = EmiIds.synthetic(this.category.getId(), id);
         texture = MachineGuiTextures.forMachine(spec.id());
-        workstation = EmiStack.of(ModBlocks.configuredProcessingBlock(spec));
+        workstation = EmiStack.of(workstationBlock);
         data = ProcessingEmiRecipeData.from(spec, recipe);
         layout = ProcessingEmiLayout.create(spec, data);
 

@@ -7,6 +7,7 @@ import unittest
 
 from tools import capability_ledger as ledger
 from tools import census_common as census
+from tools import gt6_connector_live_host_dummy_fold as live_host_fold
 from tools import gt6_connector_alias_repair as runtime
 
 SLUG = "content/gt6-connector-alias-repair"
@@ -155,6 +156,7 @@ class Gt6ConnectorAliasRepairTest(unittest.TestCase):
         compiled = ledger.compile_ledger()
         capability = census.load_json(CAPABILITY)
         self.assertEqual([], runtime.check())
+        self.assertEqual([], live_host_fold.check())
         if capability["workflow"] == "active":
             self.assertEqual(SLUG, compiled["unique_active_slug"])
             self.assertEqual(SLUG, topology["unique_active_wave"])

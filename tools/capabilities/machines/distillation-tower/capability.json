@@ -1,0 +1,108 @@
+{
+  "schema_version": 2,
+  "slug": "machines/distillation-tower",
+  "title": "Distillation Tower GT6 Alignment",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "docs/history/card-plans/closed/蒸馏塔GT6对齐详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/DistillationTowerBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/CryoDistillationTowerBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/MultiblockPortBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/MultiblockPortBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/DistillationTowerParts.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/AbstractDistillationTowerBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/DistillationTowerBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/CryoDistillationTowerBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/DistillationTowerAutoOutput.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/DistillationTowerFluidRouting.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/DistillationTowerPartVisuals.java",
+    "src/main/java/com/masson/cruciblecraft/client/color/DistillationTowerPartColor.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MultiblockPortBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureDefinition.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMenus.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/distillation_tower.json",
+    "src/main/resources/data/cruciblecraft/recipe/hydrocarbon/distillation_tower/**",
+    "src/main/resources/data/cruciblecraft/recipe/hydrocarbon/cryo_distillation_tower/**",
+    "src/generated/resources/data/cruciblecraft/recipe/multiblock/distillation_tower.json",
+    "src/main/resources/data/cruciblecraft/recipe/machines/cryo_distillation_tower.json",
+    "src/main/resources/data/cruciblecraft/machine_delivery.json",
+    "src/main/resources/assets/cruciblecraft/gt6_distillation_tower_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/gt6_cryo_distillation_tower_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/gt6_distillation_tower_part_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/distillation_tower/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/cryo_distillation_tower/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/distillation_tower_part/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/heat_transmitter/**",
+    "tools/capabilities/machines/distillation-tower/**",
+    "tools/waves/machines/distillation-tower/**",
+    "tools/gt6_distillation_tower.py",
+    "tools/tests/test_distillation_tower.py",
+    "src/test/java/com/masson/cruciblecraft/content/blockentity/DistillationTowerPartVisualsTest.java",
+    "src/test/java/com/masson/cruciblecraft/content/block/DistillationTowerPartsTest.java"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/distillation-tower",
+  "required_test_ids": [
+    "distillationTowerFidelity",
+    "distillationTowerFormation",
+    "distillationTowerPortSupplySingleHost",
+    "distillationTowerTeardown",
+    "distillationTowerOutputJam",
+    "distillationTowerPowerLoss",
+    "distillationTowerReload",
+    "distillationTowerSaveQuarantine",
+    "distillationTowerHeightRoutesFuelAndPetrol",
+    "cryoDistillationTowerFormation"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:distillation_tower:17101",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:distillation_tower"
+      ],
+      "reason": "Keep live controller id. Catalog dummy multiblock/distillation_tower is folded onto this BlockItem. GT6 17101, RM.DistillationTower 1/3/1/9, HU buffered 4096/1024."
+    },
+    {
+      "semantic_key": "machine:cryo_distillation_tower:17111",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:cryo_distillation_tower"
+      ],
+      "reason": "GT6 MultiTileEntityCryoDistillationTower 17111. Same 18101/18102 parts, CU instead of HU, copper nonuple craft."
+    },
+    {
+      "semantic_key": "mte:heat_transmitter:18101",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:multiblock/heat_transmitter"
+      ],
+      "reason": "GT6 18101 live ENERGY_INPUT under the tower. Same catalog id, now a MultiblockPort."
+    },
+    {
+      "semantic_key": "mte:distillation_tower_part:18102",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:multiblock/distillation_tower_part"
+      ],
+      "reason": "GT6 18102 live structure part. One block, ITEM_FLUID at y=0 and FLUID_OUT at y=1..7 by bind mode."
+    },
+    {
+      "semantic_key": "multiblock:port:fluid_out",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:multiblock_fluid_out_port"
+      ],
+      "reason": "Generic FLUID_OUT remains for other JSON hosts. Tower structure uses catalog 18102."
+    }
+  ],
+  "note": "Full GT6 tower alignment. Catalog dummy 17101 folded onto live distillation_tower. Skip soulsandoil, BiomassIC2, Oil_Heavy2/HotCrude/Light2, netherair/enderair. No form-open. No CONFIGURED_MACHINES. No stand-in ingredients. No placeholder art. Close at runtime_ready, not player_complete."
+}

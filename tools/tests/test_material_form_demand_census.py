@@ -119,7 +119,7 @@ class MaterialFormDemandCensusTest(unittest.TestCase):
         reasons = self.document["not_form_by_reason"]
         self.assertTrue(reasons)
         self.assertNotIn("unmapped", {row.get("generation") for row in self.document["openable"]})
-        self.assertIn("obtain/nanofab-hosts", self.document["catalog_not_prefix"])
+        self.assertNotIn("obtain/nanofab-hosts", self.document["catalog_not_prefix"])
         self.assertNotIn(
             census.COPPER_FAMILY_BLOCKER,
             self.document["catalog_not_prefix"],

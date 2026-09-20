@@ -38,6 +38,7 @@ import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverSounds;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverItems;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverSet;
@@ -790,7 +791,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         return true;
     }
 
-    private boolean hasOutputItems() {
+    protected boolean hasOutputItems() {
         for (int slot : spec.items().outputs()) {
             if (!inventory.getStackInSlot(slot).isEmpty()) {
                 return true;
@@ -799,7 +800,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         return false;
     }
 
-    private IItemHandler internalItemView(ProcessingMachineSpec.CapabilityAccess access) {
+    protected IItemHandler internalItemView(ProcessingMachineSpec.CapabilityAccess access) {
         return itemViews.computeIfAbsent(access, key -> new SidedItemHandler(
                 inventory,
                 key == ProcessingMachineSpec.CapabilityAccess.OUTPUT
@@ -811,7 +812,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 this::automationAllowsInsert));
     }
 
-    private IFluidHandler internalFluidView(ProcessingMachineSpec.CapabilityAccess access) {
+    protected IFluidHandler internalFluidView(ProcessingMachineSpec.CapabilityAccess access) {
         if (access == ProcessingMachineSpec.CapabilityAccess.INPUT
                 && spec.fluids().inputs().isEmpty()) {
             return null;
@@ -848,7 +849,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 internalItemView(ProcessingMachineSpec.CapabilityAccess.INPUT));
     }
 
-    private void autoOutputItems(boolean pulse) {
+    protected void autoOutputItems(boolean pulse) {
         if (disabledItemOutput || !hasOutputItems()) {
             return;
         }
@@ -878,7 +879,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 internalFluidView(ProcessingMachineSpec.CapabilityAccess.INPUT));
     }
 
-    private void autoOutputFluids() {
+    protected void autoOutputFluids() {
         Direction side = spec.sidedIo().fluidsChannel()
                 .autoOutputWorld(machineFront())
                 .orElse(null);
@@ -993,6 +994,26 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         if (!handles(type, side)) {
             return 0L;
         }
+        return acceptBufferedEnergy(type, size, amount, simulate);
+    }
+
+    @Override
+    public long insertFromMultiblockPort(
+            EnergyType type,
+            long size,
+            long amount,
+            boolean simulate) {
+        if (energy == null || type != spec.energy().type()) {
+            return 0L;
+        }
+        return acceptBufferedEnergy(type, size, amount, simulate);
+    }
+
+    private long acceptBufferedEnergy(
+            EnergyType type,
+            long size,
+            long amount,
+            boolean simulate) {
         if (variant.tierBand().overcharges(size)) {
             if (!simulate && amount > 0L) {
                 runtime.overcharged();
@@ -1047,6 +1068,10 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     public final ProcessingMachineSpec spec() { return spec; }
     public final MachineVariant variant() { return variant; }
     public final ItemStackHandler inventory() { return inventory; }
+
+    protected final boolean itemAutoOutputDisabled() {
+        return disabledItemOutput;
+    }
     public final List<FluidTank> tanks() { return tanks; }
     public final ProcessingRuntime runtime() { return runtime; }
     public final int progress() { return runtime.processor().progress(); }
@@ -1140,6 +1165,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 }
             }
         }
+        CoverSounds.removed(level, worldPosition, taken.orElseThrow());
         markMutation();
         syncCoverUpdate(side);
         return true;
@@ -1286,6 +1312,30 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
             tank.setFluid(new FluidStack(fluid, current.getAmount() + accepted));
             filled += accepted;
             remaining -= accepted;
+        }
+        return filled;
+    }
+
+    @Override
+    public final int fillFluid(
+            FluidStack stack, IFluidHandler.FluidAction action) {
+        if (stack == null || stack.isEmpty() || tanks.isEmpty()) {
+            return 0;
+        }
+        List<FluidTank> targets = spec.fluids().inputs().isEmpty()
+                ? tanks
+                : spec.fluids().inputs().stream()
+                        .map(tank -> tanks.get(tank.index()))
+                        .toList();
+        FluidStack remaining = stack.copy();
+        int filled = 0;
+        for (FluidTank tank : targets) {
+            if (remaining.isEmpty()) {
+                break;
+            }
+            int accepted = tank.fill(remaining, action);
+            filled += accepted;
+            remaining.shrink(accepted);
         }
         return filled;
     }

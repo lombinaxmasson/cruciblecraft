@@ -97,16 +97,9 @@ public final class EuMissingWireGaugesRuntimeGameTests {
                         && withdrawn("electric_wire/15x_tin_wire"),
                 "folded missing-gauge dummies are still registered");
         helper.assertTrue(
-                BuiltInRegistries.ITEM.containsKey(
-                        ResourceLocation.fromNamespaceAndPath(
-                                "cruciblecraft",
-                                "electric_wire/2x_blue_alloy_wire"))
-                        && !(BuiltInRegistries.ITEM.get(
-                                ResourceLocation.fromNamespaceAndPath(
-                                        "cruciblecraft",
-                                        "electric_wire/2x_blue_alloy_wire"))
-                                instanceof CableBlockItem),
-                "upgrade_live_item dummy was folded onto a fake CableBlock");
+                withdrawn("electric_wire/2x_blue_alloy_wire")
+                        && live("blue_alloy", MaterialPrefixes.DOUBLE_WIRE),
+                "upgrade_live_item dummy is still registered beside its CableBlock");
         helper.succeed();
     }
 

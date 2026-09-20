@@ -111,7 +111,7 @@ class ChemicalProcessingMachineSpecTest {
                     ModMenus.forMachine(spec).getId().getPath());
         }
         assertEquals(
-                ModProcessingMachines.CONFIGURED_MACHINES.size(),
+                ModMenus.menuHostSpecs().size(),
                 ModMenus.processingMenuCount());
     }
 

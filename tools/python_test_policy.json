@@ -16,6 +16,9 @@
     "test_energy_batteries",
     "test_energy_transformers",
     "test_energy_heat_exchangers",
+    "test_large_gas_turbine",
+    "test_energy_coolers",
+    "test_energy_flux_converters",
     "test_energy_nuclear_fission_survival",
     "test_energy_nuclear_fission_hot_fluids",
     "test_energy_nuclear_fission_observation_safety",
@@ -40,6 +43,7 @@
     "test_gt_trees",
     "test_gt_crops",
     "test_gt_stone_layer_rocks",
+    "test_gt_small_ores",
     "test_blockers",
     "test_roll_former",
     "test_cluster_mill",
@@ -53,6 +57,8 @@
     "test_melter",
     "test_sanding",
     "test_oven",
+    "test_distillation_tower",
+    "test_gt6_electric_tools",
     "test_electric_wire_cable_mte_fold",
     "test_gt6_pipe_cable_baseline",
     "test_technological_parts_foundation",
@@ -73,6 +79,7 @@
     "test_gt6_eu_missing_wire_gauges_runtime",
     "test_gt6_connector_art",
     "test_gt6_connector_alias_repair",
+    "test_gt6_connector_live_host_dummy_fold",
     "test_gt6_fluid_combo_pipe_runtime",
     "test_gt6_restrictive_item_pipe_runtime",
     "test_gt6_insulated_redstone_runtime",
@@ -243,6 +250,25 @@
     },
     {
       "paths": [
+        "tools/tests/test_gt6_electric_tools.py",
+        "tools/capabilities/content/gt6-electric-tools/**",
+        "tools/waves/content/gt6-electric-tools/**",
+        "src/main/java/com/masson/cruciblecraft/content/item/MaterialElectricToolItem.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCharge.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/crafting/ElectricToolRecipes.java",
+        "src/main/resources/assets/cruciblecraft/gt6_electric_tools_art_manifest.json",
+        "src/test/java/com/masson/cruciblecraft/gametest/ElectricToolGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCatalogTest.java",
+        "docs/history/card-plans/active/GT6电动工具详细计划.md",
+        "docs/history/card-plans/closed/GT6电动工具详细计划.md"
+      ],
+      "test_modules": [
+        "test_gt6_electric_tools"
+      ]
+    },
+    {
+      "paths": [
         "tools/tests/test_energy_transformers.py"
       ],
       "test_modules": [
@@ -255,6 +281,37 @@
       ],
       "test_modules": [
         "test_energy_heat_exchangers"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_large_gas_turbine.py",
+        "tools/capabilities/energy/large-gas-turbine/**",
+        "tools/waves/energy/large-gas-turbine/**",
+        "src/main/java/com/masson/cruciblecraft/energy/largegasturbine/**",
+        "src/main/resources/data/cruciblecraft/large_gas_turbines.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_gas_turbine_art_manifest.json",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeGasTurbineGameTests.java",
+        "docs/history/card-plans/active/大型燃气轮机详细计划.md"
+      ],
+      "test_modules": [
+        "test_large_gas_turbine"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_energy_coolers.py"
+      ],
+      "test_modules": [
+        "test_energy_coolers"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_energy_flux_converters.py"
+      ],
+      "test_modules": [
+        "test_energy_flux_converters"
       ]
     },
     {
@@ -489,6 +546,37 @@
     },
     {
       "paths": [
+        "tools/gt_small_ores.py",
+        "tools/build_gt_small_ores.py",
+        "tools/tests/test_gt_small_ores.py",
+        "tools/waves/worldgen/gt-small-ores/**",
+        "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreCatalog.java",
+        "src/main/java/com/masson/cruciblecraft/worldgen/SmallOreFeature.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/GtSmallOresGameTests.java",
+        "src/main/resources/data/cruciblecraft/worldgen_catalog/small_ores.json",
+        "src/main/resources/data/cruciblecraft/worldgen/**/small_ores.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_small_ores.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_nether_small_ores.json",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/remove_remaining_overworld_large_veins.json",
+        "src/main/resources/data/cruciblecraft_wave_worldgen_gt_small_ores/**",
+        "tools/capabilities/worldgen/gt-small-ores/**",
+        "docs/history/card-plans/prep/GT6小矿世界生成详细计划.md",
+        "docs/history/card-plans/active/GT6小矿世界生成详细计划.md",
+        "docs/history/card-plans/closed/GT6小矿世界生成详细计划.md",
+        "src/main/resources/assets/cruciblecraft/gt6_gt_small_ores_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/materialicons/ore_small.png",
+        "src/main/resources/assets/cruciblecraft/models/block/material_small_ore.json",
+        "src/main/resources/assets/cruciblecraft/models/block/ore_small_host/**",
+        "src/main/resources/assets/cruciblecraft/blockstates/gt_small_ore.json",
+        "src/main/resources/assets/cruciblecraft/models/block/gt_small_ore_*.json",
+        "src/main/resources/assets/cruciblecraft/models/block/gt_small_bedrock_ore.json"
+      ],
+      "test_modules": [
+        "test_gt_small_ores"
+      ]
+    },
+    {
+      "paths": [
         "tools/build_blockers.py",
         "tools/tests/test_blockers.py",
         "tools/blockers/**",
@@ -514,6 +602,9 @@
         "tools/tests/test_melter.py",
         "tools/tests/test_sanding.py",
         "tools/tests/test_oven.py",
+        "tools/tests/test_distillation_tower.py",
+        "tools/tests/test_gt6_electric_tools.py",
+        "tools/gt6_distillation_tower.py",
         "tools/tests/test_electric_wire_cable_mte_fold.py",
         "tools/tests/test_technological_parts_foundation.py",
         "tools/technological_parts_foundation.py",
@@ -548,6 +639,8 @@
         "test_melter",
         "test_sanding",
         "test_oven",
+        "test_distillation_tower",
+        "test_gt6_electric_tools",
         "test_electric_wire_cable_mte_fold",
         "test_technological_parts_foundation"
       ]
@@ -715,6 +808,7 @@
     {
       "paths": [
         "tools/gt6_fluid_pipe_runtime.py",
+        "tools/gt6_connector_live_host_dummy_fold.py",
         "tools/build_gt6_fluid_pipe_runtime.py",
         "tools/tests/test_gt6_fluid_pipe_runtime.py",
         "tools/capabilities/content/gt6-fluid-pipe-runtime/**",
@@ -730,7 +824,8 @@
       "test_modules": [
         "test_gt6_fluid_pipe_runtime",
         "test_gt6_pipe_cable_baseline",
-        "test_catalog_modern_ids"
+        "test_catalog_modern_ids",
+        "test_gt6_connector_live_host_dummy_fold"
       ]
     },
     {
@@ -757,6 +852,7 @@
     {
       "paths": [
         "tools/gt6_eu_wire_cable_runtime.py",
+        "tools/gt6_connector_live_host_dummy_fold.py",
         "tools/build_gt6_eu_wire_cable_runtime.py",
         "tools/tests/test_gt6_eu_wire_cable_runtime.py",
         "tools/capabilities/content/gt6-eu-wire-cable-runtime/**",
@@ -776,7 +872,8 @@
         "test_gt6_eu_missing_wire_gauges_runtime",
         "test_gt6_pipe_cable_baseline",
         "test_catalog_modern_ids",
-        "test_electric_wire_cable_mte_fold"
+        "test_electric_wire_cable_mte_fold",
+        "test_gt6_connector_live_host_dummy_fold"
       ]
     },
     {
@@ -805,8 +902,10 @@
     {
       "paths": [
         "tools/gt6_connector_art.py",
+        "tools/gt6_connector_live_host_dummy_fold.py",
         "tools/build_gt6_connector_art.py",
         "tools/tests/test_gt6_connector_art.py",
+        "tools/tests/test_gt6_connector_live_host_dummy_fold.py",
         "tools/capabilities/content/gt6-connector-art/**",
         "tools/waves/content/gt6-connector-art/**",
         "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
@@ -822,14 +921,18 @@
       "test_modules": [
         "test_gt6_connector_art",
         "test_gt6_pipe_cable_baseline",
-        "test_catalog_modern_ids"
+        "test_catalog_modern_ids",
+        "test_gt6_connector_live_host_dummy_fold"
       ]
     },
     {
       "paths": [
         "tools/gt6_connector_alias_repair.py",
+        "tools/gt6_connector_live_host_dummy_fold.py",
         "tools/build_gt6_connector_alias_repair.py",
         "tools/tests/test_gt6_connector_alias_repair.py",
+        "tools/tests/test_gt6_connector_live_host_dummy_fold.py",
+        "tools/waves/content/gt6-connector-live-host-dummy-fold/**",
         "tools/capabilities/content/gt6-connector-alias-repair/**",
         "tools/waves/content/gt6-connector-alias-repair/**",
         "src/test/java/com/masson/cruciblecraft/gametest/ConnectorAliasRepairGameTests.java",
@@ -839,10 +942,38 @@
       ],
       "test_modules": [
         "test_gt6_connector_alias_repair",
+        "test_gt6_connector_live_host_dummy_fold",
         "test_gt6_fluid_pipe_runtime",
         "test_gt6_eu_wire_cable_runtime",
         "test_gt6_connector_art",
         "test_catalog_modern_ids"
+      ]
+    },
+    {
+      "paths": [
+        "tools/gt6_connector_live_host_dummy_fold.py",
+        "tools/tests/test_gt6_connector_live_host_dummy_fold.py",
+        "tools/waves/content/gt6-connector-live-host-dummy-fold/**",
+        "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json",
+        "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json",
+        "tools/smelter_mte_identity_catalog.json",
+        "tools/bath_mte_identity_catalog.json",
+        "src/main/java/com/masson/cruciblecraft/content/item/BathMteIdentityCatalog.java",
+        "src/main/resources/assets/cruciblecraft/models/item/electric_wire/**",
+        "src/main/resources/assets/cruciblecraft/models/item/quadruple/**",
+        "src/main/resources/assets/cruciblecraft/models/item/nonuple/**",
+        "src/main/resources/assets/cruciblecraft/models/item/fluid_pipe_tile/**"
+      ],
+      "test_modules": [
+        "test_gt6_connector_live_host_dummy_fold",
+        "test_gt6_connector_alias_repair",
+        "test_gt6_connector_art",
+        "test_gt6_eu_wire_cable_runtime",
+        "test_gt6_eu_missing_wire_gauges_runtime",
+        "test_gt6_fluid_pipe_runtime",
+        "test_gt6_fluid_combo_pipe_runtime",
+        "test_catalog_modern_ids",
+        "test_hammer_squeezer_laser"
       ]
     },
     {
@@ -1207,8 +1338,10 @@
         "tools/tests/test_project_status.py",
         "tools/tests/test_capability_close.py",
         "tools/catalog_modern_ids.py",
+        "tools/gt6_connector_live_host_dummy_fold.py",
         "tools/catalog_modern_id_map.json",
         "tools/tests/test_catalog_modern_ids.py",
+        "tools/tests/test_gt6_connector_live_host_dummy_fold.py",
         "tools/tests/test_mte_redstone_wire.py",
         "tools/tests/test_gt6_redstone_wire_correction.py",
         "tools/tests/test_gt6_crucible_mold_behavior_correction.py",
@@ -1311,6 +1444,41 @@
         "tools/capabilities/energy/heat-exchangers/**",
         "tools/waves/runtime/heat-exchangers/**",
         "tools/tests/test_energy_heat_exchangers.py",
+        "src/main/java/com/masson/cruciblecraft/energy/largegasturbine/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeGasTurbineGameTests.java",
+        "src/main/resources/data/cruciblecraft/large_gas_turbines.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_gas_turbine_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/gas_turbine/**",
+        "tools/capabilities/energy/large-gas-turbine/**",
+        "tools/waves/energy/large-gas-turbine/**",
+        "tools/tests/test_large_gas_turbine.py",
+        "src/main/java/com/masson/cruciblecraft/energy/cooler/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/EnergyCoolersGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_runtime_cooler/**",
+        "src/main/resources/data/cruciblecraft/coolers.json",
+        "src/main/resources/assets/cruciblecraft/gt6_coolers_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/cooler/**",
+        "src/test/java/com/masson/cruciblecraft/energy/cooler/**",
+        "tools/capabilities/energy/cooler/**",
+        "tools/waves/runtime/cooler/**",
+        "tools/tests/test_energy_coolers.py",
+        "tools/emit_coolers.py",
+        "src/main/java/com/masson/cruciblecraft/energy/flux/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/EnergyFluxConvertersGameTests.java",
+        "src/main/resources/data/cruciblecraft_wave_runtime_flux_converters/**",
+        "src/main/resources/data/cruciblecraft/flux_converters.json",
+        "src/main/resources/assets/cruciblecraft/gt6_flux_converters_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_heater/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_engine/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_motor/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_magnet/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_laser/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/flux_dynamo/**",
+        "src/test/java/com/masson/cruciblecraft/energy/flux/**",
+        "tools/capabilities/energy/flux-converters/**",
+        "tools/waves/runtime/flux-converters/**",
+        "tools/tests/test_energy_flux_converters.py",
+        "tools/emit_flux_converters.py",
         "tools/waves/runtime/fission-survival/**",
         "tools/capabilities/energy/nuclear-fission-survival/**",
         "tools/tests/test_energy_nuclear_fission_survival.py",
@@ -1331,6 +1499,7 @@
         "test_capability_close",
         "test_blockers",
         "test_catalog_modern_ids",
+        "test_gt6_connector_live_host_dummy_fold",
         "test_mte_redstone_wire",
         "test_gt6_redstone_wire_correction",
         "test_gt6_crucible_mold_behavior_correction",
@@ -1356,6 +1525,9 @@
         "test_energy_batteries",
         "test_energy_transformers",
         "test_energy_heat_exchangers",
+        "test_large_gas_turbine",
+        "test_energy_coolers",
+        "test_energy_flux_converters",
         "test_energy_nuclear_fission_survival",
         "test_energy_nuclear_fission_hot_fluids",
         "test_energy_nuclear_fission_observation_safety",
@@ -1367,7 +1539,9 @@
         "test_injector",
         "test_bath",
         "test_sanding",
-        "test_oven"
+        "test_oven",
+        "test_distillation_tower",
+        "test_gt6_electric_tools"
       ]
     },
     {

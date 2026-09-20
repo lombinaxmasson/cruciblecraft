@@ -35,7 +35,7 @@
 游戏里还没有、以后另开能力，不要写进 known-issues 当「已关卡的尾巴」。入口：[unimplemented-gap.md](unimplemented-gap.md)；排期看 [blocked.md](blocked.md)。
 
 - Display CPU 四件物流监视器已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) 关 `runtime_ready`（`logistics/display-cpu`）。Dump 封面与 Logistics Core 已 [物流核心](../history/card-plans/closed/物流核心详细计划.md) 关 `runtime_ready`。`dump_policy` 见已关闭的 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
-- 加工机与能量现行 unique-active / 完成集合见 [project-status.md](project-status.md)。蒸汽涡轮、大型热交换器 17197、聚变 / 量子物质与长距变压器已作为 CC 扩展落地（`frozen`+`paused`），不是 `player_complete`。冷却器仍未开。齿轮箱不在变压器卡。手持工具余量见 [blocked.md](blocked.md) `tools/world-behaviors`，不要写进已关工具卡的尾巴。不要把 Prep 计划列表抄成待办。
+- 加工机与能量现行 unique-active / 完成集合见 [project-status.md](project-status.md)。蒸汽涡轮、大型热交换器 17197、聚变 / 量子物质与长距变压器已作为 CC 扩展落地（`frozen`+`paused`），不是 `player_complete`。齿轮箱不在变压器卡。手持工具余量见 [blocked.md](blocked.md) `tools/world-behaviors`，不要写进已关工具卡的尾巴。不要把 Prep 计划列表抄成待办。
 - 作物与树已关 `runtime_ready`，不是 `player_complete`（树脂橡胶 / 枫糖浆流体仍 blocked）。
 - 原版替换已做到 Vanilla.java 工作台 TNT / 矿车 / 锁链甲 / 曲奇金苹果金胡萝卜 delate。箭（缺 Empty 箭杆）、染料 remix、Vanilla.java RecipeMap 后半与 Replace 扫描器仍 `frozen`
 - 首小时 mortar / sifter / smelter / bath 已脱离 `metal_surface`。`smelter` 现为 `basicmachines/smelter` 立方机；工作态 `overlay_active` 未接 `LIT`

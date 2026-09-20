@@ -22,7 +22,9 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
+import com.masson.cruciblecraft.content.block.DistillationTowerParts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
+import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ProcessingMachineBlockEntity;
@@ -34,6 +36,9 @@ import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DistillationTowerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CryoDistillationTowerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.DistillationTowerAutoOutput;
+import com.masson.cruciblecraft.content.blockentity.DistillationTowerFluidRouting;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
@@ -71,6 +76,8 @@ import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.compat.emi.ProcessingEmiRegistrationPlan;
 import com.masson.cruciblecraft.content.menu.ConfiguredProcessingMachineMenu;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.Offset;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.heat.CrucibleThermalModel;
@@ -3298,13 +3305,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         LargeCentrifugeBlockEntity centrifuge =
                 helper.getBlockEntity(controllerPos);
@@ -3415,13 +3416,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         LargeCentrifugeBlockEntity centrifuge =
                 helper.getBlockEntity(controllerPos);
@@ -3673,13 +3668,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         LargeBoilerBlockEntity boiler =
                 helper.getBlockEntity(controllerPos);
@@ -3805,13 +3794,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         LargeBoilerBlockEntity boiler =
                 helper.getBlockEntity(controllerPos);
@@ -3870,19 +3853,13 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         DistillationTowerBlockEntity tower =
                 helper.getBlockEntity(controllerPos);
         GTRecipe recipe = requireRecipe(
-                ModRecipeMaps.DISTILLERY,
-                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
+                ModRecipeMaps.DISTILLATION_TOWER,
+                "hydrocarbon/distillation_tower/biomass");
         loadRecipeInputs(tower, recipe);
         BlockPos portToBreak = structure.anchor(
                 "center", controllerPos, facing);
@@ -3901,7 +3878,7 @@ public final class CrucibleCraftGameTests {
                             !tower.structureValid(),
                             "Breaking a tower block did not invalidate the structure");
                     helper.assertTrue(
-                            tower.tanks().get(0).getFluidAmount() == 25,
+                            tower.tanks().get(0).getFluidAmount() == 80,
                             "Tower contents were lost on teardown: "
                                     + tower.tanks().get(0).getFluidAmount());
                 })
@@ -3928,13 +3905,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         DistillationTowerBlockEntity tower =
                 helper.getBlockEntity(controllerPos);
@@ -3944,18 +3915,16 @@ public final class CrucibleCraftGameTests {
         FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
-                ModRecipeMaps.DISTILLERY,
-                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
+                ModRecipeMaps.DISTILLATION_TOWER,
+                "hydrocarbon/distillation_tower/biomass");
         loadRecipeInputs(tower, recipe);
-        // Jam the outputs: both output tanks full of the products.
-        int out0 = tower.spec().fluids().outputs().getFirst().index();
-        int out1 = tower.spec().fluids().outputs().get(1).index();
-        tower.tanks().get(out0).setFluid(
-                new FluidStack(recipe.fluidOutputs().getFirst().getFluid(),
-                        tower.tanks().get(out0).getCapacity()));
-        tower.tanks().get(out1).setFluid(
-                new FluidStack(recipe.fluidOutputs().get(1).getFluid(),
-                        tower.tanks().get(out1).getCapacity()));
+        for (int i = 0; i < recipe.fluidOutputs().size(); i++) {
+            int out = tower.spec().fluids().outputs().get(i).index();
+            tower.tanks().get(out).setFluid(
+                    new FluidStack(
+                            recipe.fluidOutputs().get(i).getFluid(),
+                            tower.tanks().get(out).getCapacity()));
+        }
         helper.startSequence()
                 .thenIdle(25)
                 .thenExecute(() -> {
@@ -3969,17 +3938,20 @@ public final class CrucibleCraftGameTests {
                 .thenIdle(60)
                 .thenExecute(() -> {
                     helper.assertTrue(
-                            tower.tanks().get(0).getFluidAmount() == 25,
+                            tower.tanks().get(0).getFluidAmount() == 80,
                             "Output jam voided the tower input: "
                                     + tower.tanks().get(0).getFluidAmount());
                     helper.assertTrue(
-                            tower.tanks().get(out0).getFluidAmount()
-                                            == tower.tanks().get(out0)
-                                                    .getCapacity()
-                                    && tower.tanks().get(out1)
-                                                    .getFluidAmount()
-                                            == tower.tanks().get(out1)
-                                                    .getCapacity(),
+                            java.util.stream.IntStream.range(
+                                            0, recipe.fluidOutputs().size())
+                                    .allMatch(i -> {
+                                        int out = tower.spec().fluids()
+                                                .outputs().get(i).index();
+                                        return tower.tanks().get(out)
+                                                .getFluidAmount()
+                                                == tower.tanks().get(out)
+                                                        .getCapacity();
+                                    }),
                             "Output jam changed the tower output tanks");
                 })
                 .thenSucceed();
@@ -4005,13 +3977,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         DistillationTowerBlockEntity tower =
                 helper.getBlockEntity(controllerPos);
@@ -4021,8 +3987,8 @@ public final class CrucibleCraftGameTests {
         FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
-                ModRecipeMaps.DISTILLERY,
-                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
+                ModRecipeMaps.DISTILLATION_TOWER,
+                "hydrocarbon/distillation_tower/biomass");
         loadRecipeInputs(tower, recipe);
         helper.startSequence()
                 .thenIdle(25)
@@ -4079,13 +4045,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         DistillationTowerBlockEntity tower =
                 helper.getBlockEntity(controllerPos);
@@ -4095,8 +4055,8 @@ public final class CrucibleCraftGameTests {
         FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
-                ModRecipeMaps.DISTILLERY,
-                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
+                ModRecipeMaps.DISTILLATION_TOWER,
+                "hydrocarbon/distillation_tower/biomass");
         loadRecipeInputs(tower, recipe);
         helper.startSequence()
                 .thenIdle(25)
@@ -4153,19 +4113,13 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         DistillationTowerBlockEntity tower =
                 helper.getBlockEntity(controllerPos);
         GTRecipe recipe = requireRecipe(
-                ModRecipeMaps.DISTILLERY,
-                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
+                ModRecipeMaps.DISTILLATION_TOWER,
+                "hydrocarbon/distillation_tower/biomass");
         loadRecipeInputs(tower, recipe);
         helper.startSequence()
                 .thenIdle(25)
@@ -4190,7 +4144,7 @@ public final class CrucibleCraftGameTests {
                                     .contains("does not match"),
                             "Tower quarantine did not expose its diagnostic");
                     helper.assertTrue(
-                            tower.tanks().get(0).getFluidAmount() == 25,
+                            tower.tanks().get(0).getFluidAmount() == 80,
                             "Tower contents changed under quarantine");
                 })
                 .thenSucceed();
@@ -4218,13 +4172,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         LargeBoilerBlockEntity boiler =
                 helper.getBlockEntity(controllerPos);
@@ -4279,13 +4227,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         LargeBoilerBlockEntity boiler =
                 helper.getBlockEntity(controllerPos);
@@ -4346,13 +4288,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         LargeBoilerBlockEntity boiler =
                 helper.getBlockEntity(controllerPos);
@@ -4421,13 +4357,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         LargeBoilerBlockEntity boiler =
                 helper.getBlockEntity(controllerPos);
@@ -4488,13 +4418,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         LargeBoilerBlockEntity boiler =
                 helper.getBlockEntity(controllerPos);
@@ -5239,6 +5163,30 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
+    private static void assertFormedTowerPartVisuals(
+            GameTestHelper helper,
+            MultiblockStructureDefinition structure,
+            BlockPos controllerPos,
+            Direction facing) {
+        BlockPos hole = structure.worldPosition(
+                controllerPos, facing, new Offset(0, 0, 2));
+        BlockPos corner = structure.worldPosition(
+                controllerPos, facing, new Offset(1, 2, 2));
+        helper.assertTrue(
+                helper.getBlockState(hole).is(DistillationTowerParts.towerPart())
+                        && helper.getBlockState(hole).getValue(
+                                MultiblockPortBlock.TOWER_SKIN)
+                        && helper.getBlockState(hole).getValue(
+                                MultiblockPortBlock.BACK_HOLE),
+                "Far-face center did not switch to GT6 design 1");
+        helper.assertTrue(
+                helper.getBlockState(corner).getValue(
+                                MultiblockPortBlock.TOWER_SKIN)
+                        && !helper.getBlockState(corner).getValue(
+                                MultiblockPortBlock.BACK_HOLE),
+                "Tower parts did not switch to GT6 design 0");
+    }
+
     @GameTest(template = TEMPLATE, timeoutTicks = 300)
     public static void distillationTowerFormation(
             GameTestHelper helper) {
@@ -5259,13 +5207,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         DistillationTowerBlockEntity tower =
                 helper.getBlockEntity(controllerPos);
@@ -5275,8 +5217,8 @@ public final class CrucibleCraftGameTests {
         FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
-                ModRecipeMaps.DISTILLERY,
-                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
+                ModRecipeMaps.DISTILLATION_TOWER,
+                "hydrocarbon/distillation_tower/biomass");
         loadRecipeInputs(tower, recipe);
 
         helper.startSequence()
@@ -5285,6 +5227,8 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             tower.structureValid(),
                             "Distillation tower structure was not recognized");
+                    assertFormedTowerPartVisuals(
+                            helper, structure, controllerPos, facing);
                     helper.assertTrue(
                             firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the tower heat source");
@@ -5295,22 +5239,22 @@ public final class CrucibleCraftGameTests {
                         "Tower did not receive port-fed heat"))
                 .thenIdle(45)
                 .thenExecute(() -> {
-                    FluidStack fuel = recipe.fluidOutputs().getFirst();
-                    FluidStack lubricant = recipe.fluidOutputs().get(1);
+                    FluidStack ethanol = recipe.fluidOutputs().getFirst();
+                    FluidStack glycerol = recipe.fluidOutputs().get(1);
                     boolean finished = tower.tanks().stream()
                             .anyMatch(tank ->
-                                    tank.getFluid().is(fuel.getFluid())
+                                    tank.getFluid().is(ethanol.getFluid())
                                             && tank.getFluidAmount()
-                                                    >= fuel.getAmount())
+                                                    >= ethanol.getAmount())
                             && tower.tanks().stream().anyMatch(tank ->
                                     tank.getFluid().is(
-                                                    lubricant.getFluid())
+                                                    glycerol.getFluid())
                                             && tank.getFluidAmount()
-                                                    >= lubricant
+                                                    >= glycerol
                                                             .getAmount());
                     helper.assertTrue(
                             finished || tower.progress() > 0,
-                            "Tower did not run the distillery recipe: "
+                            "Tower did not run the distillation-tower recipe: "
                                     + tower.pausedReason()
                                     + " stored="
                                     + tower.stored(EnergyType.HEAT)
@@ -5328,22 +5272,22 @@ public final class CrucibleCraftGameTests {
                 })
                 .thenIdle(2)
                 .thenExecute(() -> {
-                    FluidStack fuel = recipe.fluidOutputs().getFirst();
-                    FluidStack lubricant = recipe.fluidOutputs().get(1);
+                    FluidStack ethanol = recipe.fluidOutputs().getFirst();
+                    FluidStack glycerol = recipe.fluidOutputs().get(1);
                     helper.assertTrue(
                             tower.tanks().stream().anyMatch(tank ->
-                                    tank.getFluid().is(fuel.getFluid())
+                                    tank.getFluid().is(ethanol.getFluid())
                                             && tank.getFluidAmount()
-                                                    >= fuel.getAmount()),
-                            "Tower produced no fuel");
+                                                    >= ethanol.getAmount()),
+                            "Tower produced no ethanol");
                     helper.assertTrue(
                             tower.tanks().stream().anyMatch(tank ->
                                     tank.getFluid().is(
-                                                    lubricant.getFluid())
+                                                    glycerol.getFluid())
                                             && tank.getFluidAmount()
-                                                    >= lubricant
+                                                    >= glycerol
                                                             .getAmount()),
-                            "Tower silently lost lubricant coproduct");
+                            "Tower silently lost glycerol coproduct");
                 })
                 .thenSucceed();
     }
@@ -5371,6 +5315,15 @@ public final class CrucibleCraftGameTests {
                                 .MultiblockStructureDefinition.PortType
                                 .ITEM_FLUID)
                 .count();
+        long fluidOutPorts = structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .filter(element -> structure.predicate(element)
+                        .port().orElseThrow()
+                        == com.masson.cruciblecraft.content.multiblock
+                                .MultiblockStructureDefinition.PortType
+                                .FLUID_OUT)
+                .count();
         long controllers = structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.CONTROLLER)
@@ -5378,15 +5331,27 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 structure.structure().size() == 81
                         && energyPorts == 9
-                        && itemFluidPorts == 71
-                        && controllers == 1,
+                        && itemFluidPorts == 8
+                        && fluidOutPorts == 63
+                        && controllers == 1
+                        && DistillationTowerParts.HEAT_TRANSMITTER.equals(
+                                structure.palette().get("E")
+                                        .block().orElseThrow())
+                        && DistillationTowerParts.TOWER_PART.equals(
+                                structure.palette().get("P")
+                                        .block().orElseThrow())
+                        && DistillationTowerParts.TOWER_PART.equals(
+                                structure.palette().get("F")
+                                        .block().orElseThrow()),
                 "Tower geometry drifted from the GT6 source: "
                         + structure.structure().size()
                         + " positions, "
                         + energyPorts
                         + " energy, "
                         + itemFluidPorts
-                        + " item/fluid");
+                        + " item/fluid, "
+                        + fluidOutPorts
+                        + " fluid-out");
         var source = structure.source().orElseThrow();
         helper.assertTrue(
                 "gregtech.tileentity.multiblocks"
@@ -5399,6 +5364,20 @@ public final class CrucibleCraftGameTests {
                         && "3703e40308c8c030763fd6297dea8b210d2a77b1"
                                 .equals(source.revision()),
                 "Tower source provenance drifted");
+        helper.assertTrue(
+                BuiltInRegistries.BLOCK.getOptional(
+                        ResourceLocation.fromNamespaceAndPath(
+                                CrucibleCraft.MODID,
+                                "multiblock/distillation_tower"))
+                        .isEmpty(),
+                "Catalog dummy 17101 is still registered");
+        helper.assertTrue(
+                BuiltInRegistries.BLOCK.getOptional(
+                        ResourceLocation.fromNamespaceAndPath(
+                                CrucibleCraft.MODID,
+                                "distillation_tower"))
+                        .isPresent(),
+                "Live 17101 controller is missing");
         helper.succeed();
     }
 
@@ -5433,13 +5412,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             structure.worldPosition(
                                     controllerPos, facing, element.offset()),
-                            predicate.port().orElseThrow()
-                                            == com.masson.cruciblecraft.content
-                                                    .multiblock
-                                                    .MultiblockStructureDefinition
-                                                    .PortType.ENERGY_INPUT
-                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
-                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                            structurePaletteBlock(predicate));
                 });
         DistillationTowerBlockEntity tower =
                 helper.getBlockEntity(controllerPos);
@@ -5450,7 +5423,7 @@ public final class CrucibleCraftGameTests {
                             tower.structureValid(),
                             "Tower structure was not recognized");
                     helper.assertTrue(
-                            itemFluidPorts.size() == 71,
+                            itemFluidPorts.size() == 8,
                             "Physical item/fluid port count drifted");
                     int inputSlot =
                             tower.spec().items().inputs().getFirst();
@@ -5469,17 +5442,185 @@ public final class CrucibleCraftGameTests {
                                         && port.fluidHandler().getTanks()
                                         == tower.tanks().size();
                             }),
-                            "Seventy-one ports did not bridge one host");
+                            "Eight item/fluid ports did not bridge one host");
                     helper.assertTrue(
-                            tower.spec().items().inputs().size() == 2
+                            tower.spec().items().inputs().size() == 1
                                     && tower.spec().items().outputs()
-                                            .size() == 2
+                                            .size() == 3
                                     && tower.spec().fluids().inputs()
-                                            .size() == 2
+                                            .size() == 1
                                     && tower.spec().fluids().outputs()
-                                            .size() == 3,
-                            "Shared host layout drifted from the distillery spec");
+                                            .size() == 9,
+                            "Shared host layout drifted from the GT6 1/3/1/9 panel");
                 })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void distillationTowerHeightRoutesFuelAndPetrol(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        var structure = MultiblockStructureCatalog.require(
+                ModMultiblockControllers.DISTILLATION_TOWER.structureId());
+        helper.setBlock(
+                controllerPos,
+                ModBlocks.DISTILLATION_TOWER.get()
+                        .defaultBlockState()
+                        .setValue(ProcessingMachineBlock.FACING, facing));
+        structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .forEach(element -> helper.setBlock(
+                        structure.worldPosition(
+                                controllerPos, facing, element.offset()),
+                        structurePaletteBlock(
+                                structure.predicate(element))));
+        DistillationTowerBlockEntity tower =
+                helper.getBlockEntity(controllerPos);
+        Fluid fuel = ModFluids.materialFluid("fuel").orElseThrow();
+        Fluid petrol = ModFluids.materialFluid("petrol").orElseThrow();
+        int fuelTank = tower.spec().fluids().outputs().getFirst().index();
+        int petrolTank = tower.spec().fluids().outputs().get(1).index();
+        tower.tanks().get(fuelTank).setFluid(new FluidStack(fuel, 200));
+        tower.tanks().get(petrolTank).setFluid(new FluidStack(petrol, 200));
+        BlockPos backHole = structure.anchor(
+                "back_hole", controllerPos, facing);
+        helper.setBlock(
+                backHole.above(2),
+                ModBlocks.DISTILLERY.get().defaultBlockState()
+                        .setValue(ProcessingMachineBlock.FACING, Direction.EAST));
+        helper.setBlock(
+                backHole.above(5),
+                ModBlocks.DISTILLERY.get().defaultBlockState()
+                        .setValue(ProcessingMachineBlock.FACING, Direction.EAST));
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            tower.structureValid(),
+                            "Tower structure was not recognized");
+                    helper.assertTrue(
+                            DistillationTowerFluidRouting.localY(
+                                    DistillationTowerFluidRouting.Kind.HOT,
+                                    fuel) == 2
+                                    && DistillationTowerFluidRouting.localY(
+                                            DistillationTowerFluidRouting.Kind.HOT,
+                                            petrol) == 5,
+                            "Height table drifted from GT6 doOutputFluids");
+                    helper.assertTrue(
+                            DistillationTowerAutoOutput.hole(
+                                            tower, facing, 2)
+                                    .equals(helper.absolutePos(
+                                            backHole.above(2)))
+                                    && DistillationTowerAutoOutput.hole(
+                                                    tower, facing, 5)
+                                            .equals(helper.absolutePos(
+                                                    backHole.above(5))),
+                            "Backside hole is not three blocks behind the controller");
+                    DistillationTowerAutoOutput.pushFluids(
+                            tower, DistillationTowerFluidRouting.Kind.HOT);
+                    ConfiguredProcessingMachineBlockEntity fuelSink =
+                            helper.getBlockEntity(backHole.above(2));
+                    ConfiguredProcessingMachineBlockEntity petrolSink =
+                            helper.getBlockEntity(backHole.above(5));
+                    boolean fuelMoved = fuelSink.tanks().stream().anyMatch(
+                            tank -> tank.getFluid().is(fuel)
+                                    && tank.getFluidAmount() > 0);
+                    boolean petrolMoved = petrolSink.tanks().stream().anyMatch(
+                            tank -> tank.getFluid().is(petrol)
+                                    && tank.getFluidAmount() > 0);
+                    helper.assertTrue(
+                            fuelMoved && petrolMoved,
+                            "Height auto-output missed fuel/petrol hatches: fuel="
+                                    + fuelMoved
+                                    + " petrol="
+                                    + petrolMoved);
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 200)
+    public static void cryoDistillationTowerFormation(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        var structure = MultiblockStructureCatalog.require(
+                ModMultiblockControllers.CRYO_DISTILLATION_TOWER.structureId());
+        helper.setBlock(
+                controllerPos,
+                ModBlocks.CRYO_DISTILLATION_TOWER.get()
+                        .defaultBlockState()
+                        .setValue(ProcessingMachineBlock.FACING, facing));
+        structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .forEach(element -> helper.setBlock(
+                        structure.worldPosition(
+                                controllerPos, facing, element.offset()),
+                        structurePaletteBlock(
+                                structure.predicate(element))));
+        CryoDistillationTowerBlockEntity tower =
+                helper.getBlockEntity(controllerPos);
+        BlockPos energyPort = structure.anchor(
+                "bottom_energy_input", controllerPos, facing);
+        GTRecipe recipe = requireRecipe(
+                ModRecipeMaps.CRYO_DISTILLATION_TOWER,
+                "hydrocarbon/cryo_distillation_tower/air");
+        loadRecipeInputs(tower, recipe);
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            tower.structureValid(),
+                            "Cryo tower structure was not recognized");
+                    assertFormedTowerPartVisuals(
+                            helper, structure, controllerPos, facing);
+                    MultiblockPortBlockEntity port =
+                            helper.getBlockEntity(energyPort);
+                    helper.assertTrue(
+                            port.insert(
+                                    EnergyType.CU,
+                                    1_024L,
+                                    64L,
+                                    Direction.UP,
+                                    false) == 64L,
+                            "Cryo tower energy port did not accept CU");
+                })
+                .thenIdle(10)
+                .thenExecute(() -> helper.assertTrue(
+                        tower.stored(EnergyType.CU) > 0L,
+                        "Cryo tower did not receive port-fed CU"))
+                .thenIdle(45)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            tower.progress() > 0
+                                    || tower.tanks().stream().anyMatch(
+                                            tank -> tank.getFluidAmount() > 0
+                                                    && !tank.getFluid().is(
+                                                            recipe.fluidInputs()
+                                                                    .getFirst()
+                                                                    .getFluid())),
+                            "Cryo tower did not run air: "
+                                    + tower.pausedReason()
+                                    + " stored="
+                                    + tower.stored(EnergyType.CU));
+                    if (tower.progress() > 0) {
+                        forceLastTick(helper, tower);
+                    }
+                })
+                .thenIdle(2)
+                .thenExecute(() -> helper.assertTrue(
+                        tower.tanks().stream().anyMatch(tank ->
+                                tank.getFluid().is(
+                                        recipe.fluidOutputs()
+                                                .getFirst()
+                                                .getFluid())
+                                        && tank.getFluidAmount()
+                                                >= recipe.fluidOutputs()
+                                                        .getFirst()
+                                                        .getAmount()),
+                        "Cryo tower produced no nitrogen"))
                 .thenSucceed();
     }
 
@@ -7850,8 +7991,8 @@ public final class CrucibleCraftGameTests {
                         && metrics.pipeMaterialRules() == 257
                         && metrics.ingotFormMaterialRules() == 967
                         && metrics.liveComponentMapRecipes() == 12064
-                        && metrics.allPublishedRecipes() == 19_080
-                        && metrics.eagerPublishedRecipes() == 16_855
+                        && metrics.allPublishedRecipes() == 19_087
+                        && metrics.eagerPublishedRecipes() == 16_862
                         && metrics.eagerPublishedRecipes()
                                 <= ModProcessingMachines
                                         .ALL_EAGER_PUBLICATION_SOFT_BUDGET
@@ -10647,6 +10788,12 @@ public final class CrucibleCraftGameTests {
 
     private static Direction energyFace(ProcessingMachineBlockEntity machine) {
         return ProcessingMachineIoFaces.energy(machine.spec(), machine.facing());
+    }
+
+    private static net.minecraft.world.level.block.Block structurePaletteBlock(
+            MultiblockStructureDefinition.PalettePredicate predicate) {
+        return BuiltInRegistries.BLOCK.getOptional(predicate.block().orElseThrow())
+                .orElseThrow();
     }
 
     private static void fillKuCapability(

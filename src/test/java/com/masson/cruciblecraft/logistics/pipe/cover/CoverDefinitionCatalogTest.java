@@ -22,15 +22,15 @@ class CoverDefinitionCatalogTest {
     void catalogHasExactDefinitionsAndBehaviors() {
         CoverBehaviorRegistry.validateDefinitions();
         assertEquals(
-                23 + MachineCoverKinds.DEFINITION_COUNT,
+                27 + MachineCoverKinds.DEFINITION_COUNT,
                 CoverDefinitionCatalog.definitions().size()
                         - CoverComponentTiers.definitionIds().size());
         assertEquals(
-                23
+                27
                         + MachineCoverKinds.DEFINITION_COUNT
                         + CoverComponentTiers.definitionIds().size(),
                 CoverDefinitionCatalog.definitions().size());
-        assertEquals(36, CoverBehaviorRegistry.registeredIds().size());
+        assertEquals(44, CoverBehaviorRegistry.registeredIds().size());
     }
 
     @Test
@@ -66,7 +66,7 @@ class CoverDefinitionCatalogTest {
                         "cruciblecraft:pressure_valve",
                         "cruciblecraft:selector_manual"),
                 ids.subList(0, 8));
-        assertEquals(36, ids.size());
+        assertEquals(44, ids.size());
         assertTrue(ids.containsAll(List.of(
                 "cruciblecraft:logistics_item_storage",
                 "cruciblecraft:logistics_item_transfer",
@@ -79,7 +79,8 @@ class CoverDefinitionCatalogTest {
                 "cruciblecraft:controller_auto",
                 "cruciblecraft:controller_auto_timer",
                 "cruciblecraft:detector_running",
-                "cruciblecraft:selector_tag")));
+                "cruciblecraft:selector_tag",
+                "cruciblecraft:cover_plate")));
     }
 
     @Test

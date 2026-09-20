@@ -36,13 +36,19 @@
         "cruciblecraft:chromium_nanofab",
         "cruciblecraft:titanium_nanofab"
       ],
-      "reason": "GT6 Nanofab hosts 20441-20445. EU buffered, two item inputs/one output, one fluid input/one output. All five hosts remain acquisition-blocked."
+      "reason": "GT6 Nanofab hosts 20441-20445. EU buffered, two item inputs/one output, one fluid input/one output. Host obtain is source-exact."
     },
     {
       "semantic_key": "machine:nanofab:host_obtain",
-      "disposition": "blocked",
-      "runtime_ids": [],
-      "reason": "All five hosts need laser-gas components, sapphire crystal processor, emitters, and sensors. No Geiger/Canner cell, circuit-board, or programmed_circuit stand-in."
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:nanofab",
+        "cruciblecraft:aluminium_nanofab",
+        "cruciblecraft:stainless_steel_nanofab",
+        "cruciblecraft:chromium_nanofab",
+        "cruciblecraft:titanium_nanofab"
+      ],
+      "reason": "GT6 Nanofab hosts 20441-20445 use Comp_Laser_Gas_Ar/Kr/Xe, Processor_Crystal_Sapphire, EMITTERS[1-5], and SENSORS[1-5]. No Geiger/Canner cell, circuit-board, or programmed_circuit stand-in."
     },
     {
       "semantic_key": "recipe:nanofab:overflow",
@@ -51,5 +57,5 @@
       "reason": "12 prep overflow rows plus 45 shadowed programmed_circuit signatures are blocked. No identity or circuit-NBT stand-ins."
     }
   ],
-  "note": "Prep selected 52 rows; live publishes 7 non-shadowed exact rows. 57 rows are explicitly_blocked for graphene/MTE/dolamide gaps or shadowed circuit signatures. All five hosts remain acquisition-blocked. Close at runtime_ready, not player_complete."
+  "note": "Prep selected 52 rows; live publishes 7 non-shadowed exact rows. 57 rows are explicitly_blocked for graphene/MTE/dolamide gaps or shadowed circuit signatures. Five GT6 hosts are source-exact. Close at runtime_ready, not player_complete."
 }

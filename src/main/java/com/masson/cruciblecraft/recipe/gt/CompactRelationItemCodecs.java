@@ -61,6 +61,16 @@ final class CompactRelationItemCodecs {
             if (rewritten.isPresent()) {
                 return DataResult.success(Pair.of(rewritten.orElseThrow(), input));
             }
+            java.util.Optional<Ingredient> uniqueItem =
+                    PrefixMaterialItemCodecs.rewriteUniqueItem(itemId(json, "item"));
+            if (uniqueItem.isPresent()) {
+                return DataResult.success(Pair.of(uniqueItem.orElseThrow(), input));
+            }
+            java.util.Optional<Ingredient> rewrittenTag =
+                    PrefixMaterialItemCodecs.rewriteTag(tagId(json));
+            if (rewrittenTag.isPresent()) {
+                return DataResult.success(Pair.of(rewrittenTag.orElseThrow(), input));
+            }
         }
         DataResult<Pair<Ingredient, T>> primary =
                 Ingredient.CODEC_NONEMPTY.decode(ops, input);
@@ -124,6 +134,10 @@ final class CompactRelationItemCodecs {
             }
             return DataResult.success(Pair.of(new ItemStack(item, stackCount), input));
         });
+    }
+
+    private static ResourceLocation tagId(JsonElement json) {
+        return itemId(json, "tag");
     }
 
     private static ResourceLocation itemId(JsonElement json, String key) {

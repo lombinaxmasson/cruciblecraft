@@ -101,6 +101,20 @@ public record PipeCoverConfig(
                 redstone);
     }
 
+    public PipeCoverConfig withoutMatchId() {
+        return new PipeCoverConfig(
+                Optional.empty(),
+                rate,
+                pressureThreshold,
+                exactCount,
+                mode,
+                selector,
+                networkId,
+                invert,
+                visual,
+                redstone);
+    }
+
     public PipeCoverConfig withInvert(int value) {
         return new PipeCoverConfig(
                 matchId,

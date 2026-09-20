@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+  "expected_count": 4,
+  "machines": [
+    {
+      "id": "cruciblecraft:magnalium/gas_turbine_main_housing",
+      "source_id": 17231,
+      "source_line": 1264,
+      "gt6_class": "MultiTileEntityLargeTurbineGas",
+      "housing_material": "stainless_steel",
+      "plate_material": "invar",
+      "wall_source_id": 18022,
+      "wall_id": "cruciblecraft:multiblock/dense_stainless_steel_wall",
+      "hu_input": 6144,
+      "ru_output": 4096,
+      "hardness": 6.0,
+      "resistance": 6.0,
+      "lang_en": "Magnalium Gas Turbine Main Housing",
+      "lang_zh": "magnalium燃气轮机主机壳",
+      "recipe": {
+        "pattern": [
+          "PwP",
+          "BMC",
+          "PEP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:magnalium/steam_turbine_main_housing"
+          },
+          "B": {
+            "item": "cruciblecraft:lead_acid_battery_lv"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_ultimate"
+          },
+          "E": {
+            "item": "cruciblecraft:compact_electric_motor_lv"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "invar"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:trinitanium/gas_turbine_main_housing",
+      "source_id": 17232,
+      "source_line": 1265,
+      "gt6_class": "MultiTileEntityLargeTurbineGas",
+      "housing_material": "titanium",
+      "plate_material": "tungstensteel",
+      "wall_source_id": 18026,
+      "wall_id": "cruciblecraft:multiblock/dense_titanium_wall",
+      "hu_input": 12288,
+      "ru_output": 8192,
+      "hardness": 9.0,
+      "resistance": 9.0,
+      "lang_en": "Trinitanium Gas Turbine Main Housing",
+      "lang_zh": "trinitanium燃气轮机主机壳",
+      "recipe": {
+        "pattern": [
+          "PwP",
+          "BMC",
+          "PEP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:trinitanium/steam_turbine_main_housing"
+          },
+          "B": {
+            "item": "cruciblecraft:lead_acid_battery_mv"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_ultimate"
+          },
+          "E": {
+            "item": "cruciblecraft:compact_electric_motor_mv"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "tungstensteel"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:graphene/gas_turbine_main_housing",
+      "source_id": 17233,
+      "source_line": 1266,
+      "gt6_class": "MultiTileEntityLargeTurbineGas",
+      "housing_material": "tungstensteel",
+      "plate_material": "tungsten",
+      "wall_source_id": 18023,
+      "wall_id": "cruciblecraft:multiblock/dense_tungstensteel_wall",
+      "hu_input": 24576,
+      "ru_output": 16384,
+      "hardness": 12.5,
+      "resistance": 12.5,
+      "lang_en": "Graphene Gas Turbine Main Housing",
+      "lang_zh": "graphene燃气轮机主机壳",
+      "recipe": {
+        "pattern": [
+          "PwP",
+          "BMC",
+          "PEP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:graphene/steam_turbine_main_housing"
+          },
+          "B": {
+            "item": "cruciblecraft:lead_acid_battery_hv"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_ultimate"
+          },
+          "E": {
+            "item": "cruciblecraft:compact_electric_motor_hv"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "tungsten"
+          }
+        },
+        "catalyst": "w"
+      }
+    },
+    {
+      "id": "cruciblecraft:vibramantium/gas_turbine_main_housing",
+      "source_id": 17234,
+      "source_line": 1267,
+      "gt6_class": "MultiTileEntityLargeTurbineGas",
+      "housing_material": "adamantium",
+      "plate_material": "adamantium",
+      "wall_source_id": 18025,
+      "wall_id": "cruciblecraft:multiblock/dense_adamantium_wall",
+      "hu_input": 196608,
+      "ru_output": 131072,
+      "hardness": 100.0,
+      "resistance": 100.0,
+      "lang_en": "Vibramantium Gas Turbine Main Housing",
+      "lang_zh": "vibramantium燃气轮机主机壳",
+      "recipe": {
+        "pattern": [
+          "PwP",
+          "BMC",
+          "PEP"
+        ],
+        "keys": {
+          "M": {
+            "item": "cruciblecraft:vibramantium/steam_turbine_main_housing"
+          },
+          "B": {
+            "item": "cruciblecraft:lead_acid_battery_ev"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_ultimate"
+          },
+          "E": {
+            "item": "cruciblecraft:compact_electric_motor_ev"
+          },
+          "P": {
+            "prefix": "dense_plate",
+            "material": "adamantium"
+          }
+        },
+        "catalyst": "w"
+      }
+    }
+  ]
+}

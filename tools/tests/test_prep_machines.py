@@ -167,7 +167,7 @@ class PrepMachinesTest(unittest.TestCase):
         nanofab = census.load_json(
             prep.common.wave_dir("nanofab") / "d0_obtain_matrix.json"
         )
-        self.assertTrue(all(row["status"] == "explicitly_blocked" for row in nanofab["hosts"]))
+        self.assertTrue(all(row["status"] == "source_exact" for row in nanofab["hosts"]))
         sanding = census.load_json(
             prep.common.wave_dir("sanding") / "d0_obtain_matrix.json"
         )

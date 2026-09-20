@@ -34,6 +34,11 @@ public final class FirebrickBlockEntity extends BlockEntity implements Multibloc
     }
 
     @Override
+    public boolean accepts(PortType type) {
+        return type == PortType.ITEM_FLUID;
+    }
+
+    @Override
     public void bind(BlockPos controller, ResourceLocation structureId) {
         BlockPos immutable = controller.immutable();
         if (!canBind(immutable)) {

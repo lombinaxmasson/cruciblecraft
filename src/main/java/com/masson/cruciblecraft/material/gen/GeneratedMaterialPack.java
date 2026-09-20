@@ -451,6 +451,8 @@ public final class GeneratedMaterialPack {
         JsonObject zhTranslations = new JsonObject();
         for (MaterialDefinition material : materials) {
             MaterialZhNames.material(material.id()).ifPresent(mat -> {
+                zhTranslations.addProperty(
+                        material.translationKey(), mat);
                 for (MaterialPrefix form : requireRegisteredForms(
                         material, registeredForms)) {
                     MaterialZhNames.pipe(form.serializedName())

@@ -49,6 +49,18 @@ class ProvidedToolActionsTest {
                 ProvidedToolActions.of(ToolKind.FLINT_AND_TINDER));
         assertEquals(Set.of(ToolAction.DRILL), ProvidedToolActions.of(ToolKind.HAND_DRILL));
         assertEquals(
+                Set.of(ToolAction.WRENCH),
+                ProvidedToolActions.of(ToolKind.WRENCH_LV));
+        assertEquals(
+                Set.of(ToolAction.MONKEY_WRENCH),
+                ProvidedToolActions.of(ToolKind.MONKEY_WRENCH_HV));
+        assertEquals(
+                Set.of(ToolAction.SCREWDRIVER),
+                ProvidedToolActions.of(ToolKind.SCREWDRIVER_LV));
+        assertEquals(
+                Set.of(ToolAction.DRILL),
+                ProvidedToolActions.of(ToolKind.HAND_DRILL_LV));
+        assertEquals(
                 Set.of(ToolAction.BUILDER_WAND),
                 ProvidedToolActions.of(ToolKind.BUILDER_WAND));
         assertTrue(ProvidedToolActions.of(ToolKind.PICKAXE).isEmpty());

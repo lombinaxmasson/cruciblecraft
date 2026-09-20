@@ -1,7 +1,9 @@
 ### Gradle ###
 .gradle
 .gradle-agent/
+.gradle-*/
 build/
+build-*/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/**/build/
 
@@ -66,6 +68,8 @@ replay_pid*.log
 ### Local scratch / Python caches ###
 tools/scratch/
 tools/_tmp_*.py
+tools/_tmp_*.json
+*.bakwrite
 tools/gt6_recipe_compare_report.json
 tools/gt6_recipe_normalized_reference.json
 tools/gt6_extruder_templates_v5.json
@@ -80,7 +84,8 @@ tools/bath_remainder_source.json
 tools/bath_identity_source.json
 
 # Closed-card wave evidence stays on disk for local replay. Do not git add.
-# Unique-active tools/waves/worldgen/gt-stone-layer-rocks/ is re-included below.
+# Unique-active tools/waves/worldgen/gt-small-ores/ is re-included below.
+# Closed stone-layer wave ledgers stay tracked via the exception below.
 tools/**/*.log
 tools/waves/**/source.json
 tools/waves/**/dump_slice.json
@@ -96,6 +101,8 @@ tools/waves/**/load_projection_input.json
 tools/waves/**/compile_report.json
 !tools/waves/worldgen/gt-stone-layer-rocks/
 !tools/waves/worldgen/gt-stone-layer-rocks/**
+!tools/waves/worldgen/gt-small-ores/
+!tools/waves/worldgen/gt-small-ores/**
 
 # Closed-card tools-root dump evidence. Same names as waves, plus source
 # siblings and currentness sidecars. Leave on disk for local replay.

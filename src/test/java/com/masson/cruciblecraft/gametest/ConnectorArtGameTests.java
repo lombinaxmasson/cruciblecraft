@@ -8,7 +8,6 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
-import com.masson.cruciblecraft.content.item.CatalogNamedItem;
 import com.masson.cruciblecraft.content.item.PipeBlockItem;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -102,21 +101,23 @@ public final class ConnectorArtGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void inPlaceRowsHaveNoIronIngotModel(
             GameTestHelper helper) {
-        ResourceLocation keep = ResourceLocation.fromNamespaceAndPath(
+        ResourceLocation dummy = ResourceLocation.fromNamespaceAndPath(
                 "cruciblecraft", "electric_wire/2x_blue_alloy_wire");
-        Item leftover = BuiltInRegistries.ITEM.get(keep);
         helper.assertTrue(
-                BuiltInRegistries.ITEM.containsKey(keep)
-                        && leftover instanceof CatalogNamedItem
-                        && !(leftover instanceof CableBlockItem),
-                "keep_distinct wire dummy disappeared or became a CableBlock");
-        String model = resource(
-                "/assets/cruciblecraft/models/item/electric_wire/"
-                        + "2x_blue_alloy_wire.json");
+                !BuiltInRegistries.ITEM.containsKey(dummy)
+                        && ModItems.materialItem(
+                                        "blue_alloy", MaterialPrefixes.DOUBLE_WIRE)
+                                .get() instanceof CableBlockItem
+                        && ModBlocks.electricalConductorBlock(
+                                        "blue_alloy", MaterialPrefixes.DOUBLE_WIRE)
+                                .get() instanceof CableBlock,
+                "live-host 2x blue alloy dummy was kept beside its CableBlock");
         helper.assertTrue(
-                !model.contains("iron_ingot")
-                        && model.contains("gt6_import/materialicons/copper/wire"),
-                "keep_distinct connector dummies still use the iron ingot model");
+                ConnectorArtGameTests.class.getResource(
+                                "/assets/cruciblecraft/models/item/electric_wire/"
+                                        + "2x_blue_alloy_wire.json")
+                        == null,
+                "folded 2x blue alloy dummy model was kept");
         helper.succeed();
     }
 

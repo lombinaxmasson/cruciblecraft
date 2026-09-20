@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_path": "Loader_MultiTileEntities.java:984-996",
+  "rf_translation": "NeoForge FE 1:1 with GT6 RF amount; no EnergyType.RF.",
+  "rows": [
+    {
+      "source_id": 10161,
+      "cc_id": "cruciblecraft:thermoelectric_cooler_lv",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachine(MT.DATA.Electric_T[1])",
+          "cc": "cruciblecraft:steel_galvanized/machine_casing",
+          "status": "exact",
+          "note": "Electric_T[1]=SteelGalvanized LV through Electric_T[5]=Ti IV."
+        },
+        "W": {
+          "gt6": "MT.DATA.CABLES_01[1]",
+          "cc": "cruciblecraft:tin/cable",
+          "status": "exact",
+          "note": "CABLES_01[2] ANY.Cu lands on copper."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.Si)",
+          "cc": "cruciblecraft:silicon/plate",
+          "status": "exact",
+          "note": "Silicon multiplates are live; do not substitute gem plates."
+        },
+        "C": {
+          "gt6": "OP.plate(ANY.Cu)",
+          "cc": "cruciblecraft:copper/plate",
+          "status": "exact",
+          "note": "ANY.Cu family member; not an unrelated metal."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 CR lowercase w is OreDictToolNames.wrench."
+        },
+        "x": {
+          "gt6": "wirecutter catalyst",
+          "cc": "cruciblecraft:material_wire_cutter",
+          "status": "exact",
+          "note": "GT6 CR lowercase x is OreDictToolNames.wirecutter."
+        }
+      }
+    },
+    {
+      "source_id": 10162,
+      "cc_id": "cruciblecraft:thermoelectric_cooler_mv",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachine(MT.DATA.Electric_T[2])",
+          "cc": "cruciblecraft:aluminium/machine_casing",
+          "status": "exact",
+          "note": "Electric_T[1]=SteelGalvanized LV through Electric_T[5]=Ti IV."
+        },
+        "W": {
+          "gt6": "MT.DATA.CABLES_01[2]",
+          "cc": "cruciblecraft:copper/cable",
+          "status": "exact",
+          "note": "CABLES_01[2] ANY.Cu lands on copper."
+        },
+        "P": {
+          "gt6": "OP.plateDouble(MT.Si)",
+          "cc": "cruciblecraft:silicon/double_plate",
+          "status": "exact",
+          "note": "Silicon multiplates are live; do not substitute gem plates."
+        },
+        "C": {
+          "gt6": "OP.plateDouble(ANY.Cu)",
+          "cc": "cruciblecraft:copper/double_plate",
+          "status": "exact",
+          "note": "ANY.Cu family member; not an unrelated metal."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 CR lowercase w is OreDictToolNames.wrench."
+        },
+        "x": {
+          "gt6": "wirecutter catalyst",
+          "cc": "cruciblecraft:material_wire_cutter",
+          "status": "exact",
+          "note": "GT6 CR lowercase x is OreDictToolNames.wirecutter."
+        }
+      }
+    },
+    {
+      "source_id": 10163,
+      "cc_id": "cruciblecraft:thermoelectric_cooler_hv",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachine(MT.DATA.Electric_T[3])",
+          "cc": "cruciblecraft:stainless_steel/machine_casing",
+          "status": "exact",
+          "note": "Electric_T[1]=SteelGalvanized LV through Electric_T[5]=Ti IV."
+        },
+        "W": {
+          "gt6": "MT.DATA.CABLES_01[3]",
+          "cc": "cruciblecraft:gold/cable",
+          "status": "exact",
+          "note": "CABLES_01[2] ANY.Cu lands on copper."
+        },
+        "P": {
+          "gt6": "OP.plateTriple(MT.Si)",
+          "cc": "cruciblecraft:silicon/triple_plate",
+          "status": "exact",
+          "note": "Silicon multiplates are live; do not substitute gem plates."
+        },
+        "C": {
+          "gt6": "OP.plateTriple(ANY.Cu)",
+          "cc": "cruciblecraft:copper/triple_plate",
+          "status": "exact",
+          "note": "ANY.Cu family member; not an unrelated metal."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 CR lowercase w is OreDictToolNames.wrench."
+        },
+        "x": {
+          "gt6": "wirecutter catalyst",
+          "cc": "cruciblecraft:material_wire_cutter",
+          "status": "exact",
+          "note": "GT6 CR lowercase x is OreDictToolNames.wirecutter."
+        }
+      }
+    },
+    {
+      "source_id": 10164,
+      "cc_id": "cruciblecraft:thermoelectric_cooler_ev",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachine(MT.DATA.Electric_T[4])",
+          "cc": "cruciblecraft:chromium/machine_casing",
+          "status": "exact",
+          "note": "Electric_T[1]=SteelGalvanized LV through Electric_T[5]=Ti IV."
+        },
+        "W": {
+          "gt6": "MT.DATA.CABLES_01[4]",
+          "cc": "cruciblecraft:aluminium/cable",
+          "status": "exact",
+          "note": "CABLES_01[2] ANY.Cu lands on copper."
+        },
+        "P": {
+          "gt6": "OP.plateQuadruple(MT.Si)",
+          "cc": "cruciblecraft:silicon/quadruple_plate",
+          "status": "exact",
+          "note": "Silicon multiplates are live; do not substitute gem plates."
+        },
+        "C": {
+          "gt6": "OP.plateQuadruple(ANY.Cu)",
+          "cc": "cruciblecraft:copper/quadruple_plate",
+          "status": "exact",
+          "note": "ANY.Cu family member; not an unrelated metal."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 CR lowercase w is OreDictToolNames.wrench."
+        },
+        "x": {
+          "gt6": "wirecutter catalyst",
+          "cc": "cruciblecraft:material_wire_cutter",
+          "status": "exact",
+          "note": "GT6 CR lowercase x is OreDictToolNames.wirecutter."
+        }
+      }
+    },
+    {
+      "source_id": 10165,
+      "cc_id": "cruciblecraft:thermoelectric_cooler_iv",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "OP.casingMachine(MT.DATA.Electric_T[5])",
+          "cc": "cruciblecraft:titanium/machine_casing",
+          "status": "exact",
+          "note": "Electric_T[1]=SteelGalvanized LV through Electric_T[5]=Ti IV."
+        },
+        "W": {
+          "gt6": "MT.DATA.CABLES_01[5]",
+          "cc": "cruciblecraft:platinum/cable",
+          "status": "exact",
+          "note": "CABLES_01[2] ANY.Cu lands on copper."
+        },
+        "P": {
+          "gt6": "OP.plateQuintuple(MT.Si)",
+          "cc": "cruciblecraft:silicon/quintuple_plate",
+          "status": "exact",
+          "note": "Silicon multiplates are live; do not substitute gem plates."
+        },
+        "C": {
+          "gt6": "OP.plateQuintuple(ANY.Cu)",
+          "cc": "cruciblecraft:copper/quintuple_plate",
+          "status": "exact",
+          "note": "ANY.Cu family member; not an unrelated metal."
+        },
+        "w": {
+          "gt6": "wrench catalyst",
+          "cc": "cruciblecraft:material_wrench",
+          "status": "exact",
+          "note": "GT6 CR lowercase w is OreDictToolNames.wrench."
+        },
+        "x": {
+          "gt6": "wirecutter catalyst",
+          "cc": "cruciblecraft:material_wire_cutter",
+          "status": "exact",
+          "note": "GT6 CR lowercase x is OreDictToolNames.wirecutter."
+        }
+      }
+    },
+    {
+      "source_id": 11161,
+      "cc_id": "cruciblecraft:thermofluxic_cooler_lead",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10161)",
+          "cc": "cruciblecraft:thermoelectric_cooler_lv",
+          "status": "exact",
+          "note": "Flux cooler wraps the matching thermoelectric cooler."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.DATA.Flux_T[1])",
+          "cc": "cruciblecraft:lead/plate",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[1])",
+          "cc": "cruciblecraft:lead/long_rod",
+          "status": "exact",
+          "note": "Long rod, not a short rod stand-in."
+        }
+      }
+    },
+    {
+      "source_id": 11162,
+      "cc_id": "cruciblecraft:thermofluxic_cooler_invar",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10162)",
+          "cc": "cruciblecraft:thermoelectric_cooler_mv",
+          "status": "exact",
+          "note": "Flux cooler wraps the matching thermoelectric cooler."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.DATA.Flux_T[2])",
+          "cc": "cruciblecraft:invar/plate",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[2])",
+          "cc": "cruciblecraft:invar/long_rod",
+          "status": "exact",
+          "note": "Long rod, not a short rod stand-in."
+        }
+      }
+    },
+    {
+      "source_id": 11163,
+      "cc_id": "cruciblecraft:thermofluxic_cooler_electrum",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10163)",
+          "cc": "cruciblecraft:thermoelectric_cooler_hv",
+          "status": "exact",
+          "note": "Flux cooler wraps the matching thermoelectric cooler."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.DATA.Flux_T[3])",
+          "cc": "cruciblecraft:electrum/plate",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[3])",
+          "cc": "cruciblecraft:electrum/long_rod",
+          "status": "exact",
+          "note": "Long rod, not a short rod stand-in."
+        }
+      }
+    },
+    {
+      "source_id": 11164,
+      "cc_id": "cruciblecraft:thermofluxic_cooler_enderium_base",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10164)",
+          "cc": "cruciblecraft:thermoelectric_cooler_ev",
+          "status": "exact",
+          "note": "Flux cooler wraps the matching thermoelectric cooler."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.DATA.Flux_T[4])",
+          "cc": "cruciblecraft:enderium_base/plate",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[4])",
+          "cc": "cruciblecraft:enderium_base/long_rod",
+          "status": "exact",
+          "note": "Long rod, not a short rod stand-in."
+        }
+      }
+    },
+    {
+      "source_id": 11165,
+      "cc_id": "cruciblecraft:thermofluxic_cooler_enderium",
+      "status": "exact",
+      "slots": {
+        "M": {
+          "gt6": "aRegistry.getItem(10165)",
+          "cc": "cruciblecraft:thermoelectric_cooler_iv",
+          "status": "exact",
+          "note": "Flux cooler wraps the matching thermoelectric cooler."
+        },
+        "P": {
+          "gt6": "OP.plate(MT.DATA.Flux_T[5])",
+          "cc": "cruciblecraft:enderium/plate",
+          "status": "exact",
+          "note": "Flux_T[1]=Pb through Flux_T[5]=Enderium."
+        },
+        "S": {
+          "gt6": "OP.stickLong(MT.DATA.Flux_T[5])",
+          "cc": "cruciblecraft:enderium/long_rod",
+          "status": "exact",
+          "note": "Long rod, not a short rod stand-in."
+        }
+      }
+    }
+  ],
+  "exact_count": 10,
+  "blocked_count": 0
+}

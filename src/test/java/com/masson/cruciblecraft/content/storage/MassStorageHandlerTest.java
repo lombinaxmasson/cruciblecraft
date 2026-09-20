@@ -66,16 +66,61 @@ class MassStorageHandlerTest {
         assertEquals(32, MassStorageClicks.amount(new float[] {0.875F, 0.625F}));
         assertEquals(64, MassStorageClicks.amount(new float[] {0.875F, 0.4375F}));
         assertEquals(-1, MassStorageClicks.amount(new float[] {0.5F, 0.5F}));
-        assertTrue(MassStoragePrefixUnits.familyOf(
-                com.masson.cruciblecraft.api.material.MaterialPrefixes.INGOT)
-                .contains(com.masson.cruciblecraft.api.material.MaterialPrefixes.NUGGET));
-        assertTrue(MassStoragePrefixUnits.familyOf(
-                com.masson.cruciblecraft.api.material.MaterialPrefixes.INGOT)
-                .contains(com.masson.cruciblecraft.api.material.MaterialPrefixes.BLOCK));
+        assertTrue(MassStoragePrefixUnits.familyOf(MaterialPrefixes.INGOT)
+                .contains(MaterialPrefixes.NUGGET));
+        assertTrue(MassStoragePrefixUnits.familyOf(MaterialPrefixes.INGOT)
+                .contains(MaterialPrefixes.CHUNK));
+        assertTrue(MassStoragePrefixUnits.familyOf(MaterialPrefixes.INGOT)
+                .contains(MaterialPrefixes.BILLET));
+        assertTrue(MassStoragePrefixUnits.familyOf(MaterialPrefixes.INGOT)
+                .contains(MaterialPrefixes.STORAGE_INGOT));
+        assertFalse(MassStoragePrefixUnits.familyOf(MaterialPrefixes.INGOT)
+                .contains(MaterialPrefixes.BLOCK));
         assertTrue(MassStoragePrefixUnits.familyOf(MaterialPrefixes.PLATE)
                 .contains(MaterialPrefixes.STORAGE_PLATE));
         assertFalse(MassStoragePrefixUnits.familyOf(MaterialPrefixes.PLATE)
                 .contains(MaterialPrefixes.BLOCK));
+        assertFalse(MassStoragePrefixUnits.familyOf(MaterialPrefixes.GEM)
+                .contains(MaterialPrefixes.BLOCK));
+        assertFalse(MassStoragePrefixUnits.familyOf(MaterialPrefixes.RAW_ORE)
+                .contains(MaterialPrefixes.BLOCK));
+        assertEquals(
+                MassStoragePrefixUnits.INGOT_FAMILY,
+                MassStoragePrefixUnits.blockFamily(
+                        List.of(
+                                "cruciblecraft:generates_ingot",
+                                "cruciblecraft:generates_plate"),
+                        List.of("ITEMGENERATOR.INGOTS", "ITEMGENERATOR.PLATES"),
+                        List.of(MaterialPrefixes.INGOT, MaterialPrefixes.PLATE)));
+        assertEquals(
+                MassStoragePrefixUnits.GEM_FAMILY,
+                MassStoragePrefixUnits.blockFamily(
+                        List.of(
+                                "gt6:itemgenerator/gems",
+                                "cruciblecraft:generates_plate"),
+                        List.of("ITEMGENERATOR.GEMS", "ITEMGENERATOR.PLATES"),
+                        List.of()));
+        assertEquals(
+                MassStoragePrefixUnits.PLATE_FAMILY,
+                MassStoragePrefixUnits.blockFamily(
+                        List.of("cruciblecraft:generates_plate"),
+                        List.of("ITEMGENERATOR.PLATES"),
+                        List.of(MaterialPrefixes.PLATE)));
+        assertFalse(MassStoragePrefixUnits.blockFamily(
+                        List.of(
+                                "cruciblecraft:generates_ingot",
+                                "cruciblecraft:generates_plate"),
+                        List.of(),
+                        List.of())
+                .contains(MaterialPrefixes.PLATE));
+        assertTrue(MassStoragePrefixUnits.prefixMergeBlocked(
+                new ItemStack(Items.GLASS),
+                new com.masson.cruciblecraft.api.unit.MaterialUnits.Entry(
+                        "glass", MaterialPrefixes.GEM, 144)));
+        assertFalse(MassStoragePrefixUnits.prefixMergeBlocked(
+                new ItemStack(Items.IRON_INGOT),
+                new com.masson.cruciblecraft.api.unit.MaterialUnits.Entry(
+                        "iron", MaterialPrefixes.INGOT, 144)));
     }
 
     @Test
@@ -105,6 +150,9 @@ class MassStorageHandlerTest {
         assertEquals(
                 MaterialPrefixes.INGOT,
                 MassStoragePrefixUnits.ingotDenomination(MassStoragePrefixUnits.U));
+        assertEquals(
+                MaterialPrefixes.CHUNK,
+                MassStoragePrefixUnits.ingotDenomination(MassStoragePrefixUnits.U4));
         assertEquals(
                 MaterialPrefixes.NUGGET,
                 MassStoragePrefixUnits.ingotDenomination(MassStoragePrefixUnits.U9));

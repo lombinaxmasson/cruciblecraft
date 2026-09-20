@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.content.block;
 
 import java.util.List;
+import java.util.Set;
 
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
@@ -21,7 +22,9 @@ import net.minecraft.world.level.block.state.BlockState;
 
 /**
  * GT6 {@code OD.beamWood} identity: vanilla stripped logs/woods/stems plus
- * GT-tree beam blocks. Axe strip and the pressure washer share this mapping.
+ * GT-tree beam blocks. Axe strip uses this mapping. Pressure-washer datagen
+ * uses it for extra 1.16+ woods/stems and GT logs; 1.7.10 vanilla logs stay
+ * on the GT6 mill compact family with the same water input.
  */
 public final class WoodDebark {
     private WoodDebark() {}
@@ -53,6 +56,28 @@ public final class WoodDebark {
             pair("crimson_hyphae", "stripped_crimson_hyphae"),
             pair("warped_stem", "stripped_warped_stem"),
             pair("warped_hyphae", "stripped_warped_hyphae"));
+
+    /**
+     * Vanilla 1.7.10 logs already selected in the GT6 pressure-washer compact
+     * family with the same water input. Datagen must not emit a second row.
+     */
+    public static final Set<ResourceLocation> GT6_PRESSURE_WASHER_VANILLA_LOGS = Set.of(
+            vanilla("oak_log"),
+            vanilla("spruce_log"),
+            vanilla("birch_log"),
+            vanilla("jungle_log"),
+            vanilla("acacia_log"),
+            vanilla("dark_oak_log"));
+
+    public static int extraPressureWasherWoodRows() {
+        int vanilla = 0;
+        for (VanillaPair pair : VANILLA_PAIRS) {
+            if (!GT6_PRESSURE_WASHER_VANILLA_LOGS.contains(pair.log())) {
+                vanilla++;
+            }
+        }
+        return vanilla + GtTreeSpecies.ALL.size();
+    }
 
     /** Pillar stripped forms that get their own coke-oven row. */
     public static final List<ResourceLocation> VANILLA_BEAM_COKE_INPUTS = List.of(

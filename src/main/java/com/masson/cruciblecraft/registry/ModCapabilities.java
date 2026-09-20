@@ -338,11 +338,35 @@ public final class ModCapabilities {
                 (blockEntity, side) -> blockEntity.fluids(side));
         event.registerBlockEntity(
                 ENERGY,
+                ModBlockEntities.COOLER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.COOLER.get(),
+                (blockEntity, side) -> blockEntity.fluxStorage(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.FLUX_CONVERTER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.FLUX_CONVERTER.get(),
+                (blockEntity, side) -> blockEntity.fluxStorage(side));
+        event.registerBlockEntity(
+                ENERGY,
                 ModBlockEntities.LARGE_HEAT_EXCHANGER.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.LARGE_HEAT_EXCHANGER.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_GAS_TURBINE.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_GAS_TURBINE.get(),
                 (blockEntity, side) -> blockEntity.fluids(side));
         event.registerBlockEntity(
                 ENERGY,

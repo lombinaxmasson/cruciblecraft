@@ -1,6 +1,8 @@
 package com.masson.cruciblecraft.recipe.crafting;
 
+import com.masson.cruciblecraft.content.item.MaterialElectricToolItem;
 import com.masson.cruciblecraft.content.item.ToolBreakScrap;
+import com.masson.cruciblecraft.content.item.tool.ElectricToolCharge;
 import com.masson.cruciblecraft.machine.processing.CraftingCatalystPolicy;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -25,13 +27,22 @@ public final class CraftingToolWear {
         return switch (itemId.getPath()) {
             case "material_wrench",
                     "material_monkey_wrench",
+                    "material_wrench_lv",
+                    "material_monkey_wrench_lv",
                     "material_soft_hammer" -> 8;
+            case "material_wrench_mv",
+                    "material_monkey_wrench_mv" -> 32;
+            case "material_wrench_hv",
+                    "material_monkey_wrench_hv" -> 128;
             case "smithing_hammer",
                     "material_file",
                     "material_screwdriver",
                     "material_wire_cutter",
                     "material_chisel" -> 4;
+            case "material_screwdriver_lv",
+                    "material_chainsaw_lv" -> 2;
             case "material_saw",
+                    "material_buzzsaw_lv",
                     "material_knife",
                     "material_rolling_pin" -> 1;
             default -> 1;
@@ -41,6 +52,17 @@ public final class CraftingToolWear {
     public static ItemStack apply(ItemStack stack) {
         if (stack.isEmpty()) {
             return ItemStack.EMPTY;
+        }
+        if (stack.getItem() instanceof MaterialElectricToolItem electric) {
+            ItemStack remaining = stack.copy();
+            if (!ElectricToolCharge.spendCraft(
+                    remaining, electric.spec().damagePerCraft())
+                    || remaining.isEmpty()) {
+                return remaining.isEmpty()
+                        ? ToolBreakScrap.forBrokenTool(stack)
+                        : remaining;
+            }
+            return remaining;
         }
         int amount = vanillaDamage(
                 BuiltInRegistries.ITEM.getKey(stack.getItem()));

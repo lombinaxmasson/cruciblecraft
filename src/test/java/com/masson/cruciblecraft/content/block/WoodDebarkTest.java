@@ -27,5 +27,6 @@ class WoodDebarkTest {
         assertEquals(21, WoodDebark.VANILLA_PAIRS.size());
         assertEquals(11, WoodDebark.VANILLA_BEAM_COKE_INPUTS.size());
         assertEquals(9, GtTreeSpecies.ALL.size());
+        assertEquals(24, WoodDebark.extraPressureWasherWoodRows());
     }
 }

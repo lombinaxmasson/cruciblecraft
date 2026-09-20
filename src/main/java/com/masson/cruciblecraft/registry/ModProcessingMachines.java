@@ -214,6 +214,16 @@ public final class ModProcessingMachines {
                     1, 2, 1, 2,
                     EnergyType.HEAT,
                     ProcessingMachineSpec.EnergyMode.ADJACENT);
+    public static final ProcessingMachineSpec DISTILLATION_TOWER =
+            portFedTowerSpec(
+                    "distillation_tower",
+                    () -> ModRecipeMaps.DISTILLATION_TOWER,
+                    EnergyType.HEAT);
+    public static final ProcessingMachineSpec CRYO_DISTILLATION_TOWER =
+            portFedTowerSpec(
+                    "cryo_distillation_tower",
+                    () -> ModRecipeMaps.CRYO_DISTILLATION_TOWER,
+                    EnergyType.CU);
     public static final ProcessingMachineSpec AUTOCLAVE =
             reusedChemicalSpec("autoclave", () -> ModRecipeMaps.AUTOCLAVE,
                     2, 3, 1, 1, 4_000_000, 512_000,
@@ -397,6 +407,12 @@ public final class ModProcessingMachines {
                     MAGNETIC_SEPARATOR);
     public static final List<ProcessingMachineSpec> HYDROCARBON_PROCESSING_MACHINES =
             List.of(GENERIFIER);
+    /**
+     * Multiblock processing hosts with menus/EMI, kept off
+     * {@link #CONFIGURED_MACHINES} so kinetic EMI baselines stay exact.
+     */
+    public static final List<ProcessingMachineSpec> MULTIBLOCK_MENU_HOSTS =
+            List.of(DISTILLATION_TOWER, CRYO_DISTILLATION_TOWER);
     /** Chemical recipes can publish into reused maps as well as dedicated maps. */
     public static final List<ProcessingMachineSpec> CHEMICAL_HOST_MACHINES = List.of(
             BATH, CENTRIFUGE, SMELTER, ASSEMBLER,
@@ -554,7 +570,8 @@ public final class ModProcessingMachines {
     private static final Map<ResourceLocation, List<ProcessingMachineSpec>>
             BY_MAP =
             java.util.stream.Stream.concat(
-                    java.util.stream.Stream.of(CRUSHER),
+                    java.util.stream.Stream.of(
+                            CRUSHER, DISTILLATION_TOWER, CRYO_DISTILLATION_TOWER),
                     CONFIGURED_MACHINES.stream())
                     .collect(java.util.stream.Collectors.groupingBy(
                             ProcessingMachineSpec::recipeMapId,
@@ -883,6 +900,34 @@ public final class ModProcessingMachines {
                     }
                     return invalid;
                 },
+                layout.buffering(),
+                layout.ui());
+    }
+
+    /**
+     * GT6 towers accept energy only through the nine heat transmitters.
+     * Hull energy faces stay NONE; ports call {@code insertFromMultiblockPort}.
+     */
+    private static ProcessingMachineSpec portFedTowerSpec(
+            String path,
+            Supplier<RecipeMap> map,
+            EnergyType energyType) {
+        ProcessingMachineSpec layout = reusedChemicalSpec(
+                path,
+                map,
+                1, 3, 1, 9, 8_000, 8_000,
+                1, 3, 1, 9,
+                energyType,
+                ProcessingMachineSpec.EnergyMode.BUFFERED);
+        return new ProcessingMachineSpec(
+                layout.id(),
+                layout.recipeMapId(),
+                map,
+                layout.items(),
+                layout.fluids(),
+                layout.energy(),
+                layout.sidedIo(),
+                layout.validator(),
                 layout.buffering(),
                 layout.ui());
     }

@@ -64,6 +64,9 @@ public final class MachineBlockColor {
                         .toList());
         java.util.Collections.addAll(
                 tinted, ModBlocks.transformerBlockArray());
+        java.util.Collections.addAll(tinted, ModBlocks.coolerBlockArray());
+        java.util.Collections.addAll(tinted, ModBlocks.fluxBlockArray());
+        java.util.Collections.addAll(tinted, ModBlocks.gasTurbineBlockArray());
         return tinted.toArray(Block[]::new);
     }
 
@@ -117,6 +120,12 @@ public final class MachineBlockColor {
         if (path.startsWith("steel_")) {
             return "steel";
         }
+        if (path.endsWith("/gas_turbine_main_housing")) {
+            int slash = path.indexOf('/');
+            if (slash > 0) {
+                return path.substring(0, slash);
+            }
+        }
         return switch (path) {
             case "fusion_reactor" -> "steel_galvanized";
             case "large_heat_exchanger" -> "tungsten";
@@ -125,6 +134,18 @@ public final class MachineBlockColor {
             case "laser_engraver" -> "steel_galvanized";
             case "bath" -> "stainless_steel";
             default -> {
+                for (var profile : com.masson.cruciblecraft.energy.cooler
+                        .CoolerCatalog.profiles()) {
+                    if (path.equals(profile.id().getPath())) {
+                        yield profile.material();
+                    }
+                }
+                for (var profile : com.masson.cruciblecraft.energy.flux
+                        .FluxCatalog.profiles()) {
+                    if (path.equals(profile.id().getPath())) {
+                        yield profile.material();
+                    }
+                }
                 for (var profile : com.masson.cruciblecraft.energy.longdistance
                         .LongDistanceTransformerCatalog.endpoints()) {
                     if (path.equals(profile.id().getPath())) {

@@ -183,6 +183,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         registration.registerBlockComponent(
                 RockBlockComponentProvider.INSTANCE, RockBlock.class);
         registration.usePickedResult(ModBlocks.GT_SURFACE_ROCK.get());
+        registration.usePickedResult(ModBlocks.GT_INDICATOR_FLOWER.get());
     }
 
     private enum FluidPipeComponentProvider
