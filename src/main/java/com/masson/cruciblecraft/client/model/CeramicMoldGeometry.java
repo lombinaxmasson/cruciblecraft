@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.client.model;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -13,6 +14,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FoundryCastingBlockEntity;
+import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
 import com.masson.cruciblecraft.content.mold.MoldRecipes;
 
 import net.minecraft.client.renderer.RenderType;
@@ -31,6 +33,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.RandomSource;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.IDynamicBakedModel;
@@ -100,8 +105,7 @@ public final class CeramicMoldGeometry
                 context.useAmbientOcclusion(),
                 context.isGui3d(),
                 context.useBlockLight(),
-                context.getTransforms(),
-                overrides);
+                context.getTransforms());
     }
 
     /**
@@ -247,6 +251,13 @@ public final class CeramicMoldGeometry
         return new BlockFaceUV(uvs, 0);
     }
 
+    static int itemPattern(ItemStack stack, int fallback) {
+        if (stack.getItem() instanceof CeramicMoldBlockItem item) {
+            return item.placementPattern(stack);
+        }
+        return fallback;
+    }
+
     private static final class Baked implements IDynamicBakedModel {
         private final TextureAtlasSprite particle;
         private final List<BakedQuad> frame;
@@ -256,7 +267,30 @@ public final class CeramicMoldGeometry
         private final boolean gui3d;
         private final boolean blockLight;
         private final ItemTransforms transforms;
-        private final ItemOverrides overrides;
+        private ItemOverrides overrides;
+        private final Map<Integer, BakedModel> itemModels = new HashMap<>();
+
+        private Baked(
+                TextureAtlasSprite particle,
+                List<BakedQuad> frame,
+                List<BakedQuad>[] cellFaces,
+                int defaultPattern,
+                boolean ambientOcclusion,
+                boolean gui3d,
+                boolean blockLight,
+                ItemTransforms transforms) {
+            this(
+                    particle,
+                    frame,
+                    cellFaces,
+                    defaultPattern,
+                    ambientOcclusion,
+                    gui3d,
+                    blockLight,
+                    transforms,
+                    ItemOverrides.EMPTY);
+            this.overrides = new PatternOverrides(this);
+        }
 
         private Baked(
                 TextureAtlasSprite particle,
@@ -277,6 +311,24 @@ public final class CeramicMoldGeometry
             this.blockLight = blockLight;
             this.transforms = transforms;
             this.overrides = overrides;
+        }
+
+        private BakedModel withPattern(int pattern) {
+            if (pattern == defaultPattern) {
+                return this;
+            }
+            return itemModels.computeIfAbsent(
+                    pattern,
+                    value -> new Baked(
+                            particle,
+                            frame,
+                            cellFaces,
+                            value,
+                            ambientOcclusion,
+                            gui3d,
+                            blockLight,
+                            transforms,
+                            ItemOverrides.EMPTY));
         }
 
         @Override
@@ -367,6 +419,24 @@ public final class CeramicMoldGeometry
         @Override
         public ItemOverrides getOverrides() {
             return overrides;
+        }
+    }
+
+    private static final class PatternOverrides extends ItemOverrides {
+        private final Baked baked;
+
+        private PatternOverrides(Baked baked) {
+            this.baked = baked;
+        }
+
+        @Override
+        public BakedModel resolve(
+                BakedModel model,
+                ItemStack stack,
+                @Nullable ClientLevel level,
+                @Nullable LivingEntity entity,
+                int seed) {
+            return baked.withPattern(itemPattern(stack, baked.defaultPattern));
         }
     }
 }

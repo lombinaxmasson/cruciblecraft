@@ -4,9 +4,7 @@
   "source": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
   "default_overload_policy": {
     "forbidden_helpers": [
-      "mechanical",
-      "t3",
-      "t5"
+      "mechanical"
     ],
     "required_parameter": "EnergyType energyType"
   },
@@ -19,8 +17,7 @@
   "allowed_legacy_kinetic_ids": [
     "assembler",
     "bender",
-    "mortar",
-    "welder"
+    "mortar"
   ],
   "machines": {
     "CRUSHER": {
@@ -230,19 +227,6 @@
         "value": "deferred_with_reason"
       },
       "reason": "Assembler has no exact selected source kind, so its legacy kinetic host remains deferred."
-    },
-    "WELDER": {
-      "id": "welder",
-      "expected_energy_type": "KINETIC",
-      "disposition": "MAPPED_DEFERRED",
-      "ledger": {
-        "path": "tools/t12_machine_policy.json",
-        "section": "processing_kinds",
-        "key": "welder",
-        "field": "classification",
-        "value": "deferred_with_reason"
-      },
-      "reason": "Welder remains a legacy kinetic host until a separately scoped LU runtime exists."
     },
     "PRESS": {
       "id": "press",

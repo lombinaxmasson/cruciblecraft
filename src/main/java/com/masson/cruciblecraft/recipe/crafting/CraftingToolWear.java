@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.recipe.crafting;
 
+import com.masson.cruciblecraft.content.item.ToolBreakScrap;
 import com.masson.cruciblecraft.machine.processing.CraftingCatalystPolicy;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -22,13 +23,17 @@ public final class CraftingToolWear {
             return 0;
         }
         return switch (itemId.getPath()) {
-            case "material_wrench", "material_monkey_wrench" -> 8;
+            case "material_wrench",
+                    "material_monkey_wrench",
+                    "material_soft_hammer" -> 8;
             case "smithing_hammer",
                     "material_file",
                     "material_screwdriver",
                     "material_wire_cutter",
                     "material_chisel" -> 4;
-            case "material_saw", "flint_knife" -> 1;
+            case "material_saw",
+                    "material_knife",
+                    "material_rolling_pin" -> 1;
             default -> 1;
         };
     }
@@ -45,7 +50,7 @@ public final class CraftingToolWear {
         ItemStack remaining = stack.copy();
         int next = remaining.getDamageValue() + amount;
         if (next >= remaining.getMaxDamage()) {
-            return ItemStack.EMPTY;
+            return ToolBreakScrap.forBrokenTool(stack);
         }
         remaining.setDamageValue(next);
         return remaining;

@@ -4,6 +4,7 @@ import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.item.MaterialFormItem;
 import com.masson.cruciblecraft.content.item.MaterialToolItem;
 import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
+import com.masson.cruciblecraft.content.item.CoinItem;
 import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -36,7 +37,8 @@ public final class MaterialItemColor {
             material = MaterialCatalog.find(
                     entry.orElseThrow().materialId()).orElse(null);
             neutralTexture = stack.getItem() instanceof MaterialFormItem
-                    || stack.getItem() instanceof PrefixMaterialItem;
+                    || stack.getItem() instanceof PrefixMaterialItem
+                    || stack.getItem() instanceof CoinItem;
         }
         if (material == null) {
             return 0xFF000000 | baseColor(null, neutralTexture);

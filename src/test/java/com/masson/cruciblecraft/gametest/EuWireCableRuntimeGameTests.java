@@ -67,6 +67,18 @@ public final class EuWireCableRuntimeGameTests {
         helper.assertTrue(
                 goldWire instanceof CableBlockItem,
                 "already-shared gold wireGt01 lost CableBlockItem");
+        Item superconductor = ModItems.materialItem(
+                "superconductor", MaterialPrefixes.WIRE).get();
+        var scSpec = ElectricalConductorCatalog.require(
+                "superconductor", MaterialPrefixes.WIRE);
+        helper.assertTrue(
+                superconductor instanceof CableBlockItem
+                        && scSpec.electrical().maxVoltage() == 8589934592L
+                        && scSpec.electrical().maxAmperage() == 4L
+                        && scSpec.electrical().lossPerMeter() == 1L
+                        && !ElectricalConductorCatalog.contains(
+                                "superconductor", MaterialPrefixes.CABLE),
+                "superconductor wireGt01 is not the GT6 V[15]/4A/loss-1 conductor");
         CableBlock tin = conductor("tin", MaterialPrefixes.WIRE);
         BlockPos euPos = new BlockPos(2, 2, 2);
         helper.setBlock(euPos, conductorState(tin, Direction.EAST));
@@ -155,8 +167,11 @@ public final class EuWireCableRuntimeGameTests {
         Item leftover = BuiltInRegistries.ITEM.get(ungated);
         helper.assertTrue(
                 BuiltInRegistries.ITEM.containsKey(ungated)
-                        && !(leftover instanceof CableBlockItem),
-                "ungated blue_alloy wireGt02 dummy was folded onto a fake BlockItem");
+                        && !(leftover instanceof CableBlockItem)
+                        && ModItems.materialItem(
+                                        "blue_alloy", MaterialPrefixes.DOUBLE_WIRE)
+                                .get() instanceof CableBlockItem,
+                "blue_alloy wireGt02 dummy was folded onto a fake BlockItem");
         helper.succeed();
     }
 

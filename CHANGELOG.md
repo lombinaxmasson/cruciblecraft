@@ -1,5 +1,12 @@
 # CrucibleCraft Changelog
 
+## 0.1.0-test.20260919.2 (2026-09-19)
+
+小群私测第二包。含朋友反馈修复，以及小燃气轮机、矿石宿主、石层和小砖等工作树。
+
+- 安装文件：`cruciblecraft-0.1.0-test.20260919.2.jar`（Minecraft 1.21.1、NeoForge 21.1.243、Java 21）。
+- 仍须新开世界。玩家说明：[docs/current/player-guide.md](docs/current/player-guide.md)。
+
 ## 0.1.0-test.20260919 (2026-09-19)
 
 小群私测快照，不是公开测试、不是 RC、不是 GA。不要上传 CurseForge / Modrinth / GitHub Release。

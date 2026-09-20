@@ -27,16 +27,28 @@ class ExtruderShapeCatalogTest {
     }
 
     @Test
-    void catalogHasThirtyFiveStableCompleteUniqueShapes() {
-        assertEquals(35, ExtruderShapeCatalog.DEFINITIONS.size());
-        assertEquals(35, new HashSet<>(ExtruderShapeCatalog.DEFINITIONS.stream()
+    void catalogMatchesGt6ShapeExtruderFamily() {
+        assertEquals(32, ExtruderShapeCatalog.DEFINITIONS.size());
+        assertEquals(32, new HashSet<>(ExtruderShapeCatalog.DEFINITIONS.stream()
                 .map(ExtruderShapeCatalog.Definition::id).toList()).size());
-        assertEquals(35, new HashSet<>(ExtruderShapeCatalog.DEFINITIONS.stream()
-                .map(ExtruderShapeCatalog.Definition::registryPath).toList()).size());
+        assertEquals(
+                List.of(
+                        10000, 10001, 10002, 10003, 10004, 10005, 10006, 10007,
+                        10008, 10009, 10010, 10011, 10012, 10013, 10014, 10015,
+                        10016, 10017, 10018, 10019, 10020, 10021, 10022, 10023,
+                        10024, 10025, 10026, 10027, 10028, 10029, 10030, 10031),
+                ExtruderShapeCatalog.DEFINITIONS.stream()
+                        .map(ExtruderShapeCatalog.Definition::gt6Meta)
+                        .toList());
+        assertEquals("empty", ExtruderShapeCatalog.DEFINITIONS.getFirst().id());
+        assertEquals("ccc", ExtruderShapeCatalog.require("ccc").id());
+        assertTrue(ExtruderShapeCatalog.DEFINITIONS.stream().noneMatch(shape ->
+                shape.id().equals("rotor")
+                        || shape.id().contains("item_pipe")));
         assertTrue(ExtruderShapeCatalog.DEFINITIONS.stream().allMatch(shape ->
                 shape.registryPath().equals("extruder_shape_" + shape.id())
                         && !shape.englishName().isBlank()
-                        && !shape.chineseName().isBlank()));
+                        && shape.chineseName().contains("挤出模具")));
     }
 
     @Test

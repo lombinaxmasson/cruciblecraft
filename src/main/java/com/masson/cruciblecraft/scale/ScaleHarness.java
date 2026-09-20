@@ -222,7 +222,7 @@ public final class ScaleHarness {
                 MaterialPrefixes.TINY_FLUID_PIPE,
                 PipeCatalog.Kind.FLUID).get();
         ItemPipeBlock itemPipe = (ItemPipeBlock) ModBlocks.pipeBlock(
-                "copper",
+                "brass",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
         int width = Math.max(8, scenario.loadedChunksX() * 16);

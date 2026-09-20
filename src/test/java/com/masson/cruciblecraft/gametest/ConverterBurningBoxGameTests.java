@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.gametest;
 
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.compat.jade.observation.ConverterObservation;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.FluidBedBurningBoxBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
@@ -19,6 +20,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -154,6 +156,49 @@ public final class ConverterBurningBoxGameTests {
                         box.energyStored() > 0L,
                         "Outputless 1/72 dust fuel did not produce HU"))
                 .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void gasBoxCatalogFacesAcceptNaturalGasAndShowAmount(
+            GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.BRONZE_BURNING_BOX_GAS.get()
+                        .defaultBlockState()
+                        .setValue(FuelGeneratorBlock.FACING, Direction.EAST));
+        FuelGeneratorBlockEntity gas = helper.getBlockEntity(pos);
+        FluidStack naturalGas = chemical("natural_gas", 40);
+        IFluidHandler north = gas.fluids(Direction.NORTH);
+        helper.assertTrue(
+                north != null
+                        && north.fill(
+                                naturalGas, IFluidHandler.FluidAction.EXECUTE)
+                                == 40
+                        && gas.inputAmount() == 40,
+                "Catalog north face rejected natural gas: filled="
+                        + (north == null
+                                ? "null"
+                                : gas.inputAmount()));
+        helper.assertTrue(
+                north.drain(1_000, IFluidHandler.FluidAction.EXECUTE)
+                        .isEmpty()
+                        && gas.inputAmount() == 40,
+                "North-face drain stole fuel instead of exhaust");
+        CompoundTag data = new CompoundTag();
+        ConverterObservation.writeServerData(data, gas);
+        ConverterObservation observation =
+                ConverterObservation.fromServerData(data);
+        helper.assertTrue(
+                !observation.tanks().isEmpty()
+                        && observation.tanks().getFirst().amount() == 40
+                        && observation.tanks().getFirst().fluidId()
+                                .contains("natural_gas")
+                        && observation.tanks().getFirst().capacity()
+                                == gas.inputCapacity(),
+                "Jade did not report natural-gas input amount: "
+                        + observation.tanks());
+        helper.succeed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)

@@ -38,6 +38,12 @@ class PrefixPackRecipeResourceTest {
         assertEquals("dust", sugarPack.get("output_prefix").getAsString());
         assertTrue(Files.isRegularFile(ROOT.resolve("small_dust_to_dust.json")));
         assertTrue(Files.isRegularFile(ROOT.resolve("storage_dust_to_dust.json")));
+        JsonObject platePack = object("plate_to_storage_plate.json");
+        assertEquals("plate", platePack.get("input_prefix").getAsString());
+        assertEquals(9, platePack.get("input_count").getAsInt());
+        assertEquals("storage_plate", platePack.get("output_prefix").getAsString());
+        assertEquals(1, platePack.get("output_count").getAsInt());
+        assertTrue(Files.isRegularFile(ROOT.resolve("storage_plate_to_plate.json")));
     }
 
     private static JsonObject object(String name) throws Exception {

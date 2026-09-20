@@ -1,0 +1,21 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.tag(\"PROCESSING.SMITHABLE\")",
+    "!material.tag(\"COMPOUNDS.COATED\")"
+  ],
+  "duration": "80",
+  "eut": "24",
+  "item_inputs": [
+    {
+      "count": "2",
+      "prefix": "cruciblecraft:small_casing"
+    }
+  ],
+  "item_outputs": [
+    {
+      "prefix": "cruciblecraft:plate"
+    }
+  ],
+  "target": "cruciblecraft:welder"
+}

@@ -22,7 +22,7 @@ class ApplyT8PipeMetadataTest(unittest.TestCase):
 
     def test_projection_matches_readiness_and_material_files(self):
         projection = self.projection
-        self.assertEqual(63, len(projection))
+        self.assertEqual(61, len(projection))
         self.assertEqual(
             {
                 "fluid_by_specification",
@@ -37,14 +37,21 @@ class ApplyT8PipeMetadataTest(unittest.TestCase):
                 "capacity_mb"
             ],
         )
+        self.assertEqual({}, projection["copper"]["item_by_specification"])
+        self.assertEqual(
+            {},
+            projection["brass"]["fluid_by_specification"],
+        )
         self.assertEqual(
             1,
-            projection["tin"]["item_by_specification"]["pipeMedium"][
+            projection["brass"]["item_by_specification"]["pipeMedium"][
                 "stacks_per_second"
             ],
         )
+        self.assertNotIn("tin", projection)
+        self.assertNotIn("iron", projection)
         planned = self.planned
-        self.assertEqual(1773, len(planned))
+        self.assertEqual(1776, len(planned))
         copper = json.loads(
             planned[MODULE.MATERIALS / "copper.json"]
         )

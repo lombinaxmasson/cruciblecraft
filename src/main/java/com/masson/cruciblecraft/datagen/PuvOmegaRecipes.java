@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerProfi
 import com.masson.cruciblecraft.energy.longdistance.LongDistanceWireProfile;
 import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerCatalog;
 import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerProfile;
+import com.masson.cruciblecraft.recipe.crafting.CraftingTools;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
@@ -193,8 +194,8 @@ final class PuvOmegaRecipes {
                         "W", Ingredient.of(cable),
                         "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING)),
                 Map.of(
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
-                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
                 new ItemStack(result));
     }
 
@@ -223,8 +224,8 @@ final class PuvOmegaRecipes {
                         "W", Ingredient.of(cable),
                         "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING)),
                 Map.of(
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
-                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
                 new ItemStack(result));
     }
 
@@ -250,7 +251,7 @@ final class PuvOmegaRecipes {
                         "R", Ingredient.of(arm),
                         "C", Ingredient.of(circuit),
                         "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING_DOUBLE)),
-                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -277,8 +278,8 @@ final class PuvOmegaRecipes {
                         "R", keyedIngredient(rotor, "stainless_steel", MaterialPrefixes.ROTOR),
                         "S", Ingredient.of(motor)),
                 Map.of(
-                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -304,7 +305,7 @@ final class PuvOmegaRecipes {
                         "C", Ingredient.of(circuit),
                         "Y", Ingredient.of(conveyor),
                         "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING)),
-                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -329,8 +330,8 @@ final class PuvOmegaRecipes {
                         "W", keyedIngredient(quad, wireMaterial(tier), MaterialPrefixes.QUADRUPLE_WIRE),
                         "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING)),
                 Map.of(
-                        "x", Ingredient.of(ModItems.MATERIAL_WIRE_CUTTER.get()),
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                        "x", CraftingTools.of(ModItems.MATERIAL_WIRE_CUTTER.get()),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -453,8 +454,8 @@ final class PuvOmegaRecipes {
                         "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING),
                         "S", keyedIngredient(silicon, "silicon", stackedPlate(tier, true))),
                 Map.of(
-                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -481,8 +482,8 @@ final class PuvOmegaRecipes {
                         "R", keyedIngredient(rotor, "stainless_steel", MaterialPrefixes.ROTOR),
                         "S", keyedIngredient(silicon, "silicon", stackedPlate(tier, true))),
                 Map.of(
-                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -507,8 +508,8 @@ final class PuvOmegaRecipes {
                         "P", keyedIngredient(plate, material, MaterialPrefixes.PLATE),
                         "M", keyedIngredient(casing, material, MaterialPrefixes.MACHINE_CASING)),
                 Map.of(
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
-                        "d", Ingredient.of(ModItems.MATERIAL_SCREWDRIVER.get())),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
+                        "d", CraftingTools.of(ModItems.MATERIAL_SCREWDRIVER.get())),
                 new ItemStack(result));
     }
 
@@ -1121,8 +1122,8 @@ final class PuvOmegaRecipes {
                         "P", keyedIngredient(plate, ELECTRIC[tier], MaterialPrefixes.CURVED_PLATE),
                         "M", Ingredient.of(motor)),
                 Map.of(
-                        "d", Ingredient.of(ModItems.MATERIAL_SCREWDRIVER.get()),
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                        "d", CraftingTools.of(ModItems.MATERIAL_SCREWDRIVER.get()),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -1166,7 +1167,7 @@ final class PuvOmegaRecipes {
                         "S", keyedIngredient(rod, ELECTRIC[tier], MaterialPrefixes.ROD),
                         "M", Ingredient.of(motor),
                         "G", keyedIngredient(gear, ELECTRIC[tier], MaterialPrefixes.SMALL_GEAR)),
-                Map.of("d", Ingredient.of(ModItems.MATERIAL_SCREWDRIVER.get())),
+                Map.of("d", CraftingTools.of(ModItems.MATERIAL_SCREWDRIVER.get())),
                 new ItemStack(result));
     }
 
@@ -1327,8 +1328,8 @@ final class PuvOmegaRecipes {
                             "T", keyedIngredient(screw, "stainless_steel", MaterialPrefixes.SCREW),
                             "G", Ingredient.of(Items.GLASS)),
                     Map.of(
-                            "x", Ingredient.of(ModItems.MATERIAL_WIRE_CUTTER.get()),
-                            "d", Ingredient.of(ModItems.MATERIAL_SCREWDRIVER.get())),
+                            "x", CraftingTools.of(ModItems.MATERIAL_WIRE_CUTTER.get()),
+                            "d", CraftingTools.of(ModItems.MATERIAL_SCREWDRIVER.get())),
                     new ItemStack(emptyLaser));
         }
         Optional<Fluid> hene = ModFluids.chemical("helium_neon")

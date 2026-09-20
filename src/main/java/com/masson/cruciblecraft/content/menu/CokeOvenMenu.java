@@ -15,9 +15,9 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 public final class CokeOvenMenu extends AbstractContainerMenu {
-    private static final int MACHINE_SLOTS = 2;
+    public static final int MACHINE_SLOTS = CokeOvenBlockEntity.SLOT_COUNT;
     public static final Gt6BasicMachineGui.Layout LAYOUT = Gt6BasicMachineGui.layout(
-            1, 9, 0, 1, 1, 1, 0, 1, -1);
+            1, 9, 0, 1, 1, 9, 0, 1, -1);
     private final CokeOvenBlockEntity blockEntity;
     private final ContainerData data;
 
@@ -58,16 +58,19 @@ public final class CokeOvenMenu extends AbstractContainerMenu {
                 CokeOvenBlockEntity.INPUT_SLOT,
                 LAYOUT.itemSlots().get(0).x(),
                 LAYOUT.itemSlots().get(0).y()));
-        addSlot(new ProcessingMachineMenu.NotifyingSlotItemHandler(
-                machineInventory,
-                CokeOvenBlockEntity.OUTPUT_SLOT,
-                LAYOUT.itemSlots().get(1).x(),
-                LAYOUT.itemSlots().get(1).y()) {
-            @Override
-            public boolean mayPlace(ItemStack stack) {
-                return false;
-            }
-        });
+        for (int output = 0; output < CokeOvenBlockEntity.OUTPUT_SLOT_COUNT; output++) {
+            int slot = CokeOvenBlockEntity.OUTPUT_SLOT + output;
+            addSlot(new ProcessingMachineMenu.NotifyingSlotItemHandler(
+                    machineInventory,
+                    slot,
+                    LAYOUT.itemSlots().get(slot).x(),
+                    LAYOUT.itemSlots().get(slot).y()) {
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return false;
+                }
+            });
+        }
 
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 9; column++) {
@@ -96,7 +99,7 @@ public final class CokeOvenMenu extends AbstractContainerMenu {
         return data.get(1);
     }
 
-    public int creosoteAmount() {
+    public int tankAmount() {
         return data.get(2);
     }
 
@@ -108,7 +111,7 @@ public final class CokeOvenMenu extends AbstractContainerMenu {
         return data.get(4) != 0;
     }
 
-    public boolean heated() {
+    public boolean ignited() {
         return data.get(5) != 0;
     }
 
@@ -117,7 +120,7 @@ public final class CokeOvenMenu extends AbstractContainerMenu {
     }
 
     public int scaledTank(int height) {
-        return tankCapacity() <= 0 ? 0 : creosoteAmount() * height / tankCapacity();
+        return tankCapacity() <= 0 ? 0 : tankAmount() * height / tankCapacity();
     }
 
     @Override

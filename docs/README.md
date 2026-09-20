@@ -7,7 +7,7 @@
 
 - [项目状态](current/project-status.md)（unique-active、prep、试玩 cycle；由 capability 投影，不要在本页手写）
 - [总体规划](current/roadmap.md)
-- [冻结与未实现账本](current/unimplemented-gap.md)（人读权威缺口页；机制卡 `*_READY` ≠ 游戏里有；Prep 计划文件 ≠ runtime 没做；不要从阶段档案倒推）
+- [未实现与尾账索引](current/unimplemented-gap.md)（只指路；库存以 [项目状态](current/project-status.md) / [已阻塞项](current/blocked.md) 为准；不要从归档长文或 Prep 文件倒推）
 - [能力交付流程](current/capability-delivery-workflow.md)（工作包 ≠ 进度；关闭档是 `runtime_ready`）
 - [GT6 贴图纪律](current/gt6-art-policy.md)（禁止占位；从本地 `gregtech6_w` 迁入）
 - [材料身份：分层混合](current/material-prefix-identity.md)（目标 ≠ live；禁止代理自行改后端）

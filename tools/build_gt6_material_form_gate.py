@@ -455,22 +455,26 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 f"{material_id}/{sorted(forms)}"
             )
         acceptance_forms[material_id].update(forms)
+    redstone_materials = {"red_alloy", "signalum", "lumium"}
+    electrical_conductors = load(T6_ELECTRICAL_SOURCE)["conductors"]
+    add_electric_source_names = {
+        str(row["source_name"]) for row in electrical_conductors
+    }
+    t6_wire_gt01_source_names = add_electric_source_names - {"Superconductor"}
     electrical_wire_forms: dict[str, set[str]] = {}
     for material_id, document in material_docs.items():
-        electrical = (
-            document.get("gt6_metadata", {})
-            .get("electrical_by_specification", {})
-        )
+        metadata = document.get("gt6_metadata") or {}
+        electrical = metadata.get("electrical_by_specification") or {}
         if "wireGt01" not in electrical:
+            continue
+        if metadata.get("source_name") not in t6_wire_gt01_source_names:
             continue
         if "wire" not in factual_forms[material_id]:
             raise ValueError(
                 f"T6 wireGt01 source exceeds factual forms: {material_id}"
             )
         electrical_wire_forms[material_id] = {"wire"}
-    expected_electrical_wires = len(
-        load(T6_ELECTRICAL_SOURCE)["conductors"]
-    ) - 1  # live catalog intentionally lacks Superconductor
+    expected_electrical_wires = len(t6_wire_gt01_source_names)
     if len(electrical_wire_forms) != expected_electrical_wires:
         raise ValueError(
             "T6 electrical wire registration denominator drifted: "
@@ -567,11 +571,47 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         "tetradecuple_wire",
         "pentadecuple_wire",
     }
-    redstone_materials = {"red_alloy", "signalum", "lumium"}
     for material_id in electrical_wire_forms:
         if material_id in redstone_materials:
             continue
         missing_wire_forms[material_id] = set(missing_gauge_forms)
+    canonical_conductor_specs = {
+        "wireGt01": "wire",
+        "wireGt02": "double_wire",
+        "wireGt04": "quadruple_wire",
+        "wireGt08": "octuple_wire",
+        "wireGt12": "dodecuple_wire",
+        "wireGt16": "hexadecuple_wire",
+        "cableGt01": "cable",
+        "cableGt02": "double_cable",
+        "cableGt04": "quadruple_cable",
+        "cableGt08": "octuple_cable",
+        "cableGt12": "dodecuple_cable",
+    }
+    canonical_form_flags = {
+        form: f"cruciblecraft:generates_{form}"
+        for form in canonical_conductor_specs.values()
+    }
+    canonical_conductor_forms: dict[str, set[str]] = {}
+    for material_id, document in material_docs.items():
+        if material_id in redstone_materials:
+            continue
+        metadata = document.get("gt6_metadata") or {}
+        if metadata.get("source_name") not in add_electric_source_names:
+            continue
+        electrical = metadata.get("electrical_by_specification") or {}
+        if not electrical:
+            continue
+        flags = set(document.get("generation_flags") or [])
+        forms = {
+            form
+            for spec, form in canonical_conductor_specs.items()
+            if spec in electrical
+            and form in factual_forms[material_id]
+            and canonical_form_flags[form] in flags
+        }
+        if forms:
+            canonical_conductor_forms[material_id] = forms
     t10_projection = load(T10_PREFLIGHT)["route_projections"]
     known_ingot_forms: dict[str, set[str]] = defaultdict(set)
     for material_id in t10_projection["multi_ingot"]["materials"]:
@@ -800,6 +840,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             | combo_pipe_forms.get(material_id, set())
             | restrictive_pipe_forms.get(material_id, set())
             | missing_wire_forms.get(material_id, set())
+            | canonical_conductor_forms.get(material_id, set())
             | known_ingot_forms.get(material_id, set())
             | roaster_required_forms.get(material_id, set())
             | worldgen_acquisition_forms.get(material_id, set())
@@ -934,6 +975,15 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 "sha256": sha256(T6_ELECTRICAL_SOURCE),
                 "classification": "electrical_source_backed_runtime_required",
             },
+            "canonical_conductor_forms": {
+                "path": "tools/gt6_electrical_source.json",
+                "field": (
+                    "conductors[] recipe gauges wireGt01/02/04/08/12/16 and "
+                    "cableGt01/02/04/08/12 when cable_generated"
+                ),
+                "sha256": sha256(T6_ELECTRICAL_SOURCE),
+                "classification": "electrical_source_backed_runtime_required",
+            },
             "material_tag_policy": {
                 "path": (
                     "src/main/resources/data/cruciblecraft/"
@@ -1008,7 +1058,8 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         },
         "policy": (
             "recipe-projected forms plus factual ore-source closure registrations and "
-            "route-scoped chemical forms plus source-backed electrical wireGt01 forms plus explicit "
+            "route-scoped chemical forms plus source-backed electrical wireGt01 forms plus "
+            "source-backed addElectricWires canonical wire/cable gauges plus explicit "
             "source-backed pipe forms plus known multi/hot ingot forms plus bounded "
             "roaster compact-output forms plus source-backed worldgen acquisition forms plus "
             "bounded centrifuge compact-output forms plus bounded electrolyzer compact-output forms plus "
@@ -1043,6 +1094,9 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             "combo_pipe_forms": sum(map(len, combo_pipe_forms.values())),
             "restrictive_pipe_forms": sum(map(len, restrictive_pipe_forms.values())),
             "missing_wire_forms": sum(map(len, missing_wire_forms.values())),
+            "canonical_conductor_forms": sum(
+                map(len, canonical_conductor_forms.values())
+            ),
             "known_ingot_forms": actual_known_ingot_forms,
             "roaster_required_forms": sum(map(len, roaster_required_forms.values())),
             "worldgen_acquisition_forms": sum(
@@ -1083,6 +1137,10 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         "missing_wire_forms": {
             material: sorted(forms)
             for material, forms in sorted(missing_wire_forms.items())
+        },
+        "canonical_conductor_forms": {
+            material: sorted(forms)
+            for material, forms in sorted(canonical_conductor_forms.items())
         },
         "known_ingot_forms": {
             material: sorted(forms)
@@ -1296,6 +1354,7 @@ def check_committed_outputs() -> list[str]:
                 "electrical_source_backed_wire_forms": sha256(
                     T6_ELECTRICAL_SOURCE
                 ),
+                "canonical_conductor_forms": sha256(T6_ELECTRICAL_SOURCE),
                 "material_tag_policy": sha256(T7_MATERIAL_TAG_POLICY),
                 "pipe_source_backed_pipe_forms": sha256(T8_PIPE_READINESS),
                 "roaster_compact_required_forms": sha256(ROASTER_COMPACT_REQUIRED_FORMS),

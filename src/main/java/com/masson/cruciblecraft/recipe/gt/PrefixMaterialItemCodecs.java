@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialFormHosts;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.recipe.crafting.CraftingTools;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
@@ -29,9 +30,9 @@ import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 /**
  * Long-tail slash ids rewrite onto the shared prefix Item plus
- * {@code prefix_material}. Leftover public-exchange prefix Item + component
- * JSON rewrites onto the unique Item. Unique hosted forms keep their
- * per-material ids.
+ * {@code prefix_material}. Leftover public-exchange or unique-hosted prefix
+ * Item + component JSON rewrites onto the unique Item. Unique hosted forms
+ * keep their per-material ids.
  */
 public final class PrefixMaterialItemCodecs {
     public static final Codec<Ingredient> INGREDIENT = Codec.of(
@@ -60,7 +61,14 @@ public final class PrefixMaterialItemCodecs {
     }
 
     public static Optional<Ingredient> rewriteTag(ResourceLocation tagId) {
-        if (tagId == null || !MaterialCatalog.isBootstrapped()) {
+        if (tagId == null) {
+            return Optional.empty();
+        }
+        Optional<Ingredient> craftingTool = CraftingTools.tryTag(tagId);
+        if (craftingTool.isPresent()) {
+            return craftingTool;
+        }
+        if (!MaterialCatalog.isBootstrapped()) {
             return Optional.empty();
         }
         if (CrucibleCraft.MODID.equals(tagId.getNamespace())
@@ -170,7 +178,9 @@ public final class PrefixMaterialItemCodecs {
         if (itemId == null
                 || !CrucibleCraft.MODID.equals(itemId.getNamespace())
                 || itemId.getPath().indexOf('/') >= 0
-                || !MaterialFormHosts.isPublicExchangePrefixPath(itemId.getPath())) {
+                || !(MaterialFormHosts.isPublicExchangePrefixPath(itemId.getPath())
+                        || MaterialFormHosts.isUniqueHostedPrefixPath(
+                                itemId.getPath()))) {
             return Optional.empty();
         }
         MaterialDefinition material = MaterialCatalog.find(materialId).orElse(null);
@@ -298,6 +308,16 @@ public final class PrefixMaterialItemCodecs {
         if (rewrittenTag.isPresent()) {
             return DataResult.success(Pair.of(rewrittenTag.orElseThrow(), input));
         }
+        ResourceLocation rawItem = itemId(json, "item");
+        if (rawItem != null && !BuiltInRegistries.ITEM.containsKey(rawItem)) {
+            ResourceLocation flattened = flattenLegacyVanillaItem(rawItem);
+            if (flattened != null && !flattened.equals(rawItem)) {
+                Item item = BuiltInRegistries.ITEM.getOptional(flattened).orElse(null);
+                if (item != null) {
+                    return DataResult.success(Pair.of(Ingredient.of(item), input));
+                }
+            }
+        }
         return Ingredient.CODEC_NONEMPTY.decode(ops, input);
     }
 
@@ -324,7 +344,29 @@ public final class PrefixMaterialItemCodecs {
         if (rewritten.isPresent()) {
             return DataResult.success(Pair.of(rewritten.orElseThrow(), input));
         }
+        ResourceLocation flattened = flattenLegacyVanillaItem(id);
+        if (flattened != null && !flattened.equals(id)) {
+            Item item = BuiltInRegistries.ITEM.getOptional(flattened).orElse(null);
+            if (item != null && count > 0 && count <= item.getDefaultMaxStackSize()) {
+                return DataResult.success(Pair.of(new ItemStack(item, count), input));
+            }
+        }
         return ItemStack.STRICT_CODEC.decode(ops, input);
+    }
+
+    static ResourceLocation flattenLegacyVanillaItem(ResourceLocation itemId) {
+        if (itemId == null) {
+            return null;
+        }
+        if (BuiltInRegistries.ITEM.containsKey(itemId)) {
+            return itemId;
+        }
+        return switch (itemId.toString()) {
+            case "minecraft:fish" -> ResourceLocation.parse("minecraft:cod");
+            case "minecraft:cooked_fished" -> ResourceLocation.parse("minecraft:cooked_cod");
+            case "minecraft:double_plant" -> ResourceLocation.parse("minecraft:sunflower");
+            default -> itemId;
+        };
     }
 
     private static boolean hasComponents(JsonElement json) {

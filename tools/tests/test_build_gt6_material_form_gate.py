@@ -113,7 +113,7 @@ class MaterialFormGateTest(unittest.TestCase):
             else:
                 self.assertTrue(factual, material["id"])
         self.assertEqual(664, metadata_only)
-        self.assertEqual(282, self.gate["counts"]["pipe_forms"])
+        self.assertEqual(263, self.gate["counts"]["pipe_forms"])
         self.assertEqual(967, self.gate["counts"]["known_ingot_forms"])
         self.assertEqual(12, self.gate["counts"]["roaster_required_forms"])
         self.assertEqual(
@@ -240,11 +240,54 @@ class MaterialFormGateTest(unittest.TestCase):
         self.assertEqual(
             29, len(self.gate["electrical_wire_forms"])
         )
+        self.assertNotIn("superconductor", self.gate["electrical_wire_forms"])
         for material, forms in self.gate[
             "electrical_wire_forms"
         ].items():
             self.assertEqual(["wire"], forms, material)
             self.assertIn("wire", self.gate["materials"][material])
+        canonical = self.gate["canonical_conductor_forms"]
+        self.assertEqual(320, counts["canonical_conductor_forms"])
+        self.assertEqual(
+            320, sum(map(len, canonical.values()))
+        )
+        self.assertEqual(
+            {
+                "wire",
+                "double_wire",
+                "quadruple_wire",
+                "octuple_wire",
+                "dodecuple_wire",
+                "hexadecuple_wire",
+            },
+            set(canonical["superconductor"]),
+        )
+        self.assertNotIn("cable", canonical["superconductor"])
+        self.assertIn("hexadecuple_wire", canonical["graphene"])
+        self.assertNotIn("cable", canonical["graphene"])
+        self.assertIn("dodecuple_cable", canonical["hslasteel"])
+        self.assertIn("hexadecuple_wire", canonical["hslasteel"])
+        for form in (
+            "double_wire",
+            "quadruple_wire",
+            "octuple_wire",
+            "dodecuple_wire",
+            "hexadecuple_wire",
+            "cable",
+            "double_cable",
+            "quadruple_cable",
+            "octuple_cable",
+            "dodecuple_cable",
+        ):
+            self.assertIn(form, self.gate["materials"]["hslasteel"], form)
+            self.assertIn(form, self.gate["materials"]["blue_alloy"], form)
+        for form in (
+            "octuple_wire",
+            "dodecuple_wire",
+            "hexadecuple_wire",
+        ):
+            self.assertIn(form, self.gate["materials"]["superconductor"], form)
+        self.assertNotIn("cable", self.gate["materials"]["superconductor"])
         baseline = self.gate["compatibility_baseline"]
         self.assertFalse(baseline["recursive"])
         self.assertEqual(

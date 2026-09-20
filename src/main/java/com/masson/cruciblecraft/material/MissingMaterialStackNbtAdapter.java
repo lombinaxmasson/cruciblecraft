@@ -52,6 +52,7 @@ public final class MissingMaterialStackNbtAdapter {
             Predicate<String> itemExists,
             Predicate<String> materialExists) {
         CompoundTag normalized = canonicalizeItemId(input, canonicalMappings);
+        normalized = rewriteLeftoverPrefixItem(normalized, canonicalMappings);
         String itemId = normalized.getString("id");
         if (itemId.equals(MissingMaterialStackRewriter.UNKNOWN_ITEM_ID)) {
             return normalized;
@@ -91,6 +92,43 @@ public final class MissingMaterialStackNbtAdapter {
             missing.putString("form", plan.form());
             components.put(COMPONENT_ID, missing);
             rewritten.put("components", components);
+        }
+        return rewritten;
+    }
+
+    /**
+     * Shared leftover prefix Item + {@code prefix_material} becomes the unique
+     * slash / hosted id when that form is no longer a prefix Item.
+     */
+    private static CompoundTag rewriteLeftoverPrefixItem(
+            CompoundTag input, Map<String, String> canonicalMappings) {
+        String itemId = input.getString("id");
+        if (!itemId.startsWith("cruciblecraft:")) {
+            return input;
+        }
+        String path = itemId.substring("cruciblecraft:".length());
+        if (path.indexOf('/') >= 0) {
+            return input;
+        }
+        CompoundTag components = input.contains("components", Tag.TAG_COMPOUND)
+                ? input.getCompound("components")
+                : new CompoundTag();
+        String materialId = components.getString(PREFIX_MATERIAL_COMPONENT_ID);
+        if (materialId.isBlank()) {
+            return input;
+        }
+        String canonical = canonicalMappings.get(materialId + "/" + path);
+        if (canonical == null || canonical.equals(itemId)) {
+            return input;
+        }
+        CompoundTag rewritten = input.copy();
+        rewritten.putString("id", canonical);
+        CompoundTag outputComponents = components.copy();
+        outputComponents.remove(PREFIX_MATERIAL_COMPONENT_ID);
+        if (outputComponents.isEmpty()) {
+            rewritten.remove("components");
+        } else {
+            rewritten.put("components", outputComponents);
         }
         return rewritten;
     }

@@ -321,15 +321,15 @@ public final class StorageGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void machineRowsStayEightyFive(GameTestHelper helper) {
+    public static void machineRowsStayCatalogSized(GameTestHelper helper) {
         Set<String> catalog = machineCatalogIds(false);
         Set<String> generic = machineCatalogIds(true);
         helper.assertTrue(
-                catalog.size() == 107,
+                catalog.size() == 299,
                 "Live machine catalog rows drifted: " + catalog.size());
         helper.assertTrue(
-                generic.size() == 106
-                        && ModMachineVariants.ALL.size() == 106,
+                generic.size() == 297
+                        && ModMachineVariants.ALL.size() == 297,
                 "Generic machine registrations drifted: "
                         + ModMachineVariants.ALL.size());
         helper.succeed();

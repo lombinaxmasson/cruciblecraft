@@ -9,13 +9,13 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.blockentity.GtSurfaceRockBlockEntity;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.registry.ModItems;
+import com.masson.cruciblecraft.worldgen.PebbleBlocks;
 import com.masson.cruciblecraft.worldgen.PebbleShape;
 import com.masson.cruciblecraft.worldgen.SurfaceRockAppearance;
 import com.masson.cruciblecraft.worldgen.SurfaceRockContents;
 import com.masson.cruciblecraft.worldgen.SurfaceRockFeature;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -27,13 +27,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
@@ -48,15 +44,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  */
 public final class GtSurfaceRockBlock extends Block implements EntityBlock {
     public GtSurfaceRockBlock() {
-        super(BlockBehaviour.Properties.of()
-                .mapColor(MapColor.STONE)
-                .strength(0.25F)
-                .sound(SoundType.STONE)
-                .noCollission()
-                .noOcclusion()
-                .isViewBlocking((state, level, pos) -> false)
-                .isSuffocating((state, level, pos) -> false)
-                .pushReaction(PushReaction.DESTROY));
+        super(PebbleBlocks.properties());
         registerDefaultState(
                 stateDefinition.any()
                         .setValue(SurfaceRockAppearance.PROPERTY, SurfaceRockAppearance.STONE)
@@ -110,8 +98,7 @@ public final class GtSurfaceRockBlock extends Block implements EntityBlock {
 
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        BlockPos below = pos.below();
-        return level.getBlockState(below).isFaceSturdy(level, below, Direction.UP);
+        return PebbleBlocks.canSurvive(level, pos);
     }
 
     @Override
@@ -122,13 +109,7 @@ public final class GtSurfaceRockBlock extends Block implements EntityBlock {
             Block neighborBlock,
             BlockPos neighborPos,
             boolean movedByPiston) {
-        if (level.isClientSide) {
-            return;
-        }
-        if (!state.canSurvive(level, pos) || adjacentLiquid(level, pos)) {
-            Block.popResource(level, pos, loot(state, level.getBlockEntity(pos)));
-            level.removeBlock(pos, false);
-        }
+        PebbleBlocks.dropIfUnsupported(state, level, pos, loot(state, level.getBlockEntity(pos)));
     }
 
     @Override
@@ -138,14 +119,8 @@ public final class GtSurfaceRockBlock extends Block implements EntityBlock {
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
-        if (!level.isClientSide) {
-            ItemStack drop = loot(state, level.getBlockEntity(pos));
-            if (!player.addItem(drop)) {
-                Block.popResource(level, pos, drop);
-            }
-            level.removeBlock(pos, false);
-        }
-        return InteractionResult.sidedSuccess(level.isClientSide);
+        return PebbleBlocks.collect(
+                level, pos, player, loot(state, level.getBlockEntity(pos)));
     }
 
     @Override
@@ -211,17 +186,5 @@ public final class GtSurfaceRockBlock extends Block implements EntityBlock {
         return new ItemStack(ModItems.materialItem(
                 materialId,
                 MaterialPrefixCatalog.require("rock")).get());
-    }
-
-    private static boolean adjacentLiquid(Level level, BlockPos pos) {
-        for (Direction direction : Direction.values()) {
-            if (direction == Direction.DOWN) {
-                continue;
-            }
-            if (!level.getFluidState(pos.relative(direction)).isEmpty()) {
-                return true;
-            }
-        }
-        return false;
     }
 }

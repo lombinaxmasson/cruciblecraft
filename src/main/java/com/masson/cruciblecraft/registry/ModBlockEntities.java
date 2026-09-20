@@ -4,13 +4,16 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FirebrickBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CoinageMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FoundryCastingBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FoundryCrossingBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.AutomaticHammerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricMotorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricHeaterBlockEntity;
@@ -42,6 +45,7 @@ import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LaserEngraverBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FusionReactorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FusionHullBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ReactorCoreBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LogisticsCoreBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LogisticsCoreWallBlockEntity;
@@ -91,6 +95,14 @@ public final class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             CokeOvenBlockEntity::new,
                             ModBlocks.COKE_OVEN.get()).build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<FirebrickBlockEntity>>
+                    FIREBRICK = BLOCK_ENTITIES.register(
+                            "firebrick",
+                            () -> BlockEntityType.Builder.of(
+                                    FirebrickBlockEntity::new,
+                                    ModBlocks.FIREBRICK.get()).build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
             BlockEntityType<LargeCentrifugeBlockEntity>>
@@ -184,6 +196,16 @@ public final class ModBlockEntities {
 
     public static final DeferredHolder<
             BlockEntityType<?>,
+            BlockEntityType<CoinageMoldBlockEntity>>
+                    COINAGE_MOLD = BLOCK_ENTITIES.register(
+                            "coinage_mold",
+                            () -> BlockEntityType.Builder.of(
+                                    CoinageMoldBlockEntity::new,
+                                    ModBlocks.coinageMoldBlockArray())
+                                    .build(null));
+
+    public static final DeferredHolder<
+            BlockEntityType<?>,
             BlockEntityType<FoundryCrossingBlockEntity>>
                     FOUNDRY_CROSSING = BLOCK_ENTITIES.register(
                             "foundry_crossing",
@@ -267,6 +289,18 @@ public final class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             ConfiguredProcessingMachineBlockEntity::new,
                             ModBlocks.configuredProcessingBlocks()).build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<AutomaticHammerBlockEntity>>
+                    AUTOMATIC_HAMMER = BLOCK_ENTITIES.register(
+                            "automatic_hammer",
+                            () -> BlockEntityType.Builder.of(
+                                    AutomaticHammerBlockEntity::new,
+                                    ModBlocks.AUTOMATIC_HAMMER.get(),
+                                    ModBlocks.STEEL_AUTOMATIC_HAMMER.get(),
+                                    ModBlocks.TITANIUM_AUTOMATIC_HAMMER.get(),
+                                    ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER.get())
+                                    .build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CableBlockEntity>>
             CABLE = BLOCK_ENTITIES.register(
                     "cable",
@@ -284,11 +318,20 @@ public final class ModBlockEntities {
     public static final DeferredHolder<
             BlockEntityType<?>,
             BlockEntityType<FusionReactorBlockEntity>>
-            FUSION_REACTOR = BLOCK_ENTITIES.register(
-                    "fusion_reactor",
-                    () -> BlockEntityType.Builder.of(
-                            FusionReactorBlockEntity::new,
-                            ModBlocks.FUSION_REACTOR.get()).build(null));
+                    FUSION_REACTOR = BLOCK_ENTITIES.register(
+                            "fusion_reactor",
+                            () -> BlockEntityType.Builder.of(
+                                    FusionReactorBlockEntity::new,
+                                    ModBlocks.FUSION_REACTOR.get()).build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<FusionHullBlockEntity>>
+                    FUSION_HULL = BLOCK_ENTITIES.register(
+                            "fusion_hull",
+                            () -> BlockEntityType.Builder.of(
+                                    FusionHullBlockEntity::new,
+                                    ModBlocks.TUNGSTENSTEEL_WALL.get())
+                                    .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
             BlockEntityType<ReactorCoreBlockEntity>>

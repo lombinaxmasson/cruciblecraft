@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.google.gson.JsonObject;
+import com.masson.cruciblecraft.recipe.crafting.CraftingToolIngredient;
+import com.masson.cruciblecraft.recipe.crafting.CraftingTools;
 import com.mojang.serialization.JsonOps;
 import com.mojang.serialization.Codec;
 
@@ -55,6 +57,11 @@ final class CompactRecipeWireValues {
             encodePredicate(buffer, components.components());
             return;
         }
+        if (custom instanceof CraftingToolIngredient tool) {
+            buffer.writeByte(INGREDIENT_TAG);
+            ResourceLocation.STREAM_CODEC.encode(buffer, tool.tag().location());
+            return;
+        }
         if (custom != null) {
             throw new EncoderException(
                     "Unsupported custom ingredient " + custom.getClass().getName());
@@ -79,8 +86,11 @@ final class CompactRecipeWireValues {
         int kind = buffer.readUnsignedByte();
         return switch (kind) {
             case INGREDIENT_ITEM -> Ingredient.of(item(readItemId(buffer)));
-            case INGREDIENT_TAG -> Ingredient.of(TagKey.create(
-                    Registries.ITEM, ResourceLocation.STREAM_CODEC.decode(buffer)));
+            case INGREDIENT_TAG -> {
+                ResourceLocation tagId = ResourceLocation.STREAM_CODEC.decode(buffer);
+                yield CraftingTools.tryTag(tagId).orElseGet(() -> Ingredient.of(
+                        TagKey.create(Registries.ITEM, tagId)));
+            }
             case INGREDIENT_COMPONENTS -> {
                 HolderSet<Item> items = decodeHolderSet(buffer);
                 boolean strict = buffer.readBoolean();

@@ -118,8 +118,8 @@ RECIPE_ROOTS = (
 LOOM_WAVE = census.TOOLS / "waves" / "machines" / "loom"
 LOOM_IMPORT = LOOM_WAVE / "recipe_import.json"
 LOOM_LOCK_NOTE = (
-    "live compile for machines/loom; 465 runtime-registered exact rows; "
-    "232 unmapped MTE/plant_gt_fiber rows and 637 shadowed input signatures "
+    "live compile for machines/loom; 477 runtime-registered exact rows; "
+    "166 unmapped MTE/plant_gt_fiber rows and 691 shadowed input signatures "
     "explicitly_blocked; not player_complete"
 )
 OVERLAY_PATH = WAVE / "alias_overlay.json"
@@ -156,6 +156,15 @@ WIRE_FORMS = {
     "quadruple_cable",
     "octuple_cable",
     "dodecuple_cable",
+}
+# Dummy EU catalog aliases this card already folded. Recipe gauges
+# 02/04/08/12/16 now have live hslasteel CableBlocks, but hsla_steel dummy
+# ids stay until identity/hsla-ungated-gauges owns that fold.
+ALIAS_EU_FORMS = {
+    "wire",
+    "triple_wire",
+    "quintuple_wire",
+    "sextuple_wire",
 }
 
 
@@ -210,6 +219,8 @@ def build_overlay() -> dict[str, Any]:
             dummy = str(row.get("dummy_path") or "")
             canonical = CANONICAL.get(material)
             if not canonical or not form or not dummy:
+                continue
+            if domain == "eu" and form not in ALIAS_EU_FORMS:
                 continue
             if form not in gated.get(canonical, set()):
                 continue
@@ -316,6 +327,8 @@ def _remaining_canonical_leaks(overlay_metas: set[int]) -> list[dict[str, Any]]:
                 continue
             canonical = compact_live.get(_compact(material))
             if not canonical or canonical == material:
+                continue
+            if material in CANONICAL:
                 continue
             live_path = f"{canonical}/{form}"
             if form not in gated.get(canonical, set()) or live_path not in live:

@@ -28,6 +28,7 @@ public final class DataGenerators {
         generator.addProvider(event.includeClient(), new ModLanguageProvider(output));
         generator.addProvider(
                 event.includeClient(), new ModLanguageProvider(output, "zh_cn"));
+        generator.addProvider(event.includeClient(), new ModEmiStackGroupProvider(output));
 
         generator.addProvider(event.includeServer(), new ModLootTableProvider(output, lookupProvider));
         generator.addProvider(

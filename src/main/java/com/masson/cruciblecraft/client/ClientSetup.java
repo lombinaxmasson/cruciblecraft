@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.client.color.AnvilBlockColor;
 import com.masson.cruciblecraft.client.color.BathingPotColor;
 import com.masson.cruciblecraft.client.color.BedrockOreColor;
+import com.masson.cruciblecraft.client.color.CellItemColor;
 import com.masson.cruciblecraft.client.color.ElectricWireRemainderColor;
 import com.masson.cruciblecraft.client.color.FoundryBlockColor;
 import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
@@ -22,6 +23,7 @@ import com.masson.cruciblecraft.client.color.MaterialCasingColor;
 import com.masson.cruciblecraft.client.color.MaterialDustColor;
 import com.masson.cruciblecraft.client.color.MaterialItemColor;
 import com.masson.cruciblecraft.client.color.MaterialOreColor;
+import com.masson.cruciblecraft.client.color.MaterialPlateStorageColor;
 import com.masson.cruciblecraft.client.color.MaterialStorageColor;
 import com.masson.cruciblecraft.client.color.StorageArtColor;
 import com.masson.cruciblecraft.client.color.RockColor;
@@ -36,6 +38,8 @@ import com.masson.cruciblecraft.client.render.MassStorageRenderer;
 import com.masson.cruciblecraft.client.render.MteInPlaceStorageRenderer;
 import com.masson.cruciblecraft.client.render.GtChestRenderer;
 import com.masson.cruciblecraft.client.render.PipeCoverRenderer;
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.client.screen.HopperScreen;
 import com.masson.cruciblecraft.client.screen.StorageScreen;
 import com.masson.cruciblecraft.client.screen.ConfiguredProcessingMachineScreen;
@@ -56,6 +60,7 @@ import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMenus;
 
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -71,6 +76,7 @@ import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
@@ -122,6 +128,7 @@ public class ClientSetup {
     static void registerItemColors(RegisterColorHandlersEvent.Item event) {
         Set<Item> materialItems = Collections.newSetFromMap(new IdentityHashMap<>());
         ModItems.materialItems().forEach(item -> materialItems.add(item.get()));
+        materialItems.add(ModItems.COIN.get());
         materialItems.addAll(List.of(
                 ModItems.MATERIAL_PICKAXE.get(),
                 ModItems.MATERIAL_SHOVEL.get(),
@@ -230,9 +237,7 @@ public class ClientSetup {
         event.register(GtBushColor::itemColor, ModItems.GT_BUSH.get());
         event.register(
                 Gt6OpeningBlockColor::itemColor,
-                java.util.Arrays.stream(Gt6OpeningBlockColor.tintedBlocks())
-                        .map(net.minecraft.world.level.block.Block::asItem)
-                        .toArray(Item[]::new));
+                Gt6OpeningBlockColor.tintedItems());
         event.register(MaterialOreColor::itemColor, MaterialOreColor.oreBlockItems());
         event.register(BedrockOreColor::itemColor, BedrockOreColor.items());
         Block[] tintedHoppers = HopperBlockColor.tintedBlocks();
@@ -266,6 +271,11 @@ public class ClientSetup {
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
         event.register(GtBlockDyeColor.itemColor(), GtBlockDyeColor.tintedItems());
+        event.register(GtBlockDyeColor.panelItemColor(), GtBlockDyeColor.panelItems());
+        event.register(
+                CellItemColor::color,
+                ModItems.FLUID_CELL.get(),
+                ModItems.GAS_CELL.get());
         event.register(
                 (stack, tintIndex) -> {
                     if (tintIndex != 0) {
@@ -352,6 +362,9 @@ public class ClientSetup {
         event.register(
                 MaterialDustColor::blockColor,
                 MaterialDustColor.dustBlocks());
+        event.register(
+                MaterialPlateStorageColor::blockColor,
+                MaterialPlateStorageColor.plateStorageBlocks());
         event.register(
                 RockColor::blockColor,
                 RockColor.rockBlocks());
@@ -580,6 +593,19 @@ public class ClientSetup {
         registerImportedSpringFluid(event, ModFluids.OIL_HEAVY_TYPE.get(), "oil_heavy");
         registerImportedSpringFluid(event, ModFluids.OIL_MEDIUM_TYPE.get(), "oil_medium");
         registerImportedSpringFluid(event, ModFluids.OIL_LIGHT_TYPE.get(), "oil_light");
+        IClientItemExtensions chestItem = new IClientItemExtensions() {
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                return GtChestRenderer.itemRenderer();
+            }
+        };
+        for (var holder : ModItems.mteInPlaceItemsById().values()) {
+            Item item = holder.get();
+            if (Block.byItem(item) instanceof MteInPlaceBlock block
+                    && block.spec().kind() == MteInPlaceKind.CHEST) {
+                event.registerItem(chestItem, item);
+            }
+        }
     }
 
     private static void registerImportedSpringFluid(

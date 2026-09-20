@@ -2,7 +2,8 @@
   "schema_version": 1,
   "palette": {
     "F": {
-      "type": "block",
+      "type": "port",
+      "port": "item_fluid",
       "block": "cruciblecraft:firebrick"
     },
     "A": {
@@ -46,12 +47,12 @@
   ],
   "anchors": {
     "center": [0, 0, 1],
-    "heat_source": [0, -2, 1]
+    "fluid_drain": [0, -2, 1]
   },
   "source": {
-    "repository": "CrucibleCraft local behavior baseline",
-    "revision": "tools/t12a_machine_readiness.json#structure_projection.coke_oven",
-    "class": "com.masson.cruciblecraft.content.multiblock.CokeOvenStructure + CokeOvenStructureLayout",
-    "method": "behavior_projection:NO_BEHAVIOR_DRIFT"
+    "repository": "gt6_code/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityCokeOven",
+    "method": "checkStructure2 + getFluidOutputTarget"
   }
 }

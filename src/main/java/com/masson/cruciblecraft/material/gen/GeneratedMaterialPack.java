@@ -65,7 +65,9 @@ public final class GeneratedMaterialPack {
             "crushed_ore",
             "dust_div72",
             "fine_wire",
+            "ingot_hot",
             "lens",
+            "minecart_wheels",
             "plant_gt_berry",
             "plant_gt_blossom",
             "plant_gt_twig",
@@ -73,6 +75,7 @@ public final class GeneratedMaterialPack {
             "ring",
             "rock",
             "storage_dust",
+            "storage_plate",
             "tiny_crushed_ore");
     private static volatile Roots roots = new Roots(null, null);
 
@@ -482,6 +485,8 @@ public final class GeneratedMaterialPack {
             });
         }
         addCatalogClientAssets(files, oreTranslations, zhTranslations);
+        addEmiTagIndexSupport(
+                files, materials, registeredForms, oreTranslations, zhTranslations);
         files.put(
                 "assets/" + CrucibleCraft.MODID + "/lang/en_us.json",
                 GSON.toJson(oreTranslations));
@@ -831,9 +836,14 @@ public final class GeneratedMaterialPack {
             Map<String, String> files,
             MaterialDefinition material,
             MaterialPrefix form) {
-        String model = form.equals(MaterialPrefixes.STORAGE_DUST)
-                ? CrucibleCraft.MODID + ":block/material_storage_dust"
-                : CrucibleCraft.MODID + ":block/material_storage";
+        String model;
+        if (form.equals(MaterialPrefixes.STORAGE_DUST)) {
+            model = CrucibleCraft.MODID + ":block/material_storage_dust";
+        } else if (form.equals(MaterialPrefixes.STORAGE_PLATE)) {
+            model = CrucibleCraft.MODID + ":block/material_storage_plate";
+        } else {
+            model = CrucibleCraft.MODID + ":block/material_storage";
+        }
         addSharedCubeClientFiles(files, material.registryName(form), model);
     }
 
@@ -1009,10 +1019,114 @@ public final class GeneratedMaterialPack {
         return GSON.toJson(root);
     }
 
+    /**
+     * Hide per-material conventional tags from EMI's tag index. Reliable EMI
+     * logs every untranslated {@code c:dusts/iron}-style tag and builds a
+     * tag-recipe page for it; stack groups already fold those items.
+     * Parent tags such as {@code c:dusts} stay visible.
+     */
+    private static void addEmiTagIndexSupport(
+            Map<String, String> files,
+            Collection<MaterialDefinition> materials,
+            Map<String, List<MaterialPrefix>> registeredForms,
+            JsonObject english,
+            JsonObject chinese) {
+        LinkedHashSet<String> itemTags = new LinkedHashSet<>();
+        LinkedHashSet<String> blockTags = new LinkedHashSet<>();
+        for (MaterialDefinition material : materials) {
+            List<MaterialPrefix> forms =
+                    requireRegisteredForms(material, registeredForms);
+            boolean anyDedicated = false;
+            for (MaterialPrefix form : forms) {
+                if (!writesDedicatedFormItemTag(material, form, forms)) {
+                    continue;
+                }
+                anyDedicated = true;
+                String tagId = form.tagNamespace()
+                        + ":"
+                        + form.tagDirectory()
+                        + "/"
+                        + material.tagName();
+                itemTags.add(tagId);
+                if (form.equals(MaterialPrefixes.ORE)
+                        || isUniqueHostedBlock(material, form)) {
+                    blockTags.add(tagId);
+                }
+            }
+            if (anyDedicated) {
+                itemTags.add(CrucibleCraft.MODID + ":materials/" + material.id());
+            }
+        }
+        JsonObject exclusions = new JsonObject();
+        exclusions.add("item", stringArray(itemTags));
+        exclusions.add("block", stringArray(blockTags));
+        files.put(
+                "assets/emi/tag/exclusions/cruciblecraft.json",
+                GSON.toJson(exclusions));
+        addParentEmiTagNames(english, chinese);
+    }
+
+    private static void addParentEmiTagNames(
+            JsonObject english, JsonObject chinese) {
+        if (!MaterialPrefixCatalog.isBootstrapped()) {
+            return;
+        }
+        LinkedHashSet<String> seen = new LinkedHashSet<>();
+        for (MaterialPrefix form : MaterialPrefixCatalog.values()) {
+            String key = "tag.item."
+                    + form.tagNamespace()
+                    + "."
+                    + form.tagDirectory().replace('/', '.');
+            if (!seen.add(key)) {
+                continue;
+            }
+            english.addProperty(
+                    key, LanguageNames.formatEnglishId(form.tagDirectory()));
+            MaterialZhNames.prefix(form.serializedName())
+                    .or(() -> MaterialZhNames.pipe(form.serializedName()))
+                    .or(() -> MaterialZhNames.conductor(form.serializedName()))
+                    .ifPresent(name -> chinese.addProperty(key, name));
+        }
+    }
+
+    private static JsonArray stringArray(Set<String> values) {
+        List<String> sorted = new ArrayList<>(values);
+        sorted.sort(Comparator.naturalOrder());
+        JsonArray array = new JsonArray();
+        for (String value : sorted) {
+            array.add(value);
+        }
+        return array;
+    }
+
+    private static boolean writesDedicatedFormItemTag(
+            MaterialDefinition material,
+            MaterialPrefix form,
+            List<MaterialPrefix> forms) {
+        if (form.equals(MaterialPrefixes.ORE)) {
+            return forms.contains(MaterialPrefixes.RAW_ORE);
+        }
+        return material.formItems().containsKey(form)
+                || isUniqueHostedBlock(material, form)
+                || (MaterialFormHosts.isPublicExchangePrefix(form)
+                        && !material.formItems().containsKey(form));
+    }
+
+    private static boolean isUniqueHostedBlock(
+            MaterialDefinition material, MaterialPrefix form) {
+        return electricalSpecification(material, form) != null
+                || pipeModelKey(material, form) != null
+                || isPlaceableStorage(material, form)
+                || isPlaceableCasing(material, form)
+                || isRockForm(form)
+                || isRedstoneWire(material, form);
+    }
+
     private static boolean isPlaceableStorage(
             MaterialDefinition material, MaterialPrefix form) {
         return (form.equals(MaterialPrefixes.BLOCK)
-                        || form.equals(MaterialPrefixes.STORAGE_DUST))
+                        || form.equals(MaterialPrefixes.STORAGE_DUST)
+                        || form.equals(MaterialPrefixes.STORAGE_PLATE))
                 && !material.formItems().containsKey(form);
     }
 

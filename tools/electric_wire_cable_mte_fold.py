@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-"""Fold GT6 electric wire/cable MTE ids onto registered CC conductors.
+"""Fold GT6 electric wire/cable MTE ids onto gated CC conductors.
 
 Source of truth is ``MultiTileEntityWireElectric.addElectricWires`` in the pinned
 local GT6 tree. Catalog scatter ``gt_mte`` identities are not recipe objects.
-Missing gauges and unregistered materials stay unmapped.
+Live registration is the material form gate, not the frozen recipe census.
 """
 from __future__ import annotations
 
+from functools import lru_cache
 import re
 from typing import Any
 
 from tools import census_common as census
-from tools.gt6_resolve import registered_ids, resolve
+from tools.gt6_resolve import resolve
 
 SLUG = "content/electric-wire-cable-mte-fold"
 SOURCE_REVISION = "3703e40308c8c030763fd6297dea8b210d2a77b1"
@@ -39,6 +40,15 @@ CAPABILITY = (
     census.TOOLS / "capabilities" / "content" / "electric-wire-cable-mte-fold"
     / "capability.json"
 )
+MATERIAL_GATE = (
+    census.ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "material_registration_gate.json"
+)
 ELECTRIC_WIRES = re.compile(
     r"MultiTileEntityWireElectric\.addElectricWires\("
     r"(\d+)\s*,\s*\d+\s*,\s*[^,]+,\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*"
@@ -60,6 +70,16 @@ CABLE_FORMS = (
     (23, 8, "octuple_cable", "cableGt08"),
     (27, 12, "dodecuple_cable", "cableGt12"),
 )
+
+
+@lru_cache(maxsize=1)
+def _gated_runtime_ids() -> frozenset[str]:
+    gate = census.load_json(MATERIAL_GATE)
+    ids: set[str] = set()
+    for material, forms in (gate.get("materials") or {}).items():
+        for form in forms or []:
+            ids.add(f"cruciblecraft:{material}/{form}")
+    return frozenset(ids)
 
 
 def parse_invocations() -> list[dict[str, Any]]:
@@ -87,7 +107,6 @@ def _resolve_runtime(spec: str, symbol: str) -> dict[str, Any]:
     result = resolve(query)
     form = result.get("form") or {}
     item = str(form.get("item") or "")
-    registered = bool(form.get("registered"))
     if result.get("status") != "ok" or not item:
         return {
             "query": query,
@@ -100,7 +119,7 @@ def _resolve_runtime(spec: str, symbol: str) -> dict[str, Any]:
             "status": "scatter_identity",
             "runtime_id": None,
         }
-    if item not in registered_ids():
+    if item not in _gated_runtime_ids():
         return {
             "query": query,
             "status": "unregistered",

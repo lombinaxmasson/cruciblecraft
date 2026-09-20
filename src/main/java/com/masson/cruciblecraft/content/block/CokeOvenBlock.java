@@ -1,10 +1,17 @@
 package com.masson.cruciblecraft.content.block;
 
+import java.util.List;
+
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -16,9 +23,12 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -32,8 +42,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.fluids.FluidUtil;
 
-public final class CokeOvenBlock extends Block implements EntityBlock {
+public final class CokeOvenBlock extends Block implements EntityBlock, ToolInteractable {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
@@ -76,12 +87,15 @@ public final class CokeOvenBlock extends Block implements EntityBlock {
             Player player,
             InteractionHand hand,
             BlockHitResult hitResult) {
-        if (!stack.is(Items.FLINT_AND_STEEL)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        ItemInteractionResult tool = ToolClick.useItemOn(
+                stack, level, player, hand, hitResult);
+        if (tool != ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION) {
+            return tool;
         }
-        if (!level.isClientSide
-                && level.getBlockEntity(pos) instanceof CokeOvenBlockEntity cokeOven) {
-            if (cokeOven.ignite()) {
+        if (stack.is(Items.FLINT_AND_STEEL)) {
+            if (!level.isClientSide
+                    && level.getBlockEntity(pos) instanceof CokeOvenBlockEntity cokeOven
+                    && cokeOven.ignite()) {
                 if (!player.getAbilities().instabuild) {
                     stack.hurtAndBreak(
                             1,
@@ -100,13 +114,76 @@ public final class CokeOvenBlock extends Block implements EntityBlock {
                 player.displayClientMessage(
                         Component.translatable("message.cruciblecraft.coke_oven_ignited"),
                         true);
-            } else {
-                player.displayClientMessage(
-                        Component.translatable("message.cruciblecraft.coke_oven_cannot_ignite"),
-                        true);
+            }
+            return ItemInteractionResult.SUCCESS;
+        }
+        if (FluidUtil.getFluidHandler(stack).isEmpty()) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+        if (level.isClientSide) {
+            return ItemInteractionResult.SUCCESS;
+        }
+        if (level.getBlockEntity(pos) instanceof CokeOvenBlockEntity cokeOven) {
+            var handler = cokeOven.automationFluids(hitResult.getDirection());
+            if (handler != null
+                    && FluidUtil.interactWithFluidHandler(player, hand, handler)) {
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return ItemInteractionResult.SUCCESS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    public ToolResult useTool(ToolAction action, UseOnContext context) {
+        if (!(context.getLevel().getBlockEntity(context.getClickedPos())
+                instanceof CokeOvenBlockEntity cokeOven)) {
+            return ToolResult.PASS;
+        }
+        if (action == ToolAction.IGNITER) {
+            if (context.getLevel().isClientSide) {
+                return ToolResult.SUCCESS;
+            }
+            if (cokeOven.ignite()) {
+                ToolClick.hurt(context);
+                if (context.getPlayer() != null) {
+                    context.getPlayer().displayClientMessage(
+                            Component.translatable("message.cruciblecraft.coke_oven_ignited"),
+                            true);
+                }
+                return ToolResult.SUCCESS;
+            }
+            return ToolResult.PASS;
+        }
+        if (action == ToolAction.SOFT_HAMMER) {
+            if (!context.getLevel().isClientSide) {
+                cokeOven.resetBySoftHammer();
+                ToolClick.hurt(context);
+            }
+            return ToolResult.SUCCESS;
+        }
+        if (action == ToolAction.PLUNGER) {
+            return ToolClick.plunger(context, cokeOven.trashWithPlunger());
+        }
+        return ToolResult.PASS;
+    }
+
+    @Override
+    public void appendHoverText(
+            ItemStack stack,
+            Item.TooltipContext context,
+            List<Component> tooltip,
+            TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
+        tooltip.add(Component.translatable("tooltip.cruciblecraft.coke_oven.structure")
+                .withStyle(ChatFormatting.WHITE));
+        tooltip.add(Component.translatable("tooltip.cruciblecraft.coke_oven.controller")
+                .withStyle(ChatFormatting.WHITE));
+        tooltip.add(Component.translatable("tooltip.cruciblecraft.coke_oven.ignite")
+                .withStyle(ChatFormatting.GOLD));
+        tooltip.add(Component.translatable("tooltip.cruciblecraft.coke_oven.fluid_drain")
+                .withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.cruciblecraft.coke_oven.io")
+                .withStyle(ChatFormatting.GRAY));
     }
 
     @Override
@@ -119,6 +196,7 @@ public final class CokeOvenBlock extends Block implements EntityBlock {
         if (state.getBlock() != newState.getBlock()
                 && level.getBlockEntity(pos) instanceof CokeOvenBlockEntity cokeOven) {
             cokeOven.dropContents();
+            cokeOven.clearBindings();
         }
         super.onRemove(state, level, pos, newState, movedByPiston);
     }

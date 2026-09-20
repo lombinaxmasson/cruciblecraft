@@ -219,6 +219,8 @@ class MaterialPrefixCatalogTest {
         assertEquals(MaterialPrefixes.DUST_DIV72, MaterialPrefixCatalog.require("dustDiv72"));
         assertEquals(MaterialPrefixes.STORAGE_DUST, MaterialPrefixCatalog.require("blockDust"));
         assertEquals(1296, MaterialPrefixes.STORAGE_DUST.units());
+        assertEquals(MaterialPrefixes.STORAGE_PLATE, MaterialPrefixCatalog.require("blockPlate"));
+        assertEquals(1296, MaterialPrefixes.STORAGE_PLATE.units());
         assertEquals(
                 MaterialPrefixes.MACHINE_CASING,
                 MaterialPrefixCatalog.require("casingMachine"));

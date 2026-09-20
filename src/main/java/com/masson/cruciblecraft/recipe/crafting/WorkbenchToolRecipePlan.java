@@ -24,10 +24,16 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
  * stick. {@code aUseNormalHandle=F} (wrench, monkey wrench, wire cutter) and
  * simple rock/flint crafts stay finished tools. Handles stay
  * {@code minecraft:stick}; other handle materials are not invented.
+ *
+ * <p>GT6 {@code CR.DEF_MIR} rock/flint crafts set {@code mirrored}.
+ * Flint harvest uses {@code OD.itemFlint}, not {@code OP.rockGt}.
+ * Bone club uses {@code Items.bone}. Petrified-wood rock hammer is the
+ * dedicated GT6 extra loop; {@code PROPERTIES.WOOD} would skip the
+ * smithing-hammer listener.
  */
 public final class WorkbenchToolRecipePlan {
     public static final String STONE_TAG = "PROPERTIES.STONE";
-    public static final int NON_WORKBENCH_GENERATED_RECIPES = 3_918;
+    public static final int NON_WORKBENCH_GENERATED_RECIPES = 3_919;
     private static final MaterialPrefix ROCK =
             new MaterialPrefix("cruciblecraft:rock");
     private static final MaterialPrefix PLATE_GEM =
@@ -68,7 +74,7 @@ public final class WorkbenchToolRecipePlan {
             new MaterialPrefix("cruciblecraft:tool_head_arrow");
     private static final String HAMMER_ITEM = "cruciblecraft:smithing_hammer";
     private static final String FILE_ITEM = "cruciblecraft:material_file";
-    private static final String KNIFE_ITEM = "cruciblecraft:flint_knife";
+    private static final String KNIFE_ITEM = "cruciblecraft:material_knife";
     private static final String SCREWDRIVER_ITEM =
             "cruciblecraft:material_screwdriver";
     private static final String SAW_ITEM = "cruciblecraft:material_saw";
@@ -96,6 +102,7 @@ public final class WorkbenchToolRecipePlan {
             "thaumium");
     private static final String STICK = "minecraft:stick";
     private static final String FLINT = "minecraft:flint";
+    private static final String BONE = "minecraft:bone";
 
     private WorkbenchToolRecipePlan() {}
 
@@ -107,12 +114,16 @@ public final class WorkbenchToolRecipePlan {
             String resultId,
             String material,
             boolean persistToolMaterial,
-            int count) {
+            int count,
+            boolean mirrored) {
         public JsonObject toJson() {
             JsonObject root = new JsonObject();
             root.addProperty("type", "cruciblecraft:shaped_catalyst");
+            if (mirrored) {
+                root.addProperty("mirrored", true);
+            }
             if (!catalysts.isEmpty()) {
-                root.add("catalysts", itemKeys(catalysts));
+                root.add("catalysts", toolKeys(catalysts));
             }
             root.add("ingredients", itemKeys(ingredients));
             JsonArray patternJson = new JsonArray();
@@ -229,6 +240,7 @@ public final class WorkbenchToolRecipePlan {
                         material, formsOf(material, registeredForms))
                         .forEach(recipe -> putUnique(byPath, recipe)));
         vanillaFlintHarvest().forEach(recipe -> putUnique(byPath, recipe));
+        vanillaBoneClub().forEach(recipe -> putUnique(byPath, recipe));
         return List.copyOf(byPath.values());
     }
 
@@ -744,14 +756,16 @@ public final class WorkbenchToolRecipePlan {
                         map("f", FILE_ITEM, "h", HAMMER_ITEM),
                         "cruciblecraft:material_knife",
                         id));
-            } else if ("obsidian".equals(id) && forms.contains(ROCK)) {
+            }
+            if ("obsidian".equals(id) && forms.contains(ROCK)) {
                 recipes.add(finished(
-                        path(id, "knife"),
+                        path(id, "knife_from_rock"),
                         pad3x3("SX"),
                         map("X", item(material, ROCK), "S", STICK),
                         Map.of(),
                         "cruciblecraft:material_knife",
-                        id));
+                        id,
+                        true));
             }
         }
         if (eligible(material, ToolKind.CLUB)) {
@@ -945,7 +959,8 @@ public final class WorkbenchToolRecipePlan {
                             "S", item(material, MaterialPrefixes.ROD)),
                     map("f", FILE_ITEM),
                     "cruciblecraft:material_rolling_pin",
-                    id));
+                    id,
+                    true));
         }
         if (eligible(material, ToolKind.FLINT_AND_TINDER)
                 && FLINT_TINDER_NUGGET_MATERIALS.contains(id)
@@ -956,7 +971,8 @@ public final class WorkbenchToolRecipePlan {
                     map("T", item(material, MaterialPrefixes.NUGGET), "F", FLINT),
                     Map.of(),
                     "cruciblecraft:material_flint_and_tinder",
-                    id));
+                    id,
+                    true));
         }
         if (eligible(material, ToolKind.POCKET_MULTITOOL)
                 && forms.contains(TOOL_HEAD_SCREWDRIVER)
@@ -993,8 +1009,13 @@ public final class WorkbenchToolRecipePlan {
             return;
         }
         String id = material.id();
+        if ("flint".equals(id)) {
+            return;
+        }
         String rock = item(material, ROCK);
         Map<String, String> headAndStick = map("X", rock, "S", STICK);
+        boolean obsidian = "obsidian".equals(id);
+        boolean petrifiedWood = "petrified_wood".equals(id);
         if (eligible(material, ToolKind.AXE)) {
             recipes.add(finished(
                     path(id, "axe"),
@@ -1002,16 +1023,18 @@ public final class WorkbenchToolRecipePlan {
                     headAndStick,
                     Map.of(),
                     "cruciblecraft:material_axe",
-                    id));
+                    id,
+                    true));
         }
-        if (eligible(material, ToolKind.HOE)) {
+        if (!obsidian && eligible(material, ToolKind.HOE)) {
             recipes.add(finished(
                     path(id, "hoe"),
                     pad3x3("XX", " S"),
                     headAndStick,
                     Map.of(),
                     "cruciblecraft:material_hoe",
-                    id));
+                    id,
+                    true));
         }
         if (eligible(material, ToolKind.SHOVEL)) {
             recipes.add(finished(
@@ -1031,7 +1054,8 @@ public final class WorkbenchToolRecipePlan {
                     "cruciblecraft:material_pickaxe",
                     id));
         }
-        if (eligible(material, ToolKind.CLUB)
+        if (!obsidian
+                && eligible(material, ToolKind.CLUB)
                 && recipes.stream().noneMatch(
                         recipe -> path(id, "club").equals(recipe.path()))) {
             recipes.add(finished(
@@ -1040,9 +1064,11 @@ public final class WorkbenchToolRecipePlan {
                     headAndStick,
                     Map.of(),
                     "cruciblecraft:material_club",
-                    id));
+                    id,
+                    true));
         }
-        if (eligible(material, ToolKind.SMITHING_HAMMER)
+        if (!obsidian
+                && (eligible(material, ToolKind.SMITHING_HAMMER) || petrifiedWood)
                 && recipes.stream().noneMatch(
                         recipe -> path(id, "tool_head_hammer")
                                 .equals(recipe.path()))) {
@@ -1052,7 +1078,8 @@ public final class WorkbenchToolRecipePlan {
                     headAndStick,
                     Map.of(),
                     HAMMER_ITEM,
-                    id));
+                    id,
+                    true));
         }
     }
 
@@ -1168,14 +1195,35 @@ public final class WorkbenchToolRecipePlan {
                         flintAndStick,
                         Map.of(),
                         "cruciblecraft:material_axe",
-                        "flint"),
+                        "flint",
+                        true),
                 finished(
                         "tools/flint_shovel",
                         pad3x3("X", "S"),
                         flintAndStick,
                         Map.of(),
                         "cruciblecraft:material_shovel",
-                        "flint"));
+                        "flint"),
+                finished(
+                        "tools/flint_knife",
+                        pad3x3("SX"),
+                        flintAndStick,
+                        Map.of(),
+                        "cruciblecraft:material_knife",
+                        "flint",
+                        true));
+    }
+
+    private static List<Recipe> vanillaBoneClub() {
+        return List.of(
+                finished(
+                        "tools/bone/club",
+                        List.of("  X", " X ", "S  "),
+                        map("X", BONE, "S", STICK),
+                        Map.of(),
+                        "cruciblecraft:material_club",
+                        "bone",
+                        true));
     }
 
     private static boolean eligible(MaterialDefinition material, ToolKind kind) {
@@ -1218,8 +1266,28 @@ public final class WorkbenchToolRecipePlan {
             Map<String, String> catalysts,
             String resultId,
             String material) {
+        return finished(
+                path, pattern, ingredients, catalysts, resultId, material, false);
+    }
+
+    private static Recipe finished(
+            String path,
+            List<String> pattern,
+            Map<String, String> ingredients,
+            Map<String, String> catalysts,
+            String resultId,
+            String material,
+            boolean mirrored) {
         return recipe(
-                path, pattern, ingredients, catalysts, resultId, material, true);
+                path,
+                pattern,
+                ingredients,
+                catalysts,
+                resultId,
+                material,
+                true,
+                1,
+                mirrored);
     }
 
     private static Recipe head(
@@ -1249,7 +1317,8 @@ public final class WorkbenchToolRecipePlan {
                 resultId,
                 material,
                 persistToolMaterial,
-                1);
+                1,
+                false);
     }
 
     private static Recipe recipe(
@@ -1261,6 +1330,28 @@ public final class WorkbenchToolRecipePlan {
             String material,
             boolean persistToolMaterial,
             int count) {
+        return recipe(
+                path,
+                pattern,
+                ingredients,
+                catalysts,
+                resultId,
+                material,
+                persistToolMaterial,
+                count,
+                false);
+    }
+
+    private static Recipe recipe(
+            String path,
+            List<String> pattern,
+            Map<String, String> ingredients,
+            Map<String, String> catalysts,
+            String resultId,
+            String material,
+            boolean persistToolMaterial,
+            int count,
+            boolean mirrored) {
         return new Recipe(
                 path,
                 List.copyOf(pattern),
@@ -1269,7 +1360,8 @@ public final class WorkbenchToolRecipePlan {
                 resultId,
                 material,
                 persistToolMaterial,
-                count);
+                count,
+                mirrored);
     }
 
     private static JsonObject itemKeys(Map<String, String> keys) {
@@ -1278,6 +1370,18 @@ public final class WorkbenchToolRecipePlan {
             JsonObject item = new JsonObject();
             item.addProperty("item", itemId);
             object.add(symbol, item);
+        });
+        return object;
+    }
+
+    private static JsonObject toolKeys(Map<String, String> keys) {
+        JsonObject object = new JsonObject();
+        keys.forEach((symbol, itemId) -> {
+            JsonObject slot = new JsonObject();
+            CraftingTools.tagId(itemId).ifPresentOrElse(
+                    tag -> slot.addProperty("tag", tag.location().toString()),
+                    () -> slot.addProperty("item", itemId));
+            object.add(symbol, slot);
         });
         return object;
     }

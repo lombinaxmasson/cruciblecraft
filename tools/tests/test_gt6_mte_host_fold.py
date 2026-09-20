@@ -115,8 +115,8 @@ class Gt6MteHostFoldTest(unittest.TestCase):
             self.skipTest("processing overlay not issued yet")
         overlay = census.load_json(wave / "fold_overlay.json")
         self.assertEqual(PROCESSING_SLUG, overlay["capability_slug"])
-        self.assertEqual(68, int(overlay["counts"]["fold_live_block"]))
-        self.assertEqual(18, int(overlay["counts"]["keep_distinct"]))
+        self.assertEqual(86, int(overlay["counts"]["fold_live_block"]))
+        self.assertEqual(0, int(overlay["counts"]["keep_distinct"]))
         by_meta = {int(row["meta"]): row for row in overlay["rows"]}
         self.assertEqual("cruciblecraft:sifter", by_meta[20051]["live_block"])
         self.assertEqual(
@@ -126,12 +126,19 @@ class Gt6MteHostFoldTest(unittest.TestCase):
             "cruciblecraft:steel_galvanized_magnetic_separator",
             by_meta[20301]["live_block"],
         )
-        keep = {int(row["meta"]) for row in overlay["keep_distinct"]}
-        self.assertIn(15001, keep)
-        self.assertIn(20071, keep)
-        self.assertNotIn(20221, keep)
-        self.assertNotIn(20301, keep)
-        self.assertIn(20321, keep)
+        self.assertEqual(
+            "cruciblecraft:automatic_hammer",
+            by_meta[15001]["live_block"],
+        )
+        self.assertEqual(
+            "cruciblecraft:squeezer",
+            by_meta[20071]["live_block"],
+        )
+        self.assertNotIn(15001, {int(row["meta"]) for row in overlay["keep_distinct"]})
+        self.assertNotIn(20071, {int(row["meta"]) for row in overlay["keep_distinct"]})
+        self.assertNotIn(20221, {int(row["meta"]) for row in overlay["keep_distinct"]})
+        self.assertNotIn(20301, {int(row["meta"]) for row in overlay["keep_distinct"]})
+        self.assertNotIn(20321, {int(row["meta"]) for row in overlay["keep_distinct"]})
 
     def test_reactor_overlay_folds_meta_9203_only(self) -> None:
         wave = runtime._wave("reactor")

@@ -24,9 +24,9 @@ class PipeCatalogTest {
                     MaterialRegistrationGate.load(materials));
         }
 
-        assertEquals(438, PipeCatalog.all().size());
-        assertEquals(294, PipeCatalog.fluid().size());
-        assertEquals(144, PipeCatalog.item().size());
+        assertEquals(406, PipeCatalog.all().size());
+        assertEquals(280, PipeCatalog.fluid().size());
+        assertEquals(126, PipeCatalog.item().size());
         assertTrue(PipeCatalog.all().size()
                 <= PipeCatalog.MAX_RUNTIME_BLOCKS);
         assertEquals(72, MaterialPrefixes.TINY_FLUID_PIPE.units());
@@ -104,14 +104,22 @@ class PipeCatalogTest {
         assertTrue(copperFluid.fluid().gasProof());
         assertFalse(copperFluid.fluid().acidProof());
 
-        var tinItem = PipeCatalog.require(
-                "tin", MaterialPrefixes.ITEM_PIPE, Kind.ITEM);
-        assertEquals(16_384, tinItem.item().stepSize());
-        assertEquals(1, tinItem.item().stacksPerSecond());
-        for (String material : java.util.List.of("copper", "tin", "iron")) {
-            assertTrue(PipeCatalog.contains(
+        var brassItem = PipeCatalog.require(
+                "brass", MaterialPrefixes.ITEM_PIPE, Kind.ITEM);
+        assertEquals(32_768, brassItem.item().stepSize());
+        assertEquals(1, brassItem.item().stacksPerSecond());
+        assertTrue(PipeCatalog.contains(
+                "copper", MaterialPrefixes.FLUID_PIPE, Kind.FLUID));
+        assertFalse(PipeCatalog.contains(
+                "copper", MaterialPrefixes.ITEM_PIPE, Kind.ITEM));
+        assertTrue(PipeCatalog.contains(
+                "brass", MaterialPrefixes.ITEM_PIPE, Kind.ITEM));
+        assertFalse(PipeCatalog.contains(
+                "brass", MaterialPrefixes.FLUID_PIPE, Kind.FLUID));
+        for (String material : java.util.List.of("tin", "iron")) {
+            assertFalse(PipeCatalog.contains(
                     material, MaterialPrefixes.FLUID_PIPE, Kind.FLUID));
-            assertTrue(PipeCatalog.contains(
+            assertFalse(PipeCatalog.contains(
                     material, MaterialPrefixes.ITEM_PIPE, Kind.ITEM));
         }
     }

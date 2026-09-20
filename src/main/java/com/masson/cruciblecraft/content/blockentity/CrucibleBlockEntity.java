@@ -47,7 +47,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, CruciblePour {
+public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, CruciblePour, MoldHost {
     public static final int MAX_INGOTS = CrucibleProcessCore.SINGLE_BLOCK_MAX_INGOTS;
     public static final float AMBIENT_TEMPERATURE = CrucibleProcessCore.AMBIENT_TEMPERATURE;
     public static final long HEAT_DISPLAY_CAPACITY = CrucibleProcessCore.HEAT_DISPLAY_CAPACITY;
@@ -440,6 +440,37 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean isMoldInputSide(Direction side) {
+        return side == Direction.UP;
+    }
+
+    @Override
+    public float moldMaxTemperatureCelsius() {
+        return process.casing().maxTemperature();
+    }
+
+    @Override
+    public int moldRequiredMaterialUnits() {
+        return 1;
+    }
+
+    @Override
+    public int fillMold(
+            String materialId,
+            int availableUnits,
+            float temperature,
+            Direction side) {
+        if (!isMoldInputSide(side)) {
+            return 0;
+        }
+        int consumed = process.acceptMoldPour(materialId, availableUnits, temperature);
+        if (consumed > 0) {
+            markVisibleMutation();
+        }
+        return consumed;
     }
 
     public float temperature() {

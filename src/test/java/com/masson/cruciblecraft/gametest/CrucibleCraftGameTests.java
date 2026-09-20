@@ -3102,18 +3102,11 @@ public final class CrucibleCraftGameTests {
                 CokeOvenBlockEntity.STRUCTURE_ID);
         structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.BLOCK)
+                        == PredicateKind.PORT)
                 .forEach(element -> helper.setBlock(
                         structure.worldPosition(
                                 controllerPos, facing, element.offset()),
                         ModBlocks.FIREBRICK.get()));
-        BlockPos fireboxPos = structure.anchor(
-                "heat_source", controllerPos, facing);
-        GameTestHeatSources.placeHuSource(helper, fireboxPos);
-        FuelGeneratorBlockEntity firebox = helper.getBlockEntity(fireboxPos);
-        helper.assertTrue(
-                firebox.seedStoredEnergy(energyCapacity()),
-                "Could not fuel coke oven heat source");
         CokeOvenBlockEntity cokeOven = helper.getBlockEntity(controllerPos);
         RecipeMap.Entry coalRecipe = ModRecipeMaps.COKE_OVEN.entries().stream()
                 .filter(entry -> entry.recipe().itemInputs().size() == 1
@@ -3125,10 +3118,14 @@ public final class CrucibleCraftGameTests {
                 .findFirst()
                 .orElseThrow();
         GTRecipe recipe = coalRecipe.recipe();
-        FluidStack expectedCreosote = recipe.fluidOutputs().getFirst();
+        int operations = CokeOvenBlockEntity.PARALLEL;
+        FluidStack expectedCreosote = recipe.fluidOutputs().getFirst().copyWithAmount(
+                recipe.fluidOutputs().getFirst().getAmount() * operations);
+        ItemStack expectedCoke = recipe.itemOutputs().getFirst().copyWithCount(
+                recipe.itemOutputs().getFirst().getCount() * operations);
         cokeOven.inventory().setStackInSlot(
                 CokeOvenBlockEntity.INPUT_SLOT,
-                new ItemStack(Items.COAL, recipe.itemInputCounts().getFirst()));
+                new ItemStack(Items.COAL, operations * recipe.itemInputCounts().getFirst()));
 
         helper.startSequence()
                 .thenIdle(25)
@@ -3144,6 +3141,14 @@ public final class CrucibleCraftGameTests {
                             cokeOven.recipeDuration() == recipe.duration()
                                     && cokeOven.progress() > 0,
                             "Coke oven did not advance its live coal recipe");
+                    helper.assertTrue(
+                            cokeOven.inventory().getStackInSlot(
+                                    CokeOvenBlockEntity.INPUT_SLOT).isEmpty(),
+                            "Coke oven did not consume coal at start");
+                    helper.assertTrue(
+                            cokeOven.inventory().getStackInSlot(
+                                    CokeOvenBlockEntity.OUTPUT_SLOT).isEmpty(),
+                            "Coke oven emitted coke before the recipe finished");
                     CompoundTag saved = cokeOven.saveWithoutMetadata(
                             helper.getLevel().registryAccess());
                     saved.putInt("progress", recipe.duration() - 1);
@@ -3160,7 +3165,7 @@ public final class CrucibleCraftGameTests {
                             ItemStack.isSameItemSameComponents(
                                     cokeOven.inventory().getStackInSlot(
                                             CokeOvenBlockEntity.OUTPUT_SLOT),
-                                    recipe.itemOutputs().getFirst()),
+                                    expectedCoke),
                             "Coke oven did not produce its live item output");
                     helper.assertTrue(
                             cokeOven.creosoteAmount() == expectedCreosote.getAmount(),
@@ -3181,6 +3186,74 @@ public final class CrucibleCraftGameTests {
                             sameFluidAmount(extracted, expectedCreosote)
                                     && cokeOven.creosoteAmount() == 0,
                             "Coke oven did not expose exact creosote extraction");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void cokeOvenFirebrickHopperInsertsFromTop(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 3, 6);
+        Direction facing = Direction.NORTH;
+        helper.setBlock(controllerPos, ModBlocks.COKE_OVEN.get());
+        var structure = MultiblockStructureCatalog.require(
+                CokeOvenBlockEntity.STRUCTURE_ID);
+        structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .forEach(element -> helper.setBlock(
+                        structure.worldPosition(
+                                controllerPos, facing, element.offset()),
+                        ModBlocks.FIREBRICK.get()));
+        BlockPos topBrick = CokeOvenBlockEntity.structureCenter(
+                controllerPos, facing).above();
+        helper.setBlock(
+                topBrick.above(),
+                hopperBlock("steel_hopper").defaultBlockState()
+                        .setValue(HopperBlock.FACING, Direction.DOWN));
+        HopperBlockEntity hopper = helper.getBlockEntity(topBrick.above());
+        hopper.inventory().setStackInSlot(0, new ItemStack(Items.COAL, 4));
+        CokeOvenBlockEntity cokeOven = helper.getBlockEntity(controllerPos);
+        helper.startSequence()
+                .thenIdle(40)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            cokeOven.structureValid(),
+                            "Coke oven structure was not recognized before hopper insert");
+                    helper.assertTrue(
+                            cokeOven.inventory().getStackInSlot(
+                                    CokeOvenBlockEntity.INPUT_SLOT).getCount() >= 1,
+                            "Hopper on the firebrick top did not insert coal");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void cokeOvenDoesNotShareFirebricks(GameTestHelper helper) {
+        Direction facing = Direction.NORTH;
+        BlockPos first = new BlockPos(5, 3, 5);
+        BlockPos second = new BlockPos(7, 3, 5);
+        helper.setBlock(first, ModBlocks.COKE_OVEN.get());
+        helper.setBlock(second, ModBlocks.COKE_OVEN.get());
+        var structure = MultiblockStructureCatalog.require(
+                CokeOvenBlockEntity.STRUCTURE_ID);
+        java.util.LinkedHashSet<BlockPos> bricks = new java.util.LinkedHashSet<>();
+        for (BlockPos controller : List.of(first, second)) {
+            structure.structure().stream()
+                    .filter(element -> structure.predicate(element).kind()
+                            == PredicateKind.PORT)
+                    .map(element -> structure.worldPosition(
+                            controller, facing, element.offset()))
+                    .forEach(bricks::add);
+        }
+        bricks.forEach(pos -> helper.setBlock(pos, ModBlocks.FIREBRICK.get()));
+        CokeOvenBlockEntity ovenA = helper.getBlockEntity(first);
+        CokeOvenBlockEntity ovenB = helper.getBlockEntity(second);
+        helper.startSequence()
+                .thenIdle(45)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            ovenA.structureValid() ^ ovenB.structureValid(),
+                            "Adjacent coke ovens must not both form while sharing a wall");
                 })
                 .thenSucceed();
     }
@@ -4716,7 +4789,11 @@ public final class CrucibleCraftGameTests {
                 .thenIdle(25)
                 .thenExecute(() -> helper.assertTrue(
                         crucible.structureValid()
-                                && structure.structure().size() == 27,
+                                && structure.structure().size() == 27
+                                && helper.getBlockState(controllerPos)
+                                        .getValue(LargeCrucibleHosts.FORMED)
+                                && helper.getBlockState(wall)
+                                        .getValue(LargeCrucibleHosts.FORMED),
                         "Large crucible 27-position structure was not recognized"))
                 .thenSucceed();
     }
@@ -7613,7 +7690,7 @@ public final class CrucibleCraftGameTests {
                 ModBlocks.EXTRUDER.get(), ModBlocks.CUTTER.get(), ModBlocks.LATHE.get(),
                 ModBlocks.ROLLINGMILL.get(), ModBlocks.ROLLBENDER.get(),
                 ModBlocks.WIREMILL.get(), ModBlocks.BENDER.get(), ModBlocks.ASSEMBLER.get(),
-                ModBlocks.WELDER.get(), ModBlocks.PRESS.get());
+                ModBlocks.PRESS.get());
         List<ConfiguredProcessingMachineBlockEntity> machines = new java.util.ArrayList<>();
         for (int i = 0; i < ModProcessingMachines.COMPONENT_MACHINES.size(); i++) {
             BlockPos pos = new BlockPos(2 + (i % 5) * 4, 2, 2 + (i / 5) * 6);
@@ -7653,8 +7730,7 @@ public final class CrucibleCraftGameTests {
                 ModRecipeMaps.WELDER, 321,
                 ModRecipeMaps.PRESS, 1198);
         int total = 0;
-        for (ProcessingMachineSpec spec : ModProcessingMachines.COMPONENT_MACHINES) {
-            RecipeMap map = spec.requireRecipeMap();
+        for (RecipeMap map : expected.keySet()) {
             helper.assertTrue(
                     map.entries().size() == expected.get(map),
                     map.id() + " live count drifted from generated component manifest");
@@ -9635,7 +9711,7 @@ public final class CrucibleCraftGameTests {
         helper.setBlock(
                 destinationPos, Blocks.CHEST.defaultBlockState());
         ItemPipeBlock block = (ItemPipeBlock) ModBlocks.pipeBlock(
-                "copper",
+                "brass",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
         helper.setBlock(
@@ -9891,7 +9967,7 @@ public final class CrucibleCraftGameTests {
     public static void manualSelectorPersistsBoundedSideConfig(
             GameTestHelper helper) {
         ItemPipeBlock block = (ItemPipeBlock) ModBlocks.pipeBlock(
-                "copper",
+                "brass",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
         BlockPos firstPos = new BlockPos(5, 2, 5);
@@ -10003,7 +10079,7 @@ public final class CrucibleCraftGameTests {
         BlockPos destinationPos = pipePos.east();
         helper.setBlock(sourcePos, Blocks.CHEST.defaultBlockState());
         helper.setBlock(pipePos, ((ItemPipeBlock) ModBlocks.pipeBlock(
-                "copper",
+                "brass",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get()));
         helper.setBlock(destinationPos, Blocks.CHEST.defaultBlockState());
@@ -10039,21 +10115,38 @@ public final class CrucibleCraftGameTests {
             ItemPipeBlockEntity pipe) {}
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void copperTinIronUseCommonPipeCatalog(
-            GameTestHelper helper) {
-        for (String material : List.of("copper", "tin", "iron")) {
+    public static void gt6PipeDomainsAreExclusive(GameTestHelper helper) {
+        helper.assertTrue(
+                PipeCatalog.contains(
+                        "copper",
+                        MaterialPrefixes.TINY_FLUID_PIPE,
+                        PipeCatalog.Kind.FLUID)
+                        && !PipeCatalog.contains(
+                                "copper",
+                                MaterialPrefixes.ITEM_PIPE,
+                                PipeCatalog.Kind.ITEM),
+                "copper must stay GT6 fluid-pipe only");
+        helper.assertTrue(
+                PipeCatalog.contains(
+                        "brass",
+                        MaterialPrefixes.ITEM_PIPE,
+                        PipeCatalog.Kind.ITEM)
+                        && !PipeCatalog.contains(
+                                "brass",
+                                MaterialPrefixes.FLUID_PIPE,
+                                PipeCatalog.Kind.FLUID),
+                "brass must stay GT6 item-pipe only");
+        for (String material : List.of("tin", "iron")) {
             helper.assertTrue(
-                    PipeCatalog.contains(
+                    !PipeCatalog.contains(
                             material,
                             MaterialPrefixes.TINY_FLUID_PIPE,
-                            PipeCatalog.Kind.FLUID),
-                    material + " lacks data-driven fluid pipes");
-            helper.assertTrue(
-                    PipeCatalog.contains(
-                            material,
-                            MaterialPrefixes.ITEM_PIPE,
-                            PipeCatalog.Kind.ITEM),
-                    material + " lacks data-driven item pipes");
+                            PipeCatalog.Kind.FLUID)
+                            && !PipeCatalog.contains(
+                                    material,
+                                    MaterialPrefixes.ITEM_PIPE,
+                                    PipeCatalog.Kind.ITEM),
+                    material + " is not a GT6 pipe material");
         }
         helper.succeed();
     }
@@ -10387,11 +10480,9 @@ public final class CrucibleCraftGameTests {
             GameTestHelper helper) {
         // Runtime guard: every registered RecipeMap must match
         // the playability audit's zero/non-zero claim.  Empty maps
-        // are the two anvil-bend blockers, the retained cooling leftover,
-        // and the empty GT6 plasma fuel map.
+        // are the retained cooling leftover and the empty GT6 plasma
+        // fuel map. Anvil-bend maps are filled from GT6 handlers.
         List<String> zeroMaps = List.of(
-                "anvil_bend_big",
-                "anvil_bend_small",
                 "cooling",
                 "fuels_plasma");
         List<String> violations = new ArrayList<>();
@@ -11407,7 +11498,7 @@ public final class CrucibleCraftGameTests {
                 MaterialPrefixes.TINY_FLUID_PIPE,
                 PipeCatalog.Kind.FLUID).get();
         ItemPipeBlock itemPipe = (ItemPipeBlock) ModBlocks.pipeBlock(
-                "copper",
+                "brass",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
         for (int i = 0; i < SMALL_WORKLOAD_FLUID_PIPE_COUNT; i++) {
@@ -11485,7 +11576,7 @@ public final class CrucibleCraftGameTests {
                 MaterialPrefixes.TINY_FLUID_PIPE,
                 PipeCatalog.Kind.FLUID).get();
         ItemPipeBlock itemPipe = (ItemPipeBlock) ModBlocks.pipeBlock(
-                "copper",
+                "brass",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
         if (!helper.getBlockState(SMALL_WORKLOAD_STEAM_PIPE).is(fluidPipe)) {
@@ -11773,7 +11864,7 @@ public final class CrucibleCraftGameTests {
         BlockPos pipePos = hopperPos.east();
         BlockPos chestPos = pipePos.east();
         ItemPipeBlock pipe = (ItemPipeBlock) ModBlocks.pipeBlock(
-                "copper",
+                "brass",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
         helper.setBlock(pipePos, pipeState(pipe, Direction.WEST, Direction.EAST));

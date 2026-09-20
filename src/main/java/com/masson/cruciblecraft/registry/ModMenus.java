@@ -139,8 +139,6 @@ public final class ModMenus {
             processing("bender", ModProcessingMachines.BENDER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> ASSEMBLER =
             processing("assembler", ModProcessingMachines.ASSEMBLER);
-    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> WELDER =
-            processing("welder", ModProcessingMachines.WELDER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> PRESS =
             processing("press", ModProcessingMachines.PRESS);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
@@ -164,7 +162,11 @@ public final class ModMenus {
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             CANNER = processing("canner", ModProcessingMachines.CANNER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            SQUEEZER = processing("squeezer", ModProcessingMachines.SQUEEZER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             LASER_ENGRAVER = processing("laser_engraver", ModProcessingMachines.LASER_ENGRAVER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            LASER_WELDER = processing("laser_welder", ModProcessingMachines.LASER_WELDER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             PRINTER = processing("printer", ModProcessingMachines.PRINTER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>

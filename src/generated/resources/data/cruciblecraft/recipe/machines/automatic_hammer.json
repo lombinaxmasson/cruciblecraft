@@ -1,0 +1,42 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "item": "cruciblecraft:smithing_hammer"
+    },
+    "w": {
+      "item": "cruciblecraft:material_wrench"
+    }
+  },
+  "ingredients": {
+    "H": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "bronze"
+      },
+      "items": "cruciblecraft:tool_head_hammer"
+    },
+    "M": {
+      "tag": "c:machine_casing_doubles/bronze"
+    },
+    "R": {
+      "tag": "c:long_rods/bronze"
+    },
+    "S": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "bronze"
+      },
+      "items": "cruciblecraft:spring"
+    }
+  },
+  "pattern": [
+    "wR ",
+    "MS ",
+    "hH "
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:automatic_hammer"
+  }
+}

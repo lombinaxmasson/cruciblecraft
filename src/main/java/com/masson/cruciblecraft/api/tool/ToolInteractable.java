@@ -8,4 +8,16 @@ import net.minecraft.world.item.context.UseOnContext;
  */
 public interface ToolInteractable {
     ToolResult useTool(ToolAction action, UseOnContext context);
+
+    /**
+     * GT6 {@code IBlockToolable.onToolClick} remaining durability / quality.
+     * Auto-tool hammers pass {@code stored KU * 10}. Default ignores both.
+     */
+    default ToolResult useTool(
+            ToolAction action,
+            UseOnContext context,
+            long remainingDurability,
+            long quality) {
+        return useTool(action, context);
+    }
 }

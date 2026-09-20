@@ -537,7 +537,7 @@ def write_recipes() -> None:
             "pattern": ["   ", " P ", "  x"],
             "ingredients": {"P": {"item": "cruciblecraft:extruder_shape_ring"}},
             "result": {"id": "cruciblecraft:extruder_shape_ccc", "count": 1},
-            "catalysts": {"x": {"item": "cruciblecraft:material_screwdriver"}},
+            "catalysts": {"x": {"tag": "cruciblecraft:crafting_tools/wire_cutter"}},
         },
     )
     dump(

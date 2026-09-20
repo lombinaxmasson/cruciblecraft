@@ -44,6 +44,10 @@ public final class MachineBlockColor {
         blocks.add(ModBlocks.TANK_3X3X3.get());
         blocks.add(ModBlocks.MORTAR.get());
         blocks.add(ModBlocks.LASER_ENGRAVER.get());
+        blocks.add(ModBlocks.AUTOMATIC_HAMMER.get());
+        blocks.add(ModBlocks.STEEL_AUTOMATIC_HAMMER.get());
+        blocks.add(ModBlocks.TITANIUM_AUTOMATIC_HAMMER.get());
+        blocks.add(ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER.get());
         blocks.add(ModBlocks.FUSION_REACTOR.get());
         blocks.add(ModBlocks.LARGE_HEAT_EXCHANGER.get());
         blocks.add(ModBlocks.BEDROCK_DRILL.get());
@@ -118,7 +122,7 @@ public final class MachineBlockColor {
             case "large_heat_exchanger" -> "tungsten";
             case "bedrock_drill", "bedrock_drill_head" -> "titanium";
             case "reactor_core_1x1", "reactor_core_2x2" -> "lead";
-            case "laser_engraver" -> "iron";
+            case "laser_engraver" -> "steel_galvanized";
             case "bath" -> "stainless_steel";
             default -> {
                 for (var profile : com.masson.cruciblecraft.energy.longdistance

@@ -22,17 +22,17 @@ class MteInPlaceDisplayNamesTest {
                                 "multiblock/large_tungstensteel_crucible")
                         .orElseThrow());
         assertEquals(
-                "钢墙",
+                "钢壁",
                 MteInPlaceDisplayNames.chinese("steel/wall").orElseThrow());
         assertEquals(
-                "不锈钢墙",
+                "不锈钢壁",
                 MteInPlaceDisplayNames.chinese("stainless_steel/wall").orElseThrow());
         assertEquals(
-                "镀锌钢墙",
+                "镀锌钢壁",
                 MteInPlaceDisplayNames.chinese("multiblock/galvanized_steel_wall")
                         .orElseThrow());
         assertEquals(
-                "致密不锈钢墙",
+                "致密不锈钢壁",
                 MteInPlaceDisplayNames.chinese(
                                 "multiblock/dense_stainless_steel_wall")
                         .orElseThrow());

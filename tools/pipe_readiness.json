@@ -1,47 +1,13 @@
 {
-  "acceptance_materials": [
-    {
-      "fluid_classification": "direct_gt6_source",
-      "item_classification": "cruciblecraft_acceptance_extension",
-      "material": "copper",
-      "source_name": "Copper"
-    },
-    {
-      "fluid_classification": "cruciblecraft_acceptance_extension",
-      "item_classification": "cruciblecraft_acceptance_extension",
-      "material": "tin",
-      "source_name": "Tin"
-    },
-    {
-      "fluid_classification": "cruciblecraft_acceptance_extension",
-      "item_classification": "cruciblecraft_acceptance_extension",
-      "material": "iron",
-      "source_name": "Iron"
-    }
-  ],
+  "acceptance_materials": [],
   "classification": {
     "fluid": {
       "live": {
-        "acceptance_extension_set": [
-          {
-            "classification": "cruciblecraft_acceptance_extension",
-            "direct_gt6_source": false,
-            "material": "iron",
-            "source_id": 260,
-            "source_name": "Iron"
-          },
-          {
-            "classification": "cruciblecraft_acceptance_extension",
-            "direct_gt6_source": false,
-            "material": "tin",
-            "source_id": 500,
-            "source_name": "Tin"
-          }
-        ],
+        "acceptance_extension_set": [],
         "counts": {
-          "acceptance_extension": 2,
+          "acceptance_extension": 0,
           "direct_source": 40,
-          "not_applicable": 1731,
+          "not_applicable": 1733,
           "unclassified": 0
         },
         "denominator": 1773,
@@ -249,26 +215,11 @@
         ]
       },
       "raw": {
-        "acceptance_extension_set": [
-          {
-            "classification": "cruciblecraft_acceptance_extension",
-            "direct_gt6_source": false,
-            "material": "iron",
-            "source_id": 260,
-            "source_name": "Iron"
-          },
-          {
-            "classification": "cruciblecraft_acceptance_extension",
-            "direct_gt6_source": false,
-            "material": "tin",
-            "source_id": 500,
-            "source_name": "Tin"
-          }
-        ],
+        "acceptance_extension_set": [],
         "counts": {
-          "acceptance_extension": 2,
+          "acceptance_extension": 0,
           "direct_source": 40,
-          "not_applicable": 2172,
+          "not_applicable": 2174,
           "unclassified": 0
         },
         "denominator": 2214,
@@ -438,33 +389,11 @@
     },
     "item": {
       "live": {
-        "acceptance_extension_set": [
-          {
-            "classification": "cruciblecraft_acceptance_extension",
-            "direct_gt6_source": false,
-            "material": "copper",
-            "source_id": 290,
-            "source_name": "Copper"
-          },
-          {
-            "classification": "cruciblecraft_acceptance_extension",
-            "direct_gt6_source": false,
-            "material": "iron",
-            "source_id": 260,
-            "source_name": "Iron"
-          },
-          {
-            "classification": "cruciblecraft_acceptance_extension",
-            "direct_gt6_source": false,
-            "material": "tin",
-            "source_id": 500,
-            "source_name": "Tin"
-          }
-        ],
+        "acceptance_extension_set": [],
         "counts": {
-          "acceptance_extension": 3,
+          "acceptance_extension": 0,
           "direct_source": 21,
-          "not_applicable": 1749,
+          "not_applicable": 1752,
           "unclassified": 0
         },
         "denominator": 1773,
@@ -577,33 +506,11 @@
         ]
       },
       "raw": {
-        "acceptance_extension_set": [
-          {
-            "classification": "cruciblecraft_acceptance_extension",
-            "direct_gt6_source": false,
-            "material": "copper",
-            "source_id": 290,
-            "source_name": "Copper"
-          },
-          {
-            "classification": "cruciblecraft_acceptance_extension",
-            "direct_gt6_source": false,
-            "material": "iron",
-            "source_id": 260,
-            "source_name": "Iron"
-          },
-          {
-            "classification": "cruciblecraft_acceptance_extension",
-            "direct_gt6_source": false,
-            "material": "tin",
-            "source_id": 500,
-            "source_name": "Tin"
-          }
-        ],
+        "acceptance_extension_set": [],
         "counts": {
-          "acceptance_extension": 3,
+          "acceptance_extension": 0,
           "direct_source": 21,
-          "not_applicable": 2190,
+          "not_applicable": 2193,
           "unclassified": 0
         },
         "denominator": 2214,
@@ -697,33 +604,33 @@
     }
   },
   "classification_policy": {
-    "acceptance_extension": "The exact live or raw source_name is an explicit CrucibleCraft copper/tin/iron acceptance extension for this domain and is absent from that domain's direct GT6 calls.",
+    "acceptance_extension": "No CrucibleCraft pipe-domain extensions. GT6 addFluidPipes and addItemPipes material lists are exclusive.",
     "direct_source": "The exact live or raw source_name is an argument of the domain's pinned GT6 addFluidPipes or addItemPipes call.",
-    "not_applicable": "The exact source_name is neither direct GT6 pipe source nor an explicit acceptance extension for this domain.",
+    "not_applicable": "The exact source_name is not an argument of that domain's pinned GT6 addFluidPipes or addItemPipes call.",
     "unclassified_allowed": false
   },
   "counts": {
-    "combined_runtime_blocks": 282,
+    "combined_runtime_blocks": 263,
     "fluid_live_direct": 40,
-    "fluid_live_extensions": 2,
+    "fluid_live_extensions": 0,
     "fluid_raw_direct": 40,
-    "fluid_raw_extensions": 2,
-    "fluid_runtime_blocks": 210,
+    "fluid_raw_extensions": 0,
+    "fluid_runtime_blocks": 200,
     "item_live_direct": 21,
-    "item_live_extensions": 3,
+    "item_live_extensions": 0,
     "item_raw_direct": 21,
-    "item_raw_extensions": 3,
-    "item_runtime_blocks": 72,
+    "item_raw_extensions": 0,
+    "item_runtime_blocks": 63,
     "live_material_count": 1773,
-    "logical_states": 18048,
+    "logical_states": 16832,
     "raw_material_count": 2214,
     "selected_prefixes": 8,
     "unclassified": 0
   },
   "fluid_domain": {
-    "acceptance_extension_material_count": 2,
+    "acceptance_extension_material_count": 0,
     "direct_material_count": 40,
-    "eligible_material_count": 42,
+    "eligible_material_count": 40,
     "material_catalog": [
       {
         "classification": "direct_gt6_source",
@@ -2166,85 +2073,6 @@
         }
       },
       {
-        "classification": "cruciblecraft_acceptance_extension",
-        "direct_gt6_source": false,
-        "evidence": {
-          "direct_gt6_source": false,
-          "kind": "cruciblecraft_acceptance_extension",
-          "source_path": "tools/t8_pipe_policy.json"
-        },
-        "material": "iron",
-        "source_id": 260,
-        "source_name": "Iron",
-        "specifications_by_gauge": {
-          "huge": {
-            "acid_proof": false,
-            "blocking": true,
-            "capacity_mb": 2400,
-            "contact_damage": true,
-            "flammable": false,
-            "gas_proof": false,
-            "magic_proof": false,
-            "max_temperature_kelvin": 2263,
-            "plasma_proof": false,
-            "recipe": true,
-            "tank_count": 1
-          },
-          "large": {
-            "acid_proof": false,
-            "blocking": true,
-            "capacity_mb": 1200,
-            "contact_damage": true,
-            "flammable": false,
-            "gas_proof": false,
-            "magic_proof": false,
-            "max_temperature_kelvin": 2263,
-            "plasma_proof": false,
-            "recipe": true,
-            "tank_count": 1
-          },
-          "normal": {
-            "acid_proof": false,
-            "blocking": true,
-            "capacity_mb": 600,
-            "contact_damage": true,
-            "flammable": false,
-            "gas_proof": false,
-            "magic_proof": false,
-            "max_temperature_kelvin": 2263,
-            "plasma_proof": false,
-            "recipe": true,
-            "tank_count": 1
-          },
-          "small": {
-            "acid_proof": false,
-            "blocking": true,
-            "capacity_mb": 200,
-            "contact_damage": true,
-            "flammable": false,
-            "gas_proof": false,
-            "magic_proof": false,
-            "max_temperature_kelvin": 2263,
-            "plasma_proof": false,
-            "recipe": true,
-            "tank_count": 1
-          },
-          "tiny": {
-            "acid_proof": false,
-            "blocking": true,
-            "capacity_mb": 100,
-            "contact_damage": true,
-            "flammable": false,
-            "gas_proof": false,
-            "magic_proof": false,
-            "max_temperature_kelvin": 2263,
-            "plasma_proof": false,
-            "recipe": true,
-            "tank_count": 1
-          }
-        }
-      },
-      {
         "classification": "direct_gt6_source",
         "direct_gt6_source": true,
         "evidence": {
@@ -3205,85 +3033,6 @@
         }
       },
       {
-        "classification": "cruciblecraft_acceptance_extension",
-        "direct_gt6_source": false,
-        "evidence": {
-          "direct_gt6_source": false,
-          "kind": "cruciblecraft_acceptance_extension",
-          "source_path": "tools/t8_pipe_policy.json"
-        },
-        "material": "tin",
-        "source_id": 500,
-        "source_name": "Tin",
-        "specifications_by_gauge": {
-          "huge": {
-            "acid_proof": false,
-            "blocking": true,
-            "capacity_mb": 2400,
-            "contact_damage": true,
-            "flammable": false,
-            "gas_proof": false,
-            "magic_proof": false,
-            "max_temperature_kelvin": 631,
-            "plasma_proof": false,
-            "recipe": true,
-            "tank_count": 1
-          },
-          "large": {
-            "acid_proof": false,
-            "blocking": true,
-            "capacity_mb": 1200,
-            "contact_damage": true,
-            "flammable": false,
-            "gas_proof": false,
-            "magic_proof": false,
-            "max_temperature_kelvin": 631,
-            "plasma_proof": false,
-            "recipe": true,
-            "tank_count": 1
-          },
-          "normal": {
-            "acid_proof": false,
-            "blocking": true,
-            "capacity_mb": 600,
-            "contact_damage": true,
-            "flammable": false,
-            "gas_proof": false,
-            "magic_proof": false,
-            "max_temperature_kelvin": 631,
-            "plasma_proof": false,
-            "recipe": true,
-            "tank_count": 1
-          },
-          "small": {
-            "acid_proof": false,
-            "blocking": true,
-            "capacity_mb": 200,
-            "contact_damage": true,
-            "flammable": false,
-            "gas_proof": false,
-            "magic_proof": false,
-            "max_temperature_kelvin": 631,
-            "plasma_proof": false,
-            "recipe": true,
-            "tank_count": 1
-          },
-          "tiny": {
-            "acid_proof": false,
-            "blocking": true,
-            "capacity_mb": 100,
-            "contact_damage": true,
-            "flammable": false,
-            "gas_proof": false,
-            "magic_proof": false,
-            "max_temperature_kelvin": 631,
-            "plasma_proof": false,
-            "recipe": true,
-            "tank_count": 1
-          }
-        }
-      },
-      {
         "classification": "direct_gt6_source",
         "direct_gt6_source": true,
         "evidence": {
@@ -4084,9 +3833,9 @@
         }
       }
     ],
-    "recipe_enabled_material_count": 37,
-    "recipe_expansion_count": 185,
-    "runtime_block_count": 210,
+    "recipe_enabled_material_count": 35,
+    "recipe_expansion_count": 175,
+    "runtime_block_count": 200,
     "selected_gauges": [
       {
         "capacity_multiplier": 1,
@@ -4125,19 +3874,19 @@
   "import_architecture": {
     "per_material_java_required": false,
     "runtime_catalog_generation": "derive every selected material/gauge row from exact source_name and policy classification",
-    "source_of_truth": "tools/gt6_pipe_source.json plus explicit tools/t8_pipe_policy.json acceptance extensions"
+    "source_of_truth": "tools/gt6_pipe_source.json; tools/pipe_policy.json selected gauges. No dual-domain acceptance extensions."
   },
   "input_sha256": {
-    "src/main/resources/data/cruciblecraft/materials/index.json": "ff3ecf3970191f4feaddb84eb7795ea7714cab665df3fb6822f61c8382e66e05",
+    "src/main/resources/data/cruciblecraft/materials/index.json": "9ff911da6089b6dc8781ae40d40ed944718f709421fe68a70eba530a319e73ad",
     "tools/gt6_oredict_materials_normalized.json": "4ac8e9d2bc6cc398bb02205ee1b396554f289ab50d5def48c1152a7ca1100982",
     "tools/gt6_oredict_prefixes_normalized.json": "7bd153f3c14cbd388e444b297763c81b9182cc7eefdc6fdb9e58605d71858638",
     "tools/gt6_pipe_source.json": "4fef531e383bd9a2e173031ce1a73ba39c6d4057b7ea37dc8866746d7eeff19c",
-    "tools/t8_pipe_policy.json": "7dd119d7ec3bff7f61ddb2f03a46dd2b16f6f0bd8f7dac539f19353b757d2764"
+    "tools/pipe_policy.json": "166c693f87ddf686d5ca6aadc81cca018538f86e8c3432202f03057ade900e3f"
   },
   "item_domain": {
-    "acceptance_extension_material_count": 3,
+    "acceptance_extension_material_count": 0,
     "direct_material_count": 21,
-    "eligible_material_count": 24,
+    "eligible_material_count": 21,
     "material_catalog": [
       {
         "classification": "direct_gt6_source",
@@ -4404,38 +4153,6 @@
         }
       },
       {
-        "classification": "cruciblecraft_acceptance_extension",
-        "direct_gt6_source": false,
-        "evidence": {
-          "direct_gt6_source": false,
-          "kind": "cruciblecraft_acceptance_extension",
-          "source_path": "tools/t8_pipe_policy.json"
-        },
-        "material": "copper",
-        "source_id": 290,
-        "source_name": "Copper",
-        "specifications_by_gauge": {
-          "huge": {
-            "blocking": true,
-            "recipe": true,
-            "stacks_per_second": 4,
-            "step_size": 4096
-          },
-          "large": {
-            "blocking": true,
-            "recipe": true,
-            "stacks_per_second": 2,
-            "step_size": 8192
-          },
-          "normal": {
-            "blocking": true,
-            "recipe": true,
-            "stacks_per_second": 1,
-            "step_size": 16384
-          }
-        }
-      },
-      {
         "classification": "direct_gt6_source",
         "direct_gt6_source": true,
         "evidence": {
@@ -4564,38 +4281,6 @@
             "recipe": true,
             "stacks_per_second": 1,
             "step_size": 32768
-          }
-        }
-      },
-      {
-        "classification": "cruciblecraft_acceptance_extension",
-        "direct_gt6_source": false,
-        "evidence": {
-          "direct_gt6_source": false,
-          "kind": "cruciblecraft_acceptance_extension",
-          "source_path": "tools/t8_pipe_policy.json"
-        },
-        "material": "iron",
-        "source_id": 260,
-        "source_name": "Iron",
-        "specifications_by_gauge": {
-          "huge": {
-            "blocking": true,
-            "recipe": true,
-            "stacks_per_second": 4,
-            "step_size": 4096
-          },
-          "large": {
-            "blocking": true,
-            "recipe": true,
-            "stacks_per_second": 2,
-            "step_size": 8192
-          },
-          "normal": {
-            "blocking": true,
-            "recipe": true,
-            "stacks_per_second": 1,
-            "step_size": 16384
           }
         }
       },
@@ -4831,38 +4516,6 @@
         }
       },
       {
-        "classification": "cruciblecraft_acceptance_extension",
-        "direct_gt6_source": false,
-        "evidence": {
-          "direct_gt6_source": false,
-          "kind": "cruciblecraft_acceptance_extension",
-          "source_path": "tools/t8_pipe_policy.json"
-        },
-        "material": "tin",
-        "source_id": 500,
-        "source_name": "Tin",
-        "specifications_by_gauge": {
-          "huge": {
-            "blocking": true,
-            "recipe": true,
-            "stacks_per_second": 4,
-            "step_size": 4096
-          },
-          "large": {
-            "blocking": true,
-            "recipe": true,
-            "stacks_per_second": 2,
-            "step_size": 8192
-          },
-          "normal": {
-            "blocking": true,
-            "recipe": true,
-            "stacks_per_second": 1,
-            "step_size": 16384
-          }
-        }
-      },
-      {
         "classification": "direct_gt6_source",
         "direct_gt6_source": true,
         "evidence": {
@@ -4929,9 +4582,9 @@
         }
       }
     ],
-    "recipe_enabled_material_count": 24,
-    "recipe_expansion_count": 72,
-    "runtime_block_count": 72,
+    "recipe_enabled_material_count": 21,
+    "recipe_expansion_count": 63,
+    "runtime_block_count": 63,
     "selected_gauges": [
       {
         "inventory_multiplier": 1,
@@ -5174,11 +4827,11 @@
   "recipe_projection": {
     "architecture": "one_generic_material_rule_per_selected_domain_gauge",
     "fluid_generic_rule_count": 5,
-    "fluid_material_expansion_count": 185,
+    "fluid_material_expansion_count": 175,
     "generic_rule_count": 8,
     "item_generic_rule_count": 3,
-    "item_material_expansion_count": 72,
-    "material_expansion_count": 257,
+    "item_material_expansion_count": 63,
+    "material_expansion_count": 238,
     "material_rule_budget": 320,
     "per_material_java_required": false,
     "status": "IMPLEMENTED_GENERIC_MATERIAL_RULES"
@@ -5194,12 +4847,12 @@
     }
   },
   "runtime_budget": {
-    "combined_runtime_blocks": 282,
+    "combined_runtime_blocks": 263,
     "connection_directions": 6,
     "connection_masks_per_block": 64,
-    "fluid_runtime_blocks": 210,
-    "item_runtime_blocks": 72,
-    "logical_states": 18048,
+    "fluid_runtime_blocks": 200,
+    "item_runtime_blocks": 63,
+    "logical_states": 16832,
     "max_combined_runtime_blocks": 300,
     "max_logical_states": 20000,
     "required_selected_prefix_count": 8,
@@ -5208,7 +4861,7 @@
   },
   "schema_version": 1,
   "semantic_model": {
-    "extensions": "CrucibleCraft acceptance extensions are policy-owned rows and are never direct GT6 source.",
+    "extensions": "No CrucibleCraft pipe-domain extensions. Direct GT6 addFluidPipes and addItemPipes calls are exclusive.",
     "fluid_capacity": "Tiny/small/normal/large/huge store aStat multiplied by 1/2/6/12/24 respectively.",
     "fluid_eligibility": "Only an exact addFluidPipes material argument is direct GT6 fluid-pipe evidence.",
     "fluid_temperature": "The overload without aMaxTemperature stores floor(material melting Kelvin * 1.25); the explicit overload stores its literal aMaxTemperature.",

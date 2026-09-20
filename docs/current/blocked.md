@@ -9,8 +9,8 @@
 
 ## 统计
 
-- 条目 62：open 38，partial 2，resolved 11，superseded 5，out_of_scope 6
-- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 18，有名字，分母未冻成工作量 14，不是活 3
+- 条目 62：open 37，partial 2，resolved 12，superseded 5，out_of_scope 6
+- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 17，有名字，分母未冻成工作量 14，不是活 3
 
 ## 排期分类（未关闭）
 
@@ -20,12 +20,12 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 ### A. 数字是规模，不是待办（5）
 
 - `recipe/injector-overflow`：535 rows
-- `recipe/loom-overflow`：869 rows
+- `recipe/loom-overflow`：857 rows
 - `recipe/melter-overflow`：2796 rows
 - `recipe/nanofab-overflow`：57 rows
 - `worldgen/food`：n/a
 
-### B. 分母已冻，可当卡排（18）
+### B. 分母已冻，可当卡排（17）
 
 - `cover/torch-repeater-wire-host`：2 covers
 - `fluid/ic2-coolant`：1 fluids
@@ -33,14 +33,13 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `fluid/sap-maple`：1 fluids
 - `fluid/thorium-salt`：1 fluids
 - `identity/converter-turbines-battery-boxes`：8 items
-- `identity/electric-unregistered-gauges`：61 loader_ids
 - `identity/processing-ungated-families`：3 families
 - `material-form/copper-family-curved-plate`：n/a
 - `obtain/injector-mv-hv-iv-hosts`：3 hosts
 - `obtain/nanofab-hosts`：5 hosts
 - `obtain/redstone-wiregt01`：3 items
 - `obtain/wooden-bathing-pot-glue`：2 hosts
-- `recipe/laminator-overflow`：60 rows
+- `recipe/laminator-overflow`：12 rows
 - `recipe/oven-cooking-oil-xp`：2 fluids
 - `recipe/pressure-washer-stone`：120 rows
 - `recipe/printer-dye-fluids`：22 rows
@@ -73,6 +72,9 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 
 这些条目保留在 catalog 作为历史结算，但不进入未关闭批次；candidate selection 的旧 blocked 数不能覆盖后继卡的 current closeout。
 
+- 成员：`identity/electric-unregistered-gauges`
+  - 收口：content/electric-wire-cable-mte-fold 把 addElectricWires 配方线规折到 320/320：石墨烯高规格、超导 01/02/04/08/12/16，以及 HSLA/BlueAlloy/ElectrotineAlloy/Naquadah/YBCO 的配方线规已按 GT6 开门为 CableBlock。
+  - 当前权威：`tools/capabilities/content/electric-wire-cable-mte-fold/capability.json`, `tools/waves/content/electric-wire-cable-mte-fold/operand_runtime_map.json`, `tools/waves/content/electric-wire-cable-mte-fold/unmapped.json`
 - 成员：`recipe/bath-remainder-families`, `recipe/bath-identity-families`
   - 收口：T48 完成 145 个 Bath remainder family；T49 完成最后 5 个 tiny-purified family。当前 Bath ordinary remainder 为 0。
   - 当前权威：`docs/history/card-plans/closed/T48详细计划.md`, `docs/history/card-plans/closed/T49详细计划.md`, `tools/waves/bath/tiny-purified/readiness.json`, `tools/waves/bath/tiny-purified/card_topology.json`
@@ -86,12 +88,11 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 
 ### `batch/identity-eu-gauge-closure`：EU / 线规身份收口
 
-- 建议排序依据：61 个 loader_ids 是最大的已冻结 identity 数；EU partial 与 HSLA 线仍需分子任务审计。
+- 建议排序依据：EU dummy catalog 与 HSLA hsla_steel 别名仍需审计；Loader id 折回已关闭。
 - 类型：`shared_identity_audit`；成员角色按各 blocker 保留
 - production lock：`separate_subtask_validation`
 - 成员：
-  - `identity/electric-unregistered-gauges`（`primary`）
-  - `identity/eu-blocked-gauges`（`audit_only`）
+  - `identity/eu-blocked-gauges`（`primary`）
   - `identity/hsla-ungated-gauges`（`audit_only`）
 - 已有 lock：
   - `tools/waves/content/gt6-eu-wire-cable-runtime/production_lock.json`
@@ -100,9 +101,9 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 明确排除：
   - `identity/connector-art-keep-distinct-dummies`
 - 边界：
-  - 已有真实对象必须 exact mapping；不能把 61 个 loader_ids 当成 61 个必然可解条目。
-  - 石墨烯与超导缺形态继续 blocked。
-  - HSLA alias / gauge 是独立子任务。
+  - addElectricWires 配方 Loader id 已 320/320 折完；本批不再以 61 为待办。
+  - 石墨烯/超导 EU dummy catalog 行不是删除集合。
+  - HSLA alias / dummy catalog 是独立子任务。
   - 连接件美术 dummy 不是 runtime identity 工作。
 
 ### `batch/machines-nanofab-host-closure`：纳米加工机主机获得格收口
@@ -222,10 +223,9 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `unclaimed_domain`（2）
   - `architecture/building-block-identity`
   - `architecture/combinatorial-leftover`
-- `unmapped_identity`（6）
+- `unmapped_identity`（5）
   - `identity/connector-art-keep-distinct-dummies`
   - `identity/converter-turbines-battery-boxes`
-  - `identity/electric-unregistered-gauges`
   - `identity/eu-blocked-gauges`
   - `identity/hsla-ungated-gauges`
   - `identity/processing-ungated-families`
@@ -465,22 +465,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Keep dummy for a later runtime child. Do not edit R0.
 
-### `identity/electric-unregistered-gauges`
-
-- 标题：导线电缆 MTE 折回仍有未映射 Loader id
-- 状态：`open`
-- 根因：`unmapped_identity` / `superconductor_graphene_or_unregistered_gauge`
-- 数量：61 loader_ids
-- 排期：`schedulable`
-- 挡住：`player_complete`
-- 发现卡：`content/electric-wire-cable-mte-fold`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`content/electric-wire-cable-mte-fold`
-- 权威：`tools/capabilities/content/electric-wire-cable-mte-fold/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Mapped 259 is not a dummy-removal set. Graphene wireGt07 is not in the missing-gauge runtime set.
-
 ### `identity/hsla-ungated-gauges`
 
 - 标题：HSLA 未开门线规仍 dummy
@@ -495,7 +479,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 影响：`content/gt6-connector-alias-repair`
 - 权威：`tools/capabilities/content/gt6-connector-alias-repair/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Alias repair only. HSLA cableGt12 is not in the landed missing-gauge set.
+- 说明：Canonical HSLA 02/04/08/12/16 wires and 01/02/04/08/12 cables are now gated hslasteel CableBlocks. electric_wire/Nx_hsla_steel_* dummy catalog ids remain because the ledger still says hsla_steel.
 
 ### `identity/processing-ungated-families`
 
@@ -630,7 +614,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 标题：层压机 unmapped MTE overflow
 - 状态：`open`
 - 根因：`unmapped_operand` / `unmapped_mte_or_gt_block_log`
-- 数量：60 rows
+- 数量：12 rows
 - 排期：`schedulable`
 - 挡住：`player_complete`
 - 发现卡：`machines/laminator`
@@ -639,14 +623,14 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 影响：`machines/laminator`
 - 权威：`tools/waves/machines/laminator/overflow.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：54 unmapped MTE + 6 gt_block log. Connector identity work turned 0 rows green.
+- 说明：6 unmapped non-addElectricWires MTE + 6 gt_block log. addElectricWires recipe gauges turned 48 rows green.
 
 ### `recipe/loom-overflow`
 
 - 标题：织机 overflow 仍 blocked
 - 状态：`open`
 - 根因：`unmapped_operand` / `unmapped_mte_plant_fiber_or_shadow`
-- 数量：869 rows
+- 数量：857 rows
 - 排期：`scale_not_todo`
 - 挡住：`player_complete`
 - 发现卡：`machines/loom`
@@ -655,7 +639,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 影响：`machines/loom`
 - 权威：`tools/waves/machines/loom/overflow.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：232 unmapped MTE/plant_gt_fiber + 637 shadow. Connector identity work turned 0 rows green.
+- 说明：166 unmapped MTE/plant_gt_fiber + 691 shadow. addElectricWires recipe gauges turned 12 rows green; remaining MTE includes wireGt03/05/06/07 and other non-recipe-gauge hosts.
 
 ### `recipe/nanofab-overflow`
 
@@ -767,7 +751,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 影响：—
 - 权威：`docs/current/unimplemented-gap.md`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Pincers, hand drill, softhammer-on-storage, crowbar harvest, magnifier, electric tools. Clustered in unimplemented-gap.md §5 (click/mine/missing forms/unwired ToolActions). Not a recipe-row count. Do not bundle electric tools with builder wand.
+- 说明：Pincers, hand drill, softhammer-on-storage, crowbar harvest, magnifier, electric tools. World click/mine vs missing forms vs unwired ToolActions. Not a recipe-row count. Do not bundle electric tools with builder wand. Authority is this blocker plus local gt6_code Loader_Tools.java, not the archived gap snapshot.
 
 ### `worldgen/bees`
 
@@ -863,7 +847,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 影响：`content/gt6-eu-wire-cable-runtime`, `content/gt6-eu-missing-wire-gauges-runtime`
 - 权威：`tools/capabilities/content/gt6-eu-wire-cable-runtime/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：wireGt07/09/10/11/13/14/15 for 24 materials landed on the missing-gauge child. Graphene/superconductor remain dummy. Same semantic_key stays on the parent.
+- 说明：wireGt07/09/10/11/13/14/15 for 24 materials landed on the missing-gauge child. Graphene/superconductor Loader ids now map onto live CableBlocks; leftover EU dummy catalog rows are still not a deletion set.
 
 ### `recipe/melter-overflow`
 
@@ -944,6 +928,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/content/puv-omega-parts/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Dedicated 10064-10068 endpoints plus five LongDistWire voltage hosts. Same-voltage EU with max(64, distance/8) loss. Not in the voltage-step transformer catalog.
+
+### `identity/electric-unregistered-gauges`
+
+- 标题：导线电缆 MTE 折回仍有未映射 Loader id
+- 状态：`resolved`
+- 根因：`unmapped_identity` / `superconductor_graphene_or_unregistered_gauge`
+- 数量：0 loader_ids
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`content/electric-wire-cable-mte-fold`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：content/electric-wire-cable-mte-fold
+- 影响：`content/electric-wire-cable-mte-fold`
+- 权威：`tools/capabilities/content/electric-wire-cable-mte-fold/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：addElectricWires recipe gauges now map 320/320. Graphene 02/04/08/12/16, Superconductor 01/02/04/08/12/16, and HSLA/BlueAlloy/ElectrotineAlloy/Naquadah/YBCO canonical wires/cables are gated CableBlocks. Dummy catalog aliases remain a separate identity.
 
 ### `material-form/luv-puv1-parts`
 

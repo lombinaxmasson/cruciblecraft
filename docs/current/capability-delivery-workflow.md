@@ -54,11 +54,13 @@
 - 分母、来源、所有权、依赖完整
 - 每条新身份有 disposition：`reuse_canonical` / `new_distinct` / `bridge` / `blocked`
 - 不得叫 READY，不得扣 recipe gap
-- 默认：还没有把机制做成可宣称的 `runtime_ready`。缺口第 2 节的「尚未签发」
-  只适用于这种卡
+- 默认：还没有把机制做成可宣称的 `runtime_ready`。尚未签发的领域看
+  [blocked.md](blocked.md) 与
+  [`leftover_later.json`](../../tools/waves/portfolio/source-capability-map-r0/leftover_later.json)，
+  不要从归档缺口长文倒推
 - 例外：PUV / OMEGA 六张选择 `frozen`+`paused` 关卡——`src/main` 已有代码，
-  但是 CC 扩展，不是原版 GT6 高压线。它们写在缺口第 1 节，禁止写回第 2 节
-  「尚未签发」
+  但是 CC 扩展，不是原版 GT6 高压线。它们列在
+  [project-status.md](project-status.md) 的 frozen 表，禁止写成「尚未签发」
 
 ### runtime_ready
 
@@ -116,7 +118,7 @@
 | accepted divergence | 能力 `identity_disposition`（如 Low Heat Extruder Shape = `new_distinct`） | 否；必须显式 |
 | blocked claim | [blocked.md](blocked.md)（catalog `id` 绑定 `identity_disposition` / obtain note） | 挡该能力的 `runtime_ready` 关卡；不同 `unit` 不得相加 |
 | verification debt | `tools/known_issues/verification-debt.json` | 挡**该 profile**；不挡范围外能力的范围内门 |
-| deferred capability | [unimplemented-gap.md](unimplemented-gap.md) 第 1–2 节 | 不是 known-issue；不得写成 READY |
+| deferred capability | [unimplemented-gap.md](unimplemented-gap.md)（只指路）与 [blocked.md](blocked.md) / [`leftover_later.json`](../../tools/waves/portfolio/source-capability-map-r0/leftover_later.json) | 不是 known-issue；不得写成 READY |
 
 known-issues 不得再充当「未关门但下一张卡照开」的垃圾桶。
 

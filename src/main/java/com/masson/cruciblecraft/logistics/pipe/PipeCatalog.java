@@ -2,10 +2,12 @@ package com.masson.cruciblecraft.logistics.pipe;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
@@ -17,9 +19,8 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 /**
  * Startup-frozen material/form mapping for source-backed pipes.
  *
- * <p>Fluid and item properties intentionally remain separate even when a
- * material supplies both media. They have different transfer and failure
- * semantics and are not a generic network.
+ * <p>GT6 {@code addFluidPipes} and {@code addItemPipes} are exclusive per
+ * material. Fluid and item properties stay separate networks.
  */
 public final class PipeCatalog {
     public static final int MAX_RUNTIME_BLOCKS = 500;
@@ -87,17 +88,36 @@ public final class PipeCatalog {
             throw new IllegalStateException(
                     "Pipe block budget exceeded: " + entries.size());
         }
-        for (String material : List.of("copper", "tin", "iron")) {
-            boolean fluid = entries.keySet().stream().anyMatch(
-                    key -> key.materialId().equals(material)
-                            && key.kind() == Kind.FLUID);
-            boolean item = entries.keySet().stream().anyMatch(
-                    key -> key.materialId().equals(material)
-                            && key.kind() == Kind.ITEM);
-            if (!fluid || !item) {
+        Set<String> fluidMaterials = new HashSet<>();
+        Set<String> itemMaterials = new HashSet<>();
+        entries.keySet().forEach(key -> {
+            if (key.kind() == Kind.FLUID) {
+                fluidMaterials.add(key.materialId());
+            } else if (key.kind() == Kind.ITEM) {
+                itemMaterials.add(key.materialId());
+            }
+        });
+        Set<String> overlap = new HashSet<>(fluidMaterials);
+        overlap.retainAll(itemMaterials);
+        if (!overlap.isEmpty()) {
+            throw new IllegalStateException(
+                    "GT6 pipe domains overlap for: " + overlap);
+        }
+        if (!fluidMaterials.contains("copper")
+                || itemMaterials.contains("copper")) {
+            throw new IllegalStateException(
+                    "Copper must remain GT6 fluid-pipe only");
+        }
+        if (!itemMaterials.contains("brass")
+                || fluidMaterials.contains("brass")) {
+            throw new IllegalStateException(
+                    "Brass must remain GT6 item-pipe only");
+        }
+        for (String material : List.of("tin", "iron")) {
+            if (fluidMaterials.contains(material)
+                    || itemMaterials.contains(material)) {
                 throw new IllegalStateException(
-                        "Acceptance material lacks both pipe domains: "
-                                + material);
+                        "GT6 does not register pipes for " + material);
             }
         }
         List<Entry> fluid = entries.values().stream()

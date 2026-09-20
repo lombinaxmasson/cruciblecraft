@@ -8,9 +8,10 @@
 > [project-status.md](project-status.md)，不要在本页手抄。
 >
 > 关闭档案与机制卡 `*_READY` 见 [docs/history](../history/INDEX.md)。
-> `*_READY` 不是游戏里已有这些内容。人读权威缺口页是
-> [unimplemented-gap.md](unimplemented-gap.md)，不要从阶段档案或 Prep
-> 计划文件倒推剩余工作。
+> `*_READY` 不是游戏里已有这些内容。缺口入口是
+> [unimplemented-gap.md](unimplemented-gap.md)，现行库存只看
+> [project-status.md](project-status.md) 与 [blocked.md](blocked.md)，
+> 不要从阶段档案、归档长文或 Prep 计划文件倒推剩余工作。
 
 ## 1. 项目目标
 
@@ -31,7 +32,7 @@ catalog 或对照工具。1.x 已关闭的分母也不因此作废。
 
 - 已关闭阶段的档案、工作日志与编号卡计划在 [docs/history](../history/INDEX.md)。
 - `0.1.0-rc.1` 是历史工程候选版本，不是 `1.0.0`、GA 或玩家发行承诺。
-- `0.1.0-test.20260919` 是小群私测快照，不创建 GitHub Release、不累计 RC soak。
+- `0.1.0-test.20260919.2` 是小群私测快照，不创建 GitHub Release、不累计 RC soak。
 - 历史 full verification report 已从工作树删除；内容开发不以旧 `--check-ready`
   通过与否作为日常完成判据。
 - 当前进度只接受当前 revision 上 fresh 执行的 capability profile PASS；
@@ -39,7 +40,7 @@ catalog 或对照工具。1.x 已关闭的分母也不因此作废。
 - 分层验证见 [验证指南](verification.md)；已知验证债务见
   [`tools/known_issues/verification-debt.json`](../../tools/known_issues/verification-debt.json)。
 - 现行 bounded recipe wave 规则见 [ordinary recipe wave 流程与规范](recipe-wave-workflow.md)。
-- 对照图之后的冻结 / 未实现缺口见 [冻结与未实现账本](unimplemented-gap.md)。
+- 对照图之后的冻结 / 未实现缺口入口见 [unimplemented-gap.md](unimplemented-gap.md)。
 
 阶段关闭的三个独立轴仍是：
 
@@ -72,7 +73,7 @@ active 状态；prep 不占落地锁，规则见
 `energy/cooler`）。蒸汽涡轮、大型热交换器 17197、聚变 / 量子物质已作为
 CC 扩展落地，capability `frozen`+`paused`，不是 `player_complete`，
 也不要当下一张 unique-active。读法见
-[unimplemented-gap.md](unimplemented-gap.md) 第 0.1 / 第 1 节。
+[project-status.md](project-status.md) 的 frozen 表与 [blocked.md](blocked.md)。
 Bath remainder / identity 已由 T48/T49 关完，不是下一张 unique-active。后续排期
 读 [blocked.md](blocked.md) 与 `tools/blockers/batches.json`，不要从只读
 growth-order 档案倒推。缺形态不做到配方才补：prep
@@ -80,12 +81,12 @@ growth-order 档案倒推。缺形态不做到配方才补：prep
 出冻结核，再开 bounded unique-active；禁止按生成旗标全开长尾。
 
 电能转换已关 `runtime_ready`。聚变 18 源行是 `frozen`+`paused` 的 CC 扩展，
-不是缺口第 2 节「尚未签发」。冷却器仍 blocked。Dump 的来源执行器是 Core，
+不是「尚未签发」。冷却器仍 blocked。Dump 的来源执行器是 Core，
 不是 Generic 管网；`dump_policy` 见已关闭的
 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
 后继能源卡见已关闭的
 [能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
-与 [unimplemented-gap.md](unimplemented-gap.md) 第 1–2 节。
+与 [blocked.md](blocked.md) / [`leftover_later.json`](../../tools/waves/portfolio/source-capability-map-r0/leftover_later.json)。
 
 已认领的 1.x / R0 / 导入器 / 对照图工作仍然有效；对照图不把它写成 GT6
 全量完成。`portfolio/count-ceiling-kind-envelope` 仍是 telemetry /
@@ -158,8 +159,8 @@ stable ids 或 closing gap。未来核心 runtime 变化走当前 compatibility/
 Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。storage 本身
 已作为独立 bundle 关闭，不再等待 execution gap 清零。Storage 分母仍是 census 冻结的
 28 source sites / 624 expanded registrations；跨分类的 `mass_storage_logistics` 1/1
-保持独立计数。T44 关的是注册与单物品容量；GT6 储物桶 `mPartialUnits` 前缀单位换算
-（大中小粉、锭/粒等）仍缺，见 [冻结与未实现账本](unimplemented-gap.md) 第 4 节。
+保持独立计数。T44 关的是注册与单物品容量。仓储桶前缀合并已在 runtime；
+剩余差异以代码与试玩为准，不要抄归档缺口页。
 
 ## 5. 可玩性与表现层
 
@@ -219,7 +220,7 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
 聚变 18 源行已由 `energy/fusion-quantum` 落地（`frozen`+`paused`，
 `energy/reactor-fusion` 已 `resolved`）。`FUELS_PLASMA` 保持空。
 冷却器仍 blocked。体积与后继候选见
-[冻结与未实现账本](unimplemented-gap.md)。
+[project-status.md](project-status.md) 与 [blocked.md](blocked.md)。
 
 ## 8. 日常开发与留档纪律
 

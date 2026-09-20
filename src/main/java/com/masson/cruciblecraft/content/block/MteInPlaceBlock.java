@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.content.blockentity.FoundryCrossingBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CoinageMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleEntityMelts;
 import com.masson.cruciblecraft.content.blockentity.CruciblePlayerInteraction;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
@@ -94,12 +95,33 @@ public final class MteInPlaceBlock extends Block
     private static final VoxelShape CHEST = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
     private static final VoxelShape BATHING_POT = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
 
+    /**
+     * {@link Block} calls {@link #createBlockStateDefinition} inside
+     * {@code super()}, before {@link #spec} is assigned. Controllers and walls
+     * stash the spec here so {@code formed} is actually added to the definition.
+     */
+    private static final ThreadLocal<MteInPlaceSpec> CONSTRUCTING = new ThreadLocal<>();
+
     private final MteInPlaceSpec spec;
 
     public MteInPlaceBlock(MteInPlaceSpec spec, Properties properties) {
-        super(properties);
+        super(stashConstructingSpec(spec, properties));
         this.spec = spec;
-        registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
+        BlockState initial = stateDefinition.any().setValue(FACING, Direction.NORTH);
+        if (LargeCrucibleHosts.usesFormedState(spec)) {
+            initial = initial.setValue(LargeCrucibleHosts.FORMED, false);
+        }
+        registerDefaultState(initial);
+    }
+
+    private static Properties stashConstructingSpec(
+            MteInPlaceSpec spec, Properties properties) {
+        CONSTRUCTING.set(spec);
+        return properties;
+    }
+
+    private MteInPlaceSpec constructingSpec() {
+        return spec != null ? spec : CONSTRUCTING.get();
     }
 
     public MteInPlaceSpec spec() {
@@ -109,7 +131,14 @@ public final class MteInPlaceBlock extends Block
     @Override
     protected void createBlockStateDefinition(
             StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        try {
+            builder.add(FACING);
+            if (LargeCrucibleHosts.usesFormedState(constructingSpec())) {
+                builder.add(LargeCrucibleHosts.FORMED);
+            }
+        } finally {
+            CONSTRUCTING.remove();
+        }
     }
 
     @Override
@@ -195,9 +224,13 @@ public final class MteInPlaceBlock extends Block
 
     @Override
     protected RenderShape getRenderShape(BlockState state) {
-        return spec.kind() == MteInPlaceKind.CHEST
-                ? RenderShape.ENTITYBLOCK_ANIMATED
-                : RenderShape.MODEL;
+        if (spec.kind() == MteInPlaceKind.CHEST) {
+            return RenderShape.ENTITYBLOCK_ANIMATED;
+        }
+        if (LargeCrucibleHosts.formed(state)) {
+            return LargeCrucibleHosts.formedRenderShape(spec);
+        }
+        return RenderShape.MODEL;
     }
 
     @Override
@@ -214,6 +247,12 @@ public final class MteInPlaceBlock extends Block
             ToolResult casting = FoundryCastingInteractions.useTool(action, context);
             if (casting != ToolResult.PASS) {
                 return casting;
+            }
+        }
+        if (CoinageMoldHosts.isCoinage(spec)) {
+            ToolResult coinage = CoinageMoldInteractions.useTool(action, context);
+            if (coinage != ToolResult.PASS) {
+                return coinage;
             }
         }
         if (AnvilHosts.isAnvil(spec)) {
@@ -339,6 +378,13 @@ public final class MteInPlaceBlock extends Block
                     crucible.process().fluids(),
                     crucible.structureValid() && !crucible.pluginQuarantined());
         }
+        if (CoinageMoldHosts.isCoinage(spec)) {
+            ItemInteractionResult coinage = CoinageMoldInteractions.useItemOn(
+                    stack, level, pos, player, hit);
+            if (coinage.consumesAction()) {
+                return coinage;
+            }
+        }
         if (spec.kind() == MteInPlaceKind.MASS_STORAGE
                 && hit.getDirection() == state.getValue(FACING)
                 && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
@@ -365,6 +411,9 @@ public final class MteInPlaceBlock extends Block
             BlockHitResult hit) {
         if (FoundryHosts.isCasting(spec)) {
             return FoundryCastingInteractions.useWithoutItem(level, pos, player, hit);
+        }
+        if (CoinageMoldHosts.isCoinage(spec)) {
+            return CoinageMoldInteractions.useWithoutItem(level, pos, player, hit);
         }
         if (AnvilHosts.isAnvil(spec)) {
             return AnvilInteractions.useWithoutItem(level, pos, player, hit);
@@ -442,6 +491,9 @@ public final class MteInPlaceBlock extends Block
                 host.massStorageActivated(player, ItemStack.EMPTY, hit);
             }
             return InteractionResult.sidedSuccess(level.isClientSide);
+        }
+        if (!spec.kind().attachment()) {
+            return InteractionResult.PASS;
         }
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
@@ -626,6 +678,8 @@ public final class MteInPlaceBlock extends Block
                 crucible.clearBindings();
             } else if (level.getBlockEntity(pos) instanceof FoundryCastingBlockEntity mold) {
                 mold.dropContents();
+            } else if (level.getBlockEntity(pos) instanceof CoinageMoldBlockEntity coinage) {
+                coinage.dropContents();
             } else if (level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
                 host.dropContents();
             }
@@ -651,6 +705,13 @@ public final class MteInPlaceBlock extends Block
                 && level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible) {
             crucible.setCasingMaterialId(SmelteryHosts.materialId(spec));
         }
+        if (FoundryHosts.isMold(spec)
+                && level.getBlockEntity(pos) instanceof FoundryCastingBlockEntity mold) {
+            Integer stored = stack.get(ModComponents.MOLD_PATTERN);
+            if (stored != null) {
+                mold.setPattern(stored);
+            }
+        }
         if (LargeCrucibleHosts.isController(spec)
                 && level.getBlockEntity(pos) instanceof LargeCrucibleBlockEntity crucible) {
             crucible.setCasingMaterialId(LargeCrucibleHosts.materialId(spec));
@@ -666,6 +727,15 @@ public final class MteInPlaceBlock extends Block
             for (ItemStack drop : drops) {
                 if (drop.getItem() == asItem()) {
                     drop.set(ModComponents.MACHINE_DURABILITY, anvil.durabilityComponent());
+                }
+            }
+        }
+        if (FoundryHosts.isMold(spec)
+                && params.getOptionalParameter(LootContextParams.BLOCK_ENTITY)
+                        instanceof FoundryCastingBlockEntity mold) {
+            for (ItemStack drop : drops) {
+                if (drop.getItem() == asItem() && mold.pattern() != 0) {
+                    drop.set(ModComponents.MOLD_PATTERN, mold.pattern());
                 }
             }
         }
@@ -688,6 +758,9 @@ public final class MteInPlaceBlock extends Block
         }
         if (LargeCrucibleHosts.isController(spec)) {
             return new LargeCrucibleBlockEntity(pos, state);
+        }
+        if (CoinageMoldHosts.isCoinage(spec)) {
+            return new CoinageMoldBlockEntity(pos, state);
         }
         return new MteInPlaceBlockEntity(pos, state);
     }
@@ -736,6 +809,7 @@ public final class MteInPlaceBlock extends Block
         }
         if (FoundryHosts.isCrossing(spec)
                 || AnvilHosts.isAnvil(spec)
+                || CoinageMoldHosts.isCoinage(spec)
                 || type != ModBlockEntities.MTE_INPLACE.get()) {
             return null;
         }

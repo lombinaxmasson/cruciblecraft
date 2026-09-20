@@ -1,0 +1,39 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "w": {
+      "item": "cruciblecraft:material_wrench"
+    }
+  },
+  "ingredients": {
+    "M": {
+      "item": "cruciblecraft:bronze/machine_casing_double"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "bronze"
+      },
+      "items": "cruciblecraft:triple_plate"
+    },
+    "R": {
+      "tag": "c:rods/bronze"
+    },
+    "S": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "bronze"
+      },
+      "items": "cruciblecraft:spring"
+    }
+  },
+  "pattern": [
+    "RS ",
+    "PM ",
+    "Pw "
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:squeezer"
+  }
+}

@@ -25,13 +25,8 @@
     "cruciblecraft:generates_fluid_pipe",
     "cruciblecraft:generates_hexadecuple_wire",
     "cruciblecraft:generates_huge_fluid_pipe",
-    "cruciblecraft:generates_huge_item_pipe",
-    "cruciblecraft:generates_huge_restrictive_item_pipe",
     "cruciblecraft:generates_ingot",
-    "cruciblecraft:generates_item_pipe",
     "cruciblecraft:generates_large_fluid_pipe",
-    "cruciblecraft:generates_large_item_pipe",
-    "cruciblecraft:generates_large_restrictive_item_pipe",
     "cruciblecraft:generates_machine_casing",
     "cruciblecraft:generates_nonuple_fluid_pipe",
     "cruciblecraft:generates_nonuple_wire",
@@ -46,7 +41,6 @@
     "cruciblecraft:generates_quadruple_fluid_pipe",
     "cruciblecraft:generates_quadruple_wire",
     "cruciblecraft:generates_quintuple_wire",
-    "cruciblecraft:generates_restrictive_item_pipe",
     "cruciblecraft:generates_rock",
     "cruciblecraft:generates_septuple_wire",
     "cruciblecraft:generates_sextuple_wire",
@@ -355,26 +349,7 @@
           "recipe": true
         }
       },
-      "item_by_specification": {
-        "pipeHuge": {
-          "blocking": true,
-          "recipe": true,
-          "stacks_per_second": 4,
-          "step_size": 4096
-        },
-        "pipeLarge": {
-          "blocking": true,
-          "recipe": true,
-          "stacks_per_second": 2,
-          "step_size": 8192
-        },
-        "pipeMedium": {
-          "blocking": true,
-          "recipe": true,
-          "stacks_per_second": 1,
-          "step_size": 16384
-        }
-      }
+      "item_by_specification": {}
     },
     "processing_targets": {
       "bending": {

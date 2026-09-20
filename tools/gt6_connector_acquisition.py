@@ -302,9 +302,9 @@ EXPECTED_TESTS = [
     "nonmetalCatalogStaysTwentyFive",
 ]
 ITEM_EXPECTED_TESTS = [
-    "copperHugeItemTableCraftsFromDoublePlate",
-    "copperMediumTableCraftsFromCurvedPlate",
-    "copperRestrictiveCraftsFromMediumAndSteelRing",
+    "brassHugeItemTableCraftsFromDoublePlate",
+    "brassMediumTableCraftsFromCurvedPlate",
+    "brassRestrictiveCraftsFromMediumAndSteelRing",
     "itemTableDoesNotUseFlatPlate",
     "nonmetalCatalogStaysTwentyFive",
     "restrictiveUsesSteelRingNotInvented",
@@ -611,13 +611,13 @@ def item_readiness(unique_active: bool) -> dict[str, Any]:
 
 def build_item_overlay() -> dict[str, Any]:
     operands = _generated_item_table_operands()
-    copper_curved = gt6_resolve.resolve("OP.plateCurved(MT.Cu)")
-    copper_double = gt6_resolve.resolve("OP.plateDouble(MT.Cu)")
+    brass_curved = gt6_resolve.resolve("OP.plateCurved(MT.Brass)")
+    brass_double = gt6_resolve.resolve("OP.plateDouble(MT.Brass)")
     steel_ring = gt6_resolve.resolve("OP.ring(MT.Steel)")
-    copper_medium = GENERATED_ITEM_TABLE / "copper" / "item_pipe.json"
-    copper_huge = GENERATED_ITEM_TABLE / "copper" / "huge_item_pipe.json"
-    copper_restrictive = (
-        GENERATED_RESTRICTIVE / "copper" / "restrictive_item_pipe.json"
+    brass_medium = GENERATED_ITEM_TABLE / "brass" / "item_pipe.json"
+    brass_huge = GENERATED_ITEM_TABLE / "brass" / "huge_item_pipe.json"
+    brass_restrictive = (
+        GENERATED_RESTRICTIVE / "brass" / "restrictive_item_pipe.json"
     )
     return {
         "schema": "gt6-connector-acquisition-overlay-v1",
@@ -627,29 +627,30 @@ def build_item_overlay() -> dict[str, Any]:
         "item_table_live": sum(operands.values()),
         "item_table_operands": operands,
         "restrictive_live": _generated_restrictive_count(),
-        "copper_medium_table": copper_medium.is_file(),
-        "copper_huge_table": copper_huge.is_file(),
-        "copper_restrictive": copper_restrictive.is_file(),
-        "copper_plate_curved": {
-            "status": copper_curved.get("status"),
-            "item": str((copper_curved.get("form") or {}).get("item") or ""),
-            "table_recipe": copper_medium.is_file(),
+        "brass_medium_table": brass_medium.is_file(),
+        "brass_huge_table": brass_huge.is_file(),
+        "brass_restrictive": brass_restrictive.is_file(),
+        "brass_plate_curved": {
+            "status": brass_curved.get("status"),
+            "item": str((brass_curved.get("form") or {}).get("item") or ""),
+            "table_recipe": brass_medium.is_file(),
         },
-        "copper_plate_double": {
-            "status": copper_double.get("status"),
-            "item": str((copper_double.get("form") or {}).get("item") or ""),
-            "table_recipe": copper_huge.is_file(),
+        "brass_plate_double": {
+            "status": brass_double.get("status"),
+            "item": str((brass_double.get("form") or {}).get("item") or ""),
+            "table_recipe": brass_huge.is_file(),
         },
         "steel_ring": {
             "status": steel_ring.get("status"),
             "item": str((steel_ring.get("form") or {}).get("item") or ""),
-            "restrictive_recipe": copper_restrictive.is_file(),
+            "restrictive_recipe": brass_restrictive.is_file(),
         },
         "existing_extruder": list(ITEM_EXTRUDER_FILES),
         "nonmetal_catalog": 25,
         "note": (
-            "Ordinary medium/large table crafts use live curved_plate; huge "
-            "uses live double_plate. Restrictive uses matching gauge plus "
+            "GT6 addItemPipes starts at brass, not copper. Ordinary "
+            "medium/large table crafts use live curved_plate; huge uses "
+            "live double_plate. Restrictive uses matching gauge plus "
             "steel/ring. Flat plate and programmed_circuit are never stand-ins."
         ),
     }
@@ -983,12 +984,12 @@ def _check_item() -> list[str]:
     for name in ITEM_EXPECTED_TESTS:
         if name in core and name != "nonmetalCatalogStaysTwentyFive":
             errors.append(f"CrucibleCraftGameTests absorbed {name}")
-    if not live["copper_medium_table"]:
-        errors.append("missing generated copper medium item-pipe table recipe")
-    if not live["copper_huge_table"]:
-        errors.append("missing generated copper huge item-pipe table recipe")
-    if not live["copper_restrictive"]:
-        errors.append("missing generated copper restrictive recipe")
+    if not live["brass_medium_table"]:
+        errors.append("missing generated brass medium item-pipe table recipe")
+    if not live["brass_huge_table"]:
+        errors.append("missing generated brass huge item-pipe table recipe")
+    if not live["brass_restrictive"]:
+        errors.append("missing generated brass restrictive recipe")
     operands = live.get("item_table_operands") or {}
     if "plate" in operands:
         errors.append("item-pipe table crafts used flat plate")
@@ -1059,6 +1060,7 @@ def _check_eu() -> list[str]:
         if (
             "cruciblecraft:rubber/plate" not in shapeless_text
             and "any_rubber_plates" not in shapeless_text
+            and "c:plates/rubber" not in shapeless_text
         ):
             errors.append(
                 "EU shapeless cable is not gated on live rubber plate"

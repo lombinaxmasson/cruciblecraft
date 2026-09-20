@@ -102,6 +102,8 @@
       }
     },
     "source_id": 0,
+    "source_material_id": 0,
+    "source_material_name": "NeutralMatter",
     "source_name": "NeutralMatter",
     "source_thermal": {
       "boiling_point_celsius": -253.14999999999998,
@@ -118,13 +120,15 @@
       "quality": 0,
       "speed": 1.0,
       "types": 0
-    },
-    "source_material_id": 0,
-    "source_material_name": "NeutralMatter"
+    }
   },
   "id": "matter_neutral",
   "metadata_only": true,
   "molten_fluid": false,
+  "name": {
+    "en_us": "Neutral Matter",
+    "zh_cn": "中性物质"
+  },
   "no_decompose": true,
   "tag_name": "matter_neutral",
   "thermal": {
@@ -133,9 +137,5 @@
     "melting_point": -259.15
   },
   "tier": 0,
-  "tint_style": "matte",
-  "name": {
-    "en_us": "Neutral Matter",
-    "zh_cn": "中性物质"
-  }
+  "tint_style": "matte"
 }

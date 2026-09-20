@@ -508,8 +508,8 @@ public final class ToolRules {
 
     private static MaterialRule.ItemResource knife() {
         return fixed(
-                ModItems.FLINT_KNIFE.getId(),
-                null,
+                ModItems.MATERIAL_KNIFE.getId(),
+                "flint",
                 Optional.of(ItemInputAction.wear(1)));
     }
 

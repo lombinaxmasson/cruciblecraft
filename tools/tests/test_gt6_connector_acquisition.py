@@ -205,9 +205,9 @@ class Gt6ConnectorAcquisitionTest(unittest.TestCase):
         self.assertEqual([], errors)
         overlay = census.load_json(runtime.ITEM_OVERLAY_PATH)
         self.assertEqual("item", overlay["domain"])
-        self.assertTrue(overlay["copper_medium_table"])
-        self.assertTrue(overlay["copper_huge_table"])
-        self.assertTrue(overlay["copper_restrictive"])
+        self.assertTrue(overlay["brass_medium_table"])
+        self.assertTrue(overlay["brass_huge_table"])
+        self.assertTrue(overlay["brass_restrictive"])
         self.assertIn("curved_plate", overlay["item_table_operands"])
         self.assertIn("double_plate", overlay["item_table_operands"])
         self.assertNotIn("plate", overlay["item_table_operands"])
@@ -217,7 +217,7 @@ class Gt6ConnectorAcquisitionTest(unittest.TestCase):
         self.assertIn("addRestrictiveItemPipeRecipes", provider)
         self.assertIn("pipe/item_table/", provider)
         tests = runtime.ITEM_GAME_TESTS.read_text(encoding="utf-8")
-        self.assertIn("copperMediumTableCraftsFromCurvedPlate", tests)
+        self.assertIn("brassMediumTableCraftsFromCurvedPlate", tests)
         self.assertIn("restrictiveUsesSteelRingNotInvented", tests)
         self.assertNotIn(
             "from tools import gt6_item" + "_pipe_runtime",
@@ -278,7 +278,8 @@ class Gt6ConnectorAcquisitionTest(unittest.TestCase):
         shapeless_text = shapeless.read_text(encoding="utf-8")
         self.assertTrue(
             "cruciblecraft:rubber/plate" in shapeless_text
-            or "any_rubber_plates" in shapeless_text,
+            or "any_rubber_plates" in shapeless_text
+            or "c:plates/rubber" in shapeless_text,
             shapeless_text,
         )
         tests = runtime.EU_GAME_TESTS.read_text(encoding="utf-8")

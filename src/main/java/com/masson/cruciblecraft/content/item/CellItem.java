@@ -120,7 +120,7 @@ public final class CellItem extends Item {
                 CellFluidHandler.CAPACITY).withStyle(ChatFormatting.GRAY));
     }
 
-    private SimpleFluidContent content(ItemStack stack) {
+    public SimpleFluidContent content(ItemStack stack) {
         return stack.getOrDefault(component.get(), SimpleFluidContent.EMPTY);
     }
 }

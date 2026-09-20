@@ -47,6 +47,8 @@ replay，逐文件来源指针与 sha 钉见 `tools/` 下的来源政策产物�
   LGPL-2.1-only SPDX 文件头，且不是模组运行时源码集。
 - **Jade**（可选，方块信息）：https://modrinth.com/mod/jade
 - **EMI**（可选，配方查看）：https://modrinth.com/mod/emi
+- **Reliable EMI / REMI**（可选，EMI 物品列表按材料前缀、工具种类、加工机 / 转换器 kind，以及玻璃 / 木板 / 台阶等建筑方块、书架、抽屉、保险箱、箱子、料斗、坩埚、模具折叠；原 EMI++）：https://modrinth.com/mod/reliable-emi
+- **YetAnotherConfigLib**（REMI 依赖，不由本模组直接调用）：https://modrinth.com/mod/yacl
 - **KubeJS**（可选，启动期材质注册）：https://modrinth.com/mod/kubejs
 
 以上可选兼容模组均未捆绑；运行时按能力门控启用集成。

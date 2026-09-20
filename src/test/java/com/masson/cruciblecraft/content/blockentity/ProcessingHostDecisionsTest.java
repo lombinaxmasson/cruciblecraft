@@ -7,9 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.Optional;
 
-import com.masson.cruciblecraft.machine.processing.MachineTransaction;
-
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 
 import org.junit.jupiter.api.Test;
@@ -17,13 +16,13 @@ import org.junit.jupiter.api.Test;
 class ProcessingHostDecisionsTest {
     /**
      * Deferred block-level GameTests: Crusher capability mutation before save,
-     * Crusher chance-roll restart, and Coke Oven item+fluid+HEAT completion
+     * Crusher chance-roll restart, and Coke Oven item+fluid+TU completion
      * across chunk reload.
      */
     private static final List<String> FULL_BLOCK_GAME_TESTS = List.of(
             "crusher_capability_autosave",
             "crusher_chance_restart",
-            "coke_oven_atomic_heat_reload");
+            "coke_oven_atomic_tu_reload");
 
     @Test
     void actualIdleHostDecisionOnlyPersistsTransitions() {
@@ -56,8 +55,20 @@ class ProcessingHostDecisionsTest {
         CrusherBlockEntity.class.getConstructor(BlockPos.class, BlockState.class);
         CokeOvenBlockEntity.class.getConstructor(BlockPos.class, BlockState.class);
         assertEquals(
-                MachineTransaction.class,
-                CokeOvenBlockEntity.class.getDeclaredField("pendingTransaction").getType());
+                java.util.List.class,
+                CokeOvenBlockEntity.class.getDeclaredField("pendingOutputs").getType());
+        assertEquals(16, CokeOvenBlockEntity.PARALLEL);
+        assertEquals(9, CokeOvenBlockEntity.OUTPUT_SLOT_COUNT);
+        assertEquals(0, CokeOvenBlockEntity.parallelOperations(0, 1));
+        assertEquals(16, CokeOvenBlockEntity.parallelOperations(64, 1));
+        BlockPos controller = new BlockPos(0, 0, 0);
+        assertTrue(CokeOvenBlockEntity.isInsideStructure(
+                controller, Direction.NORTH, new BlockPos(0, 0, 1)));
+        assertTrue(CokeOvenBlockEntity.isInsideStructure(
+                controller, Direction.NORTH, new BlockPos(1, 0, 1)));
+        BlockPos east = new BlockPos(2, 0, 0);
+        assertTrue(CokeOvenBlockEntity.isInsideStructure(
+                east, Direction.NORTH, new BlockPos(1, 0, 1)));
         assertEquals(3, FULL_BLOCK_GAME_TESTS.size());
     }
 }

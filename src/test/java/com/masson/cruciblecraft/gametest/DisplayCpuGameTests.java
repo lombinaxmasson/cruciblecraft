@@ -352,7 +352,7 @@ public final class DisplayCpuGameTests {
 
     private static ItemPipeBlock itemPipe() {
         return (ItemPipeBlock) ModBlocks.pipeBlock(
-                "copper",
+                "brass",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
     }

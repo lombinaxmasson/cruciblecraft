@@ -89,6 +89,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.STEEL_DUST_FUNNEL.get());
         dropSelf(ModBlocks.LU_FIBER_CABLE.get());
         dropSelf(ModBlocks.LASER_ENGRAVER.get());
+        dropSelf(ModBlocks.AUTOMATIC_HAMMER.get());
+        dropSelf(ModBlocks.STEEL_AUTOMATIC_HAMMER.get());
+        dropSelf(ModBlocks.TITANIUM_AUTOMATIC_HAMMER.get());
+        dropSelf(ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER.get());
         dropSelf(ModBlocks.FUSION_REACTOR.get());
         dropSelf(ModBlocks.LARGE_HEAT_EXCHANGER.get());
         dropSelf(ModBlocks.BEDROCK_DRILL.get());
@@ -191,6 +195,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 dropSelf(block);
             }
         }
+        ModBlocks.gtWoodBlocks().forEach(holder -> dropSelf(holder.get()));
+        ModBlocks.bathPanelBlocksById().values().forEach(
+                holder -> dropSelf(holder.get()));
     }
 
     private net.minecraft.world.level.storage.loot.LootTable.Builder denseRockOreLoot(
@@ -245,6 +252,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.STEEL_DUST_FUNNEL.get(),
                 ModBlocks.LU_FIBER_CABLE.get(),
                 ModBlocks.LASER_ENGRAVER.get(),
+                ModBlocks.AUTOMATIC_HAMMER.get(),
+                ModBlocks.STEEL_AUTOMATIC_HAMMER.get(),
+                ModBlocks.TITANIUM_AUTOMATIC_HAMMER.get(),
+                ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER.get(),
                 ModBlocks.FUSION_REACTOR.get(),
                 ModBlocks.LARGE_HEAT_EXCHANGER.get(),
                 ModBlocks.BEDROCK_DRILL.get(),
@@ -288,6 +299,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.bathRemainderBlockObjectBlocks().forEach(
                 holder -> blocks.add(holder.get()));
         ModBlocks.gtBuildingBlockObjectBlocks().forEach(
+                holder -> blocks.add(holder.get()));
+        ModBlocks.gtWoodBlocks().forEach(holder -> blocks.add(holder.get()));
+        ModBlocks.bathPanelBlocksById().values().forEach(
                 holder -> blocks.add(holder.get()));
         ModBlocks.treeSaplings().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.treeLogs().forEach(holder -> blocks.add(holder.get()));

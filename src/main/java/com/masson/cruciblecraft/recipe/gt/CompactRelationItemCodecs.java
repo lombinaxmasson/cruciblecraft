@@ -138,10 +138,11 @@ final class CompactRelationItemCodecs {
     }
 
     private static DataResult<Item> builtInItem(ResourceLocation itemId) {
-        if (!BuiltInRegistries.ITEM.containsKey(itemId)) {
+        ResourceLocation resolved = PrefixMaterialItemCodecs.flattenLegacyVanillaItem(itemId);
+        if (resolved == null || !BuiltInRegistries.ITEM.containsKey(resolved)) {
             return DataResult.error(
                     () -> "Compact item is not in BuiltInRegistries.ITEM: " + itemId);
         }
-        return DataResult.success(BuiltInRegistries.ITEM.get(itemId));
+        return DataResult.success(BuiltInRegistries.ITEM.get(resolved));
     }
 }

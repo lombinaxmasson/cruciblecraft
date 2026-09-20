@@ -25,16 +25,19 @@ class CokeOvenResourceTest {
                 assertTrue(recipe.get("map").getAsString()
                         .equals("cruciblecraft:coke_oven"));
                 assertTrue(recipe.get("eut").getAsInt() == 0);
-                assertTrue(recipe.getAsJsonArray("fluid_outputs")
+                String fluid = recipe.getAsJsonArray("fluid_outputs")
                         .get(0).getAsJsonObject()
-                        .get("id").getAsString()
-                        .equals("cruciblecraft:creosote"));
+                        .get("id").getAsString();
+                assertTrue(
+                        fluid.equals("cruciblecraft:creosote")
+                                || fluid.equals("cruciblecraft:oil"),
+                        path + " fluid must be creosote or oil");
                 assertTrue(recipe.getAsJsonObject("provenance")
                         .get("source_kind").getAsString()
                         .equals("gt6_java_source"));
             }
         }
-        assertTrue(authoredRows == 24, "expected 24 authored coke oven rows");
+        assertTrue(authoredRows == 40, "expected 40 authored coke oven rows");
     }
 
     @Test

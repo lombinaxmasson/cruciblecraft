@@ -92,8 +92,8 @@ public abstract class MaterialDiggerItem extends MaterialToolItem {
         }
         if (!level.isClientSide
                 && state.getDestroySpeed(level, pos) != 0.0F) {
-            stack.hurtAndBreak(
-                    1, miningEntity, EquipmentSlot.MAINHAND);
+            ToolBreakScrap.hurtAndBreak(
+                    stack, 1, miningEntity, EquipmentSlot.MAINHAND);
         }
         return true;
     }
@@ -112,8 +112,8 @@ public abstract class MaterialDiggerItem extends MaterialToolItem {
             LivingEntity target,
             LivingEntity attacker) {
         if (canApplyDurabilityDamage(stack)) {
-            stack.hurtAndBreak(
-                    2, attacker, EquipmentSlot.MAINHAND);
+            ToolBreakScrap.hurtAndBreak(
+                    stack, 2, attacker, EquipmentSlot.MAINHAND);
         }
     }
 

@@ -35,7 +35,9 @@ import com.masson.cruciblecraft.recipe.rule.ToolRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.recipe.crafting.CraftingTools;
 import com.masson.cruciblecraft.recipe.crafting.PrefixPackRecipe;
+import com.masson.cruciblecraft.recipe.crafting.RockCobbleCrafting;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
 import com.masson.cruciblecraft.recipe.crafting.ToolHeadAssemblyRecipe;
 import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRecipePlan;
@@ -79,6 +81,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.common.conditions.ICondition;
+import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 
@@ -102,6 +105,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         addHopperRecipes(recipesOnly);
         addSensorRecipes(recipesOnly);
         addStorageRecipes(recipesOnly);
+        addRockCobbleRecipes(recipesOnly);
         MaterialCatalog.startupValues().stream()
                 .sorted(Comparator.comparing(MaterialDefinition::id))
                 .forEach(material -> addDerivedOreRecipes(recipesOnly, material));
@@ -133,7 +137,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                                     "aluminium",
                                     MaterialPrefixes.SCREW)),
                     Map.of(
-                            "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
+                            "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()),
                             "d", Ingredient.of(
                                     ModItems.MATERIAL_SCREWDRIVER.get())),
                     new ItemStack(machineCoverItem("cover_blank")));
@@ -807,9 +811,9 @@ public final class ModRecipeProvider extends RecipeProvider {
                                         MaterialPrefixes.LONG_ROD)),
                         Map.of(
                                 "r",
-                                Ingredient.of(ModItems.MATERIAL_SOFT_HAMMER.get()),
+                                CraftingTools.of(ModItems.MATERIAL_SOFT_HAMMER.get()),
                                 "s",
-                                Ingredient.of(ModItems.MATERIAL_SAW.get())),
+                                CraftingTools.of(ModItems.MATERIAL_SAW.get())),
                         new ItemStack(result));
                 case "plastic_box" -> acceptShapedCatalyst(
                         output,
@@ -830,7 +834,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                                         MaterialPrefixes.SCREW)),
                         Map.of(
                                 "d",
-                                Ingredient.of(ModItems.MATERIAL_SCREWDRIVER.get())),
+                                CraftingTools.of(ModItems.MATERIAL_SCREWDRIVER.get())),
                         new ItemStack(result));
                 case "charging_locker" -> ShapedRecipeBuilder.shaped(
                                 RecipeCategory.MISC, result)
@@ -932,6 +936,8 @@ public final class ModRecipeProvider extends RecipeProvider {
         addHeatExchangerRecipes(output);
         addSteamTurbineRecipes(output);
         addMteInPlaceAcquisitionRecipes(output);
+        ExtruderShapeRecipes.addAll(output);
+        addAutomaticHammerRecipes(output);
         for (MachineVariant variant
                 : com.masson.cruciblecraft.registry.ModMachineVariants.ALL) {
             emitAcquisition(output, variant);
@@ -1232,14 +1238,9 @@ public final class ModRecipeProvider extends RecipeProvider {
         addEuCableShapelessRecipes(output);
         addEuWirePackRecipes(output);
         addInsulatedRedstoneLaminatorRecipes(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.FLINT_KNIFE.get())
-                .pattern("SF")
-                .define('S', Items.STICK)
-                .define('F', Items.FLINT)
-                .unlockedBy("has_flint", has(Items.FLINT))
-                .save(output, id("tools/flint_knife"));
         addWorkbenchToolRecipes(output);
         addDustPrefixPackRecipes(output);
+        addPlatePrefixPackRecipes(output);
         ToolPatternCatalog.DEFINITIONS.forEach(pattern -> {
             ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
                             RecipeCategory.TOOLS,
@@ -1291,6 +1292,179 @@ public final class ModRecipeProvider extends RecipeProvider {
         output.accept(
                 id("anvil/raw_ore_to_crushed_ore"),
                 new MaterialRuleRecipe(MaterialChainRules.ANVIL_RAW_TO_CRUSHED),
+                null);
+        List<String> smithable = List.of("material.tag(\"PROCESSING.SMITHABLE\")");
+        output.accept(
+                id("anvil_bend_big/plate_to_curved_plate"),
+                materialRule(
+                        ModRecipeMaps.ANVIL_BEND_BIG.id(),
+                        MaterialPrefixes.PLATE,
+                        MaterialPrefixes.CURVED_PLATE,
+                        1, 1, 1, 10_000, 4, Map.of(), smithable),
+                null);
+        output.accept(
+                id("anvil_bend_big/rod_to_small_spring"),
+                materialRule(
+                        ModRecipeMaps.ANVIL_BEND_BIG.id(),
+                        MaterialPrefixes.ROD,
+                        MaterialPrefixes.SMALL_SPRING,
+                        1, 1, 1, 10_000, 3, Map.of(), smithable),
+                null);
+        output.accept(
+                id("anvil_bend_big/long_rod_to_spring"),
+                materialRule(
+                        ModRecipeMaps.ANVIL_BEND_BIG.id(),
+                        MaterialPrefixes.LONG_ROD,
+                        MaterialPrefixes.SPRING,
+                        1, 1, 1, 10_000, 4, Map.of(), smithable),
+                null);
+        output.accept(
+                id("anvil_bend_small/plate_to_foils"),
+                materialRule(
+                        ModRecipeMaps.ANVIL_BEND_SMALL.id(),
+                        MaterialPrefixes.PLATE,
+                        MaterialPrefixes.FOIL,
+                        1, 2, 1, 10_000, 4, Map.of(),
+                        List.of(
+                                "material.tag(\"PROCESSING.SMITHABLE\")",
+                                "!material.tag(\"COMPOUNDS.COATED\")")),
+                null);
+        output.accept(
+                id("anvil_bend_small/rod_to_ring"),
+                materialRule(
+                        ModRecipeMaps.ANVIL_BEND_SMALL.id(),
+                        MaterialPrefixes.ROD,
+                        MaterialPrefixes.RING,
+                        1, 1, 1, 10_000, 3, Map.of(), smithable),
+                null);
+        List<String> smithableUncoated = List.of(
+                "material.tag(\"PROCESSING.SMITHABLE\")",
+                "!material.tag(\"COMPOUNDS.COATED\")");
+        output.accept(
+                id("welder/ingots_to_double_ingot"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(ruleItem(MaterialPrefixes.INGOT, 2)),
+                        List.of(ruleItem(MaterialPrefixes.DOUBLE_INGOT, 1)),
+                        160, 48, 0, smithableUncoated),
+                null);
+        output.accept(
+                id("welder/rods_to_long_rod"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(ruleItem(MaterialPrefixes.ROD, 2)),
+                        List.of(ruleItem(MaterialPrefixes.LONG_ROD, 1)),
+                        80, 24, 0, smithable),
+                null);
+        output.accept(
+                id("welder/bolts_to_rod"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(ruleItem(MaterialPrefixes.BOLT, 4)),
+                        List.of(ruleItem(MaterialPrefixes.ROD, 1)),
+                        64, 16, 0, smithable),
+                null);
+        output.accept(
+                id("welder/bolts_to_long_rod"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(ruleItem(MaterialPrefixes.BOLT, 8)),
+                        List.of(ruleItem(MaterialPrefixes.LONG_ROD, 1)),
+                        80, 24, 0, smithable),
+                null);
+        output.accept(
+                id("welder/small_casings_to_plate"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(ruleItem(
+                                MaterialPrefixCatalog.require("small_casing"), 2)),
+                        List.of(ruleItem(MaterialPrefixes.PLATE, 1)),
+                        80, 24, 0, smithableUncoated),
+                null);
+        output.accept(
+                id("welder/plates_and_long_rods_to_machine_casing"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(
+                                ruleItem(MaterialPrefixes.PLATE, 6),
+                                ruleItem(MaterialPrefixes.LONG_ROD, 2)),
+                        List.of(ruleItem(MaterialPrefixes.MACHINE_CASING, 1)),
+                        320, 64, 0, smithable),
+                null);
+        output.accept(
+                id("welder/curved_plates_and_ring_to_rotor"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(
+                                ruleItem(MaterialPrefixes.CURVED_PLATE, 4),
+                                ruleItem(MaterialPrefixes.RING, 1)),
+                        List.of(ruleItem(MaterialPrefixes.ROTOR, 1)),
+                        300, 64, 0, smithable),
+                null);
+        output.accept(
+                id("welder/ingots_to_triple_ingot"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(ruleItem(MaterialPrefixes.INGOT, 3)),
+                        List.of(ruleItem(MaterialPrefixes.TRIPLE_INGOT, 1)),
+                        240, 48, 0, smithableUncoated),
+                null);
+        output.accept(
+                id("welder/ingots_to_quadruple_ingot"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(ruleItem(MaterialPrefixes.INGOT, 4)),
+                        List.of(ruleItem(
+                                MaterialPrefixCatalog.require("quadruple_ingot"), 1)),
+                        320, 48, 0, smithableUncoated),
+                null);
+        output.accept(
+                id("welder/ingots_to_quintuple_ingot"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(ruleItem(MaterialPrefixes.INGOT, 5)),
+                        List.of(ruleItem(
+                                MaterialPrefixCatalog.require("quintuple_ingot"), 1)),
+                        400, 48, 0, smithableUncoated),
+                null);
+        output.accept(
+                id("welder/ingots_to_block"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(ruleItem(MaterialPrefixes.INGOT, 9)),
+                        List.of(ruleItem(MaterialPrefixes.BLOCK, 1)),
+                        720, 48, 0, smithableUncoated),
+                null);
+        output.accept(
+                id("welder/double_plates_and_long_rods_to_machine_casing_double"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(
+                                ruleItem(MaterialPrefixes.DOUBLE_PLATE, 6),
+                                ruleItem(MaterialPrefixes.LONG_ROD, 2)),
+                        List.of(ruleItem(MaterialPrefixes.MACHINE_CASING_DOUBLE, 1)),
+                        560, 64, 0, smithable),
+                null);
+        output.accept(
+                id("welder/quadruple_plates_and_long_rods_to_machine_casing_quadruple"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(
+                                ruleItem(MaterialPrefixes.QUADRUPLE_PLATE, 6),
+                                ruleItem(MaterialPrefixes.LONG_ROD, 2)),
+                        List.of(ruleItem(
+                                MaterialPrefixes.MACHINE_CASING_QUADRUPLE, 1)),
+                        1040, 64, 0, smithable),
+                null);
+        output.accept(
+                id("welder/dense_plates_and_long_rods_to_machine_casing_dense"),
+                materialRule(
+                        ModRecipeMaps.WELDER.id(),
+                        List.of(
+                                ruleItem(MaterialPrefixes.DENSE_PLATE, 6),
+                                ruleItem(MaterialPrefixes.LONG_ROD, 2)),
+                        List.of(ruleItem(MaterialPrefixes.MACHINE_CASING_DENSE, 1)),
+                        2240, 64, 0, smithable),
                 null);
         MaterialChainRules.ALL.stream()
                 .filter(definition ->
@@ -1389,6 +1563,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                     output, result, casing, material, path);
             case "slicer" -> slicerCrafting(
                     output, result, casing, material, path);
+            case "squeezer" -> squeezerCrafting(
+                    output, result, casing, material, path);
+            case "laser_engraver" -> laserEngraverCrafting(
+                    output, result, casing, material, path);
+            case "laser_welder" -> laserWelderCrafting(
+                    output, result, casing, material, path);
             case "nanofab" -> {
                 // Native rows are acquisition-blocked. PUV2+/OMEGA rows keep
                 // the GT6 nanofab grid, which needs Ar/Kr/Xe laser cells.
@@ -1466,8 +1646,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                 List.of("wPh", "XMX", "CPW"),
                 ingredients,
                 Map.of(
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
-                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
                 new ItemStack(result));
     }
 
@@ -1608,14 +1788,14 @@ public final class ModRecipeProvider extends RecipeProvider {
             String joined = String.join("", pattern);
             if (joined.indexOf('s') >= 0) {
                 catalysts.put(
-                        "s", Ingredient.of(ModItems.MATERIAL_SAW.get()));
+                        "s", CraftingTools.of(ModItems.MATERIAL_SAW.get()));
             }
             catalysts.put(
-                    "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()));
+                    "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()));
             catalysts.put(
-                    "z", Ingredient.of(ModItems.MATERIAL_FILE.get()));
+                    "z", CraftingTools.of(ModItems.MATERIAL_FILE.get()));
             catalysts.put(
-                    "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()));
+                    "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()));
             acceptShapedCatalyst(
                     output,
                     "pipe/table/"
@@ -1675,11 +1855,11 @@ public final class ModRecipeProvider extends RecipeProvider {
             ingredients.put("P", keyedIngredient(plate, pipe.materialId(), plateForm));
             Map<String, Ingredient> catalysts = new LinkedHashMap<>();
             catalysts.put(
-                    "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()));
+                    "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()));
             catalysts.put(
-                    "z", Ingredient.of(ModItems.MATERIAL_FILE.get()));
+                    "z", CraftingTools.of(ModItems.MATERIAL_FILE.get()));
             catalysts.put(
-                    "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()));
+                    "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()));
             acceptShapedCatalyst(
                     output,
                     "pipe/item_table/"
@@ -1735,7 +1915,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             ingredients.put("R", keyedIngredient(steelRing, "steel", MaterialPrefixes.RING));
             Map<String, Ingredient> catalysts = new LinkedHashMap<>();
             catalysts.put(
-                    "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()));
+                    "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()));
             acceptShapedCatalyst(
                     output,
                     "pipe/restrictive/"
@@ -1806,7 +1986,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             Map<String, Ingredient> catalysts = new LinkedHashMap<>();
             catalysts.put(
                     "x",
-                    Ingredient.of(ModItems.MATERIAL_WIRE_CUTTER.get()));
+                    CraftingTools.of(ModItems.MATERIAL_WIRE_CUTTER.get()));
             acceptShapedCatalyst(
                     output,
                     "cable/table/"
@@ -2178,8 +2358,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                     List.of("SSS", "wGh", "SMS"),
                     ingredients,
                     Map.of(
-                            "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
-                            "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                            "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
+                            "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
                     new ItemStack(result));
             return;
         }
@@ -2194,8 +2374,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                     List.of("wG ", "GMG", " Gh"),
                     ingredients,
                     Map.of(
-                            "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
-                            "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                            "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
+                            "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
                     new ItemStack(result));
             return;
         }
@@ -2213,8 +2393,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                     List.of("SGS", "XXX", "wMh"),
                     ingredients,
                     Map.of(
-                            "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
-                            "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                            "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
+                            "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
                     new ItemStack(result));
             return;
         }
@@ -2380,8 +2560,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                 List.of("wMh", "BCB"),
                 ingredients,
                 Map.of(
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
-                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
                 new ItemStack(result));
     }
 
@@ -2403,8 +2583,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                 List.of("wUh", "PMP", "BCB"),
                 ingredients,
                 Map.of(
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
-                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
                 new ItemStack(result));
     }
 
@@ -2433,7 +2613,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "machines/" + id,
                 List.of("SwS", "GMG", "SCS"),
                 ingredients,
-                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -2456,7 +2636,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "machines/" + id,
                 List.of("CwC", "PMP", "PPP"),
                 ingredients,
-                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -2493,7 +2673,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "machines/" + id,
                 List.of("RPG", "wMG", "   "),
                 ingredients,
-                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -2514,8 +2694,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                 List.of("ShS", "GMG", "SwS"),
                 ingredients,
                 Map.of(
-                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -2545,8 +2725,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                 List.of("ShS", "GMG", "SwS"),
                 ingredients,
                 Map.of(
-                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
-                        "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -2599,7 +2779,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "machines/" + id,
                 List.of("XPw", "CMW", "   "),
                 ingredients,
-                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -2635,8 +2815,137 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "machines/" + id,
                 List.of("PRw", "YMC", "   "),
                 ingredients,
+                Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
+    }
+
+    private static void squeezerCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("R", materialIngredient(material, MaterialPrefixes.ROD));
+        ingredients.put("S", materialIngredient(material, MaterialPrefixes.SPRING));
+        ingredients.put("P", materialIngredient(material, MaterialPrefixes.TRIPLE_PLATE));
+        ingredients.put("M", Ingredient.of(casing));
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("RS ", "PM ", "Pw "),
+                ingredients,
                 Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
+    }
+
+    private static void laserEngraverCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        int tier = laserTier(id);
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("T", materialIngredient(material, MaterialPrefixes.SCREW));
+        ingredients.put("G", materialIngredient(material, MaterialPrefixes.SMALL_GEAR));
+        ingredients.put("P", Ingredient.of(Items.TERRACOTTA));
+        ingredients.put("C", Ingredient.of(ModItems.technologicalPart(
+                circuitPath(tier)).get()));
+        ingredients.put("M", Ingredient.of(casing));
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("TdT", "GPG", "CMC"),
+                ingredients,
+                Map.of("d", Ingredient.of(ModItems.MATERIAL_SCREWDRIVER.get())),
+                new ItemStack(result));
+    }
+
+    private static void laserWelderCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        int tier = laserTier(id);
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("T", materialIngredient(material, MaterialPrefixes.SCREW));
+        ingredients.put("L", yellowLensIngredient());
+        ingredients.put("G", materialIngredient(material, MaterialPrefixes.SMALL_GEAR));
+        ingredients.put("P", Ingredient.of(Items.TERRACOTTA));
+        ingredients.put("C", Ingredient.of(ModItems.technologicalPart(
+                circuitPath(tier)).get()));
+        ingredients.put("M", Ingredient.of(casing));
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("TLT", "GPG", "CMC"),
+                ingredients,
+                Map.of(),
+                new ItemStack(result));
+    }
+
+    private static Ingredient yellowLensIngredient() {
+        MaterialPrefix lens = MaterialPrefixCatalog.require("lens");
+        Ingredient[] parts = List.of(
+                        "yellow_sapphire",
+                        "heliodor",
+                        "amber",
+                        "topaz")
+                .stream()
+                .map(material -> materialIngredient(material, lens))
+                .toArray(Ingredient[]::new);
+        return CompoundIngredient.of(parts);
+    }
+
+    private static int laserTier(String id) {
+        return switch (id) {
+            case "laser_welder" -> 1;
+            case "aluminium_laser_engraver", "aluminium_laser_welder" -> 2;
+            case "stainless_steel_laser_engraver",
+                    "stainless_steel_laser_welder" -> 3;
+            case "chromium_laser_engraver", "chromium_laser_welder" -> 4;
+            case "titanium_laser_engraver", "titanium_laser_welder" -> 5;
+            default -> throw new IllegalStateException(
+                    "T1 laser engraver must use its handwritten recipe: " + id);
+        };
+    }
+
+    private static void addAutomaticHammerRecipes(RecipeOutput output) {
+        Map<String, Item> results = Map.of(
+                "bronze", ModItems.AUTOMATIC_HAMMER.get(),
+                "steel", ModItems.STEEL_AUTOMATIC_HAMMER.get(),
+                "titanium", ModItems.TITANIUM_AUTOMATIC_HAMMER.get(),
+                "tungstensteel", ModItems.TUNGSTENSTEEL_AUTOMATIC_HAMMER.get());
+        MaterialPrefix hammerHead =
+                MaterialPrefixCatalog.require("tool_head_hammer");
+        results.forEach((material, result) -> {
+            Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+            ingredients.put(
+                    "R",
+                    materialIngredient(material, MaterialPrefixes.LONG_ROD));
+            ingredients.put(
+                    "M",
+                    materialIngredient(
+                            material, MaterialPrefixes.MACHINE_CASING_DOUBLE));
+            ingredients.put(
+                    "S",
+                    materialIngredient(material, MaterialPrefixes.SPRING));
+            ingredients.put("H", materialIngredient(material, hammerHead));
+            String recipeName = "bronze".equals(material)
+                    ? "automatic_hammer"
+                    : material + "_automatic_hammer";
+            acceptShapedCatalyst(
+                    output,
+                    "machines/" + recipeName,
+                    List.of("wR ", "MS ", "hH "),
+                    ingredients,
+                    Map.of(
+                            "w", Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
+                            "h", Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                    new ItemStack(result));
+        });
     }
 
     private static void addCasingFormRecipes(RecipeOutput output) {
@@ -2692,7 +3001,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "components/" + material + "/" + casingForm.serializedName(),
                 List.of("YXX", "XwX", "XXY"),
                 ingredients,
-                Map.of("w", Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
     }
 
@@ -2746,7 +3055,28 @@ public final class ModRecipeProvider extends RecipeProvider {
                 planned.pattern(),
                 ingredients,
                 catalysts,
-                result);
+                result,
+                planned.mirrored());
+    }
+
+    private static void addRockCobbleRecipes(RecipeOutput output) {
+        MaterialPrefix rock = MaterialPrefixCatalog.require("rock");
+        RockCobbleCrafting.cobbleResults().forEach((materialId, cobbleId) -> {
+            Item rockItem = MaterialLookup.item(materialId, rock).orElse(null);
+            if (rockItem == null) {
+                return;
+            }
+            Item cobble = BuiltInRegistries.ITEM.getOptional(cobbleId).orElse(null);
+            if (cobble == null || cobble == Items.AIR) {
+                return;
+            }
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, cobble)
+                    .pattern("XX")
+                    .pattern("XX")
+                    .define('X', rockItem)
+                    .unlockedBy("has_rock", has(rockItem))
+                    .save(output, id("rocks/" + materialId + "_to_cobble"));
+        });
     }
 
     private static void addDustPrefixPackRecipes(RecipeOutput output) {
@@ -2772,6 +3102,13 @@ public final class ModRecipeProvider extends RecipeProvider {
                 MaterialPrefixes.STORAGE_DUST, 1, MaterialPrefixes.DUST, 9, 0, 2);
         emitPrefixPack(output, "prefix_pack/storage_dust_to_small_dust",
                 MaterialPrefixes.STORAGE_DUST, 1, MaterialPrefixes.SMALL_DUST, 36, 1, 2);
+    }
+
+    private static void addPlatePrefixPackRecipes(RecipeOutput output) {
+        emitPrefixPack(output, "prefix_pack/plate_to_storage_plate",
+                MaterialPrefixes.PLATE, 9, MaterialPrefixes.STORAGE_PLATE, 1, 0, 1);
+        emitPrefixPack(output, "prefix_pack/storage_plate_to_plate",
+                MaterialPrefixes.STORAGE_PLATE, 1, MaterialPrefixes.PLATE, 9, 0, 1);
     }
 
     private static void emitPrefixPack(
@@ -2819,10 +3156,22 @@ public final class ModRecipeProvider extends RecipeProvider {
             Map<String, Ingredient> ingredients,
             Map<String, Ingredient> catalysts,
             ItemStack result) {
+        acceptShapedCatalyst(
+                output, path, pattern, ingredients, catalysts, result, false);
+    }
+
+    private static void acceptShapedCatalyst(
+            RecipeOutput output,
+            String path,
+            List<String> pattern,
+            Map<String, Ingredient> ingredients,
+            Map<String, Ingredient> catalysts,
+            ItemStack result,
+            boolean mirrored) {
         output.accept(
                 id(path),
                 new ShapedCatalystRecipe(
-                        pattern, ingredients, catalysts, result),
+                        pattern, ingredients, catalysts, result, mirrored),
                 null);
     }
 
@@ -2853,6 +3202,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "bronze_fuel_engine",
                     "bronze_small_gas_turbine",
                     "bronze_dynamo",
+                    "clay_brick_burning_box_brick",
                     "steel_galvanized_electric_motor",
                     "steel_galvanized_electric_heater",
                     "aluminium_electric_heater",
@@ -2998,9 +3348,9 @@ public final class ModRecipeProvider extends RecipeProvider {
                         Map.of("P", plate.orElseThrow()),
                         Map.of(
                                 "w",
-                                Ingredient.of(ModItems.MATERIAL_WRENCH.get()),
+                                CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
                                 "h",
-                                Ingredient.of(ModItems.SMITHING_HAMMER.get())),
+                                CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
                         new ItemStack(result)),
                 null);
     }
@@ -3131,8 +3481,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                                 "battery_alloy", MaterialPrefixes.CURVED_PLATE),
                         "F", materialIngredient("lead", MaterialPrefixes.FOIL)),
                 Map.of(
-                        "h", Ingredient.of(ModItems.SMITHING_HAMMER.get()),
-                        "x", Ingredient.of(ModItems.MATERIAL_WIRE_CUTTER.get())));
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()),
+                        "x", CraftingTools.of(ModItems.MATERIAL_WIRE_CUTTER.get())));
         batteryCellRecipe(
                 output,
                 "alkaline",
@@ -3349,7 +3699,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 ingredients,
                 Map.of(
                         profile.recipe().catalyst(),
-                        Ingredient.of(ModItems.MATERIAL_WRENCH.get())),
+                        CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(
                         ModItems.heatExchangerItemsById()
                                 .get(profile.id())
@@ -3483,7 +3833,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             if (catalyst == null) {
                 return;
             }
-            catalysts.put(tool, Ingredient.of(catalyst));
+            catalysts.put(tool, CraftingTools.of(catalyst));
         }
         acceptShapedCatalyst(output, path, recipe.pattern(), ingredients, catalysts, result);
     }
@@ -3513,7 +3863,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             if (catalyst == null) {
                 return;
             }
-            catalysts.put(tool, Ingredient.of(catalyst));
+            catalysts.put(tool, CraftingTools.of(catalyst));
         }
         acceptShapedCatalyst(output, path, recipe.pattern(), ingredients, catalysts, result);
     }
@@ -3590,12 +3940,18 @@ public final class ModRecipeProvider extends RecipeProvider {
             EnergyConverterTierCatalog.Entry entry,
             EnergyConverterTierCatalog.Ingredient ingredient) {
         if (ingredient.item() != null) {
+            if ("minecraft:flint_and_steel".equals(ingredient.item())) {
+                return Ingredient.of(ModItemTags.CRAFTING_FIRESTARTER);
+            }
             return MaterialLookup.ingredientFromLogicalId(ingredient.item())
                     .orElse(null);
         }
         String material = "variant".equals(ingredient.material())
                 ? entry.material()
                 : ingredient.material();
+        if ("clay_brick".equals(material) && "ingot".equals(ingredient.prefix())) {
+            return Ingredient.of(Items.BRICK);
+        }
         MaterialPrefix prefix;
         try {
             prefix = new MaterialPrefix("cruciblecraft:" + ingredient.prefix());
@@ -3768,6 +4124,22 @@ public final class ModRecipeProvider extends RecipeProvider {
             long eut,
             long specialValue,
             Map<String, Integer> durationOverrides) {
+        return materialRule(
+                target, input, output, inputCount, outputCount, duration, eut,
+                specialValue, durationOverrides, List.of());
+    }
+
+    private static MaterialRuleRecipe materialRule(
+            ResourceLocation target,
+            MaterialPrefix input,
+            MaterialPrefix output,
+            int inputCount,
+            int outputCount,
+            int duration,
+            long eut,
+            long specialValue,
+            Map<String, Integer> durationOverrides,
+            List<String> conditions) {
         Map<String, MaterialRule.MaterialOverride> overrides = durationOverrides.entrySet().stream()
                 .collect(java.util.stream.Collectors.toUnmodifiableMap(
                         Map.Entry::getKey,
@@ -3788,7 +4160,32 @@ public final class ModRecipeProvider extends RecipeProvider {
                 true,
                 java.util.Optional.empty(),
                 overrides,
+                conditions,
+                java.util.Optional.empty(),
+                List.of()));
+    }
+
+    private static MaterialRuleRecipe materialRule(
+            ResourceLocation target,
+            List<MaterialRule.ItemResource> inputs,
+            List<MaterialRule.ItemResource> outputs,
+            int duration,
+            long eut,
+            long specialValue,
+            List<String> conditions) {
+        return new MaterialRuleRecipe(new MaterialRule(
+                java.util.Optional.of(target),
+                inputs,
+                outputs,
                 List.of(),
+                List.of(),
+                Integer.toString(duration),
+                Long.toString(eut),
+                Long.toString(specialValue),
+                true,
+                java.util.Optional.empty(),
+                Map.of(),
+                conditions,
                 java.util.Optional.empty(),
                 List.of()));
     }

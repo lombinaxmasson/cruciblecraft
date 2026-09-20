@@ -64,6 +64,7 @@ public final class ModRecipeMaps {
     public static final RecipeMap ROASTER = create("roaster");
     public static final RecipeMap COAGULATOR = create("coagulator");
     public static final RecipeMap CANNER = create("canner");
+    public static final RecipeMap SQUEEZER = create("squeezer");
     public static final RecipeMap LASER_ENGRAVER = create("laser_engraver");
     public static final RecipeMap FUELS_ENGINE = create("fuels_engine");
     public static final RecipeMap FUELS_GAS = create("fuels_gas");
@@ -132,6 +133,7 @@ public final class ModRecipeMaps {
             ROASTER,
             COAGULATOR,
             CANNER,
+            SQUEEZER,
             LASER_ENGRAVER,
             FUELS_ENGINE,
             FUELS_GAS,

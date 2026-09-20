@@ -37,6 +37,10 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.ROTATIONAL_AXLE.getKey(),
                 ModBlocks.ROTATIONAL_GEARBOX.getKey(),
                 ModBlocks.BRONZE_CRUSHER.getKey(),
+                ModBlocks.AUTOMATIC_HAMMER.getKey(),
+                ModBlocks.STEEL_AUTOMATIC_HAMMER.getKey(),
+                ModBlocks.TITANIUM_AUTOMATIC_HAMMER.getKey(),
+                ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER.getKey(),
                 ModBlocks.MULTIBLOCK_CASING.getKey(),
                 ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.getKey(),
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.getKey(),
@@ -193,6 +197,20 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             hoe.add(holder.getKey());
         });
         ModBlocks.treeSaplings().forEach(holder -> saplings.add(holder.getKey()));
+        ModBlocks.gtWoodBlocks().forEach(holder -> {
+            axe.add(holder.getKey());
+            if (!holder.getId().getPath().endsWith("/crate")) {
+                tag(BlockTags.PLANKS).add(holder.getKey());
+            }
+        });
+        ModBlocks.bathPanelBlocksById().forEach((id, holder) -> {
+            String path = id.getPath();
+            if (path.startsWith("panel/cfoam_")) {
+                hoe.add(holder.getKey());
+            } else {
+                pickaxe.add(holder.getKey());
+            }
+        });
         hoe.add(ModBlocks.GT_BUSH.getKey());
         var largeControllers = tag(ModBlockTags.LARGE_CRUCIBLE_CONTROLLERS);
         largeControllers.add(ModBlocks.LARGE_CRUCIBLE.getKey());
@@ -218,7 +236,14 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             TagAppender<Block> axe,
             TagAppender<Block> shovel) {
         gtBlockObjects.add(holder.getKey());
-        if (variant.log() || variant.bale()) {
+        if (variant.treePlanks2()) {
+            axe.add(holder.getKey());
+            if (variant.slab()) {
+                tag(BlockTags.WOODEN_SLABS).add(holder.getKey());
+            } else {
+                tag(BlockTags.PLANKS).add(holder.getKey());
+            }
+        } else if (variant.log() || variant.bale()) {
             axe.add(holder.getKey());
         } else if (variant.shovelMineable()) {
             shovel.add(holder.getKey());

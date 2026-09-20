@@ -36,9 +36,9 @@ FAMILY_ID = (
 TEMPLATE_KEY = "gt.recipe.laminator#0000"
 SOURCE_ROWS = 498
 PREP_SELECTED_ROWS = 444
-SELECTED_ROWS = 438
-PREP_OVERFLOW_ROWS = 54
-OVERFLOW_ROWS = 60
+SELECTED_ROWS = 486
+PREP_OVERFLOW_ROWS = 6
+OVERFLOW_ROWS = 12
 LIVE_NEEDLE = "laminator"
 CAPABILITY_PATH = (
     ROOT / "tools" / "capabilities" / "machines" / "laminator" / "capability.json"
@@ -51,8 +51,8 @@ LIVE_GENERATED = (
 POLICY_PATH = LIVE_GENERATED / "publication_policy" / "laminator.json"
 PUBLICATION_GROUP = f"{TARGET_MAP}/pilot/laminator"
 LOCK_NOTE = (
-    "live compile for machines/laminator; 438 runtime-registered exact rows; "
-    "6 gt_block log rows and 54 unmapped MTE rows explicitly_blocked; "
+    "live compile for machines/laminator; 486 runtime-registered exact rows; "
+    "6 gt_block log rows and 6 unmapped MTE rows explicitly_blocked; "
     "not player_complete"
 )
 ART_MANIFEST = "gt6_laminator_art_manifest.json"

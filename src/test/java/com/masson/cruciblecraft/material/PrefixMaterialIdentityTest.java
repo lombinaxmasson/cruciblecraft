@@ -109,6 +109,15 @@ class PrefixMaterialIdentityTest {
         assertTrue(serverFiles.get(
                 "data/minecraft/tags/block/mineable/shovel.json")
                 .contains("cruciblecraft:coal_coke/storage_dust"));
+        assertTrue(serverFiles.containsKey(
+                "data/c/tags/item/storage_plates/iron.json"));
+        assertTrue(clientFiles.containsKey(
+                "assets/cruciblecraft/blockstates/iron/storage_plate.json"));
+        assertFalse(clientFiles.containsKey(
+                "assets/cruciblecraft/models/item/storage_plate.json"));
+        assertTrue(serverFiles.get(
+                "data/minecraft/tags/block/mineable/pickaxe.json")
+                .contains("cruciblecraft:iron/storage_plate"));
     }
 
     @Test
@@ -117,6 +126,7 @@ class PrefixMaterialIdentityTest {
         assertTrue(MaterialFormHosts.isUniqueHostedPrefixPath("wire"));
         assertTrue(MaterialFormHosts.isUniqueHostedPrefixPath("block"));
         assertTrue(MaterialFormHosts.isUniqueHostedPrefixPath("storage_dust"));
+        assertTrue(MaterialFormHosts.isUniqueHostedPrefixPath("storage_plate"));
         assertFalse(MaterialFormHosts.isUniqueHostedPrefixPath("dust"));
         assertFalse(MaterialFormHosts.isUniqueHostedPrefixPath("fine_wire"));
         assertFalse(MaterialFormHosts.isUniqueHostedPrefixPath("ingot"));

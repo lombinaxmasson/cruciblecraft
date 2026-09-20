@@ -186,8 +186,12 @@ public final class FoundryCastingBlockEntity extends BlockEntity
         MaterialDefinition material = MaterialCatalog.contains(offeredMaterialId)
                 ? MaterialCatalog.require(offeredMaterialId)
                 : null;
-        if (material == null
-                || !MaterialCatalog.isFormRegistered(material, recipe)) {
+        if (material == null) {
+            return 0;
+        }
+        MaterialDefinition solid = MoldRecipes.solidifyingMaterial(material);
+        MaterialPrefix output = MoldRecipes.outputForm(recipe, material);
+        if (!MaterialCatalog.isFormRegistered(solid, output)) {
             return 0;
         }
         int required = moldRequiredMaterialUnits();
@@ -232,7 +236,10 @@ public final class FoundryCastingBlockEntity extends BlockEntity
         if (form == null) {
             form = basin() ? MaterialPrefixes.BLOCK : MaterialPrefixes.INGOT;
         }
-        ItemStack result = MaterialLookup.tryStack(materialId, form, outputCount)
+        MaterialDefinition poured = MaterialCatalog.require(materialId);
+        MaterialDefinition solid = MoldRecipes.solidifyingMaterial(poured);
+        form = MoldRecipes.outputForm(form, poured);
+        ItemStack result = MaterialLookup.tryStack(solid.id(), form, outputCount)
                 .orElse(ItemStack.EMPTY);
         if (!result.isEmpty()) {
             ItemHeat.set(result, temperature, level == null ? 0L : level.getGameTime());

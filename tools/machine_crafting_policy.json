@@ -385,13 +385,6 @@
       "blocking_components": [],
       "replacement_prerequisites": ["Locate exact authoritative GT6 machine-crafting evidence or approve a reviewed CrucibleCraft-only recipe.", "Do not infer hull, motor, pump, circuit, or tier operands from other forks.", "Lock the chosen divergence or source identity before replacement."]
     },
-    "welder": {
-      "classification": "tier_collapsed_pending_t6",
-      "reason": "GT6 exposes five LU Laser Welder tiers with tiered circuits and lenses; CrucibleCraft exposes one KU welder without those component identities.",
-      "source_evidence": ["material_tier_arrays", "electric_laser_welder"],
-      "blocking_components": ["OP.casingMachine", "OD_CIRCUITS[tier]", "DYE_OREDICTS_LENS"],
-      "replacement_prerequisites": ["Resolve LU-to-KU semantics and select or collapse the five GT6 tiers in T6.", "Implement exact casing, circuit, and lens identities.", "Verify every selected operand is reachable and test the source pattern."]
-    },
     "press": {
       "classification": "tier_collapsed_pending_t6",
       "reason": "GT6 defines four KU press tiers and CrucibleCraft exposes one configured press.",

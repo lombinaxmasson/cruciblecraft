@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.datagen;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -8,7 +9,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.masson.cruciblecraft.content.mold.CeramicMoldCatalog;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,28 +27,54 @@ class CeramicMoldResourceTest {
                 "raw_ceramic_crucible",
                 "raw_ceramic_mold",
                 "firebrick",
-                "raw_ingot_mold",
-                "raw_plate_mold",
-                "raw_rod_mold",
-                "raw_bolt_mold",
-                "ingot_mold_firing",
-                "plate_mold_firing",
-                "rod_mold_firing",
-                "bolt_mold_firing",
                 "ceramic_mold_firing")) {
             paths.add(Path.of("src/main/resources/data/cruciblecraft/recipe/" + recipe + ".json"));
+        }
+        JsonObject english = JsonParser.parseString(Files.readString(Path.of(
+                "src/generated/resources/assets/cruciblecraft/lang/en_us.json")))
+                .getAsJsonObject();
+        JsonObject chinese = JsonParser.parseString(Files.readString(Path.of(
+                "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json")))
+                .getAsJsonObject();
+        for (CeramicMoldCatalog.Variant variant : CeramicMoldCatalog.SHAPED) {
+            String raw = CeramicMoldCatalog.rawItemId(variant);
+            String fired = CeramicMoldCatalog.firedItemId(variant);
+            paths.add(Path.of("src/main/resources/data/cruciblecraft/recipe/" + raw + ".json"));
+            paths.add(Path.of(
+                    "src/main/resources/data/cruciblecraft/recipe/" + fired + "_firing.json"));
+            Path rawModelPath = Path.of(
+                    "src/generated/resources/assets/cruciblecraft/models/item/" + raw + ".json");
+            Path firedModelPath = Path.of(
+                    "src/generated/resources/assets/cruciblecraft/models/item/" + fired + ".json");
+            paths.add(rawModelPath);
+            paths.add(firedModelPath);
+            assertTrue(
+                    Files.isRegularFile(Path.of(
+                            "src/main/resources/assets/cruciblecraft/textures/item/gt6_import/"
+                                    + raw + ".png")),
+                    () -> raw + " is missing its GT6 clay icon");
+            JsonObject rawModel = JsonParser.parseString(Files.readString(rawModelPath))
+                    .getAsJsonObject();
+            assertEquals(
+                    "cruciblecraft:item/gt6_import/" + raw,
+                    rawModel.getAsJsonObject("textures").get("layer0").getAsString(),
+                    raw);
+            JsonObject firedModel = JsonParser.parseString(Files.readString(firedModelPath))
+                    .getAsJsonObject();
+            assertEquals(
+                    "cruciblecraft:block/ceramic_mold",
+                    firedModel.get("parent").getAsString(),
+                    fired);
+            String rawKey = "item.cruciblecraft." + raw;
+            String firedKey = "item.cruciblecraft." + fired;
+            assertEquals(variant.englishRaw(), english.get(rawKey).getAsString(), rawKey);
+            assertEquals(variant.englishFired(), english.get(firedKey).getAsString(), firedKey);
+            assertEquals(variant.chineseRaw(), chinese.get(rawKey).getAsString(), rawKey);
+            assertEquals(variant.chineseFired(), chinese.get(firedKey).getAsString(), firedKey);
         }
         for (String item : List.of(
                 "raw_ceramic_crucible",
                 "raw_ceramic_mold",
-                "raw_ingot_mold",
-                "raw_plate_mold",
-                "raw_rod_mold",
-                "raw_bolt_mold",
-                "ingot_mold",
-                "plate_mold",
-                "rod_mold",
-                "bolt_mold",
                 "ceramic_mold")) {
             paths.add(Path.of("src/generated/resources/assets/cruciblecraft/models/item/" + item + ".json"));
         }

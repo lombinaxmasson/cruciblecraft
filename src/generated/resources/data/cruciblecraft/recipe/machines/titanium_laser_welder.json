@@ -1,0 +1,62 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "ingredients": {
+    "C": {
+      "item": "cruciblecraft:circuit_master"
+    },
+    "G": {
+      "tag": "c:small_gears/titanium"
+    },
+    "L": {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "type": "neoforge:components",
+          "components": {
+            "cruciblecraft:prefix_material": "yellow_sapphire"
+          },
+          "items": "cruciblecraft:lens"
+        },
+        {
+          "type": "neoforge:components",
+          "components": {
+            "cruciblecraft:prefix_material": "heliodor"
+          },
+          "items": "cruciblecraft:lens"
+        },
+        {
+          "type": "neoforge:components",
+          "components": {
+            "cruciblecraft:prefix_material": "amber"
+          },
+          "items": "cruciblecraft:lens"
+        },
+        {
+          "type": "neoforge:components",
+          "components": {
+            "cruciblecraft:prefix_material": "topaz"
+          },
+          "items": "cruciblecraft:lens"
+        }
+      ]
+    },
+    "M": {
+      "item": "cruciblecraft:titanium/machine_casing"
+    },
+    "P": {
+      "item": "minecraft:terracotta"
+    },
+    "T": {
+      "tag": "c:screws/titanium"
+    }
+  },
+  "pattern": [
+    "TLT",
+    "GPG",
+    "CMC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:titanium_laser_welder"
+  }
+}

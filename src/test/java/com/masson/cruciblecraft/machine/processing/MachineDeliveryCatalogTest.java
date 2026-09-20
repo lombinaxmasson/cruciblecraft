@@ -1,7 +1,7 @@
 package com.masson.cruciblecraft.machine.processing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Set;
@@ -68,17 +68,35 @@ class MachineDeliveryCatalogTest {
     }
 
     @Test
-    void laserEngraverIsDeliveryOnlyAndHasTextures() {
+    void laserWelderLiveSlotsMatchGt6WelderPanel() {
+        var host = MachineDeliveryCatalog.require(
+                ResourceLocation.parse("cruciblecraft:laser_welder"));
+        assertEquals(9, host.itemInputs());
+        assertEquals(1, host.itemOutputs());
+        assertEquals(1, host.fluidInputs());
+        assertEquals(0, host.fluidOutputs());
+        assertEquals(host.gt6InItems(), host.itemInputs());
+        assertEquals(host.gt6OutItems(), host.itemOutputs());
+        assertEquals(host.gt6InFluids(), host.fluidInputs());
+        assertEquals(host.gt6OutFluids(), host.fluidOutputs());
+        assertEquals(9, ModProcessingMachines.LASER_WELDER.items().inputs().size());
+        assertEquals(10, ModProcessingMachines.LASER_WELDER.items().slotCount());
+    }
+
+    @Test
+    void laserEngraverIsCatalogHostAndHasTextures() {
         var host = MachineDeliveryCatalog.require(
                 ResourceLocation.parse("cruciblecraft:laser_engraver"));
-        assertFalse(host.kindCatalog());
+        assertTrue(host.kindCatalog());
         assertEquals("laser", host.specFamily());
         assertTrue(MachineTextureProfiles.hasMachineTextures(host.textureProfile()));
         assertEquals("distillery", MachineTextureProfiles.textureId("distillation_tower"));
         assertEquals("boiler", MachineTextureProfiles.textureId("large_boiler"));
         assertEquals("large_crucible", MachineTextureProfiles.textureId("large_crucible"));
         assertEquals("dryer", MachineTextureProfiles.textureId("drying"));
-        assertEquals("bath", MachineTextureProfiles.shapedMachineModel("bath"));
+        assertNull(MachineTextureProfiles.shapedMachineModel("bath"));
+        assertEquals("mortar", MachineTextureProfiles.shapedMachineModel("mortar"));
+        assertEquals("sifter", MachineTextureProfiles.shapedMachineModel("sifter"));
     }
 
     @Test

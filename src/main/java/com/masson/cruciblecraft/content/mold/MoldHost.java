@@ -1,14 +1,28 @@
 package com.masson.cruciblecraft.content.mold;
 
+import org.jetbrains.annotations.Nullable;
+
+import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
+
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 
 /**
  * GT6 {@code ITileEntityMold}: a side that can accept a molten material stack
  * from a crucible or faucet.
  */
 public interface MoldHost {
+    @Nullable
+    static MoldHost at(BlockGetter level, BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof MoldHost host) {
+            return host;
+        }
+        return LargeCrucibleBlockEntity.pourHostAtWall(level, pos);
+    }
+
     boolean isMoldInputSide(Direction side);
 
     float moldMaxTemperatureCelsius();

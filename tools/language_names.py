@@ -148,10 +148,20 @@ def _is_discriminator(token: str) -> bool:
     return token.isdigit() and len(token) <= 2
 
 
+def _complete_catalog_title(registry_path: str) -> bool:
+    path = registry_path or ""
+    for prefix in contract().get("complete_title_path_prefixes") or []:
+        if path == prefix or path.startswith(prefix):
+            return True
+    return False
+
+
 def player_english(source_name: str, registry_path: str) -> str:
     name = META_SUFFIX_RE.sub("", source_name or "").strip()
     if not name:
         name = format_english_id(registry_path.replace("/", "_"))
+    if _complete_catalog_title(registry_path):
+        return name
     extras: list[str] = []
     owned = word_tokens(name)
     first = True
@@ -186,6 +196,8 @@ def player_chinese(source_name: str, registry_path: str) -> str | None:
         return None
     table = contract()["zh_path_tokens"]
     name = META_SUFFIX_RE.sub("", source_name).strip()
+    if _complete_catalog_title(registry_path):
+        return name
     extras: list[str] = []
     for segment in registry_path.replace(".", "/").split("/"):
         if not segment:

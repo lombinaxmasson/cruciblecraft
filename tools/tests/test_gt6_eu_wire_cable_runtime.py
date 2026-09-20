@@ -76,12 +76,12 @@ class Gt6EuWireCableRuntimeTest(unittest.TestCase):
         tests = GAME_TESTS.read_text(encoding="utf-8")
         core = CORE_TESTS.read_text(encoding="utf-8")
         if missing_gauges.folded_metas():
-            self.assertIn("EXPECTED_WIRE_BLOCKS = 445", catalog)
+            self.assertIn("EXPECTED_WIRE_BLOCKS = 473", catalog)
             self.assertIn("wireGt07", catalog)
         else:
             self.assertIn("EXPECTED_WIRE_BLOCKS = 231", catalog)
             self.assertNotIn("wireGt07", catalog)
-        self.assertIn("EXPECTED_CABLE_BLOCKS = 116", catalog)
+        self.assertIn("EXPECTED_CABLE_BLOCKS = 141", catalog)
         self.assertIn("DOUBLE_WIRE", catalog)
         self.assertIn("HEXADECUPLE_WIRE", catalog)
         self.assertIn("red_alloy", catalog)

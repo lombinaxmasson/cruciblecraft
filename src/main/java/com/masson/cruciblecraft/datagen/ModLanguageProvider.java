@@ -14,6 +14,7 @@ import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
+import com.masson.cruciblecraft.content.mold.CeramicMoldCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceDisplayNames;
 import com.masson.cruciblecraft.content.mte.MteInPlaceMaterials;
@@ -33,7 +34,9 @@ import com.masson.cruciblecraft.energy.converter.EnergyConverterKindCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
+import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.machine.processing.MachineKindCatalog;
+import com.masson.cruciblecraft.compat.emi.EmiStackGroupPlan;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -65,8 +68,8 @@ public class ModLanguageProvider extends LanguageProvider {
                                     ModItems.extruderShape(shape.id()), name)));
             GtWoodCatalog.DEFINITIONS.forEach(wood ->
                     LanguageNames.chineseOrEmpty(wood.chineseName(), wood.englishName())
-                            .ifPresent(name -> addItem(
-                                    ModItems.gtWood(wood.id()), name)));
+                            .ifPresent(name -> addBlock(
+                                    ModBlocks.gtWood(wood.id()), name)));
             GtStoneCatalog.variants().forEach(stone -> {
                 var holder = ModBlocks.gtStoneBlocksById().get(stone.id());
                 if (holder != null && !stone.chineseName().isBlank()) {
@@ -107,7 +110,6 @@ public class ModLanguageProvider extends LanguageProvider {
                                     pattern.chineseName(), pattern.englishName())
                             .ifPresent(name -> addItem(
                                     ModItems.toolPattern(pattern.id()), name)));
-            addItem(ModItems.FLINT_KNIFE, "燧石刀");
             addItem(ModItems.PROGRAMMED_CIRCUIT, "编程电路");
             add("tooltip.cruciblecraft.circuit_config", "配置：%s");
             add("tooltip.cruciblecraft.reactor_rod.empty", "空反应棒");
@@ -243,25 +245,41 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.CERAMIC_MOLD, "陶瓷模具");
             addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "黏土坩埚");
             addItem(ModItems.RAW_CERAMIC_MOLD, "黏土模具");
-            addItem(ModItems.RAW_INGOT_MOLD, "黏土锭模具");
-            addItem(ModItems.RAW_PLATE_MOLD, "黏土板模具");
-            addItem(ModItems.RAW_ROD_MOLD, "黏土杆模具");
-            addItem(ModItems.RAW_BOLT_MOLD, "黏土螺栓模具");
-            addItem(ModItems.INGOT_MOLD, "锭模具");
-            addItem(ModItems.PLATE_MOLD, "板模具");
-            addItem(ModItems.ROD_MOLD, "杆模具");
-            addItem(ModItems.BOLT_MOLD, "螺栓模具");
+            CeramicMoldCatalog.SHAPED.forEach(variant -> {
+                addItem(ModItems.rawShapedMold(variant.id()), variant.chineseRaw());
+                addItem(ModItems.firedShapedMold(variant.id()), variant.chineseFired());
+            });
             addBlock(ModBlocks.GAS_CLOUD, "气云");
             addBlock(ModBlocks.SUBSURFACE_FLUID_DEPOSIT, "地下流体矿床");
             addBlock(ModBlocks.LU_FIBER_CABLE, "LU 光纤线缆");
             addBlock(ModBlocks.LASER_ENGRAVER, "激光雕刻机");
+            addBlock(ModBlocks.AUTOMATIC_HAMMER, "青铜自动锤");
+            addBlock(ModBlocks.STEEL_AUTOMATIC_HAMMER, "钢自动锤");
+            addBlock(ModBlocks.TITANIUM_AUTOMATIC_HAMMER, "钛自动锤");
+            addBlock(ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER, "钨钢自动锤");
             addBlock(ModBlocks.FUSION_REACTOR, "聚变反应堆");
+            add("tooltip.cruciblecraft.fusion.structure", "结构：");
+            add("tooltip.cruciblecraft.fusion.1", "组装说明见界面中的手册。");
+            add("tooltip.cruciblecraft.fusion.2",
+                    "144 个铱线圈，576 块普通钨钢墙，50 个通风单元。");
+            add("tooltip.cruciblecraft.fusion.3",
+                    "36 块普通不锈钢墙，53 块镀锌钢墙。");
+            add("tooltip.cruciblecraft.fusion.4",
+                    "3 个通用、12 个逻辑、12 个控制四核处理单元。");
+            add("tooltip.cruciblecraft.fusion.5", "电能从电力接口输出");
+            add("tooltip.cruciblecraft.fusion.6", "激光从「玻璃」环输入");
+            add("tooltip.cruciblecraft.fusion.7", "物品和流体走普通墙壁");
             addBlock(ModBlocks.LARGE_HEAT_EXCHANGER, "大型热交换器");
             addBlock(ModBlocks.BEDROCK_DRILL, "基岩采矿钻机控制器");
             addBlock(ModBlocks.BEDROCK_DRILL_HEAD, "基岩采矿钻头");
             addBlock(ModBlocks.GT_BUSH, "浆果灌木");
             addBlock(ModBlocks.GT_SURFACE_ROCK, "地表石子");
             add("tooltip.cruciblecraft.surface_rock.material", "材质：%s");
+            add("tooltip.cruciblecraft.rock.indicates", "表明存在 %s");
+            add("item.cruciblecraft.rock.stone", "石子");
+            add("item.cruciblecraft.rock.netherrack", "下界石子");
+            add("item.cruciblecraft.rock.endstone", "末地石子");
+            add("item.cruciblecraft.rock.meteorite", "陨石");
             addBlock(ModBlocks.GT_BEDROCK_ORE, "基岩矿");
             addBlock(ModBlocks.GT_SMALL_BEDROCK_ORE, "小型基岩矿");
             addBlock(ModBlocks.GT_SMALL_ORE, "小型矿石");
@@ -298,7 +316,6 @@ public class ModLanguageProvider extends LanguageProvider {
                         "emi.category.cruciblecraft." + kind.id().getPath(),
                         kind.langZh());
             });
-            add("emi.category.cruciblecraft.laser_engraver", "激光雕刻机");
             add("emi.category.cruciblecraft.fuels_engine", "燃油发电");
             add("emi.category.cruciblecraft.fuels_gas_turbine", "微型燃气涡轮");
             add("emi.category.cruciblecraft.fuels_gas", "燃气燃烧室");
@@ -395,9 +412,14 @@ public class ModLanguageProvider extends LanguageProvider {
                     "从管网请求物品到盖板前方的容器。潜行右键切换反相过滤。");
             add("tooltip.cruciblecraft.cover.display_cpu",
                     "发出红石并显示物流核心状态。");
-            add("screen.cruciblecraft.coke_oven.creosote", "杂酚油：%s / %s mB");
+            add("screen.cruciblecraft.coke_oven.fluid", "产出流体：%s / %s mB");
             add("screen.cruciblecraft.coke_oven.invalid_structure", "结构无效");
-            add("screen.cruciblecraft.coke_oven.no_heat", "无热量");
+            add("screen.cruciblecraft.coke_oven.needs_ignition", "需要点火");
+            add("tooltip.cruciblecraft.coke_oven.structure", "3×3×3 耐火砖空心，中心为空气");
+            add("tooltip.cruciblecraft.coke_oven.controller", "主方块在侧面正中、朝外");
+            add("tooltip.cruciblecraft.coke_oven.ignite", "需要打火石或点火工具");
+            add("tooltip.cruciblecraft.coke_oven.fluid_drain", "杂酚油自动滴入正下方 3×3 的储罐");
+            add("tooltip.cruciblecraft.coke_oven.io", "耐火砖顶面漏斗进料、底面抽出；除顶面外可抽流体");
             add("container.cruciblecraft.bronze_crusher", "青铜破碎机");
             add("container.cruciblecraft.coke_oven", "焦炉");
             add("disconnect.cruciblecraft.material_handshake_missing",
@@ -453,7 +475,7 @@ public class ModLanguageProvider extends LanguageProvider {
                     "水：%s/%s mB，蒸汽：%s/%s mB，热量：%s/80 HU");
             add("jade.cruciblecraft.casing",
                     "外壳：%s（等级 %s，工艺等级 %s）");
-            add("jade.cruciblecraft.coke_oven.creosote", "杂酚油：%s / %s mB");
+            add("jade.cruciblecraft.coke_oven.fluid", "产出流体：%s / %s mB");
             add("jade.cruciblecraft.coke_oven.invalid", "无效");
             add("jade.cruciblecraft.coke_oven.progress",
                     "进度：%s / %s tick");
@@ -472,6 +494,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("jade.cruciblecraft.mold_units", "耗料：%s 单位");
             add("tooltip.cruciblecraft.mold_unshaped", "凿出形状后才能浇注");
             add("tooltip.cruciblecraft.mold_recipe", "浇注 %s（%s 单位）");
+            add("item.cruciblecraft.coin", "%s 硬币");
             add("jade.cruciblecraft.mold_solid", "已凝固");
             add("jade.cruciblecraft.mold_state", "状态：%s，%s °C");
             add("jade.cruciblecraft.steam_engine",
@@ -501,7 +524,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("message.cruciblecraft.anvil_rejected",
                     "该物品没有匹配的砧配方");
             add("message.cruciblecraft.coke_oven_cannot_ignite",
-                    "结构必须完整并从下方受热");
+                    "结构必须完整");
             add("message.cruciblecraft.coke_oven_ignited", "焦炉已点燃");
             add("message.cruciblecraft.crucible_full", "坩埚已满");
             add("message.cruciblecraft.crucible_status", "温度：%s °C | %s");
@@ -607,6 +630,7 @@ public class ModLanguageProvider extends LanguageProvider {
                 add("fluid_type.cruciblecraft." + entry.id(), entry.chinese());
                 add("fluid.cruciblecraft." + entry.id(), entry.chinese());
             });
+            addEmiStackGroupNames();
             return;
         }
         add("itemGroup.cruciblecraft", "Crucible Craft");
@@ -641,13 +665,35 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.SUBSURFACE_FLUID_DEPOSIT, "Subsurface Fluid Deposit");
         addBlock(ModBlocks.LU_FIBER_CABLE, "LU Fiber Cable");
         addBlock(ModBlocks.LASER_ENGRAVER, "Laser Engraver");
+        addBlock(ModBlocks.AUTOMATIC_HAMMER, "Bronze Automatic Hammer");
+        addBlock(ModBlocks.STEEL_AUTOMATIC_HAMMER, "Steel Automatic Hammer");
+        addBlock(ModBlocks.TITANIUM_AUTOMATIC_HAMMER, "Titanium Automatic Hammer");
+        addBlock(ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER, "Tungstensteel Automatic Hammer");
         addBlock(ModBlocks.FUSION_REACTOR, "Fusion Reactor");
+        add("tooltip.cruciblecraft.fusion.structure", "Structure:");
+        add("tooltip.cruciblecraft.fusion.1",
+                "For Assembly Instructions read the Manual in the GUI.");
+        add("tooltip.cruciblecraft.fusion.2",
+                "144 Iridium Coils, 576 Regular Tungstensteel Walls, 50 Ventilation Units.");
+        add("tooltip.cruciblecraft.fusion.3",
+                "36 Regular Stainless Steel Walls, 53 Galvanized Steel Walls.");
+        add("tooltip.cruciblecraft.fusion.4",
+                "3 Versatile, 12 Logic and 12 Control Quadcore Processing Units.");
+        add("tooltip.cruciblecraft.fusion.5", "Energy Output at the Electric Interfaces");
+        add("tooltip.cruciblecraft.fusion.6", "Laser Input at the 'Glass' Ring");
+        add("tooltip.cruciblecraft.fusion.7",
+                "Items and Fluids are handeled at the normal Walls");
         addBlock(ModBlocks.LARGE_HEAT_EXCHANGER, "Large Heat Exchanger");
         addBlock(ModBlocks.BEDROCK_DRILL, "Bedrock Mining Drill Controller");
         addBlock(ModBlocks.BEDROCK_DRILL_HEAD, "Bedrock Mining Drill Head");
         addBlock(ModBlocks.GT_BUSH, "Berry Bush");
         addBlock(ModBlocks.GT_SURFACE_ROCK, "Surface Rock");
         add("tooltip.cruciblecraft.surface_rock.material", "Material: %s");
+        add("tooltip.cruciblecraft.rock.indicates", "Indicates occurrence of %s");
+        add("item.cruciblecraft.rock.stone", "Rock");
+        add("item.cruciblecraft.rock.netherrack", "Nether Rock");
+        add("item.cruciblecraft.rock.endstone", "End Rock");
+        add("item.cruciblecraft.rock.meteorite", "Meteorite");
         addBlock(ModBlocks.GT_BEDROCK_ORE, "Bedrock Ore");
         addBlock(ModBlocks.GT_SMALL_BEDROCK_ORE, "Small Bedrock Ore");
         addBlock(ModBlocks.GT_SMALL_ORE, "Small Ore");
@@ -678,14 +724,10 @@ public class ModLanguageProvider extends LanguageProvider {
         add("block.cruciblecraft.large_crucible.named", "Large %s Crucible");
         addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "Clay Crucible");
         addItem(ModItems.RAW_CERAMIC_MOLD, "Clay Mold");
-        addItem(ModItems.RAW_INGOT_MOLD, "Clay Ingot Mold");
-        addItem(ModItems.RAW_PLATE_MOLD, "Clay Plate Mold");
-        addItem(ModItems.RAW_ROD_MOLD, "Clay Rod Mold");
-        addItem(ModItems.RAW_BOLT_MOLD, "Clay Bolt Mold");
-        addItem(ModItems.INGOT_MOLD, "Ingot Mold");
-        addItem(ModItems.PLATE_MOLD, "Plate Mold");
-        addItem(ModItems.ROD_MOLD, "Rod Mold");
-        addItem(ModItems.BOLT_MOLD, "Bolt Mold");
+        CeramicMoldCatalog.SHAPED.forEach(variant -> {
+            addItem(ModItems.rawShapedMold(variant.id()), variant.englishRaw());
+            addItem(ModItems.firedShapedMold(variant.id()), variant.englishFired());
+        });
         addItem(ModItems.MATCH, "Match");
         addItem(ModItems.PROGRAMMED_CIRCUIT, "Programmed Circuit");
         add("tooltip.cruciblecraft.circuit_config", "Configuration: %s");
@@ -701,7 +743,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("tooltip.cruciblecraft.reactor_rod.neutrons",
                 "Neutrons other %s / self %s / max %s / div %s");
         GtWoodCatalog.DEFINITIONS.forEach(wood ->
-                addItem(ModItems.gtWood(wood.id()), wood.englishName()));
+                addBlock(ModBlocks.gtWood(wood.id()), wood.englishName()));
         GtStoneCatalog.variants().forEach(stone -> {
             var holder = ModBlocks.gtStoneBlocksById().get(stone.id());
             if (holder != null) {
@@ -869,7 +911,6 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.STORAGE_PROCESSOR_UNIT, "Storage Processor Unit");
         addBlock(ModBlocks.CONVERSION_PROCESSOR_UNIT, "Conversion Processor Unit");
         add("item.cruciblecraft.smithing_hammer", "%s Smithing Hammer");
-        addItem(ModItems.FLINT_KNIFE, "Flint Knife");
         add("item.cruciblecraft.material_pickaxe", "%s Pickaxe");
         add("item.cruciblecraft.material_shovel", "%s Shovel");
         add("item.cruciblecraft.material_axe", "%s Axe");
@@ -981,6 +1022,7 @@ public class ModLanguageProvider extends LanguageProvider {
                     LanguageNames.englishFormTemplate(
                             LanguageNames.formatEnglishId(form.serializedName())));
         }
+        addEmiStackGroupNames();
         MaterialCatalog.startupValues().forEach(material ->
                 add(material.translationKey(), title(material.id())));
         ModFluids.moltenFluids().forEach(entry ->
@@ -1034,16 +1076,21 @@ public class ModLanguageProvider extends LanguageProvider {
         add("message.cruciblecraft.air_injection_too_cold", "The iron charge must be molten before blowing air");
         add("message.cruciblecraft.invalid_steel_charge", "Steelmaking requires exactly three parts iron to one part carbon");
         add("message.cruciblecraft.coke_oven_ignited", "Coke oven ignited");
-        add("message.cruciblecraft.coke_oven_cannot_ignite", "The structure must be complete and heated from below");
+        add("message.cruciblecraft.coke_oven_cannot_ignite", "The structure must be complete");
         add("container.cruciblecraft.coke_oven", "Coke Oven");
         add("screen.cruciblecraft.coke_oven.invalid_structure", "Invalid structure");
-        add("screen.cruciblecraft.coke_oven.no_heat", "No heat");
-        add("screen.cruciblecraft.coke_oven.creosote", "Creosote: %s / %s mB");
+        add("screen.cruciblecraft.coke_oven.needs_ignition", "Needs ignition");
+        add("screen.cruciblecraft.coke_oven.fluid", "Output fluid: %s / %s mB");
+        add("tooltip.cruciblecraft.coke_oven.structure", "3x3x3 hollow of Fire Bricks filled with Air");
+        add("tooltip.cruciblecraft.coke_oven.controller", "Main Block centered on Side and facing outwards");
+        add("tooltip.cruciblecraft.coke_oven.ignite", "Requires Flint and Steel or an igniter tool");
+        add("tooltip.cruciblecraft.coke_oven.fluid_drain", "Creosote auto-outputs into tanks under the oven");
+        add("tooltip.cruciblecraft.coke_oven.io", "Hoppers insert on firebrick tops and extract from bottoms; fluids except the top face");
         add("jade.cruciblecraft.coke_oven.structure", "Structure: %s");
         add("jade.cruciblecraft.coke_oven.valid", "Valid");
         add("jade.cruciblecraft.coke_oven.invalid", "Invalid");
         add("jade.cruciblecraft.coke_oven.progress", "Progress: %s / %s ticks");
-        add("jade.cruciblecraft.coke_oven.creosote", "Creosote: %s / %s mB");
+        add("jade.cruciblecraft.coke_oven.fluid", "Output fluid: %s / %s mB");
         add("emi.category.cruciblecraft.coke_oven", "Coke Oven");
         add("message.cruciblecraft.material_inserted", "Material added to crucible");
         add("message.cruciblecraft.crucible_full", "Crucible is full");
@@ -1095,6 +1142,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("jade.cruciblecraft.mold_units", "Requires %s units");
         add("tooltip.cruciblecraft.mold_unshaped", "Chisel a shape before filling");
         add("tooltip.cruciblecraft.mold_recipe", "Casts %s (%s units)");
+        add("item.cruciblecraft.coin", "%s Coin");
         add("jade.cruciblecraft.mold_contents", "Contents: %sx %s");
         add("jade.cruciblecraft.mold_state", "State: %s at %s °C");
         add("jade.cruciblecraft.mold_empty", "Empty");
@@ -1550,6 +1598,10 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "活动：%s" : "Activity: %s");
         add("jade.cruciblecraft.converter.buffer",
                 chinese ? "缓冲：%s / %s" : "Buffer: %s / %s");
+        add("jade.cruciblecraft.converter.tank",
+                chinese ? "%s：%s/%s mB" : "%s: %s/%s mB");
+        add("jade.cruciblecraft.converter.tank_empty",
+                chinese ? "空" : "Empty");
     }
 
     private void addEmptyToolHeadNames() {
@@ -1565,6 +1617,171 @@ public class ModLanguageProvider extends LanguageProvider {
 
     private static String formEnglish(String serializedName) {
         return LanguageNames.formatEnglishId(serializedName);
+    }
+
+    private void addEmiStackGroupNames() {
+        for (var form : MaterialPrefixCatalog.values()) {
+            String key = "emi.cruciblecraft.group." + form.serializedName();
+            if (chinese) {
+                MaterialZhNames.prefix(form.serializedName())
+                        .or(() -> MaterialZhNames.pipe(form.serializedName()))
+                        .or(() -> MaterialZhNames.conductor(form.serializedName()))
+                        .ifPresent(name -> add(key, name));
+            } else {
+                add(key, LanguageNames.formatEnglishId(form.serializedName()));
+            }
+        }
+        for (ToolKind kind : ToolKind.values()) {
+            add(
+                    "emi.cruciblecraft.group.tool." + kind.serializedName(),
+                    chinese ? toolGroupZh(kind) : toolGroupEn(kind));
+        }
+        for (EmiStackGroupPlan.ExactGroup group : EmiStackGroupPlan.machineGroups()) {
+            add(
+                    group.nameKey(),
+                    machineGroupName(group.resourcePath().substring("machine/".length())));
+        }
+        for (EmiStackGroupPlan.ExactGroup group :
+                EmiStackGroupPlan.converterGroups()) {
+            add(
+                    group.nameKey(),
+                    converterGroupName(
+                            group.resourcePath().substring("converter/".length())));
+        }
+        for (EmiStackGroupPlan.ExactGroup group : EmiStackGroupPlan.catalogGroups()) {
+            add(group.nameKey(), catalogGroupName(group.resourcePath()));
+        }
+    }
+
+    private String catalogGroupName(String resourcePath) {
+        return switch (resourcePath) {
+            case "building/glass" -> chinese ? "玻璃" : "Glass";
+            case "building/glass_slab" -> chinese ? "玻璃台阶" : "Glass Slab";
+            case "building/glow_glass" -> chinese ? "荧光玻璃" : "Glow Glass";
+            case "building/glow_glass_slab" ->
+                    chinese ? "荧光玻璃台阶" : "Glow Glass Slab";
+            case "building/planks" -> chinese ? "木板" : "Planks";
+            case "building/slab" -> chinese ? "台阶" : "Slab";
+            case "building/log" -> chinese ? "原木" : "Log";
+            case "building/bars" -> chinese ? "栏杆" : "Bars";
+            case "building/rail" -> chinese ? "铁轨" : "Rail";
+            case "building/spike" -> chinese ? "尖刺" : "Spike";
+            case "building/bale" -> chinese ? "草捆" : "Bale";
+            case "building/cfoam" -> chinese ? "建筑泡沫" : "C-Foam";
+            case "building/cfoam_fresh" -> chinese ? "新鲜建筑泡沫" : "Fresh C-Foam";
+            case "building/diggable" -> chinese ? "可挖掘方块" : "Diggable";
+            case "building/sands" -> chinese ? "沙子" : "Sands";
+            case "building/stone" -> chinese ? "石头" : "Stone";
+            case "furniture/bookshelf" -> chinese ? "书架" : "Bookshelf";
+            case "furniture/drawer" -> chinese ? "分区抽屉" : "Compartment Drawer";
+            case "furniture/safe" -> chinese ? "保险箱" : "Safe";
+            case "furniture/chest" -> chinese ? "箱子" : "Chest";
+            case "hopper/hopper" -> chinese ? "料斗" : "Hopper";
+            case "hopper/queue_hopper" -> chinese ? "队列料斗" : "Queue Hopper";
+            case "foundry/crucible" -> chinese ? "坩埚" : "Crucible";
+            case "foundry/mold" -> chinese ? "铸造模具" : "Foundry Mold";
+            case "mold/ceramic" -> chinese ? "模具" : "Mold";
+            default -> throw new IllegalStateException(
+                    "Missing EMI catalog group name for " + resourcePath);
+        };
+    }
+
+    private String machineGroupName(String kindPath) {
+        MachineKindCatalog.Kind kind = MachineKindCatalog.require(
+                net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, kindPath));
+        return chinese ? kind.langZh() : kind.langEn();
+    }
+
+    private String converterGroupName(String kindPath) {
+        EnergyConverterKindCatalog.Kind kind = EnergyConverterKindCatalog.require(
+                net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, kindPath));
+        return chinese ? kind.langZh() : kind.langEn();
+    }
+
+    private static String toolGroupZh(ToolKind kind) {
+        return switch (kind) {
+            case PICKAXE -> "镐";
+            case SHOVEL -> "铲";
+            case AXE -> "斧";
+            case HOE -> "锄";
+            case SWORD -> "剑";
+            case SMITHING_HAMMER -> "锻造锤";
+            case FILE -> "锉刀";
+            case CHISEL -> "凿子";
+            case SAW -> "锯";
+            case SCREWDRIVER -> "螺丝刀";
+            case WRENCH -> "扳手";
+            case MONKEY_WRENCH -> "活动扳手";
+            case WIRE_CUTTER -> "剪线钳";
+            case KNIFE -> "刀";
+            case CLUB -> "棒";
+            case SPADE -> "锹";
+            case DOUBLE_AXE -> "双刃斧";
+            case SENSE -> "镰刀";
+            case PLOW -> "犁";
+            case CONSTRUCTION_PICK -> "建筑镐";
+            case GEM_PICK -> "宝石镐";
+            case BUILDER_WAND -> "建筑杖";
+            case UNIVERSAL_SPADE -> "万能锹";
+            case CROWBAR -> "撬棍";
+            case PLUNGER -> "皮搋子";
+            case SCOOP -> "捕虫网";
+            case BUTCHERY_KNIFE -> "屠宰刀";
+            case BRANCH_CUTTER -> "修枝剪";
+            case SCISSORS -> "剪刀";
+            case PINCERS -> "钳子";
+            case SOFT_HAMMER -> "软锤";
+            case BENDING_CYLINDER -> "折弯筒";
+            case BENDING_CYLINDER_SMALL -> "小型折弯筒";
+            case HAND_DRILL -> "手钻";
+            case ROLLING_PIN -> "擀面杖";
+            case FLINT_AND_TINDER -> "火绒";
+            case POCKET_MULTITOOL -> "口袋多功能工具";
+        };
+    }
+
+    private static String toolGroupEn(ToolKind kind) {
+        return switch (kind) {
+            case PICKAXE -> "Pickaxe";
+            case SHOVEL -> "Shovel";
+            case AXE -> "Axe";
+            case HOE -> "Hoe";
+            case SWORD -> "Sword";
+            case SMITHING_HAMMER -> "Smithing Hammer";
+            case FILE -> "File";
+            case CHISEL -> "Chisel";
+            case SAW -> "Saw";
+            case SCREWDRIVER -> "Screwdriver";
+            case WRENCH -> "Wrench";
+            case MONKEY_WRENCH -> "Monkey Wrench";
+            case WIRE_CUTTER -> "Wire Cutter";
+            case KNIFE -> "Knife";
+            case CLUB -> "Club";
+            case SPADE -> "Spade";
+            case DOUBLE_AXE -> "Double Axe";
+            case SENSE -> "Scythe";
+            case PLOW -> "Plow";
+            case CONSTRUCTION_PICK -> "Construction Pick";
+            case GEM_PICK -> "Gem Pick";
+            case BUILDER_WAND -> "Builder Wand";
+            case UNIVERSAL_SPADE -> "Universal Spade";
+            case CROWBAR -> "Crowbar";
+            case PLUNGER -> "Plunger";
+            case SCOOP -> "Scoop";
+            case BUTCHERY_KNIFE -> "Butchery Knife";
+            case BRANCH_CUTTER -> "Branch Cutter";
+            case SCISSORS -> "Scissors";
+            case PINCERS -> "Pincers";
+            case SOFT_HAMMER -> "Soft Hammer";
+            case BENDING_CYLINDER -> "Bending Cylinder";
+            case BENDING_CYLINDER_SMALL -> "Small Bending Cylinder";
+            case HAND_DRILL -> "Hand Drill";
+            case ROLLING_PIN -> "Rolling Pin";
+            case FLINT_AND_TINDER -> "Flint and Tinder";
+            case POCKET_MULTITOOL -> "Pocket Multitool";
+        };
     }
 
     private void addReactorRodNames() {
@@ -1672,11 +1889,19 @@ public class ModLanguageProvider extends LanguageProvider {
         addHeatExchangerCatalogNames();
         addQuantumEnergizerCatalogNames();
         addLongDistanceCatalogNames();
-        BathMteIdentityCatalog.newItems().forEach(identity ->
+        BathMteIdentityCatalog.newItems().forEach(identity -> {
+            if (identity.decorativePanel()) {
+                addIdentityBlockName(
+                        identity.registryPath(),
+                        identity.englishName(),
+                        identity.chineseName());
+            } else {
                 addIdentityItemName(
                         identity.registryPath(),
                         identity.englishName(),
-                        identity.chineseName()));
+                        identity.chineseName());
+            }
+        });
         SmelterMteIdentityCatalog.newItems().forEach(identity ->
                 addIdentityItemName(
                         identity.registryPath(),
@@ -1713,7 +1938,17 @@ public class ModLanguageProvider extends LanguageProvider {
 
     private void addIdentityItemName(
             String registryPath, String english, String chineseName) {
-        String key = LanguageNames.translationKey("item", registryPath);
+        addIdentityName("item", registryPath, english, chineseName);
+    }
+
+    private void addIdentityBlockName(
+            String registryPath, String english, String chineseName) {
+        addIdentityName("block", registryPath, english, chineseName);
+    }
+
+    private void addIdentityName(
+            String kind, String registryPath, String english, String chineseName) {
+        String key = LanguageNames.translationKey(kind, registryPath);
         if (!chinese) {
             add(key, LanguageNames.playerEnglish(english, registryPath));
             return;
@@ -1773,9 +2008,32 @@ public class ModLanguageProvider extends LanguageProvider {
         EnergyConverterKindCatalog.MaterialLang material =
                 EnergyConverterKindCatalog.materialLang(entry.material());
         if (chinese) {
-            return material.zh() + kind.langZh();
+            return prefixedConverterName(kind.langZh(), material.zh(), true);
         }
-        return material.en() + " " + kind.langEn();
+        return prefixedConverterName(kind.langEn(), material.en(), false);
+    }
+
+    private static String prefixedConverterName(
+            String kindName, String materialName, boolean chineseLocale) {
+        if (kindAlreadyIncludesMaterial(kindName, materialName, chineseLocale)) {
+            return kindName;
+        }
+        if (chineseLocale) {
+            return materialName + kindName;
+        }
+        return materialName + " " + kindName;
+    }
+
+    private static boolean kindAlreadyIncludesMaterial(
+            String kindName, String materialName, boolean chineseLocale) {
+        if (!kindName.startsWith(materialName)) {
+            return false;
+        }
+        if (kindName.length() == materialName.length()) {
+            return true;
+        }
+        char next = kindName.charAt(materialName.length());
+        return chineseLocale || next == ' ';
     }
 
     private void addBatteryCatalogNames() {

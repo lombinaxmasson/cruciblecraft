@@ -1,0 +1,19 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.tag(\"PROCESSING.SMITHABLE\")"
+  ],
+  "eut": "10000",
+  "item_inputs": [
+    {
+      "prefix": "cruciblecraft:plate"
+    }
+  ],
+  "item_outputs": [
+    {
+      "prefix": "cruciblecraft:curved_plate"
+    }
+  ],
+  "special_value": "4",
+  "target": "cruciblecraft:anvil_bend_big"
+}

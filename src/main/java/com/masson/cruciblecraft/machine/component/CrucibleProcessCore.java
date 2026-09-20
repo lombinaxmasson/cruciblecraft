@@ -284,6 +284,41 @@ public final class CrucibleProcessCore {
         return false;
     }
 
+    /**
+     * GT6 smeltery / large-crucible {@code ITileEntityMold.fillMold}: try the
+     * whole offered stack, then retry one ingot.
+     */
+    public int acceptMoldPour(String materialId, int availableUnits, float temperature) {
+        if (frozen()
+                || availableUnits <= 0
+                || materialId == null
+                || materialId.isEmpty()
+                || !MaterialCatalog.contains(materialId)) {
+            return 0;
+        }
+        int accepted = tryAcceptRaw(materialId, availableUnits, temperature);
+        if (accepted > 0) {
+            return accepted;
+        }
+        int ingot = MaterialPrefixes.INGOT.units();
+        if (availableUnits > ingot) {
+            return tryAcceptRaw(materialId, ingot, temperature);
+        }
+        return 0;
+    }
+
+    private int tryAcceptRaw(String materialId, int units, float temperature) {
+        MaterialDefinition material = MaterialCatalog.require(materialId);
+        if (!MachineMaterialRules.canCrucibleProcess(casing.materialId(), material)) {
+            return 0;
+        }
+        if (units <= 0 || totalUnits() > maxUnits() - units) {
+            return 0;
+        }
+        applyAdditions(Map.of(materialId, units), temperature);
+        return units;
+    }
+
     public Optional<CastTransfer> previewCast(MaterialPrefix form) {
         if (frozen()) {
             return Optional.empty();
@@ -468,7 +503,9 @@ public final class CrucibleProcessCore {
         Optional<MaterialPrefix> scrap = MaterialPrefixCatalog.find("scrap");
         int quantum = scrap.map(MaterialPrefix::units).orElse(MaterialPrefixes.INGOT.units() / 9);
         int available = contents.units(material.id());
-        if (available < quantum) {
+        boolean formLive = scrap.isPresent()
+                && MaterialCatalog.isFormRegistered(material, scrap.get());
+        if (!formLive || available < quantum) {
             contents.setUnits(material.id(), 0);
             onMutation.run();
             return Optional.of(new ScrapTake(material, 0, available, true));

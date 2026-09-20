@@ -25,8 +25,9 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * GT6 dust-family packing and placeable {@code OP.blockDust}. Lives on the
- * default GameTest namespace so a bare {@code runGameTestServer} exercises it.
+ * GT6 dust-family packing, placeable {@code OP.blockDust}, and plate-family
+ * packing into placeable {@code OP.blockPlate}. Lives on the default GameTest
+ * namespace so a bare {@code runGameTestServer} exercises it.
  */
 @GameTestHolder(CrucibleCraft.MODID)
 @PrefixGameTestTemplate(false)
@@ -96,6 +97,49 @@ public final class PrefixPackGameTests {
                         ResourceLocation.fromNamespaceAndPath(
                                 CrucibleCraft.MODID, "coal_coke/storage_dust")),
                 "coal_coke/storage_dust is not a live block id");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void nineIronPlatesCraftPlaceableStoragePlate(
+            GameTestHelper helper) {
+        ItemStack plate = MaterialLookup.stack("iron", MaterialPrefixes.PLATE);
+        List<ItemStack> slots = new ArrayList<>(Collections.nCopies(9, plate.copy()));
+        ItemStack assembled = craft(helper, 3, 3, slots);
+        helper.assertTrue(
+                MaterialLookup.matches(
+                        assembled, "iron", MaterialPrefixes.STORAGE_PLATE)
+                        && assembled.getCount() == 1,
+                "9 iron plates did not pack to storage plate: " + assembled);
+        helper.assertTrue(
+                ModBlocks.hasPlateStorageBlock("iron"),
+                "iron storage plate block was not registered");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void ironStoragePlatePlacesAndUnpacksInCraft(GameTestHelper helper) {
+        var block = ModBlocks.plateStorageBlock("iron").get();
+        BlockPos pos = new BlockPos(1, 2, 1);
+        helper.setBlock(pos, block.defaultBlockState());
+        helper.assertTrue(
+                helper.getBlockState(pos).is(block),
+                "iron storage plate did not place");
+        helper.assertTrue(
+                BuiltInRegistries.BLOCK.containsKey(
+                        ResourceLocation.fromNamespaceAndPath(
+                                CrucibleCraft.MODID, "iron/storage_plate")),
+                "iron/storage_plate is not a live block id");
+        ItemStack packed = MaterialLookup.stack(
+                "iron", MaterialPrefixes.STORAGE_PLATE);
+        List<ItemStack> slots = new ArrayList<>(
+                Collections.nCopies(9, ItemStack.EMPTY));
+        slots.set(0, packed);
+        ItemStack assembled = craft(helper, 3, 3, slots);
+        helper.assertTrue(
+                MaterialLookup.matches(assembled, "iron", MaterialPrefixes.PLATE)
+                        && assembled.getCount() == 9,
+                "1 iron storage plate did not unpack to 9 plates: " + assembled);
         helper.succeed();
     }
 

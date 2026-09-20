@@ -70,7 +70,7 @@ class Gt6EuMissingWireGaugesRuntimeTest(unittest.TestCase):
         catalog = runtime.CATALOG_JAVA.read_text(encoding="utf-8")
         tests = runtime.GAME_TESTS.read_text(encoding="utf-8")
         core = runtime.CORE_TESTS.read_text(encoding="utf-8")
-        self.assertIn("EXPECTED_WIRE_BLOCKS = 445", catalog)
+        self.assertIn("EXPECTED_WIRE_BLOCKS = 473", catalog)
         self.assertIn("SEPTUPLE_WIRE", catalog)
         self.assertIn("wireGt07", catalog)
         self.assertIn("red_alloy", catalog)

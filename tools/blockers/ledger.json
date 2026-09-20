@@ -4,9 +4,9 @@
       {
         "auto_promote_player_complete": false,
         "boundary_notes": [
-          "已有真实对象必须 exact mapping；不能把 61 个 loader_ids 当成 61 个必然可解条目。",
-          "石墨烯与超导缺形态继续 blocked。",
-          "HSLA alias / gauge 是独立子任务。",
+          "addElectricWires 配方 Loader id 已 320/320 折完；本批不再以 61 为待办。",
+          "石墨烯/超导 EU dummy catalog 行不是删除集合。",
+          "HSLA alias / dummy catalog 是独立子任务。",
           "连接件美术 dummy 不是 runtime identity 工作。"
         ],
         "does_not_merge_counts": true,
@@ -17,12 +17,8 @@
         "kind": "shared_identity_audit",
         "members": [
           {
-            "blocker_id": "identity/electric-unregistered-gauges",
-            "role": "primary"
-          },
-          {
             "blocker_id": "identity/eu-blocked-gauges",
-            "role": "audit_only"
+            "role": "primary"
           },
           {
             "blocker_id": "identity/hsla-ungated-gauges",
@@ -178,6 +174,17 @@
     "closed_before_batch_selection": [
       {
         "authority": [
+          "tools/capabilities/content/electric-wire-cable-mte-fold/capability.json",
+          "tools/waves/content/electric-wire-cable-mte-fold/operand_runtime_map.json",
+          "tools/waves/content/electric-wire-cable-mte-fold/unmapped.json"
+        ],
+        "blocker_ids": [
+          "identity/electric-unregistered-gauges"
+        ],
+        "resolution": "content/electric-wire-cable-mte-fold 把 addElectricWires 配方线规折到 320/320：石墨烯高规格、超导 01/02/04/08/12/16，以及 HSLA/BlueAlloy/ElectrotineAlloy/Naquadah/YBCO 的配方线规已按 GT6 开门为 CableBlock。"
+      },
+      {
+        "authority": [
           "docs/history/card-plans/closed/T48详细计划.md",
           "docs/history/card-plans/closed/T49详细计划.md",
           "tools/waves/bath/tiny-purified/readiness.json",
@@ -205,7 +212,7 @@
     "ordering_note": "recommended_order compares current open scopes qualitatively. Bath remainder and Bath identity were closed by T48/T49 and are not batch candidates. Different units and separate production locks must never be added.",
     "recommended_order": [
       {
-        "basis": "61 个 loader_ids 是最大的已冻结 identity 数；EU partial 与 HSLA 线仍需分子任务审计。",
+        "basis": "EU dummy catalog 与 HSLA hsla_steel 别名仍需审计；Loader id 折回已关闭。",
         "batch_id": "batch/identity-eu-gauge-closure"
       },
       {
@@ -307,12 +314,12 @@
           "slug": "machines/loom"
         }
       ],
-      "count": 869,
+      "count": 857,
       "discovered_by": "machines/loom",
       "id": "recipe/loom-overflow",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "232 unmapped MTE/plant_gt_fiber + 637 shadow. Connector identity work turned 0 rows green.",
+      "note": "166 unmapped MTE/plant_gt_fiber + 691 shadow. addElectricWires recipe gauges turned 12 rows green; remaining MTE includes wireGt03/05/06/07 and other non-recipe-gauge hosts.",
       "planning_bucket": "scale_not_todo",
       "resolved_by": null,
       "root_cause": "unmapped_mte_plant_fiber_or_shadow",
@@ -335,12 +342,12 @@
           "slug": "machines/laminator"
         }
       ],
-      "count": 60,
+      "count": 12,
       "discovered_by": "machines/laminator",
       "id": "recipe/laminator-overflow",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "54 unmapped MTE + 6 gt_block log. Connector identity work turned 0 rows green.",
+      "note": "6 unmapped non-addElectricWires MTE + 6 gt_block log. addElectricWires recipe gauges turned 48 rows green.",
       "planning_bucket": "schedulable",
       "resolved_by": null,
       "root_cause": "unmapped_mte_or_gt_block_log",
@@ -696,17 +703,17 @@
           "slug": "content/electric-wire-cable-mte-fold"
         }
       ],
-      "count": 61,
+      "count": 0,
       "discovered_by": "content/electric-wire-cable-mte-fold",
       "id": "identity/electric-unregistered-gauges",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Mapped 259 is not a dummy-removal set. Graphene wireGt07 is not in the missing-gauge runtime set.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "addElectricWires recipe gauges now map 320/320. Graphene 02/04/08/12/16, Superconductor 01/02/04/08/12/16, and HSLA/BlueAlloy/ElectrotineAlloy/Naquadah/YBCO canonical wires/cables are gated CableBlocks. Dummy catalog aliases remain a separate identity.",
+      "planning_bucket": "not_work",
+      "resolved_by": "content/electric-wire-cable-mte-fold",
       "root_cause": "superconductor_graphene_or_unregistered_gauge",
       "root_cause_class": "unmapped_identity",
-      "status": "open",
+      "status": "resolved",
       "title": "导线电缆 MTE 折回仍有未映射 Loader id",
       "unit": "loader_ids"
     },
@@ -729,7 +736,7 @@
       "id": "identity/hsla-ungated-gauges",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Alias repair only. HSLA cableGt12 is not in the landed missing-gauge set.",
+      "note": "Canonical HSLA 02/04/08/12/16 wires and 01/02/04/08/12 cables are now gated hslasteel CableBlocks. electric_wire/Nx_hsla_steel_* dummy catalog ids remain because the ledger still says hsla_steel.",
       "planning_bucket": "audit_first",
       "resolved_by": null,
       "root_cause": "ungated_hsla_wire_gauges",
@@ -786,7 +793,7 @@
       "id": "identity/eu-blocked-gauges",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "wireGt07/09/10/11/13/14/15 for 24 materials landed on the missing-gauge child. Graphene/superconductor remain dummy. Same semantic_key stays on the parent.",
+      "note": "wireGt07/09/10/11/13/14/15 for 24 materials landed on the missing-gauge child. Graphene/superconductor Loader ids now map onto live CableBlocks; leftover EU dummy catalog rows are still not a deletion set.",
       "planning_bucket": "audit_first",
       "resolved_by": null,
       "root_cause": "graphene_superconductor_or_unprefixed_gauges",
@@ -1911,7 +1918,7 @@
       "id": "tools/world-behaviors",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Pincers, hand drill, softhammer-on-storage, crowbar harvest, magnifier, electric tools. Clustered in unimplemented-gap.md §5 (click/mine/missing forms/unwired ToolActions). Not a recipe-row count. Do not bundle electric tools with builder wand.",
+      "note": "Pincers, hand drill, softhammer-on-storage, crowbar harvest, magnifier, electric tools. World click/mine vs missing forms vs unwired ToolActions. Not a recipe-row count. Do not bundle electric tools with builder wand. Authority is this blocker plus local gt6_code Loader_Tools.java, not the archived gap snapshot.",
       "planning_bucket": "audit_first",
       "resolved_by": null,
       "root_cause": "gt6_tool_world_behaviors_missing",
@@ -1972,12 +1979,6 @@
       "unit": "items"
     },
     {
-      "count": 61,
-      "id": "identity/electric-unregistered-gauges",
-      "planning_bucket": "schedulable",
-      "unit": "loader_ids"
-    },
-    {
       "count": 3,
       "id": "identity/processing-ungated-families",
       "planning_bucket": "schedulable",
@@ -2020,13 +2021,13 @@
       "unit": "rows"
     },
     {
-      "count": 60,
+      "count": 12,
       "id": "recipe/laminator-overflow",
       "planning_bucket": "schedulable",
       "unit": "rows"
     },
     {
-      "count": 869,
+      "count": 857,
       "id": "recipe/loom-overflow",
       "planning_bucket": "scale_not_todo",
       "unit": "rows"
@@ -2122,7 +2123,6 @@
     "unmapped_identity": [
       "identity/connector-art-keep-distinct-dummies",
       "identity/converter-turbines-battery-boxes",
-      "identity/electric-unregistered-gauges",
       "identity/eu-blocked-gauges",
       "identity/hsla-ungated-gauges",
       "identity/processing-ungated-families"
@@ -2235,7 +2235,7 @@
         "unit": "rows"
       },
       {
-        "count": 869,
+        "count": 857,
         "id": "recipe/loom-overflow",
         "unit": "rows"
       },
@@ -2287,11 +2287,6 @@
         "unit": "items"
       },
       {
-        "count": 61,
-        "id": "identity/electric-unregistered-gauges",
-        "unit": "loader_ids"
-      },
-      {
         "count": 3,
         "id": "identity/processing-ungated-families",
         "unit": "families"
@@ -2322,7 +2317,7 @@
         "unit": "hosts"
       },
       {
-        "count": 60,
+        "count": 12,
         "id": "recipe/laminator-overflow",
         "unit": "rows"
       },
@@ -2352,15 +2347,15 @@
     "audit_first": 14,
     "not_work": 3,
     "scale_not_todo": 5,
-    "schedulable": 18
+    "schedulable": 17
   },
   "schema_version": 1,
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "stats": {
-    "open": 38,
+    "open": 37,
     "out_of_scope": 6,
     "partial": 2,
-    "resolved": 11,
+    "resolved": 12,
     "superseded": 5,
     "total": 62
   }

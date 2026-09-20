@@ -27,20 +27,28 @@ class VanillaReplaceMvpLockTest(unittest.TestCase):
             lock["source_blob_sha1"],
         )
         self.assertEqual(VANILLA_PATH, lock["source_file"])
-        self.assertEqual([], lock["removed"])
-        self.assertEqual([], lock["added"])
-        substituted = lock["substituted"]
-        self.assertEqual(1, len(substituted))
-        paper = substituted[0]
-        self.assertEqual("minecraft:paper", paper["recipe_id"])
+        self.assertGreaterEqual(len(lock["removed"]), 4)
+        removed = {row["recipe_id"] for row in lock["removed"]}
+        self.assertIn("minecraft:magma_cream", removed)
+        self.assertIn("minecraft:cookie", removed)
+        self.assertIn("minecraft:golden_apple", removed)
+        self.assertIn("minecraft:golden_carrot", removed)
+        self.assertGreaterEqual(len(lock["added"]), 1)
+        substituted = {row["recipe_id"]: row for row in lock["substituted"]}
+        self.assertIn("minecraft:paper", substituted)
+        self.assertIn("minecraft:furnace", substituted)
+        self.assertIn("minecraft:bone_meal", substituted)
+        self.assertIn("minecraft:minecart", substituted)
+        self.assertIn("minecraft:chainmail_helmet", substituted)
+        paper = substituted["minecraft:paper"]
         self.assertEqual("substitute", paper["action"])
         self.assertEqual([43, 44, 52], paper["gt6_pointer"]["lines"])
         self.assertEqual(1, int(paper["io"]["result"]["count"]))
         deferred_text = census.stable_json(lock["deferred"])
-        self.assertIn("minecraft:furnace", deferred_text)
-        self.assertIn("itemGrassDry", deferred_text)
-        self.assertIn("minecraft:bone_meal", deferred_text)
+        self.assertNotIn('"minecraft:furnace"', deferred_text)
+        self.assertNotIn('"minecraft:bone_meal"', deferred_text)
         equivalent = census.stable_json(lock["no_1_21_equivalent"])
+        self.assertIn("itemGrassDry", equivalent)
         self.assertIn("rem_smelting", equivalent)
         self.assertIn("WiMo_Thick_Bone", equivalent)
 
@@ -62,7 +70,11 @@ class VanillaReplaceMvpReadinessTest(unittest.TestCase):
         self.assertIsNone(readiness["unique_active_wave"])
         self.assertTrue(readiness["next_unassigned"])
         self.assertEqual(0, int(readiness["owns_families"]))
-        self.assertEqual(1, int(readiness["substituted_count"]))
+        lock = census.load_json(mvp.LOCK_PATH)
+        self.assertEqual(
+            len(lock["substituted"]),
+            int(readiness["substituted_count"]),
+        )
 
 
 if __name__ == "__main__":

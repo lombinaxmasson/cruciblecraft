@@ -165,7 +165,8 @@ final class VanillaToolUseOn {
             Player player,
             UseOnContext context) {
         if (player != null) {
-            stack.hurtAndBreak(
+            ToolBreakScrap.hurtAndBreak(
+                    stack,
                     1,
                     player,
                     LivingEntity.getSlotForHand(context.getHand()));

@@ -84,7 +84,8 @@ public final class MaterialFlintAndTinderItem extends MaterialToolItem {
 
     private static void hurt(UseOnContext context) {
         if (context.getPlayer() != null) {
-            context.getItemInHand().hurtAndBreak(
+            ToolBreakScrap.hurtAndBreak(
+                    context.getItemInHand(),
                     1,
                     context.getPlayer(),
                     LivingEntity.getSlotForHand(context.getHand()));

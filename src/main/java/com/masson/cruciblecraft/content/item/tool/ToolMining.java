@@ -71,7 +71,7 @@ public final class ToolMining {
             case WIRE_CUTTER -> wireCutterMineable(state);
             case CHISEL -> chiselMineable(state);
             case CLUB -> state.is(BlockTags.MINEABLE_WITH_PICKAXE);
-            case SMITHING_HAMMER -> hammerMineable(state);
+            case SMITHING_HAMMER -> isHammerMineable(state);
             case KNIFE, BUTCHERY_KNIFE ->
                     state.is(Blocks.COBWEB)
                             || state.is(Blocks.VINE)
@@ -202,14 +202,18 @@ public final class ToolMining {
                 || state.is(Blocks.POWDER_SNOW);
     }
 
-    private static boolean hammerMineable(BlockState state) {
+    public static boolean isHammerMineable(BlockState state) {
         return state.is(BlockTags.MINEABLE_WITH_PICKAXE)
+                || state.is(Tags.Blocks.STONES)
+                || state.is(Tags.Blocks.COBBLESTONES)
                 || state.getBlock() instanceof InfestedBlock
                 || state.is(Blocks.SPAWNER)
                 || state.is(BlockTags.ICE)
                 || state.is(Tags.Blocks.GLASS_BLOCKS)
                 || state.is(Tags.Blocks.GLASS_PANES)
                 || state.is(Blocks.GLOWSTONE)
-                || state.is(Blocks.SEA_LANTERN);
+                || state.is(Blocks.SEA_LANTERN)
+                || state.is(Blocks.NETHERRACK)
+                || state.is(Blocks.END_STONE);
     }
 }

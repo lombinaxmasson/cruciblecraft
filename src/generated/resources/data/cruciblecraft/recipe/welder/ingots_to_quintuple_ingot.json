@@ -1,0 +1,21 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.tag(\"PROCESSING.SMITHABLE\")",
+    "!material.tag(\"COMPOUNDS.COATED\")"
+  ],
+  "duration": "400",
+  "eut": "48",
+  "item_inputs": [
+    {
+      "count": "5",
+      "prefix": "cruciblecraft:ingot"
+    }
+  ],
+  "item_outputs": [
+    {
+      "prefix": "cruciblecraft:quintuple_ingot"
+    }
+  ],
+  "target": "cruciblecraft:welder"
+}

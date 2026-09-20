@@ -8,7 +8,7 @@ data-driven pipeline. Unofficial. The target is full coverage; progress is
 closed capabilities, and remaining gaps stay on the ledger until they are
 done for real.
 
-Current version `0.1.0-test.20260919` — source tree, development snapshot.
+Current version `0.1.0-test.20260919.2` — source tree, development snapshot.
 Play notes: [player guide](docs/current/player-guide.md) (new worlds).
 
 - [Project status](docs/current/project-status.md)
@@ -32,7 +32,7 @@ Play notes: [player guide](docs/current/player-guide.md) (new worlds).
   ores
 - Item pipes, fluid pipes, cables, covers, automation
 - Crude oil and natural gas through distillation into engines and power
-- EMI recipes, Jade overlays; optional unbundled KubeJS
+- EMI recipes, Jade overlays, Reliable EMI form / tool / machine / building / furniture folding; optional unbundled KubeJS
 
 Status and gaps: [project status](docs/current/project-status.md),
 [unimplemented-gap.md](docs/current/unimplemented-gap.md),
@@ -71,7 +71,7 @@ art imports do; see the [code tree](docs/current/code-tree.md).
 ```
 
 Artifacts land in `build/libs/` as
-`cruciblecraft-0.1.0-test.20260919.jar`. `distBeta` zips the docs with it.
+`cruciblecraft-0.1.0-test.20260919.2.jar`. `distBeta` zips the docs with it.
 Keep Gradle proxies in user-level `~/.gradle/gradle.properties`.
 
 ## Development model
@@ -201,4 +201,5 @@ and their respective licenses are documented in [CREDITS.md](CREDITS.md) and
 [NOTICE](NOTICE). GT6 default assets are CC0 1.0 upstream; this project does
 not use the GregTech logo (CC-BY-NC-4.0).
 
-EMI, Jade, and KubeJS integrations are optional and are not bundled.
+EMI, Jade, Reliable EMI (REMI / EMI++), and KubeJS integrations are optional
+and are not bundled.

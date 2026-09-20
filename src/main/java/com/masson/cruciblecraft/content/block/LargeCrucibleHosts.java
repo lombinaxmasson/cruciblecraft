@@ -15,7 +15,9 @@ import com.masson.cruciblecraft.registry.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 /**
  * GT6 {@code MultiTileEntityCrucible} controllers and matching metal walls
@@ -23,6 +25,12 @@ import net.minecraft.world.level.block.state.BlockState;
  */
 public final class LargeCrucibleHosts {
     public static final String DEFAULT_MATERIAL = "steel";
+
+    /**
+     * GT6 formed design 4: wall cubes vanish and the controller BER draws
+     * the 3x3x3 hull.
+     */
+    public static final BooleanProperty FORMED = BooleanProperty.create("formed");
 
     /** Visible GT6 large-crucible materials that already have CC wall/controller ids. */
     public static final List<String> MATERIALS = List.of(
@@ -66,6 +74,20 @@ public final class LargeCrucibleHosts {
 
     public static boolean isWall(Block block) {
         return block instanceof MteInPlaceBlock inplace && isWall(inplace.spec());
+    }
+
+    public static boolean usesFormedState(MteInPlaceSpec spec) {
+        return isController(spec) || isWall(spec);
+    }
+
+    public static boolean formed(BlockState state) {
+        return state.hasProperty(FORMED) && state.getValue(FORMED);
+    }
+
+    public static RenderShape formedRenderShape(MteInPlaceSpec spec) {
+        return isController(spec)
+                ? RenderShape.ENTITYBLOCK_ANIMATED
+                : RenderShape.INVISIBLE;
     }
 
     /** GT6 metal/wood/dense walls in Multiblock Machines, including non-casing parts. */

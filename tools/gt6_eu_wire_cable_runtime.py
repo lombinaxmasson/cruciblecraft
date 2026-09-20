@@ -411,6 +411,8 @@ def _fold_targets(rows: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
     for row in rows:
         if not _is_placeable(row, gated):
             continue
+        if row.get("disposition") != "fold_live_block":
+            continue
         dummy = _dummy_path(row)
         host = _live_host(row)
         if not host or not _is_dummy(dummy):
@@ -692,9 +694,14 @@ def check() -> list[str]:
         if missing_gauges.folded_metas()
         else EXPECTED_WIRES
     )
+    expected_cables = (
+        missing_gauges.EXPECTED_CABLES
+        if missing_gauges.folded_metas()
+        else EXPECTED_CABLES
+    )
     if f"EXPECTED_WIRE_BLOCKS = {expected_wires}" not in catalog_java:
         errors.append("ElectricalConductorCatalog wire census drifted")
-    if f"EXPECTED_CABLE_BLOCKS = {EXPECTED_CABLES}" not in catalog_java:
+    if f"EXPECTED_CABLE_BLOCKS = {expected_cables}" not in catalog_java:
         errors.append("ElectricalConductorCatalog cable census drifted")
     if missing_gauges.folded_metas():
         if "wireGt07" not in catalog_java:

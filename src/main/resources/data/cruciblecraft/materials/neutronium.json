@@ -206,71 +206,6 @@
       "PROPERTIES.MAGNETIC_PASSIVE",
       "PROPERTIES.UNBURNABLE"
     ],
-    "pipe_properties": {
-      "fluid_by_specification": {
-        "pipeHuge": {
-          "acid_proof": false,
-          "blocking": true,
-          "capacity_mb": 9600,
-          "contact_damage": true,
-          "flammable": false,
-          "gas_proof": true,
-          "magic_proof": true,
-          "max_temperature_kelvin": 3587,
-          "plasma_proof": false,
-          "recipe": true
-        },
-        "pipeLarge": {
-          "acid_proof": false,
-          "blocking": true,
-          "capacity_mb": 4800,
-          "contact_damage": true,
-          "flammable": false,
-          "gas_proof": true,
-          "magic_proof": true,
-          "max_temperature_kelvin": 3587,
-          "plasma_proof": false,
-          "recipe": true
-        },
-        "pipeMedium": {
-          "acid_proof": false,
-          "blocking": true,
-          "capacity_mb": 2400,
-          "contact_damage": true,
-          "flammable": false,
-          "gas_proof": true,
-          "magic_proof": true,
-          "max_temperature_kelvin": 3587,
-          "plasma_proof": false,
-          "recipe": true
-        },
-        "pipeSmall": {
-          "acid_proof": false,
-          "blocking": true,
-          "capacity_mb": 800,
-          "contact_damage": true,
-          "flammable": false,
-          "gas_proof": true,
-          "magic_proof": true,
-          "max_temperature_kelvin": 3587,
-          "plasma_proof": false,
-          "recipe": true
-        },
-        "pipeTiny": {
-          "acid_proof": false,
-          "blocking": true,
-          "capacity_mb": 400,
-          "contact_damage": true,
-          "flammable": false,
-          "gas_proof": true,
-          "magic_proof": true,
-          "max_temperature_kelvin": 3587,
-          "plasma_proof": false,
-          "recipe": true
-        }
-      },
-      "item_by_specification": {}
-    },
     "processing_targets": {
       "bending": {
         "cc_units": 144,
@@ -358,6 +293,7 @@
       }
     },
     "source_id": 0,
+    "source_material_name": "Neutronium",
     "source_name": "Neutronium",
     "source_thermal": {
       "boiling_point_celsius": 4207.85,
@@ -374,8 +310,7 @@
       "quality": 4,
       "speed": 10.0,
       "types": 3
-    },
-    "source_material_name": "Neutronium"
+    }
   },
   "id": "neutronium",
   "molten_fluid": true,

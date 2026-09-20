@@ -43,6 +43,7 @@
     "test_blockers",
     "test_roll_former",
     "test_cluster_mill",
+    "test_hammer_squeezer_laser",
     "test_slicer",
     "test_injector",
     "test_laminator",
@@ -502,6 +503,7 @@
       "paths": [
         "tools/tests/test_roll_former.py",
         "tools/tests/test_cluster_mill.py",
+        "tools/tests/test_hammer_squeezer_laser.py",
         "tools/tests/test_slicer.py",
         "tools/tests/test_injector.py",
         "tools/tests/test_laminator.py",
@@ -521,6 +523,7 @@
         "tools/waves/machines/**",
         "src/test/java/com/masson/cruciblecraft/gametest/RollFormerGameTests.java",
         "src/test/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/HammerSqueezerLaserGameTests.java",
         "src/test/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
         "src/test/java/com/masson/cruciblecraft/gametest/InjectorGameTests.java",
         "src/test/java/com/masson/cruciblecraft/gametest/BathGameTests.java",
@@ -528,12 +531,14 @@
         "src/test/java/com/masson/cruciblecraft/gametest/OvenGameTests.java",
         "src/main/resources/data/cruciblecraft_wave_machines_roll_former/**",
         "src/main/resources/data/cruciblecraft_wave_machines_cluster_mill/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_hammer_squeezer_laser/**",
         "src/main/resources/data/cruciblecraft_wave_machines_slicer/**",
         "src/main/resources/data/cruciblecraft_wave_machines_bath/**"
       ],
       "test_modules": [
         "test_roll_former",
         "test_cluster_mill",
+        "test_hammer_squeezer_laser",
         "test_slicer",
         "test_injector",
         "test_laminator",

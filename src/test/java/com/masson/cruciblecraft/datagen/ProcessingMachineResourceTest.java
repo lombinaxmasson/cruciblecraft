@@ -161,6 +161,8 @@ class ProcessingMachineResourceTest {
                 "fluid_type.cruciblecraft.oxygen",
                 "emi.category.cruciblecraft.electrolyzer",
                 "jade.cruciblecraft.processing_tank",
+                "jade.cruciblecraft.converter.tank",
+                "jade.cruciblecraft.converter.tank_empty",
                 "jade.cruciblecraft.temperature_k")));
         long translated = chinese.keySet().stream()
                 .filter(key -> !english.get(key).getAsString()
@@ -248,9 +250,9 @@ class ProcessingMachineResourceTest {
                 fileRecipe.getAsJsonObject("ingredients")
                         .getAsJsonObject("P").get("item").getAsString());
         assertEquals(
-                "cruciblecraft:flint_knife",
-                fileRecipe.getAsJsonObject("catalysts")
-                        .getAsJsonObject("k").get("item").getAsString());
+                "cruciblecraft:crafting_tools/knife",
+                slotRef(fileRecipe.getAsJsonObject("catalysts")
+                        .getAsJsonObject("k")));
         var fileResult = fileRecipe.getAsJsonObject("result");
         assertEquals("cruciblecraft:iron/tool_head_file", fileResult.get("id").getAsString());
         assertTrue(!fileResult.has("components"));
@@ -276,9 +278,9 @@ class ProcessingMachineResourceTest {
                             .map(value -> value.getAsString()).toList(),
                     entry.getKey());
             assertEquals(
-                    "cruciblecraft:smithing_hammer",
-                    recipe.getAsJsonObject("catalysts")
-                            .getAsJsonObject("h").get("item").getAsString(),
+                    "cruciblecraft:crafting_tools/hammer",
+                    slotRef(recipe.getAsJsonObject("catalysts")
+                            .getAsJsonObject("h")),
                     entry.getKey());
             var result = recipe.getAsJsonObject("result");
             assertEquals(entry.getValue(), result.get("id").getAsString(), entry.getKey());
@@ -311,7 +313,7 @@ class ProcessingMachineResourceTest {
                 "tools/iron/wrench.json",
                 List.of("PhP", " P ", " P "),
                 Map.of("P", "cruciblecraft:iron/plate"),
-                Map.of("h", "cruciblecraft:smithing_hammer"),
+                Map.of("h", "cruciblecraft:crafting_tools/hammer"),
                 "cruciblecraft:material_wrench",
                 "iron");
         assertShapedHead(
@@ -319,16 +321,16 @@ class ProcessingMachineResourceTest {
                 List.of("hS ", "Sf ", "   "),
                 Map.of("S", "cruciblecraft:iron/rod"),
                 Map.of(
-                        "h", "cruciblecraft:smithing_hammer",
-                        "f", "cruciblecraft:material_file"),
+                        "h", "cruciblecraft:crafting_tools/hammer",
+                        "f", "cruciblecraft:crafting_tools/file"),
                 "cruciblecraft:iron/tool_head_screwdriver");
         assertShapedHead(
                 "tools/iron/tool_head_saw.json",
                 List.of("PP ", "fh ", "   "),
                 Map.of("P", "cruciblecraft:iron/plate"),
                 Map.of(
-                        "f", "cruciblecraft:material_file",
-                        "h", "cruciblecraft:smithing_hammer"),
+                        "f", "cruciblecraft:crafting_tools/file",
+                        "h", "cruciblecraft:crafting_tools/hammer"),
                 "cruciblecraft:iron/tool_head_saw");
         assertShapedHead(
                 "tools/iron/tool_head_chisel.json",
@@ -337,8 +339,8 @@ class ProcessingMachineResourceTest {
                         "P", "cruciblecraft:iron/plate",
                         "S", "cruciblecraft:iron/rod"),
                 Map.of(
-                        "h", "cruciblecraft:smithing_hammer",
-                        "f", "cruciblecraft:material_file"),
+                        "h", "cruciblecraft:crafting_tools/hammer",
+                        "f", "cruciblecraft:crafting_tools/file"),
                 "cruciblecraft:iron/tool_head_chisel");
         assertShapedHead(
                 "tools/iron/tool_head_pickaxe.json",
@@ -347,8 +349,8 @@ class ProcessingMachineResourceTest {
                         "P", "cruciblecraft:iron/plate",
                         "I", "minecraft:iron_ingot"),
                 Map.of(
-                        "f", "cruciblecraft:material_file",
-                        "h", "cruciblecraft:smithing_hammer"),
+                        "f", "cruciblecraft:crafting_tools/file",
+                        "h", "cruciblecraft:crafting_tools/hammer"),
                 "cruciblecraft:iron/tool_head_pickaxe");
         assertShapedCatalyst(
                 "tools/iron/wire_cutter.json",
@@ -358,9 +360,9 @@ class ProcessingMachineResourceTest {
                         "S", "cruciblecraft:iron/rod",
                         "T", "cruciblecraft:iron/screw"),
                 Map.of(
-                        "f", "cruciblecraft:material_file",
-                        "h", "cruciblecraft:smithing_hammer",
-                        "d", "cruciblecraft:material_screwdriver"),
+                        "f", "cruciblecraft:crafting_tools/file",
+                        "h", "cruciblecraft:crafting_tools/hammer",
+                        "d", "cruciblecraft:crafting_tools/screwdriver"),
                 "cruciblecraft:material_wire_cutter",
                 "iron");
         assertShapedCatalyst(
@@ -370,8 +372,8 @@ class ProcessingMachineResourceTest {
                         "P", "cruciblecraft:iron/plate",
                         "T", "cruciblecraft:iron/screw"),
                 Map.of(
-                        "d", "cruciblecraft:material_screwdriver",
-                        "h", "cruciblecraft:smithing_hammer"),
+                        "d", "cruciblecraft:crafting_tools/screwdriver",
+                        "h", "cruciblecraft:crafting_tools/hammer"),
                 "cruciblecraft:material_monkey_wrench",
                 "iron");
         assertShapedCatalyst(
@@ -381,8 +383,8 @@ class ProcessingMachineResourceTest {
                         "P", "cruciblecraft:iron/plate",
                         "H", "minecraft:stick"),
                 Map.of(
-                        "f", "cruciblecraft:material_file",
-                        "h", "cruciblecraft:smithing_hammer"),
+                        "f", "cruciblecraft:crafting_tools/file",
+                        "h", "cruciblecraft:crafting_tools/hammer"),
                 "cruciblecraft:material_knife",
                 "iron");
         assertShapedCatalyst(
@@ -401,8 +403,8 @@ class ProcessingMachineResourceTest {
                         "S", "cruciblecraft:iron/rod",
                         "V", "minecraft:blue_dye"),
                 Map.of(
-                        "h", "cruciblecraft:smithing_hammer",
-                        "f", "cruciblecraft:material_file"),
+                        "h", "cruciblecraft:crafting_tools/hammer",
+                        "f", "cruciblecraft:crafting_tools/file"),
                 "cruciblecraft:material_crowbar",
                 "iron");
         assertShapedCatalyst(
@@ -412,15 +414,15 @@ class ProcessingMachineResourceTest {
                         "S", "cruciblecraft:iron/rod",
                         "V", "cruciblecraft:rubber/plate"),
                 Map.of(
-                        "x", "cruciblecraft:material_wire_cutter",
-                        "f", "cruciblecraft:material_file"),
+                        "x", "cruciblecraft:crafting_tools/wire_cutter",
+                        "f", "cruciblecraft:crafting_tools/file"),
                 "cruciblecraft:material_plunger",
                 "iron");
         assertShapedHead(
                 "tools/bronze/tool_head_file.json",
                 List.of(" P ", " Pk", "   "),
                 Map.of("P", "cruciblecraft:bronze/plate"),
-                Map.of("k", "cruciblecraft:flint_knife"),
+                Map.of("k", "cruciblecraft:crafting_tools/knife"),
                 "cruciblecraft:bronze/tool_head_file");
         var assemble = JsonParser.parseString(Files.readString(GENERATED.resolve(
                 "data/cruciblecraft/recipe/tools/assemble/pickaxe.json")))
@@ -506,7 +508,7 @@ class ProcessingMachineResourceTest {
             recipe.getAsJsonObject("catalysts").entrySet().forEach(entry ->
                     actualCatalysts.put(
                             entry.getKey(),
-                            entry.getValue().getAsJsonObject().get("item").getAsString()));
+                            slotRef(entry.getValue().getAsJsonObject())));
             assertEquals(catalysts, actualCatalysts, relative);
         }
         var result = recipe.getAsJsonObject("result");
@@ -551,11 +553,18 @@ class ProcessingMachineResourceTest {
         recipe.getAsJsonObject("catalysts").entrySet().forEach(entry ->
                 actualCatalysts.put(
                         entry.getKey(),
-                        entry.getValue().getAsJsonObject().get("item").getAsString()));
+                        slotRef(entry.getValue().getAsJsonObject())));
         assertEquals(catalysts, actualCatalysts, relative);
         var result = recipe.getAsJsonObject("result");
         assertEquals(resultId, result.get("id").getAsString(), relative);
         assertTrue(!result.has("components"), relative);
+    }
+
+    private static String slotRef(com.google.gson.JsonObject slot) {
+        if (slot.has("tag")) {
+            return slot.get("tag").getAsString();
+        }
+        return slot.get("item").getAsString();
     }
 
     private static List<String> values(Path rootPath, String path) throws Exception {

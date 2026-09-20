@@ -76,6 +76,11 @@ public final class CruciblePlayerInteraction {
             giveScrap(player, process, Integer.MAX_VALUE, true);
             return ItemInteractionResult.SUCCESS;
         }
+        if (matchesHeldScrap(stack, process)
+                && stack.getCount() < stack.getMaxStackSize()) {
+            giveScrap(player, process, 1, false);
+            return ItemInteractionResult.SUCCESS;
+        }
         if (FluidUtil.interactWithFluidHandler(player, hand, fluids)) {
             return ItemInteractionResult.SUCCESS;
         }
@@ -154,15 +159,51 @@ public final class CruciblePlayerInteraction {
         if (scrap.count() <= 0) {
             return true;
         }
-        Optional<ItemStack> stack = MaterialPrefixCatalog.find("scrap")
-                .flatMap(prefix -> MaterialLookup.tryStack(
-                        scrap.material().id(), prefix, scrap.count()));
+        Optional<ItemStack> stack = scrapStack(scrap.material().id(), scrap.count());
         if (stack.isPresent()) {
             ItemStack given = stack.get();
-            if (!player.addItem(given)) {
-                player.drop(given, false);
+            if (shovel) {
+                if (!player.addItem(given)) {
+                    player.drop(given, false);
+                }
+            } else {
+                giveToSelected(player, given);
             }
         }
         return true;
+    }
+
+    private static boolean matchesHeldScrap(ItemStack held, CrucibleProcessCore process) {
+        if (held.isEmpty()) {
+            return false;
+        }
+        return process.lightestSolid()
+                .flatMap(material -> scrapStack(material.id(), 1))
+                .filter(one -> ItemStack.isSameItemSameComponents(held, one))
+                .isPresent();
+    }
+
+    private static Optional<ItemStack> scrapStack(String materialId, int count) {
+        return MaterialPrefixCatalog.find("scrap")
+                .flatMap(prefix -> MaterialLookup.tryStack(materialId, prefix, count));
+    }
+
+    private static void giveToSelected(Player player, ItemStack given) {
+        ItemStack selected = player.getMainHandItem();
+        if (selected.isEmpty()) {
+            player.setItemInHand(InteractionHand.MAIN_HAND, given);
+            return;
+        }
+        if (ItemStack.isSameItemSameComponents(selected, given)
+                && selected.getCount() < selected.getMaxStackSize()) {
+            int merge = Math.min(
+                    given.getCount(),
+                    selected.getMaxStackSize() - selected.getCount());
+            selected.grow(merge);
+            given.shrink(merge);
+        }
+        if (!given.isEmpty() && !player.addItem(given)) {
+            player.drop(given, false);
+        }
     }
 }

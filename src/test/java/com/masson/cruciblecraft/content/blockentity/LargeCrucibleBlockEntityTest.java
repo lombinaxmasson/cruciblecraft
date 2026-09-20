@@ -80,7 +80,8 @@ class LargeCrucibleBlockEntityTest {
         assertTrue(source.contains("queueCooling"));
         assertTrue(source.contains("fillMeltdownLava"));
         assertTrue(source.contains("pourHostAtWall"));
-        assertTrue(source.contains("wallsMatchCasing"));
+        assertTrue(source.contains("applyFormedVisuals"));
+        assertTrue(source.contains("LargeCrucibleHosts.FORMED"));
     }
 
     @Test
@@ -107,6 +108,22 @@ class LargeCrucibleBlockEntityTest {
         String machineColor = java.nio.file.Files.readString(java.nio.file.Path.of(
                 "src/main/java/com/masson/cruciblecraft/client/color/MachineBlockColor.java"));
         assertFalse(machineColor.contains("LARGE_CRUCIBLE"));
+        String renderer = java.nio.file.Files.readString(java.nio.file.Path.of(
+                "src/main/java/com/masson/cruciblecraft/client/render/LargeCrucibleRenderer.java"));
+        assertTrue(renderer.contains("LargeCrucibleHullRenderer.render"));
+        String hull = java.nio.file.Files.readString(java.nio.file.Path.of(
+                "src/main/java/com/masson/cruciblecraft/client/render/LargeCrucibleHullRenderer.java"));
+        assertTrue(hull.contains("-0.999f"));
+        assertTrue(hull.contains("1.500f"));
+        String interaction = java.nio.file.Files.readString(java.nio.file.Path.of(
+                "src/main/java/com/masson/cruciblecraft/content/block/MteInPlaceBlock.java"));
+        assertTrue(interaction.contains("!spec.kind().attachment()"));
+        assertTrue(interaction.contains("return InteractionResult.PASS"));
+        assertTrue(interaction.contains("CoinageMoldHosts.isCoinage"));
+        String inventory = java.nio.file.Files.readString(java.nio.file.Path.of(
+                "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeCrucibleBlockEntity.java"));
+        assertTrue(inventory.contains("CastingMolds.isMoldItem"));
+        assertTrue(inventory.contains("implements MultiblockControllerBinding, MultiblockPortHost, CruciblePour, MoldHost"));
         String model = java.nio.file.Files.readString(java.nio.file.Path.of(
                 "src/main/resources/assets/cruciblecraft/models/block/large_crucible.json"));
         assertTrue(model.contains("gt6_import/multiblockmains/crucible"));

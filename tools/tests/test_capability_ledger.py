@@ -23,6 +23,7 @@ TRANSFORMERS = "energy/transformers"
 HEAT_EXCHANGERS = "energy/heat-exchangers"
 ROLL_FORMER = "machines/roll-former"
 CLUSTER_MILL = "machines/cluster-mill"
+HAMMER_SQUEEZER_LASER = "machines/hammer-squeezer-laser"
 SLICER = "machines/slicer"
 INJECTOR = "machines/injector"
 LAMINATOR = "machines/laminator"
@@ -68,6 +69,7 @@ HOT_FLUIDS = "energy/nuclear-fission-hot-fluids"
 OBSERVATION = "energy/nuclear-fission-observation-safety"
 LARGE_HEX = "energy/large-heat-exchanger"
 STEAM_TURBINE = "energy/steam-turbine"
+SMALL_GAS_TURBINE = "energy/small-gas-turbine"
 FUSION_QUANTUM = "energy/fusion-quantum"
 QUANTUM_MASSFAB = "energy/quantum-massfab"
 PUV_OMEGA_PARTS = "content/puv-omega-parts"
@@ -301,6 +303,7 @@ class CapabilityLedgerTest(unittest.TestCase):
             "machines/slicer",
             ledger.load_card_plan_index()["closed"],
         )
+        self.assertIn(HAMMER_SQUEEZER_LASER, ledger.load_card_plan_index()["closed"])
 
     def test_ledger_contains_profiles_and_impact_without_proof_fields(self) -> None:
         compiled = ledger.compile_ledger()
@@ -325,6 +328,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 ROLL_FORMER,
                 CLUSTER_MILL,
                 SLICER,
+                HAMMER_SQUEEZER_LASER,
                 INJECTOR,
                 LAMINATOR,
                 LOOM,
@@ -351,6 +355,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 CROPS,
                 "logistics/cover-remainder",
                 LARGE_HEX,
+                SMALL_GAS_TURBINE,
                 STEAM_TURBINE,
                 FUSION_QUANTUM,
                 QUANTUM_MASSFAB,
@@ -428,6 +433,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 OBSERVATION,
                 NUCLEAR,
                 QUANTUM_MASSFAB,
+                SMALL_GAS_TURBINE,
                 STEAM_TURBINE,
                 TRANSFORMERS,
                 DISPLAY,
@@ -435,6 +441,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 GENERIC,
                 CORE,
                 CLUSTER_MILL,
+                HAMMER_SQUEEZER_LASER,
                 INJECTOR,
                 LAMINATOR,
                 LOOM,

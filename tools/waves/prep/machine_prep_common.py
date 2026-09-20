@@ -26,6 +26,7 @@ if str(TOOLS) not in sys.path:
 from tools.gt6_recipe_templates import _stable_json
 from tools.recipe_bulk import source_import
 from tools.recipe_bulk.dialects import gt6
+from tools.recipe_bulk.ordinary_source import UNSPLIT_VANILLA_ITEM_IDS
 from tools.recipe_bulk.pilot import compile_fixture, reviewed_lock
 SOURCE_REVISION = "3703e40308c8c030763fd6297dea8b210d2a77b1"
 GT6_ART = ROOT / "gt6_referencable_port_code" / "gregtech6_w"
@@ -203,6 +204,8 @@ def missing_runtime_item_operands(relation: dict[str, Any]) -> list[str]:
             if not runtime:
                 continue
             if runtime.startswith("minecraft:") or runtime.startswith("neoforge:"):
+                if runtime in UNSPLIT_VANILLA_ITEM_IDS:
+                    missing.append(f"unregistered runtime item {runtime}")
                 continue
             if runtime not in registered:
                 missing.append(f"unregistered runtime item {runtime}")

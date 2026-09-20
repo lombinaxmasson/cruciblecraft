@@ -72,6 +72,10 @@ class MassStorageHandlerTest {
         assertTrue(MassStoragePrefixUnits.familyOf(
                 com.masson.cruciblecraft.api.material.MaterialPrefixes.INGOT)
                 .contains(com.masson.cruciblecraft.api.material.MaterialPrefixes.BLOCK));
+        assertTrue(MassStoragePrefixUnits.familyOf(MaterialPrefixes.PLATE)
+                .contains(MaterialPrefixes.STORAGE_PLATE));
+        assertFalse(MassStoragePrefixUnits.familyOf(MaterialPrefixes.PLATE)
+                .contains(MaterialPrefixes.BLOCK));
     }
 
     @Test

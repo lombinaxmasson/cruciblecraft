@@ -309,6 +309,14 @@ public final class FluidBedBurningBoxBlockEntity extends BlockEntity
         return input.getFluidAmount();
     }
 
+    public FluidStack inputFluid() {
+        return input.getFluid();
+    }
+
+    public int inputCapacity() {
+        return input.getCapacity();
+    }
+
     public IFluidHandler fluids(Direction side) {
         if (side == null || side == Direction.UP) {
             return null;

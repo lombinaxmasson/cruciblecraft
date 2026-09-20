@@ -167,15 +167,19 @@ public final class CeramicMoldBlockEntity extends BlockEntity
                 || !isMoldInputSide(side)) {
             return 0;
         }
-        OptionalPrefix recipe = recipePrefix();
-        if (recipe.prefix == null) {
+        MaterialPrefix recipe = recipePrefix().prefix;
+        if (recipe == null) {
             return 0;
         }
         MaterialDefinition material = MaterialCatalog.contains(offeredMaterialId)
                 ? MaterialCatalog.require(offeredMaterialId)
                 : null;
-        if (material == null
-                || !MaterialCatalog.isFormRegistered(material, recipe.prefix)) {
+        if (material == null) {
+            return 0;
+        }
+        MaterialDefinition solid = MoldRecipes.solidifyingMaterial(material);
+        MaterialPrefix output = MoldRecipes.outputForm(recipe, material);
+        if (!MaterialCatalog.isFormRegistered(solid, output)) {
             return 0;
         }
         int required = moldRequiredMaterialUnits();
@@ -183,7 +187,7 @@ public final class CeramicMoldBlockEntity extends BlockEntity
             return 0;
         }
         materialId = material.id();
-        outputCount = Math.max(1, required / Math.max(1, recipe.prefix.units()));
+        outputCount = Math.max(1, required / Math.max(1, recipe.units()));
         temperature = offeredTemperature;
         solidified = temperature < material.thermal().meltingPoint();
         inventoryChanged = true;
@@ -226,7 +230,10 @@ public final class CeramicMoldBlockEntity extends BlockEntity
         if (form == null) {
             form = MaterialPrefixes.INGOT;
         }
-        ItemStack result = MaterialLookup.tryStack(materialId, form, outputCount)
+        MaterialDefinition poured = MaterialCatalog.require(materialId);
+        MaterialDefinition solid = MoldRecipes.solidifyingMaterial(poured);
+        form = MoldRecipes.outputForm(form, poured);
+        ItemStack result = MaterialLookup.tryStack(solid.id(), form, outputCount)
                 .orElse(ItemStack.EMPTY);
         if (!result.isEmpty()) {
             ItemHeat.set(result, temperature, level == null ? 0L : level.getGameTime());

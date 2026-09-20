@@ -243,7 +243,7 @@ public final class FluidPipeRuntimeGameTests {
                 eastPos,
                 pipeState(fluid, Direction.WEST));
         ItemPipeBlock item = (ItemPipeBlock) ModBlocks.pipeBlock(
-                "copper",
+                "brass",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
         helper.setBlock(itemPos, item.defaultBlockState());

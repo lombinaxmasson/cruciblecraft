@@ -148,7 +148,7 @@ class CasingMachineAcquisitionResourceTest {
                 result,
                 List.of("YXX", "XwX", "XXY"),
                 Map.of("X", plate, "Y", longRod),
-                Map.of("w", "cruciblecraft:material_wrench"),
+                Map.of("w", "cruciblecraft:crafting_tools/wrench"),
                 "cruciblecraft:shaped_catalyst");
     }
 
@@ -221,11 +221,14 @@ class CasingMachineAcquisitionResourceTest {
             assertEquals(expected.key(), key, expected.path());
             if (!expected.catalysts().isEmpty()) {
                 Map<String, String> catalysts = new LinkedHashMap<>();
-                recipe.getAsJsonObject("catalysts").entrySet().forEach(entry ->
-                        catalysts.put(
-                                entry.getKey(),
-                                entry.getValue().getAsJsonObject()
-                                        .get("item").getAsString()));
+                recipe.getAsJsonObject("catalysts").entrySet().forEach(entry -> {
+                    var slot = entry.getValue().getAsJsonObject();
+                    catalysts.put(
+                            entry.getKey(),
+                            slot.has("tag")
+                                    ? slot.get("tag").getAsString()
+                                    : slot.get("item").getAsString());
+                });
                 assertEquals(expected.catalysts(), catalysts, expected.path());
             } else {
                 assertEquals("misc", recipe.get("category").getAsString(),

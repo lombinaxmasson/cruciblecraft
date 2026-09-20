@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.datagen;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
+import com.masson.cruciblecraft.content.block.AutomaticHammerBlock;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
@@ -103,9 +104,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 "large_boiler", ModBlocks.LARGE_BOILER.get());
         configuredMachine(
                 "tank_3x3x3", ModBlocks.TANK_3X3X3.get());
-        simpleBlockWithItem(
-                ModBlocks.LARGE_CRUCIBLE.get(),
-                models().getExistingFile(modLoc("block/large_crucible")));
+        ModelFile largeCrucible = models().getExistingFile(modLoc("block/large_crucible"));
+        getVariantBuilder(ModBlocks.LARGE_CRUCIBLE.get()).forAllStates(state -> {
+            Direction facing = state.getValue(
+                    com.masson.cruciblecraft.content.block.ProcessingMachineBlock.FACING);
+            int y = switch (facing) {
+                case SOUTH -> 180;
+                case WEST -> 270;
+                case EAST -> 90;
+                default -> 0;
+            };
+            return ConfiguredModel.builder()
+                    .modelFile(largeCrucible)
+                    .rotationY(y)
+                    .build();
+        });
+        simpleBlockItem(ModBlocks.LARGE_CRUCIBLE.get(), largeCrucible);
         configuredLogisticsCore();
         simpleBlockWithItem(
                 ModBlocks.GALVANIZED_STEEL_WALL.get(),
@@ -141,6 +155,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 configuredMachine(
                         variant.id().getPath(),
                         ModBlocks.configuredProcessingBlock(variant)));
+        registerAutomaticHammers();
         configuredMachine(
                 "rotational_gearbox",
                 ModBlocks.ROTATIONAL_GEARBOX.get());
@@ -189,6 +204,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         registerGtStones();
         registerLayerStones();
         registerGtBlockObjects();
+        registerGtWood();
+        registerBathPanels();
     }
 
     private void registerLayerStones() {
@@ -213,11 +230,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 var bottom = models().getExistingFile(modLoc(path + "_bottom"));
                 var top = models().getExistingFile(modLoc(path + "_top"));
                 slabBlock((SlabBlock) block, bottom, top, doubleslab);
-                itemModels().getBuilder(path).parent(bottom);
+                itemModels().getBuilder(SlashItemModels.path(path)).parent(bottom);
             } else {
                 ModelFile cube = models().getExistingFile(modLoc(path));
                 simpleBlock(block, cube);
-                itemModels().getBuilder(path).parent(cube);
+                itemModels().getBuilder(SlashItemModels.path(path)).parent(cube);
             }
         }
     }
@@ -252,29 +269,68 @@ public class ModBlockStateProvider extends BlockStateProvider {
             var bottom = models().getExistingFile(modLoc(path + "_bottom"));
             var top = models().getExistingFile(modLoc(path + "_top"));
             slabBlock((SlabBlock) block, bottom, top, doubleslab);
-            itemModels().getBuilder(path).parent(bottom);
+            itemModels().getBuilder(SlashItemModels.path(path)).parent(bottom);
         } else if (variant.log() || variant.bale()) {
             var vertical = models().getExistingFile(modLoc(path));
             var horizontal = models().getExistingFile(modLoc(path + "_horizontal"));
             axisBlock((RotatedPillarBlock) block, vertical, horizontal);
-            itemModels().getBuilder(path).parent(vertical);
+            itemModels().getBuilder(SlashItemModels.path(path)).parent(vertical);
         } else if (variant.bars()) {
             paneBlockWithRenderType(
                     (IronBarsBlock) block, texture, texture, "cutout");
-            itemModels().getBuilder(path).parent(
+            itemModels().getBuilder(SlashItemModels.path(path)).parent(
                     models().getExistingFile(mcLoc("item/generated")))
                     .texture("layer0", texture);
         } else if (variant.rail()) {
             ModelFile rail = models().getExistingFile(mcLoc("block/rail"));
             getVariantBuilder(block).forAllStates(state ->
                     ConfiguredModel.builder().modelFile(rail).build());
-            itemModels().getBuilder(path).parent(
+            itemModels().getBuilder(SlashItemModels.path(path)).parent(
                     models().getExistingFile(mcLoc("item/generated")))
                     .texture("layer0", texture);
         } else {
             ModelFile cube = models().getExistingFile(modLoc(path));
             simpleBlock(block, cube);
-            itemModels().getBuilder(path).parent(cube);
+            itemModels().getBuilder(SlashItemModels.path(path)).parent(cube);
+        }
+    }
+
+    private void registerGtWood() {
+        for (com.masson.cruciblecraft.content.item.GtWoodCatalog.Definition wood :
+                com.masson.cruciblecraft.content.item.GtWoodCatalog.DEFINITIONS) {
+            ModelFile cube = models().getExistingFile(modLoc(wood.registryPath()));
+            simpleBlock(ModBlocks.gtWood(wood.id()).get(), cube);
+            itemModels().getBuilder(SlashItemModels.path(wood.registryPath())).parent(cube);
+        }
+    }
+
+    private void registerBathPanels() {
+        for (var entry : ModBlocks.bathPanelBlocksById().entrySet()) {
+            String path = entry.getKey().getPath();
+            ModelFile panel = models().getExistingFile(modLoc(path));
+            getVariantBuilder(entry.getValue().get()).forAllStates(state -> {
+                net.minecraft.core.Direction facing =
+                        state.getValue(
+                                com.masson.cruciblecraft.content.block
+                                        .GtDecorativePanelBlock.FACING);
+                int x = 0;
+                int y = 0;
+                switch (facing) {
+                    case DOWN -> x = 90;
+                    case UP -> x = 270;
+                    case SOUTH -> y = 180;
+                    case WEST -> y = 270;
+                    case EAST -> y = 90;
+                    default -> {
+                    }
+                }
+                return ConfiguredModel.builder()
+                        .modelFile(panel)
+                        .rotationX(x)
+                        .rotationY(y)
+                        .build();
+            });
+            itemModels().getBuilder(SlashItemModels.path(path)).parent(panel);
         }
     }
 
@@ -1555,6 +1611,49 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
         horizontalBlock(block, model);
         simpleBlockItem(block, model);
+    }
+
+    private void registerAutomaticHammers() {
+        for (var entry : java.util.Map.of(
+                ModBlocks.AUTOMATIC_HAMMER.get(),
+                "automatic_hammer",
+                ModBlocks.STEEL_AUTOMATIC_HAMMER.get(),
+                "steel_automatic_hammer",
+                ModBlocks.TITANIUM_AUTOMATIC_HAMMER.get(),
+                "titanium_automatic_hammer",
+                ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER.get(),
+                "tungstensteel_automatic_hammer").entrySet()) {
+            String id = entry.getValue();
+            String base = "block/machine/automatic_hammer";
+            ModelFile model = models()
+                    .withExistingParent(id, modLoc("block/machine_cube_2_layer"))
+                    .texture("particle", modLoc(base + "/colored/front"))
+                    .texture("bot_down", modLoc(base + "/colored/bottom"))
+                    .texture("bot_up", modLoc(base + "/colored/top"))
+                    .texture("bot_north", modLoc(base + "/colored/front"))
+                    .texture("bot_south", modLoc(base + "/colored/back"))
+                    .texture("bot_west", modLoc(base + "/colored/right"))
+                    .texture("bot_east", modLoc(base + "/colored/left"))
+                    .texture("top_down", modLoc(base + "/overlay/bottom"))
+                    .texture("top_up", modLoc(base + "/overlay/top"))
+                    .texture("top_north", modLoc(base + "/overlay/front"))
+                    .texture("top_south", modLoc(base + "/overlay/back"))
+                    .texture("top_west", modLoc(base + "/overlay/right"))
+                    .texture("top_east", modLoc(base + "/overlay/left"));
+            getVariantBuilder(entry.getKey()).forAllStates(state -> {
+                Direction facing = state.getValue(AutomaticHammerBlock.FACING);
+                var builder = ConfiguredModel.builder().modelFile(model);
+                return switch (facing) {
+                    case SOUTH -> builder.rotationY(180).build();
+                    case WEST -> builder.rotationY(270).build();
+                    case EAST -> builder.rotationY(90).build();
+                    case DOWN -> builder.rotationX(90).build();
+                    case UP -> builder.rotationX(270).build();
+                    default -> builder.build();
+                };
+            });
+            simpleBlockItem(entry.getKey(), model);
+        }
     }
 
     private void configuredFacingLitMachine(

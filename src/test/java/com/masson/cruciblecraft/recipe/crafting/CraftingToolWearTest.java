@@ -19,7 +19,9 @@ class CraftingToolWearTest {
         assertEquals(4, CraftingToolWear.vanillaDamage(id("material_wire_cutter")));
         assertEquals(4, CraftingToolWear.vanillaDamage(id("material_chisel")));
         assertEquals(1, CraftingToolWear.vanillaDamage(id("material_saw")));
-        assertEquals(1, CraftingToolWear.vanillaDamage(id("flint_knife")));
+        assertEquals(1, CraftingToolWear.vanillaDamage(id("material_knife")));
+        assertEquals(1, CraftingToolWear.vanillaDamage(id("material_rolling_pin")));
+        assertEquals(8, CraftingToolWear.vanillaDamage(id("material_soft_hammer")));
         assertEquals(0, CraftingToolWear.vanillaDamage(id("programmed_circuit")));
         assertEquals(
                 0,

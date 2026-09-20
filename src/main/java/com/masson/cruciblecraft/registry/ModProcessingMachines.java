@@ -188,15 +188,6 @@ public final class ModProcessingMachines {
                     false,
                     EnergyType.KINETIC,
                     2, 1, 1, 0);
-    public static final ProcessingMachineSpec WELDER =
-            componentSpec(
-                    "welder",
-                    () -> ModRecipeMaps.WELDER,
-                    2,
-                    true,
-                    false,
-                    EnergyType.KINETIC,
-                    9, 1, 1, 0);
     public static final ProcessingMachineSpec PRESS =
             componentSpec(
                     "press",
@@ -208,7 +199,7 @@ public final class ModProcessingMachines {
                     3, 1, 0, 0);
     public static final List<ProcessingMachineSpec> COMPONENT_MACHINES = List.of(
             EXTRUDER, CUTTER, LATHE, ROLLINGMILL, ROLLBENDER,
-            WIREMILL, BENDER, ASSEMBLER, WELDER, PRESS);
+            WIREMILL, BENDER, ASSEMBLER, PRESS);
     public static final ProcessingMachineSpec ELECTROLYZER =
             chemicalSpec("electrolyzer", () -> ModRecipeMaps.ELECTROLYZER,
                     2, 6, 2, 3, 32_000, 32_000,
@@ -287,7 +278,9 @@ public final class ModProcessingMachines {
                     2, 1, 1, 1, 128_000, 128_000,
                     2, 1, 1, 1,
                     EnergyType.ELECTRIC);
+    public static final ProcessingMachineSpec SQUEEZER = squeezerSpec();
     public static final ProcessingMachineSpec LASER_ENGRAVER = laserSpec();
+    public static final ProcessingMachineSpec LASER_WELDER = laserWelderSpec();
     public static final ProcessingMachineSpec PRINTER =
             chemicalSpec("printer", id("printer"), () -> ModRecipeMaps.PRINTER,
                     2, 1, 1, 0, 32_000, 32_000, 2, 1, 1, 0,
@@ -539,6 +532,8 @@ public final class ModProcessingMachines {
                             java.util.stream.Stream.concat(
                                     java.util.stream.Stream.of(
                                             LASER_ENGRAVER,
+                                            SQUEEZER,
+                                            LASER_WELDER,
                                             ROLLFORMER,
                                             SANDING,
                                             OVEN,
@@ -1587,6 +1582,46 @@ public final class ModProcessingMachines {
         return Optional.empty();
     }
 
+    private static ProcessingMachineSpec squeezerSpec() {
+        return new ProcessingMachineSpec(
+                id("squeezer"),
+                id("squeezer"),
+                () -> ModRecipeMaps.SQUEEZER,
+                new ProcessingMachineSpec.SlotLayout(
+                        3, List.of(0), List.of(1, 2)),
+                new ProcessingMachineSpec.TankLayout(
+                        List.of(),
+                        List.of(new ProcessingMachineSpec.TankSpec(0, 8_000))),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.KINETIC_PUSH,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        32_768L,
+                        4_096L),
+                Gt6SidedIo.policy("squeezer"),
+                ModProcessingMachines::validateSqueezerRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 2, 0, 1,
+                        1, 2, 0, 1,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateSqueezerRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().size() > 1
+                || recipe.itemOutputs().size() > 2
+                || !recipe.fluidInputs().isEmpty()
+                || recipe.fluidOutputs().size() > 1
+                || recipe.eut() <= 0L
+                || recipe.eut() > 4_096L) {
+            return Optional.of("squeezer_recipe_shape");
+        }
+        if (recipe.fluidOutputs().stream()
+                        .anyMatch(fluid -> fluid.getAmount() > 8_000)) {
+            return Optional.of("squeezer_fluid_amount");
+        }
+        return Optional.empty();
+    }
+
     private static ProcessingMachineSpec laserSpec() {
         return new ProcessingMachineSpec(
                 id("laser_engraver"),
@@ -1604,6 +1639,48 @@ public final class ModProcessingMachines {
                 ModProcessingMachines::validateLaserRecipe,
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(2, 1, 0, 0, 2, 1, 0, 0, PROCESSING_STATUSES));
+    }
+
+    private static ProcessingMachineSpec laserWelderSpec() {
+        return new ProcessingMachineSpec(
+                id("laser_welder"),
+                id("welder"),
+                () -> ModRecipeMaps.WELDER,
+                new ProcessingMachineSpec.SlotLayout(
+                        10,
+                        List.of(0, 1, 2, 3, 4, 5, 6, 7, 8),
+                        List.of(9)),
+                new ProcessingMachineSpec.TankLayout(
+                        List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)),
+                        List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.LU,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        32_768L,
+                        16_384L),
+                Gt6SidedIo.policy("laser_welder"),
+                ModProcessingMachines::validateLaserWelderRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        9, 1, 1, 0,
+                        9, 1, 1, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateLaserWelderRecipe(GTRecipe recipe) {
+        if (recipe.itemInputs().size() > 9
+                || recipe.itemOutputs().size() > 1
+                || recipe.fluidInputs().size() > 1
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() <= 0L
+                || recipe.eut() > 16_384L) {
+            return Optional.of("laser_welder_recipe_shape");
+        }
+        if (recipe.fluidInputs().stream()
+                        .anyMatch(fluid -> fluid.getAmount() > 4_000)) {
+            return Optional.of("laser_welder_fluid_amount");
+        }
+        return Optional.empty();
     }
 
     private static Optional<String> validateLaserRecipe(GTRecipe recipe) {

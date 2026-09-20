@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.AnvilHosts;
+import com.masson.cruciblecraft.content.block.CoinageMoldHosts;
 import com.masson.cruciblecraft.content.block.FoundryHosts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.SmelteryHosts;
@@ -20,9 +21,11 @@ import com.masson.cruciblecraft.content.block.RockBlock;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
+import com.masson.cruciblecraft.content.block.FirebrickBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
+import com.masson.cruciblecraft.content.block.AutomaticHammerBlock;
 import com.masson.cruciblecraft.content.block.DynamoBlock;
 import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
 import com.masson.cruciblecraft.content.block.ElectricHeaterBlock;
@@ -41,6 +44,7 @@ import com.masson.cruciblecraft.content.block.LargeBoilerBlock;
 import com.masson.cruciblecraft.content.block.LargeCrucibleBlock;
 import com.masson.cruciblecraft.content.block.LaserEngraverBlock;
 import com.masson.cruciblecraft.content.block.FusionReactorBlock;
+import com.masson.cruciblecraft.content.block.FusionHullBlock;
 import com.masson.cruciblecraft.energy.bedrockdrill.BedrockDrillBlock;
 import com.masson.cruciblecraft.energy.bedrockdrill.BedrockDrillHeadBlock;
 import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerBlock;
@@ -68,8 +72,16 @@ import com.masson.cruciblecraft.content.block.GtBlockObjectBarsBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectCFoamFreshBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectGlassBlock;
-import com.masson.cruciblecraft.content.block.MaterialDustBlock;
 import com.masson.cruciblecraft.content.block.GtBlockObjectLogBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectRailBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectSlabBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectSpikeBlock;
+import com.masson.cruciblecraft.content.block.GtDecorativePanelBlock;
+import com.masson.cruciblecraft.content.block.GtWoodPlankBlock;
+import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
+import com.masson.cruciblecraft.content.item.GtWoodCatalog;
+import com.masson.cruciblecraft.content.block.MaterialDustBlock;
+import com.masson.cruciblecraft.content.block.MaterialPlateStorageBlock;
 import com.masson.cruciblecraft.content.block.GlowtusBlock;
 import com.masson.cruciblecraft.content.block.GtBushBlock;
 import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
@@ -85,9 +97,6 @@ import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
 import com.masson.cruciblecraft.content.block.GtTreeLeavesBlock;
 import com.masson.cruciblecraft.content.block.GtTreeLogBlock;
 import com.masson.cruciblecraft.content.block.GtTreeSaplingBlock;
-import com.masson.cruciblecraft.content.block.GtBlockObjectRailBlock;
-import com.masson.cruciblecraft.content.block.GtBlockObjectSlabBlock;
-import com.masson.cruciblecraft.content.block.GtBlockObjectSpikeBlock;
 import com.masson.cruciblecraft.content.block.GtStoneBlock;
 import com.masson.cruciblecraft.content.block.GtStoneSlabBlock;
 import com.masson.cruciblecraft.content.block.StoneLayerStoneBlock;
@@ -127,6 +136,7 @@ import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerBlock;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerCatalog;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerProfile;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
+import com.masson.cruciblecraft.machine.autotool.AutomaticHammerCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterFuelSpecs;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
@@ -165,6 +175,8 @@ public final class ModBlocks {
             MATERIAL_STORAGE_BLOCKS = new LinkedHashMap<>();
     private static final Map<String, DeferredBlock<MaterialDustBlock>>
             MATERIAL_DUST_BLOCKS = new LinkedHashMap<>();
+    private static final Map<String, DeferredBlock<MaterialPlateStorageBlock>>
+            MATERIAL_PLATE_STORAGE_BLOCKS = new LinkedHashMap<>();
     private static final Map<CasingBlockKey, DeferredBlock<MaterialCasingBlock>>
             MATERIAL_CASING_BLOCKS = new LinkedHashMap<>();
     private static final Map<String, DeferredBlock<RockBlock>>
@@ -250,13 +262,14 @@ public final class ModBlocks {
         registerGtCrops();
     }
 
-    /** M0 placeholder block — later reused as firebox cladding. */
-    public static final DeferredBlock<Block> FIREBRICK = BLOCKS.registerSimpleBlock(
+    /** GT6 MultiTileEntityMultiBlockPart 18000 fire bricks. */
+    public static final DeferredBlock<FirebrickBlock> FIREBRICK = BLOCKS.register(
             "firebrick",
-            BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.COLOR_RED)
-                    .strength(2.0F, 6.0F)
-                    .sound(SoundType.STONE));
+            () -> new FirebrickBlock(
+                    BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.COLOR_RED)
+                            .strength(5.0F, 5.0F)
+                            .sound(SoundType.STONE)));
     public static final DeferredBlock<CableBlock> LU_FIBER_CABLE = BLOCKS.register(
             "lu_fiber_cable",
             () -> CableBlock.luFiber(conductorProperties()));
@@ -264,6 +277,15 @@ public final class ModBlocks {
             BLOCKS.register(
                     "laser_engraver",
                     () -> new LaserEngraverBlock(machineProperties()));
+    public static final DeferredBlock<AutomaticHammerBlock> AUTOMATIC_HAMMER =
+            registerAutomaticHammer(AutomaticHammerCatalog.ALL.get(0));
+    public static final DeferredBlock<AutomaticHammerBlock> STEEL_AUTOMATIC_HAMMER =
+            registerAutomaticHammer(AutomaticHammerCatalog.ALL.get(1));
+    public static final DeferredBlock<AutomaticHammerBlock> TITANIUM_AUTOMATIC_HAMMER =
+            registerAutomaticHammer(AutomaticHammerCatalog.ALL.get(2));
+    public static final DeferredBlock<AutomaticHammerBlock>
+            TUNGSTENSTEEL_AUTOMATIC_HAMMER =
+                    registerAutomaticHammer(AutomaticHammerCatalog.ALL.get(3));
     public static final DeferredBlock<FusionReactorBlock> FUSION_REACTOR =
             BLOCKS.register(
                     "fusion_reactor",
@@ -292,9 +314,11 @@ public final class ModBlocks {
             BLOCKS.register(
                     "reactor_core_2x2",
                     () -> new ReactorCoreBlock(4, machineProperties()));
-    public static final DeferredBlock<Block> TUNGSTENSTEEL_WALL =
-            BLOCKS.registerSimpleBlock(
-                    "tungstensteel_wall", machineProperties());
+    public static final DeferredBlock<FusionHullBlock> TUNGSTENSTEEL_WALL =
+            BLOCKS.register(
+                    "tungstensteel_wall",
+                    () -> new FusionHullBlock(
+                            machineProperties().strength(12.5F, 12.5F)));
     public static final DeferredBlock<Block> STAINLESS_STEEL_WALL =
             BLOCKS.registerSimpleBlock(
                     "stainless_steel_wall", machineProperties());
@@ -353,7 +377,8 @@ public final class ModBlocks {
     public static final DeferredBlock<LargeCrucibleBlock>
             LARGE_CRUCIBLE = BLOCKS.register(
                     "large_crucible",
-                    () -> new LargeCrucibleBlock(machineProperties()));
+                    () -> new LargeCrucibleBlock(
+                            machineProperties().noOcclusion()));
     public static final DeferredBlock<LogisticsCoreBlock>
             LOGISTICS_CORE = BLOCKS.register(
                     "logistics_core",
@@ -584,6 +609,10 @@ public final class ModBlocks {
             BATH_REMAINDER_BLOCK_OBJECT_BLOCKS = registerBathRemainderBlockObjectBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
             GT_BUILDING_BLOCK_OBJECT_BLOCKS = registerGtBuildingBlockObjectBlocks();
+    private static final Map<String, DeferredBlock<Block>> GT_WOOD_BLOCKS =
+            registerGtWoodBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<Block>> BATH_PANEL_BLOCKS =
+            registerBathPanelBlocks();
     private static final Map<ResourceLocation, DeferredBlock<? extends StorageHostBlock>>
             STORAGE_BLOCKS = registerStorageBlocks();
     public static final DeferredBlock<DustFunnelBlock> STEEL_DUST_FUNNEL =
@@ -683,8 +712,6 @@ public final class ModBlocks {
             tieredProcessing("bender");
     public static final DeferredBlock<ProcessingMachineBlock> ASSEMBLER =
             tieredProcessing("assembler");
-    public static final DeferredBlock<ProcessingMachineBlock> WELDER =
-            tieredProcessing("welder");
     public static final DeferredBlock<ProcessingMachineBlock> PRESS =
             tieredProcessing("press");
     public static final DeferredBlock<ProcessingMachineBlock> STEEL_PRESS =
@@ -729,6 +756,7 @@ public final class ModBlocks {
         if (!MATERIAL_ORE_BLOCKS.isEmpty()
                 || !MATERIAL_STORAGE_BLOCKS.isEmpty()
                 || !MATERIAL_DUST_BLOCKS.isEmpty()
+                || !MATERIAL_PLATE_STORAGE_BLOCKS.isEmpty()
                 || !MATERIAL_CASING_BLOCKS.isEmpty()
                 || !ROCK_BLOCKS.isEmpty()
                 || !ELECTRICAL_CONDUCTOR_BLOCKS.isEmpty()
@@ -827,6 +855,25 @@ public final class ModBlocks {
             if (previous != null) {
                 throw new IllegalStateException(
                         "Duplicate dust block for " + material.id());
+            }
+        }
+        for (MaterialDefinition material : definitions) {
+            if (!MaterialCatalog.registeredForms(material).contains(
+                    MaterialPrefixes.STORAGE_PLATE)
+                    || material.formItems().containsKey(MaterialPrefixes.STORAGE_PLATE)) {
+                continue;
+            }
+            DeferredBlock<MaterialPlateStorageBlock> previous =
+                    MATERIAL_PLATE_STORAGE_BLOCKS.put(
+                            material.id(),
+                            BLOCKS.register(
+                                    material.registryName(MaterialPrefixes.STORAGE_PLATE),
+                                    () -> new MaterialPlateStorageBlock(
+                                            material.id(),
+                                            plateStorageProperties())));
+            if (previous != null) {
+                throw new IllegalStateException(
+                        "Duplicate plate storage block for " + material.id());
             }
         }
         for (MaterialDefinition material : definitions) {
@@ -1545,6 +1592,16 @@ public final class ModBlocks {
         return blocks.toArray(Block[]::new);
     }
 
+    public static Block[] coinageMoldBlockArray() {
+        java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
+        MTE_INPLACE_BLOCKS.values().forEach(holder -> {
+            if (CoinageMoldHosts.isCoinage(holder.get().spec())) {
+                blocks.add(holder.get());
+            }
+        });
+        return blocks.toArray(Block[]::new);
+    }
+
     public static DeferredBlock<MteInPlaceBlock> steelSmeltingCrucible() {
         DeferredBlock<MteInPlaceBlock> holder =
                 MTE_INPLACE_BLOCKS.get(SmelteryHosts.STEEL_ID);
@@ -1910,7 +1967,9 @@ public final class ModBlocks {
                     variant, BlockBehaviour.Properties.ofFullCopy(Blocks.RAIL));
         }
         if (variant.spike()) {
-            return new GtBlockObjectSpikeBlock(variant, gtBlockObjectSpikeProperties());
+            return new GtBlockObjectSpikeBlock(
+                    variant,
+                    gtBlockObjectSpikeProperties());
         }
         if (variant.bale()) {
             return new GtBlockObjectBaleBlock(
@@ -1949,6 +2008,17 @@ public final class ModBlocks {
                     .mapColor(MapColor.DIRT)
                     .strength(0.5F)
                     .sound(SoundType.GRAVEL);
+        }
+        if (variant.treePlanks2()) {
+            BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD);
+            if (!variant.fireproof()) {
+                properties = properties.ignitedByLava();
+            }
+            return properties;
         }
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.STONE)
@@ -1992,7 +2062,93 @@ public final class ModBlocks {
                 .mapColor(MapColor.METAL)
                 .strength(5.0F, 6.0F)
                 .requiresCorrectToolForDrops()
-                .sound(SoundType.METAL);
+                .sound(SoundType.METAL)
+                .noOcclusion()
+                .isViewBlocking((state, level, pos) -> false)
+                .isSuffocating((state, level, pos) -> false);
+    }
+
+    private static Map<String, DeferredBlock<Block>> registerGtWoodBlocks() {
+        LinkedHashMap<String, DeferredBlock<Block>> blocks = new LinkedHashMap<>();
+        for (GtWoodCatalog.Definition wood : GtWoodCatalog.DEFINITIONS) {
+            DeferredBlock<Block> block = BLOCKS.register(
+                    wood.registryPath(),
+                    () -> new GtWoodPlankBlock(wood, gtWoodProperties()));
+            if (blocks.put(wood.id(), block) != null) {
+                throw new IllegalStateException("Duplicate GT wood " + wood.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    private static BlockBehaviour.Properties gtWoodProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.WOOD)
+                .instrument(NoteBlockInstrument.BASS)
+                .strength(2.0F, 3.0F)
+                .sound(SoundType.WOOD)
+                .ignitedByLava();
+    }
+
+    private static Map<ResourceLocation, DeferredBlock<Block>> registerBathPanelBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<Block>> blocks =
+                new LinkedHashMap<>();
+        for (BathMteIdentityCatalog.Identity identity : BathMteIdentityCatalog.newItems()) {
+            if (!identity.decorativePanel()) {
+                continue;
+            }
+            DeferredBlock<Block> block = BLOCKS.register(
+                    identity.registryPath(),
+                    () -> new GtDecorativePanelBlock(identity, bathPanelProperties(identity)));
+            if (blocks.put(identity.id(), block) != null) {
+                throw new IllegalStateException("Duplicate bath panel " + identity.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    private static BlockBehaviour.Properties bathPanelProperties(
+            BathMteIdentityCatalog.Identity identity) {
+        BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
+                .strength(1.5F, 3.0F)
+                .noOcclusion()
+                .isViewBlocking((state, level, pos) -> false)
+                .isSuffocating((state, level, pos) -> false);
+        if (identity.registryPath().startsWith("panel/cfoam_")) {
+            return properties
+                    .mapColor(MapColor.WOOL)
+                    .sound(SoundType.SLIME_BLOCK);
+        }
+        if (identity.registryPath().startsWith("panel/asphalt_")) {
+            return properties
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .sound(SoundType.STONE);
+        }
+        return properties.mapColor(MapColor.STONE).sound(SoundType.STONE);
+    }
+
+    public static Map<String, DeferredBlock<Block>> gtWoodBlocksById() {
+        return GT_WOOD_BLOCKS;
+    }
+
+    public static Collection<DeferredBlock<Block>> gtWoodBlocks() {
+        return GT_WOOD_BLOCKS.values();
+    }
+
+    public static DeferredBlock<Block> gtWood(String id) {
+        DeferredBlock<Block> block = GT_WOOD_BLOCKS.get(id);
+        if (block == null) {
+            throw new IllegalArgumentException("No GT wood block " + id);
+        }
+        return block;
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<Block>> bathPanelBlocksById() {
+        return BATH_PANEL_BLOCKS;
+    }
+
+    public static Collection<Block> bathPanelBlocks() {
+        return BATH_PANEL_BLOCKS.values().stream().map(DeferredBlock::get).toList();
     }
 
     private static BlockBehaviour.Properties gtBlockObjectFreshCFoamProperties() {
@@ -2047,6 +2203,27 @@ public final class ModBlocks {
 
     public static Collection<DeferredBlock<MaterialDustBlock>> dustBlocks() {
         return Collections.unmodifiableCollection(MATERIAL_DUST_BLOCKS.values());
+    }
+
+    public static DeferredBlock<MaterialPlateStorageBlock> plateStorageBlock(
+            String materialId) {
+        DeferredBlock<MaterialPlateStorageBlock> block =
+                MATERIAL_PLATE_STORAGE_BLOCKS.get(materialId);
+        if (block == null) {
+            throw new IllegalArgumentException(
+                    "No plate storage block for material " + materialId);
+        }
+        return block;
+    }
+
+    public static boolean hasPlateStorageBlock(String materialId) {
+        return MATERIAL_PLATE_STORAGE_BLOCKS.containsKey(materialId);
+    }
+
+    public static Collection<DeferredBlock<MaterialPlateStorageBlock>>
+            plateStorageBlocks() {
+        return Collections.unmodifiableCollection(
+                MATERIAL_PLATE_STORAGE_BLOCKS.values());
     }
 
     private static BlockBehaviour.Properties gtStoneProperties() {
@@ -2156,6 +2333,16 @@ public final class ModBlocks {
                     "Duplicate configured processing block for " + spec.id());
         }
         return block;
+    }
+
+    private static DeferredBlock<AutomaticHammerBlock> registerAutomaticHammer(
+            AutomaticHammerCatalog.Profile profile) {
+        return BLOCKS.register(
+                profile.id().getPath(),
+                () -> new AutomaticHammerBlock(
+                        profile,
+                        machineProperties().strength(
+                                profile.hardness(), profile.resistance())));
     }
 
     private static DeferredBlock<ProcessingMachineBlock> processing(
@@ -2424,6 +2611,14 @@ public final class ModBlocks {
                 .sound(SoundType.SAND);
     }
 
+    private static BlockBehaviour.Properties plateStorageProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(1.0F, 3.0F)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.METAL);
+    }
+
     private static BlockBehaviour.Properties casingProperties(MaterialPrefix form) {
         float hardness;
         float resistance;
@@ -2448,12 +2643,7 @@ public final class ModBlocks {
     }
 
     private static BlockBehaviour.Properties rockProperties() {
-        // GT6 rocks break by hand — the early-game cobblestone source.
-        return BlockBehaviour.Properties.of()
-                .mapColor(MapColor.STONE)
-                .strength(0.5F)
-                .sound(SoundType.STONE)
-                .noOcclusion();
+        return com.masson.cruciblecraft.worldgen.PebbleBlocks.properties();
     }
 
     private static BlockBehaviour.Properties bedrockOreProperties() {

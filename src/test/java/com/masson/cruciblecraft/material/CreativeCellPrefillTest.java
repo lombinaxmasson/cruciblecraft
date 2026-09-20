@@ -61,5 +61,13 @@ class CreativeCellPrefillTest {
                 CellContentGate.entries().get(
                         net.minecraft.resources.ResourceLocation.parse(
                                 "cruciblecraft:molten_calcite")));
+        assertEquals(
+                "calcite",
+                CellContentGate.materialId(
+                        net.minecraft.resources.ResourceLocation.parse(
+                                "cruciblecraft:molten_calcite"))
+                        .orElseThrow());
+        assertTrue(CellContentGate.entries().keySet().stream().allMatch(
+                id -> CellContentGate.materialId(id).isPresent()));
     }
 }

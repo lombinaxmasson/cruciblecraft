@@ -28,6 +28,12 @@ DATA_CATALOG = DATA / "smelter_mte_identity_catalog.json"
 TOOLS_CATALOG = census.TOOLS / "smelter_mte_identity_catalog.json"
 CONVERTER_TIERS = DATA / "energy_converter_tiers.json"
 MACHINE_TIERS = DATA / "machine_tiers.json"
+AUTOMATIC_HAMMER_HOSTS = {
+    15001: "automatic_hammer",
+    15002: "steel_automatic_hammer",
+    15003: "titanium_automatic_hammer",
+    15004: "tungstensteel_automatic_hammer",
+}
 REACTOR_RODS = DATA / "nuclear_reactor_rods.json"
 HOPPER_EVIDENCE = census.TOOLS / "hopper_hopper_source_evidence.json"
 R0 = (
@@ -82,8 +88,8 @@ RECIPE_ROOTS = (
 LOOM_WAVE = census.TOOLS / "waves" / "machines" / "loom"
 LOOM_IMPORT = LOOM_WAVE / "recipe_import.json"
 LOOM_LOCK_NOTE = (
-    "live compile for machines/loom; 465 runtime-registered exact rows; "
-    "232 unmapped MTE/plant_gt_fiber rows and 637 shadowed input signatures "
+    "live compile for machines/loom; 477 runtime-registered exact rows; "
+    "166 unmapped MTE/plant_gt_fiber rows and 691 shadowed input signatures "
     "explicitly_blocked; not player_complete"
 )
 MELTER_WAVE = census.TOOLS / "waves" / "machines" / "melter"
@@ -145,8 +151,8 @@ DOMAINS: dict[str, dict[str, Any]] = {
         "family": "processing_machine",
         "title": "GT6 Processing Host Fold",
         "collision_reason": "folded onto live processing host",
-        "expected_folds": 68,
-        "expected_keep": 18,
+        "expected_folds": 86,
+        "expected_keep": 0,
         "tests": [
             "automaticHammersStayDummy",
             "bronzeSifterFoldsOntoLiveHost",
@@ -155,9 +161,8 @@ DOMAINS: dict[str, dict[str, Any]] = {
         ],
         "plan_stem": "GT6加工机主机折回详细计划.md",
         "lock_note": (
-            "68 processing metas whose machine_tiers sourceId matches were "
-            "folded; Hammer/Squeezer/Laser stay dummy; Polarizer/MagSep "
-            "fold onto live hosts; not player_complete"
+            "86 processing metas folded onto live processing hosts, including "
+            "the four automatic hammers; not player_complete"
         ),
     },
     "reactor": {
@@ -349,6 +354,22 @@ def processing_targets() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
         identity = catalog[meta]
         dummy = str(row.get("registry_path") or identity.get("registry_path") or "")
         host = tiers.get(meta)
+        if meta in AUTOMATIC_HAMMER_HOSTS:
+            live = AUTOMATIC_HAMMER_HOSTS[meta]
+            folds.append(
+                {
+                    "meta": meta,
+                    "dummy_path": dummy,
+                    "live_block": f"cruciblecraft:{live}",
+                    "english_name": row.get("english_name"),
+                    "gt6_class_or_tag": row.get("gt6_class_or_tag"),
+                    "source_id": meta,
+                    "machine_kind": "automatic_hammer",
+                    "disposition": "fold_live_block",
+                    "collision_reason": DOMAINS["processing"]["collision_reason"],
+                }
+            )
+            continue
         if host is None:
             keep.append(
                 {

@@ -23,7 +23,7 @@ class CokeOvenStructureTest {
         MultiblockStructureDefinition definition = definition();
         var localFirebricks = definition.structure().stream()
                 .filter(element -> definition.predicate(element).kind()
-                        == PredicateKind.BLOCK)
+                        == PredicateKind.PORT)
                 .map(MultiblockStructureDefinition.Element::offset)
                 .toList();
         for (Direction facing : Direction.Plane.HORIZONTAL) {
@@ -49,13 +49,13 @@ class CokeOvenStructureTest {
     }
 
     @Test
-    void heatSourceIsBelowTheCenterOfTheBottomLayer() {
+    void fluidDrainIsBelowTheCenterOfTheBottomLayer() {
         MultiblockStructureDefinition definition = definition();
         for (Direction facing : Direction.Plane.HORIZONTAL) {
             Offset center = definition.anchors().get("center").rotate(facing);
             assertEquals(
                     new Offset(center.x(), -2, center.z()),
-                    definition.anchors().get("heat_source").rotate(facing));
+                    definition.anchors().get("fluid_drain").rotate(facing));
         }
     }
 
@@ -66,12 +66,10 @@ class CokeOvenStructureTest {
         assertEquals(27, definition.scanVolume());
         var source = document().getAsJsonObject("source");
         assertEquals(
-                "behavior_projection:NO_BEHAVIOR_DRIFT",
-                source.get("method").getAsString());
-        assertTrue(source.get("revision").getAsString()
-                .contains("t12a_machine_readiness.json"));
-        assertTrue(source.get("class").getAsString()
-                .contains("CokeOvenStructure"));
+                "gregtech.tileentity.multiblocks.MultiTileEntityCokeOven",
+                source.get("class").getAsString());
+        assertTrue(source.get("method").getAsString()
+                .contains("getFluidOutputTarget"));
     }
 
     private static MultiblockStructureDefinition definition() {

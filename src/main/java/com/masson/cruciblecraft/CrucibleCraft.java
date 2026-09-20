@@ -26,6 +26,7 @@ import com.masson.cruciblecraft.registry.ModCapabilities;
 import com.masson.cruciblecraft.registry.ModCreativeTabs;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModFeatures;
+import com.masson.cruciblecraft.registry.ModIngredientTypes;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMenus;
 import com.masson.cruciblecraft.registry.ModMultiblockPlugins;
@@ -71,6 +72,7 @@ public class CrucibleCraft {
         ModComponents.COMPONENTS.register(modEventBus);
         ModRecipes.RECIPE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
+        ModIngredientTypes.INGREDIENT_TYPES.register(modEventBus);
         ModMenus.MENUS.register(modEventBus);
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
 

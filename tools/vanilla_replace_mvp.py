@@ -26,6 +26,23 @@ MINECRAFT_RECIPE_ROOTS = (
     census.ROOT / "src" / "main" / "resources" / "data" / "minecraft" / "recipe",
     census.ROOT / "src" / "generated" / "resources" / "data" / "minecraft" / "recipe",
 )
+# GT6 Loader_Recipes_Woods NERFED_WOOD hand-craft (log → 2 planks).
+# Not the paper MVP; same overlay folder because recipe ids are minecraft:*.
+WOOD_PLANK_MINECRAFT_OVERLAYS = tuple(
+    f"src/main/resources/data/minecraft/recipe/{stem}_planks.json"
+    for stem in (
+        "oak",
+        "spruce",
+        "birch",
+        "jungle",
+        "acacia",
+        "dark_oak",
+        "mangrove",
+        "cherry",
+        "crimson",
+        "warped",
+    )
+)
 POINTER_KEYS = ("file", "files", "lines", "calls", "note")
 
 
@@ -56,6 +73,7 @@ def owned_minecraft_paths(lock: dict[str, Any]) -> set[str]:
         path = str(row.get("datapack_path") or "")
         if path:
             owned.add(path.replace("\\", "/"))
+    owned.update(WOOD_PLANK_MINECRAFT_OVERLAYS)
     return owned
 
 
@@ -166,6 +184,17 @@ def check_lock(lock: dict[str, Any] | None = None) -> list[str]:
         relative = census.relative(path).replace("\\", "/")
         if relative not in owned:
             errors.append(f"lock-outside minecraft recipe: {relative}")
+    for relative in WOOD_PLANK_MINECRAFT_OVERLAYS:
+        overlay = census.ROOT / relative
+        if not overlay.is_file():
+            errors.append(f"missing wood overlay {relative}")
+            continue
+        document_json = census.load_json(overlay)
+        result = document_json.get("result") or {}
+        if int(result.get("count") or -1) != 2:
+            errors.append(
+                f"{relative} must hand-craft 2 planks, got {result.get('count')}"
+            )
 
     if RECIPE_GENERATED.is_dir():
         for path in RECIPE_GENERATED.rglob("*"):

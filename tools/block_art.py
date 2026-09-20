@@ -231,7 +231,12 @@ def resolve(source_item: str, meta: int) -> dict[str, Any] | None:
             "sources": [_icon(f"rail_{kind}_{mapped}")],
         }
     if item.startswith("gt.block.spikes."):
-        return _cube("materialicons/metallic/blocksolid.png")
+        meta_kind = meta & 7
+        return {
+            "model": "spike_omni" if meta_kind >= 6 else "spike_wall",
+            "sources": ["materialicons/metallic/blocksolid.png"],
+            "tint": "material",
+        }
     return None
 
 
@@ -415,6 +420,22 @@ def write_models(row: dict[str, Any]) -> None:
         _write_model(
             Path(str(stem) + ".json"),
             {"parent": parent, "textures": {"all": sources[0]}},
+            row,
+        )
+        _write_json(
+            ROOT
+            / "src/generated/resources/assets/cruciblecraft/models/item"
+            / f"{registry}.json",
+            {"parent": _model_id(registry)},
+        )
+        return
+    if model in {"spike_wall", "spike_omni"}:
+        _write_model(
+            Path(str(stem) + ".json"),
+            {
+                "parent": f"cruciblecraft:block/{model}",
+                "textures": {"all": sources[0], "particle": sources[0]},
+            },
             row,
         )
         _write_json(

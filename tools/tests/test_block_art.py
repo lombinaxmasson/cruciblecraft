@@ -19,6 +19,24 @@ class BlockArtTest(unittest.TestCase):
             bind["sources"],
         )
 
+    def test_fancy_wall_spike_is_not_a_cube(self) -> None:
+        bind = art.resolve("gregtech:gt.block.spikes.fancy", 0)
+        omni = art.resolve("gregtech:gt.block.spikes.fancy", 6)
+        self.assertIsNotNone(bind)
+        assert bind is not None
+        self.assertEqual("spike_wall", bind["model"])
+        self.assertEqual("material", bind["tint"])
+        assert omni is not None
+        self.assertEqual("spike_omni", omni["model"])
+
+    def test_planks2_uses_blue_spruce_icon(self) -> None:
+        bind = art.resolve("gregtech:gt.block.planks2", 0)
+        later = art.resolve("gregtech:gt.block.planks2", 15)
+        self.assertEqual(bind, later)
+        assert bind is not None
+        self.assertIsNone(bind.get("tint"))
+        self.assertEqual(["iconsets/planks_bluespruce.png"], bind["sources"])
+
     def test_asphalt_shares_one_png_and_dye_tint(self) -> None:
         black = art.resolve("gregtech:gt.block.asphalt", 0)
         white = art.resolve("gregtech:gt.block.asphalt", 15)

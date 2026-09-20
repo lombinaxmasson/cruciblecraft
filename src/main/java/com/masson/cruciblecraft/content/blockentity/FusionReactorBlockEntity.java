@@ -1,13 +1,16 @@
 package com.masson.cruciblecraft.content.blockentity;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.FusionReactorBlock;
+import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.EnergyPackets;
-import com.masson.cruciblecraft.fusion.FusionRecipeCatalog;
+import com.masson.cruciblecraft.fusion.FusionHatchRole;
 import com.masson.cruciblecraft.fusion.FusionStructure;
 import com.masson.cruciblecraft.machine.processing.MachineEnergyBuffer;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
@@ -22,6 +25,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -30,11 +34,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 /**
- * Dual TU/LU fusion host. Eighteen source-backed rows execute from the FUSION
- * map; the CC_EXTENSION neutral-matter bootstrap lives on FUSION_EXTENSION.
+ * GT6 fusion 17198. TU auto-ticks and advances work; LU fills the start-charge
+ * requirement; EU is pushed from the four electric interfaces.
  */
 public final class FusionReactorBlockEntity
         extends BlockEntity implements IEnergyHandler {
@@ -42,15 +47,15 @@ public final class FusionReactorBlockEntity
     public static final long TIME_MAXIMUM = 16_384L;
     public static final long EU_PACKET = 8_192L;
     private static final int TANK_CAPACITY = 64_000;
-    private static final long LU_CAPACITY =
-            FusionRecipeCatalog.entries().getLast().luStart();
+    private static final int STRUCTURE_PERIOD = 20;
+    private static final List<Direction> ENERGY_OUT_ORDER = List.of(
+            Direction.NORTH,
+            Direction.SOUTH,
+            Direction.WEST,
+            Direction.EAST);
 
     private final MachineEnergyBuffer time =
-            new MachineEnergyBuffer(TIME_MAXIMUM * 64L, TIME_MAXIMUM);
-    private final MachineEnergyBuffer lu =
-            new MachineEnergyBuffer(LU_CAPACITY, Long.MAX_VALUE / 4L);
-    private final MachineEnergyBuffer eu =
-            new MachineEnergyBuffer(EU_PACKET * 64L, EU_PACKET);
+            new MachineEnergyBuffer(TIME_MAXIMUM, TIME_MAXIMUM);
     private final FluidTank[] inputs = {
             new FluidTank(TANK_CAPACITY), new FluidTank(TANK_CAPACITY)};
     private final FluidTank[] outputs = {
@@ -71,11 +76,15 @@ public final class FusionReactorBlockEntity
         }
     };
     private final IFluidHandler fluids = new FusionFluids();
+    private final IItemHandler inventory = new FusionItems();
+    private final Set<BlockPos> boundHatches = new LinkedHashSet<>();
     private boolean forceFormed;
     private boolean formed;
-    private int progress;
+    private boolean structureChecked;
+    private long progress;
     private int duration;
-    private ResourceLocationKey active;
+    private long chargeRequirement;
+    private ResourceLocation active;
 
     public FusionReactorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FUSION_REACTOR.get(), pos, state);
@@ -87,12 +96,20 @@ public final class FusionReactorBlockEntity
             BlockState state,
             FusionReactorBlockEntity reactor) {
         if (!reactor.forceFormed) {
-            reactor.formed = FusionStructure.check(
-                    level,
-                    pos,
-                    state.getValue(FusionReactorBlock.FACING));
+            if (!reactor.structureChecked
+                    || level.getGameTime() % STRUCTURE_PERIOD == 0) {
+                boolean ok = FusionStructure.check(
+                        level,
+                        pos,
+                        state.getValue(FusionReactorBlock.FACING));
+                reactor.structureChecked = true;
+                reactor.updateFormed(ok);
+            }
         }
         if (reactor.formed()) {
+            if (reactor.time.stored() < reactor.time.capacity()) {
+                reactor.time.restore(reactor.time.stored() + 1L);
+            }
             reactor.tickRecipe();
         }
         reactor.syncIfNeeded();
@@ -142,62 +159,82 @@ public final class FusionReactorBlockEntity
         return items.getStackInSlot(0).copy();
     }
 
+    public long chargeRemaining() {
+        return chargeRequirement;
+    }
+
+    public long progress() {
+        return progress;
+    }
+
     public IFluidHandler fluids(Direction side) {
         return formed() ? fluids : null;
     }
 
-    public net.neoforged.neoforge.items.IItemHandler items(Direction side) {
-        return formed() ? circuit : null;
+    public IItemHandler items(Direction side) {
+        return formed() ? inventory : null;
+    }
+
+    public void bindHatchForTest(
+            BlockPos pos, FusionHatchRole role, Direction outward) {
+        bindHatch(pos, role, outward);
     }
 
     private void tickRecipe() {
-        RecipeMap.Match match = findRecipe();
-        if (match == null) {
-            progress = 0;
-            duration = 0;
-            active = null;
-            return;
+        if (active == null && time.stored() >= TIME_MINIMUM) {
+            tryStart();
         }
-        GTRecipe recipe = match.recipe();
-        if (lu.stored() < recipe.specialValue()) {
-            return;
-        }
-        if (active == null || !active.id.equals(match.id().toString())) {
-            active = new ResourceLocationKey(match.id().toString());
-            progress = 0;
-            duration = recipe.duration();
-        }
-        long eut = Math.abs(recipe.eut());
-        if (recipe.eut() > 0L) {
-            if (!time.canConsume(eut)) {
-                return;
+        if (active != null && chargeRequirement <= 0L) {
+            GTRecipe recipe = activeRecipe();
+            if (recipe == null) {
+                resetRecipe();
+            } else {
+                long tu = Math.min(TIME_MAXIMUM, time.stored());
+                if (tu >= TIME_MINIMUM) {
+                    if (recipe.eut() < 0L) {
+                        emitElectric();
+                    }
+                    progress += tu;
+                    if (progress >= duration) {
+                        if (!commitOutputs(recipe, false)) {
+                            progress = duration;
+                        } else {
+                            resetRecipe();
+                        }
+                    }
+                }
             }
-            time.consume(eut);
-        } else if (recipe.eut() < 0L) {
-            eu.insert(EU_PACKET, EnergyPackets.packetsForUnits(EU_PACKET, eut), false);
         }
-        progress++;
-        if (progress >= duration) {
-            if (!consumeInputs(recipe, true) || !commitOutputs(recipe, true)) {
-                progress = duration - 1;
-                return;
-            }
-            consumeInputs(recipe, false);
-            commitOutputs(recipe, false);
-            progress = 0;
-            active = null;
-        }
+        time.restore(0L);
         setChanged();
     }
 
     public void skipToCompletionForTest() {
+        if (active == null) {
+            tryStart();
+        }
+        if (active == null) {
+            return;
+        }
+        chargeRequirement = 0L;
+        progress = Math.max(0L, duration - 1L);
+        setChanged();
+    }
+
+    private void tryStart() {
         RecipeMap.Match match = findRecipe();
         if (match == null) {
             return;
         }
-        active = new ResourceLocationKey(match.id().toString());
-        duration = match.recipe().duration();
-        progress = Math.max(0, duration - 1);
+        GTRecipe recipe = match.recipe();
+        if (!commitOutputs(recipe, true) || !consumeInputs(recipe, true)) {
+            return;
+        }
+        consumeInputs(recipe, false);
+        active = match.id();
+        progress = 0L;
+        duration = recipe.duration();
+        chargeRequirement = Math.max(0L, recipe.specialValue());
         setChanged();
     }
 
@@ -205,6 +242,16 @@ public final class FusionReactorBlockEntity
         GTRecipeQuery query = new GTRecipeQuery(itemInputs(), fluidInputs());
         return ModRecipeMaps.FUSION.findMatch(query)
                 .or(() -> ModRecipeMaps.FUSION_EXTENSION.findMatch(query))
+                .orElse(null);
+    }
+
+    private GTRecipe activeRecipe() {
+        if (active == null) {
+            return null;
+        }
+        return ModRecipeMaps.FUSION.entry(active)
+                .or(() -> ModRecipeMaps.FUSION_EXTENSION.entry(active))
+                .map(RecipeMap.Entry::recipe)
                 .orElse(null);
     }
 
@@ -287,14 +334,100 @@ public final class FusionReactorBlockEntity
         return produced.getAmount() - remaining;
     }
 
+    private void resetRecipe() {
+        active = null;
+        progress = 0L;
+        duration = 0;
+        chargeRequirement = 0L;
+    }
+
+    private void updateFormed(boolean ok) {
+        if (ok) {
+            formed = true;
+            bindHatches();
+        } else if (formed) {
+            formed = false;
+            unbindHatches();
+            setChanged();
+        }
+    }
+
+    private void bindHatches() {
+        if (level == null || forceFormed) {
+            return;
+        }
+        Direction facing = getBlockState().getValue(FusionReactorBlock.FACING);
+        Set<BlockPos> desired = new LinkedHashSet<>();
+        for (FusionStructure.Hatch hatch
+                : FusionStructure.hatches(worldPosition, facing)) {
+            desired.add(hatch.pos());
+            bindHatch(hatch.pos(), hatch.role(), hatch.outward());
+        }
+        for (BlockPos previous : List.copyOf(boundHatches)) {
+            if (!desired.contains(previous)) {
+                unbindHatch(previous);
+            }
+        }
+    }
+
+    private void unbindHatches() {
+        for (BlockPos previous : List.copyOf(boundHatches)) {
+            unbindHatch(previous);
+        }
+    }
+
+    private void bindHatch(
+            BlockPos pos, FusionHatchRole role, Direction outward) {
+        if (level == null || !level.hasChunkAt(pos)) {
+            return;
+        }
+        if (level.getBlockEntity(pos) instanceof FusionHullBlockEntity hull) {
+            hull.bind(worldPosition, role, outward);
+            boundHatches.add(pos.immutable());
+        }
+    }
+
+    private void unbindHatch(BlockPos pos) {
+        boundHatches.remove(pos);
+        if (level != null
+                && level.hasChunkAt(pos)
+                && level.getBlockEntity(pos) instanceof FusionHullBlockEntity hull) {
+            hull.unbind();
+        }
+    }
+
+    private void emitElectric() {
+        if (level == null) {
+            return;
+        }
+        for (Direction outward : ENERGY_OUT_ORDER) {
+            for (BlockPos pos : boundHatches) {
+                if (!(level.getBlockEntity(pos)
+                        instanceof FusionHullBlockEntity hull)
+                        || hull.role() != FusionHatchRole.ENERGY_OUT
+                        || hull.outward() != outward) {
+                    continue;
+                }
+                if (EnergyEmitter.pushToSide(
+                        level,
+                        pos,
+                        EnergyType.ELECTRIC,
+                        EU_PACKET,
+                        1L,
+                        outward)
+                        > 0L) {
+                    return;
+                }
+            }
+        }
+    }
+
     @Override
     public boolean handles(EnergyType type, Direction side) {
         if (!formed()) {
             return false;
         }
-        return type == EnergyType.TIME
-                || type == EnergyType.LU
-                || type == EnergyType.ELECTRIC;
+        return type == EnergyType.TIME || type == EnergyType.LU;
     }
 
     @Override
@@ -304,14 +437,14 @@ public final class FusionReactorBlockEntity
             long amount,
             Direction side,
             boolean simulate) {
-        if (!formed()) {
+        if (!formed() || amount <= 0L) {
             return 0L;
         }
         long accepted = switch (type) {
             case TIME -> size < TIME_MINIMUM || size > TIME_MAXIMUM
                     ? 0L
                     : time.insert(size, amount, simulate);
-            case LU -> lu.insert(size, amount, simulate);
+            case LU -> insertLaser(size, amount, simulate);
             default -> 0L;
         };
         if (!simulate && accepted > 0L) {
@@ -320,12 +453,24 @@ public final class FusionReactorBlockEntity
         return accepted;
     }
 
-    @Override
-    public long outputSize(EnergyType type, Direction side) {
-        if (!formed() || type != EnergyType.ELECTRIC) {
+    private long insertLaser(long size, long amount, boolean simulate) {
+        if (chargeRequirement <= 0L
+                || size < TIME_MINIMUM
+                || size > TIME_MAXIMUM) {
             return 0L;
         }
-        return eu.stored() >= EU_PACKET ? EU_PACKET : 0L;
+        if (!simulate) {
+            long absorbed = EnergyPackets.units(size, amount);
+            chargeRequirement = chargeRequirement > absorbed
+                    ? chargeRequirement - absorbed
+                    : 0L;
+        }
+        return amount;
+    }
+
+    @Override
+    public long outputSize(EnergyType type, Direction side) {
+        return 0L;
     }
 
     @Override
@@ -335,26 +480,14 @@ public final class FusionReactorBlockEntity
             long maxAmount,
             Direction side,
             boolean simulate) {
-        if (!formed()
-                || type != EnergyType.ELECTRIC
-                || size != EU_PACKET
-                || maxAmount <= 0L) {
-            return 0L;
-        }
-        long packets = Math.min(
-                maxAmount, EnergyPackets.packetsForUnits(size, eu.stored()));
-        if (!simulate && packets > 0L && eu.consume(EnergyPackets.units(size, packets))) {
-            setChanged();
-        }
-        return packets;
+        return 0L;
     }
 
     @Override
     public long stored(EnergyType type) {
         return switch (type) {
             case TIME -> time.stored();
-            case LU -> lu.stored();
-            case ELECTRIC -> eu.stored();
+            case LU, ELECTRIC -> 0L;
             default -> 0L;
         };
     }
@@ -363,8 +496,7 @@ public final class FusionReactorBlockEntity
     public long capacity(EnergyType type) {
         return switch (type) {
             case TIME -> time.capacity();
-            case LU -> lu.capacity();
-            case ELECTRIC -> eu.capacity();
+            case LU -> chargeRequirement;
             default -> 0L;
         };
     }
@@ -374,12 +506,14 @@ public final class FusionReactorBlockEntity
             CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.putLong("gt.tu", time.stored());
-        tag.putLong("gt.lu", lu.stored());
-        tag.putLong("gt.eu", eu.stored());
         tag.putBoolean("gt.formed", formed);
         tag.putBoolean("gt.force_formed", forceFormed);
-        tag.putInt("gt.progress", progress);
+        tag.putLong("gt.progress", progress);
         tag.putInt("gt.duration", duration);
+        tag.putLong("gt.charge", chargeRequirement);
+        if (active != null) {
+            tag.putString("gt.active", active.toString());
+        }
         tag.put("gt.circuit", circuit.serializeNBT(registries));
         tag.put("gt.items", items.serializeNBT(registries));
         for (int index = 0; index < inputs.length; index++) {
@@ -397,12 +531,15 @@ public final class FusionReactorBlockEntity
             CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         time.restore(tag.getLong("gt.tu"));
-        lu.restore(tag.getLong("gt.lu"));
-        eu.restore(tag.getLong("gt.eu"));
         formed = tag.getBoolean("gt.formed");
         forceFormed = tag.getBoolean("gt.force_formed");
-        progress = tag.getInt("gt.progress");
+        progress = tag.getLong("gt.progress");
         duration = tag.getInt("gt.duration");
+        chargeRequirement = tag.getLong("gt.charge");
+        active = tag.contains("gt.active")
+                ? ResourceLocation.tryParse(tag.getString("gt.active"))
+                : null;
+        structureChecked = false;
         if (tag.contains("gt.circuit")) {
             circuit.deserializeNBT(registries, tag.getCompound("gt.circuit"));
         }
@@ -461,7 +598,44 @@ public final class FusionReactorBlockEntity
                 Block.UPDATE_CLIENTS);
     }
 
-    private record ResourceLocationKey(String id) {}
+    private final class FusionItems implements IItemHandler {
+        @Override
+        public int getSlots() {
+            return 2;
+        }
+
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            if (slot == 0) {
+                return circuit.getStackInSlot(0);
+            }
+            return slot == 1 ? items.getStackInSlot(0) : ItemStack.EMPTY;
+        }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+            return slot == 0
+                    ? circuit.insertItem(0, stack, simulate)
+                    : stack;
+        }
+
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return slot == 1
+                    ? items.extractItem(0, amount, simulate)
+                    : ItemStack.EMPTY;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 64;
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return slot == 0 && !stack.isEmpty();
+        }
+    }
 
     private final class FusionFluids implements IFluidHandler {
         @Override

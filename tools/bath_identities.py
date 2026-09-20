@@ -80,6 +80,11 @@ WILDCARD_TAG_REPRESENTATIVE = {
 }
 
 PREFIX_FORM_UNITS: dict[str, int] = {
+    "double_ingot": "cruciblecraft:item/material/double_ingot",
+    "triple_ingot": "cruciblecraft:item/material/triple_ingot",
+    "ingot_hot": "cruciblecraft:item/material/ingot_hot",
+    "gem": "cruciblecraft:item/material/gem",
+    "boule": "cruciblecraft:item/material/boule",
     "tiny_washed_crushed_ore": 16,
     "arrow_gt_plastic": 144,
     "arrow_gt_wood": 144,
@@ -290,26 +295,26 @@ PREFIX_FORM_TEXTURE: dict[str, str] = {
     "plant_gt_wart": "cruciblecraft:item/material/plant_gt_wart",
     "rail_gt": "cruciblecraft:item/material/rail_gt",
     "lens": "cruciblecraft:item/material/lens",
-    "gem_exquisite": "minecraft:item/diamond",
-    "gem_flawless": "minecraft:item/diamond",
-    "gem_flawed": "minecraft:item/emerald",
-    "gem_chipped": "minecraft:item/emerald",
-    "gem_legendary": "minecraft:item/nether_star",
+    "gem_exquisite": "cruciblecraft:item/material/gem_exquisite",
+    "gem_flawless": "cruciblecraft:item/material/gem_flawless",
+    "gem_flawed": "cruciblecraft:item/material/gem_flawed",
+    "gem_chipped": "cruciblecraft:item/material/gem_chipped",
+    "gem_legendary": "cruciblecraft:item/material/gem_legendary",
     "curved_plate": "cruciblecraft:item/material/plate",
     "tiny_plate": "cruciblecraft:item/material/plate",
     "tiny_plate_gem": "cruciblecraft:item/material/plate_gem",
-    "round": "minecraft:item/iron_nugget",
-    "small_casing": "minecraft:item/iron_ingot",
+    "round": "cruciblecraft:item/material/round",
+    "small_casing": "cruciblecraft:item/material/small_casing",
     "chem_tube": "minecraft:item/glass_bottle",
     "scrap": "cruciblecraft:item/material/scrap",
-    "chain": "minecraft:item/string",
-    "billet": "minecraft:item/iron_ingot",
-    "chunk": "minecraft:item/raw_iron",
-    "minecart_wheels": "minecraft:item/minecart",
-    "storage_plate": "minecraft:item/iron_ingot",
-    "storage_ingot": "minecraft:item/iron_ingot",
-    "quadruple_ingot": "minecraft:item/iron_ingot",
-    "quintuple_ingot": "minecraft:item/iron_ingot",
+    "chain": "cruciblecraft:item/material/chain",
+    "billet": "cruciblecraft:item/material/billet",
+    "chunk": "cruciblecraft:item/material/chunk",
+    "minecart_wheels": "cruciblecraft:item/material/minecart_wheels",
+    "storage_plate": "cruciblecraft:item/material/storage_plate",
+    "storage_ingot": "cruciblecraft:item/material/storage_ingot",
+    "quadruple_ingot": "cruciblecraft:item/material/quadruple_ingot",
+    "quintuple_ingot": "cruciblecraft:item/material/quintuple_ingot",
 }
 
 _SLUG_RE = re.compile(r"[^a-z0-9]+")
@@ -497,7 +502,7 @@ def load_bath_remainder_work_set_relations() -> list[dict[str, Any]]:
 def prefix_document(form: str) -> dict[str, Any]:
     meta = dict(PREFIX_FORM_DOCS.get(form) or {})
     units = int(PREFIX_FORM_UNITS.get(form) or 144)
-    texture = PREFIX_FORM_TEXTURE.get(form, "minecraft:item/iron_ingot")
+    texture = PREFIX_FORM_TEXTURE.get(form) or f"cruciblecraft:item/material/{form}"
     return {
         "aliases": list(meta.get("aliases") or [form.replace("_", "")]),
         "capabilities": list(meta.get("capabilities") or []),

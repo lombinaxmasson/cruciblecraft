@@ -2,9 +2,13 @@ package com.masson.cruciblecraft.gametest;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.block.FusionReactorBlock;
+import com.masson.cruciblecraft.content.blockentity.FusionHullBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FusionReactorBlockEntity;
 import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerBlock;
 import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerBlockEntity;
+import com.masson.cruciblecraft.energy.transformer.TransformerBlock;
+import com.masson.cruciblecraft.energy.transformer.TransformerBlockEntity;
+import com.masson.cruciblecraft.fusion.FusionHatchRole;
 import com.masson.cruciblecraft.fusion.FusionRecipeCatalog;
 import com.masson.cruciblecraft.fusion.FusionStructure;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
@@ -24,6 +28,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -67,6 +72,12 @@ public final class FusionPlasmaGameTests {
         helper.assertTrue(
                 reactor.fillInput(new FluidStack(deuterium, 2_000)),
                 "Could not fill deuterium into the fusion controller");
+        FusionReactorBlockEntity.serverTick(
+                helper.getLevel(), pos, helper.getBlockState(pos), reactor);
+        helper.assertTrue(
+                reactor.chargeRemaining()
+                        == FusionRecipeCatalog.entries().getFirst().luStart(),
+                "Starting deuterium split did not set GT6 LU start energy");
         long luPackets = FusionRecipeCatalog.entries().getFirst().luStart()
                 / FusionRecipeCatalog.LU_PACKET;
         helper.assertTrue(
@@ -78,6 +89,10 @@ public final class FusionPlasmaGameTests {
                                 false)
                         == luPackets,
                 "Formed fusion controller rejected the first-row LU start energy");
+        helper.assertTrue(
+                reactor.chargeRemaining() == 0L
+                        && reactor.stored(EnergyType.LU) == 0L,
+                "LU start energy was buffered instead of consumed as charge");
         reactor.skipToCompletionForTest();
         FusionReactorBlockEntity.serverTick(
                 helper.getLevel(), pos, helper.getBlockState(pos), reactor);
@@ -241,6 +256,9 @@ public final class FusionPlasmaGameTests {
         helper.assertTrue(
                 FusionStructure.counts().matchesTooltip(),
                 "Fusion octagon part counts drifted from the GT6 tooltip");
+        helper.assertTrue(
+                FusionStructure.hatchCounts().matchesGt6Modes(),
+                "Fusion wall I/O modes drifted from GT6 ONLY_ENERGY_IN/OUT/ITEM_FLUID");
         helper.succeed();
     }
 
@@ -292,12 +310,169 @@ public final class FusionPlasmaGameTests {
                                 1L,
                                 Direction.NORTH,
                                 false)
-                        == 1L,
-                "Formed fusion controller rejected LU");
+                        == 0L,
+                "LU was accepted before a fusion row set start-charge");
         helper.assertTrue(
                 reactor.stored(EnergyType.TIME) == 8192L
-                        && reactor.stored(EnergyType.LU) == 32L,
-                "Dual TU/LU buffers did not persist both identities");
+                        && reactor.stored(EnergyType.LU) == 0L,
+                "TU buffer did not persist; LU must not accumulate as a second tank");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void wallHatchesForwardIo(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        BlockPos wall = new BlockPos(3, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.FUSION_REACTOR.get().defaultBlockState()
+                        .setValue(FusionReactorBlock.FACING, Direction.NORTH));
+        helper.setBlock(wall, ModBlocks.TUNGSTENSTEEL_WALL.get());
+        FusionReactorBlockEntity reactor = helper.getBlockEntity(pos);
+        reactor.forceFormedForTest();
+        reactor.bindHatchForTest(
+                helper.absolutePos(wall),
+                FusionHatchRole.ITEM_FLUID,
+                Direction.EAST);
+        var deuterium = ModFluids.chemical("deuterium")
+                .orElseThrow()
+                .source()
+                .get();
+        var fluids = helper.getLevel().getCapability(
+                net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.BLOCK,
+                helper.absolutePos(wall),
+                Direction.EAST);
+        helper.assertTrue(
+                fluids != null
+                        && fluids.fill(
+                                new FluidStack(deuterium, 2_000),
+                                IFluidHandler.FluidAction.EXECUTE)
+                                == 2_000,
+                "Item/fluid fusion wall did not forward fill into the controller");
+        reactor.bindHatchForTest(
+                helper.absolutePos(wall),
+                FusionHatchRole.ENERGY_IN,
+                Direction.EAST);
+        helper.assertTrue(
+                reactor.insert(
+                                EnergyType.TIME,
+                                32L,
+                                1L,
+                                Direction.UP,
+                                true)
+                        == 1L,
+                "Controller TIME insert must still work after hatch rebind");
+        FusionHullBlockEntity hull = helper.getBlockEntity(wall);
+        helper.assertTrue(
+                hull.insert(EnergyType.TIME, 32L, 1L, Direction.EAST, false) == 1L,
+                "Glass-ring fusion wall did not accept TU");
+        helper.assertTrue(
+                hull.insert(EnergyType.LU, 32L, 1L, Direction.EAST, false) == 0L,
+                "Glass-ring accepted LU without a start-charge recipe");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void tuDumpedDuringCharge(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.FUSION_REACTOR.get().defaultBlockState()
+                        .setValue(FusionReactorBlock.FACING, Direction.NORTH));
+        FusionReactorBlockEntity reactor = helper.getBlockEntity(pos);
+        reactor.forceFormedForTest();
+        ItemStack circuit = new ItemStack(ModItems.PROGRAMMED_CIRCUIT.get());
+        circuit.set(ModComponents.CIRCUIT_CONFIG.get(), 1);
+        reactor.setCircuitForTest(circuit);
+        var deuterium = ModFluids.chemical("deuterium")
+                .orElseThrow()
+                .source()
+                .get();
+        helper.assertTrue(
+                reactor.fillInput(new FluidStack(deuterium, 2_000)),
+                "Could not fill deuterium into the fusion controller");
+        FusionReactorBlockEntity.serverTick(
+                helper.getLevel(), pos, helper.getBlockState(pos), reactor);
+        helper.assertTrue(
+                reactor.chargeRemaining() > 0L && reactor.progress() == 0L,
+                "Starting a fusion row should wait on LU start-charge");
+        helper.assertTrue(
+                reactor.insert(
+                                EnergyType.TIME,
+                                8_192L,
+                                1L,
+                                Direction.UP,
+                                false)
+                        == 1L,
+                "Formed fusion controller rejected extra TU during charge");
+        FusionReactorBlockEntity.serverTick(
+                helper.getLevel(), pos, helper.getBlockState(pos), reactor);
+        helper.assertTrue(
+                reactor.stored(EnergyType.TIME) == 0L && reactor.progress() == 0L,
+                "TU must dump during LU charge instead of overclocking later");
+        long luPackets = FusionRecipeCatalog.entries().getFirst().luStart()
+                / FusionRecipeCatalog.LU_PACKET;
+        helper.assertTrue(
+                reactor.insert(
+                                EnergyType.LU,
+                                FusionRecipeCatalog.LU_PACKET,
+                                luPackets,
+                                Direction.UP,
+                                false)
+                        == luPackets,
+                "Formed fusion controller rejected LU start energy");
+        FusionReactorBlockEntity.serverTick(
+                helper.getLevel(), pos, helper.getBlockState(pos), reactor);
+        helper.assertTrue(
+                reactor.progress() == 1L && reactor.stored(EnergyType.TIME) == 0L,
+                "After charge, one auto TU tick should advance one progress");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void energyOutPushesEu(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        BlockPos wall = new BlockPos(3, 1, 2);
+        BlockPos sink = new BlockPos(4, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.FUSION_REACTOR.get().defaultBlockState()
+                        .setValue(FusionReactorBlock.FACING, Direction.NORTH));
+        helper.setBlock(wall, ModBlocks.TUNGSTENSTEEL_WALL.get());
+        var transformerBlock = ModBlocks.transformerBlocksById().get(
+                id("electric_transformer_ev_iv"));
+        helper.assertTrue(
+                transformerBlock != null, "EV-IV transformer is not registered");
+        helper.setBlock(
+                sink,
+                transformerBlock.get().defaultBlockState()
+                        .setValue(TransformerBlock.FACING, Direction.WEST));
+        FusionReactorBlockEntity reactor = helper.getBlockEntity(pos);
+        reactor.forceFormedForTest();
+        reactor.bindHatchForTest(
+                helper.absolutePos(wall),
+                FusionHatchRole.ENERGY_OUT,
+                Direction.EAST);
+        ItemStack circuit = new ItemStack(ModItems.PROGRAMMED_CIRCUIT.get());
+        circuit.set(ModComponents.CIRCUIT_CONFIG.get(), 1);
+        reactor.setCircuitForTest(circuit);
+        var deuterium = ModFluids.chemical("deuterium")
+                .orElseThrow()
+                .source()
+                .get();
+        helper.assertTrue(
+                reactor.fillInput(new FluidStack(deuterium, 2_000)),
+                "Could not fill deuterium into the fusion controller");
+        reactor.skipToCompletionForTest();
+        FusionReactorBlockEntity.serverTick(
+                helper.getLevel(), pos, helper.getBlockState(pos), reactor);
+        TransformerBlockEntity transformer = helper.getBlockEntity(sink);
+        helper.assertTrue(
+                transformer.storedEu() == FusionReactorBlockEntity.EU_PACKET,
+                "Electric interface did not push 8192 EU into the adjacent tile");
+        helper.assertTrue(
+                reactor.outputAmount(0) == 500 && reactor.outputAmount(1) == 500,
+                "Deuterium split did not finish after the EU push tick");
         helper.succeed();
     }
 

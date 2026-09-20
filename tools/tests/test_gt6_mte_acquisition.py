@@ -97,6 +97,22 @@ class Gt6MteAcquisitionTest(unittest.TestCase):
             self.assertEqual("cruciblecraft:shaped_catalyst", document["type"])
             self.assertEqual(host["runtime_id"], document["result"]["id"])
 
+    def test_furniture_chest_live_recipes_are_generated(self) -> None:
+        catalog = census.load_json(runtime.LIVE_CATALOG)
+        missing = []
+        for row in catalog["recipes"]:
+            if row.get("domain") != "furniture_chest":
+                continue
+            path = runtime._live_recipe_path(row["path"])
+            if not path.is_file():
+                missing.append(row["path"])
+                continue
+            document = census.load_json(path)
+            self.assertEqual("cruciblecraft:shaped_catalyst", document["type"])
+            self.assertEqual(row["result"]["id"], document["result"]["id"])
+            self.assertEqual(row["pattern"], document["pattern"])
+        self.assertEqual([], missing)
+
     def test_no_stand_in_and_same_material_chest(self) -> None:
         for domain in runtime.CHILD_ORDER:
             matrix = census.load_json(runtime._wave(domain) / "d0_obtain_matrix.json")

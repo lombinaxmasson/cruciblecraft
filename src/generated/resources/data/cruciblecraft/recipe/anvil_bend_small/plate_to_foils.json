@@ -1,0 +1,21 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.tag(\"PROCESSING.SMITHABLE\")",
+    "!material.tag(\"COMPOUNDS.COATED\")"
+  ],
+  "eut": "10000",
+  "item_inputs": [
+    {
+      "prefix": "cruciblecraft:plate"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "2",
+      "prefix": "cruciblecraft:foil"
+    }
+  ],
+  "special_value": "4",
+  "target": "cruciblecraft:anvil_bend_small"
+}

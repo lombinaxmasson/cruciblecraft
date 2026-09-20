@@ -39,10 +39,10 @@ public final class MteInPlaceDisplayNames {
             return Optional.of("大型" + name + "坩埚");
         }
         if (isDenseWall(registryPath)) {
-            return Optional.of("致密" + name + "墙");
+            return Optional.of("致密" + name + "壁");
         }
         if (isWallPath(registryPath)) {
-            return Optional.of(name + "墙");
+            return Optional.of(name + "壁");
         }
         return FoundryHosts.kindTemplate(registryPath)
                 .map(template -> template.replace("%s", name));

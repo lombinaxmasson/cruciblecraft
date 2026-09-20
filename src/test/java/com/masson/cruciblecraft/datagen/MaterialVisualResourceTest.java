@@ -193,6 +193,22 @@ class MaterialVisualResourceTest {
                         .getAsJsonObject("")
                         .get("model")
                         .getAsString());
+        String platePath = "assets/cruciblecraft/models/item/iron/storage_plate.json";
+        assertTrue(clientFiles.containsKey(platePath));
+        JsonObject plateItem = json(clientFiles.get(platePath));
+        assertEquals(
+                "cruciblecraft:block/material_storage_plate",
+                plateItem.get("parent").getAsString());
+        assertFalse(clientFiles.containsKey(
+                "assets/cruciblecraft/models/item/storage_plate.json"));
+        JsonObject plateState = json(clientFiles.get(
+                "assets/cruciblecraft/blockstates/iron/storage_plate.json"));
+        assertEquals(
+                "cruciblecraft:block/material_storage_plate",
+                plateState.getAsJsonObject("variants")
+                        .getAsJsonObject("")
+                        .get("model")
+                        .getAsString());
     }
 
     @Test
@@ -304,9 +320,11 @@ class MaterialVisualResourceTest {
                 chinese.get("item.cruciblecraft.water.plant_gt_twig").getAsString());
         assertTrue(english.has("block.cruciblecraft.planks2.blue"));
         assertEquals(
-                "Planks2 Blue",
+                "Blue Spruce Planks",
                 english.get("block.cruciblecraft.planks2.blue").getAsString());
-        assertFalse(chinese.has("block.cruciblecraft.planks2.blue"));
+        assertEquals(
+                "蓝云杉木板",
+                chinese.get("block.cruciblecraft.planks2.blue").getAsString());
         assertFalse(clientFiles.containsKey(
                 "assets/cruciblecraft/models/item/planks2/blue.json"));
         assertFalse(clientFiles.containsKey(

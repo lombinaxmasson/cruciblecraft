@@ -133,8 +133,8 @@ RECIPE_ROOTS = (
 LOOM_WAVE = census.TOOLS / "waves" / "machines" / "loom"
 LOOM_IMPORT = LOOM_WAVE / "recipe_import.json"
 LOOM_LOCK_NOTE = (
-    "live compile for machines/loom; 465 runtime-registered exact rows; "
-    "232 unmapped MTE/plant_gt_fiber rows and 637 shadowed input signatures "
+    "live compile for machines/loom; 477 runtime-registered exact rows; "
+    "166 unmapped MTE/plant_gt_fiber rows and 691 shadowed input signatures "
     "explicitly_blocked; not player_complete"
 )
 MELTER_WAVE = census.TOOLS / "waves" / "machines" / "melter"
@@ -170,8 +170,8 @@ EXPECTED_TESTS = [
     "missingGaugesAreNotMappedWireAlias",
 ]
 EXPECTED_FOLDS = 168
-EXPECTED_WIRES = 445
-EXPECTED_CABLES = 116
+EXPECTED_WIRES = 473
+EXPECTED_CABLES = 141
 
 
 def _write_json(path: Path, document: Any) -> None:

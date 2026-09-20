@@ -94,6 +94,18 @@ class WorkbenchToolRecipePlanTest {
         assertTrue(paths.contains("tools/granite/smithing_hammer"));
         assertTrue(paths.contains("tools/andesite/pickaxe"));
         assertTrue(paths.contains("tools/flint_pickaxe"));
+        assertTrue(paths.contains("tools/flint_axe"));
+        assertTrue(paths.contains("tools/flint_shovel"));
+        assertTrue(paths.contains("tools/flint_knife"));
+        assertTrue(paths.contains("tools/obsidian/knife_from_rock"));
+        assertTrue(paths.contains("tools/obsidian/axe"));
+        assertTrue(paths.contains("tools/bone/club"));
+        assertTrue(paths.contains("tools/petrified_wood/smithing_hammer"));
+        assertFalse(paths.contains("tools/flint/pickaxe"));
+        assertFalse(paths.contains("tools/flint/axe"));
+        assertFalse(paths.contains("tools/obsidian/hoe"));
+        assertFalse(paths.contains("tools/obsidian/club"));
+        assertFalse(paths.contains("tools/obsidian/smithing_hammer"));
         assertTrue(paths.contains("prefix/boule2plate_gem/redstone_alloy"));
         assertTrue(paths.contains("prefix/plate_gem2tiny/redstone_alloy"));
         assertTrue(paths.contains("prefix/boule2plate_gem/silicon"));
@@ -101,8 +113,40 @@ class WorkbenchToolRecipePlanTest {
         assertTrue(paths.contains("prefix/flawless2plate_gem/diamond"));
         assertTrue(paths.contains("prefix/gem2tiny_plate_gem/diamond"));
         assertTrue(paths.contains("prefix/plate_gem2tiny/diamond"));
-        assertTrue(paths.contains("tools/flint/pickaxe"));
         assertFalse(paths.contains("tools/wood/pickaxe"));
+        for (var recipe : plan) {
+            if (recipe.path().equals("tools/flint_knife")
+                    || recipe.path().equals("tools/flint_axe")
+                    || recipe.path().equals("tools/stone/axe")
+                    || recipe.path().equals("tools/stone/hoe")
+                    || recipe.path().equals("tools/obsidian/knife_from_rock")
+                    || recipe.path().equals("tools/gold/rolling_pin")
+                    || recipe.path().equals("tools/bone/club")) {
+                assertTrue(recipe.mirrored(), recipe.path());
+            }
+            if (recipe.path().equals("tools/flint_pickaxe")
+                    || recipe.path().equals("tools/flint_shovel")
+                    || recipe.path().equals("tools/stone/pickaxe")
+                    || recipe.path().equals("tools/stone/shovel")
+                    || recipe.path().equals("tools/stone/knife")
+                    || recipe.path().equals("tools/iron/club")) {
+                assertFalse(recipe.mirrored(), recipe.path());
+            }
+        }
+        for (String path : List.of(
+                "tools/flint_knife",
+                "tools/flint_pickaxe",
+                "tools/stone/axe",
+                "tools/obsidian/knife_from_rock",
+                "tools/bone/club")) {
+            var recipe = plan.stream()
+                    .filter(entry -> path.equals(entry.path()))
+                    .findFirst()
+                    .orElseThrow();
+            Path file = RECIPE_ROOT.resolve(path + ".json");
+            var actual = JsonParser.parseString(Files.readString(file));
+            assertEquals(recipe.toJson(), actual, path);
+        }
         assertEquals(17, assemblies.size());
         var variants = WorkbenchToolRecipePlan.assemblyVariants(
                 materials, registered);

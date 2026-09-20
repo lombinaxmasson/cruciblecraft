@@ -193,6 +193,20 @@ class RecipeMapSpecificityTest {
     }
 
     @Test
+    void emptySqueezerMapIsAllowedWhileOverflowStaysUnimported() {
+        GTRecipe placeholder = recipe(
+                List.of(Ingredient.of(Items.IRON_INGOT)), List.of(1), Items.IRON_NUGGET);
+        LinkedHashMap<RecipeMap, List<RecipeMap.Entry>> candidates = new LinkedHashMap<>();
+        for (RecipeMap map : ModRecipeMaps.ALL) {
+            candidates.put(
+                    map,
+                    List.of(new RecipeMap.Entry(id(map.id().getPath()), placeholder)));
+        }
+        candidates.put(ModRecipeMaps.SQUEEZER, List.of());
+        GTRecipeMapLoader.validateRequiredMaps(candidates, Map.of());
+    }
+
+    @Test
     void nonWhitelistedComponentIngredientsRemainExplicitlyUnindexed() {
         ItemStack namedInput = new ItemStack(Items.IRON_INGOT);
         namedInput.set(DataComponents.CUSTOM_NAME, Component.literal("indexed-by-name"));

@@ -16,9 +16,10 @@ import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
-import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
+import com.masson.cruciblecraft.content.mold.CastingMolds;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.content.mold.MoldHost;
+import com.masson.cruciblecraft.content.mold.MoldRecipes;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
@@ -35,6 +36,7 @@ import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.machine.component.CrucibleProcessCore;
 import com.masson.cruciblecraft.machine.component.SteelmakingController;
+import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModBlockTags;
 import com.masson.cruciblecraft.registry.ModMultiblockPlugins;
@@ -73,7 +75,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * controller inventory.
  */
 public final class LargeCrucibleBlockEntity extends BlockEntity
-        implements MultiblockControllerBinding, MultiblockPortHost, CruciblePour {
+        implements MultiblockControllerBinding, MultiblockPortHost, CruciblePour, MoldHost {
     private static final String PLUGIN_TAG = "multiblock_plugins";
     public static final ResourceLocation STRUCTURE_ID =
             ResourceLocation.fromNamespaceAndPath(
@@ -90,7 +92,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
                 return false;
             }
             if (slot == SLOT_MOLD) {
-                return stack.getItem() instanceof CeramicMoldBlockItem;
+                return CastingMolds.isMoldItem(stack);
             }
             return true;
         }
@@ -311,21 +313,24 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
 
     private void tryCast(Level level) {
         ItemStack mold = inventory.getStackInSlot(SLOT_MOLD);
-        if (!(mold.getItem() instanceof CeramicMoldBlockItem moldItem)) {
-            return;
-        }
-        Optional<MaterialPrefix> form = moldItem.castingForm(mold);
-        if (form.isEmpty()) {
+        Optional<MaterialPrefix> recipe = CastingMolds.castingForm(mold);
+        if (recipe.isEmpty()) {
             return;
         }
         Optional<CrucibleProcessCore.CastTransfer> preview =
-                process.previewCast(form.get());
+                process.previewCast(recipe.get());
         if (preview.isEmpty()) {
             return;
         }
+        var solid = MoldRecipes.solidifyingMaterial(preview.get().material());
+        MaterialPrefix outputForm = MoldRecipes.outputForm(
+                recipe.get(), preview.get().material());
+        if (!MaterialCatalog.isFormRegistered(solid, outputForm)) {
+            return;
+        }
         ItemStack produced = MaterialLookup.tryStack(
-                        preview.get().material().id(),
-                        preview.get().form(),
+                        solid.id(),
+                        outputForm,
                         preview.get().count())
                 .orElse(ItemStack.EMPTY);
         if (produced.isEmpty()) {
@@ -340,7 +345,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             outputJammed = true;
             return;
         }
-        if (process.cast(form.get()).isEmpty()) {
+        if (process.cast(recipe.get()).isEmpty()) {
             return;
         }
         if (existing.isEmpty()) {
@@ -384,6 +389,34 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             return false;
         }
         return process.fillMoldAtSide(mold, moldSide);
+    }
+
+    @Override
+    public boolean isMoldInputSide(Direction side) {
+        return side == Direction.UP && structureValid && !pluginQuarantined;
+    }
+
+    @Override
+    public float moldMaxTemperatureCelsius() {
+        return process.casing().maxTemperature(
+                CrucibleProcessCore.LARGE_HEAT_RESISTANCE);
+    }
+
+    @Override
+    public int moldRequiredMaterialUnits() {
+        return 1;
+    }
+
+    @Override
+    public int fillMold(
+            String materialId,
+            int availableUnits,
+            float temperature,
+            Direction side) {
+        if (!isMoldInputSide(side)) {
+            return 0;
+        }
+        return process.acceptMoldPour(materialId, availableUnits, temperature);
     }
 
     /**
@@ -436,6 +469,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
                                 definition.orElseThrow(),
                                 pos,
                                 facing));
+        applyFormedVisuals(structureValid);
     }
 
     private boolean wallsMatchCasing(
@@ -490,9 +524,33 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         if (level != null && !level.isClientSide) {
             MultiblockPortAggregator.unbindLoaded(
                     level, worldPosition, boundPorts);
+            applyFormedVisuals(false);
         }
         boundPorts = Set.of();
         structureValid = false;
+    }
+
+    private void applyFormedVisuals(boolean formed) {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = 0; dy <= 2; dy++) {
+                for (int dz = -1; dz <= 1; dz++) {
+                    BlockPos part = worldPosition.offset(dx, dy, dz);
+                    BlockState state = level.getBlockState(part);
+                    if (!state.hasProperty(LargeCrucibleHosts.FORMED)
+                            || state.getValue(LargeCrucibleHosts.FORMED)
+                                    == formed) {
+                        continue;
+                    }
+                    level.setBlock(
+                            part,
+                            state.setValue(LargeCrucibleHosts.FORMED, formed),
+                            Block.UPDATE_CLIENTS);
+                }
+            }
+        }
     }
 
     public MultiblockStructureValidator.ValidationResult lastValidation() {

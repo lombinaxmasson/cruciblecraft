@@ -8,6 +8,8 @@ import java.util.Optional;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.material.MaterialCatalog;
+import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
 import net.minecraft.core.Direction;
 
@@ -243,6 +245,8 @@ public final class MoldRecipes {
         preferRepresentative(0b0_00000_01111_11111_00000_00000, prefix("tool_head_raw_sense"));
         preferRepresentative(0b0_11111_11111_11111_11111_00100, prefix("tool_head_raw_plow"));
         preferRepresentative(0b0_00000_00100_11111_01110_01010, prefix("tool_head_builderwand"));
+        REPRESENTATIVE_MASKS.put(
+                MaterialPrefixes.NUGGET, 0b0_00000_00000_00100_00000_00000);
     }
 
     private MoldRecipes() {}
@@ -253,6 +257,47 @@ public final class MoldRecipes {
         }
         MaterialPrefix mapped = RECIPES.get(shape & ((1 << CELL_COUNT) - 1));
         return Optional.of(mapped == null ? MaterialPrefixes.NUGGET : mapped);
+    }
+
+    /**
+     * GT6 {@code mTargetSolidifying}: the catalog identity that actually
+     * solidifies out of the poured melt.
+     */
+    public static MaterialDefinition solidifyingMaterial(MaterialDefinition poured) {
+        if (poured == null) {
+            return poured;
+        }
+        return poured.gt6Metadata()
+                .map(metadata -> metadata.processingTargets().get("solidifying"))
+                .map(target -> target.material())
+                .filter(MaterialCatalog::contains)
+                .map(MaterialCatalog::require)
+                .orElse(poured);
+    }
+
+    /**
+     * GT6 {@code PROCESSING.COOL2CRYSTAL}: plate → plateGem, plateTiny →
+     * plateGemTiny. Tag is on the solidifying material.
+     */
+    public static MaterialPrefix cool2Crystal(
+            MaterialPrefix form, MaterialDefinition solidifying) {
+        if (form == null
+                || solidifying == null
+                || !solidifying.hasMaterialTag("PROCESSING.COOL2CRYSTAL")) {
+            return form;
+        }
+        if (form.equals(MaterialPrefixes.PLATE)) {
+            return MaterialPrefixes.PLATE_GEM;
+        }
+        if (form.equals(MaterialPrefixes.TINY_PLATE)) {
+            return MaterialPrefixes.TINY_PLATE_GEM;
+        }
+        return form;
+    }
+
+    public static MaterialPrefix outputForm(
+            MaterialPrefix recipe, MaterialDefinition poured) {
+        return cool2Crystal(recipe, solidifyingMaterial(poured));
     }
 
     public static int requiredUnits(int shape) {

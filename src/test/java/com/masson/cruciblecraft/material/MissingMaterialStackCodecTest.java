@@ -19,6 +19,7 @@ import net.minecraft.SharedConstants;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.server.Bootstrap;
 import net.minecraft.world.item.ItemStack;
@@ -157,6 +158,26 @@ class MissingMaterialStackCodecTest {
                         ignored -> true,
                         ignored -> true)
                         .getString("id"));
+    }
+
+    @Test
+    void leftoverPrefixItemRewritesOntoUniqueHostedSlashId() {
+        CompoundTag stack = new CompoundTag();
+        stack.putString("id", "cruciblecraft:storage_plate");
+        CompoundTag components = new CompoundTag();
+        components.putString(
+                MissingMaterialStackNbtAdapter.PREFIX_MATERIAL_COMPONENT_ID,
+                "iron");
+        stack.put("components", components);
+
+        CompoundTag migrated = MissingMaterialStackNbtAdapter.rewrite(
+                stack,
+                Map.of("iron/storage_plate", "cruciblecraft:iron/storage_plate"),
+                ignored -> false);
+
+        assertEquals("cruciblecraft:iron/storage_plate", migrated.getString("id"));
+        assertFalse(migrated.contains("components", Tag.TAG_COMPOUND));
+        assertEquals("cruciblecraft:storage_plate", stack.getString("id"));
     }
 
     @Test

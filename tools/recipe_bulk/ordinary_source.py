@@ -76,7 +76,30 @@ ORDINARY_VANILLA_SPECIAL: dict[tuple[str, int], str] = {
     ("minecraft:tallgrass", 0): "minecraft:dead_bush",
     ("minecraft:tallgrass", 1): "minecraft:short_grass",
     ("minecraft:tallgrass", 2): "minecraft:fern",
+    ("minecraft:fish", 0): "minecraft:cod",
+    ("minecraft:fish", 1): "minecraft:salmon",
+    ("minecraft:fish", 2): "minecraft:tropical_fish",
+    ("minecraft:fish", 3): "minecraft:pufferfish",
+    ("minecraft:cooked_fished", 0): "minecraft:cooked_cod",
+    ("minecraft:cooked_fished", 1): "minecraft:cooked_salmon",
+    ("minecraft:double_plant", 0): "minecraft:sunflower",
+    ("minecraft:double_plant", 1): "minecraft:lilac",
+    ("minecraft:double_plant", 2): "minecraft:tall_grass",
+    ("minecraft:double_plant", 3): "minecraft:large_fern",
+    ("minecraft:double_plant", 4): "minecraft:rose_bush",
+    ("minecraft:double_plant", 5): "minecraft:peony",
 }
+# 1.7.10 / 1.12 ids that 1.21.1 does not register. Leaving them as
+# exact_runtime_id makes RegistryOps drop item_inputs while counts stay,
+# and GTRecipe dies with inputs=0, counts=1.
+UNSPLIT_VANILLA_ITEM_IDS = frozenset(
+    {
+        "minecraft:fish",
+        "minecraft:cooked_fished",
+        "minecraft:double_plant",
+        "minecraft:tallgrass",
+    }
+)
 ORDINARY_VANILLA_RENAMES: dict[str, str] = {
     "minecraft:lit_furnace": "minecraft:furnace",
     "minecraft:melon_block": "minecraft:melon",
@@ -581,6 +604,15 @@ def map_item_operand(
             }
         )
         return operand, []
+    if item_id in UNSPLIT_VANILLA_ITEM_IDS:
+        operand = _empty_operand(item)
+        operand.update(
+            {
+                "mapping": "blocked_unmapped",
+                "value": f"{item_id}@{meta}",
+            }
+        )
+        return operand, [f"unsplit 1.7.10 vanilla {item_id}@{meta}"]
     if item_id == "gregtech:gt.multitileentity" and isinstance(meta, int):
         operand = _empty_operand(item)
         runtime = mte_runtime.get((item_id, meta))

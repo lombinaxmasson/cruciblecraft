@@ -45,9 +45,9 @@ class LoomCardTest(unittest.TestCase):
         work = census.load_json(WAVE / "source_pack" / "work_set.json")
         overflow = census.load_json(WAVE / "overflow.json")
         self.assertEqual(1334, work["accounting"]["source_rows"])
-        self.assertEqual(465, work["accounting"]["selected_rows"])
-        self.assertEqual(869, work["accounting"]["overflow_rows"])
-        self.assertEqual(869, overflow["blocked_rows"])
+        self.assertEqual(477, work["accounting"]["selected_rows"])
+        self.assertEqual(857, work["accounting"]["overflow_rows"])
+        self.assertEqual(857, overflow["blocked_rows"])
         self.assertNotIn("programmed_circuit", str(overflow))
 
     def test_d0_mixed_hosts_are_honest(self) -> None:

@@ -14,26 +14,13 @@
     "cruciblecraft:generates_block",
     "cruciblecraft:generates_dust",
     "cruciblecraft:generates_fine_wire",
-    "cruciblecraft:generates_fluid_pipe",
-    "cruciblecraft:generates_huge_fluid_pipe",
-    "cruciblecraft:generates_huge_item_pipe",
-    "cruciblecraft:generates_huge_restrictive_item_pipe",
     "cruciblecraft:generates_ingot",
-    "cruciblecraft:generates_item_pipe",
-    "cruciblecraft:generates_large_fluid_pipe",
-    "cruciblecraft:generates_large_item_pipe",
-    "cruciblecraft:generates_large_restrictive_item_pipe",
     "cruciblecraft:generates_machine_casing",
-    "cruciblecraft:generates_nonuple_fluid_pipe",
     "cruciblecraft:generates_nugget",
     "cruciblecraft:generates_plate",
-    "cruciblecraft:generates_quadruple_fluid_pipe",
-    "cruciblecraft:generates_restrictive_item_pipe",
     "cruciblecraft:generates_rock",
-    "cruciblecraft:generates_small_fluid_pipe",
     "cruciblecraft:generates_small_spring",
     "cruciblecraft:generates_spring",
-    "cruciblecraft:generates_tiny_fluid_pipe",
     "cruciblecraft:generates_wire",
     "gt6:itemgenerator/denseplates",
     "gt6:itemgenerator/foils",
@@ -87,90 +74,6 @@
       "PROPERTIES.HAS_TOOL_STATS",
       "PROPERTIES.MAGNETIC_PASSIVE"
     ],
-    "pipe_properties": {
-      "fluid_by_specification": {
-        "pipeHuge": {
-          "acid_proof": false,
-          "blocking": true,
-          "capacity_mb": 2400,
-          "contact_damage": true,
-          "flammable": false,
-          "gas_proof": false,
-          "magic_proof": false,
-          "max_temperature_kelvin": 2263,
-          "plasma_proof": false,
-          "recipe": true
-        },
-        "pipeLarge": {
-          "acid_proof": false,
-          "blocking": true,
-          "capacity_mb": 1200,
-          "contact_damage": true,
-          "flammable": false,
-          "gas_proof": false,
-          "magic_proof": false,
-          "max_temperature_kelvin": 2263,
-          "plasma_proof": false,
-          "recipe": true
-        },
-        "pipeMedium": {
-          "acid_proof": false,
-          "blocking": true,
-          "capacity_mb": 600,
-          "contact_damage": true,
-          "flammable": false,
-          "gas_proof": false,
-          "magic_proof": false,
-          "max_temperature_kelvin": 2263,
-          "plasma_proof": false,
-          "recipe": true
-        },
-        "pipeSmall": {
-          "acid_proof": false,
-          "blocking": true,
-          "capacity_mb": 200,
-          "contact_damage": true,
-          "flammable": false,
-          "gas_proof": false,
-          "magic_proof": false,
-          "max_temperature_kelvin": 2263,
-          "plasma_proof": false,
-          "recipe": true
-        },
-        "pipeTiny": {
-          "acid_proof": false,
-          "blocking": true,
-          "capacity_mb": 100,
-          "contact_damage": true,
-          "flammable": false,
-          "gas_proof": false,
-          "magic_proof": false,
-          "max_temperature_kelvin": 2263,
-          "plasma_proof": false,
-          "recipe": true
-        }
-      },
-      "item_by_specification": {
-        "pipeHuge": {
-          "blocking": true,
-          "recipe": true,
-          "stacks_per_second": 4,
-          "step_size": 4096
-        },
-        "pipeLarge": {
-          "blocking": true,
-          "recipe": true,
-          "stacks_per_second": 2,
-          "step_size": 8192
-        },
-        "pipeMedium": {
-          "blocking": true,
-          "recipe": true,
-          "stacks_per_second": 1,
-          "step_size": 16384
-        }
-      }
-    },
     "processing_targets": {
       "bending": {
         "cc_units": 144,

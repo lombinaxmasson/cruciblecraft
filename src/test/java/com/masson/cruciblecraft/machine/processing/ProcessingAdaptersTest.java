@@ -571,7 +571,7 @@ class ProcessingAdaptersTest {
 
     @Test
     void everyComponentMachineSpecUsesSharedKuPlacementAndExactLayouts() {
-        assertEquals(10, ModProcessingMachines.COMPONENT_MACHINES.size());
+        assertEquals(9, ModProcessingMachines.COMPONENT_MACHINES.size());
         for (ProcessingMachineSpec spec : ModProcessingMachines.COMPONENT_MACHINES) {
             assertEquals(spec.recipeMapId(), spec.requireRecipeMap().id());
             EnergyType expectedEnergy;
@@ -611,14 +611,13 @@ class ProcessingAdaptersTest {
         }
         for (ProcessingMachineSpec spec : List.of(
                 ModProcessingMachines.EXTRUDER,
-                ModProcessingMachines.WIREMILL,
-                ModProcessingMachines.WELDER)) {
+                ModProcessingMachines.WIREMILL)) {
             assertEquals(2, spec.items().inputs().size());
         }
         assertEquals(3, ModProcessingMachines.PRESS.items().inputs().size());
         assertEquals(6, ModProcessingMachines.ASSEMBLER.items().inputs().size());
         assertEquals(1, ModProcessingMachines.ASSEMBLER.fluids().inputs().size());
-        assertEquals(1, ModProcessingMachines.WELDER.fluids().inputs().size());
+        assertEquals(1, ModProcessingMachines.LASER_WELDER.fluids().inputs().size());
         assertFalse(ProcessingMachineFluidPolicy.accepts(
                 ModProcessingMachines.ASSEMBLER, 0, new FluidStack(Fluids.LAVA, 250)));
         assertFalse(ProcessingMachineFluidPolicy.accepts(
@@ -696,7 +695,8 @@ class ProcessingAdaptersTest {
         for (String path : List.of(
                 "material_file",
                 "smithing_hammer",
-                "flint_knife",
+                "material_knife",
+                "material_rolling_pin",
                 "material_screwdriver",
                 "material_wrench",
                 "material_monkey_wrench",

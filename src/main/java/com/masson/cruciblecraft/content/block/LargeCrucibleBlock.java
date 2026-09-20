@@ -26,6 +26,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -39,8 +40,9 @@ import net.minecraft.world.phys.BlockHitResult;
 public final class LargeCrucibleBlock extends Block implements EntityBlock {
     public LargeCrucibleBlock(Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any().setValue(
-                ProcessingMachineBlock.FACING, Direction.NORTH));
+        registerDefaultState(stateDefinition.any()
+                .setValue(ProcessingMachineBlock.FACING, Direction.NORTH)
+                .setValue(LargeCrucibleHosts.FORMED, false));
     }
 
     @Override
@@ -147,7 +149,14 @@ public final class LargeCrucibleBlock extends Block implements EntityBlock {
     @Override
     protected void createBlockStateDefinition(
             StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(ProcessingMachineBlock.FACING);
+        builder.add(ProcessingMachineBlock.FACING, LargeCrucibleHosts.FORMED);
+    }
+
+    @Override
+    protected RenderShape getRenderShape(BlockState state) {
+        return LargeCrucibleHosts.formed(state)
+                ? RenderShape.ENTITYBLOCK_ANIMATED
+                : RenderShape.MODEL;
     }
 
     @Override

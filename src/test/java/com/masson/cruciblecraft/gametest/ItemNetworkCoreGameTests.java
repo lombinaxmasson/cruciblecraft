@@ -448,7 +448,7 @@ public final class ItemNetworkCoreGameTests {
 
     private static ItemPipeBlock itemPipe() {
         return (ItemPipeBlock) ModBlocks.pipeBlock(
-                "copper",
+                "brass",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
     }

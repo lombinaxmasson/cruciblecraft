@@ -44,6 +44,7 @@ public final class LanguageNames {
     private static volatile Map<String, String> slabFaces = Map.of();
     private static volatile Map<String, String> zhPathTokens = Map.of();
     private static volatile Set<String> dyeColors = Set.of();
+    private static volatile List<String> completeTitlePrefixes = List.of();
     private static volatile boolean loaded;
 
     private LanguageNames() {}
@@ -131,6 +132,9 @@ public final class LanguageNames {
             }
             name = formatEnglishId(path.replace('/', '_'));
         }
+        if (completeCatalogTitle(path)) {
+            return name;
+        }
         Set<String> owned = wordTokens(name);
         List<String> extras = new ArrayList<>();
         boolean first = true;
@@ -189,8 +193,11 @@ public final class LanguageNames {
             return Optional.empty();
         }
         String name = META_SUFFIX.matcher(sourceName).replaceFirst("").strip();
-        List<String> extras = new ArrayList<>();
         String path = registryPath == null ? "" : registryPath;
+        if (completeCatalogTitle(path)) {
+            return Optional.of(name);
+        }
+        List<String> extras = new ArrayList<>();
         for (String segment : path.replace('.', '/').split("/")) {
             if (segment.isEmpty()) {
                 continue;
@@ -287,6 +294,19 @@ public final class LanguageNames {
         return isDigits(token) && token.length() <= 2;
     }
 
+    private static boolean completeCatalogTitle(String registryPath) {
+        ensureLoaded();
+        if (registryPath == null || registryPath.isEmpty()) {
+            return false;
+        }
+        for (String prefix : completeTitlePrefixes) {
+            if (registryPath.equals(prefix) || registryPath.startsWith(prefix)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static boolean isAlphabeticVariant(String segment) {
         boolean letters = false;
         boolean digits = false;
@@ -322,6 +342,8 @@ public final class LanguageNames {
                 slabFaces = mapOf(root.getAsJsonObject("slab_faces"));
                 zhPathTokens = mapOf(root.getAsJsonObject("zh_path_tokens"));
                 dyeColors = setOf(root.getAsJsonArray("dye_colors"));
+                completeTitlePrefixes = listOf(
+                        root.getAsJsonArray("complete_title_path_prefixes"));
             } catch (Exception failure) {
                 throw new IllegalStateException(
                         "Could not load the language display contract",
@@ -351,5 +373,16 @@ public final class LanguageNames {
             result.add(entry.getAsString());
         }
         return Set.copyOf(result);
+    }
+
+    private static List<String> listOf(JsonArray array) {
+        if (array == null) {
+            return List.of();
+        }
+        List<String> result = new ArrayList<>();
+        for (JsonElement entry : array) {
+            result.add(entry.getAsString());
+        }
+        return List.copyOf(result);
     }
 }

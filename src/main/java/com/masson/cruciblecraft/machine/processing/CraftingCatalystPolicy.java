@@ -34,7 +34,7 @@ public final class CraftingCatalystPolicy {
     private static final Set<String> WEAR_PATHS = Set.of(
             "material_file",
             "smithing_hammer",
-            "flint_knife",
+            "material_knife",
             "material_screwdriver",
             "material_wrench",
             "material_monkey_wrench",
@@ -44,7 +44,10 @@ public final class CraftingCatalystPolicy {
             "material_soft_hammer",
             "material_bending_cylinder",
             "material_bending_cylinder_small",
-            "material_rolling_pin");
+            "material_rolling_pin",
+            "material_axe",
+            "material_crowbar",
+            "material_scissors");
     private static final String TOOL_PATTERN_PREFIX = "tool_pattern_";
 
     private CraftingCatalystPolicy() {}

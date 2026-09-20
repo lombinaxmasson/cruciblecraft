@@ -5,6 +5,17 @@
   "closed_before_batch_selection": [
     {
       "blocker_ids": [
+        "identity/electric-unregistered-gauges"
+      ],
+      "resolution": "content/electric-wire-cable-mte-fold 把 addElectricWires 配方线规折到 320/320：石墨烯高规格、超导 01/02/04/08/12/16，以及 HSLA/BlueAlloy/ElectrotineAlloy/Naquadah/YBCO 的配方线规已按 GT6 开门为 CableBlock。",
+      "authority": [
+        "tools/capabilities/content/electric-wire-cable-mte-fold/capability.json",
+        "tools/waves/content/electric-wire-cable-mte-fold/operand_runtime_map.json",
+        "tools/waves/content/electric-wire-cable-mte-fold/unmapped.json"
+      ]
+    },
+    {
+      "blocker_ids": [
         "recipe/bath-remainder-families",
         "recipe/bath-identity-families"
       ],
@@ -31,7 +42,7 @@
   "recommended_order": [
     {
       "batch_id": "batch/identity-eu-gauge-closure",
-      "basis": "61 个 loader_ids 是最大的已冻结 identity 数；EU partial 与 HSLA 线仍需分子任务审计。"
+      "basis": "EU dummy catalog 与 HSLA hsla_steel 别名仍需审计；Loader id 折回已关闭。"
     },
     {
       "batch_id": "batch/machines-nanofab-host-closure",
@@ -61,12 +72,8 @@
       "kind": "shared_identity_audit",
       "members": [
         {
-          "blocker_id": "identity/electric-unregistered-gauges",
-          "role": "primary"
-        },
-        {
           "blocker_id": "identity/eu-blocked-gauges",
-          "role": "audit_only"
+          "role": "primary"
         },
         {
           "blocker_id": "identity/hsla-ungated-gauges",
@@ -83,9 +90,9 @@
         "identity/connector-art-keep-distinct-dummies"
       ],
       "boundary_notes": [
-        "已有真实对象必须 exact mapping；不能把 61 个 loader_ids 当成 61 个必然可解条目。",
-        "石墨烯与超导缺形态继续 blocked。",
-        "HSLA alias / gauge 是独立子任务。",
+        "addElectricWires 配方 Loader id 已 320/320 折完；本批不再以 61 为待办。",
+        "石墨烯/超导 EU dummy catalog 行不是删除集合。",
+        "HSLA alias / dummy catalog 是独立子任务。",
         "连接件美术 dummy 不是 runtime identity 工作。"
       ],
       "does_not_merge_counts": true,

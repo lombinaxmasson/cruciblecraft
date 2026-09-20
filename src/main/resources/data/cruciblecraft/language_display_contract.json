@@ -35,7 +35,8 @@
     "tiny_fluid_pipe": "Tiny Fluid Pipe",
     "tiny_item_pipe": "Tiny Item Pipe",
     "dust_div72": "1/72 Dust",
-    "storage_dust": "Dust Block"
+    "storage_dust": "Dust Block",
+    "storage_plate": "Plate Block"
   },
   "token_exceptions": {
     "eu": "EU",
@@ -482,6 +483,58 @@
       "locale": "zh_cn",
       "reason": "Same GT6 natural gas fluid block and fluid_type pair as Natural Gas",
       "source": "gt6_code/gregtech6/src/main/java/gregtech/blocks/fluids"
+    },
+    {
+      "display_name": "Blue Spruce Planks",
+      "locale": "en_us",
+      "reason": "GT6 BlockTreePlanks2 only names meta 0 Blue Spruce Planks; remainder dye paths and gt_wood/blue_spruce_planks share that source title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/blocks/wood/BlockTreePlanks2.java"
+    },
+    {
+      "display_name": "Blue Spruce Slab",
+      "locale": "en_us",
+      "reason": "Same GT6 BlockTreePlanks2 family as Blue Spruce Planks",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/blocks/wood/BlockTreePlanks2.java"
+    },
+    {
+      "display_name": "Blue Spruce Planks (Fireproof)",
+      "locale": "en_us",
+      "reason": "GT6 BlockTreePlanks2FireProof names meta 0 Blue Spruce Planks (Fireproof); remainder dye paths share that source title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/blocks/wood/BlockTreePlanks2FireProof.java"
+    },
+    {
+      "display_name": "Blue Spruce Slab (Fireproof)",
+      "locale": "en_us",
+      "reason": "Same GT6 BlockTreePlanks2FireProof family as Blue Spruce Planks (Fireproof)",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/blocks/wood/BlockTreePlanks2FireProof.java"
+    },
+    {
+      "display_name": "蓝云杉木板",
+      "locale": "zh_cn",
+      "reason": "Same GT6 Blue Spruce Planks family as the English source title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/blocks/wood/BlockTreePlanks2.java"
+    },
+    {
+      "display_name": "蓝云杉台阶",
+      "locale": "zh_cn",
+      "reason": "Same GT6 Blue Spruce Slab family as the English source title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/blocks/wood/BlockTreePlanks2.java"
+    },
+    {
+      "display_name": "蓝云杉木板（防火）",
+      "locale": "zh_cn",
+      "reason": "Same GT6 Blue Spruce Planks (Fireproof) family as the English source title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/blocks/wood/BlockTreePlanks2FireProof.java"
+    },
+    {
+      "display_name": "蓝云杉台阶（防火）",
+      "locale": "zh_cn",
+      "reason": "Same GT6 Blue Spruce Slab (Fireproof) family as the English source title",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/blocks/wood/BlockTreePlanks2FireProof.java"
     }
+  ],
+  "complete_title_path_prefixes": [
+    "planks2/",
+    "planks2_fireproof/"
   ]
 }

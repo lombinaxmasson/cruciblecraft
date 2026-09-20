@@ -16,7 +16,6 @@ import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldRecipes;
-import com.masson.cruciblecraft.content.mold.MoldShape;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.AlloyIndex;
@@ -94,10 +93,9 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registry.addWorkstation(COKE_OVEN, EmiStack.of(ModBlocks.COKE_OVEN.get()));
         registry.addWorkstation(CRUSHER, EmiStack.of(ModBlocks.BRONZE_CRUSHER.get()));
         registry.addWorkstation(FUSION, EmiStack.of(ModBlocks.FUSION_REACTOR.get()));
-        for (MoldShape shape : MoldShape.values()) {
-            registry.addWorkstation(MOLD_CASTING, EmiStack.of(ModItems.moldItem(shape).get()));
-        }
         registry.addWorkstation(MOLD_CASTING, EmiStack.of(ModItems.CERAMIC_MOLD.get()));
+        ModItems.firedShapedMolds().forEach(item ->
+                registry.addWorkstation(MOLD_CASTING, EmiStack.of(item.get())));
 
         registerAlloys(registry);
         registerAnvilRecipes(registry);
@@ -125,8 +123,11 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
      *  routed tool variants do the same, and each material's dust /
      *  small_dust / tiny_dust triple aliases so the 9 tiny = 4 small =
      *  1 dust conversion search reaches all three. Per-material only —
-     *  never an "any ingot" merge. Default converter/cover items stay out;
-     *  they are already in the creative-tab index. */
+     *  never an "any ingot" recipe merge. Same-form / same-tool / same-kind
+     *  index folding is Reliable EMI stack groups ({@link EmiStackGroupPlan}),
+     *  not Comparison.
+     *  Default converter/cover items stay out; they are already in the
+     *  creative-tab index. */
     private static void registerDisplayStacks(EmiRegistry registry) {
         registry.removeEmiStacks(stack -> {
             ItemStack itemStack = stack.getItemStack();
@@ -468,12 +469,10 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     }
 
     private static ItemStack moldItem(MaterialPrefix form, int mask) {
-        Optional<MoldShape> named = MoldShape.fromMask(mask);
-        if (named.isPresent() && named.get().form().equals(form)) {
-            return new ItemStack(ModItems.moldItem(named.get()).get());
+        ItemStack stack = new ItemStack(ModItems.moldStackItem(mask).get());
+        if (stack.is(ModItems.CERAMIC_MOLD.get()) && mask != 0) {
+            stack.set(ModComponents.MOLD_PATTERN.get(), mask);
         }
-        ItemStack stack = new ItemStack(ModItems.CERAMIC_MOLD.get());
-        stack.set(ModComponents.MOLD_PATTERN.get(), mask);
         return stack;
     }
 

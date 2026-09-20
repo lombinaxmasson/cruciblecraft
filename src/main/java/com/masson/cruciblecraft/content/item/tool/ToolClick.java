@@ -5,6 +5,7 @@ import com.masson.cruciblecraft.api.tool.ToolActionSource;
 import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.item.MaterialToolItem;
+import com.masson.cruciblecraft.content.item.ToolBreakScrap;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -109,7 +110,8 @@ public final class ToolClick {
                 && !tool.canApplyDurabilityDamage(stack)) {
             return;
         }
-        stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
+        ToolBreakScrap.hurtAndBreak(
+                stack, 1, player, LivingEntity.getSlotForHand(hand));
     }
 
     private static ToolResult use(

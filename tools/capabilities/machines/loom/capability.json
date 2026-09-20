@@ -57,8 +57,8 @@
       "semantic_key": "recipe:loom:overflow",
       "disposition": "blocked",
       "runtime_ids": [],
-      "reason": "232 rows require unmapped MTE or plant_gt_fiber operands; 637 additional rows have shadowed input signatures and cannot be safely published. No unrelated material stand-ins."
+      "reason": "166 rows require unmapped MTE (non-addElectricWires gauges or other hosts) or plant_gt_fiber operands; 691 additional rows have shadowed input signatures and cannot be safely published. No unrelated material stand-ins."
     }
   ],
-  "note": "Live publishes 465 non-shadowed runtime rows after the electric wire/cable MTE fold. 232 MTE/plant_gt_fiber rows and 637 shadowed input signatures stay blocked. Kinetic hosts and all five electric hosts are source-exact. Close at runtime_ready, not player_complete."
+  "note": "Live publishes 477 non-shadowed runtime rows after addElectricWires recipe gauges mapped 320/320. 166 MTE/plant_gt_fiber rows and 691 shadowed input signatures stay blocked. Kinetic hosts and all five electric hosts are source-exact. Close at runtime_ready, not player_complete."
 }

@@ -1,6 +1,25 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": ["C C", "C C", "CCC"],
-  "key": {"C": {"item": "minecraft:clay_ball"}},
-  "result": {"id": "cruciblecraft:raw_ceramic_crucible", "count": 1}
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "k": {
+      "tag": "cruciblecraft:crafting_tools/knife"
+    },
+    "R": {
+      "tag": "cruciblecraft:crafting_tools/rolling_pin"
+    }
+  },
+  "ingredients": {
+    "C": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "pattern": [
+    "CkC",
+    "CRC",
+    "CCC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:raw_ceramic_crucible"
+  }
 }

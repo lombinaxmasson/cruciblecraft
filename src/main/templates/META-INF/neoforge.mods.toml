@@ -48,6 +48,13 @@ config="${mod_id}.mixins.json"
     side="CLIENT"
 
 [[dependencies.${mod_id}]]
+    modId="remi"
+    type="optional"
+    versionRange="[4.7.3,)"
+    ordering="AFTER"
+    side="CLIENT"
+
+[[dependencies.${mod_id}]]
     modId="kubejs"
     type="optional"
     versionRange="[2101.7.2-build.368,)"

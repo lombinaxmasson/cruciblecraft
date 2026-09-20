@@ -9,40 +9,14 @@
   },
   "classification_policy": {
     "direct_source": "The exact live or raw source_name is an argument of the domain's pinned GT6 addFluidPipes or addItemPipes call.",
-    "acceptance_extension": "The exact live or raw source_name is an explicit CrucibleCraft copper/tin/iron acceptance extension for this domain and is absent from that domain's direct GT6 calls.",
-    "not_applicable": "The exact source_name is neither direct GT6 pipe source nor an explicit acceptance extension for this domain.",
+    "acceptance_extension": "No CrucibleCraft pipe-domain extensions. GT6 addFluidPipes and addItemPipes material lists are exclusive.",
+    "not_applicable": "The exact source_name is not an argument of that domain's pinned GT6 addFluidPipes or addItemPipes call.",
     "unclassified_allowed": false
   },
-  "acceptance_materials": [
-    "copper",
-    "tin",
-    "iron"
-  ],
+  "acceptance_materials": [],
   "acceptance_extensions": {
-    "fluid": [
-      {
-        "material": "tin",
-        "source_name": "Tin"
-      },
-      {
-        "material": "iron",
-        "source_name": "Iron"
-      }
-    ],
-    "item": [
-      {
-        "material": "copper",
-        "source_name": "Copper"
-      },
-      {
-        "material": "tin",
-        "source_name": "Tin"
-      },
-      {
-        "material": "iron",
-        "source_name": "Iron"
-      }
-    ]
+    "fluid": [],
+    "item": []
   },
   "extension_defaults": {
     "fluid": {
@@ -169,17 +143,17 @@
     "raw_material_count": 2214,
     "live_material_count": 1773,
     "fluid_raw_direct": 40,
-    "fluid_raw_extensions": 2,
+    "fluid_raw_extensions": 0,
     "fluid_live_direct": 40,
-    "fluid_live_extensions": 2,
+    "fluid_live_extensions": 0,
     "item_raw_direct": 21,
-    "item_raw_extensions": 3,
+    "item_raw_extensions": 0,
     "item_live_direct": 21,
-    "item_live_extensions": 3,
-    "fluid_runtime_blocks": 210,
-    "item_runtime_blocks": 72,
-    "combined_runtime_blocks": 282,
-    "logical_states": 18048,
+    "item_live_extensions": 0,
+    "fluid_runtime_blocks": 200,
+    "item_runtime_blocks": 63,
+    "combined_runtime_blocks": 263,
+    "logical_states": 16832,
     "selected_prefixes": 8,
     "unclassified": 0
   },
@@ -192,7 +166,7 @@
   "recipe_projection": {
     "architecture": "one_generic_material_rule_per_selected_domain_gauge",
     "generic_rule_count": 8,
-    "material_expansion_count": 257,
+    "material_expansion_count": 238,
     "material_rule_budget": 320,
     "status": "IMPLEMENTED_GENERIC_MATERIAL_RULES"
   },
@@ -222,7 +196,7 @@
     "decision": "Keep all GT6 recipe flags false; use the five exact GT6 Wood crafting rows and twenty explicit CrucibleCraft DESIGN_POLICY_NON_GT6 shaped rows recorded by the T19c acquisition artifact."
   },
   "import_architecture": {
-    "source_of_truth": "tools/gt6_pipe_source.json plus explicit tools/t8_pipe_policy.json acceptance extensions",
+    "source_of_truth": "tools/gt6_pipe_source.json; tools/pipe_policy.json selected gauges. No dual-domain acceptance extensions.",
     "per_material_java_required": false,
     "runtime_catalog_generation": "derive every selected material/gauge row from exact source_name and policy classification"
   },

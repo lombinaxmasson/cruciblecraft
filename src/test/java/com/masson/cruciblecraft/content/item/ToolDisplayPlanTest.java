@@ -85,6 +85,7 @@ class ToolDisplayPlanTest {
                 resultId,
                 material,
                 true,
-                1);
+                1,
+                false);
     }
 }

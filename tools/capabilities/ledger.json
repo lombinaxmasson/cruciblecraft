@@ -1584,6 +1584,9 @@
       ],
       "maturity": "frozen",
       "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/block/FusionHullBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/FusionReactorBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/FusionHullBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/content/blockentity/FusionReactorBlockEntity.java",
         "src/main/java/com/masson/cruciblecraft/fusion/**",
         "src/main/java/com/masson/cruciblecraft/energy/quantum/**",
@@ -1785,7 +1788,7 @@
       ],
       "maturity": "frozen",
       "owned_paths": [
-        "docs/history/card-plans/active/微型燃气涡轮详细计划.md",
+        "docs/history/card-plans/prep/微型燃气涡轮详细计划.md",
         "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java",
         "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterFuelSpecs.java",
         "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterProfiles.java",
@@ -1821,7 +1824,7 @@
       "slug": "energy/small-gas-turbine",
       "survival_access": "unreviewed",
       "title": "Small Gas Turbine",
-      "workflow": "active"
+      "workflow": "paused"
     },
     {
       "depends_on": [
@@ -2247,6 +2250,39 @@
       "slug": "machines/cluster-mill",
       "survival_access": "unreviewed",
       "title": "Cluster Mill",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/cluster-mill"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/锤榨汁机激光详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/AutomaticHammerBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/AutomaticHammerBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/LaserEngraverBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LaserEngraverBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/machine/autotool/AutomaticHammerCatalog.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/HammerSqueezerLaserGameTests.java",
+        "src/main/resources/assets/cruciblecraft/gt6_hammer_squeezer_laser_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/automatic_hammer/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/squeezer/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/laser_engraver/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/laser_welder/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_hammer_squeezer_laser/**",
+        "tools/capabilities/machines/hammer-squeezer-laser/**",
+        "tools/waves/machines/hammer-squeezer-laser/**",
+        "tools/tests/test_hammer_squeezer_laser.py"
+      ],
+      "path": "tools/capabilities/machines/hammer-squeezer-laser/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/hammer-squeezer-laser",
+      "survival_access": "unreviewed",
+      "title": "Hammer / Squeezer / Laser",
       "workflow": "accepted"
     },
     {
@@ -2927,7 +2963,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 87,
+  "capability_count": 88,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -3163,6 +3199,7 @@
       "energy/steam-turbine",
       "energy/transformers",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3206,6 +3243,7 @@
       "energy/steam-turbine",
       "energy/transformers",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3248,6 +3286,7 @@
       "energy/quantum-massfab",
       "energy/steam-turbine",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3294,6 +3333,7 @@
       "energy/quantum-massfab",
       "energy/steam-turbine",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3336,6 +3376,7 @@
       "energy/quantum-massfab",
       "energy/steam-turbine",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3391,6 +3432,7 @@
       "energy/steam-turbine",
       "energy/transformers",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3444,6 +3486,7 @@
       "logistics/item-network-core",
       "logistics/logistics-core",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3491,6 +3534,7 @@
       "energy/transformers",
       "logistics/display-cpu",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3538,6 +3582,7 @@
       "logistics/generic-network/core",
       "logistics/logistics-core",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3584,6 +3629,7 @@
       "logistics/generic-network/core",
       "logistics/logistics-core",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3632,6 +3678,7 @@
       "logistics/item-network-core",
       "logistics/logistics-core",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3677,6 +3724,7 @@
       "logistics/display-cpu",
       "logistics/logistics-core",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3696,7 +3744,11 @@
       "machines/bath"
     ],
     "machines/cluster-mill": [
-      "machines/cluster-mill"
+      "machines/cluster-mill",
+      "machines/hammer-squeezer-laser"
+    ],
+    "machines/hammer-squeezer-laser": [
+      "machines/hammer-squeezer-laser"
     ],
     "machines/injector": [
       "content/puv-omega-parts",
@@ -3792,6 +3844,7 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3962,6 +4015,7 @@
       "logistics/logistics-core",
       "machines/bath",
       "machines/cluster-mill",
+      "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
       "machines/loom",
@@ -3987,5 +4041,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": "energy/small-gas-turbine"
+  "unique_active_slug": null
 }

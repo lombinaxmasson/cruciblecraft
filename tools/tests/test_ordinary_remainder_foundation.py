@@ -53,6 +53,19 @@ class OrdinaryRemainderFoundationTest(unittest.TestCase):
             ORDINARY_VANILLA_SPECIAL[("minecraft:tallgrass", 2)],
         )
 
+    def test_fish_and_double_plant_split_to_121_items(self) -> None:
+        from tools.recipe_bulk.ordinary_source import ORDINARY_VANILLA_SPECIAL
+
+        self.assertEqual("minecraft:cod", ORDINARY_VANILLA_SPECIAL[("minecraft:fish", 0)])
+        self.assertEqual(
+            "minecraft:sunflower",
+            ORDINARY_VANILLA_SPECIAL[("minecraft:double_plant", 0)],
+        )
+        self.assertEqual(
+            "minecraft:pufferfish",
+            ORDINARY_VANILLA_SPECIAL[("minecraft:fish", 3)],
+        )
+
     def test_foundation_catalog_does_not_overlay_meta_dust(self) -> None:
         from tools.recipe_bulk.ordinary_source import load_semantic_object_overlay
 

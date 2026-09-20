@@ -157,6 +157,24 @@ class JadeObservationTest {
         assertFalse(missing.bufferStored().available());
         assertFalse(missing.activity().available());
         assertFalse(missing.accepts().available());
+        assertTrue(missing.tanks().isEmpty());
+    }
+
+    @Test
+    void converterJadeKeepsFuelTankAmountEvenWhenEmpty() {
+        CompoundTag data = new CompoundTag();
+        data.putInt(ConverterObservation.TANK_COUNT, 1);
+        data.putString(ConverterObservation.TANK_ID + 0, "cruciblecraft:natural_gas");
+        data.putInt(ConverterObservation.TANK_AMOUNT + 0, 40);
+        data.putInt(ConverterObservation.TANK_CAP + 0, 16_000);
+        ConverterObservation observation =
+                ConverterObservation.fromServerData(data);
+        assertEquals(1, observation.tanks().size());
+        assertEquals(
+                "cruciblecraft:natural_gas",
+                observation.tanks().getFirst().fluidId());
+        assertEquals(40, observation.tanks().getFirst().amount());
+        assertEquals(16_000, observation.tanks().getFirst().capacity());
     }
 
     @Test

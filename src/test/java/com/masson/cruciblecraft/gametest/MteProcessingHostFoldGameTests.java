@@ -1,7 +1,6 @@
 package com.masson.cruciblecraft.gametest;
 
 import com.masson.cruciblecraft.content.item.CatalogNamedItem;
-import com.masson.cruciblecraft.registry.ModItems;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
@@ -39,11 +38,17 @@ public final class MteProcessingHostFoldGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void automaticHammersStayDummy(GameTestHelper helper) {
         helper.assertTrue(
-                dummy("processing/automatic_hammer_bronze")
-                        && dummy("processing/automatic_hammer_steel")
-                        && dummy("processing/automatic_hammer_titanium")
-                        && dummy("processing/automatic_hammer_tungstensteel"),
-                "automatic hammers were folded without a machine_tiers host");
+                liveMachine("automatic_hammer")
+                        && liveMachine("steel_automatic_hammer")
+                        && liveMachine("titanium_automatic_hammer")
+                        && liveMachine("tungstensteel_automatic_hammer"),
+                "automatic hammers lost their live hosts");
+        helper.assertTrue(
+                withdrawn("processing/automatic_hammer_bronze")
+                        && withdrawn("processing/automatic_hammer_steel")
+                        && withdrawn("processing/automatic_hammer_titanium")
+                        && withdrawn("processing/automatic_hammer_tungstensteel"),
+                "automatic hammer dummies are still registered");
         helper.succeed();
     }
 
@@ -63,20 +68,33 @@ public final class MteProcessingHostFoldGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void squeezerLaserStayDummy(GameTestHelper helper) {
         helper.assertTrue(
-                dummy("processing/squeezer_bronze")
-                        && dummy("processing/laser_engraver_t1")
-                        && dummy("processing/laser_welder_t1"),
-                "ungated processing identities were folded without sourceId hosts");
+                liveMachine("squeezer")
+                        && liveMachine("steel_squeezer")
+                        && liveMachine("titanium_squeezer")
+                        && liveMachine("tungstensteel_squeezer")
+                        && liveMachine("laser_engraver")
+                        && liveMachine("aluminium_laser_engraver")
+                        && liveMachine("stainless_steel_laser_engraver")
+                        && liveMachine("chromium_laser_engraver")
+                        && liveMachine("titanium_laser_engraver")
+                        && liveMachine("laser_welder")
+                        && liveMachine("aluminium_laser_welder")
+                        && liveMachine("stainless_steel_laser_welder")
+                        && liveMachine("chromium_laser_welder")
+                        && liveMachine("titanium_laser_welder"),
+                "squeezer and laser hosts lost their live registrations");
+        helper.assertTrue(
+                withdrawn("processing/squeezer_bronze")
+                        && withdrawn("processing/laser_engraver_t1")
+                        && withdrawn("processing/laser_welder_t1"),
+                "squeezer and laser dummies are still registered");
         helper.succeed();
     }
 
     private static boolean liveMachine(String path) {
         Item item = item(path);
         return item instanceof BlockItem
-                && !(item instanceof CatalogNamedItem)
-                && ModItems.tieredProcessingItemsById().containsKey(
-                        ResourceLocation.fromNamespaceAndPath(
-                                "cruciblecraft", path));
+                && !(item instanceof CatalogNamedItem);
     }
 
     private static boolean dummy(String path) {

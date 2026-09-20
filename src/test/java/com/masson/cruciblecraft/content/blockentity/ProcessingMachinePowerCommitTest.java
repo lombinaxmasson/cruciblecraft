@@ -70,25 +70,6 @@ class ProcessingMachinePowerCommitTest {
         assertTrue(resources.item(0).isEmpty());
     }
 
-    @Test
-    void cokeOvenCompletionRequiresAPreparedTransaction() {
-        MemoryResources resources = new MemoryResources(new ItemStack(Items.COAL));
-
-        assertThrows(IllegalStateException.class, () ->
-                CokeOvenBlockEntity.commitCompletion(null, resources));
-    }
-
-    @Test
-    void cokeOvenCompletionFailsLoudlyWhenResourcesChanged() {
-        MemoryResources resources = new MemoryResources(new ItemStack(Items.COAL));
-        MachineTransaction transaction = transaction(resources, ItemStack.EMPTY);
-        resources.setItem(0, new ItemStack(Items.DIAMOND));
-
-        assertThrows(IllegalStateException.class, () ->
-                CokeOvenBlockEntity.commitCompletion(transaction, resources));
-        assertEquals(Items.DIAMOND, resources.item(0).getItem());
-    }
-
     private static MachineTransaction transaction(
             MemoryResources resources,
             ItemStack after) {

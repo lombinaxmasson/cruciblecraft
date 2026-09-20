@@ -12,14 +12,14 @@ class ProcessingMachineEnergyAuditTest(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.document = builder.build()
 
-    def test_all_25_specs_have_explicit_unchanged_energy_arguments(self):
+    def test_all_24_specs_have_explicit_unchanged_energy_arguments(self):
         counts = self.document["counts"]
         self.assertEqual(
             "PROCESSING_MACHINE_ENERGY_AUDIT_READY",
             self.document["status"],
         )
-        self.assertEqual(25, counts["machine_specs"])
-        self.assertEqual(25, counts["explicit_energy_arguments"])
+        self.assertEqual(24, counts["machine_specs"])
+        self.assertEqual(24, counts["explicit_energy_arguments"])
         self.assertEqual(0, counts["implicit_energy_arguments"])
         self.assertTrue(all(
             row["actual"] == row["expected"]
@@ -29,7 +29,7 @@ class ProcessingMachineEnergyAuditTest(unittest.TestCase):
             {
                 "ELECTRIC": 1,
                 "HEAT": 4,
-                "KINETIC": 4,
+                "KINETIC": 3,
                 "KINETIC_PUSH": 4,
                 "KINETIC_ROTATION": 9,
                 "TIME": 3,
@@ -42,10 +42,10 @@ class ProcessingMachineEnergyAuditTest(unittest.TestCase):
         self.assertEqual(
             "DEFAULT_ENERGY_OVERLOAD_TOKEN_FORBIDDEN", audit["policy"]
         )
-        self.assertEqual(["mechanical", "t3", "t5"], audit["helpers"])
+        self.assertEqual(["mechanical"], audit["helpers"])
         self.assertEqual([], audit["forbidden_default_overloads"])
         self.assertEqual(
-            {"mechanical": 1, "t3": 1, "t5": 1},
+            {"mechanical": 1},
             audit["helper_declarations"],
         )
 
@@ -59,19 +59,18 @@ private static ProcessingMachineSpec mechanical(
         with self.assertRaisesRegex(ValueError, "overload policy failed"):
             builder.build(source=implicit)
 
-    def test_exact_four_legacy_kinetic_hosts_have_fixed_or_deferred_ledgers(
+    def test_exact_three_legacy_kinetic_hosts_have_fixed_or_deferred_ledgers(
         self,
     ):
         expected = {
             "assembler",
             "bender",
             "mortar",
-            "welder",
         }
         self.assertEqual(
             expected, set(self.document["allowed_legacy_kinetic_ids"])
         )
-        self.assertEqual(4, self.document["counts"]["legacy_kinetic"])
+        self.assertEqual(3, self.document["counts"]["legacy_kinetic"])
         self.assertEqual(0, self.document["counts"]["new_legacy_kinetic"])
         rows = {
             row["id"]: row for row in self.document["rows"]
@@ -110,8 +109,8 @@ private static ProcessingMachineSpec mechanical(
     def test_policy_or_source_drift_fails_closed(self):
         policy = builder.load(builder.POLICY)
         missing = copy.deepcopy(policy)
-        missing["machines"].pop("WELDER")
-        with self.assertRaisesRegex(ValueError, "exactly 25"):
+        missing["machines"].pop("PRESS")
+        with self.assertRaisesRegex(ValueError, "exactly 24"):
             builder.build(missing)
 
         source = builder.SOURCE.read_text(encoding="utf-8")
@@ -131,7 +130,7 @@ private static ProcessingMachineSpec mechanical(
     def test_t12_closure_cross_check_is_a_forward_edge(self):
         """Forward edge 23 -> 24: the audit proves the T12 closure's recorded
         audit block matches its own counts."""
-        key = "tools/t12_closure_readiness.json"
+        key = "tools/machine_tier_closure_readiness.json"
         self.assertIn(key, self.document["currentness"]["ledgers"])
         self.assertEqual(64, len(self.document["currentness"]["ledgers"][key]))
         closure = builder.load(builder.T12_CLOSURE)

@@ -9,7 +9,7 @@
 
 这些是显式身份决策，不是漏做的冲突。
 
-- mapped tool head 已折回 `材料 × 前缀`（`TOOL_HEAD_PREFIX_READY`；bath identity `71`，semantic `244`；remap `7990/0`）。钥匙 / 电路线 / Low Heat Extruder Shape 仍是 unique identity：meta 对不上 `material_id_to_cc`。Low Heat 是温度档，不能并进 34 件 `ExtruderShapeCatalog`；disposition = `new_distinct`，权威在 `tools/capabilities/registry/tool-head-remainder/capability.json`。不开放「任意油」tag。
+- mapped tool head 已折回 `材料 × 前缀`（`TOOL_HEAD_PREFIX_READY`；bath identity `71`，semantic `244`；remap `7990/0`）。钥匙 / 电路线仍是 unique identity：meta 对不上 `material_id_to_cc`。Low Heat Extruder Shape 是 GT6 `Shape_SimpleEx` leftover（10200–10231），与 32 件 `ExtruderShapeCatalog`（`Shape_Extruder` 10000–10031）并存；disposition = `new_distinct`，权威在 `tools/capabilities/registry/tool-head-remainder/capability.json`。不开放「任意油」tag。
 - 材料库存身份是分层混合（公共 16 前缀一人一 Item + 精确 `c:` 标签；内部长尾才用组件），见 [分层混合 ADR](../decisions/材料身份分层混合ADR.md)。`registry/hybrid-material-identity` 已关 `runtime_ready`。管 / 缆仍按材料独立 Block。合同：[material-prefix-identity.md](material-prefix-identity.md)。不要 dual-register，不要把公共 16 再收进组件，也不要把长尾改成一人一 id。
 - 电池芯 `battery_part:filled_cell` 已注册 GT6 `IL.Battery_*_Cell_Empty` / `IL.Battery_*_Cell_Filled`（`20000–20009`）。五族空芯、EU 电池 `B`/`C` 槽和 FluidContainerData 灌液是 SOURCE_BACKED（不是 Canner 表）。高氯酸锂尘走电解 ordinary-closure `0051`。Energium 宝石前缀已 `form_items` 并到 LU 晶体 BlockItem（`gemChipped`=ULV … `gemLegendary`=IV），这就是 GT6 `setTarget`，不是欠一张 shaped 表。历史 stand-in 见 [电池详细计划](../history/card-plans/closed/电池详细计划.md)「配方保真债」。GT6 工作台小写工具格不是原版 `crafting_shaped`；走 `shaped_catalyst`（固定 3×3）。工具催化剂按 GT6 `getToolDamagePerContainerCraft() / 100` 扣耐久；电路等非工具催化剂原样返还。电池空芯、不锈钢/钨钢墙、铱线圈、LU 光纤共用此类型。
 - 配方生成器 / 运行时曾把签发卡号当成类型，并在 Bath 上混用青铜化学信封与 GT6 remainder compact。待重构，见 [recipe-wave-workflow §4.3.1](recipe-wave-workflow.md)。现在不要为了改名去动已封板路径。
@@ -32,12 +32,12 @@
 
 ## Deferred capability
 
-游戏里还没有、以后另开能力，不要写进 known-issues 当「已关卡的尾巴」。总账：[unimplemented-gap.md](unimplemented-gap.md)。
+游戏里还没有、以后另开能力，不要写进 known-issues 当「已关卡的尾巴」。入口：[unimplemented-gap.md](unimplemented-gap.md)；排期看 [blocked.md](blocked.md)。
 
 - Display CPU 四件物流监视器已由 [显示 CPU](../history/card-plans/closed/显示CPU详细计划.md) 关 `runtime_ready`（`logistics/display-cpu`）。Dump 封面与 Logistics Core 已 [物流核心](../history/card-plans/closed/物流核心详细计划.md) 关 `runtime_ready`。`dump_policy` 见已关闭的 [物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
-- 加工机与能量现行 unique-active / 完成集合见 [project-status.md](project-status.md)。蒸汽涡轮、大型热交换器 17197、聚变 / 量子物质与长距变压器已作为 CC 扩展落地（`frozen`+`paused`），不是 `player_complete`。冷却器仍未开。齿轮箱不在变压器卡。手持工具余量见 [unimplemented-gap.md §5](unimplemented-gap.md)，不要写进已关工具卡的尾巴。当前缺口以缺口页为准，不要把 Prep 计划列表抄成待办。
-- 作物与树已关 `runtime_ready`，不是 `player_complete`（树脂橡胶 / 枫糖浆流体仍 blocked）。原版熔炉替换余量仍 `frozen`
-- 原版替换 MVP 只覆盖了纸 3→1；熔炉仍是原版 8 圆石
+- 加工机与能量现行 unique-active / 完成集合见 [project-status.md](project-status.md)。蒸汽涡轮、大型热交换器 17197、聚变 / 量子物质与长距变压器已作为 CC 扩展落地（`frozen`+`paused`），不是 `player_complete`。冷却器仍未开。齿轮箱不在变压器卡。手持工具余量见 [blocked.md](blocked.md) `tools/world-behaviors`，不要写进已关工具卡的尾巴。不要把 Prep 计划列表抄成待办。
+- 作物与树已关 `runtime_ready`，不是 `player_complete`（树脂橡胶 / 枫糖浆流体仍 blocked）。
+- 原版替换已做到 Vanilla.java 工作台 TNT / 矿车 / 锁链甲 / 曲奇金苹果金胡萝卜 delate。箭（缺 Empty 箭杆）、染料 remix、Vanilla.java RecipeMap 后半与 Replace 扫描器仍 `frozen`
 - 首小时 mortar / sifter / smelter / bath 已脱离 `metal_surface`。`smelter` 现为 `basicmachines/smelter` 立方机；工作态 `overlay_active` 未接 `LIT`
 
 ## 历史记录

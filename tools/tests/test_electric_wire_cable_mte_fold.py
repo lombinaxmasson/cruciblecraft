@@ -62,9 +62,16 @@ class ElectricWireCableMteFoldTest(unittest.TestCase):
         self.assertEqual("cruciblecraft:tin/cable", by_meta[28066])
         self.assertEqual("cruciblecraft:osmium_elemental/octuple_cable", by_meta[29223])
         self.assertEqual("cruciblecraft:graphene/wire", by_meta[29800])
-        self.assertNotIn(29950, by_meta)
+        self.assertEqual("cruciblecraft:graphene/double_wire", by_meta[29801])
+        self.assertEqual("cruciblecraft:superconductor/wire", by_meta[29950])
+        self.assertEqual(
+            "cruciblecraft:superconductor/hexadecuple_wire", by_meta[29965]
+        )
+        self.assertEqual("cruciblecraft:hslasteel/double_wire", by_meta[28251])
+        self.assertEqual("cruciblecraft:hslasteel/dodecuple_cable", by_meta[28277])
         self.assertFalse(any("/gt_mte/" in str(row) for row in by_meta.values()))
-        self.assertGreaterEqual(int(document["mapped_count"]), 250)
+        self.assertEqual(320, int(document["mapped_count"]))
+        self.assertEqual(0, int(census.load_json(fold.UNMAPPED)["unmapped_count"]))
 
     def test_ordinary_source_uses_the_overlay(self) -> None:
         mapped = load_mte_runtime()
@@ -90,8 +97,8 @@ class ElectricWireCableMteFoldTest(unittest.TestCase):
             census.ROOT / "tools" / "waves" / "machines" / "nanofab"
             / "overflow.json"
         )
-        self.assertEqual(60, laminator["blocked_rows"])
-        self.assertEqual(869, loom["blocked_rows"])
+        self.assertEqual(12, laminator["blocked_rows"])
+        self.assertEqual(857, loom["blocked_rows"])
         self.assertEqual(57, nanofab["blocked_rows"])
         blob = str(laminator) + str(loom) + str(nanofab)
         self.assertNotIn("programmed_circuit", blob)

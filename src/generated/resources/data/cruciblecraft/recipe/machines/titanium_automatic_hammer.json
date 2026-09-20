@@ -1,0 +1,42 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "item": "cruciblecraft:smithing_hammer"
+    },
+    "w": {
+      "item": "cruciblecraft:material_wrench"
+    }
+  },
+  "ingredients": {
+    "H": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "titanium"
+      },
+      "items": "cruciblecraft:tool_head_hammer"
+    },
+    "M": {
+      "tag": "c:machine_casing_doubles/titanium"
+    },
+    "R": {
+      "tag": "c:long_rods/titanium"
+    },
+    "S": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "titanium"
+      },
+      "items": "cruciblecraft:spring"
+    }
+  },
+  "pattern": [
+    "wR ",
+    "MS ",
+    "hH "
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:titanium_automatic_hammer"
+  }
+}

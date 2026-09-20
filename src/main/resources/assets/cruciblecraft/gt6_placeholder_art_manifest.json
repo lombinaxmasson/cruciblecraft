@@ -1,0 +1,816 @@
+{
+  "schema_version": 1,
+  "source": "gt6_referencable_port_code/gregtech6_w",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "overlay_prefixes": [
+    "ingot_hot",
+    "minecart_wheels"
+  ],
+  "imports": [
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/casingsmall.png",
+      "destination": "assets/cruciblecraft/textures/item/material/small_casing.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/casingsmall_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/small_casing_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/ingotdouble.png",
+      "destination": "assets/cruciblecraft/textures/item/material/double_ingot.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/ingotdouble_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/double_ingot_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/ingottriple.png",
+      "destination": "assets/cruciblecraft/textures/item/material/triple_ingot.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/ingottriple_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/triple_ingot_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/ingotquadruple.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quadruple_ingot.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/ingotquadruple_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quadruple_ingot_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/ingotquintuple.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quintuple_ingot.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/ingotquintuple_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quintuple_ingot_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/ingothot.png",
+      "destination": "assets/cruciblecraft/textures/item/material/ingot_hot.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/ingothot_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/ingot_hot_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/blockingot.png",
+      "destination": "assets/cruciblecraft/textures/item/material/storage_ingot.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/blockingot_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/storage_ingot_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/blockplate.png",
+      "destination": "assets/cruciblecraft/textures/item/material/storage_plate.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/blockplate_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/storage_plate_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gem.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gem_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gemchipped.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem_chipped.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gemchipped_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem_chipped_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gemflawed.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem_flawed.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gemflawed_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem_flawed_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gemflawless.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem_flawless.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gemflawless_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem_flawless_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gemexquisite.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem_exquisite.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gemexquisite_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem_exquisite_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gemlegendary.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem_legendary.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/gemlegendary_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/gem_legendary_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/chain.png",
+      "destination": "assets/cruciblecraft/textures/item/material/chain.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/chain_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/chain_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/minecartwheels.png",
+      "destination": "assets/cruciblecraft/textures/item/material/minecart_wheels.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/minecartwheels_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/minecart_wheels_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/round.png",
+      "destination": "assets/cruciblecraft/textures/item/material/round.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/round_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/round_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/billet.png",
+      "destination": "assets/cruciblecraft/textures/item/material/billet.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/billet_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/billet_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/chunkgt.png",
+      "destination": "assets/cruciblecraft/textures/item/material/chunk.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/chunkgt_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/chunk_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/boulegt.png",
+      "destination": "assets/cruciblecraft/textures/item/material/boule.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/items/materialicons/metallic/boulegt_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/boule_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/double_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/double_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/triple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/triple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quadruple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quadruple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quintuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quintuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/sextuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/sextuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/septuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/septuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/octuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/octuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/nonuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/nonuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/decuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/decuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/undecuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/undecuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/dodecuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/dodecuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/tredecuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/tredecuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/tetradecuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/tetradecuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/pentadecuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/pentadecuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/hexadecuple_wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/hexadecuple_wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/cable.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/cable_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/double_cable.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/double_cable_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quadruple_cable.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quadruple_cable_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/octuple_cable.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/octuple_cable_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/item/material/dodecuple_cable.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/dodecuple_cable_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipetiny.png",
+      "destination": "assets/cruciblecraft/textures/item/material/tiny_fluid_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipetiny_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/tiny_fluid_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipesmall.png",
+      "destination": "assets/cruciblecraft/textures/item/material/small_fluid_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipesmall_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/small_fluid_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipemedium.png",
+      "destination": "assets/cruciblecraft/textures/item/material/fluid_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipemedium_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/fluid_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipelarge.png",
+      "destination": "assets/cruciblecraft/textures/item/material/large_fluid_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipelarge_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/large_fluid_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipehuge.png",
+      "destination": "assets/cruciblecraft/textures/item/material/huge_fluid_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipehuge_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/huge_fluid_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipequadruple.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quadruple_fluid_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipequadruple_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/quadruple_fluid_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipenonuple.png",
+      "destination": "assets/cruciblecraft/textures/item/material/nonuple_fluid_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipenonuple_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/nonuple_fluid_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipemedium.png",
+      "destination": "assets/cruciblecraft/textures/item/material/item_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipemedium_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/item_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipelarge.png",
+      "destination": "assets/cruciblecraft/textures/item/material/large_item_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipelarge_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/large_item_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipehuge.png",
+      "destination": "assets/cruciblecraft/textures/item/material/huge_item_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipehuge_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/huge_item_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipemedium.png",
+      "destination": "assets/cruciblecraft/textures/item/material/restrictive_item_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipemedium_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/restrictive_item_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipelarge.png",
+      "destination": "assets/cruciblecraft/textures/item/material/large_restrictive_item_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipelarge_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/large_restrictive_item_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipehuge.png",
+      "destination": "assets/cruciblecraft/textures/item/material/huge_restrictive_item_pipe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/pipehuge_overlay.png",
+      "destination": "assets/cruciblecraft/textures/item/material/huge_restrictive_item_pipe_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/blocksolid.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/materialicons/metallic/blocksolid.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire.png",
+      "destination": "assets/cruciblecraft/textures/block/material/wire.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/wire_overlay.png",
+      "destination": "assets/cruciblecraft/textures/block/material/wire_overlay.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hotmoltentin.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_molten_tin.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hotmoltentin.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_molten_tin.png.mcmeta"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hotmoltensodium.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_molten_sodium.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hotmoltensodium.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_molten_sodium.png.mcmeta"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hotsemiheavywater.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_semiheavy_water.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hotsemiheavywater.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_semiheavy_water.png.mcmeta"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hotheavywater.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_heavy_water.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hotheavywater.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_heavy_water.png.mcmeta"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hottritiatedwater.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_tritiated_water.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hottritiatedwater.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_tritiated_water.png.mcmeta"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hotmoltenlicl.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_molten_licl.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hotmoltenlicl.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_molten_licl.png.mcmeta"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hotcarbondioxide.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_carbon_dioxide.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/hothelium.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/hot_helium.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/watergeothermal.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/water_geothermal.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/watergeothermal.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/water_geothermal.png.mcmeta"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/liquid_extra_heavy_oil.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/oil_extra_heavy.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/liquid_extra_heavy_oil.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/oil_extra_heavy.png.mcmeta"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/liquid_heavy_oil.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/oil_heavy.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/liquid_heavy_oil.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/oil_heavy.png.mcmeta"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/liquid_medium_oil.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/oil_medium.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/liquid_medium_oil.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/oil_medium.png.mcmeta"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/liquid_light_oil.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/oil_light.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/liquid_light_oil.png.mcmeta",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/oil_light.png.mcmeta"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/fluids/gas_natural_gas.png",
+      "destination": "assets/cruciblecraft/textures/fluid/gt6_import/natural_gas.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/gui/machines/mixer.png",
+      "destination": "assets/cruciblecraft/textures/gui/machines/mixer.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/gui/machines/cryomixer.png",
+      "destination": "assets/cruciblecraft/textures/gui/machines/cryomixer.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/asphalt.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/asphalt.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/concrete.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/concrete.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/concrete_reinforced.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/concrete_reinforced.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/cfoam_hardened.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/cfoam_hardened.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/cfoam_fresh.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/cfoam_fresh.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_bluemahoe.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_bluemahoe.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_bluespruce.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_bluespruce.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_cinnamon.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_cinnamon.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_coconut.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_coconut.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_compressed.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_compressed.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/crate.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/crate.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_dry.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_dry.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_frozen.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_frozen.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_hazel.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_hazel.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_maple.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_maple.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_mossy.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_mossy.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_rainbowood.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_rainbowood.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_rotten.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_rotten.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_rubber.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_rubber.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_willow.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_willow.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_wood.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_wood.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/iconsets/planks_treated.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/planks_treated.png"
+    },
+    {
+      "source": "gt6_referencable_port_code/gregtech6_w",
+      "gt6_source": "src/main/resources/assets/gregtech/textures/blocks/materialicons/metallic/blocksolid.png",
+      "destination": "assets/cruciblecraft/textures/block/gt6/iconsets/spikes.png"
+    }
+  ]
+}

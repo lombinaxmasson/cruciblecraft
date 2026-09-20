@@ -32,6 +32,18 @@ ITEM_FORMS = {
     "large": ("pipeLarge", "cruciblecraft:generates_large_item_pipe"),
     "huge": ("pipeHuge", "cruciblecraft:generates_huge_item_pipe"),
 }
+COMBO_FLUID_FLAGS = {
+    "cruciblecraft:generates_quadruple_fluid_pipe",
+    "cruciblecraft:generates_nonuple_fluid_pipe",
+}
+RESTRICTIVE_ITEM_FLAGS = {
+    "cruciblecraft:generates_restrictive_item_pipe",
+    "cruciblecraft:generates_large_restrictive_item_pipe",
+    "cruciblecraft:generates_huge_restrictive_item_pipe",
+}
+ALL_PIPE_FLAGS = {
+    flag for _, flag in (*FLUID_FORMS.values(), *ITEM_FORMS.values())
+} | COMBO_FLUID_FLAGS | RESTRICTIVE_ITEM_FLAGS
 
 
 def load(path: Path) -> Any:
@@ -101,6 +113,16 @@ def expected_projection() -> dict[str, dict[str, Any]]:
         )
         projection[row["material"]]["item_by_specification"] = item
         projection[row["material"]]["generation_flags"].update(flags)
+    overlapping = sorted(
+        material_id
+        for material_id, values in projection.items()
+        if values["fluid_by_specification"]
+        and values["item_by_specification"]
+    )
+    if overlapping:
+        raise ValueError(
+            "GT6 pipe domains overlap for: " + ", ".join(overlapping)
+        )
     return projection
 
 
@@ -128,18 +150,22 @@ def planned_documents() -> dict[Path, str]:
                     "item_by_specification"
                 ],
             }
-            flags = set(document.get("generation_flags") or [])
-            flags.update(values["generation_flags"])
-            document["generation_flags"] = sorted(flags)
+            flags = set(values["generation_flags"])
+            if values["fluid_by_specification"]:
+                flags.update(COMBO_FLUID_FLAGS)
+            if values["item_by_specification"]:
+                flags.update(RESTRICTIVE_ITEM_FLAGS)
+            document["generation_flags"] = sorted(
+                (set(document.get("generation_flags") or [])
+                 - ALL_PIPE_FLAGS)
+                | flags
+            )
             seen.add(material_id)
         elif metadata is not None:
             metadata.pop("pipe_properties", None)
-            pipe_flags = {
-                flag
-                for _, flag in (*FLUID_FORMS.values(), *ITEM_FORMS.values())
-            }
             document["generation_flags"] = sorted(
-                set(document.get("generation_flags") or []) - pipe_flags
+                set(document.get("generation_flags") or [])
+                - ALL_PIPE_FLAGS
             )
         documents[path] = stable_json(document)
     missing = sorted(set(projection) - seen)

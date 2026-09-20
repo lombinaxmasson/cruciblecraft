@@ -8,7 +8,9 @@ import com.masson.cruciblecraft.content.mold.MoldRecipes;
 import com.masson.cruciblecraft.content.mold.MoldShape;
 import com.masson.cruciblecraft.registry.ModComponents;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -49,9 +51,14 @@ public final class CeramicMoldBlockItem extends BlockItem {
 
     @Override
     public String getDescriptionId() {
-        return namedShape()
-                .map(shape -> "item.cruciblecraft." + shape.serializedName() + "_mold")
-                .orElseGet(super::getDescriptionId);
+        if (defaultPattern == 0) {
+            return super.getDescriptionId();
+        }
+        ResourceLocation key = BuiltInRegistries.ITEM.getKey(this);
+        if (key == null) {
+            return super.getDescriptionId();
+        }
+        return "item." + key.getNamespace() + "." + key.getPath();
     }
 
     @Override

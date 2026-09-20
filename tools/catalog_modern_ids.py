@@ -686,6 +686,14 @@ def _bundled_machine_host_paths() -> set[str]:
         document = census.load_json(machines)
         for row in document.get("variants") or []:
             occupied.add(strip_ns(str(row.get("id") or "")))
+    occupied.update(
+        {
+            "automatic_hammer",
+            "steel_automatic_hammer",
+            "titanium_automatic_hammer",
+            "tungstensteel_automatic_hammer",
+        }
+    )
     rods = DATA / "nuclear_reactor_rods.json"
     if rods.is_file():
         document = census.load_json(rods)

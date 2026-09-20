@@ -1,18 +1,25 @@
 package com.masson.cruciblecraft.compat.jade.observation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricHeaterBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidBedBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterHost;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 /**
  * Shared observation adapter for 179 live converter rows. Missing runtime
@@ -28,7 +35,8 @@ public record ConverterObservation(
         ObservationField<Long> windowMax,
         ObservationField<String> activity,
         ObservationField<Long> bufferStored,
-        ObservationField<Long> bufferCapacity) {
+        ObservationField<Long> bufferCapacity,
+        List<Tank> tanks) {
     public static final String ACCEPTS = "cc_converter_accepts";
     public static final String EMITS = "cc_converter_emits";
     public static final String INPUT_PACKET = "cc_converter_input_packet";
@@ -39,6 +47,20 @@ public record ConverterObservation(
     public static final String ACTIVITY = "cc_converter_activity";
     public static final String BUFFER_STORED = "cc_converter_buffer_stored";
     public static final String BUFFER_CAP = "cc_converter_buffer_cap";
+    public static final String TANK_COUNT = "cc_converter_tank_count";
+    public static final String TANK_ID = "cc_converter_tank_id_";
+    public static final String TANK_AMOUNT = "cc_converter_tank_amount_";
+    public static final String TANK_CAP = "cc_converter_tank_cap_";
+
+    public record Tank(String fluidId, int amount, int capacity) {
+        public Tank {
+            fluidId = fluidId == null ? "" : fluidId;
+        }
+    }
+
+    public ConverterObservation {
+        tanks = List.copyOf(tanks == null ? List.of() : tanks);
+    }
 
     public static ConverterObservation fromServerData(CompoundTag data) {
         return new ConverterObservation(
@@ -51,7 +73,8 @@ public record ConverterObservation(
                 longField(data, WINDOW_MAX),
                 stringField(data, ACTIVITY),
                 longField(data, BUFFER_STORED),
-                longField(data, BUFFER_CAP));
+                longField(data, BUFFER_CAP),
+                readTanks(data));
     }
 
     public static void writeServerData(CompoundTag data, BlockEntity be) {
@@ -88,7 +111,8 @@ public record ConverterObservation(
                         : ObservationField.of(profile.inputWindow().maximum()),
                 ObservationField.unavailable(),
                 ObservationField.unavailable(),
-                ObservationField.unavailable());
+                ObservationField.unavailable(),
+                List.of());
     }
 
     private static void writeRuntime(CompoundTag data, BlockEntity be) {
@@ -119,11 +143,33 @@ public record ConverterObservation(
         if (be instanceof FuelGeneratorBlockEntity generator) {
             data.putString(ACTIVITY, generator.status());
             writeHandlerBuffer(data, generator);
+            writeTanks(data, fuelGeneratorTanks(generator));
+            return;
+        }
+        if (be instanceof FluidBedBurningBoxBlockEntity box) {
+            writeHandlerBuffer(data, box);
+            writeTanks(data, List.of(tankOf(
+                    box.inputFluid(), box.inputCapacity())));
             return;
         }
         if (be instanceof IEnergyHandler handler) {
             writeHandlerBuffer(data, handler);
         }
+    }
+
+    private static List<Tank> fuelGeneratorTanks(
+            FuelGeneratorBlockEntity generator) {
+        List<Tank> tanks = new ArrayList<>();
+        tanks.add(tankOf(
+                generator.inputFluid(), generator.inputCapacity()));
+        for (int index = 0; index < generator.outputTankCount(); index++) {
+            FluidStack output = generator.outputFluid(index);
+            if (!output.isEmpty()) {
+                tanks.add(tankOf(
+                        output, generator.outputCapacity(index)));
+            }
+        }
+        return tanks;
     }
 
     private static void writeHandlerBuffer(CompoundTag data, IEnergyHandler handler) {
@@ -163,5 +209,42 @@ public record ConverterObservation(
         return data.contains(key)
                 ? ObservationField.of(data.getString(key))
                 : ObservationField.unavailable();
+    }
+
+    private static List<Tank> readTanks(CompoundTag data) {
+        int count = Math.max(0, data.getInt(TANK_COUNT));
+        List<Tank> tanks = new ArrayList<>(count);
+        for (int index = 0; index < count; index++) {
+            tanks.add(new Tank(
+                    data.getString(TANK_ID + index),
+                    data.getInt(TANK_AMOUNT + index),
+                    data.getInt(TANK_CAP + index)));
+        }
+        return tanks;
+    }
+
+    private static void writeTanks(CompoundTag data, List<Tank> tanks) {
+        data.putInt(TANK_COUNT, tanks.size());
+        for (int index = 0; index < tanks.size(); index++) {
+            Tank tank = tanks.get(index);
+            data.putString(TANK_ID + index, tank.fluidId());
+            data.putInt(TANK_AMOUNT + index, tank.amount());
+            data.putInt(TANK_CAP + index, tank.capacity());
+        }
+    }
+
+    public static Tank tankOf(FluidStack stack, int capacity) {
+        String id = "";
+        if (stack != null && !stack.isEmpty()) {
+            ResourceLocation key =
+                    BuiltInRegistries.FLUID.getKey(stack.getFluid());
+            if (key != null) {
+                id = key.toString();
+            }
+        }
+        return new Tank(
+                id,
+                stack == null ? 0 : stack.getAmount(),
+                capacity);
     }
 }

@@ -2,16 +2,20 @@ package com.masson.cruciblecraft.client.model;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.masson.cruciblecraft.worldgen.PebbleShape;
+import com.masson.cruciblecraft.worldgen.PebbleTexture;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockElement;
@@ -38,11 +42,10 @@ import net.neoforged.neoforge.client.model.geometry.IGeometryLoader;
 import net.neoforged.neoforge.client.model.geometry.IUnbakedGeometry;
 import net.neoforged.neoforge.client.model.geometry.UnbakedGeometryHelper;
 
-import org.jetbrains.annotations.Nullable;
-
 /**
  * One GT6 pebble cube whose from/to come from {@link PebbleShape} so the mesh
- * matches the outline.
+ * matches the outline. {@code copy_below} follows
+ * {@code MultiTileEntityRock#getRenderPasses}.
  */
 public final class PositionalPebbleGeometry
         implements IUnbakedGeometry<PositionalPebbleGeometry> {
@@ -50,15 +53,19 @@ public final class PositionalPebbleGeometry
             PositionalPebbleGeometry::read;
 
     private final boolean tint;
+    private final boolean copyBelow;
 
-    private PositionalPebbleGeometry(boolean tint) {
+    private PositionalPebbleGeometry(boolean tint, boolean copyBelow) {
         this.tint = tint;
+        this.copyBelow = copyBelow;
     }
 
     private static PositionalPebbleGeometry read(
             JsonObject json,
             JsonDeserializationContext context) {
-        return new PositionalPebbleGeometry(GsonHelper.getAsBoolean(json, "tint", false));
+        return new PositionalPebbleGeometry(
+                GsonHelper.getAsBoolean(json, "tint", false),
+                GsonHelper.getAsBoolean(json, "copy_below", false));
     }
 
     @Override
@@ -77,15 +84,17 @@ public final class PositionalPebbleGeometry
                 context.getTransforms(),
                 overrides,
                 modelState,
-                tint ? 0 : -1);
+                tint ? 0 : -1,
+                copyBelow);
     }
 
     private static final class Baked implements IDynamicBakedModel {
         private static final ModelProperty<Integer> PACKED = new ModelProperty<>();
+        private static final ModelProperty<TextureAtlasSprite> SPRITE =
+                new ModelProperty<>();
 
-        @SuppressWarnings("unchecked")
-        private final List<BakedQuad>[] cache =
-                (List<BakedQuad>[]) new List<?>[PebbleShape.MAX_PACKED + 1];
+        private final IdentityHashMap<TextureAtlasSprite, List<BakedQuad>[]>
+                caches = new IdentityHashMap<>();
         private final TextureAtlasSprite sprite;
         private final boolean ambientOcclusion;
         private final boolean gui3d;
@@ -94,6 +103,7 @@ public final class PositionalPebbleGeometry
         private final ItemOverrides overrides;
         private final ModelState modelState;
         private final int tintIndex;
+        private final boolean copyBelow;
 
         private Baked(
                 TextureAtlasSprite sprite,
@@ -103,7 +113,8 @@ public final class PositionalPebbleGeometry
                 ItemTransforms transforms,
                 ItemOverrides overrides,
                 ModelState modelState,
-                int tintIndex) {
+                int tintIndex,
+                boolean copyBelow) {
             this.sprite = sprite;
             this.ambientOcclusion = ambientOcclusion;
             this.gui3d = gui3d;
@@ -112,6 +123,7 @@ public final class PositionalPebbleGeometry
             this.overrides = overrides;
             this.modelState = modelState;
             this.tintIndex = tintIndex;
+            this.copyBelow = copyBelow;
         }
 
         @Override
@@ -120,7 +132,21 @@ public final class PositionalPebbleGeometry
                 BlockPos pos,
                 BlockState state,
                 ModelData modelData) {
-            return modelData.derive().with(PACKED, PebbleShape.pack(pos)).build();
+            var derived = modelData.derive().with(PACKED, PebbleShape.pack(pos));
+            if (copyBelow) {
+                derived = derived.with(SPRITE, copiedSprite(level, pos, state));
+            }
+            return derived.build();
+        }
+
+        private static TextureAtlasSprite copiedSprite(
+                BlockAndTintGetter level, BlockPos pos, BlockState state) {
+            BlockState source = PebbleTexture.textureSource(
+                    level.getBlockState(pos.below()), state);
+            return Minecraft.getInstance()
+                    .getBlockRenderer()
+                    .getBlockModel(source)
+                    .getParticleIcon(ModelData.EMPTY);
         }
 
         @Override
@@ -136,7 +162,9 @@ public final class PositionalPebbleGeometry
                     : state == null
                             ? PebbleShape.ITEM_PACKED
                             : PebbleShape.pack(rand);
-            List<BakedQuad> baked = quads(packed);
+            TextureAtlasSprite used = extraData.get(SPRITE);
+            List<BakedQuad> baked = quads(
+                    packed, used != null ? used : sprite);
             if (side == null) {
                 return baked;
             }
@@ -149,22 +177,28 @@ public final class PositionalPebbleGeometry
             return facing;
         }
 
-        private List<BakedQuad> quads(int packed) {
-            List<BakedQuad> baked = cache[packed];
+        private List<BakedQuad> quads(int packed, TextureAtlasSprite used) {
+            List<BakedQuad>[] rows = caches.computeIfAbsent(used, ignored -> newRows());
+            List<BakedQuad> baked = rows[packed];
             if (baked != null) {
                 return baked;
             }
-            synchronized (cache) {
-                baked = cache[packed];
+            synchronized (rows) {
+                baked = rows[packed];
                 if (baked == null) {
-                    baked = bakePacked(packed);
-                    cache[packed] = baked;
+                    baked = bakePacked(packed, used);
+                    rows[packed] = baked;
                 }
             }
             return baked;
         }
 
-        private List<BakedQuad> bakePacked(int packed) {
+        @SuppressWarnings("unchecked")
+        private static List<BakedQuad>[] newRows() {
+            return (List<BakedQuad>[]) new List<?>[PebbleShape.MAX_PACKED + 1];
+        }
+
+        private List<BakedQuad> bakePacked(int packed, TextureAtlasSprite used) {
             PebbleShape.Pixels pixels = PebbleShape.pixels(packed);
             Vector3f from = new Vector3f(pixels.minX(), 0.0F, pixels.minZ());
             Vector3f to = new Vector3f(
@@ -186,7 +220,7 @@ public final class PositionalPebbleGeometry
                 quads.add(UnbakedGeometryHelper.bakeElementFace(
                         element,
                         faces.get(direction),
-                        sprite,
+                        used,
                         direction,
                         modelState));
             }

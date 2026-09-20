@@ -12,11 +12,31 @@ public final class ModItemTags {
             Registries.ITEM,
             ResourceLocation.fromNamespaceAndPath(
                     CrucibleCraft.MODID, "extruder_shapes"));
-    /** GT6 OD.craftingFirestarter. Furnace substitutes stay deferred. */
+    /** GT6 {@code OD.craftingFirestarter}. */
     public static final TagKey<Item> CRAFTING_FIRESTARTER = TagKey.create(
             Registries.ITEM,
             ResourceLocation.fromNamespaceAndPath(
                     CrucibleCraft.MODID, "crafting_firestarter"));
+    /** GT6 {@code OD.craftingChest}. */
+    public static final TagKey<Item> CRAFTING_CHEST = TagKey.create(
+            Registries.ITEM,
+            ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID, "crafting_chest"));
+    /** GT6 {@code OD.craftingPistonIngot}. */
+    public static final TagKey<Item> CRAFTING_PISTON_INGOT = TagKey.create(
+            Registries.ITEM,
+            ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID, "crafting_piston_ingot"));
+    /** GT6 {@code OD.craftingPistonGlue}. */
+    public static final TagKey<Item> CRAFTING_PISTON_GLUE = TagKey.create(
+            Registries.ITEM,
+            ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID, "crafting_piston_glue"));
+    /** GT6 {@code OD.craftingFurnace}. */
+    public static final TagKey<Item> CRAFTING_FURNACE = TagKey.create(
+            Registries.ITEM,
+            ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID, "crafting_furnace"));
     public static final TagKey<Item> SMELTING_CRUCIBLES = TagKey.create(
             Registries.ITEM,
             ResourceLocation.fromNamespaceAndPath(

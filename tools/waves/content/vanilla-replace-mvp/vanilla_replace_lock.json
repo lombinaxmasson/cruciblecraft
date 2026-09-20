@@ -1,39 +1,207 @@
 {
-  "added": [],
+  "added": [
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/furnace_from_rocks.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(furnace, rockGt ANY.Stone + OD.craftingFirestarter)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [57]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/furnace_from_rocks"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/iron_magnetic_rod.json",
+      "gt6_pointer": {
+        "calls": ["CR.shapeless(stick IronMagnetic, stick ANY.Fe + redstone x4)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [133]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/iron_magnetic_rod"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/iron_magnetic_long_rod.json",
+      "gt6_pointer": {
+        "calls": ["CR.shapeless(stickLong IronMagnetic, stickLong ANY.Fe + redstone x8)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [134]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/iron_magnetic_long_rod"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/lever_from_rock.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(lever, stickAnyWood + rockGt ANY.Stone)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [386]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/lever_from_rock"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/repeater_from_torches.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(repeater, redstone torch + dust + stoneSmooth)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [392]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/repeater_from_torches"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/bow.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(bow, DEF_MIR, stick + string + knife)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [399]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/bow"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/bow_mirrored.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(bow, DEF_MIR, stick + string + knife)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [399]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/bow_mirrored"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/dispenser_from_dropper.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(dispenser, bow + dropper)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [403]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/dispenser_from_dropper"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/dispenser_from_dropper_string.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(dispenser, DEF_MIR, stick + string + dropper)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [402]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/dispenser_from_dropper_string"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/dispenser_from_dropper_string_mirrored.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(dispenser, DEF_MIR, stick + string + dropper)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [402]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/dispenser_from_dropper_string_mirrored"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/name_tag.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(name_tag, DEF_MIR, string + paper + scissors)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [406]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/name_tag"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/name_tag_mirrored.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(name_tag, DEF_MIR, string + paper + scissors)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [406]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/name_tag_mirrored"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/stone_button.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(stone_button x2, stone stacked)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [128]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/stone_button"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/daylight_detector.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(daylight_detector, glass plate + quartz + slabWood)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [396]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/daylight_detector"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/lead_mirrored.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(lead, DEF_MIR, string + glue)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [381]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/lead_mirrored"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/tnt_from_dusts.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(tnt, dust Gunpowder + dust ANY.SiO2)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [408]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/tnt_from_dusts"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/leather_from_helmet.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(leather, leather_helmet + knife)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [374]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/leather_from_helmet"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/leather_from_chestplate.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(leather x2, leather_chestplate + knife)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [375]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/leather_from_chestplate"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/leather_from_leggings.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(leather x2, leather_leggings + knife)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [376]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/leather_from_leggings"
+    },
+    {
+      "action": "add",
+      "datapack_path": "src/main/resources/data/cruciblecraft/recipe/vanilla_replace/leather_from_boots.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(leather, leather_boots + knife)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [377]
+      },
+      "recipe_id": "cruciblecraft:vanilla_replace/leather_from_boots"
+    }
+  ],
   "deferred": [
-    {
-      "action": "deferred",
-      "gt6_pointer": {
-        "calls": [
-          "CR.delate(Blocks.furnace)",
-          "CR.shaped(furnace, cobblestone + OD.craftingFirestarter)",
-          "CR.shaped(furnace, basalt stone + OD.craftingFirestarter)",
-          "CR.shaped(furnace, rockGt ANY.Stone + OD.craftingFirestarter)"
-        ],
-        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
-        "lines": [55, 56, 57, 63]
-      },
-      "reason": "Removing minecraft:furnace requires a pre-iron OD.craftingFirestarter member. LoaderItemData only oredicts flint_and_steel and fire_charge. MultiItemRandomTools Fire Starter needs OD.itemGrassDry / OD.itemBarkDry (no 1.21 item). Match shaped recipes need phosphorus dust plus wood bolts (not first-hour). Iron-gating the furnace would cut 节点 1-2 (firebox, mortar, ceramic firing). §7 shrink: furnace stays vanilla until a later card owns dry-grass Fire Starter.",
-      "recipe_ids": [
-        "minecraft:furnace",
-        "cruciblecraft:furnace",
-        "cruciblecraft:furnace_from_rocks",
-        "cruciblecraft:furnace_from_basalt"
-      ]
-    },
-    {
-      "action": "deferred",
-      "gt6_pointer": {
-        "calls": [
-          "CR.remove(Items.bone)",
-          "CR.shaped(IL.Dye_Bonemeal, h + bone)"
-        ],
-        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
-        "lines": [48, 136]
-      },
-      "reason": "L136 uses the GT crafting-tool hammer slot (durability, not consumed). CC has no vanilla-shaped serializer for that. Do not delete minecraft:bone_meal without a substitute.",
-      "recipe_ids": ["minecraft:bone_meal"]
-    },
     {
       "action": "deferred",
       "gt6_pointer": {
@@ -41,7 +209,7 @@
         "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
         "lines": [51]
       },
-      "reason": "MT.White dust is not a first-hour 1.21 identity in this card.",
+      "reason": "MT.White dust is not a first-hour 1.21 identity in this slice.",
       "recipe_ids": []
     },
     {
@@ -51,7 +219,7 @@
         "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
         "lines": [53]
       },
-      "reason": "Not a named first-hour neighbor.",
+      "reason": "Book is identical enough in 1.21; not this slice.",
       "recipe_ids": ["minecraft:book"]
     },
     {
@@ -60,18 +228,16 @@
         "calls": [
           "CR.delate(enchanting_table)",
           "CR.delate(ender_chest)",
-          "CR.delate(saddle)",
-          "CR.delate(magma_cream)"
+          "CR.delate(saddle)"
         ],
         "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
-        "lines": [61, 62, 64, 65]
+        "lines": [61, 62, 64]
       },
-      "reason": "Named deferred non-first-hour Vanilla.java entries.",
+      "reason": "Named deferred non-first-hour Vanilla.java entries. Magma cream is removed in this slice.",
       "recipe_ids": [
         "minecraft:enchanting_table",
         "minecraft:ender_chest",
-        "minecraft:saddle",
-        "minecraft:magma_cream"
+        "minecraft:saddle"
       ]
     },
     {
@@ -81,17 +247,51 @@
         "file": "src/main/java/gregtech/items/MultiItemRandomTools.java",
         "lines": [352, 353, 354, 355]
       },
-      "reason": "SOURCE_BACKED Match crafting exists, but phosphorus + bolt is not first-hour. Assembler phosphor→match already exists. Not this card's furnace unlock.",
+      "reason": "SOURCE_BACKED Match crafting exists, but phosphorus + bolt is not first-hour. Assembler phosphor→match already exists. Not this slice's furnace unlock.",
       "recipe_ids": ["cruciblecraft:match"]
     },
     {
       "action": "deferred",
       "gt6_pointer": {
+        "calls": ["CR.shaped(tnt x9, blockDust Gunpowder + blockDust ANY.SiO2)"],
         "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
-        "lines": [344],
-        "note": "Second half begins at RM.generify / boxunbox / Lathe / Extruder / smash"
+        "lines": [409]
       },
-      "reason": "Vanilla.java second half is GT RecipeMap content, not vanilla replace.",
+      "reason": "Gunpowder and silicon dioxide have no live storage_dust. Do not stand in sand blocks.",
+      "recipe_ids": []
+    },
+    {
+      "action": "deferred",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(leather, OD.craftingFur + knife)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [378]
+      },
+      "reason": "OD.craftingFur (itemFur / itemPelt) has no 1.21 crafting_fur tag in this slice.",
+      "recipe_ids": []
+    },
+    {
+      "action": "deferred",
+      "gt6_pointer": {
+        "calls": [
+          "CR.delate(Items.arrow)",
+          "CR.shapeless(arrow, flint + arrowGtWood Empty)",
+          "CR.shaped(arrowGtWood Empty, stick + feather)"
+        ],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [469, 475, 481]
+      },
+      "reason": "Empty material has no registered forms, so arrow_gt_wood is not live. Do not delate vanilla arrows without the GT6 shaft.",
+      "recipe_ids": ["minecraft:arrow"]
+    },
+    {
+      "action": "deferred",
+      "gt6_pointer": {
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [418, 489],
+        "note": "boxunbox, wool dye extras, dye remix, RecipeMap second half"
+      },
+      "reason": "Workbench CR.shaped/shapeless through chainmail and food delates are in. boxunbox / dye remix / Vanilla.java RecipeMap stay later.",
       "recipe_ids": []
     },
     {
@@ -99,7 +299,7 @@
       "gt6_pointer": {
         "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Replace.java"
       },
-      "reason": "Replace full scanner (ingot tools → plates) is not this card.",
+      "reason": "Replace full scanner (ingot tools → plates) is not this slice.",
       "recipe_ids": []
     }
   ],
@@ -115,6 +315,46 @@
       },
       "reason": "1.21.1 minecraft:glass_bottle already uses the same V pattern and minecraft:glass, which is the colorless glass block. No overlay.",
       "recipe_id": "minecraft:glass_bottle"
+    },
+    {
+      "action": "identical_1_21",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(redstone_torch, stick + redstone)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [387]
+      },
+      "reason": "1.21 redstone torch is already dust + stick. Gem-cut extras need gated redstone gems.",
+      "recipe_id": "minecraft:redstone_torch"
+    },
+    {
+      "action": "identical_1_21",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(noteblock, planks + redstone)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [404]
+      },
+      "reason": "1.21 note block is already the GT6 grid.",
+      "recipe_id": "minecraft:note_block"
+    },
+    {
+      "action": "identical_1_21",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(redstone_lamp, glowstone + redstone)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [405]
+      },
+      "reason": "1.21 redstone lamp is already the GT6 grid.",
+      "recipe_id": "minecraft:redstone_lamp"
+    },
+    {
+      "action": "identical_1_21",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(speckled_melon, cropMelon + nugget Au)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [487]
+      },
+      "reason": "1.21 glistering_melon_slice is already 8 gold nuggets around a melon slice.",
+      "recipe_id": "minecraft:glistering_melon_slice"
     }
   ],
   "no_1_21_equivalent": [
@@ -154,7 +394,7 @@
         "file": "src/main/java/gregtech/items/MultiItemRandomTools.java",
         "lines": [394, 395]
       },
-      "reason": "OD.itemGrassDry has no 1.21.1 item. This card does not invent a neighboring grass id or port grass-cutting worldgen."
+      "reason": "OD.itemGrassDry has no 1.21.1 item. This slice does not invent a neighboring grass id or port grass-cutting worldgen."
     },
     {
       "action": "no_1_21_equivalent",
@@ -172,7 +412,17 @@
         "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
         "lines": [56]
       },
-      "reason": "GT basalt stone is not minecraft:basalt and is not first-hour basalt/reinforced_bricks. Do not guess a neighboring id. Furnace row is deferred anyway."
+      "reason": "GT basalt stone is not minecraft:basalt and is not first-hour basalt/reinforced_bricks. Do not guess a neighboring id."
+    },
+    {
+      "action": "no_1_21_equivalent",
+      "gt6_pointer": {
+        "calls": ["CR.delate(Items.golden_apple, 1, 1)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [472]
+      },
+      "reason": "1.21 enchanted golden apple has no crafting recipe to overlay-delete.",
+      "source_io": "Items.golden_apple meta 1"
     }
   ],
   "nuclear_started": false,
@@ -190,12 +440,53 @@
     },
     {
       "action": "out_of_scope",
-      "reason": "WorldgenOresVanilla 24 is not this card."
+      "reason": "WorldgenOresVanilla 24 is not this slice."
     }
   ],
   "owns_families": 0,
   "production_lock": null,
-  "removed": [],
+  "removed": [
+    {
+      "action": "remove",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/magma_cream.json",
+      "gt6_pointer": {
+        "calls": ["CR.delate(Items.magma_cream)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [65]
+      },
+      "recipe_id": "minecraft:magma_cream"
+    },
+    {
+      "action": "remove",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/cookie.json",
+      "gt6_pointer": {
+        "calls": ["CR.delate(Items.cookie)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [470]
+      },
+      "recipe_id": "minecraft:cookie"
+    },
+    {
+      "action": "remove",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/golden_apple.json",
+      "gt6_pointer": {
+        "calls": ["CR.delate(Items.golden_apple, 1, 0)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [471]
+      },
+      "recipe_id": "minecraft:golden_apple"
+    },
+    {
+      "action": "remove",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/golden_carrot.json",
+      "gt6_pointer": {
+        "calls": ["CR.delate(Items.golden_carrot)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [473]
+      },
+      "recipe_id": "minecraft:golden_carrot"
+    }
+  ],
   "schema_version": 1,
   "source_blob_sha1": "4c459acd2c7729d4186c5ada9ccd76181745bacf",
   "source_file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
@@ -225,6 +516,517 @@
         }
       },
       "recipe_id": "minecraft:paper"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/furnace.json",
+      "gt6_pointer": {
+        "calls": [
+          "CR.delate(Blocks.furnace)",
+          "CR.shaped(furnace, cobblestone + OD.craftingFirestarter)"
+        ],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [55, 63]
+      },
+      "io": {
+        "pattern": ["XXX", "XFX", "XXX"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:furnace"
+        }
+      },
+      "recipe_id": "minecraft:furnace"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/bone_meal.json",
+      "gt6_pointer": {
+        "calls": ["CR.remove(Items.bone)", "CR.shaped(IL.Dye_Bonemeal, h + bone)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [48, 136]
+      },
+      "io": {
+        "pattern": ["h  ", "X  "],
+        "result": {
+          "count": 1,
+          "id": "minecraft:bone_meal"
+        }
+      },
+      "recipe_id": "minecraft:bone_meal"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/bucket.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(bucket, curved plate ANY.Fe + plate + hammer)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [79]
+      },
+      "io": {
+        "pattern": ["XhX", " Y "],
+        "result": {
+          "count": 1,
+          "id": "minecraft:bucket"
+        }
+      },
+      "recipe_id": "minecraft:bucket"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/anvil.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(anvil, iron blocks + ingots + hammer)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [84]
+      },
+      "io": {
+        "pattern": ["BBB", " Ih", "III"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:anvil"
+        }
+      },
+      "recipe_id": "minecraft:anvil"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/heavy_weighted_pressure_plate.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(iron pressure plate, plates + hammer)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [91]
+      },
+      "io": {
+        "pattern": ["XXh", "   "],
+        "result": {
+          "count": 1,
+          "id": "minecraft:heavy_weighted_pressure_plate"
+        }
+      },
+      "recipe_id": "minecraft:heavy_weighted_pressure_plate"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/light_weighted_pressure_plate.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(gold pressure plate, plates + hammer)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [120]
+      },
+      "io": {
+        "pattern": ["XXh", "   "],
+        "result": {
+          "count": 1,
+          "id": "minecraft:light_weighted_pressure_plate"
+        }
+      },
+      "recipe_id": "minecraft:light_weighted_pressure_plate"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/compass.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(compass, magnetic rod + iron rod + plates + tools)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [94]
+      },
+      "io": {
+        "pattern": ["sSR", "CIC", "dPh"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:compass"
+        }
+      },
+      "recipe_id": "minecraft:compass"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/iron_door.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(iron_door, 6 plates + hammer)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [99]
+      },
+      "io": {
+        "pattern": ["XX ", "XXh", "XX "],
+        "result": {
+          "count": 1,
+          "id": "minecraft:iron_door"
+        }
+      },
+      "recipe_id": "minecraft:iron_door"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/cauldron.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(cauldron, plates + hammer)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [105]
+      },
+      "io": {
+        "pattern": ["X X", "XhX", "XXX"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:cauldron"
+        }
+      },
+      "recipe_id": "minecraft:cauldron"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/hopper.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(hopper, iron plates + chest + wrench)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [108]
+      },
+      "io": {
+        "pattern": ["XwX", "XCX", " X "],
+        "result": {
+          "count": 1,
+          "id": "minecraft:hopper"
+        }
+      },
+      "recipe_id": "minecraft:hopper"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/iron_bars.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(iron_bars x8, iron rods + wrench)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [111]
+      },
+      "io": {
+        "pattern": [" w ", "XXX", "XXX"],
+        "result": {
+          "count": 8,
+          "id": "minecraft:iron_bars"
+        }
+      },
+      "recipe_id": "minecraft:iron_bars"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/clock.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(clock, gold small gear + curved plates + quartz)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [114]
+      },
+      "io": {
+        "pattern": ["sGr", "CQC", "dPR"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:clock"
+        }
+      },
+      "recipe_id": "minecraft:clock"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/lever.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(lever, stickAnyWood + cobblestone)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [384]
+      },
+      "io": {
+        "pattern": ["W", "S"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:lever"
+        }
+      },
+      "recipe_id": "minecraft:lever"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/repeater.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(repeater, redstone + sticks + stoneSmooth)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [390]
+      },
+      "io": {
+        "pattern": ["D D", "WDW", "SSS"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:repeater"
+        }
+      },
+      "recipe_id": "minecraft:repeater"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/comparator.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(comparator, torches + quartz + stoneSmooth)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [394]
+      },
+      "io": {
+        "pattern": [" T ", "TQT", "SSS"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:comparator"
+        }
+      },
+      "recipe_id": "minecraft:comparator"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/piston.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(piston, planks + cobble + piston ingot + redstone)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [397]
+      },
+      "io": {
+        "pattern": ["WWW", "CBC", "CRC"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:piston"
+        }
+      },
+      "recipe_id": "minecraft:piston"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/sticky_piston.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(sticky_piston, piston glue + piston)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [398]
+      },
+      "io": {
+        "pattern": ["G", "P"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:sticky_piston"
+        }
+      },
+      "recipe_id": "minecraft:sticky_piston"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/dropper.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(dropper, cobble + redstone)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [400]
+      },
+      "io": {
+        "pattern": ["CCC", "C C", "CRC"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:dropper"
+        }
+      },
+      "recipe_id": "minecraft:dropper"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/dispenser.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(dispenser, cobble + bow + redstone)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [401]
+      },
+      "io": {
+        "pattern": ["CCC", "CBC", "CRC"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:dispenser"
+        }
+      },
+      "recipe_id": "minecraft:dispenser"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/lead.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(lead, DEF_MIR, string + glue)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [381]
+      },
+      "io": {
+        "pattern": [" SS", " GS", "S  "],
+        "result": {
+          "count": 1,
+          "id": "minecraft:lead"
+        }
+      },
+      "recipe_id": "minecraft:lead"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/minecart.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(minecart, iron plates + minecart wheels + hammer + wrench)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [411]
+      },
+      "io": {
+        "pattern": [" h ", "PwP", "WPW"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:minecart"
+        }
+      },
+      "recipe_id": "minecraft:minecart"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/chest_minecart.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(chest_minecart, chest over minecart)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [413]
+      },
+      "io": {
+        "key": {
+          "C": "minecraft:minecart",
+          "X": "minecraft:chest"
+        },
+        "pattern": ["X", "C"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:chest_minecart"
+        }
+      },
+      "recipe_id": "minecraft:chest_minecart"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/furnace_minecart.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(furnace_minecart, craftingFurnace over minecart)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [414]
+      },
+      "io": {
+        "key": {
+          "C": "minecraft:minecart"
+        },
+        "pattern": ["X", "C"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:furnace_minecart"
+        }
+      },
+      "recipe_id": "minecraft:furnace_minecart"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/hopper_minecart.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(hopper_minecart, hopper over minecart)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [415]
+      },
+      "io": {
+        "key": {
+          "C": "minecraft:minecart",
+          "X": "minecraft:hopper"
+        },
+        "pattern": ["X", "C"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:hopper_minecart"
+        }
+      },
+      "recipe_id": "minecraft:hopper_minecart"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/tnt_minecart.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(tnt_minecart, tnt over minecart)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [416]
+      },
+      "io": {
+        "key": {
+          "C": "minecraft:minecart",
+          "X": "minecraft:tnt"
+        },
+        "pattern": ["X", "C"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:tnt_minecart"
+        }
+      },
+      "recipe_id": "minecraft:tnt_minecart"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/chainmail_helmet.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(chainmail_helmet, steel rings + hammer)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [461]
+      },
+      "io": {
+        "pattern": ["RRR", "RhR"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:chainmail_helmet"
+        }
+      },
+      "recipe_id": "minecraft:chainmail_helmet"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/chainmail_chestplate.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(chainmail_chestplate, steel rings + hammer)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [462]
+      },
+      "io": {
+        "pattern": ["RhR", "RRR", "RRR"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:chainmail_chestplate"
+        }
+      },
+      "recipe_id": "minecraft:chainmail_chestplate"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/chainmail_leggings.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(chainmail_leggings, steel rings + hammer)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [463]
+      },
+      "io": {
+        "pattern": ["RRR", "RhR", "R R"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:chainmail_leggings"
+        }
+      },
+      "recipe_id": "minecraft:chainmail_leggings"
+    },
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/chainmail_boots.json",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(chainmail_boots, steel rings + hammer)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [464]
+      },
+      "io": {
+        "pattern": ["R R", "RhR"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:chainmail_boots"
+        }
+      },
+      "recipe_id": "minecraft:chainmail_boots"
     }
   ],
   "supporting_tags": [
@@ -245,9 +1047,72 @@
       "members": [
         "minecraft:flint_and_steel",
         "minecraft:fire_charge",
-        "cruciblecraft:match"
+        "cruciblecraft:match",
+        "cruciblecraft:material_flint_and_tinder"
       ],
       "tag_id": "cruciblecraft:crafting_firestarter"
+    },
+    {
+      "datapack_path": "src/main/resources/data/cruciblecraft/tags/item/crafting_chest.json",
+      "gt6_pointer": {
+        "calls": ["OD.craftingChest"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [108]
+      },
+      "members": [
+        "minecraft:chest",
+        "minecraft:trapped_chest"
+      ],
+      "tag_id": "cruciblecraft:crafting_chest"
+    },
+    {
+      "datapack_path": "src/main/resources/data/cruciblecraft/tags/item/crafting_piston_ingot.json",
+      "gt6_pointer": {
+        "calls": ["OD.craftingPistonIngot"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [397]
+      },
+      "members": [
+        "#c:ingots/iron",
+        "#c:ingots/wrought_iron",
+        "#c:ingots/pig_iron",
+        "#c:ingots/steel",
+        "#c:ingots/bronze",
+        "#c:ingots/aluminium",
+        "#c:ingots/nickel",
+        "#c:ingots/invar",
+        "#c:ingots/titanium",
+        "#c:ingots/tungsten"
+      ],
+      "tag_id": "cruciblecraft:crafting_piston_ingot"
+    },
+    {
+      "datapack_path": "src/main/resources/data/cruciblecraft/tags/item/crafting_piston_glue.json",
+      "gt6_pointer": {
+        "calls": ["OD.craftingPistonGlue"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [398]
+      },
+      "members": [
+        "minecraft:slime_ball",
+        "cruciblecraft:tree/rubber_resin"
+      ],
+      "tag_id": "cruciblecraft:crafting_piston_glue"
+    },
+    {
+      "datapack_path": "src/main/resources/data/cruciblecraft/tags/item/crafting_furnace.json",
+      "gt6_pointer": {
+        "calls": [
+          "OM.reg(OD.craftingFurnace, furnace)",
+          "OM.reg(OD.craftingFurnace, lit_furnace)"
+        ],
+        "file": "src/main/java/gregapi/load/LoaderItemData.java",
+        "lines": [692, 693]
+      },
+      "members": [
+        "minecraft:furnace"
+      ],
+      "tag_id": "cruciblecraft:crafting_furnace"
     }
   ],
   "wave_slug": "content/vanilla-replace-mvp"

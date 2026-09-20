@@ -38,15 +38,15 @@ public final class ItemPipeAcquisitionGameTests {
     private ItemPipeAcquisitionGameTests() {}
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void copperMediumTableCraftsFromCurvedPlate(
+    public static void brassMediumTableCraftsFromCurvedPlate(
             GameTestHelper helper) {
         ItemStack curved = MaterialLookup.stack(
-                "copper", MaterialPrefixes.CURVED_PLATE);
+                "brass", MaterialPrefixes.CURVED_PLATE);
         Item pipe = ModItems.materialItem(
-                "copper", MaterialPrefixes.ITEM_PIPE).get();
+                "brass", MaterialPrefixes.ITEM_PIPE).get();
         ItemStack assembled = assembleNamed(
                 helper,
-                "pipe/item_table/copper/item_pipe",
+                "pipe/item_table/brass/item_pipe",
                 3,
                 2,
                 List.of(
@@ -58,26 +58,26 @@ public final class ItemPipeAcquisitionGameTests {
                         new ItemStack(ModItems.SMITHING_HAMMER.get())));
         helper.assertTrue(
                 assembled.is(pipe) && assembled.getCount() == 1,
-                "copper medium item pipe did not craft from curved plate: "
+                "brass medium item pipe did not craft from curved plate: "
                         + assembled);
         helper.assertTrue(
                 helper.getLevel().getRecipeManager()
-                        .byKey(id("pipe/item_table/copper/item_pipe"))
+                        .byKey(id("pipe/item_table/brass/item_pipe"))
                         .isPresent(),
-                "missing copper medium item-pipe table recipe");
+                "missing brass medium item-pipe table recipe");
         helper.succeed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void copperHugeItemTableCraftsFromDoublePlate(
+    public static void brassHugeItemTableCraftsFromDoublePlate(
             GameTestHelper helper) {
         ItemStack plate = MaterialLookup.stack(
-                "copper", MaterialPrefixes.DOUBLE_PLATE);
+                "brass", MaterialPrefixes.DOUBLE_PLATE);
         Item huge = ModItems.materialItem(
-                "copper", MaterialPrefixes.HUGE_ITEM_PIPE).get();
+                "brass", MaterialPrefixes.HUGE_ITEM_PIPE).get();
         ItemStack assembled = assembleNamed(
                 helper,
-                "pipe/item_table/copper/huge_item_pipe",
+                "pipe/item_table/brass/huge_item_pipe",
                 3,
                 3,
                 List.of(
@@ -92,37 +92,37 @@ public final class ItemPipeAcquisitionGameTests {
                         plate.copy()));
         helper.assertTrue(
                 assembled.is(huge) && assembled.getCount() == 1,
-                "copper huge item pipe did not craft from double plates: "
+                "brass huge item pipe did not craft from double plates: "
                         + assembled);
         helper.assertTrue(
                 helper.getLevel().getRecipeManager()
-                        .byKey(id("pipe/item_table/copper/huge_item_pipe"))
+                        .byKey(id("pipe/item_table/brass/huge_item_pipe"))
                         .isPresent(),
-                "missing copper huge item-pipe table recipe");
+                "missing brass huge item-pipe table recipe");
         helper.succeed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void itemTableDoesNotUseFlatPlate(GameTestHelper helper) {
         ItemStack plateStack = MaterialLookup.stack(
-                "copper", MaterialPrefixes.PLATE);
+                "brass", MaterialPrefixes.PLATE);
         for (RecipeHolder<?> holder : helper.getLevel()
                 .getRecipeManager()
                 .getAllRecipesFor(RecipeType.CRAFTING)) {
             if (!(holder.value() instanceof ShapedCatalystRecipe shaped)) {
                 continue;
             }
-            if (!isCopperOrdinaryItemPipe(shaped.getResultItem(
+            if (!isBrassOrdinaryItemPipe(shaped.getResultItem(
                     helper.getLevel().registryAccess()))) {
                 continue;
             }
             Ingredient operand = shaped.ingredients().get("P");
             helper.assertTrue(
                     operand != null,
-                    "copper item-pipe table missing P: " + holder.id());
+                    "brass item-pipe table missing P: " + holder.id());
             helper.assertFalse(
                     operand.test(plateStack),
-                    "copper item-pipe craft used plate as a curved_plate "
+                    "brass item-pipe craft used plate as a curved_plate "
                             + "stand-in: "
                             + holder.id());
         }
@@ -130,16 +130,16 @@ public final class ItemPipeAcquisitionGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void copperRestrictiveCraftsFromMediumAndSteelRing(
+    public static void brassRestrictiveCraftsFromMediumAndSteelRing(
             GameTestHelper helper) {
         Item medium = ModItems.materialItem(
-                "copper", MaterialPrefixes.ITEM_PIPE).get();
+                "brass", MaterialPrefixes.ITEM_PIPE).get();
         ItemStack ring = MaterialLookup.stack("steel", MaterialPrefixes.RING);
         Item restrictive = ModItems.materialItem(
-                "copper", MaterialPrefixes.RESTRICTIVE_ITEM_PIPE).get();
+                "brass", MaterialPrefixes.RESTRICTIVE_ITEM_PIPE).get();
         ItemStack assembled = assembleNamed(
                 helper,
-                "pipe/restrictive/copper/restrictive_item_pipe",
+                "pipe/restrictive/brass/restrictive_item_pipe",
                 3,
                 3,
                 List.of(
@@ -154,14 +154,14 @@ public final class ItemPipeAcquisitionGameTests {
                         ItemStack.EMPTY));
         helper.assertTrue(
                 assembled.is(restrictive) && assembled.getCount() == 1,
-                "copper restrictive did not craft from medium + steel ring: "
+                "brass restrictive did not craft from medium + steel ring: "
                         + assembled);
         helper.assertTrue(
                 helper.getLevel().getRecipeManager()
                         .byKey(id(
-                                "pipe/restrictive/copper/restrictive_item_pipe"))
+                                "pipe/restrictive/brass/restrictive_item_pipe"))
                         .isPresent(),
-                "missing copper restrictive recipe");
+                "missing brass restrictive recipe");
         helper.succeed();
     }
 
@@ -179,7 +179,7 @@ public final class ItemPipeAcquisitionGameTests {
             if (!(holder.value() instanceof ShapedCatalystRecipe shaped)) {
                 continue;
             }
-            if (!isCopperRestrictive(shaped.getResultItem(
+            if (!isBrassRestrictive(shaped.getResultItem(
                     helper.getLevel().registryAccess()))) {
                 continue;
             }
@@ -187,16 +187,16 @@ public final class ItemPipeAcquisitionGameTests {
             Ingredient ring = shaped.ingredients().get("R");
             helper.assertTrue(
                     ring != null && ring.test(steelRingStack),
-                    "copper restrictive did not use steel/ring: "
+                    "brass restrictive did not use steel/ring: "
                             + holder.id());
             for (Ingredient ingredient : shaped.ingredients().values()) {
                 helper.assertFalse(
                         ingredient.test(circuitStack),
-                        "copper restrictive used programmed_circuit: "
+                        "brass restrictive used programmed_circuit: "
                                 + holder.id());
             }
         }
-        helper.assertTrue(seen > 0, "no copper restrictive crafts were published");
+        helper.assertTrue(seen > 0, "no brass restrictive crafts were published");
         helper.succeed();
     }
 
@@ -219,23 +219,23 @@ public final class ItemPipeAcquisitionGameTests {
         helper.succeed();
     }
 
-    private static boolean isCopperOrdinaryItemPipe(ItemStack result) {
+    private static boolean isBrassOrdinaryItemPipe(ItemStack result) {
         return result.is(ModItems.materialItem(
-                        "copper", MaterialPrefixes.ITEM_PIPE).get())
+                        "brass", MaterialPrefixes.ITEM_PIPE).get())
                 || result.is(ModItems.materialItem(
-                        "copper", MaterialPrefixes.LARGE_ITEM_PIPE).get())
+                        "brass", MaterialPrefixes.LARGE_ITEM_PIPE).get())
                 || result.is(ModItems.materialItem(
-                        "copper", MaterialPrefixes.HUGE_ITEM_PIPE).get());
+                        "brass", MaterialPrefixes.HUGE_ITEM_PIPE).get());
     }
 
-    private static boolean isCopperRestrictive(ItemStack result) {
+    private static boolean isBrassRestrictive(ItemStack result) {
         return result.is(ModItems.materialItem(
-                        "copper", MaterialPrefixes.RESTRICTIVE_ITEM_PIPE).get())
+                        "brass", MaterialPrefixes.RESTRICTIVE_ITEM_PIPE).get())
                 || result.is(ModItems.materialItem(
-                        "copper",
+                        "brass",
                         MaterialPrefixes.LARGE_RESTRICTIVE_ITEM_PIPE).get())
                 || result.is(ModItems.materialItem(
-                        "copper",
+                        "brass",
                         MaterialPrefixes.HUGE_RESTRICTIVE_ITEM_PIPE).get());
     }
 

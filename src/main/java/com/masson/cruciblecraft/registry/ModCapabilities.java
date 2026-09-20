@@ -96,6 +96,10 @@ public final class ModCapabilities {
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
                 ENERGY,
+                ModBlockEntities.AUTOMATIC_HAMMER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
                 ModBlockEntities.MULTIBLOCK_PORT.get(),
                 (blockEntity, side) -> blockEntity.portType()
                                 == PortType.ENERGY_INPUT
@@ -129,6 +133,18 @@ public final class ModCapabilities {
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.FUSION_REACTOR.get(),
                 (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.FUSION_HULL.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.FUSION_HULL.get(),
+                (blockEntity, side) -> blockEntity.fluids());
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.FUSION_HULL.get(),
+                (blockEntity, side) -> blockEntity.items());
         event.registerBlockEntity(
                 ENERGY,
                 ModBlockEntities.QUANTUM_ENERGIZER.get(),
@@ -215,11 +231,19 @@ public final class ModCapabilities {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.COKE_OVEN.get(),
-                (blockEntity, side) -> blockEntity.externalItems());
+                (blockEntity, side) -> blockEntity.automationItems(side));
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.COKE_OVEN.get(),
-                (blockEntity, side) -> blockEntity.externalFluids());
+                (blockEntity, side) -> blockEntity.automationFluids(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.FIREBRICK.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.FIREBRICK.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.CRUCIBLE.get(),
@@ -244,6 +268,10 @@ public final class ModCapabilities {
                 ENERGY,
                 ModBlockEntities.FOUNDRY_CASTING.get(),
                 (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.COINAGE_MOLD.get(),
+                (blockEntity, side) -> blockEntity.itemHandler());
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.BOILER.get(),

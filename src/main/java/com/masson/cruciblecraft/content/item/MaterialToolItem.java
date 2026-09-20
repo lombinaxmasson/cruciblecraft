@@ -146,7 +146,8 @@ public abstract class MaterialToolItem extends Item
                 && state.getDestroySpeed(level, pos) != 0.0F
                 && (isCorrectToolForDrops(stack, state)
                         || getDestroySpeed(stack, state) > 1.0F)) {
-            stack.hurtAndBreak(1, miningEntity, EquipmentSlot.MAINHAND);
+            ToolBreakScrap.hurtAndBreak(
+                    stack, 1, miningEntity, EquipmentSlot.MAINHAND);
         }
         return true;
     }

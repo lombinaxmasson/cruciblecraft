@@ -19,6 +19,8 @@ final class CokeOvenEmiRecipe implements EmiRecipe {
     private final EmiStack workstation;
     private final List<EmiIngredient> inputs;
     private final List<EmiIngredient> catalysts;
+    private final List<EmiStack> itemOutputs;
+    private final List<EmiStack> fluidOutputs;
     private final List<EmiStack> outputs;
     private final int durationTicks;
 
@@ -32,10 +34,16 @@ final class CokeOvenEmiRecipe implements EmiRecipe {
                         recipe.itemInputCounts().get(index)))
                 .toList();
         catalysts = List.of(workstation);
-        var displayedOutputs = new java.util.ArrayList<EmiStack>();
-        recipe.itemOutputs().forEach(stack -> displayedOutputs.add(EmiStacks.ofItem(stack)));
-        recipe.fluidOutputs().forEach(stack -> displayedOutputs.add(EmiStacks.ofFluid(stack)));
-        outputs = List.copyOf(displayedOutputs);
+        itemOutputs = recipe.itemOutputs().stream()
+                .map(EmiStacks::ofItem)
+                .toList();
+        fluidOutputs = recipe.fluidOutputs().stream()
+                .map(EmiStacks::ofFluid)
+                .toList();
+        var displayed = new java.util.ArrayList<EmiStack>();
+        displayed.addAll(itemOutputs);
+        displayed.addAll(fluidOutputs);
+        outputs = List.copyOf(displayed);
         durationTicks = recipe.duration();
     }
 
@@ -96,20 +104,21 @@ final class CokeOvenEmiRecipe implements EmiRecipe {
             var slot = layout.itemSlots().getFirst();
             Gt6EmiGui.slot(widgets, inputs.getFirst(), slot.x(), slot.y());
         }
-        if (!outputs.isEmpty()) {
-            var slot = layout.itemSlots().get(1);
-            Gt6EmiGui.output(widgets, outputs.getFirst(), this, slot.x(), slot.y());
+        int outputSlots = Math.min(itemOutputs.size(), layout.itemSlots().size() - 1);
+        for (int index = 0; index < outputSlots; index++) {
+            var slot = layout.itemSlots().get(index + 1);
+            Gt6EmiGui.output(widgets, itemOutputs.get(index), this, slot.x(), slot.y());
         }
-        if (outputs.size() > 1 && !layout.tanks().isEmpty()) {
+        if (!fluidOutputs.isEmpty() && !layout.tanks().isEmpty()) {
             var tank = layout.tanks().getFirst();
             Gt6EmiGui.tank(
                     widgets,
-                    outputs.get(1),
+                    fluidOutputs.getFirst(),
                     tank.x(),
                     tank.y(),
                     tank.width(),
                     tank.height(),
-                    Math.max(1, (int) outputs.get(1).getAmount()))
+                    Math.max(1, (int) fluidOutputs.getFirst().getAmount()))
                     .recipeContext(this);
         }
         Gt6EmiGui.workstation(widgets, workstation);

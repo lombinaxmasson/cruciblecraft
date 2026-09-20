@@ -166,9 +166,6 @@ public final class ToolHarvestEvents {
     }
 
     private static ToolKind harvestKind(ItemStack tool) {
-        if (tool.getItem() instanceof FlintKnifeItem) {
-            return ToolKind.KNIFE;
-        }
         if (tool.getItem() instanceof MaterialPocketMultitoolItem pocket) {
             return pocket.mode(tool).kind();
         }

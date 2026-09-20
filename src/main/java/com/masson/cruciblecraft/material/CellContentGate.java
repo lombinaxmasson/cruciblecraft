@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import com.google.gson.JsonElement;
@@ -22,7 +23,10 @@ public final class CellContentGate {
     private static final List<String> RESOURCES = List.of(
             "/data/cruciblecraft/cell_content_gate.json",
             "/data/cruciblecraft/hydrocarbon_cell_content_gate.json");
-    private static final Map<ResourceLocation, Kind> ENTRIES = load();
+    private static final Loaded LOADED = load();
+    private static final Map<ResourceLocation, Kind> ENTRIES = LOADED.kinds();
+    private static final Map<ResourceLocation, String> MATERIALS =
+            LOADED.materials();
 
     private CellContentGate() {}
 
@@ -39,6 +43,16 @@ public final class CellContentGate {
         return ENTRIES;
     }
 
+    /** GT6 material id recorded on the closed gate row, used to tint cells. */
+    public static Optional<String> materialId(ResourceLocation fluidId) {
+        return Optional.ofNullable(MATERIALS.get(fluidId));
+    }
+
+    public static Optional<String> materialId(Fluid fluid) {
+        ResourceLocation id = BuiltInRegistries.FLUID.getKey(fluid);
+        return id == null ? Optional.empty() : materialId(id);
+    }
+
     /** Gate rows in stable id order for enumeration surfaces (creative tab,
      *  prefill plan). */
     public static List<Map.Entry<ResourceLocation, Kind>> sortedEntries() {
@@ -47,12 +61,13 @@ public final class CellContentGate {
                 .toList();
     }
 
-    private static Map<ResourceLocation, Kind> load() {
+    private static Loaded load() {
         LinkedHashMap<ResourceLocation, Kind> entries = new LinkedHashMap<>();
+        LinkedHashMap<ResourceLocation, String> materials = new LinkedHashMap<>();
         for (String resource : RESOURCES) {
             JsonObject root = loadRoot(resource);
             for (JsonElement value : root.getAsJsonArray("fluids")) {
-                decodeRow(entries, value.getAsJsonObject(), resource);
+                decodeRow(entries, materials, value.getAsJsonObject(), resource);
             }
         }
         Set<ResourceLocation> flowing = entries.keySet().stream()
@@ -62,7 +77,7 @@ public final class CellContentGate {
             throw new IllegalStateException(
                     "Cell gate must use source fluid ids only: " + flowing);
         }
-        return Map.copyOf(entries);
+        return new Loaded(Map.copyOf(entries), Map.copyOf(materials));
     }
 
     private static JsonObject loadRoot(String resource) {
@@ -93,6 +108,7 @@ public final class CellContentGate {
 
     private static void decodeRow(
             Map<ResourceLocation, Kind> entries,
+            Map<ResourceLocation, String> materials,
             JsonObject row,
             String resource) {
             if (!row.has("id") || !row.has("kind") || !row.has("material")) {
@@ -126,10 +142,15 @@ public final class CellContentGate {
                 throw new IllegalStateException(
                         "Duplicate cell fluid id: " + id);
             }
+            materials.put(id, material);
     }
 
     public enum Kind {
         FLUID,
         GAS
     }
+
+    private record Loaded(
+            Map<ResourceLocation, Kind> kinds,
+            Map<ResourceLocation, String> materials) {}
 }

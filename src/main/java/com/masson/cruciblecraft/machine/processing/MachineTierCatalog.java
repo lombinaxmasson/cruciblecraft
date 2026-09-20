@@ -56,6 +56,17 @@ public final class MachineTierCatalog {
         return CATALOG.byKind().getOrDefault(kindId, List.of());
     }
 
+    /**
+     * Live BlockItem ids for one kind, including
+     * {@code skipGenericRegistration} hosts such as the dedicated bronze
+     * crusher. {@link #variantsOf} omits those rows because they are not
+     * generic-registered.
+     */
+    public static List<ResourceLocation> itemIdsOf(ResourceLocation kindId) {
+        Objects.requireNonNull(kindId, "kindId");
+        return CATALOG.itemIdsByKind().getOrDefault(kindId, List.of());
+    }
+
     public static Entry require(ResourceLocation id) {
         Entry entry = CATALOG.byId().get(id);
         if (entry == null) {
@@ -250,8 +261,13 @@ public final class MachineTierCatalog {
                             LinkedHashMap::new,
                             Collectors.toUnmodifiableList()));
             LinkedHashMap<String, String> textureProfiles = new LinkedHashMap<>();
+            LinkedHashMap<ResourceLocation, List<ResourceLocation>> itemIdsByKind =
+                    new LinkedHashMap<>();
             for (Row row : document.variants) {
                 ResourceLocation variantId = parse(row.id, "variant id");
+                ResourceLocation kindId = parse(row.kind, "kind id");
+                itemIdsByKind.computeIfAbsent(kindId, unused -> new java.util.ArrayList<>())
+                        .add(variantId);
                 String profile = row.resourceProfile == null
                         || row.resourceProfile.textureProfile == null
                         || row.resourceProfile.textureProfile.isBlank()
@@ -259,13 +275,18 @@ public final class MachineTierCatalog {
                         : row.resourceProfile.textureProfile;
                 textureProfiles.put(variantId.getPath(), profile);
             }
+            LinkedHashMap<ResourceLocation, List<ResourceLocation>> frozenIds =
+                    new LinkedHashMap<>();
+            itemIdsByKind.forEach((kindId, variantIds) ->
+                    frozenIds.put(kindId, List.copyOf(variantIds)));
             return new Catalog(
                     List.copyOf(entries),
                     Map.copyOf(controllerTierBands),
                     Map.copyOf(byId),
                     byKind,
                     document.namingPolicy.toPolicy(),
-                    Map.copyOf(textureProfiles));
+                    Map.copyOf(textureProfiles),
+                    Map.copyOf(frozenIds));
         } catch (JsonIOException | JsonSyntaxException exception) {
             throw new IllegalStateException(
                     "Could not load machine tier catalog", exception);
@@ -278,7 +299,8 @@ public final class MachineTierCatalog {
             Map<ResourceLocation, Entry> byId,
             Map<ResourceLocation, List<Entry>> byKind,
             NamingPolicy namingPolicy,
-            Map<String, String> textureProfiles) {}
+            Map<String, String> textureProfiles,
+            Map<ResourceLocation, List<ResourceLocation>> itemIdsByKind) {}
 
     public record NamingPolicy(
             String tier1BareId,

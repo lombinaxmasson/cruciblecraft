@@ -1,5 +1,8 @@
 package com.masson.cruciblecraft.fusion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -159,6 +162,107 @@ public final class FusionStructure {
                 CONTROL_PROCESSORS);
     }
 
+    public record Hatch(BlockPos pos, FusionHatchRole role, Direction outward) {
+        public Hatch {
+            pos = pos.immutable();
+            if (role == FusionHatchRole.ENERGY_OUT && outward == null) {
+                throw new IllegalArgumentException(
+                        "Energy-out hatch needs an outward face");
+            }
+        }
+    }
+
+    public record HatchCounts(int energyIn, int energyOut, int itemFluid) {
+        public boolean matchesGt6Modes() {
+            return energyOut == 4
+                    && energyIn == occupied(0) - 4
+                    && itemFluid
+                            == occupied(0) * 2
+                                    + occupied(1) * 2
+                                    + occupied(2) * 2;
+        }
+    }
+
+    public static HatchCounts hatchCounts() {
+        int energyOut = 0;
+        int energyIn = 0;
+        int itemFluid = 0;
+        for (int i = 0; i < 19; i++) {
+            for (int j = 0; j < 19; j++) {
+                if (occupied(0, i, j)) {
+                    itemFluid += 2;
+                    if (isEnergyOut(i, j)) {
+                        energyOut++;
+                    } else {
+                        energyIn++;
+                    }
+                }
+                if (occupied(1, i, j)) {
+                    itemFluid += 2;
+                }
+                if (occupied(2, i, j)) {
+                    itemFluid += 2;
+                }
+            }
+        }
+        return new HatchCounts(energyIn, energyOut, itemFluid);
+    }
+
+    /**
+     * Tungstensteel wall cells that GT6 sets to {@code ONLY_ENERGY_IN},
+     * {@code ONLY_ENERGY_OUT}, or {@code ONLY_ITEM_FLUID}.
+     */
+    public static List<Hatch> hatches(BlockPos controller, Direction facing) {
+        BlockPos origin = center(controller, facing).offset(-9, 0, -9);
+        List<Hatch> hatches = new ArrayList<>();
+        for (int i = 0; i < 19; i++) {
+            for (int j = 0; j < 19; j++) {
+                if (occupied(0, i, j)) {
+                    hatches.add(new Hatch(
+                            origin.offset(i, -1, j),
+                            FusionHatchRole.ITEM_FLUID,
+                            null));
+                    if (isEnergyOut(i, j)) {
+                        hatches.add(new Hatch(
+                                origin.offset(i, 0, j),
+                                FusionHatchRole.ENERGY_OUT,
+                                energyOutward(i, j)));
+                    } else {
+                        hatches.add(new Hatch(
+                                origin.offset(i, 0, j),
+                                FusionHatchRole.ENERGY_IN,
+                                null));
+                    }
+                    hatches.add(new Hatch(
+                            origin.offset(i, 1, j),
+                            FusionHatchRole.ITEM_FLUID,
+                            null));
+                }
+                if (occupied(1, i, j)) {
+                    hatches.add(new Hatch(
+                            origin.offset(i, -2, j),
+                            FusionHatchRole.ITEM_FLUID,
+                            null));
+                    hatches.add(new Hatch(
+                            origin.offset(i, 2, j),
+                            FusionHatchRole.ITEM_FLUID,
+                            null));
+                }
+                if (occupied(2, i, j)) {
+                    hatches.add(new Hatch(
+                            origin.offset(i, -2, j),
+                            FusionHatchRole.ITEM_FLUID,
+                            null));
+                    hatches.add(new Hatch(
+                            origin.offset(i, 2, j),
+                            FusionHatchRole.ITEM_FLUID,
+                            null));
+                }
+            }
+        }
+        return List.copyOf(hatches);
+    }
+
     public static boolean check(Level level, BlockPos controller, Direction facing) {
         BlockPos center = center(controller, facing);
         int versatile = VERSATILE_PROCESSORS;
@@ -249,6 +353,37 @@ public final class FusionStructure {
             }
         }
         return true;
+    }
+
+    static {
+        HatchCounts hatches = hatchCounts();
+        if (!hatches.matchesGt6Modes() || !isEnergyOut(0, 9) || !isEnergyOut(18, 9)
+                || !isEnergyOut(9, 0) || !isEnergyOut(9, 18)) {
+            throw new IllegalStateException(
+                    "Fusion energy-interface cells drifted: " + hatches);
+        }
+    }
+
+    private static boolean isEnergyOut(int i, int j) {
+        return (i == 9 && (j == 0 || j == 18))
+                || (j == 9 && (i == 0 || i == 18));
+    }
+
+    private static Direction energyOutward(int i, int j) {
+        if (i == 0 && j == 9) {
+            return Direction.WEST;
+        }
+        if (i == 18 && j == 9) {
+            return Direction.EAST;
+        }
+        if (i == 9 && j == 0) {
+            return Direction.NORTH;
+        }
+        if (i == 9 && j == 18) {
+            return Direction.SOUTH;
+        }
+        throw new IllegalArgumentException(
+                "Not a fusion electric interface: " + i + "," + j);
     }
 
     private static boolean occupied(int layer, int i, int j) {

@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.content.item.CoinItem;
 import com.masson.cruciblecraft.content.item.MaterialFormItem;
 import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -29,6 +31,16 @@ public final class MaterialUnits {
     private MaterialUnits() {}
 
     public static Optional<MaterialUnits.Entry> resolve(ItemStack stack) {
+        if (stack.getItem() instanceof CoinItem coin) {
+            String materialId = stack.get(ModComponents.PREFIX_MATERIAL);
+            if (materialId == null || !coin.isPersistedMaterialAllowed(materialId)) {
+                return Optional.empty();
+            }
+            return Optional.of(new Entry(
+                    materialId,
+                    MaterialPrefixes.TINY_PLATE,
+                    MaterialPrefixes.TINY_PLATE.units()));
+        }
         if (stack.getItem() instanceof PrefixMaterialItem prefixItem) {
             String materialId = stack.get(ModComponents.PREFIX_MATERIAL);
             if (materialId == null

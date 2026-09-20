@@ -180,6 +180,23 @@ class EnglishDisplayNameTest(unittest.TestCase):
                 "tool/lighter_empty_requires_canning_machine_to_be_filled",
             ),
         )
+        self.assertEqual(
+            "Blue Spruce Planks",
+            audit.names.player_english("Blue Spruce Planks", "planks2/orange"),
+        )
+        self.assertEqual(
+            "Blue Spruce Slab",
+            audit.names.player_english(
+                "Blue Spruce Slab", "planks2/orange/slab_down"
+            ),
+        )
+        self.assertEqual(
+            "Blue Spruce Planks (Fireproof)",
+            audit.names.player_english(
+                "Blue Spruce Planks (Fireproof)",
+                "planks2_fireproof/orange",
+            ),
+        )
 
 
 class ChineseFallbackTest(unittest.TestCase):
@@ -229,6 +246,8 @@ class CollisionAndGateTest(unittest.TestCase):
         self.assertIn("Apple Slice", audit.names.allowlisted_names("en_us"))
         self.assertIn("Progress Sensor", audit.names.allowlisted_names("en_us"))
         self.assertIn("Rubber Resin", audit.names.allowlisted_names("en_us"))
+        self.assertIn("Blue Spruce Planks", audit.names.allowlisted_names("en_us"))
+        self.assertIn("蓝云杉木板", audit.names.allowlisted_names("zh_cn"))
 
     def test_generated_lang_uses_dotted_keys_and_real_chinese(self) -> None:
         document = audit.scan_lang_tables()

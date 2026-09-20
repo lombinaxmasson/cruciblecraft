@@ -4,6 +4,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.localization.LanguageNames;
+import com.masson.cruciblecraft.localization.RockFormNames;
 
 import net.minecraft.network.chat.Component;
 
@@ -26,6 +27,12 @@ public interface MaterialFormItem {
     }
 
     static Component formName(String materialId, MaterialPrefix form) {
+        if ("rock".equals(form.serializedName())) {
+            Component special = RockFormNames.specialName(materialId);
+            if (special != null) {
+                return special;
+            }
+        }
         Component materialName = materialDisplayName(materialId);
         String formKey = "item.cruciblecraft.material_form." + form.serializedName();
         String fallback = LanguageNames.englishFormTemplate(

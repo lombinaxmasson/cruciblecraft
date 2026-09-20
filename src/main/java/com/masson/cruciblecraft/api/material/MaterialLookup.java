@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialFormHosts;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
+import com.masson.cruciblecraft.recipe.crafting.CraftingTools;
 import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.world.item.Item;
@@ -229,6 +230,10 @@ public final class MaterialLookup {
     }
 
     public static Optional<Ingredient> ingredientFromLogicalId(String logicalId) {
+        Optional<Ingredient> tool = CraftingTools.tryIngredient(logicalId);
+        if (tool.isPresent()) {
+            return tool;
+        }
         ResourceLocation location = ResourceLocation.tryParse(logicalId);
         if (location == null) {
             return Optional.empty();

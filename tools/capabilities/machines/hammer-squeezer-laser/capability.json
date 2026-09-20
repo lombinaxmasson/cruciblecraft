@@ -1,0 +1,104 @@
+{
+  "schema_version": 2,
+  "slug": "machines/hammer-squeezer-laser",
+  "title": "Hammer / Squeezer / Laser",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "owned_paths": [
+    "docs/history/card-plans/closed/锤榨汁机激光详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/AutomaticHammerBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/AutomaticHammerBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/LaserEngraverBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LaserEngraverBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/machine/autotool/AutomaticHammerCatalog.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/HammerSqueezerLaserGameTests.java",
+    "src/main/resources/assets/cruciblecraft/gt6_hammer_squeezer_laser_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/automatic_hammer/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/squeezer/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/laser_engraver/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/laser_welder/**",
+    "src/main/resources/data/cruciblecraft_wave_machines_hammer_squeezer_laser/**",
+    "tools/capabilities/machines/hammer-squeezer-laser/**",
+    "tools/waves/machines/hammer-squeezer-laser/**",
+    "tools/tests/test_hammer_squeezer_laser.py"
+  ],
+  "depends_on": [
+    "machines/cluster-mill"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/hammer-squeezer-laser",
+  "player_signoff": null,
+  "required_test_ids": [
+    "fourHammersAreSurvivalCraftable",
+    "fourSqueezersAreSurvivalCraftable",
+    "laserHostsAreSurvivalCraftable",
+    "bronzeSqueezerAcceptsKuFromTop",
+    "automaticHammerAcceptsKuFromBack",
+    "automaticHammerAcceptsDoubleRecommendedPacket",
+    "automaticHammerStrikesOnlyOnReturnStroke",
+    "automaticHammerStrikesAnvilFromAbove",
+    "automaticHammerSideHitDoesNotUseAnvilRecipes",
+    "automaticHammerSideHitBendsPlate",
+    "automaticHammerStoresThenExplodesOversizedKu",
+    "automaticHammerCannotMineBeyondStoredEnergy",
+    "t1LaserEngraverUsesLuTier1Window",
+    "laserWelderHostMatchesGt6WelderSlots",
+    "laserWelderRunsWelderRecipe",
+    "higherTierHostsUseGt6PacketWindows",
+    "eighteenHostDummiesAreWithdrawn",
+    "liveSqueezerHasGt6JavaLatexRows",
+    "laserEngraverKeepsGt6FoilRows"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:automatic_hammer:15001-15004",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:automatic_hammer",
+        "cruciblecraft:steel_automatic_hammer",
+        "cruciblecraft:titanium_automatic_hammer",
+        "cruciblecraft:tungstensteel_automatic_hammer"
+      ],
+      "reason": "GT6 MultiTileEntityAutoToolHammer 15001-15004. KU autotool, 6-face, not RM.Hammer."
+    },
+    {
+      "semantic_key": "machine:squeezer:20071-20074",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:squeezer",
+        "cruciblecraft:steel_squeezer",
+        "cruciblecraft:titanium_squeezer",
+        "cruciblecraft:tungstensteel_squeezer"
+      ],
+      "reason": "GT6 MultiTileEntityBasicMachine 20071-20074. RM.Squeezer, KU, left in / right out / bottom tank / top energy."
+    },
+    {
+      "semantic_key": "machine:laser_engraver:20321-20325",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:laser_engraver",
+        "cruciblecraft:aluminium_laser_engraver",
+        "cruciblecraft:stainless_steel_laser_engraver",
+        "cruciblecraft:chromium_laser_engraver",
+        "cruciblecraft:titanium_laser_engraver"
+      ],
+      "reason": "GT6 Laser Engraver 20321-20325. LU, RM.LaserEngraver. T1 stays dedicated skipGeneric block."
+    },
+    {
+      "semantic_key": "machine:laser_welder:20331-20335",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:laser_welder",
+        "cruciblecraft:aluminium_laser_welder",
+        "cruciblecraft:stainless_steel_laser_welder",
+        "cruciblecraft:chromium_laser_welder",
+        "cruciblecraft:titanium_laser_welder"
+      ],
+      "reason": "GT6 Laser Welder 20331-20335. LU, RM.Welder 9-in / 1-out / 1 fluid. No KU welder host; map stays on these LU hosts."
+    }
+  ],
+  "note": "18 GT6 hosts. Squeezer dump 5322 / selected 15 / overflow 5307 (ignored plant_gt_* 5215 until crop-breeding obtain, actionable 92); live map is those 15 dump rows plus 4 Java latex remainder. 1.7.10 fish@0/1/2 is live as cod/salmon/tropical_fish. Laser keeps GT6 foil+ruby-lens rows (ANY.Cu, Au, Pt) plus 4 PUV crystals. Anvil-bend maps are filled from GT6 handlers. Opening-15 kinetic set stays frozen. Not player_complete.",
+  "survival_access": "unreviewed"
+}

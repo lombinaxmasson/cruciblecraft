@@ -97,8 +97,8 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
     prep = plans["prep"]
     if prep:
         lines.append(
-            "计划文件存在就会列在这里。MTE 家族 prep 的 runtime child 已关时，"
-            "不要把本表当剩余待办。读法见 [unimplemented-gap.md](unimplemented-gap.md)。"
+            "计划文件存在就会列在这里。不要把本表当剩余待办。"
+            "读法见 [unimplemented-gap.md](unimplemented-gap.md)。"
         )
         lines.append("")
         for slug, path in sorted(prep.items()):

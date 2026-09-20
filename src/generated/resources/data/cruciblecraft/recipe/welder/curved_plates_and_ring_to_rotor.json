@@ -1,0 +1,23 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.tag(\"PROCESSING.SMITHABLE\")"
+  ],
+  "duration": "300",
+  "eut": "64",
+  "item_inputs": [
+    {
+      "count": "4",
+      "prefix": "cruciblecraft:curved_plate"
+    },
+    {
+      "prefix": "cruciblecraft:ring"
+    }
+  ],
+  "item_outputs": [
+    {
+      "prefix": "cruciblecraft:rotor"
+    }
+  ],
+  "target": "cruciblecraft:welder"
+}

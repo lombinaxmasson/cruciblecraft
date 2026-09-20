@@ -77,8 +77,8 @@ public final class MaterialSwordItem extends MaterialToolItem {
         }
         if (!level.isClientSide
                 && state.getDestroySpeed(level, pos) != 0.0F) {
-            stack.hurtAndBreak(
-                    2, miningEntity, EquipmentSlot.MAINHAND);
+            ToolBreakScrap.hurtAndBreak(
+                    stack, 2, miningEntity, EquipmentSlot.MAINHAND);
         }
         return true;
     }
@@ -97,8 +97,8 @@ public final class MaterialSwordItem extends MaterialToolItem {
             LivingEntity target,
             LivingEntity attacker) {
         if (canApplyDurabilityDamage(stack)) {
-            stack.hurtAndBreak(
-                    1, attacker, EquipmentSlot.MAINHAND);
+            ToolBreakScrap.hurtAndBreak(
+                    stack, 1, attacker, EquipmentSlot.MAINHAND);
         }
     }
 

@@ -1,7 +1,9 @@
 package com.masson.cruciblecraft.client.color;
 
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModItems;
 
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -9,6 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 /** GT6 material tints for the fixed early-game ceramic and brick devices. */
 public final class Gt6OpeningBlockColor {
     private static final int GT6_BRICK = 0xFFB75A40;
+    /** GT6 {@code MT.Ceramic} 220, 130, 70. */
     private static final int GT6_CERAMIC = 0xFFDC8246;
 
     private Gt6OpeningBlockColor() {}
@@ -30,6 +33,22 @@ public final class Gt6OpeningBlockColor {
             ModBlocks.FIREBRICK.get(),
             ModBlocks.CERAMIC_MOLD.get()
         };
+    }
+
+    /**
+     * Fired ceramic molds share the grayscale ROUGH block texture and need
+     * {@link #ceramicColor()}. GT6 randomtools clay icons (raw molds /
+     * crucible) are already painted and must not be multiplied again.
+     */
+    public static Item[] tintedItems() {
+        java.util.ArrayList<Item> items = new java.util.ArrayList<>();
+        items.add(ModBlocks.FIREBRICK.get().asItem());
+        java.util.Collections.addAll(items, ModItems.ceramicMoldItems());
+        return items.toArray(Item[]::new);
+    }
+
+    static int ceramicColor() {
+        return GT6_CERAMIC;
     }
 
     private static int colorFor(Block block) {

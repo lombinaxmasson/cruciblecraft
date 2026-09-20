@@ -77,10 +77,10 @@ final class CrucibleInteriorRenderer {
                 poseStack,
                 buffers,
                 packedLight,
-                0.001f,
-                0.999f,
-                0.001f,
-                0.999f,
+                -0.999f,
+                1.999f,
+                -0.999f,
+                1.999f,
                 y);
     }
 

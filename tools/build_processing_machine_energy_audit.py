@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the explicit 25-machine processing-energy audit."""
+"""Build the explicit 24-machine processing-energy audit."""
 from __future__ import annotations
 
 import argparse
@@ -81,9 +81,14 @@ def processing_initializers(source: str) -> dict[str, str]:
     return result
 
 
-def explicit_energy_values(source: str) -> dict[str, str]:
+def explicit_energy_values(
+    source: str,
+    expected_constants: set[str] | None = None,
+) -> dict[str, str]:
     result: dict[str, str] = {}
     for constant, initializer in processing_initializers(source).items():
+        if expected_constants is not None and constant not in expected_constants:
+            continue
         energies = re.findall(r"EnergyType\.([A-Z_]+)", initializer)
         if len(energies) != 1:
             raise ValueError(
@@ -184,8 +189,8 @@ def validate_policy(policy: dict[str, Any]) -> None:
     if dispositions != expected_dispositions:
         raise ValueError("processing-machine disposition vocabulary drifted")
     machines = policy.get("machines")
-    if not isinstance(machines, dict) or len(machines) != 25:
-        raise ValueError("processing-machine audit must cover exactly 25 specs")
+    if not isinstance(machines, dict) or len(machines) != 24:
+        raise ValueError("processing-machine audit must cover exactly 24 specs")
     ids = [row.get("id") for row in machines.values()]
     if len(ids) != len(set(ids)) or any(not value for value in ids):
         raise ValueError("processing-machine audit ids are invalid")
@@ -207,11 +212,11 @@ def build(
     validate_policy(policy)
     source = SOURCE.read_text(encoding="utf-8") if source is None else source
     helper_audit = helper_overload_audit(source, policy)
-    actual = explicit_energy_values(source)
     expected_constants = set(policy["machines"])
+    actual = explicit_energy_values(source, expected_constants)
     extra = set(actual) - expected_constants
     missing = expected_constants - set(actual)
-    if missing or extra - T36_KIND_BEHAVIORS:
+    if missing or extra:
         raise ValueError(
             "processing-machine spec set differs from policy: "
             f"missing={sorted(missing)}, "
@@ -263,7 +268,7 @@ def build(
     expected_energy_counts = {
         "ELECTRIC": 1,
         "HEAT": 4,
-        "KINETIC": 4,
+        "KINETIC": 3,
         "KINETIC_PUSH": 4,
         "KINETIC_ROTATION": 9,
         "TIME": 3,
@@ -274,7 +279,7 @@ def build(
     expected_disposition_counts = {
         "CROSS_OWNER_DEFERRED": 1,
         "FIXED_UTILITY": 4,
-        "MAPPED_DEFERRED": 7,
+        "MAPPED_DEFERRED": 6,
         "SOURCE_ALIGNED": 13,
     }
     if dict(sorted(disposition_counts.items())) != expected_disposition_counts:

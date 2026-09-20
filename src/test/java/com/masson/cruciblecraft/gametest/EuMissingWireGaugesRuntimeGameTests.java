@@ -35,7 +35,7 @@ public final class EuMissingWireGaugesRuntimeGameTests {
                 ElectricalConductorCatalog.wires().size()
                         == ElectricalConductorCatalog.EXPECTED_WIRE_BLOCKS
                         && ElectricalConductorCatalog.EXPECTED_WIRE_BLOCKS
-                                == 434,
+                                == 473,
                 "missing-gauge wire census drifted: "
                         + ElectricalConductorCatalog.wires().size());
         var septuple = ElectricalConductorCatalog.require(

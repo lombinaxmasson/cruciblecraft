@@ -24,6 +24,7 @@ import com.masson.cruciblecraft.content.item.MaterialCasingBlockItem;
 import com.masson.cruciblecraft.content.item.MaterialItem;
 import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
 import com.masson.cruciblecraft.content.item.MaterialDustBlockItem;
+import com.masson.cruciblecraft.content.item.MaterialPlateStorageBlockItem;
 import com.masson.cruciblecraft.content.item.MaterialStorageBlockItem;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
 import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
@@ -32,6 +33,7 @@ import com.masson.cruciblecraft.content.item.RedstoneWireBlockItem;
 import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
 import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
+import com.masson.cruciblecraft.content.item.CoinItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
@@ -50,13 +52,12 @@ import com.masson.cruciblecraft.content.item.GtIndicatorFlowerItem;
 import com.masson.cruciblecraft.content.item.GtIndicatorGrassItem;
 import com.masson.cruciblecraft.content.item.GtSurfaceRockItem;
 import com.masson.cruciblecraft.content.item.OreMaterialBlockItem;
-import com.masson.cruciblecraft.content.item.PebbleBlockItem;
+import com.masson.cruciblecraft.content.item.RockBlockItem;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.SlicerOperandCatalog;
 import com.masson.cruciblecraft.content.item.PressureWasherOperandCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.BatteryCellItem;
-import com.masson.cruciblecraft.content.item.FlintKnifeItem;
 import com.masson.cruciblecraft.content.item.GeigerCounterItem;
 import com.masson.cruciblecraft.content.item.HazmatArmorItem;
 import com.masson.cruciblecraft.content.item.ElectroMeterItem;
@@ -111,6 +112,8 @@ import com.masson.cruciblecraft.content.item.SmithingHammerItem;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.item.UnknownMaterialItem;
 import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
+import com.masson.cruciblecraft.content.mold.CeramicMoldCatalog;
+import com.masson.cruciblecraft.content.mold.MoldRecipes;
 import com.masson.cruciblecraft.content.mold.MoldShape;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
@@ -141,7 +144,7 @@ public final class ModItems {
     public static final Map<String, DeferredItem<Item>> TOOL_PATTERNS =
             ToolPatternCatalog.registerAll(ITEMS);
     public static final Map<String, DeferredItem<Item>> GT_WOODS =
-            GtWoodCatalog.registerAll(ITEMS);
+            GtWoodCatalog.registerItems(ITEMS, ModBlocks.gtWoodBlocksById());
     private static final Map<String, DeferredItem<? extends Item>>
             MATERIAL_ITEMS = new LinkedHashMap<>();
     private static final Map<MaterialPrefix, DeferredItem<PrefixMaterialItem>>
@@ -218,6 +221,22 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem(
                     "laser_engraver",
                     ModBlocks.LASER_ENGRAVER);
+    public static final DeferredItem<BlockItem> AUTOMATIC_HAMMER =
+            ITEMS.registerSimpleBlockItem(
+                    "automatic_hammer",
+                    ModBlocks.AUTOMATIC_HAMMER);
+    public static final DeferredItem<BlockItem> STEEL_AUTOMATIC_HAMMER =
+            ITEMS.registerSimpleBlockItem(
+                    "steel_automatic_hammer",
+                    ModBlocks.STEEL_AUTOMATIC_HAMMER);
+    public static final DeferredItem<BlockItem> TITANIUM_AUTOMATIC_HAMMER =
+            ITEMS.registerSimpleBlockItem(
+                    "titanium_automatic_hammer",
+                    ModBlocks.TITANIUM_AUTOMATIC_HAMMER);
+    public static final DeferredItem<BlockItem> TUNGSTENSTEEL_AUTOMATIC_HAMMER =
+            ITEMS.registerSimpleBlockItem(
+                    "tungstensteel_automatic_hammer",
+                    ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER);
     public static final DeferredItem<BlockItem> FUSION_REACTOR =
             ITEMS.registerSimpleBlockItem(
                     "fusion_reactor",
@@ -323,20 +342,22 @@ public final class ModItems {
             ITEMS.registerSimpleItem("raw_ceramic_crucible", new Item.Properties());
     public static final DeferredItem<Item> RAW_CERAMIC_MOLD =
             ITEMS.registerSimpleItem("raw_ceramic_mold", new Item.Properties());
-    public static final DeferredItem<Item> RAW_INGOT_MOLD =
-            ITEMS.registerSimpleItem("raw_ingot_mold", new Item.Properties());
-    public static final DeferredItem<Item> RAW_PLATE_MOLD =
-            ITEMS.registerSimpleItem("raw_plate_mold", new Item.Properties());
-    public static final DeferredItem<Item> RAW_ROD_MOLD =
-            ITEMS.registerSimpleItem("raw_rod_mold", new Item.Properties());
-    public static final DeferredItem<Item> RAW_BOLT_MOLD =
-            ITEMS.registerSimpleItem("raw_bolt_mold", new Item.Properties());
+    private static final Map<String, DeferredItem<Item>> RAW_SHAPED_MOLDS =
+            registerRawShapedMolds();
+    public static final DeferredItem<Item> RAW_INGOT_MOLD = RAW_SHAPED_MOLDS.get("ingot");
+    public static final DeferredItem<Item> RAW_PLATE_MOLD = RAW_SHAPED_MOLDS.get("plate");
+    public static final DeferredItem<Item> RAW_ROD_MOLD = RAW_SHAPED_MOLDS.get("rod");
+    public static final DeferredItem<Item> RAW_BOLT_MOLD = RAW_SHAPED_MOLDS.get("bolt");
     public static final DeferredItem<CeramicMoldBlockItem> CERAMIC_MOLD =
             mold("ceramic_mold", 0);
-    public static final DeferredItem<CeramicMoldBlockItem> INGOT_MOLD = mold("ingot_mold", MoldShape.INGOT);
-    public static final DeferredItem<CeramicMoldBlockItem> PLATE_MOLD = mold("plate_mold", MoldShape.PLATE);
-    public static final DeferredItem<CeramicMoldBlockItem> ROD_MOLD = mold("rod_mold", MoldShape.ROD);
-    public static final DeferredItem<CeramicMoldBlockItem> BOLT_MOLD = mold("bolt_mold", MoldShape.BOLT);
+    private static final Map<String, DeferredItem<CeramicMoldBlockItem>> FIRED_SHAPED_MOLDS =
+            registerFiredShapedMolds();
+    private static final Map<Integer, DeferredItem<CeramicMoldBlockItem>> FIRED_MOLDS_BY_PATTERN =
+            firedMoldsByPattern();
+    public static final DeferredItem<CeramicMoldBlockItem> INGOT_MOLD = FIRED_SHAPED_MOLDS.get("ingot");
+    public static final DeferredItem<CeramicMoldBlockItem> PLATE_MOLD = FIRED_SHAPED_MOLDS.get("plate");
+    public static final DeferredItem<CeramicMoldBlockItem> ROD_MOLD = FIRED_SHAPED_MOLDS.get("rod");
+    public static final DeferredItem<CeramicMoldBlockItem> BOLT_MOLD = FIRED_SHAPED_MOLDS.get("bolt");
     public static final DeferredItem<Item> MATCH =
             ITEMS.registerSimpleItem("match", new Item.Properties());
     public static final DeferredItem<ProgrammedCircuitItem> PROGRAMMED_CIRCUIT =
@@ -758,8 +779,6 @@ public final class ModItems {
             tieredProcessingItem("bender");
     public static final DeferredItem<BlockItem> ASSEMBLER =
             tieredProcessingItem("assembler");
-    public static final DeferredItem<BlockItem> WELDER =
-            tieredProcessingItem("welder");
     public static final DeferredItem<BlockItem> PRESS =
             tieredProcessingItem("press");
     public static final DeferredItem<BlockItem> STEEL_PRESS =
@@ -974,12 +993,10 @@ public final class ModItems {
             ITEMS.register(
                     "material_pocket_multitool",
                     () -> new MaterialPocketMultitoolItem(new Item.Properties()));
-    public static final DeferredItem<FlintKnifeItem> FLINT_KNIFE =
-            ITEMS.register(
-                    "flint_knife",
-                    () -> new FlintKnifeItem(new Item.Properties()));
     public static final DeferredItem<UnknownMaterialItem> UNKNOWN_MATERIAL =
             ITEMS.register("unknown_material", () -> new UnknownMaterialItem(new Item.Properties()));
+    public static final DeferredItem<CoinItem> COIN =
+            ITEMS.register("coin", () -> new CoinItem(new Item.Properties()));
     public static final Map<String, DeferredItem<Item>> EMPTY_TOOL_HEADS =
             registerEmptyToolHeads();
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
@@ -1074,6 +1091,13 @@ public final class ModItems {
                             () -> new MaterialDustBlockItem(
                                     ModBlocks.dustBlock(material.id()).get(),
                                     new Item.Properties()));
+                } else if (ModBlocks.hasPlateStorageBlock(material.id())
+                        && form.equals(MaterialPrefixes.STORAGE_PLATE)) {
+                    item = ITEMS.register(
+                            registryName,
+                            () -> new MaterialPlateStorageBlockItem(
+                                    ModBlocks.plateStorageBlock(material.id()).get(),
+                                    new Item.Properties()));
                 } else if (ModBlocks.hasCasingBlock(material.id(), form)) {
                     item = ITEMS.register(
                             registryName,
@@ -1086,7 +1110,7 @@ public final class ModItems {
                                 .MaterialPrefixCatalog.require("rock"))) {
                     item = ITEMS.register(
                             registryName,
-                            () -> new PebbleBlockItem(
+                            () -> new RockBlockItem(
                                     ModBlocks.rockBlock(material.id()).get(),
                                     new Item.Properties()));
                 } else if (MaterialFormHosts.isPublicExchangePrefix(form)) {
@@ -1266,11 +1290,80 @@ public final class ModItems {
     }
 
     public static DeferredItem<CeramicMoldBlockItem> moldStackItem(int pattern) {
-        return MoldShape.fromMask(pattern).map(ModItems::moldItem).orElse(CERAMIC_MOLD);
+        DeferredItem<CeramicMoldBlockItem> named = FIRED_MOLDS_BY_PATTERN.get(
+                pattern & ((1 << MoldRecipes.CELL_COUNT) - 1));
+        return named != null ? named : CERAMIC_MOLD;
     }
 
-    private static DeferredItem<CeramicMoldBlockItem> mold(String id, MoldShape shape) {
-        return mold(id, shape.mask());
+    public static Collection<DeferredItem<Item>> rawShapedMolds() {
+        return RAW_SHAPED_MOLDS.values();
+    }
+
+    public static DeferredItem<Item> rawShapedMold(String id) {
+        DeferredItem<Item> item = RAW_SHAPED_MOLDS.get(id);
+        if (item == null) {
+            throw new IllegalArgumentException("Unknown raw mold " + id);
+        }
+        return item;
+    }
+
+    public static Collection<DeferredItem<CeramicMoldBlockItem>> firedShapedMolds() {
+        return FIRED_SHAPED_MOLDS.values();
+    }
+
+    public static DeferredItem<CeramicMoldBlockItem> firedShapedMold(String id) {
+        DeferredItem<CeramicMoldBlockItem> item = FIRED_SHAPED_MOLDS.get(id);
+        if (item == null) {
+            throw new IllegalArgumentException("Unknown fired mold " + id);
+        }
+        return item;
+    }
+
+    public static Item[] ceramicMoldItems() {
+        java.util.ArrayList<Item> items = new java.util.ArrayList<>();
+        items.add(CERAMIC_MOLD.get());
+        FIRED_SHAPED_MOLDS.values().forEach(item -> items.add(item.get()));
+        return items.toArray(Item[]::new);
+    }
+
+    public static Item[] rawClayMoldItems() {
+        java.util.ArrayList<Item> items = new java.util.ArrayList<>();
+        items.add(RAW_CERAMIC_MOLD.get());
+        RAW_SHAPED_MOLDS.values().forEach(item -> items.add(item.get()));
+        return items.toArray(Item[]::new);
+    }
+
+    private static Map<String, DeferredItem<Item>> registerRawShapedMolds() {
+        LinkedHashMap<String, DeferredItem<Item>> items = new LinkedHashMap<>();
+        for (CeramicMoldCatalog.Variant variant : CeramicMoldCatalog.SHAPED) {
+            items.put(
+                    variant.id(),
+                    ITEMS.registerSimpleItem(
+                            CeramicMoldCatalog.rawItemId(variant),
+                            new Item.Properties()));
+        }
+        return Map.copyOf(items);
+    }
+
+    private static Map<String, DeferredItem<CeramicMoldBlockItem>> registerFiredShapedMolds() {
+        LinkedHashMap<String, DeferredItem<CeramicMoldBlockItem>> items =
+                new LinkedHashMap<>();
+        for (CeramicMoldCatalog.Variant variant : CeramicMoldCatalog.SHAPED) {
+            items.put(
+                    variant.id(),
+                    mold(
+                            CeramicMoldCatalog.firedItemId(variant),
+                            variant.firedPattern()));
+        }
+        return Map.copyOf(items);
+    }
+
+    private static Map<Integer, DeferredItem<CeramicMoldBlockItem>> firedMoldsByPattern() {
+        LinkedHashMap<Integer, DeferredItem<CeramicMoldBlockItem>> items =
+                new LinkedHashMap<>();
+        FIRED_SHAPED_MOLDS.forEach((id, item) ->
+                items.put(CeramicMoldCatalog.require(id).firedPattern(), item));
+        return Map.copyOf(items);
     }
 
     private static DeferredItem<CeramicMoldBlockItem> mold(String id, int defaultPattern) {
@@ -2029,12 +2122,20 @@ public final class ModItems {
         LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
                 new LinkedHashMap<>();
         for (BathMteIdentityCatalog.Identity identity : BathMteIdentityCatalog.newItems()) {
-            DeferredItem<Item> item = ITEMS.register(
-                    identity.registryPath(),
-                    () -> new CatalogNamedItem(
-                            new Item.Properties(),
-                            identity.englishName(),
-                            identity.chineseName()));
+            DeferredItem<Item> item = identity.decorativePanel()
+                    ? ITEMS.register(
+                            identity.registryPath(),
+                            () -> new CatalogNamedBlockItem(
+                                    ModBlocks.bathPanelBlocksById().get(identity.id()).get(),
+                                    new Item.Properties(),
+                                    identity.englishName(),
+                                    identity.chineseName()))
+                    : ITEMS.register(
+                            identity.registryPath(),
+                            () -> new CatalogNamedItem(
+                                    new Item.Properties(),
+                                    identity.englishName(),
+                                    identity.chineseName()));
             if (items.put(identity.id(), item) != null) {
                 throw new IllegalStateException(
                         "Duplicate Bath MTE item " + identity.id());

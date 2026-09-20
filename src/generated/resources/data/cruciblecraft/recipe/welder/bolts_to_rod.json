@@ -1,0 +1,20 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.tag(\"PROCESSING.SMITHABLE\")"
+  ],
+  "duration": "64",
+  "eut": "16",
+  "item_inputs": [
+    {
+      "count": "4",
+      "prefix": "cruciblecraft:bolt"
+    }
+  ],
+  "item_outputs": [
+    {
+      "prefix": "cruciblecraft:rod"
+    }
+  ],
+  "target": "cruciblecraft:welder"
+}

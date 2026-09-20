@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.machine.component;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,6 +17,7 @@ import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.heat.CrucibleThermalModel;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.material.MaterialCatalog;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -189,6 +191,65 @@ class CrucibleProcessCoreTest {
     }
 
     @Test
+    void takeScrapGivesOnePieceWhenScrapFormIsLive() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        assertEquals(InsertResult.SUCCESS, fill(core, "iron", 1));
+        assertTrue(MaterialCatalog.isFormRegistered(
+                MaterialCatalog.require("iron"),
+                MaterialPrefixCatalog.require("scrap")));
+        int before = core.totalUnits();
+        Optional<CrucibleProcessCore.ScrapTake> scrap = core.takeScrap(1);
+        assertTrue(scrap.isPresent());
+        assertFalse(scrap.get().discardedRemainder());
+        assertEquals(1, scrap.get().count());
+        assertEquals(before - scrap.get().unitsRemoved(), core.totalUnits());
+    }
+
+    @Test
+    void takeScrapDiscardsRemainderSmallerThanOneScrap() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        int scrapUnits = MaterialPrefixCatalog.require("scrap").units();
+        core.contents().replace(Map.of("iron", scrapUnits - 1));
+        Optional<CrucibleProcessCore.ScrapTake> scrap = core.takeScrap(1);
+        assertTrue(scrap.isPresent());
+        assertTrue(scrap.get().discardedRemainder());
+        assertEquals(0, scrap.get().count());
+        assertEquals(scrapUnits - 1, scrap.get().unitsRemoved());
+        assertEquals(0, core.totalUnits());
+    }
+
+    @Test
+    void acceptMoldPourRetriesOneIngotWhenTheWholeStackDoesNotFit() {
+        CrucibleProcessCore dest = CrucibleProcessCore.singleBlock();
+        int ingot = MaterialPrefixes.INGOT.units();
+        assertEquals(InsertResult.SUCCESS, fill(dest, "copper", 15));
+        assertEquals(
+                ingot,
+                dest.acceptMoldPour("copper", 2 * ingot, 20.0F));
+        assertEquals(16 * ingot, dest.totalUnits());
+    }
+
+    @Test
+    void fillMoldAtSidePoursIntoAnotherCrucibleMoldHost() {
+        CrucibleProcessCore source = CrucibleProcessCore.singleBlock();
+        CrucibleProcessCore dest = CrucibleProcessCore.singleBlock();
+        int ingot = MaterialPrefixes.INGOT.units();
+        assertEquals(InsertResult.SUCCESS, fill(source, "copper", 2));
+        source.thermal().restore(
+                (float) MaterialCatalog.require("copper").thermal().meltingPoint()
+                        + 50.0F,
+                0L,
+                0L,
+                CrucibleThermalModel.HOT_BUFFER_TICKS,
+                false);
+        MoldHost pot = new CrucibleMold(dest);
+        assertTrue(source.fillMoldAtSide(pot, Direction.UP));
+        assertEquals(2 * ingot, dest.totalUnits());
+        assertEquals(0, source.totalUnits());
+        assertEquals(2 * ingot, dest.contents().units("copper"));
+    }
+
+    @Test
     void rainAddsWaterOnTheGt6Cadence() {
         CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
         assertTrue(MaterialCatalog.contains("water"));
@@ -253,6 +314,43 @@ class CrucibleProcessCoreTest {
                         MaterialPrefixes.INGOT,
                         Math.multiplyExact(MaterialPrefixes.INGOT.units(), count)),
                 CrucibleProcessCore.AMBIENT_TEMPERATURE);
+    }
+
+    private static final class CrucibleMold implements MoldHost {
+        private final CrucibleProcessCore process;
+
+        private CrucibleMold(CrucibleProcessCore process) {
+            this.process = process;
+        }
+
+        @Override
+        public boolean isMoldInputSide(Direction side) {
+            return side == Direction.UP;
+        }
+
+        @Override
+        public float moldMaxTemperatureCelsius() {
+            return process.casing().maxTemperature();
+        }
+
+        @Override
+        public int moldRequiredMaterialUnits() {
+            return 1;
+        }
+
+        @Override
+        public int fillMold(
+                String materialId, int availableUnits, float temperature, Direction side) {
+            if (!isMoldInputSide(side)) {
+                return 0;
+            }
+            return process.acceptMoldPour(materialId, availableUnits, temperature);
+        }
+
+        @Override
+        public ItemStack takeOutput(Player player, boolean causeDamage) {
+            return ItemStack.EMPTY;
+        }
     }
 
     private static final class RecordingMold implements MoldHost {

@@ -5,8 +5,8 @@ import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.TechnologicalPartCatalog;
 import com.masson.cruciblecraft.content.item.SlicerOperandCatalog;
 import com.masson.cruciblecraft.content.item.PressureWasherOperandCatalog;
-import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
+import com.masson.cruciblecraft.content.mold.CeramicMoldCatalog;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -24,14 +24,13 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         generatedImportedGt6("raw_ceramic_crucible");
         generatedImportedGt6("raw_ceramic_mold");
-        generatedImportedGt6("raw_ingot_mold");
-        generatedImportedGt6("raw_plate_mold");
-        generatedImportedGt6("raw_rod_mold");
-        generatedImportedGt6("raw_bolt_mold");
-        withExistingParent("ingot_mold", modLoc("block/ceramic_mold"));
-        withExistingParent("plate_mold", modLoc("block/ceramic_mold"));
-        withExistingParent("rod_mold", modLoc("block/ceramic_mold"));
-        withExistingParent("bolt_mold", modLoc("block/ceramic_mold"));
+        generatedImportedGt6("coin");
+        CeramicMoldCatalog.SHAPED.forEach(variant -> {
+            generatedImportedGt6(CeramicMoldCatalog.rawItemId(variant));
+            withExistingParent(
+                    CeramicMoldCatalog.firedItemId(variant),
+                    modLoc("block/ceramic_mold"));
+        });
         generatedCc("match");
         generatedCc("programmed_circuit");
         generatedCc("creosote_bucket");
@@ -102,13 +101,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedCc("unknown_material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 generatedCc(shape.registryPath()));
-        GtWoodCatalog.DEFINITIONS.forEach(wood ->
-                gtWood(wood.registryPath()));
+
         ToolPatternCatalog.DEFINITIONS.forEach(pattern ->
                 generatedCc(pattern.registryPath()));
         // layer0 = tinted metal head; later layers stay untinted except
         // wood-handle layer2 (stick / HANDLE_* iconsets).
-        tool("flint_knife", "knife", "knife_overlay");
         toolWithStick("smithing_hammer", "smithing_hammer", "smithing_hammer_overlay");
         toolWithStick("material_pickaxe", "pickaxe", "pickaxe_overlay");
         tool("material_file", "file", "file_overlay", "handle_file", "handle_file_overlay");
@@ -166,7 +163,7 @@ public class ModItemModelProvider extends ItemModelProvider {
             var conductor = holder.get().conductor();
             String specification = conductor.sourceSpecification();
             withExistingParent(
-                    conductor.registryName(),
+                    SlashItemModels.path(conductor.registryName()),
                     modLoc(
                             "conductor/"
                                     + specification.toLowerCase(
@@ -177,7 +174,9 @@ public class ModItemModelProvider extends ItemModelProvider {
                 "lu_fiber_cable",
                 modLoc("conductor/lu_fiber_cable_item"));
         for (var rod : com.masson.cruciblecraft.nuclear.ReactorRodCatalog.entries()) {
-            withExistingParent(rod.id().getPath(), mcLoc("item/generated"))
+            withExistingParent(
+                            SlashItemModels.path(rod.id().getPath()),
+                            mcLoc("item/generated"))
                     .texture("layer0", modLoc("item/gt6_import/reactor_rod"))
                     .texture(
                             "layer1",
@@ -202,20 +201,15 @@ public class ModItemModelProvider extends ItemModelProvider {
         ModBlocks.pipeBlocks().forEach(holder -> {
             var pipe = holder.get().pipe();
             String modelKey = pipe.kind().name().toLowerCase(
-                    java.util.Locale.ROOT) + "_" + pipe.width();
+                    java.util.Locale.ROOT) + "_" + pipe.textureKey();
             withExistingParent(
-                    pipe.registryName(),
+                    SlashItemModels.path(pipe.registryName()),
                     modLoc("pipe/" + modelKey + "_item"));
         });
     }
 
-    private void gtWood(String name) {
-        withExistingParent(name, mcLoc("item/generated"))
-                .texture("layer0", mcLoc("block/oak_planks"));
-    }
-
     private void generatedCc(String name) {
-        withExistingParent(name, mcLoc("item/generated"))
+        withExistingParent(SlashItemModels.path(name), mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/" + name));
     }
 
@@ -224,7 +218,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private void generatedImportedGt6(String name, String texture) {
-        withExistingParent(name, mcLoc("item/generated"))
+        withExistingParent(
+                        SlashItemModels.path(name), mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/gt6_import/" + texture));
     }
 

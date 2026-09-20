@@ -18,6 +18,7 @@ import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
+import com.masson.cruciblecraft.content.mold.CeramicMoldCatalog;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.machine.processing.DeviceMaterialCatalog;
@@ -94,7 +95,7 @@ public final class ModCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TOOL_HEADS =
             registerTab(
                     "tool_heads",
-                    () -> ModItems.FLINT_KNIFE.get().getDefaultInstance(),
+                    () -> ModItems.MATERIAL_KNIFE.get().variant("flint"),
                     ModCreativeTabs::fillToolHeads);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> FLUID_CELLS =
             registerTab(
@@ -231,6 +232,10 @@ public final class ModCreativeTabs {
             }
         });
         output.accept(ModItems.LASER_ENGRAVER.get());
+        output.accept(ModItems.AUTOMATIC_HAMMER.get());
+        output.accept(ModItems.STEEL_AUTOMATIC_HAMMER.get());
+        output.accept(ModItems.TITANIUM_AUTOMATIC_HAMMER.get());
+        output.accept(ModItems.TUNGSTENSTEEL_AUTOMATIC_HAMMER.get());
         output.accept(ModItems.FUSION_REACTOR.get());
         output.accept(ModItems.LARGE_HEAT_EXCHANGER.get());
         output.accept(ModItems.BEDROCK_DRILL.get());
@@ -249,7 +254,6 @@ public final class ModCreativeTabs {
         output.accept(ModItems.ROLLBENDER.get());
         output.accept(ModItems.BENDER.get());
         output.accept(ModItems.ASSEMBLER.get());
-        output.accept(ModItems.WELDER.get());
         output.accept(ModItems.MIXER.get());
         output.accept(ModItems.AUTOCLAVE.get());
         output.accept(ModItems.COMPRESSOR.get());
@@ -448,7 +452,6 @@ public final class ModCreativeTabs {
             CreativeModeTab.ItemDisplayParameters parameters,
             CreativeModeTab.Output output) {
         output.accept(ModItems.MATCH.get());
-        output.accept(ModItems.FLINT_KNIFE.get());
         ModItems.toolPatterns().forEach(pattern -> output.accept(pattern.get()));
         com.masson.cruciblecraft.content.item.ToolDisplayPlan.routedVariantStacks()
                 .forEach(output::accept);
@@ -491,15 +494,11 @@ public final class ModCreativeTabs {
     private static void acceptCeramicMolds(CreativeModeTab.Output output) {
         output.accept(ModItems.RAW_CERAMIC_CRUCIBLE.get());
         output.accept(ModItems.RAW_CERAMIC_MOLD.get());
-        output.accept(ModItems.RAW_INGOT_MOLD.get());
-        output.accept(ModItems.RAW_PLATE_MOLD.get());
-        output.accept(ModItems.RAW_ROD_MOLD.get());
-        output.accept(ModItems.RAW_BOLT_MOLD.get());
+        CeramicMoldCatalog.SHAPED.forEach(variant ->
+                output.accept(ModItems.rawShapedMold(variant.id()).get()));
         output.accept(ModItems.CERAMIC_MOLD.get());
-        output.accept(ModItems.INGOT_MOLD.get());
-        output.accept(ModItems.PLATE_MOLD.get());
-        output.accept(ModItems.ROD_MOLD.get());
-        output.accept(ModItems.BOLT_MOLD.get());
+        CeramicMoldCatalog.SHAPED.forEach(variant ->
+                output.accept(ModItems.firedShapedMold(variant.id()).get()));
     }
 
     private static boolean machinesTabMte(MteInPlaceSpec spec) {

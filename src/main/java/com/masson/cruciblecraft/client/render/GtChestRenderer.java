@@ -38,8 +38,26 @@ public final class GtChestRenderer {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "gt6_chest"),
             "main");
+    /**
+     * GT6 {@code COMPASS_FROM_SIDE}: D,U,N,S,W,E. {@code * 90 - 180} is the
+     * TESR yaw; vanilla {@code toYRot() - 180} is 180° off this table.
+     */
+    private static final int[] COMPASS_FROM_SIDE = {0, 0, 0, 2, 3, 1, 0, 0};
+    /**
+     * GT6 {@code ITEM_CHEST_FACING} is NORTH so the latch faces the camera.
+     */
+    private static final Direction ITEM_FACING = Direction.NORTH;
+    private static ItemRenderer itemRendererInstance;
 
     private GtChestRenderer() {}
+
+    public static BlockEntityWithoutLevelRenderer itemRenderer() {
+        if (itemRendererInstance == null) {
+            itemRendererInstance = new ItemRenderer(
+                    new Model(Minecraft.getInstance().getEntityModels().bakeLayer(LAYER)));
+        }
+        return itemRendererInstance;
+    }
 
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = new MeshDefinition();
@@ -178,10 +196,11 @@ public final class GtChestRenderer {
     }
 
     private static float yRotation(Direction facing) {
-        if (facing.getAxis().isVertical()) {
-            facing = Direction.NORTH;
+        int side = facing.get3DDataValue();
+        if (side < 0 || side >= COMPASS_FROM_SIDE.length) {
+            side = Direction.NORTH.get3DDataValue();
         }
-        return facing.toYRot() - 180.0F;
+        return COMPASS_FROM_SIDE[side] * 90.0F - 180.0F;
     }
 
     public static final class ItemRenderer extends BlockEntityWithoutLevelRenderer {
@@ -216,7 +235,7 @@ public final class GtChestRenderer {
             render(
                     model,
                     block.spec(),
-                    Direction.NORTH,
+                    ITEM_FACING,
                     poseStack,
                     buffers,
                     packedLight,

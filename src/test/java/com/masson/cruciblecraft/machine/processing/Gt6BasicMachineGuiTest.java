@@ -57,6 +57,26 @@ class Gt6BasicMachineGuiTest {
     }
 
     @Test
+    void welderNineInputsFillGt6ThreeByThreeGrid() {
+        Gt6BasicMachineGui.Layout layout = Gt6BasicMachineGui.layout(
+                9, 1, 1, 0, 9, 1, 1, 0, -1);
+        assertEquals(
+                List.of(
+                        slot(17, 7),
+                        slot(35, 7),
+                        slot(53, 7),
+                        slot(17, 25),
+                        slot(35, 25),
+                        slot(53, 25),
+                        slot(17, 43),
+                        slot(35, 43),
+                        slot(53, 43),
+                        slot(107, 25)),
+                layout.itemSlots());
+        assertEquals(List.of(tank(0, 53, 63)), layout.tanks());
+    }
+
+    @Test
     void smelterUsesLargerOutputGridWhenCcHasMoreSlots() {
         Gt6BasicMachineGui.Layout layout = Gt6BasicMachineGui.layout(
                 1, 1, 1, 1, 1, 4, 0, 1, -1);

@@ -751,7 +751,8 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             return 0;
         }
         BlockPos dest = faucetDestination();
-        if (level.getBlockEntity(dest) instanceof MoldHost mold) {
+        MoldHost mold = MoldHost.at(level, dest);
+        if (mold != null) {
             return mold.moldRequiredMaterialUnits();
         }
         return 0;
@@ -776,7 +777,8 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             return 0;
         }
         BlockPos dest = faucetDestination();
-        if (level.getBlockEntity(dest) instanceof MoldHost mold) {
+        MoldHost mold = MoldHost.at(level, dest);
+        if (mold != null) {
             return mold.fillMold(materialId, availableUnits, temperature, Direction.UP);
         }
         return 0;
@@ -798,11 +800,20 @@ public final class MteInPlaceBlockEntity extends BlockEntity
 
     private BlockPos faucetDestination() {
         BlockPos dest = worldPosition.below();
-        while (level != null
-                && dest.getY() > level.getMinBuildHeight()
-                && level.getBlockEntity(dest) instanceof MteInPlaceBlockEntity other
-                && other.spec().kind() == MteInPlaceKind.FAUCET) {
-            dest = dest.below();
+        while (level != null && dest.getY() > level.getMinBuildHeight()) {
+            if (level.getBlockEntity(dest) instanceof MteInPlaceBlockEntity other
+                    && other.spec().kind() == MteInPlaceKind.FAUCET) {
+                dest = dest.below();
+                continue;
+            }
+            if (MoldHost.at(level, dest) != null) {
+                break;
+            }
+            if (level.getBlockState(dest).getCollisionShape(level, dest).isEmpty()) {
+                dest = dest.below();
+                continue;
+            }
+            break;
         }
         return dest;
     }

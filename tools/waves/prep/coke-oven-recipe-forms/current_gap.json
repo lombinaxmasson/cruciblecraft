@@ -1,0 +1,338 @@
+{
+  "blocked": 16,
+  "capability_slug": "machines/coke-oven",
+  "domain": "coke_oven_recipes",
+  "rows": [
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:coal/chunk",
+          "gt": "chunkGt(MT.Coal)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"chunkGt(MT.Coal)\"",
+      "stable_id": "coke_oven/coal_chunk",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:777"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:coal/billet",
+          "gt": "billet(MT.Coal)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"billet(MT.Coal)\"",
+      "stable_id": "coke_oven/coal_billet",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:778"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:coal_coke/chunk",
+          "gt": "chunkGt(MT.CoalCoke)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"chunkGt(MT.CoalCoke)\"",
+      "stable_id": "coke_oven/coal_coke_chunk",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:783"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:coal/tiny_washed_crushed_ore",
+          "gt": "crushedPurifiedTiny(MT.Coal)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"crushedPurifiedTiny(MT.Coal)\"",
+      "stable_id": "coke_oven/coal_tiny_washed_crushed_ore",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:784"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:coal/tiny_centrifuged_crushed_ore",
+          "gt": "crushedCentrifugedTiny(MT.Coal)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"crushedCentrifugedTiny(MT.Coal)\"",
+      "stable_id": "coke_oven/coal_tiny_centrifuged_crushed_ore",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:786"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:lignite/chunk",
+          "gt": "chunkGt(MT.Lignite)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"chunkGt(MT.Lignite)\"",
+      "stable_id": "coke_oven/lignite_chunk",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:793"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:lignite/billet",
+          "gt": "billet(MT.Lignite)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"billet(MT.Lignite)\"",
+      "stable_id": "coke_oven/lignite_billet",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:794"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:lignite/tiny_washed_crushed_ore",
+          "gt": "crushedPurifiedTiny(MT.Lignite)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"crushedPurifiedTiny(MT.Lignite)\"",
+      "stable_id": "coke_oven/lignite_tiny_washed_crushed_ore",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:800"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:lignite_coke/chunk",
+          "gt": "chunkGt(MT.LigniteCoke)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"chunkGt(MT.LigniteCoke)\"",
+      "stable_id": "coke_oven/lignite_coke_chunk",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:799"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:lignite/tiny_centrifuged_crushed_ore",
+          "gt": "crushedCentrifugedTiny(MT.Lignite)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"crushedCentrifugedTiny(MT.Lignite)\"",
+      "stable_id": "coke_oven/lignite_tiny_centrifuged_crushed_ore",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:802"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:oil_shale/tiny_washed_crushed_ore",
+          "gt": "crushedPurifiedTiny(MT.Oilshale)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"crushedPurifiedTiny(MT.Oilshale)\"",
+      "stable_id": "coke_oven/oil_shale_tiny_washed_crushed_ore",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:812"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:oil_shale/tiny_centrifuged_crushed_ore",
+          "gt": "crushedCentrifugedTiny(MT.Oilshale)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"crushedCentrifugedTiny(MT.Oilshale)\"",
+      "stable_id": "coke_oven/oil_shale_tiny_centrifuged_crushed_ore",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:814"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:oil_shale/storage_dust",
+          "gt": "blockDust(MT.Oilshale)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"blockDust(MT.Oilshale)\"",
+      "stable_id": "coke_oven/oil_shale_storage_dust",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:815"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": null,
+          "gt": "IL.Pellet_Wood",
+          "kind": "il_named",
+          "reason": "unmapped_il",
+          "recheck": "python tools/gt6_resolve.py \"IL.Pellet_Wood\" after the IL identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        },
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": "cruciblecraft:charcoal/chunk",
+          "gt": "chunkGt(MT.Charcoal)",
+          "kind": "prefix_material",
+          "reason": "missing_form",
+          "recheck": "python tools/gt6_resolve.py on this token after the missing form exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"IL.Pellet_Wood\"",
+      "stable_id": "coke_oven/wood_pellet",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/items/MultiItemRandomTools.java:418"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": null,
+          "gt": "blockRaw(MT.Coal)",
+          "kind": "prefix_material",
+          "reason": "unmapped",
+          "recheck": "python tools/gt6_resolve.py \"blockRaw(MT.Coal)\" after the prefix is mapped. Do not substitute.",
+          "resolve_status": "unmapped",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"blockRaw(MT.Coal)\"",
+      "stable_id": "coke_oven/coal_block_raw",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:787"
+    },
+    {
+      "blocker_id": "registry/material-form-demand-census",
+      "missing": [
+        {
+          "blocker_id": "registry/material-form-demand-census",
+          "cc": null,
+          "gt": "blockRaw(MT.Lignite)",
+          "kind": "prefix_material",
+          "reason": "unmapped",
+          "recheck": "python tools/gt6_resolve.py \"blockRaw(MT.Lignite)\" after the prefix is mapped. Do not substitute.",
+          "resolve_status": "unmapped",
+          "slot": "coke_oven",
+          "status": "explicitly_blocked"
+        }
+      ],
+      "reason": "operand_blocked",
+      "recheck": "python tools/gt6_resolve.py \"blockRaw(MT.Lignite)\"",
+      "stable_id": "coke_oven/lignite_block_raw",
+      "source": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:803"
+    }
+  ]
+}

@@ -4,10 +4,19 @@
   "title": "CrucibleCraft processing kind acquisition and language",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "source_revision", "kinds", "material_lang"],
+  "required": [
+    "schema_version",
+    "source_revision",
+    "kinds",
+    "material_lang"
+  ],
   "properties": {
-    "$schema": { "type": "string" },
-    "schema_version": { "const": 1 },
+    "$schema": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    },
     "source_revision": {
       "const": "3703e40308c8c030763fd6297dea8b210d2a77b1"
     },
@@ -48,12 +57,26 @@
               "nanofab",
               "oven",
               "bath",
-              "none"
+              "none",
+              "squeezer",
+              "laser_engraver",
+              "laser_welder"
             ]
           },
-          "lang_key_zh": { "type": "string", "minLength": 1 },
-          "lang_key_en": { "type": "string", "minLength": 1 },
-          "display_group": { "enum": ["kinetic", "heat"] }
+          "lang_key_zh": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lang_key_en": {
+            "type": "string",
+            "minLength": 1
+          },
+          "display_group": {
+            "enum": [
+              "kinetic",
+              "heat"
+            ]
+          }
         }
       }
     },
@@ -62,10 +85,19 @@
       "additionalProperties": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["lang_key_zh", "lang_key_en"],
+        "required": [
+          "lang_key_zh",
+          "lang_key_en"
+        ],
         "properties": {
-          "lang_key_zh": { "type": "string", "minLength": 1 },
-          "lang_key_en": { "type": "string", "minLength": 1 }
+          "lang_key_zh": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lang_key_en": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     }

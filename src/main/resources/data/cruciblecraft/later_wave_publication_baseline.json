@@ -1,7 +1,105 @@
 {
-  "schema_version": 1,
-  "status": "LATER_WAVE_PUBLICATION_BASELINE",
   "baseline": "recipe_expansion",
+  "delta_ledger_policy": {
+    "base_eager": 16650,
+    "contract": "GameTest eager assertion MUST equal base_eager + sum(registered_deltas[*].eager). Any new delta registration must include per-family evidence.",
+    "current_eager": 20899,
+    "current_lazy": 2225,
+    "current_logical": 23124,
+    "registered_deltas": [
+      {
+        "eager": 4,
+        "evidence": "src/main/resources/data/cruciblecraft/chemical_publication_baseline.json",
+        "lazy": 0,
+        "logical": 4,
+        "phase": "chemical"
+      },
+      {
+        "eager": 3,
+        "evidence": "src/main/resources/data/cruciblecraft/fluid_publication_baseline.json",
+        "lazy": 0,
+        "logical": 3,
+        "phase": "fluid"
+      },
+      {
+        "eager": 0,
+        "evidence": "src/main/resources/data/cruciblecraft/recipe_expansion_publication_baseline.json",
+        "lazy": 0,
+        "logical": 0,
+        "phase": "recipe_expansion"
+      },
+      {
+        "eager": 205,
+        "evidence": "src/main/resources/data/cruciblecraft/later_wave_publication_baseline.json",
+        "lazy": 0,
+        "logical": 205,
+        "phase": "wire_cutter"
+      },
+      {
+        "eager": 59,
+        "evidence": "distillery extra-heavy/heavy/light/medium, FM.Engine/FM.Burn registered-identity remainder, 4 spring-oil generifier, coke oven Java subset",
+        "lazy": 0,
+        "logical": 59,
+        "phase": "hydrocarbon_coke_remainder"
+      },
+      {
+        "eager": 3963,
+        "evidence": "machines/hammer-squeezer-laser: GT6 AnvilBend/Welder/Laser/Squeezer Java handlers",
+        "lazy": 0,
+        "logical": 3963,
+        "phase": "hammer_squeezer_laser_maps"
+      },
+      {
+        "eager": 15,
+        "evidence": "machines/hammer-squeezer-laser: dump gt.recipe.squeezer selected exact non-plant rows; plant_gt_* ignored until crop-breeding obtain",
+        "lazy": 0,
+        "logical": 15,
+        "phase": "squeezer_dump"
+      }
+    ]
+  },
+  "emi_enumeration_contract": "Every logical RecipeMap entry from each configured processing map is enumerated exactly once under its stable machine category and recipe id.",
+  "emi_recipe_map_ids": [
+    "cruciblecraft:assembler",
+    "cruciblecraft:autoclave",
+    "cruciblecraft:bath",
+    "cruciblecraft:bender",
+    "cruciblecraft:centrifuge",
+    "cruciblecraft:compressor",
+    "cruciblecraft:cutter",
+    "cruciblecraft:distillery",
+    "cruciblecraft:drying",
+    "cruciblecraft:electrolyzer",
+    "cruciblecraft:extruder",
+    "cruciblecraft:generifier",
+    "cruciblecraft:lathe",
+    "cruciblecraft:mixer",
+    "cruciblecraft:mortar",
+    "cruciblecraft:press",
+    "cruciblecraft:rollbender",
+    "cruciblecraft:rollingmill",
+    "cruciblecraft:shredder",
+    "cruciblecraft:sifter",
+    "cruciblecraft:sluice",
+    "cruciblecraft:smelter",
+    "cruciblecraft:welder",
+    "cruciblecraft:wiremill"
+  ],
+  "later_wave_publication_delta": {
+    "eager_rows_added": 4269,
+    "emi_recipe_map_ids_unchanged": true,
+    "evidence": "T4 wire cutter family: t4/assembler/wire_cutter/{metal,gem} x 205 eligible materials; tools/pattern/wire_cutter.json shaped recipe; fusion/ 18 GT6 RM.Fusion rows; hydrocarbon remainder: 4 distillery + 5 fuels_engine + 22 fuels_gas/FM.Burn + 4 spring-oil generifier + 24 coke_oven Java rows; small gas turbine FM.Gas: hydrocarbon/fuels_gas_turbine x 9; hammer-squeezer-laser Java maps: anvil_bend_big/small SMITHABLE handlers, welder prefix handlers, ANY.Cu laser foil rows, squeezer latex Java rows; squeezer dump selected exact non-plant rows; plant_gt_* ignored until crop-breeding obtain",
+    "gt_recipe_rows_added": 4269,
+    "lazy_rows_added": 0,
+    "logical_rows_added": 4269,
+    "recipe_map_ids_unchanged": true,
+    "vanilla_datapack_entries_added": 1
+  },
+  "publication_totals": {
+    "eager_rows": 16650,
+    "lazy_rows": 2225,
+    "logical_rows": 18875
+  },
   "recipe_map_ids": [
     "cruciblecraft:anvil",
     "cruciblecraft:anvil_bend_big",
@@ -36,90 +134,6 @@
     "cruciblecraft:welder",
     "cruciblecraft:wiremill"
   ],
-  "publication_totals": {
-    "logical_rows": 18875,
-    "eager_rows": 16650,
-    "lazy_rows": 2225
-  },
-  "later_wave_publication_delta": {
-    "logical_rows_added": 291,
-    "eager_rows_added": 291,
-    "lazy_rows_added": 0,
-    "recipe_map_ids_unchanged": true,
-    "emi_recipe_map_ids_unchanged": true,
-    "gt_recipe_rows_added": 291,
-    "vanilla_datapack_entries_added": 1,
-    "evidence": "T4 wire cutter family: t4/assembler/wire_cutter/{metal,gem} x 205 eligible materials; tools/pattern/wire_cutter.json shaped recipe; fusion/ 18 GT6 RM.Fusion rows; hydrocarbon remainder: 4 distillery + 5 fuels_engine + 22 fuels_gas/FM.Burn + 4 spring-oil generifier + 24 coke_oven Java rows; small gas turbine FM.Gas: hydrocarbon/fuels_gas_turbine x 9"
-  },
-  "emi_recipe_map_ids": [
-    "cruciblecraft:assembler",
-    "cruciblecraft:autoclave",
-    "cruciblecraft:bath",
-    "cruciblecraft:bender",
-    "cruciblecraft:centrifuge",
-    "cruciblecraft:compressor",
-    "cruciblecraft:cutter",
-    "cruciblecraft:distillery",
-    "cruciblecraft:drying",
-    "cruciblecraft:electrolyzer",
-    "cruciblecraft:extruder",
-    "cruciblecraft:generifier",
-    "cruciblecraft:lathe",
-    "cruciblecraft:mixer",
-    "cruciblecraft:mortar",
-    "cruciblecraft:press",
-    "cruciblecraft:rollbender",
-    "cruciblecraft:rollingmill",
-    "cruciblecraft:shredder",
-    "cruciblecraft:sifter",
-    "cruciblecraft:sluice",
-    "cruciblecraft:smelter",
-    "cruciblecraft:welder",
-    "cruciblecraft:wiremill"
-  ],
-  "emi_enumeration_contract": "Every logical RecipeMap entry from each configured processing map is enumerated exactly once under its stable machine category and recipe id.",
-  "delta_ledger_policy": {
-    "base_eager": 16650,
-    "contract": "GameTest eager assertion MUST equal base_eager + sum(registered_deltas[*].eager). Any new delta registration must include per-family evidence.",
-    "current_eager": 16921,
-    "current_lazy": 2225,
-    "current_logical": 19146,
-    "registered_deltas": [
-      {
-        "logical": 4,
-        "eager": 4,
-        "lazy": 0,
-        "evidence": "src/main/resources/data/cruciblecraft/chemical_publication_baseline.json",
-        "phase": "chemical"
-      },
-      {
-        "logical": 3,
-        "eager": 3,
-        "lazy": 0,
-        "evidence": "src/main/resources/data/cruciblecraft/fluid_publication_baseline.json",
-        "phase": "fluid"
-      },
-      {
-        "logical": 0,
-        "eager": 0,
-        "lazy": 0,
-        "evidence": "src/main/resources/data/cruciblecraft/recipe_expansion_publication_baseline.json",
-        "phase": "recipe_expansion"
-      },
-      {
-        "logical": 205,
-        "eager": 205,
-        "lazy": 0,
-        "evidence": "src/main/resources/data/cruciblecraft/later_wave_publication_baseline.json",
-        "phase": "wire_cutter"
-      },
-      {
-        "logical": 59,
-        "eager": 59,
-        "lazy": 0,
-        "evidence": "distillery extra-heavy/heavy/light/medium, FM.Engine/FM.Burn registered-identity remainder, 4 spring-oil generifier, coke oven Java subset",
-        "phase": "hydrocarbon_coke_remainder"
-      }
-    ]
-  }
+  "schema_version": 1,
+  "status": "LATER_WAVE_PUBLICATION_BASELINE"
 }

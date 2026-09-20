@@ -1,0 +1,24 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.tag(\"PROCESSING.SMITHABLE\")"
+  ],
+  "duration": "1040",
+  "eut": "64",
+  "item_inputs": [
+    {
+      "count": "6",
+      "prefix": "cruciblecraft:quadruple_plate"
+    },
+    {
+      "count": "2",
+      "prefix": "cruciblecraft:long_rod"
+    }
+  ],
+  "item_outputs": [
+    {
+      "prefix": "cruciblecraft:machine_casing_quadruple"
+    }
+  ],
+  "target": "cruciblecraft:welder"
+}

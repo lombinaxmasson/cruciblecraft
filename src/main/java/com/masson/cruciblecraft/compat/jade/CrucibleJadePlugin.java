@@ -9,6 +9,8 @@ import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
 import com.masson.cruciblecraft.content.block.RockBlock;
+import com.masson.cruciblecraft.content.item.MaterialFormItem;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
@@ -60,9 +62,12 @@ import com.masson.cruciblecraft.energy.transformer.TransformerBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
 
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.fluids.FluidStack;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.IServerDataProvider;
@@ -744,6 +749,13 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                     "jade.cruciblecraft.converter.buffer",
                     fieldLong(observation.bufferStored()),
                     fieldLong(observation.bufferCapacity())));
+            for (ConverterObservation.Tank tank : observation.tanks()) {
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.converter.tank",
+                        tankFluidName(tank),
+                        tank.amount(),
+                        tank.capacity()));
+            }
         }
 
         @Override
@@ -779,6 +791,23 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
             return Component.translatable("jade.cruciblecraft.unavailable");
         }
         return Component.literal(field.value());
+    }
+
+    private static Component tankFluidName(ConverterObservation.Tank tank) {
+        if (tank.fluidId().isBlank() || tank.amount() <= 0) {
+            return Component.translatable(
+                    "jade.cruciblecraft.converter.tank_empty");
+        }
+        ResourceLocation id = ResourceLocation.tryParse(tank.fluidId());
+        if (id == null) {
+            return Component.literal(tank.fluidId());
+        }
+        var fluid = BuiltInRegistries.FLUID.get(id);
+        if (fluid == Fluids.EMPTY) {
+            return Component.literal(tank.fluidId());
+        }
+        return new FluidStack(fluid, Math.max(1, tank.amount()))
+                .getHoverName();
     }
 
     private static Component fieldBool(ObservationField<Boolean> field) {
@@ -869,7 +898,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                         cokeOven.recipeDuration()));
             }
             tooltip.add(Component.translatable(
-                    "jade.cruciblecraft.coke_oven.creosote",
+                    "jade.cruciblecraft.coke_oven.fluid",
                     cokeOven.creosoteAmount(),
                     CokeOvenBlockEntity.TANK_CAPACITY));
         }
@@ -997,8 +1026,9 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
             }
             tooltip.add(Component.translatable(
                     "tooltip.cruciblecraft.surface_rock.material",
-                    Component.translatable(
-                            "material.cruciblecraft." + rock.materialId())));
+                    MaterialFormItem.formName(
+                            rock.materialId(),
+                            MaterialPrefixCatalog.require("rock"))));
         }
 
         @Override

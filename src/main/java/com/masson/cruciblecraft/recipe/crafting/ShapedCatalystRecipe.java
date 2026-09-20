@@ -36,6 +36,10 @@ import net.minecraft.world.level.Level;
  * requires a 3x3 crafting table; a shrunk 2-column grid can still match in a
  * player 2x2 because vanilla {@code getRecipeFor} does not consult
  * {@link #canCraftInDimensions}.
+ *
+ * <p>{@code mirrored} is GT6 {@code CR.DEF_MIR}: horizontal flip of the
+ * occupied pattern is accepted. Default false matches {@code CR.DEF} /
+ * {@code CR.DEF_NCC}.
  */
 public final class ShapedCatalystRecipe implements CraftingRecipe {
     public static final MapCodec<ShapedCatalystRecipe> CODEC =
@@ -51,13 +55,16 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
                             .forGetter(ShapedCatalystRecipe::catalysts),
                     PrefixMaterialItemCodecs.ITEM_STACK
                             .fieldOf("result")
-                            .forGetter(ShapedCatalystRecipe::result))
+                            .forGetter(ShapedCatalystRecipe::result),
+                    Codec.BOOL.optionalFieldOf("mirrored", false)
+                            .forGetter(ShapedCatalystRecipe::mirrored))
                     .apply(instance, ShapedCatalystRecipe::new));
 
     private final List<String> pattern;
     private final Map<String, Ingredient> ingredients;
     private final Map<String, Ingredient> catalysts;
     private final ItemStack result;
+    private final boolean mirrored;
     private final Occupied occupied;
 
     public ShapedCatalystRecipe(
@@ -65,6 +72,15 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
             Map<String, Ingredient> ingredients,
             Map<String, Ingredient> catalysts,
             ItemStack result) {
+        this(pattern, ingredients, catalysts, result, false);
+    }
+
+    public ShapedCatalystRecipe(
+            List<String> pattern,
+            Map<String, Ingredient> ingredients,
+            Map<String, Ingredient> catalysts,
+            ItemStack result,
+            boolean mirrored) {
         if ((pattern.size() != 2 && pattern.size() != 3)
                 || pattern.stream().anyMatch(row -> row.length() != 3)) {
             throw new IllegalArgumentException(
@@ -74,6 +90,7 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
         this.ingredients = Map.copyOf(new LinkedHashMap<>(ingredients));
         this.catalysts = Map.copyOf(new LinkedHashMap<>(catalysts));
         this.result = result.copy();
+        this.mirrored = mirrored;
         this.occupied = Occupied.of(this.pattern);
         validateSymbols();
     }
@@ -94,29 +111,14 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
         return result.copy();
     }
 
+    public boolean mirrored() {
+        return mirrored;
+    }
+
     @Override
     public boolean matches(CraftingInput input, Level level) {
-        if (input.width() != occupied.width()
-                || input.height() != occupied.height()) {
-            return false;
-        }
-        for (int row = 0; row < occupied.height(); row++) {
-            String line = pattern.get(occupied.minRow() + row);
-            for (int column = 0; column < occupied.width(); column++) {
-                String symbol = String.valueOf(
-                        line.charAt(occupied.minColumn() + column));
-                Ingredient ingredient = ingredientFor(symbol);
-                ItemStack stack = input.getItem(row * input.width() + column);
-                if (ingredient == null) {
-                    if (!stack.isEmpty()) {
-                        return false;
-                    }
-                } else if (!ingredient.test(stack)) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return matchesOrientation(input, false)
+                || (mirrored && matchesOrientation(input, true));
     }
 
     @Override
@@ -126,10 +128,19 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
         return result.copy();
     }
 
+    /**
+     * Catalyst slots keep the worn tool. EMI's vanilla wrapper probes a
+     * padded 3×3 then indexes remainders with 3-column math on
+     * {@link CraftingInput#of}'s shrunk box, so the list is always at least
+     * 9 slots.
+     */
     @Override
     public NonNullList<ItemStack> getRemainingItems(CraftingInput input) {
         NonNullList<ItemStack> remaining =
-                NonNullList.withSize(input.size(), ItemStack.EMPTY);
+                NonNullList.withSize(Math.max(input.size(), 9), ItemStack.EMPTY);
+        boolean flip = mirrored
+                && !matchesOrientation(input, false)
+                && matchesOrientation(input, true);
         if (input.width() != occupied.width()
                 || input.height() != occupied.height()) {
             return remaining;
@@ -138,7 +149,7 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
             String line = pattern.get(occupied.minRow() + row);
             for (int column = 0; column < occupied.width(); column++) {
                 String symbol = String.valueOf(
-                        line.charAt(occupied.minColumn() + column));
+                        line.charAt(patternColumn(column, flip)));
                 if (catalysts.containsKey(symbol)) {
                     int index = row * input.width() + column;
                     remaining.set(
@@ -189,6 +200,37 @@ public final class ShapedCatalystRecipe implements CraftingRecipe {
     @Override
     public CraftingBookCategory category() {
         return CraftingBookCategory.MISC;
+    }
+
+    private boolean matchesOrientation(CraftingInput input, boolean flip) {
+        if (input.width() != occupied.width()
+                || input.height() != occupied.height()) {
+            return false;
+        }
+        for (int row = 0; row < occupied.height(); row++) {
+            String line = pattern.get(occupied.minRow() + row);
+            for (int column = 0; column < occupied.width(); column++) {
+                String symbol = String.valueOf(
+                        line.charAt(patternColumn(column, flip)));
+                Ingredient ingredient = ingredientFor(symbol);
+                ItemStack stack = input.getItem(row * input.width() + column);
+                if (ingredient == null) {
+                    if (!stack.isEmpty()) {
+                        return false;
+                    }
+                } else if (!ingredient.test(stack)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private int patternColumn(int inputColumn, boolean flip) {
+        int offset = flip
+                ? occupied.width() - 1 - inputColumn
+                : inputColumn;
+        return occupied.minColumn() + offset;
     }
 
     private Ingredient ingredientFor(String symbol) {

@@ -51,7 +51,7 @@ public final class MassStoragePrefixUnits {
                     MaterialPrefixes.PENTADECUPLE_WIRE,
                     MaterialPrefixes.HEXADECUPLE_WIRE),
             Set.of(MaterialPrefixes.GEM, MaterialPrefixes.BLOCK),
-            Set.of(MaterialPrefixes.PLATE, MaterialPrefixes.BLOCK),
+            Set.of(MaterialPrefixes.PLATE, MaterialPrefixes.STORAGE_PLATE),
             Set.of(MaterialPrefixes.PLATE_GEM, MaterialPrefixes.TINY_PLATE_GEM),
             Set.of(
                     MaterialPrefixes.CRUSHED_ORE,
@@ -148,7 +148,8 @@ public final class MassStoragePrefixUnits {
                     MaterialPrefixes.GEM,
                     partialUnits / Math.max(1, MaterialPrefixes.GEM.units()));
         }
-        if (family.contains(MaterialPrefixes.PLATE)) {
+        if (family.contains(MaterialPrefixes.PLATE)
+                || family.contains(MaterialPrefixes.STORAGE_PLATE)) {
             return tryMaterial(
                     materialId,
                     MaterialPrefixes.PLATE,

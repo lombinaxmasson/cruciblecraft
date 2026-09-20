@@ -23,6 +23,8 @@ public final class LargeCrucibleRenderer
         if (!crucible.structureValid() || crucible.pluginQuarantined()) {
             return;
         }
+        LargeCrucibleHullRenderer.render(
+                crucible, poseStack, buffers, packedLight);
         CrucibleInteriorRenderer.renderLarge(
                 crucible.process(),
                 crucible.temperature(),
@@ -34,12 +36,12 @@ public final class LargeCrucibleRenderer
     @Override
     public AABB getRenderBoundingBox(LargeCrucibleBlockEntity crucible) {
         return new AABB(
-                crucible.getBlockPos().getX(),
+                crucible.getBlockPos().getX() - 1.0,
                 crucible.getBlockPos().getY(),
-                crucible.getBlockPos().getZ(),
-                crucible.getBlockPos().getX() + 1.0,
+                crucible.getBlockPos().getZ() - 1.0,
+                crucible.getBlockPos().getX() + 2.0,
                 crucible.getBlockPos().getY() + 3.0,
-                crucible.getBlockPos().getZ() + 1.0);
+                crucible.getBlockPos().getZ() + 2.0);
     }
 
     @Override

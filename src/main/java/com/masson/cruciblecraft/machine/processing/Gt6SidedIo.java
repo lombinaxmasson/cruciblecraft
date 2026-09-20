@@ -50,8 +50,9 @@ public final class Gt6SidedIo {
         put("sanding", p(L, LEFT, R, RIGHT, 0, NO_AUTO, 0, NO_AUTO, U));
         put("polarizer", p(L, LEFT, R, RIGHT, 0, NO_AUTO, 0, NO_AUTO, U | D));
         put("laser_engraver", p(L, LEFT, R, RIGHT, 0, NO_AUTO, 0, NO_AUTO, U));
+        put("squeezer", p(L, LEFT, R, RIGHT, 0, NO_AUTO, D, BOTTOM, U));
+        put("laser_welder", p(L, LEFT, R, RIGHT, D | L, BOTTOM, 0, NO_AUTO, U));
         put("cutter", p(L, LEFT, R, RIGHT, U | D, BOTTOM, 0, NO_AUTO, B));
-        put("welder", p(L, LEFT, R, RIGHT, D | L, BOTTOM, 0, NO_AUTO, U));
         put("slicer", p(L | U, LEFT, R | D, RIGHT, 0, NO_AUTO, 0, NO_AUTO, B));
         put("laminator", p(L | U, LEFT, R, RIGHT, 0, NO_AUTO, 0, NO_AUTO, D));
         put("loom", p(U, TOP, D, BOTTOM, 0, NO_AUTO, 0, NO_AUTO, L | R));

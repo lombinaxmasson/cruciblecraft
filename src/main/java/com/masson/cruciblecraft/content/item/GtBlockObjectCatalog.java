@@ -169,6 +169,10 @@ public final class GtBlockObjectCatalog {
             return "spike".equals(behavior);
         }
 
+        public boolean omniSpike() {
+            return spike() && (meta & 7) >= 6;
+        }
+
         public boolean bale() {
             return "bale".equals(behavior);
         }
@@ -195,6 +199,10 @@ public final class GtBlockObjectCatalog {
         public boolean shovelMineable() {
             return sourceItem.contains("gt.block.diggable")
                     || sourceItem.contains("gt.block.sands");
+        }
+
+        public boolean treePlanks2() {
+            return sourceItem.contains("gt.block.planks2");
         }
     }
 

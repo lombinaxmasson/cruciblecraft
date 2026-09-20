@@ -64,8 +64,8 @@ def check() -> list[str]:
     if extra_kinds:
         errors.append("delivery kind_catalog hosts not in machine_kinds: "
                       + ",".join(extra_kinds))
-    if "cruciblecraft:laser_engraver" not in extra_hosts:
-        errors.append("laser_engraver must remain a delivery-only host")
+    if "cruciblecraft:laser_engraver" in extra_hosts:
+        errors.append("laser_engraver must be represented by the kind catalog")
     seen_ids: set[str] = set()
     for row in delivery.get("hosts") or []:
         host_id = str(row["id"])

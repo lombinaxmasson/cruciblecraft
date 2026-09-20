@@ -66,8 +66,8 @@ public final class CokeOvenScreen extends AbstractContainerScreen<CokeOvenMenu> 
         super.renderLabels(graphics, mouseX, mouseY);
         Component status = !menu.structureValid()
                 ? Component.translatable("screen.cruciblecraft.coke_oven.invalid_structure")
-                : !menu.heated()
-                        ? Component.translatable("screen.cruciblecraft.coke_oven.no_heat")
+                : !menu.ignited() && menu.progress() <= 0
+                        ? Component.translatable("screen.cruciblecraft.coke_oven.needs_ignition")
                         : Component.empty();
         if (!status.getString().isEmpty()) {
             graphics.drawString(font, status, 79, 18, 0xA02020, false);
@@ -88,8 +88,8 @@ public final class CokeOvenScreen extends AbstractContainerScreen<CokeOvenMenu> 
             graphics.renderTooltip(
                     font,
                     Component.translatable(
-                            "screen.cruciblecraft.coke_oven.creosote",
-                            menu.creosoteAmount(),
+                            "screen.cruciblecraft.coke_oven.fluid",
+                            menu.tankAmount(),
                             menu.tankCapacity()),
                     mouseX,
                     mouseY);

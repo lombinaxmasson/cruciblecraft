@@ -133,6 +133,12 @@ public final class BathMteIdentityCatalog {
         public boolean registerItem() {
             return "item".equals(registryKind);
         }
+
+        public boolean decorativePanel() {
+            return registryPath.startsWith("panel/asphalt_")
+                    || registryPath.startsWith("panel/cfoam_")
+                    || registryPath.startsWith("panel/concrete_");
+        }
     }
 
     private record Catalog(

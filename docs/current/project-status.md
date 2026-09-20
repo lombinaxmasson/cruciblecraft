@@ -6,25 +6,14 @@
 
 ## Unique active
 
-`energy/small-gas-turbine`（Small Gas Turbine，`workflow=active`，`maturity=frozen`）；计划 [微型燃气涡轮详细计划](../history/card-plans/active/微型燃气涡轮详细计划.md)。
+无。`capability.json` 里没有 `workflow=active`。
 
 ## Prep（不占落地锁）
 
-计划文件存在就会列在这里。MTE 家族 prep 的 runtime child 已关时，不要把本表当剩余待办。读法见 [unimplemented-gap.md](unimplemented-gap.md)。
+计划文件存在就会列在这里。不要把本表当剩余待办。读法见 [unimplemented-gap.md](unimplemented-gap.md)。
 
-- `content/mte-connector` — [MTE 连接件详细计划](../history/card-plans/prep/MTE连接件详细计划.md)
-- `content/mte-decorative` — [MTE 装饰件详细计划](../history/card-plans/prep/MTE装饰件详细计划.md)
-- `content/mte-drive` — [MTE 传动件详细计划](../history/card-plans/prep/MTE传动件详细计划.md)
-- `content/mte-energy-converter` — [MTE 能源转换器详细计划](../history/card-plans/prep/MTE能源转换器详细计划.md)
-- `content/mte-extender` — [MTE Extender详细计划](../history/card-plans/prep/MTE扩展器详细计划.md)
-- `content/mte-fluid-attachments` — [MTE 流体附件详细计划](../history/card-plans/prep/MTE流体附件详细计划.md)
-- `content/mte-furniture-storage` — [MTE 家具储物详细计划](../history/card-plans/prep/MTE家具储物详细计划.md)
-- `content/mte-misc-tool` — [MTE 杂项工具详细计划](../history/card-plans/prep/MTE杂项工具详细计划.md)
-- `content/mte-multiblock` — [MTE 多方块设备详细计划](../history/card-plans/prep/MTE多方块设备详细计划.md)
-- `content/mte-prep-index` — [MTE 全量 Prep 总索引](../history/card-plans/prep/MTE全量Prep总索引.md)
-- `content/mte-processing-machine` — [MTE 加工机身份详细计划](../history/card-plans/prep/MTE加工机身份详细计划.md)
-- `content/mte-untyped` — [MTE 未分类余量详细计划](../history/card-plans/prep/MTE未分类余量详细计划.md)
 - `content/puv-omega-tech-line` — [PUV2+ / OMEGA 科技线](../history/card-plans/prep/PUV2OMEGA科技线详细计划.md)
+- `energy/small-gas-turbine` — [微型燃气涡轮详细计划](../history/card-plans/prep/微型燃气涡轮详细计划.md)
 - `machines/printer` — [印刷机详细计划](../history/card-plans/prep/印刷机详细计划.md)
 - `registry/material-form-demand-census` — [材料形态需求普查详细计划](../history/card-plans/prep/材料形态需求普查详细计划.md)
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
@@ -35,9 +24,9 @@
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser
 
-## runtime_ready accepted（77）
+## runtime_ready accepted（78）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -100,6 +89,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `logistics/logistics-core` — Logistics Core
 - `machines/bath` — Bath / Bathing Pot — [洗矿浴池详细计划](../history/card-plans/closed/洗矿浴池详细计划.md)
 - `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
+- `machines/hammer-squeezer-laser` — Hammer / Squeezer / Laser — [锤 / 榨汁机 / 激光详细计划](../history/card-plans/closed/锤榨汁机激光详细计划.md)
 - `machines/injector` — Injector — [注射机详细计划](../history/card-plans/closed/注射机详细计划.md)
 - `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)
 - `machines/loom` — Loom — [织机详细计划](../history/card-plans/closed/织机详细计划.md)
@@ -127,7 +117,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `energy/fusion-quantum` — Fusion execution, QUANTUM, and LU to QU（`workflow=paused`）
 - `energy/large-heat-exchanger` — Large Heat Exchanger 17197（`workflow=paused`）
 - `energy/quantum-massfab` — Matter Fabricator and Neutronium bootstrap（`workflow=paused`）
-- `energy/small-gas-turbine` — Small Gas Turbine（`workflow=active`） — [微型燃气涡轮详细计划](../history/card-plans/active/微型燃气涡轮详细计划.md)
+- `energy/small-gas-turbine` — Small Gas Turbine（`workflow=paused`） — [微型燃气涡轮详细计划](../history/card-plans/prep/微型燃气涡轮详细计划.md)
 - `energy/steam-turbine` — Steam Turbines STEAM to RU（`workflow=paused`）
 - `logistics/cover-net-r0` — Logistics cover network R0（`workflow=accepted`）
 - `machines/puv-omega-matrix` — All machine variants through OMEGA（`workflow=paused`）

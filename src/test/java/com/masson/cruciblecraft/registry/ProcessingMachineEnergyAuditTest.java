@@ -65,8 +65,7 @@ class ProcessingMachineEnergyAuditTest {
                 Set.of(
                         "assembler",
                         "bender",
-                        "mortar",
-                        "welder"),
+                        "mortar"),
                 actual);
     }
 

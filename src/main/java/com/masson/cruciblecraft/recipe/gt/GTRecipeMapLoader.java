@@ -292,9 +292,14 @@ public final class GTRecipeMapLoader {
         int componentHostRecipes = 0;
         int toolRecipes = 0;
         int chemicalRecipesOnComponentMaps = 0;
+        java.util.LinkedHashSet<RecipeMap> componentMaps = new java.util.LinkedHashSet<>();
         for (var spec : ModProcessingMachines.COMPONENT_MACHINES) {
-            List<RecipeMap.Entry> entries = candidates.get(spec.requireRecipeMap());
-            int familyRows = families.get(spec.requireRecipeMap()).stream()
+            componentMaps.add(spec.requireRecipeMap());
+        }
+        componentMaps.add(ModRecipeMaps.WELDER);
+        for (RecipeMap map : componentMaps) {
+            List<RecipeMap.Entry> entries = candidates.get(map);
+            int familyRows = families.get(map).stream()
                     .mapToInt(RecipeMap.RecipeFamily::logicalRecipeCount)
                     .sum();
             componentHostRecipes += entries.size() + familyRows;

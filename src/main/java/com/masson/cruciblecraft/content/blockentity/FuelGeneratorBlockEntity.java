@@ -585,6 +585,26 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
         return input.getFluidAmount();
     }
 
+    public FluidStack inputFluid() {
+        return input.getFluid();
+    }
+
+    public int inputCapacity() {
+        return input.getCapacity();
+    }
+
+    public int outputTankCount() {
+        return outputs.size();
+    }
+
+    public FluidStack outputFluid(int index) {
+        return outputs.get(index).getFluid();
+    }
+
+    public int outputCapacity(int index) {
+        return outputs.get(index).getCapacity();
+    }
+
     public int outputAmount(int index) {
         return outputs.get(index).getFluidAmount();
     }
@@ -921,6 +941,12 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
     public CompoundTag getUpdateTag(
             HolderLookup.Provider registries) {
         CompoundTag tag = new CompoundTag();
+        tag.put("input", input.writeToNBT(
+                registries, new CompoundTag()));
+        for (int index = 0; index < outputs.size(); index++) {
+            tag.put("output_" + index, outputs.get(index).writeToNBT(
+                    registries, new CompoundTag()));
+        }
         tag.putLong("energy", energy.stored());
         tag.putString("status", status);
         tag.putInt("progress", progress);
@@ -935,6 +961,16 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
     @Override
     public void handleUpdateTag(
             CompoundTag tag, HolderLookup.Provider registries) {
+        if (tag.contains("input")) {
+            input.readFromNBT(registries, tag.getCompound("input"));
+        }
+        for (int index = 0; index < outputs.size(); index++) {
+            if (tag.contains("output_" + index)) {
+                outputs.get(index).readFromNBT(
+                        registries,
+                        tag.getCompound("output_" + index));
+            }
+        }
         energy.restore(new FuelGeneratorEnergy.State(
                 Math.max(
                         0L,
@@ -1033,11 +1069,20 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
 
         @Override
         public int getTanks() {
-            return 1;
+            return exposeFuelTank() ? 2 : 1;
         }
 
         @Override
         public FluidStack getFluidInTank(int tank) {
+            if (exposeFuelTank()) {
+                if (tank == 0) {
+                    return input.getFluid();
+                }
+                if (tank == 1) {
+                    return outputs.get(outputIndex).getFluid();
+                }
+                return FluidStack.EMPTY;
+            }
             return tank == 0
                     ? outputs.get(outputIndex).getFluid()
                     : FluidStack.EMPTY;
@@ -1045,6 +1090,15 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
 
         @Override
         public int getTankCapacity(int tank) {
+            if (exposeFuelTank()) {
+                if (tank == 0) {
+                    return input.getCapacity();
+                }
+                if (tank == 1) {
+                    return outputs.get(outputIndex).getCapacity();
+                }
+                return 0;
+            }
             return tank == 0
                     ? outputs.get(outputIndex).getCapacity()
                     : 0;
@@ -1052,12 +1106,20 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
 
         @Override
         public boolean isFluidValid(int tank, FluidStack stack) {
-            return false;
+            return exposeFuelTank()
+                    && tank == 0
+                    && input.isFluidValid(stack);
         }
 
         @Override
         public int fill(FluidStack resource, FluidAction action) {
-            return 0;
+            // GT6 getFluidTankFillable2 ignores side: any fluid face
+            // can fill the burning-box fuel tank.
+            return exposeFuelTank() ? input.fill(resource, action) : 0;
+        }
+
+        private boolean exposeFuelTank() {
+            return spec.requiresIgnition();
         }
 
         @Override

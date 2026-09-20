@@ -45,8 +45,8 @@
       "semantic_key": "mte:electric-wire-cable:unregistered-gauges",
       "disposition": "blocked",
       "runtime_ids": [],
-      "reason": "Superconductor wires and unregistered graphene/high-gauge forms stay unmapped. No wrong-gauge or scatter stand-in."
+      "reason": "addElectricWires recipe gauges now map 320/320, including Graphene 01/02/04/08/12/16, Superconductor 01/02/04/08/12/16, and HSLA/BlueAlloy/ElectrotineAlloy/Naquadah/YBCO canonical wires/cables. Dummy catalog aliases remain a separate identity. No wrong-gauge or scatter stand-in."
     }
   ],
-  "note": "Fold 30 addElectricWires recipe invocations onto census-registered CC conductors. Laminator live 438/60; loom 465/869; nanofab overflow stays 57; melter stays 3973/2783 after replacing scatter wire operands. Closed at runtime_ready, not player_complete. 61 Loader ids stay unmapped. Mapped is not a dummy-removal set: connector runtime must distinguish a live BlockItem from an item-only form per prep index §0.1."
+  "note": "Fold 30 addElectricWires recipe invocations onto gated CC conductors. Mapped 320 / unmapped 0. Laminator live 486/12; loom 477/857; nanofab overflow stays 57. Closed at runtime_ready, not player_complete. Mapped is not a dummy-removal set: connector runtime must distinguish a live BlockItem from an item-only form per prep index §0.1."
 }

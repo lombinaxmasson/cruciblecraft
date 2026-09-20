@@ -30,7 +30,7 @@ class BlockerLedgerTest(unittest.TestCase):
         self.assertTrue(ledger["do_not_add"])
         self.assertNotIn("open_counts_by_unit", ledger)
         amounts = {row["id"]: row for row in ledger["open_amounts"]}
-        self.assertEqual(869, amounts["recipe/loom-overflow"]["count"])
+        self.assertEqual(857, amounts["recipe/loom-overflow"]["count"])
         self.assertEqual("rows", amounts["recipe/loom-overflow"]["unit"])
         self.assertEqual("scale_not_todo", amounts["recipe/loom-overflow"]["planning_bucket"])
         self.assertNotIn("recipe/fluidbed-overflow", amounts)
