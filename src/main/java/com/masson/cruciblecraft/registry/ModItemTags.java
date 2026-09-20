@@ -41,6 +41,11 @@ public final class ModItemTags {
             Registries.ITEM,
             ResourceLocation.fromNamespaceAndPath(
                     CrucibleCraft.MODID, "smelting_crucibles"));
+    /** GT6 {@code OD.beamWood}: vanilla stripped wood plus GT-tree beams. */
+    public static final TagKey<Item> WOODEN_BEAMS = TagKey.create(
+            Registries.ITEM,
+            ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID, "wooden_beams"));
 
     private ModItemTags() {}
 }

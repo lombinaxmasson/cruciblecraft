@@ -2216,6 +2216,7 @@ public class ModLanguageProvider extends LanguageProvider {
             if (chinese) {
                 addBlock(ModBlocks.treeSapling(species), species.chineseName() + "树苗");
                 addBlock(ModBlocks.treeLog(species), species.chineseName() + "原木");
+                addBlock(ModBlocks.treeBeam(species), species.chineseName() + "木梁");
                 addBlock(ModBlocks.treeLeaves(species), species.chineseName() + "树叶");
                 if (species.hasHole()) {
                     addBlock(ModBlocks.treeHole(species), species.chineseHoleName());
@@ -2223,6 +2224,7 @@ public class ModLanguageProvider extends LanguageProvider {
             } else {
                 addBlock(ModBlocks.treeSapling(species), species.englishName() + " Sapling");
                 addBlock(ModBlocks.treeLog(species), species.englishName() + " Log");
+                addBlock(ModBlocks.treeBeam(species), species.englishName() + " Beam");
                 addBlock(ModBlocks.treeLeaves(species), species.englishName() + " Leaves");
                 if (species.hasHole()) {
                     addBlock(ModBlocks.treeHole(species), species.englishHoleName());

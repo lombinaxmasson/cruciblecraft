@@ -1715,6 +1715,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     "block/" + species.logPath() + "_horizontal", side, top);
             axisBlock(ModBlocks.treeLog(species).get(), log, logHorizontal);
             itemModels().getBuilder("item/" + species.logPath()).parent(log);
+            ResourceLocation beamSide = modLoc(
+                    "block/gt6/iconsets/beam_side_" + species.gt6TextureKey());
+            ResourceLocation beamTop = modLoc(
+                    "block/gt6/iconsets/beam_top_" + species.gt6TextureKey());
+            ModelFile beam = models().cubeColumn(
+                    "block/" + species.beamPath(), beamSide, beamTop);
+            ModelFile beamHorizontal = models().cubeColumnHorizontal(
+                    "block/" + species.beamPath() + "_horizontal",
+                    beamSide,
+                    beamTop);
+            axisBlock(ModBlocks.treeBeam(species).get(), beam, beamHorizontal);
+            itemModels().getBuilder("item/" + species.beamPath()).parent(beam);
             if (species.hasHole()) {
                 registerTreeHole(species, side, top);
             }

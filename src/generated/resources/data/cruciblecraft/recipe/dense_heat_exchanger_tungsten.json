@@ -1,0 +1,39 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "C": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "annealed_copper"
+      },
+      "items": "cruciblecraft:dense_plate"
+    },
+    "M": {
+      "tag": "c:machine_casing_quadruples/tungsten"
+    },
+    "O": {
+      "tag": "c:large_fluid_pipes/copper"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "lead"
+      },
+      "items": "cruciblecraft:quadruple_plate"
+    }
+  },
+  "pattern": [
+    "PCP",
+    "OwO",
+    "PMP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:dense_heat_exchanger_tungsten"
+  }
+}

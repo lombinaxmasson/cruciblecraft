@@ -1,0 +1,39 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "duration": 64,
+  "eut": 16,
+  "fluid_inputs": [
+    {
+      "amount": 200,
+      "id": "minecraft:water"
+    }
+  ],
+  "item_input_actions": [
+    {
+      "kind": "consume"
+    }
+  ],
+  "item_input_counts": [
+    1
+  ],
+  "item_inputs": [
+    {
+      "item": "minecraft:oak_wood"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 1,
+      "id": "minecraft:stripped_oak_wood"
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:bark/dust"
+    }
+  ],
+  "map": "cruciblecraft:pressurewasher",
+  "output_chances": [
+    10000,
+    10000
+  ]
+}

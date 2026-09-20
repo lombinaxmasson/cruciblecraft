@@ -1,0 +1,45 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "d": {
+      "tag": "cruciblecraft:crafting_tools/screwdriver"
+    },
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "M": {
+      "item": "cruciblecraft:compact_electric_motor_ev"
+    },
+    "O": {
+      "item": "cruciblecraft:rubber/ring"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "chromium"
+      },
+      "items": "cruciblecraft:curved_plate"
+    },
+    "T": {
+      "item": "cruciblecraft:chromium/screw"
+    },
+    "X": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "chromium"
+      },
+      "items": "cruciblecraft:rotor"
+    }
+  },
+  "pattern": [
+    "TXO",
+    "dPw",
+    "OMT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:compact_electric_pump_ev"
+  }
+}

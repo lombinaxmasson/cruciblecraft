@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Set;
 
 import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
+import com.masson.cruciblecraft.content.block.WoodDebark;
 import com.masson.cruciblecraft.content.blockentity.GtTreeHoleBlockEntity;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFeatures;
@@ -21,6 +22,8 @@ import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
@@ -64,6 +67,11 @@ public final class GtTreesGameTests {
                 ModItems.RUBBER_RESIN.get() != null, "rubber_resin item missing");
         helper.assertTrue(
                 ModFeatures.GT_TREE.get() != null, "gt_tree feature missing");
+        for (GtTreeSpecies species : GtTreeSpecies.ALL) {
+            helper.assertTrue(
+                    ModBlocks.treeBeam(species).get() != null,
+                    "Missing beam " + species.id());
+        }
         helper.succeed();
     }
 
@@ -197,6 +205,71 @@ public final class GtTreesGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void axeStripsGtLogToBeamAndDropsBark(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        helper.setBlock(pos, ModBlocks.treeLog(GtTreeSpecies.RUBBER).get());
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack axe = ModItems.MATERIAL_AXE.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, axe);
+        helper.assertTrue(
+                axe.getItem().useOn(useOn(helper, player, axe, pos)).consumesAction(),
+                "axe did not strip rubber log");
+        helper.assertTrue(
+                helper.getBlockState(pos).getBlock()
+                        == ModBlocks.treeBeam(GtTreeSpecies.RUBBER).get(),
+                "rubber log did not become a beam");
+        helper.assertTrue(
+                player.getInventory().contains(WoodDebark.barkDust(1)),
+                "axe strip did not give bark dust");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void vanillaAxeStripsOakLogAndDropsBark(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        helper.setBlock(pos, Blocks.OAK_LOG);
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack axe = new ItemStack(Items.IRON_AXE);
+        player.setItemInHand(InteractionHand.MAIN_HAND, axe);
+        helper.assertTrue(
+                axe.getItem().useOn(useOn(helper, player, axe, pos)).consumesAction(),
+                "vanilla axe did not strip oak log");
+        helper.assertTrue(
+                helper.getBlockState(pos).is(Blocks.STRIPPED_OAK_LOG),
+                "oak log did not become stripped oak");
+        helper.assertTrue(
+                player.getInventory().contains(WoodDebark.barkDust(1)),
+                "vanilla axe strip did not give bark dust");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void cinnamonAxeStripDropsCatalogBark(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        helper.setBlock(pos, ModBlocks.treeLog(GtTreeSpecies.CINNAMON).get());
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack axe = ModItems.MATERIAL_AXE.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, axe);
+        helper.assertTrue(
+                axe.getItem().useOn(useOn(helper, player, axe, pos)).consumesAction(),
+                "axe did not strip cinnamon log");
+        helper.assertTrue(
+                helper.getBlockState(pos).getBlock()
+                        == ModBlocks.treeBeam(GtTreeSpecies.CINNAMON).get(),
+                "cinnamon log did not become a beam");
+        helper.assertTrue(
+                player.getInventory().contains(WoodDebark.cinnamonBark(2)),
+                "cinnamon strip did not give catalog bark");
+        helper.assertTrue(
+                !player.getInventory().contains(WoodDebark.barkDust(1)),
+                "cinnamon strip must not give bark dust");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void biomeFilterMatchesFrozenMap(GameTestHelper helper) {
         helper.assertTrue(
                 GtTreePlacement.canGenerate(
@@ -214,6 +287,24 @@ public final class GtTreesGameTests {
                         > 0,
                 "Coconut must generate on beach");
         helper.succeed();
+    }
+
+    private static UseOnContext useOn(
+            GameTestHelper helper,
+            Player player,
+            ItemStack stack,
+            BlockPos pos) {
+        BlockPos abs = helper.absolutePos(pos);
+        return new UseOnContext(
+                helper.getLevel(),
+                player,
+                InteractionHand.MAIN_HAND,
+                stack,
+                new BlockHitResult(
+                        Vec3.atCenterOf(abs),
+                        Direction.NORTH,
+                        abs,
+                        false));
     }
 
     private static boolean hasNearby(

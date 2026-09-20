@@ -10057,7 +10057,7 @@ public final class CrucibleCraftGameTests {
         return switch (operand) {
             case WOODEN_SLABS -> new ItemStack(Items.OAK_SLAB);
             case PLANKS -> new ItemStack(Items.OAK_PLANKS);
-            case LOGS -> new ItemStack(Items.OAK_LOG);
+            case WOODEN_BEAMS -> new ItemStack(Items.STRIPPED_OAK_LOG);
             case CARBON_DUST -> MaterialLookup.stack(
                     "carbon", MaterialPrefixes.DUST);
             case PLASTIC_PLATE -> MaterialLookup.stack(

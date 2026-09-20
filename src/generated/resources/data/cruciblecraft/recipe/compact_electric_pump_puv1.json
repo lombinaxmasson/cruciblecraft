@@ -1,0 +1,45 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "d": {
+      "tag": "cruciblecraft:crafting_tools/screwdriver"
+    },
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "M": {
+      "item": "cruciblecraft:compact_electric_motor_puv1"
+    },
+    "O": {
+      "item": "cruciblecraft:rubber/ring"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "trinaquadalloy"
+      },
+      "items": "cruciblecraft:curved_plate"
+    },
+    "T": {
+      "item": "cruciblecraft:trinaquadalloy/screw"
+    },
+    "X": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "trinaquadalloy"
+      },
+      "items": "cruciblecraft:rotor"
+    }
+  },
+  "pattern": [
+    "TXO",
+    "dPw",
+    "OMT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:compact_electric_pump_puv1"
+  }
+}

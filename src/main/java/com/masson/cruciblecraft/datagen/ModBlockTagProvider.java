@@ -5,11 +5,14 @@ import java.util.concurrent.CompletableFuture;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
+import com.masson.cruciblecraft.content.block.WoodDebark;
 import com.masson.cruciblecraft.registry.ModBlockTags;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
@@ -23,7 +26,7 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             ExistingFileHelper existingFileHelper) {
         super(
                 output,
-                net.minecraft.core.registries.Registries.BLOCK,
+                Registries.BLOCK,
                 lookupProvider,
                 CrucibleCraft.MODID,
                 existingFileHelper);
@@ -183,6 +186,7 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         });
         var logs = tag(BlockTags.LOGS);
         var logsThatBurn = tag(BlockTags.LOGS_THAT_BURN);
+        var woodenBeams = tag(ModBlockTags.WOODEN_BEAMS);
         var leaves = tag(BlockTags.LEAVES);
         var saplings = tag(BlockTags.SAPLINGS);
         var hoe = tag(BlockTags.MINEABLE_WITH_HOE);
@@ -191,6 +195,13 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             logs.add(holder.getKey());
             logsThatBurn.add(holder.getKey());
         });
+        ModBlocks.treeBeams().forEach(holder -> {
+            axe.add(holder.getKey());
+            woodenBeams.add(holder.getKey());
+        });
+        for (WoodDebark.VanillaPair pair : WoodDebark.VANILLA_PAIRS) {
+            woodenBeams.add(ResourceKey.create(Registries.BLOCK, pair.beam()));
+        }
         ModBlocks.treeHoles().forEach(holder -> axe.add(holder.getKey()));
         ModBlocks.treeLeavesBlocks().forEach(holder -> {
             leaves.add(holder.getKey());

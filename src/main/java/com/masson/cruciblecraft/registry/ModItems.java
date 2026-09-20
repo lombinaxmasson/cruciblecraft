@@ -157,6 +157,8 @@ public final class ModItems {
             new LinkedHashMap<>();
     private static final Map<GtTreeSpecies, DeferredItem<BlockItem>> TREE_LOG_ITEMS =
             new LinkedHashMap<>();
+    private static final Map<GtTreeSpecies, DeferredItem<BlockItem>> TREE_BEAM_ITEMS =
+            new LinkedHashMap<>();
     private static final Map<GtTreeSpecies, DeferredItem<BlockItem>> TREE_LEAVES_ITEMS =
             new LinkedHashMap<>();
     private static final Map<
@@ -2331,6 +2333,10 @@ public final class ModItems {
                     species,
                     ITEMS.registerSimpleBlockItem(
                             species.logPath(), ModBlocks.treeLog(species)));
+            TREE_BEAM_ITEMS.put(
+                    species,
+                    ITEMS.registerSimpleBlockItem(
+                            species.beamPath(), ModBlocks.treeBeam(species)));
             TREE_LEAVES_ITEMS.put(
                     species,
                     ITEMS.registerSimpleBlockItem(
@@ -2344,6 +2350,10 @@ public final class ModItems {
 
     public static DeferredItem<BlockItem> treeLogItem(GtTreeSpecies species) {
         return TREE_LOG_ITEMS.get(species);
+    }
+
+    public static DeferredItem<BlockItem> treeBeamItem(GtTreeSpecies species) {
+        return TREE_BEAM_ITEMS.get(species);
     }
 
     public static DeferredItem<BlockItem> treeLeavesItem(GtTreeSpecies species) {

@@ -69,7 +69,7 @@ public final class PipeAcquisitionRecipeCatalog {
         recipes.add(sourceWood(
                 MaterialPrefixes.HUGE_FLUID_PIPE,
                 List.of("W W"),
-                Operand.LOGS,
+                Operand.WOODEN_BEAMS,
                 1891));
         recipes.addAll(design("carbon", Operand.CARBON_DUST));
         recipes.addAll(design("plastic", Operand.PLASTIC_PLATE));
@@ -171,7 +171,7 @@ public final class PipeAcquisitionRecipeCatalog {
     public enum Operand {
         WOODEN_SLABS,
         PLANKS,
-        LOGS,
+        WOODEN_BEAMS,
         CARBON_DUST,
         PLASTIC_PLATE,
         RUBBER_PLATE,

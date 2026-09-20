@@ -1,0 +1,35 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "tag": "cruciblecraft:crafting_tools/hammer"
+    },
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "M": {
+      "tag": "c:plates/invar"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "copper"
+      },
+      "items": "cruciblecraft:triple_plate"
+    },
+    "R": {
+      "tag": "c:long_rods/copper"
+    }
+  },
+  "pattern": [
+    "MPM",
+    "hRw",
+    "MPM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:multiblock/heat_transmitter"
+  }
+}

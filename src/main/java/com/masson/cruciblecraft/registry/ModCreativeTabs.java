@@ -388,6 +388,7 @@ public final class ModCreativeTabs {
         com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.ALL.forEach(species -> {
             output.accept(ModItems.treeSaplingItem(species).get());
             output.accept(ModItems.treeLogItem(species).get());
+            output.accept(ModItems.treeBeamItem(species).get());
             output.accept(ModItems.treeLeavesItem(species).get());
         });
         com.masson.cruciblecraft.worldgen.crop.GlowtusColor.ALL.forEach(color ->

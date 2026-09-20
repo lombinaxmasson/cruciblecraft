@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.gametest;
 import java.util.List;
 
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.content.block.WoodDebark;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
@@ -10,6 +11,7 @@ import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
+import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -58,9 +60,10 @@ public final class PressureWasherGameTests {
                 family != null && family.logicalRecipeCount() == 192,
                 "Pressure Washer family is not the 192 selected rows: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
+        int woodRows = WoodDebark.VANILLA_PAIRS.size() + GtTreeSpecies.ALL.size();
         helper.assertTrue(
-                ModRecipeMaps.PRESSUREWASHER.entries().size() == 192,
-                "Pressure Washer live map drifted from 192 rows: "
+                ModRecipeMaps.PRESSUREWASHER.entries().size() == 192 + woodRows,
+                "Pressure Washer live map drifted from compact plus wood rows: "
                         + ModRecipeMaps.PRESSUREWASHER.entries().size());
         helper.succeed();
     }

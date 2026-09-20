@@ -22,9 +22,9 @@
       "kind": "vanilla_tag",
       "representative": "minecraft:oak_planks"
     },
-    "minecraft:logs": {
-      "kind": "vanilla_tag",
-      "representative": "minecraft:oak_log"
+    "cruciblecraft:wooden_beams": {
+      "kind": "mod_tag",
+      "representative": "minecraft:stripped_oak_log"
     },
     "cruciblecraft:carbon/dust": {
       "kind": "fixed_recipe_output",
@@ -120,7 +120,7 @@
       "source_pattern": [" s", "W W", "r "],
       "source_operand": "OD.beamWood",
       "pattern": ["W W"],
-      "key": {"W": "minecraft:logs"},
+      "key": {"W": "cruciblecraft:wooden_beams"},
       "output_count": 1
     },
     {

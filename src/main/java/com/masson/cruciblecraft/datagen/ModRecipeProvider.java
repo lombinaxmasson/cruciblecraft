@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
+import com.masson.cruciblecraft.content.block.WoodDebark;
 import com.masson.cruciblecraft.logistics.pipe.PipeAcquisitionRecipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
@@ -58,6 +59,7 @@ import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.registry.ModItemTags;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
+import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
@@ -80,6 +82,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
@@ -106,6 +109,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         addSensorRecipes(recipesOnly);
         addStorageRecipes(recipesOnly);
         addRockCobbleRecipes(recipesOnly);
+        addWoodBeamRecipes(recipesOnly);
         MaterialCatalog.startupValues().stream()
                 .sorted(Comparator.comparing(MaterialDefinition::id))
                 .forEach(material -> addDerivedOreRecipes(recipesOnly, material));
@@ -1674,6 +1678,95 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .save(output, id("machines/" + id));
     }
 
+    private static void addWoodBeamRecipes(RecipeOutput output) {
+        for (var beamId : WoodDebark.VANILLA_BEAM_COKE_INPUTS) {
+            Item beam = WoodDebark.requireItem(beamId);
+            acceptCokeOven(
+                    output,
+                    "coke_oven/" + beamId.getPath(),
+                    Ingredient.of(beam),
+                    WoodDebark.vanillaBeamCharcoal(),
+                    WoodDebark.vanillaBeamCreosoteMb());
+        }
+        for (GtTreeSpecies species : GtTreeSpecies.ALL) {
+            acceptCokeOven(
+                    output,
+                    "coke_oven/" + species.id() + "_beam",
+                    Ingredient.of(ModItems.treeBeamItem(species).get()),
+                    WoodDebark.beamCharcoal(species),
+                    WoodDebark.beamCreosoteMb(species));
+        }
+        for (WoodDebark.VanillaPair pair : WoodDebark.VANILLA_PAIRS) {
+            Item log = WoodDebark.requireItem(pair.log());
+            Item beam = WoodDebark.requireItem(pair.beam());
+            acceptPressureWasherDebark(
+                    output,
+                    "pressurewasher/" + pair.log().getPath(),
+                    Ingredient.of(log),
+                    new ItemStack(beam),
+                    WoodDebark.barkDust(1));
+        }
+        for (GtTreeSpecies species : GtTreeSpecies.ALL) {
+            acceptPressureWasherDebark(
+                    output,
+                    "pressurewasher/" + species.id() + "_log",
+                    Ingredient.of(ModItems.treeLogItem(species).get()),
+                    new ItemStack(ModItems.treeBeamItem(species).get()),
+                    WoodDebark.pressureWasherBark(species));
+        }
+    }
+
+    private static void acceptCokeOven(
+            RecipeOutput output,
+            String path,
+            Ingredient input,
+            int charcoal,
+            int creosoteMb) {
+        output.accept(
+                id(path),
+                new GTRecipeEntry(
+                        ModRecipeMaps.COKE_OVEN.id(),
+                        new GTRecipe(
+                                List.of(input),
+                                List.of(1),
+                                List.of(new ItemStack(Items.CHARCOAL, charcoal)),
+                                List.of(),
+                                List.of(new FluidStack(
+                                        ModFluids.CREOSOTE_SOURCE.get(),
+                                        creosoteMb)),
+                                List.of(GTRecipe.GUARANTEED_CHANCE),
+                                WoodDebark.COKE_DURATION,
+                                0L,
+                                0L)),
+                null);
+    }
+
+    private static void acceptPressureWasherDebark(
+            RecipeOutput output,
+            String path,
+            Ingredient input,
+            ItemStack beam,
+            ItemStack bark) {
+        output.accept(
+                id(path),
+                new GTRecipeEntry(
+                        ModRecipeMaps.PRESSUREWASHER.id(),
+                        new GTRecipe(
+                                List.of(input),
+                                List.of(1),
+                                List.of(beam, bark),
+                                List.of(new FluidStack(
+                                        Fluids.WATER, WoodDebark.WASHER_WATER_MB)),
+                                List.of(),
+                                List.of(
+                                        GTRecipe.GUARANTEED_CHANCE,
+                                        GTRecipe.GUARANTEED_CHANCE),
+                                WoodDebark.WASHER_DURATION,
+                                WoodDebark.WASHER_EUT,
+                                0L)),
+                null);
+    }
+
     private static void addNonmetalPipeAcquisitionRecipes(
             RecipeOutput output) {
         for (PipeAcquisitionRecipeCatalog.RecipeSpec spec
@@ -2233,9 +2326,9 @@ public final class ModRecipeProvider extends RecipeProvider {
                 builder.define(symbol, ItemTags.PLANKS);
                 yield Items.OAK_PLANKS;
             }
-            case LOGS -> {
-                builder.define(symbol, ItemTags.LOGS);
-                yield Items.OAK_LOG;
+            case WOODEN_BEAMS -> {
+                builder.define(symbol, ModItemTags.WOODEN_BEAMS);
+                yield Items.STRIPPED_OAK_LOG;
             }
             case CARBON_DUST -> {
                 Item item = materialItem("carbon", MaterialPrefixes.DUST);

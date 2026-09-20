@@ -1,0 +1,42 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "tag": "cruciblecraft:crafting_tools/hammer"
+    },
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "M": {
+      "item": "cruciblecraft:neutronium/machine_casing"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "stainless_steel"
+      },
+      "items": "cruciblecraft:quadruple_plate"
+    },
+    "R": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "stainless_steel"
+      },
+      "items": "cruciblecraft:rotor"
+    },
+    "S": {
+      "item": "cruciblecraft:compact_electric_motor_puv4"
+    }
+  },
+  "pattern": [
+    "PMP",
+    "PRP",
+    "hSw"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:neutronium_electric_mixer_puv4"
+  }
+}

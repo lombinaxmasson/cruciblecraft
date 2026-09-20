@@ -24,6 +24,11 @@ public final class ModBlockTags {
             Registries.BLOCK,
             ResourceLocation.fromNamespaceAndPath(
                     CrucibleCraft.MODID, "large_crucible_walls"));
+    /** GT6 {@code OD.beamWood}: vanilla stripped wood plus GT-tree beams. */
+    public static final TagKey<Block> WOODEN_BEAMS = TagKey.create(
+            Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID, "wooden_beams"));
 
     private ModBlockTags() {}
 }

@@ -105,6 +105,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         for (var species : com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.ALL) {
             dropSelf(ModBlocks.treeSapling(species).get());
             dropSelf(ModBlocks.treeLog(species).get());
+            dropSelf(ModBlocks.treeBeam(species).get());
             add(
                     ModBlocks.treeLeaves(species).get(),
                     createSilkTouchOrShearsDispatchTable(
@@ -305,6 +306,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 holder -> blocks.add(holder.get()));
         ModBlocks.treeSaplings().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.treeLogs().forEach(holder -> blocks.add(holder.get()));
+        ModBlocks.treeBeams().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.treeLeavesBlocks().forEach(holder -> blocks.add(holder.get()));
         ModBlocks.treeHoles().forEach(holder -> blocks.add(holder.get()));
         return blocks;

@@ -20,11 +20,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 
 /**
  * Growing GT log. Maple and rainbowood convert to a tree hole when a
- * {@link ToolAction#DRILL} clicks a horizontal face. Axe-to-beam stays
- * out of this card.
+ * {@link ToolAction#DRILL} clicks a horizontal face. Axes strip to the
+ * species beam.
  */
 public final class GtTreeLogBlock extends RotatedPillarBlock
         implements ToolInteractable {
@@ -37,6 +39,21 @@ public final class GtTreeLogBlock extends RotatedPillarBlock
 
     public GtTreeSpecies species() {
         return species;
+    }
+
+    @Override
+    public BlockState getToolModifiedState(
+            BlockState state,
+            UseOnContext context,
+            ItemAbility itemAbility,
+            boolean simulate) {
+        if (itemAbility == ItemAbilities.AXE_STRIP
+                && context.getItemInHand().canPerformAction(itemAbility)) {
+            return WoodDebark.beamBlock(species)
+                    .defaultBlockState()
+                    .setValue(AXIS, state.getValue(AXIS));
+        }
+        return super.getToolModifiedState(state, context, itemAbility, simulate);
     }
 
     @Override

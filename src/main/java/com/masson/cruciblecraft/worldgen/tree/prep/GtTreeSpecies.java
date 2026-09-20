@@ -236,6 +236,10 @@ public enum GtTreeSpecies {
         return "tree/" + id + "_log";
     }
 
+    public String beamPath() {
+        return "tree/" + id + "_beam";
+    }
+
     public String leavesPath() {
         return "tree/" + id + "_leaves";
     }

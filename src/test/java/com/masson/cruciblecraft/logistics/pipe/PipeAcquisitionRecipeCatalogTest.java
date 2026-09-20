@@ -54,7 +54,7 @@ class PipeAcquisitionRecipeCatalogTest {
                 1888, Operand.PLANKS,
                 1889, Operand.PLANKS,
                 1890, Operand.PLANKS,
-                1891, Operand.LOGS);
+                1891, Operand.WOODEN_BEAMS);
         var wood = PipeAcquisitionRecipeCatalog.ALL.stream()
                 .filter(spec -> spec.materialId().equals("wood"))
                 .toList();

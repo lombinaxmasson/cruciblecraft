@@ -1,0 +1,32 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "tag": "cruciblecraft:crafting_tools/hammer"
+    },
+    "x": {
+      "tag": "cruciblecraft:crafting_tools/wire_cutter"
+    }
+  },
+  "ingredients": {
+    "F": {
+      "tag": "c:foils/lead"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "battery_alloy"
+      },
+      "items": "cruciblecraft:curved_plate"
+    }
+  },
+  "pattern": [
+    " Fh",
+    "FPF",
+    "xF "
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:lead_acid_cell_empty"
+  }
+}

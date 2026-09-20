@@ -1,0 +1,35 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    },
+    "x": {
+      "tag": "cruciblecraft:crafting_tools/wire_cutter"
+    }
+  },
+  "ingredients": {
+    "M": {
+      "item": "cruciblecraft:steel_galvanized/machine_casing"
+    },
+    "W": {
+      "item": "cruciblecraft:tin/quadruple_wire"
+    },
+    "X": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "iron"
+      },
+      "items": "cruciblecraft:wire"
+    }
+  },
+  "pattern": [
+    "XxX",
+    "WwW",
+    "XMX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:lightning"
+  }
+}

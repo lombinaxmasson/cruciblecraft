@@ -1,0 +1,39 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "tag": "cruciblecraft:crafting_tools/hammer"
+    },
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "M": {
+      "item": "cruciblecraft:stainless_steel/machine_casing"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "stainless_steel"
+      },
+      "items": "cruciblecraft:triple_plate"
+    },
+    "S": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "silicon"
+      },
+      "items": "cruciblecraft:triple_plate"
+    }
+  },
+  "pattern": [
+    "hPw",
+    "PMP",
+    "PSP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:stainless_steel_freezer"
+  }
+}

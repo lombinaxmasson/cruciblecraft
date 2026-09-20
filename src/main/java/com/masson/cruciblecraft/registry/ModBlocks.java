@@ -93,6 +93,7 @@ import com.masson.cruciblecraft.content.block.GtIndicatorFlowerBlock;
 import com.masson.cruciblecraft.content.block.GtIndicatorGrassBlock;
 import com.masson.cruciblecraft.content.block.FluidSpringBlock;
 import com.masson.cruciblecraft.content.block.GtSmallOreBlock;
+import com.masson.cruciblecraft.content.block.GtTreeBeamBlock;
 import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
 import com.masson.cruciblecraft.content.block.GtTreeLeavesBlock;
 import com.masson.cruciblecraft.content.block.GtTreeLogBlock;
@@ -198,6 +199,8 @@ public final class ModBlocks {
     private static final Map<GtTreeSpecies, DeferredBlock<GtTreeSaplingBlock>>
             TREE_SAPLINGS = new LinkedHashMap<>();
     private static final Map<GtTreeSpecies, DeferredBlock<GtTreeLogBlock>> TREE_LOGS =
+            new LinkedHashMap<>();
+    private static final Map<GtTreeSpecies, DeferredBlock<GtTreeBeamBlock>> TREE_BEAMS =
             new LinkedHashMap<>();
     private static final Map<GtTreeSpecies, DeferredBlock<GtTreeLeavesBlock>> TREE_LEAVES =
             new LinkedHashMap<>();
@@ -2437,6 +2440,10 @@ public final class ModBlocks {
         return TREE_LOGS.get(species);
     }
 
+    public static DeferredBlock<GtTreeBeamBlock> treeBeam(GtTreeSpecies species) {
+        return TREE_BEAMS.get(species);
+    }
+
     public static DeferredBlock<GtTreeLeavesBlock> treeLeaves(GtTreeSpecies species) {
         return TREE_LEAVES.get(species);
     }
@@ -2455,6 +2462,10 @@ public final class ModBlocks {
 
     public static java.util.Collection<DeferredBlock<GtTreeLogBlock>> treeLogs() {
         return TREE_LOGS.values();
+    }
+
+    public static java.util.Collection<DeferredBlock<GtTreeBeamBlock>> treeBeams() {
+        return TREE_BEAMS.values();
     }
 
     public static java.util.Collection<DeferredBlock<GtTreeLeavesBlock>> treeLeavesBlocks() {
@@ -2509,6 +2520,11 @@ public final class ModBlocks {
                     BLOCKS.register(
                             species.logPath(),
                             () -> new GtTreeLogBlock(species, logProperties())));
+            TREE_BEAMS.put(
+                    species,
+                    BLOCKS.register(
+                            species.beamPath(),
+                            () -> new GtTreeBeamBlock(species, logProperties())));
             TREE_LEAVES.put(
                     species,
                     BLOCKS.register(

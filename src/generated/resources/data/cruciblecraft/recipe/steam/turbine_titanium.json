@@ -1,0 +1,35 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "G": {
+      "tag": "c:gears/titanium"
+    },
+    "M": {
+      "tag": "c:machine_casing_doubles/titanium"
+    },
+    "S": {
+      "tag": "c:long_rods/titanium"
+    },
+    "T": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "titanium"
+      },
+      "items": "cruciblecraft:rotor"
+    }
+  },
+  "pattern": [
+    "TwT",
+    "GSG",
+    "TMT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:steam/turbine_titanium"
+  }
+}

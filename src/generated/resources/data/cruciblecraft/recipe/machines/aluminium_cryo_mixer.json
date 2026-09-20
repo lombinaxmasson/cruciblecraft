@@ -1,0 +1,46 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "tag": "cruciblecraft:crafting_tools/hammer"
+    },
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "M": {
+      "item": "cruciblecraft:aluminium/machine_casing"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "stainless_steel"
+      },
+      "items": "cruciblecraft:double_plate"
+    },
+    "R": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "stainless_steel"
+      },
+      "items": "cruciblecraft:rotor"
+    },
+    "S": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "silicon"
+      },
+      "items": "cruciblecraft:double_plate"
+    }
+  },
+  "pattern": [
+    "PMP",
+    "PRP",
+    "hSw"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:aluminium_cryo_mixer"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "G": {
+      "tag": "c:gears/tungstensteel"
+    },
+    "M": {
+      "tag": "c:machine_casing_doubles/tungstensteel"
+    },
+    "S": {
+      "tag": "c:long_rods/tungstensteel"
+    },
+    "T": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "graphene"
+      },
+      "items": "cruciblecraft:rotor"
+    }
+  },
+  "pattern": [
+    "TwT",
+    "GSG",
+    "TMT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:steam/turbine_graphene"
+  }
+}

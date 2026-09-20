@@ -5,13 +5,16 @@ import java.util.concurrent.CompletableFuture;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.SmelteryHosts;
+import com.masson.cruciblecraft.content.block.WoodDebark;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.registry.ModItemTags;
 import com.masson.cruciblecraft.registry.ModItems;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
@@ -24,7 +27,7 @@ public final class ModItemTagProvider extends TagsProvider<Item> {
             ExistingFileHelper existingFileHelper) {
         super(
                 output,
-                net.minecraft.core.registries.Registries.ITEM,
+                Registries.ITEM,
                 lookupProvider,
                 CrucibleCraft.MODID,
                 existingFileHelper);
@@ -53,14 +56,19 @@ public final class ModItemTagProvider extends TagsProvider<Item> {
         });
         var logs = tag(ItemTags.LOGS);
         var logsThatBurn = tag(ItemTags.LOGS_THAT_BURN);
+        var woodenBeams = tag(ModItemTags.WOODEN_BEAMS);
         var leaves = tag(ItemTags.LEAVES);
         var saplings = tag(ItemTags.SAPLINGS);
         var planks = tag(ItemTags.PLANKS);
         for (var species : com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.ALL) {
             logs.add(ModItems.treeLogItem(species).getKey());
             logsThatBurn.add(ModItems.treeLogItem(species).getKey());
+            woodenBeams.add(ModItems.treeBeamItem(species).getKey());
             leaves.add(ModItems.treeLeavesItem(species).getKey());
             saplings.add(ModItems.treeSaplingItem(species).getKey());
+        }
+        for (WoodDebark.VanillaPair pair : WoodDebark.VANILLA_PAIRS) {
+            woodenBeams.add(ResourceKey.create(Registries.ITEM, pair.beam()));
         }
         ModItems.gtWoods().forEach(holder -> {
             if (!holder.getId().getPath().endsWith("/crate")) {
