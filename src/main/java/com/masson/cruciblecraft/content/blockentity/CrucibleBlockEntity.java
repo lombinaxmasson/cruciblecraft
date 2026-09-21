@@ -201,7 +201,10 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
                 CrucibleWorldHazards.SMALL_GAS_RANGE,
                 Math.max(1, (int) (TemperatureDamage.kelvin(
                         process.authoritativeTemperature()) / 25L)));
-        level.setBlock(worldPosition, Blocks.LAVA.defaultBlockState(), Block.UPDATE_ALL);
+        level.setBlock(
+                worldPosition,
+                CrucibleWorldHazards.meltdownLavaState(),
+                Block.UPDATE_ALL);
     }
 
     private boolean isThermallyQuiescent() {

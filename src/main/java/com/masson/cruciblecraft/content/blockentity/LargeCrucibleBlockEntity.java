@@ -274,7 +274,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
                 for (int dz = -1; dz <= 1; dz++) {
                     level.setBlock(
                             origin.offset(dx, dy, dz),
-                            Blocks.LAVA.defaultBlockState(),
+                            CrucibleWorldHazards.meltdownLavaState(),
                             Block.UPDATE_ALL);
                 }
             }

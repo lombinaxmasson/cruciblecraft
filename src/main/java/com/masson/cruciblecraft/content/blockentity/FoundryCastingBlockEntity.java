@@ -77,7 +77,10 @@ public final class FoundryCastingBlockEntity extends BlockEntity
                 return;
             }
             if (mold.temperature > mold.moldMaxTemperatureCelsius()) {
-                level.setBlock(pos, Blocks.LAVA.defaultBlockState(), Block.UPDATE_ALL);
+                level.setBlock(
+                        pos,
+                        CrucibleWorldHazards.meltdownLavaState(),
+                        Block.UPDATE_ALL);
                 return;
             }
             float previous = mold.temperature;

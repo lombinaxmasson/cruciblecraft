@@ -177,6 +177,7 @@ import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.SlabBlock;
@@ -587,6 +588,22 @@ public final class ModBlocks {
                     0,
                     false,
                     SpringLiquidContact.GEOTHERMAL);
+    /**
+     * GT6-style temporary lava used by burn-throughs. This is deliberately a
+     * separate finite block: ordinary world lava must remain vanilla source
+     * lava, while meltdown lava must drain away after spilling.
+     */
+    public static final DeferredBlock<SpringLiquidBlock> MELTDOWN_LAVA =
+            registerSpringLiquid(
+                    "meltdown_lava",
+                    MapColor.COLOR_RED,
+                    () -> Fluids.LAVA,
+                    () -> net.minecraft.world.item.Items.LAVA_BUCKET,
+                    1_000,
+                    6_000,
+                    1_000,
+                    false,
+                    SpringLiquidContact.LAVA);
 
     public static final DeferredBlock<SubsurfaceFluidDepositBlock>
             SUBSURFACE_FLUID_DEPOSIT = BLOCKS.register(

@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.content.blockentity;
 
 import com.masson.cruciblecraft.heat.TemperatureDamage;
+import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,6 +19,10 @@ public final class CrucibleWorldHazards {
 
     public static boolean tooHotToPickUp(float celsius) {
         return TemperatureDamage.kelvin(celsius) >= TOO_HOT_TO_PICK_UP_KELVIN;
+    }
+
+    public static net.minecraft.world.level.block.state.BlockState meltdownLavaState() {
+        return ModBlocks.MELTDOWN_LAVA.get().fullState();
     }
 
     public static void boilHazards(

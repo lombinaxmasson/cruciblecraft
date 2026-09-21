@@ -72,7 +72,10 @@ public final class CeramicMoldBlockEntity extends BlockEntity
             }
             float maximum = mold.moldMaxTemperatureCelsius();
             if (mold.temperature > maximum) {
-                level.setBlock(pos, Blocks.LAVA.defaultBlockState(), Block.UPDATE_ALL);
+                level.setBlock(
+                        pos,
+                        CrucibleWorldHazards.meltdownLavaState(),
+                        Block.UPDATE_ALL);
                 return;
             }
 

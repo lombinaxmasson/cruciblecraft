@@ -38,6 +38,11 @@ public final class SpringLiquidContact {
             List.of(),
             false,
             false);
+    public static final SpringLiquidContact LAVA = new SpringLiquidContact(
+            List.of(),
+            List.of(),
+            false,
+            true);
 
     private static final int FLAMMABLE_FIRE_TICKS = 300;
 

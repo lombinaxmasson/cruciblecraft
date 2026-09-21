@@ -1525,7 +1525,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             return 0;
         }
         if (temperature > moldMaxTemperatureCelsius()) {
-            level.setBlock(worldPosition, Blocks.LAVA.defaultBlockState(), Block.UPDATE_ALL);
+            level.setBlock(
+                    worldPosition,
+                    CrucibleWorldHazards.meltdownLavaState(),
+                    Block.UPDATE_ALL);
             return 0;
         }
         BlockPos dest = faucetDestination();
