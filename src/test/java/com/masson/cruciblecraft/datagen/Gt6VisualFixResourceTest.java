@@ -7,13 +7,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.client.color.MachineBlockColor;
 import com.masson.cruciblecraft.client.screen.MachineGuiTextures;
+import com.masson.cruciblecraft.material.MaterialRegistrationGate;
+import com.masson.cruciblecraft.material.def.MaterialLoader;
+import com.masson.cruciblecraft.material.gen.GeneratedMaterialPack;
 
 import net.minecraft.resources.ResourceLocation;
 
@@ -145,30 +150,34 @@ class Gt6VisualFixResourceTest {
     }
 
     @Test
-    void uniqueWiresPipesWoodAndPanelsBindSourceBackedModels() throws Exception {
+    void uniqueWiresPipesWoodAndPanelsBindSourceBackedModels(
+            @TempDir Path configDirectory) throws Exception {
+        var materials = MaterialLoader.load(configDirectory).values();
+        Map<String, String> materialPack = GeneratedMaterialPack.planClientFiles(
+                materials,
+                MaterialRegistrationGate.load(materials));
         assertEquals(
                 "cruciblecraft:conductor/wiregt02_item",
-                parent(GENERATED.resolve("models/item/hslasteel/double_wire.json")));
+                plannedParent(materialPack, "hslasteel/double_wire.json"));
         assertEquals(
                 "cruciblecraft:conductor/cablegt01_item",
-                parent(GENERATED.resolve(
-                        "models/item/yttrium_barium_cuprate/cable.json")));
+                plannedParent(
+                        materialPack,
+                        "yttrium_barium_cuprate/cable.json"));
         assertEquals(
                 "cruciblecraft:conductor/wiregt01_item",
-                parent(GENERATED.resolve(
-                        "models/item/electrotine_alloy/wire.json")));
+                plannedParent(materialPack, "electrotine_alloy/wire.json"));
         assertEquals(
                 "cruciblecraft:pipe/fluid_quadruple_item",
-                parent(GENERATED.resolve(
-                        "models/item/wood/quadruple_fluid_pipe.json")));
+                plannedParent(materialPack, "wood/quadruple_fluid_pipe.json"));
         assertEquals(
                 "cruciblecraft:pipe/fluid_quadruple_item",
-                parent(GENERATED.resolve(
-                        "models/item/wood_treated/quadruple_fluid_pipe.json")));
+                plannedParent(
+                        materialPack,
+                        "wood_treated/quadruple_fluid_pipe.json"));
         assertEquals(
                 "cruciblecraft:pipe/fluid_8_item",
-                parent(GENERATED.resolve(
-                        "models/item/steel_galvanized/fluid_pipe.json")));
+                plannedParent(materialPack, "steel_galvanized/fluid_pipe.json"));
         assertTrue(Files.isRegularFile(GENERATED.resolve(
                 "blockstates/hslasteel/double_wire.json")));
         assertTrue(Files.isRegularFile(GENERATED.resolve(
@@ -255,9 +264,11 @@ class Gt6VisualFixResourceTest {
                 fireproof.getAsJsonObject("textures").get("all").getAsString());
     }
 
-    private static String parent(Path model) throws Exception {
-        assertTrue(Files.isRegularFile(model), model.toString());
-        return JsonParser.parseString(Files.readString(model))
+    private static String plannedParent(
+            Map<String, String> files, String relativeModelPath) {
+        String path = "assets/cruciblecraft/models/item/" + relativeModelPath;
+        assertTrue(files.containsKey(path), path);
+        return JsonParser.parseString(files.get(path))
                 .getAsJsonObject()
                 .get("parent")
                 .getAsString();

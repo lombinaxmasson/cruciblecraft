@@ -35,12 +35,12 @@ public final class MaterialLookup {
 
     public static Optional<Item> item(String materialId, MaterialPrefix form) {
         return byId(materialId)
-                .filter(material -> MaterialCatalog.isFormRegistered(material, form))
-                .flatMap(material -> item(material, form, MaterialCatalog.runtimePreferences()));
+                .filter(material -> isFormRegistered(material, form))
+                .flatMap(material -> item(material, form, runtimePreferences()));
     }
 
     public static Optional<Item> item(MaterialDefinition material, MaterialPrefix form) {
-        return item(material, form, MaterialCatalog.runtimePreferences());
+        return item(material, form, runtimePreferences());
     }
 
     /**
@@ -54,7 +54,7 @@ public final class MaterialLookup {
             MaterialDefinition material,
             MaterialPrefix form,
             Map<String, String> preferences) {
-        if (!MaterialCatalog.isFormRegistered(material, form)) {
+        if (!isFormRegistered(material, form)) {
             return Optional.empty();
         }
         return BuiltInRegistries.ITEM.getOptional(
@@ -63,11 +63,11 @@ public final class MaterialLookup {
 
     public static Optional<ResourceLocation> itemId(String materialId, MaterialPrefix form) {
         return byId(materialId)
-                .filter(material -> MaterialCatalog.isFormRegistered(material, form))
+                .filter(material -> isFormRegistered(material, form))
                 .map(material -> resolveItemId(
                         material,
                         form,
-                        MaterialCatalog.runtimePreferences()));
+                        runtimePreferences()));
     }
 
     /**
@@ -138,12 +138,12 @@ public final class MaterialLookup {
     public static Optional<ItemStack> tryStack(
             String materialId, MaterialPrefix form, int count) {
         return byId(materialId).flatMap(material ->
-                tryStack(material, form, count, MaterialCatalog.runtimePreferences()));
+                tryStack(material, form, count, runtimePreferences()));
     }
 
     public static Optional<ItemStack> tryStack(
             MaterialDefinition material, MaterialPrefix form, int count) {
-        return tryStack(material, form, count, MaterialCatalog.runtimePreferences());
+        return tryStack(material, form, count, runtimePreferences());
     }
 
     public static Optional<ItemStack> tryStack(
@@ -199,17 +199,17 @@ public final class MaterialLookup {
     /** Tag-based input projection allows every valid unified item. */
     public static Optional<Ingredient> ingredient(String materialId, MaterialPrefix prefix) {
         return byId(materialId)
-                .filter(material -> MaterialCatalog.isFormRegistered(material, prefix))
+                .filter(material -> isFormRegistered(material, prefix))
                 .flatMap(material -> ingredient(material, prefix));
     }
 
     public static Optional<Ingredient> ingredient(
             MaterialDefinition material, MaterialPrefix prefix) {
-        if (!MaterialCatalog.isFormRegistered(material, prefix)) {
+        if (!isFormRegistered(material, prefix)) {
             return Optional.empty();
         }
         if (MaterialFormHosts.isSharedInventoryForm(material, prefix)) {
-            return item(material, prefix, MaterialCatalog.runtimePreferences())
+            return item(material, prefix, runtimePreferences())
                     .map(resolved -> prefixMaterialIngredient(resolved, material.id()));
         }
         return Optional.of(Ingredient.of(materialTag(material, prefix)));
@@ -265,7 +265,7 @@ public final class MaterialLookup {
             MaterialPrefix prefix,
             ResourceLocation itemId) {
         return byId(materialId)
-                .filter(material -> MaterialCatalog.isFormRegistered(material, prefix))
+                .filter(material -> isFormRegistered(material, prefix))
                 .flatMap(material -> {
                     if (MaterialFormHosts.isSharedInventoryForm(material, prefix)) {
                         return Optional.empty();
@@ -286,5 +286,18 @@ public final class MaterialLookup {
                 ResourceLocation.fromNamespaceAndPath(
                         prefix.tagNamespace(),
                         prefix.tagDirectory() + "/" + material.tagName()));
+    }
+
+    private static boolean isFormRegistered(
+            MaterialDefinition material,
+            MaterialPrefix form) {
+        return !MaterialCatalog.isBootstrapped()
+                || MaterialCatalog.isFormRegistered(material, form);
+    }
+
+    private static Map<String, String> runtimePreferences() {
+        return MaterialCatalog.isBootstrapped()
+                ? MaterialCatalog.runtimePreferences()
+                : Map.of();
     }
 }

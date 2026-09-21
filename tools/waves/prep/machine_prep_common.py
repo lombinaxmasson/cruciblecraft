@@ -91,6 +91,8 @@ def source_row(recipe: dict[str, Any], index: int, digest: str, template_key: st
 
 
 _REGISTERED_RUNTIME_IDS: set[str] | None = None
+_PREFIX_SERIALIZED: set[str] | None = None
+_GATED_MATERIAL_FORMS: dict[str, set[str]] | None = None
 
 
 MATERIAL_GATE = (
@@ -195,6 +197,37 @@ def registered_runtime_ids() -> set[str]:
     return _REGISTERED_RUNTIME_IDS
 
 
+def prefix_serialized_names() -> set[str]:
+    global _PREFIX_SERIALIZED
+    if _PREFIX_SERIALIZED is None:
+        root = (
+            ROOT
+            / "src"
+            / "main"
+            / "resources"
+            / "data"
+            / "cruciblecraft"
+            / "material_prefixes"
+        )
+        _PREFIX_SERIALIZED = {
+            path.stem
+            for path in root.glob("*.json")
+            if path.name != "index.json"
+        }
+    return _PREFIX_SERIALIZED
+
+
+def gated_material_forms() -> dict[str, set[str]]:
+    global _GATED_MATERIAL_FORMS
+    if _GATED_MATERIAL_FORMS is None:
+        gate = census.load_json(MATERIAL_GATE)
+        _GATED_MATERIAL_FORMS = {
+            str(material): {str(form) for form in (forms or [])}
+            for material, forms in (gate.get("materials") or {}).items()
+        }
+    return _GATED_MATERIAL_FORMS
+
+
 def missing_runtime_item_operands(relation: dict[str, Any]) -> list[str]:
     registered = registered_runtime_ids()
     missing: list[str] = []
@@ -209,6 +242,48 @@ def missing_runtime_item_operands(relation: dict[str, Any]) -> list[str]:
                 continue
             if runtime not in registered:
                 missing.append(f"unregistered runtime item {runtime}")
+    return missing
+
+
+def ungated_material_form_operands(relation: dict[str, Any]) -> list[str]:
+    """Catch slash ids the assembler maps from GT6 flags but Java never registers.
+
+    ``catalogs.registered_forms`` follows generation tags such as
+    ``ITEMGENERATOR.PLANTS``. Compact ``optionalFieldOf`` then drops
+    ``item_inputs`` while counts stay, and the whole family dies with
+    ``inputs=0, counts=1``.
+    """
+    gated = gated_material_forms()
+    prefixes = prefix_serialized_names()
+    missing: list[str] = []
+    for key in ("item_inputs", "item_outputs"):
+        for operand in relation.get(key) or []:
+            runtime = str(
+                operand.get("runtime_id")
+                or operand.get("item")
+                or operand.get("id")
+                or ""
+            )
+            if not runtime.startswith("cruciblecraft:"):
+                continue
+            path = runtime.split(":", 1)[1]
+            slash = path.find("/")
+            if slash <= 0 or slash >= len(path) - 1:
+                continue
+            material = path[:slash]
+            form = path[slash + 1 :]
+            if form not in prefixes or form in gated.get(material, set()):
+                continue
+            source = operand.get("source") or {}
+            item_id = source.get("item")
+            meta = source.get("meta")
+            if item_id is not None and meta is not None:
+                origin = f"{item_id}@{meta}"
+            else:
+                origin = runtime
+            missing.append(
+                f"unregistered material form {material}:{form} from {origin}"
+            )
     return missing
 
 
@@ -259,6 +334,7 @@ def audit_rows(
         blockers = list(dict.fromkeys(str(error) for error in errors))
         if source_import._relation_unmapped(relation):
             blockers.append("unmapped operand")
+        blockers.extend(ungated_material_form_operands(relation))
         if host == "cruciblecraft:sanding":
             blockers.extend(missing_runtime_item_operands(relation))
         if host == "cruciblecraft:melter":
@@ -280,6 +356,7 @@ def audit_rows(
                     for fluid in relation.get("fluid_outputs") or []
             ):
                 blockers.append("melter fluid output exceeds 8000 mB tank")
+        blockers = list(dict.fromkeys(blockers))
         entry = {
             "source_recipe_index": index,
             "source_row_sha256": digest,
@@ -423,6 +500,71 @@ def freeze_lock(wave: Path, import_slug: str, note: str) -> dict[str, Any]:
     lock = pilot_lock(wave, import_slug, note)
     _write(wave / "production_lock.json", lock)
     return lock
+
+
+def _apply_selection_drop(
+    wave: Path,
+    keep_hashes: set[str],
+    dropped: list[dict[str, Any]],
+) -> int:
+    if not dropped:
+        return 0
+    work = census.load_json(wave / "source_pack" / "work_set.json")
+    overflow_doc = census.load_json(wave / "overflow.json")
+    family = (work.get("families") or [{}])[0]
+    kept = [
+        row
+        for row in (family.get("relations") or [])
+        if row.get("source_row_sha256") in keep_hashes
+    ]
+    for index, row in enumerate(kept):
+        row["shadow_order"] = index
+    family["relations"] = kept
+    overflow_rows = list(overflow_doc.get("overflow") or []) + dropped
+    overflow_doc["overflow"] = overflow_rows
+    overflow_doc["blocked_rows"] = len(overflow_rows)
+    accounting = work.setdefault("accounting", {})
+    accounting["selected_rows"] = len(kept)
+    accounting["overflow_rows"] = len(overflow_rows)
+    accounting["blocked_rows"] = len(overflow_rows)
+    work["overflow"] = overflow_rows
+    _write(wave / "source_pack" / "work_set.json", work)
+    _write(wave / "overflow.json", overflow_doc)
+    _write(
+        wave / "source_pack_manifest.json",
+        build_manifest(
+            wave,
+            str(census.load_json(wave / "source_pack_manifest.json").get("source_pack_id")),
+        ),
+    )
+    return len(dropped)
+
+
+def drop_ungated_material_forms(wave: Path) -> int:
+    source = census.load_json(wave / "source.json")
+    keep_hashes: set[str] = set()
+    dropped: list[dict[str, Any]] = []
+    for relation in source.get("relations") or []:
+        digest = str(relation.get("source_row_sha256") or "")
+        reasons = ungated_material_form_operands(relation)
+        if reasons:
+            first_in = (relation.get("item_inputs") or [{}])[0] or {}
+            first_out = (relation.get("item_outputs") or [{}])[0] or {}
+            dropped.append(
+                {
+                    "input": (first_in.get("source") or {}).get("displayName")
+                    or first_in.get("value"),
+                    "output": (first_out.get("source") or {}).get("displayName")
+                    or first_out.get("value"),
+                    "reasons": reasons,
+                    "source_recipe_index": relation.get("source_recipe_index"),
+                    "source_row_sha256": digest,
+                    "status": "blocked",
+                }
+            )
+            continue
+        keep_hashes.add(digest)
+    return _apply_selection_drop(wave, keep_hashes, dropped)
 
 
 def isolated_compile(wave: Path, live_needle: str) -> dict[str, Any]:
@@ -678,6 +820,9 @@ def write_source_pack(
     )
     if selected:
         source_import.write_import(wave / "recipe_import.json")
+        dropped_ungated = drop_ungated_material_forms(wave)
+        if dropped_ungated:
+            source_import.write_import(wave / "recipe_import.json")
         dropped = _drop_consume_collisions(
             wave,
             host=host,
@@ -685,7 +830,7 @@ def write_source_pack(
             template_key=template_key,
             import_slug=import_slug,
         )
-        if dropped:
+        if dropped or dropped_ungated:
             source_import.write_import(wave / "recipe_import.json")
             selected_count = int(
                 (census.load_json(wave / "source_pack" / "work_set.json")

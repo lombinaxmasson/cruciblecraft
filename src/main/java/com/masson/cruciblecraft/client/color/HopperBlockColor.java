@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.client.color;
 
 import com.masson.cruciblecraft.content.block.DustFunnelBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.content.block.MixingBowlBlock;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
@@ -35,6 +36,7 @@ public final class HopperBlockColor {
         java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
         ModBlocks.hopperBlocks().forEach(holder -> blocks.add(holder.get()));
         blocks.add(ModBlocks.STEEL_DUST_FUNNEL.get());
+        blocks.add(ModBlocks.MIXING_BOWL.get());
         return blocks.toArray(Block[]::new);
     }
 
@@ -44,6 +46,8 @@ public final class HopperBlockColor {
             materialId = hopper.variant().materialPath();
         } else if (block instanceof DustFunnelBlock) {
             materialId = "steel";
+        } else if (block instanceof MixingBowlBlock) {
+            materialId = "ceramic";
         }
         return MaterialCatalog.find(materialId)
                 .map(material -> 0xFF000000

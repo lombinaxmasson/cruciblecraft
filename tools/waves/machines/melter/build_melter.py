@@ -48,8 +48,8 @@ FAMILY_ID = (
 )
 TEMPLATE_KEY = "gt.recipe.melter#0000"
 SOURCE_ROWS = 6_756
-SELECTED_ROWS = 3_961
-OVERFLOW_ROWS = 2_795
+SELECTED_ROWS = 3_601
+OVERFLOW_ROWS = 3_155
 LOAD_HARD_CAP = 21_000
 LIVE_NEEDLE = "melter"
 WAVE = ROOT / "tools" / "waves" / "machines" / "melter"
@@ -68,10 +68,11 @@ LIVE_GENERATED = (
 POLICY_PATH = LIVE_GENERATED / "publication_policy" / "melter.json"
 PUBLICATION_GROUP = f"{TARGET_MAP}/pilot/melter"
 LOCK_NOTE = (
-    "live compile for machines/melter; 3961 runtime-registered exact rows "
-    "from the 6756-row gt.recipe.melter dump; 2795 overflow rows explicitly "
-    "blocked; load publication is UNVERIFIED_SCALE and below the 21000 hard "
-    "cap; not player_complete"
+    "live compile for machines/melter; 3601 runtime-registered exact rows "
+    "from the 6756-row gt.recipe.melter dump; 3155 overflow rows explicitly "
+    "blocked including ungated plant prefixes that Java does not register; "
+    "load publication is UNVERIFIED_SCALE and below the 21000 hard cap; "
+    "not player_complete"
 )
 ART_MANIFEST = "gt6_melter_art_manifest.json"
 PREP_WAVE = ROOT / "tools" / "waves" / "prep" / "melter"
@@ -345,8 +346,21 @@ def check() -> list[str]:
         built = compile_mod.compile_wave(IMPORT_SLUG)
         if int(built["report"].get("relation_count") or 0) != SELECTED_ROWS:
             errors.append("live compile relation_count drifted")
-        if len(live_family_files()) != 1:
+        families = live_family_files()
+        if len(families) != 1:
             errors.append("live melter tree must contain one compact family")
+        else:
+            live_doc = census.load_json(families[0])
+            ungated = [
+                reason
+                for relation in (live_doc.get("relations") or [])
+                for reason in common.ungated_material_form_operands(relation)
+            ]
+            if ungated:
+                errors.append(
+                    "live melter family still contains ungated material forms: "
+                    + ungated[0]
+                )
         if not POLICY_PATH.is_file():
             errors.append("missing melter publication policy")
         elif census.load_json(POLICY_PATH) != expected_publication_policy():

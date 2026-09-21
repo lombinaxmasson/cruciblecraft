@@ -273,4 +273,5 @@ public final class RockPebbleGameTests {
         return match.value().assemble(
                 input, helper.getLevel().registryAccess());
     }
+
 }

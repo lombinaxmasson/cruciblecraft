@@ -9,7 +9,6 @@ import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.mold.CeramicMoldCatalog;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
-import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -23,6 +22,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         generatedImportedGt6("raw_ceramic_crucible");
+        generatedImportedGt6("raw_ceramic_bowl");
         generatedImportedGt6("raw_ceramic_mold");
         generatedImportedGt6("coin");
         CeramicMoldCatalog.SHAPED.forEach(variant -> {
@@ -32,6 +32,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                     modLoc("block/ceramic_mold"));
         });
         generatedCc("match");
+        generatedImportedGt6("remote_activator");
         generatedCc("programmed_circuit");
         generatedCc("creosote_bucket");
         generatedCc("steam_bucket");
@@ -154,6 +155,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         tool("material_bending_cylinder_small", "bending_cylinder_small",
                 "bending_cylinder_small_overlay");
         tool("material_hand_drill", "hand_drill", "hand_drill_overlay");
+        tool("material_magnifying_glass", "magnifying_glass",
+                "magnifying_glass_overlay");
         tool("material_rolling_pin", "rolling_pin", "rolling_pin_overlay");
         tool("material_flint_and_tinder", "flint_and_tinder",
                 "flint_and_tinder_overlay");
@@ -273,17 +276,6 @@ public class ModItemModelProvider extends ItemModelProvider {
                 "tip_electric_trimmer_overlay",
                 "handle_electric_trimmer",
                 "handle_electric_trimmer_overlay");
-        ModBlocks.electricalConductorBlocks().forEach(holder -> {
-            var conductor = holder.get().conductor();
-            String specification = conductor.sourceSpecification();
-            withExistingParent(
-                    SlashItemModels.path(conductor.registryName()),
-                    modLoc(
-                            "conductor/"
-                                    + specification.toLowerCase(
-                                            java.util.Locale.ROOT)
-                                    + "_item"));
-        });
         withExistingParent(
                 "lu_fiber_cable",
                 modLoc("conductor/lu_fiber_cable_item"));
@@ -312,14 +304,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         }
         withExistingParent("item/tree/rubber_resin", mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/tree/rubber_resin"));
-        ModBlocks.pipeBlocks().forEach(holder -> {
-            var pipe = holder.get().pipe();
-            String modelKey = pipe.kind().name().toLowerCase(
-                    java.util.Locale.ROOT) + "_" + pipe.textureKey();
-            withExistingParent(
-                    SlashItemModels.path(pipe.registryName()),
-                    modLoc("pipe/" + modelKey + "_item"));
-        });
     }
 
     private void generatedCc(String name) {

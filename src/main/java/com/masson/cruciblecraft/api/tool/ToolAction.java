@@ -23,6 +23,8 @@ public enum ToolAction {
     SHEARS,
     DRILL,
     BUILDER_WAND,
+    MIXER,
+    GRAFTER,
     MAGNIFYING_GLASS,
     IGNITER;
 

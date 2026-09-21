@@ -144,10 +144,11 @@ RECIPE_ROOTS = (
 MELTER_WAVE = census.TOOLS / "waves" / "machines" / "melter"
 MELTER_IMPORT = MELTER_WAVE / "recipe_import.json"
 MELTER_LOCK_NOTE = (
-    "live compile for machines/melter; 3961 runtime-registered exact rows "
-    "from the 6756-row gt.recipe.melter dump; 2795 overflow rows explicitly "
-    "blocked; load publication is UNVERIFIED_SCALE and below the 21000 hard "
-    "cap; not player_complete"
+    "live compile for machines/melter; 3601 runtime-registered exact rows "
+    "from the 6756-row gt.recipe.melter dump; 3155 overflow rows explicitly "
+    "blocked including ungated plant prefixes that Java does not register; "
+    "load publication is UNVERIFIED_SCALE and below the 21000 hard cap; "
+    "not player_complete"
 )
 OVERLAY_PATH = WAVE / "combo_overlay.json"
 CANONICAL = {"hsla_steel": "hslasteel"}

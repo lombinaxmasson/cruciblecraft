@@ -101,6 +101,8 @@ import com.masson.cruciblecraft.content.item.MaterialSwordItem;
 import com.masson.cruciblecraft.content.item.MaterialUniversalSpadeItem;
 import com.masson.cruciblecraft.content.item.MaterialWireCutterItem;
 import com.masson.cruciblecraft.content.item.MaterialWorkshopToolItem;
+import com.masson.cruciblecraft.content.item.MagnifyingGlassItem;
+import com.masson.cruciblecraft.content.item.RemoteActivatorItem;
 import com.masson.cruciblecraft.content.item.MaterialBuilderWandItem;
 import com.masson.cruciblecraft.content.item.MaterialPocketMultitoolItem;
 import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
@@ -245,6 +247,13 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem(
                     "tungstensteel_automatic_hammer",
                     ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER);
+    public static final DeferredItem<BlockItem> BOOMSTICK =
+            ITEMS.registerSimpleBlockItem("boomstick", ModBlocks.BOOMSTICK);
+    public static final DeferredItem<BlockItem> DYNAMITE =
+            ITEMS.registerSimpleBlockItem("dynamite", ModBlocks.DYNAMITE);
+    public static final DeferredItem<BlockItem> STRONG_DYNAMITE =
+            ITEMS.registerSimpleBlockItem(
+                    "strong_dynamite", ModBlocks.STRONG_DYNAMITE);
     public static final DeferredItem<BlockItem> FUSION_REACTOR =
             ITEMS.registerSimpleBlockItem(
                     "fusion_reactor",
@@ -377,6 +386,8 @@ public final class ModItems {
 
     public static final DeferredItem<Item> RAW_CERAMIC_CRUCIBLE =
             ITEMS.registerSimpleItem("raw_ceramic_crucible", new Item.Properties());
+    public static final DeferredItem<Item> RAW_CERAMIC_BOWL =
+            ITEMS.registerSimpleItem("raw_ceramic_bowl", new Item.Properties());
     public static final DeferredItem<Item> RAW_CERAMIC_MOLD =
             ITEMS.registerSimpleItem("raw_ceramic_mold", new Item.Properties());
     private static final Map<String, DeferredItem<Item>> RAW_SHAPED_MOLDS =
@@ -397,6 +408,11 @@ public final class ModItems {
     public static final DeferredItem<CeramicMoldBlockItem> BOLT_MOLD = FIRED_SHAPED_MOLDS.get("bolt");
     public static final DeferredItem<Item> MATCH =
             ITEMS.registerSimpleItem("match", new Item.Properties());
+    public static final DeferredItem<RemoteActivatorItem> REMOTE_ACTIVATOR =
+            ITEMS.register(
+                    "remote_activator",
+                    () -> new RemoteActivatorItem(
+                            new Item.Properties().stacksTo(1)));
     public static final DeferredItem<ProgrammedCircuitItem> PROGRAMMED_CIRCUIT =
             ITEMS.register(
                     "programmed_circuit",
@@ -734,6 +750,9 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> STEEL_DUST_FUNNEL =
             ITEMS.registerSimpleBlockItem(
                     "steel_dust_funnel", ModBlocks.STEEL_DUST_FUNNEL);
+    public static final DeferredItem<BlockItem> MIXING_BOWL =
+            ITEMS.registerSimpleBlockItem(
+                    "mixing_bowl", ModBlocks.MIXING_BOWL);
     public static final DeferredItem<BlockItem> CENTRIFUGE =
             tieredProcessingItem("centrifuge");
     public static final DeferredItem<BlockItem> STEEL_CENTRIFUGE =
@@ -1019,6 +1038,10 @@ public final class ModItems {
                             new Item.Properties(),
                             ToolKind.HAND_DRILL,
                             "item.cruciblecraft.material_hand_drill"));
+    public static final DeferredItem<MagnifyingGlassItem> MATERIAL_MAGNIFYING_GLASS =
+            ITEMS.register(
+                    "material_magnifying_glass",
+                    () -> new MagnifyingGlassItem(new Item.Properties()));
     public static final DeferredItem<MaterialWorkshopToolItem> MATERIAL_ROLLING_PIN =
             ITEMS.register(
                     "material_rolling_pin",

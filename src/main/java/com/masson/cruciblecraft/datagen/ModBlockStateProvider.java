@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.AutomaticHammerBlock;
+import com.masson.cruciblecraft.content.block.ExplosiveBlock;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
@@ -192,6 +193,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         variant.id().getPath(),
                         ModBlocks.configuredProcessingBlock(variant)));
         registerAutomaticHammers();
+        registerExplosives();
         configuredMachine(
                 "rotational_gearbox",
                 ModBlocks.ROTATIONAL_GEARBOX.get());
@@ -405,6 +407,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(
                 ModBlocks.STEEL_DUST_FUNNEL.get(),
                 models().getExistingFile(modLoc("block/dust_funnel")));
+        simpleBlockWithItem(
+                ModBlocks.MIXING_BOWL.get(),
+                models().getExistingFile(modLoc("block/mixing_bowl")));
     }
 
     private void registerSensors() {
@@ -1909,6 +1914,87 @@ public class ModBlockStateProvider extends BlockStateProvider {
             });
             simpleBlockItem(entry.getKey(), model);
         }
+    }
+
+    private void registerExplosives() {
+        registerExplosive(ModBlocks.BOOMSTICK.get(), "boomstick");
+        registerExplosive(ModBlocks.DYNAMITE.get(), "dynamite");
+        registerExplosive(ModBlocks.STRONG_DYNAMITE.get(), "strong_dynamite");
+    }
+
+    private void registerExplosive(ExplosiveBlock block, String id) {
+        String base = "block/gt6_import/dynamite";
+        ModelFile idle = explosiveModel(
+                id,
+                base + "/colored/front",
+                base + "/colored/back",
+                base + "/colored/side",
+                base + "/overlay/front",
+                base + "/overlay/back",
+                base + "/overlay/side");
+        ModelFile active = explosiveModel(
+                id + "_active",
+                base + "/colored_active/front",
+                base + "/colored_active/back",
+                base + "/colored_active/side",
+                base + "/overlay_active/front",
+                base + "/overlay_active/back",
+                base + "/overlay_active/side");
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction facing = state.getValue(ExplosiveBlock.FACING);
+            ModelFile model = state.getValue(ExplosiveBlock.LIT) ? active : idle;
+            var builder = ConfiguredModel.builder().modelFile(model);
+            return switch (facing) {
+                case DOWN -> builder.rotationX(90).build();
+                case UP -> builder.rotationX(270).build();
+                case SOUTH -> builder.rotationY(180).build();
+                case WEST -> builder.rotationY(270).build();
+                case EAST -> builder.rotationY(90).build();
+                case NORTH -> builder.build();
+            };
+        });
+        simpleBlockItem(block, idle);
+    }
+
+    private ModelFile explosiveModel(
+            String name,
+            String front,
+            String back,
+            String side,
+            String overlayFront,
+            String overlayBack,
+            String overlaySide) {
+        BlockModelBuilder model = models()
+                .withExistingParent(name, mcLoc("block/block"))
+                .renderType("cutout")
+                .texture("particle", modLoc(side))
+                .texture("front", modLoc(front))
+                .texture("back", modLoc(back))
+                .texture("side", modLoc(side))
+                .texture("overlay_front", modLoc(overlayFront))
+                .texture("overlay_back", modLoc(overlayBack))
+                .texture("overlay_side", modLoc(overlaySide));
+        model.element()
+                .from(5.0F, 5.0F, 0.0F)
+                .to(11.0F, 11.0F, 16.0F)
+                .face(Direction.NORTH).texture("#front").tintindex(0).end()
+                .face(Direction.SOUTH).texture("#back").tintindex(0).end()
+                .face(Direction.EAST).texture("#side").tintindex(0).end()
+                .face(Direction.WEST).texture("#side").tintindex(0).end()
+                .face(Direction.UP).texture("#side").tintindex(0).end()
+                .face(Direction.DOWN).texture("#side").tintindex(0).end()
+                .end();
+        model.element()
+                .from(5.002F, 5.002F, 0.0F)
+                .to(10.998F, 10.998F, 16.0F)
+                .face(Direction.NORTH).texture("#overlay_front").end()
+                .face(Direction.SOUTH).texture("#overlay_back").end()
+                .face(Direction.EAST).texture("#overlay_side").end()
+                .face(Direction.WEST).texture("#overlay_side").end()
+                .face(Direction.UP).texture("#overlay_side").end()
+                .face(Direction.DOWN).texture("#overlay_side").end()
+                .end();
+        return model;
     }
 
     private void configuredFacingLitMachine(

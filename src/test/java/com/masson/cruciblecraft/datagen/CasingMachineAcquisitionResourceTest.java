@@ -216,8 +216,7 @@ class CasingMachineAcquisitionResourceTest {
             keyObject.entrySet().forEach(entry ->
                     key.put(
                             entry.getKey(),
-                            entry.getValue().getAsJsonObject()
-                                    .get("item").getAsString()));
+                            ingredientId(entry.getValue().getAsJsonObject())));
             assertEquals(expected.key(), key, expected.path());
             if (!expected.catalysts().isEmpty()) {
                 Map<String, String> catalysts = new LinkedHashMap<>();
@@ -268,5 +267,40 @@ class CasingMachineAcquisitionResourceTest {
                     Map.of(),
                     "minecraft:crafting_shaped");
         }
+    }
+
+    private static String ingredientId(com.google.gson.JsonObject ingredient) {
+        if (ingredient.has("item")) {
+            return ingredient.get("item").getAsString();
+        }
+        if (ingredient.has("tag")) {
+            String tag = ingredient.get("tag").getAsString();
+            int slash = tag.lastIndexOf('/');
+            if (slash < 0) {
+                return tag;
+            }
+            String directory = tag.substring(tag.indexOf(':') + 1, slash);
+            String form = switch (directory) {
+                case "plates" -> "plate";
+                case "long_rods" -> "long_rod";
+                case "rods" -> "rod";
+                case "gears" -> "gear";
+                case "small_gears" -> "small_gear";
+                case "fine_wires" -> "fine_wire";
+                case "gems" -> "gem";
+                default -> throw new AssertionError(
+                        "Unknown material tag directory: " + directory);
+            };
+            return "cruciblecraft:" + tag.substring(slash + 1) + "/" + form;
+        }
+        if (ingredient.has("items")) {
+            String item = ingredient.get("items").getAsString();
+            String material = ingredient.getAsJsonObject("components")
+                    .get("cruciblecraft:prefix_material").getAsString();
+            int colon = item.indexOf(':');
+            return "cruciblecraft:" + material + "/"
+                    + item.substring(colon + 1);
+        }
+        throw new AssertionError("Unsupported ingredient: " + ingredient);
     }
 }

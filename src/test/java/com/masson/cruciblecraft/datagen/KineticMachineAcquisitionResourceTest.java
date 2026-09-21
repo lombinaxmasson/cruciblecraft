@@ -196,8 +196,8 @@ class KineticMachineAcquisitionResourceTest {
                     .asList().stream().map(value -> value.getAsString()).toList());
             Map<String, String> key = new LinkedHashMap<>();
             recipe.getAsJsonObject("key").entrySet().forEach(entry ->
-                    key.put(entry.getKey(), entry.getValue().getAsJsonObject()
-                            .get("item").getAsString()));
+                    key.put(entry.getKey(), ingredientId(
+                            entry.getValue().getAsJsonObject())));
             assertEquals(expected.key(), key, expected.path());
             assertEquals(expected.result(),
                     recipe.getAsJsonObject("result").get("id").getAsString(),
@@ -228,6 +228,42 @@ class KineticMachineAcquisitionResourceTest {
 
     private static String kind(String id) {
         return id.replaceFirst("^(steel|titanium)_", "");
+    }
+
+    private static String ingredientId(com.google.gson.JsonObject ingredient) {
+        if (ingredient.has("item")) {
+            return ingredient.get("item").getAsString();
+        }
+        if (ingredient.has("tag")) {
+            String tag = ingredient.get("tag").getAsString();
+            int slash = tag.lastIndexOf('/');
+            if (slash < 0) {
+                return tag;
+            }
+            String directory = tag.substring(tag.indexOf(':') + 1, slash);
+            String form = switch (directory) {
+                case "plates" -> "plate";
+                case "rods" -> "rod";
+                case "long_rods" -> "long_rod";
+                case "gears" -> "gear";
+                case "small_gears" -> "small_gear";
+                case "screws" -> "screw";
+                case "springs" -> "spring";
+                case "gems" -> "gem";
+                default -> throw new AssertionError(
+                        "Unknown material tag directory: " + directory);
+            };
+            return "cruciblecraft:" + tag.substring(slash + 1) + "/" + form;
+        }
+        if (ingredient.has("items")) {
+            String item = ingredient.get("items").getAsString();
+            String material = ingredient.getAsJsonObject("components")
+                    .get("cruciblecraft:prefix_material").getAsString();
+            int colon = item.indexOf(':');
+            return "cruciblecraft:" + material + "/"
+                    + item.substring(colon + 1);
+        }
+        throw new AssertionError("Unsupported ingredient: " + ingredient);
     }
 
     private static String englishName(String id) {

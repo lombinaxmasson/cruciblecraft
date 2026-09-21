@@ -1,15 +1,15 @@
 {
   "variants": {
-    "tower_skin=false,back_hole=false": {
+    "back_hole=false,tower_skin=false": {
       "model": "cruciblecraft:block/multiblock_fluid_out_port"
     },
-    "tower_skin=false,back_hole=true": {
-      "model": "cruciblecraft:block/multiblock_fluid_out_port"
-    },
-    "tower_skin=true,back_hole=false": {
+    "back_hole=false,tower_skin=true": {
       "model": "cruciblecraft:block/distillation_tower_part_0"
     },
-    "tower_skin=true,back_hole=true": {
+    "back_hole=true,tower_skin=false": {
+      "model": "cruciblecraft:block/multiblock_fluid_out_port"
+    },
+    "back_hole=true,tower_skin=true": {
       "model": "cruciblecraft:block/distillation_tower_part_1"
     }
   }

@@ -1,0 +1,106 @@
+{
+  "credit": "GT6 MultiTileEntityMixingBowl empty-state ISBRH; colored/overlay imported unchanged",
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "#sides",
+    "bottom": "cruciblecraft:block/gt6_import/mixing_bowl/colored/bottom",
+    "top": "cruciblecraft:block/gt6_import/mixing_bowl/colored/top",
+    "sides": "cruciblecraft:block/gt6_import/mixing_bowl/colored/sides",
+    "insides": "cruciblecraft:block/gt6_import/mixing_bowl/colored/insides",
+    "overlay_bottom": "cruciblecraft:block/gt6_import/mixing_bowl/overlay/bottom",
+    "overlay_top": "cruciblecraft:block/gt6_import/mixing_bowl/overlay/top",
+    "overlay_sides": "cruciblecraft:block/gt6_import/mixing_bowl/overlay/sides",
+    "overlay_insides": "cruciblecraft:block/gt6_import/mixing_bowl/overlay/insides"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [2, 8, 16],
+      "faces": {
+        "up": {"texture": "#top", "tintindex": 0},
+        "west": {"texture": "#sides", "tintindex": 0, "cullface": "west"},
+        "east": {"texture": "#insides", "tintindex": 0}
+      }
+    },
+    {
+      "from": [0, 0, 0],
+      "to": [2, 8, 16],
+      "faces": {
+        "up": {"texture": "#overlay_top"},
+        "west": {"texture": "#overlay_sides", "cullface": "west"},
+        "east": {"texture": "#overlay_insides"}
+      }
+    },
+    {
+      "from": [0, 0, 0],
+      "to": [16, 8, 2],
+      "faces": {
+        "up": {"texture": "#top", "tintindex": 0},
+        "north": {"texture": "#sides", "tintindex": 0, "cullface": "north"},
+        "south": {"texture": "#insides", "tintindex": 0}
+      }
+    },
+    {
+      "from": [0, 0, 0],
+      "to": [16, 8, 2],
+      "faces": {
+        "up": {"texture": "#overlay_top"},
+        "north": {"texture": "#overlay_sides", "cullface": "north"},
+        "south": {"texture": "#overlay_insides"}
+      }
+    },
+    {
+      "from": [14, 0, 0],
+      "to": [16, 8, 16],
+      "faces": {
+        "up": {"texture": "#top", "tintindex": 0},
+        "west": {"texture": "#insides", "tintindex": 0},
+        "east": {"texture": "#sides", "tintindex": 0, "cullface": "east"}
+      }
+    },
+    {
+      "from": [14, 0, 0],
+      "to": [16, 8, 16],
+      "faces": {
+        "up": {"texture": "#overlay_top"},
+        "west": {"texture": "#overlay_insides"},
+        "east": {"texture": "#overlay_sides", "cullface": "east"}
+      }
+    },
+    {
+      "from": [0, 0, 14],
+      "to": [16, 8, 16],
+      "faces": {
+        "up": {"texture": "#top", "tintindex": 0},
+        "north": {"texture": "#insides", "tintindex": 0},
+        "south": {"texture": "#sides", "tintindex": 0, "cullface": "south"}
+      }
+    },
+    {
+      "from": [0, 0, 14],
+      "to": [16, 8, 16],
+      "faces": {
+        "up": {"texture": "#overlay_top"},
+        "north": {"texture": "#overlay_insides"},
+        "south": {"texture": "#overlay_sides", "cullface": "south"}
+      }
+    },
+    {
+      "from": [0, 0, 0],
+      "to": [16, 2, 16],
+      "faces": {
+        "down": {"texture": "#bottom", "tintindex": 0, "cullface": "down"},
+        "up": {"texture": "#bottom", "tintindex": 0}
+      }
+    },
+    {
+      "from": [0, 0, 0],
+      "to": [16, 2, 16],
+      "faces": {
+        "down": {"texture": "#overlay_bottom", "cullface": "down"},
+        "up": {"texture": "#overlay_bottom"}
+      }
+    }
+  ]
+}

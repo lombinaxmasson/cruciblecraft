@@ -15,6 +15,7 @@ import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.AutomaticHammerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ExplosiveBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricMotorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricHeaterBlockEntity;
@@ -40,6 +41,7 @@ import com.masson.cruciblecraft.content.blockentity.MatterFabricatorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.StorageInserterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DustFunnelBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MixingBowlBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeMixerBlockEntity;
@@ -402,6 +404,17 @@ public final class ModBlockEntities {
                                     ModBlocks.TITANIUM_AUTOMATIC_HAMMER.get(),
                                     ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER.get())
                                     .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<ExplosiveBlockEntity>>
+                    DYNAMITE = BLOCK_ENTITIES.register(
+                            "dynamite",
+                            () -> BlockEntityType.Builder.of(
+                                    ExplosiveBlockEntity::new,
+                                    ModBlocks.BOOMSTICK.get(),
+                                    ModBlocks.DYNAMITE.get(),
+                                    ModBlocks.STRONG_DYNAMITE.get())
+                                    .build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CableBlockEntity>>
             CABLE = BLOCK_ENTITIES.register(
                     "cable",
@@ -529,6 +542,15 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     DustFunnelBlockEntity::new,
                                     ModBlocks.STEEL_DUST_FUNNEL.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<MixingBowlBlockEntity>>
+                    MIXING_BOWL = BLOCK_ENTITIES.register(
+                            "mixing_bowl",
+                            () -> BlockEntityType.Builder.of(
+                                    MixingBowlBlockEntity::new,
+                                    ModBlocks.MIXING_BOWL.get())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

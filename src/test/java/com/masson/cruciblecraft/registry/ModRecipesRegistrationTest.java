@@ -37,7 +37,9 @@ class ModRecipesRegistrationTest {
         assertEquals(expected, ModRecipes.RECIPE_TYPES.getEntries().stream()
                 .map(holder -> holder.getId())
                 .collect(Collectors.toSet()));
-        assertEquals(expected, ModRecipes.RECIPE_SERIALIZERS.getEntries().stream()
+        Set<ResourceLocation> expectedSerializers = new java.util.HashSet<>(expected);
+        expectedSerializers.add(id("prefix_pack"));
+        assertEquals(expectedSerializers, ModRecipes.RECIPE_SERIALIZERS.getEntries().stream()
                 .map(holder -> holder.getId())
                 .collect(Collectors.toSet()));
     }

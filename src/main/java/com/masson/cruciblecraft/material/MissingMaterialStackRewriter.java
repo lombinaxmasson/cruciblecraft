@@ -49,6 +49,17 @@ public final class MissingMaterialStackRewriter {
     }
 
     static Optional<Identity> parseIdentity(String path) {
+        for (var entry : MaterialPrefixCatalog.legacySuffixesLongestFirst()) {
+            if (!entry.value().contains("/")) {
+                continue;
+            }
+            String suffix = "_" + entry.value();
+            if (path.endsWith(suffix) && path.length() > suffix.length()) {
+                return Optional.of(new Identity(
+                        path.substring(0, path.length() - suffix.length()),
+                        entry.canonicalPath()));
+            }
+        }
         int slash = path.indexOf('/');
         if (slash > 0 && slash < path.length() - 1) {
             return Optional.of(new Identity(

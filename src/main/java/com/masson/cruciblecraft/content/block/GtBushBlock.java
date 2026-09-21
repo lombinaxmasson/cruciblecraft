@@ -2,7 +2,11 @@ package com.masson.cruciblecraft.content.block;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.api.tool.ToolAction;
+import com.masson.cruciblecraft.api.tool.ToolInteractable;
+import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.GtBushBlockEntity;
+import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -37,7 +41,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 /**
  * GT6 {@code MultiTileEntityBush}. Independent plant runtime, not a cover.
  */
-public final class GtBushBlock extends Block implements EntityBlock {
+public final class GtBushBlock extends Block implements EntityBlock, ToolInteractable {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final IntegerProperty STAGE = IntegerProperty.create("stage", 0, 3);
     public static final int MAX_STAGE = 3;
@@ -138,6 +142,11 @@ public final class GtBushBlock extends Block implements EntityBlock {
             Player player,
             net.minecraft.world.InteractionHand hand,
             BlockHitResult hit) {
+        ItemInteractionResult tool = ToolClick.useItemOn(
+                stack, level, player, hand, hit);
+        if (tool.consumesAction()) {
+            return tool;
+        }
         if (!(level.getBlockEntity(pos) instanceof GtBushBlockEntity bush)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
@@ -154,6 +163,27 @@ public final class GtBushBlock extends Block implements EntityBlock {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    public ToolResult useTool(
+            ToolAction action, net.minecraft.world.item.context.UseOnContext context) {
+        if (action != ToolAction.GRAFTER) {
+            return ToolResult.PASS;
+        }
+        Level level = context.getLevel();
+        if (!(level.getBlockEntity(context.getClickedPos())
+                instanceof GtBushBlockEntity bush)) {
+            return ToolResult.PASS;
+        }
+        if (bush.berry().isEmpty() || bush.stage() < MAX_STAGE) {
+            return ToolResult.PASS;
+        }
+        if (!level.isClientSide) {
+            bush.harvest(context.getPlayer());
+            ToolClick.hurt(context);
+        }
+        return ToolResult.SUCCESS;
     }
 
     @Override

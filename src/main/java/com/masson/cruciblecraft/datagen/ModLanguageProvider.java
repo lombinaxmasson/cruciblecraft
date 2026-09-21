@@ -248,6 +248,7 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.ANVIL, "锻造砧");
             addBlock(ModBlocks.CERAMIC_MOLD, "陶瓷模具");
             addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "黏土坩埚");
+            addItem(ModItems.RAW_CERAMIC_BOWL, "黏土碗");
             addItem(ModItems.RAW_CERAMIC_MOLD, "黏土模具");
             CeramicMoldCatalog.SHAPED.forEach(variant -> {
                 addItem(ModItems.rawShapedMold(variant.id()), variant.chineseRaw());
@@ -261,6 +262,9 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.STEEL_AUTOMATIC_HAMMER, "钢自动锤");
             addBlock(ModBlocks.TITANIUM_AUTOMATIC_HAMMER, "钛自动锤");
             addBlock(ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER, "钨钢自动锤");
+            addBlock(ModBlocks.BOOMSTICK, "爆竹");
+            addBlock(ModBlocks.DYNAMITE, "炸药");
+            addBlock(ModBlocks.STRONG_DYNAMITE, "强力炸药");
             addBlock(ModBlocks.FUSION_REACTOR, "聚变反应堆");
             add("tooltip.cruciblecraft.fusion.structure", "结构：");
             add("tooltip.cruciblecraft.fusion.1", "组装说明见界面中的手册。");
@@ -273,6 +277,13 @@ public class ModLanguageProvider extends LanguageProvider {
             add("tooltip.cruciblecraft.fusion.5", "电能从电力接口输出");
             add("tooltip.cruciblecraft.fusion.6", "激光从「玻璃」环输入");
             add("tooltip.cruciblecraft.fusion.7", "物品和流体走普通墙壁");
+            addItem(ModItems.REMOTE_ACTIVATOR, "远程激活器");
+            add("tooltip.cruciblecraft.remote_activator", "潜行点击炸药绑定，普通使用触发");
+            add("tooltip.cruciblecraft.remote_activator.count", "已绑定目标：%s");
+            add("message.cruciblecraft.remote.full", "每个维度最多绑定 64 个目标");
+            add("message.cruciblecraft.remote.invalid", "这里不是可远程激活的目标");
+            add("message.cruciblecraft.remote.added", "已添加远程目标");
+            add("message.cruciblecraft.remote.removed", "已移除远程目标");
             addBlock(ModBlocks.LARGE_HEAT_EXCHANGER, "大型热交换器");
             addBlock(ModBlocks.BEDROCK_DRILL, "基岩采矿钻机控制器");
             addBlock(ModBlocks.BEDROCK_DRILL_HEAD, "基岩采矿钻头");
@@ -447,6 +458,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("item.cruciblecraft.material_bending_cylinder", "%s折弯筒");
             add("item.cruciblecraft.material_bending_cylinder_small", "%s小型折弯筒");
             add("item.cruciblecraft.material_hand_drill", "%s手钻");
+            add("item.cruciblecraft.material_magnifying_glass", "%s放大镜");
             add("item.cruciblecraft.material_rolling_pin", "%s擀面杖");
             add("item.cruciblecraft.material_flint_and_tinder", "%s火绒");
             add("item.cruciblecraft.material_pocket_multitool", "%s口袋多功能工具");
@@ -750,6 +762,9 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.STEEL_AUTOMATIC_HAMMER, "Steel Automatic Hammer");
         addBlock(ModBlocks.TITANIUM_AUTOMATIC_HAMMER, "Titanium Automatic Hammer");
         addBlock(ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER, "Tungstensteel Automatic Hammer");
+        addBlock(ModBlocks.BOOMSTICK, "Boomstick");
+        addBlock(ModBlocks.DYNAMITE, "Dynamite");
+        addBlock(ModBlocks.STRONG_DYNAMITE, "Strong Dynamite");
         addBlock(ModBlocks.FUSION_REACTOR, "Fusion Reactor");
         add("tooltip.cruciblecraft.fusion.structure", "Structure:");
         add("tooltip.cruciblecraft.fusion.1",
@@ -867,12 +882,24 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.LARGE_CRUCIBLE, "Large Crucible");
         add("block.cruciblecraft.large_crucible.named", "Large %s Crucible");
         addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "Clay Crucible");
+        addItem(ModItems.RAW_CERAMIC_BOWL, "Clay Bowl");
         addItem(ModItems.RAW_CERAMIC_MOLD, "Clay Mold");
         CeramicMoldCatalog.SHAPED.forEach(variant -> {
             addItem(ModItems.rawShapedMold(variant.id()), variant.englishRaw());
             addItem(ModItems.firedShapedMold(variant.id()), variant.englishFired());
         });
         addItem(ModItems.MATCH, "Match");
+        addItem(ModItems.REMOTE_ACTIVATOR, "Remote Activator");
+        add("tooltip.cruciblecraft.remote_activator",
+                "Sneak-click a target to bind it; use normally to activate");
+        add("tooltip.cruciblecraft.remote_activator.count",
+                "Bound targets: %s");
+        add("message.cruciblecraft.remote.full",
+                "A dimension can hold at most 64 targets");
+        add("message.cruciblecraft.remote.invalid",
+                "This is not a remotely activatable target");
+        add("message.cruciblecraft.remote.added", "Remote target added");
+        add("message.cruciblecraft.remote.removed", "Remote target removed");
         addItem(ModItems.PROGRAMMED_CIRCUIT, "Programmed Circuit");
         add("tooltip.cruciblecraft.circuit_config", "Configuration: %s");
         add("tooltip.cruciblecraft.reactor_rod.empty", "Empty reactor rod");
@@ -1091,6 +1118,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.cruciblecraft.material_bending_cylinder_small",
                 "%s Small Bending Cylinder");
         add("item.cruciblecraft.material_hand_drill", "%s Hand Drill");
+        add("item.cruciblecraft.material_magnifying_glass", "%s Magnifying Glass");
         add("item.cruciblecraft.material_rolling_pin", "%s Rolling Pin");
         add("item.cruciblecraft.material_flint_and_tinder", "%s Flint and Tinder");
         add("item.cruciblecraft.material_pocket_multitool", "%s Pocket Multitool");
@@ -1530,6 +1558,45 @@ public class ModLanguageProvider extends LanguageProvider {
         add(
                 "message.cruciblecraft.machine.auto.fluid_out.enabled",
                 chinese ? "自动流体输出：开" : "Auto Fluid Output Enabled");
+        add(
+                "message.cruciblecraft.inspect.no_fluids",
+                chinese ? "没有流体" : "Contains no Fluids");
+        add(
+                "message.cruciblecraft.inspect.no_items",
+                chinese ? "没有物品" : "Contains no Items");
+        add(
+                "message.cruciblecraft.inspect.fluid",
+                chinese ? "流体：%s %s mB" : "Fluid: %s %s mB");
+        add(
+                "message.cruciblecraft.inspect.input_fluid",
+                chinese ? "输入：%s %s mB" : "Input: %s %s mB");
+        add(
+                "message.cruciblecraft.inspect.output_fluid",
+                chinese ? "输出：%s %s mB" : "Output: %s %s mB");
+        add(
+                "message.cruciblecraft.inspect.item",
+                chinese ? "物品：%s × %s" : "Item: %s x %s");
+        add(
+                "message.cruciblecraft.inspect.stored",
+                chinese ? "库存：%s / %s" : "Stored: %s / %s");
+        add(
+                "message.cruciblecraft.inspect.filter",
+                chinese ? "过滤：%s" : "Filter: %s");
+        add(
+                "message.cruciblecraft.inspect.cover",
+                chinese ? "盖板：%s" : "Cover: %s");
+        add(
+                "message.cruciblecraft.inspect.cover_filter",
+                chinese ? "盖板：%s 匹配 %s" : "Cover: %s matching %s");
+        add(
+                "message.cruciblecraft.inspect.cover_filter_inverted",
+                chinese ? "盖板：%s 排除 %s" : "Cover: %s excluding %s");
+        add(
+                "message.cruciblecraft.inspect.berry",
+                chinese ? "浆果：%s" : "Berry: %s");
+        add(
+                "message.cruciblecraft.inspect.stage",
+                chinese ? "生长阶段：%s" : "Stage: %s");
     }
 
     private void addHopperTranslations(boolean chinese) {
@@ -1548,6 +1615,7 @@ public class ModLanguageProvider extends LanguageProvider {
         });
         if (chinese) {
             addBlock(ModBlocks.STEEL_DUST_FUNNEL, "钢制粉末漏斗");
+            addBlock(ModBlocks.MIXING_BOWL, "陶瓷搅拌碗");
             add("container.cruciblecraft.hopper", "料斗");
             add("container.cruciblecraft.queue_hopper", "队列料斗");
             add("tooltip.cruciblecraft.hopper.slots", "槽位：%s");
@@ -1567,6 +1635,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("message.cruciblecraft.mass_storage.overflow_off", "不会向下排出溢出");
         } else {
             addBlock(ModBlocks.STEEL_DUST_FUNNEL, "Steel Dust Funnel");
+            addBlock(ModBlocks.MIXING_BOWL, "Ceramic Mixing Bowl");
             add("container.cruciblecraft.hopper", "Hopper");
             add("container.cruciblecraft.queue_hopper", "Queue Hopper");
             add("tooltip.cruciblecraft.hopper.slots", "Slots: %s");
@@ -1906,6 +1975,7 @@ public class ModLanguageProvider extends LanguageProvider {
             case ROLLING_PIN -> "擀面杖";
             case FLINT_AND_TINDER -> "火绒";
             case POCKET_MULTITOOL -> "口袋多功能工具";
+            case MAGNIFYING_GLASS -> "放大镜";
             default -> com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog
                     .of(kind)
                     .map(com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog::langZh)
@@ -1952,6 +2022,7 @@ public class ModLanguageProvider extends LanguageProvider {
             case ROLLING_PIN -> "Rolling Pin";
             case FLINT_AND_TINDER -> "Flint and Tinder";
             case POCKET_MULTITOOL -> "Pocket Multitool";
+            case MAGNIFYING_GLASS -> "Magnifying Glass";
             default -> com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog
                     .of(kind)
                     .map(com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog::langEn)

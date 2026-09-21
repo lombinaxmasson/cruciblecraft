@@ -121,7 +121,8 @@ public record ProcessingEmiLayout(
             OptionalInt machineSlot = takeSlot(
                     spec,
                     available,
-                    ProcessingMachineSpec.SlotRole.MATERIAL);
+                    ProcessingMachineSpec.SlotRole.MATERIAL,
+                    true);
             if (machineSlot.isPresent()) {
                 result.add(itemSlot(
                         spec, ItemKind.INPUT, input.recipeIndex(), machineSlot.getAsInt()));
@@ -134,7 +135,8 @@ public record ProcessingEmiLayout(
             OptionalInt machineSlot = takeSlot(
                     spec,
                     available,
-                    ProcessingMachineSpec.SlotRole.TOOL);
+                    ProcessingMachineSpec.SlotRole.TOOL,
+                    false);
             if (machineSlot.isPresent()) {
                 result.add(itemSlot(
                         spec,
@@ -165,7 +167,8 @@ public record ProcessingEmiLayout(
     private static OptionalInt takeSlot(
             ProcessingMachineSpec spec,
             Set<Integer> available,
-            ProcessingMachineSpec.SlotRole preferredRole) {
+            ProcessingMachineSpec.SlotRole preferredRole,
+            boolean allowFallback) {
         Integer preferred = null;
         for (int slot : available) {
             if (spec.items().role(slot) == preferredRole) {
@@ -177,7 +180,7 @@ public record ProcessingEmiLayout(
             available.remove(preferred);
             return OptionalInt.of(preferred);
         }
-        if (available.isEmpty()) {
+        if (!allowFallback || available.isEmpty()) {
             return OptionalInt.empty();
         }
         int fallback = available.iterator().next();

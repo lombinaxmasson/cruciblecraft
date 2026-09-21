@@ -760,6 +760,53 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         return changed;
     }
 
+    public java.util.List<net.minecraft.network.chat.Component> magnifyingInspect(
+            net.minecraft.world.item.context.UseOnContext context) {
+        java.util.ArrayList<net.minecraft.network.chat.Component> lines =
+                new java.util.ArrayList<>();
+        lines.add(Component.translatable(
+                (screwdriverMode & 1) != 0
+                        ? "message.cruciblecraft.machine.mode.output_empty"
+                        : "message.cruciblecraft.machine.mode.output_space"));
+        lines.add(Component.translatable(
+                (screwdriverMode & 2) != 0
+                        ? "message.cruciblecraft.machine.mode.input_empty"
+                        : "message.cruciblecraft.machine.mode.input_all"));
+        lines.add(Component.translatable(
+                "message.cruciblecraft.machine.auto.item_in."
+                        + (disabledItemInput ? "disabled" : "enabled")));
+        lines.add(Component.translatable(
+                "message.cruciblecraft.machine.auto.item_out."
+                        + (disabledItemOutput ? "disabled" : "enabled")));
+        lines.add(Component.translatable(
+                "message.cruciblecraft.machine.auto.fluid_in."
+                        + (disabledFluidInput ? "disabled" : "enabled")));
+        lines.add(Component.translatable(
+                "message.cruciblecraft.machine.auto.fluid_out."
+                        + (disabledFluidOutput ? "disabled" : "enabled")));
+        for (ProcessingMachineSpec.TankSpec tank : spec.fluids().inputs()) {
+            net.neoforged.neoforge.fluids.FluidStack fluid =
+                    tanks.get(tank.index()).getFluid();
+            if (!fluid.isEmpty()) {
+                lines.add(Component.translatable(
+                        "message.cruciblecraft.inspect.input_fluid",
+                        fluid.getHoverName(),
+                        fluid.getAmount()));
+            }
+        }
+        for (ProcessingMachineSpec.TankSpec tank : spec.fluids().outputs()) {
+            net.neoforged.neoforge.fluids.FluidStack fluid =
+                    tanks.get(tank.index()).getFluid();
+            if (!fluid.isEmpty()) {
+                lines.add(Component.translatable(
+                        "message.cruciblecraft.inspect.output_fluid",
+                        fluid.getHoverName(),
+                        fluid.getAmount()));
+            }
+        }
+        return java.util.List.copyOf(lines);
+    }
+
     private static void tellAuto(Player player, String channel, boolean disabled) {
         if (player == null) {
             return;

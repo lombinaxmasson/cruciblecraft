@@ -230,19 +230,36 @@ public final class HandheldToolBehaviorGameTests {
             Player player,
             ItemStack stack,
             Direction face) {
+        return useOn(helper, POS, player, stack, face);
+    }
+
+    private static net.minecraft.world.InteractionResult useOn(
+            GameTestHelper helper,
+            BlockPos pos,
+            Player player,
+            ItemStack stack,
+            Direction face) {
         return stack.getItem().useOn(
                 new UseOnContext(
                         helper.getLevel(),
                         player,
                         InteractionHand.MAIN_HAND,
                         stack,
-                        hit(helper, face)));
+                        hit(helper, pos, face)));
     }
 
     private static BlockHitResult hit(GameTestHelper helper, Direction face) {
-        BlockPos abs = helper.absolutePos(POS);
+        return hit(helper, POS, face);
+    }
+
+    private static BlockHitResult hit(
+            GameTestHelper helper, BlockPos pos, Direction face) {
+        BlockPos abs = helper.absolutePos(pos);
         return new BlockHitResult(
-                Vec3.atCenterOf(abs).add(face.getStepX() * 0.5D, face.getStepY() * 0.5D, face.getStepZ() * 0.5D),
+                Vec3.atCenterOf(abs).add(
+                        face.getStepX() * 0.5D,
+                        face.getStepY() * 0.5D,
+                        face.getStepZ() * 0.5D),
                 face,
                 abs,
                 false);

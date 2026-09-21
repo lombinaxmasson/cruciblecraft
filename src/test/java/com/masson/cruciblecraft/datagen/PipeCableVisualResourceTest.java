@@ -121,19 +121,13 @@ class PipeCableVisualResourceTest {
     }
 
     @Test
-    void leftoverGoldAndLeadWireItemsHaveConductorParents() throws Exception {
+    void retiredNumberedWireItemsRemainUnregistered() {
         Path models = Path.of(
                 "src/main/resources/assets/cruciblecraft/models/item/electric_wire");
         for (String material : java.util.List.of("gold", "lead")) {
             for (int strands : java.util.List.of(3, 5, 6, 7, 9, 10, 11, 13, 14, 15)) {
-                JsonObject model = json(models.resolve(
-                        strands + "x_" + material + "_wire.json"));
-                assertEquals(
-                        "cruciblecraft:conductor/wiregt"
-                                + String.format("%02d", strands)
-                                + "_item",
-                        model.get("parent").getAsString(),
-                        material + " " + strands);
+                assertFalse(Files.exists(models.resolve(
+                        strands + "x_" + material + "_wire.json")));
             }
         }
     }

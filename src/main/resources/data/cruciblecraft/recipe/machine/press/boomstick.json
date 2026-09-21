@@ -1,0 +1,21 @@
+{
+  "type": "cruciblecraft:gt_recipe",
+  "map": "cruciblecraft:press",
+  "duration": 16,
+  "eut": 16,
+  "can_be_buffered": true,
+  "item_inputs": [
+    {"tag": "c:dusts/silicon_dioxide"},
+    {"tag": "c:dusts/gunpowder"},
+    {"item": "minecraft:string"}
+  ],
+  "item_input_counts": [2, 2, 1],
+  "item_outputs": [
+    {"id": "cruciblecraft:boomstick", "count": 1}
+  ],
+  "output_chances": [10000],
+  "provenance": {
+    "selected_source_recipe": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java:641",
+    "source_kind": "gt6_source"
+  }
+}

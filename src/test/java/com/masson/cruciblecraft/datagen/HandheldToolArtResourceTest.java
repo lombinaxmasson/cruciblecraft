@@ -32,6 +32,12 @@ class HandheldToolArtResourceTest {
         assertArrayEquals(
                 Files.readAllBytes(GT6.resolve("wire_cutter_overlay.png")),
                 Files.readAllBytes(CC.resolve("wire_cutter_overlay.png")));
+        assertArrayEquals(
+                Files.readAllBytes(GT6.resolve("magnifying_glass.png")),
+                Files.readAllBytes(CC.resolve("magnifying_glass.png")));
+        assertArrayEquals(
+                Files.readAllBytes(GT6.resolve("magnifying_glass_overlay.png")),
+                Files.readAllBytes(CC.resolve("magnifying_glass_overlay.png")));
         assertFalse(
                 java.util.Arrays.equals(
                         Files.readAllBytes(CC.resolve("wrench.png")),
@@ -41,7 +47,7 @@ class HandheldToolArtResourceTest {
                 "src/main/resources/assets/cruciblecraft/"
                         + "gt6_handheld_tool_art_manifest.json")))
                 .getAsJsonObject();
-        assertEquals(3, manifest.getAsJsonArray("imports").size());
+        assertEquals(5, manifest.getAsJsonArray("imports").size());
         assertEquals(
                 "gt6_referencable_port_code/gregtech6_w",
                 manifest.get("source").getAsString());

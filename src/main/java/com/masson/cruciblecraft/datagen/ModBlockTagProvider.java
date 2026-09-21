@@ -157,6 +157,8 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         });
         pickaxe.add(ModBlocks.STEEL_DUST_FUNNEL.getKey());
         stone.add(ModBlocks.STEEL_DUST_FUNNEL.getKey());
+        pickaxe.add(ModBlocks.MIXING_BOWL.getKey());
+        stone.add(ModBlocks.MIXING_BOWL.getKey());
         var gtStones = tag(ModBlockTags.GT_STONES);
         ModBlocks.gtStoneBlocks().forEach(block -> {
             pickaxe.add(block.getKey());

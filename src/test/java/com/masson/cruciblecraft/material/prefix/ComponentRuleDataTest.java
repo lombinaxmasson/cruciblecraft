@@ -395,11 +395,11 @@ class ComponentRuleDataTest {
                 .flatMap(material -> registeredForms.get(material.id()).stream())
                 .filter(prefix -> prefix.serializedName().contains("cable"))
                 .collect(Collectors.groupingBy(prefix -> prefix, Collectors.counting()));
-        assertEquals(28L, cables.get(MaterialPrefixes.CABLE));
-        assertEquals(23L, cables.get(MaterialPrefixes.DOUBLE_CABLE));
-        assertEquals(23L, cables.get(MaterialPrefixes.QUADRUPLE_CABLE));
-        assertEquals(23L, cables.get(MaterialPrefixes.OCTUPLE_CABLE));
-        assertEquals(23L, cables.get(MaterialPrefixes.DODECUPLE_CABLE));
+        assertEquals(32L, cables.get(MaterialPrefixes.CABLE));
+        assertEquals(28L, cables.get(MaterialPrefixes.DOUBLE_CABLE));
+        assertEquals(28L, cables.get(MaterialPrefixes.QUADRUPLE_CABLE));
+        assertEquals(28L, cables.get(MaterialPrefixes.OCTUPLE_CABLE));
+        assertEquals(28L, cables.get(MaterialPrefixes.DODECUPLE_CABLE));
         assertTrue(registeredForms.get(byId.get("rubber").id()).containsAll(Set.of(
                         MaterialPrefixes.PLATE,
                         MaterialPrefixes.TINY_FLUID_PIPE,

@@ -42,7 +42,11 @@ class MaterialLoaderTest {
         MaterialDefinition loaded = MaterialLoader.load(configDirectory).get("testium");
 
         assertEquals(
-                List.of(MaterialPrefixes.INGOT, MaterialPrefixes.PLATE),
+                List.of(
+                        MaterialPrefixes.INGOT,
+                        MaterialPrefixes.PLATE,
+                        MaterialPrefixes.DUST_DIV72,
+                        MaterialPrefixes.STORAGE_DUST),
                 loaded.forms());
     }
 

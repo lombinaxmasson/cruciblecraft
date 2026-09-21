@@ -173,6 +173,20 @@ final class CompactGTRecipeFamilyGeneratedSupport {
                 .resolve(pathPrefix);
     }
 
+    static ResourceLocation liveItemId(String logicalId) {
+        ResourceLocation parsed = ResourceLocation.parse(logicalId);
+        java.util.Optional<Ingredient> shared =
+                PrefixMaterialItemCodecs.rewriteIngredient(parsed);
+        if (shared.isPresent() && shared.orElseThrow().getItems().length > 0) {
+            ResourceLocation resolved = BuiltInRegistries.ITEM.getKey(
+                    shared.orElseThrow().getItems()[0].getItem());
+            if (resolved != null) {
+                return resolved;
+            }
+        }
+        return parsed;
+    }
+
     static List<Path> compactHostGeneratedRoots() {
         List<Path> roots = new ArrayList<>(generatedRootsThroughBathIdentity());
         roots.add(bathTinyPurifiedGeneratedRoot());

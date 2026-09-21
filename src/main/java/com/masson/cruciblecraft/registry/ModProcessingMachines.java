@@ -725,6 +725,7 @@ public final class ModProcessingMachines {
         List<Integer> inputs = java.util.stream.IntStream.range(0, itemInputs).boxed().toList();
         int outputSlot = itemInputs;
         boolean assemblerCatalysts = "assembler".equals(path);
+        boolean pressPreserve = "press".equals(path);
         var tanks = futureFluidInput
                 ? new ProcessingMachineSpec.TankLayout(
                         List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)), List.of())
@@ -776,7 +777,8 @@ public final class ModProcessingMachines {
                         itemInputs,
                         futureFluidInput,
                         extruderTool,
-                        assemblerCatalysts),
+                        assemblerCatalysts,
+                        pressPreserve),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         gt6InItems,
@@ -797,7 +799,8 @@ public final class ModProcessingMachines {
             int itemInputs,
             boolean fluidInput,
             boolean extruderTool,
-            boolean assemblerCatalysts) {
+            boolean assemblerCatalysts,
+            boolean pressPreserve) {
         if (recipe.itemInputs().size() > itemInputs
                 || recipe.itemOutputs().size() > 1
                 || recipe.fluidInputs().size() > (fluidInput ? 1 : 0)
@@ -855,7 +858,10 @@ public final class ModProcessingMachines {
                                         == ItemInputAction.Kind.PRESERVE)
                                 && !(assemblerCatalysts
                                 && recipe.itemInputActions().get(index).kind()
-                                        != ItemInputAction.Kind.CONSUME))
+                                        != ItemInputAction.Kind.CONSUME)
+                                && !(pressPreserve
+                                && recipe.itemInputActions().get(index).kind()
+                                        == ItemInputAction.Kind.PRESERVE))
                 || recipe.itemOutputs().stream().anyMatch(stack ->
                         stack.isEmpty() || stack.getCount() <= 0)
                 || recipe.outputChances().stream().anyMatch(
@@ -1261,7 +1267,7 @@ public final class ModProcessingMachines {
                         256L),
                 Gt6SidedIo.policy("rollformer"),
                 recipe -> validateComponentRecipe(
-                        recipe, 1, false, false, false),
+                        recipe, 1, false, false, false, false),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         1, 1, 0, 0,
@@ -1430,7 +1436,7 @@ public final class ModProcessingMachines {
                         256L),
                 Gt6SidedIo.policy("clustermill"),
                 recipe -> validateComponentRecipe(
-                        recipe, 1, false, false, false),
+                        recipe, 1, false, false, false, false),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         1, 1, 0, 0,

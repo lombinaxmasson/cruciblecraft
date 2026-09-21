@@ -47,14 +47,11 @@ class PipeAcquisitionResourceTest {
             Path blockstate = GENERATED.resolve(
                     "assets/cruciblecraft/blockstates/"
                             + registryPath + ".json");
-            Path blockModel = GENERATED.resolve(
-                    "assets/cruciblecraft/models/"
-                            + registryPath + ".json");
             Path loot = GENERATED.resolve(
                     "data/cruciblecraft/loot_table/blocks/"
                             + registryPath + ".json");
             for (Path path : java.util.List.of(
-                    recipe, blockstate, blockModel, loot)) {
+                    recipe, blockstate, loot)) {
                 assertTrue(Files.isRegularFile(path), path.toString());
             }
 

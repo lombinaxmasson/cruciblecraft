@@ -363,6 +363,14 @@ public final class ModCapabilities {
                 (blockEntity, side) -> blockEntity.itemHandler(side));
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.MIXING_BOWL.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.MIXING_BOWL.get(),
+                (blockEntity, side) -> blockEntity.fluidHandler(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.COKE_OVEN.get(),
                 (blockEntity, side) -> blockEntity.automationItems(side));
         event.registerBlockEntity(

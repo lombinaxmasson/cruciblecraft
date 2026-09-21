@@ -231,6 +231,8 @@ public final class ToolMaterialRules {
                 WOOD_TAG,
                 BOUNCY_TAG,
                 STRETCHY_TAG),
+        // GT6 Loader_Tools AdvancedCraftingTool(MAGNIFYING_GLASS, lens, typemin(1)).
+        MAGNIFYING_GLASS("magnifying_glass", 1L, 0, Integer.MAX_VALUE),
         // GT6 Loader_Tools.java:308 mechanical mining drill: typemin(2), Wood.NOT.
         // Electric grids at 356–378 use tCondition (typemin 3, qualmin 1).
         MINING_DRILL_LV(
@@ -469,6 +471,7 @@ public final class ToolMaterialRules {
                     || this == ROLLING_PIN
                     || this == FLINT_AND_TINDER
                     || this == POCKET_MULTITOOL
+                    || this == MAGNIFYING_GLASS
                     || this == MINING_DRILL_LV
                     || this == MINING_DRILL_MV
                     || this == MINING_DRILL_HV

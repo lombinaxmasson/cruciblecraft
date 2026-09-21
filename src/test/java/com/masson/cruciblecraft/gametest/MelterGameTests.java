@@ -29,7 +29,7 @@ public final class MelterGameTests {
     public static final String NAMESPACE = "cruciblecraft_wave_machines_melter";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.NORTH;
-    private static final int LIVE_ROWS = 3_973;
+    private static final int LIVE_ROWS = 3_601;
     private static final ResourceLocation PUBLICATION_GROUP =
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "melter/pilot/melter");
@@ -59,11 +59,11 @@ public final class MelterGameTests {
                 .orElse(null);
         helper.assertTrue(
                 family != null && family.logicalRecipeCount() == LIVE_ROWS,
-                "Melter family is not the 3973 selected rows: "
+                "Melter family is not the 3601 selected rows: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.assertTrue(
                 ModRecipeMaps.MELTER.entries().size() == LIVE_ROWS,
-                "Melter map drifted from 3973 rows: "
+                "Melter map drifted from 3601 rows: "
                         + ModRecipeMaps.MELTER.entries().size());
         helper.succeed();
     }

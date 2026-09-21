@@ -41,6 +41,7 @@ import com.masson.cruciblecraft.client.render.MteInPlaceStorageRenderer;
 import com.masson.cruciblecraft.client.render.GtChestRenderer;
 import com.masson.cruciblecraft.client.render.PipeCoverRenderer;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.block.ExplosiveBlock;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.client.screen.HopperScreen;
 import com.masson.cruciblecraft.client.screen.StorageScreen;
@@ -166,6 +167,7 @@ public class ClientSetup {
                 ModItems.MATERIAL_BENDING_CYLINDER.get(),
                 ModItems.MATERIAL_BENDING_CYLINDER_SMALL.get(),
                 ModItems.MATERIAL_HAND_DRILL.get(),
+                ModItems.MATERIAL_MAGNIFYING_GLASS.get(),
                 ModItems.MATERIAL_ROLLING_PIN.get(),
                 ModItems.MATERIAL_FLINT_AND_TINDER.get(),
                 ModItems.MATERIAL_POCKET_MULTITOOL.get()));
@@ -242,6 +244,15 @@ public class ClientSetup {
                 java.util.Arrays.stream(tintedMachines)
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
+        event.register(
+                (stack, tintIndex) -> tintIndex == 0
+                        && net.minecraft.world.level.block.Block.byItem(
+                                stack.getItem()) instanceof ExplosiveBlock explosive
+                        ? explosive.type().color()
+                        : 0xFFFFFFFF,
+                ModItems.BOOMSTICK.get(),
+                ModItems.DYNAMITE.get(),
+                ModItems.STRONG_DYNAMITE.get());
         event.register(GtBushColor::itemColor, ModItems.GT_BUSH.get());
         event.register(
                 Gt6OpeningBlockColor::itemColor,
@@ -380,6 +391,15 @@ public class ClientSetup {
                 RockColor::blockColor,
                 RockColor.rockBlocks());
         event.register(GtBlockDyeColor.blockColor(), GtBlockDyeColor.tintedBlocks());
+        event.register(
+                (state, level, pos, tintIndex) ->
+                        tintIndex == 0
+                                && state.getBlock() instanceof ExplosiveBlock explosive
+                                ? explosive.type().color()
+                                : 0xFFFFFFFF,
+                ModBlocks.BOOMSTICK.get(),
+                ModBlocks.DYNAMITE.get(),
+                ModBlocks.STRONG_DYNAMITE.get());
         event.register(
                 (state, level, pos, tintIndex) -> {
                     if (tintIndex != 0

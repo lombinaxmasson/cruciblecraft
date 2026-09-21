@@ -39,6 +39,10 @@ public final class ProvidedToolActions {
         map.put(ToolKind.BUTCHERY_KNIFE, Set.of(ToolAction.KNIFE));
         map.put(ToolKind.HAND_DRILL, Set.of(ToolAction.DRILL));
         map.put(ToolKind.BUILDER_WAND, Set.of(ToolAction.BUILDER_WAND));
+        map.put(ToolKind.MIXER_LV, Set.of(ToolAction.MIXER));
+        map.put(ToolKind.BRANCH_CUTTER, Set.of(ToolAction.GRAFTER));
+        map.put(ToolKind.TRIMMER_LV, Set.of(ToolAction.GRAFTER));
+        map.put(ToolKind.MAGNIFYING_GLASS, Set.of(ToolAction.MAGNIFYING_GLASS));
         map.put(
                 ToolKind.SCISSORS,
                 Set.of(ToolAction.KNIFE, ToolAction.SHEARS));

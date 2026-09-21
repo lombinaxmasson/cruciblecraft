@@ -147,7 +147,12 @@ class WorkbenchToolRecipePlanTest {
             var actual = JsonParser.parseString(Files.readString(file));
             assertEquals(recipe.toJson(), actual, path);
         }
-        assertEquals(17, assemblies.size());
+        assertEquals(18, assemblies.size());
+        assertTrue(assemblies.stream().anyMatch(assembly ->
+                "tools/assemble/magnifying_glass".equals(assembly.path())
+                        && "lens".equals(assembly.headPrefix())
+                        && "cruciblecraft:material_magnifying_glass".equals(
+                                assembly.resultId())));
         var variants = WorkbenchToolRecipePlan.assemblyVariants(
                 materials, registered);
         assertTrue(variants.stream().anyMatch(variant ->

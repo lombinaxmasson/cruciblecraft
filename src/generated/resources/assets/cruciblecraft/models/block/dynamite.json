@@ -1,0 +1,85 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#front",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#back",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        5,
+        5,
+        0
+      ],
+      "to": [
+        11,
+        11,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#overlay_side"
+        },
+        "east": {
+          "texture": "#overlay_side"
+        },
+        "north": {
+          "texture": "#overlay_front"
+        },
+        "south": {
+          "texture": "#overlay_back"
+        },
+        "up": {
+          "texture": "#overlay_side"
+        },
+        "west": {
+          "texture": "#overlay_side"
+        }
+      },
+      "from": [
+        5.002,
+        5.002,
+        0
+      ],
+      "to": [
+        10.998,
+        10.998,
+        16
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "back": "cruciblecraft:block/gt6_import/dynamite/colored/back",
+    "front": "cruciblecraft:block/gt6_import/dynamite/colored/front",
+    "overlay_back": "cruciblecraft:block/gt6_import/dynamite/overlay/back",
+    "overlay_front": "cruciblecraft:block/gt6_import/dynamite/overlay/front",
+    "overlay_side": "cruciblecraft:block/gt6_import/dynamite/overlay/side",
+    "particle": "cruciblecraft:block/gt6_import/dynamite/colored/side",
+    "side": "cruciblecraft:block/gt6_import/dynamite/colored/side"
+  }
+}

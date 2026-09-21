@@ -203,7 +203,10 @@ class RecipeMapSpecificityTest {
                     List.of(new RecipeMap.Entry(id(map.id().getPath()), placeholder)));
         }
         candidates.put(ModRecipeMaps.SQUEEZER, List.of());
-        GTRecipeMapLoader.validateRequiredMaps(candidates, Map.of());
+        IllegalArgumentException failure = assertThrows(
+                IllegalArgumentException.class,
+                () -> GTRecipeMapLoader.validateRequiredMaps(candidates, Map.of()));
+        assertTrue(failure.getMessage().contains("cruciblecraft:squeezer"));
     }
 
     @Test

@@ -48,6 +48,16 @@ class ProvidedToolActionsTest {
                 Set.of(ToolAction.IGNITER),
                 ProvidedToolActions.of(ToolKind.FLINT_AND_TINDER));
         assertEquals(Set.of(ToolAction.DRILL), ProvidedToolActions.of(ToolKind.HAND_DRILL));
+        assertEquals(Set.of(ToolAction.MIXER), ProvidedToolActions.of(ToolKind.MIXER_LV));
+        assertEquals(
+                Set.of(ToolAction.GRAFTER),
+                ProvidedToolActions.of(ToolKind.BRANCH_CUTTER));
+        assertEquals(
+                Set.of(ToolAction.GRAFTER),
+                ProvidedToolActions.of(ToolKind.TRIMMER_LV));
+        assertEquals(
+                Set.of(ToolAction.MAGNIFYING_GLASS),
+                ProvidedToolActions.of(ToolKind.MAGNIFYING_GLASS));
         assertEquals(
                 Set.of(ToolAction.WRENCH),
                 ProvidedToolActions.of(ToolKind.WRENCH_LV));
@@ -84,5 +94,11 @@ class ProvidedToolActionsTest {
         assertTrue(ToolAction.SOFT_HAMMER.ordinal() < ToolAction.CHISEL.ordinal());
         assertTrue(ToolAction.HAMMER.ordinal() < ToolAction.PROSPECTOR.ordinal());
         assertTrue(ToolAction.KNIFE.ordinal() < ToolAction.SHEARS.ordinal());
+        assertTrue(ToolAction.MIXER.ordinal() < ToolAction.MAGNIFYING_GLASS.ordinal());
+        assertTrue(ToolAction.GRAFTER.ordinal() < ToolAction.MAGNIFYING_GLASS.ordinal());
+        assertTrue(ToolAction.SCREWDRIVER.ordinal()
+                < ToolAction.MAGNIFYING_GLASS.ordinal());
+        assertTrue(ToolAction.WRENCH.ordinal()
+                < ToolAction.MAGNIFYING_GLASS.ordinal());
     }
 }

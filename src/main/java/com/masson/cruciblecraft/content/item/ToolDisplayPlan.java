@@ -207,6 +207,7 @@ public final class ToolDisplayPlan {
             case ROLLING_PIN -> ModItems.MATERIAL_ROLLING_PIN.get();
             case FLINT_AND_TINDER -> ModItems.MATERIAL_FLINT_AND_TINDER.get();
             case POCKET_MULTITOOL -> ModItems.MATERIAL_POCKET_MULTITOOL.get();
+            case MAGNIFYING_GLASS -> ModItems.MATERIAL_MAGNIFYING_GLASS.get();
             case MINING_DRILL_LV, MINING_DRILL_MV, MINING_DRILL_HV,
                     CHAINSAW_LV, CHAINSAW_MV, CHAINSAW_HV,
                     WRENCH_LV, WRENCH_MV, WRENCH_HV,

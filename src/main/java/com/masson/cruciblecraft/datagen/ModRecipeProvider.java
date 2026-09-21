@@ -471,6 +471,27 @@ public final class ModRecipeProvider extends RecipeProvider {
             String path,
             List<String> pattern,
             Map<String, Ingredient> ingredients) {
+        boolean catalystPattern = pattern.size() >= 2
+                && pattern.size() <= 3
+                && pattern.stream().allMatch(row -> row.length() == 3);
+        if (!catalystPattern) {
+            ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
+                    RecipeCategory.MISC,
+                    machineCoverItem(path));
+            pattern.forEach(builder::pattern);
+            ingredients.forEach((symbol, ingredient) ->
+                    builder.define(symbol.charAt(0), ingredient));
+            Item unlock = Items.CRAFTING_TABLE;
+            for (Ingredient ingredient : ingredients.values()) {
+                if (ingredient.getItems().length > 0) {
+                    unlock = ingredient.getItems()[0].getItem();
+                    break;
+                }
+            }
+            builder.unlockedBy("has_ingredient", has(unlock))
+                    .save(output, id(MachineCoverKinds.itemPath(path)));
+            return;
+        }
         output.accept(
                 id(MachineCoverKinds.itemPath(path)),
                 new ShapedCatalystRecipe(
@@ -1728,12 +1749,22 @@ public final class ModRecipeProvider extends RecipeProvider {
         try {
             emitAcquisitionResolved(output, variant, path);
         } catch (RuntimeException exception) {
+            if (isMissingSourceMachineComponent(exception)) {
+                return;
+            }
             if (compactIndexFromVariant(path) >= 0
                     && isSkippablePuvAcquisition(exception)) {
                 return;
             }
             throw exception;
         }
+    }
+
+    private static boolean isMissingSourceMachineComponent(
+            RuntimeException exception) {
+        String message = exception.getMessage();
+        return message != null
+                && message.startsWith("Missing source machine component");
     }
 
     private static boolean isSkippablePuvAcquisition(RuntimeException exception) {
@@ -3448,10 +3479,14 @@ public final class ModRecipeProvider extends RecipeProvider {
             if (cobble == null || cobble == Items.AIR) {
                 return;
             }
+            Ingredient rockIngredient = rockItem
+                    instanceof com.masson.cruciblecraft.content.item.PrefixMaterialItem
+                    ? MaterialLookup.prefixMaterialIngredient(rockItem, materialId)
+                    : Ingredient.of(rockItem);
             ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, cobble)
                     .pattern("XX")
                     .pattern("XX")
-                    .define('X', rockItem)
+                    .define('X', rockIngredient)
                     .unlockedBy("has_rock", has(rockItem))
                     .save(output, id("rocks/" + materialId + "_to_cobble"));
         });
@@ -4198,6 +4233,33 @@ public final class ModRecipeProvider extends RecipeProvider {
                 return;
             }
             ingredients.put(entry.getKey(), item);
+        }
+        boolean catalystPattern = profile.recipe().pattern().size() >= 2
+                && profile.recipe().pattern().size() <= 3
+                && profile.recipe().pattern().stream()
+                        .allMatch(row -> row.length() == 3);
+        if (!catalystPattern) {
+            if (!profile.recipe().catalysts().isEmpty()) {
+                throw new IllegalArgumentException(
+                        "Flux recipe with catalysts has an incompatible shaped pattern: "
+                                + profile.id());
+            }
+            ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
+                    RecipeCategory.MISC,
+                    ModItems.fluxItemsById().get(profile.id()).get());
+            profile.recipe().pattern().forEach(builder::pattern);
+            ingredients.forEach((symbol, ingredient) ->
+                    builder.define(symbol.charAt(0), ingredient));
+            Item unlock = Items.CRAFTING_TABLE;
+            for (Ingredient ingredient : ingredients.values()) {
+                if (ingredient.getItems().length > 0) {
+                    unlock = ingredient.getItems()[0].getItem();
+                    break;
+                }
+            }
+            builder.unlockedBy("has_ingredient", has(unlock))
+                    .save(output, id(profile.id().getPath()));
+            return;
         }
         acceptShapedCatalyst(
                 output,

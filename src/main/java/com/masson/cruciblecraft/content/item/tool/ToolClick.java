@@ -150,15 +150,21 @@ public final class ToolClick {
                 lastReject = ToolResult.REJECT;
                 continue;
             }
-            if (!includeAdapters) {
-                continue;
+            if (includeAdapters) {
+                result = VanillaToolAdapters.use(action, context);
+                if (result == ToolResult.SUCCESS) {
+                    return result;
+                }
+                if (result == ToolResult.REJECT) {
+                    lastReject = ToolResult.REJECT;
+                    continue;
+                }
             }
-            result = VanillaToolAdapters.use(action, context);
-            if (result == ToolResult.SUCCESS) {
-                return result;
-            }
-            if (result == ToolResult.REJECT) {
-                lastReject = ToolResult.REJECT;
+            if (action == ToolAction.MAGNIFYING_GLASS) {
+                result = MagnifyingInspect.tryUse(context);
+                if (result == ToolResult.SUCCESS) {
+                    return result;
+                }
             }
         }
         return lastReject;

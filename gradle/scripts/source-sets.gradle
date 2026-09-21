@@ -18,6 +18,12 @@ sourceSets.main.resources {
     exclude("**/.cache")
     exclude("**/.cache/**")
     exclude("**/.gitkeep")
+    // These legacy hand-authored multiblock assets are also emitted by the
+    // provider; keep the main-resource versions authoritative.
+    exclude("assets/cruciblecraft/blockstates/multiblock/distillation_tower_part.json")
+    exclude("assets/cruciblecraft/blockstates/multiblock/heat_transmitter.json")
+    exclude("assets/cruciblecraft/models/item/multiblock/distillation_tower_part.json")
+    exclude("assets/cruciblecraft/models/item/multiblock/heat_transmitter.json")
 }
 
 def generatedResourceRoots = new groovy.json.JsonSlurper().parse(

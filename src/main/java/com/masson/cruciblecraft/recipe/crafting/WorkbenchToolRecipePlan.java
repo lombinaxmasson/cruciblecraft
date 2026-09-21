@@ -33,7 +33,7 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
  */
 public final class WorkbenchToolRecipePlan {
     public static final String STONE_TAG = "PROPERTIES.STONE";
-    public static final int NON_WORKBENCH_GENERATED_RECIPES = 3_969;
+    public static final int NON_WORKBENCH_GENERATED_RECIPES = 4_702;
     private static final MaterialPrefix ROCK =
             new MaterialPrefix("cruciblecraft:rock");
     private static final MaterialPrefix PLATE_GEM =
@@ -213,7 +213,10 @@ public final class WorkbenchToolRecipePlan {
                         ToolKind.CONSTRUCTION_PICK),
                 assembly("builder_wand", "tool_head_builderwand",
                         "cruciblecraft:material_builder_wand",
-                        ToolKind.BUILDER_WAND));
+                        ToolKind.BUILDER_WAND),
+                assembly("magnifying_glass", "lens",
+                        "cruciblecraft:material_magnifying_glass",
+                        ToolKind.MAGNIFYING_GLASS));
     }
 
     public static List<AssemblyVariant> assemblyVariants(

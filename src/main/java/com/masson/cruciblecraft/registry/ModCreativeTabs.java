@@ -247,6 +247,9 @@ public final class ModCreativeTabs {
         output.accept(ModItems.STEEL_AUTOMATIC_HAMMER.get());
         output.accept(ModItems.TITANIUM_AUTOMATIC_HAMMER.get());
         output.accept(ModItems.TUNGSTENSTEEL_AUTOMATIC_HAMMER.get());
+        output.accept(ModItems.BOOMSTICK.get());
+        output.accept(ModItems.DYNAMITE.get());
+        output.accept(ModItems.STRONG_DYNAMITE.get());
         output.accept(ModItems.FUSION_REACTOR.get());
         output.accept(ModItems.LARGE_HEAT_EXCHANGER.get());
         output.accept(ModItems.BEDROCK_DRILL.get());
@@ -259,6 +262,7 @@ public final class ModCreativeTabs {
         ModBlocks.hopperBlocks().forEach(block -> output.accept(block.get().asItem()));
         ModBlocks.sensorBlocks().forEach(block -> output.accept(block.get().asItem()));
         output.accept(ModItems.STEEL_DUST_FUNNEL.get());
+        output.accept(ModItems.MIXING_BOWL.get());
         output.accept(ModItems.MORTAR.get());
         output.accept(ModItems.EXTRUDER.get());
         output.accept(ModItems.CUTTER.get());
@@ -478,6 +482,7 @@ public final class ModCreativeTabs {
             CreativeModeTab.ItemDisplayParameters parameters,
             CreativeModeTab.Output output) {
         output.accept(ModItems.MATCH.get());
+        output.accept(ModItems.REMOTE_ACTIVATOR.get());
         ModItems.toolPatterns().forEach(pattern -> output.accept(pattern.get()));
         com.masson.cruciblecraft.content.item.ToolDisplayPlan.routedVariantStacks()
                 .forEach(output::accept);
@@ -519,6 +524,7 @@ public final class ModCreativeTabs {
 
     private static void acceptCeramicMolds(CreativeModeTab.Output output) {
         output.accept(ModItems.RAW_CERAMIC_CRUCIBLE.get());
+        output.accept(ModItems.RAW_CERAMIC_BOWL.get());
         output.accept(ModItems.RAW_CERAMIC_MOLD.get());
         CeramicMoldCatalog.SHAPED.forEach(variant ->
                 output.accept(ModItems.rawShapedMold(variant.id()).get()));

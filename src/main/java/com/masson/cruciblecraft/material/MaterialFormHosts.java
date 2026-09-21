@@ -53,7 +53,7 @@ public final class MaterialFormHosts {
         if (form.equals(MaterialPrefixes.ORE)
                 || material.formItems().containsKey(form)
                 || isPublicExchangePrefix(form)
-                || !MaterialCatalog.isFormRegistered(material, form)) {
+                || !isFormRegistered(material, form)) {
             return false;
         }
         return !isUniqueHostedForm(material, form);
@@ -63,7 +63,7 @@ public final class MaterialFormHosts {
             MaterialDefinition material, MaterialPrefix form) {
         if (!isPublicExchangePrefix(form)
                 || material.formItems().containsKey(form)
-                || !MaterialCatalog.isFormRegistered(material, form)) {
+                || !isFormRegistered(material, form)) {
             return false;
         }
         return !isUniqueHostedForm(material, form);
@@ -125,7 +125,7 @@ public final class MaterialFormHosts {
                         || form.equals(MaterialPrefixes.STORAGE_DUST)
                         || form.equals(MaterialPrefixes.STORAGE_PLATE))
                 && !material.formItems().containsKey(form)
-                && MaterialCatalog.isFormRegistered(material, form);
+                && isFormRegistered(material, form);
     }
 
     private static boolean isPlaceableCasing(
@@ -135,14 +135,14 @@ public final class MaterialFormHosts {
                 || form.equals(MaterialPrefixes.MACHINE_CASING_QUADRUPLE)
                 || form.equals(MaterialPrefixes.MACHINE_CASING_DENSE))
                 && !material.formItems().containsKey(form)
-                && MaterialCatalog.isFormRegistered(material, form);
+                && isFormRegistered(material, form);
     }
 
     private static boolean isRock(MaterialDefinition material, MaterialPrefix form) {
         MaterialPrefix rock = MaterialPrefixCatalog.require("rock");
         return form.equals(rock)
                 && !material.formItems().containsKey(form)
-                && MaterialCatalog.isFormRegistered(material, form);
+                && isFormRegistered(material, form);
     }
 
     private static boolean isElectricalConductor(
@@ -168,5 +168,11 @@ public final class MaterialFormHosts {
                             material.id(), form, PipeCatalog.Kind.ITEM);
         }
         return false;
+    }
+
+    private static boolean isFormRegistered(
+            MaterialDefinition material, MaterialPrefix form) {
+        return !MaterialCatalog.isBootstrapped()
+                || MaterialCatalog.isFormRegistered(material, form);
     }
 }

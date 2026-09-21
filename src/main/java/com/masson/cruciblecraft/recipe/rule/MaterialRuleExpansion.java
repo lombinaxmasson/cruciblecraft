@@ -13,6 +13,7 @@ import java.util.Set;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.content.item.PrefixMaterialItem;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialComponentPolicies;
 import com.masson.cruciblecraft.material.def.GT6MaterialMetadata;
@@ -638,12 +639,15 @@ public final class MaterialRuleExpansion {
                     resourceContext,
                     ruleId);
             ItemStack stack;
-            if (resource.prefix().isPresent()) {
+            if (resource.prefix().isPresent()
+                    && item.get() instanceof PrefixMaterialItem) {
                 stack = MaterialLookup.tryStack(
                                 selection.material(),
                                 resource.prefix().get(),
                                 count.get(),
-                                MaterialCatalog.runtimePreferences())
+                                MaterialCatalog.isBootstrapped()
+                                        ? MaterialCatalog.runtimePreferences()
+                                        : Map.of())
                         .orElseGet(() -> new ItemStack(item.get(), count.get()));
             } else {
                 stack = new ItemStack(item.get(), count.get());

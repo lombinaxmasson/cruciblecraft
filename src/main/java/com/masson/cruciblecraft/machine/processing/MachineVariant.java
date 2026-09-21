@@ -122,7 +122,8 @@ public final class MachineVariant {
         if (usesCentrifugeCompactEnvelope(id, kind)) {
             return centrifugeCompactVariantSpec(id, base, energy);
         }
-        ProcessingMachineSpec.SidedIoPolicy sided = Gt6SidedIo.known(id.getPath())
+        ProcessingMachineSpec.SidedIoPolicy sided =
+                Gt6SidedIo.known(id.getPath())
                 ? Gt6SidedIo.policy(id.getPath())
                 : base.sidedIo();
         return new ProcessingMachineSpec(

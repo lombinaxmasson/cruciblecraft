@@ -183,6 +183,7 @@ public final class ToolHeadAssemblyRecipe implements CraftingRecipe {
             case "tool_head_plow" -> ToolKind.PLOW;
             case "tool_head_construction_pickaxe" -> ToolKind.CONSTRUCTION_PICK;
             case "tool_head_builderwand" -> ToolKind.BUILDER_WAND;
+            case "lens" -> ToolKind.MAGNIFYING_GLASS;
             default -> throw new IllegalArgumentException(
                     "No finished tool for prefix " + prefix.serializedId());
         };

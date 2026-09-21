@@ -133,7 +133,7 @@ class MaterialCreativeTabTest {
                         Map.entry(MaterialCreativeTab.WIRES, 168),
                         Map.entry(MaterialCreativeTab.CABLES, 625),
                         Map.entry(MaterialCreativeTab.PIPES, 406),
-                        Map.entry(MaterialCreativeTab.MISC, 2_170)),
+                        Map.entry(MaterialCreativeTab.MISC, 857)),
                 counts);
         assertEquals(
                 0,

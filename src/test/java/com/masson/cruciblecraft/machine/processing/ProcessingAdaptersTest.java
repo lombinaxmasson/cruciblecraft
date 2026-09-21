@@ -547,8 +547,13 @@ class ProcessingAdaptersTest {
                 assertEquals(1, spec.items().outputs().size());
                 continue;
             }
-            assertEquals(1, spec.items().inputs().size());
-            assertTrue(spec.items().outputs().size() >= 3);
+            if (spec == ModProcessingMachines.BATH) {
+                assertEquals(6, spec.items().inputs().size());
+                assertEquals(6, spec.items().outputs().size());
+            } else {
+                assertEquals(1, spec.items().inputs().size());
+                assertTrue(spec.items().outputs().size() >= 3);
+            }
             ProcessingMachineIoAssertions.assertMatchesProfile(spec);
             if (spec == ModProcessingMachines.SLUICE || spec == ModProcessingMachines.BATH) {
                 assertEquals(1, spec.fluids().inputs().size());

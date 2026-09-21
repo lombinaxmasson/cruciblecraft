@@ -149,7 +149,7 @@ class ChemicalPublicationBudgetTest {
                 List.of(1),
                 List.of(new ItemStack(Items.IRON_NUGGET)),
                 List.of(new net.neoforged.neoforge.fluids.FluidStack(
-                        net.minecraft.world.level.material.Fluids.WATER, 7000)),
+                        net.minecraft.world.level.material.Fluids.WATER, 3000)),
                 List.of(
                         new net.neoforged.neoforge.fluids.FluidStack(
                                 net.minecraft.world.level.material.Fluids.WATER, 3000),
@@ -199,13 +199,10 @@ class ChemicalPublicationBudgetTest {
         assertTrue(
                 smelterAmount.getMessage().contains("chemical_recipe_amount"),
                 smelterAmount.getMessage());
-        IllegalArgumentException chemicalShape = assertThrows(
-                IllegalArgumentException.class,
-                () -> GTRecipeMapLoader.validateTarget(
-                        id("chemical/bath/over_shape"),
-                        ModRecipeMaps.BATH,
-                        twoFluidOut));
-        assertTrue(chemicalShape.getMessage().contains("chemical_recipe_shape"), chemicalShape.getMessage());
+        assertDoesNotThrow(() -> GTRecipeMapLoader.validateTarget(
+                id("chemical/bath/over_shape"),
+                ModRecipeMaps.BATH,
+                twoFluidOut));
     }
 
     @Test

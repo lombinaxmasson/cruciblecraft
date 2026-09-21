@@ -27,6 +27,7 @@ import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
 import com.masson.cruciblecraft.content.block.AutomaticHammerBlock;
+import com.masson.cruciblecraft.content.block.ExplosiveBlock;
 import com.masson.cruciblecraft.content.block.DynamoBlock;
 import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
 import com.masson.cruciblecraft.content.block.ElectricHeaterBlock;
@@ -113,6 +114,7 @@ import com.masson.cruciblecraft.content.block.GtStoneSlabBlock;
 import com.masson.cruciblecraft.content.block.StoneLayerStoneBlock;
 import com.masson.cruciblecraft.content.block.StoneLayerRockOreBlock;
 import com.masson.cruciblecraft.content.block.DustFunnelBlock;
+import com.masson.cruciblecraft.content.block.MixingBowlBlock;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
@@ -155,6 +157,7 @@ import com.masson.cruciblecraft.energy.flux.FluxCatalog;
 import com.masson.cruciblecraft.energy.flux.FluxProfile;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.machine.autotool.AutomaticHammerCatalog;
+import com.masson.cruciblecraft.content.explosive.DynamiteType;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterFuelSpecs;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
@@ -306,6 +309,12 @@ public final class ModBlocks {
     public static final DeferredBlock<AutomaticHammerBlock>
             TUNGSTENSTEEL_AUTOMATIC_HAMMER =
                     registerAutomaticHammer(AutomaticHammerCatalog.ALL.get(3));
+    public static final DeferredBlock<ExplosiveBlock> BOOMSTICK =
+            registerExplosive(DynamiteType.BOOMSTICK);
+    public static final DeferredBlock<ExplosiveBlock> DYNAMITE =
+            registerExplosive(DynamiteType.DYNAMITE);
+    public static final DeferredBlock<ExplosiveBlock> STRONG_DYNAMITE =
+            registerExplosive(DynamiteType.STRONG_DYNAMITE);
     public static final DeferredBlock<FusionReactorBlock> FUSION_REACTOR =
             BLOCKS.register(
                     "fusion_reactor",
@@ -678,6 +687,11 @@ public final class ModBlocks {
             BLOCKS.register(
                     "steel_dust_funnel",
                     () -> new DustFunnelBlock(
+                            machineProperties().noOcclusion()));
+    public static final DeferredBlock<MixingBowlBlock> MIXING_BOWL =
+            BLOCKS.register(
+                    "mixing_bowl",
+                    () -> new MixingBowlBlock(
                             machineProperties().noOcclusion()));
     public static final DeferredBlock<ProcessingMachineBlock> SLUICE =
             tieredProcessing("sluice");
@@ -2526,6 +2540,13 @@ public final class ModBlocks {
                                 profile.hardness(), profile.resistance())));
     }
 
+    private static DeferredBlock<ExplosiveBlock> registerExplosive(
+            DynamiteType type) {
+        return BLOCKS.register(
+                type.registryPath(),
+                () -> new ExplosiveBlock(type, explosiveProperties(type)));
+    }
+
     private static DeferredBlock<ProcessingMachineBlock> processing(
             String id, MachineVariant variant) {
         DeferredBlock<ProcessingMachineBlock> block =
@@ -2757,6 +2778,20 @@ public final class ModBlocks {
                 .strength(3.5F, 8.0F)
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.METAL);
+    }
+
+    private static BlockBehaviour.Properties explosiveProperties(
+            DynamiteType type) {
+        return BlockBehaviour.Properties.of()
+                .mapColor(type.mapColor())
+                .strength(0.0F, 0.0F)
+                .sound(SoundType.GRASS)
+                .noOcclusion()
+                .isSuffocating((state, level, pos) -> false)
+                .isViewBlocking((state, level, pos) -> false)
+                .isRedstoneConductor((state, level, pos) -> false)
+                .ignitedByLava()
+                .pushReaction(PushReaction.DESTROY);
     }
 
     private static BlockBehaviour.Properties processingProperties(String id) {

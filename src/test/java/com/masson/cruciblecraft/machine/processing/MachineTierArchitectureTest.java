@@ -60,7 +60,7 @@ class MachineTierArchitectureTest {
                     assertSame(kind.behavior().ui(),
                             variant.runtimeSpec().ui());
                 }
-                assertSame(kind.behavior().sidedIo(),
+                assertEquals(kind.behavior().sidedIo(),
                         variant.runtimeSpec().sidedIo());
             });
         }

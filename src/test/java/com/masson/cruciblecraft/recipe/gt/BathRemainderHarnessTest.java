@@ -199,7 +199,7 @@ class BathRemainderHarnessTest {
                     ItemStack[] options = recipe.itemInputs().get(inputIndex).getItems();
                     assertTrue(options.length > 0, () -> stableId + " item input has no sample");
                     assertEquals(
-                            ResourceLocation.parse(expectedId),
+                            CompactGTRecipeFamilyGeneratedSupport.liveItemId(expectedId),
                             BuiltInRegistries.ITEM.getKey(options[0].getItem()),
                             () -> stableId + " item input identity drifted");
                     assertEquals(

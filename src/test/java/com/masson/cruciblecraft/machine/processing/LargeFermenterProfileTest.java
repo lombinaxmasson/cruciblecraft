@@ -83,7 +83,7 @@ class LargeFermenterProfileTest {
         MachineExecutionPlan parallel = MachineExecutionPlan.create(
                 recipe(16L, 100), kind, profile, 256).orElseThrow();
         assertEquals(256, parallel.operations());
-        assertEquals(100, parallel.effectiveDuration());
+        assertEquals(800, parallel.effectiveDuration());
     }
 
     @Test

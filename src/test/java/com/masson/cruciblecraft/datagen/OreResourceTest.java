@@ -269,6 +269,28 @@ class OreResourceTest {
                                         "cruciblecraft/tags/block/"
                                                 + "gt_block_objects.json"),
                                 generatedData.resolve(
+                                        "cruciblecraft/tags/block/"
+                                                + "distillation_tower_controllers.json"),
+                                generatedData.resolve(
+                                        "cruciblecraft/tags/block/"
+                                                + "large_crucible_controllers.json"),
+                                generatedData.resolve(
+                                        "cruciblecraft/tags/block/"
+                                                + "large_crucible_walls.json"),
+                                generatedData.resolve(
+                                        "cruciblecraft/tags/block/"
+                                                + "wooden_beams.json"),
+                                generatedData.resolve(
+                                        "cruciblecraft/tags/item/"
+                                                + "smelting_crucibles.json"),
+                                generatedData.resolve(
+                                        "cruciblecraft/tags/item/"
+                                                + "wooden_beams.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/planks.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/wooden_slabs.json"),
+                                generatedData.resolve(
                                         "minecraft/tags/block/mineable/"
                                                 + "pickaxe.json"),
                                 generatedData.resolve(
@@ -327,7 +349,11 @@ class OreResourceTest {
                                                 + "leaves.json"),
                                 generatedData.resolve(
                                         "minecraft/tags/item/"
-                                                + "saplings.json")),
+                                                + "saplings.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/item/planks.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/item/wooden_slabs.json")),
                         Set.copyOf(snapshots),
                         "only catalog-driven static item/block tags may ship "
                                 + "in generated data");

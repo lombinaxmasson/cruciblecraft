@@ -24,6 +24,32 @@ class Gt6ToolUsageResourceTest {
                 "raw_ceramic_mold.json",
                 List.of("C C", "CCC", "k R"),
                 "cruciblecraft:raw_ceramic_mold");
+        assertClay(
+                "raw_ceramic_bowl.json",
+                List.of("k R", "C C", "CCC"),
+                "cruciblecraft:raw_ceramic_bowl");
+        JsonObject unshape = object(Path.of(
+                "src/main/resources/data/cruciblecraft/recipe/"
+                        + "raw_ceramic_bowl_unshape.json"));
+        assertEquals(
+                "minecraft:crafting_shapeless",
+                unshape.get("type").getAsString());
+        assertEquals(
+                5,
+                unshape.getAsJsonObject("result").get("count").getAsInt());
+        assertEquals(
+                "minecraft:clay_ball",
+                unshape.getAsJsonObject("result").get("id").getAsString());
+        JsonObject firing = object(Path.of(
+                "src/main/resources/data/cruciblecraft/recipe/"
+                        + "mixing_bowl_firing.json"));
+        assertEquals("minecraft:smelting", firing.get("type").getAsString());
+        assertEquals(
+                "cruciblecraft:raw_ceramic_bowl",
+                firing.getAsJsonObject("ingredient").get("item").getAsString());
+        assertEquals(
+                "cruciblecraft:mixing_bowl",
+                firing.getAsJsonObject("result").get("id").getAsString());
     }
 
     @Test

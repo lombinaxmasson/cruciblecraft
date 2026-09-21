@@ -42,7 +42,10 @@ class StorageAcquisitionResourceTest {
                     "data/cruciblecraft/loot_table/blocks/" + path + ".json")), path);
             Path recipe = GENERATED.resolve(
                     "data/cruciblecraft/recipe/storage/" + path + ".json");
-            if (variant.sourceVisible()) {
+            boolean hasDirectAcquisitionRecipe = variant.sourceVisible()
+                    && !"folded_gt6_catalyst".equals(
+                            variant.acquisitionProfile());
+            if (hasDirectAcquisitionRecipe) {
                 assertTrue(Files.exists(recipe), path);
                 recipes++;
             } else {
@@ -51,7 +54,12 @@ class StorageAcquisitionResourceTest {
             String id = variant.id().toString();
             assertTrue(pickaxe.contains(id) || axe.contains(id), id);
         }
-        assertEquals(StorageVariantCatalog.sourceVisible().size(), recipes);
+        assertEquals(
+                StorageVariantCatalog.sourceVisible().stream()
+                        .filter(variant -> !"folded_gt6_catalyst".equals(
+                                variant.acquisitionProfile()))
+                        .count(),
+                recipes);
         assertEquals(625, StorageVariantCatalog.variants().size());
     }
 

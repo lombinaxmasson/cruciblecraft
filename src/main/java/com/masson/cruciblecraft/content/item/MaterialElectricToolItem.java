@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.content.item.tool.ElectricToolCatalog;
 import com.masson.cruciblecraft.content.item.tool.ElectricToolCharge;
+import com.masson.cruciblecraft.content.item.tool.InventoryBlockPlacer;
+import com.masson.cruciblecraft.content.item.tool.DynamitePlacement;
 import com.masson.cruciblecraft.content.item.tool.ToolMining;
 import com.masson.cruciblecraft.machine.ToolMaterialRules;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
@@ -164,7 +166,33 @@ public final class MaterialElectricToolItem extends MaterialToolItem {
                         context.getLevel().isClientSide);
             }
         }
-        return super.useOn(context);
+        ItemStack stack = context.getItemInHand();
+        if (spec().family() == ElectricToolCatalog.Family.HAND_DRILL
+                && canApplyDurabilityDamage(stack)) {
+            InteractionResult dynamite = DynamitePlacement.use(context)
+                    .toInteractionResult(context.getLevel().isClientSide);
+            if (dynamite.consumesAction()) {
+                return dynamite;
+            }
+        }
+        InteractionResult converted = super.useOn(context);
+        if (converted.consumesAction()) {
+            return converted;
+        }
+        if (!canApplyDurabilityDamage(stack)) {
+            return converted;
+        }
+        return switch (spec().family()) {
+            case MINING_DRILL, JACKHAMMER, JACKHAMMER_NO_ORES -> {
+                InteractionResult plug = InventoryBlockPlacer.plugLeak(context);
+                if (plug.consumesAction()) {
+                    yield plug;
+                }
+                yield InventoryBlockPlacer.placeTorch(context);
+            }
+            case CHAINSAW -> InventoryBlockPlacer.placeSaplingOrWorkbench(context);
+            default -> converted;
+        };
     }
 
     @Override

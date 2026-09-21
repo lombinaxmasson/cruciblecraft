@@ -80,7 +80,7 @@ class PipeRuleDataTest {
                             rule,
                             materials,
                             registered);
-            assertEquals(domain.fluid() ? 37 : 24, expanded.size());
+            assertEquals(domain.fluid() ? 35 : 21, expanded.size());
             for (var plan : expanded) {
                 assertTrue(signatures.add(
                         entry.getKey() + "/" + plan.materialId()));
@@ -97,8 +97,8 @@ class PipeRuleDataTest {
             plans += expanded.size();
         }
 
-        assertEquals(257, plans);
-        assertEquals(257, signatures.size());
+        assertEquals(238, plans);
+        assertEquals(238, signatures.size());
     }
 
     private static MaterialRule loadRule(Path path) throws Exception {

@@ -218,5 +218,19 @@ public final class ModComponents {
                             .persistent(Codec.INT)
                             .networkSynchronized(ByteBufCodecs.VAR_INT));
 
+    /**
+     * Dimension-qualified Remote Activator targets. The compact string form
+     * keeps the component forward-compatible while still making the target
+     * list persistent and network-synchronized.
+     */
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<String>> DYNAMITE_REMOTE_TARGETS =
+            COMPONENTS.registerComponentType(
+                    "dynamite_remote_targets",
+                    builder -> builder
+                            .persistent(Codec.STRING)
+                            .networkSynchronized(ByteBufCodecs.STRING_UTF8));
+
     private ModComponents() {}
 }

@@ -101,12 +101,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.redstoneWireCatalog().forEach(block -> dropSelf(block.get()));
         ModBlocks.variantStorageBlocks().forEach(block -> dropSelf(block.get()));
         dropSelf(ModBlocks.STEEL_DUST_FUNNEL.get());
+        dropSelf(ModBlocks.MIXING_BOWL.get());
         dropSelf(ModBlocks.LU_FIBER_CABLE.get());
         dropSelf(ModBlocks.LASER_ENGRAVER.get());
         dropSelf(ModBlocks.AUTOMATIC_HAMMER.get());
         dropSelf(ModBlocks.STEEL_AUTOMATIC_HAMMER.get());
         dropSelf(ModBlocks.TITANIUM_AUTOMATIC_HAMMER.get());
         dropSelf(ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER.get());
+        dropSelf(ModBlocks.BOOMSTICK.get());
+        dropSelf(ModBlocks.DYNAMITE.get());
+        dropSelf(ModBlocks.STRONG_DYNAMITE.get());
         dropSelf(ModBlocks.FUSION_REACTOR.get());
         dropSelf(ModBlocks.LARGE_HEAT_EXCHANGER.get());
         dropSelf(ModBlocks.BEDROCK_DRILL.get());
@@ -274,12 +278,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.ROTATIONAL_GEARBOX.get(),
                 ModBlocks.FLUID_DEPOSIT_EXTRACTOR.get(),
                 ModBlocks.STEEL_DUST_FUNNEL.get(),
+                ModBlocks.MIXING_BOWL.get(),
                 ModBlocks.LU_FIBER_CABLE.get(),
                 ModBlocks.LASER_ENGRAVER.get(),
                 ModBlocks.AUTOMATIC_HAMMER.get(),
                 ModBlocks.STEEL_AUTOMATIC_HAMMER.get(),
                 ModBlocks.TITANIUM_AUTOMATIC_HAMMER.get(),
                 ModBlocks.TUNGSTENSTEEL_AUTOMATIC_HAMMER.get(),
+                ModBlocks.BOOMSTICK.get(),
+                ModBlocks.DYNAMITE.get(),
+                ModBlocks.STRONG_DYNAMITE.get(),
                 ModBlocks.FUSION_REACTOR.get(),
                 ModBlocks.LARGE_HEAT_EXCHANGER.get(),
                 ModBlocks.BEDROCK_DRILL.get(),
