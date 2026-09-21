@@ -1,0 +1,38 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "ingredients": {
+    "B": {
+      "item": "cruciblecraft:lead_acid_battery_ev"
+    },
+    "C": {
+      "item": "cruciblecraft:circuit_ultimate"
+    },
+    "E": {
+      "item": "cruciblecraft:compact_electric_motor_ev"
+    },
+    "M": {
+      "item": "cruciblecraft:vibramantium/steam_turbine_main_housing"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "adamantium"
+      },
+      "items": "cruciblecraft:dense_plate"
+    }
+  },
+  "pattern": [
+    "PwP",
+    "BMC",
+    "PEP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:vibramantium/gas_turbine_main_housing"
+  },
+  "catalysts": {
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  }
+}

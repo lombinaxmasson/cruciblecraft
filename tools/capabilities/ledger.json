@@ -1748,13 +1748,14 @@
         "energy/batteries",
         "content/technological-parts-foundation"
       ],
-      "maturity": "frozen",
+      "maturity": "runtime_ready",
       "owned_paths": [
-        "docs/history/card-plans/active/大型燃气轮机详细计划.md",
+        "docs/history/card-plans/closed/大型燃气轮机详细计划.md",
         "src/main/java/com/masson/cruciblecraft/energy/largegasturbine/**",
         "src/main/resources/data/cruciblecraft/large_gas_turbines.json",
         "src/main/resources/assets/cruciblecraft/gt6_large_gas_turbine_art_manifest.json",
         "src/main/resources/assets/cruciblecraft/textures/block/machine/gas_turbine/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/metal_wall_dense/**",
         "src/test/java/com/masson/cruciblecraft/gametest/LargeGasTurbineGameTests.java",
         "src/test/java/com/masson/cruciblecraft/energy/largegasturbine/**",
         "tools/capabilities/energy/large-gas-turbine/**",
@@ -1769,7 +1770,7 @@
       "slug": "energy/large-gas-turbine",
       "survival_access": "partial",
       "title": "Large Gas Turbine 17231-17234",
-      "workflow": "active"
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -2444,6 +2445,47 @@
     },
     {
       "depends_on": [
+        "content/gt6-mte-multiblock-runtime",
+        "content/gt6-mte-inplace-acquisition",
+        "energy/steam-turbine",
+        "energy/fusion-quantum",
+        "energy/quantum-massfab",
+        "machines/large-processing-parts"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/CoilHosts.java",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/MatterFabricatorStructure.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MatterFabricatorBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/DenseLeadPorts.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/GalvanizedGraaggWalls.java",
+        "src/main/java/com/masson/cruciblecraft/energy/largedynamo/**",
+        "src/main/java/com/masson/cruciblecraft/energy/lightningrod/**",
+        "src/main/java/com/masson/cruciblecraft/energy/vondagraagg/**",
+        "src/main/resources/assets/cruciblecraft/gt6_coil_host_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/coil/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_gt6_coil_hosts/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/CoilHostGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/content/multiblock/CoilHostIdentityTest.java",
+        "src/test/java/com/masson/cruciblecraft/energy/largedynamo/**",
+        "src/test/java/com/masson/cruciblecraft/energy/lightningrod/**",
+        "src/test/java/com/masson/cruciblecraft/energy/vondagraagg/**",
+        "tools/capabilities/machines/gt6-coil-hosts/**",
+        "tools/gt6_coil_hosts.py",
+        "tools/tests/test_gt6_coil_hosts.py"
+      ],
+      "path": "tools/capabilities/machines/gt6-coil-hosts/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/gt6-coil-hosts",
+      "survival_access": "partial",
+      "title": "GT6 coils 18040-18045 and host machines",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "machines/cluster-mill"
       ],
       "maturity": "runtime_ready",
@@ -2531,6 +2573,150 @@
       "slug": "machines/laminator",
       "survival_access": "unreviewed",
       "title": "Laminator",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/large-processing-parts",
+        "content/gt6-mte-multiblock-runtime"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "docs/history/card-plans/closed/大型高压釜详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeAutoclaveBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/AutoclaveWalls.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeAutoclaveBlockEntity.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_autoclave.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_autoclave_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/large_autoclave/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_large_autoclave/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeAutoclaveGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeAutoclaveProfileTest.java",
+        "tools/capabilities/machines/large-autoclave/**",
+        "tools/waves/machines/large-autoclave/**",
+        "tools/gt6_large_autoclave.py",
+        "tools/tests/test_large_autoclave.py"
+      ],
+      "path": "tools/capabilities/machines/large-autoclave/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-autoclave",
+      "survival_access": "partial",
+      "title": "Large Autoclave 17112",
+      "workflow": "paused"
+    },
+    {
+      "depends_on": [
+        "machines/large-processing-parts",
+        "content/gt6-mte-multiblock-runtime"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "docs/history/card-plans/closed/大型电解机详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeElectrolyzerBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/ElectrolyzerParts.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeElectrolyzerBlockEntity.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_electrolyzer.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_electrolyzer_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/large_electrolyzer/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_large_electrolyzer/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeElectrolyzerGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeElectrolyzerProfileTest.java",
+        "tools/capabilities/machines/large-electrolyzer/**",
+        "tools/waves/machines/large-electrolyzer/**",
+        "tools/gt6_large_electrolyzer.py",
+        "tools/tests/test_large_electrolyzer.py"
+      ],
+      "path": "tools/capabilities/machines/large-electrolyzer/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-electrolyzer",
+      "survival_access": "partial",
+      "title": "Large Electrolyzer 17103",
+      "workflow": "paused"
+    },
+    {
+      "depends_on": [
+        "machines/large-processing-parts",
+        "content/gt6-mte-multiblock-runtime"
+      ],
+      "maturity": "frozen",
+      "owned_paths": [
+        "docs/history/card-plans/closed/大型发酵器详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeFermenterBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeFermenterBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeFermenterAutoOutput.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_fermenter.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_fermenter_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/large_fermenter/**",
+        "src/main/resources/data/cruciblecraft/recipe/fermenter/**",
+        "src/main/resources/data/cruciblecraft_wave_machines_large_fermenter/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeFermenterGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeFermenterProfileTest.java",
+        "tools/capabilities/machines/large-fermenter/**",
+        "tools/waves/machines/large-fermenter/**",
+        "tools/gt6_large_fermenter.py",
+        "tools/tests/test_large_fermenter.py"
+      ],
+      "path": "tools/capabilities/machines/large-fermenter/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-fermenter",
+      "survival_access": "partial",
+      "title": "Large Fermenter 17113",
+      "workflow": "paused"
+    },
+    {
+      "depends_on": [
+        "content/gt6-mte-multiblock-runtime",
+        "content/technological-parts-foundation"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/大型加工多方块零件与配方图详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+        "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+        "src/main/resources/data/cruciblecraft/mte_inplace_acquisition.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_processing_parts_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/electrolyzer_part.png",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/crusher_wheels.png",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/shredder_blades.png",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_electrolyzer_part.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_crusher_wheels.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_shredder_blades.json",
+        "src/main/resources/assets/cruciblecraft/blockstates/multiblock/electrolyzer_part.json",
+        "src/main/resources/assets/cruciblecraft/blockstates/multiblock/crusher_wheels.json",
+        "src/main/resources/assets/cruciblecraft/blockstates/multiblock/shredder_blades.json",
+        "src/main/resources/assets/cruciblecraft/models/item/multiblock/electrolyzer_part.json",
+        "src/main/resources/assets/cruciblecraft/models/item/multiblock/crusher_wheels.json",
+        "src/main/resources/assets/cruciblecraft/models/item/multiblock/shredder_blades.json",
+        "src/main/resources/data/cruciblecraft/loot_table/blocks/multiblock/electrolyzer_part.json",
+        "src/main/resources/data/cruciblecraft/loot_table/blocks/multiblock/crusher_wheels.json",
+        "src/main/resources/data/cruciblecraft/loot_table/blocks/multiblock/shredder_blades.json",
+        "src/generated/resources/data/cruciblecraft/recipe/multiblock/electrolyzer_part.json",
+        "src/generated/resources/data/cruciblecraft/recipe/multiblock/crusher_wheels.json",
+        "src/generated/resources/data/cruciblecraft/recipe/multiblock/shredder_blades.json",
+        "src/main/resources/data/cruciblecraft_wave_machines_large_processing_parts/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeProcessingPartsGameTests.java",
+        "tools/capabilities/machines/large-processing-parts/**",
+        "tools/waves/machines/large-processing-parts/**",
+        "tools/gt6_large_processing_parts.py",
+        "tools/tests/test_large_processing_parts.py"
+      ],
+      "path": "tools/capabilities/machines/large-processing-parts/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-processing-parts",
+      "survival_access": "blocked",
+      "title": "Large processing multiblock parts and maps",
       "workflow": "accepted"
     },
     {
@@ -3175,6 +3361,9 @@
         "src/main/resources/assets/cruciblecraft/gt6_gt_trees_art_manifest.json",
         "src/main/resources/assets/cruciblecraft/textures/block/tree/**",
         "src/main/resources/assets/cruciblecraft/textures/item/tree/**",
+        "src/main/resources/data/cruciblecraft/tree_hole_fluid_mapping.json",
+        "src/main/resources/data/cruciblecraft/recipe/chemical/coagulator/latex_to_rubber_nugget.json",
+        "src/main/resources/data/cruciblecraft/recipe/machine/squeezer/rubber_log.json",
         "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_tree_*.json",
         "src/main/resources/data/cruciblecraft/worldgen/configured_feature/tree_*.json",
         "src/main/resources/data/cruciblecraft/worldgen/placed_feature/tree_*.json",
@@ -3197,7 +3386,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 94,
+  "capability_count": 99,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -3355,14 +3544,20 @@
       "content/gt6-mte-hopper-host-fold"
     ],
     "content/gt6-mte-inplace-acquisition": [
-      "content/gt6-mte-inplace-acquisition"
+      "content/gt6-mte-inplace-acquisition",
+      "machines/gt6-coil-hosts"
     ],
     "content/gt6-mte-misc-tool-runtime": [
       "content/gt6-mte-misc-tool-runtime",
       "machines/bath"
     ],
     "content/gt6-mte-multiblock-runtime": [
-      "content/gt6-mte-multiblock-runtime"
+      "content/gt6-mte-multiblock-runtime",
+      "machines/gt6-coil-hosts",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts"
     ],
     "content/gt6-mte-processing-host-fold": [
       "content/gt6-mte-processing-host-fold"
@@ -3407,6 +3602,11 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/large-gas-turbine",
+      "machines/gt6-coil-hosts",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/puv-omega-matrix",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
@@ -3440,9 +3640,14 @@
       "energy/steam-turbine",
       "energy/transformers",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3486,9 +3691,14 @@
       "energy/steam-turbine",
       "energy/transformers",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3512,6 +3722,7 @@
       "content/puv-omega-parts",
       "energy/fusion-quantum",
       "energy/quantum-massfab",
+      "machines/gt6-coil-hosts",
       "machines/puv-omega-matrix"
     ],
     "energy/heat-exchangers": [
@@ -3537,9 +3748,14 @@
       "energy/quantum-massfab",
       "energy/steam-turbine",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3563,6 +3779,7 @@
       "energy/large-heat-exchanger",
       "energy/quantum-massfab",
       "energy/steam-turbine",
+      "machines/gt6-coil-hosts",
       "machines/puv-omega-matrix"
     ],
     "energy/nuclear-fission-hot-fluids": [
@@ -3590,9 +3807,14 @@
       "energy/quantum-massfab",
       "energy/steam-turbine",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3635,9 +3857,14 @@
       "energy/quantum-massfab",
       "energy/steam-turbine",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3654,6 +3881,7 @@
     "energy/quantum-massfab": [
       "content/puv-omega-parts",
       "energy/quantum-massfab",
+      "machines/gt6-coil-hosts",
       "machines/puv-omega-matrix"
     ],
     "energy/small-gas-turbine": [
@@ -3666,6 +3894,7 @@
       "energy/large-gas-turbine",
       "energy/quantum-massfab",
       "energy/steam-turbine",
+      "machines/gt6-coil-hosts",
       "machines/puv-omega-matrix"
     ],
     "energy/transformers": [
@@ -3695,9 +3924,14 @@
       "energy/steam-turbine",
       "energy/transformers",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3751,9 +3985,14 @@
       "logistics/item-network-core",
       "logistics/logistics-core",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3801,9 +4040,14 @@
       "energy/transformers",
       "logistics/display-cpu",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3851,9 +4095,14 @@
       "logistics/generic-network/core",
       "logistics/logistics-core",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3900,9 +4149,14 @@
       "logistics/generic-network/core",
       "logistics/logistics-core",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3951,9 +4205,14 @@
       "logistics/item-network-core",
       "logistics/logistics-core",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3999,9 +4258,14 @@
       "logistics/display-cpu",
       "logistics/logistics-core",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4025,6 +4289,9 @@
     "machines/distillation-tower": [
       "machines/distillation-tower"
     ],
+    "machines/gt6-coil-hosts": [
+      "machines/gt6-coil-hosts"
+    ],
     "machines/hammer-squeezer-laser": [
       "machines/hammer-squeezer-laser"
     ],
@@ -4034,7 +4301,12 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/large-gas-turbine",
+      "machines/gt6-coil-hosts",
       "machines/injector",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/puv-omega-matrix",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
@@ -4053,6 +4325,22 @@
       "content/gt6-restrictive-item-pipe-runtime",
       "machines/laminator"
     ],
+    "machines/large-autoclave": [
+      "machines/large-autoclave"
+    ],
+    "machines/large-electrolyzer": [
+      "machines/large-electrolyzer"
+    ],
+    "machines/large-fermenter": [
+      "machines/large-fermenter"
+    ],
+    "machines/large-processing-parts": [
+      "machines/gt6-coil-hosts",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts"
+    ],
     "machines/loom": [
       "content/electric-wire-cable-mte-fold",
       "content/gt6-connector-alias-repair",
@@ -4069,6 +4357,11 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/large-gas-turbine",
+      "machines/gt6-coil-hosts",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/puv-omega-matrix",
       "worldgen/gt-crops",
@@ -4128,9 +4421,14 @@
       "content/technological-parts-foundation",
       "energy/large-gas-turbine",
       "machines/cluster-mill",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4154,6 +4452,11 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/large-gas-turbine",
+      "machines/gt6-coil-hosts",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/puv-omega-matrix",
       "machines/slicer",
       "worldgen/gt-crops",
@@ -4201,6 +4504,11 @@
       "content/gt6-storage-art",
       "content/mte-redstone-wire",
       "machines/bath",
+      "machines/gt6-coil-hosts",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "registry/catalog-modern-ids"
     ],
     "registry/hybrid-material-identity": [
@@ -4310,9 +4618,14 @@
       "machines/bath",
       "machines/cluster-mill",
       "machines/distillation-tower",
+      "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/injector",
       "machines/laminator",
+      "machines/large-autoclave",
+      "machines/large-electrolyzer",
+      "machines/large-fermenter",
+      "machines/large-processing-parts",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4337,5 +4650,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": "energy/large-gas-turbine"
+  "unique_active_slug": null
 }

@@ -21,13 +21,23 @@ public final class MteInPlaceDisplayNames {
             Map.entry("ceramic", "陶瓷"),
             Map.entry("steel_galvanized", "镀锌钢"),
             Map.entry("netherite", "下界合金"),
-            Map.entry("wood_treated", "防腐木"));
+            Map.entry("wood_treated", "防腐木"),
+            Map.entry("nichrome", "镍铬"),
+            Map.entry("carborundum", "碳化硅"),
+            Map.entry("niobium_titanium", "铌钛"));
 
     private MteInPlaceDisplayNames() {}
 
     public static Optional<String> chinese(String registryPath) {
         if (registryPath == null || registryPath.isEmpty()) {
             return Optional.empty();
+        }
+        if (registryPath.startsWith("multiblock/large_")
+                && registryPath.endsWith("_coil")) {
+            String token = registryPath.substring(
+                    "multiblock/large_".length(),
+                    registryPath.length() - "_coil".length());
+            return chineseMaterialName(token).map(name -> "大型" + name + "线圈");
         }
         Optional<String> material = chineseMaterial(registryPath);
         if (material.isEmpty()) {

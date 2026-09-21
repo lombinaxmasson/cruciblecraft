@@ -1,7 +1,10 @@
 package com.masson.cruciblecraft.worldgen.tree.prep;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+
+import net.minecraft.resources.ResourceLocation;
 
 /**
  * The nine {@code WorldgenTree*} identities. Not registered.
@@ -218,6 +221,18 @@ public enum GtTreeSpecies {
 
     public String holeFluidToken() {
         return holeFluidToken;
+    }
+
+    public Optional<ResourceLocation> holeFluidId() {
+        return switch (this) {
+            case RUBBER -> Optional.of(
+                    ResourceLocation.fromNamespaceAndPath(
+                            "cruciblecraft", "rubber_tree_sap"));
+            case RAINBOWOOD -> Optional.of(
+                    ResourceLocation.fromNamespaceAndPath(
+                            "cruciblecraft", "rainbow_sap"));
+            default -> Optional.empty();
+        };
     }
 
     public Set<String> overworldBiomes() {

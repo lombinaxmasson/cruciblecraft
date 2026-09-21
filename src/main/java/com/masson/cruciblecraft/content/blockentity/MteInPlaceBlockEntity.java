@@ -1,10 +1,25 @@
 package com.masson.cruciblecraft.content.blockentity;
 
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
+import com.masson.cruciblecraft.content.block.StainlessSteelMixerWalls;
+import com.masson.cruciblecraft.content.block.CrusherWheels;
+import com.masson.cruciblecraft.content.block.AutoclaveWalls;
+import com.masson.cruciblecraft.content.block.DenseLeadPorts;
+import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
+import com.masson.cruciblecraft.content.block.GalvanizedGraaggWalls;
+import com.masson.cruciblecraft.content.block.InvarOvenWalls;
+import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.multiblock.MultiblockPort;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldHost;
@@ -22,12 +37,22 @@ import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.EnergyPackets;
 import com.masson.cruciblecraft.energy.drive.RotationEngineCatalog;
 import com.masson.cruciblecraft.energy.drive.RotationEngineConversion;
+import com.masson.cruciblecraft.energy.largedynamo.LargeDynamoBlockEntity;
+import com.masson.cruciblecraft.energy.largegasturbine.LargeGasTurbineBlockEntity;
+import com.masson.cruciblecraft.energy.largegasturbine.LargeTurbineHatchRole;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
+import com.masson.cruciblecraft.energy.steam.SteamTurbineConversion;
+import com.masson.cruciblecraft.energy.steam.SteamTurbineHatchRole;
+import com.masson.cruciblecraft.energy.steam.SteamTurbineHatches;
+import com.masson.cruciblecraft.energy.steam.SteamTurbinePresentation;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineStructure;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModMenus;
+import com.masson.cruciblecraft.steam.ExactFluidTransfer;
+import com.masson.cruciblecraft.steam.MachineSideRules;
+import com.masson.cruciblecraft.steam.SteamConversion;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -36,6 +61,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -63,8 +90,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * Shared host for in-place GT6 MTE families. Kind-specific transfer is not a
  * pipe cover, KU axle, vanilla tool, or the ceramic crucible.
  */
-public final class MteInPlaceBlockEntity extends BlockEntity
-        implements IEnergyHandler, MoldHost, MenuProvider {
+public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
+        implements IEnergyHandler, MoldHost, MenuProvider, MultiblockPort {
     public static final int TRANSFER_MB = 1000;
     public static final long ENERGY_CAPACITY = 16_384L;
     public static final int MASS_CAPACITY = 1_000_000;
@@ -88,15 +115,35 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     private final RotationEngineCatalog.Profile rotationEngine;
     private long storedEnergy;
     private long steamCounter;
+    private long energyProducedNextTick;
     private boolean formed;
     private boolean stopped;
     private boolean overcharged;
+    private boolean steamActivity;
+    private boolean steamFast;
+    private boolean steamCounterClockwise;
+    private int steamExplosionPrevention;
     private int massMode;
     private boolean massInventoryChanged;
     private int drawerCompartment;
     private int usingPlayers;
     private float lidAngle;
     private float oldLidAngle;
+    private BlockPos gasTurbineHost;
+    private LargeTurbineHatchRole gasTurbineRole;
+    private Direction gasTurbineOutward = Direction.NORTH;
+    private BlockPos largeDynamoHost;
+    private Direction largeDynamoOutward = Direction.NORTH;
+    private BlockPos steamTurbineHost;
+    private SteamTurbineHatchRole steamTurbineRole;
+    private Direction steamTurbineOutward = Direction.NORTH;
+    private BlockPos mixerController;
+    private ResourceLocation mixerStructure;
+    private PortType mixerPortType;
+    private final Set<BlockPos> boundSteamHatches = new LinkedHashSet<>();
+    private final IFluidHandler steamFillView = new SteamFillView();
+    private final IFluidHandler steamDrainView = new SteamDrainView();
+    private final IFluidHandler steamIoView = new SteamIoView();
 
     public MteInPlaceBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.MTE_INPLACE.get(), pos, state);
@@ -143,13 +190,15 @@ public final class MteInPlaceBlockEntity extends BlockEntity
                 ? RotationEngineCatalog.require(spec.id())
                 : null;
         int tankCap = turbine != null ? turbine.tankCapacityMb() : 1;
-        this.tank = new FluidTank(tankCap) {
+        this.tank = new FluidTank(tankCap, stack -> turbine == null
+                || stack.is(ModFluids.STEAM_SOURCE.get())) {
             @Override
             protected void onContentsChanged() {
                 MteInPlaceBlockEntity.this.setChanged();
             }
         };
-        this.distilled = new FluidTank(Math.max(1, tankCap)) {
+        this.distilled = new FluidTank(
+                Math.max(1, tankCap), SteamConversion::isDistilledWater) {
             @Override
             protected void onContentsChanged() {
                 MteInPlaceBlockEntity.this.setChanged();
@@ -162,6 +211,184 @@ public final class MteInPlaceBlockEntity extends BlockEntity
 
     public MteInPlaceSpec spec() {
         return specOf(getBlockState());
+    }
+
+    public void bindGasTurbine(
+            BlockPos controller,
+            LargeTurbineHatchRole role,
+            Direction outward) {
+        BlockPos immutable = controller.immutable();
+        Direction face = outward == null ? Direction.NORTH : outward;
+        if (!immutable.equals(gasTurbineHost)
+                || gasTurbineRole != role
+                || gasTurbineOutward != face) {
+            gasTurbineHost = immutable;
+            gasTurbineRole = role;
+            gasTurbineOutward = face;
+            setChanged();
+            invalidateGasTurbineCaps();
+        }
+    }
+
+    public void unbindGasTurbine() {
+        if (gasTurbineHost != null || gasTurbineRole != null) {
+            gasTurbineHost = null;
+            gasTurbineRole = null;
+            setChanged();
+            invalidateGasTurbineCaps();
+        }
+    }
+
+    public LargeTurbineHatchRole gasTurbineRole() {
+        return gasTurbineRole;
+    }
+
+    public LargeGasTurbineBlockEntity boundGasTurbine() {
+        if (level == null || gasTurbineHost == null || gasTurbineRole == null) {
+            return null;
+        }
+        if (level.getBlockEntity(gasTurbineHost)
+                instanceof LargeGasTurbineBlockEntity turbine
+                && turbine.formed()) {
+            return turbine;
+        }
+        return null;
+    }
+
+    public boolean forwardsGasTurbineEnergy(Direction side) {
+        return gasTurbineRole != null
+                && gasTurbineRole.energyOut()
+                && boundGasTurbine() != null
+                && (side == null || side == gasTurbineOutward);
+    }
+
+    public IFluidHandler gasTurbineFluids() {
+        if (gasTurbineRole == null || !(gasTurbineRole.fill() || gasTurbineRole.drain())) {
+            return null;
+        }
+        LargeGasTurbineBlockEntity host = boundGasTurbine();
+        return host == null ? null : host.hatchFluids(gasTurbineRole);
+    }
+
+    public void bindLargeDynamo(BlockPos controller, Direction outward) {
+        BlockPos immutable = controller.immutable();
+        Direction face = outward == null ? Direction.NORTH : outward;
+        if (!immutable.equals(largeDynamoHost) || largeDynamoOutward != face) {
+            largeDynamoHost = immutable;
+            largeDynamoOutward = face;
+            setChanged();
+            invalidateGasTurbineCaps();
+        }
+    }
+
+    public void unbindLargeDynamo() {
+        if (largeDynamoHost != null) {
+            largeDynamoHost = null;
+            setChanged();
+            invalidateGasTurbineCaps();
+        }
+    }
+
+    public LargeDynamoBlockEntity boundLargeDynamo() {
+        if (level == null || largeDynamoHost == null) {
+            return null;
+        }
+        if (level.getBlockEntity(largeDynamoHost)
+                instanceof LargeDynamoBlockEntity dynamo
+                && dynamo.formed()) {
+            return dynamo;
+        }
+        return null;
+    }
+
+    public boolean forwardsLargeDynamoEnergy(Direction side) {
+        return largeDynamoHost != null
+                && boundLargeDynamo() != null
+                && (side == null || side == largeDynamoOutward);
+    }
+
+    public void bindSteamTurbine(
+            BlockPos controller,
+            SteamTurbineHatchRole role,
+            Direction outward) {
+        BlockPos immutable = controller.immutable();
+        Direction face = outward == null ? Direction.NORTH : outward;
+        if (!immutable.equals(steamTurbineHost)
+                || steamTurbineRole != role
+                || steamTurbineOutward != face) {
+            steamTurbineHost = immutable;
+            steamTurbineRole = role;
+            steamTurbineOutward = face;
+            setChanged();
+            invalidateGasTurbineCaps();
+        }
+    }
+
+    public void unbindSteamTurbine() {
+        if (steamTurbineHost != null || steamTurbineRole != null) {
+            steamTurbineHost = null;
+            steamTurbineRole = null;
+            setChanged();
+            invalidateGasTurbineCaps();
+        }
+    }
+
+    public SteamTurbineHatchRole steamTurbineRole() {
+        return steamTurbineRole;
+    }
+
+    public MteInPlaceBlockEntity boundSteamTurbine() {
+        if (level == null || steamTurbineHost == null || steamTurbineRole == null) {
+            return null;
+        }
+        if (level.getBlockEntity(steamTurbineHost)
+                instanceof MteInPlaceBlockEntity turbine
+                && turbine.spec().kind() == MteInPlaceKind.STEAM_TURBINE
+                && turbine.formed()) {
+            return turbine;
+        }
+        return null;
+    }
+
+    public boolean forwardsSteamTurbineEnergy(Direction side) {
+        return steamTurbineRole != null
+                && steamTurbineRole.energyOut()
+                && boundSteamTurbine() != null
+                && (side == null || side == steamTurbineOutward);
+    }
+
+    public IFluidHandler steamTurbineFluids() {
+        if (steamTurbineRole == null
+                || !(steamTurbineRole.fill() || steamTurbineRole.drain())) {
+            return null;
+        }
+        MteInPlaceBlockEntity host = boundSteamTurbine();
+        return host == null ? null : host.hatchFluids(steamTurbineRole);
+    }
+
+    public IFluidHandler hatchFluids(SteamTurbineHatchRole role) {
+        if (role == null) {
+            return null;
+        }
+        return switch (role) {
+            case FLUID_IN -> steamFillView;
+            case FLUID_OUT -> steamDrainView;
+            case FLUID -> steamIoView;
+            case ENERGY_OUT, NOTHING -> null;
+        };
+    }
+
+    @Override
+    public void setRemoved() {
+        unbindSteamHatches();
+        unbindSteamTurbine();
+        super.setRemoved();
+    }
+
+    private void invalidateGasTurbineCaps() {
+        if (level != null && !level.isClientSide) {
+            level.invalidateCapabilities(worldPosition);
+        }
     }
 
     public ItemStackHandler items() {
@@ -478,11 +705,32 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         return !stopped;
     }
 
+    public boolean toggleSteamTurbineStopped() {
+        if (spec().kind() != MteInPlaceKind.STEAM_TURBINE) {
+            return true;
+        }
+        stopped = !stopped;
+        setChanged();
+        return !stopped;
+    }
+
+    public boolean toggleSteamCounterClockwise() {
+        if (spec().kind() != MteInPlaceKind.STEAM_TURBINE) {
+            return false;
+        }
+        steamCounterClockwise = !steamCounterClockwise;
+        storedEnergy = 0L;
+        setChanged();
+        syncSteamVisuals();
+        return steamCounterClockwise;
+    }
+
     public static void serverTick(
             Level level,
             BlockPos pos,
             BlockState state,
             MteInPlaceBlockEntity host) {
+        host.tickCovers();
         if (host.spec().kind().attachment()
                 && level.hasNeighborSignal(pos)) {
             host.transferOnce();
@@ -533,6 +781,40 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         if (spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
             return new SteamHandler(side);
         }
+        if (gasTurbineRole != null) {
+            return gasTurbineFluids();
+        }
+        if (steamTurbineRole != null) {
+            return steamTurbineFluids();
+        }
+        IFluidHandler mixer = StainlessSteelMixerWalls.fluids(this);
+        if (mixer != null) {
+            return mixer;
+        }
+        IFluidHandler electrolyzer = ElectrolyzerParts.fluids(this);
+        if (electrolyzer != null) {
+            return electrolyzer;
+        }
+        IFluidHandler oven = InvarOvenWalls.fluids(this);
+        if (oven != null) {
+            return oven;
+        }
+        IFluidHandler autoclave = AutoclaveWalls.fluids(this);
+        if (autoclave != null) {
+            return autoclave;
+        }
+        IFluidHandler crusherWall = TungstensteelCrusherWalls.fluids(this);
+        if (crusherWall != null) {
+            return crusherWall;
+        }
+        IFluidHandler crusherWheel = CrusherWheels.fluids(this);
+        if (crusherWheel != null) {
+            return crusherWheel;
+        }
+        IFluidHandler massfab = DenseLeadPorts.fluids(this);
+        if (massfab != null) {
+            return massfab;
+        }
         return LargeCrucibleWalls.fluids(this);
     }
 
@@ -548,7 +830,154 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         if (spec().kind().inventory()) {
             return items;
         }
+        if (gasTurbineRole != null) {
+            return null;
+        }
+        if (steamTurbineRole != null) {
+            return null;
+        }
+        IItemHandler mixer = StainlessSteelMixerWalls.items(this);
+        if (mixer != null) {
+            return mixer;
+        }
+        IItemHandler electrolyzer = ElectrolyzerParts.items(this);
+        if (electrolyzer != null) {
+            return electrolyzer;
+        }
+        IItemHandler oven = InvarOvenWalls.items(this);
+        if (oven != null) {
+            return oven;
+        }
+        IItemHandler autoclave = AutoclaveWalls.items(this);
+        if (autoclave != null) {
+            return autoclave;
+        }
+        IItemHandler crusherWall = TungstensteelCrusherWalls.items(this);
+        if (crusherWall != null) {
+            return crusherWall;
+        }
+        IItemHandler crusherWheel = CrusherWheels.items(this);
+        if (crusherWheel != null) {
+            return crusherWheel;
+        }
+        IItemHandler massfab = DenseLeadPorts.items(this);
+        if (massfab != null) {
+            return massfab;
+        }
         return LargeCrucibleWalls.items(this);
+    }
+
+    public PortType mixerPortType() {
+        return mixerPortType;
+    }
+
+    public Optional<BlockPos> mixerControllerPosition() {
+        return Optional.ofNullable(mixerController);
+    }
+
+    public Optional<ResourceLocation> mixerStructureId() {
+        return Optional.ofNullable(mixerStructure);
+    }
+
+    @Override
+    public PortType portType() {
+        if (mixerPortType != null) {
+            return mixerPortType;
+        }
+        return PortType.ITEM_FLUID_IN;
+    }
+
+    @Override
+    public boolean accepts(PortType type) {
+        if (mixerPortType != null) {
+            return mixerPortType == type;
+        }
+        return StainlessSteelMixerWalls.accepts(spec(), type)
+                || ElectrolyzerParts.accepts(spec(), type)
+                || InvarOvenWalls.accepts(spec(), type)
+                || AutoclaveWalls.accepts(spec(), type)
+                || TungstensteelCrusherWalls.accepts(spec(), type)
+                || CrusherWheels.accepts(spec(), type)
+                || DenseLeadPorts.accepts(spec(), type)
+                || GalvanizedGraaggWalls.accepts(spec(), type);
+    }
+
+    @Override
+    public void bind(BlockPos controller, ResourceLocation structureId) {
+        bind(controller, structureId, portType());
+    }
+
+    @Override
+    public void bind(
+            BlockPos controller,
+            ResourceLocation structureId,
+            PortType type) {
+        if (!StainlessSteelMixerWalls.isWall(spec())
+                && !ElectrolyzerParts.isPart(spec())
+                && !InvarOvenWalls.isWall(spec())
+                && !AutoclaveWalls.isWall(spec())
+                && !TungstensteelCrusherWalls.isWall(spec())
+                && !CrusherWheels.isPart(spec())
+                && !DenseLeadPorts.isPort(spec())
+                && !GalvanizedGraaggWalls.isWall(spec())) {
+            return;
+        }
+        if (AutoclaveWalls.isWall(spec())
+                && !AutoclaveWalls.accepts(spec(), type)) {
+            return;
+        }
+        BlockPos immutable = controller.immutable();
+        boolean changed = !immutable.equals(mixerController)
+                || !structureId.equals(mixerStructure)
+                || mixerPortType != type;
+        mixerController = immutable;
+        mixerStructure = structureId;
+        mixerPortType = type;
+        if (changed) {
+            setChanged();
+            if (level != null && !level.isClientSide) {
+                level.invalidateCapabilities(worldPosition);
+            }
+        }
+    }
+
+    /** Structure-only crusher wheels keep a controller pointer for walk damage. */
+    public void bindStructureMember(
+            BlockPos controller, ResourceLocation structureId) {
+        if (!CrusherWheels.isPart(spec()) || mixerPortType != null) {
+            return;
+        }
+        BlockPos immutable = controller.immutable();
+        boolean changed = !immutable.equals(mixerController)
+                || !structureId.equals(mixerStructure);
+        mixerController = immutable;
+        mixerStructure = structureId;
+        if (changed) {
+            setChanged();
+        }
+    }
+
+    @Override
+    public void unbind(BlockPos controller) {
+        if (controller.equals(mixerController)) {
+            mixerController = null;
+            mixerStructure = null;
+            mixerPortType = null;
+            setChanged();
+            if (level != null && !level.isClientSide) {
+                level.invalidateCapabilities(worldPosition);
+            }
+        }
+    }
+
+    @Override
+    public Optional<BlockPos> controllerPosition() {
+        return Optional.ofNullable(mixerController);
+    }
+
+    @Override
+    public Optional<ResourceLocation> structureId() {
+        return Optional.ofNullable(mixerStructure);
     }
 
     public void dropContents() {
@@ -578,6 +1007,38 @@ public final class MteInPlaceBlockEntity extends BlockEntity
 
     @Override
     public boolean handles(EnergyType type, Direction side) {
+        if (forwardsLargeDynamoEnergy(side)) {
+            return type == EnergyType.ELECTRIC;
+        }
+        if (gasTurbineRole != null) {
+            return type == EnergyType.KINETIC_ROTATION
+                    && forwardsGasTurbineEnergy(side);
+        }
+        if (steamTurbineRole != null) {
+            return type == EnergyType.KINETIC_ROTATION
+                    && forwardsSteamTurbineEnergy(side);
+        }
+        if (StainlessSteelMixerWalls.forwardsEnergy(this)) {
+            return type == EnergyType.KINETIC_ROTATION;
+        }
+        if (ElectrolyzerParts.forwardsEnergy(this)) {
+            return type == EnergyType.ELECTRIC;
+        }
+        if (InvarOvenWalls.forwardsEnergy(this)) {
+            return type == EnergyType.ELECTRIC;
+        }
+        if (AutoclaveWalls.forwardsEnergy(this)) {
+            return type == EnergyType.TIME;
+        }
+        if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
+            return type == EnergyType.KINETIC_ROTATION;
+        }
+        if (DenseLeadPorts.forwardsEnergy(this)) {
+            return type == EnergyType.QUANTUM;
+        }
+        if (GalvanizedGraaggWalls.forwardsEnergy(this)) {
+            return type == EnergyType.ELECTRIC;
+        }
         if (LargeCrucibleHosts.isWall(spec())) {
             LargeCrucibleBlockEntity host = LargeCrucibleWalls.controllerAt(
                     getLevel(), getBlockPos());
@@ -590,23 +1051,170 @@ public final class MteInPlaceBlockEntity extends BlockEntity
                     && !stopped
                     && rotationInputSide(side);
         }
+        if (spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
+            return type == EnergyType.KINETIC_ROTATION
+                    && (side == null
+                            || side == getBlockState().getValue(MteInPlaceBlock.FACING));
+        }
         return spec().kind().energy() && type == spec().kind().energyType();
     }
 
     @Override
     public long stored(EnergyType type) {
-        if (rotationEngine != null) {
+        if (gasTurbineRole != null || steamTurbineRole != null) {
+            return 0L;
+        }
+        if (rotationEngine != null
+                || spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
             return type == EnergyType.KINETIC_ROTATION ? storedEnergy : 0L;
+        }
+        if (StainlessSteelMixerWalls.forwardsEnergy(this)) {
+            return StainlessSteelMixerWalls.storedEnergy(this, type);
+        }
+        if (ElectrolyzerParts.forwardsEnergy(this)) {
+            return ElectrolyzerParts.storedEnergy(this, type);
+        }
+        if (InvarOvenWalls.forwardsEnergy(this)) {
+            return InvarOvenWalls.storedEnergy(this, type);
+        }
+        if (AutoclaveWalls.forwardsEnergy(this)) {
+            return AutoclaveWalls.storedEnergy(this, type);
+        }
+        if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
+            return TungstensteelCrusherWalls.storedEnergy(this, type);
+        }
+        if (DenseLeadPorts.forwardsEnergy(this)) {
+            return DenseLeadPorts.storedEnergy(this, type);
+        }
+        if (GalvanizedGraaggWalls.forwardsEnergy(this)) {
+            return GalvanizedGraaggWalls.storedEnergy(this, type);
         }
         return handles(type, Direction.NORTH) ? storedEnergy : 0L;
     }
 
     @Override
     public long capacity(EnergyType type) {
-        if (rotationEngine != null) {
+        if (gasTurbineRole != null || steamTurbineRole != null) {
+            return 0L;
+        }
+        if (rotationEngine != null
+                || spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
             return type == EnergyType.KINETIC_ROTATION ? energyCapacity : 0L;
         }
+        if (StainlessSteelMixerWalls.forwardsEnergy(this)) {
+            return StainlessSteelMixerWalls.energyCapacity(this, type);
+        }
+        if (ElectrolyzerParts.forwardsEnergy(this)) {
+            return ElectrolyzerParts.energyCapacity(this, type);
+        }
+        if (InvarOvenWalls.forwardsEnergy(this)) {
+            return InvarOvenWalls.energyCapacity(this, type);
+        }
+        if (AutoclaveWalls.forwardsEnergy(this)) {
+            return AutoclaveWalls.energyCapacity(this, type);
+        }
+        if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
+            return TungstensteelCrusherWalls.energyCapacity(this, type);
+        }
+        if (DenseLeadPorts.forwardsEnergy(this)) {
+            return DenseLeadPorts.energyCapacity(this, type);
+        }
+        if (GalvanizedGraaggWalls.forwardsEnergy(this)) {
+            return GalvanizedGraaggWalls.energyCapacity(this, type);
+        }
         return handles(type, Direction.NORTH) ? energyCapacity : 0L;
+    }
+
+    @Override
+    public boolean allowCover(Direction side) {
+        Direction facing = getBlockState().hasProperty(MteInPlaceBlock.FACING)
+                ? getBlockState().getValue(MteInPlaceBlock.FACING)
+                : Direction.NORTH;
+        return spec().kind().allowCover(facing, side);
+    }
+
+    @Override
+    public boolean hasEnergyBuffer() {
+        return spec().kind().energy();
+    }
+
+    @Override
+    public long energyStored() {
+        return storedEnergy;
+    }
+
+    @Override
+    public long energyCapacity() {
+        return energyCapacity;
+    }
+
+    @Override
+    public boolean hasFluidTanks() {
+        return spec().kind() == MteInPlaceKind.STEAM_TURBINE;
+    }
+
+    @Override
+    public boolean runningPossible() {
+        return spec().kind() == MteInPlaceKind.STEAM_TURBINE
+                || rotationEngine != null;
+    }
+
+    @Override
+    public boolean runningActively() {
+        if (spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
+            return steamActivity;
+        }
+        return rotationEngine != null && !stopped && storedEnergy > 0L;
+    }
+
+    @Override
+    public boolean switchableOnOff() {
+        return spec().kind() == MteInPlaceKind.STEAM_TURBINE
+                || rotationEngine != null;
+    }
+
+    @Override
+    public boolean getStateOnOff() {
+        return !stopped;
+    }
+
+    @Override
+    public boolean setStateOnOff(boolean on) {
+        if (stopped == !on) {
+            return on;
+        }
+        stopped = !on;
+        setChanged();
+        return !stopped;
+    }
+
+    @Override
+    public long outputSize(EnergyType type, Direction side) {
+        if (forwardsLargeDynamoEnergy(side)) {
+            LargeDynamoBlockEntity host = boundLargeDynamo();
+            return host == null ? 0L : host.hatchOutputSize(type, side);
+        }
+        if (forwardsGasTurbineEnergy(side)) {
+            LargeGasTurbineBlockEntity host = boundGasTurbine();
+            return host == null ? 0L : host.hatchOutputSize(type, side);
+        }
+        if (type != EnergyType.KINETIC_ROTATION) {
+            return 0L;
+        }
+        if (forwardsSteamTurbineEnergy(side)) {
+            MteInPlaceBlockEntity host = boundSteamTurbine();
+            return host == null ? 0L : host.ruPacketSize();
+        }
+        if (spec().kind() == MteInPlaceKind.STEAM_TURBINE
+                && (side == null
+                        || side == getBlockState().getValue(MteInPlaceBlock.FACING))) {
+            return ruPacketSize();
+        }
+        if (!forwardsGasTurbineEnergy(side)) {
+            return 0L;
+        }
+        LargeGasTurbineBlockEntity host = boundGasTurbine();
+        return host == null ? 0L : host.hatchOutputSize(type, side);
     }
 
     @Override
@@ -616,6 +1224,40 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             long amount,
             Direction side,
             boolean simulate) {
+        if (gasTurbineRole != null
+                || steamTurbineRole != null
+                || largeDynamoHost != null
+                || spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
+            return 0L;
+        }
+        if (StainlessSteelMixerWalls.forwardsEnergy(this)) {
+            return StainlessSteelMixerWalls.insertEnergy(
+                    this, type, size, amount, simulate);
+        }
+        if (ElectrolyzerParts.forwardsEnergy(this)) {
+            return ElectrolyzerParts.insertEnergy(
+                    this, type, size, amount, simulate);
+        }
+        if (InvarOvenWalls.forwardsEnergy(this)) {
+            return InvarOvenWalls.insertEnergy(
+                    this, type, size, amount, simulate);
+        }
+        if (AutoclaveWalls.forwardsEnergy(this)) {
+            return AutoclaveWalls.insertEnergy(
+                    this, type, size, amount, simulate);
+        }
+        if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
+            return TungstensteelCrusherWalls.insertEnergy(
+                    this, type, size, amount, simulate);
+        }
+        if (DenseLeadPorts.forwardsEnergy(this)) {
+            return DenseLeadPorts.insertEnergy(
+                    this, type, size, amount, simulate);
+        }
+        if (GalvanizedGraaggWalls.forwardsEnergy(this)) {
+            return GalvanizedGraaggWalls.insertEnergy(
+                    this, type, size, amount, simulate);
+        }
         if (LargeCrucibleHosts.isWall(spec())) {
             return LargeCrucibleWalls.insertEnergy(
                     this, type, size, amount, side, simulate);
@@ -642,6 +1284,28 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             long maxAmount,
             Direction side,
             boolean simulate) {
+        if (forwardsLargeDynamoEnergy(side)) {
+            if (maxAmount <= 0L) {
+                return 0L;
+            }
+            LargeDynamoBlockEntity host = boundLargeDynamo();
+            return host == null
+                    ? 0L
+                    : host.hatchExtract(type, size, maxAmount, simulate);
+        }
+        if (gasTurbineRole != null) {
+            if (!forwardsGasTurbineEnergy(side) || maxAmount <= 0L) {
+                return 0L;
+            }
+            LargeGasTurbineBlockEntity host = boundGasTurbine();
+            return host == null
+                    ? 0L
+                    : host.hatchExtract(type, size, maxAmount, simulate);
+        }
+        if (steamTurbineRole != null
+                || spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
+            return 0L;
+        }
         if (rotationEngine != null) {
             return 0L;
         }
@@ -702,10 +1366,35 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         tag.put("tank", tank.writeToNBT(registries, new CompoundTag()));
         tag.putLong("StoredEnergy", storedEnergy);
         tag.putLong("SteamCounter", steamCounter);
+        tag.putLong("EnergyProducedNextTick", energyProducedNextTick);
         tag.putBoolean("Formed", formed);
         tag.putBoolean("Stopped", stopped);
         tag.putBoolean("Overcharged", overcharged);
+        tag.putBoolean("SteamActivity", steamActivity);
+        tag.putBoolean("SteamFast", steamFast);
+        tag.putBoolean("CounterClockwise", steamCounterClockwise);
+        tag.putInt("ExplosionPrevention", steamExplosionPrevention);
         tag.put("distilled", distilled.writeToNBT(registries, new CompoundTag()));
+        if (gasTurbineHost != null && gasTurbineRole != null) {
+            tag.putLong("lgt.controller", gasTurbineHost.asLong());
+            tag.putString("lgt.role", gasTurbineRole.name());
+            tag.putString("lgt.outward", gasTurbineOutward.getSerializedName());
+        }
+        if (largeDynamoHost != null) {
+            tag.putLong("ldy.controller", largeDynamoHost.asLong());
+            tag.putString("ldy.outward", largeDynamoOutward.getSerializedName());
+        }
+        if (steamTurbineHost != null && steamTurbineRole != null) {
+            tag.putLong("st.controller", steamTurbineHost.asLong());
+            tag.putString("st.role", steamTurbineRole.name());
+            tag.putString("st.outward", steamTurbineOutward.getSerializedName());
+        }
+        if (mixerController != null && mixerStructure != null
+                && mixerPortType != null) {
+            tag.putLong("mixer.controller", mixerController.asLong());
+            tag.putString("mixer.structure", mixerStructure.toString());
+            tag.putString("mixer.port", mixerPortType.serializedName());
+        }
     }
 
     @Override
@@ -727,11 +1416,69 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         }
         storedEnergy = tag.getLong("StoredEnergy");
         steamCounter = tag.getLong("SteamCounter");
+        energyProducedNextTick = tag.getLong("EnergyProducedNextTick");
         formed = tag.getBoolean("Formed");
         stopped = tag.getBoolean("Stopped");
         overcharged = tag.getBoolean("Overcharged");
+        steamActivity = tag.getBoolean("SteamActivity");
+        steamFast = tag.getBoolean("SteamFast");
+        steamCounterClockwise = tag.getBoolean("CounterClockwise");
+        steamExplosionPrevention = Math.max(0, tag.getInt("ExplosionPrevention"));
         if (tag.contains("distilled")) {
             distilled.readFromNBT(registries, tag.getCompound("distilled"));
+        }
+        if (tag.contains("lgt.controller") && tag.contains("lgt.role")) {
+            gasTurbineHost = BlockPos.of(tag.getLong("lgt.controller"));
+            try {
+                gasTurbineRole = LargeTurbineHatchRole.valueOf(tag.getString("lgt.role"));
+            } catch (IllegalArgumentException ignored) {
+                gasTurbineRole = null;
+                gasTurbineHost = null;
+            }
+            Direction parsed = Direction.byName(tag.getString("lgt.outward"));
+            gasTurbineOutward = parsed == null ? Direction.NORTH : parsed;
+        } else {
+            gasTurbineHost = null;
+            gasTurbineRole = null;
+        }
+        if (tag.contains("ldy.controller")) {
+            largeDynamoHost = BlockPos.of(tag.getLong("ldy.controller"));
+            Direction dynamoOut = Direction.byName(tag.getString("ldy.outward"));
+            largeDynamoOutward = dynamoOut == null ? Direction.NORTH : dynamoOut;
+        } else {
+            largeDynamoHost = null;
+        }
+        if (tag.contains("st.controller") && tag.contains("st.role")) {
+            steamTurbineHost = BlockPos.of(tag.getLong("st.controller"));
+            try {
+                steamTurbineRole = SteamTurbineHatchRole.valueOf(
+                        tag.getString("st.role"));
+            } catch (IllegalArgumentException ignored) {
+                steamTurbineRole = null;
+                steamTurbineHost = null;
+            }
+            Direction parsed = Direction.byName(tag.getString("st.outward"));
+            steamTurbineOutward = parsed == null ? Direction.NORTH : parsed;
+        } else {
+            steamTurbineHost = null;
+            steamTurbineRole = null;
+        }
+        mixerController = null;
+        mixerStructure = null;
+        mixerPortType = null;
+        ResourceLocation mixerParsed = tag.contains("mixer.structure")
+                ? ResourceLocation.tryParse(tag.getString("mixer.structure"))
+                : null;
+        if (tag.contains("mixer.controller") && mixerParsed != null) {
+            mixerController = BlockPos.of(tag.getLong("mixer.controller"));
+            mixerStructure = mixerParsed;
+            String name = tag.getString("mixer.port");
+            for (PortType type : PortType.values()) {
+                if (type.serializedName().equals(name)) {
+                    mixerPortType = type;
+                    break;
+                }
+            }
         }
     }
 
@@ -869,8 +1616,71 @@ public final class MteInPlaceBlockEntity extends BlockEntity
             return;
         }
         Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
-        formed = SteamTurbineStructure.check(
+        if (!SteamTurbineStructure.aabbLoaded(level, worldPosition, facing)) {
+            return;
+        }
+        boolean ok = SteamTurbineStructure.check(
                 level, worldPosition, facing, profile.wallId());
+        if (ok) {
+            boolean becameFormed = !formed;
+            formed = true;
+            bindSteamHatches(facing);
+            if (becameFormed) {
+                setChanged();
+                notifySteamClients();
+            }
+        } else if (formed) {
+            formed = false;
+            unbindSteamHatches();
+            setChanged();
+            notifySteamClients();
+        } else {
+            unbindSteamHatches();
+        }
+    }
+
+    private void bindSteamHatches(Direction facing) {
+        if (level == null) {
+            return;
+        }
+        Set<BlockPos> desired = new LinkedHashSet<>();
+        for (SteamTurbineHatches.Hatch hatch
+                : SteamTurbineHatches.hatches(worldPosition, facing)) {
+            desired.add(hatch.pos());
+            bindSteamHatch(hatch.pos(), hatch.role(), facing.getOpposite());
+        }
+        for (BlockPos previous : List.copyOf(boundSteamHatches)) {
+            if (!desired.contains(previous)) {
+                unbindSteamHatch(previous);
+            }
+        }
+    }
+
+    private void unbindSteamHatches() {
+        for (BlockPos previous : List.copyOf(boundSteamHatches)) {
+            unbindSteamHatch(previous);
+        }
+    }
+
+    private void bindSteamHatch(
+            BlockPos pos, SteamTurbineHatchRole role, Direction outward) {
+        if (level == null || !level.hasChunkAt(pos)) {
+            return;
+        }
+        if (level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity wall
+                && wall.spec().kind() != MteInPlaceKind.STEAM_TURBINE) {
+            wall.bindSteamTurbine(worldPosition, role, outward);
+            boundSteamHatches.add(pos.immutable());
+        }
+    }
+
+    private void unbindSteamHatch(BlockPos pos) {
+        boundSteamHatches.remove(pos);
+        if (level != null
+                && level.hasChunkAt(pos)
+                && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity wall) {
+            wall.unbindSteamTurbine();
+        }
     }
 
     private void consumeSteam() {
@@ -879,41 +1689,183 @@ public final class MteInPlaceBlockEntity extends BlockEntity
         if (profile == null || (profile.large() && !formed)) {
             return;
         }
-        Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
-        Direction inputSide = facing.getOpposite();
-        IFluidHandler source = neighborFluid(inputSide, facing);
-        if (source != null && tank.getSpace() > 0) {
-            FluidStack pulled = source.drain(
-                    new FluidStack(
-                            ModFluids.STEAM_SOURCE.get(),
-                            Math.min(profile.steamInputMax(), tank.getSpace())),
-                    IFluidHandler.FluidAction.EXECUTE);
-            if (!pulled.isEmpty()) {
-                tank.fill(pulled, IFluidHandler.FluidAction.EXECUTE);
+        if (energyProducedNextTick > 0L) {
+            storedEnergy += energyProducedNextTick;
+            energyProducedNextTick = 0L;
+        } else if (!(profile.large() && stopped)
+                && tank.getFluidAmount()
+                        >= SteamTurbineConversion.conversionThresholdMb(profile)) {
+            int steam = tank.getFluidAmount();
+            tank.drain(steam, IFluidHandler.FluidAction.EXECUTE);
+            steamCounter += steam;
+            long ru = SteamTurbineConversion.ruFromSteam(steam, profile);
+            storedEnergy += ru;
+            energyProducedNextTick += ru;
+            if (steamCounter >= profile.steamPerWater()) {
+                int water = (int) (steamCounter / profile.steamPerWater());
+                steamCounter %= profile.steamPerWater();
+                recoverDistilled(profile, water);
             }
         }
-        int available = tank.getFluidAmount();
-        if (available < profile.steamPerEu() * 2
-                || storedEnergy >= energyCapacity) {
-            return;
-        }
-        FluidStack drained = tank.drain(
-                available, IFluidHandler.FluidAction.EXECUTE);
-        if (drained.isEmpty()) {
-            return;
-        }
-        long ru = drained.getAmount() / (long) profile.steamPerEu();
-        storedEnergy = Math.min(energyCapacity, storedEnergy + ru);
-        steamCounter += drained.getAmount();
-        if (steamCounter >= profile.steamPerWater()) {
-            int water = (int) (steamCounter / profile.steamPerWater());
-            steamCounter %= profile.steamPerWater();
-            ModFluids.chemical("water_distilled").ifPresent(entry ->
-                    distilled.fill(
-                            new FluidStack(entry.source().get(), water),
-                            IFluidHandler.FluidAction.EXECUTE));
-        }
+        emitSteamRu(profile);
         setChanged();
+    }
+
+    private void recoverDistilled(SteamTurbineCatalog.Profile profile, int water) {
+        FluidStack distilledWater = SteamConversion.distilledExhaust(water);
+        if (distilledWater.isEmpty()) {
+            return;
+        }
+        if (profile.large()) {
+            distilled.fill(distilledWater, IFluidHandler.FluidAction.EXECUTE);
+            return;
+        }
+        distilled.setFluid(distilledWater);
+        pushDistilledToSides();
+        distilled.setFluid(FluidStack.EMPTY);
+    }
+
+    /**
+     * GT6 singles: DistW to {@code FACING_SIDES}, leftover {@code GarbageGT.trash}.
+     */
+    private void pushDistilledToSides() {
+        if (level == null || level.isClientSide || distilled.isEmpty()) {
+            return;
+        }
+        Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+        for (Direction side : Direction.values()) {
+            if (distilled.isEmpty()) {
+                break;
+            }
+            if (!MachineSideRules.engineExposesExhaust(facing, side)) {
+                continue;
+            }
+            BlockPos target = worldPosition.relative(side);
+            if (!level.hasChunkAt(target)) {
+                continue;
+            }
+            IFluidHandler neighbor = level.getCapability(
+                    Capabilities.FluidHandler.BLOCK,
+                    target,
+                    side.getOpposite());
+            if (neighbor == null) {
+                continue;
+            }
+            ExactFluidTransfer.move(
+                    distilled, neighbor, distilled.getFluidAmount());
+        }
+    }
+
+    private void emitSteamRu(SteamTurbineCatalog.Profile profile) {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        SteamTurbineConversion.Tick tick =
+                SteamTurbineConversion.emit(storedEnergy, profile);
+        if (tick.overloaded()) {
+            storedEnergy = 0L;
+            overcharged = true;
+            steamActivity = false;
+            steamFast = false;
+            overloadSteam(tick.packetSize());
+            syncSteamVisuals();
+            return;
+        }
+        steamActivity = tick.canEmit();
+        steamFast = tick.fast();
+        if (tick.canEmit()) {
+            Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+            BlockPos emitFrom = profile.large()
+                    ? SteamTurbineStructure.energyOut(worldPosition, facing)
+                    : worldPosition;
+            Direction emitSide = profile.large() ? facing.getOpposite() : facing;
+            EnergyEmitter.pushToSide(
+                    level,
+                    emitFrom,
+                    EnergyType.KINETIC_ROTATION,
+                    tick.packetSize(),
+                    1L,
+                    emitSide);
+            if (level.getGameTime() % 20L == 0L) {
+                level.playSound(
+                        null,
+                        worldPosition,
+                        SoundEvents.MINECART_RIDING,
+                        SoundSource.BLOCKS,
+                        0.5F,
+                        1.0F);
+            }
+        }
+        storedEnergy = tick.storedAfterWaste();
+        syncSteamVisuals();
+    }
+
+    /**
+     * GT6 {@code TileEntityBase10EnergyConverter.overload}: count to 100,
+     * then {@code overcharge(size, RU)}.
+     */
+    private void overloadSteam(long size) {
+        if (steamExplosionPrevention
+                < SteamTurbinePresentation.OVERLOAD_EXPLOSION_THRESHOLD) {
+            steamExplosionPrevention++;
+            return;
+        }
+        float strength =
+                SteamTurbinePresentation.overchargeExplosionStrength(size);
+        BlockPos pos = worldPosition;
+        level.removeBlock(pos, false);
+        if (strength >= 1.0F && level instanceof ServerLevel server) {
+            server.explode(
+                    null,
+                    pos.getX() + 0.5,
+                    pos.getY() + 0.5,
+                    pos.getZ() + 0.5,
+                    strength,
+                    Level.ExplosionInteraction.TNT);
+        }
+    }
+
+    private void syncSteamVisuals() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        BlockState state = getBlockState();
+        BlockState next = state;
+        if (state.hasProperty(MteInPlaceBlock.LIT)) {
+            next = next.setValue(MteInPlaceBlock.LIT, steamActivity);
+        }
+        if (state.hasProperty(MteInPlaceBlock.FAST)) {
+            next = next.setValue(MteInPlaceBlock.FAST, steamFast);
+        }
+        if (state.hasProperty(MteInPlaceBlock.COUNTERCLOCKWISE)) {
+            next = next.setValue(
+                    MteInPlaceBlock.COUNTERCLOCKWISE, steamCounterClockwise);
+        }
+        if (next != state) {
+            level.setBlock(worldPosition, next, Block.UPDATE_CLIENTS);
+        }
+    }
+
+    private void notifySteamClients() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        level.sendBlockUpdated(
+                worldPosition,
+                getBlockState(),
+                getBlockState(),
+                Block.UPDATE_CLIENTS);
+    }
+
+    long ruPacketSize() {
+        SteamTurbineCatalog.Profile profile =
+                SteamTurbineCatalog.find(spec().id()).orElse(null);
+        if (profile == null) {
+            return 0L;
+        }
+        SteamTurbineConversion.Tick tick =
+                SteamTurbineConversion.emit(storedEnergy, profile);
+        return tick.canEmit() ? tick.packetSize() : 0L;
     }
 
     private boolean rotationInputSide(Direction side) {
@@ -1179,9 +2131,183 @@ public final class MteInPlaceBlockEntity extends BlockEntity
     }
 
     private final class SteamHandler implements IFluidHandler {
+        private final Direction side;
+
         private SteamHandler(Direction side) {
+            this.side = side;
         }
 
+        private SteamTurbineCatalog.Profile profile() {
+            return SteamTurbineCatalog.find(spec().id()).orElse(null);
+        }
+
+        private boolean fillSide() {
+            SteamTurbineCatalog.Profile profile = profile();
+            if (profile == null || stopped) {
+                return false;
+            }
+            if (profile.large()) {
+                return true;
+            }
+            Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+            return side == null || side == facing.getOpposite();
+        }
+
+        private boolean drainSide() {
+            SteamTurbineCatalog.Profile profile = profile();
+            if (profile == null || !profile.large()) {
+                return false;
+            }
+            return true;
+        }
+
+        private boolean exposeTank() {
+            SteamTurbineCatalog.Profile profile = profile();
+            if (profile == null) {
+                return false;
+            }
+            if (profile.large()) {
+                return true;
+            }
+            Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+            return side != facing;
+        }
+
+        @Override
+        public int getTanks() {
+            return exposeTank() ? 2 : 0;
+        }
+
+        @Override
+        public FluidStack getFluidInTank(int index) {
+            if (!exposeTank()) {
+                return FluidStack.EMPTY;
+            }
+            if (index == 0) {
+                return tank.getFluid();
+            }
+            return index == 1 ? distilled.getFluid() : FluidStack.EMPTY;
+        }
+
+        @Override
+        public int getTankCapacity(int index) {
+            if (!exposeTank()) {
+                return 0;
+            }
+            if (index == 0) {
+                return tank.getCapacity();
+            }
+            return index == 1 ? distilled.getCapacity() : 0;
+        }
+
+        @Override
+        public boolean isFluidValid(int index, FluidStack stack) {
+            return index == 0
+                    && fillSide()
+                    && !stack.isEmpty()
+                    && stack.is(ModFluids.STEAM_SOURCE.get());
+        }
+
+        @Override
+        public int fill(FluidStack resource, FluidAction action) {
+            if (!fillSide()
+                    || resource.isEmpty()
+                    || !resource.is(ModFluids.STEAM_SOURCE.get())) {
+                return 0;
+            }
+            return tank.fill(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(FluidStack resource, FluidAction action) {
+            return drainSide()
+                    ? distilled.drain(resource, action)
+                    : FluidStack.EMPTY;
+        }
+
+        @Override
+        public FluidStack drain(int maxDrain, FluidAction action) {
+            return drainSide()
+                    ? distilled.drain(maxDrain, action)
+                    : FluidStack.EMPTY;
+        }
+    }
+
+    private final class SteamFillView implements IFluidHandler {
+        @Override
+        public int getTanks() {
+            return 1;
+        }
+
+        @Override
+        public FluidStack getFluidInTank(int index) {
+            return index == 0 ? tank.getFluid() : FluidStack.EMPTY;
+        }
+
+        @Override
+        public int getTankCapacity(int index) {
+            return index == 0 ? tank.getCapacity() : 0;
+        }
+
+        @Override
+        public boolean isFluidValid(int index, FluidStack stack) {
+            return index == 0 && tank.isFluidValid(stack) && !stopped;
+        }
+
+        @Override
+        public int fill(FluidStack resource, FluidAction action) {
+            return stopped ? 0 : tank.fill(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(FluidStack resource, FluidAction action) {
+            return FluidStack.EMPTY;
+        }
+
+        @Override
+        public FluidStack drain(int maxDrain, FluidAction action) {
+            return FluidStack.EMPTY;
+        }
+    }
+
+    private final class SteamDrainView implements IFluidHandler {
+        @Override
+        public int getTanks() {
+            return 1;
+        }
+
+        @Override
+        public FluidStack getFluidInTank(int index) {
+            return index == 0 ? distilled.getFluid() : FluidStack.EMPTY;
+        }
+
+        @Override
+        public int getTankCapacity(int index) {
+            return index == 0 ? distilled.getCapacity() : 0;
+        }
+
+        @Override
+        public boolean isFluidValid(int index, FluidStack stack) {
+            return false;
+        }
+
+        @Override
+        public int fill(FluidStack resource, FluidAction action) {
+            return 0;
+        }
+
+        @Override
+        public FluidStack drain(FluidStack resource, FluidAction action) {
+            return distilled.drain(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(int maxDrain, FluidAction action) {
+            return distilled.drain(maxDrain, action);
+        }
+    }
+
+    private final class SteamIoView implements IFluidHandler {
         @Override
         public int getTanks() {
             return 2;
@@ -1205,17 +2331,12 @@ public final class MteInPlaceBlockEntity extends BlockEntity
 
         @Override
         public boolean isFluidValid(int index, FluidStack stack) {
-            return index == 0
-                    && !stack.isEmpty()
-                    && stack.is(ModFluids.STEAM_SOURCE.get());
+            return index == 0 && tank.isFluidValid(stack) && !stopped;
         }
 
         @Override
         public int fill(FluidStack resource, FluidAction action) {
-            if (resource.isEmpty() || !resource.is(ModFluids.STEAM_SOURCE.get())) {
-                return 0;
-            }
-            return tank.fill(resource, action);
+            return stopped ? 0 : tank.fill(resource, action);
         }
 
         @Override

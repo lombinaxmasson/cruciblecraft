@@ -143,6 +143,68 @@ class RockPebbleResourceTest {
                 textures.get("layer1").getAsString());
     }
 
+    @Test
+    void rockCrushingRulesAndFurnaceYieldsMatchGt6() throws Exception {
+        Path rules = Path.of("src/generated/resources/data/cruciblecraft/recipe");
+        for (String path : new String[] {
+                "crusher/rock_to_pulver_dust.json",
+                "mortar/rock_to_pulver_dust.json",
+                "anvil/rock_to_pulver_dust.json"
+        }) {
+            JsonObject rule = object(rules.resolve(path));
+            assertEquals("cruciblecraft:material_rule", rule.get("type").getAsString(), path);
+            assertEquals(
+                    "cruciblecraft:rock",
+                    rule.getAsJsonArray("item_inputs")
+                            .get(0).getAsJsonObject()
+                            .get("prefix").getAsString(),
+                    path);
+            JsonObject output = rule.getAsJsonArray("item_outputs")
+                    .get(0).getAsJsonObject();
+            assertEquals(
+                    "cruciblecraft:small_dust",
+                    output.get("prefix").getAsString(),
+                    path);
+            assertEquals(
+                    "processing_target:pulver",
+                    output.get("material_selector").getAsString(),
+                    path);
+        }
+
+        JsonObject chalcopyrite = object(RECIPES.resolve("chalcopyrite_smelting.json"));
+        assertEquals("minecraft:smelting", chalcopyrite.get("type").getAsString());
+        assertEquals(
+                "cruciblecraft:chalcopyrite/rock",
+                chalcopyrite.getAsJsonObject("ingredient").get("item").getAsString());
+        JsonObject copper = chalcopyrite.getAsJsonObject("result");
+        assertEquals("cruciblecraft:chunk", copper.get("id").getAsString());
+        assertEquals(2, copper.get("count").getAsInt());
+        assertEquals(
+                "copper",
+                copper.getAsJsonObject("components")
+                        .get("cruciblecraft:prefix_material")
+                        .getAsString());
+        assertEquals(1.0, chalcopyrite.get("experience").getAsDouble(), 0.001);
+
+        JsonObject malachite = object(RECIPES.resolve("malachite_smelting.json"));
+        JsonObject malachiteMetal = malachite.getAsJsonObject("result");
+        assertEquals("cruciblecraft:copper/nugget", malachiteMetal.get("id").getAsString());
+        assertEquals(3, malachiteMetal.get("count").getAsInt());
+
+        JsonObject cassiterite = object(RECIPES.resolve("cassiterite_smelting.json"));
+        JsonObject tin = cassiterite.getAsJsonObject("result");
+        assertEquals("cruciblecraft:tin/nugget", tin.get("id").getAsString());
+        assertEquals(15, tin.get("count").getAsInt());
+        assertEquals(2.0, cassiterite.get("experience").getAsDouble(), 0.001);
+
+        JsonObject netherrack = object(RECIPES.resolve("netherrack_smelting.json"));
+        assertEquals("minecraft:smelting", netherrack.get("type").getAsString());
+        JsonObject brick = netherrack.getAsJsonObject("result");
+        assertEquals("cruciblecraft:nether_brick/rock", brick.get("id").getAsString());
+        assertEquals(1, brick.get("count").getAsInt());
+        assertEquals(0.0, netherrack.get("experience").getAsDouble(), 0.001);
+    }
+
     private static JsonObject object(Path path) throws Exception {
         assertTrue(Files.isRegularFile(path), path.toString());
         return JsonParser.parseString(Files.readString(path)).getAsJsonObject();

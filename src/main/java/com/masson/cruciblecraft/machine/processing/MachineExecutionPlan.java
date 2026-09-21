@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.machine.processing;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 
 /**
@@ -49,17 +50,30 @@ public record MachineExecutionPlan(
         }
 
         if (recipe.eut() == 0L) {
-            if (requestedOperations != 1) {
+            if (tier.energyType() != EnergyType.TIME
+                    && requestedOperations != 1) {
                 return Optional.empty();
             }
-            return Optional.of(new MachineExecutionPlan(
-                    0L,
-                    0L,
-                    tier.inputMaximum(),
-                    recipe.duration(),
-                    recipe.duration(),
-                    1,
-                    0));
+            try {
+                long totalWork = kind.parallelDuration()
+                        ? Math.multiplyExact(
+                                (long) recipe.duration(),
+                                requestedOperations)
+                        : recipe.duration();
+                if (totalWork > Integer.MAX_VALUE) {
+                    return Optional.empty();
+                }
+                return Optional.of(new MachineExecutionPlan(
+                        0L,
+                        0L,
+                        tier.inputMaximum(),
+                        totalWork,
+                        (int) totalWork,
+                        requestedOperations,
+                        0));
+            } catch (ArithmeticException overflow) {
+                return Optional.empty();
+            }
         }
         try {
             long recipePower = Math.max(1L, recipe.eut());

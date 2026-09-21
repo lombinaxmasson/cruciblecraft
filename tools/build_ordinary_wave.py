@@ -23,11 +23,6 @@ from tools.wave_closeout import seal_path, spec_for
 
 SEMANTIC_PREFIXES = (
     "boule",
-    "plant_gt_berry",
-    "plant_gt_blossom",
-    "plant_gt_fiber",
-    "plant_gt_twig",
-    "plant_gt_wart",
     "rail_gt",
 )
 

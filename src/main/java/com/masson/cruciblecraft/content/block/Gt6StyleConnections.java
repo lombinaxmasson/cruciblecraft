@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.api.tool.ToolAction;
 import com.masson.cruciblecraft.api.tool.ToolActionSource;
 import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverPlacement;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverIntercept;
 
 import net.minecraft.core.BlockPos;
@@ -17,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
@@ -270,9 +272,11 @@ public final class Gt6StyleConnections {
     }
 
     /**
-     * GTM {@code PipeBlock.getShape}: holding the tune tool expands the
-     * outline/raytrace box to a full cube so the 3×3 grid is clickable.
-     * Collision stays the thin pipe via {@code getCollisionShape}.
+     * GTM {@code PipeBlock.getShape} plus GT6 cover targeting: holding the
+     * tune tool, holding a {@code CoverRegistry} stack, or an already-covered
+     * connector expands the outline/raytrace box to a full cube so the 3×3
+     * grid is clickable. Collision stays the thin pipe via
+     * {@code getCollisionShape}.
      */
     public static boolean holdingMatchingTool(
             BlockState state, ItemStack held) {
@@ -299,8 +303,19 @@ public final class Gt6StyleConnections {
             BlockState state,
             CollisionContext context,
             VoxelShape connectedShape) {
-        return holdingMatchingTool(state, context)
-                ? Shapes.block()
-                : connectedShape;
+        return interactionShape(state, context, connectedShape, null);
+    }
+
+    public static VoxelShape interactionShape(
+            BlockState state,
+            CollisionContext context,
+            VoxelShape connectedShape,
+            BlockEntity blockEntity) {
+        if (holdingMatchingTool(state, context)
+                || CoverPlacement.holdingCover(context)
+                || CoverPlacement.hasAnyCover(blockEntity)) {
+            return Shapes.block();
+        }
+        return connectedShape;
     }
 }

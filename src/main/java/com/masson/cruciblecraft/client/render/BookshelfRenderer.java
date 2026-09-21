@@ -35,6 +35,8 @@ public final class BookshelfRenderer
                 poseStack,
                 buffers,
                 LightTexture.FULL_BRIGHT);
+        PipeCoverRenderer.renderMounted(
+                shelf, poseStack, buffers, packedLight);
     }
 
     static void renderBooks(

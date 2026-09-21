@@ -3,6 +3,13 @@ package com.masson.cruciblecraft.registry;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
+import com.masson.cruciblecraft.content.block.StainlessSteelMixerWalls;
+import com.masson.cruciblecraft.content.block.AutoclaveWalls;
+import com.masson.cruciblecraft.content.block.DenseLeadPorts;
+import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
+import com.masson.cruciblecraft.content.block.GalvanizedGraaggWalls;
+import com.masson.cruciblecraft.content.block.InvarOvenWalls;
+import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
 import com.masson.cruciblecraft.content.item.PortableFluidTankItem;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.content.storage.ILogisticsStorage;
@@ -96,6 +103,102 @@ public final class ModCapabilities {
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
                 ENERGY,
+                ModBlockEntities.LARGE_ELECTROLYZER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LARGE_ELECTROLYZER.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_ELECTROLYZER.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_OVEN.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LARGE_OVEN.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_OVEN.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_MIXER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LARGE_MIXER.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_MIXER.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_CRUSHER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LARGE_CRUSHER.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_CRUSHER.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_BATH.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LARGE_BATH.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_BATH.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_COAGULATOR.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LARGE_COAGULATOR.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_COAGULATOR.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_AUTOCLAVE.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LARGE_AUTOCLAVE.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_AUTOCLAVE.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_FERMENTER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LARGE_FERMENTER.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_FERMENTER.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
                 ModBlockEntities.AUTOMATIC_HAMMER.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
@@ -177,7 +280,37 @@ public final class ModCapabilities {
                 ENERGY,
                 ModBlockEntities.MTE_INPLACE.get(),
                 (blockEntity, side) -> {
+                    if (blockEntity.forwardsGasTurbineEnergy(side)) {
+                        return blockEntity;
+                    }
+                    if (blockEntity.forwardsSteamTurbineEnergy(side)) {
+                        return blockEntity;
+                    }
                     if (LargeCrucibleWalls.forwardsEnergy(blockEntity)) {
+                        return blockEntity;
+                    }
+                    if (StainlessSteelMixerWalls.forwardsEnergy(blockEntity)) {
+                        return blockEntity;
+                    }
+                    if (ElectrolyzerParts.forwardsEnergy(blockEntity)) {
+                        return blockEntity;
+                    }
+                    if (InvarOvenWalls.forwardsEnergy(blockEntity)) {
+                        return blockEntity;
+                    }
+                    if (AutoclaveWalls.forwardsEnergy(blockEntity)) {
+                        return blockEntity;
+                    }
+                    if (TungstensteelCrusherWalls.forwardsEnergy(blockEntity)) {
+                        return blockEntity;
+                    }
+                    if (DenseLeadPorts.forwardsEnergy(blockEntity)) {
+                        return blockEntity;
+                    }
+                    if (GalvanizedGraaggWalls.forwardsEnergy(blockEntity)) {
+                        return blockEntity;
+                    }
+                    if (blockEntity.forwardsLargeDynamoEnergy(side)) {
                         return blockEntity;
                     }
                     return blockEntity.handles(
@@ -367,6 +500,30 @@ public final class ModCapabilities {
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.LARGE_GAS_TURBINE.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_DYNAMO.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LIGHTNING_ROD.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.VON_DA_GRAAGG.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.MATTER_FABRICATOR.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.MATTER_FABRICATOR.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.MATTER_FABRICATOR.get(),
                 (blockEntity, side) -> blockEntity.fluids(side));
         event.registerBlockEntity(
                 ENERGY,

@@ -221,20 +221,12 @@ class MaterialVisualResourceTest {
                 "src/main/resources/assets/cruciblecraft/textures/item/material");
         var overlays = java.util.Set.of(
                 "arrow_gt_plastic",
-                "arrow_gt_wood",
-                "plant_gt_berry",
-                "plant_gt_blossom",
-                "plant_gt_twig");
+                "arrow_gt_wood");
         for (String prefix : java.util.List.of(
                 "arrow_gt_plastic",
                 "arrow_gt_wood",
                 "scrap",
-                "rail_gt",
-                "plant_gt_berry",
-                "plant_gt_blossom",
-                "plant_gt_fiber",
-                "plant_gt_twig",
-                "plant_gt_wart")) {
+                "rail_gt")) {
             assertEquals(
                     MaterialCreativeTab.MISC,
                     MaterialCreativeTab.forPrefix(
@@ -313,11 +305,15 @@ class MaterialVisualResourceTest {
                 chinese.get("item.cruciblecraft.material_form.tool_head_axe")
                         .getAsString());
         assertEquals(
-                "Water Twig",
-                english.get("item.cruciblecraft.water.plant_gt_twig").getAsString());
+                "%s Twig",
+                english.get("item.cruciblecraft.material_form.plant_gt_twig")
+                        .getAsString());
         assertEquals(
-                "水枝条",
-                chinese.get("item.cruciblecraft.water.plant_gt_twig").getAsString());
+                "%s枝条",
+                chinese.get("item.cruciblecraft.material_form.plant_gt_twig")
+                        .getAsString());
+        assertFalse(english.has("item.cruciblecraft.water.plant_gt_twig"));
+        assertFalse(chinese.has("item.cruciblecraft.water.plant_gt_twig"));
         assertTrue(english.has("block.cruciblecraft.planks2.blue"));
         assertEquals(
                 "Blue Spruce Planks",

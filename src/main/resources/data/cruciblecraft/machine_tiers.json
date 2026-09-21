@@ -324,8 +324,17 @@
     },
     "controller_profile_rows": {
       "cruciblecraft:large_centrifuge_profile": "Loader_MultiTileEntities.java:1229; t12a_machine_readiness.json#structure_projection.large_centrifuge",
+      "cruciblecraft:large_mixer_profile": "Loader_MultiTileEntities.java:1234",
+      "cruciblecraft:large_electrolyzer_profile": "Loader_MultiTileEntities.java:1230",
+      "cruciblecraft:large_oven_profile": "Loader_MultiTileEntities.java:1236",
+      "cruciblecraft:large_crusher_profile": "Loader_MultiTileEntities.java:1238",
+      "cruciblecraft:large_fermenter_profile": "Loader_MultiTileEntities.java:1235",
+      "cruciblecraft:large_bath_profile": "Loader_MultiTileEntities.java:1233",
+      "cruciblecraft:large_autoclave_profile": "Loader_MultiTileEntities.java:1232",
+      "cruciblecraft:large_coagulator_profile": "Loader_MultiTileEntities.java:1231",
       "cruciblecraft:distillation_tower_profile": "Loader_MultiTileEntities.java:1226",
-      "cruciblecraft:cryo_distillation_tower_profile": "Loader_MultiTileEntities.java:1233"
+      "cruciblecraft:cryo_distillation_tower_profile": "Loader_MultiTileEntities.java:1233",
+      "cruciblecraft:large_matter_fabricator_profile": "Loader_MultiTileEntities.java:17199"
     }
   },
   "variants": [
@@ -7276,6 +7285,94 @@
       "efficiency": 5000
     },
     {
+      "tierBand": "cruciblecraft:large_mixer_profile",
+      "material": "cruciblecraft:large_mixer",
+      "energy": "KINETIC_ROTATION",
+      "inputMinimum": 512,
+      "inputNominal": 512,
+      "inputMaximum": 4096,
+      "energyCapacity": 4096,
+      "parallel": 256,
+      "efficiency": 10000
+    },
+    {
+      "tierBand": "cruciblecraft:large_electrolyzer_profile",
+      "material": "cruciblecraft:large_electrolyzer",
+      "energy": "ELECTRIC",
+      "inputMinimum": 512,
+      "inputNominal": 512,
+      "inputMaximum": 4096,
+      "energyCapacity": 4096,
+      "parallel": 16,
+      "efficiency": 5000
+    },
+    {
+      "tierBand": "cruciblecraft:large_oven_profile",
+      "material": "cruciblecraft:large_oven",
+      "energy": "ELECTRIC",
+      "inputMinimum": 512,
+      "inputNominal": 512,
+      "inputMaximum": 4096,
+      "energyCapacity": 4096,
+      "parallel": 64,
+      "efficiency": 2500
+    },
+    {
+      "tierBand": "cruciblecraft:large_crusher_profile",
+      "material": "cruciblecraft:large_crusher",
+      "energy": "KINETIC_ROTATION",
+      "inputMinimum": 512,
+      "inputNominal": 512,
+      "inputMaximum": 4096,
+      "energyCapacity": 4096,
+      "parallel": 64,
+      "efficiency": 5000
+    },
+    {
+      "tierBand": "cruciblecraft:large_coagulator_profile",
+      "material": "cruciblecraft:large_coagulator",
+      "energy": "TIME",
+      "inputMinimum": 1,
+      "inputNominal": 1,
+      "inputMaximum": 16,
+      "energyCapacity": 16,
+      "parallel": 64,
+      "efficiency": 10000
+    },
+    {
+      "tierBand": "cruciblecraft:large_fermenter_profile",
+      "material": "cruciblecraft:large_fermenter",
+      "energy": "HEAT",
+      "inputMinimum": 1,
+      "inputNominal": 512,
+      "inputMaximum": 4096,
+      "energyCapacity": 4096,
+      "parallel": 256,
+      "efficiency": 10000
+    },
+    {
+      "tierBand": "cruciblecraft:large_bath_profile",
+      "material": "cruciblecraft:large_bath",
+      "energy": "TIME",
+      "inputMinimum": 1,
+      "inputNominal": 1,
+      "inputMaximum": 16,
+      "energyCapacity": 16,
+      "parallel": 64,
+      "efficiency": 10000
+    },
+    {
+      "tierBand": "cruciblecraft:large_autoclave_profile",
+      "material": "cruciblecraft:large_autoclave",
+      "energy": "TIME",
+      "inputMinimum": 1,
+      "inputNominal": 1,
+      "inputMaximum": 16,
+      "energyCapacity": 16,
+      "parallel": 16,
+      "efficiency": 10000
+    },
+    {
       "tierBand": "cruciblecraft:distillation_tower_profile",
       "material": "cruciblecraft:distillation_tower",
       "energy": "HEAT",
@@ -7295,6 +7392,17 @@
       "inputMaximum": 1024,
       "energyCapacity": 4096,
       "parallel": 1,
+      "efficiency": 10000
+    },
+    {
+      "tierBand": "cruciblecraft:large_matter_fabricator_profile",
+      "material": "cruciblecraft:large_matter_fabricator",
+      "energy": "QUANTUM",
+      "inputMinimum": 1,
+      "inputNominal": 1,
+      "inputMaximum": 2097152,
+      "energyCapacity": 2097152,
+      "parallel": 64,
       "efficiency": 10000
     }
   ]

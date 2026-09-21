@@ -35,6 +35,7 @@ import com.masson.cruciblecraft.client.render.BookshelfRenderer;
 import com.masson.cruciblecraft.client.render.BottleCrateRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
 import com.masson.cruciblecraft.client.render.LargeCrucibleRenderer;
+import com.masson.cruciblecraft.client.render.LargeGasTurbineRenderer;
 import com.masson.cruciblecraft.client.render.MassStorageRenderer;
 import com.masson.cruciblecraft.client.render.MteInPlaceStorageRenderer;
 import com.masson.cruciblecraft.client.render.GtChestRenderer;
@@ -421,6 +422,21 @@ public class ClientSetup {
         event.registerBlockEntityRenderer(ModBlockEntities.CRUCIBLE.get(), CrucibleRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.LARGE_CRUCIBLE.get(), LargeCrucibleRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_GAS_TURBINE.get(),
+                LargeGasTurbineRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_DYNAMO.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LIGHTNING_ROD.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.MATTER_FABRICATOR.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.VON_DA_GRAAGG.get(),
+                PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.ANVIL.get(), AnvilRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.ITEM_PIPE.get(), PipeCoverRenderer::new);
@@ -441,8 +457,32 @@ public class ClientSetup {
         event.registerBlockEntityRenderer(
                 ModBlockEntities.CRYO_DISTILLATION_TOWER.get(),
                 PipeCoverRenderer::new);
-        event.registerBlockEntityRenderer(
+                event.registerBlockEntityRenderer(
                 ModBlockEntities.LARGE_CENTRIFUGE.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_MIXER.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_ELECTROLYZER.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_OVEN.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_CRUSHER.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_BATH.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_COAGULATOR.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_AUTOCLAVE.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_FERMENTER.get(),
                 PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.LASER_ENGRAVER.get(),
@@ -458,6 +498,14 @@ public class ClientSetup {
                 PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.HOPPER.get(), PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.DRAWER.get(), PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LOCKER.get(), PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_BOILER.get(), PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.FUSION_REACTOR.get(), PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.TRANSFORMER.get(), PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(

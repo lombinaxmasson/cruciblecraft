@@ -92,6 +92,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         }
         registry.addWorkstation(COKE_OVEN, EmiStack.of(ModBlocks.COKE_OVEN.get()));
         registry.addWorkstation(CRUSHER, EmiStack.of(ModBlocks.BRONZE_CRUSHER.get()));
+        registry.addWorkstation(CRUSHER, EmiStack.of(ModBlocks.LARGE_CRUSHER.get()));
         registry.addWorkstation(FUSION, EmiStack.of(ModBlocks.FUSION_REACTOR.get()));
         registry.addWorkstation(MOLD_CASTING, EmiStack.of(ModItems.CERAMIC_MOLD.get()));
         ModItems.firedShapedMolds().forEach(item ->
@@ -427,6 +428,41 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                         category,
                         EmiStack.of(ModBlocks.LARGE_CENTRIFUGE.get()));
             }
+            if (machine.spec() == ModProcessingMachines.MIXER) {
+                registry.addWorkstation(
+                        category,
+                        EmiStack.of(ModBlocks.LARGE_MIXER.get()));
+            }
+            if (machine.spec() == ModProcessingMachines.ELECTROLYZER) {
+                registry.addWorkstation(
+                        category,
+                        EmiStack.of(ModBlocks.LARGE_ELECTROLYZER.get()));
+            }
+            if (machine.spec() == ModProcessingMachines.OVEN) {
+                registry.addWorkstation(
+                        category,
+                        EmiStack.of(ModBlocks.LARGE_OVEN.get()));
+            }
+            if (machine.spec() == ModProcessingMachines.CRUSHER) {
+                registry.addWorkstation(
+                        category,
+                        EmiStack.of(ModBlocks.LARGE_CRUSHER.get()));
+            }
+            if (machine.spec() == ModProcessingMachines.BATH) {
+                registry.addWorkstation(
+                        category,
+                        EmiStack.of(ModBlocks.LARGE_BATH.get()));
+            }
+            if (machine.spec() == ModProcessingMachines.COAGULATOR) {
+                registry.addWorkstation(
+                        category,
+                        EmiStack.of(ModBlocks.LARGE_COAGULATOR.get()));
+            }
+            if (machine.spec() == ModProcessingMachines.AUTOCLAVE) {
+                registry.addWorkstation(
+                        category,
+                        EmiStack.of(ModBlocks.LARGE_AUTOCLAVE.get()));
+            }
             for (var variant : ModMachineVariants.forKind(
                     machine.spec().id())) {
                 if (!variant.id().equals(machine.spec().id())) {
@@ -456,9 +492,13 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 ModProcessingMachines.DISTILLATION_TOWER.id(),
                 ModBlocks.DISTILLATION_TOWER.get(),
                 ModProcessingMachines.CRYO_DISTILLATION_TOWER.id(),
-                ModBlocks.CRYO_DISTILLATION_TOWER.get());
+                ModBlocks.CRYO_DISTILLATION_TOWER.get(),
+                ModProcessingMachines.FERMENTER.id(),
+                ModBlocks.LARGE_FERMENTER.get());
         ProcessingEmiRegistrationPlan plan = ProcessingEmiRegistrationPlan.create(
-                ModProcessingMachines.MULTIBLOCK_MENU_HOSTS);
+                ModProcessingMachines.MULTIBLOCK_MENU_HOSTS.stream()
+                        .filter(spec -> workstations.containsKey(spec.id()))
+                        .toList());
         Map<ResourceLocation, EmiRecipeCategory> categories = new HashMap<>();
         for (ProcessingEmiRegistrationPlan.MachineRegistration machine
                 : plan.machines()) {

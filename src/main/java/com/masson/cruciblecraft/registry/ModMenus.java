@@ -204,6 +204,17 @@ public final class ModMenus {
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             MAGNETIC_SEPARATOR = processing(
                     "magnetic_separator", ModProcessingMachines.MAGNETIC_SEPARATOR);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            FERMENTER = processing("fermenter", ModProcessingMachines.FERMENTER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            LARGE_OVEN = processing("large_oven", ModProcessingMachines.LARGE_OVEN);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            LARGE_CRUSHER = processing(
+                    "large_crusher", ModProcessingMachines.LARGE_CRUSHER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            LARGE_MATTER_FABRICATOR = processing(
+                    "large_matter_fabricator",
+                    ModProcessingMachines.LARGE_MATTER_FABRICATOR);
 
     static {
         validateProcessingMenuMapping(

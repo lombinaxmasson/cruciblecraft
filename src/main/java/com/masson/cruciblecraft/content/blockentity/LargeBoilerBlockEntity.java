@@ -7,6 +7,7 @@ import java.util.Set;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.content.blockentity.MachineCoverHostBlockEntity;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
@@ -28,7 +29,6 @@ import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
@@ -42,7 +42,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * Conversion reuses the source-backed SteamConversion constants
  * (80 HU + 1 water -> 160 steam per batch).
  */
-public final class LargeBoilerBlockEntity extends BlockEntity
+public final class LargeBoilerBlockEntity extends MachineCoverHostBlockEntity
         implements MultiblockControllerBinding, MultiblockPortHost {
     private static final String PLUGIN_TAG = "multiblock_plugins";
     public static final ResourceLocation STRUCTURE_ID =
@@ -75,6 +75,7 @@ public final class LargeBoilerBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             LargeBoilerBlockEntity boiler) {
+        boiler.tickMountedCovers();
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
         if (CheckpointDecisions.onPositionPhase(
@@ -308,6 +309,36 @@ public final class LargeBoilerBlockEntity extends BlockEntity
     @Override
     public long capacity(EnergyType type) {
         return type == EnergyType.HEAT ? heat.capacity() : 0L;
+    }
+
+    @Override
+    public boolean hasFluidTanks() {
+        return true;
+    }
+
+    @Override
+    public boolean hasEnergyBuffer() {
+        return true;
+    }
+
+    @Override
+    public long energyStored() {
+        return heat.stored();
+    }
+
+    @Override
+    public long energyCapacity() {
+        return heat.capacity();
+    }
+
+    @Override
+    public boolean runningPossible() {
+        return structureValid && !pluginQuarantined;
+    }
+
+    @Override
+    public boolean runningActively() {
+        return runningPossible() && heat.stored() > 0L;
     }
 
     @Override

@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverVisuals;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverCrafting;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverFilterLogic;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverPlacement;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverSounds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverTools;
 import com.masson.cruciblecraft.logistics.pipe.cover.DecorativeCovers;
@@ -83,6 +84,23 @@ public final class CableCovers {
             return PipeCover.of(item.definitionId());
         }
         return null;
+    }
+
+    public static boolean tryInstall(
+            Level level,
+            BlockPos pos,
+            BlockHitResult hit,
+            ItemStack stack,
+            Player player) {
+        if (level == null || pos == null || hit == null) {
+            return false;
+        }
+        return tryInstall(
+                level,
+                pos,
+                CoverPlacement.placeSide(level.getBlockEntity(pos), hit),
+                stack,
+                player);
     }
 
     public static boolean tryInstall(
@@ -172,7 +190,7 @@ public final class CableCovers {
         if (cable == null || hit == null) {
             return false;
         }
-        Direction side = hit.getDirection();
+        Direction side = CoverPlacement.interactSide(cable, hit);
         PipeCover cover = cover(cable, side);
         if (cover == null) {
             return false;

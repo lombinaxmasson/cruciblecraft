@@ -44,6 +44,17 @@ class PrefixPackRecipeResourceTest {
         assertEquals("storage_plate", platePack.get("output_prefix").getAsString());
         assertEquals(1, platePack.get("output_count").getAsInt());
         assertTrue(Files.isRegularFile(ROOT.resolve("storage_plate_to_plate.json")));
+
+        JsonObject nuggetPack = object("nugget_to_ingot.json");
+        assertEquals("nugget", nuggetPack.get("input_prefix").getAsString());
+        assertEquals(9, nuggetPack.get("input_count").getAsInt());
+        assertEquals("ingot", nuggetPack.get("output_prefix").getAsString());
+        assertEquals(1, nuggetPack.get("output_count").getAsInt());
+        JsonObject nuggetUnpack = object("ingot_to_nugget.json");
+        assertEquals("ingot", nuggetUnpack.get("input_prefix").getAsString());
+        assertEquals(1, nuggetUnpack.get("input_count").getAsInt());
+        assertEquals("nugget", nuggetUnpack.get("output_prefix").getAsString());
+        assertEquals(9, nuggetUnpack.get("output_count").getAsInt());
     }
 
     private static JsonObject object(String name) throws Exception {

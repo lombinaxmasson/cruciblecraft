@@ -165,7 +165,8 @@ class NineGridSideTest {
                 connections.contains("holdingMatchingTool")
                         && connections.contains("Shapes.block()")
                         && connections.contains("ToolAction.WIRE_CUTTER")
-                        && connections.contains("expandsPipeGrid"));
+                        && connections.contains("expandsPipeGrid")
+                        && connections.contains("CoverPlacement"));
         String overlay = java.nio.file.Files.readString(
                 java.nio.file.Path.of(
                         "src/main/java/com/masson/cruciblecraft/client/render/ConnectionGridOverlay.java"));
@@ -176,6 +177,8 @@ class NineGridSideTest {
         assertTrue(overlay.contains("tool_pipe_block.png"));
         assertTrue(overlay.contains("RenderType.lines()"));
         assertTrue(overlay.contains("lineWidth(3)"));
+        assertTrue(overlay.contains("CoverPlacement.isCoverStack"));
+        assertTrue(overlay.contains("properties(state).isEmpty()"));
         String pipes = java.nio.file.Files.readString(
                 java.nio.file.Path.of(
                         "src/main/java/com/masson/cruciblecraft/content/block/AbstractPipeBlock.java"));
@@ -184,6 +187,13 @@ class NineGridSideTest {
                         "src/main/java/com/masson/cruciblecraft/content/block/CableBlock.java"));
         assertTrue(pipes.contains("interactionShape"));
         assertTrue(cables.contains("interactionShape"));
+        assertTrue(pipes.contains("CoverPlacement"));
+        assertTrue(cables.contains("CoverPlacement"));
+        String placement = java.nio.file.Files.readString(
+                java.nio.file.Path.of(
+                        "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/CoverPlacement.java"));
+        assertTrue(placement.contains("usePipePlacementMode"));
+        assertTrue(placement.contains("getSideWrenching"));
         assertTrue(pipes.contains("getCollisionShape"));
         assertTrue(cables.contains("getCollisionShape"));
     }

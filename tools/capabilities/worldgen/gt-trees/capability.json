@@ -22,6 +22,9 @@
     "src/main/resources/assets/cruciblecraft/gt6_gt_trees_art_manifest.json",
     "src/main/resources/assets/cruciblecraft/textures/block/tree/**",
     "src/main/resources/assets/cruciblecraft/textures/item/tree/**",
+    "src/main/resources/data/cruciblecraft/tree_hole_fluid_mapping.json",
+    "src/main/resources/data/cruciblecraft/recipe/chemical/coagulator/latex_to_rubber_nugget.json",
+    "src/main/resources/data/cruciblecraft/recipe/machine/squeezer/rubber_log.json",
     "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_tree_*.json",
     "src/main/resources/data/cruciblecraft/worldgen/configured_feature/tree_*.json",
     "src/main/resources/data/cruciblecraft/worldgen/placed_feature/tree_*.json",
@@ -47,7 +50,10 @@
     "mapleAndRainbowoodGrowPlaceNoHoles",
     "playerSurfaceIsRegistered",
     "rubberGrowPlacesOneHole",
-    "rubberHoleEmptyHandGivesResin"
+    "rubberHoleEmptyHandGivesResin",
+    "rubberHoleFillsRubberTreeSap",
+    "rubberCoagulatorLatexMakesNugget",
+    "rubberLogSqueezerMakesSap"
   ],
   "identity_disposition": [
     {
@@ -162,9 +168,11 @@
     },
     {
       "semantic_key": "fluid:FL.Resin_Rubber",
-      "disposition": "blocked",
-      "runtime_ids": [],
-      "reason": "FL.Resin_Rubber is missing; latex is not a stand-in. Rubber hole still harvests rubber_resin."
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:rubber_tree_sap"
+      ],
+      "reason": "GT6 FL.Resin_Rubber / fluidrubbertreesap. Latex is not a stand-in."
     },
     {
       "semantic_key": "fluid:FL.Sap_Maple",
@@ -181,5 +189,5 @@
       "reason": "bath_remainder_fluid_mapping already names rainbow_sap."
     }
   ],
-  "note": "Nine WorldgenTree* features plus three tree holes. Close at runtime_ready, not player_complete. Do not delete press/slime_ball_to_rubber_plate. Maple sap and rubber resin fluids stay blocked. Dungeon, planet rocks, and Center stay queued prep."
+  "note": "Nine WorldgenTree* features plus three tree holes. Close at runtime_ready, not player_complete. Do not delete press/slime_ball_to_rubber_plate. Rubber tree sap is live; maple sap stays blocked. Dungeon, planet rocks, and Center stay queued prep."
 }

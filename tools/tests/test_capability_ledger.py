@@ -75,6 +75,13 @@ FUSION_QUANTUM = "energy/fusion-quantum"
 QUANTUM_MASSFAB = "energy/quantum-massfab"
 PUV_OMEGA_PARTS = "content/puv-omega-parts"
 PUV_OMEGA_MATRIX = "machines/puv-omega-matrix"
+ELECTRIC_TOOLS = "content/gt6-electric-tools"
+LARGE_GAS_TURBINE = "energy/large-gas-turbine"
+LARGE_AUTOCLAVE = "machines/large-autoclave"
+LARGE_ELECTROLYZER = "machines/large-electrolyzer"
+LARGE_FERMENTER = "machines/large-fermenter"
+LARGE_PROCESSING_PARTS = "machines/large-processing-parts"
+GT6_COIL_HOSTS = "machines/gt6-coil-hosts"
 
 
 class CapabilityLedgerTest(unittest.TestCase):
@@ -363,6 +370,13 @@ class CapabilityLedgerTest(unittest.TestCase):
                 QUANTUM_MASSFAB,
                 PUV_OMEGA_PARTS,
                 PUV_OMEGA_MATRIX,
+                ELECTRIC_TOOLS,
+                LARGE_GAS_TURBINE,
+                LARGE_AUTOCLAVE,
+                LARGE_ELECTROLYZER,
+                LARGE_FERMENTER,
+                LARGE_PROCESSING_PARTS,
+                GT6_COIL_HOSTS,
             },
             set(compiled["impact"]["logistics/cover-net-r0"]),
         )
@@ -411,6 +425,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 WIRE_CABLE_FOLD,
                 ALIAS_REPAIR,
                 CONNECTOR_ART,
+                ELECTRIC_TOOLS,
                 EU_CABLE_ACQUISITION,
                 MISSING_GAUGES,
                 EU_RUNTIME,
@@ -430,6 +445,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 CONVERTER,
                 FUSION_QUANTUM,
                 HEAT_EXCHANGERS,
+                LARGE_GAS_TURBINE,
                 LARGE_HEX,
                 HOT_FLUIDS,
                 OBSERVATION,
@@ -443,9 +459,14 @@ class CapabilityLedgerTest(unittest.TestCase):
                 GENERIC,
                 CORE,
                 CLUSTER_MILL,
+                GT6_COIL_HOSTS,
                 HAMMER_SQUEEZER_LASER,
                 INJECTOR,
                 LAMINATOR,
+                LARGE_AUTOCLAVE,
+                LARGE_ELECTROLYZER,
+                LARGE_FERMENTER,
+                LARGE_PROCESSING_PARTS,
                 LOOM,
                 MELTER,
                 NANOFAB,

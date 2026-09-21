@@ -37,21 +37,22 @@ public final class MassStorageRenderer
             int packedLight,
             int packedOverlay) {
         var inventory = storage.inventory();
-        if (inventory.filter().isEmpty() || inventory.stored() <= 0) {
-            return;
+        if (!inventory.filter().isEmpty() && inventory.stored() > 0) {
+            String profile = storage.getBlockState().getBlock() instanceof MassStorageBlock block
+                    ? block.variant().modelProfile()
+                    : "mass_storage_standard";
+            renderFace(
+                    storage,
+                    inventory.filter(),
+                    inventory.stored(),
+                    inventory.capacity(),
+                    profile,
+                    poseStack,
+                    buffers,
+                    packedOverlay);
         }
-        String profile = storage.getBlockState().getBlock() instanceof MassStorageBlock block
-                ? block.variant().modelProfile()
-                : "mass_storage_standard";
-        renderFace(
-                storage,
-                inventory.filter(),
-                inventory.stored(),
-                inventory.capacity(),
-                profile,
-                poseStack,
-                buffers,
-                packedOverlay);
+        PipeCoverRenderer.renderMounted(
+                storage, poseStack, buffers, packedLight);
     }
 
     static void renderFace(

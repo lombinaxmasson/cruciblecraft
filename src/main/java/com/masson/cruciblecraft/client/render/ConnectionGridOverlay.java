@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.client.render;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.block.Gt6StyleConnections;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverPlacement;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -31,9 +32,10 @@ import org.joml.Vector3f;
  * GTM {@code BlockHighlightRenderer.drawGridOverlays} for pipes and cables.
  *
  * <p>Holding the matching tune tool (wrench on pipes, wire cutter on cables)
- * draws the 0.25 / 0.75 nine-grid on the aimed face and a connect/block icon
- * in each cell. Cell → side mapping is {@link Gt6StyleConnections#nineGridSideOnFace},
- * the same table the click uses.
+ * or a GT6 cover stack draws the 0.25 / 0.75 nine-grid on the aimed face
+ * and a connect/block icon in each cell. Cell → side mapping is
+ * {@link Gt6StyleConnections#nineGridSideOnFace}, the same table the click
+ * uses.
  */
 @EventBusSubscriber(
         modid = CrucibleCraft.MODID,
@@ -63,8 +65,12 @@ public final class ConnectionGridOverlay {
             return;
         }
         BlockState state = level.getBlockState(hit.getBlockPos());
+        if (Gt6StyleConnections.properties(state).isEmpty()) {
+            return;
+        }
         if (!Gt6StyleConnections.holdingMatchingTool(
-                state, player.getMainHandItem())) {
+                state, player.getMainHandItem())
+                && !CoverPlacement.isCoverStack(player.getMainHandItem())) {
             return;
         }
         drawGrid(

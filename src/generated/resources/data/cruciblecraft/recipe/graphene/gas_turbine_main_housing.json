@@ -1,0 +1,38 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "ingredients": {
+    "B": {
+      "item": "cruciblecraft:lead_acid_battery_hv"
+    },
+    "C": {
+      "item": "cruciblecraft:circuit_ultimate"
+    },
+    "E": {
+      "item": "cruciblecraft:compact_electric_motor_hv"
+    },
+    "M": {
+      "item": "cruciblecraft:graphene/steam_turbine_main_housing"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "tungsten"
+      },
+      "items": "cruciblecraft:dense_plate"
+    }
+  },
+  "pattern": [
+    "PwP",
+    "BMC",
+    "PEP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:graphene/gas_turbine_main_housing"
+  },
+  "catalysts": {
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  }
+}

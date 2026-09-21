@@ -89,8 +89,7 @@ public final class BatteryBlock extends Block implements EntityBlock, ToolIntera
         if (tool.consumesAction()) {
             return tool;
         }
-        if (CoverInstall.tryPlace(
-                level, pos, hit.getDirection(), stack, player)) {
+        if (CoverInstall.tryPlace(level, pos, hit, stack, player)) {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         if (level.getBlockEntity(pos) instanceof MachineCoverHost machine

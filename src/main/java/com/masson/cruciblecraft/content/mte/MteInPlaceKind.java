@@ -2,6 +2,8 @@ package com.masson.cruciblecraft.content.mte;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 
+import net.minecraft.core.Direction;
+
 /**
  * Discriminator for GT6 MTE identities that keep their dummy modern id and
  * become live BlockItems in place. These are not pipe covers, KU axles,
@@ -17,6 +19,10 @@ public enum MteInPlaceKind {
     TANK_BRIDGE,
     STEAM_TURBINE,
     GAS_TURBINE,
+    LARGE_DYNAMO,
+    LIGHTNING_ROD,
+    MATTER_FABRICATOR,
+    VON_DA_GRAAGG,
     BATTERY_BOX,
     WOOD_PANEL,
     ROPE,
@@ -107,9 +113,20 @@ public enum MteInPlaceKind {
         };
     }
 
+    public boolean dedicatedController() {
+        return this == GAS_TURBINE
+                || this == LARGE_DYNAMO
+                || this == LIGHTNING_ROD
+                || this == MATTER_FABRICATOR
+                || this == VON_DA_GRAAGG;
+    }
+
     public boolean energy() {
         return this == STEAM_TURBINE
                 || this == BATTERY_BOX
+                || this == LARGE_DYNAMO
+                || this == LIGHTNING_ROD
+                || this == VON_DA_GRAAGG
                 || drive();
     }
 
@@ -142,5 +159,37 @@ public enum MteInPlaceKind {
 
     public boolean decorative() {
         return this == WOOD_PANEL || this == ROPE || this == SCAFFOLD;
+    }
+
+    /**
+     * GT6 {@code allowCovers}: chests/lockers/mass storage accept every face;
+     * safes and drawers skip the front; bookshelves skip the facing axis;
+     * crafting tables skip the top and the facing axis; bottle crates and
+     * attachments refuse covers. Steam turbines and RU drive hosts keep the
+     * default true from {@code TileEntityBase06Covers}.
+     */
+    public boolean allowCover(Direction facing, Direction side) {
+        if (side == null) {
+            return false;
+        }
+        return switch (this) {
+            case CHEST, BARREL, MASS_STORAGE, LOCKER -> true;
+            case SAFE, DRAWER -> facing == null || side != facing;
+            case BOOKSHELF -> facing == null
+                    || side.getAxis() != facing.getAxis();
+            case CRAFTING_TABLE -> side != Direction.UP
+                    && (facing == null || side.getAxis() != facing.getAxis());
+            case STEAM_TURBINE,
+                    GAS_TURBINE,
+                    LARGE_DYNAMO,
+                    LIGHTNING_ROD,
+                    MATTER_FABRICATOR,
+                    VON_DA_GRAAGG,
+                    AXLE,
+                    GEARBOX,
+                    ROTATION_ENGINE,
+                    ROTATION_TRANSFORMER -> true;
+            default -> false;
+        };
     }
 }

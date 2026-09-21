@@ -4,9 +4,12 @@ import java.util.List;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.RockBlock;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.worldgen.PebbleBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -22,6 +25,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
@@ -30,7 +34,8 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * GT6 {@code OP.rockGt} pickup, 32757 physics, names, and 2×2 cobble packing.
+ * GT6 {@code OP.rockGt} pickup, 32757 physics, names, 2×2 cobble packing,
+ * crushing, and furnace metal yields.
  * Lives on the default GameTest namespace so a bare {@code runGameTestServer}
  * exercises it.
  */
@@ -189,6 +194,72 @@ public final class RockPebbleGameTests {
         helper.assertTrue(
                 helper.getBlockState(POS.above()).isAir(),
                 "removing the floor must drop the pebble");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void chalcopyriteRockCrushesToNineSmallDust(GameTestHelper helper) {
+        ItemStack rock = MaterialLookup.stack(
+                "chalcopyrite", MaterialPrefixCatalog.require("rock"));
+        var match = ModRecipeMaps.CRUSHER.findMatch(GTRecipeQuery.items(rock))
+                .orElse(null);
+        helper.assertTrue(match != null, "crusher has no chalcopyrite rock recipe");
+        ItemStack output = match.recipe().itemOutputs().getFirst();
+        ItemStack expected = MaterialLookup.stack(
+                "chalcopyrite", MaterialPrefixes.SMALL_DUST, 9);
+        helper.assertTrue(
+                ItemStack.isSameItemSameComponents(output, expected)
+                        && output.getCount() == 9,
+                "chalcopyrite rock must crush to 9 small dust: " + output);
+        helper.assertTrue(
+                match.recipe().duration() == 36 && match.recipe().eut() == 16,
+                "chalcopyrite rock crusher duration/EU must follow GT6 getCosts");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void chalcopyriteRockSmeltsToTwoCopperChunks(GameTestHelper helper) {
+        ItemStack rock = MaterialLookup.stack(
+                "chalcopyrite", MaterialPrefixCatalog.require("rock"));
+        var match = helper.getLevel()
+                .getRecipeManager()
+                .getRecipeFor(
+                        RecipeType.SMELTING,
+                        new SingleRecipeInput(rock),
+                        helper.getLevel())
+                .orElse(null);
+        helper.assertTrue(match != null, "furnace has no chalcopyrite rock recipe");
+        ItemStack output = match.value().getResultItem(
+                helper.getLevel().registryAccess());
+        ItemStack expected = MaterialLookup.stack(
+                "copper", MaterialPrefixes.CHUNK, 2);
+        helper.assertTrue(
+                ItemStack.isSameItemSameComponents(output, expected)
+                        && output.getCount() == 2,
+                "chalcopyrite rock must smelt to 2 copper chunks: " + output);
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void netherrackRockSmeltsToNetherBrickRock(GameTestHelper helper) {
+        ItemStack rock = MaterialLookup.stack(
+                "netherrack", MaterialPrefixCatalog.require("rock"));
+        var match = helper.getLevel()
+                .getRecipeManager()
+                .getRecipeFor(
+                        RecipeType.SMELTING,
+                        new SingleRecipeInput(rock),
+                        helper.getLevel())
+                .orElse(null);
+        helper.assertTrue(match != null, "furnace has no netherrack rock recipe");
+        ItemStack output = match.value().getResultItem(
+                helper.getLevel().registryAccess());
+        ItemStack expected = MaterialLookup.stack(
+                "nether_brick", MaterialPrefixCatalog.require("rock"));
+        helper.assertTrue(
+                ItemStack.isSameItemSameComponents(output, expected)
+                        && output.getCount() == 1,
+                "netherrack rock must smelt to nether-brick rock: " + output);
         helper.succeed();
     }
 

@@ -14,9 +14,15 @@ Preferred integration:
 
 1. Establish explicit startup ordering.
 2. Register prefixes before any material definitions.
-3. Call `MaterialPrefixCatalog.addStartupPrefix` and
-   `MaterialCatalog.addStartupMaterial` from that ordered startup hook.
+3. Call `MaterialPrefixCatalog.addStartupPrefix`,
+   `MaterialCatalog.addStartupMaterial`, and
+   `MaterialCatalog.addStartupForm` from that ordered startup hook.
 4. Treat a `false` return as a duplicate identity and fail addon startup.
+   `addStartupForm` opens a long-tail live pair on the shared prefix Item.
+   It cannot open the public 16 unique prefixes, metadata-only materials, or a
+   pair already present in Core's registration gate.
 
 Both catalogs freeze after startup. Runtime mutation and listener-based
-fallback registration are unsupported.
+fallback registration are unsupported. Optional Crop/Foods addons must load
+before `cruciblecraft` so named `plant_gt_*` overlay pairs exist before item
+registration.

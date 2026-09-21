@@ -41,12 +41,14 @@ public final class SteamTurbineCatalog {
             int steamPerEu,
             int steamPerWater,
             ResourceLocation wallId,
+            String casingMaterial,
             Recipe recipe,
             String langEn,
             String langZh) {
         public Profile {
             Objects.requireNonNull(id, "id");
             Objects.requireNonNull(kind, "kind");
+            Objects.requireNonNull(casingMaterial, "casingMaterial");
             Objects.requireNonNull(recipe, "recipe");
             Objects.requireNonNull(langEn, "langEn");
             Objects.requireNonNull(langZh, "langZh");
@@ -64,14 +66,14 @@ public final class SteamTurbineCatalog {
             return "large".equals(kind);
         }
 
+        /** GT6 converter capacitor {@code NBT_INPUT * 2}. */
         public long energyCapacity() {
-            return Math.max(16_384L, Math.multiplyExact(ruOutput, 4L));
+            return Math.multiplyExact((long) steamInputMax, 2L);
         }
 
+        /** GT6 {@code mTank.setCapacity(mEnergyIN.mMax * 4)}. */
         public int tankCapacityMb() {
-            return Math.toIntExact(Math.min(
-                    Integer.MAX_VALUE,
-                    Math.max(1_000L, (long) steamInputMax * 4L)));
+            return Math.multiplyExact(steamInputMax, 4);
         }
     }
 
@@ -151,6 +153,10 @@ public final class SteamTurbineCatalog {
         private int steamPerEu;
         @SerializedName("steam_per_water")
         private int steamPerWater;
+        @SerializedName("casing_material")
+        private String casingMaterial;
+        @SerializedName("housing_material")
+        private String housingMaterial;
         @SerializedName("wall_id")
         private String wallId;
         @SerializedName("lang_en")
@@ -169,6 +175,13 @@ public final class SteamTurbineCatalog {
             ResourceLocation wall = CatalogJson.nonBlank(wallId)
                     ? ResourceLocation.parse(wallId)
                     : null;
+            String casing = CatalogJson.nonBlank(casingMaterial)
+                    ? casingMaterial
+                    : housingMaterial;
+            if (!CatalogJson.nonBlank(casing)) {
+                throw new IllegalStateException(
+                        "Steam turbine missing casing material " + id);
+            }
             return new Profile(
                     parsed,
                     sourceId,
@@ -178,6 +191,7 @@ public final class SteamTurbineCatalog {
                     steamPerEu == 0 ? 2 : steamPerEu,
                     steamPerWater,
                     wall,
+                    casing,
                     recipe.toRecipe(),
                     langEn,
                     langZh);

@@ -190,6 +190,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("jade.cruciblecraft.item_pipe",
                     "%s：实际送达 %s，堵塞 %s，盖板 %s");
             add("death.attack.electricity", "%s 被电死了");
+            add("death.attack.crusher", "%s 被碾成了肉酱");
             addItem(ModItems.PORTABLE_FLUID_TANK, "便携流体罐");
             addItem(ModItems.FLUID_CELL, "通用流体单元");
             addItem(ModItems.GAS_CELL, "通用气体单元");
@@ -293,7 +294,6 @@ public class ModLanguageProvider extends LanguageProvider {
             add("item.cruciblecraft.reactor_core_2x2", "反应堆芯 2×2");
             addBlock(ModBlocks.TUNGSTENSTEEL_WALL, "钨钢墙");
             addBlock(ModBlocks.STAINLESS_STEEL_WALL, "不锈钢墙");
-            addBlock(ModBlocks.LARGE_IRIDIUM_COIL, "大型铱线圈");
             addReactorRodNames();
             addTechnologicalPartNames();
             addGtTreeNames();
@@ -302,6 +302,66 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT, "多方块能源输入端口");
             addBlock(ModBlocks.MULTIBLOCK_FLUID_OUT_PORT, "多方块流体输出端口");
             addBlock(ModBlocks.LARGE_CENTRIFUGE, "大型离心机");
+            addBlock(ModBlocks.LARGE_MIXER, "大型搅拌器");
+            add("tooltip.cruciblecraft.large_mixer.structure",
+                    "结构：3×3×2 不锈钢墙");
+            add("tooltip.cruciblecraft.large_mixer.controller",
+                    "主机在侧底中心，朝外");
+            add("tooltip.cruciblecraft.large_mixer.io",
+                    "上半层输入；下半层与主机朝下输出");
+            addBlock(ModBlocks.LARGE_ELECTROLYZER, "大型电解机");
+            add("tooltip.cruciblecraft.large_electrolyzer.structure",
+                    "结构：3×3×2 电解机零件");
+            add("tooltip.cruciblecraft.large_electrolyzer.controller",
+                    "主机在侧底中心，朝外");
+            add("tooltip.cruciblecraft.large_electrolyzer.io",
+                    "下半层输入，上半层与主机输出");
+            addBlock(ModBlocks.LARGE_OVEN, "大型电炉");
+            add("tooltip.cruciblecraft.large_oven.structure",
+                    "结构：底层与顶层 3×3 殷钢墙");
+            add("tooltip.cruciblecraft.large_oven.coils",
+                    "中层空心 8 个大型镍铬或碳化硅线圈，禁止混装");
+            add("tooltip.cruciblecraft.large_oven.controller",
+                    "主机在侧底中心，朝外");
+            add("tooltip.cruciblecraft.large_oven.io",
+                    "殷钢墙物品/流体/EU；主机朝下自动输出；线圈不接受输入输出");
+            addBlock(ModBlocks.LARGE_CRUSHER, "大型破碎机");
+            add("tooltip.cruciblecraft.large_crusher.structure",
+                    "结构：5×5×3 钨钢墙盆");
+            add("tooltip.cruciblecraft.large_crusher.wheels",
+                    "3×3×2 填充破碎轮");
+            add("tooltip.cruciblecraft.large_crusher.controller",
+                    "主机在侧底中心，朝外");
+            add("tooltip.cruciblecraft.large_crusher.io",
+                    "仅破碎轮输入，底层输出");
+            addBlock(ModBlocks.LARGE_BATH, "大型浸洗器");
+            add("tooltip.cruciblecraft.large_bath.structure",
+                    "结构：5×5×2 不锈钢墙");
+            add("tooltip.cruciblecraft.large_bath.controller",
+                    "主机在侧底中心，朝外");
+            add("tooltip.cruciblecraft.large_bath.io",
+                    "任意方块输入输出");
+            addBlock(ModBlocks.LARGE_COAGULATOR, "大型凝固机");
+            add("tooltip.cruciblecraft.large_coagulator.structure",
+                    "结构：5×5×2 不锈钢墙");
+            add("tooltip.cruciblecraft.large_coagulator.controller",
+                    "主机在侧底中心，朝外");
+            add("tooltip.cruciblecraft.large_coagulator.io",
+                    "任意方块输入输出");
+            addBlock(ModBlocks.LARGE_AUTOCLAVE, "大型高压釜");
+            add("tooltip.cruciblecraft.large_autoclave.structure",
+                    "结构：3×3×3 空心致密不锈钢墙");
+            add("tooltip.cruciblecraft.large_autoclave.controller",
+                    "主机在侧底中心，朝外");
+            add("tooltip.cruciblecraft.large_autoclave.io",
+                    "任意方块输入输出");
+            addBlock(ModBlocks.LARGE_FERMENTER, "大型发酵器");
+            add("tooltip.cruciblecraft.large_fermenter.structure",
+                    "底层 5×5 热传导器，上两层 5×5×2 不锈钢墙");
+            add("tooltip.cruciblecraft.large_fermenter.controller",
+                    "主机在侧面中心，朝外");
+            add("tooltip.cruciblecraft.large_fermenter.io",
+                    "墙输入；远侧上后出物品、下后出流体");
             addBlock(ModBlocks.DISTILLATION_TOWER, "蒸馏塔");
             addBlock(ModBlocks.CRYO_DISTILLATION_TOWER, "低温蒸馏塔");
             addBlock(ModBlocks.LARGE_BOILER, "大型锅炉");
@@ -574,6 +634,10 @@ public class ModLanguageProvider extends LanguageProvider {
             add("message.cruciblecraft.rotation_engine.running", "旋转引擎已启动");
             add("message.cruciblecraft.gas_turbine.stopped", "燃气轮机已停机");
             add("message.cruciblecraft.gas_turbine.running", "燃气轮机已启动");
+            add("message.cruciblecraft.steam_turbine.stopped", "蒸汽轮机已停机");
+            add("message.cruciblecraft.steam_turbine.running", "蒸汽轮机已启动");
+            add("message.cruciblecraft.steam_turbine.clockwise", "顺时针");
+            add("message.cruciblecraft.steam_turbine.counterclockwise", "逆时针");
             add("message.cruciblecraft.thermometer_kelvin", "温度：%s K");
             add("message.cruciblecraft.thermometer_kelvin_too_hot",
                     "温度：%s K（太烫，现在拿不起来！）");
@@ -721,7 +785,6 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.cruciblecraft.reactor_core_2x2", "Reactor Core 2x2");
         addBlock(ModBlocks.TUNGSTENSTEEL_WALL, "Tungstensteel Wall");
         addBlock(ModBlocks.STAINLESS_STEEL_WALL, "Stainless Steel Wall");
-        addBlock(ModBlocks.LARGE_IRIDIUM_COIL, "Large Iridium Coil");
         addReactorRodNames();
         addTechnologicalPartNames();
         addGtTreeNames();
@@ -737,6 +800,66 @@ public class ModLanguageProvider extends LanguageProvider {
                 ModBlocks.MULTIBLOCK_FLUID_OUT_PORT,
                 "Multiblock Fluid Output Port");
         addBlock(ModBlocks.LARGE_CENTRIFUGE, "Large Centrifuge");
+        addBlock(ModBlocks.LARGE_MIXER, "Large Batch Mixer");
+        add("tooltip.cruciblecraft.large_mixer.structure",
+                "3x3x2 of Stainless Steel Walls");
+        add("tooltip.cruciblecraft.large_mixer.controller",
+                "Main Block centered on Side-Bottom and facing outwards");
+        add("tooltip.cruciblecraft.large_mixer.io",
+                "Top Half accepts Input, Bottom Half and Main Block emit Output");
+        addBlock(ModBlocks.LARGE_ELECTROLYZER, "Large Electrolyzer");
+        add("tooltip.cruciblecraft.large_electrolyzer.structure",
+                "3x3x2 of Electrolyzer Parts");
+        add("tooltip.cruciblecraft.large_electrolyzer.controller",
+                "Main Block centered on Side-Bottom and facing outwards");
+        add("tooltip.cruciblecraft.large_electrolyzer.io",
+                "Bottom Half accepts Input, Top Half and Main Block emit Output");
+        addBlock(ModBlocks.LARGE_OVEN, "Large Electric Oven");
+        add("tooltip.cruciblecraft.large_oven.structure",
+                "3x3 of Invar Walls");
+        add("tooltip.cruciblecraft.large_oven.coils",
+                "3x3 Hollow of 8 Large Nichrome or Carborundum Coils (No Mixing)");
+        add("tooltip.cruciblecraft.large_oven.controller",
+                "Main Block centered on Side-Bottom and facing outwards");
+        add("tooltip.cruciblecraft.large_oven.io",
+                "Invar walls take items, fluids and EU. The main block auto-outputs downward. Coils accept neither input nor output.");
+        addBlock(ModBlocks.LARGE_CRUSHER, "Large Crusher");
+        add("tooltip.cruciblecraft.large_crusher.structure",
+                "5x5x3 'Basin' of 56 Tungstensteel Walls");
+        add("tooltip.cruciblecraft.large_crusher.wheels",
+                "3x3x2 Filling with Crusher Wheels");
+        add("tooltip.cruciblecraft.large_crusher.controller",
+                "Main Block centered on Side-Bottom and facing outwards");
+        add("tooltip.cruciblecraft.large_crusher.io",
+                "Input only at Crusher Wheels, Output at Bottom Layer");
+        addBlock(ModBlocks.LARGE_BATH, "Large Bathing Vat");
+        add("tooltip.cruciblecraft.large_bath.structure",
+                "5x5x2 of Stainless Steel Walls");
+        add("tooltip.cruciblecraft.large_bath.controller",
+                "Main Block centered on Side-Bottom and facing outwards");
+        add("tooltip.cruciblecraft.large_bath.io",
+                "Input and Output at any Blocks");
+        addBlock(ModBlocks.LARGE_COAGULATOR, "Large Coagulator Array");
+        add("tooltip.cruciblecraft.large_coagulator.structure",
+                "5x5x2 of Stainless Steel Walls");
+        add("tooltip.cruciblecraft.large_coagulator.controller",
+                "Main Block centered on Side-Bottom and facing outwards");
+        add("tooltip.cruciblecraft.large_coagulator.io",
+                "Input and Output at any Blocks");
+        addBlock(ModBlocks.LARGE_AUTOCLAVE, "Large Autoclave");
+        add("tooltip.cruciblecraft.large_autoclave.structure",
+                "3x3x3 Hollow of Dense Stainless Steel Walls");
+        add("tooltip.cruciblecraft.large_autoclave.controller",
+                "Main Block centered on Side-Bottom and facing outwards");
+        add("tooltip.cruciblecraft.large_autoclave.io",
+                "Input and Output at any Blocks");
+        addBlock(ModBlocks.LARGE_FERMENTER, "Large Fermenter");
+        add("tooltip.cruciblecraft.large_fermenter.structure",
+                "5x5 Heat Transmitters as bottom layer, 5x5x2 Stainless Steel Walls");
+        add("tooltip.cruciblecraft.large_fermenter.controller",
+                "Main Block centered on Side-Middle and facing outwards");
+        add("tooltip.cruciblecraft.large_fermenter.io",
+                "Walls accept Input, Top Back emits Items, Bottom Back emits Fluids");
         addBlock(ModBlocks.DISTILLATION_TOWER, "Distillation Tower");
         addBlock(ModBlocks.CRYO_DISTILLATION_TOWER, "Cryo Distillation Tower");
         addBlock(ModBlocks.LARGE_BOILER, "Large Boiler");
@@ -889,6 +1012,8 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Emits Redstone and Displays Status of Logistics Core.");
         add("death.attack.electricity",
                 "%s was electrocuted");
+        add("death.attack.crusher",
+                "%s was crushed to a pulp");
         addItem(ModItems.PIPE_FILTER_COVER, "Item Filter");
         addItem(ModItems.PIPE_VALVE_COVER, "Shutter Cover");
         addItem(ModItems.PIPE_PUMP_COVER, "Pipe Output Pump Cover");
@@ -1152,6 +1277,10 @@ public class ModLanguageProvider extends LanguageProvider {
         add("message.cruciblecraft.rotation_engine.running", "Rotation engine running");
         add("message.cruciblecraft.gas_turbine.stopped", "Gas turbine stopped");
         add("message.cruciblecraft.gas_turbine.running", "Gas turbine running");
+        add("message.cruciblecraft.steam_turbine.stopped", "Steam turbine stopped");
+        add("message.cruciblecraft.steam_turbine.running", "Steam turbine running");
+        add("message.cruciblecraft.steam_turbine.clockwise", "Clockwise");
+        add("message.cruciblecraft.steam_turbine.counterclockwise", "Counterclockwise");
         add("message.cruciblecraft.thermometer_kelvin", "Temperature: %s K");
         add(
                 "message.cruciblecraft.thermometer_kelvin_too_hot",
@@ -1253,8 +1382,7 @@ public class ModLanguageProvider extends LanguageProvider {
     }
 
     private static String mteInPlaceChinese(MteInPlaceSpec spec) {
-        if (LanguageNames.hasCjk(spec.chineseName())
-                && !LanguageNames.isEnglishCopy(spec.chineseName(), spec.englishName())) {
+        if (LanguageNames.hasCjk(spec.chineseName())) {
             return spec.chineseName();
         }
         String composed = MteInPlaceDisplayNames.chinese(spec.registryPath()).orElse(null);
@@ -1934,6 +2062,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addBatteryCatalogNames();
         addTransformerCatalogNames();
         addHeatExchangerCatalogNames();
+        addLargeGasTurbineTooltips();
         addCoolerCatalogNames();
         addFluxConverterCatalogNames();
         addQuantumEnergizerCatalogNames();
@@ -1980,6 +2109,8 @@ public class ModLanguageProvider extends LanguageProvider {
         BathMteFluidCatalog.fluids().forEach(fluid ->
                 addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName()));
         com.masson.cruciblecraft.content.item.BathRemainderFluidCatalog.fluids().forEach(fluid ->
+                addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName()));
+        com.masson.cruciblecraft.worldgen.tree.TreeHoleFluidCatalog.fluids().forEach(fluid ->
                 addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName()));
         com.masson.cruciblecraft.content.item.SemanticFluidCatalog.fluids().forEach(fluid ->
                 addFluidEnglishOnly(fluid.id().getPath(), fluid.englishName()));
@@ -2122,6 +2253,30 @@ public class ModLanguageProvider extends LanguageProvider {
             add(LanguageNames.translationKey("block", path), name);
             add(LanguageNames.translationKey("item", path), name);
         });
+    }
+
+    private void addLargeGasTurbineTooltips() {
+        add(
+                "tooltip.cruciblecraft.large_gas_turbine.structure_header",
+                chinese ? "结构：" : "Structure:");
+        add(
+                "tooltip.cruciblecraft.large_gas_turbine.structure",
+                chinese ? "3×3×4，共 35 块%s" : "3x3x4 of 35 %s");
+        add(
+                "tooltip.cruciblecraft.large_gas_turbine.controller",
+                chinese ? "主机在朝外的 3×3 正中"
+                        : "Main centered on the 3x3 facing outwards");
+        add(
+                "tooltip.cruciblecraft.large_gas_turbine.input",
+                chinese ? "只能从正面 3×3 输入"
+                        : "Input only possible at frontal 3x3");
+        add(
+                "tooltip.cruciblecraft.large_gas_turbine.exhaust",
+                chinese ? "必须抽走排气！" : "Exhaust Gas has to be removed!");
+        add(
+                "tooltip.cruciblecraft.large_gas_turbine.energy_out",
+                chinese ? "输出：%s RU/t（%s 至 %s）"
+                        : "Outputs: %s RU/t (%s to %s)");
     }
 
     private void addHeatExchangerCatalogNames() {
@@ -2344,6 +2499,10 @@ public class ModLanguageProvider extends LanguageProvider {
             }
         }
         addItem(ModItems.RUBBER_RESIN, chinese ? "橡胶树脂" : "Rubber Resin");
+        if (chinese) {
+            add(LanguageNames.translationKey("fluid", "rubber_tree_sap"), "橡胶树液");
+            add(LanguageNames.translationKey("fluid_type", "rubber_tree_sap"), "橡胶树液");
+        }
     }
 
     private void addBedrockOreRemainderNames() {

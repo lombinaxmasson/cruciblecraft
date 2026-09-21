@@ -879,7 +879,7 @@
         "replacement_condition": "a later steel batch selects the canonical controller and closes structure, ports, transaction, UI and acquisition"
       },
       "controller_behavior": {
-        "environment": "coil temperature tiers",
+        "environment": "exact coil identities",
         "kind": "thermal",
         "transaction": "heat furnace recipes (no CC map)",
         "ui": "status screen"
@@ -893,7 +893,7 @@
       },
       "schema_expressibility": {
         "needed_extensions": [],
-        "notes": "3x3x3: 18x 18007 walls + 8x coil middle ring (18042/18043, same-id cross-position constraint, two temperature tiers) + 1 AIR center; coil mix constraint degenerates with a fixed coil variant (DESIGN_POLICY).",
+        "notes": "3x3x3: 18x 18007 walls + 8x coil middle ring (18042 XOR 18043, same-id cross-position constraint, no temperature tiers) + 1 AIR center; coils are NOTHING and do not mix.",
         "positions": 27,
         "verdict": "v1_expressible"
       },

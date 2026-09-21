@@ -8,6 +8,8 @@ import com.masson.cruciblecraft.api.tool.ToolResult;
 import com.masson.cruciblecraft.content.blockentity.MassStorageBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBlockInteraction;
+import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -57,6 +59,9 @@ public final class MassStorageBlock extends StorageHostBlock
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
+        if (coverClick(level, pos, player, hit)) {
+            return InteractionResult.SUCCESS;
+        }
         if (!(level.getBlockEntity(pos) instanceof MassStorageBlockEntity storage)) {
             return InteractionResult.PASS;
         }
@@ -96,6 +101,14 @@ public final class MassStorageBlock extends StorageHostBlock
     @Override
     public ToolResult useTool(ToolAction action, UseOnContext context) {
         Level level = context.getLevel();
+        if (level.getBlockEntity(context.getClickedPos())
+                instanceof MachineCoverHost machine) {
+            ToolResult coverResult = MachineCoverBlockInteraction.useTool(
+                    machine, action, context);
+            if (coverResult != ToolResult.PASS) {
+                return coverResult;
+            }
+        }
         if (!(level.getBlockEntity(context.getClickedPos())
                 instanceof MassStorageBlockEntity storage)) {
             return ToolResult.PASS;

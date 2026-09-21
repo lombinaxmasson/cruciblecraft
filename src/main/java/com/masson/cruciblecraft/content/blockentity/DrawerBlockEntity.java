@@ -25,7 +25,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-public final class DrawerBlockEntity extends BlockEntity implements MenuProvider {
+public final class DrawerBlockEntity extends MachineCoverHostBlockEntity
+        implements MenuProvider {
     public static final int COMPARTMENTS = 4;
     public static final int COMPARTMENT_SLOTS = 36;
     private final StorageVariant variant;
@@ -152,6 +153,24 @@ public final class DrawerBlockEntity extends BlockEntity implements MenuProvider
             inventory.deserializeNBT(registries, tag.getCompound("inventory"));
         }
         openCompartment = Math.floorMod(tag.getInt("compartment"), COMPARTMENTS);
+    }
+
+    @Override
+    public boolean allowCover(Direction side) {
+        return side != getBlockState().getValue(StorageHostBlock.FACING);
+    }
+
+    @Override
+    public boolean hasEnergyBuffer() {
+        return false;
+    }
+
+    public static void serverTick(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            DrawerBlockEntity drawer) {
+        drawer.tickCovers();
     }
 
     private static StorageVariant variantOf(BlockState state) {

@@ -36,11 +36,20 @@ import com.masson.cruciblecraft.content.blockentity.BottleCrateBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LockerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MassStorageBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MatterFabricatorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.StorageInserterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DustFunnelBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeMixerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeElectrolyzerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeOvenBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeCrusherBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeBathBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeAutoclaveBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeFermenterBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeCoagulatorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CryoDistillationTowerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DistillationTowerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
@@ -64,7 +73,10 @@ import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerBlockEntity;
 import com.masson.cruciblecraft.energy.cooler.CoolerBlockEntity;
 import com.masson.cruciblecraft.energy.flux.FluxBlockEntity;
 import com.masson.cruciblecraft.energy.bedrockdrill.BedrockDrillBlockEntity;
+import com.masson.cruciblecraft.energy.largedynamo.LargeDynamoBlockEntity;
 import com.masson.cruciblecraft.energy.largegasturbine.LargeGasTurbineBlockEntity;
+import com.masson.cruciblecraft.energy.lightningrod.LightningRodBlockEntity;
+import com.masson.cruciblecraft.energy.vondagraagg.VonDaGraaggBlockEntity;
 import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerBlockEntity;
 import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerBlockEntity;
 import com.masson.cruciblecraft.energy.longdistance.LongDistanceTransformerBlockEntity;
@@ -116,6 +128,78 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     LargeCentrifugeBlockEntity::new,
                                     ModBlocks.LARGE_CENTRIFUGE.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeMixerBlockEntity>>
+                    LARGE_MIXER = BLOCK_ENTITIES.register(
+                            "large_mixer",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeMixerBlockEntity::new,
+                                    ModBlocks.LARGE_MIXER.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeElectrolyzerBlockEntity>>
+                    LARGE_ELECTROLYZER = BLOCK_ENTITIES.register(
+                            "large_electrolyzer",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeElectrolyzerBlockEntity::new,
+                                    ModBlocks.LARGE_ELECTROLYZER.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeOvenBlockEntity>>
+                    LARGE_OVEN = BLOCK_ENTITIES.register(
+                            "large_oven",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeOvenBlockEntity::new,
+                                    ModBlocks.LARGE_OVEN.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeCrusherBlockEntity>>
+                    LARGE_CRUSHER = BLOCK_ENTITIES.register(
+                            "large_crusher",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeCrusherBlockEntity::new,
+                                    ModBlocks.LARGE_CRUSHER.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeBathBlockEntity>>
+                    LARGE_BATH = BLOCK_ENTITIES.register(
+                            "large_bath",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeBathBlockEntity::new,
+                                    ModBlocks.LARGE_BATH.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeCoagulatorBlockEntity>>
+                    LARGE_COAGULATOR = BLOCK_ENTITIES.register(
+                            "large_coagulator",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeCoagulatorBlockEntity::new,
+                                    ModBlocks.LARGE_COAGULATOR.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeAutoclaveBlockEntity>>
+                    LARGE_AUTOCLAVE = BLOCK_ENTITIES.register(
+                            "large_autoclave",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeAutoclaveBlockEntity::new,
+                                    ModBlocks.LARGE_AUTOCLAVE.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeFermenterBlockEntity>>
+                    LARGE_FERMENTER = BLOCK_ENTITIES.register(
+                            "large_fermenter",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeFermenterBlockEntity::new,
+                                    ModBlocks.LARGE_FERMENTER.get())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
@@ -603,6 +687,42 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     LargeGasTurbineBlockEntity::new,
                                     ModBlocks.gasTurbineBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeDynamoBlockEntity>>
+                    LARGE_DYNAMO = BLOCK_ENTITIES.register(
+                            "large_dynamo",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeDynamoBlockEntity::new,
+                                    ModBlocks.largeDynamoBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LightningRodBlockEntity>>
+                    LIGHTNING_ROD = BLOCK_ENTITIES.register(
+                            "lightning_rod",
+                            () -> BlockEntityType.Builder.of(
+                                    LightningRodBlockEntity::new,
+                                    ModBlocks.lightningRodBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<MatterFabricatorBlockEntity>>
+                    MATTER_FABRICATOR = BLOCK_ENTITIES.register(
+                            "matter_fabricator",
+                            () -> BlockEntityType.Builder.of(
+                                    MatterFabricatorBlockEntity::new,
+                                    ModBlocks.matterFabricatorBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<VonDaGraaggBlockEntity>>
+                    VON_DA_GRAAGG = BLOCK_ENTITIES.register(
+                            "von_da_graagg",
+                            () -> BlockEntityType.Builder.of(
+                                    VonDaGraaggBlockEntity::new,
+                                    ModBlocks.vonDaGraaggBlockArray())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

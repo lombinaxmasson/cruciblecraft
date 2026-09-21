@@ -295,6 +295,35 @@ class ChemicalProcessingMachineSpecTest {
         assertEquals(
                 Optional.of("chemical_recipe_energy"),
                 ModProcessingMachines.MIXER.validator().validate(timed));
+        GTRecipe coagulatorTimed = new GTRecipe(
+                List.of(),
+                List.of(),
+                List.of(new ItemStack(Items.IRON_NUGGET)),
+                List.of(new FluidStack(Fluids.WATER, 16)),
+                List.of(),
+                List.of(GTRecipe.GUARANTEED_CHANCE),
+                256,
+                0L,
+                0L);
+        assertTrue(
+                ModProcessingMachines.COAGULATOR.validator()
+                        .validate(coagulatorTimed)
+                        .isEmpty(),
+                "Coagulator TIME recipes may use duration with eut=0");
+        GTRecipe coagulatorPowered = new GTRecipe(
+                List.of(),
+                List.of(),
+                List.of(new ItemStack(Items.IRON_NUGGET)),
+                List.of(new FluidStack(Fluids.WATER, 16)),
+                List.of(),
+                List.of(GTRecipe.GUARANTEED_CHANCE),
+                256,
+                1_025L,
+                0L);
+        assertEquals(
+                Optional.of("chemical_recipe_energy"),
+                ModProcessingMachines.COAGULATOR.validator()
+                        .validate(coagulatorPowered));
     }
 
     @Test

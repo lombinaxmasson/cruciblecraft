@@ -319,6 +319,16 @@ public final class MassStoragePrefixUnits {
         return Set.of();
     }
 
+    /** GT6 {@code OM.dust}: pick the largest live dust denomination. */
+    public static ItemStack dust(String materialId, long amount) {
+        return omDust(materialId, amount);
+    }
+
+    /** GT6 {@code OM.ingot}: pick the largest live ingot denomination. */
+    public static ItemStack ingot(String materialId, long amount) {
+        return omIngot(materialId, amount);
+    }
+
     private static ItemStack omDust(String materialId, long amount) {
         if (amount < U72) {
             return ItemStack.EMPTY;

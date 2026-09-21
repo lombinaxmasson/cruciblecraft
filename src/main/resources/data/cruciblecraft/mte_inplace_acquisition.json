@@ -21238,6 +21238,52 @@
       "domain": "multiblock",
       "ingredients": {
         "W": {
+          "item": "cruciblecraft:carborundum/quadruple_wire"
+        }
+      },
+      "path": "multiblock/large_carborundum_coil",
+      "pattern": [
+        "WWW",
+        "WxW",
+        "WWW"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:multiblock/large_carborundum_coil"
+      }
+    },
+    {
+      "catalysts": {
+        "x": {
+          "item": "cruciblecraft:material_wire_cutter"
+        }
+      },
+      "domain": "multiblock",
+      "ingredients": {
+        "W": {
+          "item": "cruciblecraft:niobium_titanium/quadruple_wire"
+        }
+      },
+      "path": "multiblock/large_niobium_titanium_coil",
+      "pattern": [
+        "WWW",
+        "WxW",
+        "WWW"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:multiblock/large_niobium_titanium_coil"
+      }
+    },
+    {
+      "catalysts": {
+        "x": {
+          "item": "cruciblecraft:material_wire_cutter"
+        }
+      },
+      "domain": "multiblock",
+      "ingredients": {
+        "W": {
           "item": "cruciblecraft:nichrome/quadruple_wire"
         }
       },
@@ -21389,6 +21435,323 @@
       "result": {
         "count": 1,
         "id": "cruciblecraft:multiblock/sluice_part"
+      }
+    },
+    {
+      "catalysts": {
+        "w": {
+          "item": "cruciblecraft:material_wrench"
+        }
+      },
+      "domain": "multiblock",
+      "ingredients": {
+        "C": {
+          "item": "cruciblecraft:circuit_ultimate"
+        },
+        "M": {
+          "item": "cruciblecraft:stainless_steel/machine_casing"
+        },
+        "W": {
+          "item": "cruciblecraft:platinum/wire"
+        }
+      },
+      "path": "multiblock/electrolyzer_part",
+      "pattern": [
+        "WwW",
+        "WMW",
+        "CCC"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:multiblock/electrolyzer_part"
+      }
+    },
+    {
+      "catalysts": {},
+      "domain": "multiblock",
+      "ingredients": {
+        "D": {
+          "item": "cruciblecraft:diamantine/gem"
+        },
+        "G": {
+          "item": "cruciblecraft:tungstensteel/gear"
+        },
+        "M": {
+          "item": "cruciblecraft:tungstensteel/machine_casing_double"
+        }
+      },
+      "path": "multiblock/crusher_wheels",
+      "pattern": [
+        "DDD",
+        "GDG",
+        "GMG"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:multiblock/crusher_wheels"
+      }
+    },
+    {
+      "catalysts": {
+        "w": {
+          "item": "cruciblecraft:material_wrench"
+        }
+      },
+      "domain": "multiblock",
+      "ingredients": {
+        "D": {
+          "item": "cruciblecraft:diamantine/plate_gem"
+        },
+        "G": {
+          "item": "cruciblecraft:tungstensteel/gear"
+        },
+        "M": {
+          "item": "cruciblecraft:tungstensteel/machine_casing_double"
+        }
+      },
+      "path": "multiblock/shredder_blades",
+      "pattern": [
+        "DGD",
+        "GwG",
+        "GMG"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:multiblock/shredder_blades"
+      }
+    },
+    {
+      "catalysts": {
+        "w": {
+          "item": "cruciblecraft:material_wrench"
+        }
+      },
+      "domain": "multiblock",
+      "ingredients": {
+        "M": {
+          "item": "cruciblecraft:multiblock/dense_stainless_steel_wall"
+        },
+        "S": {
+          "item": "cruciblecraft:stainless_steel/long_rod"
+        },
+        "C": {
+          "item": "cruciblecraft:circuit_ultimate"
+        },
+        "B": {
+          "item": "cruciblecraft:lead_acid_battery_lv"
+        }
+      },
+      "path": "stainless_steel/dynamo_main_housing",
+      "pattern": [
+        "SwS",
+        "CMC",
+        "SBS"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:stainless_steel/dynamo_main_housing"
+      }
+    },
+    {
+      "catalysts": {
+        "w": {
+          "item": "cruciblecraft:material_wrench"
+        }
+      },
+      "domain": "multiblock",
+      "ingredients": {
+        "M": {
+          "item": "cruciblecraft:multiblock/dense_titanium_wall"
+        },
+        "S": {
+          "item": "cruciblecraft:titanium/long_rod"
+        },
+        "C": {
+          "item": "cruciblecraft:circuit_ultimate"
+        },
+        "B": {
+          "item": "cruciblecraft:lead_acid_battery_lv"
+        }
+      },
+      "path": "titanium/dynamo_main_housing",
+      "pattern": [
+        "SwS",
+        "CMC",
+        "SBS"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:titanium/dynamo_main_housing"
+      }
+    },
+    {
+      "catalysts": {
+        "w": {
+          "item": "cruciblecraft:material_wrench"
+        }
+      },
+      "domain": "multiblock",
+      "ingredients": {
+        "M": {
+          "item": "cruciblecraft:multiblock/dense_tungstensteel_wall"
+        },
+        "S": {
+          "item": "cruciblecraft:tungstensteel/long_rod"
+        },
+        "C": {
+          "item": "cruciblecraft:circuit_ultimate"
+        },
+        "B": {
+          "item": "cruciblecraft:lead_acid_battery_lv"
+        }
+      },
+      "path": "tungstensteel/dynamo_main_housing",
+      "pattern": [
+        "SwS",
+        "CMC",
+        "SBS"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:tungstensteel/dynamo_main_housing"
+      }
+    },
+    {
+      "catalysts": {
+        "w": {
+          "item": "cruciblecraft:material_wrench"
+        }
+      },
+      "domain": "multiblock",
+      "ingredients": {
+        "M": {
+          "item": "cruciblecraft:multiblock/dense_adamantium_wall"
+        },
+        "S": {
+          "item": "cruciblecraft:adamantium/long_rod"
+        },
+        "C": {
+          "item": "cruciblecraft:circuit_ultimate"
+        },
+        "B": {
+          "item": "cruciblecraft:lead_acid_battery_lv"
+        }
+      },
+      "path": "adamantium/dynamo_main_housing",
+      "pattern": [
+        "SwS",
+        "CMC",
+        "SBS"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:adamantium/dynamo_main_housing"
+      }
+    },
+    {
+      "catalysts": {},
+      "domain": "multiblock",
+      "ingredients": {
+        "M": {
+          "item": "cruciblecraft:tungsten/machine_casing"
+        },
+        "W": {
+          "item": "cruciblecraft:niobium_titanium/hexadecuple_wire"
+        },
+        "P": {
+          "item": "cruciblecraft:processor_crystal_sapphire"
+        },
+        "C": {
+          "item": "cruciblecraft:circuit_ultimate"
+        }
+      },
+      "path": "tungsten/lightning_rod_electric_output",
+      "pattern": [
+        "CWC",
+        "PMP",
+        "CWC"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:tungsten/lightning_rod_electric_output"
+      }
+    },
+    {
+      "catalysts": {},
+      "domain": "multiblock",
+      "ingredients": {
+        "M": {
+          "item": "cruciblecraft:steel_galvanized/plate"
+        },
+        "R": {
+          "item": "cruciblecraft:iridium/rod"
+        },
+        "W": {
+          "item": "cruciblecraft:niobium_titanium/wire"
+        }
+      },
+      "path": "steel_galvanized/lightning_rod",
+      "pattern": [
+        "MWM",
+        "WRW",
+        "MWM"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:steel_galvanized/lightning_rod"
+      }
+    },
+    {
+      "catalysts": {},
+      "domain": "multiblock",
+      "ingredients": {
+        "M": {
+          "item": "cruciblecraft:multiblock/dense_lead_wall"
+        },
+        "F": {
+          "item": "cruciblecraft:compact_force_field_emitter_iv"
+        }
+      },
+      "path": "lead/large_matter_fabricator",
+      "pattern": [
+        "FFF",
+        "FMF",
+        "FFF"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:lead/large_matter_fabricator"
+      }
+    },
+    {
+      "catalysts": {},
+      "domain": "multiblock",
+      "ingredients": {
+        "M": {
+          "item": "cruciblecraft:steel_galvanized/machine_casing"
+        },
+        "P": {
+          "item": "cruciblecraft:processor_crystal_ruby"
+        },
+        "C": {
+          "item": "cruciblecraft:circuit_ultimate"
+        },
+        "S": {
+          "item": "minecraft:nether_star"
+        },
+        "E": {
+          "item": "minecraft:ender_eye"
+        }
+      },
+      "path": "steel_galvanized/von_da_graagg_generator",
+      "pattern": [
+        "CSC",
+        "PMP",
+        "CEC"
+      ],
+      "result": {
+        "count": 1,
+        "id": "cruciblecraft:steel_galvanized/von_da_graagg_generator"
       }
     }
   ],

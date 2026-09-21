@@ -27,7 +27,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-public final class BottleCrateBlockEntity extends BlockEntity implements MenuProvider {
+public final class BottleCrateBlockEntity extends MachineCoverHostBlockEntity
+        implements MenuProvider {
     private final StorageVariant variant;
     private final ItemStackHandler inventory;
 
@@ -109,6 +110,11 @@ public final class BottleCrateBlockEntity extends BlockEntity implements MenuPro
     }
 
     @Override
+    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
+        loadAdditional(tag, registries);
+    }
+
+    @Override
     public Component getDisplayName() {
         return Component.translatable("container.cruciblecraft.bottle_crate");
     }
@@ -132,6 +138,24 @@ public final class BottleCrateBlockEntity extends BlockEntity implements MenuPro
         if (tag.contains("inventory")) {
             inventory.deserializeNBT(registries, tag.getCompound("inventory"));
         }
+    }
+
+    @Override
+    public boolean allowCover(Direction side) {
+        return false;
+    }
+
+    @Override
+    public boolean hasEnergyBuffer() {
+        return false;
+    }
+
+    public static void serverTick(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            BottleCrateBlockEntity crate) {
+        crate.tickCovers();
     }
 
     private static StorageVariant variantOf(BlockState state) {

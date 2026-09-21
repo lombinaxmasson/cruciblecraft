@@ -19,6 +19,7 @@ import com.masson.cruciblecraft.logistics.pipe.cover.CoverCollision;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverCrafting;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverFilterLogic;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverInstall;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverPlacement;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverTools;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 
@@ -133,11 +134,10 @@ public abstract class AbstractPipeBlock extends Block
         if (tool.consumesAction()) {
             return tool;
         }
-        if (CoverInstall.tryPlace(
-                level, pos, hit.getDirection(), stack, player)) {
+        if (CoverInstall.tryPlace(level, pos, hit, stack, player)) {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
-        if (filterRightClick(level, pos, hit.getDirection(), player)) {
+        if (filterRightClick(level, pos, hit, player)) {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         return tool;
@@ -225,7 +225,7 @@ public abstract class AbstractPipeBlock extends Block
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
         BlockEntity be = level.getBlockEntity(pos);
-        Direction side = Gt6StyleConnections.sideFromHit(ToolClick.hit(context));
+        Direction side = CoverPlacement.interactSide(be, ToolClick.hit(context));
         if (be instanceof ItemPipeBlockEntity pipe) {
             if (level.isClientSide) {
                 return ToolResult.SUCCESS;
@@ -252,8 +252,8 @@ public abstract class AbstractPipeBlock extends Block
     private static ToolResult coverTool(UseOnContext context, ToolAction action) {
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
-        Direction side = Gt6StyleConnections.sideFromHit(ToolClick.hit(context));
         BlockEntity be = level.getBlockEntity(pos);
+        Direction side = CoverPlacement.interactSide(be, ToolClick.hit(context));
         PipeCover cover = coverOn(be, side);
         if (cover == null) {
             return ToolResult.PASS;
@@ -282,8 +282,9 @@ public abstract class AbstractPipeBlock extends Block
     }
 
     private static boolean filterRightClick(
-            Level level, BlockPos pos, Direction side, Player player) {
+            Level level, BlockPos pos, BlockHitResult hit, Player player) {
         BlockEntity be = level.getBlockEntity(pos);
+        Direction side = CoverPlacement.interactSide(be, hit);
         PipeCover cover = coverOn(be, side);
         if (cover == null) {
             return false;
@@ -327,12 +328,14 @@ public abstract class AbstractPipeBlock extends Block
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
+        BlockEntity be = level.getBlockEntity(pos);
+        Direction side = CoverPlacement.interactSide(be, hit);
         if (!player.isShiftKeyDown()) {
             if (CoverCrafting.open(
                     player,
                     level,
                     pos,
-                    coverOn(level.getBlockEntity(pos), hit.getDirection()))) {
+                    coverOn(be, side))) {
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.PASS;
@@ -340,13 +343,12 @@ public abstract class AbstractPipeBlock extends Block
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         }
-        Direction face = hit.getDirection();
-        if (level.getBlockEntity(pos) instanceof ItemPipeBlockEntity pipe
-                && pipe.removeCover(face, player)) {
+        if (be instanceof ItemPipeBlockEntity pipe
+                && pipe.removeCover(side, player)) {
             return InteractionResult.SUCCESS;
         }
-        if (level.getBlockEntity(pos) instanceof FluidPipeBlockEntity pipe
-                && pipe.removeCover(face, player)) {
+        if (be instanceof FluidPipeBlockEntity pipe
+                && pipe.removeCover(side, player)) {
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
@@ -444,7 +446,7 @@ public abstract class AbstractPipeBlock extends Block
             BlockPos pos,
             CollisionContext context) {
         return Gt6StyleConnections.interactionShape(
-                state, context, connectedShape(state));
+                state, context, connectedShape(state), level.getBlockEntity(pos));
     }
 
     @Override

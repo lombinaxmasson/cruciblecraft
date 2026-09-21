@@ -49,6 +49,14 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.getKey(),
                 ModBlocks.MULTIBLOCK_FLUID_OUT_PORT.getKey(),
                 ModBlocks.LARGE_CENTRIFUGE.getKey(),
+                ModBlocks.LARGE_MIXER.getKey(),
+                ModBlocks.LARGE_ELECTROLYZER.getKey(),
+                ModBlocks.LARGE_OVEN.getKey(),
+                ModBlocks.LARGE_CRUSHER.getKey(),
+                ModBlocks.LARGE_BATH.getKey(),
+                ModBlocks.LARGE_COAGULATOR.getKey(),
+                ModBlocks.LARGE_AUTOCLAVE.getKey(),
+                ModBlocks.LARGE_FERMENTER.getKey(),
                 ModBlocks.DISTILLATION_TOWER.getKey(),
                 ModBlocks.CRYO_DISTILLATION_TOWER.getKey(),
                 ModBlocks.LARGE_BOILER.getKey(),
@@ -78,8 +86,7 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.REACTOR_CORE_1X1.getKey(),
                 ModBlocks.REACTOR_CORE_2X2.getKey(),
                 ModBlocks.TUNGSTENSTEEL_WALL.getKey(),
-                ModBlocks.STAINLESS_STEEL_WALL.getKey(),
-                ModBlocks.LARGE_IRIDIUM_COIL.getKey());
+                ModBlocks.STAINLESS_STEEL_WALL.getKey());
         stone.add(ModBlocks.BRONZE_CRUSHER.getKey());
         stone.add(ModBlocks.GT_SMALL_ORE.getKey());
         stone.add(ModBlocks.GT_HOSTED_ORE.getKey());
@@ -242,6 +249,7 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         var largeWalls = tag(ModBlockTags.LARGE_CRUCIBLE_WALLS);
         ModBlocks.mteInPlaceBlocksById().values().forEach(holder -> {
             var spec = holder.get().spec();
+            pickaxe.add(holder.getKey());
             if (LargeCrucibleHosts.isController(spec)) {
                 largeControllers.add(holder.getKey());
             }

@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-electrolyzer",
+  "title": "Large Electrolyzer 17103",
+  "maturity": "frozen",
+  "workflow": "paused",
+  "survival_access": "partial",
+  "owned_paths": [
+    "docs/history/card-plans/closed/大型电解机详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeElectrolyzerBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/ElectrolyzerParts.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeElectrolyzerBlockEntity.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/large_electrolyzer.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_electrolyzer_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/large_electrolyzer/**",
+    "src/main/resources/data/cruciblecraft_wave_machines_large_electrolyzer/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/LargeElectrolyzerGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/LargeElectrolyzerProfileTest.java",
+    "tools/capabilities/machines/large-electrolyzer/**",
+    "tools/waves/machines/large-electrolyzer/**",
+    "tools/gt6_large_electrolyzer.py",
+    "tools/tests/test_large_electrolyzer.py"
+  ],
+  "depends_on": [
+    "machines/large-processing-parts",
+    "content/gt6-mte-multiblock-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/large-electrolyzer",
+  "player_signoff": null,
+  "required_test_ids": [
+    "controllerIsLive",
+    "bareControllerIsNotFormed",
+    "formedStructureBindsBottomInAndTopOut",
+    "survivalRecipeIsPresent"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large_electrolyzer:17103",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:large_electrolyzer"
+      ],
+      "reason": "GT6 MultiTileEntityElectrolyzer 17103. Not single-block Electrolyzer 20091-20095, not Electrolyzer Part 18105."
+    }
+  ],
+  "note": "3x3x2 of 18105. Bottom ONLY_ITEM_FLUID_ENERGY_IN, top ONLY_ITEM_FLUID_OUT, controller side-bottom facing out. EU 512/4096, efficiency 5000, parallel 16 duration, cheap overclock. Skip recipes whose live forms are missing. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready."
+}

@@ -31,7 +31,7 @@ public final class CoverPlacementEvents {
         if (!CoverInstall.tryPlace(
                 event.getLevel(),
                 event.getPos(),
-                event.getFace(),
+                event.getHitVec(),
                 stack,
                 event.getEntity())) {
             return;

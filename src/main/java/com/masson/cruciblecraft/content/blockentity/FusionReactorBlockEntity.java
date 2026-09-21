@@ -29,7 +29,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -42,7 +41,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * requirement; EU is pushed from the four electric interfaces.
  */
 public final class FusionReactorBlockEntity
-        extends BlockEntity implements IEnergyHandler {
+        extends MachineCoverHostBlockEntity implements IEnergyHandler {
     public static final long TIME_MINIMUM = 1L;
     public static final long TIME_MAXIMUM = 16_384L;
     public static final long EU_PACKET = 8_192L;
@@ -69,7 +68,8 @@ public final class FusionReactorBlockEntity
             setChanged();
         }
     };
-    private final ItemStackHandler items = new ItemStackHandler(1) {
+    private static final int OUTPUT_ITEM_SLOTS = 6;
+    private final ItemStackHandler items = new ItemStackHandler(OUTPUT_ITEM_SLOTS) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -84,7 +84,9 @@ public final class FusionReactorBlockEntity
     private long progress;
     private int duration;
     private long chargeRequirement;
+    private long outputEnergy;
     private ResourceLocation active;
+    private boolean stopped;
 
     public FusionReactorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FUSION_REACTOR.get(), pos, state);
@@ -95,6 +97,7 @@ public final class FusionReactorBlockEntity
             BlockPos pos,
             BlockState state,
             FusionReactorBlockEntity reactor) {
+        reactor.tickMountedCovers();
         if (!reactor.forceFormed) {
             if (!reactor.structureChecked
                     || level.getGameTime() % STRUCTURE_PERIOD == 0) {
@@ -106,7 +109,7 @@ public final class FusionReactorBlockEntity
                 reactor.updateFormed(ok);
             }
         }
-        if (reactor.formed()) {
+        if (reactor.formed() && !reactor.stopped) {
             if (reactor.time.stored() < reactor.time.capacity()) {
                 reactor.time.restore(reactor.time.stored() + 1L);
             }
@@ -121,8 +124,20 @@ public final class FusionReactorBlockEntity
         setChanged();
     }
 
+    public boolean stopped() {
+        return stopped;
+    }
+
+    public boolean toggleStopped() {
+        return setStateOnOff(stopped);
+    }
+
     public boolean formed() {
         return formed || forceFormed;
+    }
+
+    public void requestStructureCheck() {
+        structureChecked = false;
     }
 
     public void setCircuitForTest(ItemStack stack) {
@@ -130,6 +145,9 @@ public final class FusionReactorBlockEntity
     }
 
     public boolean fillInput(FluidStack stack) {
+        if (!acceptsInputFluid(stack)) {
+            return false;
+        }
         for (FluidTank tank : inputs) {
             if (tank.isEmpty() || FluidStack.isSameFluidSameComponents(
                     tank.getFluid(), stack)) {
@@ -163,8 +181,9 @@ public final class FusionReactorBlockEntity
         return chargeRequirement;
     }
 
-    public long progress() {
-        return progress;
+    @Override
+    public int progress() {
+        return (int) Math.min(Integer.MAX_VALUE, progress);
     }
 
     public IFluidHandler fluids(Direction side) {
@@ -191,7 +210,7 @@ public final class FusionReactorBlockEntity
             } else {
                 long tu = Math.min(TIME_MAXIMUM, time.stored());
                 if (tu >= TIME_MINIMUM) {
-                    if (recipe.eut() < 0L) {
+                    if (outputEnergy > 0L) {
                         emitElectric();
                     }
                     progress += tu;
@@ -235,6 +254,7 @@ public final class FusionReactorBlockEntity
         progress = 0L;
         duration = recipe.duration();
         chargeRequirement = Math.max(0L, recipe.specialValue());
+        outputEnergy = Math.max(0L, -recipe.eut());
         setChanged();
     }
 
@@ -253,6 +273,21 @@ public final class FusionReactorBlockEntity
                 .or(() -> ModRecipeMaps.FUSION_EXTENSION.entry(active))
                 .map(RecipeMap.Entry::recipe)
                 .orElse(null);
+    }
+
+    private boolean acceptsInputFluid(FluidStack stack) {
+        return stack != null
+                && !stack.isEmpty()
+                && (ModRecipeMaps.FUSION.hasFluidCandidate(stack.getFluid())
+                        || ModRecipeMaps.FUSION_EXTENSION.hasFluidCandidate(
+                                stack.getFluid()));
+    }
+
+    private boolean acceptsCircuit(ItemStack stack) {
+        return stack != null
+                && !stack.isEmpty()
+                && (ModRecipeMaps.FUSION.hasCandidate(stack)
+                        || ModRecipeMaps.FUSION_EXTENSION.hasCandidate(stack));
     }
 
     private List<ItemStack> itemInputs() {
@@ -293,14 +328,13 @@ public final class FusionReactorBlockEntity
     }
 
     private boolean commitOutputs(GTRecipe recipe, boolean simulate) {
-        for (FluidStack produced : recipe.fluidOutputs()) {
-            if (fillOutput(produced, true) != produced.getAmount()) {
-                return false;
-            }
+        if (!canFitFluidOutputs(recipe.fluidOutputs())
+                || recipe.itemOutputs().size() > OUTPUT_ITEM_SLOTS) {
+            return false;
         }
-        if (!recipe.itemOutputs().isEmpty()) {
+        for (int index = 0; index < recipe.itemOutputs().size(); index++) {
             ItemStack leftover = items.insertItem(
-                    0, recipe.itemOutputs().getFirst().copy(), true);
+                    index, recipe.itemOutputs().get(index).copy(), true);
             if (!leftover.isEmpty()) {
                 return false;
             }
@@ -311,8 +345,44 @@ public final class FusionReactorBlockEntity
         for (FluidStack produced : recipe.fluidOutputs()) {
             fillOutput(produced, false);
         }
-        if (!recipe.itemOutputs().isEmpty()) {
-            items.insertItem(0, recipe.itemOutputs().getFirst().copy(), false);
+        for (int index = 0; index < recipe.itemOutputs().size(); index++) {
+            items.insertItem(
+                    index, recipe.itemOutputs().get(index).copy(), false);
+        }
+        return true;
+    }
+
+    private boolean canFitFluidOutputs(List<FluidStack> producedFluids) {
+        FluidStack[] planned = new FluidStack[outputs.length];
+        int[] amounts = new int[outputs.length];
+        for (int index = 0; index < outputs.length; index++) {
+            FluidStack existing = outputs[index].getFluid();
+            planned[index] = existing.isEmpty()
+                    ? FluidStack.EMPTY
+                    : existing.copy();
+            amounts[index] = existing.getAmount();
+        }
+        for (FluidStack produced : producedFluids) {
+            int remaining = produced.getAmount();
+            for (int index = 0; index < planned.length && remaining > 0; index++) {
+                if (amounts[index] >= TANK_CAPACITY
+                        || (!planned[index].isEmpty()
+                                && !FluidStack.isSameFluidSameComponents(
+                                        planned[index], produced))) {
+                    continue;
+                }
+                int accepted = Math.min(
+                        remaining, TANK_CAPACITY - amounts[index]);
+                if (planned[index].isEmpty()) {
+                    planned[index] = produced.copy();
+                    planned[index].setAmount(accepted);
+                }
+                amounts[index] += accepted;
+                remaining -= accepted;
+            }
+            if (remaining > 0) {
+                return false;
+            }
         }
         return true;
     }
@@ -339,6 +409,7 @@ public final class FusionReactorBlockEntity
         progress = 0L;
         duration = 0;
         chargeRequirement = 0L;
+        outputEnergy = 0L;
     }
 
     private void updateFormed(boolean ok) {
@@ -397,7 +468,7 @@ public final class FusionReactorBlockEntity
     }
 
     private void emitElectric() {
-        if (level == null) {
+        if (level == null || outputEnergy <= 0L) {
             return;
         }
         for (Direction outward : ENERGY_OUT_ORDER) {
@@ -412,7 +483,7 @@ public final class FusionReactorBlockEntity
                         level,
                         pos,
                         EnergyType.ELECTRIC,
-                        EU_PACKET,
+                        outputEnergy,
                         1L,
                         outward)
                         > 0L) {
@@ -424,7 +495,7 @@ public final class FusionReactorBlockEntity
 
     @Override
     public boolean handles(EnergyType type, Direction side) {
-        if (!formed()) {
+        if (!formed() || stopped) {
             return false;
         }
         return type == EnergyType.TIME || type == EnergyType.LU;
@@ -437,7 +508,7 @@ public final class FusionReactorBlockEntity
             long amount,
             Direction side,
             boolean simulate) {
-        if (!formed() || amount <= 0L) {
+        if (!formed() || stopped || amount <= 0L) {
             return 0L;
         }
         long accepted = switch (type) {
@@ -502,6 +573,61 @@ public final class FusionReactorBlockEntity
     }
 
     @Override
+    public boolean hasFluidTanks() {
+        return true;
+    }
+
+    @Override
+    public boolean hasEnergyBuffer() {
+        return true;
+    }
+
+    @Override
+    public long energyStored() {
+        return time.stored();
+    }
+
+    @Override
+    public long energyCapacity() {
+        return time.capacity();
+    }
+
+    @Override
+    public int duration() {
+        return duration;
+    }
+
+    @Override
+    public boolean runningPossible() {
+        return formed();
+    }
+
+    @Override
+    public boolean runningActively() {
+        return formed() && !stopped && active != null;
+    }
+
+    @Override
+    public boolean switchableOnOff() {
+        return true;
+    }
+
+    @Override
+    public boolean getStateOnOff() {
+        return !stopped;
+    }
+
+    @Override
+    public boolean setStateOnOff(boolean on) {
+        if (stopped == !on) {
+            return on;
+        }
+        stopped = !on;
+        setChanged();
+        return !stopped;
+    }
+
+    @Override
     protected void saveAdditional(
             CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
@@ -511,6 +637,8 @@ public final class FusionReactorBlockEntity
         tag.putLong("gt.progress", progress);
         tag.putInt("gt.duration", duration);
         tag.putLong("gt.charge", chargeRequirement);
+        tag.putLong("gt.output_energy", outputEnergy);
+        tag.putBoolean("gt.stopped", stopped);
         if (active != null) {
             tag.putString("gt.active", active.toString());
         }
@@ -536,9 +664,17 @@ public final class FusionReactorBlockEntity
         progress = tag.getLong("gt.progress");
         duration = tag.getInt("gt.duration");
         chargeRequirement = tag.getLong("gt.charge");
+        outputEnergy = tag.getLong("gt.output_energy");
+        stopped = tag.getBoolean("gt.stopped");
         active = tag.contains("gt.active")
                 ? ResourceLocation.tryParse(tag.getString("gt.active"))
                 : null;
+        if (active != null && outputEnergy == 0L) {
+            GTRecipe restored = activeRecipe();
+            outputEnergy = restored == null
+                    ? 0L
+                    : Math.max(0L, -restored.eut());
+        }
         structureChecked = false;
         if (tag.contains("gt.circuit")) {
             circuit.deserializeNBT(registries, tag.getCompound("gt.circuit"));
@@ -601,7 +737,7 @@ public final class FusionReactorBlockEntity
     private final class FusionItems implements IItemHandler {
         @Override
         public int getSlots() {
-            return 2;
+            return 1 + OUTPUT_ITEM_SLOTS;
         }
 
         @Override
@@ -609,20 +745,22 @@ public final class FusionReactorBlockEntity
             if (slot == 0) {
                 return circuit.getStackInSlot(0);
             }
-            return slot == 1 ? items.getStackInSlot(0) : ItemStack.EMPTY;
+            return slot > 0 && slot <= OUTPUT_ITEM_SLOTS
+                    ? items.getStackInSlot(slot - 1)
+                    : ItemStack.EMPTY;
         }
 
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-            return slot == 0
+            return slot == 0 && acceptsCircuit(stack)
                     ? circuit.insertItem(0, stack, simulate)
                     : stack;
         }
 
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return slot == 1
-                    ? items.extractItem(0, amount, simulate)
+            return slot > 0 && slot <= OUTPUT_ITEM_SLOTS
+                    ? items.extractItem(slot - 1, amount, simulate)
                     : ItemStack.EMPTY;
         }
 
@@ -633,7 +771,7 @@ public final class FusionReactorBlockEntity
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return slot == 0 && !stack.isEmpty();
+            return slot == 0 && acceptsCircuit(stack);
         }
     }
 
@@ -661,12 +799,14 @@ public final class FusionReactorBlockEntity
 
         @Override
         public boolean isFluidValid(int tank, FluidStack stack) {
-            return tank >= 0 && tank < inputs.length && !stack.isEmpty();
+            return tank >= 0
+                    && tank < inputs.length
+                    && acceptsInputFluid(stack);
         }
 
         @Override
         public int fill(FluidStack resource, FluidAction action) {
-            if (resource.isEmpty()) {
+            if (!acceptsInputFluid(resource)) {
                 return 0;
             }
             for (FluidTank tank : inputs) {

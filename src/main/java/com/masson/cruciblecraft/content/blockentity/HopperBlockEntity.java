@@ -90,6 +90,11 @@ public final class HopperBlockEntity extends MachineCoverHostBlockEntity impleme
         return false;
     }
 
+    @Override
+    public boolean allowCover(Direction side) {
+        return side == Direction.UP;
+    }
+
     public HopperVariant variant() {
         return variant;
     }

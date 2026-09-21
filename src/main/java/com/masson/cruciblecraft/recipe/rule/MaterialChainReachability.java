@@ -40,7 +40,7 @@ public final class MaterialChainReachability {
                     definition.rule(),
                     materials,
                     registeredForms);
-            recipes.put(definition.rule().target().orElseThrow(), plans.size());
+            recipes.merge(definition.rule().target().orElseThrow(), plans.size(), Integer::sum);
             allPlans.addAll(plans);
             byproductOutputs += plans.stream().mapToInt(plan ->
                     Math.max(0, plan.itemOutputs().size() - 1)).sum();

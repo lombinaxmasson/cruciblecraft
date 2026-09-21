@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.machine.processing.MachineTierCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -40,6 +41,15 @@ public final class MachineBlockColor {
         java.util.Collections.addAll(blocks, ModBlocks.converterBlockArray());
         blocks.add(ModBlocks.ROTATIONAL_GEARBOX.get());
         blocks.add(ModBlocks.COKE_OVEN.get());
+        blocks.add(ModBlocks.LARGE_CENTRIFUGE.get());
+        blocks.add(ModBlocks.LARGE_MIXER.get());
+        blocks.add(ModBlocks.LARGE_ELECTROLYZER.get());
+        blocks.add(ModBlocks.LARGE_OVEN.get());
+        blocks.add(ModBlocks.LARGE_CRUSHER.get());
+        blocks.add(ModBlocks.LARGE_BATH.get());
+        blocks.add(ModBlocks.LARGE_COAGULATOR.get());
+        blocks.add(ModBlocks.LARGE_AUTOCLAVE.get());
+        blocks.add(ModBlocks.LARGE_FERMENTER.get());
         blocks.add(ModBlocks.LARGE_BOILER.get());
         blocks.add(ModBlocks.TANK_3X3X3.get());
         blocks.add(ModBlocks.MORTAR.get());
@@ -67,6 +77,32 @@ public final class MachineBlockColor {
         java.util.Collections.addAll(tinted, ModBlocks.coolerBlockArray());
         java.util.Collections.addAll(tinted, ModBlocks.fluxBlockArray());
         java.util.Collections.addAll(tinted, ModBlocks.gasTurbineBlockArray());
+        java.util.Collections.addAll(tinted, ModBlocks.largeDynamoBlockArray());
+        java.util.Collections.addAll(tinted, ModBlocks.lightningRodBlockArray());
+        java.util.Collections.addAll(tinted, ModBlocks.matterFabricatorBlockArray());
+        java.util.Collections.addAll(tinted, ModBlocks.vonDaGraaggBlockArray());
+        ModBlocks.mteInPlaceBlocksById().values().forEach(holder -> {
+            int meta = holder.get().spec().meta();
+            if (com.masson.cruciblecraft.content.multiblock.CoilHosts.isCoilMeta(meta)
+                    || meta == com.masson.cruciblecraft.content.multiblock.CoilHosts
+                            .LIGHTNING_ROD_PART_META) {
+                tinted.add(holder.get());
+            }
+        });
+        for (var profile : com.masson.cruciblecraft.energy.steam
+                .SteamTurbineCatalog.profiles()) {
+            var block = ModBlocks.mteInPlaceBlocksById().get(profile.id());
+            if (block != null) {
+                tinted.add(block.get());
+            }
+        }
+        for (var profile : com.masson.cruciblecraft.energy.largegasturbine
+                .LargeGasTurbineCatalog.profiles()) {
+            var wall = ModBlocks.mteInPlaceBlocksById().get(profile.wallId());
+            if (wall != null) {
+                tinted.add(wall.get());
+            }
+        }
         return tinted.toArray(Block[]::new);
     }
 
@@ -90,6 +126,11 @@ public final class MachineBlockColor {
 
     /** GT6 loader casing material identity for the machine texture family. */
     public static String casingMaterialId(String path) {
+        var steam = com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog.find(
+                ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, path));
+        if (steam.isPresent()) {
+            return steam.get().casingMaterial();
+        }
         var transformer = EnergyTransformerTierCatalog.findByPath(path);
         if (transformer != null) {
             return transformer.material();
@@ -126,13 +167,32 @@ public final class MachineBlockColor {
                 return path.substring(0, slash);
             }
         }
+        String wallTint = com.masson.cruciblecraft.energy.largegasturbine
+                .LargeTurbineWalls.tintMaterial(path);
+        if (wallTint != null) {
+            return wallTint;
+        }
+        String coilTint = com.masson.cruciblecraft.content.multiblock.CoilHosts
+                .tintMaterial(path);
+        if (coilTint != null) {
+            return coilTint;
+        }
         return switch (path) {
             case "fusion_reactor" -> "steel_galvanized";
             case "large_heat_exchanger" -> "tungsten";
             case "bedrock_drill", "bedrock_drill_head" -> "titanium";
             case "reactor_core_1x1", "reactor_core_2x2" -> "lead";
             case "laser_engraver" -> "steel_galvanized";
-            case "bath" -> "stainless_steel";
+            case "large_oven" -> "invar";
+            case "bath",
+                    "large_electrolyzer",
+                    "large_mixer",
+                    "large_centrifuge",
+                    "large_bath",
+                    "large_coagulator",
+                    "large_autoclave",
+                    "large_fermenter" -> "stainless_steel";
+            case "large_crusher" -> "tungstensteel";
             default -> {
                 for (var profile : com.masson.cruciblecraft.energy.cooler
                         .CoolerCatalog.profiles()) {

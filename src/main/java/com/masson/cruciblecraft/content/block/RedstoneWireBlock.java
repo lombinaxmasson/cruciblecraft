@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.content.blockentity.RedstoneWireBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.content.redstonewire.RedstoneWireCovers;
 import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverPlacement;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -109,7 +110,9 @@ public final class RedstoneWireBlock extends Block
                 return pryCover(context);
             }
             if (RedstoneWireCovers.onTool(
-                    wire, context.getClickedFace(), action)) {
+                    wire,
+                    CoverPlacement.interactSide(wire, ToolClick.hit(context)),
+                    action)) {
                 if (!level.isClientSide) {
                     ToolClick.hurt(context);
                 }
@@ -142,8 +145,7 @@ public final class RedstoneWireBlock extends Block
         if (tool.consumesAction()) {
             return tool;
         }
-        if (RedstoneWireCovers.tryInstall(
-                level, pos, hit.getDirection(), stack, player)) {
+        if (RedstoneWireCovers.tryInstall(level, pos, hit, stack, player)) {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         if (level.getBlockEntity(pos) instanceof RedstoneWireBlockEntity wire
@@ -180,7 +182,7 @@ public final class RedstoneWireBlock extends Block
             BlockPos pos,
             CollisionContext context) {
         return Gt6StyleConnections.interactionShape(
-                state, context, connectedShape(state));
+                state, context, connectedShape(state), level.getBlockEntity(pos));
     }
 
     @Override
@@ -368,7 +370,8 @@ public final class RedstoneWireBlock extends Block
         if (!(level.getBlockEntity(pos) instanceof RedstoneWireBlockEntity wire)) {
             return ToolResult.PASS;
         }
-        Direction side = context.getClickedFace();
+        Direction side = CoverPlacement.interactSide(
+                wire, ToolClick.hit(context));
         if (level.isClientSide) {
             return wire.covers().get(side).isPresent()
                     ? ToolResult.SUCCESS

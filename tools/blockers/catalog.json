@@ -1223,23 +1223,18 @@
         "tools/capabilities/worldgen/gt-trees/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "semantic_key": "fluid:FL.Resin_Rubber",
-          "slug": "worldgen/gt-trees"
-        }
-      ],
+      "claimed_by": [],
       "count": 1,
       "discovered_by": "worldgen/gt-trees",
       "id": "fluid/resin-rubber",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Latex is not a stand-in. Rubber hole still harvests rubber_resin.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "FL.Resin_Rubber is cruciblecraft:rubber_tree_sap. Latex is not a stand-in. Rubber hole harvests rubber_resin and 250 mB sap.",
+      "planning_bucket": "not_work",
+      "resolved_by": "worldgen/gt-trees",
       "root_cause": "missing_resin_rubber_fluid",
       "root_cause_class": "missing_fluid",
-      "status": "open",
+      "status": "resolved",
       "title": "FL.Resin_Rubber 缺失",
       "unit": "fluids"
     },

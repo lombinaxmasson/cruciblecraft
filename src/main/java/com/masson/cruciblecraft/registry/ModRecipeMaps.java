@@ -62,6 +62,7 @@ public final class ModRecipeMaps {
     public static final RecipeMap AUTOCLAVE = create("autoclave");
     public static final RecipeMap DRYING = create("drying");
     public static final RecipeMap COMPRESSOR = create("compressor");
+    public static final RecipeMap IMPLOSION_COMPRESSOR = create("implosion_compressor");
     public static final RecipeMap GENERIFIER = create("generifier");
     public static final RecipeMap ROASTER = create("roaster");
     public static final RecipeMap COAGULATOR = create("coagulator");
@@ -89,6 +90,7 @@ public final class ModRecipeMaps {
     public static final RecipeMap CRYO_MIXER = create("cryo_mixer");
     public static final RecipeMap POLARIZER = create("polarizer");
     public static final RecipeMap MAGNETIC_SEPARATOR = create("magnetic_separator");
+    public static final RecipeMap FERMENTER = create("fermenter");
 
     public static final List<RecipeMap> ALL = List.of(
             COKE_OVEN,
@@ -133,6 +135,7 @@ public final class ModRecipeMaps {
             AUTOCLAVE,
             DRYING,
             COMPRESSOR,
+            IMPLOSION_COMPRESSOR,
             GENERIFIER,
             ROASTER,
             COAGULATOR,
@@ -159,7 +162,8 @@ public final class ModRecipeMaps {
             FREEZER,
             CRYO_MIXER,
             POLARIZER,
-            MAGNETIC_SEPARATOR);
+            MAGNETIC_SEPARATOR,
+            FERMENTER);
 
     private ModRecipeMaps() {}
 

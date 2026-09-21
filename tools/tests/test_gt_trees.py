@@ -63,11 +63,11 @@ class GtTreesPrepTest(unittest.TestCase):
         holes = census.load_json(trees.WAVE / "tree_holes.json")
         blocked = census.load_json(trees.WAVE / "blocked.json")
         by_id = {row["source_id"]: row for row in holes["holes"]}
-        self.assertEqual("explicitly_blocked", by_id[32762]["fluid_status"])
+        self.assertEqual("new_distinct", by_id[32762]["fluid_status"])
         self.assertEqual("explicitly_blocked", by_id[32761]["fluid_status"])
         self.assertEqual("reuse_canonical", by_id[32760]["fluid_status"])
         self.assertEqual("cruciblecraft:rainbow_sap", by_id[32760]["cc_fluid"])
-        self.assertEqual("", by_id[32762]["cc_fluid"])
+        self.assertEqual("cruciblecraft:rubber_tree_sap", by_id[32762]["cc_fluid"])
         self.assertIn("latex is not a stand-in", by_id[32762]["fluid_reason"])
         reasons = str(blocked)
         self.assertIn("slime_ball_to_rubber_plate", reasons)

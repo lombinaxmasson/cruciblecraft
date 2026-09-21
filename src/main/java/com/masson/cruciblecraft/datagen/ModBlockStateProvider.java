@@ -4,6 +4,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.block.DistillationTowerParts;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
+import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.AutomaticHammerBlock;
@@ -120,6 +121,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
         configuredMachine(
                 "large_centrifuge", ModBlocks.LARGE_CENTRIFUGE.get());
         configuredMachine(
+                "large_mixer", ModBlocks.LARGE_MIXER.get());
+        configuredMachine(
+                "large_electrolyzer", ModBlocks.LARGE_ELECTROLYZER.get());
+        largeOven();
+        configuredMachine(
+                "large_crusher", ModBlocks.LARGE_CRUSHER.get());
+        configuredMachine(
+                "large_bath", ModBlocks.LARGE_BATH.get());
+        configuredMachine(
+                "large_coagulator", ModBlocks.LARGE_COAGULATOR.get());
+        configuredMachine(
+                "large_autoclave", ModBlocks.LARGE_AUTOCLAVE.get());
+        largeFermenter();
+        configuredMachine(
                 "distillation_tower", ModBlocks.DISTILLATION_TOWER.get());
         configuredMachine(
                 "cryo_distillation_tower",
@@ -154,9 +169,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(
                 ModBlocks.STAINLESS_STEEL_WALL.get(),
                 logisticsPartModel("stainless_steel_wall"));
-        simpleBlockWithItem(
-                ModBlocks.LARGE_IRIDIUM_COIL.get(),
-                logisticsPartModel("large_iridium_coil"));
         simpleBlockWithItem(
                 ModBlocks.VENTILATION_UNIT.get(),
                 logisticsPartModel("ventilation_unit"));
@@ -1757,6 +1769,68 @@ public class ModBlockStateProvider extends BlockStateProvider {
         });
         itemModels().getBuilder("item/multiblock/heat_transmitter")
                 .parent(model);
+    }
+
+    private void largeOven() {
+        String base = "block/machine/large_oven";
+        ModelFile idle = ovenLayer(base, "large_oven", "overlay");
+        ModelFile active = ovenLayer(base, "large_oven_active", "overlay_active");
+        ModelFile running = ovenLayer(base, "large_oven_running", "overlay_running");
+        getVariantBuilder(ModBlocks.LARGE_OVEN.get()).forAllStates(state -> {
+            Direction facing = state.getValue(
+                    com.masson.cruciblecraft.content.block.ProcessingMachineBlock.FACING);
+            boolean lit = state.getValue(
+                    com.masson.cruciblecraft.content.block.LargeOvenBlock.LIT);
+            boolean working = state.getValue(
+                    com.masson.cruciblecraft.content.block.LargeOvenBlock.RUNNING);
+            ModelFile model = working ? running : lit ? active : idle;
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
+                    .build();
+        });
+        itemModels().getBuilder("item/large_oven").parent(idle);
+    }
+
+    private void largeFermenter() {
+        String base = "block/machine/large_fermenter";
+        ModelFile idle = ovenLayer(base, "large_fermenter", "overlay");
+        ModelFile active = ovenLayer(
+                base, "large_fermenter_active", "overlay_active");
+        ModelFile running = ovenLayer(
+                base, "large_fermenter_running", "overlay_running");
+        getVariantBuilder(ModBlocks.LARGE_FERMENTER.get()).forAllStates(state -> {
+            Direction facing = state.getValue(ProcessingMachineBlock.FACING);
+            boolean powered = state.getValue(
+                    com.masson.cruciblecraft.content.block.LargeFermenterBlock.LIT);
+            boolean processing = state.getValue(
+                    com.masson.cruciblecraft.content.block.LargeFermenterBlock.RUNNING);
+            // GT6 getTexture2: mActive -> overlay_active, else mRunning -> overlay_running.
+            ModelFile model = processing ? active : powered ? running : idle;
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
+                    .build();
+        });
+        itemModels().getBuilder("item/large_fermenter").parent(active);
+    }
+
+    private ModelFile ovenLayer(String base, String name, String overlay) {
+        return models()
+                .withExistingParent(name, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/right"))
+                .texture("bot_east", modLoc(base + "/colored/left"))
+                .texture("top_down", modLoc(base + "/" + overlay + "/bottom"))
+                .texture("top_up", modLoc(base + "/" + overlay + "/top"))
+                .texture("top_north", modLoc(base + "/" + overlay + "/front"))
+                .texture("top_south", modLoc(base + "/" + overlay + "/back"))
+                .texture("top_west", modLoc(base + "/" + overlay + "/right"))
+                .texture("top_east", modLoc(base + "/" + overlay + "/left"));
     }
 
     private void configuredMachine(String id, net.minecraft.world.level.block.Block block) {

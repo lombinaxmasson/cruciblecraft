@@ -1,0 +1,22 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "!material.tag(\"ATOMIC.ANTIMATTER\")",
+    "has_registered_for(\"processing_target:pulver\", small_dust)"
+  ],
+  "duration": "16 * prefix_units(rock) * (1 + material.tool.quality) / prefix_units(ingot)",
+  "eut": "16",
+  "item_inputs": [
+    {
+      "prefix": "cruciblecraft:rock"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "prefix_units(rock) * target_units(pulver) / prefix_units(ingot) / prefix_units(small_dust)",
+      "material_selector": "processing_target:pulver",
+      "prefix": "cruciblecraft:small_dust"
+    }
+  ],
+  "target": "cruciblecraft:anvil"
+}

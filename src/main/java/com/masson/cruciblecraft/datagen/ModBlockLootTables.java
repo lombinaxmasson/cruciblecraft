@@ -45,6 +45,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get());
         dropSelf(ModBlocks.MULTIBLOCK_FLUID_OUT_PORT.get());
         dropSelf(ModBlocks.LARGE_CENTRIFUGE.get());
+        dropSelf(ModBlocks.LARGE_MIXER.get());
+        dropSelf(ModBlocks.LARGE_ELECTROLYZER.get());
+        dropSelf(ModBlocks.LARGE_OVEN.get());
+        dropSelf(ModBlocks.LARGE_CRUSHER.get());
+        dropSelf(ModBlocks.LARGE_BATH.get());
+        dropSelf(ModBlocks.LARGE_COAGULATOR.get());
+        dropSelf(ModBlocks.LARGE_AUTOCLAVE.get());
+        dropSelf(ModBlocks.LARGE_FERMENTER.get());
         dropSelf(ModBlocks.DISTILLATION_TOWER.get());
         dropSelf(ModBlocks.CRYO_DISTILLATION_TOWER.get());
         dropSelf(ModBlocks.LARGE_BOILER.get());
@@ -107,7 +115,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.REACTOR_CORE_2X2.get());
         dropSelf(ModBlocks.TUNGSTENSTEEL_WALL.get());
         dropSelf(ModBlocks.STAINLESS_STEEL_WALL.get());
-        dropSelf(ModBlocks.LARGE_IRIDIUM_COIL.get());
         for (var species : com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.ALL) {
             dropSelf(ModBlocks.treeSapling(species).get());
             dropSelf(ModBlocks.treeLog(species).get());
@@ -242,6 +249,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get(),
                 ModBlocks.MULTIBLOCK_FLUID_OUT_PORT.get(),
                 ModBlocks.LARGE_CENTRIFUGE.get(),
+                ModBlocks.LARGE_MIXER.get(),
+                ModBlocks.LARGE_ELECTROLYZER.get(),
+                ModBlocks.LARGE_OVEN.get(),
+                ModBlocks.LARGE_CRUSHER.get(),
+                ModBlocks.LARGE_BATH.get(),
+                ModBlocks.LARGE_COAGULATOR.get(),
+                ModBlocks.LARGE_AUTOCLAVE.get(),
+                ModBlocks.LARGE_FERMENTER.get(),
                 ModBlocks.DISTILLATION_TOWER.get(),
                 ModBlocks.CRYO_DISTILLATION_TOWER.get(),
                 ModBlocks.LARGE_BOILER.get(),
@@ -272,8 +287,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.REACTOR_CORE_1X1.get(),
                 ModBlocks.REACTOR_CORE_2X2.get(),
                 ModBlocks.TUNGSTENSTEEL_WALL.get(),
-                ModBlocks.STAINLESS_STEEL_WALL.get(),
-                ModBlocks.LARGE_IRIDIUM_COIL.get());
+                ModBlocks.STAINLESS_STEEL_WALL.get());
         ModBlocks.converterBlocksById().forEach((id, holder) -> {
             if (!HANDWRITTEN_CONVERTER_LOOT.contains(id.getPath())) {
                 blocks.add(holder.get());

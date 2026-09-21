@@ -26,9 +26,12 @@ import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -259,6 +262,13 @@ public final class FusionPlasmaGameTests {
         helper.assertTrue(
                 FusionStructure.hatchCounts().matchesGt6Modes(),
                 "Fusion wall I/O modes drifted from GT6 ONLY_ENERGY_IN/OUT/ITEM_FLUID");
+        MteInPlaceGameTestSupport.assertLive(
+                helper,
+                "multiblock/large_iridium_coil",
+                com.masson.cruciblecraft.content.mte.MteInPlaceKind.MULTIBLOCK_PART);
+        helper.assertTrue(
+                FusionStructure.IRIDIUM_COILS == 144,
+                "Fusion iridium coil count drifted from 144");
         helper.succeed();
     }
 
@@ -316,6 +326,74 @@ public final class FusionPlasmaGameTests {
                 reactor.stored(EnergyType.TIME) == 8192L
                         && reactor.stored(EnergyType.LU) == 0L,
                 "TU buffer did not persist; LU must not accumulate as a second tank");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void fusionCapabilitiesRejectUnknownInputs(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.FUSION_REACTOR.get().defaultBlockState()
+                        .setValue(FusionReactorBlock.FACING, Direction.NORTH));
+        FusionReactorBlockEntity reactor = helper.getBlockEntity(pos);
+        reactor.forceFormedForTest();
+
+        IFluidHandler fluids = reactor.fluids(Direction.NORTH);
+        helper.assertTrue(fluids != null, "Formed fusion reactor lacks fluid IO");
+        helper.assertTrue(
+                fluids.fill(
+                        new FluidStack(Fluids.WATER, 1_000),
+                        IFluidHandler.FluidAction.EXECUTE) == 0,
+                "Fusion reactor accepted a fluid absent from both fusion maps");
+
+        IItemHandler items = reactor.items(Direction.NORTH);
+        helper.assertTrue(items != null, "Formed fusion reactor lacks item IO");
+        ItemStack leftover = items.insertItem(
+                0, new ItemStack(Items.STONE), false);
+        helper.assertTrue(
+                leftover.getCount() == 1,
+                "Fusion circuit slot accepted a non-circuit item");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void stoppedFusionRejectsEnergyAndDoesNotTick(
+            GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.FUSION_REACTOR.get().defaultBlockState()
+                        .setValue(FusionReactorBlock.FACING, Direction.NORTH));
+        FusionReactorBlockEntity reactor = helper.getBlockEntity(pos);
+        reactor.forceFormedForTest();
+        helper.assertTrue(
+                !reactor.setStateOnOff(false) && reactor.stopped(),
+                "Fusion reactor did not enter stopped state");
+        helper.assertTrue(
+                reactor.insert(
+                                EnergyType.TIME,
+                                32L,
+                                1L,
+                                Direction.NORTH,
+                                false) == 0L,
+                "Stopped fusion reactor accepted TU");
+        FusionReactorBlockEntity.serverTick(
+                helper.getLevel(), pos, helper.getBlockState(pos), reactor);
+        helper.assertTrue(
+                reactor.stored(EnergyType.TIME) == 0L,
+                "Stopped fusion reactor generated TU");
+        helper.assertTrue(
+                reactor.setStateOnOff(true) && !reactor.stopped(),
+                "Fusion reactor did not restart");
+        helper.assertTrue(
+                reactor.insert(
+                                EnergyType.TIME,
+                                32L,
+                                1L,
+                                Direction.NORTH,
+                                false) == 1L,
+                "Restarted fusion reactor rejected TU");
         helper.succeed();
     }
 

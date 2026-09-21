@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-fermenter",
+  "title": "Large Fermenter 17113",
+  "maturity": "frozen",
+  "workflow": "paused",
+  "survival_access": "partial",
+  "owned_paths": [
+    "docs/history/card-plans/closed/大型发酵器详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeFermenterBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeFermenterBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeFermenterAutoOutput.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/large_fermenter.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_fermenter_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/large_fermenter/**",
+    "src/main/resources/data/cruciblecraft/recipe/fermenter/**",
+    "src/main/resources/data/cruciblecraft_wave_machines_large_fermenter/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/LargeFermenterGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/LargeFermenterProfileTest.java",
+    "tools/capabilities/machines/large-fermenter/**",
+    "tools/waves/machines/large-fermenter/**",
+    "tools/gt6_large_fermenter.py",
+    "tools/tests/test_large_fermenter.py"
+  ],
+  "depends_on": [
+    "machines/large-processing-parts",
+    "content/gt6-mte-multiblock-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/large-fermenter",
+  "player_signoff": null,
+  "required_test_ids": [
+    "controllerIsLive",
+    "bareControllerIsNotFormed",
+    "formedStructureBindsWallsAndHeat",
+    "survivalRecipeIsPresent"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large_fermenter:17113",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:large_fermenter"
+      ],
+      "reason": "GT6 MultiTileEntityFermenter 17113. Not single-block Fermenter 22003, not stainless wall 18002, not heat transmitter 18101."
+    }
+  ],
+  "note": "5x5x3: y-1 18101 ENERGY_IN, y0/y+1 18002 ITEM_FLUID, controller side-middle facing out. HU 1/512/4096, efficiency 10000, parallel 256 duration, cheap overclock. Auto-out offset 5: fluids Y, items Y+1. Chem.java biomass 40 to methane 8 only. No 6435 dump. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready."
+}

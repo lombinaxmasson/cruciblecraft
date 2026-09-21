@@ -1,0 +1,79 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-processing-parts",
+  "title": "Large processing multiblock parts and maps",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "blocked",
+  "owned_paths": [
+    "docs/history/card-plans/closed/大型加工多方块零件与配方图详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+    "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+    "src/main/resources/data/cruciblecraft/mte_inplace_acquisition.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_processing_parts_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/electrolyzer_part.png",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/crusher_wheels.png",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/shredder_blades.png",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_electrolyzer_part.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_crusher_wheels.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_shredder_blades.json",
+    "src/main/resources/assets/cruciblecraft/blockstates/multiblock/electrolyzer_part.json",
+    "src/main/resources/assets/cruciblecraft/blockstates/multiblock/crusher_wheels.json",
+    "src/main/resources/assets/cruciblecraft/blockstates/multiblock/shredder_blades.json",
+    "src/main/resources/assets/cruciblecraft/models/item/multiblock/electrolyzer_part.json",
+    "src/main/resources/assets/cruciblecraft/models/item/multiblock/crusher_wheels.json",
+    "src/main/resources/assets/cruciblecraft/models/item/multiblock/shredder_blades.json",
+    "src/main/resources/data/cruciblecraft/loot_table/blocks/multiblock/electrolyzer_part.json",
+    "src/main/resources/data/cruciblecraft/loot_table/blocks/multiblock/crusher_wheels.json",
+    "src/main/resources/data/cruciblecraft/loot_table/blocks/multiblock/shredder_blades.json",
+    "src/generated/resources/data/cruciblecraft/recipe/multiblock/electrolyzer_part.json",
+    "src/generated/resources/data/cruciblecraft/recipe/multiblock/crusher_wheels.json",
+    "src/generated/resources/data/cruciblecraft/recipe/multiblock/shredder_blades.json",
+    "src/main/resources/data/cruciblecraft_wave_machines_large_processing_parts/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/LargeProcessingPartsGameTests.java",
+    "tools/capabilities/machines/large-processing-parts/**",
+    "tools/waves/machines/large-processing-parts/**",
+    "tools/gt6_large_processing_parts.py",
+    "tools/tests/test_large_processing_parts.py"
+  ],
+  "depends_on": [
+    "content/gt6-mte-multiblock-runtime",
+    "content/technological-parts-foundation"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/large-processing-parts",
+  "player_signoff": null,
+  "required_test_ids": [
+    "specializedProcessingPartsAreLive",
+    "fermenterAndImplosionMapsExist"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "mte:multiblock:electrolyzer-part-18105",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:multiblock/electrolyzer_part"
+      ],
+      "reason": "GT6 Electrolyzer Part 18105. Not stainless wall 18002, not Large Electrolyzer 17103."
+    },
+    {
+      "semantic_key": "mte:multiblock:crusher-wheels-18107",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:multiblock/crusher_wheels"
+      ],
+      "reason": "GT6 Crusher Wheels 18107. Not tungstensteel wall 18003, not Large Crusher 17108."
+    },
+    {
+      "semantic_key": "mte:multiblock:shredder-blades-18108",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:multiblock/shredder_blades"
+      ],
+      "reason": "GT6 Shredder Blades 18108. Not Crusher Wheels 18107, not Large Shredder 17109."
+    }
+  ],
+  "note": "Census plus missing specialized parts and RecipeMaps so later large-processing host cards do not record blocked.md for missing parts, maps, or D0 grids. No host formation. No GT6U. No process-dump publication. No stand-in ingredients. No placeholder art. No ItemEntity worldgen obtain. Close at runtime_ready when census later_host_would_block is false."
+}

@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.content.blockentity;
 
 import com.masson.cruciblecraft.content.block.BookshelfBlock;
+import com.masson.cruciblecraft.content.block.StorageHostBlock;
 import com.masson.cruciblecraft.content.menu.StorageMenu;
 import com.masson.cruciblecraft.content.storage.StorageClientSync;
 import com.masson.cruciblecraft.content.storage.StorageFilters;
@@ -27,7 +28,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-public final class BookshelfBlockEntity extends BlockEntity implements MenuProvider {
+public final class BookshelfBlockEntity extends MachineCoverHostBlockEntity
+        implements MenuProvider {
     private final StorageVariant variant;
     private final ItemStackHandler inventory;
 
@@ -121,6 +123,11 @@ public final class BookshelfBlockEntity extends BlockEntity implements MenuProvi
     }
 
     @Override
+    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
+        loadAdditional(tag, registries);
+    }
+
+    @Override
     public Component getDisplayName() {
         return Component.translatable("container.cruciblecraft.bookshelf");
     }
@@ -144,6 +151,25 @@ public final class BookshelfBlockEntity extends BlockEntity implements MenuProvi
         if (tag.contains("inventory")) {
             inventory.deserializeNBT(registries, tag.getCompound("inventory"));
         }
+    }
+
+    @Override
+    public boolean allowCover(Direction side) {
+        Direction facing = getBlockState().getValue(StorageHostBlock.FACING);
+        return side.getAxis() != facing.getAxis();
+    }
+
+    @Override
+    public boolean hasEnergyBuffer() {
+        return false;
+    }
+
+    public static void serverTick(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            BookshelfBlockEntity shelf) {
+        shelf.tickCovers();
     }
 
     private static StorageVariant variantOf(BlockState state) {

@@ -57,4 +57,20 @@ sourceSets {
     recipeLoadBenchmark {
         java.srcDir('src/recipeLoadBenchmark/java')
     }
+    crops {
+        java.srcDir('src/addons/crops/java')
+        resources.srcDir('src/addons/crops/resources')
+        compileClasspath += sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.runtimeClasspath
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+    foods {
+        java.srcDir('src/addons/foods/java')
+        resources.srcDir('src/addons/foods/resources')
+        compileClasspath += sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.runtimeClasspath
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
 }

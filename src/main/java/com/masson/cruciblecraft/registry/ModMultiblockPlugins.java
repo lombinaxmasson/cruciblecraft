@@ -33,6 +33,37 @@ public final class ModMultiblockPlugins {
     public static final List<ResourceLocation> LARGE_CENTRIFUGE_PLUGINS =
             List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
 
+    /** Plugin set persisted and resolved by the large mixer controller. */
+    public static final List<ResourceLocation> LARGE_MIXER_PLUGINS =
+            List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
+
+    /** Plugin set persisted and resolved by the large electrolyzer
+     * controller. */
+    public static final List<ResourceLocation> LARGE_ELECTROLYZER_PLUGINS =
+            List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
+
+    /** Plugin set persisted and resolved by the large electric oven. */
+    public static final List<ResourceLocation> LARGE_OVEN_PLUGINS =
+            List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
+
+    /** Plugin set persisted and resolved by the large crusher controller. */
+    public static final List<ResourceLocation> LARGE_CRUSHER_PLUGINS =
+            List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
+
+    /** Plugin set persisted and resolved by the large bathing vat. */
+    public static final List<ResourceLocation> LARGE_BATH_PLUGINS =
+            List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
+
+    /** Plugin set persisted and resolved by the large coagulator. */
+    public static final List<ResourceLocation> LARGE_COAGULATOR_PLUGINS =
+            List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
+
+    public static final List<ResourceLocation> LARGE_AUTOCLAVE_PLUGINS =
+            List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
+
+    public static final List<ResourceLocation> LARGE_FERMENTER_PLUGINS =
+            List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
+
     /** Plugin set persisted and resolved by the distillation tower
      * controller — the second real processing_host consumer. */
     public static final List<ResourceLocation>

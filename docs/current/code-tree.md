@@ -9,6 +9,7 @@ Minecraft 运行实例或缓存，不要整理、删除或链接它们。
 | --- | --- |
 | `src/main/java/com/masson/cruciblecraft/` | 运行时 Java |
 | `src/main/resources/` | 手写数据与资源 |
+| `src/addons/crops/` `src/addons/foods/` | 可选作物 / 食物附属（独立 jar） |
 | `src/test/java/` | JUnit |
 | `tools/waves/<slug>/` | 波次输入、production lock、census |
 | `tools/tests/` 且列入 `python_test_policy.json` 的 `active_test_modules` | 现行 Python 测试 |

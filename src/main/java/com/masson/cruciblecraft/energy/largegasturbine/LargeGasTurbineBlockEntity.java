@@ -1,10 +1,14 @@
 package com.masson.cruciblecraft.energy.largegasturbine;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.blockentity.MachineCoverHostBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.drive.RotationEngineConversion;
@@ -24,9 +28,10 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -36,7 +41,7 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
  * GT6 {@code MultiTileEntityLargeTurbineGas}: FM.Gas → HU capacitor → RU
  * from the far wall. Controller itself does not accept HU.
  */
-public final class LargeGasTurbineBlockEntity extends BlockEntity
+public final class LargeGasTurbineBlockEntity extends MachineCoverHostBlockEntity
         implements IEnergyHandler {
     private static final int OUTPUT_TANKS = 3;
 
@@ -45,8 +50,11 @@ public final class LargeGasTurbineBlockEntity extends BlockEntity
     private final FluidTank[] outputs = new FluidTank[OUTPUT_TANKS];
     private final IFluidHandler inputView = new InputHandler();
     private final IFluidHandler outputView = new OutputHandler();
+    private final IFluidHandler ioView = new IoHandler();
+    private final Set<BlockPos> boundHatches = new LinkedHashSet<>();
     private long storedHu;
     private boolean formed;
+    private boolean running;
     private boolean stopped;
     private GTRecipe lastRecipe;
     private boolean clientSyncPending;
@@ -78,6 +86,10 @@ public final class LargeGasTurbineBlockEntity extends BlockEntity
 
     public boolean formed() {
         return formed;
+    }
+
+    public boolean running() {
+        return running;
     }
 
     public boolean stopped() {
@@ -143,13 +155,163 @@ public final class LargeGasTurbineBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             LargeGasTurbineBlockEntity turbine) {
+        turbine.tickMountedCovers();
         Direction facing = state.getValue(MteInPlaceBlock.FACING);
-        turbine.formed = SteamTurbineStructure.check(
-                level, pos, facing, turbine.profile.wallId());
-        if (turbine.formed) {
-            turbine.doConversion(facing);
+        if (!SteamTurbineStructure.aabbLoaded(level, pos, facing)) {
+            if (turbine.formed) {
+                turbine.doConversion(facing);
+                turbine.refreshRunning();
+            }
+            turbine.flushClientSync(level.getGameTime());
+            return;
         }
+        boolean ok = SteamTurbineStructure.check(
+                level, pos, facing, turbine.profile.wallId());
+        if (ok) {
+            boolean wasFormed = turbine.formed;
+            turbine.formed = true;
+            turbine.bindHatches(facing);
+            turbine.doConversion(facing);
+            if (!wasFormed) {
+                turbine.markVisualMutation();
+            }
+        } else if (turbine.formed) {
+            turbine.formed = false;
+            turbine.running = false;
+            turbine.unbindHatches();
+            turbine.markVisualMutation();
+        } else {
+            turbine.unbindHatches();
+        }
+        turbine.refreshRunning();
         turbine.flushClientSync(level.getGameTime());
+    }
+
+    public static void clientTick(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            LargeGasTurbineBlockEntity turbine) {
+        if (!turbine.running || level.random.nextInt(20) != 0) {
+            return;
+        }
+        level.playLocalSound(
+                pos.getX() + 0.5,
+                pos.getY() + 0.5,
+                pos.getZ() + 0.5,
+                SoundEvents.MINECART_RIDING,
+                SoundSource.BLOCKS,
+                1.0F,
+                1.0F,
+                false);
+    }
+
+    @Override
+    public void setRemoved() {
+        unbindHatches();
+        super.setRemoved();
+    }
+
+    private void bindHatches(Direction facing) {
+        if (level == null) {
+            return;
+        }
+        Set<BlockPos> desired = new LinkedHashSet<>();
+        for (LargeTurbineHatches.Hatch hatch
+                : LargeTurbineHatches.hatches(worldPosition, facing)) {
+            desired.add(hatch.pos());
+            bindHatch(hatch.pos(), hatch.role(), facing.getOpposite());
+        }
+        for (BlockPos previous : List.copyOf(boundHatches)) {
+            if (!desired.contains(previous)) {
+                unbindHatch(previous);
+            }
+        }
+    }
+
+    private void unbindHatches() {
+        for (BlockPos previous : List.copyOf(boundHatches)) {
+            unbindHatch(previous);
+        }
+    }
+
+    private void bindHatch(
+            BlockPos pos, LargeTurbineHatchRole role, Direction outward) {
+        if (level == null || !level.hasChunkAt(pos)) {
+            return;
+        }
+        if (level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity wall) {
+            wall.bindGasTurbine(worldPosition, role, outward);
+            boundHatches.add(pos.immutable());
+            LargeTurbineWalls.applyOutlet(
+                    level, pos, role == LargeTurbineHatchRole.ENERGY_OUT);
+        }
+    }
+
+    private void unbindHatch(BlockPos pos) {
+        boundHatches.remove(pos);
+        LargeTurbineWalls.applyOutlet(level, pos, false);
+        if (level != null
+                && level.hasChunkAt(pos)
+                && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity wall) {
+            wall.unbindGasTurbine();
+        }
+    }
+
+    public IFluidHandler hatchFluids(LargeTurbineHatchRole role) {
+        if (role == null) {
+            return null;
+        }
+        return switch (role) {
+            case ITEM_FLUID_IN -> inputView;
+            case ITEM_FLUID_OUT -> outputView;
+            case ITEM_FLUID -> ioView;
+            case ENERGY_OUT, NOTHING -> null;
+        };
+    }
+
+    public long hatchOutputSize(EnergyType type, Direction side) {
+        if (type != EnergyType.KINETIC_ROTATION || level == null) {
+            return 0L;
+        }
+        Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+        if (side != null && side != facing.getOpposite()) {
+            return 0L;
+        }
+        return ruPacketSize();
+    }
+
+    public long hatchExtract(
+            EnergyType type,
+            long size,
+            long maxAmount,
+            boolean simulate) {
+        if (type != EnergyType.KINETIC_ROTATION || maxAmount <= 0L) {
+            return 0L;
+        }
+        long packet = ruPacketSize();
+        if (packet <= 0L || size != packet) {
+            return 0L;
+        }
+        if (!simulate) {
+            long cost = RotationEngineConversion.units(
+                    packet, profile.outputRec(), profile.inputRec(), true);
+            storedHu = Math.max(0L, storedHu - cost);
+            markPersistentMutation();
+        }
+        return 1L;
+    }
+
+    private long ruPacketSize() {
+        long tOutput = RotationEngineConversion.units(
+                storedHu, profile.inputRec(), profile.outputRec(), false);
+        if (tOutput < profile.outputMin()) {
+            return 0L;
+        }
+        if (tOutput > profile.outputMax()) {
+            tOutput = profile.outputMax();
+        }
+        return tOutput;
     }
 
     /**
@@ -250,17 +412,13 @@ public final class LargeGasTurbineBlockEntity extends BlockEntity
         if (level == null || level.isClientSide) {
             return;
         }
-        long tOutput = RotationEngineConversion.units(
-                storedHu, profile.inputRec(), profile.outputRec(), false);
-        if (tOutput < profile.outputMin()) {
+        long tOutput = ruPacketSize();
+        if (tOutput <= 0L) {
             return;
-        }
-        if (tOutput > profile.outputMax()) {
-            tOutput = profile.outputMax();
         }
         long packets = EnergyEmitter.pushToSide(
                 level,
-                worldPosition.relative(facing.getOpposite(), 3),
+                SteamTurbineStructure.energyOut(worldPosition, facing),
                 EnergyType.KINETIC_ROTATION,
                 tOutput,
                 1L,
@@ -276,15 +434,12 @@ public final class LargeGasTurbineBlockEntity extends BlockEntity
         }
     }
 
+    /**
+     * GT6 {@code getFluidTankFillable2}/{@code getFluidTankDrainable2} ignore
+     * side on the controller: any face can fill fuel and drain exhaust.
+     */
     public IFluidHandler fluids(Direction side) {
-        if (side == null) {
-            return null;
-        }
-        Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
-        if (side == facing) {
-            return stopped ? null : inputView;
-        }
-        return outputView;
+        return ioView;
     }
 
     @Override
@@ -300,6 +455,66 @@ public final class LargeGasTurbineBlockEntity extends BlockEntity
     @Override
     public long capacity(EnergyType type) {
         return type == EnergyType.HEAT ? profile.capacitor() : 0L;
+    }
+
+    @Override
+    public boolean allowCover(Direction side) {
+        return side != getBlockState().getValue(MteInPlaceBlock.FACING);
+    }
+
+    @Override
+    public boolean hasFluidTanks() {
+        return true;
+    }
+
+    @Override
+    public boolean hasEnergyBuffer() {
+        return true;
+    }
+
+    @Override
+    public long energyStored() {
+        return storedHu;
+    }
+
+    @Override
+    public long energyCapacity() {
+        return profile.capacitor();
+    }
+
+    @Override
+    public boolean runningPossible() {
+        return formed;
+    }
+
+    @Override
+    public boolean runningActively() {
+        return running;
+    }
+
+    @Override
+    public boolean switchableOnOff() {
+        return true;
+    }
+
+    @Override
+    public boolean getStateOnOff() {
+        return !stopped;
+    }
+
+    @Override
+    public boolean setStateOnOff(boolean on) {
+        if (stopped == !on) {
+            return on;
+        }
+        stopped = !on;
+        markPersistentMutation();
+        return !stopped;
+    }
+
+    @Override
+    protected void onHostChanged() {
+        markPersistentMutation();
     }
 
     private boolean acceptsFuel(FluidStack stack) {
@@ -334,9 +549,32 @@ public final class LargeGasTurbineBlockEntity extends BlockEntity
         return block.spec();
     }
 
+    private void refreshRunning() {
+        boolean next = formed && ruPacketSize() > 0L;
+        if (next != running) {
+            running = next;
+            markVisualMutation();
+        }
+    }
+
     private void markPersistentMutation() {
         setChanged();
         clientSyncPending = true;
+    }
+
+    private void markVisualMutation() {
+        setChanged();
+        if (level != null && !level.isClientSide) {
+            level.sendBlockUpdated(
+                    worldPosition,
+                    getBlockState(),
+                    getBlockState(),
+                    Block.UPDATE_CLIENTS);
+        }
+        clientSyncPending = false;
+        lastClientSyncGameTime = level != null
+                ? level.getGameTime()
+                : Long.MIN_VALUE;
     }
 
     private void flushClientSync(long gameTime) {
@@ -369,6 +607,7 @@ public final class LargeGasTurbineBlockEntity extends BlockEntity
         tag.put("outputs", outputList);
         tag.putLong("hu", storedHu);
         tag.putBoolean("formed", formed);
+        tag.putBoolean("running", running);
         tag.putBoolean("stopped", stopped);
     }
 
@@ -387,14 +626,17 @@ public final class LargeGasTurbineBlockEntity extends BlockEntity
         }
         storedHu = Math.max(0L, tag.getLong("hu"));
         formed = tag.getBoolean("formed");
+        running = tag.getBoolean("running");
         stopped = tag.getBoolean("stopped");
     }
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
         CompoundTag tag = new CompoundTag();
+        saveCoverNbt(tag, registries);
         tag.putLong("hu", storedHu);
         tag.putBoolean("formed", formed);
+        tag.putBoolean("running", running);
         tag.putBoolean("stopped", stopped);
         return tag;
     }
@@ -402,8 +644,10 @@ public final class LargeGasTurbineBlockEntity extends BlockEntity
     @Override
     public void handleUpdateTag(
             CompoundTag tag, HolderLookup.Provider registries) {
+        loadCoverNbt(tag, registries);
         storedHu = Math.max(0L, tag.getLong("hu"));
         formed = tag.getBoolean("formed");
+        running = tag.getBoolean("running");
         stopped = tag.getBoolean("stopped");
     }
 
@@ -515,6 +759,49 @@ public final class LargeGasTurbineBlockEntity extends BlockEntity
                 }
             }
             return FluidStack.EMPTY;
+        }
+    }
+
+    private final class IoHandler implements IFluidHandler {
+        @Override
+        public int getTanks() {
+            return 1 + OUTPUT_TANKS;
+        }
+
+        @Override
+        public FluidStack getFluidInTank(int tank) {
+            if (tank == 0) {
+                return input.getFluid();
+            }
+            return outputView.getFluidInTank(tank - 1);
+        }
+
+        @Override
+        public int getTankCapacity(int tank) {
+            if (tank == 0) {
+                return input.getCapacity();
+            }
+            return outputView.getTankCapacity(tank - 1);
+        }
+
+        @Override
+        public boolean isFluidValid(int tank, FluidStack stack) {
+            return tank == 0 && input.isFluidValid(stack);
+        }
+
+        @Override
+        public int fill(FluidStack resource, FluidAction action) {
+            return input.fill(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(FluidStack resource, FluidAction action) {
+            return outputView.drain(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(int maximum, FluidAction action) {
+            return outputView.drain(maximum, action);
         }
     }
 }

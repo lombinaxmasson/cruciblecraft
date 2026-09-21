@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.recipe.crafting.RockGtProcessing;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 
 import net.minecraft.resources.ResourceLocation;
@@ -19,6 +20,15 @@ public final class MaterialChainRules {
             "prefix_units(ingot) / " + SMELTING_GCD;
     private static final String SMELTING_OUTPUT_COUNT =
             "target_units(smelting) / " + SMELTING_GCD;
+    private static final String ROCK_PULVER_COUNT =
+            "prefix_units(rock) * target_units(pulver) / prefix_units(ingot)"
+                    + " / prefix_units(small_dust)";
+    private static final String ROCK_PULVER_DURATION =
+            "16 * prefix_units(rock) * (1 + material.tool.quality)"
+                    + " / prefix_units(ingot)";
+    private static final List<String> ROCK_PULVER_CONDITIONS = List.of(
+            "!material.tag(\"ATOMIC.ANTIMATTER\")",
+            "has_registered_for(\"processing_target:pulver\", small_dust)");
     public static final MaterialRule ANVIL_RAW_TO_CRUSHED = new MaterialRule(
             Optional.of(ModRecipeMaps.ANVIL.id()),
             List.of(item(MaterialPrefixes.RAW_ORE, 1)),
@@ -37,12 +47,19 @@ public final class MaterialChainRules {
                     "lead", durationOverride(256),
                     "nickel", durationOverride(384)),
             List.of(), Optional.empty(), List.of());
+    public static final MaterialRule ANVIL_ROCK_TO_PULVER = rockPulver(
+            ModRecipeMaps.ANVIL.id());
+    public static final MaterialRule CRUSHER_ROCK_TO_PULVER = rockPulver(
+            ModRecipeMaps.CRUSHER.id());
+    public static final MaterialRule MORTAR_ROCK_TO_PULVER = rockPulver(
+            ModRecipeMaps.MORTAR.id());
 
     public static final List<Definition> ALL = List.of(
             new Definition("crusher/ingot_to_dust",
                     rule(ModRecipeMaps.CRUSHER.id(), MaterialPrefixes.INGOT,
                             List.of(item(MaterialPrefixes.DUST, 1)),
                             List.of(), 128, 16)),
+            new Definition("crusher/rock_to_pulver_dust", CRUSHER_ROCK_TO_PULVER),
             new Definition("sluice/crushed_to_washed",
                     washing(ModRecipeMaps.SLUICE.id(), 250, 240, 16)),
             new Definition("bath/crushed_to_washed",
@@ -73,7 +90,8 @@ public final class MaterialChainRules {
             new Definition("mortar/crushed_to_dust",
                     rule(ModRecipeMaps.MORTAR.id(), MaterialPrefixes.CRUSHED_ORE,
                             List.of(item(MaterialPrefixes.DUST, 1)),
-                            List.of(), 120, 12)));
+                            List.of(), 120, 12)),
+            new Definition("mortar/rock_to_pulver_dust", MORTAR_ROCK_TO_PULVER));
     public static final Set<String> CONCRETE_ORE_CHAIN_PATHS = Set.of(
             "sluice/crushed_to_washed",
             "centrifuge/washed_to_centrifuged",
@@ -82,6 +100,33 @@ public final class MaterialChainRules {
             "smelter/dust_to_ingot");
 
     private MaterialChainRules() {}
+
+    /**
+     * GT6 crusher / mortar {@code RecipeMapHandlerPrefix(rockGt)} and anvil
+     * {@code RecipeMapHandlerPrefixShredding(rockGt → 9 dustSmall)}.
+     */
+    private static MaterialRule rockPulver(ResourceLocation target) {
+        return new MaterialRule(
+                Optional.of(target),
+                List.of(item(RockGtProcessing.ROCK, 1)),
+                List.of(selected(
+                        MaterialPrefixes.SMALL_DUST,
+                        ROCK_PULVER_COUNT,
+                        10_000,
+                        "processing_target:pulver",
+                        false)),
+                List.of(),
+                List.of(),
+                ROCK_PULVER_DURATION,
+                "16",
+                "0",
+                true,
+                Optional.empty(),
+                Map.of(),
+                ROCK_PULVER_CONDITIONS,
+                Optional.empty(),
+                List.of());
+    }
 
     private static MaterialRule.MaterialOverride durationOverride(int duration) {
         return new MaterialRule.MaterialOverride(

@@ -84,8 +84,8 @@
       {
         "auto_promote_player_complete": false,
         "boundary_notes": [
-          "两个 identity 都属于 worldgen/gt-trees owner 及其 freeze / drill source path。",
-          "Latex 不是 Resin_Rubber 的 stand-in，另一种树液也不是 Sap_Maple 的 stand-in。",
+          "Maple sap still belongs to worldgen/gt-trees freeze / drill source path.",
+          "Rubber tree sap is live as cruciblecraft:rubber_tree_sap; latex is not a stand-in.",
           "印刷机染料与熔炉油 / XP 保持在 GT 树批次之外。"
         ],
         "does_not_merge_counts": true,
@@ -96,10 +96,6 @@
         "id": "batch/fluid-gt-tree-identity",
         "kind": "domain_fluid_closure",
         "members": [
-          {
-            "blocker_id": "fluid/resin-rubber",
-            "role": "primary"
-          },
           {
             "blocker_id": "fluid/sap-maple",
             "role": "primary"
@@ -180,6 +176,16 @@
           "identity/connector-art-keep-distinct-dummies"
         ],
         "resolution": "Smelter/bath leftover connector CatalogNamedItem dummies with gated CableBlock or PipeBlock hosts were folded onto those live ids. Gold/lead 3x/5x/6x had live hosts; loot crate and decorative panels stay dummy."
+      },
+      {
+        "authority": [
+          "tools/capabilities/worldgen/gt-trees/capability.json",
+          "src/main/resources/data/cruciblecraft/tree_hole_fluid_mapping.json"
+        ],
+        "blocker_ids": [
+          "fluid/resin-rubber"
+        ],
+        "resolution": "worldgen/gt-trees follow-up: FL.Resin_Rubber is cruciblecraft:rubber_tree_sap. Rubber hole harvests rubber_resin and 250 mB sap. Latex is not a stand-in."
       }
     ],
     "ordering_is_not_additive": true,
@@ -198,7 +204,7 @@
         "batch_id": "batch/fluid-fission-identity"
       },
       {
-        "basis": "2 个缺失流体共享 GT 树 worldgen owner 与验收面。",
+        "basis": "Maple sap remains the GT tree fluid identity; rubber tree sap is live.",
         "batch_id": "batch/fluid-gt-tree-identity"
       }
     ],
@@ -1429,23 +1435,18 @@
         "tools/capabilities/worldgen/gt-trees/capability.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "semantic_key": "fluid:FL.Resin_Rubber",
-          "slug": "worldgen/gt-trees"
-        }
-      ],
+      "claimed_by": [],
       "count": 1,
       "discovered_by": "worldgen/gt-trees",
       "id": "fluid/resin-rubber",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Latex is not a stand-in. Rubber hole still harvests rubber_resin.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "FL.Resin_Rubber is cruciblecraft:rubber_tree_sap. Latex is not a stand-in. Rubber hole harvests rubber_resin and 250 mB sap.",
+      "planning_bucket": "not_work",
+      "resolved_by": "worldgen/gt-trees",
       "root_cause": "missing_resin_rubber_fluid",
       "root_cause_class": "missing_fluid",
-      "status": "open",
+      "status": "resolved",
       "title": "FL.Resin_Rubber 缺失",
       "unit": "fluids"
     },
@@ -1902,12 +1903,6 @@
     },
     {
       "count": 1,
-      "id": "fluid/resin-rubber",
-      "planning_bucket": "schedulable",
-      "unit": "fluids"
-    },
-    {
-      "count": 1,
       "id": "fluid/sap-maple",
       "planning_bucket": "schedulable",
       "unit": "fluids"
@@ -2021,7 +2016,6 @@
     ],
     "missing_fluid": [
       "fluid/ic2-coolant",
-      "fluid/resin-rubber",
       "fluid/sap-maple",
       "fluid/thorium-salt",
       "recipe/oven-cooking-oil-xp",
@@ -2175,11 +2169,6 @@
       },
       {
         "count": 1,
-        "id": "fluid/resin-rubber",
-        "unit": "fluids"
-      },
-      {
-        "count": 1,
         "id": "fluid/sap-maple",
         "unit": "fluids"
       },
@@ -2249,15 +2238,15 @@
     "audit_first": 10,
     "not_work": 3,
     "scale_not_todo": 5,
-    "schedulable": 15
+    "schedulable": 14
   },
   "schema_version": 1,
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "stats": {
-    "open": 31,
+    "open": 30,
     "out_of_scope": 6,
     "partial": 2,
-    "resolved": 18,
+    "resolved": 19,
     "superseded": 5,
     "total": 62
   }

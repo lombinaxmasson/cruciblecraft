@@ -72,6 +72,16 @@
         "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json",
         "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
       ]
+    },
+    {
+      "blocker_ids": [
+        "fluid/resin-rubber"
+      ],
+      "resolution": "worldgen/gt-trees follow-up: FL.Resin_Rubber is cruciblecraft:rubber_tree_sap. Rubber hole harvests rubber_resin and 250 mB sap. Latex is not a stand-in.",
+      "authority": [
+        "tools/capabilities/worldgen/gt-trees/capability.json",
+        "src/main/resources/data/cruciblecraft/tree_hole_fluid_mapping.json"
+      ]
     }
   ],
   "recommended_order": [
@@ -89,7 +99,7 @@
     },
     {
       "batch_id": "batch/fluid-gt-tree-identity",
-      "basis": "2 个缺失流体共享 GT 树 worldgen owner 与验收面。"
+      "basis": "Maple sap remains the GT tree fluid identity; rubber tree sap is live."
     }
   ],
   "batches": [
@@ -179,10 +189,6 @@
       "kind": "domain_fluid_closure",
       "members": [
         {
-          "blocker_id": "fluid/resin-rubber",
-          "role": "primary"
-        },
-        {
           "blocker_id": "fluid/sap-maple",
           "role": "primary"
         }
@@ -194,8 +200,8 @@
         "recipe/oven-cooking-oil-xp"
       ],
       "boundary_notes": [
-        "两个 identity 都属于 worldgen/gt-trees owner 及其 freeze / drill source path。",
-        "Latex 不是 Resin_Rubber 的 stand-in，另一种树液也不是 Sap_Maple 的 stand-in。",
+        "Maple sap still belongs to worldgen/gt-trees freeze / drill source path.",
+        "Rubber tree sap is live as cruciblecraft:rubber_tree_sap; latex is not a stand-in.",
         "印刷机染料与熔炉油 / XP 保持在 GT 树批次之外。"
       ],
       "does_not_merge_counts": true,

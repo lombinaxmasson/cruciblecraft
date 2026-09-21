@@ -12,6 +12,9 @@ public final class MultiblockPortBlocks {
     public static Block of(PortType type) {
         return switch (type) {
             case ITEM_FLUID -> ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get();
+            case ITEM_FLUID_IN, ITEM_FLUID_OUT ->
+                    StainlessSteelMixerWalls.wall();
+            case ITEM_FLUID_ENERGY -> AutoclaveWalls.wall();
             case ENERGY_INPUT -> ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get();
             case FLUID_OUT -> ModBlocks.MULTIBLOCK_FLUID_OUT_PORT.get();
         };

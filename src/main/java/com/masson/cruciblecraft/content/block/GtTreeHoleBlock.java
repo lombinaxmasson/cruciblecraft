@@ -129,12 +129,13 @@ public final class GtTreeHoleBlock extends Block implements EntityBlock {
         if (level.isClientSide) {
             return ItemInteractionResult.SUCCESS;
         }
-        if (hole.hasProduct() && FluidUtil.interactWithFluidHandler(player, hand, hole.fluids())) {
-            hole.extractProduct();
+        if (!hole.hasProduct()) {
             return ItemInteractionResult.CONSUME;
         }
-        if (hole.harvestItem(player)) {
-            return ItemInteractionResult.CONSUME;
+        boolean filled = FluidUtil.interactWithFluidHandler(player, hand, hole.fluids());
+        boolean gaveItem = hole.giveHarvestItem(player);
+        if (filled || gaveItem) {
+            hole.extractProduct();
         }
         return ItemInteractionResult.CONSUME;
     }

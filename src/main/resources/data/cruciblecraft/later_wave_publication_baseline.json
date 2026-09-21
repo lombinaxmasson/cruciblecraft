@@ -3,15 +3,15 @@
   "delta_ledger_policy": {
     "base_eager": 16650,
     "contract": "GameTest eager assertion MUST equal base_eager + sum(registered_deltas[*].eager). Any new delta registration must include per-family evidence.",
-    "current_eager": 20906,
+    "current_eager": 20908,
     "current_lazy": 2225,
-    "current_logical": 23124,
+    "current_logical": 23126,
     "registered_deltas": [
       {
-        "eager": 4,
+        "eager": 5,
         "evidence": "src/main/resources/data/cruciblecraft/chemical_publication_baseline.json",
         "lazy": 0,
-        "logical": 4,
+        "logical": 5,
         "phase": "chemical"
       },
       {
@@ -62,6 +62,13 @@
         "lazy": 0,
         "logical": 7,
         "phase": "distillation_tower"
+      },
+      {
+        "eager": 1,
+        "evidence": "src/main/resources/data/cruciblecraft/recipe/machine/squeezer/rubber_log.json",
+        "lazy": 0,
+        "logical": 1,
+        "phase": "rubber_log_squeezer"
       }
     ]
   },
@@ -93,12 +100,12 @@
     "cruciblecraft:wiremill"
   ],
   "later_wave_publication_delta": {
-    "eager_rows_added": 4276,
+    "eager_rows_added": 4277,
     "emi_recipe_map_ids_unchanged": true,
-    "evidence": "T4 wire cutter family: t4/assembler/wire_cutter/{metal,gem} x 205 eligible materials; tools/pattern/wire_cutter.json shaped recipe; fusion/ 18 GT6 RM.Fusion rows; hydrocarbon remainder: 4 distillery + 5 fuels_engine + 22 fuels_gas/FM.Burn + 4 spring-oil generifier + 24 coke_oven Java rows; small gas turbine FM.Gas: hydrocarbon/fuels_gas_turbine x 9; hammer-squeezer-laser Java maps: anvil_bend_big/small SMITHABLE handlers, welder prefix handlers, ANY.Cu laser foil rows, squeezer latex Java rows; squeezer dump selected exact non-plant rows; plant_gt_* ignored until crop-breeding obtain; distillation tower 6 hot + 1 cryo GT6 Chem.java rows",
-    "gt_recipe_rows_added": 4276,
+    "evidence": "T4 wire cutter family: t4/assembler/wire_cutter/{metal,gem} x 205 eligible materials; tools/pattern/wire_cutter.json shaped recipe; fusion/ 18 GT6 RM.Fusion rows; hydrocarbon remainder: 4 distillery + 5 fuels_engine + 22 fuels_gas/FM.Burn + 4 spring-oil generifier + 24 coke_oven Java rows; small gas turbine FM.Gas: hydrocarbon/fuels_gas_turbine x 9; hammer-squeezer-laser Java maps: anvil_bend_big/small SMITHABLE handlers, welder prefix handlers, ANY.Cu laser foil rows, squeezer latex Java rows; squeezer dump selected exact non-plant rows; plant_gt_* ignored until crop-breeding obtain; distillation tower 6 hot + 1 cryo GT6 Chem.java rows; rubber log squeezer Resin_Rubber",
+    "gt_recipe_rows_added": 4277,
     "lazy_rows_added": 0,
-    "logical_rows_added": 4276,
+    "logical_rows_added": 4277,
     "recipe_map_ids_unchanged": false,
     "vanilla_datapack_entries_added": 1
   },

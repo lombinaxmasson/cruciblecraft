@@ -1,7 +1,9 @@
 package com.masson.cruciblecraft.client.render;
 
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
+import com.masson.cruciblecraft.energy.steam.SteamTurbinePresentation;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.renderer.LightTexture;
@@ -32,40 +34,45 @@ public final class MteInPlaceStorageRenderer
             GtChestRenderer.renderHost(
                     chest,
                     host,
+            poseStack,
+            buffers,
+            packedLight,
+            packedOverlay,
+            partialTick);
+        } else if (kind.massStorage()) {
+            var inventory = host.massStorage();
+            if (inventory != null) {
+                MassStorageRenderer.renderFace(
+                        host,
+                        inventory.filter(),
+                        inventory.stored(),
+                        inventory.capacity(),
+                        kind == MteInPlaceKind.BARREL
+                                ? "mass_storage_barrel"
+                                : "mass_storage_standard",
+                        poseStack,
+                        buffers,
+                        packedOverlay);
+            }
+        } else if (kind == MteInPlaceKind.BOOKSHELF) {
+            BookshelfRenderer.renderBooks(
+                    host, host.items(), poseStack, buffers, LightTexture.FULL_BRIGHT);
+        } else if (kind == MteInPlaceKind.BOTTLE_CRATE) {
+            BottleCrateRenderer.renderBottles(
+                    host, host.items(), poseStack, buffers, LightTexture.FULL_BRIGHT);
+        } else if (SteamTurbinePresentation.large(host.spec()) && host.formed()) {
+            boolean running = host.getBlockState().hasProperty(MteInPlaceBlock.LIT)
+                    && host.getBlockState().getValue(MteInPlaceBlock.LIT);
+            LargeTurbineFanRenderer.render(
                     poseStack,
                     buffers,
                     packedLight,
-                    packedOverlay,
-                    partialTick);
-            return;
+                    host.getBlockState().getValue(MteInPlaceBlock.FACING),
+                    LargeTurbineFanRenderer.STEAM_IDLE,
+                    LargeTurbineFanRenderer.STEAM_ACTIVE,
+                    running);
         }
-        if (kind.massStorage()) {
-            var inventory = host.massStorage();
-            if (inventory == null) {
-                return;
-            }
-            MassStorageRenderer.renderFace(
-                    host,
-                    inventory.filter(),
-                    inventory.stored(),
-                    inventory.capacity(),
-                    kind == MteInPlaceKind.BARREL
-                            ? "mass_storage_barrel"
-                            : "mass_storage_standard",
-                    poseStack,
-                    buffers,
-                    packedOverlay);
-            return;
-        }
-        if (kind == MteInPlaceKind.BOOKSHELF) {
-            BookshelfRenderer.renderBooks(
-                    host, host.items(), poseStack, buffers, LightTexture.FULL_BRIGHT);
-            return;
-        }
-        if (kind == MteInPlaceKind.BOTTLE_CRATE) {
-            BottleCrateRenderer.renderBottles(
-                    host, host.items(), poseStack, buffers, LightTexture.FULL_BRIGHT);
-        }
+        PipeCoverRenderer.renderMounted(host, poseStack, buffers, packedLight);
     }
 
     @Override
@@ -80,6 +87,14 @@ public final class MteInPlaceStorageRenderer
                     pos.getY() + 2.0,
                     pos.getZ() + 1.0);
         }
+        if (SteamTurbinePresentation.large(host.spec()) && host.formed()) {
+            return new AABB(host.getBlockPos()).inflate(1.05);
+        }
         return BlockEntityRenderer.super.getRenderBoundingBox(host);
+    }
+
+    @Override
+    public boolean shouldRenderOffScreen(MteInPlaceBlockEntity host) {
+        return SteamTurbinePresentation.large(host.spec()) && host.formed();
     }
 }

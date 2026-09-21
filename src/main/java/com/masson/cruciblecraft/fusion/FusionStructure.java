@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.fusion;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.masson.cruciblecraft.content.multiblock.CoilHosts;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -335,7 +336,7 @@ public final class FusionStructure {
                 if (occupied(1, i, j)) {
                     if (!is(level, origin.offset(i, -2, j), ModBlocks.TUNGSTENSTEEL_WALL.get())
                             || !is(level, origin.offset(i, -1, j), ModBlocks.TUNGSTENSTEEL_WALL.get())
-                            || !is(level, origin.offset(i, 0, j), ModBlocks.LARGE_IRIDIUM_COIL.get())
+                            || !is(level, origin.offset(i, 0, j), CoilHosts.block(CoilHosts.IRIDIUM))
                             || !is(level, origin.offset(i, 1, j), ModBlocks.TUNGSTENSTEEL_WALL.get())
                             || !is(level, origin.offset(i, 2, j), ModBlocks.TUNGSTENSTEEL_WALL.get())) {
                         return false;
@@ -343,9 +344,9 @@ public final class FusionStructure {
                 }
                 if (occupied(2, i, j)) {
                     if (!is(level, origin.offset(i, -2, j), ModBlocks.TUNGSTENSTEEL_WALL.get())
-                            || !is(level, origin.offset(i, -1, j), ModBlocks.LARGE_IRIDIUM_COIL.get())
+                            || !is(level, origin.offset(i, -1, j), CoilHosts.block(CoilHosts.IRIDIUM))
                             || !is(level, origin.offset(i, 0, j), ModBlocks.STAINLESS_STEEL_WALL.get())
-                            || !is(level, origin.offset(i, 1, j), ModBlocks.LARGE_IRIDIUM_COIL.get())
+                            || !is(level, origin.offset(i, 1, j), CoilHosts.block(CoilHosts.IRIDIUM))
                             || !is(level, origin.offset(i, 2, j), ModBlocks.TUNGSTENSTEEL_WALL.get())) {
                         return false;
                     }

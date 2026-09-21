@@ -14,11 +14,13 @@ import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinitionCatalog;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverPlacement;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverSounds;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverConfig;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverType;
 
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -64,16 +66,14 @@ public final class PipeCoverItem extends Item {
     public InteractionResult useOn(UseOnContext context) {
         var blockEntity = context.getLevel().getBlockEntity(
                 context.getClickedPos());
+        Direction side = CoverPlacement.placeSide(
+                blockEntity, CoverPlacement.hit(context));
         if (blockEntity instanceof MachineCoverHost machine) {
             PipeCover cover = PipeCover.of(definitionId);
-            if (!MachineCoverBehaviors.canPlace(
-                    machine,
-                    context.getClickedFace(),
-                    cover)) {
+            if (!MachineCoverBehaviors.canPlace(machine, side, cover)) {
                 return InteractionResult.FAIL;
             }
-            boolean changed = machine.setCover(
-                    context.getClickedFace(), cover);
+            boolean changed = machine.setCover(side, cover);
             if (changed) {
                 CoverSounds.placed(
                         context.getLevel(),
@@ -92,7 +92,7 @@ public final class PipeCoverItem extends Item {
             if (!CableCovers.tryInstall(
                     context.getLevel(),
                     context.getClickedPos(),
-                    context.getClickedFace(),
+                    CoverPlacement.hit(context),
                     context.getItemInHand(),
                     context.getPlayer())) {
                 return InteractionResult.FAIL;
@@ -104,7 +104,7 @@ public final class PipeCoverItem extends Item {
             if (!RedstoneWireCovers.tryInstall(
                     context.getLevel(),
                     context.getClickedPos(),
-                    context.getClickedFace(),
+                    CoverPlacement.hit(context),
                     context.getItemInHand(),
                     context.getPlayer())) {
                 return InteractionResult.FAIL;
@@ -137,9 +137,9 @@ public final class PipeCoverItem extends Item {
                 context, blockEntity instanceof FluidPipeBlockEntity);
         boolean changed;
         if (blockEntity instanceof FluidPipeBlockEntity pipe) {
-            changed = pipe.setCover(context.getClickedFace(), cover);
+            changed = pipe.setCover(side, cover);
         } else if (blockEntity instanceof ItemPipeBlockEntity pipe) {
-            changed = pipe.setCover(context.getClickedFace(), cover);
+            changed = pipe.setCover(side, cover);
         } else {
             return InteractionResult.PASS;
         }
@@ -194,13 +194,15 @@ public final class PipeCoverItem extends Item {
 
     private boolean cycleExistingSelector(
             UseOnContext context, Object blockEntity) {
+        Direction side = CoverPlacement.interactSide(
+                context.getLevel().getBlockEntity(context.getClickedPos()),
+                CoverPlacement.hit(context));
         PipeCover current;
         if (blockEntity instanceof FluidPipeBlockEntity pipe) {
-            current = pipe.coverSnapshot()
-                    .get(context.getClickedFace());
+            current = pipe.coverSnapshot().get(side);
         } else {
             current = ((ItemPipeBlockEntity) blockEntity)
-                    .coverSnapshot().get(context.getClickedFace());
+                    .coverSnapshot().get(side);
         }
         if (current == null
                 || !current.definitionId().equals(definitionId)) {
@@ -213,10 +215,9 @@ public final class PipeCoverItem extends Item {
                 return true;
             }
             if (blockEntity instanceof FluidPipeBlockEntity pipe) {
-                return pipe.toggleCoverInvert(context.getClickedFace());
+                return pipe.toggleCoverInvert(side);
             }
-            return ((ItemPipeBlockEntity) blockEntity).toggleCoverInvert(
-                    context.getClickedFace());
+            return ((ItemPipeBlockEntity) blockEntity).toggleCoverInvert(side);
         }
         CoverDefinition.ConfigField field;
         int max;
@@ -239,11 +240,10 @@ public final class PipeCoverItem extends Item {
             return true;
         }
         if (blockEntity instanceof FluidPipeBlockEntity pipe) {
-            return pipe.configureCover(
-                    context.getClickedFace(), field, next);
+            return pipe.configureCover(side, field, next);
         }
         return ((ItemPipeBlockEntity) blockEntity).configureCover(
-                context.getClickedFace(), field, next);
+                side, field, next);
     }
 
     @Override

@@ -22,7 +22,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-public final class LockerBlockEntity extends BlockEntity implements IEnergyHandler {
+public final class LockerBlockEntity extends MachineCoverHostBlockEntity
+        implements IEnergyHandler {
     private static final EquipmentSlot[] ARMOR = {
             EquipmentSlot.FEET,
             EquipmentSlot.LEGS,
@@ -88,7 +89,23 @@ public final class LockerBlockEntity extends BlockEntity implements IEnergyHandl
             BlockPos pos,
             BlockState state,
             LockerBlockEntity locker) {
+        locker.tickCovers();
         // Charging is pull-based through IEnergyHandler.insert.
+    }
+
+    @Override
+    public boolean hasEnergyBuffer() {
+        return variant.charging();
+    }
+
+    @Override
+    public long energyStored() {
+        return stored(EnergyType.ELECTRIC);
+    }
+
+    @Override
+    public long energyCapacity() {
+        return capacity(EnergyType.ELECTRIC);
     }
 
     public CompoundTag saveForTest(HolderLookup.Provider registries) {

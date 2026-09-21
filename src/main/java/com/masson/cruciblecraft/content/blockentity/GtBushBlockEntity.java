@@ -49,7 +49,11 @@ public final class GtBushBlockEntity extends BlockEntity {
         }
         ResourceLocation id = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(
                 stack.getItem());
-        return id.getPath().endsWith("/plant_gt_berry");
+        if (id.getPath().equals("plant_gt_berry")
+                || id.getPath().endsWith("/plant_gt_berry")) {
+            return true;
+        }
+        return stack.is(com.masson.cruciblecraft.api.agriculture.AgricultureTags.GT_BUSH_BERRIES);
     }
 
     public boolean harvest(Player player) {

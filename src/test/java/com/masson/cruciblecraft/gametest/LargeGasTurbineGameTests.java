@@ -1,11 +1,18 @@
 package com.masson.cruciblecraft.gametest;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.energy.largegasturbine.LargeGasTurbineBlockEntity;
 import com.masson.cruciblecraft.energy.largegasturbine.LargeGasTurbineCatalog;
+import com.masson.cruciblecraft.energy.largegasturbine.LargeTurbineHatchRole;
+import com.masson.cruciblecraft.energy.largegasturbine.LargeTurbineHatches;
+import com.masson.cruciblecraft.energy.largegasturbine.LargeTurbineWalls;
+import com.masson.cruciblecraft.energy.steam.SteamTurbineStructure;
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModCapabilities;
 import com.masson.cruciblecraft.registry.ModFluids;
 
 import net.minecraft.core.BlockPos;
@@ -14,7 +21,9 @@ import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -135,6 +144,158 @@ public final class LargeGasTurbineGameTests {
         helper.succeed();
     }
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void wallHatchRolesMatchGt6(GameTestHelper helper) {
+        helper.assertTrue(
+                LargeTurbineHatches.counts(CONTROLLER, FACING).matchesGt6Horizontal(),
+                "Large turbine hatch counts drifted from GT6 checkStructure2");
+        helper.assertTrue(
+                SteamTurbineStructure.energyOut(CONTROLLER, FACING)
+                        .equals(CONTROLLER.relative(Direction.EAST, 3)),
+                "Energy-out wall is not 3 blocks OPOS[facing]");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void wallHatchesForwardIo(GameTestHelper helper) {
+        LargeGasTurbineBlockEntity turbine = placeFormed(helper);
+        BlockPos frontTop = CONTROLLER.above();
+        BlockPos farEnergy = SteamTurbineStructure.energyOut(CONTROLLER, FACING);
+        BlockPos farTop = farEnergy.above();
+        BlockPos sideBottom = CONTROLLER.relative(Direction.EAST).below();
+        helper.assertTrue(
+                fillWall(helper, frontTop, methane(5)) == 5,
+                "Frontal 3x3 wall did not forward methane into the fuel tank");
+        helper.assertTrue(
+                turbine.inputAmount() == 5,
+                "Frontal fill did not land in the controller fuel tank");
+        helper.assertTrue(
+                fillWall(helper, farTop, methane(5)) == 0,
+                "NOTHING wall accepted fuel");
+        helper.assertTrue(
+                fillWall(helper, farEnergy, methane(5)) == 0,
+                "Energy-out wall accepted fuel");
+        helper.assertTrue(
+                fluids(helper, farEnergy) == null,
+                "Energy-out wall exposed a fluid handler");
+        helper.assertTrue(
+                turbine.fillOutput(0, water(6)),
+                "Could not fill exhaust before wall drain");
+        IFluidHandler bottom = fluids(helper, sideBottom);
+        helper.assertTrue(
+                bottom != null && bottom.drain(6, IFluidHandler.FluidAction.EXECUTE).getAmount() == 6,
+                "Bottom non-frontal wall did not drain exhaust");
+        helper.assertTrue(
+                turbine.outputAmount(0) == 0,
+                "Bottom drain did not empty controller exhaust");
+        IEnergyHandler energy = helper.getLevel().getCapability(
+                ModCapabilities.ENERGY,
+                helper.absolutePos(farEnergy),
+                Direction.EAST);
+        helper.assertTrue(
+                energy != null
+                        && energy.handles(EnergyType.KINETIC_ROTATION, Direction.EAST),
+                "Far-wall energy-out hatch did not expose RU");
+        MteInPlaceBlockEntity nothing = helper.getBlockEntity(farTop);
+        helper.assertTrue(
+                nothing != null
+                        && nothing.gasTurbineRole() == LargeTurbineHatchRole.NOTHING
+                        && nothing.boundGasTurbine() == turbine,
+                "NOTHING wall was not bound for tool relay");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void energyOutPushesRu(GameTestHelper helper) {
+        LargeGasTurbineBlockEntity turbine = placeFormed(helper);
+        BlockPos farEnergy = SteamTurbineStructure.energyOut(CONTROLLER, FACING);
+        BlockPos sink = farEnergy.relative(Direction.EAST);
+        MteInPlaceBlock axle = ModBlocks.mteInPlaceBlocksById()
+                .get(MteInPlaceGameTestSupport.id("drive/small_brass_axle"))
+                .get();
+        helper.setBlock(
+                sink,
+                axle.defaultBlockState().setValue(MteInPlaceBlock.FACING, Direction.EAST));
+        helper.assertTrue(
+                turbine.fillInput(methane(10)),
+                "Could not fill 10 mB methane for an RU packet");
+        tick(helper, turbine);
+        MteInPlaceBlockEntity dest = helper.getBlockEntity(sink);
+        helper.assertTrue(
+                dest != null && dest.stored(EnergyType.KINETIC_ROTATION) > 0L,
+                "Energy-out wall did not push RU into the adjacent axle");
+        helper.assertTrue(
+                turbine.stored(EnergyType.HEAT) == 0L,
+                "Emitted RU did not consume the 3840 HU from two methane parallels");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void survivalRecipesArePresent(GameTestHelper helper) {
+        for (LargeGasTurbineCatalog.Profile profile
+                : LargeGasTurbineCatalog.profiles()) {
+            helper.assertTrue(
+                    helper.getLevel().getRecipeManager()
+                            .byKey(profile.id())
+                            .isPresent(),
+                    "Missing survival recipe " + profile.id());
+        }
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void controllerSidesFillAndDrain(GameTestHelper helper) {
+        LargeGasTurbineBlockEntity turbine = placeFormed(helper);
+        BlockPos abs = helper.absolutePos(CONTROLLER);
+        IFluidHandler south = helper.getLevel().getCapability(
+                Capabilities.FluidHandler.BLOCK, abs, Direction.SOUTH);
+        IFluidHandler up = helper.getLevel().getCapability(
+                Capabilities.FluidHandler.BLOCK, abs, Direction.UP);
+        IFluidHandler facing = helper.getLevel().getCapability(
+                Capabilities.FluidHandler.BLOCK, abs, FACING);
+        helper.assertTrue(
+                south != null && up != null && facing != null,
+                "Controller missing fluids on a side");
+        helper.assertTrue(
+                south.fill(methane(5), IFluidHandler.FluidAction.EXECUTE) == 5,
+                "Controller did not accept fuel on a non-front side");
+        helper.assertTrue(
+                turbine.inputAmount() == 5,
+                "Non-front fill did not land in the fuel tank");
+        helper.assertTrue(
+                up.fill(methane(5), IFluidHandler.FluidAction.EXECUTE) == 5,
+                "Controller did not accept fuel on a second side");
+        helper.assertTrue(
+                turbine.inputAmount() == 10,
+                "Second-side fill did not add to the fuel tank");
+        helper.assertTrue(
+                turbine.fillOutput(0, water(6)),
+                "Could not fill exhaust before controller drain");
+        helper.assertTrue(
+                facing.drain(6, IFluidHandler.FluidAction.EXECUTE).getAmount() == 6,
+                "Controller did not drain exhaust from the front");
+        helper.assertTrue(
+                turbine.fillOutput(0, water(6)),
+                "Could not refill exhaust before side drain");
+        helper.assertTrue(
+                south.drain(6, IFluidHandler.FluidAction.EXECUTE).getAmount() == 6,
+                "Controller did not drain exhaust from a non-front side");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void farWallUsesDesign3(GameTestHelper helper) {
+        placeFormed(helper);
+        BlockPos farEnergy = SteamTurbineStructure.energyOut(CONTROLLER, FACING);
+        helper.assertTrue(
+                LargeTurbineWalls.outlet(helper.getBlockState(farEnergy)),
+                "Far-wall energy-out hatch is not GT6 design 3");
+        helper.assertTrue(
+                !LargeTurbineWalls.outlet(helper.getBlockState(CONTROLLER.above())),
+                "Frontal wall used far-wall design 3");
+        helper.succeed();
+    }
+
     private static LargeGasTurbineBlockEntity placeFormed(GameTestHelper helper) {
         LargeGasTurbineCatalog.Profile profile = magnalium();
         MteInPlaceBlock turbine = ModBlocks.mteInPlaceBlocksById()
@@ -178,6 +339,21 @@ public final class LargeGasTurbineGameTests {
                 helper.absolutePos(CONTROLLER),
                 helper.getBlockState(CONTROLLER),
                 turbine);
+    }
+
+    private static IFluidHandler fluids(GameTestHelper helper, BlockPos pos) {
+        return helper.getLevel().getCapability(
+                Capabilities.FluidHandler.BLOCK,
+                helper.absolutePos(pos),
+                Direction.WEST);
+    }
+
+    private static int fillWall(
+            GameTestHelper helper, BlockPos pos, FluidStack stack) {
+        IFluidHandler fluids = fluids(helper, pos);
+        return fluids == null
+                ? 0
+                : fluids.fill(stack, IFluidHandler.FluidAction.EXECUTE);
     }
 
     private static LargeGasTurbineCatalog.Profile magnalium() {

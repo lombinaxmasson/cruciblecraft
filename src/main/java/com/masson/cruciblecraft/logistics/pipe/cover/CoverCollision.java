@@ -33,6 +33,10 @@ public final class CoverCollision {
         return union(base, coversOn(blockEntity));
     }
 
+    public static boolean any(BlockEntity blockEntity) {
+        return !coversOn(blockEntity).isEmpty();
+    }
+
     public static Map<Direction, PipeCover> coversOn(BlockEntity blockEntity) {
         if (blockEntity instanceof MachineCoverHost host) {
             return host.covers().snapshot();

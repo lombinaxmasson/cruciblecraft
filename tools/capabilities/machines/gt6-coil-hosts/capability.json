@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "slug": "machines/gt6-coil-hosts",
+  "title": "GT6 coils 18040-18045 and host machines",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/multiblock/CoilHosts.java",
+    "src/main/java/com/masson/cruciblecraft/content/multiblock/MatterFabricatorStructure.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MatterFabricatorBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/DenseLeadPorts.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/GalvanizedGraaggWalls.java",
+    "src/main/java/com/masson/cruciblecraft/energy/largedynamo/**",
+    "src/main/java/com/masson/cruciblecraft/energy/lightningrod/**",
+    "src/main/java/com/masson/cruciblecraft/energy/vondagraagg/**",
+    "src/main/resources/assets/cruciblecraft/gt6_coil_host_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/coil/**",
+    "src/main/resources/data/cruciblecraft_wave_machines_gt6_coil_hosts/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/CoilHostGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/content/multiblock/CoilHostIdentityTest.java",
+    "src/test/java/com/masson/cruciblecraft/energy/largedynamo/**",
+    "src/test/java/com/masson/cruciblecraft/energy/lightningrod/**",
+    "src/test/java/com/masson/cruciblecraft/energy/vondagraagg/**",
+    "tools/capabilities/machines/gt6-coil-hosts/**",
+    "tools/gt6_coil_hosts.py",
+    "tools/tests/test_gt6_coil_hosts.py"
+  ],
+  "depends_on": [
+    "content/gt6-mte-multiblock-runtime",
+    "content/gt6-mte-inplace-acquisition",
+    "energy/steam-turbine",
+    "energy/fusion-quantum",
+    "energy/quantum-massfab",
+    "machines/large-processing-parts"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": null,
+  "player_signoff": null,
+  "required_test_ids": [
+    "sixCoilIdentitiesAreLive",
+    "fusionIridiumIsTheMteIdentity",
+    "fourDynamosConvertRuToEu",
+    "lightningRodFormsAndKeepsTipContract",
+    "matterFabricatorOsmiumCoilsArePorts",
+    "vonDaGraaggIdentitiesAndBind8",
+    "carborundumCoilsForm",
+    "mixedCoilsDoNotForm",
+    "coilsHaveNoItemIo"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:gt6_coils:18040-18045",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:multiblock/large_copper_coil",
+        "cruciblecraft:multiblock/large_niobium_titanium_coil",
+        "cruciblecraft:multiblock/large_nichrome_coil",
+        "cruciblecraft:multiblock/large_carborundum_coil",
+        "cruciblecraft:multiblock/large_osmium_coil",
+        "cruciblecraft:multiblock/large_iridium_coil"
+      ],
+      "reason": "GT6 MultiTileEntityMultiBlockPart 18040-18045. Fusion uses only MTE iridium. Oven is 18042 XOR 18043 whole-ring. No GT5 heat/speed/parallel table."
+    }
+  ],
+  "note": "Six GT6 coil MTEs plus dynamo 17221-17224, lightning 17998/18104, massfab 17199, Von Da Graagg 17996, oven 17106, fusion 17198. Extra identities live only in mte_inplace_catalog. Overlay stays 74. Does not occupy unique-active. Skip recipes whose live forms are missing. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready, not player_complete."
+}

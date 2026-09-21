@@ -3,15 +3,15 @@
   "delta_ledger_policy": {
     "base_eager": 16650,
     "contract": "GameTest eager assertion MUST equal base_eager + sum(registered_deltas[*].eager). Any new delta registration must include per-family evidence.",
-    "current_eager": 16657,
+    "current_eager": 16658,
     "current_lazy": 2225,
-    "current_logical": 18882,
+    "current_logical": 18883,
     "registered_deltas": [
       {
-        "eager": 4,
+        "eager": 5,
         "evidence": "src/main/resources/data/cruciblecraft/chemical_publication_baseline.json",
         "lazy": 0,
-        "logical": 4,
+        "logical": 5,
         "phase": "chemical"
       },
       {

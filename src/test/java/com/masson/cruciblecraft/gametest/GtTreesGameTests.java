@@ -3,12 +3,15 @@ package com.masson.cruciblecraft.gametest;
 import java.util.Random;
 import java.util.Set;
 
+import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.GtTreeHoleBlock;
 import com.masson.cruciblecraft.content.block.WoodDebark;
 import com.masson.cruciblecraft.content.blockentity.GtTreeHoleBlockEntity;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFeatures;
 import com.masson.cruciblecraft.registry.ModItems;
+import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.worldgen.tree.GtTreeHoleTracker;
 import com.masson.cruciblecraft.worldgen.tree.LevelGtTreeWorld;
 import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeGrower;
@@ -17,8 +20,10 @@ import com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -201,6 +206,95 @@ public final class GtTreesGameTests {
                 player.getInventory().contains(new ItemStack(ModItems.RUBBER_RESIN.get())),
                 "Empty-hand rubber hole did not give rubber_resin");
         player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void rubberHoleFillsRubberTreeSap(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 2, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.treeHole(GtTreeSpecies.RUBBER)
+                        .get()
+                        .defaultBlockState()
+                        .setValue(GtTreeHoleBlock.FACING, Direction.NORTH)
+                        .setValue(GtTreeHoleBlock.HAS_PRODUCT, Boolean.TRUE));
+        helper.assertTrue(
+                helper.getBlockEntity(pos) instanceof GtTreeHoleBlockEntity,
+                "rubber hole has no block entity");
+        GtTreeHoleBlockEntity hole = (GtTreeHoleBlockEntity) helper.getBlockEntity(pos);
+        hole.setHasProduct(true);
+        var sap = BuiltInRegistries.FLUID.get(
+                ResourceLocation.fromNamespaceAndPath("cruciblecraft", "rubber_tree_sap"));
+        helper.assertTrue(
+                sap != null && !sap.defaultFluidState().isEmpty(),
+                "rubber_tree_sap is not registered");
+        helper.assertTrue(
+                hole.hasProduct()
+                        && hole.fluids().getFluidInTank(0).getAmount()
+                                == GtTreeSpecies.HOLE_FLUID_MILLIBUCKETS
+                        && hole.fluids().getFluidInTank(0).getFluid().isSame(sap),
+                "rubber hole did not fill 250 mB rubber_tree_sap");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void rubberCoagulatorLatexMakesNugget(GameTestHelper helper) {
+        helper.assertTrue(
+                ModRecipeMaps.COAGULATOR.entries().stream().anyMatch(entry ->
+                        "chemical/coagulator/latex_to_rubber_nugget"
+                                .equals(entry.id().getPath())),
+                "GT6 coagulator latex→rubber nugget is missing");
+        helper.assertTrue(
+                ModRecipeMaps.COAGULATOR.entries().stream().anyMatch(entry -> {
+                    if (!"chemical/coagulator/latex_to_rubber_nugget"
+                            .equals(entry.id().getPath())) {
+                        return false;
+                    }
+                    var recipe = entry.recipe();
+                    var latex = BuiltInRegistries.FLUID.get(
+                            ResourceLocation.fromNamespaceAndPath(
+                                    "cruciblecraft", "latex"));
+                    ItemStack nugget = MaterialLookup.stack(
+                            "rubber", MaterialPrefixes.NUGGET);
+                    return recipe.duration() == 256
+                            && recipe.eut() == 0L
+                            && recipe.fluidInputs().size() == 1
+                            && recipe.fluidInputs().get(0).getAmount() == 16
+                            && recipe.fluidInputs().get(0).getFluid().isSame(latex)
+                            && recipe.itemOutputs().size() == 1
+                            && ItemStack.isSameItemSameComponents(
+                                    recipe.itemOutputs().get(0), nugget);
+                }),
+                "coagulator latex recipe is not 16 mB latex → rubber nugget");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void rubberLogSqueezerMakesSap(GameTestHelper helper) {
+        helper.assertTrue(
+                ModRecipeMaps.SQUEEZER.entries().stream().anyMatch(entry ->
+                        "machine/squeezer/rubber_log".equals(entry.id().getPath())),
+                "GT6 rubber-log squeezer row is missing");
+        helper.assertTrue(
+                ModRecipeMaps.SQUEEZER.entries().stream().anyMatch(entry -> {
+                    if (!"machine/squeezer/rubber_log".equals(entry.id().getPath())) {
+                        return false;
+                    }
+                    var recipe = entry.recipe();
+                    var sap = BuiltInRegistries.FLUID.get(
+                            ResourceLocation.fromNamespaceAndPath(
+                                    "cruciblecraft", "rubber_tree_sap"));
+                    return recipe.duration() == 64
+                            && recipe.eut() == 16L
+                            && recipe.fluidOutputs().size() == 1
+                            && recipe.fluidOutputs().get(0).getAmount() == 200
+                            && recipe.fluidOutputs().get(0).getFluid().isSame(sap)
+                            && recipe.itemOutputs().size() == 1
+                            && recipe.outputChances().size() == 1
+                            && recipe.outputChances().get(0) == 5000;
+                }),
+                "rubber-log squeezer is not 200 mB sap plus 50% resin");
         helper.succeed();
     }
 

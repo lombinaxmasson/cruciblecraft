@@ -67,6 +67,7 @@ public final class MultiblockStructureValidator {
 
         List<Diagnostic> diagnostics = new ArrayList<>();
         List<MatchedPort> ports = new ArrayList<>();
+        java.util.Map<String, ResourceLocation> uniformBlocks = new java.util.LinkedHashMap<>();
         boolean unloaded = false;
         boolean invalid = false;
         for (Element element : definition.structure()) {
@@ -104,6 +105,20 @@ public final class MultiblockStructureValidator {
                 ports.add(new MatchedPort(
                         target,
                         predicate.port().orElseThrow()));
+            }
+            if (predicate.uniformGroup().isPresent()) {
+                String group = predicate.uniformGroup().orElseThrow();
+                ResourceLocation id = BuiltInRegistries.BLOCK.getKey(state.getBlock());
+                ResourceLocation first = uniformBlocks.putIfAbsent(group, id);
+                if (first != null && !first.equals(id)) {
+                    invalid = true;
+                    addDiagnostic(
+                            diagnostics,
+                            new Diagnostic(
+                                    target,
+                                    predicate.description(),
+                                    "mixed " + group + " (" + first + " vs " + id + ")"));
+                }
             }
         }
 

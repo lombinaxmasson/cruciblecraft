@@ -1,26 +1,49 @@
 {
   "variants": {
-    "facing=down": {
+    "facing=down,outlet=false": {
       "model": "cruciblecraft:block/mte_inplace_multiblock_part",
       "x": 90
     },
-    "facing=east": {
+    "facing=east,outlet=false": {
       "model": "cruciblecraft:block/mte_inplace_multiblock_part",
       "y": 90
     },
-    "facing=north": {
+    "facing=north,outlet=false": {
       "model": "cruciblecraft:block/mte_inplace_multiblock_part"
     },
-    "facing=south": {
+    "facing=south,outlet=false": {
       "model": "cruciblecraft:block/mte_inplace_multiblock_part",
       "y": 180
     },
-    "facing=up": {
+    "facing=up,outlet=false": {
       "model": "cruciblecraft:block/mte_inplace_multiblock_part",
       "x": 270
     },
-    "facing=west": {
+    "facing=west,outlet=false": {
       "model": "cruciblecraft:block/mte_inplace_multiblock_part",
+      "y": 270
+    },
+    "facing=down,outlet=true": {
+      "model": "cruciblecraft:block/mte_inplace_metal_wall_dense_outlet",
+      "x": 90
+    },
+    "facing=east,outlet=true": {
+      "model": "cruciblecraft:block/mte_inplace_metal_wall_dense_outlet",
+      "y": 90
+    },
+    "facing=north,outlet=true": {
+      "model": "cruciblecraft:block/mte_inplace_metal_wall_dense_outlet"
+    },
+    "facing=south,outlet=true": {
+      "model": "cruciblecraft:block/mte_inplace_metal_wall_dense_outlet",
+      "y": 180
+    },
+    "facing=up,outlet=true": {
+      "model": "cruciblecraft:block/mte_inplace_metal_wall_dense_outlet",
+      "x": 270
+    },
+    "facing=west,outlet=true": {
+      "model": "cruciblecraft:block/mte_inplace_metal_wall_dense_outlet",
       "y": 270
     }
   }

@@ -9,8 +9,8 @@
 
 ## 统计
 
-- 条目 62：open 31，partial 2，resolved 18，superseded 5，out_of_scope 6
-- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 15，有名字，分母未冻成工作量 10，不是活 3
+- 条目 62：open 30，partial 2，resolved 19，superseded 5，out_of_scope 6
+- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 14，有名字，分母未冻成工作量 10，不是活 3
 
 ## 排期分类（未关闭）
 
@@ -25,10 +25,9 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `recipe/nanofab-overflow`：57 rows
 - `worldgen/food`：n/a
 
-### B. 分母已冻，可当卡排（15）
+### B. 分母已冻，可当卡排（14）
 
 - `fluid/ic2-coolant`：1 fluids
-- `fluid/resin-rubber`：1 fluids
 - `fluid/sap-maple`：1 fluids
 - `fluid/thorium-salt`：1 fluids
 - `identity/converter-turbines-battery-boxes`：8 items
@@ -84,6 +83,9 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 成员：`identity/hsla-ungated-gauges`, `identity/connector-art-keep-distinct-dummies`
   - 收口：Smelter/bath leftover connector CatalogNamedItem dummies with gated CableBlock or PipeBlock hosts were folded onto those live ids. Gold/lead 3x/5x/6x had live hosts; loot crate and decorative panels stay dummy.
   - 当前权威：`tools/gt6_connector_live_host_dummy_fold.py`, `src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json`, `src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json`
+- 成员：`fluid/resin-rubber`
+  - 收口：worldgen/gt-trees follow-up: FL.Resin_Rubber is cruciblecraft:rubber_tree_sap. Rubber hole harvests rubber_resin and 250 mB sap. Latex is not a stand-in.
+  - 当前权威：`tools/capabilities/worldgen/gt-trees/capability.json`, `src/main/resources/data/cruciblecraft/tree_hole_fluid_mapping.json`
 
 ## 批处理关系（不是分母）
 
@@ -139,28 +141,26 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 
 ### `batch/fluid-gt-tree-identity`：GT 树流体身份收口
 
-- 建议排序依据：2 个缺失流体共享 GT 树 worldgen owner 与验收面。
+- 建议排序依据：Maple sap remains the GT tree fluid identity; rubber tree sap is live.
 - 类型：`domain_fluid_closure`；成员角色按各 blocker 保留
 - production lock：`separate_fluid_identity_validation`
 - 成员：
-  - `fluid/resin-rubber`（`primary`）
   - `fluid/sap-maple`（`primary`）
 - 已有 lock：无（按能力/流体身份分别验收）
 - 明确排除：
   - `recipe/printer-dye-fluids`
   - `recipe/oven-cooking-oil-xp`
 - 边界：
-  - 两个 identity 都属于 worldgen/gt-trees owner 及其 freeze / drill source path。
-  - Latex 不是 Resin_Rubber 的 stand-in，另一种树液也不是 Sap_Maple 的 stand-in。
+  - Maple sap still belongs to worldgen/gt-trees freeze / drill source path.
+  - Rubber tree sap is live as cruciblecraft:rubber_tree_sap; latex is not a stand-in.
   - 印刷机染料与熔炉油 / XP 保持在 GT 树批次之外。
 
 ## 按根因（未关闭）
 
 - `invariant`（1）
   - `energy/reactor-temperature-kelvin`
-- `missing_fluid`（6）
+- `missing_fluid`（5）
   - `fluid/ic2-coolant`
-  - `fluid/resin-rubber`
   - `fluid/sap-maple`
   - `fluid/thorium-salt`
   - `recipe/oven-cooking-oil-xp`
@@ -313,22 +313,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/energy/nuclear-fission-hot-fluids/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Not substituted. Injector overflow also names ic2coolant.
-
-### `fluid/resin-rubber`
-
-- 标题：FL.Resin_Rubber 缺失
-- 状态：`open`
-- 根因：`missing_fluid` / `missing_resin_rubber_fluid`
-- 数量：1 fluids
-- 排期：`schedulable`
-- 挡住：`player_complete`
-- 发现卡：`worldgen/gt-trees`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`worldgen/gt-trees`
-- 权威：`tools/capabilities/worldgen/gt-trees/capability.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Latex is not a stand-in. Rubber hole still harvests rubber_resin.
 
 ### `fluid/sap-maple`
 
@@ -825,6 +809,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/content/puv-omega-parts/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Dedicated 10064-10068 endpoints plus five LongDistWire voltage hosts. Same-voltage EU with max(64, distance/8) loss. Not in the voltage-step transformer catalog.
+
+### `fluid/resin-rubber`
+
+- 标题：FL.Resin_Rubber 缺失
+- 状态：`resolved`
+- 根因：`missing_fluid` / `missing_resin_rubber_fluid`
+- 数量：1 fluids
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`worldgen/gt-trees`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：worldgen/gt-trees
+- 影响：`worldgen/gt-trees`
+- 权威：`tools/capabilities/worldgen/gt-trees/capability.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：FL.Resin_Rubber is cruciblecraft:rubber_tree_sap. Latex is not a stand-in. Rubber hole harvests rubber_resin and 250 mB sap.
 
 ### `identity/connector-art-keep-distinct-dummies`
 

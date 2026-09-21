@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import com.masson.cruciblecraft.machine.processing.prep.ClusterMillPrepSpec;
+import com.masson.cruciblecraft.registry.ModMultiblockControllers;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
 import net.minecraft.SharedConstants;
@@ -64,6 +65,86 @@ class Gt6SidedIoTest {
     }
 
     @Test
+    void largeCrusherAutoOutputsItemsAndFluidsDown() {
+        ProcessingMachineSpec spec = ModProcessingMachines.LARGE_CRUSHER;
+        Direction front = Direction.NORTH;
+        assertEquals(
+                ProcessingMachineSpec.CapabilityAccess.OUTPUT,
+                spec.sidedIo().items().resolve(front, Direction.DOWN));
+        assertEquals(
+                ProcessingMachineSpec.CapabilityAccess.OUTPUT,
+                spec.sidedIo().fluids().resolve(front, Direction.DOWN));
+        assertEquals(
+                Direction.DOWN,
+                ProcessingMachineIoFaces.itemOutput(spec, front));
+        assertEquals(
+                Direction.DOWN,
+                ProcessingMachineIoFaces.fluidOutput(spec, front));
+        assertFalse(spec.sidedIo().itemsChannel().hasAutoInput());
+        assertFalse(spec.sidedIo().fluidsChannel().hasAutoInput());
+        assertEquals(
+                ProcessingMachineSpec.CapabilityAccess.NONE,
+                spec.sidedIo().items().resolve(front, Direction.UP));
+        assertEquals(
+                ProcessingMachineSpec.CapabilityAccess.NONE,
+                spec.sidedIo().energy().resolve(front, Direction.SOUTH));
+        assertTrue(spec.sidedIo().energyChannel().listedEnergy().isEmpty());
+    }
+
+    @Test
+    void largeAutoclaveHullIsAnyFaceWithBottomAutoOut() {
+        ProcessingMachineSpec single = ModProcessingMachines.AUTOCLAVE;
+        ProcessingMachineSpec large =
+                ModMultiblockControllers.LARGE_AUTOCLAVE_VARIANT.runtimeSpec();
+        ProcessingMachineIoAssertions.assertMatchesProfile(large);
+        Direction front = Direction.NORTH;
+        assertEquals(
+                ProcessingMachineSpec.CapabilityAccess.INPUT,
+                single.sidedIo().items().resolve(front, Direction.EAST));
+        assertEquals(
+                ProcessingMachineSpec.CapabilityAccess.OUTPUT,
+                single.sidedIo().items().resolve(front, Direction.WEST));
+        assertFalse(large.sidedIo().itemsChannel().hasAutoInput());
+        assertFalse(large.sidedIo().fluidsChannel().hasAutoInput());
+        assertEquals(
+                Direction.DOWN,
+                ProcessingMachineIoFaces.itemOutput(large, front));
+        assertEquals(
+                Direction.DOWN,
+                ProcessingMachineIoFaces.fluidOutput(large, front));
+        for (Direction side : Direction.values()) {
+            assertEquals(
+                    ProcessingMachineSpec.CapabilityAccess.BOTH,
+                    large.sidedIo().items().resolve(front, side),
+                    "items " + side);
+            assertEquals(
+                    ProcessingMachineSpec.CapabilityAccess.BOTH,
+                    large.sidedIo().fluids().resolve(front, side),
+                    "fluids " + side);
+            assertEquals(
+                    ProcessingMachineSpec.CapabilityAccess.INPUT,
+                    large.sidedIo().energy().resolve(front, side),
+                    "energy " + side);
+        }
+    }
+
+    @Test
+    void largeBathingVatAutoOutputsDownWithoutAutoInput() {
+        ProcessingMachineSpec spec =
+                ModMultiblockControllers.LARGE_BATH_VARIANT.runtimeSpec();
+        Direction front = Direction.NORTH;
+        ProcessingMachineIoAssertions.assertMatchesProfile(spec);
+        assertFalse(spec.sidedIo().itemsChannel().hasAutoInput());
+        assertFalse(spec.sidedIo().fluidsChannel().hasAutoInput());
+        assertEquals(
+                Direction.DOWN,
+                ProcessingMachineIoFaces.itemOutput(spec, front));
+        assertEquals(
+                Direction.DOWN,
+                ProcessingMachineIoFaces.fluidOutput(spec, front));
+    }
+
+    @Test
     void latheUsesPlayerLeftInRightOutAndBottomEnergy() {
         ProcessingMachineSpec spec = ModProcessingMachines.LATHE;
         Direction front = Direction.NORTH;
@@ -79,6 +160,23 @@ class Gt6SidedIoTest {
         assertEquals(
                 ProcessingMachineSpec.CapabilityAccess.NONE,
                 spec.sidedIo().energy().resolve(front, Direction.SOUTH));
+    }
+
+    @Test
+    void largeBathKeepsAnySideAndBottomAutoOutput() {
+        ProcessingMachineSpec spec =
+                com.masson.cruciblecraft.registry.ModMultiblockControllers
+                        .LARGE_BATH_VARIANT
+                        .runtimeSpec();
+        ProcessingMachineIoAssertions.assertMatchesProfile(spec);
+        assertEquals(
+                Direction.DOWN,
+                ProcessingMachineIoFaces.itemOutput(spec, Direction.NORTH));
+        assertEquals(
+                Direction.DOWN,
+                ProcessingMachineIoFaces.fluidOutput(spec, Direction.NORTH));
+        assertFalse(spec.sidedIo().itemsChannel().hasAutoInput());
+        assertFalse(spec.sidedIo().fluidsChannel().hasAutoInput());
     }
 
     @Test

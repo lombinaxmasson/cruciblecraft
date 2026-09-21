@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "palette": {
+    "W": {
+      "type": "port",
+      "block": "cruciblecraft:invar/wall",
+      "port": "item_fluid_energy"
+    },
+    "N": {
+      "type": "tag",
+      "tag": "cruciblecraft:large_oven_coils",
+      "uniform_group": "oven_coils"
+    },
+    "A": {
+      "type": "air"
+    },
+    "C": {
+      "type": "controller",
+      "block": "cruciblecraft:large_oven"
+    }
+  },
+  "structure": [
+    { "offset": [-1, 0, 0], "predicate": "W" },
+    { "offset": [0, 0, 0], "predicate": "C" },
+    { "offset": [1, 0, 0], "predicate": "W" },
+    { "offset": [-1, 0, 1], "predicate": "W" },
+    { "offset": [0, 0, 1], "predicate": "W" },
+    { "offset": [1, 0, 1], "predicate": "W" },
+    { "offset": [-1, 0, 2], "predicate": "W" },
+    { "offset": [0, 0, 2], "predicate": "W" },
+    { "offset": [1, 0, 2], "predicate": "W" },
+
+    { "offset": [-1, 1, 0], "predicate": "N" },
+    { "offset": [0, 1, 0], "predicate": "N" },
+    { "offset": [1, 1, 0], "predicate": "N" },
+    { "offset": [-1, 1, 1], "predicate": "N" },
+    { "offset": [0, 1, 1], "predicate": "A" },
+    { "offset": [1, 1, 1], "predicate": "N" },
+    { "offset": [-1, 1, 2], "predicate": "N" },
+    { "offset": [0, 1, 2], "predicate": "N" },
+    { "offset": [1, 1, 2], "predicate": "N" },
+
+    { "offset": [-1, 2, 0], "predicate": "W" },
+    { "offset": [0, 2, 0], "predicate": "W" },
+    { "offset": [1, 2, 0], "predicate": "W" },
+    { "offset": [-1, 2, 1], "predicate": "W" },
+    { "offset": [0, 2, 1], "predicate": "W" },
+    { "offset": [1, 2, 1], "predicate": "W" },
+    { "offset": [-1, 2, 2], "predicate": "W" },
+    { "offset": [0, 2, 2], "predicate": "W" },
+    { "offset": [1, 2, 2], "predicate": "W" }
+  ],
+  "anchors": {
+    "center": [0, 1, 1]
+  },
+  "source": {
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityOven",
+    "method": "checkStructure2"
+  }
+}

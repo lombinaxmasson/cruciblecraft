@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="LGPL-3.0-or-later"
+
+[[mods]]
+modId="cruciblecraft_foods"
+version="0.1.0"
+displayName="CrucibleCraft Foods"
+authors="Lorbineitte Masson"
+description='''
+Optional GT6 MultiItemFood crop identities, FoodStat values, and agriculture tags.
+Juicer and Fermenter hosts stay on their own cards. Red apple stays minecraft:apple.
+'''
+
+[[dependencies.cruciblecraft_foods]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.243,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.cruciblecraft_foods]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.cruciblecraft_foods]]
+modId="cruciblecraft"
+type="required"
+versionRange="[0.1.0,)"
+ordering="BEFORE"
+side="BOTH"
+
+[[dependencies.cruciblecraft_foods]]
+modId="farmersdelight"
+type="optional"
+versionRange="[0,)"
+ordering="NONE"
+side="BOTH"

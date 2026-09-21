@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "palette": {
+    "I": {
+      "type": "port",
+      "block": "cruciblecraft:multiblock/electrolyzer_part",
+      "port": "item_fluid_in"
+    },
+    "O": {
+      "type": "port",
+      "block": "cruciblecraft:multiblock/electrolyzer_part",
+      "port": "item_fluid_out"
+    },
+    "C": {
+      "type": "controller",
+      "block": "cruciblecraft:large_electrolyzer"
+    }
+  },
+  "structure": [
+    { "offset": [-1, 0, 0], "predicate": "I" },
+    { "offset": [0, 0, 0], "predicate": "C" },
+    { "offset": [1, 0, 0], "predicate": "I" },
+    { "offset": [-1, 0, 1], "predicate": "I" },
+    { "offset": [0, 0, 1], "predicate": "I" },
+    { "offset": [1, 0, 1], "predicate": "I" },
+    { "offset": [-1, 0, 2], "predicate": "I" },
+    { "offset": [0, 0, 2], "predicate": "I" },
+    { "offset": [1, 0, 2], "predicate": "I" },
+
+    { "offset": [-1, 1, 0], "predicate": "O" },
+    { "offset": [0, 1, 0], "predicate": "O" },
+    { "offset": [1, 1, 0], "predicate": "O" },
+    { "offset": [-1, 1, 1], "predicate": "O" },
+    { "offset": [0, 1, 1], "predicate": "O" },
+    { "offset": [1, 1, 1], "predicate": "O" },
+    { "offset": [-1, 1, 2], "predicate": "O" },
+    { "offset": [0, 1, 2], "predicate": "O" },
+    { "offset": [1, 1, 2], "predicate": "O" }
+  ],
+  "anchors": {
+    "center": [0, 0, 1]
+  },
+  "source": {
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityElectrolyzer",
+    "method": "checkStructure2"
+  }
+}

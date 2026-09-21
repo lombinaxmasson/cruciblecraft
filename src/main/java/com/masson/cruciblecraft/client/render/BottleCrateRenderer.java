@@ -37,6 +37,8 @@ public final class BottleCrateRenderer
             int packedOverlay) {
         renderBottles(
                 crate, crate.inventory(), poseStack, buffers, LightTexture.FULL_BRIGHT);
+        PipeCoverRenderer.renderMounted(
+                crate, poseStack, buffers, packedLight);
     }
 
     static void renderBottles(

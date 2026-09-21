@@ -1,9 +1,11 @@
 package com.masson.cruciblecraft.material;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -13,6 +15,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.def.MaterialLoader;
 import com.masson.cruciblecraft.material.def.MaterialTuning;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.recipe.AlloyIndex;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -25,6 +28,13 @@ public final class MaterialCatalog {
     private static volatile RuntimeState runtime = RuntimeState.empty();
     private static final Map<String, MaterialDefinition> startupAdditions = new LinkedHashMap<>();
     private static final Map<String, MaterialTuning> startupTunings = new LinkedHashMap<>();
+    private static final Map<String, LinkedHashSet<String>> startupForms = new LinkedHashMap<>();
+    private static final Set<String> PLANT_OVERLAY_PREFIXES = Set.of(
+            "plant_gt_berry",
+            "plant_gt_blossom",
+            "plant_gt_fiber",
+            "plant_gt_twig",
+            "plant_gt_wart");
 
     private MaterialCatalog() {}
 
@@ -38,7 +48,9 @@ public final class MaterialCatalog {
                 startupTunings.values());
         validateRequiredMaterials(definitions);
         Map<String, java.util.List<MaterialPrefix>> registeredForms =
-                MaterialRegistrationGate.load(definitions.values());
+                mergeStartupForms(
+                        definitions.values(),
+                        MaterialRegistrationGate.load(definitions.values()));
         validateRegistryNames(definitions.values(), registeredForms);
         DecompositionResolver decomposition = new DecompositionResolver(definitions);
         LinkedHashMap<String, DecompositionInfo> info = new LinkedHashMap<>();
@@ -64,6 +76,7 @@ public final class MaterialCatalog {
                 buildPrefixIndex(definitions.values()));
         startupAdditions.clear();
         startupTunings.clear();
+        startupForms.clear();
         state = published;
         runtime = RuntimeState.from(
                 published.definitions(), published.alloyIndex(), Map.of(), 0L);
@@ -93,6 +106,28 @@ public final class MaterialCatalog {
             throw new IllegalStateException("Materials can only be tuned before bootstrap");
         }
         return startupTunings.putIfAbsent(tuning.id(), tuning) == null;
+    }
+
+    /**
+     * Queues a long-tail live form before item registration. Duplicate pairs are
+     * rejected. Public-exchange prefixes stay unique Items and cannot be opened
+     * here. Plant {@code plant_gt_*} pairs may be sourced from GT6
+     * {@code ITEMGENERATOR.PLANTS} even when they are not generation-flag forms.
+     *
+     * <p>Addons must call this from a constructor ordered before CrucibleCraft.
+     */
+    public static synchronized boolean addStartupForm(
+            String materialId, String prefixPath) {
+        if (state.bootstrapped()) {
+            throw new IllegalStateException("Forms can only be overlaid before bootstrap");
+        }
+        if (materialId == null || materialId.isBlank()
+                || prefixPath == null || prefixPath.isBlank()) {
+            throw new IllegalArgumentException("Overlay form identity must not be blank");
+        }
+        return startupForms
+                .computeIfAbsent(materialId, ignored -> new LinkedHashSet<>())
+                .add(prefixPath);
     }
 
     public static Collection<MaterialDefinition> values() {
@@ -143,6 +178,7 @@ public final class MaterialCatalog {
         runtime = RuntimeState.empty();
         startupAdditions.clear();
         startupTunings.clear();
+        startupForms.clear();
     }
 
     /** O(1) membership check for persisted and integration-provided material ids. */
@@ -636,6 +672,60 @@ public final class MaterialCatalog {
                 }
             }
         }
+    }
+
+    private static Map<String, List<MaterialPrefix>> mergeStartupForms(
+            Collection<MaterialDefinition> definitions,
+            Map<String, List<MaterialPrefix>> registered) {
+        if (startupForms.isEmpty()) {
+            return registered;
+        }
+        LinkedHashMap<String, MaterialDefinition> byId = new LinkedHashMap<>();
+        definitions.forEach(definition -> byId.put(definition.id(), definition));
+        LinkedHashMap<String, List<MaterialPrefix>> merged = new LinkedHashMap<>();
+        registered.forEach((id, forms) -> merged.put(id, new ArrayList<>(forms)));
+        for (var entry : startupForms.entrySet()) {
+            MaterialDefinition definition = byId.get(entry.getKey());
+            if (definition == null) {
+                throw new IllegalStateException(
+                        "Form overlay references unknown material: " + entry.getKey());
+            }
+            if (definition.metadataOnly()) {
+                throw new IllegalStateException(
+                        "Form overlay cannot open metadata-only material "
+                                + definition.id());
+            }
+            List<MaterialPrefix> live = merged.computeIfAbsent(
+                    definition.id(), ignored -> new ArrayList<>());
+            for (String prefixPath : entry.getValue()) {
+                MaterialPrefix prefix = MaterialPrefixCatalog.require(prefixPath);
+                if (live.contains(prefix)) {
+                    throw new IllegalStateException(
+                            "Form overlay duplicates live pair "
+                                    + definition.id() + "/" + prefixPath);
+                }
+                if (MaterialFormHosts.isPublicExchangePrefix(prefix)) {
+                    throw new IllegalStateException(
+                            "Form overlay cannot open public-exchange prefix "
+                                    + prefixPath);
+                }
+                boolean factual = definition.forms().contains(prefix);
+                boolean plants = PLANT_OVERLAY_PREFIXES.contains(prefix.serializedName())
+                        && definition.gt6Metadata()
+                                .map(metadata -> metadata.generationTags()
+                                        .contains("ITEMGENERATOR.PLANTS"))
+                                .orElse(false);
+                if (!factual && !plants) {
+                    throw new IllegalStateException(
+                            "Form overlay is not factual or PLANTS-backed: "
+                                    + definition.id() + "/" + prefixPath);
+                }
+                live.add(prefix);
+            }
+        }
+        LinkedHashMap<String, List<MaterialPrefix>> frozen = new LinkedHashMap<>();
+        merged.forEach((id, forms) -> frozen.put(id, List.copyOf(forms)));
+        return java.util.Collections.unmodifiableMap(frozen);
     }
 
     private static Map<String, String> buildCanonicalItemMappings(

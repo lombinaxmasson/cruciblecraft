@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
+import com.masson.cruciblecraft.content.multiblock.CoilHosts;
 import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
 import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
@@ -217,6 +218,14 @@ public final class ModCreativeTabs {
         output.accept(ModItems.MULTIBLOCK_ENERGY_INPUT_PORT.get());
         output.accept(ModItems.MULTIBLOCK_FLUID_OUT_PORT.get());
         output.accept(ModItems.LARGE_CENTRIFUGE.get());
+        output.accept(ModItems.LARGE_MIXER.get());
+        output.accept(ModItems.LARGE_ELECTROLYZER.get());
+        output.accept(ModItems.LARGE_OVEN.get());
+        output.accept(ModItems.LARGE_CRUSHER.get());
+        output.accept(ModItems.LARGE_BATH.get());
+        output.accept(ModItems.LARGE_COAGULATOR.get());
+        output.accept(ModItems.LARGE_AUTOCLAVE.get());
+        output.accept(ModItems.LARGE_FERMENTER.get());
         output.accept(ModItems.DISTILLATION_TOWER.get());
         output.accept(ModItems.CRYO_DISTILLATION_TOWER.get());
         output.accept(ModItems.LARGE_BOILER.get());
@@ -295,7 +304,9 @@ public final class ModCreativeTabs {
         output.accept(ModItems.ROTATIONAL_AXLE.get());
         output.accept(ModItems.ROTATIONAL_GEARBOX.get());
         MteInPlaceCatalog.specs().forEach(spec -> {
-            if (spec.kind() != MteInPlaceKind.GAS_TURBINE) {
+            if (spec.kind() != MteInPlaceKind.GAS_TURBINE
+                    && spec.kind() != MteInPlaceKind.LARGE_DYNAMO
+                    && spec.kind() != MteInPlaceKind.LIGHTNING_ROD) {
                 return;
             }
             var item = ModItems.mteInPlaceItemsById().get(spec.id());
@@ -369,7 +380,6 @@ public final class ModCreativeTabs {
             CreativeModeTab.ItemDisplayParameters parameters,
             CreativeModeTab.Output output) {
         output.accept(ModItems.FIREBRICK.get());
-        output.accept(ModItems.LARGE_IRIDIUM_COIL.get());
         GtWoodCatalog.DEFINITIONS.forEach(wood -> {
             output.accept(ModItems.gtWood(wood.id()).get());
             output.accept(GtWoodCatalog.fireproofStack(
@@ -520,7 +530,11 @@ public final class ModCreativeTabs {
     private static boolean machinesTabMte(MteInPlaceSpec spec) {
         return LargeCrucibleHosts.isController(spec)
                 || LargeCrucibleHosts.isCatalogWall(spec)
-                || spec.kind() == MteInPlaceKind.CRUCIBLE_FOUNDRY;
+                || spec.kind() == MteInPlaceKind.CRUCIBLE_FOUNDRY
+                || spec.kind() == MteInPlaceKind.MATTER_FABRICATOR
+                || spec.kind() == MteInPlaceKind.VON_DA_GRAAGG
+                || CoilHosts.isCoilMeta(spec.meta())
+                || spec.meta() == CoilHosts.LIGHTNING_ROD_PART_META;
     }
 
     private static void acceptRemainder(

@@ -166,6 +166,54 @@ class MultiblockStructureDefinitionTest {
     }
 
     @Test
+    void largeBathMatchesThePinnedGt6SourceShape() {
+        MultiblockStructureDefinition definition =
+                resourceDefinition("large_bath");
+        assertEquals(50, definition.structure().size());
+        assertEquals(50, definition.scanVolume());
+        assertEquals(49, definition.portCount(PortType.ITEM_FLUID));
+        assertEquals(0, definition.portCount(PortType.ENERGY_INPUT));
+        assertEquals(
+                1,
+                definition.structure().stream()
+                        .filter(element -> definition.predicate(element).kind()
+                                == PredicateKind.CONTROLLER)
+                        .count());
+        var source = definition.source().orElseThrow();
+        assertEquals(
+                "3703e40308c8c030763fd6297dea8b210d2a77b1",
+                source.revision());
+        assertEquals(
+                "gregtech.tileentity.multiblocks.MultiTileEntityBath",
+                source.className());
+        assertEquals("checkStructure2", source.method());
+    }
+
+    @Test
+    void largeCoagulatorMatchesThePinnedGt6SourceShape() {
+        MultiblockStructureDefinition definition =
+                resourceDefinition("large_coagulator");
+        assertEquals(50, definition.structure().size());
+        assertEquals(50, definition.scanVolume());
+        assertEquals(49, definition.portCount(PortType.ITEM_FLUID));
+        assertEquals(0, definition.portCount(PortType.ENERGY_INPUT));
+        assertEquals(
+                1,
+                definition.structure().stream()
+                        .filter(element -> definition.predicate(element).kind()
+                                == PredicateKind.CONTROLLER)
+                        .count());
+        var source = definition.source().orElseThrow();
+        assertEquals(
+                "3703e40308c8c030763fd6297dea8b210d2a77b1",
+                source.revision());
+        assertEquals(
+                "gregtech.tileentity.multiblocks.MultiTileEntityCoagulator",
+                source.className());
+        assertEquals("checkStructure2", source.method());
+    }
+
+    @Test
     void unknownSchemaVersionFailsClosed() {
         String v2 = """
                 {

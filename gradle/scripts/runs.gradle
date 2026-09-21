@@ -1,6 +1,8 @@
 neoForge {
     version = project.neo_version
     addModdingDependenciesTo sourceSets.test
+    addModdingDependenciesTo sourceSets.crops
+    addModdingDependenciesTo sourceSets.foods
 
     parchment {
         mappingsVersion = project.parchment_mappings_version
@@ -126,6 +128,12 @@ neoForge {
         "${mod_id}" {
             sourceSet(sourceSets.main)
             sourceSet(sourceSets.test)
+        }
+        cruciblecraft_crops {
+            sourceSet(sourceSets.crops)
+        }
+        cruciblecraft_foods {
+            sourceSet(sourceSets.foods)
         }
     }
 }

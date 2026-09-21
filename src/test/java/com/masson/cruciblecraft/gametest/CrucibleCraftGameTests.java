@@ -7986,13 +7986,13 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 metrics.componentRecipes() == 8406
                         && metrics.toolRecipes() == 3913
-                        && metrics.chemicalPublishedRecipes() == 158
+                        && metrics.chemicalPublishedRecipes() == 159
                         && metrics.mortarAuthoredMaterialRules() == 220
                         && metrics.pipeMaterialRules() == 257
                         && metrics.ingotFormMaterialRules() == 967
                         && metrics.liveComponentMapRecipes() == 12064
-                        && metrics.allPublishedRecipes() == 19_087
-                        && metrics.eagerPublishedRecipes() == 16_862
+                        && metrics.allPublishedRecipes() == 19_089
+                        && metrics.eagerPublishedRecipes() == 16_864
                         && metrics.eagerPublishedRecipes()
                                 <= ModProcessingMachines
                                         .ALL_EAGER_PUBLICATION_SOFT_BUDGET

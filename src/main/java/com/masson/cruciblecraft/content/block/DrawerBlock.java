@@ -1,7 +1,10 @@
 package com.masson.cruciblecraft.content.block;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
+import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -9,6 +12,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
@@ -22,6 +27,14 @@ public final class DrawerBlock extends StorageHostBlock {
         return new DrawerBlockEntity(pos, state);
     }
 
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
+            Level level, BlockState state, BlockEntityType<T> type) {
+        return createTicker(
+                level, type, ModBlockEntities.DRAWER.get(), DrawerBlockEntity::serverTick);
+    }
+
     @Override
     protected InteractionResult useWithoutItem(
             BlockState state,
@@ -29,6 +42,9 @@ public final class DrawerBlock extends StorageHostBlock {
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
+        if (coverClick(level, pos, player, hit)) {
+            return InteractionResult.SUCCESS;
+        }
         if (!level.isClientSide && player instanceof ServerPlayer serverPlayer
                 && level.getBlockEntity(pos) instanceof DrawerBlockEntity drawer) {
             int compartment = DrawerBlockEntity.compartmentFor(state, hit.getDirection());

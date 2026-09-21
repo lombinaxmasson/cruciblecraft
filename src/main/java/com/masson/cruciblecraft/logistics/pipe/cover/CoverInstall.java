@@ -15,10 +15,28 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.phys.BlockHitResult;
 
 /** Places a plate/foil decorative cover on any GT6 cover host. */
 public final class CoverInstall {
     private CoverInstall() {}
+
+    public static boolean tryPlace(
+            Level level,
+            BlockPos pos,
+            BlockHitResult hit,
+            ItemStack stack,
+            Player player) {
+        if (level == null || pos == null || hit == null) {
+            return false;
+        }
+        return tryPlace(
+                level,
+                pos,
+                CoverPlacement.placeSide(level.getBlockEntity(pos), hit),
+                stack,
+                player);
+    }
 
     public static boolean tryPlace(
             Level level,

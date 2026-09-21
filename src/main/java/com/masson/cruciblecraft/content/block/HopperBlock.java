@@ -156,8 +156,7 @@ public final class HopperBlock extends Block
         if (tool.consumesAction()) {
             return tool;
         }
-        if (CoverInstall.tryPlace(
-                level, pos, hit.getDirection(), stack, player)) {
+        if (CoverInstall.tryPlace(level, pos, hit, stack, player)) {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         if (level.getBlockEntity(pos) instanceof HopperBlockEntity hopper

@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.item.BathMteFluidCatalog;
 import com.masson.cruciblecraft.content.item.BathRemainderFluidCatalog;
 import com.masson.cruciblecraft.content.item.SemanticFluidCatalog;
+import com.masson.cruciblecraft.worldgen.tree.TreeHoleFluidCatalog;
 import com.masson.cruciblecraft.material.ChemicalFluidRegistrationGate;
 import com.masson.cruciblecraft.material.HotFluidRegistrationGate;
 import com.masson.cruciblecraft.material.GT6ImportUnits;
@@ -517,6 +518,41 @@ public final class ModFluids {
                             flowing.get())) != null) {
                 throw new IllegalStateException(
                         "Duplicate Bath remainder overlay fluid " + spec.id());
+            }
+        }
+        for (BathMteFluidCatalog.FluidSpec spec : TreeHoleFluidCatalog.fluids()) {
+            String sourceId = spec.id().getPath();
+            String flowingId = "flowing_" + sourceId;
+            Supplier<FluidType> type = FLUID_TYPES.register(
+                    sourceId,
+                    () -> new FluidType(FluidType.Properties.create()
+                            .density(1_000)
+                            .viscosity(1_000)));
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> source =
+                    new AtomicReference<>();
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> flowing =
+                    new AtomicReference<>();
+            Supplier<BaseFlowingFluid.Properties> properties =
+                    () -> new BaseFlowingFluid.Properties(
+                            type,
+                            () -> source.get().get(),
+                            () -> flowing.get().get());
+            source.set(FLUIDS.register(
+                    sourceId,
+                    () -> new BaseFlowingFluid.Source(properties.get())));
+            flowing.set(FLUIDS.register(
+                    flowingId,
+                    () -> new BaseFlowingFluid.Flowing(properties.get())));
+            if (registered.put(
+                    spec.id(),
+                    new BathOverlayFluidEntry(
+                            spec.id(),
+                            spec.colorRgb(),
+                            type,
+                            source.get(),
+                            flowing.get())) != null) {
+                throw new IllegalStateException(
+                        "Duplicate tree-hole overlay fluid " + spec.id());
             }
         }
         for (BathMteFluidCatalog.FluidSpec spec : SemanticFluidCatalog.fluids()) {

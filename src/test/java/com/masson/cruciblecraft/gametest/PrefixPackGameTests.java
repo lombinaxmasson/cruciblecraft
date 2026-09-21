@@ -25,9 +25,9 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * GT6 dust-family packing, placeable {@code OP.blockDust}, and plate-family
- * packing into placeable {@code OP.blockPlate}. Lives on the default GameTest
- * namespace so a bare {@code runGameTestServer} exercises it.
+ * GT6 dust-family packing, nugget/ingot packing, placeable {@code OP.blockDust},
+ * and plate-family packing into placeable {@code OP.blockPlate}. Lives on the
+ * default GameTest namespace so a bare {@code runGameTestServer} exercises it.
  */
 @GameTestHolder(CrucibleCraft.MODID)
 @PrefixGameTestTemplate(false)
@@ -140,6 +140,34 @@ public final class PrefixPackGameTests {
                 MaterialLookup.matches(assembled, "iron", MaterialPrefixes.PLATE)
                         && assembled.getCount() == 9,
                 "1 iron storage plate did not unpack to 9 plates: " + assembled);
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void nineRubberNuggetsCraftIngot(GameTestHelper helper) {
+        ItemStack nugget = MaterialLookup.stack("rubber", MaterialPrefixes.NUGGET);
+        List<ItemStack> slots = new ArrayList<>(Collections.nCopies(9, nugget.copy()));
+        ItemStack assembled = craft(helper, 3, 3, slots);
+        helper.assertTrue(
+                MaterialLookup.matches(
+                        assembled, "rubber", MaterialPrefixes.INGOT)
+                        && assembled.getCount() == 1,
+                "9 rubber nuggets did not pack to a rubber ingot: " + assembled);
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void oneRubberIngotUnpacksNineNuggets(GameTestHelper helper) {
+        ItemStack ingot = MaterialLookup.stack("rubber", MaterialPrefixes.INGOT);
+        List<ItemStack> slots = new ArrayList<>(
+                Collections.nCopies(9, ItemStack.EMPTY));
+        slots.set(0, ingot);
+        ItemStack assembled = craft(helper, 3, 3, slots);
+        helper.assertTrue(
+                MaterialLookup.matches(
+                        assembled, "rubber", MaterialPrefixes.NUGGET)
+                        && assembled.getCount() == 9,
+                "1 rubber ingot did not unpack to 9 nuggets: " + assembled);
         helper.succeed();
     }
 

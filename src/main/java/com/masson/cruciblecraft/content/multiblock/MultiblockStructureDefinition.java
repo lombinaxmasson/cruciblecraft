@@ -202,7 +202,8 @@ public record MultiblockStructureDefinition(
             PredicateKind kind,
             Optional<ResourceLocation> block,
             Optional<ResourceLocation> tag,
-            Optional<PortType> port) {
+            Optional<PortType> port,
+            Optional<String> uniformGroup) {
         public static final Codec<PalettePredicate> CODEC =
                 RecordCodecBuilder.create(instance -> instance.group(
                         PredicateKind.CODEC.fieldOf("type")
@@ -212,14 +213,26 @@ public record MultiblockStructureDefinition(
                         ResourceLocation.CODEC.optionalFieldOf("tag")
                                 .forGetter(PalettePredicate::tag),
                         PortType.CODEC.optionalFieldOf("port")
-                                .forGetter(PalettePredicate::port))
+                                .forGetter(PalettePredicate::port),
+                        Codec.STRING.optionalFieldOf("uniform_group")
+                                .forGetter(PalettePredicate::uniformGroup))
                         .apply(instance, PalettePredicate::new));
+
+        public PalettePredicate(
+                PredicateKind kind,
+                Optional<ResourceLocation> block,
+                Optional<ResourceLocation> tag,
+                Optional<PortType> port) {
+            this(kind, block, tag, port, Optional.empty());
+        }
 
         public PalettePredicate {
             Objects.requireNonNull(kind, "kind");
             block = Objects.requireNonNull(block, "block");
             tag = Objects.requireNonNull(tag, "tag");
             port = Objects.requireNonNull(port, "port");
+            uniformGroup = Objects.requireNonNull(uniformGroup, "uniformGroup")
+                    .filter(value -> !value.isBlank());
             switch (kind) {
                 case BLOCK -> require(block.isPresent()
                         && tag.isEmpty() && port.isEmpty(), "block");
@@ -232,6 +245,12 @@ public record MultiblockStructureDefinition(
                         "controller");
                 case PORT -> require(block.isPresent()
                         && tag.isEmpty() && port.isPresent(), "port");
+            }
+            if (uniformGroup.isPresent()
+                    && kind != PredicateKind.BLOCK
+                    && kind != PredicateKind.TAG) {
+                throw new IllegalArgumentException(
+                        "uniform_group is only valid on block or tag predicates");
             }
         }
 
@@ -287,7 +306,10 @@ public record MultiblockStructureDefinition(
 
     public enum PortType {
         ITEM_FLUID("item_fluid"),
+        ITEM_FLUID_IN("item_fluid_in"),
+        ITEM_FLUID_OUT("item_fluid_out"),
         ENERGY_INPUT("energy_input"),
+        ITEM_FLUID_ENERGY("item_fluid_energy"),
         FLUID_OUT("fluid_out");
 
         public static final Codec<PortType> CODEC =

@@ -7081,44 +7081,74 @@
       "runtime_id": "cruciblecraft:vibramantium/gas_turbine_main_housing"
     },
     {
-      "chinese_name": "Stainless Steel Dynamo Main Housing",
+      "chinese_name": "大型物质合成机",
+      "english_name": "Large Matter Fabricator",
+      "family": "multiblock",
+      "gt6_class": "MultiTileEntityMatterFabricator / Multiblock Machines",
+      "kind": "MATTER_FABRICATOR",
+      "meta": 17199,
+      "registry_path": "lead/large_matter_fabricator",
+      "runtime_id": "cruciblecraft:lead/large_matter_fabricator"
+    },
+    {
+      "chinese_name": "不锈钢大型电机主机壳",
       "english_name": "Stainless Steel Dynamo Main Housing",
       "family": "multiblock",
       "gt6_class": "MultiTileEntityLargeDynamo / Multiblock Machines",
-      "kind": "MULTIBLOCK_PART",
+      "kind": "LARGE_DYNAMO",
       "meta": 17221,
       "registry_path": "stainless_steel/dynamo_main_housing",
       "runtime_id": "cruciblecraft:stainless_steel/dynamo_main_housing"
     },
     {
-      "chinese_name": "Titanium Dynamo Main Housing",
+      "chinese_name": "钛大型电机主机壳",
       "english_name": "Titanium Dynamo Main Housing",
       "family": "multiblock",
       "gt6_class": "MultiTileEntityLargeDynamo / Multiblock Machines",
-      "kind": "MULTIBLOCK_PART",
+      "kind": "LARGE_DYNAMO",
       "meta": 17222,
       "registry_path": "titanium/dynamo_main_housing",
       "runtime_id": "cruciblecraft:titanium/dynamo_main_housing"
     },
     {
-      "chinese_name": "Tungstensteel Dynamo Main Housing",
+      "chinese_name": "钨钢大型电机主机壳",
       "english_name": "Tungstensteel Dynamo Main Housing",
       "family": "multiblock",
       "gt6_class": "MultiTileEntityLargeDynamo / Multiblock Machines",
-      "kind": "MULTIBLOCK_PART",
+      "kind": "LARGE_DYNAMO",
       "meta": 17223,
       "registry_path": "tungstensteel/dynamo_main_housing",
       "runtime_id": "cruciblecraft:tungstensteel/dynamo_main_housing"
     },
     {
-      "chinese_name": "Adamantium Dynamo Main Housing",
+      "chinese_name": "艾德曼合金大型电机主机壳",
       "english_name": "Adamantium Dynamo Main Housing",
       "family": "multiblock",
       "gt6_class": "MultiTileEntityLargeDynamo / Multiblock Machines",
-      "kind": "MULTIBLOCK_PART",
+      "kind": "LARGE_DYNAMO",
       "meta": 17224,
       "registry_path": "adamantium/dynamo_main_housing",
       "runtime_id": "cruciblecraft:adamantium/dynamo_main_housing"
+    },
+    {
+      "chinese_name": "冯·达·格拉格发生器",
+      "english_name": "Von Da Graagg Generator",
+      "family": "multiblock",
+      "gt6_class": "MultiTileEntityVonDaGraagg / Multiblock Machines",
+      "kind": "VON_DA_GRAAGG",
+      "meta": 17996,
+      "registry_path": "steel_galvanized/von_da_graagg_generator",
+      "runtime_id": "cruciblecraft:steel_galvanized/von_da_graagg_generator"
+    },
+    {
+      "chinese_name": "钨避雷针电力输出端",
+      "english_name": "Lightning Rod Electric Output",
+      "family": "multiblock",
+      "gt6_class": "MultiTileEntityLightningRod / Multiblock Machines",
+      "kind": "LIGHTNING_ROD",
+      "meta": 17998,
+      "registry_path": "tungsten/lightning_rod_electric_output",
+      "runtime_id": "cruciblecraft:tungsten/lightning_rod_electric_output"
     },
     {
       "chinese_name": "Large Stainless Steel Crucible",
@@ -7401,7 +7431,7 @@
       "runtime_id": "cruciblecraft:multiblock/dense_lead_wall"
     },
     {
-      "chinese_name": "Large Copper Coil",
+      "chinese_name": "大型退火铜线圈",
       "english_name": "Large Copper Coil",
       "family": "multiblock",
       "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
@@ -7411,7 +7441,17 @@
       "runtime_id": "cruciblecraft:multiblock/large_copper_coil"
     },
     {
-      "chinese_name": "Large Nichrome Coil",
+      "chinese_name": "大型铌钛线圈",
+      "english_name": "Large Niobium-Titanium Coil",
+      "family": "multiblock",
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "meta": 18041,
+      "registry_path": "multiblock/large_niobium_titanium_coil",
+      "runtime_id": "cruciblecraft:multiblock/large_niobium_titanium_coil"
+    },
+    {
+      "chinese_name": "大型镍铬线圈",
       "english_name": "Large Nichrome Coil",
       "family": "multiblock",
       "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
@@ -7421,7 +7461,17 @@
       "runtime_id": "cruciblecraft:multiblock/large_nichrome_coil"
     },
     {
-      "chinese_name": "Large Osmium Coil",
+      "chinese_name": "大型碳化硅线圈",
+      "english_name": "Large Carborundum Coil",
+      "family": "multiblock",
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "meta": 18043,
+      "registry_path": "multiblock/large_carborundum_coil",
+      "runtime_id": "cruciblecraft:multiblock/large_carborundum_coil"
+    },
+    {
+      "chinese_name": "大型锇线圈",
       "english_name": "Large Osmium Coil",
       "family": "multiblock",
       "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
@@ -7431,7 +7481,7 @@
       "runtime_id": "cruciblecraft:multiblock/large_osmium_coil"
     },
     {
-      "chinese_name": "Large Iridium Coil",
+      "chinese_name": "大型铱线圈",
       "english_name": "Large Iridium Coil",
       "family": "multiblock",
       "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
@@ -7471,6 +7521,26 @@
       "runtime_id": "cruciblecraft:multiblock/distillation_tower_part"
     },
     {
+      "chinese_name": "镀锌钢避雷针",
+      "english_name": "Lightning Rod",
+      "family": "multiblock",
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "meta": 18104,
+      "registry_path": "steel_galvanized/lightning_rod",
+      "runtime_id": "cruciblecraft:steel_galvanized/lightning_rod"
+    },
+    {
+      "chinese_name": "电解槽零件",
+      "english_name": "Electrolyzer Part",
+      "family": "multiblock",
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "meta": 18105,
+      "registry_path": "multiblock/electrolyzer_part",
+      "runtime_id": "cruciblecraft:multiblock/electrolyzer_part"
+    },
+    {
       "chinese_name": "Sluice Part",
       "english_name": "Sluice Part",
       "family": "multiblock",
@@ -7479,6 +7549,26 @@
       "meta": 18106,
       "registry_path": "multiblock/sluice_part",
       "runtime_id": "cruciblecraft:multiblock/sluice_part"
+    },
+    {
+      "chinese_name": "破碎轮",
+      "english_name": "Crusher Wheels",
+      "family": "multiblock",
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "meta": 18107,
+      "registry_path": "multiblock/crusher_wheels",
+      "runtime_id": "cruciblecraft:multiblock/crusher_wheels"
+    },
+    {
+      "chinese_name": "粉碎刀片",
+      "english_name": "Shredder Blades",
+      "family": "multiblock",
+      "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
+      "kind": "MULTIBLOCK_PART",
+      "meta": 18108,
+      "registry_path": "multiblock/shredder_blades",
+      "runtime_id": "cruciblecraft:multiblock/shredder_blades"
     },
     {
       "chinese_name": "Small Brass Axle",

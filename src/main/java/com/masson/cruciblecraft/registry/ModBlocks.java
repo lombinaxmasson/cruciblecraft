@@ -40,6 +40,14 @@ import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.content.block.MaterialCasingBlock;
 import com.masson.cruciblecraft.content.block.MaterialStorageBlock;
 import com.masson.cruciblecraft.content.block.LargeCentrifugeBlock;
+import com.masson.cruciblecraft.content.block.LargeMixerBlock;
+import com.masson.cruciblecraft.content.block.LargeBathBlock;
+import com.masson.cruciblecraft.content.block.LargeCoagulatorBlock;
+import com.masson.cruciblecraft.content.block.LargeElectrolyzerBlock;
+import com.masson.cruciblecraft.content.block.LargeOvenBlock;
+import com.masson.cruciblecraft.content.block.LargeCrusherBlock;
+import com.masson.cruciblecraft.content.block.LargeAutoclaveBlock;
+import com.masson.cruciblecraft.content.block.LargeFermenterBlock;
 import com.masson.cruciblecraft.content.block.CryoDistillationTowerBlock;
 import com.masson.cruciblecraft.content.block.DistillationTowerBlock;
 import com.masson.cruciblecraft.content.block.LargeBoilerBlock;
@@ -334,9 +342,6 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> STAINLESS_STEEL_WALL =
             BLOCKS.registerSimpleBlock(
                     "stainless_steel_wall", machineProperties());
-    public static final DeferredBlock<Block> LARGE_IRIDIUM_COIL =
-            BLOCKS.registerSimpleBlock(
-                    "large_iridium_coil", machineProperties());
 
     public static final DeferredBlock<AnvilBlock> ANVIL = BLOCKS.register(
             "anvil",
@@ -374,6 +379,38 @@ public final class ModBlocks {
             LARGE_CENTRIFUGE = BLOCKS.register(
                     "large_centrifuge",
                     () -> new LargeCentrifugeBlock(machineProperties()));
+    public static final DeferredBlock<LargeMixerBlock>
+            LARGE_MIXER = BLOCKS.register(
+                    "large_mixer",
+                    () -> new LargeMixerBlock(machineProperties()));
+    public static final DeferredBlock<LargeElectrolyzerBlock>
+            LARGE_ELECTROLYZER = BLOCKS.register(
+                    "large_electrolyzer",
+                    () -> new LargeElectrolyzerBlock(machineProperties()));
+    public static final DeferredBlock<LargeOvenBlock>
+            LARGE_OVEN = BLOCKS.register(
+                    "large_oven",
+                    () -> new LargeOvenBlock(machineProperties()));
+    public static final DeferredBlock<LargeCrusherBlock>
+            LARGE_CRUSHER = BLOCKS.register(
+                    "large_crusher",
+                    () -> new LargeCrusherBlock(machineProperties()));
+    public static final DeferredBlock<LargeBathBlock>
+            LARGE_BATH = BLOCKS.register(
+                    "large_bath",
+                    () -> new LargeBathBlock(machineProperties()));
+    public static final DeferredBlock<LargeCoagulatorBlock>
+            LARGE_COAGULATOR = BLOCKS.register(
+                    "large_coagulator",
+                    () -> new LargeCoagulatorBlock(machineProperties()));
+    public static final DeferredBlock<LargeAutoclaveBlock>
+            LARGE_AUTOCLAVE = BLOCKS.register(
+                    "large_autoclave",
+                    () -> new LargeAutoclaveBlock(machineProperties()));
+    public static final DeferredBlock<LargeFermenterBlock>
+            LARGE_FERMENTER = BLOCKS.register(
+                    "large_fermenter",
+                    () -> new LargeFermenterBlock(machineProperties()));
     public static final DeferredBlock<DistillationTowerBlock>
             DISTILLATION_TOWER = BLOCKS.register(
                     "distillation_tower",
@@ -1661,7 +1698,7 @@ public final class ModBlocks {
                 .filter(block -> !FoundryHosts.isCrossing(block.spec()))
                 .filter(block -> !LargeCrucibleHosts.isController(block.spec()))
                 .filter(block -> !DistillationTowerParts.isLivePort(block.spec()))
-                .filter(block -> block.spec().kind() != MteInPlaceKind.GAS_TURBINE)
+                .filter(block -> !block.spec().kind().dedicatedController())
                 .toArray(Block[]::new);
     }
 
@@ -1737,9 +1774,29 @@ public final class ModBlocks {
     }
 
     public static Block[] gasTurbineBlockArray() {
+        return dedicatedKindArray(MteInPlaceKind.GAS_TURBINE);
+    }
+
+    public static Block[] largeDynamoBlockArray() {
+        return dedicatedKindArray(MteInPlaceKind.LARGE_DYNAMO);
+    }
+
+    public static Block[] lightningRodBlockArray() {
+        return dedicatedKindArray(MteInPlaceKind.LIGHTNING_ROD);
+    }
+
+    public static Block[] matterFabricatorBlockArray() {
+        return dedicatedKindArray(MteInPlaceKind.MATTER_FABRICATOR);
+    }
+
+    public static Block[] vonDaGraaggBlockArray() {
+        return dedicatedKindArray(MteInPlaceKind.VON_DA_GRAAGG);
+    }
+
+    private static Block[] dedicatedKindArray(MteInPlaceKind kind) {
         java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
         MTE_INPLACE_BLOCKS.values().forEach(holder -> {
-            if (holder.get().spec().kind() == MteInPlaceKind.GAS_TURBINE) {
+            if (holder.get().spec().kind() == kind) {
                 blocks.add(holder.get());
             }
         });

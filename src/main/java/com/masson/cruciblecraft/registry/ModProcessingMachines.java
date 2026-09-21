@@ -142,6 +142,10 @@ public final class ModProcessingMachines {
     public static final ProcessingMachineSpec ROLLFORMER = rollFormerSpec();
     public static final ProcessingMachineSpec SANDING = sandingSpec();
     public static final ProcessingMachineSpec OVEN = ovenSpec();
+    public static final ProcessingMachineSpec LARGE_OVEN = largeOvenSpec();
+    public static final ProcessingMachineSpec LARGE_CRUSHER = largeCrusherSpec();
+    public static final ProcessingMachineSpec LARGE_MATTER_FABRICATOR =
+            largeMatterFabricatorSpec();
     public static final ProcessingMachineSpec CLUSTERMILL = clusterMillSpec();
     public static final ProcessingMachineSpec SLICER = slicerSpec();
     public static final ProcessingMachineSpec LAMINATOR = laminatorSpec();
@@ -224,6 +228,12 @@ public final class ModProcessingMachines {
                     "cryo_distillation_tower",
                     () -> ModRecipeMaps.CRYO_DISTILLATION_TOWER,
                     EnergyType.CU);
+    public static final ProcessingMachineSpec FERMENTER =
+            reusedChemicalSpec("fermenter", () -> ModRecipeMaps.FERMENTER,
+                    1, 1, 1, 1, 32_000, 32_000,
+                    1, 1, 1, 1,
+                    EnergyType.HEAT,
+                    ProcessingMachineSpec.EnergyMode.BUFFERED);
     public static final ProcessingMachineSpec AUTOCLAVE =
             reusedChemicalSpec("autoclave", () -> ModRecipeMaps.AUTOCLAVE,
                     2, 3, 1, 1, 4_000_000, 512_000,
@@ -412,7 +422,13 @@ public final class ModProcessingMachines {
      * {@link #CONFIGURED_MACHINES} so kinetic EMI baselines stay exact.
      */
     public static final List<ProcessingMachineSpec> MULTIBLOCK_MENU_HOSTS =
-            List.of(DISTILLATION_TOWER, CRYO_DISTILLATION_TOWER);
+            List.of(
+                    DISTILLATION_TOWER,
+                    CRYO_DISTILLATION_TOWER,
+                    FERMENTER,
+                    LARGE_OVEN,
+                    LARGE_CRUSHER,
+                    LARGE_MATTER_FABRICATOR);
     /** Chemical recipes can publish into reused maps as well as dedicated maps. */
     public static final List<ProcessingMachineSpec> CHEMICAL_HOST_MACHINES = List.of(
             BATH, CENTRIFUGE, SMELTER, ASSEMBLER,
@@ -571,7 +587,8 @@ public final class ModProcessingMachines {
             BY_MAP =
             java.util.stream.Stream.concat(
                     java.util.stream.Stream.of(
-                            CRUSHER, DISTILLATION_TOWER, CRYO_DISTILLATION_TOWER),
+                            CRUSHER, DISTILLATION_TOWER, CRYO_DISTILLATION_TOWER,
+                            FERMENTER),
                     CONFIGURED_MACHINES.stream())
                     .collect(java.util.stream.Collectors.groupingBy(
                             ProcessingMachineSpec::recipeMapId,
@@ -588,6 +605,19 @@ public final class ModProcessingMachines {
                 || !recipe.fluidOutputs().isEmpty()
                 || recipe.eut() <= 0L
                 || recipe.eut() > 1_024L) {
+            return Optional.of("crusher_recipe_shape");
+        }
+        return Optional.empty();
+    }
+
+    private static Optional<String> validateLargeCrusher(GTRecipe recipe) {
+        if (recipe.itemInputs().size() != 1
+                || recipe.itemOutputs().size() != 1
+                || recipe.outputChances().getFirst() != GTRecipe.GUARANTEED_CHANCE
+                || !recipe.fluidInputs().isEmpty()
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() <= 0L
+                || recipe.eut() > 4_096L) {
             return Optional.of("crusher_recipe_shape");
         }
         return Optional.empty();
@@ -880,26 +910,19 @@ public final class ModProcessingMachines {
                                 : 0L,
                         1_024L),
                 layout.sidedIo(),
-                recipe -> {
-                    Optional<String> invalid = validateChemicalRecipe(
-                            recipe,
-                            itemInputs,
-                            itemOutputs,
-                            fluidInputs,
-                            fluidOutputs,
-                            fluidInputCapacity,
-                            fluidOutputCapacity,
-                            chemicalAllowsPreserveCatalyst(path),
-                            "centrifuge".equals(path) ? 4_096L : 1_024L);
-                    if (invalid.isPresent()
-                            && "chemical_recipe_energy".equals(invalid.get())
-                            && energyType == EnergyType.TIME
-                            && recipe.eut() == 0L
-                            && recipe.duration() > 0) {
-                        return Optional.empty();
-                    }
-                    return invalid;
-                },
+                recipe -> validateChemicalRecipe(
+                        recipe,
+                        itemInputs,
+                        itemOutputs,
+                        fluidInputs,
+                        fluidOutputs,
+                        fluidInputCapacity,
+                        fluidOutputCapacity,
+                        chemicalAllowsPreserveCatalyst(path),
+                        energyType,
+                        "centrifuge".equals(path) || "fermenter".equals(path)
+                                ? 4_096L
+                                : 1_024L),
                 layout.buffering(),
                 layout.ui());
     }
@@ -978,6 +1001,7 @@ public final class ModProcessingMachines {
                     CompactPublicationGroups.BRONZE_TANK_CAPACITY,
                     CompactPublicationGroups.BRONZE_TANK_CAPACITY,
                     true,
+                    EnergyType.KINETIC_ROTATION,
                     1_024L);
         }
         return validateChemicalRecipe(
@@ -986,6 +1010,7 @@ public final class ModProcessingMachines {
                 CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
                 CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
                 true,
+                EnergyType.KINETIC_ROTATION,
                 1_024L);
     }
 
@@ -1017,6 +1042,7 @@ public final class ModProcessingMachines {
                 || "cryo_mixer".equals(path)
                 || "electrolyzer".equals(path)
                 || "autoclave".equals(path)
+                || "fermenter".equals(path)
                 || "lightning".equals(path)
                 || "nanofab".equals(path)
                 || "canner".equals(path)
@@ -1113,6 +1139,7 @@ public final class ModProcessingMachines {
                         fluidInputCapacity,
                         fluidOutputCapacity,
                         chemicalAllowsPreserveCatalyst(path),
+                        energyType,
                         energyMax),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
@@ -1168,6 +1195,7 @@ public final class ModProcessingMachines {
             int fluidInputCapacity,
             int fluidOutputCapacity,
             boolean allowPreserveCatalyst,
+            EnergyType energyType,
             long energyMax) {
         if (recipe.itemInputs().size() > itemInputs
                 || recipe.itemOutputs().size() > itemOutputs
@@ -1178,7 +1206,10 @@ public final class ModProcessingMachines {
         if (invalidChemicalInputActions(recipe, allowPreserveCatalyst)) {
             return Optional.of("chemical_recipe_input_action");
         }
-        if (recipe.eut() <= 0L || recipe.eut() > energyMax) {
+        boolean timeZeroEut = energyType == EnergyType.TIME
+                && recipe.eut() == 0L
+                && recipe.duration() > 0;
+        if (!timeZeroEut && (recipe.eut() <= 0L || recipe.eut() > energyMax)) {
             return Optional.of("chemical_recipe_energy");
         }
         if (recipe.itemInputCounts().stream().anyMatch(count -> count > 64)
@@ -1234,6 +1265,75 @@ public final class ModProcessingMachines {
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         1, 1, 0, 0,
+                        1, 1, 0, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static ProcessingMachineSpec largeOvenSpec() {
+        return new ProcessingMachineSpec(
+                id("large_oven"),
+                id("oven"),
+                () -> ModRecipeMaps.OVEN,
+                new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.ELECTRIC,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        4_096L,
+                        4_096L),
+                Gt6SidedIo.policy("large_oven"),
+                ModProcessingMachines::validateOvenRecipe,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 1, 0, 0,
+                        1, 1, 0, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static ProcessingMachineSpec largeMatterFabricatorSpec() {
+        return new ProcessingMachineSpec(
+                id("large_matter_fabricator"),
+                id("massfab"),
+                () -> ModRecipeMaps.MASSFAB,
+                new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
+                new ProcessingMachineSpec.TankLayout(
+                        List.of(new ProcessingMachineSpec.TankSpec(0, 32_000)),
+                        List.of(new ProcessingMachineSpec.TankSpec(1, 32_000))),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.QUANTUM,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        2_097_152L,
+                        2_097_152L),
+                Gt6SidedIo.policy("large_matter_fabricator"),
+                recipe -> validateChemicalRecipe(
+                        recipe, 1, 1, 1, 1, 32_000, 32_000,
+                        chemicalAllowsPreserveCatalyst("massfab"),
+                        EnergyType.QUANTUM,
+                        2_097_152L),
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 1, 1, 1,
+                        1, 1, 1, 1,
+                        PROCESSING_STATUSES));
+    }
+
+    private static ProcessingMachineSpec largeCrusherSpec() {
+        return new ProcessingMachineSpec(
+                id("large_crusher"),
+                id("crusher"),
+                () -> ModRecipeMaps.CRUSHER,
+                new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.KINETIC_ROTATION,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        4_096L,
+                        4_096L),
+                Gt6SidedIo.policy("large_crusher"),
+                ModProcessingMachines::validateLargeCrusher,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 12, 0, 0,
                         1, 1, 0, 0,
                         PROCESSING_STATUSES));
     }

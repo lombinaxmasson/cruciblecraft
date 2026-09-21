@@ -737,6 +737,52 @@ class MaterialRuleExpansionTest {
         assertEquals(1, plans.getFirst().itemOutputs().getFirst().amount());
     }
 
+    @Test
+    void rockPulverExpandsToNineSmallDustOfThePulverTarget() {
+        MaterialPrefix rock = new MaterialPrefix("cruciblecraft:rock");
+        MaterialDefinition chalcopyrite = material(
+                "chalcopyrite",
+                0,
+                rock,
+                MaterialPrefixes.SMALL_DUST)
+                .withImportedMetadata(metadata(
+                        List.of(),
+                        Map.of("pulver", new GT6MaterialMetadata.MaterialAmount(
+                                "chalcopyrite",
+                                9111,
+                                "Chalcopyrite",
+                                648_648_000L,
+                                Optional.of(144L))),
+                        List.of(),
+                        0,
+                        0));
+        MaterialDefinition antimatterHost = material(
+                "antimatter_host",
+                0,
+                MaterialPrefixes.DUST)
+                .withImportedMetadata(metadata(
+                        List.of(),
+                        Map.of(),
+                        List.of("ATOMIC.ANTIMATTER"),
+                        0,
+                        0));
+        var plans = MaterialRuleExpansion.expandFactualPlans(
+                id("crusher/rock_to_pulver_dust"),
+                MaterialChainRules.CRUSHER_ROCK_TO_PULVER,
+                List.of(chalcopyrite, antimatterHost));
+        assertEquals(1, plans.size());
+        assertEquals("chalcopyrite", plans.getFirst().materialId());
+        assertEquals(rock.serializedId(),
+                plans.getFirst().itemInputs().getFirst().resource().prefix().orElseThrow());
+        assertEquals(MaterialPrefixes.SMALL_DUST.serializedId(),
+                plans.getFirst().itemOutputs().getFirst().resource().prefix().orElseThrow());
+        assertEquals("chalcopyrite",
+                plans.getFirst().itemOutputs().getFirst().resource().materialId());
+        assertEquals(9, plans.getFirst().itemOutputs().getFirst().amount());
+        assertEquals(36, plans.getFirst().duration());
+        assertEquals(16, plans.getFirst().eut());
+    }
+
     private static GT6MaterialMetadata metadata(
             List<GT6MaterialMetadata.MaterialReference> byproducts,
             Map<String, GT6MaterialMetadata.MaterialAmount> targets) {

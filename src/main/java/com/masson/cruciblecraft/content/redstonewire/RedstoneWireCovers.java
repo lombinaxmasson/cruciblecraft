@@ -14,6 +14,7 @@ import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverItems;
 import com.masson.cruciblecraft.logistics.pipe.cover.PlateCovers;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverCrafting;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverFilterLogic;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverPlacement;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverSounds;
 import com.masson.cruciblecraft.logistics.pipe.cover.DecorativeCovers;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverTools;
@@ -50,6 +51,23 @@ public final class RedstoneWireCovers {
             return false;
         }
         return MachineCoverKinds.attachesToRedstoneWire(cover.definitionId());
+    }
+
+    public static boolean tryInstall(
+            Level level,
+            BlockPos pos,
+            BlockHitResult hit,
+            ItemStack stack,
+            Player player) {
+        if (level == null || pos == null || hit == null) {
+            return false;
+        }
+        return tryInstall(
+                level,
+                pos,
+                CoverPlacement.placeSide(level.getBlockEntity(pos), hit),
+                stack,
+                player);
     }
 
     public static boolean tryInstall(
@@ -359,7 +377,7 @@ public final class RedstoneWireCovers {
         if (wire == null || hit == null) {
             return false;
         }
-        Direction side = hit.getDirection();
+        Direction side = CoverPlacement.interactSide(wire, hit);
         PipeCover cover = cover(wire, side);
         if (cover == null) {
             return false;

@@ -30,7 +30,7 @@ public final class RedstoneWireCoverEvents {
         if (!RedstoneWireCovers.tryInstall(
                 event.getLevel(),
                 event.getPos(),
-                event.getFace(),
+                event.getHitVec(),
                 stack,
                 event.getEntity())) {
             return;

@@ -23,9 +23,9 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 /**
- * GT6 {@code AdvancedCraftingXToY} / {@code AdvancedCrafting1ToY} for dust
- * and plate family packing. One recipe covers every material that has both
- * prefixes registered; vanilla {@code formItems()} stacks resolve through
+ * GT6 {@code AdvancedCraftingXToY} / {@code AdvancedCrafting1ToY} for dust,
+ * nugget, and plate family packing. One recipe covers every material that has
+ * both prefixes registered; vanilla {@code formItems()} stacks resolve through
  * {@link MaterialUnits}.
  *
  * <p>When several 1-to-Y unpacks share an input prefix, GT6 disambiguates by

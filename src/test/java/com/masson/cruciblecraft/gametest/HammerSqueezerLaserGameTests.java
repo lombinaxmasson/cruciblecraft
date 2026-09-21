@@ -677,6 +677,11 @@ public final class HammerSqueezerLaserGameTests {
                         "machine/squeezer/wood_rubber_dust"
                                 .equals(entry.id().getPath())),
                 "GT6 rubber-wood-dust squeezer row is missing");
+        helper.assertTrue(
+                entries.stream().anyMatch(entry ->
+                        "machine/squeezer/rubber_log"
+                                .equals(entry.id().getPath())),
+                "GT6 rubber-log squeezer row is missing");
         RecipeMap.RecipeFamily family = ModRecipeMaps.SQUEEZER
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.SQUEEZER.id(),
@@ -689,8 +694,8 @@ public final class HammerSqueezerLaserGameTests {
                 "Squeezer compact family is not the 15 selected non-plant dump rows: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.assertTrue(
-                entries.size() == 19,
-                "Squeezer live map is not 15 dump rows plus 4 Java latex rows: "
+                entries.size() == 20,
+                "Squeezer live map is not 15 dump rows plus 4 Java latex rows plus rubber log: "
                         + entries.size());
         helper.assertTrue(
                 ModRecipeMaps.SQUEEZER.findMatch(

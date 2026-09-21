@@ -30,9 +30,6 @@ public final class LockerBlock extends StorageHostBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
             Level level, BlockState state, BlockEntityType<T> type) {
-        if (!variant().charging()) {
-            return null;
-        }
         return createTicker(
                 level, type, ModBlockEntities.LOCKER.get(), LockerBlockEntity::tick);
     }
@@ -44,6 +41,9 @@ public final class LockerBlock extends StorageHostBlock {
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
+        if (coverClick(level, pos, player, hit)) {
+            return InteractionResult.SUCCESS;
+        }
         if (hit.getDirection() != state.getValue(FACING)) {
             return InteractionResult.PASS;
         }

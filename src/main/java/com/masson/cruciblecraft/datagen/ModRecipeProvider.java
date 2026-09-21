@@ -14,6 +14,11 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.block.WoodDebark;
+import com.masson.cruciblecraft.content.block.StainlessSteelMixerWalls;
+import com.masson.cruciblecraft.content.block.AutoclaveWalls;
+import com.masson.cruciblecraft.content.block.InvarOvenWalls;
+import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
+import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
 import com.masson.cruciblecraft.logistics.pipe.PipeAcquisitionRecipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
@@ -39,6 +44,7 @@ import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.recipe.crafting.CraftingTools;
 import com.masson.cruciblecraft.recipe.crafting.PrefixPackRecipe;
 import com.masson.cruciblecraft.recipe.crafting.RockCobbleCrafting;
+import com.masson.cruciblecraft.recipe.crafting.RockGtProcessing;
 import com.masson.cruciblecraft.recipe.crafting.ShapedCatalystRecipe;
 import com.masson.cruciblecraft.recipe.crafting.ToolHeadAssemblyRecipe;
 import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRecipePlan;
@@ -85,8 +91,10 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.crafting.CompoundIngredient;
@@ -114,6 +122,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         addSensorRecipes(recipesOnly);
         addStorageRecipes(recipesOnly);
         addRockCobbleRecipes(recipesOnly);
+        addRockFurnaceRecipes(recipesOnly);
         addWoodBeamRecipes(recipesOnly);
         MaterialCatalog.startupValues().stream()
                 .sorted(Comparator.comparing(MaterialDefinition::id))
@@ -1058,6 +1067,173 @@ public final class ModRecipeProvider extends RecipeProvider {
                         "has_centrifuge",
                         has(ModItems.CENTRIFUGE.get()))
                 .save(output, id("machines/large_centrifuge"));
+        Map<String, Ingredient> mixerIngredients = new LinkedHashMap<>();
+        mixerIngredients.put(
+                "P",
+                materialIngredient("stainless_steel", MaterialPrefixes.DENSE_PLATE));
+        mixerIngredients.put(
+                "S",
+                materialIngredient("stainless_steel", MaterialPrefixes.LONG_ROD));
+        mixerIngredients.put(
+                "R",
+                Ingredient.of(ModItems.technologicalPart("processor_crystal_ruby").get()));
+        mixerIngredients.put(
+                "M",
+                Ingredient.of(ModItems.mteInPlaceItemsById()
+                        .get(StainlessSteelMixerWalls.WALL_ID)
+                        .get()));
+        mixerIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        acceptShapedCatalyst(
+                output,
+                "machines/large_mixer",
+                List.of("PSP", "PSP", "RMC"),
+                mixerIngredients,
+                Map.of(),
+                new ItemStack(ModItems.LARGE_MIXER.get()));
+        Map<String, Ingredient> electrolyzerIngredients = new LinkedHashMap<>();
+        electrolyzerIngredients.put(
+                "M",
+                Ingredient.of(ModItems.mteInPlaceItemsById()
+                        .get(ElectrolyzerParts.PART_ID)
+                        .get()));
+        electrolyzerIngredients.put(
+                "R",
+                Ingredient.of(ModItems.technologicalPart("processor_crystal_ruby").get()));
+        electrolyzerIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        acceptShapedCatalyst(
+                output,
+                "machines/large_electrolyzer",
+                List.of("CMC", "RCR"),
+                electrolyzerIngredients,
+                Map.of(),
+                new ItemStack(ModItems.LARGE_ELECTROLYZER.get()));
+        Map<String, Ingredient> ovenIngredients = new LinkedHashMap<>();
+        ovenIngredients.put(
+                "P",
+                materialIngredient("invar", MaterialPrefixes.DENSE_PLATE));
+        ovenIngredients.put(
+                "R",
+                Ingredient.of(ModItems.technologicalPart("processor_crystal_ruby").get()));
+        ovenIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        ovenIngredients.put(
+                "M",
+                Ingredient.of(ModItems.mteInPlaceItemsById()
+                        .get(InvarOvenWalls.WALL_ID)
+                        .get()));
+        acceptShapedCatalyst(
+                output,
+                "machines/large_oven",
+                List.of("PPP", "PwP", "RMC"),
+                ovenIngredients,
+                Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(ModItems.LARGE_OVEN.get()));
+        Map<String, Ingredient> crusherIngredients = new LinkedHashMap<>();
+        crusherIngredients.put(
+                "G",
+                materialIngredient("tungstensteel", MaterialPrefixes.GEAR));
+        crusherIngredients.put(
+                "S",
+                materialIngredient("tungstensteel", MaterialPrefixes.SMALL_GEAR));
+        crusherIngredients.put(
+                "R",
+                Ingredient.of(ModItems.technologicalPart("processor_crystal_ruby").get()));
+        crusherIngredients.put(
+                "M",
+                Ingredient.of(ModItems.mteInPlaceItemsById()
+                        .get(TungstensteelCrusherWalls.WALL_ID)
+                        .get()));
+        crusherIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        acceptShapedCatalyst(
+                output,
+                "machines/large_crusher",
+                List.of("GSG", "SGS", "RMC"),
+                crusherIngredients,
+                Map.of(),
+                new ItemStack(ModItems.LARGE_CRUSHER.get()));
+        Map<String, Ingredient> bathIngredients = new LinkedHashMap<>();
+        bathIngredients.put(
+                "P",
+                materialIngredient("stainless_steel", MaterialPrefixes.DENSE_PLATE));
+        bathIngredients.put(
+                "A",
+                Ingredient.of(ModItems.technologicalPart(
+                        "compact_electric_robot_arm_mv").get()));
+        bathIngredients.put(
+                "R",
+                Ingredient.of(ModItems.technologicalPart("processor_crystal_ruby").get()));
+        bathIngredients.put(
+                "M",
+                Ingredient.of(ModItems.mteInPlaceItemsById()
+                        .get(StainlessSteelMixerWalls.WALL_ID)
+                        .get()));
+        bathIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        acceptShapedCatalyst(
+                output,
+                "machines/large_bath",
+                List.of("CRC", "PMP", "APA"),
+                bathIngredients,
+                Map.of(),
+                new ItemStack(ModItems.LARGE_BATH.get()));
+        Map<String, Ingredient> coagulatorIngredients = new LinkedHashMap<>();
+        coagulatorIngredients.put(
+                "P",
+                materialIngredient("stainless_steel", MaterialPrefixes.DENSE_PLATE));
+        coagulatorIngredients.put(
+                "R",
+                Ingredient.of(ModItems.technologicalPart("processor_crystal_ruby").get()));
+        coagulatorIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        coagulatorIngredients.put(
+                "M",
+                Ingredient.of(ModItems.mteInPlaceItemsById()
+                        .get(StainlessSteelMixerWalls.WALL_ID)
+                        .get()));
+        acceptShapedCatalyst(
+                output,
+                "machines/large_coagulator",
+                List.of("CRC", "PMP", "PPP"),
+                coagulatorIngredients,
+                Map.of(),
+                new ItemStack(ModItems.LARGE_COAGULATOR.get()));
+        Map<String, Ingredient> fermenterIngredients = new LinkedHashMap<>();
+        fermenterIngredients.put(
+                "P",
+                materialIngredient("stainless_steel", MaterialPrefixes.DENSE_PLATE));
+        fermenterIngredients.put(
+                "R",
+                Ingredient.of(ModItems.technologicalPart("processor_crystal_ruby").get()));
+        fermenterIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        fermenterIngredients.put(
+                "M",
+                Ingredient.of(ModItems.mteInPlaceItemsById()
+                        .get(StainlessSteelMixerWalls.WALL_ID)
+                        .get()));
+        acceptShapedCatalyst(
+                output,
+                "machines/large_fermenter",
+                List.of("PPP", "CRC", "PMP"),
+                fermenterIngredients,
+                Map.of(),
+                new ItemStack(ModItems.LARGE_FERMENTER.get()));
+        Map<String, Ingredient> autoclaveIngredients = new LinkedHashMap<>();
+        autoclaveIngredients.put(
+                "P",
+                materialIngredient("stainless_steel", MaterialPrefixes.DENSE_PLATE));
+        autoclaveIngredients.put(
+                "R",
+                Ingredient.of(ModItems.technologicalPart("processor_crystal_ruby").get()));
+        autoclaveIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        autoclaveIngredients.put(
+                "M",
+                Ingredient.of(ModItems.mteInPlaceItemsById()
+                        .get(AutoclaveWalls.WALL_ID)
+                        .get()));
+        acceptShapedCatalyst(
+                output,
+                "machines/large_autoclave",
+                List.of("CRC", "PMP", "PPP"),
+                autoclaveIngredients,
+                Map.of(),
+                new ItemStack(ModItems.LARGE_AUTOCLAVE.get()));
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC, ModItems.PORTABLE_FLUID_TANK.get())
                 .pattern("CGC")
@@ -1303,6 +1479,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         addInsulatedRedstoneLaminatorRecipes(output);
         addWorkbenchToolRecipes(output);
         addDustPrefixPackRecipes(output);
+        addNuggetPrefixPackRecipes(output);
         addPlatePrefixPackRecipes(output);
         ToolPatternCatalog.DEFINITIONS.forEach(pattern -> {
             ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
@@ -1355,6 +1532,10 @@ public final class ModRecipeProvider extends RecipeProvider {
         output.accept(
                 id("anvil/raw_ore_to_crushed_ore"),
                 new MaterialRuleRecipe(MaterialChainRules.ANVIL_RAW_TO_CRUSHED),
+                null);
+        output.accept(
+                id("anvil/rock_to_pulver_dust"),
+                new MaterialRuleRecipe(MaterialChainRules.ANVIL_ROCK_TO_PULVER),
                 null);
         List<String> smithable = List.of("material.tag(\"PROCESSING.SMITHABLE\")");
         output.accept(
@@ -3276,6 +3457,40 @@ public final class ModRecipeProvider extends RecipeProvider {
         });
     }
 
+    private static void addRockFurnaceRecipes(RecipeOutput output) {
+        Map<String, MaterialDefinition> byId = new LinkedHashMap<>();
+        MaterialCatalog.startupValues().forEach(material ->
+                byId.putIfAbsent(material.id(), material));
+        MaterialPrefix rock = MaterialPrefixCatalog.require("rock");
+        for (MaterialDefinition material : MaterialCatalog.startupValues()) {
+            if (!MaterialCatalog.isFormRegistered(material, rock)) {
+                continue;
+            }
+            Item rockItem = MaterialLookup.item(material.id(), rock).orElse(null);
+            if (rockItem == null) {
+                continue;
+            }
+            ItemStack result = RockGtProcessing.furnaceStack(material, byId)
+                    .orElse(ItemStack.EMPTY);
+            if (result.isEmpty()) {
+                continue;
+            }
+            float experience = RockGtProcessing.furnacePlan(material, byId)
+                    .map(plan -> RockGtProcessing.furnaceExperience(material, plan))
+                    .orElse(0.0F);
+            output.accept(
+                    id("rocks/" + material.id() + "_smelting"),
+                    new SmeltingRecipe(
+                            "cruciblecraft:rock_smelting",
+                            CookingBookCategory.MISC,
+                            Ingredient.of(rockItem),
+                            result,
+                            experience,
+                            SMELTING_TIME),
+                    null);
+        }
+    }
+
     private static void addDustPrefixPackRecipes(RecipeOutput output) {
         emitPrefixPack(output, "prefix_pack/tiny_dust_to_dust",
                 MaterialPrefixes.TINY_DUST, 9, MaterialPrefixes.DUST, 1, 0, 1);
@@ -3299,6 +3514,13 @@ public final class ModRecipeProvider extends RecipeProvider {
                 MaterialPrefixes.STORAGE_DUST, 1, MaterialPrefixes.DUST, 9, 0, 2);
         emitPrefixPack(output, "prefix_pack/storage_dust_to_small_dust",
                 MaterialPrefixes.STORAGE_DUST, 1, MaterialPrefixes.SMALL_DUST, 36, 1, 2);
+    }
+
+    private static void addNuggetPrefixPackRecipes(RecipeOutput output) {
+        emitPrefixPack(output, "prefix_pack/nugget_to_ingot",
+                MaterialPrefixes.NUGGET, 9, MaterialPrefixes.INGOT, 1, 0, 1);
+        emitPrefixPack(output, "prefix_pack/ingot_to_nugget",
+                MaterialPrefixes.INGOT, 1, MaterialPrefixes.NUGGET, 9, 0, 1);
     }
 
     private static void addPlatePrefixPackRecipes(RecipeOutput output) {
@@ -3509,22 +3731,6 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "tungstensteel",
                 ModItems.TUNGSTENSTEEL_WALL.get(),
                 "tungstensteel_wall");
-        var iridiumWire = MaterialLookup.ingredient(
-                "iridium", MaterialPrefixes.QUADRUPLE_WIRE);
-        if (iridiumWire.isEmpty()) {
-            return;
-        }
-        output.accept(
-                id("machines/large_iridium_coil"),
-                new ShapedCatalystRecipe(
-                        List.of("WWW", "WxW", "WWW"),
-                        Map.of("W", iridiumWire.orElseThrow()),
-                        Map.of(
-                                "x",
-                                Ingredient.of(
-                                        ModItems.MATERIAL_WIRE_CUTTER.get())),
-                        new ItemStack(ModItems.LARGE_IRIDIUM_COIL.get())),
-                null);
         Item emitter = ModItems.technologicalPart("compact_force_field_emitter_iv").get();
         output.accept(
                 id("machines/fusion_reactor"),

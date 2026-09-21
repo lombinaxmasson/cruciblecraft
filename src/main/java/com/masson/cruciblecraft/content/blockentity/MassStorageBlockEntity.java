@@ -28,7 +28,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 
-public final class MassStorageBlockEntity extends BlockEntity
+public final class MassStorageBlockEntity extends MachineCoverHostBlockEntity
         implements ILogisticsStorage {
     private static final int AUTO_OUTPUT = 1;
     private static final int RESET_FILTER = 2;
@@ -235,6 +235,7 @@ public final class MassStorageBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             MassStorageBlockEntity storage) {
+        storage.tickCovers();
         if (level.isClientSide) {
             return;
         }
@@ -415,6 +416,11 @@ public final class MassStorageBlockEntity extends BlockEntity
             Containers.dropItemStack(level, x, y, z, stack.copyWithCount(chunk));
             remaining -= chunk;
         }
+    }
+
+    @Override
+    public boolean hasEnergyBuffer() {
+        return false;
     }
 
     private static StorageVariant variantOf(BlockState state) {

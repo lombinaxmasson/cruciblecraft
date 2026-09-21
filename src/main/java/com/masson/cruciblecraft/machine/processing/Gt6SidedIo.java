@@ -28,15 +28,23 @@ public final class Gt6SidedIo {
 
     static {
         put("crusher", p(U, TOP, D, BOTTOM, 0, NO_AUTO, 0, NO_AUTO, B));
+        put("large_crusher", p(0, NO_AUTO, D, BOTTOM, 0, NO_AUTO, D, BOTTOM, 0));
+        // 17103 leaves side bits at 127 and only sets auto-out to bottom.
+        put("large_electrolyzer", p(
+                ANY, NO_AUTO, ANY, BOTTOM, ANY, NO_AUTO, ANY, BOTTOM, ANY));
         put("shredder", p(U, TOP, D, BOTTOM, 0, NO_AUTO, 0, NO_AUTO, L | R));
         put("sifter", p(U, TOP, D, BOTTOM, 0, NO_AUTO, 0, NO_AUTO, B));
         put("mortar", p(ANY, NO_AUTO, ANY, NO_AUTO, ANY, NO_AUTO, ANY, NO_AUTO, ANY));
         put("sluice", p(L | U, LEFT, R | D, RIGHT, L | U, TOP, R | D, BOTTOM, B));
         put("bath", p(U | L, LEFT, D | R, RIGHT, U | L, TOP, D | R, BOTTOM, ALL));
+        // 17104 omits INV/TANK_SIDE_* so GregAPI stays 127 (any face);
+        // AUTO_OUT is SIDE_BOTTOM and there is no AUTO_IN.
+        put("large_bath", p(ANY, NO_AUTO, ANY, BOTTOM, ANY, NO_AUTO, ANY, BOTTOM, ANY));
         put("centrifuge", p(U, TOP, R, RIGHT, U, TOP, L, LEFT, D));
         put("smelter", p(U, TOP, L, LEFT, U, TOP, R, RIGHT, D));
         put("melter", p(U, TOP, L, LEFT, U, TOP, R, RIGHT, D));
         put("oven", p(L, LEFT, R, RIGHT, ALL, NO_AUTO, ALL, NO_AUTO, D));
+        put("large_oven", p(L, NO_AUTO, D, BOTTOM, ALL, NO_AUTO, D, BOTTOM, D));
         put("compressor", p(U, TOP, D, BOTTOM, 0, NO_AUTO, 0, NO_AUTO, L));
         put("lathe", p(L, LEFT, R, RIGHT, 0, NO_AUTO, 0, NO_AUTO, D));
         put("rollingmill", p(L, LEFT, R, RIGHT, 0, NO_AUTO, 0, NO_AUTO, B));
@@ -68,7 +76,12 @@ public final class Gt6SidedIo {
         put("drying", p(B | L, LEFT, R, RIGHT, B | L, BACK, U, TOP, D));
         put("roaster", p(B | L, LEFT, R, RIGHT, B | L, BACK, U, TOP, D));
         put("autoclave", p(U | L, LEFT, B | R, RIGHT, D | L, BOTTOM, B | R, BACK, ALL));
+        // 17112 omits INV/TANK_SIDE_*; AUTO_OUT is SIDE_BOTTOM; input targets are null.
+        put("large_autoclave", p(ANY, NO_AUTO, ANY, BOTTOM, ANY, NO_AUTO, ANY, BOTTOM, ANY));
+        put("fermenter", p(0, NO_AUTO, B, BACK, 0, NO_AUTO, B, BACK, 0));
         put("coagulator", p(ANY, NO_AUTO, D | R, BOTTOM, U | L, TOP, 0, NO_AUTO, ALL));
+        // 17105: controller pushes items and fluids down; walls stay bidirectional.
+        put("large_coagulator", p(0, NO_AUTO, D, BOTTOM, 0, NO_AUTO, D, BOTTOM, 0));
         put("injector", p(U | L, LEFT, R | D, RIGHT, U | L, TOP, R | D, BOTTOM, B));
         put("printer", p(U | L, LEFT, R | D, RIGHT, U | L, TOP, 0, NO_AUTO, B));
         put("scanner", p(U | L, LEFT, R | D, RIGHT, 0, NO_AUTO, 0, NO_AUTO, B));
@@ -82,6 +95,12 @@ public final class Gt6SidedIo {
         put("bumblelyzer", p(U | L, LEFT, R | D, RIGHT, U | D, TOP, 0, NO_AUTO, B));
         put("nanofab", p(L | U, LEFT, D | R, RIGHT, L | U, TOP, D | R, BOTTOM, B));
         put("massfab", p(L | U, LEFT, D | R, RIGHT, L | U, TOP, D | R, BOTTOM, B));
+        // 17199 omits INV/TANK_SIDE_* and ENERGY_ACCEPTED_SIDES; only the
+        // automatic item/fluid output is explicitly fixed to the bottom.
+        put("large_matter_fabricator", p(
+                ANY, NO_AUTO, ANY, BOTTOM,
+                ANY, NO_AUTO, ANY, BOTTOM,
+                ALL));
         put("replicator", p(L | U, LEFT, D | R, RIGHT, L | U, TOP, D | R, BOTTOM, B));
         put("generifier", p(U | L, LEFT, D | R, RIGHT, U | L, TOP, D | R, BOTTOM, ALL));
         put("magnetic_separator", p(L, LEFT, R | D, RIGHT, L, LEFT, R | D, BOTTOM, U));

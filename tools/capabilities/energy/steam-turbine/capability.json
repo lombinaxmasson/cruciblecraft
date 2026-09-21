@@ -22,7 +22,12 @@
   "required_test_ids": [
     "fifteenSinglesConvertSteamToRu",
     "largeHousingsRequireStructure",
-    "distilledWaterRecovery"
+    "distilledWaterRecovery",
+    "singlePushesDistilledToSides",
+    "wallHatchRolesMatchGt6",
+    "wallHatchesForwardIo",
+    "energyOutPushesRu",
+    "softHammerStopsLargeConversion"
   ],
   "identity_disposition": [
     {
@@ -35,5 +40,5 @@
       "reason": "GT6 MultiTileEntityTurbineSteam 15 rows plus LargeTurbineSteam 17211-17214. Not HEX, KU steam engine, or dummy consumeSteam."
     }
   ],
-  "note": "STEAM_PER_EU=2. Singles 200 steam/water, large 170."
+  "note": "STEAM_PER_EU=2. Singles 200 steam/water push DistW to sides then trash. Large 170 DistW tank with void excess. Converter NBT_WASTE_ENERGY, double-tick RU credit, far-wall ONLY_ENERGY_OUT / frontal ONLY_FLUID."
 }

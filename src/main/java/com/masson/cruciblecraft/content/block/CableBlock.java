@@ -14,6 +14,7 @@ import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.energy.cable.CableCovers;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverPlacement;
 import com.masson.cruciblecraft.material.def.GT6MaterialMetadata.ElectricalProperties;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModCapabilities;
@@ -209,8 +210,7 @@ public final class CableBlock extends Block
         if (tool.consumesAction()) {
             return tool;
         }
-        if (CableCovers.tryInstall(
-                level, pos, hit.getDirection(), stack, player)) {
+        if (CableCovers.tryInstall(level, pos, hit, stack, player)) {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
         if (level.getBlockEntity(pos) instanceof CableBlockEntity cable
@@ -229,7 +229,10 @@ public final class CableBlock extends Block
                 return pryCover(context);
             }
             if (CableCovers.onTool(
-                    cable, context.getClickedFace(), action)) {
+                    cable,
+                    CoverPlacement.interactSide(
+                            cable, ToolClick.hit(context)),
+                    action)) {
                 if (!level.isClientSide) {
                     ToolClick.hurt(context);
                 }
@@ -275,7 +278,7 @@ public final class CableBlock extends Block
             BlockPos pos,
             CollisionContext context) {
         return Gt6StyleConnections.interactionShape(
-                state, context, connectedShape(state));
+                state, context, connectedShape(state), level.getBlockEntity(pos));
     }
 
     @Override
@@ -462,7 +465,8 @@ public final class CableBlock extends Block
         if (!(level.getBlockEntity(pos) instanceof CableBlockEntity cable)) {
             return ToolResult.PASS;
         }
-        Direction side = context.getClickedFace();
+        Direction side = CoverPlacement.interactSide(
+                cable, ToolClick.hit(context));
         if (level.isClientSide) {
             return cable.covers().get(side).isPresent()
                     ? ToolResult.SUCCESS

@@ -1,0 +1,1548 @@
+{
+  "blocked_obtain": [],
+  "close_criterion": "Later large-processing host cards must not record blocked.md for missing structure parts, missing RecipeMaps, or unresolved controller/part D0 grids.",
+  "later_host_would_block": false,
+  "machines": [
+    {
+      "cc_map": "mixer",
+      "class_name": "MultiTileEntityMixer",
+      "controller_live": false,
+      "energy": "RU",
+      "english": "Large Batch Mixer",
+      "gt6_map": "RM.Mixer",
+      "map_registered": true,
+      "meta": 17102,
+      "no_constant_power": false,
+      "obtain": {
+        "cells": {
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18002)",
+            "item": "cruciblecraft:stainless_steel/wall",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18002,
+            "query": "getItem(18002)",
+            "registry_path": "stainless_steel/wall",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "P": {
+            "form": {
+              "item": "cruciblecraft:stainless_steel/dense_plate",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "stainless_steel",
+              "gt": "StainlessSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Stainless Steel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "dense_plate",
+              "gt": "plateDense",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.plateDense(MT.StainlessSteel)",
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          },
+          "S": {
+            "form": {
+              "item": "cruciblecraft:stainless_steel/long_rod",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "stainless_steel",
+              "gt": "StainlessSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Stainless Steel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "long_rod",
+              "gt": "stickLong",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.stickLong(MT.StainlessSteel)",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 256,
+      "parallel_duration": true,
+      "pattern": [
+        "PSP",
+        "PSP",
+        "RMC"
+      ],
+      "structure_part_metas": [
+        18002
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18002,
+          "registry_path": "stainless_steel/wall",
+          "runtime_id": "cruciblecraft:stainless_steel/wall"
+        }
+      ]
+    },
+    {
+      "cc_map": "electrolyzer",
+      "class_name": "MultiTileEntityElectrolyzer",
+      "controller_live": false,
+      "energy": "EU",
+      "english": "Large Electrolyzer",
+      "gt6_map": "RM.Electrolyzer",
+      "map_registered": true,
+      "meta": 17103,
+      "no_constant_power": false,
+      "obtain": {
+        "cells": {
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18105)",
+            "item": "cruciblecraft:multiblock/electrolyzer_part",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18105,
+            "query": "getItem(18105)",
+            "registry_path": "multiblock/electrolyzer_part",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 16,
+      "parallel_duration": true,
+      "pattern": [
+        "CMC",
+        "RCR"
+      ],
+      "structure_part_metas": [
+        18105
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18105,
+          "registry_path": "multiblock/electrolyzer_part",
+          "runtime_id": "cruciblecraft:multiblock/electrolyzer_part"
+        }
+      ]
+    },
+    {
+      "cc_map": "bath",
+      "class_name": "MultiTileEntityBath",
+      "controller_live": false,
+      "energy": "TU",
+      "english": "Large Bathing Vat",
+      "gt6_map": "RM.Bath",
+      "map_registered": true,
+      "meta": 17104,
+      "no_constant_power": true,
+      "obtain": {
+        "cells": {
+          "A": {
+            "family": "ROBOT_ARMS",
+            "gt": "IL.ROBOT_ARMS[2]",
+            "index": 2,
+            "item": "cruciblecraft:compact_electric_robot_arm_mv",
+            "kind": "il_module",
+            "live": true,
+            "query": "IL.ROBOT_ARMS[2]",
+            "status": "ok"
+          },
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18002)",
+            "item": "cruciblecraft:stainless_steel/wall",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18002,
+            "query": "getItem(18002)",
+            "registry_path": "stainless_steel/wall",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "P": {
+            "form": {
+              "item": "cruciblecraft:stainless_steel/dense_plate",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "stainless_steel",
+              "gt": "StainlessSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Stainless Steel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "dense_plate",
+              "gt": "plateDense",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.plateDense(MT.StainlessSteel)",
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 64,
+      "parallel_duration": false,
+      "pattern": [
+        "CRC",
+        "PMP",
+        "APA"
+      ],
+      "structure_part_metas": [
+        18002
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18002,
+          "registry_path": "stainless_steel/wall",
+          "runtime_id": "cruciblecraft:stainless_steel/wall"
+        }
+      ]
+    },
+    {
+      "cc_map": "coagulator",
+      "class_name": "MultiTileEntityCoagulator",
+      "controller_live": false,
+      "energy": "TU",
+      "english": "Large Coagulator Array",
+      "gt6_map": "RM.Coagulator",
+      "map_registered": true,
+      "meta": 17105,
+      "no_constant_power": true,
+      "obtain": {
+        "cells": {
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18002)",
+            "item": "cruciblecraft:stainless_steel/wall",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18002,
+            "query": "getItem(18002)",
+            "registry_path": "stainless_steel/wall",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "P": {
+            "form": {
+              "item": "cruciblecraft:stainless_steel/dense_plate",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "stainless_steel",
+              "gt": "StainlessSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Stainless Steel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "dense_plate",
+              "gt": "plateDense",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.plateDense(MT.StainlessSteel)",
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 64,
+      "parallel_duration": false,
+      "pattern": [
+        "CRC",
+        "PMP",
+        "PPP"
+      ],
+      "structure_part_metas": [
+        18002
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18002,
+          "registry_path": "stainless_steel/wall",
+          "runtime_id": "cruciblecraft:stainless_steel/wall"
+        }
+      ]
+    },
+    {
+      "cc_map": "oven",
+      "class_name": "MultiTileEntityOven",
+      "controller_live": false,
+      "energy": "EU",
+      "english": "Large Electric Oven",
+      "gt6_map": "RM.Furnace",
+      "map_registered": true,
+      "meta": 17106,
+      "no_constant_power": false,
+      "obtain": {
+        "cells": {
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18007)",
+            "item": "cruciblecraft:invar/wall",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18007,
+            "query": "getItem(18007)",
+            "registry_path": "invar/wall",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "P": {
+            "form": {
+              "item": "cruciblecraft:invar/dense_plate",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "invar",
+              "gt": "Invar",
+              "kind": "material",
+              "live": true,
+              "source_name": "Invar",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "dense_plate",
+              "gt": "plateDense",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.plateDense(MT.Invar)",
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          },
+          "w": {
+            "gt": "catalyst wrench",
+            "item": "cruciblecraft:material_wrench",
+            "kind": "catalyst",
+            "live": true,
+            "query": "wrench",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 64,
+      "parallel_duration": true,
+      "pattern": [
+        "PPP",
+        "PwP",
+        "RMC"
+      ],
+      "structure_part_metas": [
+        18007,
+        18042
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18007,
+          "registry_path": "invar/wall",
+          "runtime_id": "cruciblecraft:invar/wall"
+        },
+        {
+          "live": true,
+          "meta": 18042,
+          "registry_path": "multiblock/large_nichrome_coil",
+          "runtime_id": "cruciblecraft:multiblock/large_nichrome_coil"
+        }
+      ]
+    },
+    {
+      "cc_map": "sluice",
+      "class_name": "MultiTileEntitySluice",
+      "controller_live": false,
+      "energy": "RU",
+      "english": "Large Sluice",
+      "gt6_map": "RM.Sluice",
+      "map_registered": true,
+      "meta": 17107,
+      "no_constant_power": false,
+      "obtain": {
+        "cells": {
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "G": {
+            "form": {
+              "item": "cruciblecraft:titanium/gear",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "titanium",
+              "gt": "Ti",
+              "kind": "material",
+              "live": true,
+              "source_name": "Titanium",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "gear",
+              "gt": "gearGt",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.gearGt(MT.Ti)",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18006)",
+            "item": "cruciblecraft:titanium/wall",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18006,
+            "query": "getItem(18006)",
+            "registry_path": "titanium/wall",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          },
+          "S": {
+            "form": {
+              "item": "cruciblecraft:titanium/rod",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "titanium",
+              "gt": "Ti",
+              "kind": "material",
+              "live": true,
+              "source_name": "Titanium",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "rod",
+              "gt": "stick",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.stick(MT.Ti)",
+            "status": "ok"
+          },
+          "w": {
+            "gt": "catalyst wrench",
+            "item": "cruciblecraft:material_wrench",
+            "kind": "catalyst",
+            "live": true,
+            "query": "wrench",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 64,
+      "parallel_duration": true,
+      "pattern": [
+        "GGG",
+        "SwS",
+        "RMC"
+      ],
+      "structure_part_metas": [
+        18006,
+        18106
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18006,
+          "registry_path": "titanium/wall",
+          "runtime_id": "cruciblecraft:titanium/wall"
+        },
+        {
+          "live": true,
+          "meta": 18106,
+          "registry_path": "multiblock/sluice_part",
+          "runtime_id": "cruciblecraft:multiblock/sluice_part"
+        }
+      ]
+    },
+    {
+      "cc_map": "crusher",
+      "class_name": "MultiTileEntityCrusher",
+      "controller_live": false,
+      "energy": "RU",
+      "english": "Large Crusher",
+      "gt6_map": "RM.Crusher",
+      "map_registered": true,
+      "meta": 17108,
+      "no_constant_power": true,
+      "obtain": {
+        "cells": {
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "G": {
+            "form": {
+              "item": "cruciblecraft:tungstensteel/gear",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "tungstensteel",
+              "gt": "TungstenSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Tungstensteel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "gear",
+              "gt": "gearGt",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.gearGt(MT.TungstenSteel)",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18003)",
+            "item": "cruciblecraft:tungstensteel/wall",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18003,
+            "query": "getItem(18003)",
+            "registry_path": "tungstensteel/wall",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          },
+          "S": {
+            "form": {
+              "item": "cruciblecraft:tungstensteel/small_gear",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "tungstensteel",
+              "gt": "TungstenSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Tungstensteel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "small_gear",
+              "gt": "gearGtSmall",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.gearGtSmall(MT.TungstenSteel)",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 64,
+      "parallel_duration": true,
+      "pattern": [
+        "GSG",
+        "SGS",
+        "RMC"
+      ],
+      "structure_part_metas": [
+        18003,
+        18107
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18003,
+          "registry_path": "tungstensteel/wall",
+          "runtime_id": "cruciblecraft:tungstensteel/wall"
+        },
+        {
+          "live": true,
+          "meta": 18107,
+          "registry_path": "multiblock/crusher_wheels",
+          "runtime_id": "cruciblecraft:multiblock/crusher_wheels"
+        }
+      ]
+    },
+    {
+      "cc_map": "shredder",
+      "class_name": "MultiTileEntityShredder",
+      "controller_live": false,
+      "energy": "RU",
+      "english": "Large Shredder",
+      "gt6_map": "RM.Shredder",
+      "map_registered": true,
+      "meta": 17109,
+      "no_constant_power": true,
+      "obtain": {
+        "cells": {
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "G": {
+            "form": {
+              "item": "cruciblecraft:tungstensteel/gear",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "tungstensteel",
+              "gt": "TungstenSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Tungstensteel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "gear",
+              "gt": "gearGt",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.gearGt(MT.TungstenSteel)",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18003)",
+            "item": "cruciblecraft:tungstensteel/wall",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18003,
+            "query": "getItem(18003)",
+            "registry_path": "tungstensteel/wall",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          },
+          "S": {
+            "form": {
+              "item": "cruciblecraft:tungstensteel/small_gear",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "tungstensteel",
+              "gt": "TungstenSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Tungstensteel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "small_gear",
+              "gt": "gearGtSmall",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.gearGtSmall(MT.TungstenSteel)",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 64,
+      "parallel_duration": true,
+      "pattern": [
+        "SGS",
+        "GSG",
+        "RMC"
+      ],
+      "structure_part_metas": [
+        18003,
+        18108
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18003,
+          "registry_path": "tungstensteel/wall",
+          "runtime_id": "cruciblecraft:tungstensteel/wall"
+        },
+        {
+          "live": true,
+          "meta": 18108,
+          "registry_path": "multiblock/shredder_blades",
+          "runtime_id": "cruciblecraft:multiblock/shredder_blades"
+        }
+      ]
+    },
+    {
+      "cc_map": "implosion_compressor",
+      "class_name": "MultiTileEntityImplosionCompressor",
+      "controller_live": false,
+      "energy": "TU",
+      "english": "Implosion Compressor",
+      "gt6_map": "RM.ImplosionCompressor",
+      "map_registered": true,
+      "meta": 17110,
+      "no_constant_power": true,
+      "obtain": {
+        "cells": {
+          "A": {
+            "family": "ROBOT_ARMS",
+            "gt": "IL.ROBOT_ARMS[2]",
+            "index": 2,
+            "item": "cruciblecraft:compact_electric_robot_arm_mv",
+            "kind": "il_module",
+            "live": true,
+            "query": "IL.ROBOT_ARMS[2]",
+            "status": "ok"
+          },
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18023)",
+            "item": "cruciblecraft:multiblock/dense_tungstensteel_wall",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18023,
+            "query": "getItem(18023)",
+            "registry_path": "multiblock/dense_tungstensteel_wall",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "P": {
+            "form": {
+              "item": "cruciblecraft:tungstensteel/dense_plate",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "tungstensteel",
+              "gt": "TungstenSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Tungstensteel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "dense_plate",
+              "gt": "plateDense",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.plateDense(MT.TungstenSteel)",
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 64,
+      "parallel_duration": false,
+      "pattern": [
+        "CPC",
+        "PAP",
+        "RMR"
+      ],
+      "structure_part_metas": [
+        18023
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18023,
+          "registry_path": "multiblock/dense_tungstensteel_wall",
+          "runtime_id": "cruciblecraft:multiblock/dense_tungstensteel_wall"
+        }
+      ]
+    },
+    {
+      "cc_map": "autoclave",
+      "class_name": "MultiTileEntityAutoclave",
+      "controller_live": false,
+      "energy": "TU",
+      "english": "Large Autoclave",
+      "gt6_map": "RM.Autoclave",
+      "map_registered": true,
+      "meta": 17112,
+      "no_constant_power": true,
+      "obtain": {
+        "cells": {
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18022)",
+            "item": "cruciblecraft:multiblock/dense_stainless_steel_wall",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18022,
+            "query": "getItem(18022)",
+            "registry_path": "multiblock/dense_stainless_steel_wall",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "P": {
+            "form": {
+              "item": "cruciblecraft:stainless_steel/dense_plate",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "stainless_steel",
+              "gt": "StainlessSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Stainless Steel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "dense_plate",
+              "gt": "plateDense",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.plateDense(MT.StainlessSteel)",
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 16,
+      "parallel_duration": false,
+      "pattern": [
+        "CRC",
+        "PMP",
+        "PPP"
+      ],
+      "structure_part_metas": [
+        18022
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18022,
+          "registry_path": "multiblock/dense_stainless_steel_wall",
+          "runtime_id": "cruciblecraft:multiblock/dense_stainless_steel_wall"
+        }
+      ]
+    },
+    {
+      "cc_map": "fermenter",
+      "class_name": "MultiTileEntityFermenter",
+      "controller_live": false,
+      "energy": "HU",
+      "english": "Large Fermenter",
+      "gt6_map": "RM.Fermenter",
+      "map_registered": true,
+      "meta": 17113,
+      "no_constant_power": false,
+      "obtain": {
+        "cells": {
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18002)",
+            "item": "cruciblecraft:stainless_steel/wall",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18002,
+            "query": "getItem(18002)",
+            "registry_path": "stainless_steel/wall",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "P": {
+            "form": {
+              "item": "cruciblecraft:stainless_steel/dense_plate",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "stainless_steel",
+              "gt": "StainlessSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Stainless Steel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "dense_plate",
+              "gt": "plateDense",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.plateDense(MT.StainlessSteel)",
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 256,
+      "parallel_duration": true,
+      "pattern": [
+        "PPP",
+        "CRC",
+        "PMP"
+      ],
+      "structure_part_metas": [
+        18101,
+        18002
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18101,
+          "registry_path": "multiblock/heat_transmitter",
+          "runtime_id": "cruciblecraft:multiblock/heat_transmitter"
+        },
+        {
+          "live": true,
+          "meta": 18002,
+          "registry_path": "stainless_steel/wall",
+          "runtime_id": "cruciblecraft:stainless_steel/wall"
+        }
+      ]
+    },
+    {
+      "cc_map": "squeezer",
+      "class_name": "MultiTileEntitySqueezer",
+      "controller_live": false,
+      "energy": "RU",
+      "english": "Large Squeezer",
+      "gt6_map": "RM.Squeezer",
+      "map_registered": true,
+      "meta": 17114,
+      "no_constant_power": true,
+      "obtain": {
+        "cells": {
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "G": {
+            "form": {
+              "items": [
+                {
+                  "cc_material": "steel",
+                  "item": "cruciblecraft:steel/gear",
+                  "registered": true
+                },
+                {
+                  "cc_material": "knightmetal",
+                  "item": "cruciblecraft:knightmetal/gear",
+                  "registered": true
+                },
+                {
+                  "cc_material": "meteoric_steel",
+                  "item": "cruciblecraft:meteoric_steel/gear",
+                  "registered": true
+                }
+              ],
+              "note": "ANY token; pick a family member, never an unrelated metal.",
+              "status": "ok"
+            },
+            "kind": "prefix_family",
+            "material": {
+              "cc_materials": [
+                "steel",
+                "knightmetal",
+                "meteoric_steel"
+              ],
+              "gt": "ANY.Steel",
+              "kind": "family",
+              "local": "Any Iron-Steel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "gear",
+              "gt": "gearGt",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.gearGt(ANY.Steel)",
+            "status": "ok"
+          },
+          "M": {
+            "gt": "getItem(18009)",
+            "item": "cruciblecraft:steel/wall",
+            "kind": "mte_item",
+            "live": true,
+            "meta": 18009,
+            "query": "getItem(18009)",
+            "registry_path": "steel/wall",
+            "self_ref": true,
+            "status": "ok"
+          },
+          "R": {
+            "gt": "IL.Processor_Crystal_Ruby",
+            "item": "cruciblecraft:processor_crystal_ruby",
+            "kind": "il_named",
+            "live": true,
+            "query": "IL.Processor_Crystal_Ruby",
+            "status": "ok"
+          },
+          "S": {
+            "form": {
+              "items": [
+                {
+                  "cc_material": "steel",
+                  "item": "cruciblecraft:steel/small_gear",
+                  "registered": true
+                },
+                {
+                  "cc_material": "knightmetal",
+                  "item": "cruciblecraft:knightmetal/small_gear",
+                  "registered": true
+                },
+                {
+                  "cc_material": "meteoric_steel",
+                  "item": "cruciblecraft:meteoric_steel/small_gear",
+                  "registered": true
+                }
+              ],
+              "note": "ANY token; pick a family member, never an unrelated metal.",
+              "status": "ok"
+            },
+            "kind": "prefix_family",
+            "material": {
+              "cc_materials": [
+                "steel",
+                "knightmetal",
+                "meteoric_steel"
+              ],
+              "gt": "ANY.Steel",
+              "kind": "family",
+              "local": "Any Iron-Steel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "small_gear",
+              "gt": "gearGtSmall",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.gearGtSmall(ANY.Steel)",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "parallel": 64,
+      "parallel_duration": true,
+      "pattern": [
+        "GSG",
+        "GSG",
+        "RMC"
+      ],
+      "structure_part_metas": [
+        18009
+      ],
+      "structure_parts": [
+        {
+          "live": true,
+          "meta": 18009,
+          "registry_path": "steel/wall",
+          "runtime_id": "cruciblecraft:steel/wall"
+        }
+      ]
+    }
+  ],
+  "missing_recipe_maps": [],
+  "missing_specialized_parts": [],
+  "missing_structure_part_metas": [],
+  "out_of_scope": [
+    "GT6U large machines",
+    "17100 Large Centrifuge",
+    "17101 Distillation Tower",
+    "process dump rows (fermenter/squeezer/etc.)",
+    "formation Java / energy plugins / host BlockItems"
+  ],
+  "schema_version": 1,
+  "slug": "machines/large-processing-parts",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "specialized_parts": [
+    {
+      "english": "Electrolyzer Part",
+      "gt6_texture": "electrolyzerparts",
+      "intended_registry_path": "multiblock/electrolyzer_part",
+      "live": true,
+      "meta": 18105,
+      "obtain": {
+        "cells": {
+          "C": {
+            "gt": "OD_CIRCUITS[6]",
+            "item": "cruciblecraft:circuit_ultimate",
+            "kind": "circuit",
+            "live": true,
+            "query": "OD_CIRCUITS[6]",
+            "status": "ok"
+          },
+          "M": {
+            "form": {
+              "item": "cruciblecraft:stainless_steel/machine_casing",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "stainless_steel",
+              "gt": "StainlessSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Stainless Steel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "machine_casing",
+              "gt": "casingMachine",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.casingMachine(MT.StainlessSteel)",
+            "status": "ok"
+          },
+          "W": {
+            "form": {
+              "item": "cruciblecraft:platinum/wire",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "platinum",
+              "gt": "Pt",
+              "kind": "material",
+              "live": true,
+              "source_name": "Platinum",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "wire",
+              "gt": "wireGt01",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.wireGt01(MT.Pt)",
+            "status": "ok"
+          },
+          "w": {
+            "gt": "catalyst wrench",
+            "item": "cruciblecraft:material_wrench",
+            "kind": "catalyst",
+            "live": true,
+            "query": "wrench",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "pattern": [
+        "WwW",
+        "WMW",
+        "CCC"
+      ],
+      "registry_path": "multiblock/electrolyzer_part",
+      "runtime_id": "cruciblecraft:multiblock/electrolyzer_part"
+    },
+    {
+      "english": "Crusher Wheels",
+      "gt6_texture": "crusherwheels",
+      "intended_registry_path": "multiblock/crusher_wheels",
+      "live": true,
+      "meta": 18107,
+      "obtain": {
+        "cells": {
+          "D": {
+            "form": {
+              "items": [
+                {
+                  "cc_material": "diamantine",
+                  "item": "cruciblecraft:diamantine/gem",
+                  "registered": true
+                }
+              ],
+              "note": "ANY token; pick a family member, never an unrelated metal.",
+              "status": "ok"
+            },
+            "kind": "prefix_family",
+            "material": {
+              "cc_materials": [
+                "diamantine"
+              ],
+              "gt": "ANY.Diamond",
+              "kind": "family",
+              "local": "Any Diamond",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "gem",
+              "gt": "gem",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.gem(ANY.Diamond)",
+            "status": "ok"
+          },
+          "G": {
+            "form": {
+              "item": "cruciblecraft:tungstensteel/gear",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "tungstensteel",
+              "gt": "TungstenSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Tungstensteel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "gear",
+              "gt": "gearGt",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.gearGt(MT.TungstenSteel)",
+            "status": "ok"
+          },
+          "M": {
+            "form": {
+              "item": "cruciblecraft:tungstensteel/machine_casing_double",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "tungstensteel",
+              "gt": "TungstenSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Tungstensteel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "machine_casing_double",
+              "gt": "casingMachineDouble",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.casingMachineDouble(MT.TungstenSteel)",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "pattern": [
+        "DDD",
+        "GDG",
+        "GMG"
+      ],
+      "registry_path": "multiblock/crusher_wheels",
+      "runtime_id": "cruciblecraft:multiblock/crusher_wheels"
+    },
+    {
+      "english": "Shredder Blades",
+      "gt6_texture": "shredderblades",
+      "intended_registry_path": "multiblock/shredder_blades",
+      "live": true,
+      "meta": 18108,
+      "obtain": {
+        "cells": {
+          "D": {
+            "form": {
+              "items": [
+                {
+                  "cc_material": "diamantine",
+                  "item": "cruciblecraft:diamantine/plate_gem",
+                  "registered": true
+                }
+              ],
+              "note": "ANY token; pick a family member, never an unrelated metal.",
+              "status": "ok"
+            },
+            "kind": "prefix_family",
+            "material": {
+              "cc_materials": [
+                "diamantine"
+              ],
+              "gt": "ANY.Diamond",
+              "kind": "family",
+              "local": "Any Diamond",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "plate_gem",
+              "gt": "plateGem",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.plateGem(ANY.Diamond)",
+            "status": "ok"
+          },
+          "G": {
+            "form": {
+              "item": "cruciblecraft:tungstensteel/gear",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "tungstensteel",
+              "gt": "TungstenSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Tungstensteel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "gear",
+              "gt": "gearGt",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.gearGt(MT.TungstenSteel)",
+            "status": "ok"
+          },
+          "M": {
+            "form": {
+              "item": "cruciblecraft:tungstensteel/machine_casing_double",
+              "registered": true,
+              "status": "ok"
+            },
+            "kind": "prefix_material",
+            "material": {
+              "cc_material": "tungstensteel",
+              "gt": "TungstenSteel",
+              "kind": "material",
+              "live": true,
+              "source_name": "Tungstensteel",
+              "status": "ok"
+            },
+            "prefix": {
+              "cc_prefix": "machine_casing_double",
+              "gt": "casingMachineDouble",
+              "live": true,
+              "status": "ok"
+            },
+            "query": "OP.casingMachineDouble(MT.TungstenSteel)",
+            "status": "ok"
+          },
+          "w": {
+            "gt": "catalyst wrench",
+            "item": "cruciblecraft:material_wrench",
+            "kind": "catalyst",
+            "live": true,
+            "query": "wrench",
+            "status": "ok"
+          }
+        },
+        "missing_keys": [],
+        "ok": true
+      },
+      "pattern": [
+        "DGD",
+        "GwG",
+        "GMG"
+      ],
+      "registry_path": "multiblock/shredder_blades",
+      "runtime_id": "cruciblecraft:multiblock/shredder_blades"
+    }
+  ]
+}

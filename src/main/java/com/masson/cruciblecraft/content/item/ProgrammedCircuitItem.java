@@ -6,10 +6,12 @@ import com.masson.cruciblecraft.content.blockentity.RedstoneWireBlockEntity;
 import com.masson.cruciblecraft.content.redstonewire.RedstoneWireCovers;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverPlacement;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -62,7 +64,7 @@ public final class ProgrammedCircuitItem extends Item {
             if (!RedstoneWireCovers.tryInstall(
                     context.getLevel(),
                     context.getClickedPos(),
-                    context.getClickedFace(),
+                    CoverPlacement.hit(context),
                     context.getItemInHand(),
                     context.getPlayer())) {
                 return InteractionResult.FAIL;
@@ -78,12 +80,12 @@ public final class ProgrammedCircuitItem extends Item {
         int mode = Math.floorMod(config - 1, 16);
         PipeCover cover = PipeCover.of(
                 "cruciblecraft:selector_tag").withDisplay(0, mode);
-        if (!MachineCoverBehaviors.canPlace(
-                machine, context.getClickedFace(), cover)) {
+        Direction side = CoverPlacement.placeSide(
+                blockEntity, CoverPlacement.hit(context));
+        if (!MachineCoverBehaviors.canPlace(machine, side, cover)) {
             return InteractionResult.FAIL;
         }
-        boolean changed = machine.setCover(
-                context.getClickedFace(), cover);
+        boolean changed = machine.setCover(side, cover);
         if (changed
                 && context.getPlayer() != null
                 && !context.getPlayer().getAbilities().instabuild) {

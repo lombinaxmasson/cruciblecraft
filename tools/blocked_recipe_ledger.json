@@ -110,7 +110,7 @@
         "id": "content/electric-wire-cable-mte-fold/mte:electric-wire-cable:unregistered-gauges",
         "owner": "content/electric-wire-cable-mte-fold",
         "player_path_disposition": "capability_blocked",
-        "reason": "Superconductor wires and unregistered graphene/high-gauge forms stay unmapped. No wrong-gauge or scatter stand-in.",
+        "reason": "addElectricWires recipe gauges now map 320/320, including Graphene 01/02/04/08/12/16, Superconductor 01/02/04/08/12/16, and HSLA/BlueAlloy/ElectrotineAlloy/Naquadah/YBCO canonical wires/cables. Dummy catalog aliases remain a separate identity. No wrong-gauge or scatter stand-in.",
         "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
       },
       {
@@ -201,16 +201,6 @@
         "owner": "content/mte-redstone-wire",
         "player_path_disposition": "capability_blocked",
         "reason": "GT6 insulated 27006/27056/27506 are laminator extras not in catalog 1817.",
-        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
-      },
-      {
-        "blocker_root": "connector:redstone-wire:covers",
-        "capability": "content/mte-redstone-wire",
-        "freshness": "current",
-        "id": "content/mte-redstone-wire/connector:redstone-wire:covers",
-        "owner": "content/mte-redstone-wire",
-        "player_path_disposition": "capability_blocked",
-        "reason": "GT6 connectors accept MTE covers. CC EU cables also do not host covers. Cover remainder stays on the logistics cover lane.",
         "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
       },
       {
@@ -374,13 +364,23 @@
         "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
       },
       {
-        "blocker_root": "cover:redstone_torch_repeater:wire_host",
-        "capability": "logistics/cover-remainder",
+        "blocker_root": "mte:wooden_bathing_pot:32721-32720",
+        "capability": "machines/bath",
         "freshness": "current",
-        "id": "logistics/cover-remainder/cover:redstone_torch_repeater:wire_host",
-        "owner": "logistics/cover-remainder",
+        "id": "machines/bath/mte:wooden_bathing_pot:32721-32720",
+        "owner": "machines/bath",
         "player_path_disposition": "capability_blocked",
-        "reason": "GT6 CoverRedstoneTorch/Repeater only attach to MultiTileEntityWireRedstoneInsulated. CC redstone-wire MTE is still prep. Definitions exist and refuse every current host.",
+        "reason": "OD.itemGlue is unmapped. Do not stand in slimeball. Wooden table needs the wooden pot. Runtime voxels still land; obtain stays explicitly_blocked.",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      {
+        "blocker_root": "machine:bath:large-vat-17104",
+        "capability": "machines/bath",
+        "freshness": "current",
+        "id": "machines/bath/machine:bath:large-vat-17104",
+        "owner": "machines/bath",
+        "player_path_disposition": "capability_blocked",
+        "reason": "Large Bathing Vat 17104 is out of scope for this host card.",
         "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
       },
       {
@@ -400,7 +400,7 @@
         "id": "machines/laminator/recipe:laminator:unmapped_mte_overflow",
         "owner": "machines/laminator",
         "player_path_disposition": "capability_blocked",
-        "reason": "54 rows require unmapped MTE operands; six more require unregistered gt_block log identities. No unrelated cable, block or material stand-ins.",
+        "reason": "6 rows still require unmapped non-addElectricWires MTE operands; six more require unregistered gt_block log identities. No unrelated cable, block or material stand-ins.",
         "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
       },
       {
@@ -410,7 +410,7 @@
         "id": "machines/loom/recipe:loom:overflow",
         "owner": "machines/loom",
         "player_path_disposition": "capability_blocked",
-        "reason": "232 rows require unmapped MTE or plant_gt_fiber operands; 637 additional rows have shadowed input signatures and cannot be safely published. No unrelated material stand-ins.",
+        "reason": "166 rows require unmapped MTE (non-addElectricWires gauges or other hosts) or plant_gt_fiber operands; 691 additional rows have shadowed input signatures and cannot be safely published. No unrelated material stand-ins.",
         "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
       },
       {
@@ -421,16 +421,6 @@
         "owner": "machines/melter",
         "player_path_disposition": "capability_blocked",
         "reason": "2796 rows remain blocked for unmapped plastic/glass/mercury fluids, arrow_gt_plastic, 12 unregistered GT block/multiitem identities, one 9072 mB output over the 8000 mB tank limit and closed tool-head identities. No unrelated fluid, item, programmed circuit or smelter stand-in is permitted.",
-        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
-      },
-      {
-        "blocker_root": "machine:nanofab:host_obtain",
-        "capability": "machines/nanofab",
-        "freshness": "current",
-        "id": "machines/nanofab/machine:nanofab:host_obtain",
-        "owner": "machines/nanofab",
-        "player_path_disposition": "capability_blocked",
-        "reason": "All five hosts need laser-gas components, sapphire crystal processor, emitters, and sensors. No Geiger/Canner cell, circuit-board, or programmed_circuit stand-in.",
         "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
       },
       {
@@ -491,16 +481,6 @@
         "owner": "worldgen/gt-dungeon",
         "player_path_disposition": "capability_blocked",
         "reason": "GT keys, ZPM, cross-mod portals, unavailable MTE fixtures, bedrock ores, and missing crop/material forms remain source-exact blocked.",
-        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
-      },
-      {
-        "blocker_root": "fluid:FL.Resin_Rubber",
-        "capability": "worldgen/gt-trees",
-        "freshness": "current",
-        "id": "worldgen/gt-trees/fluid:FL.Resin_Rubber",
-        "owner": "worldgen/gt-trees",
-        "player_path_disposition": "capability_blocked",
-        "reason": "FL.Resin_Rubber is missing; latex is not a stand-in. Rubber hole still harvests rubber_resin.",
         "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
       },
       {

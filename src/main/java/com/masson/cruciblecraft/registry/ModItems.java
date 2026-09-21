@@ -277,9 +277,6 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> STAINLESS_STEEL_WALL =
             ITEMS.registerSimpleBlockItem(
                     "stainless_steel_wall", ModBlocks.STAINLESS_STEEL_WALL);
-    public static final DeferredItem<BlockItem> LARGE_IRIDIUM_COIL =
-            ITEMS.registerSimpleBlockItem(
-                    "large_iridium_coil", ModBlocks.LARGE_IRIDIUM_COIL);
     public static final DeferredItem<MaterialMachineBlockItem> ANVIL = ITEMS.register(
             "anvil",
             () -> new MaterialMachineBlockItem(
@@ -306,6 +303,30 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> LARGE_CENTRIFUGE =
             ITEMS.registerSimpleBlockItem(
                     "large_centrifuge", ModBlocks.LARGE_CENTRIFUGE);
+    public static final DeferredItem<BlockItem> LARGE_MIXER =
+            ITEMS.registerSimpleBlockItem(
+                    "large_mixer", ModBlocks.LARGE_MIXER);
+    public static final DeferredItem<BlockItem> LARGE_ELECTROLYZER =
+            ITEMS.registerSimpleBlockItem(
+                    "large_electrolyzer", ModBlocks.LARGE_ELECTROLYZER);
+    public static final DeferredItem<BlockItem> LARGE_OVEN =
+            ITEMS.registerSimpleBlockItem(
+                    "large_oven", ModBlocks.LARGE_OVEN);
+    public static final DeferredItem<BlockItem> LARGE_CRUSHER =
+            ITEMS.registerSimpleBlockItem(
+                    "large_crusher", ModBlocks.LARGE_CRUSHER);
+    public static final DeferredItem<BlockItem> LARGE_BATH =
+            ITEMS.registerSimpleBlockItem(
+                    "large_bath", ModBlocks.LARGE_BATH);
+    public static final DeferredItem<BlockItem> LARGE_COAGULATOR =
+            ITEMS.registerSimpleBlockItem(
+                    "large_coagulator", ModBlocks.LARGE_COAGULATOR);
+    public static final DeferredItem<BlockItem> LARGE_AUTOCLAVE =
+            ITEMS.registerSimpleBlockItem(
+                    "large_autoclave", ModBlocks.LARGE_AUTOCLAVE);
+    public static final DeferredItem<BlockItem> LARGE_FERMENTER =
+            ITEMS.registerSimpleBlockItem(
+                    "large_fermenter", ModBlocks.LARGE_FERMENTER);
     public static final DeferredItem<BlockItem> DISTILLATION_TOWER =
             ITEMS.registerSimpleBlockItem(
                     "distillation_tower", ModBlocks.DISTILLATION_TOWER);

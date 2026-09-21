@@ -34,6 +34,7 @@ public final class ElectricMotorBlockEntity extends BlockEntity
     private final PerTickEnergyBudget outputBudget =
             new PerTickEnergyBudget();
     private boolean overcharged;
+    private boolean stopped;
 
     public ElectricMotorBlockEntity(
             BlockPos pos, BlockState state) {
@@ -62,7 +63,8 @@ public final class ElectricMotorBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             ElectricMotorBlockEntity motor) {
-        if (motor.electric.canConsume(motor.inputNominal)
+        if (!motor.stopped
+                && motor.electric.canConsume(motor.inputNominal)
                 && motor.rotational.capacity()
                                 - motor.rotational.stored()
                         >= motor.outputSize) {
@@ -78,11 +80,27 @@ public final class ElectricMotorBlockEntity extends BlockEntity
             }
             motor.setChanged();
         }
-        RotationalEnergyTransfer.emit(
-                level,
-                pos,
-                motor,
-                state.getValue(ElectricMotorBlock.FACING));
+        if (!motor.stopped) {
+            RotationalEnergyTransfer.emit(
+                    level,
+                    pos,
+                    motor,
+                    state.getValue(ElectricMotorBlock.FACING));
+        }
+    }
+
+    /** GT6 {@code ITileEntityAdjacentOnOff.setAdjacentOnOff}. */
+    public boolean setAdjacentOnOff(boolean on) {
+        boolean nextStopped = !on;
+        if (stopped != nextStopped) {
+            stopped = nextStopped;
+            setChanged();
+        }
+        return !stopped;
+    }
+
+    public boolean stopped() {
+        return stopped;
     }
 
     @Override
@@ -125,7 +143,8 @@ public final class ElectricMotorBlockEntity extends BlockEntity
 
     @Override
     public long outputSize(EnergyType type, Direction side) {
-        return type == EnergyType.KINETIC_ROTATION
+        return !stopped
+                        && type == EnergyType.KINETIC_ROTATION
                         && handles(type, side)
                         && rotational.stored() >= outputSize
                         && outputBudget.claim(
@@ -142,7 +161,8 @@ public final class ElectricMotorBlockEntity extends BlockEntity
             long maximum,
             Direction side,
             boolean simulate) {
-        if (type != EnergyType.KINETIC_ROTATION
+        if (stopped
+                || type != EnergyType.KINETIC_ROTATION
                 || !handles(type, side)
                 || size != outputSize
                 || maximum <= 0L
@@ -194,6 +214,7 @@ public final class ElectricMotorBlockEntity extends BlockEntity
         tag.putLong("electric", electric.stored());
         tag.putLong("rotational", rotational.stored());
         tag.putBoolean("overcharged", overcharged);
+        tag.putBoolean("stopped", stopped);
     }
 
     @Override
@@ -203,6 +224,7 @@ public final class ElectricMotorBlockEntity extends BlockEntity
         electric.restore(tag.getLong("electric"));
         rotational.restore(tag.getLong("rotational"));
         overcharged = tag.getBoolean("overcharged");
+        stopped = tag.getBoolean("stopped");
     }
 
     private long gameTime() {

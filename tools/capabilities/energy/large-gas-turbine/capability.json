@@ -2,15 +2,16 @@
   "schema_version": 2,
   "slug": "energy/large-gas-turbine",
   "title": "Large Gas Turbine 17231-17234",
-  "maturity": "frozen",
-  "workflow": "active",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
   "survival_access": "partial",
   "owned_paths": [
-    "docs/history/card-plans/active/大型燃气轮机详细计划.md",
+    "docs/history/card-plans/closed/大型燃气轮机详细计划.md",
     "src/main/java/com/masson/cruciblecraft/energy/largegasturbine/**",
     "src/main/resources/data/cruciblecraft/large_gas_turbines.json",
     "src/main/resources/assets/cruciblecraft/gt6_large_gas_turbine_art_manifest.json",
     "src/main/resources/assets/cruciblecraft/textures/block/machine/gas_turbine/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/metal_wall_dense/**",
     "src/test/java/com/masson/cruciblecraft/gametest/LargeGasTurbineGameTests.java",
     "src/test/java/com/masson/cruciblecraft/energy/largegasturbine/**",
     "tools/capabilities/energy/large-gas-turbine/**",
@@ -33,7 +34,13 @@
     "largeHousingsRequireStructure",
     "methaneStoresHuAndExhaust",
     "exhaustAtHalfBlocksFuel",
-    "plungerDumpsTanks"
+    "plungerDumpsTanks",
+    "wallHatchRolesMatchGt6",
+    "wallHatchesForwardIo",
+    "energyOutPushesRu",
+    "survivalRecipesArePresent",
+    "controllerSidesFillAndDrain",
+    "farWallUsesDesign3"
   ],
   "identity_disposition": [
     {
@@ -48,5 +55,5 @@
       "reason": "GT6 MultiTileEntityLargeTurbineGas 17231-17234. Not kTFRUAddon MultiTileEntityGasMotor 10000-10006, not LargeTurbineSteam 17211-17214."
     }
   ],
-  "note": "3x3x4 HU-from-FM.Gas to RU. Walls reuse 18022/18026/18023/18025. No wall port binding. Skip recipes whose live forms are missing. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain."
+  "note": "3x3x4 HU-from-FM.Gas to RU. Walls reuse 18022/18026/18023/18025. Wall ports bind GT6 LargeTurbine hatch modes (frontal fill, bottom drain, far-wall RU). Controller fluids match GT6 getFluidTankFillable2/Drainable2 (all sides). Formed 3x3 facing fan, far-wall design 3, minecart running sound, AABB keep-formed when corners unloaded. Skip recipes whose live forms are missing. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready, not player_complete."
 }

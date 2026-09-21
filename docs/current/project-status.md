@@ -6,16 +6,18 @@
 
 ## Unique active
 
-`content/gt6-electric-tools`（GT6 Electric Tools，`workflow=active`，`maturity=frozen`）；计划 [GT6 电动工具详细计划](../history/card-plans/active/GT6电动工具详细计划.md)。
+无。`capability.json` 里没有 `workflow=active`。
 
 ## Prep（不占落地锁）
 
 计划文件存在就会列在这里。不要把本表当剩余待办。读法见 [unimplemented-gap.md](unimplemented-gap.md)。
 
+- `content/gt6-crop-food-split` — [GT6 作物与 Foods 可选拆分详细计划](../history/card-plans/prep/GT6作物与Foods可选拆分详细计划.md)
 - `content/puv-omega-tech-line` — [PUV2+ / OMEGA 科技线](../history/card-plans/prep/PUV2OMEGA科技线详细计划.md)
 - `energy/cooler` — [冷却器详细计划](../history/card-plans/prep/冷却器详细计划.md)
 - `energy/flux-converters` — [通量转换器详细计划](../history/card-plans/prep/通量转换器详细计划.md)
 - `energy/small-gas-turbine` — [微型燃气涡轮详细计划](../history/card-plans/prep/微型燃气涡轮详细计划.md)
+- `machines/large-bath` — [大型洗矿机详细计划](../history/card-plans/prep/大型洗矿机详细计划.md)
 - `machines/printer` — [印刷机详细计划](../history/card-plans/prep/印刷机详细计划.md)
 - `registry/material-form-demand-census` — [材料形态需求普查详细计划](../history/card-plans/prep/材料形态需求普查详细计划.md)
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
@@ -27,9 +29,9 @@
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts
 
-## runtime_ready accepted（79）
+## runtime_ready accepted（82）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -79,6 +81,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `energy/batteries` — Energy Batteries
 - `energy/converter-catalog` — Energy Converter Catalog
 - `energy/heat-exchangers` — Heat Exchangers — [热交换器第一切片详细计划](../history/card-plans/closed/热交换器第一切片详细计划.md)
+- `energy/large-gas-turbine` — Large Gas Turbine 17231-17234 — [大型燃气轮机详细计划](../history/card-plans/closed/大型燃气轮机详细计划.md)
 - `energy/nuclear-fission-hot-fluids` — Nuclear Fission Hot Fluids — [裂变热流体与热量合同详细计划](../history/card-plans/closed/裂变热流体与热量合同详细计划.md)
 - `energy/nuclear-fission-observation-safety` — Nuclear Fission Observation Safety — [裂变观测安全与能源 Jade 详细计划](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
 - `energy/nuclear-fission-survival` — Nuclear Fission Survival — [裂变生存闭环与全量棒堆芯详细计划](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)
@@ -93,9 +96,11 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `machines/bath` — Bath / Bathing Pot — [洗矿浴池详细计划](../history/card-plans/closed/洗矿浴池详细计划.md)
 - `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
 - `machines/distillation-tower` — Distillation Tower GT6 Alignment — [蒸馏塔 GT6 对齐详细计划](../history/card-plans/closed/蒸馏塔GT6对齐详细计划.md)
+- `machines/gt6-coil-hosts` — GT6 coils 18040-18045 and host machines
 - `machines/hammer-squeezer-laser` — Hammer / Squeezer / Laser — [锤 / 榨汁机 / 激光详细计划](../history/card-plans/closed/锤榨汁机激光详细计划.md)
 - `machines/injector` — Injector — [注射机详细计划](../history/card-plans/closed/注射机详细计划.md)
 - `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)
+- `machines/large-processing-parts` — Large processing multiblock parts and maps — [大型加工多方块零件与配方图详细计划](../history/card-plans/closed/大型加工多方块零件与配方图详细计划.md)
 - `machines/loom` — Loom — [织机详细计划](../history/card-plans/closed/织机详细计划.md)
 - `machines/melter` — Melter — [熔融机详细计划](../history/card-plans/closed/熔融机详细计划.md)
 - `machines/nanofab` — Nanoscale Fabricator — [纳米加工机详细计划](../history/card-plans/closed/纳米加工机详细计划.md)
@@ -113,11 +118,11 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `worldgen/gt-surface-rocks` — GT Surface Rocks — [GT6 地表石子保真](../history/card-plans/closed/GT6地表石子保真详细计划.md)
 - `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
 
-## frozen（11）
+## frozen（14）
 
 分母已冻。`paused` 的 PUV/OMEGA 六张代码已在 `src/main`，是 CC 扩展，不是原版高压线。地牢是结构载体，房间内容仍 blocked。
 
-- `content/gt6-electric-tools` — GT6 Electric Tools（`workflow=active`） — [GT6 电动工具详细计划](../history/card-plans/active/GT6电动工具详细计划.md)
+- `content/gt6-electric-tools` — GT6 Electric Tools（`workflow=paused`） — [GT6 电动工具详细计划](../history/card-plans/closed/GT6电动工具详细计划.md)
 - `content/puv-omega-parts` — Compact parts, Quantum circuit, wires and transformers to OMEGA（`workflow=paused`）
 - `energy/fusion-quantum` — Fusion execution, QUANTUM, and LU to QU（`workflow=paused`）
 - `energy/large-heat-exchanger` — Large Heat Exchanger 17197（`workflow=paused`）
@@ -125,6 +130,9 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `energy/small-gas-turbine` — Small Gas Turbine（`workflow=paused`） — [微型燃气涡轮详细计划](../history/card-plans/prep/微型燃气涡轮详细计划.md)
 - `energy/steam-turbine` — Steam Turbines STEAM to RU（`workflow=paused`）
 - `logistics/cover-net-r0` — Logistics cover network R0（`workflow=accepted`）
+- `machines/large-autoclave` — Large Autoclave 17112（`workflow=paused`） — [大型高压釜详细计划](../history/card-plans/closed/大型高压釜详细计划.md)
+- `machines/large-electrolyzer` — Large Electrolyzer 17103（`workflow=paused`） — [大型电解机详细计划](../history/card-plans/closed/大型电解机详细计划.md)
+- `machines/large-fermenter` — Large Fermenter 17113（`workflow=paused`） — [大型发酵器详细计划](../history/card-plans/closed/大型发酵器详细计划.md)
 - `machines/puv-omega-matrix` — All machine variants through OMEGA（`workflow=paused`）
 - `registry/tool-head-remainder` — Tool-head remainder identities（`workflow=accepted`）
 - `worldgen/gt-dungeon` — GT Dungeon（`workflow=paused`） — [GT 地牢详细计划](../history/card-plans/prep/GT地牢详细计划.md)

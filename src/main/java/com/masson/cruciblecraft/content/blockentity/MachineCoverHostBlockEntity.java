@@ -47,6 +47,10 @@ public abstract class MachineCoverHostBlockEntity extends BlockEntity
         }
     }
 
+    public final void tickMountedCovers() {
+        tickCovers();
+    }
+
     protected void onHostChanged() {
         setChanged();
     }

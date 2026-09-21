@@ -22,3 +22,5 @@ dependencies {
 
 sourceSets.test.compileClasspath += sourceSets.main.compileClasspath
 sourceSets.test.runtimeClasspath += sourceSets.main.runtimeClasspath
+sourceSets.test.compileClasspath += sourceSets.crops.output
+sourceSets.test.compileClasspath += sourceSets.foods.output
