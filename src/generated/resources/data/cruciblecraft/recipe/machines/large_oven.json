@@ -2,7 +2,7 @@
   "type": "cruciblecraft:shaped_catalyst",
   "catalysts": {
     "w": {
-      "item": "cruciblecraft:material_wrench"
+      "tag": "cruciblecraft:crafting_tools/wrench"
     }
   },
   "ingredients": {
@@ -13,7 +13,11 @@
       "item": "cruciblecraft:invar/wall"
     },
     "P": {
-      "item": "cruciblecraft:invar/dense_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "invar"
+      },
+      "items": "cruciblecraft:dense_plate"
     },
     "R": {
       "item": "cruciblecraft:processor_crystal_ruby"

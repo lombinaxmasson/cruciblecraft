@@ -12,7 +12,9 @@ dependencies {
     localRuntime 'maven.modrinth:jade:15.10.0+neoforge'
     localRuntime 'maven.modrinth:emi:1.1.24+1.21.1+neoforge'
     localRuntime 'maven.modrinth:yacl:3.8.2+1.21.1-neoforge'
-    localRuntime 'maven.modrinth:reliable-emi:4.7.3-1.21.1-neoforge'
+    // Reliable EMI touches Minecraft.getInstance().screen in its constructor.
+    // Datagen and dedicated servers have no client, so keep it on the client run only.
+    add('clientAdditionalRuntimeClasspath', 'maven.modrinth:reliable-emi:4.7.3-1.21.1-neoforge')
 
     testImplementation platform('org.junit:junit-bom:5.11.4')
     testImplementation 'org.junit.jupiter:junit-jupiter'

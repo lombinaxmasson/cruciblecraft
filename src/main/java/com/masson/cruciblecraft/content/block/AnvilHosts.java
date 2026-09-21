@@ -34,6 +34,9 @@ public final class AnvilHosts {
      */
     private static final Map<String, Long> GT6_DURABILITY = Map.ofEntries(
             Map.entry("stone", 10_000L),
+            Map.entry("blackstone", 100_000L),
+            Map.entry("granite_black", 100_000L),
+            Map.entry("granite_red", 100_000L),
             Map.entry("lead", 800_000L),
             Map.entry("bronze", 1_000_000L),
             Map.entry("arsenic_copper", 1_000_000L),
@@ -44,22 +47,27 @@ public final class AnvilHosts {
             Map.entry("desh", 12_500_000L),
             Map.entry("efrine", 20_000_000L),
             Map.entry("thaumium", 25_000_000L),
+            Map.entry("manasteel", 25_000_000L),
             Map.entry("black_steel", 30_000_000L),
             Map.entry("blue_steel", 40_000_000L),
             Map.entry("red_steel", 50_000_000L),
             Map.entry("vanadium_steel", 70_000_000L),
             Map.entry("octine", 80_000_000L),
             Map.entry("fiery_steel", 90_000_000L),
+            Map.entry("hslatungsten_alloy", 100_000_000L),
             Map.entry("titanium", 100_000_000L),
             Map.entry("netherite", 150_000_000L),
+            Map.entry("terrasteel", 200_000_000L),
             Map.entry("void_metal", 300_000_000L),
             Map.entry("titanium_gold", 400_000_000L),
             Map.entry("tungstensteel", 1_000_000_000L),
             Map.entry("tungsten", 2_000_000_000L),
             Map.entry("iridium", 10_000_000_000L),
+            Map.entry("gaia_spirit", 100_000_000_000L),
             Map.entry("adamantium", 1_000_000_000_000L),
             Map.entry("draconium", 1_000_000_000_000L),
-            Map.entry("draconium_awakened", 2_000_000_000_000L));
+            Map.entry("draconium_awakened", 2_000_000_000_000L),
+            Map.entry("infinity", 1_000_000_000_000_000L));
 
     public enum Iconset {
         STONE,

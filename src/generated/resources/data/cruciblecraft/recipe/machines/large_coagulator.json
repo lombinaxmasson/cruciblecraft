@@ -8,7 +8,11 @@
       "item": "cruciblecraft:stainless_steel/wall"
     },
     "P": {
-      "item": "cruciblecraft:stainless_steel/dense_plate"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "stainless_steel"
+      },
+      "items": "cruciblecraft:dense_plate"
     },
     "R": {
       "item": "cruciblecraft:processor_crystal_ruby"

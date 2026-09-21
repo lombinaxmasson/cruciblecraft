@@ -27,7 +27,9 @@ import com.masson.cruciblecraft.content.block.ElectricEngineBlock;
 import com.masson.cruciblecraft.content.block.ElectricHeaterBlock;
 import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
 import com.masson.cruciblecraft.content.block.FluidBedBurningBoxBlock;
+import com.masson.cruciblecraft.content.block.FluidSpringBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
+import com.masson.cruciblecraft.content.block.GtSmallOreBlock;
 import com.masson.cruciblecraft.content.block.ReactorCoreBlock;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.content.block.SolidBurningBoxBlock;
@@ -36,7 +38,9 @@ import com.masson.cruciblecraft.content.blockentity.ElectricEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricHeaterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricMotorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidBedBurningBoxBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidSpringBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.BedrockOreBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ReactorCoreBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SolidBurningBoxBlockEntity;
 import com.masson.cruciblecraft.energy.battery.BatteryBlock;
@@ -154,6 +158,9 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 FluidPipeComponentProvider.INSTANCE,
                 FluidPipeBlock.class);
         registration.registerBlockComponent(
+                FluidSpringComponentProvider.INSTANCE,
+                FluidSpringBlock.class);
+        registration.registerBlockComponent(
                 ItemPipeComponentProvider.INSTANCE,
                 ItemPipeBlock.class);
         registration.registerBlockComponent(
@@ -180,6 +187,8 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 ConverterComponentProvider.INSTANCE, ElectricMotorBlock.class);
         registration.registerBlockComponent(
                 SurfaceRockComponentProvider.INSTANCE, GtSurfaceRockBlock.class);
+        registration.registerBlockComponent(
+                SmallOreComponentProvider.INSTANCE, GtSmallOreBlock.class);
         registration.registerBlockComponent(
                 RockBlockComponentProvider.INSTANCE, RockBlock.class);
         registration.usePickedResult(ModBlocks.GT_SURFACE_ROCK.get());
@@ -233,6 +242,40 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                     instanceof FluidPipeBlockEntity pipe) {
                 data.putLong(TRANSFERRED, pipe.transferredThisWindow());
                 data.putString(COVERS, pipe.coverSummary());
+            }
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
+    }
+
+    private enum FluidSpringComponentProvider implements IBlockComponentProvider {
+        INSTANCE;
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "fluid_spring");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip,
+                BlockAccessor accessor,
+                IPluginConfig config) {
+            if (accessor.getBlockEntity() instanceof FluidSpringBlockEntity spring) {
+                ResourceLocation fluidId = ResourceLocation.tryParse(spring.fluidId());
+                Component fluidName = fluidId == null
+                        ? Component.literal(spring.fluidId())
+                        : new FluidStack(
+                                BuiltInRegistries.FLUID.get(fluidId),
+                                Math.max(1, spring.amount()))
+                                .getHoverName();
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.fluid_spring.fluid",
+                        fluidName));
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.fluid_spring.amount",
+                        spring.amount()));
             }
         }
 
@@ -1004,6 +1047,30 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                     GtSurfaceRockBlock.materialName(
                             accessor.getBlockState(),
                             accessor.getBlockEntity())));
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
+    }
+
+    private enum SmallOreComponentProvider implements IBlockComponentProvider {
+        INSTANCE;
+
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "small_ore");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
+            if (accessor.getBlockEntity() instanceof BedrockOreBlockEntity ore
+                    && ore.hasMaterial()) {
+                tooltip.add(Component.translatable(
+                        "tooltip.cruciblecraft.small_ore.material",
+                        MaterialFormItem.materialDisplayName(ore.materialId())));
+            }
         }
 
         @Override

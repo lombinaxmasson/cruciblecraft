@@ -294,7 +294,7 @@ public final class HammerSqueezerLaserGameTests {
         AutomaticHammerBlockEntity hammer = helper.getBlockEntity(POS);
         anvil.setMaterialId("iron");
         helper.assertTrue(
-                anvil.insert(0, MaterialLookup.stack("iron", MaterialPrefixes.INGOT)),
+                anvil.insertOrMerge(0, MaterialLookup.stack("iron", MaterialPrefixes.INGOT)) > 0,
                 "Anvil rejected the iron ingot");
         long input = hammer.profile().input();
         helper.assertTrue(
@@ -342,7 +342,7 @@ public final class HammerSqueezerLaserGameTests {
         anvil.setMaterialId("iron");
         ItemStack ingot = MaterialLookup.stack("iron", MaterialPrefixes.INGOT);
         helper.assertTrue(
-                anvil.insert(0, ingot.copy()),
+                anvil.insertOrMerge(0, ingot.copy()) > 0,
                 "Anvil rejected the iron ingot");
         long input = hammer.profile().input();
         helper.assertTrue(
@@ -384,7 +384,7 @@ public final class HammerSqueezerLaserGameTests {
         anvil.setMaterialId("iron");
         ItemStack plate = MaterialLookup.stack("iron", MaterialPrefixes.PLATE);
         helper.assertTrue(
-                anvil.insert(0, plate.copy()),
+                anvil.insertOrMerge(0, plate.copy()) > 0,
                 "Anvil rejected the iron plate");
         long input = hammer.profile().input();
         helper.assertTrue(

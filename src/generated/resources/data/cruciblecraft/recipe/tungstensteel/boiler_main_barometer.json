@@ -1,0 +1,32 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "tag": "cruciblecraft:crafting_tools/hammer"
+    },
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "M": {
+      "item": "cruciblecraft:multiblock/dense_tungstensteel_wall"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "tungstensteel"
+      },
+      "items": "cruciblecraft:dense_plate"
+    }
+  },
+  "pattern": [
+    "PPh",
+    "PMP",
+    "wPP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:tungstensteel/boiler_main_barometer"
+  }
+}

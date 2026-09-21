@@ -187,6 +187,8 @@ public class ModLanguageProvider extends LanguageProvider {
                     "剪线钳：九宫格切换连接");
             add("jade.cruciblecraft.fluid_pipe",
                     "%s：%s/%s mB，近 20 tick 传输 %s mB，失效 %s");
+            add("jade.cruciblecraft.fluid_spring.fluid", "流体：%s");
+            add("jade.cruciblecraft.fluid_spring.amount", "泉量：%s mB");
             add("jade.cruciblecraft.item_pipe",
                     "%s：实际送达 %s，堵塞 %s，盖板 %s");
             add("death.attack.electricity", "%s 被电死了");
@@ -290,6 +292,7 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.GT_BUSH, "浆果灌木");
             addBlock(ModBlocks.GT_SURFACE_ROCK, "地表石子");
             add("tooltip.cruciblecraft.surface_rock.material", "材质：%s");
+            add("tooltip.cruciblecraft.small_ore.material", "矿物：%s");
             add("tooltip.cruciblecraft.rock.indicates", "表明存在 %s");
             add("item.cruciblecraft.rock.stone", "石子");
             add("item.cruciblecraft.rock.netherrack", "下界石子");
@@ -785,6 +788,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.GT_BUSH, "Berry Bush");
         addBlock(ModBlocks.GT_SURFACE_ROCK, "Surface Rock");
         add("tooltip.cruciblecraft.surface_rock.material", "Material: %s");
+        add("tooltip.cruciblecraft.small_ore.material", "Material: %s");
         add("tooltip.cruciblecraft.rock.indicates", "Indicates occurrence of %s");
         add("item.cruciblecraft.rock.stone", "Rock");
         add("item.cruciblecraft.rock.netherrack", "Nether Rock");
@@ -1025,6 +1029,8 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Wire Cutter: 3x3 grid connection toggle");
         add("jade.cruciblecraft.fluid_pipe",
                 "%s: %s/%s mB, last 20 ticks %s mB, failure %s");
+        add("jade.cruciblecraft.fluid_spring.fluid", "Fluid: %s");
+        add("jade.cruciblecraft.fluid_spring.amount", "Spring amount: %s mB");
         add("jade.cruciblecraft.item_pipe",
                 "%s: actual delivery %s, clogged %s, covers %s");
         add("jade.cruciblecraft.pipe_covers", "Cover parameters: %s");
@@ -2590,6 +2596,9 @@ public class ModLanguageProvider extends LanguageProvider {
                 "block.cruciblecraft.gt_hosted_ore.named",
                 chinese ? "%s矿石" : "%s Ore");
         add(
+                "block.cruciblecraft.gt_small_ore.named",
+                chinese ? "%s小型矿石" : "Small %s Ore");
+        add(
                 "block.cruciblecraft.gt_broken_ore.named",
                 chinese ? "破碎%s矿石" : "Broken %s Ore");
         for (com.masson.cruciblecraft.worldgen.IndicatorFlower flower :
@@ -2610,6 +2619,30 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(
                 ModBlocks.GT_FLUID_SPRING,
                 chinese ? "流体泉" : "Fluid Spring");
+        add(
+                "block.cruciblecraft.gt_fluid_spring.oil_extra_heavy",
+                chinese ? "超重油泉" : "Extra Heavy Oil Spring");
+        add(
+                "block.cruciblecraft.gt_fluid_spring.oil_heavy",
+                chinese ? "重油泉" : "Heavy Oil Spring");
+        add(
+                "block.cruciblecraft.gt_fluid_spring.oil_medium",
+                chinese ? "中油泉" : "Medium Oil Spring");
+        add(
+                "block.cruciblecraft.gt_fluid_spring.oil_light",
+                chinese ? "轻油泉" : "Light Oil Spring");
+        add(
+                "block.cruciblecraft.gt_fluid_spring.natural_gas",
+                chinese ? "天然气泉" : "Natural Gas Spring");
+        add(
+                "block.cruciblecraft.gt_fluid_spring.water_geothermal",
+                chinese ? "地热水泉" : "Geothermal Water Spring");
+        add(
+                "block.cruciblecraft.gt_fluid_spring.lava",
+                chinese ? "熔岩泉" : "Lava Spring");
+        add(
+                "tooltip.cruciblecraft.fluid_spring.contents",
+                chinese ? "流体：%s（%s mB）" : "Fluid: %s (%s mB)");
         addBlock(
                 ModBlocks.GT_INDICATOR_GRASS,
                 chinese ? "指示草" : "Indicator Grass");

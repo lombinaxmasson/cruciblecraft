@@ -66,9 +66,10 @@ public final class AnvilInteractions {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         AnvilStrikeContext context = strikeContext(anvil.getBlockState(), pos, hitResult);
-        if (anvil.insert(context.topSlot(), stack)) {
+        int moved = anvil.insertOrMerge(context.topSlot(), stack);
+        if (moved > 0) {
             if (!player.getAbilities().instabuild) {
-                stack.shrink(stack.getCount());
+                stack.shrink(moved);
             }
             player.displayClientMessage(
                     Component.translatable("message.cruciblecraft.anvil_inserted"),

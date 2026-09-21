@@ -4,8 +4,11 @@ import org.jetbrains.annotations.Nullable;
 
 import com.masson.cruciblecraft.content.blockentity.FluidSpringBlockEntity;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
+import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -35,6 +38,26 @@ public final class FluidSpringBlock extends Block implements EntityBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new FluidSpringBlockEntity(pos, state);
+    }
+
+    @Override
+    public void setPlacedBy(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            LivingEntity placer,
+            ItemStack stack) {
+        super.setPlacedBy(level, pos, state, placer, stack);
+        if (level.getBlockEntity(pos) instanceof FluidSpringBlockEntity spring) {
+            var content = stack.get(ModComponents.SPRING_CONTENT.get());
+            if (content != null && !content.isEmpty()) {
+                var fluid = content.copy();
+                spring.configure(
+                        fluid.getFluid().builtInRegistryHolder()
+                                .key().location().toString(),
+                        fluid.getAmount());
+            }
+        }
     }
 
     @Nullable

@@ -67,26 +67,42 @@ public final class AnvilBlockEntity extends BlockEntity {
         }
     }
 
-    public boolean insert(int slot, ItemStack heldStack) {
+    public int insertOrMerge(int slot, ItemStack heldStack) {
         if (!quarantinedMaterialId.isEmpty()
                 || level == null
                 || slot < 0
                 || slot >= workpieces.length
-                || !workpieces[slot].isEmpty() || heldStack.isEmpty()) {
-            return false;
+                || heldStack.isEmpty()) {
+            return 0;
         }
 
-        ItemStack inserted = heldStack.copy();
-        ItemStack old = workpieces[slot];
+        ItemStack target = workpieces[slot];
+        if (!target.isEmpty()) {
+            if (!ItemStack.isSameItemSameComponents(target, heldStack)) {
+                return 0;
+            }
+            int moved = Math.min(
+                    heldStack.getCount(),
+                    target.getMaxStackSize() - target.getCount());
+            if (moved <= 0) {
+                return 0;
+            }
+            target.grow(moved);
+            resetProgress();
+            setChangedAndSync();
+            return moved;
+        }
+
+        int moved = Math.min(heldStack.getCount(), heldStack.getMaxStackSize());
+        ItemStack inserted = heldStack.copyWithCount(moved);
         workpieces[slot] = inserted;
         if (!AnvilHosts.isHammer(inserted) && !hasPotentialRecipe()) {
-            workpieces[slot] = old;
-            return false;
+            workpieces[slot] = ItemStack.EMPTY;
+            return 0;
         }
-
         resetProgress();
         setChangedAndSync();
-        return true;
+        return moved;
     }
 
     public Optional<StrikeResult> strike(AnvilMode mode, int hammerTier) {

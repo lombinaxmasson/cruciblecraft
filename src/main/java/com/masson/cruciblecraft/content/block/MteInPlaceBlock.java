@@ -567,23 +567,17 @@ public final class MteInPlaceBlock extends Block
                         machine, level, pos, player, hit)) {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
-        if (AnvilHosts.isAnvil(spec)
-                && AnvilHosts.isHammer(stack)
-                && level.getBlockEntity(pos) instanceof AnvilBlockEntity anvil
-                && AnvilInteractions.canPlaceHeld(anvil, stack)) {
-            return AnvilInteractions.useItemOn(stack, level, pos, player, hit);
+        if (AnvilHosts.isAnvil(spec)) {
+            ItemInteractionResult placed =
+                    AnvilInteractions.useItemOn(stack, level, pos, player, hit);
+            if (placed.consumesAction()) {
+                return placed;
+            }
         }
         ItemInteractionResult tool = ToolClick.useItemOn(
                 stack, level, player, hand, hit);
         if (tool.consumesAction()) {
             return tool;
-        }
-        if (AnvilHosts.isAnvil(spec)) {
-            ItemInteractionResult placed = AnvilInteractions.useItemOn(
-                    stack, level, pos, player, hit);
-            if (placed.consumesAction()) {
-                return placed;
-            }
         }
         if (SmelteryHosts.isSmeltery(spec)
                 && level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible) {

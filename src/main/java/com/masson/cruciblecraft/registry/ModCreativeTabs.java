@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
+import com.masson.cruciblecraft.content.block.AnvilHosts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.multiblock.CoilHosts;
 import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
@@ -28,6 +29,8 @@ import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.worldgen.StoneLayerStones;
+import com.masson.cruciblecraft.worldgen.FluidSpringCatalog;
+import com.masson.cruciblecraft.worldgen.SpringFluidKind;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -446,7 +449,26 @@ public final class ModCreativeTabs {
                             grass));
             output.accept(stack);
         }
-        output.accept(ModItems.GT_FLUID_SPRING.get());
+        for (SpringFluidKind kind : SpringFluidKind.values()) {
+            Fluid fluid = BuiltInRegistries.FLUID.get(kind.fluidId());
+            if (fluid == Fluids.EMPTY) {
+                continue;
+            }
+            int amount = FluidSpringCatalog.VEINS.stream()
+                    .filter(vein -> vein.fluid() == kind)
+                    .findFirst()
+                    .map(FluidSpringCatalog.Vein::springAmount)
+                    .orElse(1_000);
+            ItemStack spring = new ItemStack(ModItems.GT_FLUID_SPRING.get());
+            spring.set(
+                    ModComponents.SPRING_CONTENT.get(),
+                    SimpleFluidContent.copyOf(new FluidStack(fluid, amount)));
+            spring.set(
+                    DataComponents.CUSTOM_NAME,
+                    Component.translatable(
+                            "block.cruciblecraft.gt_fluid_spring." + kind.path()));
+            output.accept(spring);
+        }
         acceptRemainder(output, RemainderCreativeTabs.Tab.NATURE);
     }
 
@@ -534,7 +556,8 @@ public final class ModCreativeTabs {
     }
 
     private static boolean machinesTabMte(MteInPlaceSpec spec) {
-        return LargeCrucibleHosts.isController(spec)
+        return AnvilHosts.isAnvil(spec)
+                || LargeCrucibleHosts.isController(spec)
                 || LargeCrucibleHosts.isCatalogWall(spec)
                 || spec.kind() == MteInPlaceKind.CRUCIBLE_FOUNDRY
                 || spec.kind() == MteInPlaceKind.MATTER_FABRICATOR

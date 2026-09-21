@@ -111,6 +111,15 @@ public final class ModComponents {
 
     public static final DeferredHolder<
             net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<SimpleFluidContent>> SPRING_CONTENT =
+            COMPONENTS.registerComponentType(
+                    "spring_content",
+                    builder -> builder
+                            .persistent(SimpleFluidContent.CODEC)
+                            .networkSynchronized(SimpleFluidContent.STREAM_CODEC));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
             net.minecraft.core.component.DataComponentType<Integer>> MOLD_PATTERN =
             COMPONENTS.registerComponentType(
                     "mold_pattern",

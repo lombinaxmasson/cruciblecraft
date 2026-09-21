@@ -2746,7 +2746,7 @@ public final class CrucibleCraftGameTests {
                                 CrucibleCraft.MODID,
                                 "anvil/ingot_to_plate/iron")),
                 "Material-rule anvil recipe did not load under its stable id");
-        helper.assertTrue(anvil.insert(0, ingot.copy()),
+        helper.assertTrue(anvil.insertOrMerge(0, ingot.copy()) > 0,
                 "Anvil rejected the material-rule input");
         AnvilBlockEntity.StrikeResult result = null;
         for (int hit = 0; hit < 4; hit++) {
@@ -2804,7 +2804,9 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(box.maxY == 0.75, "unique anvil collision is not 12-high");
         ItemStack ingot = material("iron", MaterialPrefixes.INGOT, 1);
         ItemStack expectedPlate = material("iron", MaterialPrefixes.PLATE, 1);
-        helper.assertTrue(anvil.insert(0, ingot.copy()), "unique steel anvil rejected the ingot");
+        helper.assertTrue(
+                anvil.insertOrMerge(0, ingot.copy()) > 0,
+                "unique steel anvil rejected the ingot");
         AnvilBlockEntity.StrikeResult result = null;
         for (int hit = 0; hit < 4; hit++) {
             result = anvil.strike(AnvilMode.ANVIL, 2).orElse(null);

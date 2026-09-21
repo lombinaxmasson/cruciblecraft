@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.content.item;
 
 import com.masson.cruciblecraft.content.block.BedrockOreBlock;
 import com.masson.cruciblecraft.content.block.GtBrokenOreBlock;
+import com.masson.cruciblecraft.content.block.GtSmallOreBlock;
 import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.core.BlockPos;
@@ -25,7 +26,9 @@ public final class OreMaterialBlockItem extends BlockItem {
         Component materialName = MaterialFormItem.materialDisplayName(materialId);
         String key = getBlock() instanceof GtBrokenOreBlock
                 ? "block.cruciblecraft.gt_broken_ore.named"
-                : "block.cruciblecraft.gt_hosted_ore.named";
+                : getBlock() instanceof GtSmallOreBlock
+                        ? "block.cruciblecraft.gt_small_ore.named"
+                        : "block.cruciblecraft.gt_hosted_ore.named";
         if (materialId.isEmpty()) {
             return super.getName(stack);
         }

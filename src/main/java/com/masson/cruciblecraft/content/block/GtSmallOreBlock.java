@@ -7,11 +7,15 @@ import org.jetbrains.annotations.Nullable;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.blockentity.BedrockOreBlockEntity;
+import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.worldgen.DropsSmallOre;
 import com.masson.cruciblecraft.worldgen.OreHarvest;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.BlockItemStateProperties;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -69,5 +73,26 @@ public final class GtSmallOreBlock extends Block implements EntityBlock {
                 .or(() -> MaterialLookup.tryStack(materialId, MaterialPrefixes.RAW_ORE, 1))
                 .or(() -> MaterialLookup.tryStack(materialId, MaterialPrefixes.DUST, 1))
                 .orElse(ItemStack.EMPTY);
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(
+            LevelReader level, BlockPos pos, BlockState state) {
+        String material = "";
+        if (level.getBlockEntity(pos) instanceof BedrockOreBlockEntity ore) {
+            material = ore.materialId();
+        }
+        return item(state, material);
+    }
+
+    public static ItemStack item(BlockState state, String materialId) {
+        ItemStack stack = new ItemStack(state.getBlock());
+        stack.set(
+                DataComponents.BLOCK_STATE,
+                BlockItemStateProperties.EMPTY.with(HOST, state.getValue(HOST)));
+        if (materialId != null && !materialId.isEmpty()) {
+            stack.set(ModComponents.ORE_MATERIAL.get(), materialId);
+        }
+        return stack;
     }
 }

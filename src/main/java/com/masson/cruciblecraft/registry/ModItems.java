@@ -33,6 +33,7 @@ import com.masson.cruciblecraft.content.item.MaterialStorageBlockItem;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
 import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
 import com.masson.cruciblecraft.content.item.CatalogNamedItem;
+import com.masson.cruciblecraft.content.item.FluidSpringBlockItem;
 import com.masson.cruciblecraft.content.item.RedstoneWireBlockItem;
 import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
 import com.masson.cruciblecraft.content.item.CellItem;
@@ -189,7 +190,11 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem(
                     "gt_small_bedrock_ore", ModBlocks.GT_SMALL_BEDROCK_ORE);
     public static final DeferredItem<BlockItem> GT_SMALL_ORE =
-            ITEMS.registerSimpleBlockItem("gt_small_ore", ModBlocks.GT_SMALL_ORE);
+            ITEMS.register(
+                    "gt_small_ore",
+                    () -> new OreMaterialBlockItem(
+                            ModBlocks.GT_SMALL_ORE.get(),
+                            new Item.Properties()));
     public static final DeferredItem<OreMaterialBlockItem> GT_HOSTED_ORE =
             ITEMS.register(
                     "gt_hosted_ore",
@@ -214,8 +219,12 @@ public final class ModItems {
                     () -> new GtIndicatorGrassItem(
                             ModBlocks.GT_INDICATOR_GRASS.get(),
                             new Item.Properties()));
-    public static final DeferredItem<BlockItem> GT_FLUID_SPRING =
-            ITEMS.registerSimpleBlockItem("gt_fluid_spring", ModBlocks.GT_FLUID_SPRING);
+    public static final DeferredItem<FluidSpringBlockItem> GT_FLUID_SPRING =
+            ITEMS.register(
+                    "gt_fluid_spring",
+                    () -> new FluidSpringBlockItem(
+                            ModBlocks.GT_FLUID_SPRING.get(),
+                            new Item.Properties()));
 
     static {
         registerGtTrees();
