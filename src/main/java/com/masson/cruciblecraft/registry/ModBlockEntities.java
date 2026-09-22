@@ -241,7 +241,7 @@ public final class ModBlockEntities {
                             "large_boiler",
                             () -> BlockEntityType.Builder.of(
                                     LargeBoilerBlockEntity::new,
-                                    ModBlocks.LARGE_BOILER.get())
+                                    ModBlocks.largeBoilerBlockArray())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

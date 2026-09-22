@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
+import com.masson.cruciblecraft.api.fluid.LongFluidHandler;
 import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
 import com.masson.cruciblecraft.content.block.StainlessSteelMixerWalls;
 import com.masson.cruciblecraft.content.block.AutoclaveWalls;
@@ -26,6 +27,11 @@ public final class ModCapabilities {
             BlockCapability.createSided(
                     ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "energy"),
                     IEnergyHandler.class);
+    public static final BlockCapability<LongFluidHandler, Direction>
+            LONG_FLUID_HANDLER = BlockCapability.createSided(
+                    ResourceLocation.fromNamespaceAndPath(
+                            CrucibleCraft.MODID, "long_fluid_handler"),
+                    LongFluidHandler.class);
     public static final BlockCapability<ILogisticsStorage, Direction> LOGISTICS_STORAGE =
             BlockCapability.createSided(
                     ResourceLocation.fromNamespaceAndPath(
@@ -62,6 +68,18 @@ public final class ModCapabilities {
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.LARGE_CRUCIBLE.get(),
                 (blockEntity, side) -> blockEntity.process().fluids());
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LARGE_BOILER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_BOILER.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                LONG_FLUID_HANDLER,
+                ModBlockEntities.LARGE_BOILER.get(),
+                (blockEntity, side) -> blockEntity.longFluids(side));
         event.registerBlockEntity(ENERGY, ModBlockEntities.BOILER.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.STEAM_ENGINE.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.DYNAMO.get(), (blockEntity, side) -> blockEntity);
@@ -272,6 +290,10 @@ public final class ModCapabilities {
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.MTE_INPLACE.get(),
                 (blockEntity, side) -> blockEntity.fluidHandler(side));
+        event.registerBlockEntity(
+                LONG_FLUID_HANDLER,
+                ModBlockEntities.MTE_INPLACE.get(),
+                (blockEntity, side) -> blockEntity.longFluidHandler(side));
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.MTE_INPLACE.get(),

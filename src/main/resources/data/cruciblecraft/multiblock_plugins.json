@@ -39,7 +39,11 @@
         "large_fermenter",
         "distillation_tower",
         "cryo_distillation_tower",
-        "large_boiler",
+        "large_boiler_stainless_steel",
+        "large_boiler_invar",
+        "large_boiler_titanium",
+        "large_boiler_tungstensteel",
+        "large_boiler_adamantium",
         "tank_3x3x3",
         "large_crucible"
       ]
@@ -51,7 +55,11 @@
         "energy_input ports carry HU, not the KU default (GT6 mEnergyTypeAccepted=HU)"
       ],
       "consumers": [
-        "large_boiler",
+        "large_boiler_stainless_steel",
+        "large_boiler_invar",
+        "large_boiler_titanium",
+        "large_boiler_tungstensteel",
+        "large_boiler_adamantium",
         "large_crucible"
       ]
     },
@@ -59,10 +67,14 @@
       "id": "cruciblecraft:steam_conversion",
       "stability": "stable",
       "roles": [
-        "water + HU -> steam continuous conversion (SteamConversion constants)"
+        "GT6 tiered water + HU -> steam conversion, calcification, cooling and safety lifecycle"
       ],
       "consumers": [
-        "large_boiler"
+        "large_boiler_stainless_steel",
+        "large_boiler_invar",
+        "large_boiler_titanium",
+        "large_boiler_tungstensteel",
+        "large_boiler_adamantium"
       ]
     },
     {

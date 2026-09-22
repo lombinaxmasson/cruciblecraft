@@ -231,7 +231,6 @@ public final class ModCreativeTabs {
         output.accept(ModItems.LARGE_FERMENTER.get());
         output.accept(ModItems.DISTILLATION_TOWER.get());
         output.accept(ModItems.CRYO_DISTILLATION_TOWER.get());
-        output.accept(ModItems.LARGE_BOILER.get());
         output.accept(ModItems.TANK_3X3X3.get());
         output.accept(ModItems.GALVANIZED_STEEL_WALL.get());
         output.accept(ModItems.TUNGSTENSTEEL_WALL.get());
@@ -562,6 +561,7 @@ public final class ModCreativeTabs {
                 || spec.kind() == MteInPlaceKind.CRUCIBLE_FOUNDRY
                 || spec.kind() == MteInPlaceKind.MATTER_FABRICATOR
                 || spec.kind() == MteInPlaceKind.VON_DA_GRAAGG
+                || spec.kind() == MteInPlaceKind.LARGE_BOILER
                 || CoilHosts.isCoilMeta(spec.meta())
                 || spec.meta() == CoilHosts.LIGHTNING_ROD_PART_META;
     }

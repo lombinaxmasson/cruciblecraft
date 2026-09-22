@@ -7,6 +7,8 @@ import java.util.Set;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
+import com.masson.cruciblecraft.api.fluid.LongFluidHandler;
+import com.masson.cruciblecraft.content.block.LargeBoilerWallParts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
 import com.masson.cruciblecraft.content.block.StainlessSteelMixerWalls;
@@ -787,6 +789,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (steamTurbineRole != null) {
             return steamTurbineFluids();
         }
+        IFluidHandler largeBoiler = LargeBoilerWallParts.fluids(this);
+        if (largeBoiler != null) {
+            return largeBoiler;
+        }
         IFluidHandler mixer = StainlessSteelMixerWalls.fluids(this);
         if (mixer != null) {
             return mixer;
@@ -818,6 +824,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         return LargeCrucibleWalls.fluids(this);
     }
 
+    public LongFluidHandler longFluidHandler(Direction side) {
+        return LargeBoilerWallParts.longFluids(this);
+    }
+
     public IItemHandler itemHandler(Direction side) {
         if (bathingPot != null) {
             return bathingPot.itemHandler(
@@ -826,6 +836,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (massStorage != null) {
             return new MassStorageSidedHandler(
                     massStorage, autoOutput() && side == Direction.DOWN);
+        }
+        if (LargeBoilerWallParts.isWall(spec())) {
+            return null;
         }
         if (spec().kind().inventory()) {
             return items;
@@ -884,6 +897,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (mixerPortType != null) {
             return mixerPortType;
         }
+        if (LargeBoilerWallParts.isWall(spec())) {
+            return LargeBoilerWallParts.defaultType(spec());
+        }
         return PortType.ITEM_FLUID_IN;
     }
 
@@ -899,6 +915,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 || TungstensteelCrusherWalls.accepts(spec(), type)
                 || CrusherWheels.accepts(spec(), type)
                 || DenseLeadPorts.accepts(spec(), type)
+                || LargeBoilerWallParts.accepts(spec(), type)
                 || GalvanizedGraaggWalls.accepts(spec(), type);
     }
 
@@ -919,6 +936,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 && !TungstensteelCrusherWalls.isWall(spec())
                 && !CrusherWheels.isPart(spec())
                 && !DenseLeadPorts.isPort(spec())
+                && !LargeBoilerWallParts.isWall(spec())
                 && !GalvanizedGraaggWalls.isWall(spec())) {
             return;
         }

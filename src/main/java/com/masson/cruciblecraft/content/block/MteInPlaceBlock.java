@@ -23,6 +23,7 @@ import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CoinageMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleEntityMelts;
 import com.masson.cruciblecraft.content.blockentity.CruciblePlayerInteraction;
+import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MultiblockPortBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
@@ -57,6 +58,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.Mirror;
@@ -404,6 +406,22 @@ public final class MteInPlaceBlock extends Block
                 return ToolClick.plunger(context, steam.trashWithPlunger());
             }
             return ToolClick.plunger(context, host.trashWithPlunger());
+        }
+        if (context.getLevel().getBlockEntity(context.getClickedPos())
+                instanceof LargeBoilerBlockEntity boiler) {
+            if (action == ToolAction.PLUNGER) {
+                return ToolClick.plunger(context, boiler.trashWithPlunger());
+            }
+            if (action == ToolAction.CHISEL) {
+                if (context.getLevel().isClientSide) {
+                    return ToolResult.SUCCESS;
+                }
+                if (boiler.decalcify(context.getPlayer())) {
+                    ToolClick.hurt(context);
+                    return ToolResult.SUCCESS;
+                }
+                return ToolResult.PASS;
+            }
         }
         if (action == ToolAction.PINCERS
                 && spec.kind() == MteInPlaceKind.BOOKSHELF
@@ -937,6 +955,9 @@ public final class MteInPlaceBlock extends Block
                 crucible.dropBuffer(level, pos);
             } else if (level.getBlockEntity(pos) instanceof LargeCrucibleBlockEntity crucible) {
                 crucible.clearBindings();
+            } else if (level.getBlockEntity(pos)
+                    instanceof LargeBoilerBlockEntity boiler) {
+                boiler.clearBindings();
             } else if (level.getBlockEntity(pos) instanceof FoundryCastingBlockEntity mold) {
                 mold.dropContents();
             } else if (level.getBlockEntity(pos) instanceof CoinageMoldBlockEntity coinage) {
@@ -946,6 +967,31 @@ public final class MteInPlaceBlock extends Block
             }
         }
         super.onRemove(state, level, pos, next, moved);
+    }
+
+    @Override
+    public BlockState playerWillDestroy(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            Player player) {
+        if (spec.kind() == MteInPlaceKind.LARGE_BOILER
+                && level.getBlockEntity(pos)
+                        instanceof LargeBoilerBlockEntity boiler) {
+            boiler.removedByPlayer(player);
+        }
+        return super.playerWillDestroy(level, pos, state, player);
+    }
+
+    @Override
+    public void wasExploded(Level level, BlockPos pos, Explosion explosion) {
+        if (spec.kind() == MteInPlaceKind.LARGE_BOILER
+                && !level.isClientSide
+                && level.getBlockEntity(pos)
+                        instanceof LargeBoilerBlockEntity boiler) {
+            boiler.onExploded();
+        }
+        super.wasExploded(level, pos, explosion);
     }
 
     @Override
@@ -1026,6 +1072,9 @@ public final class MteInPlaceBlock extends Block
         if (CoinageMoldHosts.isCoinage(spec)) {
             return new CoinageMoldBlockEntity(pos, state);
         }
+        if (spec.kind() == MteInPlaceKind.LARGE_BOILER) {
+            return new LargeBoilerBlockEntity(pos, state);
+        }
         if (spec.kind() == MteInPlaceKind.GAS_TURBINE) {
             return new LargeGasTurbineBlockEntity(pos, state);
         }
@@ -1082,6 +1131,17 @@ public final class MteInPlaceBlock extends Block
                         if (!lvl.isClientSide
                                 && be instanceof FoundryCastingBlockEntity mold) {
                             FoundryCastingBlockEntity.serverTick(lvl, pos, st, mold);
+                        }
+                    }
+                    : null;
+        }
+        if (spec.kind() == MteInPlaceKind.LARGE_BOILER) {
+            return type == ModBlockEntities.LARGE_BOILER.get()
+                    ? (lvl, pos, st, be) -> {
+                        if (!lvl.isClientSide
+                                && be instanceof LargeBoilerBlockEntity boiler) {
+                            LargeBoilerBlockEntity.serverTick(
+                                    lvl, pos, st, boiler);
                         }
                     }
                     : null;

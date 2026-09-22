@@ -1824,6 +1824,14 @@ public final class ModBlocks {
         return dedicatedKindArray(MteInPlaceKind.VON_DA_GRAAGG);
     }
 
+    public static Block[] largeBoilerBlockArray() {
+        java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
+        blocks.add(LARGE_BOILER.get());
+        blocks.addAll(java.util.Arrays.asList(
+                dedicatedKindArray(MteInPlaceKind.LARGE_BOILER)));
+        return blocks.toArray(Block[]::new);
+    }
+
     private static Block[] dedicatedKindArray(MteInPlaceKind kind) {
         java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
         MTE_INPLACE_BLOCKS.values().forEach(holder -> {

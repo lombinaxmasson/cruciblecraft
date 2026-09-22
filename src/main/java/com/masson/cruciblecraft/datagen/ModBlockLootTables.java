@@ -55,7 +55,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.LARGE_FERMENTER.get());
         dropSelf(ModBlocks.DISTILLATION_TOWER.get());
         dropSelf(ModBlocks.CRYO_DISTILLATION_TOWER.get());
-        dropSelf(ModBlocks.LARGE_BOILER.get());
+        add(ModBlocks.LARGE_BOILER.get(), noDrop());
         dropSelf(ModBlocks.TANK_3X3X3.get());
         dropSelf(ModBlocks.LARGE_CRUCIBLE.get());
         dropSelf(ModBlocks.LOGISTICS_CORE.get());

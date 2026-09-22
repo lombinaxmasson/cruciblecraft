@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "palette": {
+    "E": {
+      "type": "port",
+      "block": "cruciblecraft:multiblock/heat_transmitter",
+      "port": "energy_input"
+    },
+    "I": {
+      "type": "port",
+      "block": "cruciblecraft:multiblock/dense_titanium_wall",
+      "port": "item_fluid_in"
+    },
+    "O": {
+      "type": "port",
+      "block": "cruciblecraft:multiblock/dense_titanium_wall",
+      "port": "fluid_out"
+    },
+    "A": { "type": "air" },
+    "C": {
+      "type": "controller",
+      "block": "cruciblecraft:titanium/boiler_main_barometer"
+    }
+  },
+  "structure": [
+    { "offset": [0, 0, 0], "predicate": "C" },
+    { "offset": [-1, -1, -2], "predicate": "E" },
+    { "offset": [0, -1, -2], "predicate": "E" },
+    { "offset": [1, -1, -2], "predicate": "E" },
+    { "offset": [-1, -1, -1], "predicate": "E" },
+    { "offset": [0, -1, -1], "predicate": "E" },
+    { "offset": [1, -1, -1], "predicate": "E" },
+    { "offset": [-1, -1, 0], "predicate": "E" },
+    { "offset": [0, -1, 0], "predicate": "E" },
+    { "offset": [1, -1, 0], "predicate": "E" },
+    { "offset": [-1, 0, -2], "predicate": "I" },
+    { "offset": [0, 0, -2], "predicate": "I" },
+    { "offset": [1, 0, -2], "predicate": "I" },
+    { "offset": [-1, 0, -1], "predicate": "I" },
+    { "offset": [0, 0, -1], "predicate": "I" },
+    { "offset": [1, 0, -1], "predicate": "I" },
+    { "offset": [-1, 0, 0], "predicate": "I" },
+    { "offset": [1, 0, 0], "predicate": "I" },
+    { "offset": [-1, 1, -2], "predicate": "O" },
+    { "offset": [0, 1, -2], "predicate": "O" },
+    { "offset": [1, 1, -2], "predicate": "O" },
+    { "offset": [-1, 1, -1], "predicate": "O" },
+    { "offset": [1, 1, -1], "predicate": "O" },
+    { "offset": [-1, 1, 0], "predicate": "O" },
+    { "offset": [0, 1, 0], "predicate": "O" },
+    { "offset": [1, 1, 0], "predicate": "O" },
+    { "offset": [-1, 2, -2], "predicate": "O" },
+    { "offset": [0, 2, -2], "predicate": "O" },
+    { "offset": [1, 2, -2], "predicate": "O" },
+    { "offset": [-1, 2, -1], "predicate": "O" },
+    { "offset": [0, 2, -1], "predicate": "O" },
+    { "offset": [1, 2, -1], "predicate": "O" },
+    { "offset": [-1, 2, 0], "predicate": "O" },
+    { "offset": [0, 2, 0], "predicate": "O" },
+    { "offset": [1, 2, 0], "predicate": "O" },
+    { "offset": [0, 1, -1], "predicate": "A" }
+  ],
+  "anchors": {
+    "center": [0, 1, -1],
+    "bottom_energy_input": [0, -1, -1],
+    "top_steam_output": [0, 2, -1]
+  },
+  "source": {
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityLargeBoiler",
+    "method": "checkStructure2"
+  }
+}

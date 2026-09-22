@@ -76,8 +76,8 @@ public final class ModMultiblockPlugins {
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "heat_energy_input");
 
-    /** water + HU -> steam continuous conversion (SteamConversion
-     * constants, source-backed). Consumed by the large boiler. */
+    /** GT6 tiered water + HU -> steam lifecycle. Consumed by every
+     * source-backed large-boiler controller. */
     public static final ResourceLocation STEAM_CONVERSION =
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "steam_conversion");

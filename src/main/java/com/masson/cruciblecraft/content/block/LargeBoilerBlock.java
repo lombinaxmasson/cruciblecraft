@@ -22,6 +22,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -30,7 +31,11 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 
-/** Facing/ticker shell for the JSON large-boiler conversion controller. */
+/**
+ * Legacy named-controller shell. New worlds use the five source-backed
+ * {@code boiler_main_barometer} MTE controllers; this block only survives
+ * long enough for {@link LargeBoilerBlockEntity} to migrate old saves.
+ */
 public final class LargeBoilerBlock extends Block
         implements EntityBlock, ToolInteractable {
     public LargeBoilerBlock(Properties properties) {
@@ -64,6 +69,29 @@ public final class LargeBoilerBlock extends Block
     }
 
     @Override
+    public BlockState playerWillDestroy(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            Player player) {
+        if (level.getBlockEntity(pos)
+                instanceof LargeBoilerBlockEntity boiler) {
+            boiler.removedByPlayer(player);
+        }
+        return super.playerWillDestroy(level, pos, state, player);
+    }
+
+    @Override
+    public void wasExploded(Level level, BlockPos pos, Explosion explosion) {
+        if (!level.isClientSide
+                && level.getBlockEntity(pos)
+                        instanceof LargeBoilerBlockEntity boiler) {
+            boiler.onExploded();
+        }
+        super.wasExploded(level, pos, explosion);
+    }
+
+    @Override
     public ToolResult useTool(ToolAction action, UseOnContext context) {
         if (context.getLevel().getBlockEntity(context.getClickedPos())
                 instanceof MachineCoverHost machine) {
@@ -77,6 +105,18 @@ public final class LargeBoilerBlock extends Block
                 && context.getLevel().getBlockEntity(context.getClickedPos())
                         instanceof LargeBoilerBlockEntity boiler) {
             return ToolClick.plunger(context, boiler.trashWithPlunger());
+        }
+        if (action == ToolAction.CHISEL
+                && context.getLevel().getBlockEntity(context.getClickedPos())
+                        instanceof LargeBoilerBlockEntity boiler) {
+            if (context.getLevel().isClientSide) {
+                return ToolResult.SUCCESS;
+            }
+            if (boiler.decalcify(context.getPlayer())) {
+                ToolClick.hurt(context);
+                return ToolResult.SUCCESS;
+            }
+            return ToolResult.PASS;
         }
         return ToolResult.PASS;
     }

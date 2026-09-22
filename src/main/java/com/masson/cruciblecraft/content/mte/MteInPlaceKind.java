@@ -20,6 +20,7 @@ public enum MteInPlaceKind {
     STEAM_TURBINE,
     GAS_TURBINE,
     LARGE_DYNAMO,
+    LARGE_BOILER,
     LIGHTNING_ROD,
     MATTER_FABRICATOR,
     VON_DA_GRAAGG,
@@ -116,6 +117,7 @@ public enum MteInPlaceKind {
     public boolean dedicatedController() {
         return this == GAS_TURBINE
                 || this == LARGE_DYNAMO
+                || this == LARGE_BOILER
                 || this == LIGHTNING_ROD
                 || this == MATTER_FABRICATOR
                 || this == VON_DA_GRAAGG;
@@ -125,6 +127,7 @@ public enum MteInPlaceKind {
         return this == STEAM_TURBINE
                 || this == BATTERY_BOX
                 || this == LARGE_DYNAMO
+                || this == LARGE_BOILER
                 || this == LIGHTNING_ROD
                 || this == VON_DA_GRAAGG
                 || drive();
@@ -182,6 +185,7 @@ public enum MteInPlaceKind {
             case STEAM_TURBINE,
                     GAS_TURBINE,
                     LARGE_DYNAMO,
+                    LARGE_BOILER,
                     LIGHTNING_ROD,
                     MATTER_FABRICATOR,
                     VON_DA_GRAAGG,
