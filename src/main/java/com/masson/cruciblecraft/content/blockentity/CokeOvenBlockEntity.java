@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator;
+import com.masson.cruciblecraft.api.tileentity.ProgressHost;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.machine.component.RecipeProcessor;
@@ -56,7 +57,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * igniter start, consume-at-start, parallel 16, fluid auto-out under the oven.
  * Neighbor TU overclock is deferred.
  */
-public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
+public final class CokeOvenBlockEntity extends BlockEntity
+        implements MenuProvider, ProgressHost {
     public static final ResourceLocation STRUCTURE_ID =
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "coke_oven");
@@ -564,6 +566,16 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
 
     public int recipeDuration() {
         return processor.duration();
+    }
+
+    @Override
+    public long progressValue(Direction side) {
+        return Math.max(0L, progress());
+    }
+
+    @Override
+    public long progressMax(Direction side) {
+        return Math.max(0L, recipeDuration());
     }
 
     public int creosoteAmount() {

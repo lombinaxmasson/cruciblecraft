@@ -14,6 +14,7 @@ import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.content.mold.MoldRecipes;
 import com.masson.cruciblecraft.content.mold.MoldShape;
+import com.masson.cruciblecraft.content.sensor.TemperatureHost;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.energy.EnergyPackets;
 import com.masson.cruciblecraft.heat.ItemHeat;
@@ -45,7 +46,7 @@ import org.jetbrains.annotations.Nullable;
  * stack + shape, not a millibucket {@code IFluidHandler} tank.
  */
 public final class FoundryCastingBlockEntity extends BlockEntity
-        implements MoldHost, IEnergyHandler {
+        implements MoldHost, IEnergyHandler, TemperatureHost {
     public static final float AMBIENT_TEMPERATURE = CeramicMoldBlockEntity.AMBIENT_TEMPERATURE;
     public static final float HOPPER_EXTRACT_SLACK =
             CeramicMoldBlockEntity.HOPPER_EXTRACT_SLACK;
@@ -274,6 +275,16 @@ public final class FoundryCastingBlockEntity extends BlockEntity
 
     public float temperature() {
         return temperature;
+    }
+
+    @Override
+    public float temperatureCelsius(Direction side) {
+        return temperature();
+    }
+
+    @Override
+    public float temperatureMaxCelsius(Direction side) {
+        return moldMaxTemperatureCelsius();
     }
 
     public boolean isSolidified() {

@@ -16,6 +16,9 @@ import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldRecipes;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.AlloyIndex;
@@ -45,6 +48,7 @@ import dev.emi.emi.api.stack.Comparison;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -74,6 +78,9 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     public static final EmiRecipeCategory FUSION = internCategory(
             id("fusion"),
             EmiStack.of(ModBlocks.FUSION_REACTOR.get()));
+    public static final EmiRecipeCategory MULTIBLOCK_BLUEPRINT = internCategory(
+            id("multiblock_blueprint"),
+            EmiStack.of(ModBlocks.COKE_OVEN.get()));
 
     @Override
     public void register(EmiRegistry registry) {
@@ -106,6 +113,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerFusionRecipes(registry);
         registerProcessingMachines(registry, addedCategories);
         registerMultiblockMenuHosts(registry, addedCategories);
+        registerMultiblockBlueprints(registry, addedCategories);
         registerFuelMaps(registry, addedCategories);
         registerHeatExchangerFuels(registry, addedCategories);
         registerDisplayStacks(registry);
@@ -528,6 +536,66 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                     recipe.recipe(),
                     workstationBlock));
         }
+    }
+
+    private static void registerMultiblockBlueprints(
+            EmiRegistry registry,
+            Set<ResourceLocation> addedCategories) {
+        addCategory(registry, MULTIBLOCK_BLUEPRINT, addedCategories);
+        Map<ResourceLocation, MultiblockStructureDefinition> structures =
+                MultiblockStructureCatalog.prepare(
+                        Minecraft.getInstance().getResourceManager());
+        for (var entry : structures.entrySet()) {
+            List<Block> controllers = multiblockControllers(entry.getValue());
+            if (controllers.isEmpty()) {
+                CrucibleCraft.LOGGER.warn(
+                        "Skipping EMI blueprint without controller: {}",
+                        entry.getKey());
+                continue;
+            }
+            for (Block controller : controllers) {
+                registry.addWorkstation(
+                        MULTIBLOCK_BLUEPRINT,
+                        EmiStack.of(controller));
+            }
+            entry.getValue().structure().stream()
+                    .map(element -> element.offset().y())
+                    .distinct()
+                    .sorted()
+                    .forEach(layer -> registry.addRecipe(
+                            new MultiblockEmiRecipe(
+                                    entry.getKey(),
+                                    entry.getValue(),
+                                    MULTIBLOCK_BLUEPRINT,
+                                    EmiStack.of(controllers.getFirst()),
+                                    layer)));
+        }
+    }
+
+    private static List<Block> multiblockControllers(
+            MultiblockStructureDefinition definition) {
+        return definition.palette().values().stream()
+                .filter(predicate -> predicate.kind() == PredicateKind.CONTROLLER)
+                .findFirst()
+                .map(predicate -> {
+                    List<Block> controllers = new ArrayList<>();
+                    predicate.block().ifPresent(id ->
+                            BuiltInRegistries.BLOCK.getOptional(id)
+                                    .ifPresent(controllers::add));
+                    predicate.tag().ifPresent(tagId -> {
+                        var tag = net.minecraft.tags.TagKey.create(
+                                net.minecraft.core.registries.Registries.BLOCK,
+                                tagId);
+                        BuiltInRegistries.BLOCK.forEach(block -> {
+                            if (block.builtInRegistryHolder().is(tag)
+                                    && !controllers.contains(block)) {
+                                controllers.add(block);
+                            }
+                        });
+                    });
+                    return List.copyOf(controllers);
+                })
+                .orElseGet(List::of);
     }
 
     private static ResourceLocation id(String path) {

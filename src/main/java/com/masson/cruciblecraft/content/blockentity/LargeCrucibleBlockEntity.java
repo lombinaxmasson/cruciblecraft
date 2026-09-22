@@ -20,6 +20,7 @@ import com.masson.cruciblecraft.content.mold.CastingMolds;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.content.mold.MoldRecipes;
+import com.masson.cruciblecraft.content.sensor.TemperatureHost;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
@@ -75,7 +76,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * controller inventory.
  */
 public final class LargeCrucibleBlockEntity extends BlockEntity
-        implements MultiblockControllerBinding, MultiblockPortHost, CruciblePour, MoldHost {
+        implements MultiblockControllerBinding, MultiblockPortHost, CruciblePour,
+        MoldHost, TemperatureHost {
     private static final String PLUGIN_TAG = "multiblock_plugins";
     public static final ResourceLocation STRUCTURE_ID =
             ResourceLocation.fromNamespaceAndPath(
@@ -363,6 +365,16 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
 
     public float temperature() {
         return process.temperature(level != null && level.isClientSide);
+    }
+
+    @Override
+    public float temperatureCelsius(Direction side) {
+        return temperature();
+    }
+
+    @Override
+    public float temperatureMaxCelsius(Direction side) {
+        return moldMaxTemperatureCelsius();
     }
 
     public boolean pluginQuarantined() {

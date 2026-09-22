@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.worldgen;
 
 import com.masson.cruciblecraft.content.block.GtHostedOreBlock;
 import com.masson.cruciblecraft.content.block.GtSmallOreBlock;
+import com.masson.cruciblecraft.content.block.GtStoneBlock;
 import com.masson.cruciblecraft.content.block.MaterialOreBlock;
 import com.masson.cruciblecraft.content.block.OreStoneHost;
 import com.masson.cruciblecraft.content.block.StoneLayerRockOreBlock;
@@ -45,6 +46,9 @@ public final class OreStoneHosts {
         if (replaced.getBlock() instanceof StoneLayerStoneBlock
                 || replaced.getBlock() instanceof StoneLayerRockOreBlock) {
             return OreStoneHost.ofLayer(StoneLayerStones.materialOf(replaced));
+        }
+        if (replaced.getBlock() instanceof GtStoneBlock gtStone) {
+            return OreStoneHost.ofLayer(gtStone.variant().stone());
         }
         if (replaced.getBlock() instanceof MaterialOreBlock) {
             return replaced.getValue(MaterialOreBlock.HOST);

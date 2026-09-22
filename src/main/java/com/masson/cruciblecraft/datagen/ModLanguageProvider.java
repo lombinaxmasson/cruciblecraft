@@ -401,6 +401,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.category.cruciblecraft.fuels_fluidbed", "流化床燃烧室");
             add("emi.category.cruciblecraft.fuels_hot", "热交换燃料");
             add("emi.category.cruciblecraft.fusion", "聚变反应堆");
+            add("emi.category.cruciblecraft.multiblock_blueprint", "多方块结构蓝图");
             add("emi.category.cruciblecraft.distillation_tower", "蒸馏塔");
             add("emi.category.cruciblecraft.cryo_distillation_tower", "低温蒸馏塔");
             add("emi.cruciblecraft.processing.preserved", "保留，不消耗");
@@ -423,6 +424,9 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.cruciblecraft.processing.time_mins", "时间：%s 分钟");
             add("emi.cruciblecraft.processing.special", "%s");
             add("emi.cruciblecraft.fusion.start", "启动：%s LU");
+            add("emi.cruciblecraft.multiblock.blueprint", "结构：%s");
+            add("emi.cruciblecraft.multiblock.materials", "材料清单");
+            add("emi.cruciblecraft.multiblock.layer", "层 Y=%s");
             add("device.cruciblecraft.anvil", "砧");
             add("device.cruciblecraft.crucible", "坩埚");
             add("device.cruciblecraft.large_crucible", "大型坩埚");
@@ -1238,6 +1242,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("emi.category.cruciblecraft.fuels_fluidbed", "Fluid-Bed Burning Box");
         add("emi.category.cruciblecraft.fuels_hot", "Heat Exchanger Fuel");
         add("emi.category.cruciblecraft.fusion", "Fusion Reactor");
+        add("emi.category.cruciblecraft.multiblock_blueprint",
+                "Multiblock Structure Blueprint");
         add("emi.category.cruciblecraft.distillation_tower", "Distillation Tower");
         add("emi.category.cruciblecraft.cryo_distillation_tower",
                 "Cryo Distillation Tower");
@@ -1261,6 +1267,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add("emi.cruciblecraft.processing.time_mins", "Time: %s mins");
         add("emi.cruciblecraft.processing.special", "%s");
         add("emi.cruciblecraft.fusion.start", "Start: %s LU");
+        add("emi.cruciblecraft.multiblock.blueprint", "Structure: %s");
+        add("emi.cruciblecraft.multiblock.materials", "Materials");
+        add("emi.cruciblecraft.multiblock.layer", "Layer Y=%s");
 
         add("message.cruciblecraft.air_injection_started", "Airflow started; decarburization is underway");
         add("message.cruciblecraft.air_injection_continued", "Airflow duration extended");
@@ -1439,6 +1448,7 @@ public class ModLanguageProvider extends LanguageProvider {
             case DRAWER -> "分区抽屉";
             case LOCKER -> "储物柜";
             case MASS_STORAGE -> "大容量仓储";
+            case LARGE_BOILER -> "大型锅炉主气压表";
             default -> null;
         };
         if (kindZh == null) {

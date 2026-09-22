@@ -35,9 +35,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
+import com.masson.cruciblecraft.api.tileentity.ProgressHost;
+
 /** EU/LU connector; load/burn plus GT6 cover attachments persist. */
 public final class CableBlockEntity extends BlockEntity
-        implements IEnergyHandler {
+        implements IEnergyHandler, ProgressHost {
     private static final int SYNC_INTERVAL = 20;
 
     private final CableLoadState load = new CableLoadState();
@@ -230,8 +232,18 @@ public final class CableBlockEntity extends BlockEntity
         return transferredAmperes();
     }
 
+    @Override
+    public long progressValue(Direction side) {
+        return progressValue();
+    }
+
     public long progressMax() {
         return conductor().transportProperties().maxAmperage();
+    }
+
+    @Override
+    public long progressMax(Direction side) {
+        return progressMax();
     }
 
     public boolean setCover(Direction side, PipeCover cover) {

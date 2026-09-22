@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.content.mold.MoldRecipes;
 import com.masson.cruciblecraft.content.mold.MoldShape;
+import com.masson.cruciblecraft.content.sensor.TemperatureHost;
 import com.masson.cruciblecraft.energy.EnergyPackets;
 import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.heat.TemperatureDamage;
@@ -40,7 +41,7 @@ import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.Nullable;
 
 public final class CeramicMoldBlockEntity extends BlockEntity
-        implements MoldHost, IEnergyHandler {
+        implements MoldHost, IEnergyHandler, TemperatureHost {
     public static final float AMBIENT_TEMPERATURE = 20.0F;
     public static final float HOPPER_EXTRACT_SLACK = 50.0F;
 
@@ -290,6 +291,16 @@ public final class CeramicMoldBlockEntity extends BlockEntity
 
     public float temperature() {
         return temperature;
+    }
+
+    @Override
+    public float temperatureCelsius(Direction side) {
+        return temperature();
+    }
+
+    @Override
+    public float temperatureMaxCelsius(Direction side) {
+        return moldMaxTemperatureCelsius();
     }
 
     public boolean isSolidified() {

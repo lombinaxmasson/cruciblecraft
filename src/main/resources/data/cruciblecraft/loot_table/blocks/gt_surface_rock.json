@@ -40,7 +40,15 @@
             },
             {
               "type": "minecraft:item",
-              "name": "cruciblecraft:meteoric_iron/raw_ore",
+              "name": "cruciblecraft:raw_ore",
+              "functions": [
+                {
+                  "function": "minecraft:set_components",
+                  "components": {
+                    "cruciblecraft:prefix_material": "meteoric_iron"
+                  }
+                }
+              ],
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",

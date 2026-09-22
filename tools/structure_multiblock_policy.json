@@ -537,11 +537,11 @@
         "verdict": "v1_expressible",
         "positions": 36,
         "needed_extensions": [],
-        "notes": "3x3x3 shell: base 9x ONLY_ENERGY_IN (HU heat transmitters), 17x ONLY_FLUID_OUT (steam), 9x ONLY_FLUID_IN (water), 1 AIR check above controller. mBoilerWalls material param -> fixed casing block (DESIGN_POLICY). GT6 energy = HU (mEnergyTypeAccepted)."
+        "notes": "3x4x3 GT6 shell: base 9x ONLY_ENERGY_IN (HU heat transmitters), bottom 8x ONLY_FLUID_IN (water), middle/top 17x ONLY_FLUID_OUT (steam), 1 AIR at the chamber center. Five explicit source-backed structures bind stainless steel, invar, titanium, tungstensteel, or adamantium controllers to the matching dense wall; no mixed-material casing is valid. GT6 energy = HU (mEnergyTypeAccepted)."
       },
       "controller_behavior": {
         "kind": "conversion",
-        "transaction": "water + HU -> steam continuous conversion (SteamConversion precedent)",
+        "transaction": "GT6 water + HU -> steam conversion with tiered HU/steam capacity, efficiency calcification, cooling, active output and safety explosion paths",
         "ui": "status screen",
         "environment": "HU via base energy ports"
       },

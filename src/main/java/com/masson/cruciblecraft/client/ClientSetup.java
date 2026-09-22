@@ -36,10 +36,12 @@ import com.masson.cruciblecraft.client.render.BottleCrateRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
 import com.masson.cruciblecraft.client.render.LargeCrucibleRenderer;
 import com.masson.cruciblecraft.client.render.LargeGasTurbineRenderer;
+import com.masson.cruciblecraft.client.render.LargeBoilerRenderer;
 import com.masson.cruciblecraft.client.render.MassStorageRenderer;
 import com.masson.cruciblecraft.client.render.MteInPlaceStorageRenderer;
 import com.masson.cruciblecraft.client.render.GtChestRenderer;
 import com.masson.cruciblecraft.client.render.PipeCoverRenderer;
+import com.masson.cruciblecraft.client.render.SensorRenderer;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.ExplosiveBlock;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
@@ -467,6 +469,8 @@ public class ClientSetup {
         event.registerBlockEntityRenderer(
                 ModBlockEntities.CABLE.get(), PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
+                ModBlockEntities.SENSOR.get(), SensorRenderer::new);
+        event.registerBlockEntityRenderer(
                 ModBlockEntities.PROCESSING_MACHINE.get(),
                 PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
@@ -523,7 +527,7 @@ public class ClientSetup {
         event.registerBlockEntityRenderer(
                 ModBlockEntities.LOCKER.get(), PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
-                ModBlockEntities.LARGE_BOILER.get(), PipeCoverRenderer::new);
+                ModBlockEntities.LARGE_BOILER.get(), LargeBoilerRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.FUSION_REACTOR.get(), PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(

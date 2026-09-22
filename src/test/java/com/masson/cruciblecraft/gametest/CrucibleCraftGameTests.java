@@ -24,6 +24,7 @@ import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.DistillationTowerParts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
@@ -40,6 +41,7 @@ import com.masson.cruciblecraft.content.blockentity.CryoDistillationTowerBlockEn
 import com.masson.cruciblecraft.content.blockentity.DistillationTowerAutoOutput;
 import com.masson.cruciblecraft.content.blockentity.DistillationTowerFluidRouting;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeBoilerTier;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
@@ -195,6 +197,7 @@ import net.neoforged.neoforge.items.IItemHandler;
 public final class CrucibleCraftGameTests {
     public static final String NAMESPACE = "cruciblecraft_default_grid";
     private static final String TEMPLATE = "empty";
+    private static final int LARGE_BOILER_STRUCTURE_WAIT = 650;
 
     private CrucibleCraftGameTests() {
     }
@@ -3650,7 +3653,35 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
-    @GameTest(template = TEMPLATE, timeoutTicks = 300)
+    private static Block largeBoilerController() {
+        return ModBlocks.mteInPlaceBlocksById()
+                .get(LargeBoilerTier.STAINLESS_STEEL.controllerId())
+                .get();
+    }
+
+    private static LargeBoilerBlockEntity placeLargeBoiler(
+            GameTestHelper helper,
+            BlockPos controllerPos,
+            Direction facing) {
+        var structure = MultiblockStructureCatalog.require(
+                LargeBoilerBlockEntity.STRUCTURE_ID);
+        helper.setBlock(
+                controllerPos,
+                largeBoilerController()
+                        .defaultBlockState()
+                        .setValue(MteInPlaceBlock.FACING, facing));
+        structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .forEach(element -> helper.setBlock(
+                        structure.worldPosition(
+                                controllerPos, facing, element.offset()),
+                        structurePaletteBlock(
+                                structure.predicate(element))));
+        return helper.getBlockEntity(controllerPos);
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 800)
     public static void largeBoilerFormation(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
@@ -3659,9 +3690,9 @@ public final class CrucibleCraftGameTests {
                 LargeBoilerBlockEntity.STRUCTURE_ID);
         helper.setBlock(
                 controllerPos,
-                ModBlocks.LARGE_BOILER.get()
+                largeBoilerController()
                         .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
+                        .setValue(MteInPlaceBlock.FACING, facing));
         structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.PORT)
@@ -3679,13 +3710,23 @@ public final class CrucibleCraftGameTests {
         GameTestHeatSources.placeHuSource(helper, energyPort.below());
         FuelGeneratorBlockEntity firebox =
                 helper.getBlockEntity(energyPort.below());
-        BlockPos waterPort = structure.anchor(
-                "center", controllerPos, facing);
-        MultiblockPortBlockEntity waterPortBe =
-                helper.getBlockEntity(waterPort.above());
+        BlockPos waterPort = structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .filter(element -> structure.predicate(element).port()
+                        .orElseThrow()
+                        == com.masson.cruciblecraft.content.multiblock
+                                .MultiblockStructureDefinition.PortType
+                                .ITEM_FLUID_IN)
+                .map(element -> structure.worldPosition(
+                        controllerPos, facing, element.offset()))
+                .findFirst()
+                .orElseThrow();
+        MteInPlaceBlockEntity waterPortBe =
+                helper.getBlockEntity(waterPort);
 
         helper.startSequence()
-                .thenIdle(25)
+                .thenIdle(LARGE_BOILER_STRUCTURE_WAIT)
                 .thenExecute(() -> {
                     helper.assertTrue(
                             boiler.structureValid(),
@@ -3699,7 +3740,25 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             boiler.stored(EnergyType.HEAT) > 0L,
                             "Boiler did not receive port-fed heat");
-                    int filled = waterPortBe.fluidHandler().fill(
+                    boiler.insert(
+                            EnergyType.HEAT,
+                            1L,
+                            1L,
+                            Direction.UP,
+                            false);
+                    helper.assertTrue(
+                            boiler.coolDownResetTimer() >= 32,
+                            "HU injection did not refresh boiler cooldown");
+                    var longFluidPort = helper.getLevel().getCapability(
+                            ModCapabilities.LONG_FLUID_HANDLER,
+                            waterPort,
+                            Direction.UP);
+                    helper.assertTrue(
+                            longFluidPort != null
+                                    && longFluidPort.capacity(0)
+                                            == LargeBoilerTier.WATER_CAPACITY,
+                            "Boiler port did not expose its long fluid view");
+                    int filled = waterPortBe.fluidHandler(Direction.UP).fill(
                             new FluidStack(Fluids.WATER, 1_000),
                             IFluidHandler.FluidAction.EXECUTE);
                     helper.assertTrue(
@@ -3721,6 +3780,37 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void largeBoilerLegacyControllerMigration(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        helper.setBlock(
+                controllerPos,
+                ModBlocks.LARGE_BOILER.get()
+                        .defaultBlockState()
+                        .setValue(ProcessingMachineBlock.FACING, Direction.NORTH));
+        LargeBoilerBlockEntity legacy = helper.getBlockEntity(controllerPos);
+        legacy.waterTank().fill(
+                new FluidStack(Fluids.WATER, 1_000),
+                IFluidHandler.FluidAction.EXECUTE);
+        helper.startSequence()
+                .thenIdle(5)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            helper.getBlockState(controllerPos)
+                                    .is(largeBoilerController()),
+                            "Legacy large boiler was not migrated");
+                    LargeBoilerBlockEntity migrated =
+                            helper.getBlockEntity(controllerPos);
+                    helper.assertTrue(
+                            migrated.structureId().equals(
+                                    LargeBoilerTier.STAINLESS_STEEL.structureId())
+                                    && migrated.waterTank().getFluidAmount() == 1_000,
+                            "Legacy boiler contents/profile were not preserved");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
     public static void largeBoilerFidelity(
             GameTestHelper helper) {
         var structure = MultiblockStructureCatalog.require(
@@ -3734,14 +3824,23 @@ public final class CrucibleCraftGameTests {
                                 .MultiblockStructureDefinition.PortType
                                 .ENERGY_INPUT)
                 .count();
-        long itemFluidPorts = structure.structure().stream()
+        long waterPorts = structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.PORT)
                 .filter(element -> structure.predicate(element)
                         .port().orElseThrow()
                         == com.masson.cruciblecraft.content.multiblock
                                 .MultiblockStructureDefinition.PortType
-                                .ITEM_FLUID)
+                                .ITEM_FLUID_IN)
+                .count();
+        long steamPorts = structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .filter(element -> structure.predicate(element)
+                        .port().orElseThrow()
+                        == com.masson.cruciblecraft.content.multiblock
+                                .MultiblockStructureDefinition.PortType
+                                .FLUID_OUT)
                 .count();
         long air = structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
@@ -3754,7 +3853,8 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 structure.structure().size() == 36
                         && energyPorts == 9
-                        && itemFluidPorts == 25
+                        && waterPorts == 8
+                        && steamPorts == 17
                         && air == 1
                         && controllers == 1,
                 "Boiler geometry drifted from the GT6 source: "
@@ -3762,8 +3862,10 @@ public final class CrucibleCraftGameTests {
                         + " positions, "
                         + energyPorts
                         + " energy, "
-                        + itemFluidPorts
-                        + " item/fluid, "
+                        + waterPorts
+                        + " water, "
+                        + steamPorts
+                        + " steam, "
                         + air
                         + " air");
         var source = structure.source().orElseThrow();
@@ -3777,6 +3879,37 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void largeBoilerFiveTierProfiles(
+            GameTestHelper helper) {
+        for (LargeBoilerTier tier : LargeBoilerTier.values()) {
+            var structure = MultiblockStructureCatalog.require(
+                    tier.structureId());
+            var controller = structure.structure().stream()
+                    .filter(element -> structure.predicate(element).kind()
+                            == PredicateKind.CONTROLLER)
+                    .findFirst()
+                    .orElseThrow();
+            long matchingWalls = structure.structure().stream()
+                    .filter(element -> structure.predicate(element).kind()
+                            == PredicateKind.PORT)
+                    .filter(element -> structure.predicate(element).block()
+                            .orElseThrow()
+                            .equals(tier.wallId()))
+                    .count();
+            helper.assertTrue(
+                    structure.structure().size() == 36
+                            && structure.predicate(controller).block()
+                                    .orElseThrow()
+                                    .equals(tier.controllerId())
+                            && matchingWalls == 25
+                            && tier.capacity() == tier.steamOutput() * 10_000L
+                            && tier.heatOutput() == tier.steamOutput() / 2L,
+                    "Boiler tier profile drifted for " + tier.name());
+        }
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 720)
     public static void largeBoilerPortSupplySingleHost(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
@@ -3785,9 +3918,9 @@ public final class CrucibleCraftGameTests {
                 LargeBoilerBlockEntity.STRUCTURE_ID);
         helper.setBlock(
                 controllerPos,
-                ModBlocks.LARGE_BOILER.get()
+                largeBoilerController()
                         .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
+                        .setValue(MteInPlaceBlock.FACING, facing));
         structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.PORT)
@@ -3801,7 +3934,7 @@ public final class CrucibleCraftGameTests {
         LargeBoilerBlockEntity boiler =
                 helper.getBlockEntity(controllerPos);
         helper.startSequence()
-                .thenIdle(25)
+                .thenIdle(LARGE_BOILER_STRUCTURE_WAIT)
                 .thenExecute(() -> {
                     helper.assertTrue(
                             boiler.structureValid(),
@@ -3823,7 +3956,13 @@ public final class CrucibleCraftGameTests {
                                             == com.masson.cruciblecraft
                                                     .content.multiblock
                                                     .MultiblockStructureDefinition
-                                                    .PortType.ITEM_FLUID)
+                                                    .PortType.ITEM_FLUID_IN
+                                            || structure.predicate(element)
+                                                    .port().orElseThrow()
+                                                    == com.masson.cruciblecraft
+                                                            .content.multiblock
+                                                            .MultiblockStructureDefinition
+                                                            .PortType.FLUID_OUT)
                                     .count()
                                     == 25,
                             "Physical item/fluid port count drifted");
@@ -4154,7 +4293,7 @@ public final class CrucibleCraftGameTests {
 
     // ===== C3 lifecycle: large boiler =====
 
-    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    @GameTest(template = TEMPLATE, timeoutTicks = 1_400)
     public static void largeBoilerTeardown(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
@@ -4163,9 +4302,9 @@ public final class CrucibleCraftGameTests {
                 LargeBoilerBlockEntity.STRUCTURE_ID);
         helper.setBlock(
                 controllerPos,
-                ModBlocks.LARGE_BOILER.get()
+                largeBoilerController()
                         .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
+                        .setValue(MteInPlaceBlock.FACING, facing));
         structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.PORT)
@@ -4189,7 +4328,7 @@ public final class CrucibleCraftGameTests {
                 .findFirst()
                 .orElseThrow();
         helper.startSequence()
-                .thenIdle(25)
+                .thenIdle(LARGE_BOILER_STRUCTURE_WAIT)
                 .thenExecute(() -> {
                     helper.assertTrue(
                             boiler.structureValid(),
@@ -4197,7 +4336,7 @@ public final class CrucibleCraftGameTests {
                     helper.setBlock(
                             portToBreak, Blocks.AIR.defaultBlockState());
                 })
-                .thenIdle(25)
+                .thenIdle(LARGE_BOILER_STRUCTURE_WAIT)
                 .thenExecute(() -> {
                     helper.assertTrue(
                             !boiler.structureValid(),
@@ -4209,8 +4348,8 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
-    @GameTest(template = TEMPLATE, timeoutTicks = 160)
-    public static void largeBoilerOutputJam(
+    @GameTest(template = TEMPLATE, timeoutTicks = 720)
+    public static void largeBoilerFullSteamExplosion(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4218,9 +4357,9 @@ public final class CrucibleCraftGameTests {
                 LargeBoilerBlockEntity.STRUCTURE_ID);
         helper.setBlock(
                 controllerPos,
-                ModBlocks.LARGE_BOILER.get()
+                largeBoilerController()
                         .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
+                        .setValue(MteInPlaceBlock.FACING, facing));
         structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.PORT)
@@ -4241,13 +4380,8 @@ public final class CrucibleCraftGameTests {
         boiler.waterTank().fill(
                 new FluidStack(Fluids.WATER, 1_000),
                 IFluidHandler.FluidAction.EXECUTE);
-        boiler.steamTank().fill(
-                new FluidStack(
-                        com.masson.cruciblecraft.registry.ModFluids.STEAM_SOURCE,
-                        boiler.steamTank().getCapacity()),
-                IFluidHandler.FluidAction.EXECUTE);
         helper.startSequence()
-                .thenIdle(25)
+                .thenIdle(LARGE_BOILER_STRUCTURE_WAIT)
                 .thenExecute(() -> {
                     helper.assertTrue(
                             boiler.structureValid(),
@@ -4255,22 +4389,22 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             firebox.seedStoredEnergy(energyCapacity()),
                             "Could not fuel the boiler heat source");
+                    boiler.steamTank().fill(
+                            new FluidStack(
+                                    com.masson.cruciblecraft.registry.ModFluids.STEAM_SOURCE.get(),
+                                    boiler.steamTank().getCapacity()),
+                            IFluidHandler.FluidAction.EXECUTE);
                 })
-                .thenIdle(50)
+                .thenIdle(5)
                 .thenExecute(() -> {
                     helper.assertTrue(
-                            boiler.waterTank().getFluidAmount() == 1_000,
-                            "Steam jam voided boiler water: "
-                                    + boiler.waterTank().getFluidAmount());
-                    helper.assertTrue(
-                            boiler.steamTank().getFluidAmount()
-                                    == boiler.steamTank().getCapacity(),
-                            "Steam jam changed the boiler steam tank");
+                            helper.getBlockState(controllerPos).isAir(),
+                            "A full steam tank did not explode the boiler");
                 })
                 .thenSucceed();
     }
 
-    @GameTest(template = TEMPLATE, timeoutTicks = 160)
+    @GameTest(template = TEMPLATE, timeoutTicks = 800)
     public static void largeBoilerPowerLoss(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
@@ -4279,9 +4413,9 @@ public final class CrucibleCraftGameTests {
                 LargeBoilerBlockEntity.STRUCTURE_ID);
         helper.setBlock(
                 controllerPos,
-                ModBlocks.LARGE_BOILER.get()
+                largeBoilerController()
                         .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
+                        .setValue(MteInPlaceBlock.FACING, facing));
         structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.PORT)
@@ -4303,7 +4437,7 @@ public final class CrucibleCraftGameTests {
                 new FluidStack(Fluids.WATER, 1_000),
                 IFluidHandler.FluidAction.EXECUTE);
         helper.startSequence()
-                .thenIdle(25)
+                .thenIdle(LARGE_BOILER_STRUCTURE_WAIT)
                 .thenExecute(() -> {
                     helper.assertTrue(
                             boiler.structureValid(),
@@ -4339,7 +4473,7 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
-    @GameTest(template = TEMPLATE, timeoutTicks = 160)
+    @GameTest(template = TEMPLATE, timeoutTicks = 800)
     public static void largeBoilerReload(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
@@ -4348,9 +4482,9 @@ public final class CrucibleCraftGameTests {
                 LargeBoilerBlockEntity.STRUCTURE_ID);
         helper.setBlock(
                 controllerPos,
-                ModBlocks.LARGE_BOILER.get()
+                largeBoilerController()
                         .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
+                        .setValue(MteInPlaceBlock.FACING, facing));
         structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.PORT)
@@ -4372,7 +4506,7 @@ public final class CrucibleCraftGameTests {
                 new FluidStack(Fluids.WATER, 1_000),
                 IFluidHandler.FluidAction.EXECUTE);
         helper.startSequence()
-                .thenIdle(25)
+                .thenIdle(LARGE_BOILER_STRUCTURE_WAIT)
                 .thenExecute(() -> {
                     helper.assertTrue(
                             boiler.structureValid(),
@@ -4400,7 +4534,7 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
-    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    @GameTest(template = TEMPLATE, timeoutTicks = 720)
     public static void largeBoilerSaveQuarantine(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
@@ -4409,9 +4543,9 @@ public final class CrucibleCraftGameTests {
                 LargeBoilerBlockEntity.STRUCTURE_ID);
         helper.setBlock(
                 controllerPos,
-                ModBlocks.LARGE_BOILER.get()
+                largeBoilerController()
                         .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
+                        .setValue(MteInPlaceBlock.FACING, facing));
         structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.PORT)
@@ -4428,7 +4562,7 @@ public final class CrucibleCraftGameTests {
                 new FluidStack(Fluids.WATER, 1_000),
                 IFluidHandler.FluidAction.EXECUTE);
         helper.startSequence()
-                .thenIdle(25)
+                .thenIdle(LARGE_BOILER_STRUCTURE_WAIT)
                 .thenExecute(() -> {
                     helper.assertTrue(
                             boiler.structureValid(),
@@ -4448,6 +4582,160 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             boiler.waterTank().getFluidAmount() == 1_000,
                             "Boiler contents changed under quarantine");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 800)
+    public static void largeBoilerSteamPushFivePorts(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        LargeBoilerBlockEntity boiler =
+                placeLargeBoiler(helper, controllerPos, facing);
+        var structure = MultiblockStructureCatalog.require(
+                LargeBoilerBlockEntity.STRUCTURE_ID);
+        BlockPos center = structure.anchor("center", controllerPos, facing);
+        List<BlockPos> targets = List.of(
+                structure.anchor(
+                        "top_steam_output", controllerPos, facing).above(),
+                center.west(2),
+                center.east(2),
+                center.north(2),
+                center.south(2));
+        FluidPipeBlock pipe = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        targets.forEach(target ->
+                helper.setBlock(target, pipeState(pipe, Direction.DOWN)));
+
+        helper.startSequence()
+                .thenIdle(LARGE_BOILER_STRUCTURE_WAIT)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            boiler.structureValid(),
+                            "Boiler structure was not recognized");
+                    boiler.steamTank().setFluid(
+                            new FluidStack(
+                                    ModFluids.STEAM_SOURCE.get(),
+                                    boiler.steamTank().getCapacity() * 3 / 4));
+                })
+                .thenIdle(5)
+                .thenExecute(() -> {
+                    long received = targets.stream()
+                            .map(helper::getBlockEntity)
+                            .filter(FluidPipeBlockEntity.class::isInstance)
+                            .map(FluidPipeBlockEntity.class::cast)
+                            .mapToLong(pipeEntity ->
+                                    pipeEntity.storedFluid().getAmount())
+                            .sum();
+                    long activeTargets = targets.stream()
+                            .map(helper::getBlockEntity)
+                            .filter(FluidPipeBlockEntity.class::isInstance)
+                            .map(FluidPipeBlockEntity.class::cast)
+                            .filter(pipeEntity ->
+                                    !pipeEntity.storedFluid().isEmpty())
+                            .count();
+                    helper.assertTrue(
+                            activeTargets == 5 && received > 0L,
+                            "GT6 active steam output did not feed all five holes: "
+                                    + activeTargets
+                                    + " targets, "
+                                    + received
+                                    + " mB");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 800)
+    public static void largeBoilerDistilledWaterDoesNotCalcify(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        LargeBoilerBlockEntity boiler = placeLargeBoiler(
+                helper, controllerPos, Direction.NORTH);
+        FluidStack distilled = SteamConversion.distilledExhaust(1_000);
+        boiler.waterTank().fill(
+                distilled,
+                IFluidHandler.FluidAction.EXECUTE);
+        boiler.insert(
+                EnergyType.HEAT,
+                LargeBoilerTier.HEAT_PER_WATER,
+                1_000L,
+                Direction.UP,
+                false);
+        helper.startSequence()
+                .thenIdle(LARGE_BOILER_STRUCTURE_WAIT)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            boiler.structureValid()
+                                    && boiler.steamAmountLong() > 0L
+                                    && boiler.efficiency() == 10_000,
+                            "Distilled water unexpectedly calcified the boiler");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 900)
+    public static void largeBoilerCoolingAndToolLifecycle(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        LargeBoilerBlockEntity boiler = placeLargeBoiler(
+                helper, controllerPos, Direction.NORTH);
+        helper.startSequence()
+                .thenIdle(LARGE_BOILER_STRUCTURE_WAIT)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            boiler.structureValid(),
+                            "Boiler structure was not recognized");
+                    boiler.insert(
+                            EnergyType.HEAT,
+                            LargeBoilerTier.HEAT_PER_WATER,
+                            100L,
+                            Direction.UP,
+                            false);
+                    boiler.steamTank().setFluid(
+                            new FluidStack(
+                                    ModFluids.STEAM_SOURCE.get(),
+                                    10_000));
+                    CompoundTag saved = boiler.saveWithoutMetadata(
+                            helper.getLevel().registryAccess());
+                    saved.putInt("efficiency", 9_000);
+                    saved.putInt("barometer", 0);
+                    boiler.loadWithComponents(
+                            saved, helper.getLevel().registryAccess());
+                    helper.assertTrue(
+                            boiler.efficiency() == 9_000,
+                            "Calcification state was not restored");
+                })
+                .thenIdle(135)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            boiler.heatAmount() < 8_000L
+                                    && boiler.steamAmountLong() < 10_000L,
+                            "Boiler cooling did not lose HU and steam");
+                    helper.assertTrue(
+                            boiler.decalcify(null)
+                                    && boiler.efficiency() == 10_000
+                                    && boiler.heatAmount() == 0L
+                                    && boiler.steamAmountLong() == 0L,
+                            "Chisel lifecycle did not decalcify and clear heat");
+                    boiler.waterTank().fill(
+                            new FluidStack(Fluids.WATER, 1_000),
+                            IFluidHandler.FluidAction.EXECUTE);
+                    helper.assertTrue(
+                            boiler.trashWithPlunger()
+                                    && boiler.waterTank().isEmpty(),
+                            "Plunger did not clear boiler water");
+                    boiler.steamTank().fill(
+                            new FluidStack(
+                                    ModFluids.STEAM_SOURCE.get(),
+                                    1_000),
+                            IFluidHandler.FluidAction.EXECUTE);
+                    helper.assertTrue(
+                            boiler.trashWithPlunger()
+                                    && boiler.steamTank().isEmpty(),
+                            "Plunger did not clear boiler steam");
                 })
                 .thenSucceed();
     }

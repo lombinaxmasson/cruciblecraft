@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.api.tileentity.ProgressHost;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.Gt6StyleConnections;
@@ -53,7 +54,8 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
  * tick ({@code SERVER_TICK_PRE}/{@code PR2}); cover pumps stay on the shared
  * five-tick logistics phase.
  */
-public final class FluidPipeBlockEntity extends BlockEntity {
+public final class FluidPipeBlockEntity extends BlockEntity
+        implements ProgressHost {
     public static final int TRANSFER_INTERVAL =
             PipeTransferPhase.INTERVAL;
     public static final int CLIENT_SYNC_INTERVAL = 5;
@@ -187,6 +189,16 @@ public final class FluidPipeBlockEntity extends BlockEntity {
     public long transferredThisWindow() {
         rollMetricWindow(level == null ? 0L : level.getGameTime());
         return transferredThisWindow;
+    }
+
+    @Override
+    public long progressValue(Direction side) {
+        return Math.max(0L, transferredThisTick());
+    }
+
+    @Override
+    public long progressMax(Direction side) {
+        return Math.max(0L, totalCapacity());
     }
 
     public FluidPipeFailureState.Snapshot failureSnapshot() {

@@ -15,7 +15,11 @@ ALLOWED_CONSUMERS = {
     "coke_oven",
     "distillation_tower",
     "cryo_distillation_tower",
-    "large_boiler",
+    "large_boiler_stainless_steel",
+    "large_boiler_invar",
+    "large_boiler_titanium",
+    "large_boiler_tungstensteel",
+    "large_boiler_adamantium",
     "tank_3x3x3",
     "large_crucible",
 }

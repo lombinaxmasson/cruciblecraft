@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.logistics.machinecover;
 
+import com.masson.cruciblecraft.api.tileentity.ProgressHost;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverSet;
@@ -9,7 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 
 /** Processing-machine face that can hold remainder covers. */
-public interface MachineCoverHost {
+public interface MachineCoverHost extends ProgressHost {
     PipeCoverSet covers();
 
     boolean setCover(Direction side, PipeCover cover);
@@ -52,6 +53,16 @@ public interface MachineCoverHost {
     int progress();
 
     int duration();
+
+    @Override
+    default long progressValue(Direction side) {
+        return Math.max(0L, progress());
+    }
+
+    @Override
+    default long progressMax(Direction side) {
+        return Math.max(0L, duration());
+    }
 
     boolean hasFluidTanks();
 

@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.masson.cruciblecraft.api.tileentity.ProgressHost;
 import com.masson.cruciblecraft.content.block.RedstoneWireBlock;
 import com.masson.cruciblecraft.content.redstonewire.RedstoneWireCovers;
 import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
@@ -32,7 +33,8 @@ import net.minecraft.world.level.block.state.BlockState;
  * Ports {@code MultiTileEntityWireRedstoneInsulated} redstone loss and
  * {@code MultiTileEntityWireRedstone} visual/light state.
  */
-public final class RedstoneWireBlockEntity extends BlockEntity {
+public final class RedstoneWireBlockEntity extends BlockEntity
+        implements ProgressHost {
     private static final byte RECEIVED_NONE = (byte) -1;
 
     private final RedstoneWireKind kind;
@@ -89,8 +91,18 @@ public final class RedstoneWireBlockEntity extends BlockEntity {
         return (1000L * redstone) / RedstoneWireNetwork.MAX_RANGE;
     }
 
+    @Override
+    public long progressValue(Direction side) {
+        return progressValue();
+    }
+
     public long progressMax() {
         return 16000L;
+    }
+
+    @Override
+    public long progressMax(Direction side) {
+        return progressMax();
     }
 
     public long minusLoss() {

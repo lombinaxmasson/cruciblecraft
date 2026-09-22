@@ -76,7 +76,14 @@ public final class MultiblockStructureCatalog {
         publish(prepare(resourceManager));
     }
 
-    static Map<ResourceLocation, MultiblockStructureDefinition> prepare(
+    /**
+     * Decodes the current resource-manager view without publishing it.
+     *
+     * <p>EMI uses this during client recipe registration. Keeping the
+     * non-publishing form here means a client-side display cannot race or
+     * replace the authoritative runtime snapshot used by validators.</p>
+     */
+    public static Map<ResourceLocation, MultiblockStructureDefinition> prepare(
             ResourceManager resourceManager) {
         Map<ResourceLocation, Resource> resources = resourceManager.listResources(
                 DIRECTORY,

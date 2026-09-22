@@ -37,6 +37,7 @@ import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -163,6 +164,109 @@ public final class SensorGameTests {
                             "Luminometer emitted on the display face");
                 })
                 .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void thresholdButtonsMatchGt6Steps(GameTestHelper helper) {
+        BlockPos world = helper.absolutePos(POS);
+        double minusX = world.getX() + 1.0 - 10.25 / 16.0;
+        double plusX = world.getX() + 1.0 - 12.25 / 16.0;
+        double highY = world.getY() + 1.0 - 7.25 / 16.0;
+        double middleY = world.getY() + 1.0 - 10.25 / 16.0;
+        double lowY = world.getY() + 1.0 - 13.25 / 16.0;
+        double north = world.getZ() + 14.0 / 16.0;
+
+        helper.assertTrue(
+                SensorBlock.thresholdAdjustment(
+                        world,
+                        Direction.NORTH,
+                        new Vec3(minusX, highY, north),
+                        false)
+                        == -100,
+                "GT6 decimal -100 button drifted");
+        helper.assertTrue(
+                SensorBlock.thresholdAdjustment(
+                        world,
+                        Direction.NORTH,
+                        new Vec3(plusX, middleY, north),
+                        false)
+                        == 10,
+                "GT6 decimal +10 button drifted");
+        helper.assertTrue(
+                SensorBlock.thresholdAdjustment(
+                        world,
+                        Direction.NORTH,
+                        new Vec3(minusX, lowY, north),
+                        true)
+                        == -1,
+                "GT6 hexadecimal -1 button drifted");
+        helper.assertTrue(
+                SensorBlock.thresholdAdjustment(
+                        world,
+                        Direction.NORTH,
+                        new Vec3(plusX, highY, north),
+                        true)
+                        == 256,
+                "GT6 hexadecimal +256 button drifted");
+        helper.assertTrue(
+                SensorBlock.averagingAdjustment(
+                        world,
+                        Direction.NORTH,
+                        new Vec3(minusX, highY, north),
+                        false)
+                        == -100,
+                "GT6 decimal averaging -100 button drifted");
+        helper.assertTrue(
+                SensorBlock.averagingAdjustment(
+                        world,
+                        Direction.NORTH,
+                        new Vec3(plusX, middleY, north),
+                        true)
+                        == 16,
+                "GT6 hexadecimal averaging +16 button drifted");
+        helper.assertTrue(
+                SensorBlock.isDisplayHit(
+                        world,
+                        Direction.NORTH,
+                        new Vec3(
+                                world.getX() + 0.5,
+                                world.getY() + 1.0 - 3.0 / 16.0,
+                                north)),
+                "GT6 display hit area drifted");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void redstoneModesMatchGt6Edges(GameTestHelper helper) {
+        helper.assertTrue(
+                SensorReading.redstone(
+                        SensorMode.SCALE, 1L, 100L, 100) == 1,
+                "GT6 scale lost the first non-zero redstone step");
+        helper.assertTrue(
+                SensorReading.redstone(
+                        SensorMode.SCALE, 100L, 100L, 100) == 15,
+                "GT6 scale did not reach full redstone");
+        helper.assertTrue(
+                SensorReading.redstone(
+                        SensorMode.SCALE, 1L, 0L, 0) == 15,
+                "GT6 scale max=0 boundary drifted");
+        helper.assertTrue(
+                SensorReading.redstone(
+                        SensorMode.PERCENT, 1L, 100L, 0) == 1,
+                "GT6 percent lost the first non-zero redstone step");
+        helper.assertTrue(
+                SensorReading.redstone(
+                        SensorMode.FULL, 0L, 0L, 0) == 15,
+                "GT6 FULL max=0 boundary drifted");
+        helper.assertTrue(
+                SensorReading.redstone(
+                        SensorMode.NOT_FULL, 0L, 0L, 0) == 0,
+                "GT6 NOT_FULL max=0 boundary drifted");
+        helper.assertTrue(
+                SensorReading.redstone(
+                        SensorMode.DISPLAY, 0L, 0L, 0, 7) == 7,
+                "GT6 DISPLAY did not retain the previous redstone value");
+        helper.succeed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)

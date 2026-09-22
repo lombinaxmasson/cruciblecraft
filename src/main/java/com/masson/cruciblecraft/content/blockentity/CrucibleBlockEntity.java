@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.block.SmelteryHosts;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.content.mold.MoldHost;
+import com.masson.cruciblecraft.content.sensor.TemperatureHost;
 import com.masson.cruciblecraft.energy.EnergyPackets;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.heat.ItemHeat;
@@ -47,7 +48,8 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, CruciblePour, MoldHost {
+public class CrucibleBlockEntity extends BlockEntity
+        implements IEnergyHandler, CruciblePour, MoldHost, TemperatureHost {
     public static final int MAX_INGOTS = CrucibleProcessCore.SINGLE_BLOCK_MAX_INGOTS;
     public static final float AMBIENT_TEMPERATURE = CrucibleProcessCore.AMBIENT_TEMPERATURE;
     public static final long HEAT_DISPLAY_CAPACITY = CrucibleProcessCore.HEAT_DISPLAY_CAPACITY;
@@ -483,6 +485,16 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler, 
     /** Display helper; temperature is already Celsius. */
     public float temperatureCelsius() {
         return temperature();
+    }
+
+    @Override
+    public float temperatureCelsius(Direction side) {
+        return temperatureCelsius();
+    }
+
+    @Override
+    public float temperatureMaxCelsius(Direction side) {
+        return casingMaxTemperature();
     }
 
     public boolean isMolten() {

@@ -338,6 +338,11 @@ def _gt_recipe(
     if item_outputs:
         body["item_outputs"] = item_outputs
     if chances:
+        if len(chances) != len(item_outputs or []):
+            raise ValueError(
+                "GT6 distillation output chances must match item outputs: "
+                f"{len(chances)} != {len(item_outputs or [])}"
+            )
         body["output_chances"] = chances
     return body
 
@@ -364,7 +369,6 @@ def hot_recipes() -> dict[str, dict[str, Any]]:
                 _fluid("methane", 4),
                 _fluid("water_distilled", 50),
             ],
-            chances=[500, 500, 500],
             line=350,
         ),
         "oil_extra_heavy.json": _gt_recipe(

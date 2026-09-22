@@ -386,12 +386,6 @@ public final class GTRecipeMapLoader {
                 toolRecipes,
                 componentHostRecipes,
                 chemicalPublishedRecipes);
-        if (lastCapacityReport.unverifiedScale()) {
-            CrucibleCraft.LOGGER.warn(
-                    "UNVERIFIED_SCALE recipe publication capacity: {}",
-                    lastCapacityReport);
-        }
-
         long completeValidationMillis = elapsedMs(phaseMark);
         long temporaryIndexMillis = 0L;
         long indexStarted = System.nanoTime();
@@ -1039,8 +1033,9 @@ public final class GTRecipeMapLoader {
                 unverified,
                 List.copyOf(warnings));
         if (unverified) {
-            CrucibleCraft.LOGGER.warn(
-                    "UNVERIFIED_SCALE {}", String.join("; ", warnings));
+            CrucibleCraft.LOGGER.info(
+                    "UNVERIFIED_SCALE (REPORT_ONLY) {}",
+                    String.join("; ", warnings));
         }
         return report;
     }

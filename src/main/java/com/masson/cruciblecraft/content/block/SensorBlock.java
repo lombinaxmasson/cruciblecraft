@@ -36,6 +36,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -152,9 +153,20 @@ public final class SensorBlock extends Block
             BlockPos pos,
             Player player,
             BlockHitResult hit) {
+        if (hit.getDirection() != state.getValue(FACING)) {
+            return InteractionResult.PASS;
+        }
         if (!level.isClientSide
-                && level.getBlockEntity(pos) instanceof SensorBlockEntity sensor) {
-            sensor.adjustSetNumber(player.isShiftKeyDown() ? 10 : 1);
+                && level.getBlockEntity(pos) instanceof SensorBlockEntity sensor
+                && sensor.mode().usesSetNumber()) {
+            int delta = thresholdAdjustment(
+                    pos,
+                    hit.getDirection(),
+                    hit.getLocation(),
+                    sensor.hexadecimal());
+            if (delta != 0) {
+                sensor.adjustSetNumber(delta);
+            }
         }
         return InteractionResult.SUCCESS;
     }
@@ -203,14 +215,53 @@ public final class SensorBlock extends Block
             return ToolResult.SUCCESS;
         }
         if (action == ToolAction.SCREWDRIVER) {
+            if (context.getClickedFace()
+                    != level.getBlockState(pos).getValue(FACING)) {
+                return ToolResult.PASS;
+            }
             if (!level.isClientSide) {
-                SensorMode mode = sensor.cycleMode();
-                if (player != null) {
-                    player.displayClientMessage(
-                            Component.translatable(
-                                    "message.cruciblecraft.sensor.mode."
-                                            + mode.name().toLowerCase()),
-                            true);
+                boolean display = isDisplayHit(
+                        pos,
+                        context.getClickedFace(),
+                        context.getClickLocation());
+                if (display) {
+                    sensor.toggleHexadecimal();
+                    if (player != null) {
+                        player.displayClientMessage(
+                                Component.literal(
+                                        sensor.hexadecimal()
+                                                ? "Hexadecimal"
+                                                : "Decimal"),
+                                true);
+                    }
+                } else {
+                    int delta = averagingAdjustment(
+                            pos,
+                            context.getClickedFace(),
+                            context.getClickLocation(),
+                            sensor.hexadecimal());
+                    if (delta != 0) {
+                        sensor.adjustAverageWindow(delta);
+                        if (player != null) {
+                            player.displayClientMessage(
+                                    Component.literal(
+                                            sensor.averageWindow() < 2
+                                                    ? "Averaging disabled"
+                                                    : "Averaging over "
+                                                            + sensor.averageWindow()
+                                                            + " values"),
+                                    true);
+                        }
+                    } else {
+                        SensorMode mode = sensor.cycleMode();
+                        if (player != null) {
+                            player.displayClientMessage(
+                                    Component.translatable(
+                                            "message.cruciblecraft.sensor.mode."
+                                                    + mode.name().toLowerCase()),
+                                    true);
+                        }
+                    }
                 }
                 ToolClick.hurt(context);
             }
@@ -224,6 +275,82 @@ public final class SensorBlock extends Block
             return ToolResult.SUCCESS;
         }
         return ToolResult.PASS;
+    }
+
+    /**
+     * Returns the threshold-button delta using GT6's 16x16 front-face
+     * coordinates. Rows are -/+100, -/+10, and -/+1 in decimal mode; the
+     * hexadecimal equivalents are -/+256, -/+16, and -/+1.
+     */
+    public static int thresholdAdjustment(
+            BlockPos pos,
+            Direction face,
+            Vec3 hit,
+            boolean hexadecimal) {
+        return buttonAdjustment(pos, face, hit, hexadecimal);
+    }
+
+    /**
+     * Returns the change to GT6's sliding-average window for a screwdriver
+     * click on the same six threshold buttons. The decimal steps are
+     * 100/10/1; hexadecimal steps are 256/16/1.
+     */
+    public static int averagingAdjustment(
+            BlockPos pos,
+            Direction face,
+            Vec3 hit,
+            boolean hexadecimal) {
+        return buttonAdjustment(pos, face, hit, hexadecimal);
+    }
+
+    private static int buttonAdjustment(
+            BlockPos pos,
+            Direction face,
+            Vec3 hit,
+            boolean hexadecimal) {
+        double[] coordinates = faceCoordinates(pos, face, hit);
+        int x = (int) Math.floor(coordinates[0] * 16.0);
+        int y = (int) Math.floor(coordinates[1] * 16.0);
+        if (x < 9 || x > 14 || y < 6 || y > 14) {
+            return 0;
+        }
+        int step = y <= 8
+                ? (hexadecimal ? 256 : 100)
+                : y <= 11
+                        ? (hexadecimal ? 16 : 10)
+                        : 1;
+        return x <= 11 ? -step : step;
+    }
+
+    /**
+     * GT6's display occupies pixels 2..14 by 2..4 on the front face.
+     */
+    public static boolean isDisplayHit(
+            BlockPos pos,
+            Direction face,
+            Vec3 hit) {
+        double[] coordinates = faceCoordinates(pos, face, hit);
+        return coordinates[0] >= 2.0 / 16.0
+                && coordinates[0] <= 14.0 / 16.0
+                && coordinates[1] >= 2.0 / 16.0
+                && coordinates[1] <= 4.0 / 16.0;
+    }
+
+    private static double[] faceCoordinates(
+            BlockPos pos,
+            Direction face,
+            Vec3 hit) {
+        double x = hit.x - pos.getX();
+        double y = hit.y - pos.getY();
+        double z = hit.z - pos.getZ();
+        return switch (face) {
+            case DOWN -> new double[] {x, 1.0 - z};
+            case UP -> new double[] {x, z};
+            case NORTH -> new double[] {1.0 - x, 1.0 - y};
+            case SOUTH -> new double[] {x, 1.0 - y};
+            case WEST -> new double[] {z, 1.0 - y};
+            case EAST -> new double[] {1.0 - z, 1.0 - y};
+        };
     }
 
     @Override

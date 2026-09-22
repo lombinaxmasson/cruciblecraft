@@ -1,30 +1,41 @@
 package com.masson.cruciblecraft.content.sensor;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.api.tileentity.ProgressHost;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
-import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
-import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ReactorCoreBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.RotationalAxleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.RotationalGearboxBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
+import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
+import com.masson.cruciblecraft.content.multiblock.MultiblockPort;
+import com.masson.cruciblecraft.content.item.ReactorRodItem;
+import com.masson.cruciblecraft.nuclear.ReactorRodPhysics;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
 
-/** Adjacent / world reads for one GT6 sensor identity. Missing hosts stay 0. */
+/** Adjacent / world reads for one GT6 sensor identity. */
 public final class SensorReading {
     public record Sample(long value, long max) {
         public static final Sample ZERO = new Sample(0L, 0L);
@@ -40,87 +51,132 @@ public final class SensorReading {
             BlockPos sensorPos,
             Direction probe,
             long tpsValue) {
+        BlockPos target = targetPos(level, sensorPos, probe);
         return switch (kind) {
-            case THERMOMETER -> thermometer(level, sensorPos.relative(probe));
-            case GIBBLOMETER -> gibbl(level, sensorPos.relative(probe), 1000L);
+            case THERMOMETER -> thermometer(level, target, probe);
+            case GIBBLOMETER -> gibbl(level, target, 1000L);
             case KILO_GIBBLOMETER -> gibbl(
-                    level, sensorPos.relative(probe), 1_000_000L);
-            case LUMINOMETER -> light(level, sensorPos.relative(probe));
+                    level, target, 1_000_000L);
+            case LUMINOMETER -> light(level, target);
             case CHRONOMETER -> time(level);
-            case ITEMOMETER -> items(level, sensorPos.relative(probe), probe, false);
-            case STACKOMETER -> items(level, sensorPos.relative(probe), probe, true);
+            case ITEMOMETER -> items(level, target, probe, false);
+            case STACKOMETER -> items(level, target, probe, true);
             case FLUIDOMETER -> fluids(
-                    level, sensorPos.relative(probe), probe, 1L, true);
+                    level, target, probe, 1L, true);
             case BUCKETOMETER -> fluids(
-                    level, sensorPos.relative(probe), probe, 1000L, true);
+                    level, target, probe, 1000L, true);
             case KILO_BUCKETOMETER -> fluids(
-                    level, sensorPos.relative(probe), probe, 1_000_000L, false);
+                    level, target, probe, 1_000_000L, false);
             case LIGHT_WEIGHTOMETER -> weight(
-                    level, sensorPos.relative(probe), probe, 1000.0, 65.535);
+                    level, target, probe, 1000.0, 65.535);
             case MEDIUM_WEIGHTOMETER -> weight(
-                    level, sensorPos.relative(probe), probe, 1.0, SENSOR_MAX);
+                    level, target, probe, 1.0, SENSOR_MAX);
             case HEAVY_WEIGHTOMETER -> weight(
                     level,
-                    sensorPos.relative(probe),
+                    target,
                     probe,
                     0.001,
                     SENSOR_MAX * 1000.0);
             case SUPER_HEAVY_WEIGHTOMETER -> weight(
                     level,
-                    sensorPos.relative(probe),
+                    target,
                     probe,
                     0.000001,
                     SENSOR_MAX * 1_000_000.0);
             case ELECTROMETER -> electrometer(
-                    level, sensorPos.relative(probe), false);
+                    level, target, false);
             case LASEROMETER -> electrometer(
-                    level, sensorPos.relative(probe), true);
+                    level, target, true);
             case TPS_METER -> new Sample(tpsValue, 2000L);
             case PLAYER_COUNTER -> players(level);
-            case PROGRESS_METER -> progress(level, sensorPos.relative(probe));
-            case TACHOMETER -> tachometer(level, sensorPos.relative(probe));
-            case GEIGER_COUNTER -> geiger(level, sensorPos.relative(probe));
+            case PROGRESS_METER -> progress(level, target, probe);
+            case TACHOMETER -> tachometer(level, target);
+            case GEIGER_COUNTER -> geiger(level, target);
         };
     }
 
     public static int redstone(SensorMode mode, long value, long max, int setNumber) {
-        int boundValue = bind16(value);
+        return redstone(mode, value, max, setNumber, 0);
+    }
+
+    public static int redstone(
+            SensorMode mode,
+            long value,
+            long max,
+            int setNumber,
+            int previousRedstone) {
+        long boundValue = bindInt(value);
+        long boundMax = bindInt(max);
         int boundSet = bind16(setNumber);
         return switch (mode) {
-            case DISPLAY -> 0;
+            case DISPLAY -> bind4(previousRedstone);
             case GREATER -> boundValue > boundSet ? 15 : 0;
             case EQUAL -> boundValue == boundSet ? 15 : 0;
             case SMALLER -> boundValue < boundSet ? 15 : 0;
-            case SCALE -> scale(boundValue, Math.max(1, boundSet), 15);
+            case SCALE -> scale(boundValue, boundSet, 15);
             case PERCENT -> {
-                long percent = max > 0L
-                        ? Math.min(100L, (value * 100L) / max)
+                long percent = boundMax > 0L
+                        ? Math.min(100L, (boundValue * 100L) / boundMax)
                         : 0L;
                 yield scale(percent, 100L, 15);
             }
-            case FULL -> value >= max && max > 0L ? 15 : 0;
-            case NOT_FULL -> value >= max && max > 0L ? 0 : 15;
+            case FULL -> boundValue >= boundMax ? 15 : 0;
+            case NOT_FULL -> boundValue >= boundMax ? 0 : 15;
         };
     }
 
-    private static Sample thermometer(Level level, BlockPos pos) {
+    private static Sample thermometer(
+            Level level, BlockPos pos, Direction probe) {
         BlockEntity be = level.getBlockEntity(pos);
-        if (be instanceof CrucibleBlockEntity crucible) {
-            return kelvin(crucible.temperatureCelsius());
+        if (be instanceof TemperatureHost host) {
+            return kelvin(
+                    host.temperatureCelsius(probe),
+                    host.temperatureMaxCelsius(probe));
         }
-        if (be instanceof CeramicMoldBlockEntity mold) {
-            return kelvin(mold.temperature());
+        if (be instanceof ReactorCoreBlockEntity reactor) {
+            return new Sample(Math.max(0L, reactor.heat() / 5L), 0L);
         }
-        return Sample.ZERO;
+        return worldTemperature(level, pos);
     }
 
-    private static Sample kelvin(float celsius) {
+    private static Sample kelvin(float celsius, float maxCelsius) {
         long kelvin = Math.max(0L, Math.round(celsius + 273.0F));
-        return new Sample(kelvin, Math.max(kelvin, 2273L));
+        long maximum = Float.isFinite(maxCelsius)
+                ? Math.max(0L, Math.round(maxCelsius + 273.0F))
+                : 0L;
+        return new Sample(kelvin, maximum);
+    }
+
+    private static Sample worldTemperature(Level level, BlockPos pos) {
+        float biomeTemperature =
+                level.getBiome(pos).value().getBaseTemperature();
+        long kelvin = Math.max(1L, 270L + (long) (biomeTemperature * 20.0F));
+        for (Direction direction : Direction.values()) {
+            BlockPos nearby = direction == Direction.UP
+                    ? pos.above()
+                    : direction == Direction.DOWN
+                            ? pos.below()
+                            : pos.relative(direction);
+            var state = level.getBlockState(nearby);
+            if (state.is(Blocks.FIRE)) {
+                kelvin = Math.max(kelvin, 473L);
+            }
+            if (state.getFluidState().is(Fluids.LAVA)) {
+                kelvin = Math.max(kelvin, 773L);
+            }
+        }
+        var state = level.getBlockState(pos);
+        if (state.is(Blocks.FIRE)) {
+            kelvin = Math.max(kelvin, 473L);
+        }
+        if (state.getFluidState().is(Fluids.LAVA)) {
+            kelvin = Math.max(kelvin, 773L);
+        }
+        return new Sample(kelvin, 0L);
     }
 
     private static Sample light(Level level, BlockPos pos) {
-        int light = level.getMaxLocalRawBrightness(pos);
+        int light = level.getBrightness(LightLayer.BLOCK, pos);
         return new Sample(light, 15L);
     }
 
@@ -138,18 +194,46 @@ public final class SensorReading {
         long value = 0L;
         long max = 0L;
         for (int slot = 0; slot < items.getSlots(); slot++) {
+            ItemStack stack = items.getStackInSlot(slot);
             int limit = Math.max(1, items.getSlotLimit(slot));
-            if (stacks) {
-                if (!items.getStackInSlot(slot).isEmpty()) {
-                    value++;
+            if (!isFluidDisplay(stack)) {
+                if (stacks) {
+                    if (!stack.isEmpty()) {
+                        value++;
+                    }
+                } else {
+                    value += stack.getCount();
                 }
+            }
+            if (stacks) {
                 max++;
             } else {
-                value += items.getStackInSlot(slot).getCount();
                 max += limit;
             }
         }
         return new Sample(value, max);
+    }
+
+    /**
+     * GT6's {@code IL.Display_Fluid} is not currently registered by CC. Keep
+     * the exclusion capability-safe so it also works when a compatible
+     * Fluid Display item is present without linking to its class.
+     */
+    private static boolean isFluidDisplay(ItemStack stack) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+        String simpleName = stack.getItem().getClass().getSimpleName();
+        if ("ItemFluidDisplay".equals(simpleName)) {
+            return true;
+        }
+        ResourceLocation id = net.minecraft.core.registries.BuiltInRegistries.ITEM
+                .getKey(stack.getItem());
+        return id != null
+                && ("gregtech:gt.display.fluid".equals(id.toString())
+                        || "gt.display.fluid".equals(id.getPath())
+                        || "fluid_display".equals(id.getPath())
+                        || "display_fluid".equals(id.getPath()));
     }
 
     private static Sample fluids(
@@ -205,11 +289,29 @@ public final class SensorReading {
                     boiler.steamAmount() / divisor,
                     boiler.steamCapacity() / divisor);
         }
+        if (be instanceof LargeBoilerBlockEntity boiler) {
+            return new Sample(
+                    boiler.steamAmountLong() / divisor,
+                    boiler.steamCapacityLong() / divisor);
+        }
+        if (be instanceof SteamEngineBlockEntity engine) {
+            return new Sample(
+                    engine.steamAmount() / divisor,
+                    engine.steamCapacity() / divisor);
+        }
         if (be instanceof CrucibleBlockEntity crucible) {
             long unitNine = 9L * MaterialPrefixes.INGOT.units();
             return new Sample(
                     divUp(crucible.totalUnits() * 1000L, unitNine) / divisor,
                     divUp(CrucibleBlockEntity.maxUnits() * 1000L, unitNine)
+                            / divisor);
+        }
+        if (be instanceof LargeCrucibleBlockEntity crucible) {
+            long unitNine = 9L * MaterialPrefixes.INGOT.units();
+            return new Sample(
+                    divUp(crucible.process().totalUnits() * 1000L, unitNine)
+                            / divisor,
+                    divUp(crucible.process().maxUnits() * 1000L, unitNine)
                             / divisor);
         }
         return Sample.ZERO;
@@ -287,13 +389,17 @@ public final class SensorReading {
         return new Sample(server.getPlayerCount(), server.getMaxPlayers());
     }
 
-    private static Sample progress(Level level, BlockPos pos) {
+    private static Sample progress(
+            Level level, BlockPos pos, Direction probe) {
         BlockEntity be = level.getBlockEntity(pos);
-        if (be instanceof ProcessingMachineBlockEntity machine) {
-            return new Sample(machine.progress(), machine.duration());
+        if (be instanceof ProgressHost host) {
+            return new Sample(
+                    Math.max(0L, host.progressValue(probe)),
+                    Math.max(0L, host.progressMax(probe)));
         }
-        if (be instanceof CokeOvenBlockEntity oven) {
-            return new Sample(oven.progress(), oven.recipeDuration());
+        if (be instanceof SpawnerBlockEntity spawner) {
+            var tag = spawner.getSpawner().save(new net.minecraft.nbt.CompoundTag());
+            return new Sample(Math.max(0L, tag.getShort("Delay")), Long.MAX_VALUE);
         }
         return Sample.ZERO;
     }
@@ -302,7 +408,15 @@ public final class SensorReading {
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof ReactorCoreBlockEntity core) {
             long neutrons = core.neutronSum();
-            return new Sample(neutrons, Math.max(neutrons, 1L));
+            long maximum = 0L;
+            for (int slot = 0; slot < core.slots(); slot++) {
+                var rod = core.rod(slot);
+                if (rod.getItem() instanceof ReactorRodItem reactorRod) {
+                    maximum += ReactorRodPhysics.neutronMaximum(
+                            reactorRod.entry(), core.coolant());
+                }
+            }
+            return new Sample(neutrons, maximum);
         }
         return Sample.ZERO;
     }
@@ -318,6 +432,22 @@ public final class SensorReading {
         return items;
     }
 
+    private static BlockPos targetPos(
+            Level level,
+            BlockPos sensorPos,
+            Direction probe) {
+        BlockPos adjacent = sensorPos.relative(probe);
+        BlockEntity be = level.getBlockEntity(adjacent);
+        if (be instanceof MultiblockPort port) {
+            return port.controllerPosition()
+                    .filter(controller -> level.getBlockEntity(controller)
+                            instanceof MultiblockControllerBinding binding
+                            && binding.structureValid())
+                    .orElse(adjacent);
+        }
+        return adjacent;
+    }
+
     private static long divUp(long value, long divisor) {
         if (divisor <= 0L || value <= 0L) {
             return 0L;
@@ -326,17 +456,28 @@ public final class SensorReading {
     }
 
     private static int scale(long value, long maximum, int range) {
-        if (value <= 0L || maximum <= 0L) {
+        if (value <= 0L) {
             return 0;
         }
-        long scaled = (value * range) / maximum;
+        if (maximum <= 0L || value >= maximum) {
+            return range;
+        }
+        long scaled = 1L + (value * (range - 1L)) / maximum;
         return (int) Math.min(range, Math.max(0L, scaled));
     }
 
-    private static int bind16(long value) {
+    private static long bindInt(long value) {
         if (value < 0L) {
             return 0;
         }
-        return (int) Math.min(SENSOR_MAX, value);
+        return Math.min(Integer.MAX_VALUE, value);
+    }
+
+    private static int bind16(long value) {
+        return (int) Math.min(SENSOR_MAX, Math.max(0L, value));
+    }
+
+    private static int bind4(long value) {
+        return (int) Math.min(15L, Math.max(0L, value));
     }
 }

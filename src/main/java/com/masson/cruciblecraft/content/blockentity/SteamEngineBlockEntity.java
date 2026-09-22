@@ -270,6 +270,7 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
     }
 
     public int steamAmount() { return steam.getFluidAmount(); }
+    public int steamCapacity() { return steam.getCapacity(); }
     public int exhaustAmount() { return exhaust.getFluidAmount(); }
     public FluidStack exhaustFluid() { return exhaust.getFluid().copy(); }
     public String status() { return status; }

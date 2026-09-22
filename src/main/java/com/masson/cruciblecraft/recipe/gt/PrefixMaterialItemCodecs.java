@@ -71,6 +71,17 @@ public final class PrefixMaterialItemCodecs {
         return MaterialLookup.tryStack(parsed.material().id(), parsed.form(), count);
     }
 
+    public static Optional<ItemStack> rewriteUniqueStack(
+            ResourceLocation itemId, int count) {
+        Parsed parsed = parseUniqueLiveId(itemId).orElse(null);
+        if (parsed == null || count <= 0) {
+            return Optional.empty();
+        }
+        return MaterialLookup.item(parsed.material(), parsed.form())
+                .filter(item -> count <= item.getDefaultMaxStackSize())
+                .map(item -> new ItemStack(item, count));
+    }
+
     public static Optional<Ingredient> rewriteTag(ResourceLocation tagId) {
         if (tagId == null) {
             return Optional.empty();
@@ -359,7 +370,13 @@ public final class PrefixMaterialItemCodecs {
         if (hasComponents(json)) {
             return ItemStack.STRICT_CODEC.decode(ops, input);
         }
+        // GT6-derived item output declarations historically use `item`, while
+        // vanilla ItemStack JSON uses `id`. Accept both so the material
+        // identity rewrite runs before STRICT_CODEC validates the stack.
         ResourceLocation id = itemId(json, "id");
+        if (id == null) {
+            id = itemId(json, "item");
+        }
         int count = 1;
         if (json != null && json.isJsonObject() && json.getAsJsonObject().has("count")) {
             JsonElement countElement = json.getAsJsonObject().get("count");
@@ -368,6 +385,9 @@ public final class PrefixMaterialItemCodecs {
             }
         }
         Optional<ItemStack> rewritten = rewriteStack(id, count);
+        if (rewritten.isEmpty()) {
+            rewritten = rewriteUniqueStack(id, count);
+        }
         if (rewritten.isPresent()) {
             return DataResult.success(Pair.of(rewritten.orElseThrow(), input));
         }

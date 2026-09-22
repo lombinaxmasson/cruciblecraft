@@ -2,7 +2,11 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "cruciblecraft:cobalt/centrifuged_crushed_ore"
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "cobalt"
+      },
+      "items": "cruciblecraft:centrifuged_crushed_ore"
     }
   ],
   "provenance": {
@@ -15,8 +19,11 @@
     "source_kind": "gt6_pinned_dump_projection"
   },
   "result": {
+    "components": {
+      "cruciblecraft:prefix_material": "cobalt"
+    },
     "count": 9,
-    "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
+    "id": "cruciblecraft:tiny_centrifuged_crushed_ore"
   },
   "type": "minecraft:crafting_shapeless"
 }
