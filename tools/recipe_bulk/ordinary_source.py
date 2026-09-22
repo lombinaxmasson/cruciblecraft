@@ -53,6 +53,15 @@ EXTRA_PREFIX_ITEM_TO_FORM: dict[str, str] = {
     "gregtech:gt.meta.plantGtTwig": "plant_gt_twig",
     "gregtech:gt.meta.plantGtWart": "plant_gt_wart",
 }
+OPTIONAL_PLANT_FORMS = frozenset(
+    {
+        "plant_gt_berry",
+        "plant_gt_blossom",
+        "plant_gt_fiber",
+        "plant_gt_twig",
+        "plant_gt_wart",
+    }
+)
 SMELTER_UNPROVABLE = "gt.recipe.smelter#0111"
 SMELTER_RECYCLING = ("gt.recipe.smelter#1829", "gt.recipe.smelter#1884")
 ORDINARY_VANILLA_SPECIAL: dict[tuple[str, int], str] = {
@@ -192,7 +201,9 @@ def load_catalogs(required_forms: dict[str, set[str]] | None = None) -> assemble
     registered = {key: set(value) for key, value in catalogs.registered_forms.items()}
     if required_forms:
         for material, forms in required_forms.items():
-            registered.setdefault(material, set()).update(forms)
+            registered.setdefault(material, set()).update(
+                form for form in forms if form not in OPTIONAL_PLANT_FORMS
+            )
     prefix_tags = dict(catalogs.prefix_tags)
     for form in list(identities.PREFIX_FORM_UNITS) + list(EXTRA_PREFIX_ITEM_TO_FORM.values()):
         if form not in prefix_tags:
@@ -987,9 +998,20 @@ def collect_required_forms(relations: list[dict[str, Any]]) -> dict[str, set[str
         for operand in _operands(relation):
             material = operand.get("material")
             form = operand.get("form")
-            if material and form:
+            if material and form and str(form) not in OPTIONAL_PLANT_FORMS:
                 required[str(material)].add(str(form))
     return {material: forms for material, forms in required.items()}
+
+
+def optional_plant_forms_in(relations: list[dict[str, Any]]) -> list[str]:
+    return sorted(
+        {
+            str(operand.get("form"))
+            for relation in relations
+            for operand in _operands(relation)
+            if str(operand.get("form") or "") in OPTIONAL_PLANT_FORMS
+        }
+    )
 
 
 def assign_rows(
@@ -1218,6 +1240,20 @@ def classify_family(item: WorkFamily, relations: list[dict[str, Any]]) -> dict[s
             "reason": (
                 "family exceeds bronze Smelter envelope 1/4/0/1 with 8000 mB "
                 "output tanks and EUt 1-1024; not completed by raising the machine gate"
+            ),
+        }
+    optional_forms = optional_plant_forms_in(relations)
+    if optional_forms:
+        return {
+            "disposition": "reclassify",
+            "future_owner": "later:agriculture/plant_form_overlay",
+            "reason": (
+                "family requires optional crops plant forms absent from the base "
+                "material registration gate: " + ",".join(optional_forms)
+            ),
+            "recheck_condition": (
+                "the crops addon must register the exact plant_gt_* forms before "
+                "this family can return to ordinary closure"
             ),
         }
     if not count_ok:

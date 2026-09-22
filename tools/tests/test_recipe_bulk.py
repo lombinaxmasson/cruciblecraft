@@ -2,6 +2,7 @@
 """Contract tests for the reusable recipe bulk compiler."""
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -18,6 +19,7 @@ from tools.recipe_bulk.emit import (
 from tools.recipe_bulk.resolver import ResolutionError, resolve_operand
 from tools.recipe_bulk.templates import expand_family
 from tools.recipe_bulk import compile as compile_mod
+from tools.recipe_bulk import ordinary_source
 from tools.recipe_bulk import replay as replay_mod
 from tools.recipe_bulk.compile import semantic_family_count
 from tools.recipe_bulk.matrix import authored_relations
@@ -376,6 +378,68 @@ class RecipeBulkCompilerTest(unittest.TestCase):
         roaster = compile_mod.planned_documents_for("roaster/compact")[0][1]
         self.assertEqual("cruciblecraft:assembler/compact", assembler["publication_group"])
         self.assertEqual("cruciblecraft:roaster/compact", roaster["publication_group"])
+
+    def test_optional_plant_forms_are_not_added_to_base_catalogs(self) -> None:
+        catalogs = ordinary_source.load_catalogs(
+            {
+                "copper": set(ordinary_source.OPTIONAL_PLANT_FORMS),
+            }
+        )
+        registered = catalogs.registered_forms.get("copper", set())
+        self.assertTrue(ordinary_source.OPTIONAL_PLANT_FORMS.isdisjoint(registered))
+
+    def test_optional_plant_family_is_reclassified_to_addon_overlay(self) -> None:
+        item = ordinary_source.WorkFamily(
+            family_id="portfolio:test/plant",
+            template_key="gt.recipe.loom#plant",
+            record={"expanded_count": 1},
+            owner="object_expression/gt_prefix:plantGtBerry",
+            relation_count=1,
+        )
+        verdict = ordinary_source.classify_family(
+            item,
+            [
+                {
+                    "eut": 16,
+                    "item_inputs": [{"form": "plant_gt_berry"}],
+                    "item_input_counts": [1],
+                    "item_outputs": [],
+                    "fluid_inputs": [],
+                    "fluid_outputs": [],
+                }
+            ],
+        )
+        self.assertEqual("reclassify", verdict["disposition"])
+        self.assertEqual(
+            "later:agriculture/plant_form_overlay",
+            verdict["future_owner"],
+        )
+
+    def test_base_smelter_resources_publish_no_optional_plant_forms(self) -> None:
+        root = (
+            Path(__file__).resolve().parents[2]
+            / "src"
+            / "recipe_generated"
+            / "resources"
+            / "data"
+            / "cruciblecraft"
+            / "recipe"
+            / "smelter"
+            / "ordinary_closure"
+        )
+        self.assertTrue(root.is_dir())
+        self.assertFalse(
+            any("plant_gt_" in path.read_text(encoding="utf-8") for path in root.rglob("*.json"))
+        )
+        policy = json.loads(
+            (
+                root.parent.parent
+                / "publication_policy"
+                / "smelter_ordinary_closure_gt_prefix.json"
+            ).read_text(encoding="utf-8")
+        )
+        self.assertEqual(25, policy["family_count"])
+        self.assertEqual(3150, policy["relation_count"])
 
     def test_compiler_cannot_write_production(self) -> None:
         from tools.recipe_bulk.write_guard import ProductionWriteError

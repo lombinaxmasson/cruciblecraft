@@ -44,7 +44,6 @@ def _ensure_authority_source(slug: str, extra_forms: list[str]) -> None:
             "dust_div72": ["dust"],
             "small_dust": ["dust"],
         },
-        "source_hash": "",
     }
     replaced = False
     for index, source in enumerate(sources):
@@ -63,7 +62,7 @@ def _ensure_authority_source(slug: str, extra_forms: list[str]) -> None:
         "Single overlay authority. Card builders write required_forms.json only; "
         "they do not write material_registration_gate.json."
     )
-    census.write_stable(form_authority.AUTHORITY, form_authority.refresh_hashes(document))
+    census.write_stable(form_authority.AUTHORITY, document)
     form_authority.write()
 
 
@@ -208,8 +207,8 @@ def emit_wave(slug: str, *, write_gate: bool) -> dict[str, Any]:
     passed = bool(receipt and receipt.get("status") == "PASS")
     unique_active = closeout.unique_active_wave if passed else slug
     next_unassigned = closeout.next_unassigned if passed else False
-    census = wave.build_census(slug, lock, publication, replayed, load)
-    census.write_stable(root / "census_delta.json", census)
+    census_delta = wave.build_census(slug, lock, publication, replayed, load)
+    census.write_stable(root / "census_delta.json", census_delta)
     verdict = wave.evaluate_wave_ready(
         slug,
         source=source,
@@ -218,12 +217,12 @@ def emit_wave(slug: str, *, write_gate: bool) -> dict[str, Any]:
         player_path=player_path,
         receipt=receipt,
         load=load,
-        census=census,
+        census=census_delta,
         unique_active=unique_active,
     )
     topology = wave.build_topology(
         slug,
-        census,
+        census_delta,
         lock,
         unique_active,
         next_unassigned,
@@ -232,7 +231,7 @@ def emit_wave(slug: str, *, write_gate: bool) -> dict[str, Any]:
     census.write_stable(root / "topology.json", topology)
     readiness = wave.build_readiness(
         slug,
-        census=census,
+        census=census_delta,
         lock=lock,
         publication=publication,
         receipt=receipt,
@@ -303,8 +302,8 @@ def rebuild_closeout(slug: str) -> dict[str, Any]:
         "host": source.get("host") or spec.host,
         "reclassified": list(candidate.get("reclassified") or []),
     }
-    census = wave.build_census(slug, lock, publication, replayed, load)
-    census.write_stable(root / "census_delta.json", census)
+    census_delta = wave.build_census(slug, lock, publication, replayed, load)
+    census.write_stable(root / "census_delta.json", census_delta)
     closeout = spec_for(slug)
     receipt = (
         census.load_json(root / "gametest_receipt.json")
@@ -330,12 +329,12 @@ def rebuild_closeout(slug: str) -> dict[str, Any]:
         player_path=player_path,
         receipt=receipt,
         load=load,
-        census=census,
+        census=census_delta,
         unique_active=unique_active,
     )
     topology = wave.build_topology(
         slug,
-        census,
+        census_delta,
         lock,
         unique_active,
         next_unassigned,
@@ -344,7 +343,7 @@ def rebuild_closeout(slug: str) -> dict[str, Any]:
     census.write_stable(root / "topology.json", topology)
     readiness = wave.build_readiness(
         slug,
-        census=census,
+        census=census_delta,
         lock=lock,
         publication=publication,
         receipt=receipt,

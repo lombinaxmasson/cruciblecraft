@@ -38,8 +38,8 @@ TEMPLATE_KEY = "gt.recipe.loom#0000"
 SOURCE_ROWS = 1334
 PREP_SELECTED_ROWS = 1168
 PREP_OVERFLOW_ROWS = 166
-SELECTED_ROWS = 477
-OVERFLOW_ROWS = 857
+SELECTED_ROWS = 476
+OVERFLOW_ROWS = 858
 LIVE_NEEDLE = "loom"
 CAPABILITY_PATH = (
     ROOT / "tools" / "capabilities" / "machines" / "loom" / "capability.json"
@@ -52,7 +52,7 @@ LIVE_GENERATED = (
 POLICY_PATH = LIVE_GENERATED / "publication_policy" / "loom.json"
 PUBLICATION_GROUP = f"{TARGET_MAP}/pilot/loom"
 LOCK_NOTE = (
-    "live compile for machines/loom; 477 runtime-registered exact rows; "
+    "live compile for machines/loom; 476 runtime-registered exact rows; "
     "166 unmapped MTE/plant_gt_fiber rows and 691 shadowed input signatures "
     "explicitly_blocked; not player_complete"
 )
