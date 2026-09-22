@@ -97,6 +97,7 @@ import com.masson.cruciblecraft.content.block.MaterialPlateStorageBlock;
 import com.masson.cruciblecraft.content.block.GlowtusBlock;
 import com.masson.cruciblecraft.content.block.GtBushBlock;
 import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
+import com.masson.cruciblecraft.content.block.GtStickBlock;
 import com.masson.cruciblecraft.content.block.BedrockOreBlock;
 import com.masson.cruciblecraft.content.block.GtBrokenOreBlock;
 import com.masson.cruciblecraft.content.block.GtHostedOreBlock;
@@ -238,6 +239,8 @@ public final class ModBlocks {
             GtBushBlock::new);
     public static final DeferredBlock<GtSurfaceRockBlock> GT_SURFACE_ROCK =
             BLOCKS.register("gt_surface_rock", GtSurfaceRockBlock::new);
+    public static final DeferredBlock<GtStickBlock> GT_STICK =
+            BLOCKS.register("gt_stick", GtStickBlock::new);
     public static final DeferredBlock<BedrockOreBlock> GT_BEDROCK_ORE =
             BLOCKS.register(
                     "gt_bedrock_ore",

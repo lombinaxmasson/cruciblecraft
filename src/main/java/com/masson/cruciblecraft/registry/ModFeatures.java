@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.registry;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.worldgen.BedrockOreVeinFeature;
 import com.masson.cruciblecraft.worldgen.FluidSpringFeature;
+import com.masson.cruciblecraft.worldgen.GtStickFeature;
 import com.masson.cruciblecraft.worldgen.LargeVeinFeature;
 import com.masson.cruciblecraft.worldgen.NetherQuartzLayerFeature;
 import com.masson.cruciblecraft.worldgen.SmallOreFeature;
@@ -59,6 +60,10 @@ public final class ModFeatures {
     /** GT6 WorldgenTree* via com.masson.cruciblecraft.worldgen.tree.prep GtTreeGrower / GtTreeSpecies / GtTreePlacement. */
     public static final DeferredHolder<Feature<?>, GtTreeFeature> GT_TREE =
             FEATURES.register("gt_tree", GtTreeFeature::new);
+
+    /** GT6 WorldgenSticks / MultiTileEntityStick 32756. */
+    public static final DeferredHolder<Feature<?>, GtStickFeature> GT_STICKS =
+            FEATURES.register("gt_sticks", GtStickFeature::new);
 
     /** GT6 WorldgenGlowtus / WorldgenBushes. */
     public static final DeferredHolder<

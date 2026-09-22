@@ -30,6 +30,7 @@ import com.masson.cruciblecraft.client.color.StorageArtColor;
 import com.masson.cruciblecraft.client.color.RockColor;
 import com.masson.cruciblecraft.client.model.CeramicMoldGeometry;
 import com.masson.cruciblecraft.client.model.PositionalPebbleGeometry;
+import com.masson.cruciblecraft.client.model.PositionalStickGeometry;
 import com.masson.cruciblecraft.client.render.AnvilRenderer;
 import com.masson.cruciblecraft.client.render.BookshelfRenderer;
 import com.masson.cruciblecraft.client.render.BottleCrateRenderer;
@@ -123,6 +124,10 @@ public class ClientSetup {
                 ResourceLocation.fromNamespaceAndPath(
                         CrucibleCraft.MODID, "positional_pebble"),
                 PositionalPebbleGeometry.LOADER);
+        event.register(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "positional_stick"),
+                PositionalStickGeometry.LOADER);
         event.register(
                 ResourceLocation.fromNamespaceAndPath(
                         CrucibleCraft.MODID, "ceramic_mold"),

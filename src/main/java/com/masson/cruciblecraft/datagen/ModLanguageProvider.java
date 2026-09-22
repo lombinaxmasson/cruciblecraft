@@ -292,6 +292,7 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.BEDROCK_DRILL_HEAD, "基岩采矿钻头");
             addBlock(ModBlocks.GT_BUSH, "浆果灌木");
             addBlock(ModBlocks.GT_SURFACE_ROCK, "地表石子");
+            addBlock(ModBlocks.GT_STICK, "散落木棍");
             add("tooltip.cruciblecraft.surface_rock.material", "材质：%s");
             add("tooltip.cruciblecraft.small_ore.material", "矿物：%s");
             add("tooltip.cruciblecraft.rock.indicates", "表明存在 %s");
@@ -801,6 +802,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.BEDROCK_DRILL_HEAD, "Bedrock Mining Drill Head");
         addBlock(ModBlocks.GT_BUSH, "Berry Bush");
         addBlock(ModBlocks.GT_SURFACE_ROCK, "Surface Rock");
+        addBlock(ModBlocks.GT_STICK, "Scattered Stick");
         add("tooltip.cruciblecraft.surface_rock.material", "Material: %s");
         add("tooltip.cruciblecraft.small_ore.material", "Material: %s");
         add("tooltip.cruciblecraft.rock.indicates", "Indicates occurrence of %s");
