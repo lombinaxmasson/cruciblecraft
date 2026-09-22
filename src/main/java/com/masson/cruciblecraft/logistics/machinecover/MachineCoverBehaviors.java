@@ -18,10 +18,11 @@ import com.masson.cruciblecraft.registry.ModFluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.BlockHitResult;
@@ -583,6 +584,14 @@ public final class MachineCoverBehaviors {
             MachineCoverHost host,
             Direction side,
             ToolAction action) {
+        return onTool(host, side, action, null);
+    }
+
+    public static boolean onTool(
+            MachineCoverHost host,
+            Direction side,
+            ToolAction action,
+            Player player) {
         if (host == null || side == null || action == null) {
             return false;
         }
@@ -592,6 +601,55 @@ public final class MachineCoverBehaviors {
         }
         String path = cover.definitionId().getPath();
         int visual = cover.config().visual();
+        if (action == ToolAction.MAGNIFYING_GLASS) {
+            if ("controller_redstone".equals(path)
+                    || "controller_auto_redstone".equals(path)) {
+                detail(
+                        player,
+                        cover.config().invert().orElse(0) != 0
+                                ? "Runs when Input is OFF"
+                                : "Runs when Input is ON");
+                return true;
+            }
+            if ("controller_covers".equals(path)) {
+                detail(
+                        player,
+                        cover.config().invert().orElse(0) != 0
+                                ? "Covers work when Input is OFF"
+                                : "Covers work when Input is ON");
+                return true;
+            }
+            if (DETECTORS.contains(path)) {
+                detail(
+                        player,
+                        (visual & DETECTOR_STRONG) != 0
+                                ? "Emits strong Redstone"
+                                : "Emits weak Redstone",
+                        (visual & DETECTOR_INVERT) != 0
+                                ? "Emits when Condition FALSE"
+                                : "Emits when Condition TRUE");
+                return true;
+            }
+            if (SCALES.contains(path)) {
+                detail(
+                        player,
+                        (visual & DETECTOR_STRONG) != 0
+                                ? "Emits strong Redstone"
+                                : "Emits weak Redstone",
+                        (visual & DETECTOR_INVERT) != 0
+                                ? "Redstone scales down"
+                                : "Redstone scales up");
+                return true;
+            }
+            if ("redstone_emitter".equals(path)) {
+                detail(
+                        player,
+                        (visual & DETECTOR_STRONG) != 0
+                                ? "Emits strong Redstone"
+                                : "Emits weak Redstone");
+                return true;
+            }
+        }
         if (action == ToolAction.WIRE_CUTTER
                 && (DETECTORS.contains(path)
                         || SCALES.contains(path)
@@ -650,6 +708,15 @@ public final class MachineCoverBehaviors {
                 action,
                 cover,
                 next -> host.replaceCover(side, next));
+    }
+
+    private static void detail(Player player, String... lines) {
+        if (player == null) {
+            return;
+        }
+        for (String line : lines) {
+            player.displayClientMessage(Component.literal(line), false);
+        }
     }
 
     private static int energyVisual(long stored, long capacity) {

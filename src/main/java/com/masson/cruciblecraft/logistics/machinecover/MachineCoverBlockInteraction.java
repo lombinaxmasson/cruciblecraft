@@ -37,7 +37,11 @@ public final class MachineCoverBlockInteraction {
             ToolClick.hurt(context);
             return ToolResult.SUCCESS;
         }
-        if (MachineCoverBehaviors.onTool(machine, side, action)) {
+        if (MachineCoverBehaviors.onTool(
+                machine,
+                side,
+                action,
+                context.getPlayer())) {
             ToolClick.hurt(context);
             return ToolResult.SUCCESS;
         }
