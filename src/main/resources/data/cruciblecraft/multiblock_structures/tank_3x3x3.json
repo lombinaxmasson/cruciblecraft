@@ -3,241 +3,130 @@
   "palette": {
     "P": {
       "type": "port",
-      "block": "cruciblecraft:multiblock_item_fluid_port",
-      "port": "item_fluid"
+      "tag": "cruciblecraft:tank_3x3x3_walls",
+      "port": "fluid",
+      "uniform_group": "tank_wall"
     },
     "A": {
       "type": "air"
     },
     "C": {
       "type": "controller",
-      "block": "cruciblecraft:tank_3x3x3"
+      "tag": "cruciblecraft:tank_3x3x3_controllers"
     }
   },
   "structure": [
     {
-      "offset": [
-        0,
-        0,
-        0
-      ],
+      "offset": [0, 0, 0],
       "predicate": "C"
     },
     {
-      "offset": [
-        -1,
-        -1,
-        -1
-      ],
+      "offset": [-1, -1, 0],
       "predicate": "P"
     },
     {
-      "offset": [
-        -1,
-        -1,
-        0
-      ],
+      "offset": [-1, 0, 0],
       "predicate": "P"
     },
     {
-      "offset": [
-        -1,
-        -1,
-        1
-      ],
+      "offset": [-1, 1, 0],
       "predicate": "P"
     },
     {
-      "offset": [
-        -1,
-        0,
-        -1
-      ],
+      "offset": [0, -1, 0],
       "predicate": "P"
     },
     {
-      "offset": [
-        -1,
-        0,
-        0
-      ],
+      "offset": [0, 1, 0],
       "predicate": "P"
     },
     {
-      "offset": [
-        -1,
-        0,
-        1
-      ],
+      "offset": [1, -1, 0],
       "predicate": "P"
     },
     {
-      "offset": [
-        -1,
-        1,
-        -1
-      ],
+      "offset": [1, 0, 0],
       "predicate": "P"
     },
     {
-      "offset": [
-        -1,
-        1,
-        0
-      ],
+      "offset": [1, 1, 0],
       "predicate": "P"
     },
     {
-      "offset": [
-        -1,
-        1,
-        1
-      ],
+      "offset": [-1, -1, 1],
       "predicate": "P"
     },
     {
-      "offset": [
-        0,
-        -1,
-        -1
-      ],
+      "offset": [-1, 0, 1],
       "predicate": "P"
     },
     {
-      "offset": [
-        0,
-        -1,
-        0
-      ],
+      "offset": [-1, 1, 1],
       "predicate": "P"
     },
     {
-      "offset": [
-        0,
-        -1,
-        1
-      ],
+      "offset": [0, -1, 1],
       "predicate": "P"
     },
     {
-      "offset": [
-        0,
-        0,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        0,
-        0,
-        1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        0,
-        1,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        0,
-        1,
-        1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        -1,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        -1,
-        0
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        -1,
-        1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        0,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        0,
-        0
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        0,
-        1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        1,
-        -1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        1,
-        0
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        1,
-        1,
-        1
-      ],
-      "predicate": "P"
-    },
-    {
-      "offset": [
-        0,
-        1,
-        0
-      ],
+      "offset": [0, 0, 1],
       "predicate": "A"
+    },
+    {
+      "offset": [0, 1, 1],
+      "predicate": "P"
+    },
+    {
+      "offset": [1, -1, 1],
+      "predicate": "P"
+    },
+    {
+      "offset": [1, 0, 1],
+      "predicate": "P"
+    },
+    {
+      "offset": [1, 1, 1],
+      "predicate": "P"
+    },
+    {
+      "offset": [-1, -1, 2],
+      "predicate": "P"
+    },
+    {
+      "offset": [-1, 0, 2],
+      "predicate": "P"
+    },
+    {
+      "offset": [-1, 1, 2],
+      "predicate": "P"
+    },
+    {
+      "offset": [0, -1, 2],
+      "predicate": "P"
+    },
+    {
+      "offset": [0, 0, 2],
+      "predicate": "P"
+    },
+    {
+      "offset": [0, 1, 2],
+      "predicate": "P"
+    },
+    {
+      "offset": [1, -1, 2],
+      "predicate": "P"
+    },
+    {
+      "offset": [1, 0, 2],
+      "predicate": "P"
+    },
+    {
+      "offset": [1, 1, 2],
+      "predicate": "P"
     }
   ],
   "anchors": {
-    "center": [
-      0,
-      1,
-      0
-    ]
+    "center": [0, 0, 1]
   },
   "source": {
     "repository": "https://github.com/GregTech6/gregtech6",

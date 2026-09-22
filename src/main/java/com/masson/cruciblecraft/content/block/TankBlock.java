@@ -3,8 +3,6 @@ package com.masson.cruciblecraft.content.block;
 import org.jetbrains.annotations.Nullable;
 
 import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
-import com.masson.cruciblecraft.registry.ModBlockEntities;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -17,7 +15,13 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 
-/** Facing/ticker shell for the JSON 3x3x3 storage-tank controller. */
+/**
+ * Legacy save-compatible tombstone for {@code tank_3x3x3}.
+ *
+ * <p>New placement and structure matching use Tank Main Valve MTEs.  This
+ * registration remains only so old block states do not become an unknown
+ * block during migration.</p>
+ */
 public final class TankBlock extends Block implements EntityBlock {
     public TankBlock(Properties properties) {
         super(properties);
@@ -55,7 +59,7 @@ public final class TankBlock extends Block implements EntityBlock {
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new TankBlockEntity(pos, state);
+        return null;
     }
 
     @Nullable
@@ -64,10 +68,6 @@ public final class TankBlock extends Block implements EntityBlock {
             Level level,
             BlockState state,
             BlockEntityType<T> type) {
-        return !level.isClientSide
-                        && type == ModBlockEntities.TANK_3X3X3.get()
-                ? (l, p, s, be) -> TankBlockEntity.serverTick(
-                        l, p, s, (TankBlockEntity) be)
-                : null;
+        return null;
     }
 }

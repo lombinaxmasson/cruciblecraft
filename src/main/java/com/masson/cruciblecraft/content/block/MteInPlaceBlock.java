@@ -26,10 +26,12 @@ import com.masson.cruciblecraft.content.blockentity.CruciblePlayerInteraction;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MultiblockPortBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.content.mte.BathingPotRuntime;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
+import com.masson.cruciblecraft.content.multiblock.TankControllerProfiles;
 import com.masson.cruciblecraft.content.storage.MassStorageClicks;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBlockInteraction;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
@@ -209,14 +211,17 @@ public final class MteInPlaceBlock extends Block
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction clicked = context.getClickedFace();
         Direction facing;
-        if (AnvilHosts.isAnvil(spec)) {
+        if (TankControllerProfiles.isController(spec)) {
+            facing = clicked.getOpposite();
+        } else if (AnvilHosts.isAnvil(spec)) {
             facing = context.getHorizontalDirection();
         } else if (spec.kind().attachment()) {
             facing = clicked.getOpposite();
         } else {
             facing = context.getHorizontalDirection().getOpposite();
         }
-        if (!AnvilHosts.isAnvil(spec)
+        if (!TankControllerProfiles.isController(spec)
+                && !AnvilHosts.isAnvil(spec)
                 && !spec.kind().attachment()
                 && facing.getAxis().isVertical()) {
             facing = context.getHorizontalDirection().getOpposite();
@@ -1051,6 +1056,9 @@ public final class MteInPlaceBlock extends Block
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        if (TankControllerProfiles.isController(spec)) {
+            return new TankBlockEntity(pos, state);
+        }
         if (DistillationTowerParts.isLivePort(spec)) {
             return new MultiblockPortBlockEntity(pos, state);
         }
@@ -1099,6 +1107,16 @@ public final class MteInPlaceBlock extends Block
             Level level,
             BlockState state,
             BlockEntityType<T> type) {
+        if (TankControllerProfiles.isController(spec)) {
+            return type == ModBlockEntities.TANK_3X3X3.get()
+                    ? (lvl, pos, st, be) -> {
+                        if (!lvl.isClientSide
+                                && be instanceof TankBlockEntity tank) {
+                            TankBlockEntity.serverTick(lvl, pos, st, tank);
+                        }
+                    }
+                    : null;
+        }
         if (SmelteryHosts.isSmeltery(spec)) {
             return type == ModBlockEntities.CRUCIBLE.get()
                     ? (lvl, pos, st, be) -> {

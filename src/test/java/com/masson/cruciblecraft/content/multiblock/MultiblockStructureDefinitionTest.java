@@ -66,6 +66,14 @@ class MultiblockStructureDefinitionTest {
     }
 
     @Test
+    void verticalFacingUsesARealRotation() {
+        MultiblockStructureDefinition.Offset offset =
+                new Offset(2, 3, 4);
+        assertEquals(new Offset(2, 4, -3), offset.rotate(Direction.UP));
+        assertEquals(new Offset(2, -4, 3), offset.rotate(Direction.DOWN));
+    }
+
+    @Test
     void unloadedPositionsAreReportedWithoutBeingRead() {
         MultiblockStructureDefinition definition = simpleDefinition();
         var result = MultiblockStructureValidator.validate(
@@ -329,6 +337,39 @@ class MultiblockStructureDefinitionTest {
                 () -> MultiblockStructureDefinition.CODEC.parse(
                         JsonOps.INSTANCE,
                         JsonParser.parseString(malformed)));
+    }
+
+    @Test
+    void tagBackedFluidPortIsAcceptedByTheCodec() {
+        String json = """
+                {
+                  "schema_version": 1,
+                  "palette": {
+                    "C": {"type":"controller","tag":"minecraft:stone"},
+                    "P": {
+                      "type":"port",
+                      "tag":"minecraft:dirt",
+                      "port":"fluid",
+                      "uniform_group":"tank_wall"
+                    }
+                  },
+                  "structure": [
+                    {"offset":[0,0,0],"predicate":"C"},
+                    {"offset":[1,0,0],"predicate":"P"}
+                  ]
+                }
+                """;
+        MultiblockStructureDefinition definition =
+                MultiblockStructureDefinition.CODEC
+                        .parse(JsonOps.INSTANCE, JsonParser.parseString(json))
+                        .getOrThrow(AssertionError::new);
+        assertEquals(1, definition.portCount(PortType.FLUID));
+        assertEquals(
+                "minecraft:dirt",
+                definition.predicate(definition.structure().get(1))
+                        .tag()
+                        .orElseThrow()
+                        .toString());
     }
 
     private static MultiblockStructureDefinition simpleDefinition() {

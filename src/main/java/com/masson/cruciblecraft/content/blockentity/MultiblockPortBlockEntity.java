@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPort;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortCapabilityGate;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
@@ -134,14 +135,11 @@ public final class MultiblockPortBlockEntity extends BlockEntity
     }
 
     public IItemHandler itemHandler() {
-        return portType() == PortType.ITEM_FLUID ? items : null;
+        return PortCapabilityGate.itemCapable(portType()) ? items : null;
     }
 
     public IFluidHandler fluidHandler() {
-        PortType type = portType();
-        return type == PortType.ITEM_FLUID || type == PortType.FLUID_OUT
-                ? fluids
-                : null;
+        return PortCapabilityGate.fluidCapable(portType()) ? fluids : null;
     }
 
     private MultiblockControllerBinding binding() {
@@ -171,7 +169,7 @@ public final class MultiblockPortBlockEntity extends BlockEntity
 
     @Override
     public boolean handles(EnergyType type, Direction side) {
-        if (portType() != PortType.ENERGY_INPUT) {
+        if (!PortCapabilityGate.energyInsert(portType())) {
             return false;
         }
         MultiblockPortHost host = host();
@@ -186,7 +184,7 @@ public final class MultiblockPortBlockEntity extends BlockEntity
             Direction side,
             boolean simulate) {
         MultiblockPortHost host =
-                portType() == PortType.ENERGY_INPUT ? host() : null;
+                PortCapabilityGate.energyInsert(portType()) ? host() : null;
         return host == null
                 ? 0L
                 : host.insertFromMultiblockPort(type, size, amount, simulate);
@@ -565,7 +563,8 @@ public final class MultiblockPortBlockEntity extends BlockEntity
         public ItemStack insertItem(
                 int slot, ItemStack stack, boolean simulate) {
             MultiblockPortHost host = host();
-            return host != null && host.itemInputSlots().contains(slot)
+            return PortCapabilityGate.itemInsert(portType())
+                    && host != null && host.itemInputSlots().contains(slot)
                     ? host.inventory().insertItem(slot, stack, simulate)
                     : stack;
         }
@@ -574,7 +573,8 @@ public final class MultiblockPortBlockEntity extends BlockEntity
         public ItemStack extractItem(
                 int slot, int amount, boolean simulate) {
             MultiblockPortHost host = host();
-            return host != null && host.itemOutputSlots().contains(slot)
+            return PortCapabilityGate.itemExtract(portType())
+                    && host != null && host.itemOutputSlots().contains(slot)
                     ? host.inventory().extractItem(slot, amount, simulate)
                     : ItemStack.EMPTY;
         }
@@ -588,7 +588,8 @@ public final class MultiblockPortBlockEntity extends BlockEntity
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
             MultiblockPortHost host = host();
-            return host != null
+            return PortCapabilityGate.itemInsert(portType())
+                    && host != null
                     && host.itemInputSlots().contains(slot)
                     && host.inventory().isItemValid(slot, stack);
         }
@@ -617,7 +618,7 @@ public final class MultiblockPortBlockEntity extends BlockEntity
 
         @Override
         public boolean isFluidValid(int tank, FluidStack stack) {
-            if (portType() == PortType.FLUID_OUT) {
+            if (!PortCapabilityGate.fluidFill(portType())) {
                 return false;
             }
             MultiblockPortHost host = host();
@@ -628,7 +629,7 @@ public final class MultiblockPortBlockEntity extends BlockEntity
 
         @Override
         public int fill(FluidStack resource, FluidAction action) {
-            if (portType() == PortType.FLUID_OUT) {
+            if (!PortCapabilityGate.fluidFill(portType())) {
                 return 0;
             }
             MultiblockPortHost host = host();
@@ -640,6 +641,9 @@ public final class MultiblockPortBlockEntity extends BlockEntity
         @Override
         public FluidStack drain(
                 FluidStack resource, FluidAction action) {
+            if (!PortCapabilityGate.fluidDrain(portType())) {
+                return FluidStack.EMPTY;
+            }
             MultiblockPortHost host = host();
             return host == null
                     ? FluidStack.EMPTY
@@ -648,6 +652,9 @@ public final class MultiblockPortBlockEntity extends BlockEntity
 
         @Override
         public FluidStack drain(int maxDrain, FluidAction action) {
+            if (!PortCapabilityGate.fluidDrain(portType())) {
+                return FluidStack.EMPTY;
+            }
             MultiblockPortHost host = host();
             return host == null
                     ? FluidStack.EMPTY

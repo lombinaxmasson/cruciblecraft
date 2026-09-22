@@ -60,9 +60,9 @@ public final class MultiblockStructureValidator {
         Objects.requireNonNull(definition, "definition");
         Objects.requireNonNull(access, "access");
         Objects.requireNonNull(controller, "controller");
-        if (facing == null || facing.getAxis().isVertical()) {
+        if (facing == null) {
             throw new IllegalArgumentException(
-                    "Multiblock facing must be horizontal");
+                    "Multiblock facing must not be null");
         }
 
         List<Diagnostic> diagnostics = new ArrayList<>();
@@ -155,13 +155,24 @@ public final class MultiblockStructureValidator {
                             : state.is(TagKey.create(
                                     Registries.BLOCK,
                                     predicate.tag().orElseThrow())));
-            case PORT -> BuiltInRegistries.BLOCK
-                            .getOptional(predicate.block().orElseThrow())
-                            .map(state::is)
-                            .orElse(false)
+            case PORT -> matchesPortBlock(predicate, state)
                     && blockEntity instanceof MultiblockPort port
                     && port.accepts(predicate.port().orElseThrow());
         };
+    }
+
+    private static boolean matchesPortBlock(
+            PalettePredicate predicate,
+            BlockState state) {
+        if (predicate.block().isPresent()) {
+            return BuiltInRegistries.BLOCK
+                    .getOptional(predicate.block().orElseThrow())
+                    .map(state::is)
+                    .orElse(false);
+        }
+        return predicate.tag()
+                .map(tag -> state.is(TagKey.create(Registries.BLOCK, tag)))
+                .orElse(false);
     }
 
     private static String actual(

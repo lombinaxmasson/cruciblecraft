@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortCapabilityGate;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
@@ -53,22 +54,20 @@ public final class ElectrolyzerParts {
 
     public static IItemHandler items(MteInPlaceBlockEntity part) {
         PortType type = part.mixerPortType();
-        return type == PortType.ITEM_FLUID_ENERGY_IN
-                || type == PortType.ITEM_FLUID_OUT
+        return PortCapabilityGate.itemCapable(type)
                 ? new PartItems(part)
                 : null;
     }
 
     public static IFluidHandler fluids(MteInPlaceBlockEntity part) {
         PortType type = part.mixerPortType();
-        return type == PortType.ITEM_FLUID_ENERGY_IN
-                || type == PortType.ITEM_FLUID_OUT
+        return PortCapabilityGate.fluidCapable(type)
                 ? new PartFluids(part)
                 : null;
     }
 
     public static boolean forwardsEnergy(MteInPlaceBlockEntity part) {
-        return part.mixerPortType() == PortType.ITEM_FLUID_ENERGY_IN
+        return PortCapabilityGate.energyInsert(part.mixerPortType())
                 && host(part) != null;
     }
 
@@ -142,7 +141,7 @@ public final class ElectrolyzerParts {
         @Override
         public ItemStack insertItem(
                 int slot, ItemStack stack, boolean simulate) {
-            if (part.mixerPortType() != PortType.ITEM_FLUID_ENERGY_IN) {
+            if (!PortCapabilityGate.itemInsert(part.mixerPortType())) {
                 return stack;
             }
             MultiblockPortHost host = host(part);
@@ -154,7 +153,7 @@ public final class ElectrolyzerParts {
         @Override
         public ItemStack extractItem(
                 int slot, int amount, boolean simulate) {
-            if (part.mixerPortType() != PortType.ITEM_FLUID_OUT) {
+            if (!PortCapabilityGate.itemExtract(part.mixerPortType())) {
                 return ItemStack.EMPTY;
             }
             MultiblockPortHost host = host(part);
@@ -171,7 +170,7 @@ public final class ElectrolyzerParts {
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            if (part.mixerPortType() != PortType.ITEM_FLUID_ENERGY_IN) {
+            if (!PortCapabilityGate.itemInsert(part.mixerPortType())) {
                 return false;
             }
             MultiblockPortHost host = host(part);
@@ -210,7 +209,7 @@ public final class ElectrolyzerParts {
 
         @Override
         public boolean isFluidValid(int tank, FluidStack stack) {
-            if (part.mixerPortType() != PortType.ITEM_FLUID_ENERGY_IN) {
+            if (!PortCapabilityGate.fluidFill(part.mixerPortType())) {
                 return false;
             }
             MultiblockPortHost host = host(part);
@@ -221,7 +220,7 @@ public final class ElectrolyzerParts {
 
         @Override
         public int fill(FluidStack resource, FluidAction action) {
-            if (part.mixerPortType() != PortType.ITEM_FLUID_ENERGY_IN) {
+            if (!PortCapabilityGate.fluidFill(part.mixerPortType())) {
                 return 0;
             }
             MultiblockPortHost host = host(part);
@@ -236,7 +235,7 @@ public final class ElectrolyzerParts {
 
         @Override
         public FluidStack drain(FluidStack resource, FluidAction action) {
-            if (part.mixerPortType() != PortType.ITEM_FLUID_OUT) {
+            if (!PortCapabilityGate.fluidDrain(part.mixerPortType())) {
                 return FluidStack.EMPTY;
             }
             MultiblockPortHost host = host(part);

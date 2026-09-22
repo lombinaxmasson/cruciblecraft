@@ -17,6 +17,7 @@ public final class MultiblockPortBlocks {
             case ITEM_FLUID_ENERGY_IN -> ElectrolyzerParts.part();
             case ITEM_FLUID_ENERGY -> AutoclaveWalls.wall();
             case ENERGY_INPUT -> ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get();
+            case FLUID -> ModBlocks.MULTIBLOCK_FLUID_PORT.get();
             case FLUID_OUT -> ModBlocks.MULTIBLOCK_FLUID_OUT_PORT.get();
         };
     }

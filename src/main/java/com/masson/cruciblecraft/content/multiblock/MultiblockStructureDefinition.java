@@ -16,7 +16,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 
-/** Immutable, data-pack-owned geometry for one horizontally facing multiblock. */
+/** Immutable, data-pack-owned geometry for a face-oriented multiblock. */
 public record MultiblockStructureDefinition(
         int schemaVersion,
         Map<String, PalettePredicate> palette,
@@ -175,24 +175,23 @@ public record MultiblockStructureDefinition(
                                         "Offset must contain exactly three integers"),
                         offset -> List.of(offset.x(), offset.y(), offset.z()));
 
-        /**
-         * JSON is authored for a north-facing controller. Positive local Z is
-         * behind that controller; rotations preserve Y.
-         */
+        /** JSON is authored for a north-facing controller. */
         public Offset rotate(Direction facing) {
-            return switch (requireHorizontal(facing)) {
+            return switch (requireFacing(facing)) {
                 case NORTH -> this;
                 case EAST -> new Offset(-z, y, x);
                 case SOUTH -> new Offset(-x, y, -z);
                 case WEST -> new Offset(z, y, -x);
+                case UP -> new Offset(x, z, -y);
+                case DOWN -> new Offset(x, -z, y);
                 default -> throw new IllegalStateException("Unreachable facing");
             };
         }
 
-        private static Direction requireHorizontal(Direction facing) {
-            if (facing == null || facing.getAxis().isVertical()) {
+        private static Direction requireFacing(Direction facing) {
+            if (facing == null) {
                 throw new IllegalArgumentException(
-                        "Multiblock facing must be horizontal");
+                        "Multiblock facing must not be null");
             }
             return facing;
         }
@@ -243,14 +242,17 @@ public record MultiblockStructureDefinition(
                 case CONTROLLER -> require(
                         (block.isPresent() ^ tag.isPresent()) && port.isEmpty(),
                         "controller");
-                case PORT -> require(block.isPresent()
-                        && tag.isEmpty() && port.isPresent(), "port");
+                case PORT -> require(
+                        (block.isPresent() ^ tag.isPresent())
+                                && port.isPresent(),
+                        "port");
             }
             if (uniformGroup.isPresent()
                     && kind != PredicateKind.BLOCK
-                    && kind != PredicateKind.TAG) {
+                    && kind != PredicateKind.TAG
+                    && kind != PredicateKind.PORT) {
                 throw new IllegalArgumentException(
-                        "uniform_group is only valid on block or tag predicates");
+                        "uniform_group is only valid on block, tag, or port predicates");
             }
         }
 
@@ -263,7 +265,10 @@ public record MultiblockStructureDefinition(
                         ? "controller " + block.orElseThrow()
                         : "controller tag #" + tag.orElseThrow();
                 case PORT -> port.orElseThrow().serializedName()
-                        + " port " + block.orElseThrow();
+                        + " port "
+                        + (block.isPresent()
+                                ? block.orElseThrow()
+                                : "tag #" + tag.orElseThrow());
             };
         }
 
@@ -311,6 +316,7 @@ public record MultiblockStructureDefinition(
         ITEM_FLUID_OUT("item_fluid_out"),
         ENERGY_INPUT("energy_input"),
         ITEM_FLUID_ENERGY("item_fluid_energy"),
+        FLUID("fluid"),
         FLUID_OUT("fluid_out");
 
         public static final Codec<PortType> CODEC =

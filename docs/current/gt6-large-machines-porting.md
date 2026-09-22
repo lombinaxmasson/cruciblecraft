@@ -306,6 +306,10 @@ GT6 的结构方块按具体格子承担模式。一个多方块可以同时存�
 
 当前 CC 的 `shared_port_supply` 采用“每个主机一份物品供应、一份流体供应”的聚合模型，而不是按每个物理端口格子分别提供 supply。它解决的是共享吞吐和库存绑定，不等于复现 GT6 的端口交互语义。
 
+本轮已保留该单 host 模型，并由 `PortCapabilityGate` 按绑定的
+`PortType` 逐格门控 item insert/extract、fluid fill/drain 和 electric
+input；聚合库存不再扩大物理端口的权限。
+
 因此，以下机器必须额外检查端口格子和方向，不能只检查总吞吐量：
 
 - Large Boiler；
@@ -414,46 +418,58 @@ side-bottom 中心的位置，不额外放置重复部件。`item_fluid_energy_i
 对应的结构、能力方向、未成形拒绝和端口 landing check 已验证。剩余的
 shared-port 聚合行为属于 §5.8.4 的独立端口语义问题，不在本项关闭范围内。
 
-#### 5.8.3 3×3×3 Tank：控制器位置和材料/流体合同不一致
+#### 5.8.3 3×3×3 Tank：GT6 阀门控制器与完整流体合同已对齐
 
-GT6 控制器位于外侧面中心；当前 CC 的 `tank_3x3x3.json` 把控制器放在结构中心，并把 25 个墙面格绑定到一个双向 `item_fluid` 端口集合。
+CC 现在使用 GT6 Small Tank Main Valve MTE（17001–17007、17022–17027）
+作为 live controller。控制器位于外侧面中心，空心位于其后方中心；
+其余 25 个格子必须是同材质墙，并通过 `FLUID` tag-backed port 绑定到
+一个 shared host tank。旧 `cruciblecraft:tank_3x3x3` 仍保留注册壳以读取
+旧存档，但不再形成结构、进入创造页或拥有新配方。
 
 当前实现的直接证据是：
 
 ```text
 src/main/resources/data/cruciblecraft/multiblock_structures/tank_3x3x3.json
 src/main/java/com/masson/cruciblecraft/content/blockentity/TankBlockEntity.java
+src/main/java/com/masson/cruciblecraft/content/multiblock/TankControllerProfiles.java
 ```
 
-`TankBlockEntity` 当前使用单一 `256,000 mB` DESIGN_POLICY 容量和共享双向库存。相对于 GT6，还要核对或补齐：
+`TankControllerProfiles` 固化 GT6 Loader 的材质容量、wall meta 和
+gas/acid/plasma/magic proof；`TankBlockEntity` 仍是单 host/单 tank，
+但容量由阀门身份决定：
 
-- 外侧面中心控制器位置；
-- 单向阀与自动喷出；
-- 气体、酸、等离子、魔法流体 proof；
-- 材料熔点、过热和熔毁；
-- 5×5×5 Tank；
-- 按流体密度或方向选择自动输出；
-- 每个物理阀门的输入/输出方向，而不是 25 个端口共享一个双向库存；
-- 每种材料的容量与 GT6 注册值。
+- 直接 controller fill/drain 与墙面 `FLUID` 双向视图；
+- 无 proof 的气体、酸、等离子、魔法流体的 server-side hazard；
+- 导电流体、超材料熔点流体和木罐 non-simple 流体拒绝；
+- 超温熔毁、结构破坏/危险流体清空；
+- 按水平面、气体和重力方向执行自动输出，堵塞时不丢液；
+- 5×5×5 Tank 仍是 post-1_0 独立项。
 
-`256,000 mB` 只能标为当前 CC 设计值，不能作为 GT6 材料档位的证明。
+GT6 profile 的 source revision 与容量证据保存在
+`TankControllerProfiles` 和结构 JSON 的 `source` 字段中；不得再引入
+固定 `256,000 mB` 作为储罐容量。
 
-#### 5.8.4 共享端口聚合会改变自动化行为
+#### 5.8.4 共享端口聚合与逐格能力门控
 
-当前 `shared_port_supply` 明确把多个物理端口汇聚为一份主机 item/fluid supply。这可能保持了吞吐量，却改变了 GT6 的结构交互：
+`shared_port_supply` 仍把多个物理端口汇聚为一份主机 item/fluid
+supply；这是吞吐/库存主机语义，不再承担方向授权。`PortCapabilityGate`
+按每个结构格绑定的 `PortType` 暴露 item insert/extract、fluid fill/drain
+和 electric input：
 
-- 锅炉可能从不应进水的格子进水；
-- 储罐可能从本应单向输出的格子吸入；
-- 发酵机可能从任意共享端口输出；
-- 离心机可能失去固定输入/输出格子的方向约束；
-- 其他 item/fluid/energy 混合端口机器可能绕过缺失端口。
+- `ITEM_FLUID_ENERGY_IN` 只能 item/fluid 输入和 electric 输入；
+- `ITEM_FLUID_OUT` 只能 item/fluid 输出；
+- `FLUID` 只提供双向 fluid；
+- boiler、mixer、electrolyzer 和 tank wall 的特例只在 host adapter
+  中保留容量/视图路由。
 
-后续测试必须按“端口坐标 + 端口模式 + 端口面”断言，不能只断言库存最终数量。
+回归测试必须按“端口坐标 + 端口模式 + 端口面”断言，不能只断言库存
+最终数量。
 
 相关实现：
 
 ```text
 src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockPortAggregator.java
+src/main/java/com/masson/cruciblecraft/content/multiblock/PortCapabilityGate.java
 src/main/java/com/masson/cruciblecraft/registry/ModMultiblockPlugins.java
 src/main/resources/data/cruciblecraft/multiblock_plugins.json
 ```

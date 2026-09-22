@@ -127,6 +127,7 @@ import com.masson.cruciblecraft.content.block.SpringLiquidContact;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.SubsurfaceFluidDepositBlock;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
+import com.masson.cruciblecraft.content.multiblock.TankControllerProfiles;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
@@ -378,6 +379,12 @@ public final class ModBlocks {
                     "multiblock_item_fluid_port",
                     () -> new MultiblockPortBlock(
                             PortType.ITEM_FLUID,
+                            machineProperties()));
+    public static final DeferredBlock<MultiblockPortBlock>
+            MULTIBLOCK_FLUID_PORT = BLOCKS.register(
+                    "multiblock_fluid_port",
+                    () -> new MultiblockPortBlock(
+                            PortType.FLUID,
                             machineProperties()));
     public static final DeferredBlock<MultiblockPortBlock>
             MULTIBLOCK_ENERGY_INPUT_PORT = BLOCKS.register(
@@ -1731,6 +1738,22 @@ public final class ModBlocks {
                 .filter(block -> !DistillationTowerParts.isLivePort(block.spec()))
                 .filter(block -> !block.spec().kind().dedicatedController())
                 .toArray(Block[]::new);
+    }
+
+    public static Block[] tankControllerBlockArray() {
+        return MTE_INPLACE_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .filter(block -> TankControllerProfiles.isController(
+                        block.spec()))
+                .toArray(Block[]::new);
+    }
+
+    public static Block[] tankBlockEntityBlockArray() {
+        Block[] controllers = tankControllerBlockArray();
+        Block[] blocks = new Block[controllers.length + 1];
+        blocks[0] = TANK_3X3X3.get();
+        System.arraycopy(controllers, 0, blocks, 1, controllers.length);
+        return blocks;
     }
 
     public static Block[] anvilBlockArray() {

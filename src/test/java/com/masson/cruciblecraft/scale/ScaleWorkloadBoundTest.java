@@ -99,7 +99,7 @@ class ScaleWorkloadBoundTest {
         // exactly one blockEntity read each.
         MultiblockStructureDefinition tank = loadTankDefinition();
         assertEquals(27, tank.structure().size());
-        assertEquals(25, tank.portCount(PortType.ITEM_FLUID));
+        assertEquals(25, tank.portCount(PortType.FLUID));
 
         CounterAccess access = new CounterAccess();
         MultiblockStructureValidator.validate(
@@ -118,7 +118,7 @@ class ScaleWorkloadBoundTest {
         // one getBlockEntity per matched port: 2 ops per port. The real
         // tank declares 25 ports, so the worst case is exactly 50.
         MultiblockStructureDefinition tank = loadTankDefinition();
-        long ports = tank.portCount(PortType.ITEM_FLUID);
+        long ports = tank.portCount(PortType.FLUID);
         assertEquals(25, ports);
         assertEquals(50, 2 * ports);
         JsonObject tankRow = readJson(

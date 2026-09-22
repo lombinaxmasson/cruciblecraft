@@ -21,6 +21,7 @@ import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.content.block.MultiblockPortBlocks;
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
@@ -339,27 +340,49 @@ public final class ScaleHarness {
                 ModMultiblockControllers.DISTILLATION_TOWER.structureId(),
                 LargeBoilerBlockEntity.STRUCTURE_ID};
         Block[] controllers = {
-                ModBlocks.TANK_3X3X3.get(),
+                ModBlocks.mteInPlaceBlocksById()
+                        .get(ResourceLocation.fromNamespaceAndPath(
+                                "cruciblecraft",
+                                "multiblock/small_stainless_steel_tank_main_valve"))
+                        .get(),
                 ModBlocks.DISTILLATION_TOWER.get(),
                 ModBlocks.LARGE_BOILER.get()};
         for (int index = 0; index < scenario.multiblocks(); index++) {
             int kind = index % 3;
             BlockPos controller = new BlockPos(8 + (index * 16), 4, 40);
             var structure = MultiblockStructureCatalog.require(ids[kind]);
+            Block controllerBlock = kind == 0
+                    ? ModBlocks.mteInPlaceBlocksById()
+                            .get(ResourceLocation.fromNamespaceAndPath(
+                                    "cruciblecraft",
+                                    "multiblock/small_stainless_steel_tank_main_valve"))
+                            .get()
+                    : controllers[kind];
             helper.setBlock(
                     controller,
-                    controllers[kind].defaultBlockState()
-                            .setValue(ProcessingMachineBlock.FACING, FACING));
+                    controllerBlock.defaultBlockState()
+                            .setValue(
+                                    kind == 0
+                                            ? MteInPlaceBlock.FACING
+                                            : ProcessingMachineBlock.FACING,
+                                    FACING));
             structure.structure().stream()
                     .filter(element -> structure.predicate(element).kind()
                             == PredicateKind.PORT)
                     .forEach(element -> {
                         var predicate = structure.predicate(element);
+                        Block portBlock = kind == 0
+                                ? ModBlocks.mteInPlaceBlocksById()
+                                        .get(ResourceLocation.fromNamespaceAndPath(
+                                                "cruciblecraft",
+                                                "stainless_steel/wall"))
+                                        .get()
+                                : MultiblockPortBlocks.of(
+                                        predicate.port().orElseThrow());
                         helper.setBlock(
                                 structure.worldPosition(
                                         controller, FACING, element.offset()),
-                                MultiblockPortBlocks.of(
-                                        predicate.port().orElseThrow()));
+                                portBlock);
                     });
         }
         identityMultiblocks = scenario.multiblocks();

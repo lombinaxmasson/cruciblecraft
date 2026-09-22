@@ -6,6 +6,7 @@ import com.masson.cruciblecraft.api.fluid.LongFluidHandler;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
+import com.masson.cruciblecraft.content.multiblock.PortCapabilityGate;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 
 import net.minecraft.core.BlockPos;
@@ -36,7 +37,9 @@ public final class LargeBoilerWallParts {
     public static boolean accepts(MteInPlaceSpec spec, PortType type) {
         return isWall(spec)
                 && (type == PortType.ITEM_FLUID_IN
-                        || type == PortType.FLUID_OUT);
+                        || type == PortType.FLUID_OUT)
+                && (PortCapabilityGate.fluidFill(type)
+                        || PortCapabilityGate.fluidDrain(type));
     }
 
     public static IFluidHandler fluids(MteInPlaceBlockEntity wall) {

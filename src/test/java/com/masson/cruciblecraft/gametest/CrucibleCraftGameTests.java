@@ -3491,19 +3491,8 @@ public final class CrucibleCraftGameTests {
         Direction facing = Direction.NORTH;
         var structure = MultiblockStructureCatalog.require(
                 TankBlockEntity.STRUCTURE_ID);
-        helper.setBlock(
-                controllerPos,
-                ModBlocks.TANK_3X3X3.get()
-                        .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
-        structure.structure().stream()
-                .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.PORT)
-                .forEach(element -> helper.setBlock(
-                        structure.worldPosition(
-                                controllerPos, facing, element.offset()),
-                        ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get()));
-        TankBlockEntity tank = helper.getBlockEntity(controllerPos);
+        TankBlockEntity tank = placeTank(
+                helper, controllerPos, facing, "stainless_steel");
         BlockPos firstPort = structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.PORT)
@@ -3518,9 +3507,9 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             tank.structureValid(),
                             "Tank structure was not recognized");
-                    MultiblockPortBlockEntity port =
+                    MteInPlaceBlockEntity port =
                             helper.getBlockEntity(firstPort);
-                    int filled = port.fluidHandler().fill(
+                    int filled = port.fluidHandler(facing).fill(
                             new FluidStack(Fluids.WATER, 10_000),
                             IFluidHandler.FluidAction.EXECUTE);
                     helper.assertTrue(
@@ -3531,7 +3520,7 @@ public final class CrucibleCraftGameTests {
                                     + filled
                                     + " stored="
                                     + tank.contents().getFluidAmount());
-                    FluidStack drained = port.fluidHandler().drain(
+                    FluidStack drained = port.fluidHandler(facing).drain(
                             4_000, IFluidHandler.FluidAction.EXECUTE);
                     helper.assertTrue(
                             drained.getAmount() == 4_000
@@ -3590,19 +3579,8 @@ public final class CrucibleCraftGameTests {
         Direction facing = Direction.NORTH;
         var structure = MultiblockStructureCatalog.require(
                 TankBlockEntity.STRUCTURE_ID);
-        helper.setBlock(
-                controllerPos,
-                ModBlocks.TANK_3X3X3.get()
-                        .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
-        structure.structure().stream()
-                .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.PORT)
-                .forEach(element -> helper.setBlock(
-                        structure.worldPosition(
-                                controllerPos, facing, element.offset()),
-                        ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get()));
-        TankBlockEntity tank = helper.getBlockEntity(controllerPos);
+        TankBlockEntity tank = placeTank(
+                helper, controllerPos, facing, "stainless_steel");
         helper.startSequence()
                 .thenIdle(25)
                 .thenExecute(() -> {
@@ -3615,8 +3593,7 @@ public final class CrucibleCraftGameTests {
                                             .equals(List.of(0))
                                     && tank.fluidOutputTanks()
                                             .equals(List.of(0))
-                                    && tank.contents().getCapacity() == TankBlockEntity
-                                            .CAPACITY_MB,
+                                    && tank.contents().getCapacity() == 1_728_000,
                             "Tank host supply roles drifted");
                     long physicalPorts = structure.structure().stream()
                             .filter(element -> structure
@@ -3636,13 +3613,13 @@ public final class CrucibleCraftGameTests {
                                             controllerPos, facing,
                                             element.offset()))
                                     .allMatch(portPos -> {
-                                        MultiblockPortBlockEntity port =
+                                        MteInPlaceBlockEntity port =
                                                 helper.getBlockEntity(
                                                         portPos);
-                                        return port.fluidHandler()
+                                        return port.fluidHandler(facing)
                                                         .getTanks()
                                                 == 1
-                                                && port.fluidHandler()
+                                                && port.fluidHandler(facing)
                                                                 .getFluidInTank(
                                                                         0)
                                                                 .getAmount()
@@ -3651,6 +3628,152 @@ public final class CrucibleCraftGameTests {
                             "Twenty-five ports did not bridge one host tank");
                 })
                 .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void tank3x3x3ProfileAndWallBinding(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        var structure = MultiblockStructureCatalog.require(
+                TankBlockEntity.STRUCTURE_ID);
+        TankBlockEntity tank = placeTank(
+                helper, controllerPos, facing, "invar");
+        BlockPos firstPort = structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .map(element -> structure.worldPosition(
+                        controllerPos, facing, element.offset()))
+                .findFirst()
+                .orElseThrow();
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            tank.structureValid()
+                                    && tank.profile().capacityMb() == 1_728_000
+                                    && tank.profile().gasProof()
+                                    && !tank.profile().acidProof(),
+                            "Invar Tank Main Valve profile drifted");
+                    int filled = tank.fill(
+                            new FluidStack(Fluids.WATER, 2_000),
+                            IFluidHandler.FluidAction.EXECUTE);
+                    FluidStack drained = tank.drain(
+                            500, IFluidHandler.FluidAction.EXECUTE);
+                    helper.assertTrue(
+                            filled == 2_000
+                                    && drained.getAmount() == 500,
+                            "Controller direct fill/drain contract failed");
+                    helper.setBlock(
+                            firstPort,
+                            tankWallBlock("stainless_steel")
+                                    .defaultBlockState());
+                })
+                .thenIdle(25)
+                .thenExecute(() -> helper.assertTrue(
+                        !tank.structureValid(),
+                        "Mixed Tank wall material formed"));
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void tank3x3x3VerticalFormation(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 4, 6);
+        TankBlockEntity tank = placeTank(
+                helper, controllerPos, Direction.UP, "stainless_steel");
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> helper.assertTrue(
+                        tank.structureValid(),
+                        "Vertical Tank Main Valve did not form"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void tank3x3x3TemperatureMeltdown(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        TankBlockEntity tank = placeTank(
+                helper, controllerPos, Direction.NORTH, "stainless_steel");
+        FluidStack moltenTungsten = new FluidStack(
+                ModFluids.materialFluid("tungsten").orElseThrow(), 1_000);
+        tank.contents().setFluid(moltenTungsten);
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> helper.assertTrue(
+                        helper.getBlockState(controllerPos)
+                                .is(ModBlocks.MELTDOWN_LAVA.get()),
+                        "Over-temperature Tank did not melt down"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void tank3x3x3AcidFailure(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        TankBlockEntity tank = placeTank(
+                helper, controllerPos, Direction.NORTH, "invar");
+        FluidStack hydrochloricAcid = new FluidStack(
+                ModFluids.materialFluid("hydrochloric_acid").orElseThrow(),
+                1_000);
+        tank.contents().setFluid(hydrochloricAcid);
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> helper.assertTrue(
+                        helper.getBlockState(controllerPos).isAir(),
+                        "Unproofed acid Tank did not fail closed"))
+                .thenSucceed();
+    }
+
+    private static TankBlockEntity placeTank(
+            GameTestHelper helper,
+            BlockPos controllerPos,
+            Direction facing,
+            String material) {
+        var structure = MultiblockStructureCatalog.require(
+                TankBlockEntity.STRUCTURE_ID);
+        helper.setBlock(
+                controllerPos,
+                tankControllerBlock(material)
+                        .defaultBlockState()
+                        .setValue(MteInPlaceBlock.FACING, facing));
+        Block wall = tankWallBlock(material);
+        structure.structure().forEach(element -> {
+            BlockPos position = structure.worldPosition(
+                    controllerPos, facing, element.offset());
+            switch (structure.predicate(element).kind()) {
+                case PORT -> helper.setBlock(position, wall.defaultBlockState());
+                case AIR -> helper.setBlock(
+                        position, Blocks.AIR.defaultBlockState());
+                default -> {
+                }
+            }
+        });
+        return helper.getBlockEntity(controllerPos);
+    }
+
+    private static Block tankControllerBlock(String material) {
+        String path = material.startsWith("dense_")
+                ? "multiblock/small_" + material + "_tank_main_valve"
+                : "wood".equals(material)
+                        ? "wood/tank_main_valve"
+                        : "multiblock/small_" + material + "_tank_main_valve";
+        return ModBlocks.mteInPlaceBlocksById()
+                .get(ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, path))
+                .get();
+    }
+
+    private static Block tankWallBlock(String material) {
+        String path = material.startsWith("dense_")
+                ? "multiblock/" + material + "_wall"
+                : "wood".equals(material)
+                        ? "wood/wall"
+                        : material + "/wall";
+        return ModBlocks.mteInPlaceBlocksById()
+                .get(ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, path))
+                .get();
     }
 
     private static Block largeBoilerController() {
@@ -4749,19 +4872,8 @@ public final class CrucibleCraftGameTests {
         Direction facing = Direction.NORTH;
         var structure = MultiblockStructureCatalog.require(
                 TankBlockEntity.STRUCTURE_ID);
-        helper.setBlock(
-                controllerPos,
-                ModBlocks.TANK_3X3X3.get()
-                        .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
-        structure.structure().stream()
-                .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.PORT)
-                .forEach(element -> helper.setBlock(
-                        structure.worldPosition(
-                                controllerPos, facing, element.offset()),
-                        ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get()));
-        TankBlockEntity tank = helper.getBlockEntity(controllerPos);
+        TankBlockEntity tank = placeTank(
+                helper, controllerPos, facing, "stainless_steel");
         tank.contents().fill(
                 new FluidStack(Fluids.WATER, 10_000),
                 IFluidHandler.FluidAction.EXECUTE);
@@ -4800,21 +4912,10 @@ public final class CrucibleCraftGameTests {
         Direction facing = Direction.NORTH;
         var structure = MultiblockStructureCatalog.require(
                 TankBlockEntity.STRUCTURE_ID);
-        helper.setBlock(
-                controllerPos,
-                ModBlocks.TANK_3X3X3.get()
-                        .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
-        structure.structure().stream()
-                .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.PORT)
-                .forEach(element -> helper.setBlock(
-                        structure.worldPosition(
-                                controllerPos, facing, element.offset()),
-                        ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get()));
-        TankBlockEntity tank = helper.getBlockEntity(controllerPos);
+        TankBlockEntity tank = placeTank(
+                helper, controllerPos, facing, "stainless_steel");
         tank.contents().fill(
-                new FluidStack(Fluids.WATER, TankBlockEntity.CAPACITY_MB),
+                new FluidStack(Fluids.WATER, tank.contents().getCapacity()),
                 IFluidHandler.FluidAction.EXECUTE);
         helper.startSequence()
                 .thenIdle(25)
@@ -4829,15 +4930,15 @@ public final class CrucibleCraftGameTests {
                                     controllerPos, facing, element.offset()))
                             .findFirst()
                             .orElseThrow();
-                    MultiblockPortBlockEntity port =
+                    MteInPlaceBlockEntity port =
                             helper.getBlockEntity(portPos);
-                    int accepted = port.fluidHandler().fill(
+                    int accepted = port.fluidHandler(facing).fill(
                             new FluidStack(Fluids.WATER, 1_000),
                             IFluidHandler.FluidAction.EXECUTE);
                     helper.assertTrue(
                             accepted == 0
                                     && tank.contents().getFluidAmount()
-                                            == TankBlockEntity.CAPACITY_MB,
+                                            == tank.contents().getCapacity(),
                             "Full tank voided an overfill: " + accepted);
                 })
                 .thenSucceed();
@@ -4850,19 +4951,8 @@ public final class CrucibleCraftGameTests {
         Direction facing = Direction.NORTH;
         var structure = MultiblockStructureCatalog.require(
                 TankBlockEntity.STRUCTURE_ID);
-        helper.setBlock(
-                controllerPos,
-                ModBlocks.TANK_3X3X3.get()
-                        .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
-        structure.structure().stream()
-                .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.PORT)
-                .forEach(element -> helper.setBlock(
-                        structure.worldPosition(
-                                controllerPos, facing, element.offset()),
-                        ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get()));
-        TankBlockEntity tank = helper.getBlockEntity(controllerPos);
+        TankBlockEntity tank = placeTank(
+                helper, controllerPos, facing, "stainless_steel");
         tank.contents().fill(
                 new FluidStack(Fluids.WATER, 10_000),
                 IFluidHandler.FluidAction.EXECUTE);
@@ -4897,19 +4987,8 @@ public final class CrucibleCraftGameTests {
         Direction facing = Direction.NORTH;
         var structure = MultiblockStructureCatalog.require(
                 TankBlockEntity.STRUCTURE_ID);
-        helper.setBlock(
-                controllerPos,
-                ModBlocks.TANK_3X3X3.get()
-                        .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
-        structure.structure().stream()
-                .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.PORT)
-                .forEach(element -> helper.setBlock(
-                        structure.worldPosition(
-                                controllerPos, facing, element.offset()),
-                        ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get()));
-        TankBlockEntity tank = helper.getBlockEntity(controllerPos);
+        TankBlockEntity tank = placeTank(
+                helper, controllerPos, facing, "stainless_steel");
         tank.contents().fill(
                 new FluidStack(Fluids.WATER, 10_000),
                 IFluidHandler.FluidAction.EXECUTE);
@@ -4939,19 +5018,8 @@ public final class CrucibleCraftGameTests {
         Direction facing = Direction.NORTH;
         var structure = MultiblockStructureCatalog.require(
                 TankBlockEntity.STRUCTURE_ID);
-        helper.setBlock(
-                controllerPos,
-                ModBlocks.TANK_3X3X3.get()
-                        .defaultBlockState()
-                        .setValue(ProcessingMachineBlock.FACING, facing));
-        structure.structure().stream()
-                .filter(element -> structure.predicate(element).kind()
-                        == PredicateKind.PORT)
-                .forEach(element -> helper.setBlock(
-                        structure.worldPosition(
-                                controllerPos, facing, element.offset()),
-                        ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get()));
-        TankBlockEntity tank = helper.getBlockEntity(controllerPos);
+        TankBlockEntity tank = placeTank(
+                helper, controllerPos, facing, "stainless_steel");
         tank.contents().fill(
                 new FluidStack(Fluids.WATER, 10_000),
                 IFluidHandler.FluidAction.EXECUTE);
@@ -11916,9 +11984,9 @@ public final class CrucibleCraftGameTests {
                 TankBlockEntity.STRUCTURE_ID);
         helper.setBlock(
                 SMALL_WORKLOAD_TANK_CONTROLLER,
-                ModBlocks.TANK_3X3X3.get().defaultBlockState()
+                tankControllerBlock("stainless_steel").defaultBlockState()
                         .setValue(
-                                ProcessingMachineBlock.FACING,
+                                MteInPlaceBlock.FACING,
                                 SMALL_WORKLOAD_TANK_FACING));
         structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
@@ -11928,7 +11996,7 @@ public final class CrucibleCraftGameTests {
                                 SMALL_WORKLOAD_TANK_CONTROLLER,
                                 SMALL_WORKLOAD_TANK_FACING,
                                 element.offset()),
-                        ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get()));
+                        tankWallBlock("stainless_steel")));
 
         FluidPipeBlock fluidPipe = (FluidPipeBlock) ModBlocks.pipeBlock(
                 "copper",
@@ -11986,7 +12054,7 @@ public final class CrucibleCraftGameTests {
                 || !helper.getBlockState(SMALL_WORKLOAD_CENTRIFUGE)
                         .is(ModBlocks.CENTRIFUGE.get())
                 || !helper.getBlockState(SMALL_WORKLOAD_TANK_CONTROLLER)
-                        .is(ModBlocks.TANK_3X3X3.get())) {
+                        .is(tankControllerBlock("stainless_steel"))) {
             return false;
         }
         CableBlock cable = ModBlocks.electricalConductorBlock(
@@ -12004,7 +12072,7 @@ public final class CrucibleCraftGameTests {
             BlockPos portPos = structure.worldPosition(
                     SMALL_WORKLOAD_TANK_CONTROLLER, SMALL_WORKLOAD_TANK_FACING, element.offset());
             if (!helper.getBlockState(portPos)
-                    .is(ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get())) {
+                    .is(tankWallBlock("stainless_steel"))) {
                 return false;
             }
         }

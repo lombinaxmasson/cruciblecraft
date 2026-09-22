@@ -20,6 +20,7 @@ import com.masson.cruciblecraft.content.block.GalvanizedGraaggWalls;
 import com.masson.cruciblecraft.content.block.InvarOvenWalls;
 import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.block.TankWallParts;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPort;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
@@ -793,6 +794,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (largeBoiler != null) {
             return largeBoiler;
         }
+        IFluidHandler tankWall = TankWallParts.fluids(this);
+        if (tankWall != null) {
+            return tankWall;
+        }
         IFluidHandler mixer = StainlessSteelMixerWalls.fluids(this);
         if (mixer != null) {
             return mixer;
@@ -838,6 +843,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                     massStorage, autoOutput() && side == Direction.DOWN);
         }
         if (LargeBoilerWallParts.isWall(spec())) {
+            return null;
+        }
+        if (TankWallParts.isWall(spec())) {
             return null;
         }
         if (spec().kind().inventory()) {
@@ -894,6 +902,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
 
     @Override
     public PortType portType() {
+        if (TankWallParts.isWall(spec())) {
+            return TankWallParts.defaultType(spec());
+        }
         if (mixerPortType != null) {
             return mixerPortType;
         }
@@ -905,6 +916,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
 
     @Override
     public boolean accepts(PortType type) {
+        if (TankWallParts.isWall(spec())) {
+            return TankWallParts.accepts(spec(), type);
+        }
         if (mixerPortType != null) {
             return mixerPortType == type;
         }
@@ -916,6 +930,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 || CrusherWheels.accepts(spec(), type)
                 || DenseLeadPorts.accepts(spec(), type)
                 || LargeBoilerWallParts.accepts(spec(), type)
+                || TankWallParts.accepts(spec(), type)
                 || GalvanizedGraaggWalls.accepts(spec(), type);
     }
 
@@ -937,11 +952,16 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 && !CrusherWheels.isPart(spec())
                 && !DenseLeadPorts.isPort(spec())
                 && !LargeBoilerWallParts.isWall(spec())
+                && !TankWallParts.isWall(spec())
                 && !GalvanizedGraaggWalls.isWall(spec())) {
             return;
         }
         if (AutoclaveWalls.isWall(spec())
                 && !AutoclaveWalls.accepts(spec(), type)) {
+            return;
+        }
+        if (TankWallParts.isWall(spec())
+                && !TankWallParts.accepts(spec(), type)) {
             return;
         }
         BlockPos immutable = controller.immutable();

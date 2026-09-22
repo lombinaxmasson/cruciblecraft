@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortCapabilityGate;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
@@ -102,17 +103,15 @@ public final class StainlessSteelMixerWalls {
     }
 
     private static boolean itemCapable(PortType type) {
-        return type == PortType.ITEM_FLUID
-                || type == PortType.ITEM_FLUID_IN
-                || type == PortType.ITEM_FLUID_OUT;
+        return PortCapabilityGate.itemCapable(type);
     }
 
     private static boolean itemInsert(PortType type) {
-        return type == PortType.ITEM_FLUID || type == PortType.ITEM_FLUID_IN;
+        return PortCapabilityGate.itemInsert(type);
     }
 
     private static boolean itemExtract(PortType type) {
-        return type == PortType.ITEM_FLUID || type == PortType.ITEM_FLUID_OUT;
+        return PortCapabilityGate.itemExtract(type);
     }
 
     static MultiblockPortHost host(MteInPlaceBlockEntity wall) {

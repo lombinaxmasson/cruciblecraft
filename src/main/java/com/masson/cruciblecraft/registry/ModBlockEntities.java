@@ -211,6 +211,7 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     MultiblockPortBlockEntity::new,
                                     ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get(),
+                                    ModBlocks.MULTIBLOCK_FLUID_PORT.get(),
                                     ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get(),
                                     ModBlocks.MULTIBLOCK_FLUID_OUT_PORT.get(),
                                     DistillationTowerParts.heatTransmitter(),
@@ -250,7 +251,7 @@ public final class ModBlockEntities {
                             "tank_3x3x3",
                             () -> BlockEntityType.Builder.of(
                                     TankBlockEntity::new,
-                                    ModBlocks.TANK_3X3X3.get())
+                                    ModBlocks.tankBlockEntityBlockArray())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

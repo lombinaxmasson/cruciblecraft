@@ -12,7 +12,7 @@ import com.masson.cruciblecraft.content.block.GalvanizedGraaggWalls;
 import com.masson.cruciblecraft.content.block.InvarOvenWalls;
 import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
 import com.masson.cruciblecraft.content.item.PortableFluidTankItem;
-import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
+import com.masson.cruciblecraft.content.multiblock.PortCapabilityGate;
 import com.masson.cruciblecraft.content.storage.ILogisticsStorage;
 
 import net.minecraft.core.Direction;
@@ -80,6 +80,10 @@ public final class ModCapabilities {
                 LONG_FLUID_HANDLER,
                 ModBlockEntities.LARGE_BOILER.get(),
                 (blockEntity, side) -> blockEntity.longFluids(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.TANK_3X3X3.get(),
+                (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.BOILER.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.STEAM_ENGINE.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.DYNAMO.get(), (blockEntity, side) -> blockEntity);
@@ -222,8 +226,8 @@ public final class ModCapabilities {
         event.registerBlockEntity(
                 ENERGY,
                 ModBlockEntities.MULTIBLOCK_PORT.get(),
-                (blockEntity, side) -> blockEntity.portType()
-                                == PortType.ENERGY_INPUT
+                (blockEntity, side) -> PortCapabilityGate.energyInsert(
+                                blockEntity.portType())
                         ? blockEntity
                         : null);
         event.registerBlockEntity(

@@ -76,12 +76,12 @@ public final class JsonMultiblockBuilderAdapter
         /*
          * A casing/port may be clicked before the controller has formed and
          * before a persistent partial claim exists. Search only positions
-         * implied by the explicit definition and four horizontal rotations.
+         * implied by the explicit definition and six face rotations.
          */
         for (Map.Entry<ResourceLocation, MultiblockStructureDefinition> entry
                 : MultiblockStructureCatalog.all().entrySet()) {
             MultiblockStructureDefinition definition = entry.getValue();
-            for (Direction facing : horizontalDirections()) {
+            for (Direction facing : allDirections()) {
                 for (Element element : definition.structure()) {
                     BlockPos controller = clicked.subtract(
                             definition.worldPosition(
@@ -290,9 +290,7 @@ public final class JsonMultiblockBuilderAdapter
             if (property instanceof DirectionProperty directionProperty
                     && property.getName().equals("facing")) {
                 Direction direction = state.getValue(directionProperty);
-                if (direction.getAxis().isHorizontal()) {
-                    return direction;
-                }
+                return direction;
             }
         }
         return Direction.NORTH;
@@ -314,11 +312,14 @@ public final class JsonMultiblockBuilderAdapter
                     element.offset());
             BlockState state = level.getBlockState(position);
             if ((predicate.kind() == PredicateKind.BLOCK
-                    || predicate.kind() == PredicateKind.TAG)
+                    || predicate.kind() == PredicateKind.TAG
+                    || predicate.kind() == PredicateKind.PORT)
                     && MultiblockStructureValidator.matches(
                             predicate,
                             state,
-                            null,
+                            predicate.kind() == PredicateKind.PORT
+                                    ? level.getBlockEntity(position)
+                                    : null,
                             position,
                             target.controller())) {
                 result.putIfAbsent(
@@ -332,14 +333,17 @@ public final class JsonMultiblockBuilderAdapter
     private static Predicate<ItemStack> itemMatcher(
             PalettePredicate predicate,
             Block uniformBlock) {
-        if (predicate.kind() == PredicateKind.BLOCK
-                || predicate.kind() == PredicateKind.PORT) {
+        if ((predicate.kind() == PredicateKind.BLOCK
+                || predicate.kind() == PredicateKind.PORT)
+                && predicate.block().isPresent()) {
             Block expected = BuiltInRegistries.BLOCK.getOptional(
                             predicate.block().orElseThrow())
                     .orElse(null);
             return stack -> isBlockItem(stack, expected);
         }
-        if (predicate.kind() != PredicateKind.TAG) {
+        if (predicate.kind() != PredicateKind.TAG
+                && !(predicate.kind() == PredicateKind.PORT
+                        && predicate.tag().isPresent())) {
             return stack -> false;
         }
         TagKey<Block> tag = TagKey.create(
@@ -361,12 +365,14 @@ public final class JsonMultiblockBuilderAdapter
                 && blockItem.getBlock() == expected;
     }
 
-    private static Direction[] horizontalDirections() {
+    private static Direction[] allDirections() {
         return new Direction[] {
             Direction.NORTH,
             Direction.EAST,
             Direction.SOUTH,
-            Direction.WEST
+            Direction.WEST,
+            Direction.UP,
+            Direction.DOWN
         };
     }
 }
