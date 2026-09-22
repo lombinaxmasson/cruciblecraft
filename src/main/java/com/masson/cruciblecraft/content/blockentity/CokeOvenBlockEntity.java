@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
+import com.masson.cruciblecraft.content.multiblock.MultiblockBuilderRecheckable;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator;
 import com.masson.cruciblecraft.api.tileentity.ProgressHost;
@@ -58,7 +59,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * Neighbor TU overclock is deferred.
  */
 public final class CokeOvenBlockEntity extends BlockEntity
-        implements MenuProvider, ProgressHost {
+        implements MenuProvider, ProgressHost, MultiblockBuilderRecheckable {
     public static final ResourceLocation STRUCTURE_ID =
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "coke_oven");
@@ -235,6 +236,13 @@ public final class CokeOvenBlockEntity extends BlockEntity
 
     public ResourceLocation structureId() {
         return STRUCTURE_ID;
+    }
+
+    @Override
+    public void requestBuilderRecheck() {
+        if (level != null && !level.isClientSide) {
+            refreshStructure(getBlockState());
+        }
     }
 
     public boolean isInsideStructure(BlockPos pos) {

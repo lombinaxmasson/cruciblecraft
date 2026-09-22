@@ -62,7 +62,7 @@ def check() -> list[str]:
         return [f"missing {io.relative(STRUCTURE)}"]
     document = _load(STRUCTURE)
     palette = document.get("palette") or {}
-    ins = outs = controllers = 0
+    energy_ins = outs = controllers = 0
     for row in document.get("structure") or []:
         key = row.get("predicate")
         predicate = palette.get(key) or {}
@@ -70,14 +70,16 @@ def check() -> list[str]:
         port = predicate.get("port")
         if kind == "controller":
             controllers += 1
-        elif port == "item_fluid_in":
-            ins += 1
+        elif port == "item_fluid_energy_in":
+            energy_ins += 1
         elif port == "item_fluid_out":
             outs += 1
         else:
             errors.append(f"unexpected palette {key}: {predicate}")
-    if ins != 8:
-        errors.append(f"bottom ITEM_FLUID_ENERGY_IN count {ins}, expected 8")
+    if energy_ins != 8:
+        errors.append(
+            f"bottom ITEM_FLUID_ENERGY_IN count {energy_ins}, expected 8"
+        )
     if outs != 9:
         errors.append(f"top ITEM_FLUID_OUT count {outs}, expected 9")
     if controllers != 1:

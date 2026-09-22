@@ -131,7 +131,7 @@ class LargeElectrolyzerProfileTest {
                 java.util.Objects.requireNonNull(stream),
                 StandardCharsets.UTF_8)).getAsJsonObject();
         JsonObject palette = document.getAsJsonObject("palette");
-        int inPorts = 0;
+        int energyInPorts = 0;
         int outPorts = 0;
         int controllers = 0;
         for (var row : document.getAsJsonArray("structure")) {
@@ -139,15 +139,15 @@ class LargeElectrolyzerProfileTest {
                     row.getAsJsonObject().get("predicate").getAsString());
             if ("controller".equals(predicate.get("type").getAsString())) {
                 controllers++;
-            } else if (PortType.ITEM_FLUID_IN.serializedName().equals(
+            } else if (PortType.ITEM_FLUID_ENERGY_IN.serializedName().equals(
                     predicate.get("port").getAsString())) {
-                inPorts++;
+                energyInPorts++;
             } else if (PortType.ITEM_FLUID_OUT.serializedName().equals(
                     predicate.get("port").getAsString())) {
                 outPorts++;
             }
         }
-        assertEquals(8, inPorts);
+        assertEquals(8, energyInPorts);
         assertEquals(9, outPorts);
         assertEquals(1, controllers);
     }

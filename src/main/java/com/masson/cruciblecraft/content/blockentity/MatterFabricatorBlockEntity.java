@@ -59,20 +59,20 @@ public final class MatterFabricatorBlockEntity
         Direction facing = state.getValue(MteInPlaceBlock.FACING);
         MatterFabricatorStructure.Check check =
                 MatterFabricatorStructure.check(level, pos, facing);
-        if (!check.formed()) {
-            clearBindings();
-            return;
-        }
         LinkedHashSet<BlockPos> desired = new LinkedHashSet<>();
         for (MatterFabricatorStructure.Port port : check.ports()) {
-            desired.add(port.pos());
             if (level.hasChunkAt(port.pos())
                     && level.getBlockEntity(port.pos()) instanceof MultiblockPort bound
-                    && bound.accepts(port.type())) {
+                    && bound.accepts(port.type())
+                    && (bound.controllerPosition().isEmpty()
+                            || bound.controllerPosition()
+                                    .orElseThrow()
+                                    .equals(pos))) {
                 bound.bind(
                         pos,
                         MatterFabricatorStructure.STRUCTURE_ID,
                         port.type());
+                desired.add(port.pos().immutable());
             }
         }
         for (BlockPos previous : boundPorts) {
@@ -83,8 +83,8 @@ public final class MatterFabricatorBlockEntity
             }
         }
         boundPorts = Set.copyOf(desired);
-        if (!structureValid) {
-            structureValid = true;
+        if (structureValid != check.formed()) {
+            structureValid = check.formed();
             setChanged();
         }
     }
@@ -118,6 +118,13 @@ public final class MatterFabricatorBlockEntity
 
     public MultiblockControllerSpec controllerSpec() {
         return ModMultiblockControllers.LARGE_MATTER_FABRICATOR;
+    }
+
+    @Override
+    public void requestBuilderRecheck() {
+        if (level != null && !level.isClientSide) {
+            recheckStructure(level, worldPosition, getBlockState());
+        }
     }
 
     @Override

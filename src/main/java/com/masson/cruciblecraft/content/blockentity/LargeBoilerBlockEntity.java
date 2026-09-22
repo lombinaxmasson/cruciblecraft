@@ -345,6 +345,13 @@ public final class LargeBoilerBlockEntity extends MachineCoverHostBlockEntity
     }
 
     @Override
+    public void requestBuilderRecheck() {
+        if (level != null && !level.isClientSide) {
+            recheckStructure(level, worldPosition, getBlockState());
+        }
+    }
+
+    @Override
     public ProcessingMachineBlockEntity processingHost() {
         return null;
     }

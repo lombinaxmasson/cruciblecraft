@@ -9,7 +9,11 @@ import net.minecraft.world.level.Level;
 
 /**
  * Maintains controller-to-port bindings only for loaded positions from the
- * latest successful shared validation.
+ * latest validation.
+ *
+ * <p>GT6 keeps matching parts claimed while another cell is missing so a
+ * builder-wand click on that part can reach the controller. Capabilities
+ * remain gated by the controller's {@code structureValid()} state.</p>
  */
 public final class MultiblockPortAggregator {
     private MultiblockPortAggregator() {}
@@ -20,11 +24,6 @@ public final class MultiblockPortAggregator {
             ResourceLocation structureId,
             MultiblockStructureValidator.ValidationResult validation,
             Set<BlockPos> previous) {
-        if (!validation.valid()) {
-            unbindLoaded(level, controller, previous);
-            return Set.of();
-        }
-
         LinkedHashSet<BlockPos> desired = new LinkedHashSet<>();
         validation.ports().forEach(
                 matched -> desired.add(matched.position().immutable()));
@@ -43,7 +42,11 @@ public final class MultiblockPortAggregator {
                 continue;
             }
             if (level.getBlockEntity(position) instanceof MultiblockPort port
-                    && port.accepts(matched.type())) {
+                    && port.accepts(matched.type())
+                    && (port.controllerPosition().isEmpty()
+                            || port.controllerPosition()
+                                    .orElseThrow()
+                                    .equals(controller))) {
                 port.bind(controller, structureId, matched.type());
                 bound.add(position.immutable());
             }

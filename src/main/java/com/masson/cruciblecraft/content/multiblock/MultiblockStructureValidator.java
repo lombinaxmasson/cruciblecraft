@@ -128,7 +128,11 @@ public final class MultiblockStructureValidator {
         return new ValidationResult(status, diagnostics, ports);
     }
 
-    private static boolean matches(
+    /**
+     * Shared predicate evaluation for validation and builder planning.
+     * Callers must pass the block entity when the predicate is a port.
+     */
+    public static boolean matches(
             PalettePredicate predicate,
             BlockState state,
             BlockEntity blockEntity,

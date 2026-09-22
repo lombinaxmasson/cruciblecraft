@@ -1,7 +1,10 @@
 package com.masson.cruciblecraft.gametest;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.block.FusionReactorBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
 import com.masson.cruciblecraft.content.item.tool.PocketMultitoolMode;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -89,6 +92,231 @@ public final class HandheldToolBehaviorGameTests {
         helper.assertTrue(
                 helper.getBlockState(POS.north()).is(Blocks.STONE),
                 "builder wand did not copy stone onto the clicked face");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void builderWandFillsJsonPartFromController(
+            GameTestHelper helper) {
+        helper.setBlock(
+                POS,
+                ModBlocks.LARGE_OVEN.get().defaultBlockState().setValue(
+                        ProcessingMachineBlock.FACING,
+                        Direction.NORTH));
+        helper.setBlock(POS.west(), Blocks.AIR);
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack wand = ModItems.MATERIAL_BUILDER_WAND.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, wand);
+        var wall = ModBlocks.mteInPlaceBlocksById().get(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID,
+                        "invar/wall")).get();
+        player.getInventory().add(new ItemStack(wall.asItem(), 1));
+        int damage = wand.getDamageValue();
+
+        helper.assertTrue(
+                useOn(helper, player, wand, Direction.UP).consumesAction(),
+                "builder wand did not own the JSON controller click");
+        helper.assertTrue(
+                helper.getBlockState(POS.west()).is(wall),
+                "builder wand did not fill the local JSON part");
+        helper.assertTrue(
+                player.getInventory().countItem(wall.asItem()) == 0,
+                "builder wand did not consume the exact part");
+        helper.assertTrue(
+                wand.getDamageValue() == damage + 1,
+                "multiblock click did not consume exactly one durability");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void builderWandFillsJsonPartFromPartialPart(
+            GameTestHelper helper) {
+        helper.setBlock(
+                POS,
+                ModBlocks.LARGE_OVEN.get().defaultBlockState().setValue(
+                        ProcessingMachineBlock.FACING,
+                        Direction.NORTH));
+        var wall = ModBlocks.mteInPlaceBlocksById().get(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID,
+                        "invar/wall")).get();
+        helper.setBlock(POS.west(), wall);
+        helper.setBlock(POS.east(), Blocks.AIR);
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack wand = ModItems.MATERIAL_BUILDER_WAND.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, wand);
+        player.getInventory().add(new ItemStack(wall.asItem(), 1));
+
+        helper.assertTrue(
+                useOn(helper, POS.west(), player, wand, Direction.UP)
+                        .consumesAction(),
+                "builder wand did not resolve a partial JSON part");
+        helper.assertTrue(
+                helper.getBlockState(POS.east()).is(wall),
+                "partial JSON click did not fill the neighboring part");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void builderWandDoesNotOverwriteSolidJsonGap(
+            GameTestHelper helper) {
+        helper.setBlock(
+                POS,
+                ModBlocks.LARGE_OVEN.get().defaultBlockState().setValue(
+                        ProcessingMachineBlock.FACING,
+                        Direction.NORTH));
+        helper.setBlock(POS.west(), Blocks.STONE);
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack wand = ModItems.MATERIAL_BUILDER_WAND.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, wand);
+        var wall = ModBlocks.mteInPlaceBlocksById().get(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID,
+                        "invar/wall")).get();
+        player.getInventory().add(new ItemStack(wall.asItem(), 1));
+
+        helper.assertTrue(
+                useOn(helper, player, wand, Direction.UP).consumesAction(),
+                "recognized JSON target fell through");
+        helper.assertTrue(
+                helper.getBlockState(POS.west()).is(Blocks.STONE),
+                "builder wand overwrote an incorrect solid block");
+        helper.assertTrue(
+                player.getInventory().countItem(wall.asItem()) == 1,
+                "solid-gap rejection consumed inventory");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void builderWandDoesNotFallBackWhenJsonTargetHasNoMaterial(
+            GameTestHelper helper) {
+        helper.setBlock(
+                POS,
+                ModBlocks.LARGE_OVEN.get().defaultBlockState().setValue(
+                        ProcessingMachineBlock.FACING,
+                        Direction.NORTH));
+        helper.setBlock(POS.west(), Blocks.AIR);
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack wand = ModItems.MATERIAL_BUILDER_WAND.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, wand);
+        int damage = wand.getDamageValue();
+
+        helper.assertTrue(
+                useOn(helper, player, wand, Direction.UP).consumesAction(),
+                "empty JSON inventory fell through to ordinary copying");
+        helper.assertTrue(
+                helper.getBlockState(POS.west()).isAir(),
+                "empty JSON inventory placed a stand-in block");
+        helper.assertTrue(
+                wand.getDamageValue() == damage + 1,
+                "recognized empty structure click did not cost one durability");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void builderWandHonorsJsonPartInteractionPermission(
+            GameTestHelper helper) {
+        helper.setBlock(
+                POS,
+                ModBlocks.LARGE_OVEN.get().defaultBlockState().setValue(
+                        ProcessingMachineBlock.FACING,
+                        Direction.NORTH));
+        helper.setBlock(POS.west(), Blocks.AIR);
+        Player player = helper.makeMockPlayer(GameType.SPECTATOR);
+        ItemStack wand = ModItems.MATERIAL_BUILDER_WAND.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, wand);
+        var wall = ModBlocks.mteInPlaceBlocksById().get(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID,
+                        "invar/wall")).get();
+        player.getInventory().add(new ItemStack(wall.asItem(), 1));
+
+        helper.assertTrue(
+                useOn(helper, player, wand, Direction.UP).consumesAction(),
+                "permission-denied JSON target was not recognized");
+        helper.assertTrue(
+                helper.getBlockState(POS.west()).isAir(),
+                "builder wand placed a part without interaction permission");
+        helper.assertTrue(
+                player.getInventory().countItem(wall.asItem()) == 1,
+                "permission-denied placement consumed inventory");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void builderWandFillsFusionProcessorNearController(
+            GameTestHelper helper) {
+        helper.setBlock(
+                POS,
+                ModBlocks.FUSION_REACTOR.get().defaultBlockState().setValue(
+                        FusionReactorBlock.FACING,
+                        Direction.NORTH));
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack wand = ModItems.MATERIAL_BUILDER_WAND.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, wand);
+        player.getInventory().add(new ItemStack(
+                ModBlocks.VERSATILE_PROCESSOR_UNIT.get().asItem(),
+                64));
+        player.getInventory().add(new ItemStack(
+                ModBlocks.GALVANIZED_STEEL_WALL.get().asItem(),
+                64));
+        player.getInventory().add(new ItemStack(
+                ModBlocks.GALVANIZED_STEEL_WALL.get().asItem(),
+                1));
+
+        helper.assertTrue(
+                useOn(helper, player, wand, Direction.UP).consumesAction(),
+                "fusion controller was not claimed by the special adapter");
+        helper.assertTrue(
+                helper.getBlockState(POS.north()).is(
+                        ModBlocks.VERSATILE_PROCESSOR_UNIT.get()),
+                "fusion special adapter did not fill a processor cell");
+        helper.assertTrue(
+                helper.getBlockState(POS.south()).is(
+                        ModBlocks.GALVANIZED_STEEL_WALL.get()),
+                "fusion special adapter did not use the production galvanized wall");
+        helper.assertTrue(
+                helper.getBlockState(POS.south()).is(
+                        ModBlocks.GALVANIZED_STEEL_WALL.get()),
+                "fusion special adapter used the wrong galvanized wall block");
+        player.discard();
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void builderWandFillsMatterFabricatorWall(
+            GameTestHelper helper) {
+        var controller = ModBlocks.mteInPlaceBlocksById().get(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID,
+                        "lead/large_matter_fabricator")).get();
+        helper.setBlock(
+                POS,
+                controller.defaultBlockState().setValue(
+                        MteInPlaceBlock.FACING,
+                        Direction.NORTH));
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack wand = ModItems.MATERIAL_BUILDER_WAND.get().variant("iron");
+        player.setItemInHand(InteractionHand.MAIN_HAND, wand);
+        var wall = ModBlocks.mteInPlaceBlocksById().get(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID,
+                        "multiblock/dense_lead_wall")).get();
+        player.getInventory().add(new ItemStack(wall.asItem(), 64));
+
+        helper.assertTrue(
+                useOn(helper, player, wand, Direction.UP).consumesAction(),
+                "matter fabricator controller was not claimed by the special adapter");
+        helper.assertTrue(
+                helper.getBlockState(POS.west()).is(wall),
+                "matter fabricator special adapter did not fill a wall cell");
         player.discard();
         helper.succeed();
     }

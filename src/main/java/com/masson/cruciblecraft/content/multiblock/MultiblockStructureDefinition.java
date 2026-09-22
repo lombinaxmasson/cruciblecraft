@@ -307,6 +307,7 @@ public record MultiblockStructureDefinition(
     public enum PortType {
         ITEM_FLUID("item_fluid"),
         ITEM_FLUID_IN("item_fluid_in"),
+        ITEM_FLUID_ENERGY_IN("item_fluid_energy_in"),
         ITEM_FLUID_OUT("item_fluid_out"),
         ENERGY_INPUT("energy_input"),
         ITEM_FLUID_ENERGY("item_fluid_energy"),

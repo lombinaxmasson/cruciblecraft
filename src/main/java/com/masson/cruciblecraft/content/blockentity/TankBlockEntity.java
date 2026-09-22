@@ -181,6 +181,13 @@ public final class TankBlockEntity extends BlockEntity
     }
 
     @Override
+    public void requestBuilderRecheck() {
+        if (level != null && !level.isClientSide) {
+            recheckStructure(level, worldPosition, getBlockState());
+        }
+    }
+
+    @Override
     public ProcessingMachineBlockEntity processingHost() {
         return null;
     }

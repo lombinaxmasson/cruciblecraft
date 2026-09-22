@@ -238,6 +238,13 @@ public final class LargeCrusherBlockEntity
     }
 
     @Override
+    public void requestBuilderRecheck() {
+        if (level != null && !level.isClientSide) {
+            recheckStructure(level, worldPosition, getBlockState());
+        }
+    }
+
+    @Override
     public boolean switchableOnOff() {
         return true;
     }

@@ -54,8 +54,9 @@ public final class LargeElectrolyzerBlockEntity
             LargeElectrolyzerBlockEntity electrolyzer) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
-                level.getGameTime(), phaseKey, 20)) {
+        if (electrolyzer.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
+                        level.getGameTime(), phaseKey, 20)) {
             electrolyzer.recheckStructure(level, pos, state);
         }
         if (electrolyzer.structureValid && !electrolyzer.pluginQuarantined) {
@@ -171,6 +172,13 @@ public final class LargeElectrolyzerBlockEntity
 
     public MultiblockControllerSpec controllerSpec() {
         return ModMultiblockControllers.LARGE_ELECTROLYZER;
+    }
+
+    @Override
+    public void requestBuilderRecheck() {
+        if (level != null && !level.isClientSide) {
+            recheckStructure(level, worldPosition, getBlockState());
+        }
     }
 
     @Override

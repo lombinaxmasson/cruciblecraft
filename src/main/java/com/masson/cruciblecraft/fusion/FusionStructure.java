@@ -391,6 +391,16 @@ public final class FusionStructure {
         return OCTAGONS[layer][i].charAt(j) == '1';
     }
 
+    /** Shared geometry query for builder adapters and structure tests. */
+    public static boolean occupiedCell(int layer, int i, int j) {
+        if (layer < 0 || layer >= OCTAGONS.length
+                || i < 0 || i >= OCTAGONS[layer].length
+                || j < 0 || j >= OCTAGONS[layer][i].length()) {
+            return false;
+        }
+        return occupied(layer, i, j);
+    }
+
     private static int occupied(int layer) {
         int cells = 0;
         for (int i = 0; i < 19; i++) {

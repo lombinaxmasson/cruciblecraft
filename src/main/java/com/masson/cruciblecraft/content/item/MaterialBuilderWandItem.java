@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.content.item;
 
 import com.masson.cruciblecraft.content.item.tool.InventoryBlockPlacer;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
+import com.masson.cruciblecraft.content.multiblock.MultiblockBuilderInteraction;
 import com.masson.cruciblecraft.machine.ToolMaterialRules;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 
@@ -35,6 +36,13 @@ public final class MaterialBuilderWandItem extends MaterialToolItem {
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
+        if (canApplyDurabilityDamage(context.getItemInHand())) {
+            InteractionResult multiblock =
+                    MultiblockBuilderInteraction.useOn(context);
+            if (multiblock.consumesAction()) {
+                return multiblock;
+            }
+        }
         InteractionResult tool = super.useOn(context);
         if (tool.consumesAction()) {
             return tool;

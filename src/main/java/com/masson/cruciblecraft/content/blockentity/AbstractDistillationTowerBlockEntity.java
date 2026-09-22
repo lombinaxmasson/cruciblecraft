@@ -223,6 +223,13 @@ public abstract class AbstractDistillationTowerBlockEntity
     }
 
     @Override
+    public void requestBuilderRecheck() {
+        if (level != null && !level.isClientSide) {
+            recheckStructure(level, worldPosition, getBlockState());
+        }
+    }
+
+    @Override
     public boolean structureValid() {
         return structureValid;
     }
