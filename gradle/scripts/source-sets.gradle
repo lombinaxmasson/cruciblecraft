@@ -56,7 +56,6 @@ def checkResourceDuplicates = tasks.register('checkResourceDuplicates', Exec) {
 tasks.withType(ProcessResources).configureEach {
     includeEmptyDirs = false
     duplicatesStrategy = DuplicatesStrategy.FAIL
-    dependsOn checkResourceDuplicates
 }
 
 sourceSets {

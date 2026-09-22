@@ -43,7 +43,12 @@ public record ChanceOutputState(
         tag.putString("selected_recipe_fingerprint", recipeFingerprint);
         tag.putInt("rolled_output_count", outputs.size());
         for (int index = 0; index < outputs.size(); index++) {
-            tag.put("rolled_output_" + index, outputs.get(index).save(registries));
+            ItemStack output = outputs.get(index);
+            tag.put(
+                    "rolled_output_" + index,
+                    output.isEmpty()
+                            ? new CompoundTag()
+                            : output.save(registries));
         }
     }
 
@@ -62,9 +67,7 @@ public record ChanceOutputState(
         for (int index = 0; index < count; index++) {
             ItemStack output = ItemStack.parseOptional(
                     registries, tag.getCompound("rolled_output_" + index));
-            if (!output.isEmpty()) {
-                outputs.add(output);
-            }
+            outputs.add(output);
         }
         return new ChanceOutputState(
                 valid,

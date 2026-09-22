@@ -190,6 +190,26 @@ public final class ModMultiblockControllers {
                     () -> ModProcessingMachines.CRUSHER)
                     .withVariant(() -> LARGE_CRUSHER_VARIANT);
 
+    public static final MachineKindSpec LARGE_SHREDDER_KIND =
+            new MachineKindSpec(
+                    id("large_shredder"),
+                    ModProcessingMachines.LARGE_SHREDDER,
+                    MachineKindSpec.OverclockPolicy.CHEAP,
+                    true);
+    public static final MachineVariant LARGE_SHREDDER_VARIANT =
+            new MachineVariant(
+                    id("large_shredder"),
+                    LARGE_SHREDDER_KIND,
+                    MachineTierCatalog.requireControllerTierBand(
+                            id("large_shredder_profile")));
+    public static final MultiblockControllerSpec LARGE_SHREDDER =
+            new MultiblockControllerSpec(
+                    id("large_shredder"),
+                    id("large_shredder"),
+                    ModRecipeMaps.SHREDDER.id(),
+                    () -> ModProcessingMachines.SHREDDER)
+                    .withVariant(() -> LARGE_SHREDDER_VARIANT);
+
     public static final MachineKindSpec DISTILLATION_TOWER_KIND =
             new MachineKindSpec(
                     id("distillation_tower"),

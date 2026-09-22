@@ -1,5 +1,14 @@
 # CrucibleCraft Changelog
 
+## 0.1.0-test.20260922.1 (2026-09-22)
+
+六个运行时回归已修复并完成 Java 验证。
+
+- 安装文件：`cruciblecraft-0.1.0-test.20260922.1.jar`（Minecraft 1.21.1、NeoForge 21.1.243、Java 21）。
+- 修复大型坩埚同步、铸造模具入口、GT6 木材/面板模型、矿石熔炼资源、加工机获得配方和仓储获得资源。
+- Melter 的 GT6 `ANY.Iron` 中型流体管使用已注册的 steel 同族管道；`runtime-java` 全部 1,239 个测试通过。
+- 仍须新开世界。玩家说明：[docs/current/player-guide.md](docs/current/player-guide.md)。
+
 ## 0.1.0-test.20260919.2 (2026-09-19)
 
 小群私测第二包。含朋友反馈修复，以及小燃气轮机、矿石宿主、石层和小砖等工作树。

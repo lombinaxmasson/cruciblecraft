@@ -129,6 +129,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         configuredMachine(
                 "large_crusher", ModBlocks.LARGE_CRUSHER.get());
         configuredMachine(
+                "large_shredder", ModBlocks.LARGE_SHREDDER.get());
+        configuredMachine(
                 "large_bath", ModBlocks.LARGE_BATH.get());
         configuredMachine(
                 "large_coagulator", ModBlocks.LARGE_COAGULATOR.get());
@@ -338,7 +340,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void registerGtWood() {
         for (com.masson.cruciblecraft.content.item.GtWoodCatalog.Definition wood :
                 com.masson.cruciblecraft.content.item.GtWoodCatalog.DEFINITIONS) {
-            ModelFile cube = models().getExistingFile(modLoc(wood.registryPath()));
+            ModelFile cube = models().cubeAll(
+                    wood.registryPath(),
+                    modLoc("block/gt6/iconsets/" + wood.iconset()));
             simpleBlock(ModBlocks.gtWood(wood.id()).get(), cube);
             itemModels().getBuilder(SlashItemModels.path(wood.registryPath())).parent(cube);
         }
@@ -347,7 +351,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void registerBathPanels() {
         for (var entry : ModBlocks.bathPanelBlocksById().entrySet()) {
             String path = entry.getKey().getPath();
-            ModelFile panel = models().getExistingFile(modLoc(path));
+            String texture = path.startsWith("panel/asphalt_")
+                    ? "asphalt"
+                    : path.startsWith("panel/cfoam_")
+                            ? "cfoam_hardened"
+                            : "concrete";
+            ModelFile panel = models()
+                    .withExistingParent(path, modLoc("block/tinted_panel"))
+                    .texture(
+                            "all",
+                            modLoc("block/gt6/iconsets/" + texture));
             getVariantBuilder(entry.getValue().get()).forAllStates(state -> {
                 net.minecraft.core.Direction facing =
                         state.getValue(

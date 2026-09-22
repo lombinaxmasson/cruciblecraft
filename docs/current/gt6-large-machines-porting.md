@@ -134,13 +134,13 @@ src/test/java/com/masson/cruciblecraft/gametest/
 
 - 27 个是主机或主机身份；
 - 23 个是部件、端口或 MTE 身份；
-- 19 个条目属于当前 accepted runtime；
+- 20 个条目属于当前 accepted runtime；
 - 6 个有明确的 frozen/paused 能力卡；
-- 11 个在当前工作树中已有主机/结构代码，但尚未进入 accepted 能力账本；
+- 10 个在当前工作树中已有主机/结构代码，但尚未进入 accepted 能力账本；
 - 10 个只有身份或部件；
-- 4 个目前没有大型主机。
+- 3 个目前没有大型主机。
 
-### 4.1 已接受运行时：19 个条目
+### 4.1 已接受运行时：20 个条目
 
 主机或主机身份：
 
@@ -149,6 +149,7 @@ src/test/java/com/masson/cruciblecraft/gametest/
 - 蒸馏塔；
 - 低温蒸馏塔；
 - 大型物质制造器；
+- Large Shredder；
 - Dynamo Main Housing；
 - Gas Turbine Main Housing；
 - Lightning Rod Electric Output。
@@ -170,6 +171,7 @@ src/test/java/com/masson/cruciblecraft/gametest/
 主要能力证据：
 
 - `tools/capabilities/machines/gt6-coil-hosts/capability.json`
+- `tools/capabilities/machines/large-shredder/capability.json`
 - `tools/capabilities/machines/distillation-tower/capability.json`
 - `tools/capabilities/logistics/logistics-core/capability.json`
 - `tools/capabilities/energy/large-gas-turbine/capability.json`
@@ -248,14 +250,29 @@ src/main/resources/data/cruciblecraft/mte_inplace_catalog.json
 
 中存在，也可能已经有配方、模型和材质，但必须另外确认对应主机是否存在。
 
-### 4.5 当前没有大型主机：4 个条目
+### 4.5 当前没有大型主机：3 个条目
 
 - Implosion Compressor；
 - Large Sluice；
-- Large Shredder；
 - Large Squeezer。
 
-目前最多只能找到 RecipeMap、部件或单方块机器侧的准备。不能因为 GT6 源码里有对应 `MultiTileEntity...` 类，就宣称 CC 主机已经移植。
+这些项目目前最多只能找到 RecipeMap、部件或单方块机器侧的准备。不能因为 GT6 源码里有对应 `MultiTileEntity...` 类，就宣称 CC 主机已经移植。
+
+### 4.5.1 Large Shredder 17109 已转为 accepted runtime
+
+`cruciblecraft:large_shredder` 现在有独立主机、BlockEntity、结构 JSON、
+18108 Shredder Blades 适配器、RU 相邻能源联动和 5 点运行伤害。结构严格
+对应 GT6 `MultiTileEntityShredder.checkStructure2`：5×5×3、56 个
+18003 钨钢墙、9 个中层结构刀片、9 个顶层输入刀片、2 个能量孔，底层
+24 个输出墙端口。
+
+能力边界仍然分开记录：
+
+- `maturity=runtime_ready`、`workflow=accepted`；
+- `survival_access=partial`：主机和 18108 部件有真实合成获得；
+- `RM.Shredder` wave 只发布当前真实 operand 可解析的源行；
+- 缺少 GT6 形态的行保留在 `overflow/blocked`，不使用 stand-in，也不
+  宣称这些行 `player_complete`。
 
 ### 4.6 清单之外的两个容易混淆项
 

@@ -497,6 +497,9 @@ public class ClientSetup {
                 ModBlockEntities.LARGE_CRUSHER.get(),
                 PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_SHREDDER.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
                 ModBlockEntities.LARGE_BATH.get(),
                 PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(

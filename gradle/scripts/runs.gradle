@@ -138,22 +138,45 @@ neoForge {
     }
 }
 
+def resourceJsonRoots = [file('src/main/resources')]
+def resourceRootManifest = new groovy.json.JsonSlurper().parse(
+        file('tools/generated_resource_roots.json'))
+resourceRootManifest.roots.each { row ->
+    resourceJsonRoots << file(row.path as String)
+}
+def resourceJsonTrees = resourceJsonRoots.collect { root ->
+    fileTree(root) {
+        include '**/*.json'
+    }
+}
+def normalizedResourceJsonStamp = layout.buildDirectory.file(
+        'verification/resource-json-newlines.ok')
 def normalizeResourceJsonNewlines = tasks.register(
         'normalizeResourceJsonNewlines') {
     group = 'verification'
     description = 'Normalizes resource JSON files to repository LF endings.'
+    inputs.files(resourceJsonTrees)
+    outputs.file(normalizedResourceJsonStamp)
+    onlyIf {
+        def isolated = providers.gradleProperty('datagenOutput')
+        !isolated.isPresent() ||
+                file(isolated.get()).canonicalFile ==
+                file('src/generated/resources').canonicalFile
+    }
     doLast {
-        fileTree('src') {
-            include '**/*.json'
-        }.files.each { generated ->
-            String original = generated.getText('UTF-8')
-            String normalized = original
-                    .replace('\r\n', '\n')
-                    .replace('\r', '\n')
-            if (normalized != original) {
-                generated.write(normalized, 'UTF-8')
+        resourceJsonTrees.each { tree ->
+            tree.files.each { generated ->
+                String original = generated.getText('UTF-8')
+                String normalized = original
+                        .replace('\r\n', '\n')
+                        .replace('\r', '\n')
+                if (normalized != original) {
+                    generated.write(normalized, 'UTF-8')
+                }
             }
         }
+        normalizedResourceJsonStamp.get().asFile.parentFile.mkdirs()
+        normalizedResourceJsonStamp.get().asFile.write('ok\n', 'UTF-8')
     }
 }
 

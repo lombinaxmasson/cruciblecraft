@@ -55,6 +55,50 @@ public record MachineTransaction(
                 List.of());
     }
 
+    public static Optional<MachineTransaction> prepareIndexed(
+            GTRecipe recipe,
+            List<ItemStack> items,
+            List<Integer> inputSlots,
+            List<Integer> outputSlots,
+            List<FluidStack> fluids,
+            List<ProcessingMachineSpec.TankSpec> inputTanks,
+            List<ProcessingMachineSpec.TankSpec> outputTanks,
+            List<ItemStack> indexedOutputs) {
+        return prepareIndexed(
+                recipe,
+                items,
+                inputSlots,
+                outputSlots,
+                fluids,
+                inputTanks,
+                outputTanks,
+                indexedOutputs,
+                List.of());
+    }
+
+    public static Optional<MachineTransaction> prepareIndexed(
+            GTRecipe recipe,
+            List<ItemStack> items,
+            List<Integer> inputSlots,
+            List<Integer> outputSlots,
+            List<FluidStack> fluids,
+            List<ProcessingMachineSpec.TankSpec> inputTanks,
+            List<ProcessingMachineSpec.TankSpec> outputTanks,
+            List<ItemStack> indexedOutputs,
+            List<ItemStack> extraOffered) {
+        return prepareInternal(
+                recipe,
+                items,
+                inputSlots,
+                outputSlots,
+                fluids,
+                inputTanks,
+                outputTanks,
+                indexedOutputs,
+                extraOffered,
+                true);
+    }
+
     public static Optional<MachineTransaction> prepare(
             GTRecipe recipe,
             List<ItemStack> items,
@@ -65,6 +109,30 @@ public record MachineTransaction(
             List<ProcessingMachineSpec.TankSpec> outputTanks,
             List<ItemStack> rolledOutputs,
             List<ItemStack> extraOffered) {
+        return prepareInternal(
+                recipe,
+                items,
+                inputSlots,
+                outputSlots,
+                fluids,
+                inputTanks,
+                outputTanks,
+                rolledOutputs,
+                extraOffered,
+                false);
+    }
+
+    private static Optional<MachineTransaction> prepareInternal(
+            GTRecipe recipe,
+            List<ItemStack> items,
+            List<Integer> inputSlots,
+            List<Integer> outputSlots,
+            List<FluidStack> fluids,
+            List<ProcessingMachineSpec.TankSpec> inputTanks,
+            List<ProcessingMachineSpec.TankSpec> outputTanks,
+            List<ItemStack> rolledOutputs,
+            List<ItemStack> extraOffered,
+            boolean indexedOutputs) {
         List<ItemStack> afterItems = copyItems(items);
         List<FluidStack> afterFluids = copyFluids(fluids);
 
@@ -150,9 +218,16 @@ public record MachineTransaction(
             afterFluids.set(tank, remaining);
         }
 
-        for (ItemStack output : rolledOutputs) {
-            if (!insertItem(afterItems, outputSlots, output)) {
+        if (indexedOutputs) {
+            if (!insertIndexedItems(
+                    afterItems, outputSlots, recipe, rolledOutputs)) {
                 return Optional.empty();
+            }
+        } else {
+            for (ItemStack output : rolledOutputs) {
+                if (!insertItem(afterItems, outputSlots, output)) {
+                    return Optional.empty();
+                }
             }
         }
         for (FluidStack output : recipe.fluidOutputs()) {
@@ -256,6 +331,41 @@ public record MachineTransaction(
             remaining.shrink(moved);
         }
         return remaining.isEmpty();
+    }
+
+    private static boolean insertIndexedItems(
+            List<ItemStack> inventory,
+            List<Integer> outputSlots,
+            GTRecipe recipe,
+            List<ItemStack> indexedOutputs) {
+        if (indexedOutputs.size() != recipe.itemOutputs().size()
+                || indexedOutputs.size() > outputSlots.size()) {
+            return false;
+        }
+        for (int index = 0; index < indexedOutputs.size(); index++) {
+            ItemStack offered = indexedOutputs.get(index);
+            if (offered == null || offered.isEmpty()) {
+                continue;
+            }
+            int slot = outputSlots.get(index);
+            ItemStack current = inventory.get(slot);
+            if (offered.getCount() > offered.getMaxStackSize()) {
+                return false;
+            }
+            if (current.isEmpty()) {
+                inventory.set(slot, offered.copy());
+                continue;
+            }
+            if (!ItemStack.isSameItemSameComponents(current, offered)
+                    || offered.getCount()
+                            > current.getMaxStackSize() - current.getCount()) {
+                return false;
+            }
+            ItemStack merged = current.copy();
+            merged.grow(offered.getCount());
+            inventory.set(slot, merged);
+        }
+        return true;
     }
 
     private static boolean insertFluid(

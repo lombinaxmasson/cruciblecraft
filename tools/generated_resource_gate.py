@@ -109,6 +109,9 @@ def resource_source_roots() -> list[Path]:
         path = str(row.get("path") or "")
         if path:
             roots.append(ROOT / path)
+    metadata = ROOT / "build/generated/sources/modMetadata"
+    if metadata.is_dir():
+        roots.append(metadata)
     return roots
 
 

@@ -76,8 +76,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * controller inventory.
  */
 public final class LargeCrucibleBlockEntity extends BlockEntity
-        implements MultiblockControllerBinding, MultiblockPortHost, CruciblePour,
-        MoldHost, TemperatureHost {
+        implements MultiblockControllerBinding, MultiblockPortHost, CruciblePour, MoldHost,
+        TemperatureHost {
     private static final String PLUGIN_TAG = "multiblock_plugins";
     public static final ResourceLocation STRUCTURE_ID =
             ResourceLocation.fromNamespaceAndPath(

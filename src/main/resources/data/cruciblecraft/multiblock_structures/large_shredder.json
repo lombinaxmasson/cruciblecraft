@@ -1,0 +1,657 @@
+{
+  "schema_version": 1,
+  "palette": {
+    "O": {
+      "type": "port",
+      "block": "cruciblecraft:tungstensteel/wall",
+      "port": "item_fluid_out"
+    },
+    "E": {
+      "type": "port",
+      "block": "cruciblecraft:tungstensteel/wall",
+      "port": "energy_input"
+    },
+    "W": {
+      "type": "block",
+      "block": "cruciblecraft:tungstensteel/wall"
+    },
+    "N": {
+      "type": "block",
+      "block": "cruciblecraft:multiblock/shredder_blades"
+    },
+    "I": {
+      "type": "port",
+      "block": "cruciblecraft:multiblock/shredder_blades",
+      "port": "item_fluid_in"
+    },
+    "C": {
+      "type": "controller",
+      "block": "cruciblecraft:large_shredder"
+    }
+  },
+  "structure": [
+    {
+      "offset": [
+        -2,
+        0,
+        0
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        -1,
+        0,
+        0
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        0,
+        0,
+        0
+      ],
+      "predicate": "C"
+    },
+    {
+      "offset": [
+        1,
+        0,
+        0
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        2,
+        0,
+        0
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        -2,
+        0,
+        1
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        -1,
+        0,
+        1
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        0,
+        0,
+        1
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        1,
+        0,
+        1
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        2,
+        0,
+        1
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        -2,
+        0,
+        2
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        -1,
+        0,
+        2
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        0,
+        0,
+        2
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        1,
+        0,
+        2
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        2,
+        0,
+        2
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        -2,
+        0,
+        3
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        -1,
+        0,
+        3
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        0,
+        0,
+        3
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        1,
+        0,
+        3
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        2,
+        0,
+        3
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        -2,
+        0,
+        4
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        -1,
+        0,
+        4
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        0,
+        0,
+        4
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        1,
+        0,
+        4
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        2,
+        0,
+        4
+      ],
+      "predicate": "O"
+    },
+    {
+      "offset": [
+        -2,
+        1,
+        0
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -1,
+        1,
+        0
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        0,
+        1,
+        0
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        1,
+        1,
+        0
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        2,
+        1,
+        0
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -2,
+        1,
+        1
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -1,
+        1,
+        1
+      ],
+      "predicate": "N"
+    },
+    {
+      "offset": [
+        0,
+        1,
+        1
+      ],
+      "predicate": "N"
+    },
+    {
+      "offset": [
+        1,
+        1,
+        1
+      ],
+      "predicate": "N"
+    },
+    {
+      "offset": [
+        2,
+        1,
+        1
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -2,
+        1,
+        2
+      ],
+      "predicate": "E"
+    },
+    {
+      "offset": [
+        -1,
+        1,
+        2
+      ],
+      "predicate": "N"
+    },
+    {
+      "offset": [
+        0,
+        1,
+        2
+      ],
+      "predicate": "N"
+    },
+    {
+      "offset": [
+        1,
+        1,
+        2
+      ],
+      "predicate": "N"
+    },
+    {
+      "offset": [
+        2,
+        1,
+        2
+      ],
+      "predicate": "E"
+    },
+    {
+      "offset": [
+        -2,
+        1,
+        3
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -1,
+        1,
+        3
+      ],
+      "predicate": "N"
+    },
+    {
+      "offset": [
+        0,
+        1,
+        3
+      ],
+      "predicate": "N"
+    },
+    {
+      "offset": [
+        1,
+        1,
+        3
+      ],
+      "predicate": "N"
+    },
+    {
+      "offset": [
+        2,
+        1,
+        3
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -2,
+        1,
+        4
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -1,
+        1,
+        4
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        0,
+        1,
+        4
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        1,
+        1,
+        4
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        2,
+        1,
+        4
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -2,
+        2,
+        0
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -1,
+        2,
+        0
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        0,
+        2,
+        0
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        1,
+        2,
+        0
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        2,
+        2,
+        0
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -2,
+        2,
+        1
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -1,
+        2,
+        1
+      ],
+      "predicate": "I"
+    },
+    {
+      "offset": [
+        0,
+        2,
+        1
+      ],
+      "predicate": "I"
+    },
+    {
+      "offset": [
+        1,
+        2,
+        1
+      ],
+      "predicate": "I"
+    },
+    {
+      "offset": [
+        2,
+        2,
+        1
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -2,
+        2,
+        2
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -1,
+        2,
+        2
+      ],
+      "predicate": "I"
+    },
+    {
+      "offset": [
+        0,
+        2,
+        2
+      ],
+      "predicate": "I"
+    },
+    {
+      "offset": [
+        1,
+        2,
+        2
+      ],
+      "predicate": "I"
+    },
+    {
+      "offset": [
+        2,
+        2,
+        2
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -2,
+        2,
+        3
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -1,
+        2,
+        3
+      ],
+      "predicate": "I"
+    },
+    {
+      "offset": [
+        0,
+        2,
+        3
+      ],
+      "predicate": "I"
+    },
+    {
+      "offset": [
+        1,
+        2,
+        3
+      ],
+      "predicate": "I"
+    },
+    {
+      "offset": [
+        2,
+        2,
+        3
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -2,
+        2,
+        4
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        -1,
+        2,
+        4
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        0,
+        2,
+        4
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        1,
+        2,
+        4
+      ],
+      "predicate": "W"
+    },
+    {
+      "offset": [
+        2,
+        2,
+        4
+      ],
+      "predicate": "W"
+    }
+  ],
+  "anchors": {
+    "center": [
+      0,
+      0,
+      2
+    ],
+    "west_energy_input": [
+      -2,
+      1,
+      2
+    ],
+    "east_energy_input": [
+      2,
+      1,
+      2
+    ]
+  },
+  "source": {
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityShredder",
+    "method": "checkStructure2"
+  }
+}

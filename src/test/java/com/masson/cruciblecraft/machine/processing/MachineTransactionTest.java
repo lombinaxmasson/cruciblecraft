@@ -65,6 +65,79 @@ class MachineTransactionTest {
     }
 
     @Test
+    void indexedOutputsStayInTheirGt6Slots() {
+        GTRecipe duplicateOutputs = new GTRecipe(
+                List.of(Ingredient.of(Items.COAL)),
+                List.of(1),
+                List.of(new ItemStack(Items.DIAMOND), new ItemStack(Items.DIAMOND)),
+                List.of(),
+                List.of(),
+                List.of(GTRecipe.GUARANTEED_CHANCE, GTRecipe.GUARANTEED_CHANCE),
+                20,
+                16,
+                0,
+                true);
+        MemoryResources resources = new MemoryResources(
+                List.of(new ItemStack(Items.COAL), ItemStack.EMPTY, ItemStack.EMPTY),
+                List.of());
+
+        MachineTransaction transaction = MachineTransaction.prepareIndexed(
+                duplicateOutputs,
+                resources.items,
+                List.of(0),
+                List.of(1, 2),
+                resources.fluids,
+                List.of(),
+                List.of(),
+                duplicateOutputs.itemOutputs()).orElseThrow();
+
+        assertTrue(transaction.commit(resources));
+        assertEquals(1, resources.items.get(1).getCount());
+        assertEquals(1, resources.items.get(2).getCount());
+
+        MemoryResources blocked = new MemoryResources(
+                List.of(
+                        new ItemStack(Items.COAL),
+                        new ItemStack(Items.DIAMOND, 64),
+                        ItemStack.EMPTY),
+                List.of());
+        assertTrue(MachineTransaction.prepareIndexed(
+                duplicateOutputs,
+                blocked.items,
+                List.of(0),
+                List.of(1, 2),
+                blocked.fluids,
+                List.of(),
+                List.of(),
+                duplicateOutputs.itemOutputs()).isEmpty());
+        assertEquals(1, blocked.items.get(0).getCount());
+        assertTrue(blocked.items.get(2).isEmpty());
+    }
+
+    @Test
+    void indexedChanceRollPreservesEmptyAndDuplicateOutputPositions() {
+        GTRecipe duplicateOutputs = new GTRecipe(
+                List.of(Ingredient.of(Items.COAL)),
+                List.of(1),
+                List.of(new ItemStack(Items.DIAMOND), new ItemStack(Items.DIAMOND)),
+                List.of(),
+                List.of(),
+                List.of(0, GTRecipe.GUARANTEED_CHANCE),
+                20,
+                16,
+                0,
+                true);
+
+        List<ItemStack> rolled =
+                ParallelRecipeOperations.rollItemOutputsIndexed(
+                        duplicateOutputs, 1, bound -> 0);
+
+        assertEquals(2, rolled.size());
+        assertTrue(rolled.get(0).isEmpty());
+        assertEquals(Items.DIAMOND, rolled.get(1).getItem());
+    }
+
+    @Test
     void capacityChangeRejectsCommitWithoutConsumingInputs() {
         GTRecipe recipe = recipe();
         MemoryResources resources = resources();
@@ -471,6 +544,19 @@ class MachineTransactionTest {
                 ChanceOutputState.read(emptyTag, RegistryAccess.EMPTY);
         assertTrue(restoredEmpty.valid());
         assertTrue(restoredEmpty.outputs().isEmpty());
+
+        ChanceOutputState indexed = new ChanceOutputState(
+                true,
+                "test:indexed",
+                "indexed",
+                List.of(ItemStack.EMPTY, new ItemStack(Items.DIAMOND)));
+        CompoundTag indexedTag = new CompoundTag();
+        indexed.write(indexedTag, RegistryAccess.EMPTY);
+        ChanceOutputState restoredIndexed =
+                ChanceOutputState.read(indexedTag, RegistryAccess.EMPTY);
+        assertEquals(2, restoredIndexed.outputs().size());
+        assertTrue(restoredIndexed.outputs().get(0).isEmpty());
+        assertEquals(Items.DIAMOND, restoredIndexed.outputs().get(1).getItem());
     }
 
     @Test

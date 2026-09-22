@@ -87,6 +87,69 @@ public final class ParallelRecipeOperations {
         return List.copyOf(result);
     }
 
+    /**
+     * Rolls outputs while retaining the source recipe output index.
+     *
+     * <p>GT6 writes output {@code i} to output slot {@code i}; equal stacks
+     * from different output entries must not be compacted together before the
+     * machine transaction is committed.
+     */
+    public static List<ItemStack> rollItemOutputsIndexed(
+            GTRecipe recipe,
+            int operations,
+            IntUnaryOperator randomBelow) {
+        if (operations <= 0) {
+            throw new IllegalArgumentException(
+                    "Parallel operations must be positive");
+        }
+        List<ItemStack> result = new ArrayList<>(
+                recipe.itemOutputs().size());
+        for (int index = 0; index < recipe.itemOutputs().size(); index++) {
+            ItemStack output = ItemStack.EMPTY;
+            ItemStack template = recipe.itemOutputs().get(index);
+            int chance = recipe.outputChances().get(index);
+            for (int operation = 0; operation < operations; operation++) {
+                ItemStack rolled = ChanceOutputs.roll(
+                        template, chance, randomBelow);
+                if (rolled.isEmpty()) {
+                    continue;
+                }
+                if (output.isEmpty()) {
+                    output = rolled;
+                } else {
+                    output.grow(rolled.getCount());
+                }
+            }
+            result.add(output);
+        }
+        return List.copyOf(result);
+    }
+
+    /**
+     * Returns one capacity probe per source output index.
+     *
+     * <p>The indexed transaction rejects a stack that does not fit its
+     * corresponding output slot, matching GT6's {@code addStackToSlot}
+     * routing and its parallel-count reduction.
+     */
+    public static List<ItemStack> maximumItemOutputsIndexed(
+            GTRecipe recipe,
+            int operations) {
+        if (operations <= 0) {
+            throw new IllegalArgumentException(
+                    "Parallel operations must be positive");
+        }
+        List<ItemStack> result = new ArrayList<>(
+                recipe.itemOutputs().size());
+        for (ItemStack output : recipe.itemOutputs()) {
+            long count = Math.multiplyExact(
+                    (long) output.getCount(), operations);
+            result.add(output.copyWithCount(
+                    (int) Math.min(count, Integer.MAX_VALUE)));
+        }
+        return List.copyOf(result);
+    }
+
     private static void appendCompacted(
             List<ItemStack> outputs, ItemStack offered) {
         ItemStack remaining = offered.copy();

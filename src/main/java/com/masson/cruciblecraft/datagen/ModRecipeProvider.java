@@ -1171,6 +1171,29 @@ public final class ModRecipeProvider extends RecipeProvider {
                 crusherIngredients,
                 Map.of(),
                 new ItemStack(ModItems.LARGE_CRUSHER.get()));
+        Map<String, Ingredient> shredderIngredients = new LinkedHashMap<>();
+        shredderIngredients.put(
+                "G",
+                materialIngredient("tungstensteel", MaterialPrefixes.GEAR));
+        shredderIngredients.put(
+                "S",
+                materialIngredient("tungstensteel", MaterialPrefixes.SMALL_GEAR));
+        shredderIngredients.put(
+                "R",
+                Ingredient.of(ModItems.technologicalPart("processor_crystal_ruby").get()));
+        shredderIngredients.put(
+                "M",
+                Ingredient.of(ModItems.mteInPlaceItemsById()
+                        .get(TungstensteelCrusherWalls.WALL_ID)
+                        .get()));
+        shredderIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        acceptShapedCatalyst(
+                output,
+                "machines/large_shredder",
+                List.of("SGS", "GSG", "RMC"),
+                shredderIngredients,
+                Map.of(),
+                new ItemStack(ModItems.LARGE_SHREDDER.get()));
         Map<String, Ingredient> bathIngredients = new LinkedHashMap<>();
         bathIngredients.put(
                 "P",
@@ -1820,8 +1843,10 @@ public final class ModRecipeProvider extends RecipeProvider {
                             : wirePrefix(resolved.distilleryWire().wirePrefix()),
                     variant.kind().id().getPath(),
                     path);
+            // GT6 ANY.Iron includes steel; steel is the registered iron-family
+            // member for the medium fluid pipe in CrucibleCraft.
             case "melter" -> melterCrafting(
-                    output, result, casing, material, path);
+                    output, result, casing, "steel", path);
             case "oven" -> ovenCrafting(
                     output, result, casing, path);
             case "laminator" -> laminatorCrafting(

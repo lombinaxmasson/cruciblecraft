@@ -144,6 +144,7 @@ public final class ModProcessingMachines {
     public static final ProcessingMachineSpec OVEN = ovenSpec();
     public static final ProcessingMachineSpec LARGE_OVEN = largeOvenSpec();
     public static final ProcessingMachineSpec LARGE_CRUSHER = largeCrusherSpec();
+    public static final ProcessingMachineSpec LARGE_SHREDDER = largeShredderSpec();
     public static final ProcessingMachineSpec LARGE_MATTER_FABRICATOR =
             largeMatterFabricatorSpec();
     public static final ProcessingMachineSpec CLUSTERMILL = clusterMillSpec();
@@ -428,6 +429,7 @@ public final class ModProcessingMachines {
                     FERMENTER,
                     LARGE_OVEN,
                     LARGE_CRUSHER,
+                    LARGE_SHREDDER,
                     LARGE_MATTER_FABRICATOR);
     /** Chemical recipes can publish into reused maps as well as dedicated maps. */
     public static final List<ProcessingMachineSpec> CHEMICAL_HOST_MACHINES = List.of(
@@ -619,6 +621,22 @@ public final class ModProcessingMachines {
                 || recipe.eut() <= 0L
                 || recipe.eut() > 4_096L) {
             return Optional.of("crusher_recipe_shape");
+        }
+        return Optional.empty();
+    }
+
+    private static Optional<String> validateLargeShredder(GTRecipe recipe) {
+        if (recipe.itemInputs().size() != 1
+                || recipe.itemOutputs().isEmpty()
+                || recipe.itemOutputs().size() > 12
+                || !recipe.fluidInputs().isEmpty()
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() <= 0L
+                || recipe.eut() > 4_096L
+                || recipe.outputChances().size() != recipe.itemOutputs().size()
+                || recipe.outputChances().stream().anyMatch(
+                        chance -> chance <= 0 || chance > GTRecipe.GUARANTEED_CHANCE)) {
+            return Optional.of("shredder_recipe_shape");
         }
         return Optional.empty();
     }
@@ -1341,6 +1359,30 @@ public final class ModProcessingMachines {
                 Gt6BasicMachineGui.ui(
                         1, 12, 0, 0,
                         1, 1, 0, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static ProcessingMachineSpec largeShredderSpec() {
+        return new ProcessingMachineSpec(
+                id("large_shredder"),
+                id("shredder"),
+                () -> ModRecipeMaps.SHREDDER,
+                new ProcessingMachineSpec.SlotLayout(
+                        13,
+                        List.of(0),
+                        List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.KINETIC_ROTATION,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        4_096L,
+                        4_096L),
+                Gt6SidedIo.policy("large_shredder"),
+                ModProcessingMachines::validateLargeShredder,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 12, 0, 0,
+                        1, 12, 0, 0,
                         PROCESSING_STATUSES));
     }
 

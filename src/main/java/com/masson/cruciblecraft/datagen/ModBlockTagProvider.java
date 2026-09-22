@@ -53,6 +53,7 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.LARGE_ELECTROLYZER.getKey(),
                 ModBlocks.LARGE_OVEN.getKey(),
                 ModBlocks.LARGE_CRUSHER.getKey(),
+                ModBlocks.LARGE_SHREDDER.getKey(),
                 ModBlocks.LARGE_BATH.getKey(),
                 ModBlocks.LARGE_COAGULATOR.getKey(),
                 ModBlocks.LARGE_AUTOCLAVE.getKey(),

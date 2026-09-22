@@ -193,6 +193,7 @@ public class ModLanguageProvider extends LanguageProvider {
                     "%s：实际送达 %s，堵塞 %s，盖板 %s");
             add("death.attack.electricity", "%s 被电死了");
             add("death.attack.crusher", "%s 被碾成了肉酱");
+            add("death.attack.shredder", "%s 被粉碎成了碎片");
             addItem(ModItems.PORTABLE_FLUID_TANK, "便携流体罐");
             addItem(ModItems.FLUID_CELL, "通用流体单元");
             addItem(ModItems.GAS_CELL, "通用气体单元");
@@ -348,6 +349,15 @@ public class ModLanguageProvider extends LanguageProvider {
                     "主机在侧底中心，朝外");
             add("tooltip.cruciblecraft.large_crusher.io",
                     "仅破碎轮输入，底层输出");
+            addBlock(ModBlocks.LARGE_SHREDDER, "大型粉碎机");
+            add("tooltip.cruciblecraft.large_shredder.structure",
+                    "结构：5×5×3 钨钢墙盆");
+            add("tooltip.cruciblecraft.large_shredder.blades",
+                    "3×3×2 填充粉碎刀片");
+            add("tooltip.cruciblecraft.large_shredder.controller",
+                    "主机在侧底中心，朝外");
+            add("tooltip.cruciblecraft.large_shredder.io",
+                    "仅粉碎刀片输入，底层输出");
             addBlock(ModBlocks.LARGE_BATH, "大型浸洗器");
             add("tooltip.cruciblecraft.large_bath.structure",
                     "结构：5×5×2 不锈钢墙");
@@ -855,6 +865,15 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Main Block centered on Side-Bottom and facing outwards");
         add("tooltip.cruciblecraft.large_crusher.io",
                 "Input only at Crusher Wheels, Output at Bottom Layer");
+        addBlock(ModBlocks.LARGE_SHREDDER, "Large Shredder");
+        add("tooltip.cruciblecraft.large_shredder.structure",
+                "5x5x3 'Basin' of 56 Tungstensteel Walls");
+        add("tooltip.cruciblecraft.large_shredder.blades",
+                "3x3x2 Filling with Shredder Blades");
+        add("tooltip.cruciblecraft.large_shredder.controller",
+                "Main Block centered on Side-Bottom and facing outwards");
+        add("tooltip.cruciblecraft.large_shredder.io",
+                "Input only at Shredder Blades, Output at Bottom Layer");
         addBlock(ModBlocks.LARGE_BATH, "Large Bathing Vat");
         add("tooltip.cruciblecraft.large_bath.structure",
                 "5x5x2 of Stainless Steel Walls");
@@ -1051,6 +1070,8 @@ public class ModLanguageProvider extends LanguageProvider {
                 "%s was electrocuted");
         add("death.attack.crusher",
                 "%s was crushed to a pulp");
+        add("death.attack.shredder",
+                "%s was shredded to pieces");
         addItem(ModItems.PIPE_FILTER_COVER, "Item Filter");
         addItem(ModItems.PIPE_VALVE_COVER, "Shutter Cover");
         addItem(ModItems.PIPE_PUMP_COVER, "Pipe Output Pump Cover");

@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-shredder",
+  "title": "Large Shredder 17109",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeShredderBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeShredderGeometry.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/ShredderBlades.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/ShredderDamage.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeShredderBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/large_shredder.json",
+    "src/main/resources/data/cruciblecraft/damage_type/shredder.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_shredder_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/large_shredder/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/shredder_blades/**",
+    "src/main/resources/assets/cruciblecraft/textures/gui/machines/shredder.png",
+    "src/main/resources/data/cruciblecraft/recipe/machines/large_shredder.json",
+    "tools/gt6_large_shredder.py",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/shredder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/shredder.json",
+    "tools/capabilities/machines/large-shredder/**",
+    "tools/waves/machines/large-shredder/**",
+    "tools/waves/machines/large-shredder/gt6_large_shredder.py",
+    "tools/tests/test_gt6_large_shredder.py"
+  ],
+  "depends_on": [
+    "machines/large-processing-parts",
+    "content/gt6-mte-multiblock-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/large-shredder",
+  "player_signoff": null,
+  "required_test_ids": [
+    "controllerIsLive",
+    "bareControllerIsNotFormed",
+    "formedStructureBindsNineInputAndNineStructureBlades",
+    "formedStructureCountsFiftySixWallsAndTwoEnergyPorts",
+    "survivalRecipeIsPresent",
+    "runningShredderHurtsFive"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large_shredder:17109",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:large_shredder"
+      ],
+      "reason": "GT6 MultiTileEntityShredder 17109. Not single-block Shredder, not Crusher Wheels 18107, not Shredder Blades 18108."
+    }
+  ],
+  "note": "GT6 RM.Shredder, RU 512..4096, capacity 4096, efficiency 5000, no-constant-power, parallel 64 with parallel duration and cheap overclock. 5x5x3: 56 tungstensteel walls, 9 middle structure blades, 9 top input blades, two adjacent RU inputs, side-bottom controller. One item input and twelve item outputs, no fluid slots, bottom automatic output, no automatic input. Runtime is ready; survival recipe and all currently resolvable source rows are published, while missing real material forms remain explicit blocked overflow. No stand-ins, no placeholder art, no ItemEntity worldgen obtain."
+}

@@ -1,0 +1,61 @@
+{
+  "capability_slug": "machines/large-shredder",
+  "cells": {
+    "C": {
+      "cc": "cruciblecraft:circuit_ultimate",
+      "gt": "OD_CIRCUITS[6]",
+      "status": "ok"
+    },
+    "G": {
+      "cc": "cruciblecraft:tungstensteel/gear",
+      "gt": "OP.gearGt(MT.TungstenSteel)",
+      "status": "ok"
+    },
+    "M": {
+      "cc": "cruciblecraft:tungstensteel/wall",
+      "gt": "getItem(18003)",
+      "meta": 18003,
+      "self_ref": true,
+      "status": "ok"
+    },
+    "R": {
+      "cc": "cruciblecraft:processor_crystal_ruby",
+      "gt": "IL.Processor_Crystal_Ruby",
+      "status": "ok"
+    },
+    "S": {
+      "cc": "cruciblecraft:tungstensteel/small_gear",
+      "gt": "OP.gearGtSmall(MT.TungstenSteel)",
+      "status": "ok"
+    }
+  },
+  "controller": {
+    "class": "MultiTileEntityShredder",
+    "meta": 17109,
+    "recipe_map": "RM.Shredder"
+  },
+  "grid": [
+    "SGS",
+    "GSG",
+    "RMC"
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "source_exact",
+  "structure": {
+    "blades": {
+      "cc": "cruciblecraft:multiblock/shredder_blades",
+      "gt": "getItem(18108)",
+      "meta": 18108,
+      "self_ref": true,
+      "status": "ok"
+    },
+    "wall": {
+      "cc": "cruciblecraft:tungstensteel/wall",
+      "gt": "getItem(18003)",
+      "meta": 18003,
+      "self_ref": true,
+      "status": "ok"
+    }
+  }
+}

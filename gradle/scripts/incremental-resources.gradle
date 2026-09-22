@@ -1,0 +1,242 @@
+import org.gradle.api.DefaultTask
+import org.gradle.api.file.ConfigurableFileCollection
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.provider.ListProperty
+import org.gradle.api.tasks.IgnoreEmptyDirectories
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputFiles
+import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
+import org.gradle.work.ChangeType
+import org.gradle.work.Incremental
+import org.gradle.work.InputChanges
+
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.StandardCopyOption
+import java.util.Comparator
+
+/**
+ * File-level resource synchronisation for the development output directory.
+ *
+ * Gradle's ProcessResources is a task-level incremental Copy: once any source
+ * changes, it walks and copies the complete CopySpec. This task keeps the
+ * normal build/resources/main output but applies only the changed files.
+ */
+abstract class IncrementalResourceSync extends DefaultTask {
+    @InputFiles
+    @Incremental
+    @IgnoreEmptyDirectories
+    @PathSensitive(PathSensitivity.ABSOLUTE)
+    abstract ConfigurableFileCollection getInputFiles()
+
+    @Input
+    abstract ListProperty<String> getRootPaths()
+
+    @OutputDirectory
+    abstract DirectoryProperty getDestinationDir()
+
+    @TaskAction
+    void sync(InputChanges changes) {
+        File destination = destinationDir.get().asFile
+        List<File> roots = rootPaths.get().collect { project.file(it) }
+
+        if (!changes.incremental || !destination.isDirectory()) {
+            IncrementalResourceSync.fullSync(
+                    destination, roots, inputFiles.files)
+            return
+        }
+
+        changes.getFileChanges(inputFiles).each { change ->
+            ResourcePath resource = resourcePath(change.file, roots)
+            if (resource == null) {
+                return
+            }
+
+            File target = new File(destination, resource.relative)
+            if (change.changeType == ChangeType.REMOVED) {
+                IncrementalResourceSync.deleteAndPrune(target, destination)
+            } else if (change.file.isFile()) {
+                copyIfChanged(change.file, target)
+            }
+        }
+    }
+
+    static void fullSync(
+            File destination, List<File> roots, Set<File> sources) {
+        clearDirectory(destination)
+        Map<String, File> owners = [:]
+
+        sources.each { File source ->
+            ResourcePath resource = IncrementalResourceSync.resourcePath(
+                    source, roots)
+            if (resource == null) {
+                return
+            }
+
+            File previous = owners.put(resource.relative, source)
+            if (previous != null) {
+                throw new GradleException(
+                        "duplicate resource path ${resource.relative}: " +
+                                "${previous} and ${source}")
+            }
+
+            IncrementalResourceSync.copyIfChanged(
+                    source, new File(destination, resource.relative))
+        }
+    }
+
+    static ResourcePath resourcePath(File source, List<File> roots) {
+        Path sourcePath = source.toPath().toAbsolutePath().normalize()
+        File matchingRoot = null
+        Path matchingRootPath = null
+
+        roots.each { File root ->
+            Path rootPath = root.toPath().toAbsolutePath().normalize()
+            if (sourcePath.startsWith(rootPath) &&
+                    (matchingRootPath == null ||
+                            rootPath.nameCount > matchingRootPath.nameCount)) {
+                matchingRoot = root
+                matchingRootPath = rootPath
+            }
+        }
+
+        if (matchingRoot == null) {
+            return null
+        }
+
+        String relative = matchingRootPath.relativize(sourcePath)
+                .toString()
+                .replace('\\', '/')
+        if (relative.isEmpty() || excluded(relative)) {
+            return null
+        }
+        return new ResourcePath(relative)
+    }
+
+    private static boolean excluded(String relative) {
+        return relative.endsWith('.bbmodel') ||
+                relative == '.cache' ||
+                relative.startsWith('.cache/') ||
+                relative.contains('/.cache/') ||
+                relative == '.gitkeep' ||
+                relative.endsWith('/.gitkeep') ||
+                relative.startsWith(
+                        'data/cruciblecraft/recipe/player_path_recovery/roaster/') ||
+                relative in [
+                        'assets/cruciblecraft/blockstates/multiblock/' +
+                                'distillation_tower_part.json',
+                        'assets/cruciblecraft/blockstates/multiblock/' +
+                                'heat_transmitter.json',
+                        'assets/cruciblecraft/models/item/multiblock/' +
+                                'distillation_tower_part.json',
+                        'assets/cruciblecraft/models/item/multiblock/' +
+                                'heat_transmitter.json',
+                ]
+    }
+
+    static void copyIfChanged(File source, File target) {
+        target.parentFile.mkdirs()
+        boolean same = target.isFile() &&
+                Files.mismatch(source.toPath(), target.toPath()) == -1
+        if (!same) {
+            Files.copy(
+                    source.toPath(),
+                    target.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING)
+        }
+    }
+
+    static void deleteAndPrune(File target, File destination) {
+        Files.deleteIfExists(target.toPath())
+        File parent = target.parentFile
+        while (parent != null &&
+                parent.toPath() != destination.toPath() &&
+                parent.isDirectory() &&
+                parent.listFiles()?.length == 0) {
+            Files.deleteIfExists(parent.toPath())
+            parent = parent.parentFile
+        }
+    }
+
+    private static void clearDirectory(File directory) {
+        if (!directory.isDirectory()) {
+            directory.mkdirs()
+            return
+        }
+
+        Path path = directory.toPath()
+        def stream = Files.walk(path)
+        try {
+            stream.sorted(Comparator.reverseOrder()).forEach { Path entry ->
+                if (entry != path) {
+                    Files.deleteIfExists(entry)
+                }
+            }
+        } finally {
+            stream.close()
+        }
+    }
+
+    private static final class ResourcePath {
+        final String relative
+
+        ResourcePath(String relative) {
+            this.relative = relative
+        }
+    }
+}
+
+def resourceManifest = new groovy.json.JsonSlurper().parse(
+        file('tools/generated_resource_roots.json'))
+def resourceRoots = [file('src/main/resources')]
+resourceManifest.roots.each { row ->
+    resourceRoots << file(row.path as String)
+}
+def metadataRoot = file('build/generated/sources/modMetadata')
+resourceRoots << metadataRoot
+
+def resourceExcludes = [
+        '**/*.bbmodel',
+        '**/.cache',
+        '**/.cache/**',
+        '**/.gitkeep',
+        'data/cruciblecraft/recipe/player_path_recovery/roaster/**',
+        'assets/cruciblecraft/blockstates/multiblock/distillation_tower_part.json',
+        'assets/cruciblecraft/blockstates/multiblock/heat_transmitter.json',
+        'assets/cruciblecraft/models/item/multiblock/distillation_tower_part.json',
+        'assets/cruciblecraft/models/item/multiblock/heat_transmitter.json',
+]
+
+def resourceTrees = resourceRoots.collect { root ->
+    fileTree(root) {
+        exclude resourceExcludes
+    }
+}
+
+def generateModMetadata = tasks.named('generateModMetadata')
+tasks.named('checkResourceDuplicates').configure {
+    dependsOn generateModMetadata
+    inputs.dir metadataRoot
+}
+
+def incrementalProcessResources = tasks.register(
+        'incrementalProcessResources', IncrementalResourceSync) {
+    group = 'build'
+    description = 'Incrementally synchronizes main resources into build/resources/main.'
+    inputFiles.from(resourceTrees)
+    rootPaths.set(resourceRoots.collect { it.absolutePath })
+    destinationDir.set(layout.buildDirectory.dir('resources/main'))
+    dependsOn tasks.named('checkResourceDuplicates')
+    inputs.file file('tools/generated_resource_roots.json')
+    inputs.file file('gradle/scripts/incremental-resources.gradle')
+    inputs.property 'resourceExcludes', resourceExcludes
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    dependsOn incrementalProcessResources
+    onlyIf {
+        false
+    }
+}

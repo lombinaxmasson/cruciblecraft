@@ -49,6 +49,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.LARGE_ELECTROLYZER.get());
         dropSelf(ModBlocks.LARGE_OVEN.get());
         dropSelf(ModBlocks.LARGE_CRUSHER.get());
+        dropSelf(ModBlocks.LARGE_SHREDDER.get());
         dropSelf(ModBlocks.LARGE_BATH.get());
         dropSelf(ModBlocks.LARGE_COAGULATOR.get());
         dropSelf(ModBlocks.LARGE_AUTOCLAVE.get());
@@ -257,6 +258,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.LARGE_ELECTROLYZER.get(),
                 ModBlocks.LARGE_OVEN.get(),
                 ModBlocks.LARGE_CRUSHER.get(),
+                ModBlocks.LARGE_SHREDDER.get(),
                 ModBlocks.LARGE_BATH.get(),
                 ModBlocks.LARGE_COAGULATOR.get(),
                 ModBlocks.LARGE_AUTOCLAVE.get(),

@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
 import com.masson.cruciblecraft.content.block.StainlessSteelMixerWalls;
 import com.masson.cruciblecraft.content.block.CrusherWheels;
+import com.masson.cruciblecraft.content.block.ShredderBlades;
 import com.masson.cruciblecraft.content.block.AutoclaveWalls;
 import com.masson.cruciblecraft.content.block.DenseLeadPorts;
 import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
@@ -822,6 +823,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (crusherWheel != null) {
             return crusherWheel;
         }
+        IFluidHandler shredderBlade = ShredderBlades.fluids(this);
+        if (shredderBlade != null) {
+            return shredderBlade;
+        }
         IFluidHandler massfab = DenseLeadPorts.fluids(this);
         if (massfab != null) {
             return massfab;
@@ -881,6 +886,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (crusherWheel != null) {
             return crusherWheel;
         }
+        IItemHandler shredderBlade = ShredderBlades.items(this);
+        if (shredderBlade != null) {
+            return shredderBlade;
+        }
         IItemHandler massfab = DenseLeadPorts.items(this);
         if (massfab != null) {
             return massfab;
@@ -928,6 +937,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 || AutoclaveWalls.accepts(spec(), type)
                 || TungstensteelCrusherWalls.accepts(spec(), type)
                 || CrusherWheels.accepts(spec(), type)
+                || ShredderBlades.accepts(spec(), type)
                 || DenseLeadPorts.accepts(spec(), type)
                 || LargeBoilerWallParts.accepts(spec(), type)
                 || TankWallParts.accepts(spec(), type)
@@ -950,6 +960,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 && !AutoclaveWalls.isWall(spec())
                 && !TungstensteelCrusherWalls.isWall(spec())
                 && !CrusherWheels.isPart(spec())
+                && !ShredderBlades.isPart(spec())
                 && !DenseLeadPorts.isPort(spec())
                 && !LargeBoilerWallParts.isWall(spec())
                 && !TankWallParts.isWall(spec())
@@ -979,10 +990,12 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         }
     }
 
-    /** Structure-only crusher wheels keep a controller pointer for walk damage. */
+    /** Structure-only processing parts keep a controller pointer for walk damage. */
     public void bindStructureMember(
             BlockPos controller, ResourceLocation structureId) {
-        if (!CrusherWheels.isPart(spec()) || mixerPortType != null) {
+        if ((!CrusherWheels.isPart(spec())
+                && !ShredderBlades.isPart(spec()))
+                || mixerPortType != null) {
             return;
         }
         BlockPos immutable = controller.immutable();

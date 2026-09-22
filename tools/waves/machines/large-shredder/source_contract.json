@@ -1,0 +1,49 @@
+{
+  "damage": {
+    "amount": 5,
+    "kind": "shredder",
+    "on_walk_over": true
+  },
+  "efficiency": 5000,
+  "no_constant_power": true,
+  "energy": {
+    "capacity": 4096,
+    "input_maximum": 4096,
+    "input_minimum": 512,
+    "type": "RU"
+  },
+  "gt6": {
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityShredder",
+    "loader_meta": 17109,
+    "method": "checkStructure2",
+    "recipe_map": "RM.Shredder",
+    "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+  },
+  "io": {
+    "automatic_input": false,
+    "automatic_output": true,
+    "fluid_inputs": 0,
+    "fluid_outputs": 0,
+    "item_input_layer": "top_blades_only",
+    "item_inputs": 1,
+    "item_output_layer": "bottom",
+    "item_outputs": 12
+  },
+  "overclock": "cheap",
+  "parallel": 64,
+  "parallel_duration": true,
+  "schema_version": 1,
+  "status": "source_exact",
+  "structure": {
+    "controller": "side_bottom_center",
+    "dimensions": [
+      5,
+      5,
+      3
+    ],
+    "energy_ports": 2,
+    "middle_blades": 9,
+    "top_input_blades": 9,
+    "wall_blocks": 56
+  }
+}

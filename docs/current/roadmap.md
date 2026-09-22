@@ -32,7 +32,7 @@ catalog 或对照工具。1.x 已关闭的分母也不因此作废。
 
 - 已关闭阶段的档案、工作日志与编号卡计划在 [docs/history](../history/INDEX.md)。
 - `0.1.0-rc.1` 是历史工程候选版本，不是 `1.0.0`、GA 或玩家发行承诺。
-- `0.1.0-test.20260919.2` 是小群私测快照，不创建 GitHub Release、不累计 RC soak。
+- `0.1.0-test.20260922.1` 是小群私测快照，不创建 GitHub Release、不累计 RC soak。
 - 历史 full verification report 已从工作树删除；内容开发不以旧 `--check-ready`
   通过与否作为日常完成判据。
 - 当前进度只接受当前 revision 上 fresh 执行的 capability profile PASS；

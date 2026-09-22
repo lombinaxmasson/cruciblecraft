@@ -151,7 +151,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         this.variant = variant;
         this.spec = variant.runtimeSpec();
         this.recipeCache = new GTRecipeCache(spec.requireRecipeMap());
-        this.energy = energyBufferFor(spec);
+        this.energy = energyBufferFor(spec, variant);
         this.inventory = new LayoutAwareItemStackHandler(
                 spec.items().slotCount(),
                 (slot, stack) -> spec.items().accepts(slot, stack)
@@ -463,9 +463,10 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                         match.id().toString(),
                         fingerprint);
         if (persistence
-                == ProcessingHostDecisions.SelectionPersistence.REUSE_RESTORED_ROLL) {
+                == ProcessingHostDecisions.SelectionPersistence.REUSE_RESTORED_ROLL
+                && rolledOutputs.size() == match.recipe().itemOutputs().size()) {
             if (restoredOperations != operations) {
-                rolledOutputs = ParallelRecipeOperations.rollItemOutputs(
+                rolledOutputs = ParallelRecipeOperations.rollItemOutputsIndexed(
                         match.recipe(), operations, this::randomBelow);
                 runtime.reset();
                 workProgress = 0L;
@@ -486,7 +487,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 runtime.reset();
             }
             workProgress = 0L;
-            rolledOutputs = ParallelRecipeOperations.rollItemOutputs(
+            rolledOutputs = ParallelRecipeOperations.rollItemOutputsIndexed(
                     match.recipe(), operations, this::randomBelow);
             rolledOutputs = HotIngotProcessing.prepareOutputs(
                     rolledOutputs,
@@ -500,7 +501,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     protected void onProcessingCompleted(String recipeId) {}
 
     private Optional<MachineTransaction> prepareTransaction(GTRecipe recipe) {
-        return MachineTransaction.prepare(
+        return MachineTransaction.prepareIndexed(
                 recipe,
                 inventorySnapshot(),
                 spec.items().inputs(),
@@ -529,7 +530,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
             GTRecipe scaled = ParallelRecipeOperations.scale(
                     recipe, operations);
             Optional<MachineTransaction> capacity =
-                    MachineTransaction.prepare(
+                    MachineTransaction.prepareIndexed(
                             scaled,
                             inventorySnapshot(),
                             spec.items().inputs(),
@@ -537,7 +538,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                             fluidSnapshot(),
                             spec.fluids().inputs(),
                             spec.fluids().outputs(),
-                            ParallelRecipeOperations.maximumItemOutputs(
+                            ParallelRecipeOperations.maximumItemOutputsIndexed(
                                     recipe, operations),
                             selectorCircuitOffered());
             if (capacity.isPresent()) {
@@ -1061,6 +1062,9 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
             long size,
             long amount,
             boolean simulate) {
+        if (!coverEnabled) {
+            return 0L;
+        }
         if (variant.tierBand().overcharges(size)) {
             if (!simulate && amount > 0L) {
                 runtime.overcharged();
@@ -1776,10 +1780,14 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         tanks.get(tank).setFluid(stack);
     }
 
-    private static MachineEnergyBuffer energyBufferFor(ProcessingMachineSpec spec) {
+    private static MachineEnergyBuffer energyBufferFor(
+            ProcessingMachineSpec spec,
+            MachineVariant variant) {
         if (spec.energy().mode() == ProcessingMachineSpec.EnergyMode.BUFFERED) {
             return new MachineEnergyBuffer(
-                    spec.energy().capacity(), spec.energy().maxPacket());
+                    spec.energy().capacity(),
+                    variant.tierBand().inputMinimum(),
+                    spec.energy().maxPacket());
         }
         if (spec.energy().mode() == ProcessingMachineSpec.EnergyMode.ADJACENT
                 && spec.energy().type() == EnergyType.HEAT) {

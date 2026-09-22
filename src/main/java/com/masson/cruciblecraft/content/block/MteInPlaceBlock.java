@@ -147,7 +147,7 @@ public final class MteInPlaceBlock extends Block
         if (LargeTurbineWalls.usesOutletState(spec)) {
             initial = initial.setValue(LargeTurbineWalls.OUTLET, false);
         }
-        if (CrusherWheels.isPart(spec)) {
+        if (CrusherWheels.isPart(spec) || ShredderBlades.isPart(spec)) {
             initial = initial.setValue(WHEEL_DESIGN, 0);
         }
         if (DistillationTowerParts.usesTowerSkin(spec)) {
@@ -191,7 +191,8 @@ public final class MteInPlaceBlock extends Block
             if (LargeTurbineWalls.usesOutletState(constructingSpec())) {
                 builder.add(LargeTurbineWalls.OUTLET);
             }
-            if (CrusherWheels.isPart(constructingSpec())) {
+            if (CrusherWheels.isPart(constructingSpec())
+                    || ShredderBlades.isPart(constructingSpec())) {
                 builder.add(WHEEL_DESIGN);
             }
             if (DistillationTowerParts.usesTowerSkin(constructingSpec())) {
@@ -881,6 +882,7 @@ public final class MteInPlaceBlock extends Block
             FoundryCastingInteractions.applyContactDamage(level, pos, entity);
         }
         CrusherWheels.hurtIfRunning(level, pos, entity);
+        ShredderBlades.hurtIfRunning(level, pos, entity);
         if (LargeCrucibleHosts.isController(spec)) {
             LargeCrucibleBlock.applyHotContact(level, pos, entity);
         }
@@ -919,6 +921,10 @@ public final class MteInPlaceBlock extends Block
         }
         if (CrusherWheels.isPart(spec)) {
             CrusherWheels.hurtIfRunning(level, pos, entity);
+            return;
+        }
+        if (ShredderBlades.isPart(spec)) {
+            ShredderBlades.hurtIfRunning(level, pos, entity);
             return;
         }
         if (LargeCrucibleHosts.isController(spec)) {

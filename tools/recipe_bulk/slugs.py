@@ -90,6 +90,7 @@ KNOWN_SEMANTIC_SLUGS = (
     "runtime/fission-observation-safety",
     "machines/roll-former",
     "machines/cluster-mill",
+    "machines/large-shredder",
     "machines/hammer-squeezer-laser",
     "machines/distillation-tower",
     "machines/large-processing-parts",

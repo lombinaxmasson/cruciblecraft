@@ -16,6 +16,10 @@ base {
     archivesName = mod_id
 }
 
+tasks.withType(Jar).configureEach {
+    zip64 = true
+}
+
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 apply from: 'gradle/scripts/repositories.gradle'
@@ -24,3 +28,4 @@ apply from: 'gradle/scripts/runs.gradle'
 apply from: 'gradle/scripts/dependencies.gradle'
 apply from: 'gradle/scripts/verification.gradle'
 apply from: 'gradle/scripts/publishing.gradle'
+apply from: 'gradle/scripts/incremental-resources.gradle'

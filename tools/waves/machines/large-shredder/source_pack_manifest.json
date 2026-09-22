@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/machines/large-shredder/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "3f1379f27ed26f233f8800033e459f89115cf4139c53ec66ef5abd7c0a10f6ac"
+    },
+    {
+      "path": "tools/waves/machines/large-shredder/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "53b98ca5a8725dbf1d61dd3a9cdbecaabf19774d22f8295581300dccfac25f71"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "machines/large-shredder",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

@@ -360,7 +360,9 @@ def _copy_rel(rel: str) -> str:
         raise ValueError(f"missing SOURCE_BACKED block texture: {rel}")
     dest = dest_png(rel)
     dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_bytes(source.read_bytes())
+    payload = source.read_bytes()
+    if not dest.is_file() or dest.read_bytes() != payload:
+        dest.write_bytes(payload)
     return census.relative(dest)
 
 

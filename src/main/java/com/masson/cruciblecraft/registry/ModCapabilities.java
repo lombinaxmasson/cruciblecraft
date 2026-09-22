@@ -173,6 +173,18 @@ public final class ModCapabilities {
                 (blockEntity, side) -> blockEntity.fluids(side));
         event.registerBlockEntity(
                 ENERGY,
+                ModBlockEntities.LARGE_SHREDDER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LARGE_SHREDDER.get(),
+                (blockEntity, side) -> blockEntity.items(side));
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.LARGE_SHREDDER.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
                 ModBlockEntities.LARGE_BATH.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
