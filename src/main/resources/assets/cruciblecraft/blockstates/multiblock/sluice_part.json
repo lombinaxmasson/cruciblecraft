@@ -1,27 +1,52 @@
 {
   "variants": {
-    "facing=down": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part",
-      "x": 90
-    },
-    "facing=east": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part",
-      "y": 90
-    },
-    "facing=north": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part"
-    },
-    "facing=south": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part",
-      "y": 180
-    },
-    "facing=up": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part",
-      "x": 270
-    },
-    "facing=west": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part",
-      "y": 270
-    }
+    "facing=down,sluice_design=0": {"model": "cruciblecraft:block/mte_inplace_sluice_part_0", "x": 90},
+    "facing=down,sluice_design=1": {"model": "cruciblecraft:block/mte_inplace_sluice_part_1", "x": 90},
+    "facing=down,sluice_design=2": {"model": "cruciblecraft:block/mte_inplace_sluice_part_2", "x": 90},
+    "facing=down,sluice_design=3": {"model": "cruciblecraft:block/mte_inplace_sluice_part_3", "x": 90},
+    "facing=down,sluice_design=4": {"model": "cruciblecraft:block/mte_inplace_sluice_part_4", "x": 90},
+    "facing=down,sluice_design=5": {"model": "cruciblecraft:block/mte_inplace_sluice_part_5", "x": 90},
+    "facing=down,sluice_design=6": {"model": "cruciblecraft:block/mte_inplace_sluice_part_6", "x": 90},
+    "facing=down,sluice_design=7": {"model": "cruciblecraft:block/mte_inplace_sluice_part_7", "x": 90},
+    "facing=east,sluice_design=0": {"model": "cruciblecraft:block/mte_inplace_sluice_part_0", "y": 90},
+    "facing=east,sluice_design=1": {"model": "cruciblecraft:block/mte_inplace_sluice_part_1", "y": 90},
+    "facing=east,sluice_design=2": {"model": "cruciblecraft:block/mte_inplace_sluice_part_2", "y": 90},
+    "facing=east,sluice_design=3": {"model": "cruciblecraft:block/mte_inplace_sluice_part_3", "y": 90},
+    "facing=east,sluice_design=4": {"model": "cruciblecraft:block/mte_inplace_sluice_part_4", "y": 90},
+    "facing=east,sluice_design=5": {"model": "cruciblecraft:block/mte_inplace_sluice_part_5", "y": 90},
+    "facing=east,sluice_design=6": {"model": "cruciblecraft:block/mte_inplace_sluice_part_6", "y": 90},
+    "facing=east,sluice_design=7": {"model": "cruciblecraft:block/mte_inplace_sluice_part_7", "y": 90},
+    "facing=north,sluice_design=0": {"model": "cruciblecraft:block/mte_inplace_sluice_part_0"},
+    "facing=north,sluice_design=1": {"model": "cruciblecraft:block/mte_inplace_sluice_part_1"},
+    "facing=north,sluice_design=2": {"model": "cruciblecraft:block/mte_inplace_sluice_part_2"},
+    "facing=north,sluice_design=3": {"model": "cruciblecraft:block/mte_inplace_sluice_part_3"},
+    "facing=north,sluice_design=4": {"model": "cruciblecraft:block/mte_inplace_sluice_part_4"},
+    "facing=north,sluice_design=5": {"model": "cruciblecraft:block/mte_inplace_sluice_part_5"},
+    "facing=north,sluice_design=6": {"model": "cruciblecraft:block/mte_inplace_sluice_part_6"},
+    "facing=north,sluice_design=7": {"model": "cruciblecraft:block/mte_inplace_sluice_part_7"},
+    "facing=south,sluice_design=0": {"model": "cruciblecraft:block/mte_inplace_sluice_part_0", "y": 180},
+    "facing=south,sluice_design=1": {"model": "cruciblecraft:block/mte_inplace_sluice_part_1", "y": 180},
+    "facing=south,sluice_design=2": {"model": "cruciblecraft:block/mte_inplace_sluice_part_2", "y": 180},
+    "facing=south,sluice_design=3": {"model": "cruciblecraft:block/mte_inplace_sluice_part_3", "y": 180},
+    "facing=south,sluice_design=4": {"model": "cruciblecraft:block/mte_inplace_sluice_part_4", "y": 180},
+    "facing=south,sluice_design=5": {"model": "cruciblecraft:block/mte_inplace_sluice_part_5", "y": 180},
+    "facing=south,sluice_design=6": {"model": "cruciblecraft:block/mte_inplace_sluice_part_6", "y": 180},
+    "facing=south,sluice_design=7": {"model": "cruciblecraft:block/mte_inplace_sluice_part_7", "y": 180},
+    "facing=up,sluice_design=0": {"model": "cruciblecraft:block/mte_inplace_sluice_part_0", "x": 270},
+    "facing=up,sluice_design=1": {"model": "cruciblecraft:block/mte_inplace_sluice_part_1", "x": 270},
+    "facing=up,sluice_design=2": {"model": "cruciblecraft:block/mte_inplace_sluice_part_2", "x": 270},
+    "facing=up,sluice_design=3": {"model": "cruciblecraft:block/mte_inplace_sluice_part_3", "x": 270},
+    "facing=up,sluice_design=4": {"model": "cruciblecraft:block/mte_inplace_sluice_part_4", "x": 270},
+    "facing=up,sluice_design=5": {"model": "cruciblecraft:block/mte_inplace_sluice_part_5", "x": 270},
+    "facing=up,sluice_design=6": {"model": "cruciblecraft:block/mte_inplace_sluice_part_6", "x": 270},
+    "facing=up,sluice_design=7": {"model": "cruciblecraft:block/mte_inplace_sluice_part_7", "x": 270},
+    "facing=west,sluice_design=0": {"model": "cruciblecraft:block/mte_inplace_sluice_part_0", "y": 270},
+    "facing=west,sluice_design=1": {"model": "cruciblecraft:block/mte_inplace_sluice_part_1", "y": 270},
+    "facing=west,sluice_design=2": {"model": "cruciblecraft:block/mte_inplace_sluice_part_2", "y": 270},
+    "facing=west,sluice_design=3": {"model": "cruciblecraft:block/mte_inplace_sluice_part_3", "y": 270},
+    "facing=west,sluice_design=4": {"model": "cruciblecraft:block/mte_inplace_sluice_part_4", "y": 270},
+    "facing=west,sluice_design=5": {"model": "cruciblecraft:block/mte_inplace_sluice_part_5", "y": 270},
+    "facing=west,sluice_design=6": {"model": "cruciblecraft:block/mte_inplace_sluice_part_6", "y": 270},
+    "facing=west,sluice_design=7": {"model": "cruciblecraft:block/mte_inplace_sluice_part_7", "y": 270}
   }
 }

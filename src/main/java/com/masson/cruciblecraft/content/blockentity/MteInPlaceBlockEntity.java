@@ -20,6 +20,8 @@ import com.masson.cruciblecraft.content.block.DenseLeadPorts;
 import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
 import com.masson.cruciblecraft.content.block.GalvanizedGraaggWalls;
 import com.masson.cruciblecraft.content.block.InvarOvenWalls;
+import com.masson.cruciblecraft.content.block.SluiceParts;
+import com.masson.cruciblecraft.content.block.SluiceWalls;
 import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.TankWallParts;
@@ -832,6 +834,14 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (shredderBlade != null) {
             return shredderBlade;
         }
+        IFluidHandler sluicePart = SluiceParts.fluids(this);
+        if (sluicePart != null) {
+            return sluicePart;
+        }
+        IFluidHandler sluiceWall = SluiceWalls.fluids(this);
+        if (sluiceWall != null) {
+            return sluiceWall;
+        }
         IFluidHandler massfab = DenseLeadPorts.fluids(this);
         if (massfab != null) {
             return massfab;
@@ -899,6 +909,14 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (shredderBlade != null) {
             return shredderBlade;
         }
+        IItemHandler sluicePart = SluiceParts.items(this);
+        if (sluicePart != null) {
+            return sluicePart;
+        }
+        IItemHandler sluiceWall = SluiceWalls.items(this);
+        if (sluiceWall != null) {
+            return sluiceWall;
+        }
         IItemHandler massfab = DenseLeadPorts.items(this);
         if (massfab != null) {
             return massfab;
@@ -945,6 +963,8 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 || TungstensteelCrusherWalls.accepts(spec(), type)
                 || CrusherWheels.accepts(spec(), type)
                 || ShredderBlades.accepts(spec(), type)
+                || SluiceParts.accepts(spec(), type)
+                || SluiceWalls.accepts(spec(), type)
                 || DenseLeadPorts.accepts(spec(), type)
                 || LargeBoilerWallParts.accepts(spec(), type)
                 || TankWallParts.accepts(spec(), type)
@@ -969,6 +989,8 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 && !TungstensteelCrusherWalls.isWall(spec())
                 && !CrusherWheels.isPart(spec())
                 && !ShredderBlades.isPart(spec())
+                && !SluiceParts.isPart(spec())
+                && !SluiceWalls.isWall(spec())
                 && !DenseLeadPorts.isPort(spec())
                 && !LargeBoilerWallParts.isWall(spec())
                 && !TankWallParts.isWall(spec())
@@ -994,7 +1016,8 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     public void bindStructureMember(
             BlockPos controller, ResourceLocation structureId) {
         if ((!CrusherWheels.isPart(spec())
-                && !ShredderBlades.isPart(spec()))
+                && !ShredderBlades.isPart(spec())
+                && !SluiceParts.isPart(spec()))
                 || mixerPortType != null) {
             return;
         }
@@ -1091,6 +1114,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
             return type == EnergyType.KINETIC_ROTATION;
         }
+        if (SluiceWalls.forwardsEnergy(this)) {
+            return type == EnergyType.KINETIC_ROTATION;
+        }
         if (DenseLeadPorts.forwardsEnergy(this)) {
             return type == EnergyType.QUANTUM;
         }
@@ -1144,6 +1170,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
             return TungstensteelCrusherWalls.storedEnergy(this, type);
         }
+        if (SluiceWalls.forwardsEnergy(this)) {
+            return SluiceWalls.storedEnergy(this, type);
+        }
         if (DenseLeadPorts.forwardsEnergy(this)) {
             return DenseLeadPorts.storedEnergy(this, type);
         }
@@ -1179,6 +1208,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         }
         if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
             return TungstensteelCrusherWalls.energyCapacity(this, type);
+        }
+        if (SluiceWalls.forwardsEnergy(this)) {
+            return SluiceWalls.energyCapacity(this, type);
         }
         if (DenseLeadPorts.forwardsEnergy(this)) {
             return DenseLeadPorts.energyCapacity(this, type);
@@ -1321,6 +1353,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         }
         if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
             return TungstensteelCrusherWalls.insertEnergy(
+                    this, type, size, amount, simulate);
+        }
+        if (SluiceWalls.forwardsEnergy(this)) {
+            return SluiceWalls.insertEnergy(
                     this, type, size, amount, simulate);
         }
         if (DenseLeadPorts.forwardsEnergy(this)) {

@@ -2806,6 +2806,49 @@
     },
     {
       "depends_on": [
+        "machines/large-processing-parts",
+        "content/gt6-mte-multiblock-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeSluiceBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeSluiceGeometry.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/SluiceParts.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/SluiceWalls.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeSluiceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_sluice.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_sluice_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/large_sluice/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/sluice_part/**",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_0.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_1.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_2.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_3.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_4.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_5.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_6.json",
+        "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_7.json",
+        "src/main/resources/assets/cruciblecraft/blockstates/multiblock/sluice_part.json",
+        "src/main/resources/data/cruciblecraft/recipe/machines/large_sluice.json",
+        "src/main/resources/data/cruciblecraft/multiblock_plugins.json",
+        "tools/gt6_large_sluice.py",
+        "tools/waves/machines/large-sluice/**",
+        "tools/tests/test_gt6_large_sluice.py"
+      ],
+      "path": "tools/capabilities/machines/large-sluice/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-sluice",
+      "survival_access": "partial",
+      "title": "Large Sluice 17107",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "machines/roll-former"
       ],
       "maturity": "runtime_ready",
@@ -3471,7 +3514,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 101,
+  "capability_count": 102,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -3644,7 +3687,8 @@
       "machines/large-electrolyzer",
       "machines/large-fermenter",
       "machines/large-processing-parts",
-      "machines/large-shredder"
+      "machines/large-shredder",
+      "machines/large-sluice"
     ],
     "content/gt6-mte-processing-host-fold": [
       "content/gt6-mte-processing-host-fold"
@@ -3696,6 +3740,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/puv-omega-matrix",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
@@ -3739,6 +3784,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3792,6 +3838,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3851,6 +3898,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3912,6 +3960,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3964,6 +4013,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4033,6 +4083,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4096,6 +4147,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4153,6 +4205,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4210,6 +4263,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4266,6 +4320,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4324,6 +4379,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4379,6 +4435,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4425,6 +4482,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/puv-omega-matrix",
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
@@ -4459,10 +4517,14 @@
       "machines/large-electrolyzer",
       "machines/large-fermenter",
       "machines/large-processing-parts",
-      "machines/large-shredder"
+      "machines/large-shredder",
+      "machines/large-sluice"
     ],
     "machines/large-shredder": [
       "machines/large-shredder"
+    ],
+    "machines/large-sluice": [
+      "machines/large-sluice"
     ],
     "machines/loom": [
       "content/electric-wire-cable-mte-fold",
@@ -4487,6 +4549,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/puv-omega-matrix",
       "worldgen/gt-crops",
@@ -4556,6 +4619,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4586,6 +4650,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/puv-omega-matrix",
       "machines/slicer",
       "worldgen/gt-crops",
@@ -4640,6 +4705,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "registry/catalog-modern-ids"
     ],
     "registry/hybrid-material-identity": [
@@ -4759,6 +4825,7 @@
       "machines/large-fermenter",
       "machines/large-processing-parts",
       "machines/large-shredder",
+      "machines/large-sluice",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",

@@ -46,6 +46,8 @@ public final class MachineBlockColor {
         blocks.add(ModBlocks.LARGE_ELECTROLYZER.get());
         blocks.add(ModBlocks.LARGE_OVEN.get());
         blocks.add(ModBlocks.LARGE_CRUSHER.get());
+        blocks.add(ModBlocks.LARGE_SHREDDER.get());
+        blocks.add(ModBlocks.LARGE_SLUICE.get());
         blocks.add(ModBlocks.LARGE_BATH.get());
         blocks.add(ModBlocks.LARGE_COAGULATOR.get());
         blocks.add(ModBlocks.LARGE_AUTOCLAVE.get());
@@ -194,6 +196,7 @@ public final class MachineBlockColor {
                     "large_fermenter" -> "stainless_steel";
             case "large_crusher" -> "tungstensteel";
             case "large_shredder", "implosion_compressor" -> "tungstensteel";
+            case "large_sluice" -> "titanium";
             default -> {
                 for (var profile : com.masson.cruciblecraft.energy.cooler
                         .CoolerCatalog.profiles()) {

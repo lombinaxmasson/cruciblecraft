@@ -49,6 +49,7 @@ import com.masson.cruciblecraft.content.blockentity.LargeElectrolyzerBlockEntity
 import com.masson.cruciblecraft.content.blockentity.LargeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCrusherBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeShredderBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeSluiceBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeBathBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeAutoclaveBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ImplosionCompressorBlockEntity;
@@ -177,6 +178,15 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     LargeShredderBlockEntity::new,
                                     ModBlocks.LARGE_SHREDDER.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeSluiceBlockEntity>>
+                    LARGE_SLUICE = BLOCK_ENTITIES.register(
+                            "large_sluice",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeSluiceBlockEntity::new,
+                                    ModBlocks.LARGE_SLUICE.get())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

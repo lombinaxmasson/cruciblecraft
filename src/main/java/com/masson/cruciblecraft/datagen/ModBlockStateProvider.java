@@ -130,6 +130,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 "large_crusher", ModBlocks.LARGE_CRUSHER.get());
         configuredMachine(
                 "large_shredder", ModBlocks.LARGE_SHREDDER.get());
+        largeSluice();
         configuredMachine(
                 "large_bath", ModBlocks.LARGE_BATH.get());
         configuredMachine(
@@ -1833,6 +1834,28 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .build();
         });
         itemModels().getBuilder("item/large_fermenter").parent(active);
+    }
+
+    private void largeSluice() {
+        String base = "block/machine/large_sluice";
+        ModelFile idle = ovenLayer(base, "large_sluice", "overlay");
+        ModelFile active = ovenLayer(
+                base, "large_sluice_active", "overlay_active");
+        ModelFile running = ovenLayer(
+                base, "large_sluice_running", "overlay_running");
+        getVariantBuilder(ModBlocks.LARGE_SLUICE.get()).forAllStates(state -> {
+            Direction facing = state.getValue(ProcessingMachineBlock.FACING);
+            boolean lit = state.getValue(
+                    com.masson.cruciblecraft.content.block.LargeSluiceBlock.LIT);
+            boolean processing = state.getValue(
+                    com.masson.cruciblecraft.content.block.LargeSluiceBlock.RUNNING);
+            ModelFile model = processing ? running : lit ? active : idle;
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
+                    .build();
+        });
+        itemModels().getBuilder("item/large_sluice").parent(idle);
     }
 
     private ModelFile ovenLayer(String base, String name, String overlay) {

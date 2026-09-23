@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "palette": {
+    "O": {
+      "type": "port",
+      "block": "cruciblecraft:titanium/wall",
+      "port": "item_fluid_out"
+    },
+    "E": {
+      "type": "port",
+      "block": "cruciblecraft:titanium/wall",
+      "port": "energy_input"
+    },
+    "W": {
+      "type": "block",
+      "block": "cruciblecraft:titanium/wall"
+    },
+    "N": {
+      "type": "block",
+      "block": "cruciblecraft:multiblock/sluice_part"
+    },
+    "I": {
+      "type": "port",
+      "block": "cruciblecraft:multiblock/sluice_part",
+      "port": "item_fluid_in"
+    },
+    "C": {
+      "type": "controller",
+      "block": "cruciblecraft:large_sluice"
+    }
+  },
+  "structure": [
+    {"offset": [-1, 0, 0], "predicate": "O"},
+    {"offset": [0, 0, 0], "predicate": "C"},
+    {"offset": [1, 0, 0], "predicate": "O"},
+    {"offset": [-1, 0, 1], "predicate": "W"},
+    {"offset": [0, 0, 1], "predicate": "W"},
+    {"offset": [1, 0, 1], "predicate": "W"},
+    {"offset": [-1, 0, 2], "predicate": "W"},
+    {"offset": [0, 0, 2], "predicate": "W"},
+    {"offset": [1, 0, 2], "predicate": "W"},
+    {"offset": [-1, 0, 3], "predicate": "W"},
+    {"offset": [0, 0, 3], "predicate": "W"},
+    {"offset": [1, 0, 3], "predicate": "W"},
+    {"offset": [-1, 0, 4], "predicate": "W"},
+    {"offset": [0, 0, 4], "predicate": "W"},
+    {"offset": [1, 0, 4], "predicate": "W"},
+    {"offset": [-1, 0, 5], "predicate": "W"},
+    {"offset": [0, 0, 5], "predicate": "W"},
+    {"offset": [1, 0, 5], "predicate": "W"},
+    {"offset": [-1, 0, 6], "predicate": "W"},
+    {"offset": [0, 0, 6], "predicate": "W"},
+    {"offset": [1, 0, 6], "predicate": "W"},
+    {"offset": [-1, 1, 0], "predicate": "W"},
+    {"offset": [0, 1, 0], "predicate": "W"},
+    {"offset": [1, 1, 0], "predicate": "W"},
+    {"offset": [-1, 1, 1], "predicate": "W"},
+    {"offset": [0, 1, 1], "predicate": "W"},
+    {"offset": [1, 1, 1], "predicate": "W"},
+    {"offset": [-1, 1, 2], "predicate": "W"},
+    {"offset": [0, 1, 2], "predicate": "W"},
+    {"offset": [1, 1, 2], "predicate": "W"},
+    {"offset": [-1, 1, 3], "predicate": "W"},
+    {"offset": [0, 1, 3], "predicate": "W"},
+    {"offset": [1, 1, 3], "predicate": "W"},
+    {"offset": [-1, 1, 4], "predicate": "W"},
+    {"offset": [0, 1, 4], "predicate": "W"},
+    {"offset": [1, 1, 4], "predicate": "W"},
+    {"offset": [-1, 1, 5], "predicate": "E"},
+    {"offset": [0, 1, 5], "predicate": "W"},
+    {"offset": [1, 1, 5], "predicate": "E"},
+    {"offset": [-1, 1, 6], "predicate": "W"},
+    {"offset": [0, 1, 6], "predicate": "W"},
+    {"offset": [1, 1, 6], "predicate": "W"},
+    {"offset": [-1, 2, 0], "predicate": "N"},
+    {"offset": [0, 2, 0], "predicate": "N"},
+    {"offset": [1, 2, 0], "predicate": "N"},
+    {"offset": [-1, 2, 1], "predicate": "N"},
+    {"offset": [0, 2, 1], "predicate": "N"},
+    {"offset": [1, 2, 1], "predicate": "N"},
+    {"offset": [-1, 2, 2], "predicate": "N"},
+    {"offset": [0, 2, 2], "predicate": "N"},
+    {"offset": [1, 2, 2], "predicate": "N"},
+    {"offset": [-1, 2, 3], "predicate": "N"},
+    {"offset": [0, 2, 3], "predicate": "N"},
+    {"offset": [1, 2, 3], "predicate": "N"},
+    {"offset": [-1, 2, 4], "predicate": "N"},
+    {"offset": [0, 2, 4], "predicate": "N"},
+    {"offset": [1, 2, 4], "predicate": "N"},
+    {"offset": [-1, 2, 5], "predicate": "N"},
+    {"offset": [0, 2, 5], "predicate": "N"},
+    {"offset": [1, 2, 5], "predicate": "N"},
+    {"offset": [-1, 2, 6], "predicate": "I"},
+    {"offset": [0, 2, 6], "predicate": "I"},
+    {"offset": [1, 2, 6], "predicate": "I"}
+  ],
+  "anchors": {
+    "center": [0, 0, 0],
+    "west_energy_input": [-1, 1, 5],
+    "east_energy_input": [1, 1, 5]
+  },
+  "source": {
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntitySluice",
+    "method": "checkStructure2"
+  }
+}

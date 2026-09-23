@@ -329,6 +329,7 @@
       "cruciblecraft:large_oven_profile": "Loader_MultiTileEntities.java:1236",
       "cruciblecraft:large_crusher_profile": "Loader_MultiTileEntities.java:1238",
       "cruciblecraft:large_shredder_profile": "Loader_MultiTileEntities.java:1239",
+      "cruciblecraft:large_sluice_profile": "Loader_MultiTileEntities.java:1237",
       "cruciblecraft:large_fermenter_profile": "Loader_MultiTileEntities.java:1235",
       "cruciblecraft:large_bath_profile": "Loader_MultiTileEntities.java:1233",
       "cruciblecraft:large_autoclave_profile": "Loader_MultiTileEntities.java:1232",
@@ -7333,6 +7334,17 @@
     {
       "tierBand": "cruciblecraft:large_shredder_profile",
       "material": "cruciblecraft:large_shredder",
+      "energy": "KINETIC_ROTATION",
+      "inputMinimum": 512,
+      "inputNominal": 512,
+      "inputMaximum": 4096,
+      "energyCapacity": 4096,
+      "parallel": 64,
+      "efficiency": 5000
+    },
+    {
+      "tierBand": "cruciblecraft:large_sluice_profile",
+      "material": "cruciblecraft:large_sluice",
       "energy": "KINETIC_ROTATION",
       "inputMinimum": 512,
       "inputNominal": 512,

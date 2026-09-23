@@ -30,6 +30,7 @@ public final class Gt6SidedIo {
         put("crusher", p(U, TOP, D, BOTTOM, 0, NO_AUTO, 0, NO_AUTO, B));
         put("large_crusher", p(0, NO_AUTO, D, BOTTOM, 0, NO_AUTO, D, BOTTOM, 0));
         put("large_shredder", p(0, NO_AUTO, D, BOTTOM, 0, NO_AUTO, 0, NO_AUTO, 0));
+        put("large_sluice", p(0, NO_AUTO, D, BOTTOM, 0, NO_AUTO, D, BOTTOM, 0));
         // 17103 leaves side bits at 127 and only sets auto-out to bottom.
         put("large_electrolyzer", p(
                 ANY, NO_AUTO, ANY, BOTTOM, ANY, NO_AUTO, ANY, BOTTOM, ANY));

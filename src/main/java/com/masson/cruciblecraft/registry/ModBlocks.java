@@ -48,6 +48,7 @@ import com.masson.cruciblecraft.content.block.LargeElectrolyzerBlock;
 import com.masson.cruciblecraft.content.block.LargeOvenBlock;
 import com.masson.cruciblecraft.content.block.LargeCrusherBlock;
 import com.masson.cruciblecraft.content.block.LargeShredderBlock;
+import com.masson.cruciblecraft.content.block.LargeSluiceBlock;
 import com.masson.cruciblecraft.content.block.LargeAutoclaveBlock;
 import com.masson.cruciblecraft.content.block.ImplosionCompressorBlock;
 import com.masson.cruciblecraft.content.block.LargeFermenterBlock;
@@ -421,6 +422,10 @@ public final class ModBlocks {
             LARGE_SHREDDER = BLOCKS.register(
                     "large_shredder",
                     () -> new LargeShredderBlock(machineProperties()));
+    public static final DeferredBlock<LargeSluiceBlock>
+            LARGE_SLUICE = BLOCKS.register(
+                    "large_sluice",
+                    () -> new LargeSluiceBlock(machineProperties()));
     public static final DeferredBlock<LargeBathBlock>
             LARGE_BATH = BLOCKS.register(
                     "large_bath",

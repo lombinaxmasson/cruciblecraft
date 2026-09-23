@@ -336,6 +336,9 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> LARGE_SHREDDER =
             ITEMS.registerSimpleBlockItem(
                     "large_shredder", ModBlocks.LARGE_SHREDDER);
+    public static final DeferredItem<BlockItem> LARGE_SLUICE =
+            ITEMS.registerSimpleBlockItem(
+                    "large_sluice", ModBlocks.LARGE_SLUICE);
     public static final DeferredItem<BlockItem> LARGE_BATH =
             ITEMS.registerSimpleBlockItem(
                     "large_bath", ModBlocks.LARGE_BATH);

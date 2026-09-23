@@ -215,6 +215,9 @@ public final class ModMenus {
             LARGE_SHREDDER = processing(
                     "large_shredder", ModProcessingMachines.LARGE_SHREDDER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            LARGE_SLUICE = processing(
+                    "large_sluice", ModProcessingMachines.LARGE_SLUICE);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             IMPLOSION_COMPRESSOR = processing(
                     "implosion_compressor",
                     ModProcessingMachines.IMPLOSION_COMPRESSOR);

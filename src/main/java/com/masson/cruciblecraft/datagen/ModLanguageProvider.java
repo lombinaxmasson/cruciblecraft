@@ -359,6 +359,15 @@ public class ModLanguageProvider extends LanguageProvider {
                     "主机在侧底中心，朝外");
             add("tooltip.cruciblecraft.large_shredder.io",
                     "仅粉碎刀片输入，底层输出");
+            addBlock(ModBlocks.LARGE_SLUICE, "大型溜槽");
+            add("tooltip.cruciblecraft.large_sluice.structure",
+                    "结构：3×7×3 两层钛墙与顶层溜槽部件");
+            add("tooltip.cruciblecraft.large_sluice.parts",
+                    "远侧顶层溜槽部件输入；运行时部件随主机方向切换");
+            add("tooltip.cruciblecraft.large_sluice.controller",
+                    "主机在近侧底层中心，朝外");
+            add("tooltip.cruciblecraft.large_sluice.io",
+                    "远侧输入物品/水；近侧底部输出物品/溜槽汁；两侧相邻 RU 输入");
             addBlock(ModBlocks.LARGE_BATH, "大型浸洗器");
             add("tooltip.cruciblecraft.large_bath.structure",
                     "结构：5×5×2 不锈钢墙");
@@ -748,6 +757,8 @@ public class ModLanguageProvider extends LanguageProvider {
                 add("fluid_type.cruciblecraft." + entry.id(), entry.chinese());
                 add("fluid.cruciblecraft." + entry.id(), entry.chinese());
             });
+            add("fluid_type.cruciblecraft.sluice_juice", "溜槽汁");
+            add("fluid.cruciblecraft.sluice_juice", "溜槽汁");
             addEmiStackGroupNames();
             return;
         }
@@ -883,6 +894,15 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Main Block centered on Side-Bottom and facing outwards");
         add("tooltip.cruciblecraft.large_shredder.io",
                 "Input only at Shredder Blades, Output at Bottom Layer");
+        addBlock(ModBlocks.LARGE_SLUICE, "Large Sluice");
+        add("tooltip.cruciblecraft.large_sluice.structure",
+                "3x7x3: two Titanium Wall layers with a top Sluice Part layer");
+        add("tooltip.cruciblecraft.large_sluice.parts",
+                "Input only at the far-side top Sluice Parts; designs rotate while active");
+        add("tooltip.cruciblecraft.large_sluice.controller",
+                "Main Block centered on the close-side bottom and facing outwards");
+        add("tooltip.cruciblecraft.large_sluice.io",
+                "Far-side item/water input; close-side bottom item/Sluice Juice output; two adjacent RU inputs");
         addBlock(ModBlocks.LARGE_BATH, "Large Bathing Vat");
         add("tooltip.cruciblecraft.large_bath.structure",
                 "5x5x2 of Stainless Steel Walls");
@@ -991,6 +1011,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("fluid_type.cruciblecraft.creosote", "Creosote");
         addItem(ModItems.STEAM_BUCKET, "Steam Bucket");
         add("fluid_type.cruciblecraft.steam", "Steam");
+        add("fluid_type.cruciblecraft.sluice_juice", "Sluice Juice");
+        add("fluid.cruciblecraft.sluice_juice", "Sluice Juice");
         addItem(ModItems.PORTABLE_FLUID_TANK, "Portable Fluid Tank");
         addItem(ModItems.FLUID_CELL, "Universal Fluid Cell");
         addItem(ModItems.GAS_CELL, "Universal Gas Cell");

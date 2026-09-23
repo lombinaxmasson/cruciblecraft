@@ -230,6 +230,26 @@ public final class ModMultiblockControllers {
                     () -> ModProcessingMachines.SHREDDER)
                     .withVariant(() -> LARGE_SHREDDER_VARIANT);
 
+    public static final MachineKindSpec LARGE_SLUICE_KIND =
+            new MachineKindSpec(
+                    id("large_sluice"),
+                    ModProcessingMachines.LARGE_SLUICE,
+                    MachineKindSpec.OverclockPolicy.CHEAP,
+                    true);
+    public static final MachineVariant LARGE_SLUICE_VARIANT =
+            new MachineVariant(
+                    id("large_sluice"),
+                    LARGE_SLUICE_KIND,
+                    MachineTierCatalog.requireControllerTierBand(
+                            id("large_sluice_profile")));
+    public static final MultiblockControllerSpec LARGE_SLUICE =
+            new MultiblockControllerSpec(
+                    id("large_sluice"),
+                    id("large_sluice"),
+                    ModRecipeMaps.SLUICE.id(),
+                    () -> ModProcessingMachines.LARGE_SLUICE)
+                    .withVariant(() -> LARGE_SLUICE_VARIANT);
+
     public static final MachineKindSpec DISTILLATION_TOWER_KIND =
             new MachineKindSpec(
                     id("distillation_tower"),

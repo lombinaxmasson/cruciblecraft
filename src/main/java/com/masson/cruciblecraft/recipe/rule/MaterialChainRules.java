@@ -146,6 +146,13 @@ public final class MaterialChainRules {
                         Optional.empty(),
                         Optional.of(ResourceLocation.withDefaultNamespace("water")),
                         Integer.toString(water))),
+                target.equals(ModRecipeMaps.SLUICE.id())
+                        ? List.of(new MaterialRule.FluidResource(
+                                Optional.empty(),
+                                Optional.of(ResourceLocation.fromNamespaceAndPath(
+                                        "cruciblecraft", "sluice_juice")),
+                                Integer.toString(water)))
+                        : List.of(),
                 duration,
                 eut);
     }
@@ -164,7 +171,39 @@ public final class MaterialChainRules {
             List<MaterialRule.FluidResource> fluids,
             int duration,
             long eut) {
-        return rule(target, input, "1", outputs, fluids, Integer.toString(duration), eut);
+        return rule(
+                target,
+                input,
+                outputs,
+                fluids,
+                List.of(),
+                duration,
+                eut);
+    }
+
+    private static MaterialRule rule(
+            ResourceLocation target,
+            MaterialPrefix input,
+            List<MaterialRule.ItemResource> outputs,
+            List<MaterialRule.FluidResource> fluids,
+            List<MaterialRule.FluidResource> fluidOutputs,
+            int duration,
+            long eut) {
+        return new MaterialRule(
+                Optional.of(target),
+                List.of(item(input, 1)),
+                outputs,
+                fluids,
+                fluidOutputs,
+                Integer.toString(duration),
+                Long.toString(eut),
+                "0",
+                true,
+                Optional.empty(),
+                Map.of(),
+                List.of(),
+                Optional.empty(),
+                List.of());
     }
 
     private static MaterialRule rule(

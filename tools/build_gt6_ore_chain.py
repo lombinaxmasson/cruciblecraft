@@ -77,7 +77,7 @@ ACCEPTANCE_MATERIALS = ("copper", "tin", "iron", "gold", "tungsten")
 COMPAT_SHORTCUT_GROUP = "cruciblecraft:compat_shortcut"
 MACHINE_LIMITS = {
     "crusher": (1, 1, 0, 0),
-    "sluice": (1, 4, 1, 0),
+    "sluice": (1, 4, 1, 1),
     "centrifuge": (1, 4, 0, 0),
     "shredder": (1, 4, 0, 0),
     "sifter": (1, 4, 0, 0),
@@ -564,14 +564,16 @@ def expand_offline_chain(
         eut: int,
         chances: list[int] | None = None,
         output_material: str | None = None,
+        fluid_outputs: list[compare.Resource] | None = None,
     ) -> bool:
+        all_outputs = outputs + (fluid_outputs or [])
         projected = compare.NormRecipe(
             family=family,
             source="cc",
             map_name=f"cruciblecraft:{FAMILY_TO_MAP[family]}",
             material=material_id,
             inputs=inputs,
-            outputs=outputs,
+            outputs=all_outputs,
             duration=duration,
             eut=eut,
             chances=chances or [],
@@ -633,6 +635,9 @@ def expand_offline_chain(
             240,
             16,
             chances,
+            fluid_outputs=[
+                compare.Resource("fluid", "cruciblecraft:sluice_juice", 250)
+            ],
         )
         if not has(material_id, "centrifuged_crushed_ore"):
             continue

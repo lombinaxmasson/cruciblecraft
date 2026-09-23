@@ -1,0 +1,63 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-sluice",
+  "title": "Large Sluice 17107",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeSluiceBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeSluiceGeometry.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/SluiceParts.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/SluiceWalls.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeSluiceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/large_sluice.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_sluice_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/large_sluice/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/gt6_import/mte/sluice_part/**",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_0.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_1.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_2.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_3.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_4.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_5.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_6.json",
+    "src/main/resources/assets/cruciblecraft/models/block/mte_inplace_sluice_part_7.json",
+    "src/main/resources/assets/cruciblecraft/blockstates/multiblock/sluice_part.json",
+    "src/main/resources/data/cruciblecraft/recipe/machines/large_sluice.json",
+    "src/main/resources/data/cruciblecraft/multiblock_plugins.json",
+    "tools/gt6_large_sluice.py",
+    "tools/waves/machines/large-sluice/**",
+    "tools/tests/test_gt6_large_sluice.py"
+  ],
+  "depends_on": [
+    "machines/large-processing-parts",
+    "content/gt6-mte-multiblock-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/large-sluice",
+  "player_signoff": null,
+  "required_test_ids": [
+    "controllerIsLive",
+    "bareControllerIsNotFormed",
+    "formedStructureHasSourceExactCounts",
+    "formedStructureBindsInputParts",
+    "activeStateUsesSourceDesigns",
+    "survivalRecipeIsPresent"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large_sluice:17107",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:large_sluice"
+      ],
+      "reason": "GT6 MultiTileEntitySluice 17107. Distinct from single-block Sluice and Sluice Part 18106."
+    }
+  ],
+  "note": "GT6 RM.Sluice, RU 512..4096, capacity 4096, efficiency 5000, parallel 64 with parallel duration and cheap overclock. Source-exact 3x7x3 titanium wall and Sluice Part structure, two adjacent RU inputs, far-side item/water input, close-side bottom item/Sluice Juice output. Current resolvable Sluice rows are published without stand-ins; missing source forms remain blocked."
+}

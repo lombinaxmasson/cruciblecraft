@@ -67,6 +67,21 @@ public final class ModFluids {
     public static final DeferredHolder<Fluid, FlowingFluid> STEAM_FLOWING =
             FLUIDS.register("flowing_steam", () -> new BaseFlowingFluid.Flowing(steamProperties()));
 
+    /** GT6 {@code FL.Sluice}: the retained wash slurry produced by sluicing. */
+    public static final Supplier<FluidType> SLUICE_JUICE_TYPE = FLUID_TYPES.register(
+            "sluice_juice",
+            () -> new FluidType(FluidType.Properties.create()
+                    .density(1_050)
+                    .viscosity(1_500)));
+    public static final DeferredHolder<Fluid, FlowingFluid> SLUICE_JUICE_SOURCE =
+            FLUIDS.register(
+                    "sluice_juice",
+                    () -> new BaseFlowingFluid.Source(sluiceJuiceProperties()));
+    public static final DeferredHolder<Fluid, FlowingFluid> SLUICE_JUICE_FLOWING =
+            FLUIDS.register(
+                    "flowing_sluice_juice",
+                    () -> new BaseFlowingFluid.Flowing(sluiceJuiceProperties()));
+
     public static final Supplier<FluidType> OIL_EXTRA_HEAVY_TYPE =
             registerSpringOilType("oil_extra_heavy", 3_000);
     public static final DeferredHolder<Fluid, FlowingFluid> OIL_EXTRA_HEAVY_SOURCE =
@@ -127,6 +142,15 @@ public final class ModFluids {
         return new BaseFlowingFluid.Properties(STEAM_TYPE, STEAM_SOURCE, STEAM_FLOWING)
                 .bucket(ModItems.STEAM_BUCKET)
                 .block(ModBlocks.STEAM)
+                .slopeFindDistance(2)
+                .levelDecreasePerBlock(2);
+    }
+
+    private static BaseFlowingFluid.Properties sluiceJuiceProperties() {
+        return new BaseFlowingFluid.Properties(
+                SLUICE_JUICE_TYPE,
+                SLUICE_JUICE_SOURCE,
+                SLUICE_JUICE_FLOWING)
                 .slopeFindDistance(2)
                 .levelDecreasePerBlock(2);
     }

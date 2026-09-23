@@ -461,6 +461,11 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                         category,
                         EmiStack.of(ModBlocks.LARGE_SHREDDER.get()));
             }
+            if (machine.spec() == ModProcessingMachines.SLUICE) {
+                registry.addWorkstation(
+                        category,
+                        EmiStack.of(ModBlocks.LARGE_SLUICE.get()));
+            }
             if (machine.spec() == ModProcessingMachines.BATH) {
                 registry.addWorkstation(
                         category,
@@ -509,7 +514,9 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 ModProcessingMachines.FERMENTER.id(),
                 ModBlocks.LARGE_FERMENTER.get(),
                 ModProcessingMachines.LARGE_SHREDDER.id(),
-                ModBlocks.LARGE_SHREDDER.get());
+                ModBlocks.LARGE_SHREDDER.get(),
+                ModProcessingMachines.LARGE_SLUICE.id(),
+                ModBlocks.LARGE_SLUICE.get());
         ProcessingEmiRegistrationPlan plan = ProcessingEmiRegistrationPlan.create(
                 ModProcessingMachines.MULTIBLOCK_MENU_HOSTS.stream()
                         .filter(spec -> workstations.containsKey(spec.id()))

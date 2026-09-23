@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "source_exact",
+  "gt6": {
+    "loader_meta": 17107,
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntitySluice",
+    "method": "checkStructure2",
+    "recipe_map": "RM.Sluice",
+    "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+  },
+  "energy": {
+    "type": "RU",
+    "input_minimum": 512,
+    "input_nominal": 512,
+    "input_maximum": 4096,
+    "capacity": 4096
+  },
+  "efficiency": 5000,
+  "overclock": "cheap",
+  "parallel": 64,
+  "parallel_duration": true,
+  "io": {
+    "item_inputs": 1,
+    "item_outputs": 9,
+    "fluid_inputs": 1,
+    "fluid_outputs": 1,
+    "automatic_input": false,
+    "automatic_output": true,
+    "item_input_layer": "far_side_top_sluice_parts",
+    "item_output_layer": "close_side_bottom_titanium_walls",
+    "fluid_input": "water",
+    "fluid_output": "cruciblecraft:sluice_juice"
+  },
+  "structure": {
+    "dimensions": [3, 7, 3],
+    "controller": "close_side_bottom_center",
+    "titanium_wall_meta": 18006,
+    "sluice_part_meta": 18106,
+    "energy_ports": 2,
+    "active_designs": [0, 1, 2, 3, 4, 5, 6, 7]
+  },
+  "crafting": {
+    "pattern": ["GGG", "SwS", "RMC"],
+    "catalyst": "cruciblecraft:material_wrench"
+  }
+}

@@ -250,16 +250,35 @@ src/main/resources/data/cruciblecraft/mte_inplace_catalog.json
 
 中存在，也可能已经有配方、模型和材质，但必须另外确认对应主机是否存在。
 
-### 4.5 当前没有大型主机：2 个条目
+### 4.5 Large Sluice 17107 已转为 accepted runtime
 
-- Large Sluice；
+Large Sluice 已进入独立 `machines/large-sluice` delivery lane，不能与
+Large Bathing Vat（17104）或单方块 `cruciblecraft:sluice` 合并统计。当前实现
+严格对照本地 GT6 `MultiTileEntitySluice.checkStructure2`：
+
+- `3×7×3`，两层 18006 Titanium Wall，顶层 18106 Sluice Part；
+- 近侧底层中心为 `cruciblecraft:large_sluice`，远侧顶层 3 个
+  `ONLY_ITEM_FLUID_IN`，近侧底层两侧为 `ONLY_ITEM_FLUID_OUT`；
+- 中层远侧两侧为 `ONLY_ENERGY_IN`，并在结构外相邻位置切换两个 RU 能量源；
+- 运行态按 GT6 `tD` 映射到 Sluice Part 0–7 设计；
+- `RM.Sluice` 使用 1 物品输入、9 物品输出、1 水输入、1 Sluice Juice
+  输出，RU 512–4096、efficiency 5000、parallel 64、parallel duration、
+  cheap overclock。
+
+对应能力卡为：
+
+```text
+tools/capabilities/machines/large-sluice/capability.json
+```
+
+主机、结构、端口绑定、active-state 设计切换、GT6 艺术清单、主机生存配方、
+水洗汁流体和测试证据均由该卡拥有。当前 `survival_access=partial` 的边界仍
+独立于 `runtime_ready`；缺少真实材料形态的额外 GT6 行继续留在 blocked
+overflow，不使用 stand-in。
+
+目前仍没有大型主机的条目只剩：
+
 - Large Squeezer。
-
-Implosion Compressor 已进入独立 `machines/implosion-compressor` delivery lane：
-主机、3×3×3 结构、18023 端口和当前可解析的 source-backed 配方行由其能力卡
-单独负责；缺少真实材料形态的行仍保留在 blocked overflow。Large Sluice 与
-Large Squeezer 目前仍最多只能找到 RecipeMap、部件或单方块机器侧的准备，不能
-因为 GT6 源码里有对应 `MultiTileEntity...` 类就宣称 CC 主机已经移植。
 
 ### 4.5.1 Large Shredder 17109 已转为 accepted runtime
 

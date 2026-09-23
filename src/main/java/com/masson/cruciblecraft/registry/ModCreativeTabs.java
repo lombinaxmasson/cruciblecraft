@@ -226,6 +226,7 @@ public final class ModCreativeTabs {
         output.accept(ModItems.LARGE_OVEN.get());
         output.accept(ModItems.LARGE_CRUSHER.get());
         output.accept(ModItems.LARGE_SHREDDER.get());
+        output.accept(ModItems.LARGE_SLUICE.get());
         output.accept(ModItems.LARGE_BATH.get());
         output.accept(ModItems.LARGE_COAGULATOR.get());
         output.accept(ModItems.LARGE_AUTOCLAVE.get());

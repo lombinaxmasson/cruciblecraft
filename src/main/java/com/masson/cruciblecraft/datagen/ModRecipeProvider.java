@@ -19,6 +19,7 @@ import com.masson.cruciblecraft.content.block.AutoclaveWalls;
 import com.masson.cruciblecraft.content.block.ImplosionCompressorWalls;
 import com.masson.cruciblecraft.content.block.InvarOvenWalls;
 import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
+import com.masson.cruciblecraft.content.block.SluiceWalls;
 import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
 import com.masson.cruciblecraft.logistics.pipe.PipeAcquisitionRecipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
@@ -1195,6 +1196,30 @@ public final class ModRecipeProvider extends RecipeProvider {
                 shredderIngredients,
                 Map.of(),
                 new ItemStack(ModItems.LARGE_SHREDDER.get()));
+        Map<String, Ingredient> sluiceIngredients = new LinkedHashMap<>();
+        sluiceIngredients.put(
+                "G",
+                materialIngredient("titanium", MaterialPrefixes.GEAR));
+        sluiceIngredients.put(
+                "S",
+                materialIngredient("titanium", MaterialPrefixes.ROD));
+        sluiceIngredients.put(
+                "R",
+                Ingredient.of(ModItems.technologicalPart(
+                        "processor_crystal_ruby").get()));
+        sluiceIngredients.put(
+                "M",
+                Ingredient.of(ModItems.mteInPlaceItemsById()
+                        .get(SluiceWalls.WALL_ID)
+                        .get()));
+        sluiceIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        acceptShapedCatalyst(
+                output,
+                "machines/large_sluice",
+                List.of("GGG", "SwS", "RMC"),
+                sluiceIngredients,
+                Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(ModItems.LARGE_SLUICE.get()));
         Map<String, Ingredient> bathIngredients = new LinkedHashMap<>();
         bathIngredients.put(
                 "P",
