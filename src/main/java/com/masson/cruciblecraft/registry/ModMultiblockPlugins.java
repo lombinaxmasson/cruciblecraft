@@ -57,6 +57,10 @@ public final class ModMultiblockPlugins {
     public static final List<ResourceLocation> LARGE_SLUICE_PLUGINS =
             List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
 
+    /** Plugin set persisted and resolved by the Large Squeezer controller. */
+    public static final List<ResourceLocation> LARGE_SQUEEZER_PLUGINS =
+            List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
+
     /** Plugin set persisted and resolved by the large bathing vat. */
     public static final List<ResourceLocation> LARGE_BATH_PLUGINS =
             List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);

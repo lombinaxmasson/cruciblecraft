@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "capability": "machines/large-oven",
+  "status": "runtime_ready",
+  "workflow": "accepted",
+  "host_kind": "processing",
+  "structure": "cruciblecraft:large_oven",
+  "source": {
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityOven",
+    "method": "checkStructure2",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+  },
+  "profile": {
+    "energy": "ELECTRIC",
+    "parallel": 64,
+    "efficiency": 2500,
+    "overclock": "CHEAP"
+  },
+  "survival_access": "partial",
+  "identity_boundary": "distinct from machines/oven single-block Oven"
+}

@@ -167,14 +167,19 @@ public final class BedrockDrillBlockEntity extends BlockEntity
     }
 
     public IFluidHandler fluids(Direction side) {
-        return formed() ? lube : null;
+        return formed() && side != Direction.DOWN ? lube : null;
     }
 
     public net.neoforged.neoforge.items.IItemHandler items(Direction side) {
-        return formed() ? output : null;
+        // GT6 exposes the controller's delegated inventory on its default
+        // side (top); the wall parts remain fluid/energy-only.
+        return formed() && side == Direction.UP ? output : null;
     }
 
     public boolean fillLube(FluidStack stack) {
+        if (!formed()) {
+            return false;
+        }
         int filled = lube.fill(stack, IFluidHandler.FluidAction.EXECUTE);
         if (filled > 0) {
             setChanged();
@@ -203,7 +208,9 @@ public final class BedrockDrillBlockEntity extends BlockEntity
 
     @Override
     public boolean handles(EnergyType type, Direction side) {
-        return formed() && type == EnergyType.KINETIC_ROTATION;
+        // MultiTileEntityBedrockDrill#getValidSides is SIDE_TOP.
+        return formed() && side == Direction.UP
+                && type == EnergyType.KINETIC_ROTATION;
     }
 
     @Override

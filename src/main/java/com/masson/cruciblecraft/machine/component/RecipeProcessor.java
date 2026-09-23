@@ -23,11 +23,18 @@ public final class RecipeProcessor {
     }
 
     public boolean advance() {
+        return advance(1);
+    }
+
+    public boolean advance(int amount) {
         if (duration <= 0 || activeId.isEmpty()) {
             return false;
         }
+        if (amount <= 0) {
+            return false;
+        }
         int previous = progress;
-        progress = Math.min(duration, progress + 1);
+        progress = Math.min(duration, progress + amount);
         return progress != previous;
     }
 

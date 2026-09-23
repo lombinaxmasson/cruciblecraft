@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-crucible",
+  "title": "Large Crucible 17101",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeCrucibleBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeCrucibleHosts.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeCrucibleWalls.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeCrucibleBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCore.java",
+    "src/main/java/com/masson/cruciblecraft/machine/component/SteelmakingController.java",
+    "src/main/java/com/masson/cruciblecraft/content/multiblock/**",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModCapabilities.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/large_crucible.json",
+    "src/main/resources/data/cruciblecraft/recipe/multiblock/large_*_crucible.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_crucible_art_manifest.json",
+    "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeCrucibleBlockEntityTest.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureDefinitionTest.java",
+    "tools/capabilities/machines/large-crucible/**",
+    "tools/waves/machines/large-crucible/**"
+  ],
+  "depends_on": [
+    "content/gt6-mte-multiblock-runtime",
+    "content/gt6-crucible-mold-interaction",
+    "content/gt6-foundry-art"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/large-crucible",
+  "player_signoff": null,
+  "required_test_ids": [
+    "largeCrucibleFormation",
+    "largeCrucibleTeardown",
+    "largeCrucibleOutputJam",
+    "largeCruciblePowerLoss",
+    "largeCrucibleReload",
+    "largeCrucibleMoldCast",
+    "largeCrucibleLayerPorts",
+    "largeCrucibleMeltDownFillsThreeByThree"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large-crucible:17101",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:large_crucible"
+      ],
+      "reason": "Dedicated CC thermal/steelmaking host. GT6 material MTE crucible identities remain distinct structural controller items."
+    }
+  ],
+  "note": "Not a processing_host and not a RecipeMap machine. The 27-position open-top host owns 432-ingot thermal, steelmaking, air, HU/CU and mold behavior. Survival remains partial where material forms or MTE controller acquisition is intentionally blocked."
+}

@@ -131,6 +131,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         configuredMachine(
                 "large_shredder", ModBlocks.LARGE_SHREDDER.get());
         largeSluice();
+        largeSqueezer();
         configuredMachine(
                 "large_bath", ModBlocks.LARGE_BATH.get());
         configuredMachine(
@@ -1856,6 +1857,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .build();
         });
         itemModels().getBuilder("item/large_sluice").parent(idle);
+    }
+
+    private void largeSqueezer() {
+        String base = "block/machine/large_squeezer";
+        ModelFile idle = ovenLayer(base, "large_squeezer", "overlay");
+        ModelFile active = ovenLayer(
+                base, "large_squeezer_active", "overlay_active");
+        getVariantBuilder(ModBlocks.LARGE_SQUEEZER.get()).forAllStates(state -> {
+            Direction facing = state.getValue(ProcessingMachineBlock.FACING);
+            boolean lit = state.getValue(
+                    com.masson.cruciblecraft.content.block.LargeSqueezerBlock.LIT);
+            return ConfiguredModel.builder()
+                    .modelFile(lit ? active : idle)
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
+                    .build();
+        });
+        itemModels().getBuilder("item/large_squeezer").parent(idle);
     }
 
     private ModelFile ovenLayer(String base, String name, String overlay) {

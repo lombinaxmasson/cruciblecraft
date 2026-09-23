@@ -1,0 +1,61 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-crusher",
+  "title": "Large Crusher 17108 with Crusher Wheels 18107",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeCrusherBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeCrusherGeometry.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/CrusherWheels.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeCrusherBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/large_crusher.json",
+    "src/generated/resources/data/cruciblecraft/recipe/machines/large_crusher.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_crusher_art_manifest.json",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCrusherProfileTest.java",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/LargeCrusherGameTests.java",
+    "tools/capabilities/machines/large-crusher/**",
+    "tools/waves/machines/large-crusher/**"
+  ],
+  "depends_on": [
+    "machines/large-processing-parts",
+    "content/gt6-mte-processing-host-fold"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/large-crusher",
+  "player_signoff": null,
+  "required_test_ids": [
+    "controllerProfileIsSourceBackedRu",
+    "cheapPolicyAcceptsFullEutAndKeepsParallelDurationBehavior",
+    "formedBasinBindsWheelInAndBottomOut",
+    "formedBasinBindsFillWheels",
+    "formedIdleWheelsUseZAxisOverlay",
+    "largeCrusherOutputBlockingIsLossless"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large-crusher:17108",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:large_crusher"
+      ],
+      "reason": "Dedicated 5x5x3 RU crusher host; Basic Crusher remains a separate machine identity."
+    },
+    {
+      "semantic_key": "mte:crusher-wheels:18107",
+      "disposition": "reuse_canonical",
+      "runtime_ids": [
+        "cruciblecraft:multiblock/crusher_wheels"
+      ],
+      "reason": "Crusher Wheels are structural parts owned by the large-processing-parts capability."
+    }
+  ],
+  "note": "The host owns wheel binding, active overlay, adjacent RU source toggling, no-constant-power behavior, walk damage and the large Crusher recipe boundary."
+}

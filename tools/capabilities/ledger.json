@@ -2366,6 +2366,40 @@
     },
     {
       "depends_on": [
+        "content/puv-omega-parts",
+        "content/gt6-mte-multiblock-runtime",
+        "worldgen/gt-small-ores"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/energy/bedrockdrill/**",
+        "src/main/java/com/masson/cruciblecraft/worldgen/BedrockOre*.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModCapabilities.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/PuvOmegaRecipes.java",
+        "src/main/resources/data/cruciblecraft/worldgen/**",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_bedrock_ore_veins.json",
+        "src/main/resources/assets/cruciblecraft/gt6_bedrock_ore_flowers_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/gt6_bedrock_drill_art_manifest.json",
+        "src/test/java/com/masson/cruciblecraft/gametest/GtBedrockOreVeinsGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/BedrockDrillGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+        "tools/capabilities/machines/bedrock-drill/**",
+        "tools/waves/machines/bedrock-drill/**"
+      ],
+      "path": "tools/capabilities/machines/bedrock-drill/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/bedrock-drill",
+      "survival_access": "partial",
+      "title": "Bedrock Mining Drill 17999/18103",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "machines/roll-former"
       ],
       "maturity": "runtime_ready",
@@ -2388,6 +2422,41 @@
       "slug": "machines/cluster-mill",
       "survival_access": "unreviewed",
       "title": "Cluster Mill",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "content/gt6-mte-multiblock-runtime",
+        "content/gt6-mte-inplace-acquisition"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/block/CokeOvenBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/FirebrickBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/CokeOvenBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/FirebrickBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/compat/emi/CokeOvenEmiRecipe.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/coke_oven.json",
+        "src/main/resources/data/cruciblecraft/recipe/coke_oven/**",
+        "src/main/resources/data/cruciblecraft/recipe/coke_oven_controller.json",
+        "src/main/resources/assets/cruciblecraft/gt6_coke_oven_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/models/block/firebrick_gt6.json",
+        "src/test/java/com/masson/cruciblecraft/content/multiblock/CokeOvenStructureTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/CokeOvenEnergyGameTests.java",
+        "tools/capabilities/machines/coke-oven/**",
+        "tools/waves/machines/coke-oven/**"
+      ],
+      "path": "tools/capabilities/machines/coke-oven/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/coke-oven",
+      "survival_access": "partial",
+      "title": "Coke Oven 17000 with Fire Bricks 18000",
       "workflow": "accepted"
     },
     {
@@ -2655,6 +2724,171 @@
     },
     {
       "depends_on": [
+        "machines/bath",
+        "content/gt6-mte-processing-host-fold"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeBathBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBathBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockPortAggregator.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_bath.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/large_bath.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_bath_art_manifest.json",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeBathProfileTest.java",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeBathGameTests.java",
+        "tools/capabilities/machines/large-bathing-vat/**",
+        "tools/waves/machines/large-bathing-vat/**"
+      ],
+      "path": "tools/capabilities/machines/large-bathing-vat/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-bathing-vat",
+      "survival_access": "partial",
+      "title": "Large Bathing Vat 17104",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/large-processing-parts",
+        "content/gt6-mte-processing-host-fold"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeCentrifugeBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeCentrifugeBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockPortAggregator.java",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/PortCapabilityGate.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_centrifuge.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/large_centrifuge.json",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCentrifugeProfileTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+        "tools/capabilities/machines/large-centrifuge/**",
+        "tools/waves/machines/large-centrifuge/**"
+      ],
+      "path": "tools/capabilities/machines/large-centrifuge/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-centrifuge",
+      "survival_access": "partial",
+      "title": "Large Centrifuge 17100",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "content/gt6-mte-processing-host-fold"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeCoagulatorBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeCoagulatorBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockPortAggregator.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_coagulator.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/large_coagulator.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_coagulator_art_manifest.json",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCoagulatorProfileTest.java",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeCoagulatorGameTests.java",
+        "tools/capabilities/machines/large-coagulator/**",
+        "tools/waves/machines/large-coagulator/**"
+      ],
+      "path": "tools/capabilities/machines/large-coagulator/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-coagulator",
+      "survival_access": "blocked",
+      "title": "Large Coagulator Array 17105",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "content/gt6-mte-multiblock-runtime",
+        "content/gt6-crucible-mold-interaction",
+        "content/gt6-foundry-art"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeCrucibleBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeCrucibleHosts.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeCrucibleWalls.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeCrucibleBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCore.java",
+        "src/main/java/com/masson/cruciblecraft/machine/component/SteelmakingController.java",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/**",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModCapabilities.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_crucible.json",
+        "src/main/resources/data/cruciblecraft/recipe/multiblock/large_*_crucible.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_crucible_art_manifest.json",
+        "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeCrucibleBlockEntityTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureDefinitionTest.java",
+        "tools/capabilities/machines/large-crucible/**",
+        "tools/waves/machines/large-crucible/**"
+      ],
+      "path": "tools/capabilities/machines/large-crucible/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-crucible",
+      "survival_access": "partial",
+      "title": "Large Crucible 17101",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/large-processing-parts",
+        "content/gt6-mte-processing-host-fold"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeCrusherBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeCrusherGeometry.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/CrusherWheels.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeCrusherBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_crusher.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/large_crusher.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_crusher_art_manifest.json",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCrusherProfileTest.java",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeCrusherGameTests.java",
+        "tools/capabilities/machines/large-crusher/**",
+        "tools/waves/machines/large-crusher/**"
+      ],
+      "path": "tools/capabilities/machines/large-crusher/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-crusher",
+      "survival_access": "partial",
+      "title": "Large Crusher 17108 with Crusher Wheels 18107",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "machines/large-processing-parts",
         "content/gt6-mte-multiblock-runtime"
       ],
@@ -2717,6 +2951,71 @@
       "survival_access": "partial",
       "title": "Large Fermenter 17113",
       "workflow": "paused"
+    },
+    {
+      "depends_on": [
+        "content/gt6-mte-processing-host-fold",
+        "machines/large-processing-parts"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeMixerBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/StainlessSteelMixerWalls.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeMixerBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockPortAggregator.java",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/PortCapabilityGate.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_mixer.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/large_mixer.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_mixer_art_manifest.json",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeMixerGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+        "tools/capabilities/machines/large-mixer/**",
+        "tools/waves/machines/large-mixer/**"
+      ],
+      "path": "tools/capabilities/machines/large-mixer/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-mixer",
+      "survival_access": "partial",
+      "title": "Large Batch Mixer 17102",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "machines/oven",
+        "machines/gt6-coil-hosts",
+        "content/gt6-mte-processing-host-fold"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeOvenBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeOvenBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_oven.json",
+        "src/generated/resources/data/cruciblecraft/recipe/machines/large_oven.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_oven_art_manifest.json",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeOvenProfileTest.java",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeOvenGameTests.java",
+        "tools/capabilities/machines/large-oven/**",
+        "tools/waves/machines/large-oven/**"
+      ],
+      "path": "tools/capabilities/machines/large-oven/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-oven",
+      "survival_access": "partial",
+      "title": "Large Electric Oven 17106",
+      "workflow": "accepted"
     },
     {
       "depends_on": [
@@ -2852,6 +3151,48 @@
       "slug": "machines/large-sluice",
       "survival_access": "partial",
       "title": "Large Sluice 17107",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "content/gt6-mte-multiblock-runtime",
+        "machines/hammer-squeezer-laser"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeSqueezerBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/LargeSqueezerGeometry.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/SteelSqueezerWalls.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeSqueezerBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModMenus.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/Gt6SidedIo.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/large_squeezer.json",
+        "src/main/resources/data/cruciblecraft/multiblock_plugins.json",
+        "src/main/resources/assets/cruciblecraft/gt6_large_squeezer_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/large_squeezer/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/LargeSqueezerGameTests.java",
+        "tools/capabilities/machines/large-squeezer/**",
+        "tools/waves/machines/large-squeezer/**",
+        "tools/tests/test_gt6_large_squeezer.py",
+        "docs/current/gt6-large-machines-porting.md"
+      ],
+      "path": "tools/capabilities/machines/large-squeezer/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/large-squeezer",
+      "survival_access": "partial",
+      "title": "Large Squeezer 17114",
       "workflow": "accepted"
     },
     {
@@ -3521,7 +3862,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 102,
+  "capability_count": 112,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -3559,11 +3900,13 @@
     "content/gt6-crucible-mold-behavior-correction": [
       "content/gt6-crucible-mold-behavior-correction",
       "content/gt6-crucible-mold-interaction",
-      "content/gt6-foundry-art"
+      "content/gt6-foundry-art",
+      "machines/large-crucible"
     ],
     "content/gt6-crucible-mold-interaction": [
       "content/gt6-crucible-mold-interaction",
-      "content/gt6-foundry-art"
+      "content/gt6-foundry-art",
+      "machines/large-crucible"
     ],
     "content/gt6-electric-tools": [
       "content/gt6-electric-tools"
@@ -3611,7 +3954,8 @@
       "content/gt6-restrictive-item-pipe-runtime"
     ],
     "content/gt6-foundry-art": [
-      "content/gt6-foundry-art"
+      "content/gt6-foundry-art",
+      "machines/large-crucible"
     ],
     "content/gt6-insulated-redstone-runtime": [
       "content/gt6-insulated-redstone-runtime",
@@ -3641,7 +3985,8 @@
       "content/gt6-crucible-mold-behavior-correction",
       "content/gt6-crucible-mold-interaction",
       "content/gt6-foundry-art",
-      "content/gt6-mte-crucible-foundry-runtime"
+      "content/gt6-mte-crucible-foundry-runtime",
+      "machines/large-crucible"
     ],
     "content/gt6-mte-decorative-runtime": [
       "content/gt6-mte-decorative-runtime"
@@ -3680,25 +4025,42 @@
     ],
     "content/gt6-mte-inplace-acquisition": [
       "content/gt6-mte-inplace-acquisition",
-      "machines/gt6-coil-hosts"
+      "machines/coke-oven",
+      "machines/gt6-coil-hosts",
+      "machines/large-oven"
     ],
     "content/gt6-mte-misc-tool-runtime": [
       "content/gt6-mte-misc-tool-runtime",
-      "machines/bath"
+      "machines/bath",
+      "machines/large-bathing-vat"
     ],
     "content/gt6-mte-multiblock-runtime": [
       "content/gt6-mte-multiblock-runtime",
+      "machines/bedrock-drill",
+      "machines/coke-oven",
       "machines/gt6-coil-hosts",
       "machines/implosion-compressor",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crucible",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
-      "machines/large-sluice"
+      "machines/large-sluice",
+      "machines/large-squeezer"
     ],
     "content/gt6-mte-processing-host-fold": [
-      "content/gt6-mte-processing-host-fold"
+      "content/gt6-mte-processing-host-fold",
+      "machines/large-bathing-vat",
+      "machines/large-centrifuge",
+      "machines/large-coagulator",
+      "machines/large-crusher",
+      "machines/large-mixer",
+      "machines/large-oven"
     ],
     "content/gt6-mte-reactor-rod-host-fold": [
       "content/gt6-mte-reactor-rod-host-fold"
@@ -3729,6 +4091,7 @@
     ],
     "content/puv-omega-parts": [
       "content/puv-omega-parts",
+      "machines/bedrock-drill",
       "machines/puv-omega-matrix"
     ],
     "content/sensors": [
@@ -3740,11 +4103,16 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/large-gas-turbine",
+      "machines/bedrock-drill",
       "machines/gt6-coil-hosts",
       "machines/implosion-compressor",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
@@ -3780,6 +4148,7 @@
       "energy/quantum-massfab",
       "energy/steam-turbine",
       "energy/transformers",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -3787,11 +4156,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3834,6 +4208,7 @@
       "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -3841,11 +4216,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3869,7 +4249,9 @@
       "content/puv-omega-parts",
       "energy/fusion-quantum",
       "energy/quantum-massfab",
+      "machines/bedrock-drill",
       "machines/gt6-coil-hosts",
+      "machines/large-oven",
       "machines/puv-omega-matrix"
     ],
     "energy/heat-exchangers": [
@@ -3894,6 +4276,7 @@
       "energy/large-heat-exchanger",
       "energy/quantum-massfab",
       "energy/steam-turbine",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -3901,11 +4284,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -3929,7 +4317,9 @@
       "energy/large-heat-exchanger",
       "energy/quantum-massfab",
       "energy/steam-turbine",
+      "machines/bedrock-drill",
       "machines/gt6-coil-hosts",
+      "machines/large-oven",
       "machines/puv-omega-matrix"
     ],
     "energy/nuclear-fission-hot-fluids": [
@@ -3956,6 +4346,7 @@
       "energy/nuclear-fission-observation-safety",
       "energy/quantum-massfab",
       "energy/steam-turbine",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -3963,11 +4354,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4009,6 +4405,7 @@
       "energy/nuclear-fission-survival",
       "energy/quantum-massfab",
       "energy/steam-turbine",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -4016,11 +4413,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4037,7 +4439,9 @@
     "energy/quantum-massfab": [
       "content/puv-omega-parts",
       "energy/quantum-massfab",
+      "machines/bedrock-drill",
       "machines/gt6-coil-hosts",
+      "machines/large-oven",
       "machines/puv-omega-matrix"
     ],
     "energy/small-gas-turbine": [
@@ -4050,7 +4454,9 @@
       "energy/large-gas-turbine",
       "energy/quantum-massfab",
       "energy/steam-turbine",
+      "machines/bedrock-drill",
       "machines/gt6-coil-hosts",
+      "machines/large-oven",
       "machines/puv-omega-matrix"
     ],
     "energy/transformers": [
@@ -4079,6 +4485,7 @@
       "energy/quantum-massfab",
       "energy/steam-turbine",
       "energy/transformers",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -4086,11 +4493,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4143,6 +4555,7 @@
       "logistics/generic-network/core",
       "logistics/item-network-core",
       "logistics/logistics-core",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -4150,11 +4563,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4201,6 +4619,7 @@
       "energy/steam-turbine",
       "energy/transformers",
       "logistics/display-cpu",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -4208,11 +4627,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4259,6 +4683,7 @@
       "logistics/fluid-network/basic-transfer",
       "logistics/generic-network/core",
       "logistics/logistics-core",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -4266,11 +4691,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4316,6 +4746,7 @@
       "logistics/display-cpu",
       "logistics/generic-network/core",
       "logistics/logistics-core",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -4323,11 +4754,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4375,6 +4811,7 @@
       "logistics/generic-network/core",
       "logistics/item-network-core",
       "logistics/logistics-core",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -4382,11 +4819,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4431,6 +4873,7 @@
       "energy/transformers",
       "logistics/display-cpu",
       "logistics/logistics-core",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -4438,11 +4881,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4457,20 +4905,30 @@
       "worldgen/gt-trees"
     ],
     "machines/bath": [
-      "machines/bath"
+      "machines/bath",
+      "machines/large-bathing-vat"
+    ],
+    "machines/bedrock-drill": [
+      "machines/bedrock-drill"
     ],
     "machines/cluster-mill": [
       "machines/cluster-mill",
-      "machines/hammer-squeezer-laser"
+      "machines/hammer-squeezer-laser",
+      "machines/large-squeezer"
+    ],
+    "machines/coke-oven": [
+      "machines/coke-oven"
     ],
     "machines/distillation-tower": [
       "machines/distillation-tower"
     ],
     "machines/gt6-coil-hosts": [
-      "machines/gt6-coil-hosts"
+      "machines/gt6-coil-hosts",
+      "machines/large-oven"
     ],
     "machines/hammer-squeezer-laser": [
-      "machines/hammer-squeezer-laser"
+      "machines/hammer-squeezer-laser",
+      "machines/large-squeezer"
     ],
     "machines/implosion-compressor": [
       "machines/implosion-compressor"
@@ -4481,12 +4939,17 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/large-gas-turbine",
+      "machines/bedrock-drill",
       "machines/gt6-coil-hosts",
       "machines/implosion-compressor",
       "machines/injector",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
@@ -4511,18 +4974,43 @@
     "machines/large-autoclave": [
       "machines/large-autoclave"
     ],
+    "machines/large-bathing-vat": [
+      "machines/large-bathing-vat"
+    ],
+    "machines/large-centrifuge": [
+      "machines/large-centrifuge"
+    ],
+    "machines/large-coagulator": [
+      "machines/large-coagulator"
+    ],
+    "machines/large-crucible": [
+      "machines/large-crucible"
+    ],
+    "machines/large-crusher": [
+      "machines/large-crusher"
+    ],
     "machines/large-electrolyzer": [
       "machines/large-electrolyzer"
     ],
     "machines/large-fermenter": [
       "machines/large-fermenter"
     ],
+    "machines/large-mixer": [
+      "machines/large-mixer"
+    ],
+    "machines/large-oven": [
+      "machines/large-oven"
+    ],
     "machines/large-processing-parts": [
       "machines/gt6-coil-hosts",
       "machines/implosion-compressor",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice"
@@ -4532,6 +5020,9 @@
     ],
     "machines/large-sluice": [
       "machines/large-sluice"
+    ],
+    "machines/large-squeezer": [
+      "machines/large-squeezer"
     ],
     "machines/loom": [
       "content/electric-wire-cable-mte-fold",
@@ -4549,11 +5040,16 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/large-gas-turbine",
+      "machines/bedrock-drill",
       "machines/gt6-coil-hosts",
       "machines/implosion-compressor",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
@@ -4590,6 +5086,7 @@
       "machines/nanofab"
     ],
     "machines/oven": [
+      "machines/large-oven",
       "machines/oven"
     ],
     "machines/pressure-washer": [
@@ -4615,6 +5112,7 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/large-gas-turbine",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -4622,11 +5120,16 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",
@@ -4650,11 +5153,16 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/large-gas-turbine",
+      "machines/bedrock-drill",
       "machines/gt6-coil-hosts",
       "machines/implosion-compressor",
       "machines/large-autoclave",
+      "machines/large-centrifuge",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
@@ -4705,14 +5213,24 @@
       "content/gt6-storage-art",
       "content/mte-redstone-wire",
       "machines/bath",
+      "machines/bedrock-drill",
+      "machines/coke-oven",
       "machines/gt6-coil-hosts",
       "machines/implosion-compressor",
       "machines/large-autoclave",
+      "machines/large-bathing-vat",
+      "machines/large-centrifuge",
+      "machines/large-coagulator",
+      "machines/large-crucible",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "registry/catalog-modern-ids"
     ],
     "registry/hybrid-material-identity": [
@@ -4734,9 +5252,11 @@
       "worldgen/gt-dungeon"
     ],
     "worldgen/gt-small-ores": [
+      "machines/bedrock-drill",
       "worldgen/gt-small-ores"
     ],
     "worldgen/gt-stone-layer-rocks": [
+      "machines/bedrock-drill",
       "worldgen/gt-small-ores",
       "worldgen/gt-stone-layer-rocks"
     ],
@@ -4820,7 +5340,9 @@
       "logistics/item-network-core",
       "logistics/logistics-core",
       "machines/bath",
+      "machines/bedrock-drill",
       "machines/cluster-mill",
+      "machines/coke-oven",
       "machines/distillation-tower",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
@@ -4828,11 +5350,19 @@
       "machines/injector",
       "machines/laminator",
       "machines/large-autoclave",
+      "machines/large-bathing-vat",
+      "machines/large-centrifuge",
+      "machines/large-coagulator",
+      "machines/large-crucible",
+      "machines/large-crusher",
       "machines/large-electrolyzer",
       "machines/large-fermenter",
+      "machines/large-mixer",
+      "machines/large-oven",
       "machines/large-processing-parts",
       "machines/large-shredder",
       "machines/large-sluice",
+      "machines/large-squeezer",
       "machines/loom",
       "machines/melter",
       "machines/nanofab",

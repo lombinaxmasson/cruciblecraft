@@ -428,6 +428,10 @@ public final class ModCapabilities {
                 ModBlockEntities.COKE_OVEN.get(),
                 (blockEntity, side) -> blockEntity.automationFluids(side));
         event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.COKE_OVEN.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.FIREBRICK.get(),
                 (blockEntity, side) -> blockEntity.items(side));
@@ -435,6 +439,10 @@ public final class ModCapabilities {
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.FIREBRICK.get(),
                 (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.FIREBRICK.get(),
+                (blockEntity, side) -> blockEntity.energy(side));
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.CRUCIBLE.get(),

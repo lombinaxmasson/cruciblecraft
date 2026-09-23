@@ -508,6 +508,9 @@ public class ClientSetup {
                 ModBlockEntities.LARGE_SLUICE.get(),
                 PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(
+                ModBlockEntities.LARGE_SQUEEZER.get(),
+                PipeCoverRenderer::new);
+        event.registerBlockEntityRenderer(
                 ModBlockEntities.LARGE_BATH.get(),
                 PipeCoverRenderer::new);
         event.registerBlockEntityRenderer(

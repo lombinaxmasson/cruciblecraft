@@ -199,7 +199,7 @@ tools/capabilities/energy/steam-turbine/
 
 这些项目不能标成“缺失”，因为代码、结构、资源或测试已经存在；也不能标成“已完成”，因为当前声明仍是 `frozen/paused`。
 
-### 4.3 当前工作树已有主机代码，但尚未 accepted：11 个条目
+### 4.3 当前工作树已有主机代码，已按独立 capability 收束：11 个条目
 
 - Coke Oven；
 - Fire Bricks；
@@ -213,14 +213,33 @@ tools/capabilities/energy/steam-turbine/
 - Bedrock Mining Drill Controller；
 - Bedrock Mining Drill Head。
 
-这类条目可以在当前源码中找到 Block、BlockEntity、结构 JSON 或 GameTest，但当前没有对应的 accepted 能力卡。后续要关闭它们，至少需要补齐：
+这类条目在当前源码中找到 Block、BlockEntity、结构 JSON 或 GameTest，并已分别建立
+独立 capability 与 wave readiness。关闭边界仍必须分别记录：
 
-- 独立 capability slug；
-- owned paths；
+- 独立 capability slug 与 owned paths；
 - 结构、形成、拆除和重载证据；
 - 真实能源/物品/流体行为；
 - 配方和获得性边界；
 - 受影响能力的验证记录。
+
+当前独立卡为：
+
+```text
+machines/large-crucible
+machines/bedrock-drill
+machines/coke-oven
+machines/large-centrifuge
+machines/large-mixer
+machines/large-coagulator
+machines/large-bathing-vat
+machines/large-oven
+machines/large-crusher
+```
+
+`Fire Bricks`（18000）和 `Bedrock Mining Drill Head`（18103）仍是部件，
+分别由 Coke Oven 与 Bedrock Drill 卡拥有；它们不单独创建主机 capability。
+`runtime_ready` 与 `survival_access` 仍是两个维度，Coagulator 的化学 operand
+闭环和各主机缺失形态行继续保持 blocked，不使用 stand-in。
 
 特别注意：
 
@@ -276,9 +295,31 @@ tools/capabilities/machines/large-sluice/capability.json
 独立于 `runtime_ready`；缺少真实材料形态的额外 GT6 行继续留在 blocked
 overflow，不使用 stand-in。
 
-目前仍没有大型主机的条目只剩：
+### 4.5.2 Large Squeezer 17114 已转为 accepted runtime
 
-- Large Squeezer。
+Large Squeezer 现在有独立主机、BlockEntity、5×5×3 结构 JSON、钢墙
+输入/输出端口、两个相邻 RU 能源孔和 GT6 `RM.Squeezer` 处理 spec。
+结构按本地 `MultiTileEntitySqueezer.checkStructure2` 对齐：
+
+- 65 个 18009 Steel Wall，控制器在侧面底层中心；
+- 顶层 25 个 `ONLY_ITEM_FLUID_IN`，底层 25 个
+  `ONLY_ITEM_FLUID_OUT`（控制器格本身不重复注册端口）；
+- 中层 3×3 空气，侧面按 facing 选择 2 个 `ONLY_ENERGY_IN`；
+- RU 512–4096、efficiency 5000、parallel 64、parallel duration、
+  cheap overclock 和 no constant power；
+- 物品/流体自动输出方向为 `SIDE_BOTTOM`，相邻 RU 源按 GT6 坐标切换。
+- 18009 Steel Wall 已通过独立 Large Squeezer 端口适配器绑定
+  `ITEM_FLUID_IN`、`ITEM_FLUID_OUT` 和 `ENERGY_INPUT`，不会复用其他材料墙
+  的后端。
+
+对应能力卡为：
+
+```text
+tools/capabilities/machines/large-squeezer/capability.json
+```
+
+`survival_access=partial` 的边界与单方块 Squeezer 分开记录。GT6 Squeezer
+配方中缺少真实材料形态或获得路径的行继续 blocked，不使用 stand-in。
 
 ### 4.5.1 Large Shredder 17109 已转为 accepted runtime
 

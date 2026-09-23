@@ -22,6 +22,7 @@ import com.masson.cruciblecraft.content.block.GalvanizedGraaggWalls;
 import com.masson.cruciblecraft.content.block.InvarOvenWalls;
 import com.masson.cruciblecraft.content.block.SluiceParts;
 import com.masson.cruciblecraft.content.block.SluiceWalls;
+import com.masson.cruciblecraft.content.block.SteelSqueezerWalls;
 import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.TankWallParts;
@@ -847,6 +848,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (sluiceWall != null) {
             return sluiceWall;
         }
+        IFluidHandler squeezerWall = SteelSqueezerWalls.fluids(this);
+        if (squeezerWall != null) {
+            return squeezerWall;
+        }
         IFluidHandler massfab = DenseLeadPorts.fluids(this);
         if (massfab != null) {
             return massfab;
@@ -922,6 +927,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (sluiceWall != null) {
             return sluiceWall;
         }
+        IItemHandler squeezerWall = SteelSqueezerWalls.items(this);
+        if (squeezerWall != null) {
+            return squeezerWall;
+        }
         IItemHandler massfab = DenseLeadPorts.items(this);
         if (massfab != null) {
             return massfab;
@@ -985,6 +994,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 || ShredderBlades.accepts(spec(), type)
                 || SluiceParts.accepts(spec(), type)
                 || SluiceWalls.accepts(spec(), type)
+                || SteelSqueezerWalls.accepts(spec(), type)
                 || DenseLeadPorts.accepts(spec(), type)
                 || LargeBoilerWallParts.accepts(spec(), type)
                 || TankWallParts.accepts(spec(), type)
@@ -1011,6 +1021,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 && !ShredderBlades.isPart(spec())
                 && !SluiceParts.isPart(spec())
                 && !SluiceWalls.isWall(spec())
+                && !SteelSqueezerWalls.isWall(spec())
                 && !DenseLeadPorts.isPort(spec())
                 && !LargeBoilerWallParts.isWall(spec())
                 && !TankWallParts.isWall(spec())
@@ -1119,6 +1130,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (StainlessSteelMixerWalls.forwardsEnergy(this)) {
             return type == EnergyType.KINETIC_ROTATION;
         }
+        if (SteelSqueezerWalls.forwardsEnergy(this)) {
+            return type == EnergyType.KINETIC_ROTATION;
+        }
         if (ElectrolyzerParts.forwardsEnergy(this)) {
             return type == EnergyType.ELECTRIC;
         }
@@ -1175,6 +1189,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (StainlessSteelMixerWalls.forwardsEnergy(this)) {
             return StainlessSteelMixerWalls.storedEnergy(this, type);
         }
+        if (SteelSqueezerWalls.forwardsEnergy(this)) {
+            return SteelSqueezerWalls.storedEnergy(this, type);
+        }
         if (ElectrolyzerParts.forwardsEnergy(this)) {
             return ElectrolyzerParts.storedEnergy(this, type);
         }
@@ -1213,6 +1230,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         }
         if (StainlessSteelMixerWalls.forwardsEnergy(this)) {
             return StainlessSteelMixerWalls.energyCapacity(this, type);
+        }
+        if (SteelSqueezerWalls.forwardsEnergy(this)) {
+            return SteelSqueezerWalls.energyCapacity(this, type);
         }
         if (ElectrolyzerParts.forwardsEnergy(this)) {
             return ElectrolyzerParts.energyCapacity(this, type);
@@ -1353,6 +1373,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         }
         if (StainlessSteelMixerWalls.forwardsEnergy(this)) {
             return StainlessSteelMixerWalls.insertEnergy(
+                    this, type, size, amount, simulate);
+        }
+        if (SteelSqueezerWalls.forwardsEnergy(this)) {
+            return SteelSqueezerWalls.insertEnergy(
                     this, type, size, amount, simulate);
         }
         if (ElectrolyzerParts.forwardsEnergy(this)) {

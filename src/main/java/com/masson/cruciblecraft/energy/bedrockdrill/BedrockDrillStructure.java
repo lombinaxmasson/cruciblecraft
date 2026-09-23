@@ -31,6 +31,46 @@ public final class BedrockDrillStructure {
 
     private BedrockDrillStructure() {}
 
+    /**
+     * GT6 assigns different capabilities to the layers of the tower. Keep
+     * that projection beside the structure check so builders and tests do not
+     * reduce the 3x4x3 machine to an undifferentiated block volume.
+     */
+    public enum PortKind {
+        BEDROCK_FLOOR,
+        DRILL_HEAD,
+        FLUID_INPUT,
+        ENERGY_INPUT,
+        CONTROLLER,
+        NONE
+    }
+
+    public static PortKind portKind(int dx, int dy, int dz) {
+        if (dx < -1 || dx > 1 || dz < -1 || dz > 1) {
+            return PortKind.NONE;
+        }
+        if (dy == -5) {
+            return PortKind.BEDROCK_FLOOR;
+        }
+        if (dy == -4) {
+            return PortKind.DRILL_HEAD;
+        }
+        if (dy == -3 || dy == -2) {
+            return PortKind.FLUID_INPUT;
+        }
+        if (dy == -1) {
+            return Math.abs(dx) + Math.abs(dz) == 1
+                    ? PortKind.ENERGY_INPUT
+                    : PortKind.FLUID_INPUT;
+        }
+        if (dy == 0) {
+            return dx == 0 && dz == 0
+                    ? PortKind.CONTROLLER
+                    : PortKind.FLUID_INPUT;
+        }
+        return PortKind.NONE;
+    }
+
     public static boolean check(Level level, BlockPos controller) {
         if (controller.getY() < level.getMinBuildHeight() + 5) {
             return false;

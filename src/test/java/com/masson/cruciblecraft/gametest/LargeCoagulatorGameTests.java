@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.gametest;
 
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.blockentity.LargeCoagulatorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
@@ -14,6 +15,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
@@ -99,6 +102,74 @@ public final class LargeCoagulatorGameTests {
         helper.assertTrue(
                 found, "Large coagulator survival recipe is missing");
         helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void largeCoagulatorExecutesWaterBootstrap(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        var structure = MultiblockStructureCatalog.require(
+                ModMultiblockControllers.LARGE_COAGULATOR.structureId());
+        helper.setBlock(
+                controllerPos,
+                ModBlocks.LARGE_COAGULATOR.get()
+                        .defaultBlockState()
+                        .setValue(ProcessingMachineBlock.FACING, facing));
+        structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .forEach(element -> helper.setBlock(
+                        structure.worldPosition(
+                                controllerPos, facing, element.offset()),
+                        structurePaletteBlock(structure.predicate(element))));
+        LargeCoagulatorBlockEntity coagulator =
+                helper.getBlockEntity(controllerPos);
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            coagulator.structureValid(),
+                            "Coagulator did not form before recipe test");
+                    BlockPos portPos = structure.structure().stream()
+                            .filter(element -> structure.predicate(element).kind()
+                                    == PredicateKind.PORT)
+                            .map(element -> structure.worldPosition(
+                                    controllerPos, facing, element.offset()))
+                            .findFirst()
+                            .orElseThrow();
+                    MteInPlaceBlockEntity port =
+                            helper.getBlockEntity(portPos);
+                    helper.assertTrue(
+                            port.fluidHandler(Direction.NORTH).fill(
+                                    new FluidStack(Fluids.WATER, 1_000),
+                                    net.neoforged.neoforge.fluids.capability
+                                            .IFluidHandler.FluidAction.EXECUTE)
+                                    == 1_000,
+                            "Coagulator input port rejected water");
+                })
+                .thenIdle(30)
+                .thenExecute(() -> {
+                    int outputSlot = coagulator.itemOutputSlots().getFirst();
+                    boolean output = structure.structure().stream()
+                            .filter(element -> structure.predicate(element)
+                                    .kind() == PredicateKind.PORT)
+                            .map(element -> helper.getBlockEntity(
+                                    structure.worldPosition(
+                                            controllerPos,
+                                            facing,
+                                            element.offset())))
+                            .filter(MteInPlaceBlockEntity.class::isInstance)
+                            .map(MteInPlaceBlockEntity.class::cast)
+                            .map(port -> port.itemHandler(Direction.NORTH))
+                            .anyMatch(handler -> !handler
+                                    .getStackInSlot(outputSlot)
+                                    .isEmpty());
+                    helper.assertTrue(
+                            output,
+                            "Large coagulator did not execute water bootstrap");
+                })
+                .thenSucceed();
     }
 
     private static net.minecraft.world.level.block.Block structurePaletteBlock(

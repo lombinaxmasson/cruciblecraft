@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.content.blockentity;
 
 import java.util.Optional;
 
+import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPort;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -30,12 +31,12 @@ public final class FirebrickBlockEntity extends BlockEntity implements Multibloc
 
     @Override
     public PortType portType() {
-        return PortType.ITEM_FLUID;
+        return PortType.ITEM_FLUID_ENERGY;
     }
 
     @Override
     public boolean accepts(PortType type) {
-        return type == PortType.ITEM_FLUID;
+        return type == PortType.ITEM_FLUID_ENERGY;
     }
 
     @Override
@@ -125,6 +126,11 @@ public final class FirebrickBlockEntity extends BlockEntity implements Multibloc
     public IFluidHandler fluids(Direction side) {
         CokeOvenBlockEntity host = host();
         return host == null ? null : host.automationFluids(side);
+    }
+
+    public IEnergyHandler energy(Direction side) {
+        CokeOvenBlockEntity host = host();
+        return host == null ? null : host;
     }
 
     @Override

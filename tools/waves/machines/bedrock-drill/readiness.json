@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "capability": "machines/bedrock-drill",
+  "status": "runtime_ready",
+  "workflow": "accepted",
+  "host_kind": "world_interaction",
+  "controller": "cruciblecraft:bedrock_drill",
+  "part": "cruciblecraft:bedrock_drill_head",
+  "source": {
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityBedrockDrill",
+    "method": "checkStructure2",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+  },
+  "survival_access": "partial",
+  "acquisition": "real_bedrock_ore_worldgen"
+}

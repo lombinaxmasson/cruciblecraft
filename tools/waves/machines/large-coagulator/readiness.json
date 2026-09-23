@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "capability": "machines/large-coagulator",
+  "status": "runtime_ready",
+  "workflow": "accepted",
+  "host_kind": "processing",
+  "structure": "cruciblecraft:large_coagulator",
+  "source": {
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityCoagulator",
+    "method": "checkStructure2",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+  },
+  "profile": {
+    "energy": "TIME_TU_MAPPING",
+    "parallel": 64,
+    "efficiency": 10000,
+    "overclock": "STANDARD",
+    "constant_power": false
+  },
+  "survival_access": "blocked",
+  "blocked_policy": "chemical operand closure remains blocked; no stand-ins"
+}

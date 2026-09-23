@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-squeezer",
+  "title": "Large Squeezer 17114",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeSqueezerBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeSqueezerGeometry.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/SteelSqueezerWalls.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeSqueezerBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMenus.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/Gt6SidedIo.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/large_squeezer.json",
+    "src/main/resources/data/cruciblecraft/multiblock_plugins.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_squeezer_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/large_squeezer/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/LargeSqueezerGameTests.java",
+    "tools/capabilities/machines/large-squeezer/**",
+    "tools/waves/machines/large-squeezer/**",
+    "tools/tests/test_gt6_large_squeezer.py",
+    "docs/current/gt6-large-machines-porting.md"
+  ],
+  "depends_on": [
+    "content/gt6-mte-multiblock-runtime",
+    "machines/hammer-squeezer-laser"
+  ],
+  "profiles": ["capability-runtime"],
+  "required_test_ids": [
+    "controllerIsLive",
+    "bareControllerIsNotFormed",
+    "structureContractHasSourceExactCounts",
+    "controllerUsesGt6RuProcessingContract",
+    "formedStructureBindsSteelWallPorts",
+    "survivalRecipeIsPresent"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large_squeezer:17114",
+      "disposition": "new_distinct",
+      "runtime_ids": ["cruciblecraft:large_squeezer"],
+      "reason": "GT6 MultiTileEntitySqueezer 17114; distinct from the four KU single-block Squeezers."
+    }
+  ],
+  "note": "Runtime structure and RU host are source-aligned. Large and single-block hosts share RM.Squeezer. Squeezer rows without real CC operands remain blocked; no stand-in ingredients are published."
+}

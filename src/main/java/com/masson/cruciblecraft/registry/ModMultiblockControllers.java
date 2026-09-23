@@ -250,6 +250,26 @@ public final class ModMultiblockControllers {
                     () -> ModProcessingMachines.LARGE_SLUICE)
                     .withVariant(() -> LARGE_SLUICE_VARIANT);
 
+    public static final MachineKindSpec LARGE_SQUEEZER_KIND =
+            new MachineKindSpec(
+                    id("large_squeezer"),
+                    ModProcessingMachines.LARGE_SQUEEZER,
+                    MachineKindSpec.OverclockPolicy.CHEAP,
+                    true);
+    public static final MachineVariant LARGE_SQUEEZER_VARIANT =
+            new MachineVariant(
+                    id("large_squeezer"),
+                    LARGE_SQUEEZER_KIND,
+                    MachineTierCatalog.requireControllerTierBand(
+                            id("large_squeezer_profile")));
+    public static final MultiblockControllerSpec LARGE_SQUEEZER =
+            new MultiblockControllerSpec(
+                    id("large_squeezer"),
+                    id("large_squeezer"),
+                    ModRecipeMaps.SQUEEZER.id(),
+                    () -> ModProcessingMachines.LARGE_SQUEEZER)
+                    .withVariant(() -> LARGE_SQUEEZER_VARIANT);
+
     public static final MachineKindSpec DISTILLATION_TOWER_KIND =
             new MachineKindSpec(
                     id("distillation_tower"),

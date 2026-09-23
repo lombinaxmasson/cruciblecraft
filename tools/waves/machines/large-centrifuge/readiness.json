@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "capability": "machines/large-centrifuge",
+  "status": "runtime_ready",
+  "workflow": "accepted",
+  "host_kind": "processing",
+  "structure": "cruciblecraft:large_centrifuge",
+  "source": {
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityCentrifuge",
+    "method": "checkStructure2",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+  },
+  "profile": {
+    "energy": "KINETIC_ROTATION",
+    "parallel": 16,
+    "efficiency": 5000,
+    "overclock": "CHEAP"
+  },
+  "survival_access": "partial"
+}

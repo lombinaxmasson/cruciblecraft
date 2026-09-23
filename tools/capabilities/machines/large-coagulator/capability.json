@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-coagulator",
+  "title": "Large Coagulator Array 17105",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "blocked",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeCoagulatorBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeCoagulatorBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockPortAggregator.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/large_coagulator.json",
+    "src/generated/resources/data/cruciblecraft/recipe/machines/large_coagulator.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_coagulator_art_manifest.json",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCoagulatorProfileTest.java",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/LargeCoagulatorGameTests.java",
+    "tools/capabilities/machines/large-coagulator/**",
+    "tools/waves/machines/large-coagulator/**"
+  ],
+  "depends_on": [
+    "content/gt6-mte-processing-host-fold"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/large-coagulator",
+  "player_signoff": null,
+  "required_test_ids": [
+    "largeCoagulatorFidelity",
+    "largeCoagulatorFormation",
+    "largeCoagulatorSurvivalRecipeIsPresent",
+    "largeCoagulatorTimeProfileMatchesGt6",
+    "largeCoagulatorOutputBlockingIsLossless",
+    "largeCoagulatorExecutesWaterBootstrap"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large-coagulator:17105",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:large_coagulator"
+      ],
+      "reason": "Dedicated 5x5x2 GT6 coagulator array, distinct from the single-block coagulator recipe host."
+    }
+  ],
+  "note": "The current survival processing closure is deliberately blocked where the latex/chemical operand chain is not bounded. Runtime geometry and TIME-as-TU transition are still owned and verified here."
+}

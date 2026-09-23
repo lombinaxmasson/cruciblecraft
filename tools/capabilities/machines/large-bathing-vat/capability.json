@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-bathing-vat",
+  "title": "Large Bathing Vat 17104",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeBathBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeBathBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockPortAggregator.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/large_bath.json",
+    "src/generated/resources/data/cruciblecraft/recipe/machines/large_bath.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_bath_art_manifest.json",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/LargeBathProfileTest.java",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/LargeBathGameTests.java",
+    "tools/capabilities/machines/large-bathing-vat/**",
+    "tools/waves/machines/large-bathing-vat/**"
+  ],
+  "depends_on": [
+    "machines/bath",
+    "content/gt6-mte-processing-host-fold"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/large-bathing-vat",
+  "player_signoff": null,
+  "required_test_ids": [
+    "largeBathingVatFidelity",
+    "largeBathingVatFormation",
+    "largeBathingVatSurvivalRecipeIsPresent",
+    "largeBathingVatTimeProfileMatchesGt6",
+    "largeBathingVatOutputBlockingIsLossless",
+    "largeBathingVatExecutesMoltenTinCircuitRecipe"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large-bathing-vat:17104",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:large_bath"
+      ],
+      "reason": "Large Bathing Vat is a 5x5x2 host and is not the accepted single-block Bath or Bathing Pot."
+    }
+  ],
+  "note": "Shares RM.Bath but owns its own structure, TIME-as-TU profile, port routing, lifecycle and survival boundary. The single-block Bath capability does not close this host."
+}

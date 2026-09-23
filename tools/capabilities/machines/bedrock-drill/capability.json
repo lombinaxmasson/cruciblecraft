@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "slug": "machines/bedrock-drill",
+  "title": "Bedrock Mining Drill 17999/18103",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/energy/bedrockdrill/**",
+    "src/main/java/com/masson/cruciblecraft/worldgen/BedrockOre*.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModCapabilities.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/PuvOmegaRecipes.java",
+    "src/main/resources/data/cruciblecraft/worldgen/**",
+    "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_bedrock_ore_veins.json",
+    "src/main/resources/assets/cruciblecraft/gt6_bedrock_ore_flowers_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/gt6_bedrock_drill_art_manifest.json",
+    "src/test/java/com/masson/cruciblecraft/gametest/GtBedrockOreVeinsGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/BedrockDrillGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+    "tools/capabilities/machines/bedrock-drill/**",
+    "tools/waves/machines/bedrock-drill/**"
+  ],
+  "depends_on": [
+    "content/puv-omega-parts",
+    "content/gt6-mte-multiblock-runtime",
+    "worldgen/gt-small-ores"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/bedrock-drill",
+  "player_signoff": null,
+  "required_test_ids": [
+    "bedrockDrillPortProjectionMatchesGt6",
+    "bedrockDrillBareControllerDoesNotForm",
+    "bedrockDrillExposesGt6PortModes",
+    "bedrockDrillConsumesRuAndLubricantOnce",
+    "featureAndCatalogAreRegistered",
+    "generateVeinPlacesUnbreakableFloorOre",
+    "drillProbesLargeOreTwice",
+    "drillEmitsBrokenOre"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:bedrock-drill:17999",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:bedrock_drill"
+      ],
+      "reason": "Dedicated controller for RU/lubricant bedrock mining. It is not a RecipeMap processing machine."
+    },
+    {
+      "semantic_key": "mte:bedrock-drill-head:18103",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:bedrock_drill_head"
+      ],
+      "reason": "Structural drill head only; it has no independent controller, RecipeMap or workstation behavior."
+    }
+  ],
+  "note": "Acquisition is backed by the real bedrock ore vein feature and hosted ore outputs. No catalog ItemEntity scatter is used. The controller and head are one capability with separate identities."
+}

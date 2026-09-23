@@ -146,6 +146,7 @@ public final class ModProcessingMachines {
     public static final ProcessingMachineSpec LARGE_CRUSHER = largeCrusherSpec();
     public static final ProcessingMachineSpec LARGE_SHREDDER = largeShredderSpec();
     public static final ProcessingMachineSpec LARGE_SLUICE = largeSluiceSpec();
+    public static final ProcessingMachineSpec LARGE_SQUEEZER = largeSqueezerSpec();
     public static final ProcessingMachineSpec LARGE_MATTER_FABRICATOR =
             largeMatterFabricatorSpec();
     public static final ProcessingMachineSpec CLUSTERMILL = clusterMillSpec();
@@ -434,6 +435,7 @@ public final class ModProcessingMachines {
                     LARGE_CRUSHER,
                     LARGE_SHREDDER,
                     LARGE_SLUICE,
+                    LARGE_SQUEEZER,
                     LARGE_MATTER_FABRICATOR);
     /** Chemical recipes can publish into reused maps as well as dedicated maps. */
     public static final List<ProcessingMachineSpec> CHEMICAL_HOST_MACHINES = List.of(
@@ -642,6 +644,22 @@ public final class ModProcessingMachines {
                 || recipe.outputChances().stream().anyMatch(
                         chance -> chance <= 0 || chance > GTRecipe.GUARANTEED_CHANCE)) {
             return Optional.of("shredder_recipe_shape");
+        }
+        return Optional.empty();
+    }
+
+    private static Optional<String> validateLargeSqueezer(GTRecipe recipe) {
+        if (recipe.itemInputs().size() != 1
+                || recipe.itemOutputs().isEmpty()
+                || recipe.itemOutputs().size() > 2
+                || !recipe.fluidInputs().isEmpty()
+                || recipe.fluidOutputs().size() > 1
+                || recipe.eut() <= 0L
+                || recipe.eut() > 4_096L
+                || recipe.outputChances().size() != recipe.itemOutputs().size()
+                || recipe.outputChances().stream().anyMatch(
+                        chance -> chance <= 0 || chance > GTRecipe.GUARANTEED_CHANCE)) {
+            return Optional.of("squeezer_recipe_shape");
         }
         return Optional.empty();
     }
@@ -1459,6 +1477,29 @@ public final class ModProcessingMachines {
                 Gt6BasicMachineGui.ui(
                         1, 9, 1, 1,
                         1, 9, 1, 1,
+                        PROCESSING_STATUSES));
+    }
+
+    private static ProcessingMachineSpec largeSqueezerSpec() {
+        return new ProcessingMachineSpec(
+                id("large_squeezer"),
+                id("squeezer"),
+                () -> ModRecipeMaps.SQUEEZER,
+                new ProcessingMachineSpec.SlotLayout(
+                        3, List.of(0), List.of(1, 2)),
+                new ProcessingMachineSpec.TankLayout(
+                        List.of(),
+                        List.of(new ProcessingMachineSpec.TankSpec(0, 8_000))),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.KINETIC_ROTATION,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        4_096L, 4_096L),
+                Gt6SidedIo.policy("large_squeezer"),
+                ModProcessingMachines::validateLargeSqueezer,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 2, 0, 1,
+                        1, 2, 0, 1,
                         PROCESSING_STATUSES));
     }
 

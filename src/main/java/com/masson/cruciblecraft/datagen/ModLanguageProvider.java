@@ -368,6 +368,13 @@ public class ModLanguageProvider extends LanguageProvider {
                     "主机在近侧底层中心，朝外");
             add("tooltip.cruciblecraft.large_sluice.io",
                     "远侧输入物品/水；近侧底部输出物品/溜槽汁；两侧相邻 RU 输入");
+            addBlock(ModBlocks.LARGE_SQUEEZER, "大型挤压机");
+            add("tooltip.cruciblecraft.large_squeezer.structure",
+                    "结构：5×5×3，65 个钢墙，中层 3×3 空气");
+            add("tooltip.cruciblecraft.large_squeezer.controller",
+                    "主机在侧面底层中心，朝外");
+            add("tooltip.cruciblecraft.large_squeezer.io",
+                    "顶层输入，底层输出，两侧相邻 RU 输入");
             addBlock(ModBlocks.LARGE_BATH, "大型浸洗器");
             add("tooltip.cruciblecraft.large_bath.structure",
                     "结构：5×5×2 不锈钢墙");
@@ -903,6 +910,13 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Main Block centered on the close-side bottom and facing outwards");
         add("tooltip.cruciblecraft.large_sluice.io",
                 "Far-side item/water input; close-side bottom item/Sluice Juice output; two adjacent RU inputs");
+        addBlock(ModBlocks.LARGE_SQUEEZER, "Large Squeezer");
+        add("tooltip.cruciblecraft.large_squeezer.structure",
+                "5x5x3 hollow: 65 Steel Walls with a 3x3 air core");
+        add("tooltip.cruciblecraft.large_squeezer.controller",
+                "Main Block centered on the side-bottom and facing outwards");
+        add("tooltip.cruciblecraft.large_squeezer.io",
+                "Top-layer item/fluid input; bottom-layer output; two adjacent RU inputs");
         addBlock(ModBlocks.LARGE_BATH, "Large Bathing Vat");
         add("tooltip.cruciblecraft.large_bath.structure",
                 "5x5x2 of Stainless Steel Walls");

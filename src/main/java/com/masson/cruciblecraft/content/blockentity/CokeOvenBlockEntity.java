@@ -12,10 +12,13 @@ import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockBuilderRecheckable;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator;
+import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.api.tileentity.ProgressHost;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.machine.component.RecipeProcessor;
+import com.masson.cruciblecraft.machine.processing.MachineEnergyBuffer;
 import com.masson.cruciblecraft.machine.processing.MachineTransaction;
 import com.masson.cruciblecraft.machine.processing.ParallelRecipeOperations;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineAutoIo;
@@ -55,11 +58,12 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 
 /**
  * GT6 {@code MultiTileEntityCokeOven}: 3×3×3 firebrick shell, ambient TU,
- * igniter start, consume-at-start, parallel 16, fluid auto-out under the oven.
- * Neighbor TU overclock is deferred.
+ * igniter start, bounded TU input, consume-at-start, parallel 16, fluid
+ * auto-out under the oven.
  */
 public final class CokeOvenBlockEntity extends BlockEntity
-        implements MenuProvider, ProgressHost, MultiblockBuilderRecheckable {
+        implements MenuProvider, ProgressHost, MultiblockBuilderRecheckable,
+        IEnergyHandler {
     public static final ResourceLocation STRUCTURE_ID =
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "coke_oven");
@@ -73,8 +77,10 @@ public final class CokeOvenBlockEntity extends BlockEntity
             CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY;
     public static final int PARALLEL = 16;
     public static final int IGNITION_WINDOW_TICKS = 40;
-    /** GT6 {@code NBT_INPUT} / ambient TU increment. Extra neighbor TU later. */
+    /** GT6 {@code NBT_INPUT}; one ambient TU is added each formed tick. */
     public static final long PROCESS_TU_PER_TICK = 1L;
+    public static final long TU_CAPACITY = 16L;
+    public static final long TU_PACKET_MAX = 16L;
 
     private final ItemStackHandler inventory = new ItemStackHandler(SLOT_COUNT) {
         @Override
@@ -136,6 +142,8 @@ public final class CokeOvenBlockEntity extends BlockEntity
     };
 
     private final RecipeProcessor processor = new RecipeProcessor();
+    private final MachineEnergyBuffer energy =
+            new MachineEnergyBuffer(TU_CAPACITY, TU_PACKET_MAX);
     private final GTRecipeCache recipeCache = new GTRecipeCache(ModRecipeMaps.COKE_OVEN);
     private final CheckpointTracker checkpoint = new CheckpointTracker();
     private int ignitionTicks;
@@ -212,8 +220,9 @@ public final class CokeOvenBlockEntity extends BlockEntity
             return;
         }
 
+        cokeOven.energy.insert(PROCESS_TU_PER_TICK, 1L, false);
         if (cokeOven.hasActiveProcess()) {
-            cokeOven.processor.advance();
+            cokeOven.advanceWithAvailableTu();
             cokeOven.checkpoint.markDirty();
             cokeOven.setLit(true);
             if (cokeOven.processor.complete() && cokeOven.emitPending()) {
@@ -222,7 +231,7 @@ public final class CokeOvenBlockEntity extends BlockEntity
         } else if (!cokeOven.startRecipe()) {
             cokeOven.setLit(false);
         } else {
-            cokeOven.processor.advance();
+            cokeOven.advanceWithAvailableTu();
             cokeOven.checkpoint.markDirty();
             cokeOven.setLit(true);
         }
@@ -392,6 +401,9 @@ public final class CokeOvenBlockEntity extends BlockEntity
             resetProgress();
             return false;
         }
+        if (energy.stored() < PROCESS_TU_PER_TICK) {
+            return false;
+        }
         if (ignitionTicks <= 0 && processor.progress() <= 0) {
             return false;
         }
@@ -432,6 +444,15 @@ public final class CokeOvenBlockEntity extends BlockEntity
                 : scaled.fluidOutputs().getFirst().copy();
         setChanged();
         return true;
+    }
+
+    private void advanceWithAvailableTu() {
+        int work = (int) Math.min(TU_PACKET_MAX, energy.stored());
+        if (work <= 0) {
+            return;
+        }
+        energy.consume(work);
+        processor.advance(work);
     }
 
     private boolean outputsFit(GTRecipe scaled, List<ItemStack> rolled) {
@@ -700,6 +721,7 @@ public final class CokeOvenBlockEntity extends BlockEntity
         ignitionTicks = Math.max(0, tag.getInt("ignition_ticks"));
         structureValid = tag.getBoolean("structure_valid");
         operations = Math.max(0, tag.getInt("operations"));
+        energy.restore(tag.getLong("tu_energy"));
         pendingOutputs.clear();
         if (tag.contains("pending_outputs", Tag.TAG_LIST)) {
             ListTag list = tag.getList("pending_outputs", Tag.TAG_COMPOUND);
@@ -735,6 +757,7 @@ public final class CokeOvenBlockEntity extends BlockEntity
         tag.putInt("ignition_ticks", ignitionTicks);
         tag.putBoolean("structure_valid", structureValid);
         tag.putInt("operations", operations);
+        tag.putLong("tu_energy", energy.stored());
         if (!processor.activeId().isEmpty()) {
             tag.putString("active_recipe", processor.activeId());
         }
@@ -775,6 +798,40 @@ public final class CokeOvenBlockEntity extends BlockEntity
     private void markCapabilityMutation() {
         setChanged();
         checkpoint.markDirty();
+    }
+
+    @Override
+    public boolean handles(EnergyType type, Direction side) {
+        return structureValid
+                && side != null
+                && type == EnergyType.TIME;
+    }
+
+    @Override
+    public long insert(
+            EnergyType type,
+            long size,
+            long amount,
+            Direction side,
+            boolean simulate) {
+        if (!handles(type, side)) {
+            return 0L;
+        }
+        long accepted = energy.insert(size, amount, simulate);
+        if (!simulate && accepted > 0L) {
+            markCapabilityMutation();
+        }
+        return accepted;
+    }
+
+    @Override
+    public long stored(EnergyType type) {
+        return type == EnergyType.TIME ? energy.stored() : 0L;
+    }
+
+    @Override
+    public long capacity(EnergyType type) {
+        return type == EnergyType.TIME ? energy.capacity() : 0L;
     }
 
     private final class AutomationItemHandler implements IItemHandler {

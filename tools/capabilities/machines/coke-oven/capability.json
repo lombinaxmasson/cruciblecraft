@@ -1,0 +1,63 @@
+{
+  "schema_version": 2,
+  "slug": "machines/coke-oven",
+  "title": "Coke Oven 17000 with Fire Bricks 18000",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/block/CokeOvenBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/FirebrickBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/CokeOvenBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/FirebrickBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/compat/emi/CokeOvenEmiRecipe.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/coke_oven.json",
+    "src/main/resources/data/cruciblecraft/recipe/coke_oven/**",
+    "src/main/resources/data/cruciblecraft/recipe/coke_oven_controller.json",
+    "src/main/resources/assets/cruciblecraft/gt6_coke_oven_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/models/block/firebrick_gt6.json",
+    "src/test/java/com/masson/cruciblecraft/content/multiblock/CokeOvenStructureTest.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/CokeOvenEnergyGameTests.java",
+    "tools/capabilities/machines/coke-oven/**",
+    "tools/waves/machines/coke-oven/**"
+  ],
+  "depends_on": [
+    "content/gt6-mte-multiblock-runtime",
+    "content/gt6-mte-inplace-acquisition"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/coke-oven",
+  "player_signoff": null,
+  "required_test_ids": [
+    "cokeOvenProducesAndExtractsCreosote",
+    "cokeOvenFirebrickHopperInsertsFromTop",
+    "cokeOvenDoesNotShareFirebricks",
+    "cokeOvenFluidOutputCoordinatesMatchGt6",
+    "cokeOvenEnergyIsBoundedAndPersisted",
+    "cokeOvenFirebrickAcceptsTuEnergy"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:coke-oven:17000",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:coke_oven"
+      ],
+      "reason": "Dedicated 3x3x3 Coke Oven host; the in-place coal_coke/oven identity is not this controller."
+    },
+    {
+      "semantic_key": "mte:fire-bricks:18000",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:firebrick"
+      ],
+      "reason": "Fire Bricks are structure ports owned by the Coke Oven capability, not a standalone machine."
+    }
+  ],
+  "note": "Ambient TU, igniter window, parallel 16, firebrick binding and fixed fluid output are owned here. Missing real GT6 operand forms remain blocked; no stand-in recipes are emitted."
+}

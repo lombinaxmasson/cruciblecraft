@@ -1220,6 +1220,22 @@ public final class ModRecipeProvider extends RecipeProvider {
                 sluiceIngredients,
                 Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(ModItems.LARGE_SLUICE.get()));
+        Map<String, Ingredient> squeezerIngredients = new LinkedHashMap<>();
+        squeezerIngredients.put("G", materialIngredient("steel", MaterialPrefixes.GEAR));
+        squeezerIngredients.put("S", materialIngredient("steel", MaterialPrefixes.SMALL_GEAR));
+        squeezerIngredients.put("R", Ingredient.of(ModItems.technologicalPart(
+                "processor_crystal_ruby").get()));
+        squeezerIngredients.put("M", Ingredient.of(ModItems.mteInPlaceItemsById()
+                .get(ResourceLocation.fromNamespaceAndPath(
+                        "cruciblecraft", "steel/wall")).get()));
+        squeezerIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        acceptShapedCatalyst(
+                output,
+                "machines/large_squeezer",
+                List.of("GSG", "GSG", "RMC"),
+                squeezerIngredients,
+                Map.of(),
+                new ItemStack(ModItems.LARGE_SQUEEZER.get()));
         Map<String, Ingredient> bathIngredients = new LinkedHashMap<>();
         bathIngredients.put(
                 "P",

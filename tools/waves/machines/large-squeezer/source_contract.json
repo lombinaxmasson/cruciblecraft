@@ -1,0 +1,30 @@
+{
+  "wave_slug": "machines/large-squeezer",
+  "source_class": "gregtech.tileentity.multiblocks.MultiTileEntitySqueezer",
+  "source_meta": 17114,
+  "recipe_map": "RM.Squeezer",
+  "energy": "RU",
+  "input_minimum": 512,
+  "input_maximum": 4096,
+  "efficiency": 5000,
+  "parallel": 64,
+  "parallel_duration": true,
+  "cheap_overclocking": true,
+  "no_constant_power": true,
+  "io": {
+    "item_inputs": 25,
+    "item_outputs": 24,
+    "fluid_inputs": 0,
+    "fluid_outputs": 1,
+    "automatic_output": "SIDE_BOTTOM"
+  },
+  "structure_contract": {
+    "dimensions": [5, 5, 3],
+    "wall_blocks": 65,
+    "air_blocks": 9,
+    "energy_ports": 2,
+    "controller": "side_bottom_center"
+  },
+  "structure": "src/main/resources/data/cruciblecraft/multiblock_structures/large_squeezer.json",
+  "policy": "Missing GT6 forms remain blocked; no stand-in ingredients."
+}

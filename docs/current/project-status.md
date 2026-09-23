@@ -31,7 +31,7 @@
 
 Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor
 
-## runtime_ready accepted（85）
+## runtime_ready accepted（86）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -104,6 +104,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `machines/large-processing-parts` — Large processing multiblock parts and maps — [大型加工多方块零件与配方图详细计划](../history/card-plans/closed/大型加工多方块零件与配方图详细计划.md)
 - `machines/large-shredder` — Large Shredder 17109
 - `machines/large-sluice` — Large Sluice 17107
+- `machines/large-squeezer` — Large Squeezer 17114
 - `machines/loom` — Loom — [织机详细计划](../history/card-plans/closed/织机详细计划.md)
 - `machines/melter` — Melter — [熔融机详细计划](../history/card-plans/closed/熔融机详细计划.md)
 - `machines/nanofab` — Nanoscale Fabricator — [纳米加工机详细计划](../history/card-plans/closed/纳米加工机详细计划.md)

@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "slug": "machines/large-oven",
+  "title": "Large Electric Oven 17106",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/block/LargeOvenBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/LargeOvenBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/large_oven.json",
+    "src/generated/resources/data/cruciblecraft/recipe/machines/large_oven.json",
+    "src/main/resources/assets/cruciblecraft/gt6_large_oven_art_manifest.json",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/LargeOvenProfileTest.java",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/LargeOvenGameTests.java",
+    "tools/capabilities/machines/large-oven/**",
+    "tools/waves/machines/large-oven/**"
+  ],
+  "depends_on": [
+    "machines/oven",
+    "machines/gt6-coil-hosts",
+    "content/gt6-mte-processing-host-fold"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/large-oven",
+  "player_signoff": null,
+  "required_test_ids": [
+    "controllerProfileIsSourceBackedEu",
+    "cheapPolicyAcceptsFullEutAndKeepsParallelDurationBehavior",
+    "structureIsInvarWallsHollowNichromeCoils",
+    "formedStructureBindsWallsAndNichromeCoils",
+    "mixedCoilsDoNotForm",
+    "largeOvenOutputBlockingIsLossless"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:large-electric-oven:17106",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:large_oven"
+      ],
+      "reason": "Dedicated Invar/coil multiblock with EU, parallel 64 and cheap-overclock semantics; it is not the single-block Oven."
+    }
+  ],
+  "note": "The card owns large-host structure and behavior while the single-block Oven card remains separate. Recipe publication is bounded by real GT6-compatible Furnace operands."
+}
