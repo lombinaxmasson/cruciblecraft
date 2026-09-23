@@ -467,14 +467,15 @@ side-bottom 中心的位置，不额外放置重复部件。`item_fluid_energy_i
 未成形或未绑定时，部件不提供这些能力。
 
 对应的结构、能力方向、未成形拒绝和端口 landing check 已验证。剩余的
-shared-port 聚合行为属于 §5.8.4 的独立端口语义问题，不在本项关闭范围内。
+端口存储与聚合交易行为属于 §5.8.4 的独立端口语义，已由
+`PortStore`、`PortHostViews` 和控制器交易同步层统一处理。
 
 #### 5.8.3 3×3×3 Tank：GT6 阀门控制器与完整流体合同已对齐
 
 CC 现在使用 GT6 Small Tank Main Valve MTE（17001–17007、17022–17027）
 作为 live controller。控制器位于外侧面中心，空心位于其后方中心；
 其余 25 个格子必须是同材质墙，并通过 `FLUID` tag-backed port 绑定到
-一个 shared host tank。旧 `cruciblecraft:tank_3x3x3` 仍保留注册壳以读取
+各自独立的物理端口存储。旧 `cruciblecraft:tank_3x3x3` 仍保留注册壳以读取
 旧存档，但不再形成结构、进入创造页或拥有新配方。
 
 当前实现的直接证据是：
@@ -486,8 +487,8 @@ src/main/java/com/masson/cruciblecraft/content/multiblock/TankControllerProfiles
 ```
 
 `TankControllerProfiles` 固化 GT6 Loader 的材质容量、wall meta 和
-gas/acid/plasma/magic proof；`TankBlockEntity` 仍是单 host/单 tank，
-但容量由阀门身份决定：
+gas/acid/plasma/magic proof；`TankBlockEntity` 仍维护控制器 tank，
+但物理墙口各自保存端口流体并在 tick 中聚合：
 
 - 直接 controller fill/drain 与墙面 `FLUID` 双向视图；
 - 无 proof 的气体、酸、等离子、魔法流体的 server-side hazard；
@@ -500,10 +501,11 @@ GT6 profile 的 source revision 与容量证据保存在
 `TankControllerProfiles` 和结构 JSON 的 `source` 字段中；不得再引入
 固定 `256,000 mB` 作为储罐容量。
 
-#### 5.8.4 共享端口聚合与逐格能力门控
+#### 5.8.4 独立物理端口存储与逐格能力门控
 
-`shared_port_supply` 仍把多个物理端口汇聚为一份主机 item/fluid
-supply；这是吞吐/库存主机语义，不再承担方向授权。`PortCapabilityGate`
+`shared_port_supply` 保留为兼容插件身份，但运行时由每个物理端口的
+`PortStore` 保存 item/fluid。它不再把多个端口暴露成同一份外部库存；
+控制器只在配方处理时聚合输入、按端口分片输出。`PortCapabilityGate`
 按每个结构格绑定的 `PortType` 暴露 item insert/extract、fluid fill/drain
 和 electric input：
 
@@ -511,10 +513,10 @@ supply；这是吞吐/库存主机语义，不再承担方向授权。`PortCapab
 - `ITEM_FLUID_OUT` 只能 item/fluid 输出；
 - `FLUID` 只提供双向 fluid；
 - boiler、mixer、electrolyzer 和 tank wall 的特例只在 host adapter
-  中保留容量/视图路由。
+  中保留容量/高度路由；锅炉长容量使用端口自己的 long-fluid store。
 
-回归测试必须按“端口坐标 + 端口模式 + 端口面”断言，不能只断言库存
-最终数量。
+回归测试必须按“端口坐标 + 端口模式 + 端口面 + 独立 store”断言，
+不能只断言库存最终数量。
 
 相关实现：
 
@@ -527,7 +529,8 @@ src/main/resources/data/cruciblecraft/multiblock_plugins.json
 
 #### 5.8.5 Large Fermenter：固定背面偏移输出仍需实证
 
-GT6 发酵机使用固定的背面偏移输出位置和方向，不是“把全部输出放入共享库存”。
+GT6 发酵机使用固定的背面偏移输出位置和方向，不是“把全部输出放入
+控制器库存”；输出端口现在有独立 store，控制器只负责聚合交易。
 
 当前 CC 已有专门的：
 
@@ -540,8 +543,8 @@ src/main/java/com/masson/cruciblecraft/content/blockentity/LargeFermenterAutoOut
 - 目标位置是否是 GT6 的固定背面偏移；
 - item 与 fluid 是否使用不同的高度；
 - 目标方块的接收面是否正确；
-- 前方、侧面或其他共享端口不能抢走输出；
-- 输出堵塞时是否保留物品/流体，而不是丢失或转入聚合库存；
+- 前方、侧面或其他端口不能抢走输出；
+- 输出堵塞时是否保留物品/流体，而不是丢失或转入错误端口；
 - 重载、区块未加载和自动输出脉冲是否保持 GT6 时序。
 
 因此 Large Fermenter 的输出状态应记录为“已有专用输出实现，固定坐标/方向仍是验证缺口”。
