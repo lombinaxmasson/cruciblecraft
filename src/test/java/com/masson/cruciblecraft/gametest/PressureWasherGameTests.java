@@ -56,12 +56,12 @@ public final class PressureWasherGameTests {
                         ModRecipeMaps.PRESSUREWASHER.id(), PUBLICATION_GROUP))
                 .orElse(null);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 192,
-                "Pressure Washer family is not the 192 selected rows: "
+                family != null && family.logicalRecipeCount() == 312,
+                "Pressure Washer family is not the 312 selected rows: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         int woodRows = WoodDebark.extraPressureWasherWoodRows();
         helper.assertTrue(
-                ModRecipeMaps.PRESSUREWASHER.entries().size() == 192 + woodRows,
+                ModRecipeMaps.PRESSUREWASHER.entries().size() == 312 + woodRows,
                 "Pressure Washer live map drifted from compact plus wood rows: "
                         + ModRecipeMaps.PRESSUREWASHER.entries().size());
         helper.succeed();

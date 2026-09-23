@@ -9,8 +9,8 @@
 
 ## 统计
 
-- 条目 62：open 30，partial 2，resolved 19，superseded 5，out_of_scope 6
-- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 14，有名字，分母未冻成工作量 10，不是活 3
+- 条目 62：open 29，partial 2，resolved 20，superseded 5，out_of_scope 6
+- 未关闭排期桶：数字是规模，不是待办 5，分母已冻，可当卡排 13，有名字，分母未冻成工作量 10，不是活 3
 
 ## 排期分类（未关闭）
 
@@ -25,7 +25,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `recipe/nanofab-overflow`：57 rows
 - `worldgen/food`：n/a
 
-### B. 分母已冻，可当卡排（14）
+### B. 分母已冻，可当卡排（13）
 
 - `fluid/ic2-coolant`：1 fluids
 - `fluid/sap-maple`：1 fluids
@@ -38,7 +38,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - `obtain/wooden-bathing-pot-glue`：2 hosts
 - `recipe/laminator-overflow`：12 rows
 - `recipe/oven-cooking-oil-xp`：2 fluids
-- `recipe/pressure-washer-stone`：120 rows
 - `recipe/printer-dye-fluids`：22 rows
 - `recipe/roll-former-rail-gt`：2 rows
 
@@ -190,14 +189,13 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
   - `identity/converter-turbines-battery-boxes`
   - `identity/eu-blocked-gauges`
   - `identity/processing-ungated-families`
-- `unmapped_operand`（8）
+- `unmapped_operand`（7）
   - `obtain/wooden-bathing-pot-glue`
   - `recipe/injector-overflow`
   - `recipe/laminator-overflow`
   - `recipe/loom-overflow`
   - `recipe/melter-overflow`
   - `recipe/nanofab-overflow`
-  - `recipe/pressure-washer-stone`
   - `recipe/roll-former-rail-gt`
 
 ## 条目
@@ -488,7 +486,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 影响：`machines/laminator`
 - 权威：`tools/waves/machines/laminator/overflow.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：6 unmapped non-addElectricWires MTE + 6 gt_block log. addElectricWires recipe gauges turned 48 rows green.
+- 说明：Six unmapped non-addElectricWires MTE rows plus six gt_block log rows remain blocked; addElectricWires recipe gauges are already mapped.
 
 ### `recipe/loom-overflow`
 
@@ -537,22 +535,6 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/capabilities/machines/oven/capability.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：Live oven spec has zero fluid tanks.
-
-### `recipe/pressure-washer-stone`
-
-- 标题：压力清洗机 gt.stone overflow
-- 状态：`open`
-- 根因：`unmapped_operand` / `unmapped_gt_stone`
-- 数量：120 rows
-- 排期：`schedulable`
-- 挡住：`player_complete`
-- 发现卡：`machines/pressure-washer`
-- 由本卡引入：否（发现既有缺口）
-- 解决卡：—
-- 影响：`machines/pressure-washer`
-- 权威：`tools/waves/machines/pressure-washer/overflow.json`
-- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
-- 说明：Do not replace GT6 stone identities with unrelated blocks.
 
 ### `recipe/printer-dye-fluids`
 
@@ -985,6 +967,22 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 - 权威：`tools/blocked_recipe_ledger.json`
 - 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
 - 说明：storage.dust, dust_div72 and needsOutputs:false are live. Must not be added to petroleum 702.
+
+### `recipe/pressure-washer-stone`
+
+- 标题：压力清洗机 gt.stone overflow
+- 状态：`resolved`
+- 根因：`unmapped_operand` / `unmapped_gt_stone`
+- 数量：0 rows
+- 排期：`not_work`
+- 挡住：`player_complete`
+- 发现卡：`machines/pressure-washer`
+- 由本卡引入：否（发现既有缺口）
+- 解决卡：machines/pressure-washer
+- 影响：`machines/pressure-washer`
+- 权威：`tools/waves/machines/pressure-washer/overflow.json`
+- 禁止 stand-in：Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.
+- 说明：All 120 GT6 stone rows now resolve to source-exact registered GT stone identities; no unrelated blocks are used.
 
 ### `storage/mass-storage-prefix-units`
 

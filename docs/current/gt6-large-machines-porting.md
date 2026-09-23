@@ -248,22 +248,8 @@ GT6 全量 RecipeMap、材料形态或生存获得链尚未全部闭合。当前
 形成、接受正确能源/物品/流体并执行已发布的真实行；未解析的行继续保持
 blocked 或 on-demand，不用替代材料、原版物品或电路占位。
 
-当前有明确逐行 blocked 证据的配方如下：
-
-- **Coke Oven：已补 16 行，剩余 0 行 blocked**，详见
-  `tools/waves/prep/coke-oven-recipe-forms/current_gap.json`。本轮打开并
-  按 GT6 原行补全了 `coal_chunk`、`coal_billet`、
-  `coal_washed_crushed_ore`、`coal_tiny_washed_crushed_ore`、
-  `coal_tiny_centrifuged_crushed_ore`、`lignite_chunk`、
-  `lignite_tiny_washed_crushed_ore`、
-  `lignite_tiny_centrifuged_crushed_ore`、`lignite_coke_chunk`、
-  `oil_shale_tiny_washed_crushed_ore`、`oil_shale_tiny_centrifuged_crushed_ore`
-  `oil_shale_storage_dust`、`lignite_billet`、`coal_block_raw`、
-  `lignite_block_raw` 和 `wood_pellet`；形态需求记录在
-  `tools/waves/prep/coke-oven-recipe-forms/required_forms.json`。剩余
-  blocked ledger 已清零。`blockRaw` 使用独立 `block_raw` 前缀，`IL.Pellet_Wood`
-  使用独立 `cruciblecraft:wood_pellet` 身份；两者均未用普通 block、木板或
-  木炭替代。
+当前 4.3.1 剩余主机没有独立逐行 blocked ledger；需要区分
+以下几类边界：
 - **Large Batch Mixer**：ordinary-closure 当前剩余 recipe gap 为 334；
   需求普查包含 779 个材料形态对、417 种材料和 11 种前缀，见
   `tools/waves/mixer/ordinary-closure/readiness.json` 与

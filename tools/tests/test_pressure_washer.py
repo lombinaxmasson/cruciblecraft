@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pressure Washer live machine card: 192 selected rows and exact D0 hosts."""
+"""Pressure Washer live machine card: 312 selected rows and exact D0 hosts."""
 from __future__ import annotations
 
 import importlib.util
@@ -52,10 +52,10 @@ class PressureWasherCardTest(unittest.TestCase):
         work = census.load_json(WAVE / "source_pack" / "work_set.json")
         overflow = census.load_json(WAVE / "overflow.json")
         self.assertEqual(312, work["accounting"]["source_rows"])
-        self.assertEqual(192, work["accounting"]["selected_rows"])
-        self.assertEqual(120, work["accounting"]["overflow_rows"])
-        self.assertEqual(120, overflow["blocked_rows"])
-        self.assertIn("gt.stone", str(overflow))
+        self.assertEqual(312, work["accounting"]["selected_rows"])
+        self.assertEqual(0, work["accounting"]["overflow_rows"])
+        self.assertEqual(0, overflow["blocked_rows"])
+        self.assertNotIn("gt.stone", str(overflow))
         self.assertNotIn("programmed_circuit", str(overflow))
 
     def test_d0_hosts_are_source_exact(self) -> None:

@@ -107,7 +107,7 @@
       "id": "recipe/laminator-overflow",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "6 unmapped non-addElectricWires MTE + 6 gt_block log. addElectricWires recipe gauges turned 48 rows green.",
+      "note": "Six unmapped non-addElectricWires MTE rows plus six gt_block log rows remain blocked; addElectricWires recipe gauges are already mapped.",
       "planning_bucket": "schedulable",
       "resolved_by": null,
       "root_cause": "unmapped_mte_or_gt_block_log",
@@ -231,23 +231,18 @@
         "tools/waves/machines/pressure-washer/overflow.json"
       ],
       "blocks_maturity": "player_complete",
-      "claimed_by": [
-        {
-          "semantic_key": "recipe:pressurewasher:stone_overflow",
-          "slug": "machines/pressure-washer"
-        }
-      ],
-      "count": 120,
+      "claimed_by": [],
+      "count": 0,
       "discovered_by": "machines/pressure-washer",
       "id": "recipe/pressure-washer-stone",
       "introduced_by": null,
       "no_stand_in": "Do not substitute an unrelated material, prefix, vanilla item, or programmed_circuit.",
-      "note": "Do not replace GT6 stone identities with unrelated blocks.",
-      "planning_bucket": "schedulable",
-      "resolved_by": null,
+      "note": "All 120 GT6 stone rows now resolve to source-exact registered GT stone identities; no unrelated blocks are used.",
+      "planning_bucket": "not_work",
+      "resolved_by": "machines/pressure-washer",
       "root_cause": "unmapped_gt_stone",
       "root_cause_class": "unmapped_operand",
-      "status": "open",
+      "status": "resolved",
       "title": "压力清洗机 gt.stone overflow",
       "unit": "rows"
     },

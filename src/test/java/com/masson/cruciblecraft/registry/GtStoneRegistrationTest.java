@@ -20,11 +20,11 @@ class GtStoneRegistrationTest {
     }
 
     @Test
-    void fourHundredSixHoldersMatchTheCatalogAndKeepSlabsDistinct() {
+    void fourHundredSixtySixHoldersMatchTheCatalogAndKeepSlabsDistinct() {
         assertEquals(119, GtStoneCatalog.IDENTITY_COUNT);
-        assertEquals(406, GtStoneCatalog.VARIANT_COUNT);
-        assertEquals(406, ModBlocks.gtStoneBlocksById().size());
-        assertEquals(406, ModItems.gtStoneItemsById().size());
+        assertEquals(466, GtStoneCatalog.VARIANT_COUNT);
+        assertEquals(466, ModBlocks.gtStoneBlocksById().size());
+        assertEquals(466, ModItems.gtStoneItemsById().size());
         Set<String> ids = new HashSet<>();
         int slabs = 0;
         for (GtStoneCatalog.Variant variant : GtStoneCatalog.variants()) {
@@ -42,10 +42,12 @@ class GtStoneRegistrationTest {
                 assertTrue(variant.registryPath().contains("slab"));
             }
         }
-        assertEquals(406, ids.size());
+        assertEquals(466, ids.size());
         assertTrue(slabs > 0);
         assertFalse(ids.contains("cruciblecraft:gt_stone/andesite"));
         assertTrue(ids.contains("cruciblecraft:andesite/reinforced_bricks"));
         assertTrue(ids.contains("cruciblecraft:andesite/reinforced_bricks/slab_down"));
+        assertTrue(ids.contains("cruciblecraft:andesite/cobble"));
+        assertTrue(ids.contains("cruciblecraft:andesite/bricks"));
     }
 }

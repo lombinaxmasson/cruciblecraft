@@ -171,7 +171,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                         block,
                         createSingleItemTableWithSilkTouch(
                                 block,
-                                ModBlocks.layerStone(
+                                ModBlocks.layerOrExistingStone(
                                         cube.material() + "/cobble").get()));
             } else {
                 dropSelf(block);

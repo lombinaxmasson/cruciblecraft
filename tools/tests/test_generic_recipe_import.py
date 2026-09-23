@@ -34,6 +34,7 @@ class GenericRecipeImportDiscoveryTest(unittest.TestCase):
         discovered = load_discovered()
         self.assertIn("generic-import/smelter-exact-singleton", discovered)
         self.assertIn("generic-import/mixer-exact-multi", discovered)
+        self.assertNotIn("machines/large-squeezer", discovered)
         self.assertNotIn("generic-import/smelter-exact-singleton", SEMANTIC_WAVES)
         self.assertNotIn("generic-import/mixer-exact-multi", SEMANTIC_COMPILE_ORDER)
         self.assertNotIn("generic-import/smelter-exact-singleton", WAVE_CHOICES)

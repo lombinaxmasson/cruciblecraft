@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the live Laminator Source Pack and compile its 438 exact rows."""
+"""Build the live Laminator Source Pack and compile its 486 exact rows."""
 from __future__ import annotations
 
 import argparse

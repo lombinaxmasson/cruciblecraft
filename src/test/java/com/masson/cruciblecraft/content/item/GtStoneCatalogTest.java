@@ -13,10 +13,10 @@ import net.minecraft.resources.ResourceLocation;
 
 class GtStoneCatalogTest {
     @Test
-    void catalogKeepsOneHundredNineteenIdentitiesAndFourHundredSixVariants() {
+    void catalogKeepsOneHundredNineteenIdentitiesAndFourHundredSixtySixVariants() {
         assertEquals(119, GtStoneCatalog.IDENTITY_COUNT);
-        assertEquals(406, GtStoneCatalog.VARIANT_COUNT);
-        assertEquals(406, GtStoneCatalog.variants().size());
+        assertEquals(466, GtStoneCatalog.VARIANT_COUNT);
+        assertEquals(466, GtStoneCatalog.variants().size());
         assertEquals(
                 "3703e40308c8c030763fd6297dea8b210d2a77b1",
                 GtStoneCatalog.sourceRevision());
@@ -31,12 +31,18 @@ class GtStoneCatalogTest {
                 assertTrue(variant.registryPath().contains("slab"));
             }
         }
-        assertEquals(406, ids.size());
+        assertEquals(466, ids.size());
         assertTrue(slabs > 0);
         assertFalse(ids.contains("cruciblecraft:gt_stone/andesite"));
         GtStoneCatalog.Variant andesite = GtStoneCatalog.require(
                 ResourceLocation.parse("cruciblecraft:andesite/reinforced_bricks"));
         assertFalse(andesite.slab());
         assertEquals(8, andesite.meta());
+        assertEquals(
+                "cruciblecraft:andesite/cobble",
+                GtStoneCatalog.require(
+                        ResourceLocation.parse("cruciblecraft:andesite/cobble"))
+                        .id()
+                        .toString());
     }
 }

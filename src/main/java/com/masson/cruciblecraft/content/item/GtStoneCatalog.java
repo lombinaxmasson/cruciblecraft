@@ -28,7 +28,7 @@ public final class GtStoneCatalog {
     private static final Catalog CATALOG = loadBundled();
 
     public static final int IDENTITY_COUNT = 119;
-    public static final int VARIANT_COUNT = 406;
+    public static final int VARIANT_COUNT = 466;
 
     private GtStoneCatalog() {}
 
@@ -65,7 +65,7 @@ public final class GtStoneCatalog {
                     || document.identities.size() != IDENTITY_COUNT
                     || document.variantCount != VARIANT_COUNT) {
                 throw new IllegalStateException(
-                        "GT stone catalog must remain 119 identities / 406 variants");
+                        "GT stone catalog must remain 119 identities / 466 variants");
             }
             List<Variant> variants = new ArrayList<>(VARIANT_COUNT);
             Map<ResourceLocation, Variant> byId = new LinkedHashMap<>();

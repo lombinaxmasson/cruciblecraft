@@ -38,6 +38,8 @@ def load_discovered() -> dict[str, Path]:
         document = census.load_json(path)
         slug = str((document or {}).get("import_slug") or "")
         if not slug:
+            if "wave_slug" in document and "output_paths" not in document:
+                continue
             raise SpecRegistryError(f"{census.relative(path)} missing import_slug")
         previous = index.get(slug)
         if previous is not None and previous != path:

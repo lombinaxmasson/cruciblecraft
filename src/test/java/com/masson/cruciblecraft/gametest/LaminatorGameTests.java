@@ -51,19 +51,19 @@ public final class LaminatorGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void liveMapPublishesFourHundredThirtyEightRows(
+    public static void liveMapPublishesFourHundredNinetyTwoRows(
             GameTestHelper helper) {
         RecipeMap.RecipeFamily family = ModRecipeMaps.LAMINATOR
                 .family(CompactRecipeFamilyProvider.familyId(
                         ModRecipeMaps.LAMINATOR.id(), PUBLICATION_GROUP))
                 .orElse(null);
         helper.assertTrue(
-                family != null && family.logicalRecipeCount() == 438,
-                "Laminator compact family is not the 438 runtime rows: "
+                family != null && family.logicalRecipeCount() == 492,
+                "Laminator compact family is not the 492 runtime rows: "
                         + (family == null ? "missing" : family.logicalRecipeCount()));
         helper.assertTrue(
-                ModRecipeMaps.LAMINATOR.entries().size() == 438,
-                "Laminator live map drifted from 438 runtime rows: "
+                ModRecipeMaps.LAMINATOR.entries().size() == 492,
+                "Laminator live map drifted from 492 runtime rows: "
                         + ModRecipeMaps.LAMINATOR.entries().size());
         helper.succeed();
     }

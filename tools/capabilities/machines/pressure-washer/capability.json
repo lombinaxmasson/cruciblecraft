@@ -41,10 +41,15 @@
     },
     {
       "semantic_key": "recipe:pressurewasher:stone_overflow",
-      "disposition": "blocked",
-      "runtime_ids": [],
-      "reason": "120 gt.stone rows are unmapped. Do not replace GT6 stone identities with unrelated blocks."
+      "disposition": "source_exact",
+      "runtime_ids": [
+        "cruciblecraft:andesite/cobble",
+        "cruciblecraft:andesite/mossy_cobble",
+        "cruciblecraft:andesite/bricks",
+        "cruciblecraft:andesite/mossy_bricks"
+      ],
+      "reason": "All 120 gt.stone rows now resolve to the expanded GT6 source-exact stone identities; no unrelated blocks are used."
     }
   ],
-  "note": "192 selected exact rows; 120 unmapped gt.stone rows explicitly_blocked. Four hosts are source-exact. Close at runtime_ready, not player_complete."
+  "note": "312 selected exact rows including the expanded GT6 stone identities. Four hosts are source-exact. Close at runtime_ready, not player_complete."
 }

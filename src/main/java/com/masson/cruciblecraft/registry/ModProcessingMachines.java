@@ -771,7 +771,9 @@ public final class ModProcessingMachines {
                         energyMode == ProcessingMachineSpec.EnergyMode.BUFFERED ? 4_096L : 0L,
                         1_024L),
                 Gt6SidedIo.policy(path),
-                recipe -> validateConfigured(recipe, waterInput),
+                recipe -> "sluice".equals(path)
+                        ? validateSluice(recipe)
+                        : validateConfigured(recipe, waterInput),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         gt6InItems,
@@ -793,6 +795,27 @@ public final class ModProcessingMachines {
                 || recipe.eut() <= 0L
                 || recipe.eut() > 1_024L) {
             return Optional.of("configured_recipe_shape");
+        }
+        return Optional.empty();
+    }
+
+    private static Optional<String> validateSluice(GTRecipe recipe) {
+        if (recipe.itemInputs().size() != 1
+                || recipe.itemOutputs().isEmpty()
+                || recipe.itemOutputs().size() > 9
+                || recipe.fluidInputs().size() != 1
+                || recipe.fluidOutputs().size() > 1
+                || recipe.eut() <= 0L
+                || recipe.eut() > 1_024L
+                || recipe.outputChances().size() != recipe.itemOutputs().size()
+                || recipe.outputChances().stream().anyMatch(
+                        chance -> chance <= 0
+                                || chance > GTRecipe.GUARANTEED_CHANCE)
+                || recipe.fluidInputs().stream().anyMatch(
+                        stack -> stack.isEmpty() || stack.getAmount() > 4_000)
+                || recipe.fluidOutputs().stream().anyMatch(
+                        stack -> stack.isEmpty() || stack.getAmount() > 4_000)) {
+            return Optional.of("sluice_recipe_shape");
         }
         return Optional.empty();
     }

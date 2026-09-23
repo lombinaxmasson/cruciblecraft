@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the live Pressure Washer Source Pack and compile its 192 exact rows."""
+"""Build the live Pressure Washer Source Pack and compile its 312 exact rows."""
 from __future__ import annotations
 
 import argparse
@@ -35,8 +35,8 @@ FAMILY_ID = (
 )
 TEMPLATE_KEY = "gt.recipe.pressurewasher#0000"
 SOURCE_ROWS = 312
-SELECTED_ROWS = 192
-OVERFLOW_ROWS = 120
+SELECTED_ROWS = 312
+OVERFLOW_ROWS = 0
 LIVE_NEEDLE = "pressurewasher"
 WAVE = ROOT / "tools" / "waves" / "machines" / "pressure-washer"
 LIVE_GENERATED = (
@@ -46,8 +46,8 @@ LIVE_GENERATED = (
 POLICY_PATH = LIVE_GENERATED / "publication_policy" / "pressure_washer.json"
 PUBLICATION_GROUP = f"{TARGET_MAP}/pilot/pressure_washer"
 LOCK_NOTE = (
-    "live compile for machines/pressure-washer; 192 selected exact rows; "
-    "120 unmapped gt.stone rows explicitly_blocked; not player_complete"
+    "live compile for machines/pressure-washer; 312 selected exact rows; "
+    "GT6 stone identities are source-exact; not player_complete"
 )
 ART_MANIFEST = "gt6_pressure_washer_art_manifest.json"
 D0_HOSTS = (
@@ -250,7 +250,7 @@ def write_wave_sidecars() -> None:
         WAVE / "readiness.json",
         {
             "evidence": {
-                "blocked_stone_rows": OVERFLOW_ROWS,
+                "blocked_stone_rows": 0,
                 "dump_rows": SOURCE_ROWS,
                 "hosts": 4,
                 "owns_families": 1,
