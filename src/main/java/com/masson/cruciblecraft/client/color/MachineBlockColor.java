@@ -193,7 +193,7 @@ public final class MachineBlockColor {
                     "large_autoclave",
                     "large_fermenter" -> "stainless_steel";
             case "large_crusher" -> "tungstensteel";
-            case "large_shredder" -> "tungstensteel";
+            case "large_shredder", "implosion_compressor" -> "tungstensteel";
             default -> {
                 for (var profile : com.masson.cruciblecraft.energy.cooler
                         .CoolerCatalog.profiles()) {

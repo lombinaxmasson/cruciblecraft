@@ -150,6 +150,26 @@ public final class ModMultiblockControllers {
                     () -> ModProcessingMachines.AUTOCLAVE)
                     .withVariant(() -> LARGE_AUTOCLAVE_VARIANT);
 
+    public static final MachineKindSpec IMPLOSION_COMPRESSOR_KIND =
+            new MachineKindSpec(
+                    id("implosion_compressor"),
+                    ModProcessingMachines.IMPLOSION_COMPRESSOR,
+                    MachineKindSpec.OverclockPolicy.STANDARD,
+                    false);
+    public static final MachineVariant IMPLOSION_COMPRESSOR_VARIANT =
+            new MachineVariant(
+                    id("implosion_compressor"),
+                    IMPLOSION_COMPRESSOR_KIND,
+                    MachineTierCatalog.requireControllerTierBand(
+                            id("implosion_compressor_profile")));
+    public static final MultiblockControllerSpec IMPLOSION_COMPRESSOR =
+            new MultiblockControllerSpec(
+                    id("implosion_compressor"),
+                    id("implosion_compressor"),
+                    ModRecipeMaps.IMPLOSION_COMPRESSOR.id(),
+                    () -> ModProcessingMachines.IMPLOSION_COMPRESSOR)
+                    .withVariant(() -> IMPLOSION_COMPRESSOR_VARIANT);
+
     public static final MachineKindSpec LARGE_FERMENTER_KIND =
             new MachineKindSpec(
                     id("large_fermenter"),

@@ -136,6 +136,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 "large_coagulator", ModBlocks.LARGE_COAGULATOR.get());
         configuredMachine(
                 "large_autoclave", ModBlocks.LARGE_AUTOCLAVE.get());
+        configuredMachine(
+                "implosion_compressor", ModBlocks.IMPLOSION_COMPRESSOR.get());
         largeFermenter();
         configuredMachine(
                 "distillation_tower", ModBlocks.DISTILLATION_TOWER.get());

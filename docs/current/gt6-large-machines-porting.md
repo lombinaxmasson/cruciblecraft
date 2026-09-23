@@ -250,13 +250,16 @@ src/main/resources/data/cruciblecraft/mte_inplace_catalog.json
 
 中存在，也可能已经有配方、模型和材质，但必须另外确认对应主机是否存在。
 
-### 4.5 当前没有大型主机：3 个条目
+### 4.5 当前没有大型主机：2 个条目
 
-- Implosion Compressor；
 - Large Sluice；
 - Large Squeezer。
 
-这些项目目前最多只能找到 RecipeMap、部件或单方块机器侧的准备。不能因为 GT6 源码里有对应 `MultiTileEntity...` 类，就宣称 CC 主机已经移植。
+Implosion Compressor 已进入独立 `machines/implosion-compressor` delivery lane：
+主机、3×3×3 结构、18023 端口和当前可解析的 source-backed 配方行由其能力卡
+单独负责；缺少真实材料形态的行仍保留在 blocked overflow。Large Sluice 与
+Large Squeezer 目前仍最多只能找到 RecipeMap、部件或单方块机器侧的准备，不能
+因为 GT6 源码里有对应 `MultiTileEntity...` 类就宣称 CC 主机已经移植。
 
 ### 4.5.1 Large Shredder 17109 已转为 accepted runtime
 

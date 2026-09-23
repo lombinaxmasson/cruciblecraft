@@ -29,7 +29,7 @@ public final class Gt6SidedIo {
     static {
         put("crusher", p(U, TOP, D, BOTTOM, 0, NO_AUTO, 0, NO_AUTO, B));
         put("large_crusher", p(0, NO_AUTO, D, BOTTOM, 0, NO_AUTO, D, BOTTOM, 0));
-        put("large_shredder", p(0, NO_AUTO, D, BOTTOM, 0, NO_AUTO, D, BOTTOM, 0));
+        put("large_shredder", p(0, NO_AUTO, D, BOTTOM, 0, NO_AUTO, 0, NO_AUTO, 0));
         // 17103 leaves side bits at 127 and only sets auto-out to bottom.
         put("large_electrolyzer", p(
                 ANY, NO_AUTO, ANY, BOTTOM, ANY, NO_AUTO, ANY, BOTTOM, ANY));
@@ -79,6 +79,11 @@ public final class Gt6SidedIo {
         put("autoclave", p(U | L, LEFT, B | R, RIGHT, D | L, BOTTOM, B | R, BACK, ALL));
         // 17112 omits INV/TANK_SIDE_*; AUTO_OUT is SIDE_BOTTOM; input targets are null.
         put("large_autoclave", p(ANY, NO_AUTO, ANY, BOTTOM, ANY, NO_AUTO, ANY, BOTTOM, ANY));
+        // 17110 has the same all-wall port contract as 17112, with 18023 walls.
+        put("implosion_compressor", p(
+                ANY, NO_AUTO, ANY, BOTTOM,
+                ANY, NO_AUTO, ANY, BOTTOM,
+                ANY));
         put("fermenter", p(0, NO_AUTO, B, BACK, 0, NO_AUTO, B, BACK, 0));
         put("coagulator", p(ANY, NO_AUTO, D | R, BOTTOM, U | L, TOP, 0, NO_AUTO, ALL));
         // 17105: controller pushes items and fluids down; walls stay bidirectional.

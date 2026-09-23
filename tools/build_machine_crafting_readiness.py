@@ -56,13 +56,16 @@ GENERATED_MACHINE_RECIPES = (
 T11_MACHINE_IDS = {
     "generifier",
     "fluid_deposit_extractor",
-    "fuel_engine",
-    "burning_gas_generator",
 }
 T12_MACHINE_IDS = {
-    "electric_motor",
     "rotational_axle",
     "rotational_gearbox",
+}
+POST_T55_CONFIGURED_IDS = {
+    # These machines have their own later source/readiness cards and are not
+    # part of the historical T5.5 machine-crafting policy ledger.
+    "MELTER",
+    "CANNER",
 }
 T12_SOURCE_PROJECTED_CONFIGURED_IDS = {
     "centrifuge",
@@ -84,6 +87,11 @@ T17_SOURCE_PROJECTED_CONFIGURED_IDS = {
 T36_SOURCE_PROJECTED_CONFIGURED_IDS = {
     "roaster",
 }
+SPECIALIZED_SOURCE_PROJECTED_CONFIGURED_IDS = {
+    # Bath uses its source-backed six-slot builder rather than the generic
+    # copper/furnace placeholder.
+    "bath",
+}
 T36_ITEM_FIELDS = {
     "roaster": "STEEL_ROASTER",
 }
@@ -95,6 +103,7 @@ SOURCE_PROJECTED_CONFIGURED_IDS = (
     | T16_SOURCE_PROJECTED_CONFIGURED_IDS
     | T17_SOURCE_PROJECTED_CONFIGURED_IDS
     | T36_SOURCE_PROJECTED_CONFIGURED_IDS
+    | SPECIALIZED_SOURCE_PROJECTED_CONFIGURED_IDS
 )
 
 
@@ -130,7 +139,8 @@ def configured_machine_ids() -> list[str]:
     source = PROCESSING_MACHINES.read_text(encoding="utf-8")
     definitions = dict(re.findall(
         r"public\s+static\s+final\s+ProcessingMachineSpec\s+([A-Z0-9_]+)"
-        r"\s*=\s*(?:mechanical|reusedT5|t3|t5)\s*\(\s*\"([^\"]+)\"",
+        r"\s*=\s*(?:mechanical|reusedT5|reusedChemicalSpec|chemicalSpec|"
+        r"componentSpec|mixer|t3|t5)\s*\(\s*\"([^\"]+)\"",
         source,
         flags=re.DOTALL,
     ))
@@ -148,6 +158,8 @@ def configured_machine_ids() -> list[str]:
         if match is None:
             raise ValueError(f"could not derive {list_name}")
         for constant in re.findall(r"\b[A-Z][A-Z0-9_]*\b", match.group(1)):
+            if constant in POST_T55_CONFIGURED_IDS:
+                continue
             if constant not in definitions:
                 raise ValueError(
                     f"{list_name} references unparsed machine {constant}"
@@ -440,6 +452,7 @@ def configured_rows(
             for machine_id in (
                 T16_SOURCE_PROJECTED_CONFIGURED_IDS
                 | T17_SOURCE_PROJECTED_CONFIGURED_IDS
+                | SPECIALIZED_SOURCE_PROJECTED_CONFIGURED_IDS
             )
         },
         **T36_ITEM_FIELDS,

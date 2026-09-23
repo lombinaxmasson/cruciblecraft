@@ -332,6 +332,7 @@
       "cruciblecraft:large_fermenter_profile": "Loader_MultiTileEntities.java:1235",
       "cruciblecraft:large_bath_profile": "Loader_MultiTileEntities.java:1233",
       "cruciblecraft:large_autoclave_profile": "Loader_MultiTileEntities.java:1232",
+      "cruciblecraft:implosion_compressor_profile": "Loader_MultiTileEntities.java:1228",
       "cruciblecraft:large_coagulator_profile": "Loader_MultiTileEntities.java:1231",
       "cruciblecraft:distillation_tower_profile": "Loader_MultiTileEntities.java:1226",
       "cruciblecraft:cryo_distillation_tower_profile": "Loader_MultiTileEntities.java:1233",
@@ -7382,6 +7383,17 @@
       "inputMaximum": 16,
       "energyCapacity": 16,
       "parallel": 16,
+      "efficiency": 10000
+    },
+    {
+      "tierBand": "cruciblecraft:implosion_compressor_profile",
+      "material": "cruciblecraft:implosion_compressor",
+      "energy": "TIME",
+      "inputMinimum": 1,
+      "inputNominal": 1,
+      "inputMaximum": 16,
+      "energyCapacity": 16,
+      "parallel": 64,
       "efficiency": 10000
     },
     {

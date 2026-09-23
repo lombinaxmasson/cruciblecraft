@@ -49,6 +49,7 @@ import com.masson.cruciblecraft.content.block.LargeOvenBlock;
 import com.masson.cruciblecraft.content.block.LargeCrusherBlock;
 import com.masson.cruciblecraft.content.block.LargeShredderBlock;
 import com.masson.cruciblecraft.content.block.LargeAutoclaveBlock;
+import com.masson.cruciblecraft.content.block.ImplosionCompressorBlock;
 import com.masson.cruciblecraft.content.block.LargeFermenterBlock;
 import com.masson.cruciblecraft.content.block.CryoDistillationTowerBlock;
 import com.masson.cruciblecraft.content.block.DistillationTowerBlock;
@@ -432,6 +433,10 @@ public final class ModBlocks {
             LARGE_AUTOCLAVE = BLOCKS.register(
                     "large_autoclave",
                     () -> new LargeAutoclaveBlock(machineProperties()));
+    public static final DeferredBlock<ImplosionCompressorBlock>
+            IMPLOSION_COMPRESSOR = BLOCKS.register(
+                    "implosion_compressor",
+                    () -> new ImplosionCompressorBlock(machineProperties()));
     public static final DeferredBlock<LargeFermenterBlock>
             LARGE_FERMENTER = BLOCKS.register(
                     "large_fermenter",

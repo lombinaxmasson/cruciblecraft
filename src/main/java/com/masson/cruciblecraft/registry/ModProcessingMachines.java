@@ -241,6 +241,8 @@ public final class ModProcessingMachines {
                     2, 3, 1, 1,
                     EnergyType.TIME,
                     ProcessingMachineSpec.EnergyMode.BUFFERED);
+    public static final ProcessingMachineSpec IMPLOSION_COMPRESSOR =
+            implosionCompressorSpec();
     public static final ProcessingMachineSpec DRYING =
             reusedChemicalSpec("drying", () -> ModRecipeMaps.DRYING,
                     1, 1, 1, 1, 32_000, 32_000,
@@ -578,7 +580,8 @@ public final class ModProcessingMachines {
                                             LOOM,
                                             ELECTRICLOOM,
                                             INJECTOR,
-                                            NANOFAB),
+                                            NANOFAB,
+                                            IMPLOSION_COMPRESSOR),
                                     PUV_OMEGA_HOST_MACHINES.stream()))
                     .distinct()
                     .toList();
@@ -637,6 +640,31 @@ public final class ModProcessingMachines {
                 || recipe.outputChances().stream().anyMatch(
                         chance -> chance <= 0 || chance > GTRecipe.GUARANTEED_CHANCE)) {
             return Optional.of("shredder_recipe_shape");
+        }
+        return Optional.empty();
+    }
+
+    private static Optional<String> validateImplosionCompressor(GTRecipe recipe) {
+        if (recipe.itemInputs().size() != 3
+                || recipe.itemOutputs().size() != 1
+                || !recipe.fluidInputs().isEmpty()
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() != 0L
+                || recipe.duration() != 256
+                || recipe.outputChances().size() != 1
+                || recipe.outputChances().getFirst() != GTRecipe.GUARANTEED_CHANCE
+                || recipe.itemInputCounts().size() != 3
+                || recipe.itemInputCounts().get(0) <= 0
+                || recipe.itemInputCounts().get(1) <= 0
+                || recipe.itemInputCounts().get(2) != 0
+                || recipe.itemInputActions().size() != 3
+                || recipe.itemInputActions().get(0).kind()
+                        != ItemInputAction.Kind.CONSUME
+                || recipe.itemInputActions().get(1).kind()
+                        != ItemInputAction.Kind.CONSUME
+                || recipe.itemInputActions().get(2).kind()
+                        != ItemInputAction.Kind.PRESERVE) {
+            return Optional.of("implosion_compressor_recipe_shape");
         }
         return Optional.empty();
     }
@@ -1383,6 +1411,30 @@ public final class ModProcessingMachines {
                 Gt6BasicMachineGui.ui(
                         1, 12, 0, 0,
                         1, 12, 0, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static ProcessingMachineSpec implosionCompressorSpec() {
+        return new ProcessingMachineSpec(
+                id("implosion_compressor"),
+                id("implosion_compressor"),
+                () -> ModRecipeMaps.IMPLOSION_COMPRESSOR,
+                new ProcessingMachineSpec.SlotLayout(
+                        6,
+                        List.of(0, 1, 2),
+                        List.of(3, 4, 5)),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.TIME,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        16L,
+                        16L),
+                Gt6SidedIo.policy("implosion_compressor"),
+                ModProcessingMachines::validateImplosionCompressor,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        3, 3, 0, 0,
+                        3, 3, 0, 0,
                         PROCESSING_STATUSES));
     }
 

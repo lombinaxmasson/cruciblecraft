@@ -626,6 +626,7 @@ def live_host_paths() -> set[str]:
         "steel_dust_funnel",
         "programmed_circuit",
         "cover_blank_cover",
+        "distillation_tower",
     }
     if GATE_PATH.is_file():
         gate = census.load_json(GATE_PATH)

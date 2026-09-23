@@ -91,6 +91,7 @@ KNOWN_SEMANTIC_SLUGS = (
     "machines/roll-former",
     "machines/cluster-mill",
     "machines/large-shredder",
+    "machines/implosion-compressor",
     "machines/hammer-squeezer-laser",
     "machines/distillation-tower",
     "machines/large-processing-parts",

@@ -66,7 +66,7 @@ class LargeCentrifugeProfileTest {
                                         && !heatKinds.contains(
                                                 entry.kindId().toString()))
                         .count());
-        assertEquals(12, MachineTierCatalog.controllerTierBands().size());
+        assertEquals(14, MachineTierCatalog.controllerTierBands().size());
 
         TierProfile tower =
                 ModMultiblockControllers.DISTILLATION_TOWER_VARIANT

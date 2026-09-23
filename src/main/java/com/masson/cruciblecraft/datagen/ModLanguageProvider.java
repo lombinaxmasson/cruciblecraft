@@ -380,6 +380,13 @@ public class ModLanguageProvider extends LanguageProvider {
                     "主机在侧底中心，朝外");
             add("tooltip.cruciblecraft.large_autoclave.io",
                     "任意方块输入输出");
+            addBlock(ModBlocks.IMPLOSION_COMPRESSOR, "聚爆压缩机");
+            add("tooltip.cruciblecraft.implosion_compressor.structure",
+                    "结构：3×3×3 空心致密钨钢墙");
+            add("tooltip.cruciblecraft.implosion_compressor.controller",
+                    "主机在侧底中心，朝外");
+            add("tooltip.cruciblecraft.implosion_compressor.io",
+                    "墙口接受物品/流体/TU；主机底面自动输出");
             addBlock(ModBlocks.LARGE_FERMENTER, "大型发酵器");
             add("tooltip.cruciblecraft.large_fermenter.structure",
                     "底层 5×5 热传导器，上两层 5×5×2 不锈钢墙");
@@ -897,6 +904,13 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Main Block centered on Side-Bottom and facing outwards");
         add("tooltip.cruciblecraft.large_autoclave.io",
                 "Input and Output at any Blocks");
+        addBlock(ModBlocks.IMPLOSION_COMPRESSOR, "Implosion Compressor");
+        add("tooltip.cruciblecraft.implosion_compressor.structure",
+                "3x3x3 Hollow of Dense Tungstensteel Walls");
+        add("tooltip.cruciblecraft.implosion_compressor.controller",
+                "Main Block centered on Side-Bottom and facing outwards");
+        add("tooltip.cruciblecraft.implosion_compressor.io",
+                "Walls accept items, fluids and TU; output is automatic below");
         addBlock(ModBlocks.LARGE_FERMENTER, "Large Fermenter");
         add("tooltip.cruciblecraft.large_fermenter.structure",
                 "5x5 Heat Transmitters as bottom layer, 5x5x2 Stainless Steel Walls");

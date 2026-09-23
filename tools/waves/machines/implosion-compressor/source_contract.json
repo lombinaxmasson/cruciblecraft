@@ -1,0 +1,57 @@
+{
+  "energy": {
+    "capacity": 16,
+    "input_maximum": 16,
+    "input_minimum": 1,
+    "type": "TU"
+  },
+  "gt6": {
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityImplosionCompressor",
+    "loader_meta": 17110,
+    "method": "checkStructure2",
+    "recipe_map": "RM.ImplosionCompressor",
+    "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+  },
+  "io": {
+    "automatic_input": false,
+    "automatic_output": true,
+    "fluid_inputs": 0,
+    "fluid_outputs": 0,
+    "item_input_ports": 25,
+    "item_inputs": 3,
+    "item_outputs": 3,
+    "output_side": "BOTTOM",
+    "port_type": "ITEM_FLUID_ENERGY"
+  },
+  "no_constant_power": true,
+  "parallel": 64,
+  "parallel_duration": false,
+  "recipe": {
+    "duration": 256,
+    "eut": 0,
+    "output_chance": 10000,
+    "source_rows": 1072
+  },
+  "schema_version": 1,
+  "source_tokens": {
+    "pattern": [
+      "CPC",
+      "PAP",
+      "RMR"
+    ],
+    "required": [
+      "A=IL.ROBOT_ARMS[2]"
+    ]
+  },
+  "status": "source_exact",
+  "structure": {
+    "air_cells": 1,
+    "controller": "side_bottom_center",
+    "dimensions": [
+      3,
+      3,
+      3
+    ],
+    "wall_blocks": 25
+  }
+}

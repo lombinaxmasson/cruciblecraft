@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.block.WoodDebark;
 import com.masson.cruciblecraft.content.block.StainlessSteelMixerWalls;
 import com.masson.cruciblecraft.content.block.AutoclaveWalls;
+import com.masson.cruciblecraft.content.block.ImplosionCompressorWalls;
 import com.masson.cruciblecraft.content.block.InvarOvenWalls;
 import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
 import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
@@ -1278,6 +1279,30 @@ public final class ModRecipeProvider extends RecipeProvider {
                 autoclaveIngredients,
                 Map.of(),
                 new ItemStack(ModItems.LARGE_AUTOCLAVE.get()));
+        Map<String, Ingredient> implosionIngredients = new LinkedHashMap<>();
+        implosionIngredients.put(
+                "P",
+                materialIngredient("tungstensteel", MaterialPrefixes.DENSE_PLATE));
+        implosionIngredients.put(
+                "A",
+                Ingredient.of(ModItems.technologicalPart(
+                        "compact_electric_robot_arm_mv").get()));
+        implosionIngredients.put(
+                "R",
+                Ingredient.of(ModItems.technologicalPart("processor_crystal_ruby").get()));
+        implosionIngredients.put("C", circuitIngredient("circuit_ultimate"));
+        implosionIngredients.put(
+                "M",
+                Ingredient.of(ModItems.mteInPlaceItemsById()
+                        .get(ImplosionCompressorWalls.WALL_ID)
+                        .get()));
+        acceptShapedCatalyst(
+                output,
+                "machines/implosion_compressor",
+                List.of("CPC", "PAP", "RMR"),
+                implosionIngredients,
+                Map.of(),
+                new ItemStack(ModItems.IMPLOSION_COMPRESSOR.get()));
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC, ModItems.PORTABLE_FLUID_TANK.get())
                 .pattern("CGC")

@@ -57,6 +57,7 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.LARGE_BATH.getKey(),
                 ModBlocks.LARGE_COAGULATOR.getKey(),
                 ModBlocks.LARGE_AUTOCLAVE.getKey(),
+                ModBlocks.IMPLOSION_COMPRESSOR.getKey(),
                 ModBlocks.LARGE_FERMENTER.getKey(),
                 ModBlocks.DISTILLATION_TOWER.getKey(),
                 ModBlocks.CRYO_DISTILLATION_TOWER.getKey(),

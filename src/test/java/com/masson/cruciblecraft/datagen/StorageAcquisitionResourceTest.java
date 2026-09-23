@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.masson.cruciblecraft.content.mte.MteInPlaceAcquisitionCatalog;
 import com.masson.cruciblecraft.content.storage.StorageVariant;
 import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 
@@ -27,7 +28,13 @@ class StorageAcquisitionResourceTest {
         var chinese = document("assets/cruciblecraft/lang/zh_cn.json");
         Set<String> pickaxe = values("data/minecraft/tags/block/mineable/pickaxe.json");
         Set<String> axe = values("data/minecraft/tags/block/mineable/axe.json");
+        Set<String> foldedCatalystRecipes = MteInPlaceAcquisitionCatalog.recipes()
+                .stream()
+                .map(recipe -> recipe.path() + ".json")
+                .filter(path -> path.startsWith("storage/"))
+                .collect(Collectors.toUnmodifiableSet());
         int recipes = 0;
+        int foldedRecipes = 0;
         for (StorageVariant variant : StorageVariantCatalog.variants()) {
             String path = variant.path();
             String key = "block.cruciblecraft." + path;
@@ -48,6 +55,9 @@ class StorageAcquisitionResourceTest {
             if (hasDirectAcquisitionRecipe) {
                 assertTrue(Files.exists(recipe), path);
                 recipes++;
+            } else if (foldedCatalystRecipes.contains("storage/" + path + ".json")) {
+                assertTrue(Files.exists(recipe), path);
+                foldedRecipes++;
             } else {
                 assertFalse(Files.exists(recipe), path);
             }
@@ -60,6 +70,7 @@ class StorageAcquisitionResourceTest {
                                 variant.acquisitionProfile()))
                         .count(),
                 recipes);
+        assertEquals(foldedCatalystRecipes.size(), foldedRecipes);
         assertEquals(625, StorageVariantCatalog.variants().size());
     }
 

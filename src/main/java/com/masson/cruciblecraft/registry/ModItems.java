@@ -345,6 +345,9 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> LARGE_AUTOCLAVE =
             ITEMS.registerSimpleBlockItem(
                     "large_autoclave", ModBlocks.LARGE_AUTOCLAVE);
+    public static final DeferredItem<BlockItem> IMPLOSION_COMPRESSOR =
+            ITEMS.registerSimpleBlockItem(
+                    "implosion_compressor", ModBlocks.IMPLOSION_COMPRESSOR);
     public static final DeferredItem<BlockItem> LARGE_FERMENTER =
             ITEMS.registerSimpleBlockItem(
                     "large_fermenter", ModBlocks.LARGE_FERMENTER);

@@ -51,6 +51,7 @@ import com.masson.cruciblecraft.content.blockentity.LargeCrusherBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeShredderBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeBathBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeAutoclaveBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ImplosionCompressorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeFermenterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCoagulatorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CryoDistillationTowerBlockEntity;
@@ -203,6 +204,15 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     LargeAutoclaveBlockEntity::new,
                                     ModBlocks.LARGE_AUTOCLAVE.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<ImplosionCompressorBlockEntity>>
+                    IMPLOSION_COMPRESSOR = BLOCK_ENTITIES.register(
+                            "implosion_compressor",
+                            () -> BlockEntityType.Builder.of(
+                                    ImplosionCompressorBlockEntity::new,
+                                    ModBlocks.IMPLOSION_COMPRESSOR.get())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

@@ -267,6 +267,22 @@ def load_mte_runtime() -> dict[tuple[str, int], str]:
                     int(row["meta"]),
                 )
             ] = str(row["runtime_id"])
+    implosion_overlay = (
+        census.TOOLS
+        / "waves"
+        / "machines"
+        / "implosion-compressor"
+        / "mte_runtime_overlay.json"
+    )
+    if implosion_overlay.is_file():
+        document = census.load_json(implosion_overlay)
+        for row in document.get("mappings") or []:
+            mapped[
+                (
+                    str(row.get("source_item") or "gregtech:gt.multitileentity"),
+                    int(row["meta"]),
+                )
+            ] = str(row["runtime_id"])
     return mapped
 
 
@@ -492,6 +508,15 @@ def map_item_operand(
                 "reachable": True,
             }
         )
+        if item_id == identities.CIRCUIT_ITEM and isinstance(meta, int):
+            operand["_components"] = {
+                "cruciblecraft:circuit_config": meta,
+            }
+            operand["slot_class"] = (
+                "catalyst"
+                if int(item.get("count") or 0) == 0
+                else "occupied"
+            )
         return operand, []
     overlay = item_overlay.get((item_id, meta_key))
     if overlay and overlay.get("runtime_id"):
@@ -564,6 +589,9 @@ def map_item_operand(
             )
             return operand, [f"circuit missing integer meta {item_id}@{meta}"]
         operand["source"]["meta"] = meta
+        operand["_components"] = {
+            "cruciblecraft:circuit_config": meta,
+        }
         operand.update(
             {
                 "mapping": "proven_equivalent",

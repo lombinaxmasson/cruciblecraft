@@ -138,12 +138,10 @@
       },
       "classification": "missing_cc_component",
       "current_recipe": {
-        "kind": "generated_copper_furnace_placeholder",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/bath.json",
         "source": {
-          "lines": "168-177",
-          "method": "machineCrafting",
-          "method_sha256": "35418ce58ea902cfa89d6b8b159f60e2363067e41b26d90524a53d53a5a8a7cc",
+          "method": "bathCrafting",
           "path": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java"
         }
       },
@@ -191,7 +189,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/centrifuge.json",
         "source": {
           "method": "centrifugeCrafting",
@@ -253,7 +251,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/shredder.json",
         "source": {
           "method": "t16MachineCrafting",
@@ -315,7 +313,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/sifter.json",
         "source": {
           "method": "sifterCrafting",
@@ -377,7 +375,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/smelter.json",
         "source": {
           "method": "t17HeatMachineCrafting",
@@ -632,7 +630,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/lathe.json",
         "source": {
           "method": "t16MachineCrafting",
@@ -694,7 +692,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/rollingmill.json",
         "source": {
           "method": "t16MachineCrafting",
@@ -820,7 +818,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/wiremill.json",
         "source": {
           "method": "t16MachineCrafting",
@@ -976,82 +974,6 @@
           "reason": "CrucibleCraft has no machine-casing material prefix or component item.",
           "source_identity": "OP.casingMachine",
           "status": "missing_cc_component"
-        },
-        {
-          "cc_identity": null,
-          "reason": "CrucibleCraft has no circuit item family or audited GT6 tier mapping.",
-          "source_identity": "OD_CIRCUITS[tier]",
-          "status": "missing_cc_component"
-        },
-        {
-          "cc_identity": null,
-          "reason": "CrucibleCraft has no color-lens component family.",
-          "source_identity": "DYE_OREDICTS_LENS",
-          "status": "missing_cc_component"
-        }
-      ],
-      "cc_identity": {
-        "item": "cruciblecraft:welder",
-        "mod_items_field": "WELDER",
-        "processing_spec": "cruciblecraft:welder"
-      },
-      "classification": "tier_collapsed_pending_t6",
-      "current_recipe": {
-        "kind": "generated_copper_furnace_placeholder",
-        "path": "src/generated/resources/data/cruciblecraft/recipe/machines/welder.json",
-        "source": {
-          "lines": "168-177",
-          "method": "machineCrafting",
-          "method_sha256": "35418ce58ea902cfa89d6b8b159f60e2363067e41b26d90524a53d53a5a8a7cc",
-          "path": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java"
-        }
-      },
-      "machine_id": "welder",
-      "reason": "GT6 exposes five LU Laser Welder tiers with tiered circuits and lenses; CrucibleCraft exposes one KU welder without those component identities.",
-      "replacement_prerequisites": [
-        "Resolve LU-to-KU semantics and select or collapse the five GT6 tiers in T6.",
-        "Implement exact casing, circuit, and lens identities.",
-        "Verify every selected operand is reachable and test the source pattern."
-      ],
-      "scope": "configured_machine_placeholder",
-      "source_evidence": [
-        {
-          "anchor": "material_tier_arrays",
-          "git_blob_sha1": "1681c2072f28ad2d31bc285aef1c6fd2a3bcef92",
-          "kind": "gt6_java_anchor",
-          "lines": "3689-3691",
-          "path": "src/main/java/gregapi/data/MT.java",
-          "reason": "These arrays resolve the material identity hidden behind each indexed GT6 machine tier.",
-          "repository": "GregTech6/gregtech6",
-          "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
-        },
-        {
-          "anchor": "electric_laser_welder",
-          "git_blob_sha1": "cf80887c5e572ee0942f087d1c75238115ca5255",
-          "kind": "gt6_java_anchor",
-          "lines": "1489-1494",
-          "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
-          "reason": "Pins the five GT6 laser-welder tiers and their circuit/lens operands.",
-          "repository": "GregTech6/gregtech6",
-          "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
-        }
-      ],
-      "source_identity": {
-        "anchor_ids": [
-          "material_tier_arrays",
-          "electric_laser_welder"
-        ],
-        "status": "pinned_gt6_java_identity",
-        "tier_or_identity_summary": "GT6 exposes five LU Laser Welder tiers with tiered circuits and lenses; CrucibleCraft exposes one KU welder without those component identities."
-      }
-    },
-    {
-      "blocking_components": [
-        {
-          "cc_identity": null,
-          "reason": "CrucibleCraft has no machine-casing material prefix or component item.",
-          "source_identity": "OP.casingMachine",
-          "status": "missing_cc_component"
         }
       ],
       "cc_identity": {
@@ -1061,7 +983,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/press.json",
         "source": {
           "method": "t16MachineCrafting",
@@ -1129,7 +1051,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/electrolyzer.json",
         "source": {
           "method": "electrolyzerCrafting",
@@ -1261,7 +1183,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/distillery.json",
         "source": {
           "method": "t17HeatMachineCrafting",
@@ -1382,7 +1304,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/drying.json",
         "source": {
           "method": "t17HeatMachineCrafting",
@@ -1508,7 +1430,7 @@
       },
       "classification": "tier_collapsed_pending_t6",
       "current_recipe": {
-        "kind": "t12_source_projected_machine_recipe",
+        "kind": "machine_tier_source_projected_machine_recipe",
         "path": "src/generated/resources/data/cruciblecraft/recipe/machines/steel_roaster.json",
         "source": {
           "method": "t17HeatMachineCrafting",
@@ -1617,15 +1539,15 @@
   "counts": {
     "classifications": {
       "directly_projectable": 0,
-      "existing_cc_recipe_retained": 7,
+      "existing_cc_recipe_retained": 2,
       "missing_cc_component": 4,
       "source_identity_unresolved": 2,
-      "tier_collapsed_pending_t6": 19
+      "tier_collapsed_pending_t6": 18
     },
-    "classified": 32,
-    "configured_machine_placeholders": 25,
-    "existing_bronze_resources": 7,
-    "total_rows": 32,
+    "classified": 26,
+    "configured_machine_placeholders": 24,
+    "existing_bronze_resources": 2,
+    "total_rows": 26,
     "unclassified": 0
   },
   "current_placeholder_template": {
@@ -1701,94 +1623,6 @@
       "blocking_components": [],
       "cc_identity": {
         "components": {},
-        "item": "cruciblecraft:bronze_boiler"
-      },
-      "classification": "existing_cc_recipe_retained",
-      "current_recipe": {
-        "kind": "minecraft:crafting_shaped",
-        "path": "src/main/resources/data/cruciblecraft/recipe/bronze_boiler.json",
-        "sha256": "0a5ff1e68990b9d6b69a69318712e447e6aeaf9d4708c91aefda3ffe1fddcdb2"
-      },
-      "reason": "The current bronze boiler craft is already survival-facing; the pinned GT6 boiler uses double plates and tool-shaped crafting, so parity is not silently claimed.",
-      "recipe_id": "bronze_boiler",
-      "replacement_prerequisites": [
-        "A separate reviewed task must decide whether to retain the current bucket recipe or project the pinned GT6 pattern."
-      ],
-      "scope": "existing_bronze_resource",
-      "source_evidence": [
-        {
-          "kind": "cc_recipe_resource",
-          "path": "src/main/resources/data/cruciblecraft/recipe/bronze_boiler.json",
-          "sha256": "0a5ff1e68990b9d6b69a69318712e447e6aeaf9d4708c91aefda3ffe1fddcdb2"
-        },
-        {
-          "anchor": "bronze_boiler",
-          "git_blob_sha1": "cf80887c5e572ee0942f087d1c75238115ca5255",
-          "kind": "gt6_java_anchor",
-          "lines": "555",
-          "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
-          "reason": "Pins the GT6 bronze boiler-tank crafting identity.",
-          "repository": "GregTech6/gregtech6",
-          "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
-        }
-      ],
-      "source_identity": {
-        "anchor_ids": [
-          "bronze_boiler"
-        ],
-        "status": "existing_cc_recipe_with_pinned_context",
-        "tier_or_identity_summary": "The current bronze boiler craft is already survival-facing; the pinned GT6 boiler uses double plates and tool-shaped crafting, so parity is not silently claimed."
-      }
-    },
-    {
-      "blocking_components": [],
-      "cc_identity": {
-        "components": {
-          "cruciblecraft:machine_material": "bronze"
-        },
-        "item": "cruciblecraft:crucible"
-      },
-      "classification": "existing_cc_recipe_retained",
-      "current_recipe": {
-        "kind": "minecraft:crafting_shaped",
-        "path": "src/main/resources/data/cruciblecraft/recipe/bronze_crucible_upgrade.json",
-        "sha256": "a82893f20c70e657c524984ae10dc374c58ade21b391715bc987a831b376eeb4"
-      },
-      "reason": "CrucibleCraft models ceramic-to-bronze as a component-preserving upgrade, while GT6 registers separate ceramic and bronze crucibles.",
-      "recipe_id": "bronze_crucible_upgrade",
-      "replacement_prerequisites": [
-        "A separate reviewed task must explicitly choose upgrade semantics or separate GT6 identities and preserve component data."
-      ],
-      "scope": "existing_bronze_resource",
-      "source_evidence": [
-        {
-          "kind": "cc_recipe_resource",
-          "path": "src/main/resources/data/cruciblecraft/recipe/bronze_crucible_upgrade.json",
-          "sha256": "a82893f20c70e657c524984ae10dc374c58ade21b391715bc987a831b376eeb4"
-        },
-        {
-          "anchor": "bronze_crucible",
-          "git_blob_sha1": "cf80887c5e572ee0942f087d1c75238115ca5255",
-          "kind": "gt6_java_anchor",
-          "lines": "256,265",
-          "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
-          "reason": "Pins the separate ceramic and bronze GT6 crucible identities.",
-          "repository": "GregTech6/gregtech6",
-          "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
-        }
-      ],
-      "source_identity": {
-        "anchor_ids": [
-          "bronze_crucible"
-        ],
-        "status": "existing_cc_recipe_with_pinned_context",
-        "tier_or_identity_summary": "CrucibleCraft models ceramic-to-bronze as a component-preserving upgrade, while GT6 registers separate ceramic and bronze crucibles."
-      }
-    },
-    {
-      "blocking_components": [],
-      "cc_identity": {
-        "components": {},
         "item": "cruciblecraft:bronze_crusher"
       },
       "classification": "existing_cc_recipe_retained",
@@ -1837,136 +1671,6 @@
         ],
         "status": "existing_cc_recipe_with_pinned_context",
         "tier_or_identity_summary": "The current bronze crusher craft predates T5.5; GT6 T1 resolves to bronze but requires a machine casing, spring, and diamonds rather than a bronze-wrapped anvil."
-      }
-    },
-    {
-      "blocking_components": [],
-      "cc_identity": {
-        "components": {},
-        "item": "cruciblecraft:bronze_dynamo"
-      },
-      "classification": "existing_cc_recipe_retained",
-      "current_recipe": {
-        "kind": "minecraft:crafting_shaped",
-        "path": "src/main/resources/data/cruciblecraft/recipe/bronze_dynamo.json",
-        "sha256": "e30d02977ce20053904773bf892ee88f11e4279dcc0609c18e3ca509cd06f5bf"
-      },
-      "reason": "The current bronze KU-to-electric bridge has no bronze GT6 Electric Dynamo identity; the nearest source family starts at galvanized steel.",
-      "recipe_id": "bronze_dynamo",
-      "replacement_prerequisites": [
-        "A separate reviewed task must document this CrucibleCraft divergence or select an exact non-bronze GT6 dynamo tier."
-      ],
-      "scope": "existing_bronze_resource",
-      "source_evidence": [
-        {
-          "kind": "cc_recipe_resource",
-          "path": "src/main/resources/data/cruciblecraft/recipe/bronze_dynamo.json",
-          "sha256": "e30d02977ce20053904773bf892ee88f11e4279dcc0609c18e3ca509cd06f5bf"
-        },
-        {
-          "anchor": "material_tier_arrays",
-          "git_blob_sha1": "1681c2072f28ad2d31bc285aef1c6fd2a3bcef92",
-          "kind": "gt6_java_anchor",
-          "lines": "3689-3691",
-          "path": "src/main/java/gregapi/data/MT.java",
-          "reason": "These arrays resolve the material identity hidden behind each indexed GT6 machine tier.",
-          "repository": "GregTech6/gregtech6",
-          "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
-        },
-        {
-          "anchor": "electric_dynamo_tiers",
-          "git_blob_sha1": "cf80887c5e572ee0942f087d1c75238115ca5255",
-          "kind": "gt6_java_anchor",
-          "lines": "946-950",
-          "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
-          "reason": "The nearest GT6 RU-to-EU dynamo identity is tiered and starts at galvanized steel, not bronze.",
-          "repository": "GregTech6/gregtech6",
-          "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
-        }
-      ],
-      "source_identity": {
-        "anchor_ids": [
-          "material_tier_arrays",
-          "electric_dynamo_tiers"
-        ],
-        "status": "existing_cc_recipe_with_pinned_context",
-        "tier_or_identity_summary": "The current bronze KU-to-electric bridge has no bronze GT6 Electric Dynamo identity; the nearest source family starts at galvanized steel."
-      }
-    },
-    {
-      "blocking_components": [],
-      "cc_identity": {
-        "components": {
-          "cruciblecraft:tool_material": "bronze"
-        },
-        "item": "cruciblecraft:smithing_hammer"
-      },
-      "classification": "existing_cc_recipe_retained",
-      "current_recipe": {
-        "kind": "minecraft:crafting_shaped",
-        "path": "src/main/resources/data/cruciblecraft/recipe/bronze_smithing_hammer.json",
-        "sha256": "8ebc5c2633ae359ce0acb49dbd1853eecffe979dcec9f19bfc9d33ee2f4a7856"
-      },
-      "reason": "The current component-bearing bronze smithing hammer is a hand-authored tool craft; this machine-block source audit did not pin separate GT6 tool-generation evidence and no replacement is authorized here.",
-      "recipe_id": "bronze_smithing_hammer",
-      "replacement_prerequisites": [
-        "A separate tool-recipe task must provide exact GT6 tool-generation evidence before changing this craft."
-      ],
-      "scope": "existing_bronze_resource",
-      "source_evidence": [
-        {
-          "kind": "cc_recipe_resource",
-          "path": "src/main/resources/data/cruciblecraft/recipe/bronze_smithing_hammer.json",
-          "sha256": "8ebc5c2633ae359ce0acb49dbd1853eecffe979dcec9f19bfc9d33ee2f4a7856"
-        }
-      ],
-      "source_identity": {
-        "anchor_ids": [],
-        "status": "existing_cc_recipe_with_pinned_context",
-        "tier_or_identity_summary": "The current component-bearing bronze smithing hammer is a hand-authored tool craft; this machine-block source audit did not pin separate GT6 tool-generation evidence and no replacement is authorized here."
-      }
-    },
-    {
-      "blocking_components": [],
-      "cc_identity": {
-        "components": {},
-        "item": "cruciblecraft:bronze_steam_engine"
-      },
-      "classification": "existing_cc_recipe_retained",
-      "current_recipe": {
-        "kind": "minecraft:crafting_shaped",
-        "path": "src/main/resources/data/cruciblecraft/recipe/bronze_steam_engine.json",
-        "sha256": "93e3b665a1212b3aeb6c22901cd40a8672cf2d34748b285ca9ae8829ac3c5397"
-      },
-      "reason": "The current piston-based bronze steam engine is hand-authored; pinned GT6 instead uses double plates, rods, and a small spring.",
-      "recipe_id": "bronze_steam_engine",
-      "replacement_prerequisites": [
-        "A separate reviewed task must decide between the current piston recipe and exact pinned GT6 component projection."
-      ],
-      "scope": "existing_bronze_resource",
-      "source_evidence": [
-        {
-          "kind": "cc_recipe_resource",
-          "path": "src/main/resources/data/cruciblecraft/recipe/bronze_steam_engine.json",
-          "sha256": "93e3b665a1212b3aeb6c22901cd40a8672cf2d34748b285ca9ae8829ac3c5397"
-        },
-        {
-          "anchor": "bronze_steam_engine",
-          "git_blob_sha1": "cf80887c5e572ee0942f087d1c75238115ca5255",
-          "kind": "gt6_java_anchor",
-          "lines": "586",
-          "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
-          "reason": "Pins the GT6 bronze steam-engine crafting identity.",
-          "repository": "GregTech6/gregtech6",
-          "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
-        }
-      ],
-      "source_identity": {
-        "anchor_ids": [
-          "bronze_steam_engine"
-        ],
-        "status": "existing_cc_recipe_with_pinned_context",
-        "tier_or_identity_summary": "The current piston-based bronze steam engine is hand-authored; pinned GT6 instead uses double plates, rods, and a small spring."
       }
     }
   ],
@@ -2018,22 +1722,17 @@
   },
   "schema_version": 1,
   "source_hashes": {
-    "builder": "23588c692f3b41c8a1d410e0b1554a4bcaa67da6f27278c39cbe8ae46ee72c5e",
+    "builder": "7a3a02503e4082d7cf071d448d36fb175f1c8543c7e91c120c9902b936d156c7",
     "existing_bronze_resources": {
       "src/main/resources/data/cruciblecraft/recipe/bronze_anvil.json": "5c69f9a2f2bf57e91e416f3e5c2344e261b205d101a374cafd0fd76845613ed8",
-      "src/main/resources/data/cruciblecraft/recipe/bronze_boiler.json": "0a5ff1e68990b9d6b69a69318712e447e6aeaf9d4708c91aefda3ffe1fddcdb2",
-      "src/main/resources/data/cruciblecraft/recipe/bronze_crucible_upgrade.json": "a82893f20c70e657c524984ae10dc374c58ade21b391715bc987a831b376eeb4",
-      "src/main/resources/data/cruciblecraft/recipe/bronze_crusher.json": "086cfb57b111ce7d06343965b7c85d601dd7cff8edb631ce5f9a451f61129db3",
-      "src/main/resources/data/cruciblecraft/recipe/bronze_dynamo.json": "e30d02977ce20053904773bf892ee88f11e4279dcc0609c18e3ca509cd06f5bf",
-      "src/main/resources/data/cruciblecraft/recipe/bronze_smithing_hammer.json": "8ebc5c2633ae359ce0acb49dbd1853eecffe979dcec9f19bfc9d33ee2f4a7856",
-      "src/main/resources/data/cruciblecraft/recipe/bronze_steam_engine.json": "93e3b665a1212b3aeb6c22901cd40a8672cf2d34748b285ca9ae8829ac3c5397"
+      "src/main/resources/data/cruciblecraft/recipe/bronze_crusher.json": "086cfb57b111ce7d06343965b7c85d601dd7cff8edb631ce5f9a451f61129db3"
     },
     "gt6_reference_metadata": "1b62ce423c6a6a62dcd3b3eaade997dbc7e7afc29931c6f9432f040a43e88164",
-    "material_prefixes": "f1902146cfbd7b1cd251a6f9f9a2a360fdbbe1f333f0ee50599a252ba249fdf7",
-    "mod_items": "0b50cbd47534463a5abc80fe78f30f3dde627ab52ad69a3f5d8ca4322fdfeb99",
-    "mod_processing_machines": "f8863bfa7b48d568f9366a75b5d45b50e202bcf2130c090f358221dc63d1d1ab",
-    "mod_recipe_provider": "dfa72c6e6ecdda360aa06ef47e034f3c0622681e22bde0f31fb7d5d9af6143c6",
-    "policy": "9eab38470746457f2496cee775c1db2a83ce7c89ee2a25412197063847855511"
+    "material_prefixes": "26d700a61693fc42bf351ac0902973a19f51017d6b76cf7015417ff32a8cd6b6",
+    "mod_items": "184e12c486cffcb095256c37b977621ffa79fe9b95ace106431e808f054eb1d8",
+    "mod_processing_machines": "2d064525413ae4e4316cb24a54d8c354bcc34027fa68620436e402e1b8f6b50d",
+    "mod_recipe_provider": "598dc595d917f2aee2424dd147df79fc35244483f07cad9e34e34b25f5674bfd",
+    "policy": "c6314da25a87f5afc5e181807c40c665ad3da3ca62bf3250c90402ca5c769157"
   },
   "source_verification": {
     "mode": "committed_git_blob_pins_with_optional_local_replay",

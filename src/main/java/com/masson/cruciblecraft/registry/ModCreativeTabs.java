@@ -229,6 +229,7 @@ public final class ModCreativeTabs {
         output.accept(ModItems.LARGE_BATH.get());
         output.accept(ModItems.LARGE_COAGULATOR.get());
         output.accept(ModItems.LARGE_AUTOCLAVE.get());
+        output.accept(ModItems.IMPLOSION_COMPRESSOR.get());
         output.accept(ModItems.LARGE_FERMENTER.get());
         output.accept(ModItems.DISTILLATION_TOWER.get());
         output.accept(ModItems.CRYO_DISTILLATION_TOWER.get());

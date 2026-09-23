@@ -43,7 +43,7 @@ class MachineCraftingReadinessTest(unittest.TestCase):
             row["machine_id"]
             for row in self.document["configured_machines"]
         ]
-        self.assertEqual(25, len(configured))
+        self.assertEqual(24, len(configured))
         self.assertEqual(
             [
                 machine_id
@@ -62,6 +62,7 @@ class MachineCraftingReadinessTest(unittest.TestCase):
             for item_field, recipe_id in MODULE.placeholder_machines()
         )
         fields.update({
+            "bath": "BATH",
             "centrifuge": "CENTRIFUGE",
             "sifter": "SIFTER",
             "electrolyzer": "ELECTROLYZER",
@@ -91,7 +92,7 @@ class MachineCraftingReadinessTest(unittest.TestCase):
         paths = MODULE.existing_bronze_recipe_paths()
         expected_ids = [path.stem for path in paths]
         actual_rows = self.document["existing_bronze_resources"]
-        self.assertEqual(7, len(paths))
+        self.assertEqual(2, len(paths))
         self.assertEqual(
             expected_ids,
             [row["recipe_id"] for row in actual_rows],
@@ -169,17 +170,17 @@ class MachineCraftingReadinessTest(unittest.TestCase):
     def test_exact_coverage_and_classification_counts_are_locked(self):
         self.assertEqual(
             {
-                "configured_machine_placeholders": 25,
-                "existing_bronze_resources": 7,
-                "total_rows": 32,
+                "configured_machine_placeholders": 24,
+                "existing_bronze_resources": 2,
+                "total_rows": 26,
                 "classifications": {
                     "directly_projectable": 0,
-                    "existing_cc_recipe_retained": 7,
+                    "existing_cc_recipe_retained": 2,
                     "missing_cc_component": 4,
                     "source_identity_unresolved": 2,
-                    "tier_collapsed_pending_t6": 19,
+                    "tier_collapsed_pending_t6": 18,
                 },
-                "classified": 32,
+                "classified": 26,
                 "unclassified": 0,
             },
             self.document["counts"],

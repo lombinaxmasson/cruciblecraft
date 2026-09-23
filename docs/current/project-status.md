@@ -29,9 +29,9 @@
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor
 
-## runtime_ready accepted（82）
+## runtime_ready accepted（84）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -98,9 +98,11 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `machines/distillation-tower` — Distillation Tower GT6 Alignment — [蒸馏塔 GT6 对齐详细计划](../history/card-plans/closed/蒸馏塔GT6对齐详细计划.md)
 - `machines/gt6-coil-hosts` — GT6 coils 18040-18045 and host machines
 - `machines/hammer-squeezer-laser` — Hammer / Squeezer / Laser — [锤 / 榨汁机 / 激光详细计划](../history/card-plans/closed/锤榨汁机激光详细计划.md)
+- `machines/implosion-compressor` — Implosion Compressor 17110 — [聚爆压缩机详细计划](../history/card-plans/closed/聚爆压缩机详细计划.md)
 - `machines/injector` — Injector — [注射机详细计划](../history/card-plans/closed/注射机详细计划.md)
 - `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)
 - `machines/large-processing-parts` — Large processing multiblock parts and maps — [大型加工多方块零件与配方图详细计划](../history/card-plans/closed/大型加工多方块零件与配方图详细计划.md)
+- `machines/large-shredder` — Large Shredder 17109
 - `machines/loom` — Loom — [织机详细计划](../history/card-plans/closed/织机详细计划.md)
 - `machines/melter` — Melter — [熔融机详细计划](../history/card-plans/closed/熔融机详细计划.md)
 - `machines/nanofab` — Nanoscale Fabricator — [纳米加工机详细计划](../history/card-plans/closed/纳米加工机详细计划.md)

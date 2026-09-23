@@ -1,0 +1,48 @@
+{
+  "capability_slug": "machines/implosion-compressor",
+  "cells": {
+    "A": {
+      "cc": "cruciblecraft:compact_electric_robot_arm_mv",
+      "gt": "IL.ROBOT_ARMS[2]",
+      "reason": null,
+      "status": "ok"
+    },
+    "C": {
+      "cc": "cruciblecraft:circuit_ultimate",
+      "gt": "OD_CIRCUITS[6]",
+      "status": "ok"
+    },
+    "M": {
+      "cc": "cruciblecraft:multiblock/dense_tungstensteel_wall",
+      "gt": "getItem(18023)",
+      "meta": 18023,
+      "self_ref": true,
+      "status": "ok"
+    },
+    "P": {
+      "cc": "cruciblecraft:tungstensteel/dense_plate",
+      "gt": "OP.plateDense(MT.TungstenSteel)",
+      "reason": null,
+      "status": "ok"
+    },
+    "R": {
+      "cc": "cruciblecraft:processor_crystal_ruby",
+      "gt": "IL.Processor_Crystal_Ruby",
+      "reason": null,
+      "status": "ok"
+    }
+  },
+  "controller": {
+    "class": "MultiTileEntityImplosionCompressor",
+    "meta": 17110,
+    "recipe_map": "gt.recipe.implosioncompressor"
+  },
+  "grid": [
+    "CPC",
+    "PAP",
+    "RMR"
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "source_exact"
+}

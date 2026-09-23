@@ -456,41 +456,11 @@
       "source_evidence": ["bronze_anvil"],
       "replacement_prerequisites": ["A separate reviewed task must authorize any change and preserve machine material/durability components."]
     },
-    "bronze_boiler": {
-      "classification": "existing_cc_recipe_retained",
-      "reason": "The current bronze boiler craft is already survival-facing; the pinned GT6 boiler uses double plates and tool-shaped crafting, so parity is not silently claimed.",
-      "source_evidence": ["bronze_boiler"],
-      "replacement_prerequisites": ["A separate reviewed task must decide whether to retain the current bucket recipe or project the pinned GT6 pattern."]
-    },
-    "bronze_crucible_upgrade": {
-      "classification": "existing_cc_recipe_retained",
-      "reason": "CrucibleCraft models ceramic-to-bronze as a component-preserving upgrade, while GT6 registers separate ceramic and bronze crucibles.",
-      "source_evidence": ["bronze_crucible"],
-      "replacement_prerequisites": ["A separate reviewed task must explicitly choose upgrade semantics or separate GT6 identities and preserve component data."]
-    },
     "bronze_crusher": {
       "classification": "existing_cc_recipe_retained",
       "reason": "The current bronze crusher craft predates T5.5; GT6 T1 resolves to bronze but requires a machine casing, spring, and diamonds rather than a bronze-wrapped anvil.",
       "source_evidence": ["material_tier_arrays", "bronze_crusher"],
       "replacement_prerequisites": ["A separate reviewed task must add the missing casing identity and decide whether GT6 parity replaces the existing anvil-based craft."]
-    },
-    "bronze_dynamo": {
-      "classification": "existing_cc_recipe_retained",
-      "reason": "The current bronze KU-to-electric bridge has no bronze GT6 Electric Dynamo identity; the nearest source family starts at galvanized steel.",
-      "source_evidence": ["material_tier_arrays", "electric_dynamo_tiers"],
-      "replacement_prerequisites": ["A separate reviewed task must document this CrucibleCraft divergence or select an exact non-bronze GT6 dynamo tier."]
-    },
-    "bronze_smithing_hammer": {
-      "classification": "existing_cc_recipe_retained",
-      "reason": "The current component-bearing bronze smithing hammer is a hand-authored tool craft; this machine-block source audit did not pin separate GT6 tool-generation evidence and no replacement is authorized here.",
-      "source_evidence": [],
-      "replacement_prerequisites": ["A separate tool-recipe task must provide exact GT6 tool-generation evidence before changing this craft."]
-    },
-    "bronze_steam_engine": {
-      "classification": "existing_cc_recipe_retained",
-      "reason": "The current piston-based bronze steam engine is hand-authored; pinned GT6 instead uses double plates, rods, and a small spring.",
-      "source_evidence": ["bronze_steam_engine"],
-      "replacement_prerequisites": ["A separate reviewed task must decide between the current piston recipe and exact pinned GT6 component projection."]
     }
   }
 }

@@ -82,6 +82,7 @@ LARGE_ELECTROLYZER = "machines/large-electrolyzer"
 LARGE_FERMENTER = "machines/large-fermenter"
 LARGE_PROCESSING_PARTS = "machines/large-processing-parts"
 LARGE_SHREDDER = "machines/large-shredder"
+IMPLOSION_COMPRESSOR = "machines/implosion-compressor"
 GT6_COIL_HOSTS = "machines/gt6-coil-hosts"
 
 
@@ -378,6 +379,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 LARGE_FERMENTER,
                 LARGE_PROCESSING_PARTS,
                 LARGE_SHREDDER,
+                IMPLOSION_COMPRESSOR,
                 GT6_COIL_HOSTS,
             },
             set(compiled["impact"]["logistics/cover-net-r0"]),
@@ -463,6 +465,7 @@ class CapabilityLedgerTest(unittest.TestCase):
                 CLUSTER_MILL,
                 GT6_COIL_HOSTS,
                 HAMMER_SQUEEZER_LASER,
+                IMPLOSION_COMPRESSOR,
                 INJECTOR,
                 LAMINATOR,
                 LARGE_AUTOCLAVE,

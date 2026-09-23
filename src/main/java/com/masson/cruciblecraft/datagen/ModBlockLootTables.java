@@ -53,6 +53,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.LARGE_BATH.get());
         dropSelf(ModBlocks.LARGE_COAGULATOR.get());
         dropSelf(ModBlocks.LARGE_AUTOCLAVE.get());
+        dropSelf(ModBlocks.IMPLOSION_COMPRESSOR.get());
         dropSelf(ModBlocks.LARGE_FERMENTER.get());
         dropSelf(ModBlocks.DISTILLATION_TOWER.get());
         dropSelf(ModBlocks.CRYO_DISTILLATION_TOWER.get());
@@ -262,6 +263,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.LARGE_BATH.get(),
                 ModBlocks.LARGE_COAGULATOR.get(),
                 ModBlocks.LARGE_AUTOCLAVE.get(),
+                ModBlocks.IMPLOSION_COMPRESSOR.get(),
                 ModBlocks.LARGE_FERMENTER.get(),
                 ModBlocks.DISTILLATION_TOWER.get(),
                 ModBlocks.CRYO_DISTILLATION_TOWER.get(),

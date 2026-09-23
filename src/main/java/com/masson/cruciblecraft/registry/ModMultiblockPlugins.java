@@ -65,6 +65,11 @@ public final class ModMultiblockPlugins {
     public static final List<ResourceLocation> LARGE_AUTOCLAVE_PLUGINS =
             List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
 
+    /** Plugin set persisted and resolved by the Implosion Compressor. */
+    public static final List<ResourceLocation>
+            IMPLOSION_COMPRESSOR_PLUGINS =
+                    List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
+
     public static final List<ResourceLocation> LARGE_FERMENTER_PLUGINS =
             List.of(PROCESSING_HOST, SHARED_PORT_SUPPLY);
 

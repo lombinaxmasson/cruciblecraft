@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "slug": "machines/implosion-compressor",
+  "title": "Implosion Compressor 17110",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "src/main/java/com/masson/cruciblecraft/content/block/ImplosionCompressorBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/ImplosionCompressorWalls.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/ImplosionCompressorBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModBlockEntities.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMenus.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockPlugins.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/Gt6SidedIo.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/implosion_compressor.json",
+    "src/main/resources/data/cruciblecraft/multiblock_plugins.json",
+    "src/main/resources/data/cruciblecraft/machine_delivery.json",
+    "src/main/resources/data/cruciblecraft/machine_kinds.json",
+    "src/main/resources/data/cruciblecraft/machine_tiers.json",
+    "src/main/resources/data/cruciblecraft_wave_machines_implosion_compressor/**",
+    "src/main/resources/assets/cruciblecraft/gt6_implosion_compressor_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/implosion_compressor/**",
+    "src/main/resources/assets/cruciblecraft/textures/gui/machines/implosioncompressor.png",
+    "src/main/resources/data/cruciblecraft/recipe/machines/implosion_compressor.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/implosion_compressor/**",
+    "tools/waves/machines/implosion-compressor/**",
+    "tools/capabilities/machines/implosion-compressor/**",
+    "tools/tests/test_gt6_implosion_compressor.py",
+    "src/test/java/com/masson/cruciblecraft/gametest/ImplosionCompressorGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/ImplosionCompressorProfileTest.java"
+  ],
+  "depends_on": [
+    "machines/large-processing-parts",
+    "content/gt6-mte-multiblock-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/implosion-compressor",
+  "player_signoff": null,
+  "required_test_ids": [
+    "controllerIsLive",
+    "bareControllerIsNotFormed",
+    "formedStructureBindsAllWallPorts",
+    "structureHasTwentyFiveDenseTungstensteelWalls",
+    "everyWallExposesGt6ItemFluidAndTimePort",
+    "survivalRecipeIsPresent"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:implosion_compressor:17110",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:implosion_compressor"
+      ],
+      "reason": "GT6 MultiTileEntityImplosionCompressor 17110. Distinct from single-block Compressor and the existing implosion_compressor RecipeMap identity."
+    }
+  ],
+  "note": "GT6 RM.ImplosionCompressor: TIME/TU 1..16, capacity 16, parallel 64, no constant power, parallel duration false. 3x3x3 hollow: controller side-bottom, 25 dense tungstensteel wall ITEM_FLUID_ENERGY ports, center air, bottom automatic output and no automatic input. Source dump has 1072 rows; 776 exact rows are published and 296 unresolved material-form rows remain explicit blocked overflow. No stand-ins, no placeholder art, no ItemEntity worldgen obtain."
+}

@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.api.fluid.LongFluidHandler;
 import com.masson.cruciblecraft.content.block.LargeBoilerWallParts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleWalls;
+import com.masson.cruciblecraft.content.block.ImplosionCompressorWalls;
 import com.masson.cruciblecraft.content.block.StainlessSteelMixerWalls;
 import com.masson.cruciblecraft.content.block.CrusherWheels;
 import com.masson.cruciblecraft.content.block.ShredderBlades;
@@ -791,6 +792,14 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (steamTurbineRole != null) {
             return steamTurbineFluids();
         }
+        IFluidHandler implosion = ImplosionCompressorWalls.fluids(this);
+        if (implosion != null) {
+            return implosion;
+        }
+        IFluidHandler autoclave = AutoclaveWalls.fluids(this);
+        if (autoclave != null) {
+            return autoclave;
+        }
         IFluidHandler largeBoiler = LargeBoilerWallParts.fluids(this);
         if (largeBoiler != null) {
             return largeBoiler;
@@ -810,10 +819,6 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         IFluidHandler oven = InvarOvenWalls.fluids(this);
         if (oven != null) {
             return oven;
-        }
-        IFluidHandler autoclave = AutoclaveWalls.fluids(this);
-        if (autoclave != null) {
-            return autoclave;
         }
         IFluidHandler crusherWall = TungstensteelCrusherWalls.fluids(this);
         if (crusherWall != null) {
@@ -847,6 +852,14 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             return new MassStorageSidedHandler(
                     massStorage, autoOutput() && side == Direction.DOWN);
         }
+        IItemHandler implosion = ImplosionCompressorWalls.items(this);
+        if (implosion != null) {
+            return implosion;
+        }
+        IItemHandler autoclave = AutoclaveWalls.items(this);
+        if (autoclave != null) {
+            return autoclave;
+        }
         if (LargeBoilerWallParts.isWall(spec())) {
             return null;
         }
@@ -873,10 +886,6 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         IItemHandler oven = InvarOvenWalls.items(this);
         if (oven != null) {
             return oven;
-        }
-        IItemHandler autoclave = AutoclaveWalls.items(this);
-        if (autoclave != null) {
-            return autoclave;
         }
         IItemHandler crusherWall = TungstensteelCrusherWalls.items(this);
         if (crusherWall != null) {
@@ -911,11 +920,11 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
 
     @Override
     public PortType portType() {
-        if (TankWallParts.isWall(spec())) {
-            return TankWallParts.defaultType(spec());
-        }
         if (mixerPortType != null) {
             return mixerPortType;
+        }
+        if (TankWallParts.isWall(spec())) {
+            return TankWallParts.defaultType(spec());
         }
         if (LargeBoilerWallParts.isWall(spec())) {
             return LargeBoilerWallParts.defaultType(spec());
@@ -925,13 +934,11 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
 
     @Override
     public boolean accepts(PortType type) {
-        if (TankWallParts.isWall(spec())) {
-            return TankWallParts.accepts(spec(), type);
-        }
         if (mixerPortType != null) {
             return mixerPortType == type;
         }
-        return StainlessSteelMixerWalls.accepts(spec(), type)
+        return ImplosionCompressorWalls.accepts(spec(), type)
+                || StainlessSteelMixerWalls.accepts(spec(), type)
                 || ElectrolyzerParts.accepts(spec(), type)
                 || InvarOvenWalls.accepts(spec(), type)
                 || AutoclaveWalls.accepts(spec(), type)
@@ -958,6 +965,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 && !ElectrolyzerParts.isPart(spec())
                 && !InvarOvenWalls.isWall(spec())
                 && !AutoclaveWalls.isWall(spec())
+                && !ImplosionCompressorWalls.isWall(spec())
                 && !TungstensteelCrusherWalls.isWall(spec())
                 && !CrusherWheels.isPart(spec())
                 && !ShredderBlades.isPart(spec())
@@ -965,14 +973,6 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 && !LargeBoilerWallParts.isWall(spec())
                 && !TankWallParts.isWall(spec())
                 && !GalvanizedGraaggWalls.isWall(spec())) {
-            return;
-        }
-        if (AutoclaveWalls.isWall(spec())
-                && !AutoclaveWalls.accepts(spec(), type)) {
-            return;
-        }
-        if (TankWallParts.isWall(spec())
-                && !TankWallParts.accepts(spec(), type)) {
             return;
         }
         BlockPos immutable = controller.immutable();
@@ -1069,6 +1069,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             return type == EnergyType.KINETIC_ROTATION
                     && forwardsSteamTurbineEnergy(side);
         }
+        if (ImplosionCompressorWalls.hostReady(this)
+                && mixerPortType == PortType.ITEM_FLUID_ENERGY) {
+            return type == EnergyType.TIME;
+        }
         if (StainlessSteelMixerWalls.forwardsEnergy(this)) {
             return type == EnergyType.KINETIC_ROTATION;
         }
@@ -1079,6 +1083,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             return type == EnergyType.ELECTRIC;
         }
         if (AutoclaveWalls.forwardsEnergy(this)) {
+            return type == EnergyType.TIME;
+        }
+        if (ImplosionCompressorWalls.forwardsEnergy(this)) {
             return type == EnergyType.TIME;
         }
         if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
@@ -1131,6 +1138,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (AutoclaveWalls.forwardsEnergy(this)) {
             return AutoclaveWalls.storedEnergy(this, type);
         }
+        if (ImplosionCompressorWalls.forwardsEnergy(this)) {
+            return ImplosionCompressorWalls.storedEnergy(this, type);
+        }
         if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
             return TungstensteelCrusherWalls.storedEnergy(this, type);
         }
@@ -1163,6 +1173,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         }
         if (AutoclaveWalls.forwardsEnergy(this)) {
             return AutoclaveWalls.energyCapacity(this, type);
+        }
+        if (ImplosionCompressorWalls.forwardsEnergy(this)) {
+            return ImplosionCompressorWalls.energyCapacity(this, type);
         }
         if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
             return TungstensteelCrusherWalls.energyCapacity(this, type);
@@ -1281,6 +1294,11 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 || spec().kind() == MteInPlaceKind.STEAM_TURBINE) {
             return 0L;
         }
+        if (ImplosionCompressorWalls.hostReady(this)
+                && mixerPortType == PortType.ITEM_FLUID_ENERGY) {
+            return ImplosionCompressorWalls.insertEnergy(
+                    this, type, size, amount, simulate);
+        }
         if (StainlessSteelMixerWalls.forwardsEnergy(this)) {
             return StainlessSteelMixerWalls.insertEnergy(
                     this, type, size, amount, simulate);
@@ -1295,6 +1313,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         }
         if (AutoclaveWalls.forwardsEnergy(this)) {
             return AutoclaveWalls.insertEnergy(
+                    this, type, size, amount, simulate);
+        }
+        if (ImplosionCompressorWalls.forwardsEnergy(this)) {
+            return ImplosionCompressorWalls.insertEnergy(
                     this, type, size, amount, simulate);
         }
         if (TungstensteelCrusherWalls.forwardsEnergy(this)) {
