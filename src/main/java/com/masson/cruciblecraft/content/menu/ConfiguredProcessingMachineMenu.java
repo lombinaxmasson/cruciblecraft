@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.content.menu;
 
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.content.multiblock.PortStoreRegistry;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.registry.ModMenus;
 
@@ -66,7 +67,8 @@ public final class ConfiguredProcessingMachineMenu extends ProcessingMachineMenu
             Inventory playerInventory,
             ConfiguredProcessingMachineBlockEntity machine) {
         super(type, id, playerInventory, machine.inventory(), machine.data(),
-                machine.spec(), machine::stillValid);
+                machine.spec(), machine::stillValid,
+                !PortStoreRegistry.stores(machine).isEmpty());
         this.level = playerInventory.player.level();
         this.machinePos = machine.getBlockPos().immutable();
     }

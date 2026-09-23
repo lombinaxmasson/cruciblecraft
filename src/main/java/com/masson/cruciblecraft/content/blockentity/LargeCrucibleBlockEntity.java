@@ -24,6 +24,10 @@ import com.masson.cruciblecraft.content.sensor.TemperatureHost;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortStoreSync;
+import com.masson.cruciblecraft.content.multiblock.PortStore;
+import com.masson.cruciblecraft.content.multiblock.PortStoreCarrier;
+import com.masson.cruciblecraft.content.multiblock.PortStoreRegistry;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
@@ -109,6 +113,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
 
     private boolean structureValid;
     private Set<BlockPos> boundPorts = Set.of();
+    private Set<BlockPos> boundPortStores = Set.of();
     private MultiblockStructureValidator.ValidationResult lastValidation;
     private boolean pluginQuarantined;
     private String pluginQuarantineReason = "";
@@ -155,7 +160,9 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         int previousCooldown = crucible.process.thermal().cooldownTicks();
         long previousAir = crucible.process.steelmaking().storedAir();
         int previousReactionTicks = crucible.process.steelmaking().reactionTicks();
+        PortStoreSync.pullInputs(crucible);
         crucible.tickProcess(level);
+        PortStoreSync.pushOutputs(crucible);
         boolean processChanged = Float.compare(
                         previousTemperature,
                         crucible.process.thermal().authoritativeTemperature()) != 0
@@ -481,7 +488,52 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
                                 definition.orElseThrow(),
                                 pos,
                                 facing));
+        refreshPortStores(
+                level,
+                definition.orElseThrow(),
+                pos,
+                facing,
+                structureValid);
         applyFormedVisuals(structureValid);
+    }
+
+    private void refreshPortStores(
+            Level level,
+            MultiblockStructureDefinition definition,
+            BlockPos controller,
+            Direction facing,
+            boolean valid) {
+        if (!valid) {
+            PortStoreRegistry.clear(this);
+            boundPortStores = Set.of();
+            return;
+        }
+        Set<BlockPos> desired = new java.util.LinkedHashSet<>();
+        for (var element : definition.structure()) {
+            if (definition.predicate(element).kind()
+                    != PredicateKind.TAG
+                    || !ModBlockTags.LARGE_CRUCIBLE_WALLS.location().equals(
+                            definition.predicate(element).tag().orElse(null))) {
+                continue;
+            }
+            BlockPos world = definition.worldPosition(
+                    controller, facing, element.offset());
+            if (level.getBlockEntity(world)
+                    instanceof MteInPlaceBlockEntity wall
+                    && wall instanceof PortStoreCarrier carrier) {
+                PortStore.Assignment assignment = element.offset().y() == 2
+                        ? new PortStore.Assignment(
+                                List.of(SLOT_INPUT, SLOT_MOLD),
+                                List.of(SLOT_OUTPUT),
+                                List.of(0),
+                                List.of(0))
+                        : PortStore.Assignment.EMPTY;
+                carrier.configurePortStore(this, assignment);
+                PortStoreRegistry.bind(this, world, carrier);
+                desired.add(world.immutable());
+            }
+        }
+        boundPortStores = Set.copyOf(desired);
     }
 
     private boolean wallsMatchCasing(
@@ -536,9 +588,11 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         if (level != null && !level.isClientSide) {
             MultiblockPortAggregator.unbindLoaded(
                     level, worldPosition, boundPorts);
+            PortStoreRegistry.clear(this);
             applyFormedVisuals(false);
         }
         boundPorts = Set.of();
+        boundPortStores = Set.of();
         structureValid = false;
     }
 

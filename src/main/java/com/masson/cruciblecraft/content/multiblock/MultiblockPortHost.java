@@ -14,8 +14,9 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * Capability host bridged by multiblock ports. Processing-machine
  * controllers implement it by delegating to their spec; conversion and
  * storage controllers (large boiler, tank) implement it directly.
- * Supply is one item/fluid view per shared host regardless of how many
- * physical port blocks bridge it.
+ * Each physical port owns a persistent {@link PortStore}. The controller
+ * remains the transaction owner and may aggregate those stores for processing,
+ * but a port capability never aliases another port's inventory or tanks.
  */
 public interface MultiblockPortHost extends IEnergyHandler {
     ItemStackHandler inventory();

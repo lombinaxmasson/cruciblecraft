@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.blockentity.LargeAutoclaveBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortHostViews;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
@@ -106,7 +107,7 @@ public final class AutoclaveWalls {
                 || !structure.get().equals(autoclave.structureId())) {
             return null;
         }
-        return autoclave.portHost();
+        return PortHostViews.forPort(autoclave.portHost(), wall);
     }
 
     private static final class WallItems implements IItemHandler {

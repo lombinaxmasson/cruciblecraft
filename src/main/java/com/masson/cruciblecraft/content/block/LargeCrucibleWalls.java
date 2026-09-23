@@ -3,6 +3,9 @@ package com.masson.cruciblecraft.content.block;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortHostViews;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -61,7 +64,9 @@ public final class LargeCrucibleWalls {
             return null;
         }
         MultiblockPortHost host = controller(wall);
-        return host == null ? null : host.inventory();
+        return host == null
+                ? null
+                : PortHostViews.forPort(host, wall).inventory();
     }
 
     public static IFluidHandler fluids(MteInPlaceBlockEntity wall) {
@@ -69,7 +74,19 @@ public final class LargeCrucibleWalls {
             return null;
         }
         LargeCrucibleBlockEntity host = controller(wall);
-        return host == null ? null : host.process().fluids();
+        if (host == null) {
+            return null;
+        }
+        MultiblockPortHost view = PortHostViews.forPort(host, wall);
+        if (!view.tanks().isEmpty()) {
+            return new SidedFluidHandler(
+                    view.tanks(),
+                    view.fluidInputTanks(),
+                    view.fluidOutputTanks(),
+                    ProcessingMachineSpec.CapabilityAccess.BOTH,
+                    wall::setChanged);
+        }
+        return host.process().fluids();
     }
 
     public static long insertEnergy(

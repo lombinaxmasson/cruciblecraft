@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.blockentity.LargeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortHostViews;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
@@ -106,7 +107,7 @@ public final class InvarOvenWalls {
                 || !structure.get().equals(oven.structureId())) {
             return null;
         }
-        return oven.portHost();
+        return PortHostViews.forPort(oven.portHost(), wall);
     }
 
     private static final class WallItems implements IItemHandler {

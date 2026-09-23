@@ -17,6 +17,7 @@ import com.masson.cruciblecraft.content.blockentity.MachineCoverHostBlockEntity;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortStoreSync;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator;
@@ -119,9 +120,11 @@ public final class LargeBoilerBlockEntity extends MachineCoverHostBlockEntity
             boiler.recheckStructure(level, pos, state);
         }
         if (boiler.structureValid && !boiler.pluginQuarantined) {
+            PortStoreSync.pullInputs(boiler);
             boiler.convert();
             boiler.coolDown();
             boiler.pushSteam();
+            PortStoreSync.pushOutputs(boiler);
         }
         boiler.updateBarometer();
         boiler.explodeIfUnsafe();

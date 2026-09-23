@@ -34,6 +34,8 @@ import com.masson.cruciblecraft.machine.processing.IoChannel;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineAutoIo;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
 import com.masson.cruciblecraft.machine.processing.SidedItemHandler;
+import com.masson.cruciblecraft.content.multiblock.PortStoreSync;
+import com.masson.cruciblecraft.content.multiblock.PortStoreRegistry;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
@@ -218,6 +220,15 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
 
     protected final void tickProcessingServer() {
+        PortStoreSync.pullInputs(this);
+        try {
+            tickProcessingServerInternal();
+        } finally {
+            PortStoreSync.pushOutputs(this);
+        }
+    }
+
+    private void tickProcessingServerInternal() {
         if (level == null || level.isClientSide) {
             return;
         }
@@ -886,6 +897,9 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
 
     private void autoInputItems() {
+        if (!PortStoreRegistry.stores(this).isEmpty()) {
+            return;
+        }
         Direction side = spec.sidedIo().itemsChannel()
                 .autoInputWorld(machineFront())
                 .orElse(null);
@@ -898,6 +912,9 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
 
     protected void autoOutputItems(boolean pulse) {
+        if (!PortStoreRegistry.stores(this).isEmpty()) {
+            return;
+        }
         if (disabledItemOutput || !hasOutputItems()) {
             return;
         }
@@ -916,6 +933,9 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
 
     private void autoInputFluids() {
+        if (!PortStoreRegistry.stores(this).isEmpty()) {
+            return;
+        }
         Direction side = spec.sidedIo().fluidsChannel()
                 .autoInputWorld(machineFront())
                 .orElse(null);
@@ -928,6 +948,9 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
 
     protected void autoOutputFluids() {
+        if (!PortStoreRegistry.stores(this).isEmpty()) {
+            return;
+        }
         Direction side = spec.sidedIo().fluidsChannel()
                 .autoOutputWorld(machineFront())
                 .orElse(null);
@@ -940,6 +963,9 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
 
     public final IItemHandler items(Direction side) {
+        if (!PortStoreRegistry.stores(this).isEmpty()) {
+            return null;
+        }
         ProcessingMachineSpec.CapabilityAccess access =
                 spec.sidedIo().items().resolve(machineFront(), side);
         if (access == ProcessingMachineSpec.CapabilityAccess.NONE) {
@@ -957,6 +983,9 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
 
     public final IFluidHandler fluids(Direction side) {
+        if (!PortStoreRegistry.stores(this).isEmpty()) {
+            return null;
+        }
         ProcessingMachineSpec.CapabilityAccess access =
                 ProcessingMachineAutoIo.overlayFluidAccess(
                         spec.sidedIo().fluids().resolve(machineFront(), side),

@@ -8,6 +8,10 @@ import com.masson.cruciblecraft.content.multiblock.MatterFabricatorStructure;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerSpec;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPort;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator.MatchedPort;
+import com.masson.cruciblecraft.content.multiblock.PortStore;
+import com.masson.cruciblecraft.content.multiblock.PortStoreCarrier;
+import com.masson.cruciblecraft.content.multiblock.PortStoreRegistry;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModMultiblockControllers;
@@ -60,6 +64,11 @@ public final class MatterFabricatorBlockEntity
         MatterFabricatorStructure.Check check =
                 MatterFabricatorStructure.check(level, pos, facing);
         LinkedHashSet<BlockPos> desired = new LinkedHashSet<>();
+        java.util.List<MatchedPort> matchedPorts = check.ports().stream()
+                .map(port -> new MatchedPort(port.pos(), port.type()))
+                .toList();
+        java.util.Map<BlockPos, PortStore.Assignment> assignments =
+                PortStoreRegistry.assignments(matchedPorts, this);
         for (MatterFabricatorStructure.Port port : check.ports()) {
             if (level.hasChunkAt(port.pos())
                     && level.getBlockEntity(port.pos()) instanceof MultiblockPort bound
@@ -72,6 +81,14 @@ public final class MatterFabricatorBlockEntity
                         pos,
                         MatterFabricatorStructure.STRUCTURE_ID,
                         port.type());
+                if (bound instanceof PortStoreCarrier carrier) {
+                    PortStore.Assignment assignment = assignments.get(
+                            port.pos().immutable());
+                    if (assignment != null) {
+                        carrier.configurePortStore(this, assignment);
+                        PortStoreRegistry.bind(this, port.pos(), carrier);
+                    }
+                }
                 desired.add(port.pos().immutable());
             }
         }
@@ -79,6 +96,9 @@ public final class MatterFabricatorBlockEntity
             if (!desired.contains(previous)
                     && level.hasChunkAt(previous)
                     && level.getBlockEntity(previous) instanceof MultiblockPort bound) {
+                if (bound instanceof PortStoreCarrier carrier) {
+                    PortStoreRegistry.unbind(this, previous, carrier);
+                }
                 bound.unbind(pos);
             }
         }
@@ -95,6 +115,9 @@ public final class MatterFabricatorBlockEntity
                 if (level.hasChunkAt(previous)
                         && level.getBlockEntity(previous)
                                 instanceof MultiblockPort bound) {
+                    if (bound instanceof PortStoreCarrier carrier) {
+                        PortStoreRegistry.unbind(this, previous, carrier);
+                    }
                     bound.unbind(worldPosition);
                 }
             }

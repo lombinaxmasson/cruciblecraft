@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.blockentity.ImplosionCompressorBlockEnti
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortHostViews;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
@@ -110,7 +111,7 @@ public final class ImplosionCompressorWalls {
                 || !structure.get().equals(implosion.structureId())) {
             return null;
         }
-        return implosion.portHost();
+        return PortHostViews.forPort(implosion.portHost(), wall);
     }
 
     private static final class WallItems implements IItemHandler {

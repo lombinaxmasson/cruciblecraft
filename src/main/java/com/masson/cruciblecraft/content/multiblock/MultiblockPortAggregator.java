@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.content.multiblock;
 
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
@@ -35,6 +36,13 @@ public final class MultiblockPortAggregator {
                         .collect(java.util.stream.Collectors.toSet()));
 
         LinkedHashSet<BlockPos> bound = new LinkedHashSet<>();
+        MultiblockPortHost host = level.getBlockEntity(controller)
+                instanceof MultiblockControllerBinding binding
+                ? binding.portHost()
+                : null;
+        Map<BlockPos, PortStore.Assignment> assignments = host == null
+                ? Map.of()
+                : PortStoreRegistry.assignments(validation.ports(), host);
         for (MultiblockStructureValidator.MatchedPort matched
                 : validation.ports()) {
             BlockPos position = matched.position();
@@ -48,6 +56,15 @@ public final class MultiblockPortAggregator {
                                     .orElseThrow()
                                     .equals(controller))) {
                 port.bind(controller, structureId, matched.type());
+                if (host != null
+                        && port instanceof PortStoreCarrier carrier) {
+                    PortStore.Assignment assignment = assignments.get(
+                            position.immutable());
+                    if (assignment != null) {
+                        carrier.configurePortStore(host, assignment);
+                        PortStoreRegistry.bind(host, position, carrier);
+                    }
+                }
                 bound.add(position.immutable());
             }
         }
@@ -58,10 +75,18 @@ public final class MultiblockPortAggregator {
             Level level,
             BlockPos controller,
             Set<BlockPos> positions) {
+        MultiblockPortHost host = level.getBlockEntity(controller)
+                instanceof MultiblockControllerBinding binding
+                ? binding.portHost()
+                : null;
         for (BlockPos position : positions) {
             if (level.hasChunkAt(position)
                     && level.getBlockEntity(position)
                             instanceof MultiblockPort port) {
+                if (host != null
+                        && port instanceof PortStoreCarrier carrier) {
+                    PortStoreRegistry.unbind(host, position, carrier);
+                }
                 port.unbind(controller);
             }
         }

@@ -33,7 +33,15 @@ public abstract class ProcessingMachineMenu extends AbstractContainerMenu {
             ContainerData data,
             ProcessingMachineSpec spec,
             Predicate<Player> validity) {
-        this(type, id, (Container) playerInventory, machineItems, data, spec, validity);
+        this(
+                type,
+                id,
+                (Container) playerInventory,
+                machineItems,
+                data,
+                spec,
+                validity,
+                false);
     }
 
     ProcessingMachineMenu(
@@ -44,6 +52,26 @@ public abstract class ProcessingMachineMenu extends AbstractContainerMenu {
             ContainerData data,
             ProcessingMachineSpec spec,
             Predicate<Player> validity) {
+        this(
+                type,
+                id,
+                playerInventory,
+                machineItems,
+                data,
+                spec,
+                validity,
+                false);
+    }
+
+    ProcessingMachineMenu(
+            MenuType<?> type,
+            int id,
+            Container playerInventory,
+            IItemHandler machineItems,
+            ContainerData data,
+            ProcessingMachineSpec spec,
+            Predicate<Player> validity,
+            boolean readOnlyMachine) {
         super(type, id);
         this.spec = spec;
         this.data = data;
@@ -55,7 +83,13 @@ public abstract class ProcessingMachineMenu extends AbstractContainerMenu {
             addSlot(new NotifyingSlotItemHandler(
                     machineItems, slot, position.x(), position.y()) {
                 @Override public boolean mayPlace(ItemStack stack) {
-                    return !output && super.mayPlace(stack);
+                    return !readOnlyMachine
+                            && !output
+                            && super.mayPlace(stack);
+                }
+
+                @Override public boolean mayPickup(Player player) {
+                    return !readOnlyMachine && super.mayPickup(player);
                 }
             });
         }

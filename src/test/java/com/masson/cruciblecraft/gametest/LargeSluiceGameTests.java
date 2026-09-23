@@ -103,6 +103,49 @@ public final class LargeSluiceGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void physicalPortsOwnIndependentStores(
+            GameTestHelper helper) {
+        placeFormed(helper);
+        var structure = MultiblockStructureCatalog.require(
+                ModMultiblockControllers.LARGE_SLUICE.structureId());
+        MteInPlaceBlockEntity input = null;
+        MteInPlaceBlockEntity output = null;
+        for (var element : structure.structure()) {
+            var predicate = structure.predicate(element);
+            if (predicate.port().isEmpty()) {
+                continue;
+            }
+            var be = helper.getBlockEntity(
+                    structure.worldPosition(CONTROLLER, FACING, element.offset()));
+            if (!(be instanceof MteInPlaceBlockEntity part)) {
+                continue;
+            }
+            if (predicate.port().orElseThrow() == PortType.ITEM_FLUID_IN) {
+                input = part;
+            } else if (predicate.port().orElseThrow()
+                    == PortType.ITEM_FLUID_OUT) {
+                output = part;
+            }
+        }
+        helper.assertTrue(input != null, "Missing Sluice input store");
+        helper.assertTrue(output != null, "Missing Sluice output store");
+        helper.assertTrue(
+                input.portStore().configured()
+                        && output.portStore().configured(),
+                "Physical Sluice stores were not configured");
+        helper.assertTrue(
+                input.portStore() != output.portStore(),
+                "Sluice ports still alias one store");
+        helper.assertTrue(
+                !input.portStore().assignment().itemInputLocals().isEmpty(),
+                "Input store has no input slot");
+        helper.assertTrue(
+                !output.portStore().assignment().itemOutputLocals().isEmpty(),
+                "Output store has no output slot");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void activeStateUsesSourceDesigns(GameTestHelper helper) {
         placeFormed(helper);
         var structure = MultiblockStructureCatalog.require(

@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.content.blockentity.LargeShredderBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortHostViews;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
@@ -109,7 +110,7 @@ public final class ShredderBlades {
                 || !structure.get().equals(shredder.structureId())) {
             return null;
         }
-        return shredder.portHost();
+        return PortHostViews.forPort(shredder.portHost(), blade);
     }
 
     private static final class BladeItems implements IItemHandler {

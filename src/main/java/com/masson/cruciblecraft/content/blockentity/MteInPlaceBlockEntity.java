@@ -26,6 +26,9 @@ import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.TankWallParts;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPort;
+import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortStore;
+import com.masson.cruciblecraft.content.multiblock.PortStoreCarrier;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
@@ -98,7 +101,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * pipe cover, KU axle, vanilla tool, or the ceramic crucible.
  */
 public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
-        implements IEnergyHandler, MoldHost, MenuProvider, MultiblockPort {
+        implements IEnergyHandler, MoldHost, MenuProvider, MultiblockPort,
+        PortStoreCarrier {
     public static final int TRANSFER_MB = 1000;
     public static final long ENERGY_CAPACITY = 16_384L;
     public static final int MASS_CAPACITY = 1_000_000;
@@ -147,6 +151,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     private BlockPos mixerController;
     private ResourceLocation mixerStructure;
     private PortType mixerPortType;
+    private final PortStore portStore = new PortStore(this::setChanged);
     private final Set<BlockPos> boundSteamHatches = new LinkedHashSet<>();
     private final IFluidHandler steamFillView = new SteamFillView();
     private final IFluidHandler steamDrainView = new SteamDrainView();
@@ -937,6 +942,21 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     }
 
     @Override
+    public PortStore portStore() {
+        return portStore;
+    }
+
+    @Override
+    public void configurePortStore(
+            MultiblockPortHost host,
+            PortStore.Assignment assignment) {
+        portStore.configure(host, assignment);
+        if (level != null && !level.isClientSide) {
+            level.invalidateCapabilities(worldPosition);
+        }
+    }
+
+    @Override
     public PortType portType() {
         if (mixerPortType != null) {
             return mixerPortType;
@@ -1504,6 +1524,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             tag.putString("mixer.structure", mixerStructure.toString());
             tag.putString("mixer.port", mixerPortType.serializedName());
         }
+        savePortStore(tag, registries);
     }
 
     @Override
@@ -1589,6 +1610,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 }
             }
         }
+        loadPortStore(tag, registries);
     }
 
     @Override

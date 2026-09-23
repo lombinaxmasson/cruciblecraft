@@ -11,6 +11,9 @@ import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPort;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
+import com.masson.cruciblecraft.content.multiblock.PortHostViews;
+import com.masson.cruciblecraft.content.multiblock.PortStore;
+import com.masson.cruciblecraft.content.multiblock.PortStoreCarrier;
 import com.masson.cruciblecraft.content.multiblock.PortCapabilityGate;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverBehaviors;
@@ -46,10 +49,11 @@ import net.neoforged.neoforge.items.IItemHandler;
  * controller.
  */
 public final class MultiblockPortBlockEntity extends BlockEntity
-        implements MultiblockPort, IEnergyHandler, MachineCoverHost {
+        implements MultiblockPort, PortStoreCarrier, IEnergyHandler, MachineCoverHost {
     private BlockPos controller;
     private ResourceLocation structure;
     private PortType assignedType;
+    private final PortStore portStore = new PortStore(this::setChanged);
     private final IItemHandler items = new PortItems();
     private final IFluidHandler fluids = new PortFluids();
     private final PipeCoverSet covers = new PipeCoverSet();
@@ -158,7 +162,22 @@ public final class MultiblockPortBlockEntity extends BlockEntity
 
     private MultiblockPortHost host() {
         MultiblockControllerBinding binding = binding();
-        return binding == null ? null : binding.portHost();
+        return binding == null
+                ? null
+                : PortHostViews.forPort(binding.portHost(), this);
+    }
+
+    @Override
+    public PortStore portStore() {
+        return portStore;
+    }
+
+    @Override
+    public void configurePortStore(
+            MultiblockPortHost host,
+            PortStore.Assignment assignment) {
+        portStore.configure(host, assignment);
+        invalidateCaps();
     }
 
     private void invalidateCaps() {
@@ -228,6 +247,7 @@ public final class MultiblockPortBlockEntity extends BlockEntity
         CompoundTag coverTag = new CompoundTag();
         covers.save(coverTag, registries);
         tag.put("machine_covers", coverTag);
+        savePortStore(tag, registries);
     }
 
     @Override
@@ -262,6 +282,7 @@ public final class MultiblockPortBlockEntity extends BlockEntity
         if (tag.contains("machine_covers")) {
             covers.load(tag.getCompound("machine_covers"), registries);
         }
+        loadPortStore(tag, registries);
     }
 
     @Override

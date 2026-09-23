@@ -21,8 +21,7 @@ public final class ModMultiblockPlugins {
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "processing_host");
 
-    /** Matcher supply is one item and one fluid per shared host, never
-     * counted per physical port block. Consumed by every
+    /** Physical port storage and typed capability routing for every
      * multi-port structure controller. */
     public static final ResourceLocation SHARED_PORT_SUPPLY =
             ResourceLocation.fromNamespaceAndPath(
