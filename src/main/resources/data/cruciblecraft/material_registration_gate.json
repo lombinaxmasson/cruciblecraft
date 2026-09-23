@@ -3846,6 +3846,37 @@
       "plate_gem"
     ]
   },
+  "coke_oven_recipe_forms_required_forms": {
+    "charcoal": [
+      "chunk"
+    ],
+    "coal": [
+      "billet",
+      "block_raw",
+      "chunk",
+      "tiny_centrifuged_crushed_ore",
+      "tiny_washed_crushed_ore",
+      "washed_crushed_ore"
+    ],
+    "coal_coke": [
+      "chunk"
+    ],
+    "lignite": [
+      "billet",
+      "block_raw",
+      "chunk",
+      "tiny_centrifuged_crushed_ore",
+      "tiny_washed_crushed_ore"
+    ],
+    "lignite_coke": [
+      "chunk"
+    ],
+    "oil_shale": [
+      "storage_dust",
+      "tiny_centrifuged_crushed_ore",
+      "tiny_washed_crushed_ore"
+    ]
+  },
   "combo_pipe_forms": {
     "adamantium": [
       "nonuple_fluid_pipe",
@@ -7536,6 +7567,7 @@
     "canonical_conductor_forms": 320,
     "centrifuge_required_forms": 5,
     "chemical_required_forms": 7,
+    "coke_oven_recipe_forms_required_forms": 17,
     "combo_pipe_forms": 80,
     "compatibility_forms": 781,
     "electrical_wire_forms": 29,
@@ -7550,7 +7582,7 @@
     "ore_source_materials": 137,
     "pipe_forms": 263,
     "recipe_gated_forms": 13338,
-    "registered_forms": 39835,
+    "registered_forms": 38530,
     "restrictive_pipe_forms": 63,
     "roaster_required_forms": 12,
     "tool_head_required_forms": 13938,
@@ -8165,7 +8197,8 @@
     "gt6_storage_art_required_forms",
     "fission_observation_safety_required_forms",
     "fission_survival_required_forms",
-    "converter_catalog_fluidbed_required_forms"
+    "converter_catalog_fluidbed_required_forms",
+    "coke_oven_recipe_forms_required_forms"
   ],
   "known_ingot_forms": {
     "abyssalnite": [
@@ -23648,6 +23681,7 @@
     "coal": [
       "billet",
       "block",
+      "block_raw",
       "bolt",
       "centrifuged_crushed_ore",
       "chunk",
@@ -36413,8 +36447,10 @@
     "lignite": [
       "billet",
       "block",
+      "block_raw",
       "bolt",
       "centrifuged_crushed_ore",
+      "chunk",
       "crushed_ore",
       "dust",
       "dust_div72",
@@ -36432,6 +36468,7 @@
       "screw",
       "small_dust",
       "storage_dust",
+      "tiny_centrifuged_crushed_ore",
       "tiny_crushed_ore",
       "tiny_dust",
       "tiny_washed_crushed_ore",
@@ -36442,6 +36479,7 @@
       "block",
       "bolt",
       "centrifuged_crushed_ore",
+      "chunk",
       "crushed_ore",
       "dust",
       "dust_div72",
@@ -41984,8 +42022,11 @@
       "raw_ore",
       "rock",
       "small_dust",
+      "storage_dust",
+      "tiny_centrifuged_crushed_ore",
       "tiny_crushed_ore",
       "tiny_dust",
+      "tiny_washed_crushed_ore",
       "washed_crushed_ore"
     ],
     "olive_oil": [],
@@ -68412,6 +68453,12 @@
       "field": "required_form_overrides.forms",
       "path": "tools/chemical_policy.json",
       "sha256": "5e366cf4824d5f55fe79ce48451d35b031b964a4ef6023a21227b1282cfaebbc"
+    },
+    "coke_oven_recipe_forms_required_forms": {
+      "classification": "semantic_ordinary_runtime_required",
+      "field": "required_forms",
+      "path": "tools/waves/prep/coke-oven-recipe-forms/required_forms.json",
+      "sha256": "29f175435cf787b8a4c4587f82d5310d97d934f175fdc4392b84bcb1fb00f674"
     },
     "compressor_ordinary_closure_required_forms": {
       "classification": "semantic_ordinary_runtime_required",

@@ -129,6 +129,7 @@ CIRCUITS: dict[int, str] = {
     7: "cruciblecraft:circuit_quantum",
 }
 IL_NAMED_ITEMS: dict[str, str] = {
+    "Pellet_Wood": "cruciblecraft:wood_pellet",
     "Comp_Laser_Gas_Empty": "cruciblecraft:laser_gas_empty",
     "Comp_Laser_Gas_HeNe": "cruciblecraft:laser_gas_hene",
     "Comp_Laser_Gas_Ar": "cruciblecraft:laser_gas_ar",

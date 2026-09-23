@@ -32,6 +32,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                     modLoc("block/ceramic_mold"));
         });
         generatedCc("match");
+        generatedImportedGt6("wood_pellet", "wood_pellet");
         generatedImportedGt6("remote_activator");
         generatedCc("programmed_circuit");
         generatedCc("creosote_bucket");

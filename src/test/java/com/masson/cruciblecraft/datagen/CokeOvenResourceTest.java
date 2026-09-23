@@ -37,7 +37,7 @@ class CokeOvenResourceTest {
                         .equals("gt6_java_source"));
             }
         }
-        assertTrue(authoredRows == 40, "expected 40 authored coke oven rows");
+        assertTrue(authoredRows == 56, "expected 56 authored coke oven rows");
     }
 
     @Test

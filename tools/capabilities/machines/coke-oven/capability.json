@@ -17,6 +17,7 @@
     "src/main/resources/data/cruciblecraft/recipe/coke_oven/**",
     "src/main/resources/data/cruciblecraft/recipe/coke_oven_controller.json",
     "src/main/resources/assets/cruciblecraft/gt6_coke_oven_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/gt6_coke_oven_operand_art_manifest.json",
     "src/main/resources/assets/cruciblecraft/models/block/firebrick_gt6.json",
     "src/test/java/com/masson/cruciblecraft/content/multiblock/CokeOvenStructureTest.java",
     "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
@@ -59,5 +60,5 @@
       "reason": "Fire Bricks are structure ports owned by the Coke Oven capability, not a standalone machine."
     }
   ],
-  "note": "Ambient TU, igniter window, parallel 16, firebrick binding and fixed fluid output are owned here. Missing real GT6 operand forms remain blocked; no stand-in recipes are emitted."
+  "note": "Ambient TU, igniter window, parallel 16, firebrick binding and fixed fluid output are owned here. The Coke Oven recipe ledger is closed at zero blocked rows; future unsupported GT6 operands remain blocked and never use stand-ins."
 }

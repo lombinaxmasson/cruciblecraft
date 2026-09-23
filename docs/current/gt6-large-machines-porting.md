@@ -134,9 +134,9 @@ src/test/java/com/masson/cruciblecraft/gametest/
 
 - 27 个是主机或主机身份；
 - 23 个是部件、端口或 MTE 身份；
-- 20 个条目属于当前 accepted runtime；
+- 31 个条目属于当前 accepted runtime；
 - 6 个有明确的 frozen/paused 能力卡；
-- 10 个在当前工作树中已有主机/结构代码，但尚未进入 accepted 能力账本；
+- 0 个仍停留在“已有主机/结构代码但尚未进入 accepted 能力账本”；
 - 10 个只有身份或部件；
 - 3 个目前没有大型主机。
 
@@ -240,6 +240,52 @@ machines/large-crusher
 分别由 Coke Oven 与 Bedrock Drill 卡拥有；它们不单独创建主机 capability。
 `runtime_ready` 与 `survival_access` 仍是两个维度，Coagulator 的化学 operand
 闭环和各主机缺失形态行继续保持 blocked，不使用 stand-in。
+
+#### 4.3.1 `partial` 的含义与当前 blocked 配方
+
+4.3 中多数主机为 `survival_access=partial`，不是运行时行为缺失，而是
+GT6 全量 RecipeMap、材料形态或生存获得链尚未全部闭合。当前主机已经可以
+形成、接受正确能源/物品/流体并执行已发布的真实行；未解析的行继续保持
+blocked 或 on-demand，不用替代材料、原版物品或电路占位。
+
+当前有明确逐行 blocked 证据的配方如下：
+
+- **Coke Oven：已补 16 行，剩余 0 行 blocked**，详见
+  `tools/waves/prep/coke-oven-recipe-forms/current_gap.json`。本轮打开并
+  按 GT6 原行补全了 `coal_chunk`、`coal_billet`、
+  `coal_washed_crushed_ore`、`coal_tiny_washed_crushed_ore`、
+  `coal_tiny_centrifuged_crushed_ore`、`lignite_chunk`、
+  `lignite_tiny_washed_crushed_ore`、
+  `lignite_tiny_centrifuged_crushed_ore`、`lignite_coke_chunk`、
+  `oil_shale_tiny_washed_crushed_ore`、`oil_shale_tiny_centrifuged_crushed_ore`
+  `oil_shale_storage_dust`、`lignite_billet`、`coal_block_raw`、
+  `lignite_block_raw` 和 `wood_pellet`；形态需求记录在
+  `tools/waves/prep/coke-oven-recipe-forms/required_forms.json`。剩余
+  blocked ledger 已清零。`blockRaw` 使用独立 `block_raw` 前缀，`IL.Pellet_Wood`
+  使用独立 `cruciblecraft:wood_pellet` 身份；两者均未用普通 block、木板或
+  木炭替代。
+- **Large Batch Mixer**：ordinary-closure 当前剩余 recipe gap 为 334；
+  需求普查包含 779 个材料形态对、417 种材料和 11 种前缀，见
+  `tools/waves/mixer/ordinary-closure/readiness.json` 与
+  `required_forms.json`。
+- **Large Centrifuge**：ordinary-closure 当前剩余 recipe gap 为 116；
+  需求普查包含 278 个材料形态对、235 种材料，见
+  `tools/waves/centrifuge/ordinary-closure/readiness.json` 与
+  `required_forms.json`。其 candidate selection 当前没有 blocked family；
+  gap 不应直接当作已生成的逐行 blocked 清单。
+- **Large Coagulator Array**：`survival_access=blocked` 的根因是 latex/
+  chemical operand 链没有完成边界闭合。`latex_to_rubber_nugget` 和
+  `water_bootstrap` 有运行时行，但不能据此宣称完整化学链已经完成。
+- **Large Bathing Vat**：当前 `bath/tiny-purified` 波次的 5 个 family、
+  95 条关系和 0 个 blocked family 已闭合；更大的 Bath 配方图仍保留
+  1349 条 remaining recipe gap，不能把它们当成已发布的大型 Vat 行。
+- **Large Electric Oven**：当前 Furnace 运行快照没有 blocked overflow；
+  cooking-oil 肉类加成和 XP 流体属于明确的 blocked/out-of-scope 行，
+  不影响当前 Furnace 烘烤行。
+
+Large Crucible、Bedrock Drill 和 Large Crusher 当前没有独立的逐行
+blocked ledger；它们的 `partial` 主要来自材料形态、获得性或长尾 GT6
+边界。没有 ledger 证据时，不把整个 RecipeMap 或整个主机笼统标成 blocked。
 
 特别注意：
 

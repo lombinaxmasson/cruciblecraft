@@ -2659,6 +2659,7 @@ public class ModLanguageProvider extends LanguageProvider {
             }
         }
         addItem(ModItems.RUBBER_RESIN, chinese ? "橡胶树脂" : "Rubber Resin");
+        addItem(ModItems.WOOD_PELLET, chinese ? "木粒" : "Wood Pellet");
         if (chinese) {
             add(LanguageNames.translationKey("fluid", "rubber_tree_sap"), "橡胶树液");
             add(LanguageNames.translationKey("fluid_type", "rubber_tree_sap"), "橡胶树液");

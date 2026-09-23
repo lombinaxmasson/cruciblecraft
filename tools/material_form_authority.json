@@ -21,7 +21,8 @@
     "gt6_storage_art_required_forms",
     "fission_observation_safety_required_forms",
     "fission_survival_required_forms",
-    "converter_catalog_fluidbed_required_forms"
+    "converter_catalog_fluidbed_required_forms",
+    "coke_oven_recipe_forms_required_forms"
   ],
   "note": "Single overlay authority. Card builders write required_forms.json only; they do not write material_registration_gate.json.",
   "schema_version": 1,
@@ -552,6 +553,16 @@
           "dust"
         ]
       }
+    },
+    {
+      "extra_factual_forms": [],
+      "field": "required_forms",
+      "gate_section": "coke_oven_recipe_forms_required_forms",
+      "id": "coke_oven_recipe_forms_required_forms",
+      "java_runtime_visible": true,
+      "owner": "machines/coke-oven",
+      "path": "tools/waves/prep/coke-oven-recipe-forms/required_forms.json",
+      "required_factual_prereqs": {}
     }
   ],
   "status": "MATERIAL_FORM_AUTHORITY",

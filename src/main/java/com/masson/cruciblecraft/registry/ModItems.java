@@ -176,6 +176,8 @@ public final class ModItems {
                     new LinkedHashMap<>();
     public static final DeferredItem<Item> RUBBER_RESIN = ITEMS.register(
             "tree/rubber_resin", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> WOOD_PELLET = ITEMS.register(
+            "wood_pellet", () -> new Item(new Item.Properties()));
     public static final DeferredItem<BlockItem> GT_BUSH =
             ITEMS.registerSimpleBlockItem("plant/gt_bush", ModBlocks.GT_BUSH);
     public static final DeferredItem<GtSurfaceRockItem> GT_SURFACE_ROCK =

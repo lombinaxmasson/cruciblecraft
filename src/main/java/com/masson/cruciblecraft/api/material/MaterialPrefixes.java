@@ -5,6 +5,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 /** Well-known built-in prefix ids. The registry remains open to addon ids. */
 public final class MaterialPrefixes {
     public static final MaterialPrefix BLOCK = builtin("block");
+    public static final MaterialPrefix BLOCK_RAW = builtin("block_raw");
     public static final MaterialPrefix ORE = builtin("ore");
     public static final MaterialPrefix RAW_ORE = builtin("raw_ore");
     public static final MaterialPrefix CRUSHED_ORE = builtin("crushed_ore");

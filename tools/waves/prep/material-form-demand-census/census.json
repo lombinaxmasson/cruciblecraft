@@ -1,18 +1,18 @@
 {
-  "already_gated_live": 4,
+  "already_gated_live": 3,
   "capability_slug": "registry/material-form-demand-census",
   "catalog_not_prefix": [
     "energy/reactor-backpack-radioactivity",
     "obtain/injector-mv-hv-iv-hosts"
   ],
   "counts": {
-    "already_gated_live": 4,
-    "demand_pairs": 84,
-    "gated_unresolved": 69,
-    "not_form": 75,
-    "openable": 11,
+    "already_gated_live": 3,
+    "demand_pairs": 70,
+    "gated_unresolved": 62,
+    "not_form": 72,
+    "openable": 5,
     "skipped": 0,
-    "ungated_generated_flag_pairs": 5771
+    "ungated_generated_flag_pairs": 5768
   },
   "gated_unresolved": [
     {
@@ -214,17 +214,6 @@
       ]
     },
     {
-      "form": "chunk",
-      "gt": [
-        "chunkGt(MT.Charcoal)"
-      ],
-      "item": "cruciblecraft:charcoal/chunk",
-      "material": "charcoal",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
-      ]
-    },
-    {
       "form": "small_casing",
       "gt": [
         "casingSmall(MT.Cr)"
@@ -233,50 +222,6 @@
       "material": "chromium",
       "sources": [
         "tools/waves/prep/gt6-mte-furniture-storage-acquisition/current_gap.json"
-      ]
-    },
-    {
-      "form": "billet",
-      "gt": [
-        "billet(MT.Coal)"
-      ],
-      "item": "cruciblecraft:coal/billet",
-      "material": "coal",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
-      ]
-    },
-    {
-      "form": "chunk",
-      "gt": [
-        "chunkGt(MT.Coal)"
-      ],
-      "item": "cruciblecraft:coal/chunk",
-      "material": "coal",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
-      ]
-    },
-    {
-      "form": "tiny_washed_crushed_ore",
-      "gt": [
-        "crushedPurifiedTiny(MT.Coal)"
-      ],
-      "item": "cruciblecraft:coal/tiny_washed_crushed_ore",
-      "material": "coal",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
-      ]
-    },
-    {
-      "form": "chunk",
-      "gt": [
-        "chunkGt(MT.CoalCoke)"
-      ],
-      "item": "cruciblecraft:coal_coke/chunk",
-      "material": "coal_coke",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
       ]
     },
     {
@@ -464,28 +409,6 @@
       "material": "lead",
       "sources": [
         "tools/waves/prep/gt6-mte-furniture-storage-acquisition/current_gap.json"
-      ]
-    },
-    {
-      "form": "billet",
-      "gt": [
-        "billet(MT.Lignite)"
-      ],
-      "item": "cruciblecraft:lignite/billet",
-      "material": "lignite",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
-      ]
-    },
-    {
-      "form": "tiny_washed_crushed_ore",
-      "gt": [
-        "crushedPurifiedTiny(MT.Lignite)"
-      ],
-      "item": "cruciblecraft:lignite/tiny_washed_crushed_ore",
-      "material": "lignite",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
       ]
     },
     {
@@ -776,19 +699,16 @@
     }
   ],
   "gated_unresolved_by_form": {
-    "billet": 2,
-    "chunk": 3,
     "curved_plate": 3,
     "quadruple_ingot": 8,
     "round": 2,
-    "small_casing": 49,
-    "tiny_washed_crushed_ore": 2
+    "small_casing": 49
   },
   "lane": "prep",
   "not_form_by_reason": {
     "missing_plank_identity": 23,
-    "unmapped": 18,
-    "unmapped_il": 4,
+    "unmapped": 16,
+    "unmapped_il": 3,
     "unmapped_od": 30
   },
   "note": "Safety valve unchanged: recipe cards still must not stand in. openable is ungated demand. gated_unresolved is already in gate.materials but gt6_resolve.form_exists is false (hybrid long-tail lookup). Do not re-gate those. Do not open ungated_generated_flag_pairs.",
@@ -818,42 +738,6 @@
       ]
     },
     {
-      "form": "chunk",
-      "generation": "dump_proven",
-      "gt": [
-        "chunkGt(MT.Lignite)"
-      ],
-      "item": "cruciblecraft:lignite/chunk",
-      "material": "lignite",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
-      ]
-    },
-    {
-      "form": "tiny_centrifuged_crushed_ore",
-      "generation": "flagged",
-      "gt": [
-        "crushedCentrifugedTiny(MT.Lignite)"
-      ],
-      "item": "cruciblecraft:lignite/tiny_centrifuged_crushed_ore",
-      "material": "lignite",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
-      ]
-    },
-    {
-      "form": "chunk",
-      "generation": "dump_proven",
-      "gt": [
-        "chunkGt(MT.LigniteCoke)"
-      ],
-      "item": "cruciblecraft:lignite_coke/chunk",
-      "material": "lignite_coke",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
-      ]
-    },
-    {
       "form": "plate",
       "generation": "dump_proven",
       "gt": [
@@ -863,42 +747,6 @@
       "material": "livingwood",
       "sources": [
         "tools/waves/prep/gt6-mte-furniture-barrel-acquisition/current_gap.json"
-      ]
-    },
-    {
-      "form": "storage_dust",
-      "generation": "flagged",
-      "gt": [
-        "blockDust(MT.Oilshale)"
-      ],
-      "item": "cruciblecraft:oil_shale/storage_dust",
-      "material": "oil_shale",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
-      ]
-    },
-    {
-      "form": "tiny_centrifuged_crushed_ore",
-      "generation": "flagged",
-      "gt": [
-        "crushedCentrifugedTiny(MT.Oilshale)"
-      ],
-      "item": "cruciblecraft:oil_shale/tiny_centrifuged_crushed_ore",
-      "material": "oil_shale",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
-      ]
-    },
-    {
-      "form": "tiny_washed_crushed_ore",
-      "generation": "dump_proven",
-      "gt": [
-        "crushedPurifiedTiny(MT.Oilshale)"
-      ],
-      "item": "cruciblecraft:oil_shale/tiny_washed_crushed_ore",
-      "material": "oil_shale",
-      "sources": [
-        "tools/waves/prep/coke-oven-recipe-forms/current_gap.json"
       ]
     },
     {
@@ -927,11 +775,7 @@
     }
   ],
   "openable_by_form": {
-    "chunk": 2,
-    "plate": 5,
-    "storage_dust": 1,
-    "tiny_centrifuged_crushed_ore": 2,
-    "tiny_washed_crushed_ore": 1
+    "plate": 5
   },
   "schema_version": 1,
   "skipped_demand": {},
