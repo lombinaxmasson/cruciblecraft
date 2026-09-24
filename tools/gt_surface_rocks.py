@@ -647,7 +647,7 @@ def check() -> list[str]:
     )
     if "PebbleShape" not in block:
         errors.append("surface rock outline must use PebbleShape")
-    if "noCollission" not in block:
+    if "getCollisionShape" not in block or "Shapes.empty()" not in block:
         errors.append("surface rock must keep GT6 empty collision")
     pebble_shape = (java_root / "worldgen" / "PebbleShape.java").read_text(
         encoding="utf-8"

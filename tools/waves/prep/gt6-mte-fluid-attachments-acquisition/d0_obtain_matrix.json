@@ -3,9 +3,9 @@
   "blocker_id": "obtain/mte-inplace-runtime",
   "capability_slug": "content/gt6-mte-fluid-attachments-acquisition",
   "counts": {
-    "explicitly_blocked": 0,
+    "explicitly_blocked": 19,
     "hosts": 47,
-    "source_exact": 47
+    "source_exact": 28
   },
   "domain": "attachments",
   "expected": 47,
@@ -1047,18 +1047,20 @@
       "gt6_class": "MultiTileEntityFluidCapNozzle / Misc Tool Blocks",
       "kind": "CAP_NOZZLE",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/steel/cap_nozzle.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32058,
       "operands": {
         "B": {
-          "cc": "cruciblecraft:steel/round",
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
           "gt": "round(ANY.Steel)",
           "kind": "prefix_family",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
         },
         "N": {
           "cc": "cruciblecraft:steel/nozzle",
@@ -1088,11 +1090,11 @@
         "Nd "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:steel/cap_nozzle",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "steel/cap_nozzle",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1113,18 +1115,20 @@
       "gt6_class": "MultiTileEntityFluidCapNozzle / Misc Tool Blocks",
       "kind": "CAP_NOZZLE",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/plastic_cap_nozzle.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32059,
       "operands": {
         "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:plastic/round",
           "gt": "round(MT.Plastic)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         },
         "N": {
           "cc": "cruciblecraft:fluid_attachment/plastic_nozzle",
@@ -1154,11 +1158,11 @@
         "Nd "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:fluid_attachment/plastic_cap_nozzle",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "fluid_attachment/plastic_cap_nozzle",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1179,18 +1183,20 @@
       "gt6_class": "MultiTileEntityFluidCapNozzle / Misc Tool Blocks",
       "kind": "CAP_NOZZLE",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/stainless_cap_nozzle.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32060,
       "operands": {
         "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:stainless_steel/round",
           "gt": "round(MT.StainlessSteel)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         },
         "N": {
           "cc": "cruciblecraft:fluid_attachment/stainless_nozzle",
@@ -1220,11 +1226,11 @@
         "Nd "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:fluid_attachment/stainless_cap_nozzle",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "fluid_attachment/stainless_cap_nozzle",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1245,18 +1251,20 @@
       "gt6_class": "MultiTileEntityFluidCapNozzle / Misc Tool Blocks",
       "kind": "CAP_NOZZLE",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/tungsten/cap_nozzle.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32061,
       "operands": {
         "B": {
-          "cc": "cruciblecraft:tungsten/round",
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
           "gt": "round(ANY.W)",
           "kind": "prefix_family",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
         },
         "N": {
           "cc": "cruciblecraft:tungsten/nozzle",
@@ -1286,11 +1294,11 @@
         "Nd "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:tungsten/cap_nozzle",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "tungsten/cap_nozzle",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1311,18 +1319,20 @@
       "gt6_class": "MultiTileEntityFluidCapNozzle / Misc Tool Blocks",
       "kind": "CAP_NOZZLE",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/adamantium/cap_nozzle.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32062,
       "operands": {
         "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:adamantium/round",
           "gt": "round(MT.Ad)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         },
         "N": {
           "cc": "cruciblecraft:adamantium/nozzle",
@@ -1352,11 +1362,11 @@
         "Nd "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:adamantium/cap_nozzle",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "adamantium/cap_nozzle",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1377,18 +1387,20 @@
       "gt6_class": "MultiTileEntityFluidNozzle / Misc Tool Blocks",
       "kind": "NOZZLE",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/tantalum_hafnium_carbide/nozzle.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32079,
       "operands": {
         "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:tantalum_hafnium_carbide/curved_plate",
           "gt": "plateCurved(MT.Ta4HfC5)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         },
         "R": {
           "cc": "cruciblecraft:tantalum_hafnium_carbide/ring",
@@ -1404,11 +1416,11 @@
         "o  "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:tantalum_hafnium_carbide/nozzle",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "tantalum_hafnium_carbide/nozzle",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1429,18 +1441,20 @@
       "gt6_class": "MultiTileEntityFluidTap / Misc Tool Blocks",
       "kind": "TAP",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/tantalum_hafnium_carbide/tap.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32080,
       "operands": {
         "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:tantalum_hafnium_carbide/curved_plate",
           "gt": "plateCurved(MT.Ta4HfC5)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         }
       },
       "pattern": [
@@ -1449,11 +1463,11 @@
         "oP "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:tantalum_hafnium_carbide/tap",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "tantalum_hafnium_carbide/tap",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1474,18 +1488,20 @@
       "gt6_class": "MultiTileEntityFluidFunnel / Misc Tool Blocks",
       "kind": "FUNNEL",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/tantalum_hafnium_carbide/funnel.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32081,
       "operands": {
         "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:tantalum_hafnium_carbide/curved_plate",
           "gt": "plateCurved(MT.Ta4HfC5)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         }
       },
       "pattern": [
@@ -1494,11 +1510,11 @@
         " P "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:tantalum_hafnium_carbide/funnel",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "tantalum_hafnium_carbide/funnel",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1519,18 +1535,20 @@
       "gt6_class": "MultiTileEntityFluidCapNozzle / Misc Tool Blocks",
       "kind": "CAP_NOZZLE",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/tantalum_hafnium_carbide/cap_nozzle.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32082,
       "operands": {
         "B": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:tantalum_hafnium_carbide/round",
           "gt": "round(MT.Ta4HfC5)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         },
         "N": {
           "cc": "cruciblecraft:tungsten/nozzle",
@@ -1560,11 +1578,11 @@
         "Nd "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:tantalum_hafnium_carbide/cap_nozzle",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "tantalum_hafnium_carbide/cap_nozzle",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {},
@@ -1613,18 +1631,20 @@
       "gt6_class": "MultiTileEntityFluidFunnel / Misc Tool Blocks",
       "kind": "FUNNEL",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/plastic_funnel.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32724,
       "operands": {
         "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:plastic/curved_plate",
           "gt": "plateCurved(MT.Plastic)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         }
       },
       "pattern": [
@@ -1633,11 +1653,11 @@
         " P "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:fluid_attachment/plastic_funnel",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "fluid_attachment/plastic_funnel",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1703,18 +1723,20 @@
       "gt6_class": "MultiTileEntityFluidFunnel / Misc Tool Blocks",
       "kind": "FUNNEL",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/tungsten/funnel.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32726,
       "operands": {
         "P": {
-          "cc": "cruciblecraft:tungsten/curved_plate",
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
           "gt": "plateCurved(ANY.W)",
           "kind": "prefix_family",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
         }
       },
       "pattern": [
@@ -1723,11 +1745,11 @@
         " P "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:tungsten/funnel",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "tungsten/funnel",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1748,18 +1770,20 @@
       "gt6_class": "MultiTileEntityFluidFunnel / Misc Tool Blocks",
       "kind": "FUNNEL",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/adamantium/funnel.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32727,
       "operands": {
         "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:adamantium/curved_plate",
           "gt": "plateCurved(MT.Ad)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         }
       },
       "pattern": [
@@ -1768,11 +1792,11 @@
         " P "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:adamantium/funnel",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "adamantium/funnel",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {},
@@ -1821,18 +1845,20 @@
       "gt6_class": "MultiTileEntityFluidTap / Misc Tool Blocks",
       "kind": "TAP",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/plastic_tap.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32729,
       "operands": {
         "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:plastic/curved_plate",
           "gt": "plateCurved(MT.Plastic)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         }
       },
       "pattern": [
@@ -1841,11 +1867,11 @@
         "xP "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:fluid_attachment/plastic_tap",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "fluid_attachment/plastic_tap",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1911,18 +1937,20 @@
       "gt6_class": "MultiTileEntityFluidTap / Misc Tool Blocks",
       "kind": "TAP",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/tungsten/tap.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32731,
       "operands": {
         "P": {
-          "cc": "cruciblecraft:tungsten/curved_plate",
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
           "gt": "plateCurved(ANY.W)",
           "kind": "prefix_family",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
         }
       },
       "pattern": [
@@ -1931,11 +1959,11 @@
         "oP "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:tungsten/tap",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "tungsten/tap",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -1956,18 +1984,20 @@
       "gt6_class": "MultiTileEntityFluidTap / Misc Tool Blocks",
       "kind": "TAP",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/adamantium/tap.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32732,
       "operands": {
         "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:adamantium/curved_plate",
           "gt": "plateCurved(MT.Ad)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         }
       },
       "pattern": [
@@ -1976,11 +2006,11 @@
         "oP "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:adamantium/tap",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "adamantium/tap",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -2001,18 +2031,20 @@
       "gt6_class": "MultiTileEntityFluidNozzle / Misc Tool Blocks",
       "kind": "NOZZLE",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/steel/nozzle.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32746,
       "operands": {
         "P": {
-          "cc": "cruciblecraft:steel/curved_plate",
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
           "gt": "plateCurved(ANY.Steel)",
           "kind": "prefix_family",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
         },
         "R": {
           "cc": "cruciblecraft:rubber/ring",
@@ -2028,11 +2060,11 @@
         "o  "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:steel/nozzle",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "steel/nozzle",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -2053,18 +2085,20 @@
       "gt6_class": "MultiTileEntityFluidNozzle / Misc Tool Blocks",
       "kind": "NOZZLE",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/plastic_nozzle.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32747,
       "operands": {
         "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:plastic/curved_plate",
           "gt": "plateCurved(MT.Plastic)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         },
         "R": {
           "cc": "cruciblecraft:rubber/ring",
@@ -2080,11 +2114,11 @@
         "x  "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:fluid_attachment/plastic_nozzle",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "fluid_attachment/plastic_nozzle",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -2157,18 +2191,20 @@
       "gt6_class": "MultiTileEntityFluidNozzle / Misc Tool Blocks",
       "kind": "NOZZLE",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/tungsten/nozzle.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32749,
       "operands": {
         "P": {
-          "cc": "cruciblecraft:tungsten/curved_plate",
+          "blocker_id": "obtain/mte-inplace-runtime",
+          "cc": null,
           "gt": "plateCurved(ANY.W)",
           "kind": "prefix_family",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "unmapped",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "unmapped",
+          "status": "explicitly_blocked"
         },
         "R": {
           "cc": "cruciblecraft:tungsten/ring",
@@ -2184,11 +2220,11 @@
         "o  "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:tungsten/nozzle",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "tungsten/nozzle",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     },
     {
       "catalysts": {
@@ -2209,18 +2245,20 @@
       "gt6_class": "MultiTileEntityFluidNozzle / Misc Tool Blocks",
       "kind": "NOZZLE",
       "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/adamantium/nozzle.json",
-        "present": true
+        "matches_source": false,
+        "present": false
       },
       "meta": 32750,
       "operands": {
         "P": {
+          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:adamantium/curved_plate",
           "gt": "plateCurved(MT.Ad)",
           "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
+          "reason": "missing_form",
+          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
+          "resolve_status": "missing_form",
+          "status": "explicitly_blocked"
         },
         "R": {
           "cc": "cruciblecraft:adamantium/ring",
@@ -2236,11 +2274,11 @@
         "o  "
       ],
       "recipe_kind": "shaped",
-      "replacement": null,
+      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
       "runtime_id": "cruciblecraft:adamantium/nozzle",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "adamantium/nozzle",
-      "status": "source_exact"
+      "status": "explicitly_blocked"
     }
   ],
   "runtime_slug": "content/gt6-mte-fluid-attachments-runtime",

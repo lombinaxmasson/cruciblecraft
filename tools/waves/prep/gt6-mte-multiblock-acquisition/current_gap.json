@@ -1,5 +1,5 @@
 {
-  "blocked": 16,
+  "blocked": 15,
   "capability_slug": "content/gt6-mte-multiblock-acquisition",
   "domain": "multiblock",
   "rows": [
@@ -102,26 +102,6 @@
       "reason": "operand_blocked",
       "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
       "stable_id": "adamantium/dynamo_main_housing"
-    },
-    {
-      "blocker_id": "obtain/mte-inplace-runtime",
-      "meta": 18001,
-      "missing": [
-        {
-          "blocker_id": "obtain/mte-inplace-runtime",
-          "cc": "cruciblecraft:wood_treated/plate",
-          "gt": "plate(MT.WoodTreated)",
-          "kind": "prefix_material",
-          "reason": "missing_form",
-          "recheck": "python tools/gt6_resolve.py; gated material forms must be on material_registration_gate.json. Circuits and other technological parts come from technological_parts.json, not runtime_registry_gate.json.",
-          "resolve_status": "ok",
-          "slot": "W",
-          "status": "explicitly_blocked"
-        }
-      ],
-      "reason": "operand_blocked",
-      "recheck": "python tools/gt6_resolve.py on each blocked token; no stand-in.",
-      "stable_id": "wood/wall"
     },
     {
       "blocker_id": "obtain/mte-inplace-runtime",

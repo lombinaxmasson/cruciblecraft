@@ -164,6 +164,19 @@ def decision_for_dump_prefix(
 ) -> str | None:
     values = {str(value).lower() for value in gt_prefixes if value}
     values.add(str(form).lower())
+    if values & {
+        "plantgtberry",
+        "plantgtblossom",
+        "plantgtfiber",
+        "plantgttwig",
+        "plantgtwart",
+        "plant_gt_berry",
+        "plant_gt_blossom",
+        "plant_gt_fiber",
+        "plant_gt_twig",
+        "plant_gt_wart",
+    }:
+        return "crop_addon"
     if any("crate" in value for value in values):
         return "crate_packaging"
     if any(value.startswith("bulletgt") or value.startswith("bullet_") for value in values):

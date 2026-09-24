@@ -1,5 +1,5 @@
 {
-  "behavior_count": 36,
+  "behavior_count": 41,
   "cover_behaviors": [
     "cruciblecraft:controller_auto",
     "cruciblecraft:controller_auto_redstone",
@@ -8,10 +8,15 @@
     "cruciblecraft:controller_display",
     "cruciblecraft:controller_redstone",
     "cruciblecraft:conveyor",
+    "cruciblecraft:cover_asphalt",
     "cruciblecraft:cover_blank",
+    "cruciblecraft:cover_panel",
+    "cruciblecraft:cover_plate",
+    "cruciblecraft:cover_wood",
     "cruciblecraft:detector_running",
     "cruciblecraft:display_energy",
     "cruciblecraft:filter",
+    "cruciblecraft:filter_fluid",
     "cruciblecraft:logistics_display_cpu",
     "cruciblecraft:logistics_fluid_storage",
     "cruciblecraft:logistics_fluid_transfer",
@@ -38,7 +43,7 @@
     "cruciblecraft:shutter",
     "cruciblecraft:vent"
   ],
-  "disposition_count": 168,
+  "disposition_count": 218,
   "errors": [],
   "generated_by": "tools/build_registry_identity.py",
   "live_entries": [
@@ -475,6 +480,18 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "aluminium_laser_engraver",
+      "runtime_id": "cruciblecraft:aluminium_laser_engraver",
+      "semantic_key": "machine:aluminium_laser_engraver",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
+      "registry_path": "aluminium_laser_welder",
+      "runtime_id": "cruciblecraft:aluminium_laser_welder",
+      "semantic_key": "machine:aluminium_laser_welder",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
       "registry_path": "aluminium_lightning",
       "runtime_id": "cruciblecraft:aluminium_lightning",
       "semantic_key": "machine:aluminium_lightning",
@@ -527,6 +544,30 @@
       "runtime_id": "cruciblecraft:aluminium_slicer",
       "semantic_key": "machine:aluminium_slicer",
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
+      "registry_path": "andesite/bricks",
+      "runtime_id": "cruciblecraft:andesite/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.andesite:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "andesite/cobble",
+      "runtime_id": "cruciblecraft:andesite/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.andesite:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "andesite/mossy_bricks",
+      "runtime_id": "cruciblecraft:andesite/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.andesite:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "andesite/mossy_cobble",
+      "runtime_id": "cruciblecraft:andesite/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.andesite:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
       "registry_path": "andesite/redstoned_bricks",
@@ -1423,6 +1464,12 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "automatic_hammer",
+      "runtime_id": "cruciblecraft:automatic_hammer",
+      "semantic_key": "item:automatic_hammer",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
       "registry_path": "bale/barley",
       "runtime_id": "cruciblecraft:bale/barley",
       "semantic_key": "gt_block:gregtech:gt.block.bale.crop:2",
@@ -1595,6 +1642,30 @@
       "runtime_id": "cruciblecraft:bars_tungstensteel/tungstensteel_bars",
       "semantic_key": "gt_block:gregtech:gt.block.bars.tungstensteel:0",
       "source": "src/main/resources/data/cruciblecraft/gt_block_object_catalog.json"
+    },
+    {
+      "registry_path": "basalt/bricks",
+      "runtime_id": "cruciblecraft:basalt/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.basalt:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "basalt/cobble",
+      "runtime_id": "cruciblecraft:basalt/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.basalt:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "basalt/mossy_bricks",
+      "runtime_id": "cruciblecraft:basalt/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.basalt:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "basalt/mossy_cobble",
+      "runtime_id": "cruciblecraft:basalt/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.basalt:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
       "registry_path": "basalt/redstoned_bricks",
@@ -2209,15 +2280,45 @@
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "blue_alloy/dodecuple_wire",
+      "runtime_id": "cruciblecraft:blue_alloy/dodecuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28811",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "blue_alloy/double_wire",
+      "runtime_id": "cruciblecraft:blue_alloy/double_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28801",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "blue_alloy/hexadecuple_wire",
+      "runtime_id": "cruciblecraft:blue_alloy/hexadecuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28815",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
       "registry_path": "blue_alloy/nonuple_wire",
       "runtime_id": "cruciblecraft:blue_alloy/nonuple_wire",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28808",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "blue_alloy/octuple_wire",
+      "runtime_id": "cruciblecraft:blue_alloy/octuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28807",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
       "registry_path": "blue_alloy/pentadecuple_wire",
       "runtime_id": "cruciblecraft:blue_alloy/pentadecuple_wire",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28814",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "blue_alloy/quadruple_wire",
+      "runtime_id": "cruciblecraft:blue_alloy/quadruple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28803",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
@@ -2273,6 +2374,30 @@
       "runtime_id": "cruciblecraft:blue_steel/anvil",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:32035",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "blueschist/bricks",
+      "runtime_id": "cruciblecraft:blueschist/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.blueschist:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "blueschist/cobble",
+      "runtime_id": "cruciblecraft:blueschist/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.blueschist:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "blueschist/mossy_bricks",
+      "runtime_id": "cruciblecraft:blueschist/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.blueschist:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "blueschist/mossy_cobble",
+      "runtime_id": "cruciblecraft:blueschist/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.blueschist:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
       "registry_path": "blueschist/redstoned_bricks",
@@ -4181,6 +4306,12 @@
       "runtime_id": "cruciblecraft:bookshelf_7999",
       "semantic_key": "storage:bookshelf_7999",
       "source": "src/main/resources/data/cruciblecraft/storage_variants.json"
+    },
+    {
+      "registry_path": "boomstick",
+      "runtime_id": "cruciblecraft:boomstick",
+      "semantic_key": "item:boomstick",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
     },
     {
       "registry_path": "bottle_crate_8600",
@@ -6283,6 +6414,12 @@
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "bronze_small_gas_turbine",
+      "runtime_id": "cruciblecraft:bronze_small_gas_turbine",
+      "semantic_key": "converter:bronze_small_gas_turbine",
+      "source": "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
+    },
+    {
       "registry_path": "bronze_steam_engine",
       "runtime_id": "cruciblecraft:bronze_steam_engine",
       "semantic_key": "converter:bronze_steam_engine",
@@ -8041,6 +8178,18 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "chromium_laser_engraver",
+      "runtime_id": "cruciblecraft:chromium_laser_engraver",
+      "semantic_key": "machine:chromium_laser_engraver",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
+      "registry_path": "chromium_laser_welder",
+      "runtime_id": "cruciblecraft:chromium_laser_welder",
+      "semantic_key": "machine:chromium_laser_welder",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
       "registry_path": "chromium_lightning",
       "runtime_id": "cruciblecraft:chromium_lightning",
       "semantic_key": "machine:chromium_lightning",
@@ -8093,6 +8242,12 @@
       "runtime_id": "cruciblecraft:chromium_slicer",
       "semantic_key": "machine:chromium_slicer",
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
+      "registry_path": "chromium_small_gas_turbine",
+      "runtime_id": "cruciblecraft:chromium_small_gas_turbine",
+      "semantic_key": "converter:chromium_small_gas_turbine",
+      "source": "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
     },
     {
       "registry_path": "chromium_steam_engine",
@@ -8363,6 +8518,12 @@
       "runtime_id": "cruciblecraft:cobalt_queue_hopper",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:8221",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "coin",
+      "runtime_id": "cruciblecraft:coin",
+      "semantic_key": "item:coin",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
     },
     {
       "registry_path": "coke_oven",
@@ -9901,6 +10062,24 @@
       "source": "src/main/resources/data/cruciblecraft/machine_cover_definitions.json"
     },
     {
+      "registry_path": "cover_crafting",
+      "runtime_id": "cruciblecraft:cover_crafting",
+      "semantic_key": "cover:cover_crafting",
+      "source": "src/main/resources/data/cruciblecraft/machine_cover_definitions.json"
+    },
+    {
+      "registry_path": "cover_drain",
+      "runtime_id": "cruciblecraft:cover_drain",
+      "semantic_key": "cover:cover_drain",
+      "source": "src/main/resources/data/cruciblecraft/machine_cover_definitions.json"
+    },
+    {
+      "registry_path": "cover_warning",
+      "runtime_id": "cruciblecraft:cover_warning",
+      "semantic_key": "cover:cover_warning",
+      "source": "src/main/resources/data/cruciblecraft/machine_cover_definitions.json"
+    },
+    {
       "registry_path": "creosote",
       "runtime_id": "cruciblecraft:creosote",
       "semantic_key": "block:creosote",
@@ -9913,9 +10092,9 @@
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
     },
     {
-      "registry_path": "crucible",
-      "runtime_id": "cruciblecraft:crucible",
-      "semantic_key": "block:crucible",
+      "registry_path": "cryo_distillation_tower",
+      "runtime_id": "cruciblecraft:cryo_distillation_tower",
+      "semantic_key": "block:cryo_distillation_tower",
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
     },
     {
@@ -10115,6 +10294,30 @@
       "runtime_id": "cruciblecraft:diggable/yellow_clay",
       "semantic_key": "building_block:gregtech:gt.block.diggable:4",
       "source": "src/main/resources/data/cruciblecraft/gt_building_block_catalog.json"
+    },
+    {
+      "registry_path": "diorite/bricks",
+      "runtime_id": "cruciblecraft:diorite/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.diorite:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "diorite/cobble",
+      "runtime_id": "cruciblecraft:diorite/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.diorite:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "diorite/mossy_bricks",
+      "runtime_id": "cruciblecraft:diorite/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.diorite:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "diorite/mossy_cobble",
+      "runtime_id": "cruciblecraft:diorite/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.diorite:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
       "registry_path": "diorite/redstoned_bricks",
@@ -10651,6 +10854,12 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "dynamite",
+      "runtime_id": "cruciblecraft:dynamite",
+      "semantic_key": "item:dynamite",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
       "registry_path": "efrine/anvil",
       "runtime_id": "cruciblecraft:efrine/anvil",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:32092",
@@ -10915,276 +11124,6 @@
       "source": "src/main/resources/data/cruciblecraft/energy_transformer_tiers.json"
     },
     {
-      "registry_path": "electric_wire/10x_gold_wire",
-      "runtime_id": "cruciblecraft:electric_wire/10x_gold_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28709",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/10x_lead_wire",
-      "runtime_id": "cruciblecraft:electric_wire/10x_lead_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28109",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/11x_gold_wire",
-      "runtime_id": "cruciblecraft:electric_wire/11x_gold_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28710",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/11x_lead_wire",
-      "runtime_id": "cruciblecraft:electric_wire/11x_lead_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28110",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/12x_blue_alloy_wire",
-      "runtime_id": "cruciblecraft:electric_wire/12x_blue_alloy_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28811",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/12x_electrotine_alloy_wire",
-      "runtime_id": "cruciblecraft:electric_wire/12x_electrotine_alloy_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28861",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/12x_hsla_steel_wire",
-      "runtime_id": "cruciblecraft:electric_wire/12x_hsla_steel_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28261",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/12x_naquadah_wire",
-      "runtime_id": "cruciblecraft:electric_wire/12x_naquadah_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29511",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/12x_yttrium_barium_cuprate_cable",
-      "runtime_id": "cruciblecraft:electric_wire/12x_yttrium_barium_cuprate_cable",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29677",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/13x_gold_wire",
-      "runtime_id": "cruciblecraft:electric_wire/13x_gold_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28712",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/13x_lead_wire",
-      "runtime_id": "cruciblecraft:electric_wire/13x_lead_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28112",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/14x_gold_wire",
-      "runtime_id": "cruciblecraft:electric_wire/14x_gold_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28713",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/14x_lead_wire",
-      "runtime_id": "cruciblecraft:electric_wire/14x_lead_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28113",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/15x_gold_wire",
-      "runtime_id": "cruciblecraft:electric_wire/15x_gold_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28714",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/15x_lead_wire",
-      "runtime_id": "cruciblecraft:electric_wire/15x_lead_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28114",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/16x_blue_alloy_wire",
-      "runtime_id": "cruciblecraft:electric_wire/16x_blue_alloy_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28815",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/16x_electrotine_alloy_wire",
-      "runtime_id": "cruciblecraft:electric_wire/16x_electrotine_alloy_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28865",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/16x_hsla_steel_wire",
-      "runtime_id": "cruciblecraft:electric_wire/16x_hsla_steel_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28265",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/16x_naquadah_wire",
-      "runtime_id": "cruciblecraft:electric_wire/16x_naquadah_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29515",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/1x_yttrium_barium_cuprate_cable",
-      "runtime_id": "cruciblecraft:electric_wire/1x_yttrium_barium_cuprate_cable",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29666",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/2x_blue_alloy_wire",
-      "runtime_id": "cruciblecraft:electric_wire/2x_blue_alloy_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28801",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/2x_electrotine_alloy_wire",
-      "runtime_id": "cruciblecraft:electric_wire/2x_electrotine_alloy_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28851",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/2x_hsla_steel_wire",
-      "runtime_id": "cruciblecraft:electric_wire/2x_hsla_steel_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28251",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/2x_naquadah_wire",
-      "runtime_id": "cruciblecraft:electric_wire/2x_naquadah_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29501",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/2x_yttrium_barium_cuprate_cable",
-      "runtime_id": "cruciblecraft:electric_wire/2x_yttrium_barium_cuprate_cable",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29667",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/3x_gold_wire",
-      "runtime_id": "cruciblecraft:electric_wire/3x_gold_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28702",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/3x_lead_wire",
-      "runtime_id": "cruciblecraft:electric_wire/3x_lead_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28102",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/4x_blue_alloy_wire",
-      "runtime_id": "cruciblecraft:electric_wire/4x_blue_alloy_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28803",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/4x_electrotine_alloy_wire",
-      "runtime_id": "cruciblecraft:electric_wire/4x_electrotine_alloy_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28853",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/4x_hsla_steel_wire",
-      "runtime_id": "cruciblecraft:electric_wire/4x_hsla_steel_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28253",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/4x_naquadah_wire",
-      "runtime_id": "cruciblecraft:electric_wire/4x_naquadah_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29503",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/4x_yttrium_barium_cuprate_cable",
-      "runtime_id": "cruciblecraft:electric_wire/4x_yttrium_barium_cuprate_cable",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29669",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/5x_gold_wire",
-      "runtime_id": "cruciblecraft:electric_wire/5x_gold_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28704",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/5x_lead_wire",
-      "runtime_id": "cruciblecraft:electric_wire/5x_lead_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28104",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/6x_gold_wire",
-      "runtime_id": "cruciblecraft:electric_wire/6x_gold_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28705",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/6x_lead_wire",
-      "runtime_id": "cruciblecraft:electric_wire/6x_lead_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28105",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/7x_gold_wire",
-      "runtime_id": "cruciblecraft:electric_wire/7x_gold_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28706",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/7x_lead_wire",
-      "runtime_id": "cruciblecraft:electric_wire/7x_lead_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28106",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/8x_blue_alloy_wire",
-      "runtime_id": "cruciblecraft:electric_wire/8x_blue_alloy_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28807",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/8x_electrotine_alloy_wire",
-      "runtime_id": "cruciblecraft:electric_wire/8x_electrotine_alloy_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28857",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/8x_hsla_steel_wire",
-      "runtime_id": "cruciblecraft:electric_wire/8x_hsla_steel_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28257",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/8x_naquadah_wire",
-      "runtime_id": "cruciblecraft:electric_wire/8x_naquadah_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29507",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/8x_yttrium_barium_cuprate_cable",
-      "runtime_id": "cruciblecraft:electric_wire/8x_yttrium_barium_cuprate_cable",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29673",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/9x_gold_wire",
-      "runtime_id": "cruciblecraft:electric_wire/9x_gold_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28708",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "electric_wire/9x_lead_wire",
-      "runtime_id": "cruciblecraft:electric_wire/9x_lead_wire",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28108",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
       "registry_path": "electricloom",
       "runtime_id": "cruciblecraft:electricloom",
       "semantic_key": "machine:electricloom",
@@ -11203,15 +11142,45 @@
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "electrotine_alloy/dodecuple_wire",
+      "runtime_id": "cruciblecraft:electrotine_alloy/dodecuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28861",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "electrotine_alloy/double_wire",
+      "runtime_id": "cruciblecraft:electrotine_alloy/double_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28851",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "electrotine_alloy/hexadecuple_wire",
+      "runtime_id": "cruciblecraft:electrotine_alloy/hexadecuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28865",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
       "registry_path": "electrotine_alloy/nonuple_wire",
       "runtime_id": "cruciblecraft:electrotine_alloy/nonuple_wire",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28858",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "electrotine_alloy/octuple_wire",
+      "runtime_id": "cruciblecraft:electrotine_alloy/octuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28857",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
       "registry_path": "electrotine_alloy/pentadecuple_wire",
       "runtime_id": "cruciblecraft:electrotine_alloy/pentadecuple_wire",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28864",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "electrotine_alloy/quadruple_wire",
+      "runtime_id": "cruciblecraft:electrotine_alloy/quadruple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28853",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
@@ -11575,12 +11544,6 @@
       "source": "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java"
     },
     {
-      "registry_path": "extruder_shape_huge_item_pipe",
-      "runtime_id": "cruciblecraft:extruder_shape_huge_item_pipe",
-      "semantic_key": "multiitem_extruder:huge_item_pipe",
-      "source": "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java"
-    },
-    {
       "registry_path": "extruder_shape_huge_pipe",
       "runtime_id": "cruciblecraft:extruder_shape_huge_pipe",
       "semantic_key": "multiitem_extruder:huge_pipe",
@@ -11593,12 +11556,6 @@
       "source": "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java"
     },
     {
-      "registry_path": "extruder_shape_large_item_pipe",
-      "runtime_id": "cruciblecraft:extruder_shape_large_item_pipe",
-      "semantic_key": "multiitem_extruder:large_item_pipe",
-      "source": "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java"
-    },
-    {
       "registry_path": "extruder_shape_large_pipe",
       "runtime_id": "cruciblecraft:extruder_shape_large_pipe",
       "semantic_key": "multiitem_extruder:large_pipe",
@@ -11608,12 +11565,6 @@
       "registry_path": "extruder_shape_long_rod",
       "runtime_id": "cruciblecraft:extruder_shape_long_rod",
       "semantic_key": "multiitem_extruder:long_rod",
-      "source": "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java"
-    },
-    {
-      "registry_path": "extruder_shape_normal_item_pipe",
-      "runtime_id": "cruciblecraft:extruder_shape_normal_item_pipe",
-      "semantic_key": "multiitem_extruder:normal_item_pipe",
       "source": "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java"
     },
     {
@@ -11644,12 +11595,6 @@
       "registry_path": "extruder_shape_rod",
       "runtime_id": "cruciblecraft:extruder_shape_rod",
       "semantic_key": "multiitem_extruder:rod",
-      "source": "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java"
-    },
-    {
-      "registry_path": "extruder_shape_rotor",
-      "runtime_id": "cruciblecraft:extruder_shape_rotor",
-      "semantic_key": "multiitem_extruder:rotor",
       "source": "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java"
     },
     {
@@ -11759,6 +11704,12 @@
       "runtime_id": "cruciblecraft:filter",
       "semantic_key": "cover:filter",
       "source": "src/main/resources/data/cruciblecraft/cover_definitions.json"
+    },
+    {
+      "registry_path": "filter_fluid",
+      "runtime_id": "cruciblecraft:filter_fluid",
+      "semantic_key": "cover:filter_fluid",
+      "source": "src/main/resources/data/cruciblecraft/machine_cover_definitions.json"
     },
     {
       "registry_path": "firebrick",
@@ -11885,30 +11836,6 @@
       "runtime_id": "cruciblecraft:fluid_deposit_extractor",
       "semantic_key": "block:fluid_deposit_extractor",
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
-    },
-    {
-      "registry_path": "fluid_pipe_tile/nonuple_galvanized_steel_fluid_pipe",
-      "runtime_id": "cruciblecraft:fluid_pipe_tile/nonuple_galvanized_steel_fluid_pipe",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26266",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "fluid_pipe_tile/nonuple_steel_fluid_pipe",
-      "runtime_id": "cruciblecraft:fluid_pipe_tile/nonuple_steel_fluid_pipe",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26146",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "fluid_pipe_tile/quadruple_galvanized_steel_fluid_pipe",
-      "runtime_id": "cruciblecraft:fluid_pipe_tile/quadruple_galvanized_steel_fluid_pipe",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26265",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "fluid_pipe_tile/quadruple_steel_fluid_pipe",
-      "runtime_id": "cruciblecraft:fluid_pipe_tile/quadruple_steel_fluid_pipe",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26145",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "food/aero_comb",
@@ -15453,8 +15380,8 @@
     {
       "registry_path": "gold/decuple_wire",
       "runtime_id": "cruciblecraft:gold/decuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28709",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28709",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "gold/dodecuple_cable",
@@ -15519,8 +15446,8 @@
     {
       "registry_path": "gold/nonuple_wire",
       "runtime_id": "cruciblecraft:gold/nonuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28708",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28708",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "gold/octuple_cable",
@@ -15537,8 +15464,8 @@
     {
       "registry_path": "gold/pentadecuple_wire",
       "runtime_id": "cruciblecraft:gold/pentadecuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28714",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28714",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "gold/quadruple_cable",
@@ -15561,8 +15488,8 @@
     {
       "registry_path": "gold/quintuple_wire",
       "runtime_id": "cruciblecraft:gold/quintuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28704",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28704",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "gold/reinforced_wooden_chest",
@@ -15579,14 +15506,14 @@
     {
       "registry_path": "gold/septuple_wire",
       "runtime_id": "cruciblecraft:gold/septuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28706",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28706",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "gold/sextuple_wire",
       "runtime_id": "cruciblecraft:gold/sextuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28705",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28705",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "gold/small_fluid_pipe",
@@ -15597,8 +15524,8 @@
     {
       "registry_path": "gold/tetradecuple_wire",
       "runtime_id": "cruciblecraft:gold/tetradecuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28713",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28713",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "gold/tiny_fluid_pipe",
@@ -15609,20 +15536,20 @@
     {
       "registry_path": "gold/tredecuple_wire",
       "runtime_id": "cruciblecraft:gold/tredecuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28712",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28712",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "gold/triple_wire",
       "runtime_id": "cruciblecraft:gold/triple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28702",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28702",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "gold/undecuple_wire",
       "runtime_id": "cruciblecraft:gold/undecuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28710",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28710",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "gold/wire",
@@ -15647,6 +15574,30 @@
       "runtime_id": "cruciblecraft:gold_queue_hopper",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:8202",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "granite/bricks",
+      "runtime_id": "cruciblecraft:granite/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.granite:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "granite/cobble",
+      "runtime_id": "cruciblecraft:granite/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.granite:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "granite/mossy_bricks",
+      "runtime_id": "cruciblecraft:granite/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.granite:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "granite/mossy_cobble",
+      "runtime_id": "cruciblecraft:granite/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.granite:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
       "registry_path": "granite/redstoned_bricks",
@@ -15733,6 +15684,30 @@
       "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
+      "registry_path": "granite_black/bricks",
+      "runtime_id": "cruciblecraft:granite_black/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.granite.black:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "granite_black/cobble",
+      "runtime_id": "cruciblecraft:granite_black/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.granite.black:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "granite_black/mossy_bricks",
+      "runtime_id": "cruciblecraft:granite_black/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.granite.black:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "granite_black/mossy_cobble",
+      "runtime_id": "cruciblecraft:granite_black/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.granite.black:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
       "registry_path": "granite_black/redstoned_bricks",
       "runtime_id": "cruciblecraft:granite_black/redstoned_bricks",
       "semantic_key": "stone:gregtech:gt.stone.granite.black:9",
@@ -15814,6 +15789,30 @@
       "registry_path": "granite_black/reinforced_bricks/slab_west",
       "runtime_id": "cruciblecraft:granite_black/reinforced_bricks/slab_west",
       "semantic_key": "stone:gregtech:gt.stone.granite.black.slab.4:8",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "granite_red/bricks",
+      "runtime_id": "cruciblecraft:granite_red/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.granite.red:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "granite_red/cobble",
+      "runtime_id": "cruciblecraft:granite_red/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.granite.red:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "granite_red/mossy_bricks",
+      "runtime_id": "cruciblecraft:granite_red/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.granite.red:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "granite_red/mossy_cobble",
+      "runtime_id": "cruciblecraft:granite_red/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.granite.red:2",
       "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
@@ -15967,6 +15966,30 @@
       "source": "src/main/resources/data/cruciblecraft/bath_identity_catalog.json"
     },
     {
+      "registry_path": "greenschist/bricks",
+      "runtime_id": "cruciblecraft:greenschist/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.greenschist:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "greenschist/cobble",
+      "runtime_id": "cruciblecraft:greenschist/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.greenschist:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "greenschist/mossy_bricks",
+      "runtime_id": "cruciblecraft:greenschist/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.greenschist:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "greenschist/mossy_cobble",
+      "runtime_id": "cruciblecraft:greenschist/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.greenschist:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
       "registry_path": "greenschist/redstoned_bricks",
       "runtime_id": "cruciblecraft:greenschist/redstoned_bricks",
       "semantic_key": "stone:gregtech:gt.stone.greenschist:9",
@@ -16105,6 +16128,12 @@
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
     },
     {
+      "registry_path": "gt_stick",
+      "runtime_id": "cruciblecraft:gt_stick",
+      "semantic_key": "block:gt_stick",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
       "registry_path": "gt_surface_rock",
       "runtime_id": "cruciblecraft:gt_surface_rock",
       "semantic_key": "block:gt_surface_rock",
@@ -16231,36 +16260,6 @@
       "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
     },
     {
-      "registry_path": "heavy_water/plant_gt_berry",
-      "runtime_id": "cruciblecraft:heavy_water/plant_gt_berry",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBerry:9812",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "heavy_water/plant_gt_blossom",
-      "runtime_id": "cruciblecraft:heavy_water/plant_gt_blossom",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBlossom:9812",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "heavy_water/plant_gt_fiber",
-      "runtime_id": "cruciblecraft:heavy_water/plant_gt_fiber",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtFiber:9812",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "heavy_water/plant_gt_twig",
-      "runtime_id": "cruciblecraft:heavy_water/plant_gt_twig",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtTwig:9812",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "heavy_water/plant_gt_wart",
-      "runtime_id": "cruciblecraft:heavy_water/plant_gt_wart",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtWart:9812",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
       "registry_path": "honey/ice_cream_bee_the_gelato",
       "runtime_id": "cruciblecraft:honey/ice_cream_bee_the_gelato",
       "semantic_key": "semantic:gregtech:gt.multiitem.food:13030",
@@ -16321,9 +16320,27 @@
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "hslasteel/dodecuple_wire",
+      "runtime_id": "cruciblecraft:hslasteel/dodecuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28261",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "hslasteel/double_wire",
+      "runtime_id": "cruciblecraft:hslasteel/double_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28251",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
       "registry_path": "hslasteel/fluid_pipe",
       "runtime_id": "cruciblecraft:hslasteel/fluid_pipe",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:26362",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "hslasteel/hexadecuple_wire",
+      "runtime_id": "cruciblecraft:hslasteel/hexadecuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28265",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
@@ -16369,6 +16386,12 @@
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "hslasteel/octuple_wire",
+      "runtime_id": "cruciblecraft:hslasteel/octuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28257",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
       "registry_path": "hslasteel/pentadecuple_wire",
       "runtime_id": "cruciblecraft:hslasteel/pentadecuple_wire",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28264",
@@ -16378,6 +16401,12 @@
       "registry_path": "hslasteel/quadruple_fluid_pipe",
       "runtime_id": "cruciblecraft:hslasteel/quadruple_fluid_pipe",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:26365",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "hslasteel/quadruple_wire",
+      "runtime_id": "cruciblecraft:hslasteel/quadruple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28253",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
@@ -16475,6 +16504,12 @@
       "runtime_id": "cruciblecraft:ice/cream_basic_milk_gelato",
       "semantic_key": "semantic:gregtech:gt.multiitem.food:13000",
       "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
+    },
+    {
+      "registry_path": "implosion_compressor",
+      "runtime_id": "cruciblecraft:implosion_compressor",
+      "semantic_key": "block:implosion_compressor",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
     },
     {
       "registry_path": "injector",
@@ -16661,6 +16696,12 @@
       "runtime_id": "cruciblecraft:invar_roaster",
       "semantic_key": "machine:invar_roaster",
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
+      "registry_path": "invar_small_gas_turbine",
+      "runtime_id": "cruciblecraft:invar_small_gas_turbine",
+      "semantic_key": "converter:invar_small_gas_turbine",
+      "source": "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
     },
     {
       "registry_path": "invar_smelter",
@@ -16877,6 +16918,12 @@
       "runtime_id": "cruciblecraft:iridium_queue_hopper",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:8215",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "iridium_small_gas_turbine",
+      "runtime_id": "cruciblecraft:iridium_small_gas_turbine",
+      "semantic_key": "converter:iridium_small_gas_turbine",
+      "source": "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
     },
     {
       "registry_path": "iron/key",
@@ -17125,6 +17172,30 @@
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "kimberlite/bricks",
+      "runtime_id": "cruciblecraft:kimberlite/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.kimberlite:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "kimberlite/cobble",
+      "runtime_id": "cruciblecraft:kimberlite/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.kimberlite:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "kimberlite/mossy_bricks",
+      "runtime_id": "cruciblecraft:kimberlite/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.kimberlite:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "kimberlite/mossy_cobble",
+      "runtime_id": "cruciblecraft:kimberlite/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.kimberlite:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
       "registry_path": "kimberlite/redstoned_bricks",
       "runtime_id": "cruciblecraft:kimberlite/redstoned_bricks",
       "semantic_key": "stone:gregtech:gt.stone.kimberlite:9",
@@ -17239,6 +17310,30 @@
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "komatiite/bricks",
+      "runtime_id": "cruciblecraft:komatiite/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.komatiite:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "komatiite/cobble",
+      "runtime_id": "cruciblecraft:komatiite/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.komatiite:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "komatiite/mossy_bricks",
+      "runtime_id": "cruciblecraft:komatiite/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.komatiite:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "komatiite/mossy_cobble",
+      "runtime_id": "cruciblecraft:komatiite/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.komatiite:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
       "registry_path": "komatiite/redstoned_bricks",
       "runtime_id": "cruciblecraft:komatiite/redstoned_bricks",
       "semantic_key": "stone:gregtech:gt.stone.komatiite:9",
@@ -17329,6 +17424,18 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "large_autoclave",
+      "runtime_id": "cruciblecraft:large_autoclave",
+      "semantic_key": "block:large_autoclave",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "large_bath",
+      "runtime_id": "cruciblecraft:large_bath",
+      "semantic_key": "block:large_bath",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
       "registry_path": "large_boiler",
       "runtime_id": "cruciblecraft:large_boiler",
       "semantic_key": "block:large_boiler",
@@ -17341,9 +17448,33 @@
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
     },
     {
+      "registry_path": "large_coagulator",
+      "runtime_id": "cruciblecraft:large_coagulator",
+      "semantic_key": "block:large_coagulator",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
       "registry_path": "large_crucible",
       "runtime_id": "cruciblecraft:large_crucible",
       "semantic_key": "block:large_crucible",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "large_crusher",
+      "runtime_id": "cruciblecraft:large_crusher",
+      "semantic_key": "block:large_crusher",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "large_electrolyzer",
+      "runtime_id": "cruciblecraft:large_electrolyzer",
+      "semantic_key": "block:large_electrolyzer",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "large_fermenter",
+      "runtime_id": "cruciblecraft:large_fermenter",
+      "semantic_key": "block:large_fermenter",
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
     },
     {
@@ -17353,21 +17484,51 @@
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
     },
     {
+      "registry_path": "large_mixer",
+      "runtime_id": "cruciblecraft:large_mixer",
+      "semantic_key": "block:large_mixer",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "large_oven",
+      "runtime_id": "cruciblecraft:large_oven",
+      "semantic_key": "block:large_oven",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "large_shredder",
+      "runtime_id": "cruciblecraft:large_shredder",
+      "semantic_key": "block:large_shredder",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "large_sluice",
+      "runtime_id": "cruciblecraft:large_sluice",
+      "semantic_key": "block:large_sluice",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "large_squeezer",
+      "runtime_id": "cruciblecraft:large_squeezer",
+      "semantic_key": "block:large_squeezer",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
       "registry_path": "laser_engraver",
       "runtime_id": "cruciblecraft:laser_engraver",
       "semantic_key": "block:laser_engraver",
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
     },
     {
-      "registry_path": "laser_gas_empty",
-      "runtime_id": "cruciblecraft:laser_gas_empty",
-      "semantic_key": "technological_part:laser_gas_empty",
-      "source": "src/main/resources/data/cruciblecraft/technological_parts.json"
-    },
-    {
       "registry_path": "laser_gas_ar",
       "runtime_id": "cruciblecraft:laser_gas_ar",
       "semantic_key": "technological_part:laser_gas_ar",
+      "source": "src/main/resources/data/cruciblecraft/technological_parts.json"
+    },
+    {
+      "registry_path": "laser_gas_empty",
+      "runtime_id": "cruciblecraft:laser_gas_empty",
+      "semantic_key": "technological_part:laser_gas_empty",
       "source": "src/main/resources/data/cruciblecraft/technological_parts.json"
     },
     {
@@ -17389,40 +17550,16 @@
       "source": "src/main/resources/data/cruciblecraft/technological_parts.json"
     },
     {
+      "registry_path": "laser_welder",
+      "runtime_id": "cruciblecraft:laser_welder",
+      "semantic_key": "machine:laser_welder",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
       "registry_path": "lathe",
       "runtime_id": "cruciblecraft:lathe",
       "semantic_key": "machine:lathe",
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
-    },
-    {
-      "registry_path": "lava/plant_gt_berry",
-      "runtime_id": "cruciblecraft:lava/plant_gt_berry",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBerry:9810",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "lava/plant_gt_blossom",
-      "runtime_id": "cruciblecraft:lava/plant_gt_blossom",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBlossom:9810",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "lava/plant_gt_fiber",
-      "runtime_id": "cruciblecraft:lava/plant_gt_fiber",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtFiber:9810",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "lava/plant_gt_twig",
-      "runtime_id": "cruciblecraft:lava/plant_gt_twig",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtTwig:9810",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "lava/plant_gt_wart",
-      "runtime_id": "cruciblecraft:lava/plant_gt_wart",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtWart:9810",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
     },
     {
       "registry_path": "lead/anvil",
@@ -17445,8 +17582,8 @@
     {
       "registry_path": "lead/decuple_wire",
       "runtime_id": "cruciblecraft:lead/decuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28109",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28109",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "lead/dodecuple_cable",
@@ -17487,8 +17624,8 @@
     {
       "registry_path": "lead/nonuple_wire",
       "runtime_id": "cruciblecraft:lead/nonuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28108",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28108",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "lead/octuple_cable",
@@ -17505,8 +17642,8 @@
     {
       "registry_path": "lead/pentadecuple_wire",
       "runtime_id": "cruciblecraft:lead/pentadecuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28114",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28114",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "lead/quadruple_cable",
@@ -17523,8 +17660,8 @@
     {
       "registry_path": "lead/quintuple_wire",
       "runtime_id": "cruciblecraft:lead/quintuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28104",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28104",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "lead/reinforced_wooden_chest",
@@ -17541,38 +17678,38 @@
     {
       "registry_path": "lead/septuple_wire",
       "runtime_id": "cruciblecraft:lead/septuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28106",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28106",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "lead/sextuple_wire",
       "runtime_id": "cruciblecraft:lead/sextuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28105",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28105",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "lead/tetradecuple_wire",
       "runtime_id": "cruciblecraft:lead/tetradecuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28113",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28113",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "lead/tredecuple_wire",
       "runtime_id": "cruciblecraft:lead/tredecuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28112",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28112",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "lead/triple_wire",
       "runtime_id": "cruciblecraft:lead/triple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28102",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28102",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "lead/undecuple_wire",
       "runtime_id": "cruciblecraft:lead/undecuple_wire",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28110",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:28110",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "lead/wall",
@@ -19897,6 +20034,12 @@
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
     },
     {
+      "registry_path": "material_magnifying_glass",
+      "runtime_id": "cruciblecraft:material_magnifying_glass",
+      "semantic_key": "item:material_magnifying_glass",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
       "registry_path": "material_monkey_wrench",
       "runtime_id": "cruciblecraft:material_monkey_wrench",
       "semantic_key": "item:material_monkey_wrench",
@@ -20275,6 +20418,12 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "mixing_bowl",
+      "runtime_id": "cruciblecraft:mixing_bowl",
+      "semantic_key": "block:mixing_bowl",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
       "registry_path": "molybdenum/chest",
       "runtime_id": "cruciblecraft:molybdenum/chest",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:49",
@@ -20623,6 +20772,18 @@
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
     },
     {
+      "registry_path": "multiblock_fluid_out_port",
+      "runtime_id": "cruciblecraft:multiblock_fluid_out_port",
+      "semantic_key": "block:multiblock_fluid_out_port",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "multiblock_fluid_port",
+      "runtime_id": "cruciblecraft:multiblock_fluid_port",
+      "semantic_key": "block:multiblock_fluid_port",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
       "registry_path": "multiblock_item_fluid_port",
       "runtime_id": "cruciblecraft:multiblock_item_fluid_port",
       "semantic_key": "block:multiblock_item_fluid_port",
@@ -20641,15 +20802,45 @@
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "naquadah/dodecuple_wire",
+      "runtime_id": "cruciblecraft:naquadah/dodecuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29511",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "naquadah/double_wire",
+      "runtime_id": "cruciblecraft:naquadah/double_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29501",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "naquadah/hexadecuple_wire",
+      "runtime_id": "cruciblecraft:naquadah/hexadecuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29515",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
       "registry_path": "naquadah/nonuple_wire",
       "runtime_id": "cruciblecraft:naquadah/nonuple_wire",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29508",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "naquadah/octuple_wire",
+      "runtime_id": "cruciblecraft:naquadah/octuple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29507",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
       "registry_path": "naquadah/pentadecuple_wire",
       "runtime_id": "cruciblecraft:naquadah/pentadecuple_wire",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29514",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "naquadah/quadruple_wire",
+      "runtime_id": "cruciblecraft:naquadah/quadruple_wire",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29503",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
@@ -21587,18 +21778,6 @@
       "runtime_id": "cruciblecraft:niobium_titanium/quadruple_cable",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29569",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "nonuple/treated_wood_fluid_pipe",
-      "runtime_id": "cruciblecraft:nonuple/treated_wood_fluid_pipe",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26026",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "nonuple/wood_fluid_pipe",
-      "runtime_id": "cruciblecraft:nonuple/wood_fluid_pipe",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26006",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "oat/oats",
@@ -24055,6 +24234,30 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "prismarine_dark/bricks",
+      "runtime_id": "cruciblecraft:prismarine_dark/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.prismarine.dark:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "prismarine_dark/cobble",
+      "runtime_id": "cruciblecraft:prismarine_dark/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.prismarine.dark:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "prismarine_dark/mossy_bricks",
+      "runtime_id": "cruciblecraft:prismarine_dark/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.prismarine.dark:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "prismarine_dark/mossy_cobble",
+      "runtime_id": "cruciblecraft:prismarine_dark/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.prismarine.dark:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
       "registry_path": "prismarine_dark/redstoned_bricks",
       "runtime_id": "cruciblecraft:prismarine_dark/redstoned_bricks",
       "semantic_key": "stone:gregtech:gt.stone.prismarine.dark:9",
@@ -24136,6 +24339,30 @@
       "registry_path": "prismarine_dark/reinforced_bricks/slab_west",
       "runtime_id": "cruciblecraft:prismarine_dark/reinforced_bricks/slab_west",
       "semantic_key": "stone:gregtech:gt.stone.prismarine.dark.slab.4:8",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "prismarine_light/bricks",
+      "runtime_id": "cruciblecraft:prismarine_light/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.prismarine.light:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "prismarine_light/cobble",
+      "runtime_id": "cruciblecraft:prismarine_light/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.prismarine.light:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "prismarine_light/mossy_bricks",
+      "runtime_id": "cruciblecraft:prismarine_light/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.prismarine.light:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "prismarine_light/mossy_cobble",
+      "runtime_id": "cruciblecraft:prismarine_light/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.prismarine.light:2",
       "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
@@ -24223,114 +24450,6 @@
       "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
-      "registry_path": "processing/automatic_hammer_bronze",
-      "runtime_id": "cruciblecraft:processing/automatic_hammer_bronze",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:15001",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/automatic_hammer_steel",
-      "runtime_id": "cruciblecraft:processing/automatic_hammer_steel",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:15002",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/automatic_hammer_titanium",
-      "runtime_id": "cruciblecraft:processing/automatic_hammer_titanium",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:15003",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/automatic_hammer_tungstensteel",
-      "runtime_id": "cruciblecraft:processing/automatic_hammer_tungstensteel",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:15004",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/laser_engraver_t1",
-      "runtime_id": "cruciblecraft:processing/laser_engraver_t1",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20321",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/laser_engraver_t2",
-      "runtime_id": "cruciblecraft:processing/laser_engraver_t2",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20322",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/laser_engraver_t3",
-      "runtime_id": "cruciblecraft:processing/laser_engraver_t3",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20323",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/laser_engraver_t4",
-      "runtime_id": "cruciblecraft:processing/laser_engraver_t4",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20324",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/laser_engraver_t5",
-      "runtime_id": "cruciblecraft:processing/laser_engraver_t5",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20325",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/laser_welder_t1",
-      "runtime_id": "cruciblecraft:processing/laser_welder_t1",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20331",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/laser_welder_t2",
-      "runtime_id": "cruciblecraft:processing/laser_welder_t2",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20332",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/laser_welder_t3",
-      "runtime_id": "cruciblecraft:processing/laser_welder_t3",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20333",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/laser_welder_t4",
-      "runtime_id": "cruciblecraft:processing/laser_welder_t4",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20334",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/laser_welder_t5",
-      "runtime_id": "cruciblecraft:processing/laser_welder_t5",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20335",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/squeezer_bronze",
-      "runtime_id": "cruciblecraft:processing/squeezer_bronze",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20071",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/squeezer_steel",
-      "runtime_id": "cruciblecraft:processing/squeezer_steel",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20072",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/squeezer_titanium",
-      "runtime_id": "cruciblecraft:processing/squeezer_titanium",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20073",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "processing/squeezer_tungstensteel",
-      "runtime_id": "cruciblecraft:processing/squeezer_tungstensteel",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:20074",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
       "registry_path": "processor_crystal_diamond",
       "runtime_id": "cruciblecraft:processor_crystal_diamond",
       "semantic_key": "technological_part:processor_crystal_diamond",
@@ -24391,16 +24510,28 @@
       "source": "src/main/resources/data/cruciblecraft/bath_identity_catalog.json"
     },
     {
-      "registry_path": "quadruple/treated_wood_fluid_pipe",
-      "runtime_id": "cruciblecraft:quadruple/treated_wood_fluid_pipe",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26025",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
+      "registry_path": "quartzite/bricks",
+      "runtime_id": "cruciblecraft:quartzite/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.quartzite:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
-      "registry_path": "quadruple/wood_fluid_pipe",
-      "runtime_id": "cruciblecraft:quadruple/wood_fluid_pipe",
-      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26005",
-      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
+      "registry_path": "quartzite/cobble",
+      "runtime_id": "cruciblecraft:quartzite/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.quartzite:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "quartzite/mossy_bricks",
+      "runtime_id": "cruciblecraft:quartzite/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.quartzite:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "quartzite/mossy_cobble",
+      "runtime_id": "cruciblecraft:quartzite/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.quartzite:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
       "registry_path": "quartzite/redstoned_bricks",
@@ -24683,6 +24814,12 @@
       "runtime_id": "cruciblecraft:redstone_torch",
       "semantic_key": "cover:redstone_torch",
       "source": "src/main/resources/data/cruciblecraft/machine_cover_definitions.json"
+    },
+    {
+      "registry_path": "remote_activator",
+      "runtime_id": "cruciblecraft:remote_activator",
+      "semantic_key": "item:remote_activator",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
     },
     {
       "registry_path": "retriever_item",
@@ -25507,34 +25644,28 @@
       "source": "src/main/resources/data/cruciblecraft/machine_cover_definitions.json"
     },
     {
-      "registry_path": "semiheavy_water/plant_gt_berry",
-      "runtime_id": "cruciblecraft:semiheavy_water/plant_gt_berry",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBerry:9811",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
+      "registry_path": "shale/bricks",
+      "runtime_id": "cruciblecraft:shale/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.shale:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
-      "registry_path": "semiheavy_water/plant_gt_blossom",
-      "runtime_id": "cruciblecraft:semiheavy_water/plant_gt_blossom",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBlossom:9811",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
+      "registry_path": "shale/cobble",
+      "runtime_id": "cruciblecraft:shale/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.shale:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
-      "registry_path": "semiheavy_water/plant_gt_fiber",
-      "runtime_id": "cruciblecraft:semiheavy_water/plant_gt_fiber",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtFiber:9811",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
+      "registry_path": "shale/mossy_bricks",
+      "runtime_id": "cruciblecraft:shale/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.shale:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
-      "registry_path": "semiheavy_water/plant_gt_twig",
-      "runtime_id": "cruciblecraft:semiheavy_water/plant_gt_twig",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtTwig:9811",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "semiheavy_water/plant_gt_wart",
-      "runtime_id": "cruciblecraft:semiheavy_water/plant_gt_wart",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtWart:9811",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
+      "registry_path": "shale/mossy_cobble",
+      "runtime_id": "cruciblecraft:shale/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.shale:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
       "registry_path": "shale/redstoned_bricks",
@@ -25775,6 +25906,30 @@
       "runtime_id": "cruciblecraft:silver_queue_hopper",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:8203",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "slate/bricks",
+      "runtime_id": "cruciblecraft:slate/bricks",
+      "semantic_key": "stone:gregtech:gt.stone.slate:3",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "slate/cobble",
+      "runtime_id": "cruciblecraft:slate/cobble",
+      "semantic_key": "stone:gregtech:gt.stone.slate:1",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "slate/mossy_bricks",
+      "runtime_id": "cruciblecraft:slate/mossy_bricks",
+      "semantic_key": "stone:gregtech:gt.stone.slate:5",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+    },
+    {
+      "registry_path": "slate/mossy_cobble",
+      "runtime_id": "cruciblecraft:slate/mossy_cobble",
+      "semantic_key": "stone:gregtech:gt.stone.slate:2",
+      "source": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
     },
     {
       "registry_path": "slate/redstoned_bricks",
@@ -26065,6 +26220,12 @@
       "source": "src/main/resources/data/cruciblecraft/gt_block_object_catalog.json"
     },
     {
+      "registry_path": "squeezer",
+      "runtime_id": "cruciblecraft:squeezer",
+      "semantic_key": "machine:squeezer",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
       "registry_path": "stainless_steel/advanced_crafting_table",
       "runtime_id": "cruciblecraft:stainless_steel/advanced_crafting_table",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:5011",
@@ -26299,6 +26460,18 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "stainless_steel_laser_engraver",
+      "runtime_id": "cruciblecraft:stainless_steel_laser_engraver",
+      "semantic_key": "machine:stainless_steel_laser_engraver",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
+      "registry_path": "stainless_steel_laser_welder",
+      "runtime_id": "cruciblecraft:stainless_steel_laser_welder",
+      "semantic_key": "machine:stainless_steel_laser_welder",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
       "registry_path": "stainless_steel_lightning",
       "runtime_id": "cruciblecraft:stainless_steel_lightning",
       "semantic_key": "machine:stainless_steel_lightning",
@@ -26463,8 +26636,8 @@
     {
       "registry_path": "steel/nonuple_fluid_pipe",
       "runtime_id": "cruciblecraft:steel/nonuple_fluid_pipe",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:26146",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26146",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "steel/nonuple_wire",
@@ -26487,8 +26660,8 @@
     {
       "registry_path": "steel/quadruple_fluid_pipe",
       "runtime_id": "cruciblecraft:steel/quadruple_fluid_pipe",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:26145",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26145",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "steel/quadruple_wire",
@@ -26591,6 +26764,12 @@
       "runtime_id": "cruciblecraft:steel/wire",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:28950",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "steel_automatic_hammer",
+      "runtime_id": "cruciblecraft:steel_automatic_hammer",
+      "semantic_key": "item:steel_automatic_hammer",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
     },
     {
       "registry_path": "steel_boiler",
@@ -26715,14 +26894,14 @@
     {
       "registry_path": "steel_galvanized/nonuple_fluid_pipe",
       "runtime_id": "cruciblecraft:steel_galvanized/nonuple_fluid_pipe",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:26266",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26266",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "steel_galvanized/quadruple_fluid_pipe",
       "runtime_id": "cruciblecraft:steel_galvanized/quadruple_fluid_pipe",
-      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:26265",
-      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26265",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "steel_galvanized/reinforced_wooden_chest",
@@ -26893,6 +27072,18 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "steel_small_gas_turbine",
+      "runtime_id": "cruciblecraft:steel_small_gas_turbine",
+      "semantic_key": "converter:steel_small_gas_turbine",
+      "source": "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
+    },
+    {
+      "registry_path": "steel_squeezer",
+      "runtime_id": "cruciblecraft:steel_squeezer",
+      "semantic_key": "machine:steel_squeezer",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
       "registry_path": "steel_steam_engine",
       "runtime_id": "cruciblecraft:steel_steam_engine",
       "semantic_key": "converter:steel_steam_engine",
@@ -26951,6 +27142,12 @@
       "runtime_id": "cruciblecraft:storage_processor_unit",
       "semantic_key": "block:storage_processor_unit",
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java"
+    },
+    {
+      "registry_path": "strong_dynamite",
+      "runtime_id": "cruciblecraft:strong_dynamite",
+      "semantic_key": "item:strong_dynamite",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
     },
     {
       "registry_path": "subsurface_fluid_deposit",
@@ -27463,6 +27660,12 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "titanium_automatic_hammer",
+      "runtime_id": "cruciblecraft:titanium_automatic_hammer",
+      "semantic_key": "item:titanium_automatic_hammer",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
       "registry_path": "titanium_boiler",
       "runtime_id": "cruciblecraft:titanium_boiler",
       "semantic_key": "converter:titanium_boiler",
@@ -27667,6 +27870,18 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "titanium_laser_engraver",
+      "runtime_id": "cruciblecraft:titanium_laser_engraver",
+      "semantic_key": "machine:titanium_laser_engraver",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
+      "registry_path": "titanium_laser_welder",
+      "runtime_id": "cruciblecraft:titanium_laser_welder",
+      "semantic_key": "machine:titanium_laser_welder",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
       "registry_path": "titanium_lathe",
       "runtime_id": "cruciblecraft:titanium_lathe",
       "semantic_key": "machine:titanium_lathe",
@@ -27805,9 +28020,21 @@
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
+      "registry_path": "titanium_small_gas_turbine",
+      "runtime_id": "cruciblecraft:titanium_small_gas_turbine",
+      "semantic_key": "converter:titanium_small_gas_turbine",
+      "source": "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
+    },
+    {
       "registry_path": "titanium_smelter",
       "runtime_id": "cruciblecraft:titanium_smelter",
       "semantic_key": "machine:titanium_smelter",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
+      "registry_path": "titanium_squeezer",
+      "runtime_id": "cruciblecraft:titanium_squeezer",
+      "semantic_key": "machine:titanium_squeezer",
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
@@ -27953,36 +28180,6 @@
       "runtime_id": "cruciblecraft:trinitanium/steam_turbine_main_housing",
       "semantic_key": "smelter_mte:gregtech:gt.multitileentity:17212",
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
-    },
-    {
-      "registry_path": "tritiated_water/plant_gt_berry",
-      "runtime_id": "cruciblecraft:tritiated_water/plant_gt_berry",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBerry:9813",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "tritiated_water/plant_gt_blossom",
-      "runtime_id": "cruciblecraft:tritiated_water/plant_gt_blossom",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBlossom:9813",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "tritiated_water/plant_gt_fiber",
-      "runtime_id": "cruciblecraft:tritiated_water/plant_gt_fiber",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtFiber:9813",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "tritiated_water/plant_gt_twig",
-      "runtime_id": "cruciblecraft:tritiated_water/plant_gt_twig",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtTwig:9813",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "tritiated_water/plant_gt_wart",
-      "runtime_id": "cruciblecraft:tritiated_water/plant_gt_wart",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtWart:9813",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
     },
     {
       "registry_path": "tungsten/anvil",
@@ -28495,6 +28692,12 @@
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "tungstensteel_automatic_hammer",
+      "runtime_id": "cruciblecraft:tungstensteel_automatic_hammer",
+      "semantic_key": "item:tungstensteel_automatic_hammer",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
       "registry_path": "tungstensteel_boiler",
       "runtime_id": "cruciblecraft:tungstensteel_boiler",
       "semantic_key": "converter:tungstensteel_boiler",
@@ -28666,6 +28869,18 @@
       "registry_path": "tungstensteel_sluice",
       "runtime_id": "cruciblecraft:tungstensteel_sluice",
       "semantic_key": "machine:tungstensteel_sluice",
+      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
+    },
+    {
+      "registry_path": "tungstensteel_small_gas_turbine",
+      "runtime_id": "cruciblecraft:tungstensteel_small_gas_turbine",
+      "semantic_key": "converter:tungstensteel_small_gas_turbine",
+      "source": "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
+    },
+    {
+      "registry_path": "tungstensteel_squeezer",
+      "runtime_id": "cruciblecraft:tungstensteel_squeezer",
+      "semantic_key": "machine:tungstensteel_squeezer",
       "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
@@ -29047,76 +29262,10 @@
       "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
     },
     {
-      "registry_path": "water/plant_gt_berry",
-      "runtime_id": "cruciblecraft:water/plant_gt_berry",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBerry:9800",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "water/plant_gt_blossom",
-      "runtime_id": "cruciblecraft:water/plant_gt_blossom",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBlossom:9800",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "water/plant_gt_fiber",
-      "runtime_id": "cruciblecraft:water/plant_gt_fiber",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtFiber:9800",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "water/plant_gt_twig",
-      "runtime_id": "cruciblecraft:water/plant_gt_twig",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtTwig:9800",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "water/plant_gt_wart",
-      "runtime_id": "cruciblecraft:water/plant_gt_wart",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtWart:9800",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "water_distilled/plant_gt_berry",
-      "runtime_id": "cruciblecraft:water_distilled/plant_gt_berry",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBerry:9808",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "water_distilled/plant_gt_blossom",
-      "runtime_id": "cruciblecraft:water_distilled/plant_gt_blossom",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtBlossom:9808",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "water_distilled/plant_gt_fiber",
-      "runtime_id": "cruciblecraft:water_distilled/plant_gt_fiber",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtFiber:9808",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "water_distilled/plant_gt_twig",
-      "runtime_id": "cruciblecraft:water_distilled/plant_gt_twig",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtTwig:9808",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
-      "registry_path": "water_distilled/plant_gt_wart",
-      "runtime_id": "cruciblecraft:water_distilled/plant_gt_wart",
-      "semantic_key": "semantic:gregtech:gt.meta.plantGtWart:9808",
-      "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
-    },
-    {
       "registry_path": "water_geothermal_bucket",
       "runtime_id": "cruciblecraft:water_geothermal_bucket",
       "semantic_key": "item:water_geothermal_bucket",
       "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
-    },
-    {
-      "registry_path": "welder",
-      "runtime_id": "cruciblecraft:welder",
-      "semantic_key": "machine:welder",
-      "source": "src/main/resources/data/cruciblecraft/machine_tiers.json"
     },
     {
       "registry_path": "white/canvas",
@@ -29173,10 +29322,22 @@
       "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
+      "registry_path": "wood/nonuple_fluid_pipe",
+      "runtime_id": "cruciblecraft:wood/nonuple_fluid_pipe",
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26006",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
+    },
+    {
       "registry_path": "wood/pellet",
       "runtime_id": "cruciblecraft:wood/pellet",
       "semantic_key": "semantic:gregtech:gt.multiitem.randomtools:5999",
       "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
+    },
+    {
+      "registry_path": "wood/quadruple_fluid_pipe",
+      "runtime_id": "cruciblecraft:wood/quadruple_fluid_pipe",
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26005",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
       "registry_path": "wood/small_fluid_pipe",
@@ -29209,6 +29370,12 @@
       "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
     },
     {
+      "registry_path": "wood_pellet",
+      "runtime_id": "cruciblecraft:wood_pellet",
+      "semantic_key": "item:wood_pellet",
+      "source": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java"
+    },
+    {
       "registry_path": "wood_rotten/grass",
       "runtime_id": "cruciblecraft:wood_rotten/grass",
       "semantic_key": "semantic:gregtech:gt.multiitem.food:12003",
@@ -29230,6 +29397,18 @@
       "registry_path": "wood_treated/large_fluid_pipe",
       "runtime_id": "cruciblecraft:wood_treated/large_fluid_pipe",
       "semantic_key": "bath_mte:gregtech:gt.multitileentity:26023",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "wood_treated/nonuple_fluid_pipe",
+      "runtime_id": "cruciblecraft:wood_treated/nonuple_fluid_pipe",
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26026",
+      "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "wood_treated/quadruple_fluid_pipe",
+      "runtime_id": "cruciblecraft:wood_treated/quadruple_fluid_pipe",
+      "semantic_key": "bath_mte:gregtech:gt.multitileentity:26025",
       "source": "src/main/resources/data/cruciblecraft/bath_mte_identity_catalog.json"
     },
     {
@@ -29365,14 +29544,44 @@
       "source": "src/main/resources/data/cruciblecraft/bath_identity_catalog.json"
     },
     {
+      "registry_path": "yttrium_barium_cuprate/cable",
+      "runtime_id": "cruciblecraft:yttrium_barium_cuprate/cable",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29666",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "yttrium_barium_cuprate/dodecuple_cable",
+      "runtime_id": "cruciblecraft:yttrium_barium_cuprate/dodecuple_cable",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29677",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "yttrium_barium_cuprate/double_cable",
+      "runtime_id": "cruciblecraft:yttrium_barium_cuprate/double_cable",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29667",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "yttrium_barium_cuprate/octuple_cable",
+      "runtime_id": "cruciblecraft:yttrium_barium_cuprate/octuple_cable",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29673",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
+      "registry_path": "yttrium_barium_cuprate/quadruple_cable",
+      "runtime_id": "cruciblecraft:yttrium_barium_cuprate/quadruple_cable",
+      "semantic_key": "smelter_mte:gregtech:gt.multitileentity:29669",
+      "source": "src/main/resources/data/cruciblecraft/smelter_mte_identity_catalog.json"
+    },
+    {
       "registry_path": "zinc/wooden_bucket",
       "runtime_id": "cruciblecraft:zinc/wooden_bucket",
       "semantic_key": "semantic:gregtech:gt.multiitem.randomtools:2200",
       "source": "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
     }
   ],
-  "live_entry_count": 4889,
-  "record_count": 5135,
+  "live_entry_count": 4922,
+  "record_count": 5226,
   "schema_version": 2,
   "status": "PASS"
 }

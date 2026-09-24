@@ -1641,14 +1641,11 @@
           "status": "explicitly_blocked"
         },
         "P": {
-          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:wood_treated/plate",
           "gt": "plate(MT.WoodTreated)",
           "kind": "prefix_material",
-          "reason": "missing_form",
-          "recheck": "python tools/gt6_resolve.py; gated material forms must be on material_registration_gate.json. Circuits and other technological parts come from technological_parts.json, not runtime_registry_gate.json.",
           "resolve_status": "ok",
-          "status": "explicitly_blocked"
+          "status": "source_exact"
         },
         "T": {
           "cc": "cruciblecraft:iron/screw",

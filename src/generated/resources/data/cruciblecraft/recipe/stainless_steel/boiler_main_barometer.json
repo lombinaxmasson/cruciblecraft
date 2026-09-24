@@ -1,11 +1,10 @@
 {
-  "type": "cruciblecraft:shaped_catalyst",
   "catalysts": {
     "h": {
-      "tag": "cruciblecraft:crafting_tools/hammer"
+      "item": "cruciblecraft:smithing_hammer"
     },
     "w": {
-      "tag": "cruciblecraft:crafting_tools/wrench"
+      "item": "cruciblecraft:material_wrench"
     }
   },
   "ingredients": {
@@ -13,11 +12,7 @@
       "item": "cruciblecraft:multiblock/dense_stainless_steel_wall"
     },
     "P": {
-      "type": "neoforge:components",
-      "components": {
-        "cruciblecraft:prefix_material": "stainless_steel"
-      },
-      "items": "cruciblecraft:dense_plate"
+      "item": "cruciblecraft:stainless_steel/dense_plate"
     }
   },
   "pattern": [
@@ -28,5 +23,6 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:stainless_steel/boiler_main_barometer"
-  }
+  },
+  "type": "cruciblecraft:shaped_catalyst"
 }

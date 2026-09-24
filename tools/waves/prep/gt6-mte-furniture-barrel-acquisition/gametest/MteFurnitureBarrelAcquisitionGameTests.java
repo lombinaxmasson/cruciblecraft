@@ -19,9 +19,9 @@ public final class MteFurnitureBarrelAcquisitionGameTests {
     public static void sourceExactObtainIsRegistered(GameTestHelper helper) {
         helper.assertTrue(
                 helper.getLevel().getRecipeManager().byKey(
-                        ResourceLocation.parse("cruciblecraft:mte/furniture_barrel/furniture_wooden_item_barrel_cheap")
+                        ResourceLocation.parse("cruciblecraft:mte/furniture_barrel/silverwood_item_barrel")
                 ).isPresent(),
-                "missing isolated source-exact recipe mte/furniture_barrel/furniture_wooden_item_barrel_cheap");
+                "missing isolated source-exact recipe mte/furniture_barrel/silverwood_item_barrel");
         helper.succeed();
     }
 

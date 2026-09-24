@@ -1508,9 +1508,14 @@ def _pin_alias_repair_historical_rows(documents: dict[str, Any]) -> None:
     committed_path = WAVE / "identity_resolution_ledger.json"
     if not committed_path.is_file():
         return
+    committed_document = census.load_json(committed_path)
     committed = {
         int(row["meta"]): row
-        for row in census.load_json(committed_path).get("rows") or []
+        for row in committed_document.get("rows") or []
+    }
+    current_rows = {
+        int(row["meta"]): row
+        for row in documents["identity_resolution_ledger.json"].get("rows") or []
     }
     # Later overlays may gate extra graphene/superconductor gauges as live
     # material items. The closed baseline still records upgrade_live_item.
@@ -1518,6 +1523,16 @@ def _pin_alias_repair_historical_rows(documents: dict[str, Any]) -> None:
         meta
         for meta, row in committed.items()
         if row.get("disposition") == "upgrade_live_item"
+    }
+    # The closed baseline keeps its historical keep-distinct rows even when a
+    # later child exposes a canonical material item or recipe mapping. Those
+    # child overlays must not silently rewrite this audit's frozen rows.
+    repaired |= {
+        meta
+        for meta, row in committed.items()
+        if row.get("disposition") == "keep_distinct"
+        and current_rows.get(meta) is not None
+        and current_rows[meta] != row
     }
     if not repaired:
         return
@@ -1530,6 +1545,8 @@ def _pin_alias_repair_historical_rows(documents: dict[str, Any]) -> None:
         else:
             rows.append(row)
     ledger["rows"] = rows
+    if "recipe_mapped_count" in committed_document:
+        ledger["recipe_mapped_count"] = committed_document["recipe_mapped_count"]
     counts = Counter(row["disposition"] for row in rows if row.get("in_catalog_1817"))
     ledger["disposition_counts"] = dict(counts)
     documents["readiness.json"]["disposition_counts"] = dict(counts)

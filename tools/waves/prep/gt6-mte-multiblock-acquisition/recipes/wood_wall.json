@@ -3,23 +3,26 @@
     "h": {
       "item": "cruciblecraft:smithing_hammer"
     },
-    "o": {
-      "item": "cruciblecraft:material_bending_cylinder_small"
+    "s": {
+      "item": "cruciblecraft:material_saw"
     }
   },
   "ingredients": {
     "P": {
-      "item": "cruciblecraft:tungsten/curved_plate"
+      "item": "cruciblecraft:lead/plate"
+    },
+    "W": {
+      "item": "cruciblecraft:wood_treated/plate"
     }
   },
   "pattern": [
-    " h ",
-    "PoP",
-    " P "
+    "W W",
+    "sPh",
+    "W W"
   ],
   "result": {
     "count": 1,
-    "id": "cruciblecraft:tungsten/funnel"
+    "id": "cruciblecraft:wood/wall"
   },
   "type": "cruciblecraft:shaped_catalyst"
 }

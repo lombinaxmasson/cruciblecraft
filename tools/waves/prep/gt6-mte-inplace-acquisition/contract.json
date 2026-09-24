@@ -48,9 +48,9 @@
       "capability_slug": "content/gt6-mte-fluid-attachments-acquisition",
       "child_order": 3,
       "counts": {
-        "explicitly_blocked": 9,
-        "hosts": 33,
-        "source_exact": 24
+        "explicitly_blocked": 19,
+        "hosts": 47,
+        "source_exact": 28
       },
       "domain": "attachments",
       "runtime_slug": "content/gt6-mte-fluid-attachments-runtime",
@@ -108,9 +108,9 @@
       "capability_slug": "content/gt6-mte-furniture-barrel-acquisition",
       "child_order": 8,
       "counts": {
-        "explicitly_blocked": 8,
+        "explicitly_blocked": 2,
         "hosts": 12,
-        "source_exact": 4
+        "source_exact": 10
       },
       "domain": "furniture_barrel",
       "runtime_slug": "content/gt6-mte-furniture-barrel-runtime",
@@ -180,8 +180,8 @@
       "capability_slug": "content/gt6-mte-multiblock-acquisition",
       "child_order": 14,
       "counts": {
-        "explicitly_blocked": 16,
-        "hosts": 74,
+        "explicitly_blocked": 15,
+        "hosts": 73,
         "source_exact": 58
       },
       "domain": "multiblock",
@@ -210,7 +210,7 @@
   "rewrites_r0": false,
   "schema": "gt6-mte-inplace-acquisition-contract-v1",
   "separate_per_capability": true,
-  "shared_blocker_close": "Close obtain/mte-inplace-runtime only after every family D0 and fresh GameTest/EMI/reload/census. Closing does not change the 14 runtime capabilities off runtime_ready.",
+  "shared_blocker_close": "Close obtain/mte-inplace-runtime only after every family D0 and fresh GameTest/EMI/reload. Registry census is a release probe, not a closeout gate. Closing does not change the 14 runtime capabilities off runtime_ready.",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "unique_active_wave": null,
   "writes_machine_acquisition": false

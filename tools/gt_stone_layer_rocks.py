@@ -1914,7 +1914,7 @@ def check() -> list[str]:
     ).read_text(encoding="utf-8")
     if "EntityBlock" not in block:
         errors.append("gt_surface_rock must keep a BlockEntity for layer material")
-    if "noCollission" not in block:
+    if "getCollisionShape" not in block or "Shapes.empty()" not in block:
         errors.append("surface rock must keep GT6 empty collision")
     noise = NOISE_DEST.read_text(encoding="utf-8") if NOISE_DEST.is_file() else ""
     if "CELL_3D" not in noise or "Hash3D" not in noise:

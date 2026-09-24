@@ -1,8 +1,7 @@
 {
-  "type": "cruciblecraft:shaped_catalyst",
   "catalysts": {
     "w": {
-      "tag": "cruciblecraft:crafting_tools/wrench"
+      "item": "cruciblecraft:material_wrench"
     }
   },
   "ingredients": {
@@ -10,11 +9,7 @@
       "item": "cruciblecraft:iron/rod"
     },
     "P": {
-      "type": "neoforge:components",
-      "components": {
-        "cruciblecraft:prefix_material": "iron"
-      },
-      "items": "cruciblecraft:double_plate"
+      "item": "cruciblecraft:iron/double_plate"
     },
     "S": {
       "item": "cruciblecraft:iron/long_rod"
@@ -28,5 +23,6 @@
   "result": {
     "count": 1,
     "id": "cruciblecraft:misc_tool/grindstone"
-  }
+  },
+  "type": "cruciblecraft:shaped_catalyst"
 }

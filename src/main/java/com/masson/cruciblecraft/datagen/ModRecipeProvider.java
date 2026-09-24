@@ -4397,8 +4397,14 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private static void addMteInPlaceAcquisitionRecipes(RecipeOutput output) {
+        Set<String> storageRecipePaths = StorageVariantCatalog.sourceVisible().stream()
+                .map(variant -> "storage/" + variant.path())
+                .collect(java.util.stream.Collectors.toUnmodifiableSet());
         for (MteInPlaceAcquisitionCatalog.Recipe recipe
                 : MteInPlaceAcquisitionCatalog.recipes()) {
+            if (storageRecipePaths.contains(recipe.path())) {
+                continue;
+            }
             if (!BuiltInRegistries.ITEM.containsKey(recipe.resultId())) {
                 continue;
             }

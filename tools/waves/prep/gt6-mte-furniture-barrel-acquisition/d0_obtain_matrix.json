@@ -3,9 +3,9 @@
   "blocker_id": "obtain/mte-inplace-runtime",
   "capability_slug": "content/gt6-mte-furniture-barrel-acquisition",
   "counts": {
-    "explicitly_blocked": 7,
+    "explicitly_blocked": 2,
     "hosts": 12,
-    "source_exact": 5
+    "source_exact": 10
   },
   "domain": "furniture_barrel",
   "expected": 12,
@@ -90,8 +90,9 @@
       "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
       "kind": "BARREL",
       "live_recipe": {
-        "matches_source": false,
-        "present": false
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/storage/item_barrel_6984.json",
+        "present": true
       },
       "meta": 6984,
       "operands": {
@@ -103,14 +104,11 @@
           "status": "source_exact"
         },
         "P": {
-          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:silverwood/plate",
           "gt": "plate(MT.Silverwood)",
           "kind": "prefix_material",
-          "reason": "missing_form",
-          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
-          "resolve_status": "missing_form",
-          "status": "explicitly_blocked"
+          "resolve_status": "ok",
+          "status": "source_exact"
         },
         "S": {
           "cc": "cruciblecraft:manasteel/long_rod",
@@ -126,11 +124,11 @@
         "PSP"
       ],
       "recipe_kind": "shaped",
-      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "replacement": null,
       "runtime_id": "cruciblecraft:item_barrel_6984",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "silverwood/item_barrel",
-      "status": "explicitly_blocked"
+      "status": "source_exact"
     },
     {
       "catalysts": {
@@ -151,8 +149,9 @@
       "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
       "kind": "BARREL",
       "live_recipe": {
-        "matches_source": false,
-        "present": false
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/storage/item_barrel_6985.json",
+        "present": true
       },
       "meta": 6985,
       "operands": {
@@ -164,14 +163,11 @@
           "status": "source_exact"
         },
         "P": {
-          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:greatwood/plate",
           "gt": "plate(MT.Greatwood)",
           "kind": "prefix_material",
-          "reason": "missing_form",
-          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
-          "resolve_status": "missing_form",
-          "status": "explicitly_blocked"
+          "resolve_status": "ok",
+          "status": "source_exact"
         },
         "S": {
           "cc": "cruciblecraft:iron/long_rod",
@@ -187,11 +183,11 @@
         "PSP"
       ],
       "recipe_kind": "shaped",
-      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "replacement": null,
       "runtime_id": "cruciblecraft:item_barrel_6985",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "greatwood/item_barrel",
-      "status": "explicitly_blocked"
+      "status": "source_exact"
     },
     {
       "catalysts": {
@@ -212,8 +208,9 @@
       "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
       "kind": "BARREL",
       "live_recipe": {
-        "matches_source": false,
-        "present": false
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/storage/item_barrel_6986.json",
+        "present": true
       },
       "meta": 6986,
       "operands": {
@@ -225,14 +222,11 @@
           "status": "source_exact"
         },
         "P": {
-          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:shimmerwood/plate",
           "gt": "plate(MT.Shimmerwood)",
           "kind": "prefix_material",
-          "reason": "missing_form",
-          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
-          "resolve_status": "missing_form",
-          "status": "explicitly_blocked"
+          "resolve_status": "ok",
+          "status": "source_exact"
         },
         "S": {
           "cc": "cruciblecraft:manasteel/long_rod",
@@ -248,11 +242,11 @@
         "PSP"
       ],
       "recipe_kind": "shaped",
-      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "replacement": null,
       "runtime_id": "cruciblecraft:item_barrel_6986",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "shimmerwood/item_barrel",
-      "status": "explicitly_blocked"
+      "status": "source_exact"
     },
     {
       "catalysts": {
@@ -273,8 +267,9 @@
       "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
       "kind": "BARREL",
       "live_recipe": {
-        "matches_source": false,
-        "present": false
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/storage/item_barrel_6987.json",
+        "present": true
       },
       "meta": 6987,
       "operands": {
@@ -286,14 +281,11 @@
           "status": "source_exact"
         },
         "P": {
-          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:dreamwood/plate",
           "gt": "plate(MT.Dreamwood)",
           "kind": "prefix_material",
-          "reason": "missing_form",
-          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
-          "resolve_status": "missing_form",
-          "status": "explicitly_blocked"
+          "resolve_status": "ok",
+          "status": "source_exact"
         },
         "S": {
           "cc": "cruciblecraft:manasteel/long_rod",
@@ -309,11 +301,11 @@
         "PSP"
       ],
       "recipe_kind": "shaped",
-      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "replacement": null,
       "runtime_id": "cruciblecraft:item_barrel_6987",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "dreamwood/item_barrel",
-      "status": "explicitly_blocked"
+      "status": "source_exact"
     },
     {
       "catalysts": {
@@ -334,8 +326,9 @@
       "gt6_class": "MultiTileEntityMassStorageBarrel / Storage",
       "kind": "BARREL",
       "live_recipe": {
-        "matches_source": false,
-        "present": false
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/storage/item_barrel_6988.json",
+        "present": true
       },
       "meta": 6988,
       "operands": {
@@ -347,14 +340,11 @@
           "status": "source_exact"
         },
         "P": {
-          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:livingwood/plate",
           "gt": "plate(MT.Livingwood)",
           "kind": "prefix_material",
-          "reason": "missing_form",
-          "recheck": "Re-run python tools/gt6_resolve.py on this token after the missing form, IL, OD, cable, or self-ref identity exists. Do not substitute.",
-          "resolve_status": "missing_form",
-          "status": "explicitly_blocked"
+          "resolve_status": "ok",
+          "status": "source_exact"
         },
         "S": {
           "cc": "cruciblecraft:iron/long_rod",
@@ -370,11 +360,11 @@
         "PSP"
       ],
       "recipe_kind": "shaped",
-      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "replacement": null,
       "runtime_id": "cruciblecraft:item_barrel_6988",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "livingwood/item_barrel",
-      "status": "explicitly_blocked"
+      "status": "source_exact"
     },
     {
       "catalysts": {

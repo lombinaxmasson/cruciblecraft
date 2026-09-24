@@ -139,9 +139,9 @@ class Gt6MteInplaceRuntimeTest(unittest.TestCase):
         )
         self.assertEqual(
             [
-                {"from": [6, 1, 0], "to": [10, 2, 4]},
-                {"from": [5, 2, 0], "to": [11, 6, 4]},
-                {"from": [10, 2, 0], "to": [11, 6, 4]},
+                {"from": [6, 1, 12], "to": [10, 2, 16]},
+                {"from": [5, 2, 12], "to": [6, 6, 16]},
+                {"from": [10, 2, 12], "to": [11, 6, 16]},
             ],
             [
                 {

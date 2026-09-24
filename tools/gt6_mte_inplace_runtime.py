@@ -317,7 +317,7 @@ DOMAINS: dict[str, dict[str, Any]] = {
     "multiblock": {
         "slug": "content/gt6-mte-multiblock-runtime",
         "family": "multiblock",
-        "expected": 74,
+        "expected": 73,
         "tests": ["gt6CokeOvenMteIsNotNamedCokeOven"],
         "plan_stem": "GT6多方块设备runtime详细计划.md",
         "game_tests": "MteMultiblockRuntimeGameTests.java",

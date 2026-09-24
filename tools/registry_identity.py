@@ -121,10 +121,15 @@ EXPECTED_COVER_BEHAVIORS = [
     "cruciblecraft:controller_display",
     "cruciblecraft:controller_redstone",
     "cruciblecraft:conveyor",
+    "cruciblecraft:cover_asphalt",
     "cruciblecraft:cover_blank",
+    "cruciblecraft:cover_panel",
+    "cruciblecraft:cover_plate",
+    "cruciblecraft:cover_wood",
     "cruciblecraft:detector_running",
     "cruciblecraft:display_energy",
     "cruciblecraft:filter",
+    "cruciblecraft:filter_fluid",
     "cruciblecraft:logistics_display_cpu",
     "cruciblecraft:logistics_fluid_storage",
     "cruciblecraft:logistics_fluid_transfer",
@@ -489,7 +494,8 @@ def compile_manifest() -> dict[str, Any]:
         key = str(row["semantic_key"])
         ids = {str(item) for item in row.get("runtime_ids") or []}
         if row["disposition"] == "blocked":
-            blocked.update(ids)
+            if not row.get("runtime_registered"):
+                blocked.update(ids)
         if row["disposition"] in {"new_distinct", "bridge", "reuse_canonical"}:
             allowed_multi.setdefault(key, set()).update(ids)
             if row["disposition"] == "new_distinct":

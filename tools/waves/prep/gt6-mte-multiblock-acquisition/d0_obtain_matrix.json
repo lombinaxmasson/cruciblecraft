@@ -3,12 +3,12 @@
   "blocker_id": "obtain/mte-inplace-runtime",
   "capability_slug": "content/gt6-mte-multiblock-acquisition",
   "counts": {
-    "explicitly_blocked": 16,
-    "hosts": 74,
+    "explicitly_blocked": 15,
+    "hosts": 73,
     "source_exact": 58
   },
   "domain": "multiblock",
-  "expected": 74,
+  "expected": 73,
   "hosts": [
     {
       "catalysts": {
@@ -1379,45 +1379,6 @@
       "status": "source_exact"
     },
     {
-      "catalysts": {},
-      "count": 1,
-      "gt6_class": "MultiTileEntityDistillationTower / Multiblock Machines",
-      "kind": "MULTIBLOCK_PART",
-      "live_recipe": {
-        "matches_source": true,
-        "path": "src/generated/resources/data/cruciblecraft/recipe/multiblock/distillation_tower.json",
-        "present": true
-      },
-      "meta": 17101,
-      "operands": {
-        "M": {
-          "cc": "cruciblecraft:multiblock/distillation_tower_part",
-          "gt": "getItem(18102)",
-          "kind": "mte_item",
-          "resolve_status": "ok",
-          "status": "source_exact"
-        },
-        "P": {
-          "cc": "cruciblecraft:stainless_steel/nonuple_fluid_pipe",
-          "gt": "pipeNonuple(MT.StainlessSteel)",
-          "kind": "prefix_material",
-          "resolve_status": "ok",
-          "status": "source_exact"
-        }
-      },
-      "pattern": [
-        "PPP",
-        "PMP",
-        "PPP"
-      ],
-      "recipe_kind": "shaped",
-      "replacement": null,
-      "runtime_id": "cruciblecraft:multiblock/distillation_tower",
-      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
-      "stable_id": "multiblock/distillation_tower",
-      "status": "source_exact"
-    },
-    {
       "catalysts": {
         "h": {
           "cc": "cruciblecraft:smithing_hammer",
@@ -1697,7 +1658,7 @@
           "status": "source_exact"
         },
         "P": {
-          "cc": "cruciblecraft:trinitanium/block",
+          "cc": "cruciblecraft:trinitanium/storage_plate",
           "gt": "blockPlate(MT.Trinitanium)",
           "kind": "prefix_material",
           "resolve_status": "ok",
@@ -1736,7 +1697,7 @@
           "status": "source_exact"
         },
         "P": {
-          "cc": "cruciblecraft:graphene/block",
+          "cc": "cruciblecraft:graphene/storage_plate",
           "gt": "blockPlate(MT.Graphene)",
           "kind": "prefix_material",
           "resolve_status": "ok",
@@ -1775,7 +1736,7 @@
           "status": "source_exact"
         },
         "P": {
-          "cc": "cruciblecraft:vibramantium/block",
+          "cc": "cruciblecraft:vibramantium/storage_plate",
           "gt": "blockPlate(MT.Vibramantium)",
           "kind": "prefix_material",
           "resolve_status": "ok",
@@ -2369,8 +2330,9 @@
       "gt6_class": "MultiTileEntityMultiBlockPart / Multiblock Machines",
       "kind": "MULTIBLOCK_PART",
       "live_recipe": {
-        "matches_source": false,
-        "present": false
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/wood/wall.json",
+        "present": true
       },
       "meta": 18001,
       "operands": {
@@ -2382,14 +2344,11 @@
           "status": "source_exact"
         },
         "W": {
-          "blocker_id": "obtain/mte-inplace-runtime",
           "cc": "cruciblecraft:wood_treated/plate",
           "gt": "plate(MT.WoodTreated)",
           "kind": "prefix_material",
-          "reason": "missing_form",
-          "recheck": "python tools/gt6_resolve.py; gated material forms must be on material_registration_gate.json. Circuits and other technological parts come from technological_parts.json, not runtime_registry_gate.json.",
           "resolve_status": "ok",
-          "status": "explicitly_blocked"
+          "status": "source_exact"
         }
       },
       "pattern": [
@@ -2398,11 +2357,11 @@
         "W W"
       ],
       "recipe_kind": "shaped",
-      "replacement": "Keep blocked; add the real GT6 part or leave unimplemented.",
+      "replacement": null,
       "runtime_id": "cruciblecraft:wood/wall",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "wood/wall",
-      "status": "explicitly_blocked"
+      "status": "source_exact"
     },
     {
       "catalysts": {

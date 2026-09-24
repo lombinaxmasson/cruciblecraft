@@ -141,6 +141,9 @@ class MaterialFormDemandCensusTest(unittest.TestCase):
             in {"openable_flagged", "openable_dump_proven"}
         }
         old_openable -= census.load_startup_overlay_forms()
+        old_openable = {
+            key for key in old_openable if not key[1].startswith("plant_gt_")
+        }
         current_openable = {
             (row["material"], row["form"]) for row in self.document["openable"]
         }
