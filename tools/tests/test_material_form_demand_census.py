@@ -78,6 +78,17 @@ class MaterialFormDemandCensusTest(unittest.TestCase):
         )
         self.assertEqual(
             census.classify_pair(
+                "iron",
+                "small_casing",
+                gated=gated,
+                prefixes=prefixes,
+                materials=materials,
+                startup_overlays={("iron", "small_casing")},
+            ),
+            "already_overlay_live",
+        )
+        self.assertEqual(
+            census.classify_pair(
                 "lead",
                 "nope",
                 gated=gated,
@@ -104,10 +115,7 @@ class MaterialFormDemandCensusTest(unittest.TestCase):
             self.assertIn(row["generation"], {"flagged", "dump_proven"})
             self.assertTrue(row["sources"])
         self.assertIn("openable_rows_by_form", self.document)
-        self.assertGreater(
-            self.document["openable_rows_by_form"].get("plate", 0),
-            0,
-        )
+        self.assertGreater(sum(self.document["openable_rows_by_form"].values()), 0)
 
     def test_dump_demand_is_primary_and_retains_legacy_openable_pairs(self) -> None:
         counts = self.document["counts"]
@@ -132,6 +140,7 @@ class MaterialFormDemandCensusTest(unittest.TestCase):
             )
             in {"openable_flagged", "openable_dump_proven"}
         }
+        old_openable -= census.load_startup_overlay_forms()
         current_openable = {
             (row["material"], row["form"]) for row in self.document["openable"]
         }

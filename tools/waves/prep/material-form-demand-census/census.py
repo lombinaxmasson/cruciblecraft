@@ -44,6 +44,16 @@ MATERIAL_DIR = (
     ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "materials"
 )
 CATALOG = ROOT / "tools" / "blockers" / "catalog.json"
+CROP_LEDGER = (
+    ROOT
+    / "src"
+    / "addons"
+    / "crops"
+    / "resources"
+    / "data"
+    / "cruciblecraft_crops"
+    / "crop_ledger.json"
+)
 FORM_DEMAND = WAVE / "form_demand_pairs.json"
 COPPER_FAMILY_FORMS = ("curved_plate", "double_plate")
 COPPER_FAMILY_BLOCKER = "material-form/copper-family-curved-plate"
@@ -104,6 +114,17 @@ def load_gated_forms(gate: dict[str, Any]) -> dict[str, set[str]]:
     return gated
 
 
+def load_startup_overlay_forms() -> set[tuple[str, str]]:
+    if not CROP_LEDGER.is_file():
+        return set()
+    document = load_json(CROP_LEDGER)
+    return {
+        (str(row.get("material") or ""), str(row.get("prefix") or ""))
+        for row in document.get("named_plant_forms") or []
+        if row.get("material") and row.get("prefix")
+    }
+
+
 def classify_pair(
     material: str,
     form: str,
@@ -111,6 +132,7 @@ def classify_pair(
     gated: dict[str, set[str]],
     prefixes: dict[str, dict[str, Any]],
     materials: dict[str, set[str]],
+    startup_overlays: set[tuple[str, str]] | None = None,
 ) -> str:
     if form not in prefixes:
         return "no_prefix_json"
@@ -118,6 +140,8 @@ def classify_pair(
         return "no_material_json"
     if form in gated.get(material, set()):
         return "already_gated"
+    if (material, form) in (startup_overlays or set()):
+        return "already_overlay_live"
     flag = prefixes[form].get("generation_flag")
     if flag and flag in materials[material]:
         return "openable_flagged"
@@ -345,6 +369,7 @@ def build_document() -> dict[str, Any]:
     prefixes = load_prefixes()
     materials = load_material_flags()
     gated = load_gated_forms(gate)
+    startup_overlays = load_startup_overlay_forms()
     demand: dict[tuple[str, str], dict[str, Any]] = {}
     not_form: Counter[str] = Counter()
     catalog_not_prefix: list[str] = []
@@ -367,6 +392,7 @@ def build_document() -> dict[str, Any]:
             gated=gated,
             prefixes=prefixes,
             materials=materials,
+            startup_overlays=startup_overlays,
         )
         payload = {
             "form": row["form"],
@@ -388,8 +414,9 @@ def build_document() -> dict[str, Any]:
                 "flagged" if status == "openable_flagged" else "dump_proven"
             )
             openable.append(payload)
-        elif status == "already_gated":
-            if gt6_resolve.form_exists(row["material"], row["form"]):
+        elif status in {"already_gated", "already_overlay_live"}:
+            if status == "already_overlay_live" or gt6_resolve.form_exists(
+                    row["material"], row["form"]):
                 already_gated_live += 1
             else:
                 gated_unresolved.append(payload)
@@ -428,10 +455,10 @@ def build_document() -> dict[str, Any]:
         "not_form_by_reason": dict(sorted(not_form.items())),
         "note": (
             "Safety valve unchanged: recipe cards still must not stand in. "
-            "openable is ungated demand. gated_unresolved is already in "
-            "gate.materials but gt6_resolve.form_exists is false (hybrid "
-            "long-tail lookup). Do not re-gate those. Do not open "
-            "ungated_generated_flag_pairs."
+            "openable is ungated demand after committed startup overlays. "
+            "gated_unresolved is already in gate.materials but "
+            "gt6_resolve.form_exists is false (hybrid long-tail lookup). "
+            "Do not re-gate those. Do not open ungated_generated_flag_pairs."
         ),
         "openable": openable,
         "openable_by_form": {

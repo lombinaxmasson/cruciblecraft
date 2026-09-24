@@ -298,7 +298,7 @@ PREFIX_FORM_TEXTURE: dict[str, str] = {
     "tiny_plate_gem": "cruciblecraft:item/material/plate_gem",
     "round": "cruciblecraft:item/material/round",
     "small_casing": "cruciblecraft:item/material/small_casing",
-    "chem_tube": "minecraft:item/glass_bottle",
+    "chem_tube": "cruciblecraft:item/material/chem_tube",
     "scrap": "cruciblecraft:item/material/scrap",
     "chain": "cruciblecraft:item/material/chain",
     "billet": "cruciblecraft:item/material/billet",

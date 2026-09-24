@@ -62,6 +62,7 @@ public final class GeneratedMaterialPack {
     private static final Set<String> ITEM_OVERLAY_TEXTURES = Set.of(
             "arrow_gt_plastic",
             "arrow_gt_wood",
+            "chem_tube",
             "crushed_ore",
             "dust_div72",
             "fine_wire",

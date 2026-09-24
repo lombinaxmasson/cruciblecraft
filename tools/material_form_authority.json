@@ -24,7 +24,8 @@
     "converter_catalog_fluidbed_required_forms",
     "coke_oven_recipe_forms_required_forms",
     "fluid_attachment_required_forms",
-    "gt6_storage_dust_blocks_required_forms"
+    "gt6_storage_dust_blocks_required_forms",
+    "gt6_long_tail_forms_required_forms"
   ],
   "note": "Single overlay authority. Card builders write required_forms.json only; they do not write material_registration_gate.json.",
   "schema_version": 1,
@@ -594,6 +595,96 @@
       "path": "tools/waves/registry/gt6-storage-dust-blocks/required_forms.json",
       "required_factual_prereqs": {
         "storage_dust": [
+          "dust"
+        ]
+      }
+    },
+    {
+      "extra_factual_forms": [
+        "arrow_gt_plastic",
+        "arrow_gt_wood",
+        "billet",
+        "block",
+        "boule",
+        "chain",
+        "chem_tube",
+        "chunk",
+        "crushed_ore",
+        "curved_plate",
+        "dense_plate",
+        "double_ingot",
+        "double_plate",
+        "dust",
+        "dust_div72",
+        "fine_wire",
+        "foil",
+        "gear",
+        "gem_chipped",
+        "gem_exquisite",
+        "gem_flawed",
+        "gem_flawless",
+        "gem_legendary",
+        "ingot",
+        "machine_casing_dense",
+        "minecart_wheels",
+        "nugget",
+        "plant_gt_berry",
+        "plant_gt_blossom",
+        "plant_gt_fiber",
+        "plant_gt_twig",
+        "plant_gt_wart",
+        "plate",
+        "plate_gem",
+        "quadruple_ingot",
+        "quadruple_plate",
+        "quintuple_ingot",
+        "quintuple_plate",
+        "rail_gt",
+        "raw_ore",
+        "ring",
+        "rock",
+        "rotor",
+        "round",
+        "scrap",
+        "screw",
+        "small_casing",
+        "small_dust",
+        "small_gear",
+        "small_spring",
+        "spring",
+        "storage_plate",
+        "tiny_centrifuged_crushed_ore",
+        "tiny_dust",
+        "tiny_plate",
+        "tiny_plate_gem",
+        "tiny_washed_crushed_ore",
+        "tool_head_builderwand",
+        "tool_head_buzz_saw",
+        "tool_head_chainsaw",
+        "tool_head_construction_pickaxe",
+        "tool_head_drill",
+        "tool_head_file",
+        "tool_head_hammer",
+        "tool_head_pickaxe_gem",
+        "tool_head_screwdriver",
+        "tool_head_wrench",
+        "triple_ingot",
+        "triple_plate"
+      ],
+      "field": "required_forms",
+      "gate_section": "gt6_long_tail_forms_required_forms",
+      "id": "gt6_long_tail_forms_required_forms",
+      "java_runtime_visible": true,
+      "owner": "registry/gt6-long-tail-forms",
+      "path": "tools/waves/registry/gt6-long-tail-forms/required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "small_dust": [
+          "dust"
+        ],
+        "tiny_dust": [
           "dust"
         ]
       }

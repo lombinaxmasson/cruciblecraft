@@ -5,44 +5,44 @@
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "map_count": 21,
   "source_rows": 172327,
-  "traced_source_rows": 79138,
+  "traced_source_rows": 78889,
   "recipe_evidence_grades": {
     "source_rows": 172327,
     "classes": {
-      "source_exact": 79138,
-      "translated_exact": 95,
+      "source_exact": 78889,
+      "translated_exact": 343,
       "translated_io_only": 0,
       "translated_item_io": 7581,
-      "translatable_missing": 56474,
-      "missing_material_form": 18262,
+      "translatable_missing": 65924,
+      "missing_material_form": 7581,
       "missing_material": 0,
-      "missing_fluid": 8968,
+      "missing_fluid": 10200,
       "missing_object": 1807,
       "display_only": 2,
       "legacy_exclusion_pending": 0
     },
     "groups": {
-      "proven": 79233,
+      "proven": 79232,
       "partial_match": 7581,
-      "recipe_gap": 56474,
-      "identity_gap": 29037,
+      "recipe_gap": 65924,
+      "identity_gap": 19588,
       "display_only": 2,
       "legacy_exclusion_pending": 0
     },
     "excluded": {
-      "missing_fluid": 134,
+      "missing_fluid": 144,
       "missing_object": 2,
       "display_only": 2
     },
     "progress": {
       "source_rows": 172327,
-      "excluded_rows": 138,
-      "target_rows": 172189,
-      "proven_rows": 79233,
-      "identity_blocked_rows": 28901,
+      "excluded_rows": 148,
+      "target_rows": 172179,
+      "proven_rows": 79232,
+      "identity_blocked_rows": 19442,
       "undecided_rows": 0,
       "recipe_progress": 0.4602,
-      "identity_ready": 0.8322
+      "identity_ready": 0.8871
     },
     "machine_progress": {
       "maps": 21,
@@ -228,9 +228,8 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 5330,
-        "missing_material_form": 2400,
-        "missing_fluid": 16
+        "translatable_missing": 7714,
+        "missing_fluid": 32
       },
       "raw_row_excluded": {},
       "progress": {
@@ -238,10 +237,10 @@
         "excluded_rows": 0,
         "target_rows": 7746,
         "proven_rows": 0,
-        "identity_blocked_rows": 2416,
+        "identity_blocked_rows": 32,
         "undecided_rows": 0,
         "recipe_progress": 0.0,
-        "identity_ready": 0.6881
+        "identity_ready": 0.9959
       }
     },
     {
@@ -352,23 +351,22 @@
       "raw_row_classes": {
         "translated_exact": 2,
         "translated_item_io": 44,
-        "translatable_missing": 677,
-        "missing_material_form": 644,
-        "missing_fluid": 3586,
+        "translatable_missing": 771,
+        "missing_fluid": 4136,
         "missing_object": 1482
       },
       "raw_row_excluded": {
-        "missing_fluid": 65
+        "missing_fluid": 75
       },
       "progress": {
         "source_rows": 6435,
-        "excluded_rows": 65,
-        "target_rows": 6370,
+        "excluded_rows": 75,
+        "target_rows": 6360,
         "proven_rows": 2,
-        "identity_blocked_rows": 5647,
+        "identity_blocked_rows": 5543,
         "undecided_rows": 0,
         "recipe_progress": 0.0003,
-        "identity_ready": 0.1135
+        "identity_ready": 0.1285
       }
     },
     {
@@ -658,9 +656,8 @@
         "source_exact": 7198,
         "translated_exact": 30,
         "translated_item_io": 4556,
-        "translatable_missing": 47307,
-        "missing_material_form": 4502,
-        "missing_fluid": 565,
+        "translatable_missing": 51803,
+        "missing_fluid": 571,
         "missing_object": 87
       },
       "raw_row_excluded": {
@@ -671,10 +668,10 @@
         "excluded_rows": 6,
         "target_rows": 64239,
         "proven_rows": 7228,
-        "identity_blocked_rows": 5148,
+        "identity_blocked_rows": 652,
         "undecided_rows": 0,
         "recipe_progress": 0.1125,
-        "identity_ready": 0.9199
+        "identity_ready": 0.9899
       }
     },
     {
@@ -896,7 +893,7 @@
       "raw_row_classes": {
         "source_exact": 73,
         "translated_item_io": 34,
-        "missing_material_form": 8
+        "translatable_missing": 8
       },
       "raw_row_excluded": {},
       "progress": {
@@ -904,10 +901,10 @@
         "excluded_rows": 0,
         "target_rows": 115,
         "proven_rows": 73,
-        "identity_blocked_rows": 8,
+        "identity_blocked_rows": 0,
         "undecided_rows": 0,
         "recipe_progress": 0.6348,
-        "identity_ready": 0.9304
+        "identity_ready": 1.0
       }
     },
     {
@@ -941,10 +938,10 @@
           "path": "tools/capabilities/machines/large-bathing-vat/capability.json"
         }
       ],
-      "traced_source_rows": 49417,
+      "traced_source_rows": 49407,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "bath": 49417
+        "bath": 49407
       },
       "owned_cc_maps": [
         "bath"
@@ -983,12 +980,13 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 49417,
+        "source_exact": 49407,
         "display_only": 2,
+        "translated_exact": 9,
         "translated_item_io": 2918,
-        "translatable_missing": 145,
-        "missing_material_form": 3665,
-        "missing_fluid": 3707,
+        "translatable_missing": 163,
+        "missing_material_form": 3568,
+        "missing_fluid": 3787,
         "missing_object": 1
       },
       "raw_row_excluded": {
@@ -999,11 +997,11 @@
         "source_rows": 59855,
         "excluded_rows": 64,
         "target_rows": 59791,
-        "proven_rows": 49417,
-        "identity_blocked_rows": 7311,
+        "proven_rows": 49416,
+        "identity_blocked_rows": 7294,
         "undecided_rows": 0,
         "recipe_progress": 0.8265,
-        "identity_ready": 0.8777
+        "identity_ready": 0.878
       }
     },
     {
@@ -1054,8 +1052,7 @@
       },
       "raw_row_classes": {
         "source_exact": 1289,
-        "translatable_missing": 93,
-        "missing_material_form": 90
+        "translatable_missing": 183
       },
       "raw_row_excluded": {},
       "progress": {
@@ -1063,10 +1060,10 @@
         "excluded_rows": 0,
         "target_rows": 1472,
         "proven_rows": 1289,
-        "identity_blocked_rows": 90,
+        "identity_blocked_rows": 0,
         "undecided_rows": 0,
         "recipe_progress": 0.8757,
-        "identity_ready": 0.9389
+        "identity_ready": 1.0
       }
     },
     {
@@ -1165,8 +1162,8 @@
       "raw_row_classes": {
         "translated_exact": 2,
         "translated_item_io": 6,
-        "translatable_missing": 882,
-        "missing_material_form": 63,
+        "translatable_missing": 897,
+        "missing_material_form": 48,
         "missing_fluid": 4
       },
       "raw_row_excluded": {},
@@ -1175,10 +1172,10 @@
         "excluded_rows": 0,
         "target_rows": 957,
         "proven_rows": 2,
-        "identity_blocked_rows": 67,
+        "identity_blocked_rows": 52,
         "undecided_rows": 0,
         "recipe_progress": 0.0021,
-        "identity_ready": 0.93
+        "identity_ready": 0.9457
       }
     },
     {
@@ -1238,8 +1235,7 @@
       "raw_row_classes": {
         "source_exact": 178,
         "translated_item_io": 18,
-        "translatable_missing": 79,
-        "missing_material_form": 15
+        "translatable_missing": 94
       },
       "raw_row_excluded": {},
       "progress": {
@@ -1247,10 +1243,10 @@
         "excluded_rows": 0,
         "target_rows": 290,
         "proven_rows": 178,
-        "identity_blocked_rows": 15,
+        "identity_blocked_rows": 0,
         "undecided_rows": 0,
         "recipe_progress": 0.6138,
-        "identity_ready": 0.9483
+        "identity_ready": 1.0
       }
     },
     {
@@ -1275,10 +1271,10 @@
           "path": "tools/capabilities/machines/melter/capability.json"
         }
       ],
-      "traced_source_rows": 3601,
+      "traced_source_rows": 3547,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "melter": 3601
+        "melter": 3547
       },
       "owned_cc_maps": [
         "melter"
@@ -1321,11 +1317,11 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 3601,
-        "translated_exact": 9,
-        "translatable_missing": 168,
-        "missing_material_form": 2687,
-        "missing_fluid": 180,
+        "source_exact": 3547,
+        "translated_exact": 63,
+        "translatable_missing": 692,
+        "missing_material_form": 1897,
+        "missing_fluid": 446,
         "missing_object": 111
       },
       "raw_row_excluded": {
@@ -1336,10 +1332,10 @@
         "excluded_rows": 1,
         "target_rows": 6755,
         "proven_rows": 3610,
-        "identity_blocked_rows": 2977,
+        "identity_blocked_rows": 2453,
         "undecided_rows": 0,
         "recipe_progress": 0.5344,
-        "identity_ready": 0.5593
+        "identity_ready": 0.6369
       }
     },
     {
@@ -1354,10 +1350,10 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 16812,
+      "traced_source_rows": 16627,
       "reference_traced_rows": 2003,
       "cc_host_maps": {
-        "smelter": 16933
+        "smelter": 16748
       },
       "owned_cc_maps": [
         "smelter"
@@ -1383,11 +1379,11 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 16812,
-        "translated_exact": 9,
-        "translatable_missing": 640,
-        "missing_material_form": 4181,
-        "missing_fluid": 221,
+        "source_exact": 16627,
+        "translated_exact": 194,
+        "translatable_missing": 2446,
+        "missing_material_form": 2061,
+        "missing_fluid": 535,
         "missing_object": 106
       },
       "raw_row_excluded": {
@@ -1398,10 +1394,10 @@
         "excluded_rows": 1,
         "target_rows": 21968,
         "proven_rows": 16821,
-        "identity_blocked_rows": 4507,
+        "identity_blocked_rows": 2701,
         "undecided_rows": 0,
         "recipe_progress": 0.7657,
-        "identity_ready": 0.7948
+        "identity_ready": 0.877
       }
     }
   ]
