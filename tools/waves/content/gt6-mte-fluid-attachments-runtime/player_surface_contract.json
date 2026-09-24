@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "family": "fluid_attachment",
+  "identity_catalog": "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+  "runtime_overlay": "tools/waves/content/gt6-mte-fluid-attachments-runtime/runtime_overlay.json",
+  "art_manifest": "tools/waves/content/gt6-mte-fluid-attachments-runtime/art_manifest.json",
+  "creative_tab": "machines",
+  "expected_total": 47,
+  "kinds": {
+    "FAUCET": {
+      "expected": 23,
+      "model": "mte_inplace_faucet",
+      "particle": "#body",
+      "bounds": [
+        [6, 1, 12, 10, 2, 16],
+        [5, 2, 12, 6, 6, 16],
+        [10, 2, 12, 11, 6, 16]
+      ],
+      "requires_overlay": false
+    },
+    "TAP": {
+      "expected": 6,
+      "model": "mte_inplace_tap",
+      "particle": "#colored_side",
+      "bounds": [
+        [6, 6, 2, 10, 7, 4],
+        [7, 4, 0, 9, 6, 16],
+        [7, 3, 4, 9, 6, 6]
+      ],
+      "requires_overlay": true
+    },
+    "FUNNEL": {
+      "expected": 6,
+      "model": "mte_inplace_funnel",
+      "particle": "#colored_side",
+      "bounds": [
+        [5, 9, 0, 11, 10, 6],
+        [6, 8, 0, 10, 9, 4],
+        [7, 7, 0, 9, 9, 2]
+      ],
+      "requires_overlay": true
+    },
+    "NOZZLE": {
+      "expected": 6,
+      "model": "mte_inplace_nozzle",
+      "particle": "#colored_side",
+      "bounds": [
+        [6, 3, 1, 10, 7, 2],
+        [7, 4, 0, 9, 6, 6]
+      ],
+      "requires_overlay": true
+    },
+    "CAP_NOZZLE": {
+      "expected": 6,
+      "model": "mte_inplace_cap_nozzle",
+      "particle": "#colored_side",
+      "bounds": [
+        [6, 3, 1, 10, 7, 6],
+        [7, 4, 0, 9, 6, 2]
+      ],
+      "requires_overlay": true
+    }
+  },
+  "raw_ceramic_art": {
+    "expected": 3,
+    "kind": "RAW_CERAMIC_ATTACHMENT"
+  },
+  "required_game_tests": [
+    "allFluidAttachmentTiersAreLive",
+    "creativeFunnelKeepsHeldFluidContainer",
+    "fluidAttachmentPhaseFilterMatchesGt6",
+    "funnelFillsHostFromFluidCell",
+    "nozzleFillsGasCellFromHost",
+    "stainlessTapIsLiveAttachment",
+    "stoneFaucetIsLiveBlockNotCover",
+    "stoneFaucetPoursIntoTankBelow"
+  ]
+}
