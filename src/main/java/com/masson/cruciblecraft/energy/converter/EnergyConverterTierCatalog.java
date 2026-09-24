@@ -88,6 +88,7 @@ public final class EnergyConverterTierCatalog {
             String gt6Class,
             String materialExpression,
             int nbtOutput,
+            int nbtCapacity,
             int nbtInput,
             int efficiencyBps,
             String outputExpression,
@@ -102,7 +103,10 @@ public final class EnergyConverterTierCatalog {
             Objects.requireNonNull(outputExpression, "outputExpression");
             Objects.requireNonNull(fuelMap, "fuelMap");
             Objects.requireNonNull(recipe, "recipe");
-            if (sourceId <= 0 || sourceLine <= 0 || nbtOutput < 0 || nbtInput < 0) {
+            if (sourceId <= 0 || sourceLine <= 0
+                    || nbtOutput < 0
+                    || nbtCapacity < 0
+                    || nbtInput < 0) {
                 throw new IllegalArgumentException(
                         "Converter tier source and NBT must be non-negative");
             }
@@ -144,6 +148,8 @@ public final class EnergyConverterTierCatalog {
         private String materialExpression;
         @SerializedName("nbt_output")
         private int nbtOutput;
+        @SerializedName("nbt_capacity")
+        private int nbtCapacity;
         @SerializedName("nbt_input")
         private int nbtInput;
         @SerializedName("efficiency_bps")
@@ -181,6 +187,7 @@ public final class EnergyConverterTierCatalog {
                     gt6Class,
                     materialExpression,
                     nbtOutput,
+                    nbtCapacity,
                     nbtInput,
                     efficiencyBps,
                     outputExpression,

@@ -5,7 +5,6 @@ import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
-import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
@@ -35,23 +34,6 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
         implements IEnergyHandler {
     private final EnergyConverterProfile profile;
-    public static final int STEAM_CAPACITY =
-            EnergyConverterCatalog.require("cruciblecraft:bronze_steam_engine")
-                    .inputCapacity();
-    public static final long KU_CAPACITY =
-            EnergyConverterCatalog.require("cruciblecraft:bronze_steam_engine")
-                    .outputCapacity();
-    /**
-     * CC design policy: fixed 12 KU/t nominal packet. Source 1302 derives only
-     * mOutput=24/STEAM_PER_EU(2)=12; GT6 emits state-dependent 6..24 KU/t.
-     * Live emit uses that curve.
-     */
-    public static final long OUTPUT_RATE =
-            EnergyConverterCatalog.require("cruciblecraft:bronze_steam_engine")
-                    .outputPacket().size();
-    public static final int EXHAUST_CAPACITY =
-            EnergyConverterCatalog.require("cruciblecraft:bronze_steam_engine")
-                    .exhaust().capacity();
     private final FluidTank steam;
     private final FluidTank exhaust;
     private final IFluidHandler steamIo = new SteamIoHandler();
@@ -108,7 +90,7 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
         }
         int steamUsed = batches * SteamConversion.ENGINE_STEAM_PER_BATCH;
         int waterReturned = batches * SteamConversion.EXHAUST_WATER_PER_BATCH;
-        long produced = (long) batches * SteamConversion.KU_PER_ENGINE_BATCH;
+        long produced = SteamConversion.engineKuForBatches(profile, batches);
         FluidStack simulated = steam.drain(
                 steamUsed, IFluidHandler.FluidAction.SIMULATE);
         if (simulated.getAmount() != steamUsed
@@ -269,9 +251,11 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
         return SteamEngineKuCurve.maximumKu(profile.outputPacket().size());
     }
 
+    public EnergyConverterProfile profile() { return profile; }
     public int steamAmount() { return steam.getFluidAmount(); }
     public int steamCapacity() { return steam.getCapacity(); }
     public int exhaustAmount() { return exhaust.getFluidAmount(); }
+    public int exhaustCapacity() { return exhaust.getCapacity(); }
     public FluidStack exhaustFluid() { return exhaust.getFluid().copy(); }
     public String status() { return status; }
     public boolean stopped() { return stopped; }
@@ -394,6 +378,19 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
         return type == EnergyType.KINETIC_PUSH ? profile.outputCapacity() : 0L;
     }
     public long stored() { return kinetic.stored(); }
+    public long kineticCapacity() { return profile.outputCapacity(); }
+    public long nominalOutputRate() { return profile.outputPacket().size(); }
+    public long minimumOutputRate() { return profile.outputPacket().size() / 2L; }
+    public long maximumOutputRate() { return profile.outputPacket().size() * 2L; }
+    public long inputRateMinimum() {
+        return profile.inputWindow().minimum();
+    }
+    public long inputRateMaximum() {
+        return profile.inputWindow().maximum();
+    }
+    public int kuPerSteamBatch() {
+        return SteamConversion.engineKuPerBatch(profile);
+    }
     public int strokeSign() { return kinetic.strokeSign(); }
 
     @Override protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
@@ -538,8 +535,8 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
 
         @Override public int getTankCapacity(int tank) {
             return switch (tank) {
-                case 0 -> STEAM_CAPACITY;
-                case 1 -> EXHAUST_CAPACITY;
+                case 0 -> steam.getCapacity();
+                case 1 -> exhaust.getCapacity();
                 default -> 0;
             };
         }
@@ -553,11 +550,11 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
         }
 
         @Override public FluidStack drain(FluidStack resource, FluidAction action) {
-            return exhaust.drain(resource, action);
+            return FluidStack.EMPTY;
         }
 
         @Override public FluidStack drain(int maxDrain, FluidAction action) {
-            return exhaust.drain(maxDrain, action);
+            return FluidStack.EMPTY;
         }
     }
 }

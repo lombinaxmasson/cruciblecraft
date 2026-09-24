@@ -28,12 +28,12 @@ public final class SteamConversion {
             BOILER.conservation().outputUnits();
     /** SOURCE_BACKED source-1302 conversion input: 200 mB steam. */
     public static final int ENGINE_STEAM_PER_BATCH =
-            ENGINE.conservation().primaryInputUnits();
+            200;
     /** SOURCE_BACKED source-1302 conversion output: 50 KU (4 mB/KU). */
     public static final int KU_PER_ENGINE_BATCH =
-            ENGINE.conservation().outputUnits();
+            engineKuPerBatch(ENGINE);
     public static final int EXHAUST_WATER_PER_BATCH =
-            ENGINE.conservation().exhaustUnits();
+            1;
     public static final String DISTILLED_WATER_ID = "water_distilled";
 
     private SteamConversion() {}
@@ -85,5 +85,27 @@ public final class SteamConversion {
             return 0;
         }
         return steam / ENGINE_STEAM_PER_BATCH;
+    }
+
+    /**
+     * GT6 converts 200 mB of steam into 100 KU at 100% efficiency, then
+     * applies the machine's efficiency in basis points.
+     */
+    public static int engineKuPerBatch(EnergyConverterProfile profile) {
+        if (profile == null
+                || profile.efficiencyBps() == null
+                || profile.efficiencyBps() <= 0) {
+            return 0;
+        }
+        return (int) ((ENGINE_STEAM_PER_BATCH / 2L)
+                * profile.efficiencyBps() / 10_000L);
+    }
+
+    public static long engineKuForBatches(
+            EnergyConverterProfile profile, int batches) {
+        if (batches <= 0) {
+            return 0L;
+        }
+        return (long) batches * engineKuPerBatch(profile);
     }
 }

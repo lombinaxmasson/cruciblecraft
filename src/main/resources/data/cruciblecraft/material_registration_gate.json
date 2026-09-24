@@ -7572,6 +7572,7 @@
     "compatibility_forms": 781,
     "electrical_wire_forms": 29,
     "electrolyzer_required_forms": 3,
+    "fluid_attachment_required_forms": 11,
     "known_ingot_forms": 967,
     "materials": 1776,
     "metadata_only_materials": 663,
@@ -7582,7 +7583,7 @@
     "ore_source_materials": 137,
     "pipe_forms": 263,
     "recipe_gated_forms": 13338,
-    "registered_forms": 38530,
+    "registered_forms": 38532,
     "restrictive_pipe_forms": 63,
     "roaster_required_forms": 12,
     "tool_head_required_forms": 13938,
@@ -8171,6 +8172,31 @@
       "scrap"
     ]
   },
+  "fluid_attachment_required_forms": {
+    "adamantium": [
+      "curved_plate",
+      "round"
+    ],
+    "plastic": [
+      "curved_plate",
+      "round"
+    ],
+    "stainless_steel": [
+      "round"
+    ],
+    "steel": [
+      "curved_plate",
+      "round"
+    ],
+    "tantalum_hafnium_carbide": [
+      "curved_plate",
+      "round"
+    ],
+    "tungsten": [
+      "curved_plate",
+      "round"
+    ]
+  },
   "gt6_storage_art_required_forms": {
     "wood_treated": [
       "plate"
@@ -8198,7 +8224,8 @@
     "fission_observation_safety_required_forms",
     "fission_survival_required_forms",
     "converter_catalog_fluidbed_required_forms",
-    "coke_oven_recipe_forms_required_forms"
+    "coke_oven_recipe_forms_required_forms",
+    "fluid_attachment_required_forms"
   ],
   "known_ingot_forms": {
     "abyssalnite": [
@@ -43879,6 +43906,7 @@
       "billet",
       "block",
       "bolt",
+      "curved_plate",
       "dense_plate",
       "double_ingot",
       "double_plate",
@@ -50266,6 +50294,7 @@
       "billet",
       "block",
       "bolt",
+      "curved_plate",
       "dense_plate",
       "double_ingot",
       "double_plate",
@@ -68513,6 +68542,12 @@
       "field": "required_forms",
       "path": "tools/waves/runtime/fission-survival/required_forms.json",
       "sha256": "de9ccbd8d29ea04c34f368ae2210202a4b6caf61a29085ee3789a0ec1e79d2c8"
+    },
+    "fluid_attachment_required_forms": {
+      "classification": "semantic_ordinary_runtime_required",
+      "field": "required_forms",
+      "path": "tools/waves/prep/material-form-demand-census/fluid_attachment_required_forms.json",
+      "sha256": "4764a7ba17a6db5556fa06a29e42653502b80221f905b43646d2547d68c05962"
     },
     "gt6_storage_art_required_forms": {
       "classification": "semantic_ordinary_runtime_required",

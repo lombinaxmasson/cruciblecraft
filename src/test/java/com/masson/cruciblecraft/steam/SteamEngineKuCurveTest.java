@@ -14,7 +14,8 @@ class SteamEngineKuCurveTest {
         assertEquals(12L, SteamEngineKuCurve.outputKu(12L, 15));
         assertEquals(24L, SteamEngineKuCurve.outputKu(12L, 31));
         assertEquals(24L, SteamEngineKuCurve.maximumKu(12L));
-        assertTrue(SteamEngineKuCurve.activelyEmitting(7L, 6L, 12L));
+        assertFalse(SteamEngineKuCurve.activelyEmitting(7L, 6L, 12L));
+        assertTrue(SteamEngineKuCurve.activelyEmitting(8L, 7L, 12L));
         assertFalse(SteamEngineKuCurve.activelyEmitting(6L, 6L, 12L));
         assertFalse(SteamEngineKuCurve.activelyEmitting(5L, 1L, 12L));
         assertTrue(SteamEngineKuCurve.activelyEmitting(25L, 24L, 12L));

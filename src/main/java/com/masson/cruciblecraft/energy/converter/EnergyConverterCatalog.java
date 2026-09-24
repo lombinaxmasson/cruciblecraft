@@ -122,47 +122,60 @@ public final class EnergyConverterCatalog {
         EnergyConverterProfile engine =
                 profiles.get(ResourceLocation.parse(
                         "cruciblecraft:bronze_steam_engine"));
-        EnergyConverterProfile.OutputSemantics engineSemantics =
-                engine.outputSemantics();
         if (boiler.source().sourceId() != 1202
                 || boiler.conservation().primaryInputUnits() != 80
                 || boiler.conservation().secondaryInputUnits() != 1
                 || boiler.conservation().outputUnits() != 160
                 || engine.source().sourceId() != 1302
                 || !"24/STEAM_PER_EU".equals(
-                        engine.source().outputExpression())
-                || engine.outputPacket().size() != 12L
-                || !Integer.valueOf(5_000).equals(
-                        engine.efficiencyBps())
-                || engine.conservation().primaryInputUnits() != 200
-                || engine.conservation().outputUnits() != 50
-                || !"cruciblecraft:water_distilled".equals(
-                        engine.conservation().exhaust())
-                || !"cruciblecraft:water_distilled".equals(
-                        engine.exhaust().identity())
-                || !"PUSH_THEN_TRASH".equals(engine.exhaust().mode())
-                || engineSemantics == null
-                || !"SOURCE_BACKED".equals(
-                        engineSemantics.conservation().classification())
-                || engineSemantics.conservation().steamInputMb() != 200
-                || engineSemantics.conservation().kuOutput() != 50
-                || engineSemantics.conservation().steamMbPerKu() != 4
-                || !"SOURCE_DERIVED_NOMINAL".equals(
-                        engineSemantics.sourceNominal().classification())
-                || engineSemantics.sourceNominal().registeredNumerator() != 24
-                || engineSemantics.sourceNominal().steamPerEu() != 2
-                || engineSemantics.sourceNominal().mOutputKu() != 12
-                || !"DESIGN_POLICY_FIXED_OUTPUT".equals(
-                        engineSemantics.fixedOutput().classification())
-                || engineSemantics.fixedOutput().kuPerTick() != 12
-                || !"SOURCE_BACKED".equals(
-                        engineSemantics.gt6Runtime().classification())
-                || engineSemantics.gt6Runtime().minimumKuPerTick() != 6
-                || engineSemantics.gt6Runtime().maximumKuPerTick() != 24
-                || engineSemantics.sourceEvidencePaths().size() != 3) {
+                        engine.source().outputExpression())) {
             throw new IllegalStateException(
                     "Steam-chain converter rows drifted");
         }
+        int steamCount = 0;
+        for (EnergyConverterProfile candidate : profiles.values()) {
+            if (!"steam_engine".equals(candidate.runtimeBinding())) {
+                continue;
+            }
+            steamCount++;
+            long nominal = candidate.outputPacket().size();
+            int efficiency = candidate.efficiencyBps();
+            int kuPerBatch = (int) (100L * efficiency / 10_000L);
+            EnergyConverterProfile.OutputSemantics semantics =
+                    candidate.outputSemantics();
+            if (nominal <= 0L
+                    || efficiency <= 0
+                    || candidate.inputCapacity() != nominal * 400L
+                    || candidate.outputCapacity() <= 0
+                    || candidate.inputWindow().minimum()
+                            != gt6Units(nominal * 2L, efficiency * 2L)
+                    || candidate.inputWindow().nominal()
+                            != gt6Units(nominal * 2L, efficiency)
+                    || candidate.inputWindow().maximum()
+                            != gt6Units(nominal * 4L, efficiency)
+                    || candidate.conservation().primaryInputUnits() != 200
+                    || candidate.conservation().outputUnits() != kuPerBatch
+                    || semantics == null
+                    || semantics.conservation().kuOutput() != kuPerBatch
+                    || semantics.sourceNominal().mOutputKu() != nominal
+                    || semantics.fixedOutput().kuPerTick() != nominal
+                    || semantics.gt6Runtime().minimumKuPerTick()
+                            != nominal / 2L
+                    || semantics.gt6Runtime().maximumKuPerTick()
+                            != nominal * 2L
+                    || candidate.exhaust().capacity() != nominal * 2L) {
+                throw new IllegalStateException(
+                        "Steam-engine profile drifted: " + candidate.id());
+            }
+        }
+        if (steamCount != 28) {
+            throw new IllegalStateException(
+                    "Steam-engine profile count drifted: " + steamCount);
+        }
+    }
+
+    private static long gt6Units(long amount, long efficiency) {
+        return amount * 10_000L / efficiency;
     }
 
     private static void validateKineticConverters(

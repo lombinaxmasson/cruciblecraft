@@ -8,8 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 final class EnergyConverterProfiles {
     private static final int STEAM_PER_EU = 2;
     private static final String BRONZE_BOILER = "cruciblecraft:bronze_boiler";
-    private static final String BRONZE_STEAM_ENGINE =
-            "cruciblecraft:bronze_steam_engine";
     private static final String BRONZE_DYNAMO = "cruciblecraft:bronze_dynamo";
     private static final String BRONZE_FUEL_ENGINE =
             "cruciblecraft:bronze_fuel_engine";
@@ -74,28 +72,46 @@ final class EnergyConverterProfiles {
     private static EnergyConverterProfile steamEngine(
             EnergyConverterKindCatalog.Kind kind,
             EnergyConverterTierCatalog.Entry tier) {
-        boolean bronze = BRONZE_STEAM_ENGINE.equals(tier.id().toString());
-        long packet = bronze ? 12L : Math.max(1L, tier.nbtOutput());
-        int numerator = bronze ? 24 : Math.toIntExact(packet * STEAM_PER_EU);
+        long packet = Math.max(1L, tier.nbtOutput());
+        int efficiency = Math.max(1, tier.efficiencyBps());
+        long inputMinimum = scaledUnits(
+                packet * STEAM_PER_EU,
+                efficiency * 2L,
+                10_000L);
+        long inputNominal = scaledUnits(
+                packet * STEAM_PER_EU,
+                efficiency,
+                10_000L);
+        long inputMaximum = scaledUnits(
+                packet * STEAM_PER_EU * 2L,
+                efficiency,
+                10_000L);
+        int kuPerBatch = Math.toIntExact(scaledUnits(
+                200L / STEAM_PER_EU,
+                10_000L,
+                efficiency));
         EnergyConverterProfile.OutputSemantics semantics =
                 new EnergyConverterProfile.OutputSemantics(
                         new EnergyConverterProfile.ConservationClassification(
-                                "SOURCE_BACKED", 200, 50, 4),
+                                "SOURCE_BACKED",
+                                200,
+                                kuPerBatch,
+                                kuPerBatch <= 0 ? 0 : 200 / kuPerBatch),
                         new EnergyConverterProfile.SourceNominal(
                                 "SOURCE_DERIVED_NOMINAL",
-                                numerator,
+                                Math.toIntExact(packet * STEAM_PER_EU),
                                 STEAM_PER_EU,
                                 Math.toIntExact(packet)),
                         new EnergyConverterProfile.FixedOutput(
-                                "DESIGN_POLICY_FIXED_OUTPUT",
+                                "SOURCE_DERIVED_NOMINAL",
                                 Math.toIntExact(packet)),
                         new EnergyConverterProfile.Gt6RuntimeOutput(
                                 "SOURCE_BACKED",
-                                6,
-                                24,
+                                Math.toIntExact(packet / 2L),
+                                Math.toIntExact(packet * 2L),
                                 "STATE_DEPENDENT_MOUTPUT_HALF_TO_DOUBLE",
-                                "Bronze emits (nominal*(state+1))/16 KU/t; active when stored>tOutput and tOutput*2>=nominal (inclusive 6-24).",
-                                "Live on SteamEngineBlockEntity: BACK steam, all-batch convert, DistW SIDES then trash, KU overflow vent-stop, soft hammer."),
+                                "GT6 emits (nominal*(state+1))/16 KU/t; active when stored>tOutput and tOutput*2>nominal.",
+                                "Live on SteamEngineBlockEntity: BACK steam, all-batch convert, efficiency-scaled KU, DistW SIDES then trash, KU overflow vent-stop, soft hammer."),
                         List.of(
                                 "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/"
                                         + "Loader_MultiTileEntities.java:"
@@ -106,9 +122,6 @@ final class EnergyConverterProfiles {
                                         + "energy/converters/"
                                         + "MultiTileEntityEngineSteam.java:"
                                         + "58,62-63,77-80,98-103,119-165,175,224-226,239"));
-        Integer efficiency = tier.efficiencyBps() <= 0
-                ? null
-                : tier.efficiencyBps();
         return new EnergyConverterProfile(
                 tier.id(),
                 "steam_ku_chain",
@@ -119,24 +132,30 @@ final class EnergyConverterProfiles {
                 kind.emits(),
                 packet("FLUID", "STEAM", 200L, 200L),
                 packet("ENERGY", "KU", packet, 1L),
-                window(200L, 200L, 200L),
+                window(inputMinimum, inputNominal, inputMaximum),
                 efficiency,
                 "NONE",
                 conservation(
                         "STEAM", 200, "NONE", 0,
-                        "KU", 50, "cruciblecraft:water_distilled", 1),
-                exhaust("cruciblecraft:water_distilled", "PUSH_THEN_TRASH", 16_000),
+                        "KU", kuPerBatch, "cruciblecraft:water_distilled", 1),
+                exhaust(
+                        "cruciblecraft:water_distilled",
+                        "PUSH_THEN_TRASH",
+                        Math.toIntExact(packet * 2L)),
                 kind.faces(),
                 policy(
                         "STOPPED_OR_NO_STEAM",
                         "KEEP_STEAM_BUFFERED",
-                        bronze
-                                ? "EXACT_STANDARD_BRONZE_SOURCE_1302; SOURCE_BACKED_200_MB_TO_50_KU_AT_4_MB_PER_KU; SOURCE_DERIVED_NOMINAL_24_DIV_STEAM_PER_EU_2_EQUALS_12_KU_MOUTPUT; DESIGN_POLICY_FIXED_OUTPUT_12_KU_PER_TICK; LIVE_STATE_DEPENDENT_6_TO_24; DISTW_SIDE_PUSH_THEN_TRASH; SOFT_HAMMER_AND_STEAM_VENT_STOP"
-                                : "SOURCE_DERIVED_NOMINAL_KU_PACKET_" + packet
-                                        + "; LIVE_STATE_DEPENDENT_6_TO_24; DISTW_SIDE_PUSH_THEN_TRASH; SOFT_HAMMER_AND_STEAM_VENT_STOP"),
+                        "SOURCE_" + tier.sourceId()
+                                + "_MOUTPUT_" + packet
+                                + "_EFFICIENCY_" + efficiency
+                                + "; LIVE_STATE_DEPENDENT_"
+                                + (packet / 2L) + "_TO_" + (packet * 2L)
+                                + "; DISTW_SIDE_PUSH_THEN_TRASH; "
+                                + "SOFT_HAMMER_AND_STEAM_VENT_STOP"),
                 semantics,
-                16_000,
-                1_024);
+                Math.toIntExact(200L * packet * 2L),
+                tier.nbtCapacity());
     }
 
     private static EnergyConverterProfile fuelEngine(
@@ -561,6 +580,14 @@ final class EnergyConverterProfiles {
         }
         long scaled = (long) bronze * actualRate / bronzeRate;
         return (int) Math.max(1L, Math.min(Integer.MAX_VALUE, scaled));
+    }
+
+    private static long scaledUnits(
+            long amount, long originalUnit, long targetUnit) {
+        if (amount <= 0L || originalUnit <= 0L || targetUnit <= 0L) {
+            return 0L;
+        }
+        return amount * targetUnit / originalUnit;
     }
 
     private EnergyConverterProfiles() {}

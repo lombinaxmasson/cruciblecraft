@@ -3,8 +3,8 @@ package com.masson.cruciblecraft.steam;
 /**
  * GT6 {@code MultiTileEntityEngineSteam} {@code tOutput=(mOutput*(mState+1))/16}.
  *
- * <p>Bronze nominal packet is 12 KU. Inclusive half-to-double is 6–24 when the
- * active gate uses {@code tOutput*2 >= nominal}.
+ * <p>The output range scales with the tier's nominal packet. The active gate
+ * uses the strict GT6 condition {@code tOutput*2 > nominal}.
  */
 public final class SteamEngineKuCurve {
     private SteamEngineKuCurve() {}
@@ -33,7 +33,7 @@ public final class SteamEngineKuCurve {
 
     public static boolean activelyEmitting(
             long stored, long tOutput, long nominal) {
-        return stored > tOutput && tOutput * 2L >= nominal;
+        return stored > tOutput && tOutput * 2L > nominal;
     }
 
     public static long maximumKu(long nominal) {

@@ -125,7 +125,7 @@ public record ConverterObservation(
         if (be instanceof SteamEngineBlockEntity engine) {
             data.putString(ACTIVITY, engine.status());
             data.putLong(BUFFER_STORED, engine.stored());
-            data.putLong(BUFFER_CAP, SteamEngineBlockEntity.KU_CAPACITY);
+            data.putLong(BUFFER_CAP, engine.kineticCapacity());
             return;
         }
         if (be instanceof ElectricHeaterBlockEntity heater) {

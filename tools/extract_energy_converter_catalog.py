@@ -419,6 +419,7 @@ ADD_RE = re.compile(
 )
 CLASS_RE = re.compile(r"^\s*aClass\s*=\s*(\w+)\.class;")
 NBT_OUTPUT_RE = re.compile(r"NBT_OUTPUT(?:_SU)?,\s*([0-9]+)(?:\s*([*/])\s*STEAM_PER_EU)?")
+NBT_CAPACITY_RE = re.compile(r"NBT_CAPACITY,\s*([0-9]+)")
 NBT_INPUT_RE = re.compile(r"NBT_INPUT,\s*([0-9]+)")
 NBT_EFF_RE = re.compile(r"NBT_EFFICIENCY,\s*([0-9]+)")
 NBT_FUEL_RE = re.compile(r"NBT_FUELMAP,\s*(FM\.\w+)")
@@ -570,26 +571,33 @@ def extract_rows() -> list[dict[str, Any]]:
         kind = resolve_kind(current_class, display_name)
         material = MATERIAL_MAP[material_expr]
         nbt_output, output_expr = parse_output(rest)
+        nbt_capacity = (
+            int(m.group(1))
+            if current_class == "MultiTileEntityEngineSteam"
+            and (m := NBT_CAPACITY_RE.search(rest))
+            else 0
+        )
         nbt_input = int(m.group(1)) if (m := NBT_INPUT_RE.search(rest)) else 0
         efficiency = int(m.group(1)) if (m := NBT_EFF_RE.search(rest)) else 0
         fuel_map = m.group(1) if (m := NBT_FUEL_RE.search(rest)) else KIND_META[kind]["fuel_map"]
-        rows.append(
-            {
-                "id": f"cruciblecraft:{variant_id(material, kind)}",
-                "kind": f"cruciblecraft:{kind}",
-                "material": material,
-                "source_id": source_id,
-                "source_line": line_no,
-                "gt6_class": current_class,
-                "material_expression": material_expr,
-                "nbt_output": nbt_output,
-                "nbt_input": nbt_input,
-                "efficiency_bps": efficiency,
-                "output_expression": output_expr,
-                "fuel_map": fuel_map,
-                "recipe": parse_recipe(rest),
-            }
-        )
+        row = {
+            "id": f"cruciblecraft:{variant_id(material, kind)}",
+            "kind": f"cruciblecraft:{kind}",
+            "material": material,
+            "source_id": source_id,
+            "source_line": line_no,
+            "gt6_class": current_class,
+            "material_expression": material_expr,
+            "nbt_output": nbt_output,
+            "nbt_input": nbt_input,
+            "efficiency_bps": efficiency,
+            "output_expression": output_expr,
+            "fuel_map": fuel_map,
+            "recipe": parse_recipe(rest),
+        }
+        if current_class == "MultiTileEntityEngineSteam":
+            row["nbt_capacity"] = nbt_capacity
+        rows.append(row)
     return rows
 
 

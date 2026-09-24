@@ -29,7 +29,7 @@ class MaterialConfigurationHandshakeTest {
         assertEquals(
                 materials.size() + MaterialPrefixCatalog.definitions().size(),
                 entries.size());
-        assertEquals(1_922, entries.size());
+        assertEquals(1_923, entries.size());
         org.junit.jupiter.api.Assertions.assertTrue(
                 entries.size() < MaterialConfigurationHandshake.MAX_STRUCTURE_ENTRIES);
         var payload = new MaterialConfigurationHandshake.StructurePayload(

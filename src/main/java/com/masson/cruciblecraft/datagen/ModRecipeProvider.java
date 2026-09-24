@@ -4406,6 +4406,22 @@ public final class ModRecipeProvider extends RecipeProvider {
             if (result == Items.AIR) {
                 continue;
             }
+            if (recipe.smelting()) {
+                Ingredient ingredient =
+                        mteAcquisitionIngredient(recipe.ingredient());
+                if (ingredient == null) {
+                    continue;
+                }
+                SimpleCookingRecipeBuilder.smelting(
+                                ingredient,
+                                RecipeCategory.MISC,
+                                result,
+                                recipe.experience(),
+                                recipe.cookingTime())
+                        .unlockedBy("has_clay", has(Items.CLAY_BALL))
+                        .save(output, id(recipe.path()));
+                continue;
+            }
             boolean missing = false;
             LinkedHashMap<String, Ingredient> ingredients = new LinkedHashMap<>();
             for (var entry : recipe.ingredients().entrySet()) {

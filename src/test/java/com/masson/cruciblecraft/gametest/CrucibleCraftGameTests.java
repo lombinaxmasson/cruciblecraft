@@ -1545,8 +1545,7 @@ public final class CrucibleCraftGameTests {
                                     && (engine.stored() > 0L
                                             || engine.steamAmount() > 0)
                                     && firebox.energyCapacity() > 0L
-                                    && SteamEngineBlockEntity.OUTPUT_RATE
-                                            == 12L,
+                                    && engine.nominalOutputRate() == 12L,
                             "Steam chain did not preserve source conversion "
                                     + "rates or exhaust");
 
@@ -11735,8 +11734,7 @@ public final class CrucibleCraftGameTests {
                 .thenExecute(() -> {
                     helper.assertTrue(
                             firebox.energyCapacity() > 0L
-                                    && SteamEngineBlockEntity.OUTPUT_RATE
-                                            == 12L,
+                                    && engine.nominalOutputRate() == 12L,
                             "Small-workload warmup did not reach the declared fixed "
                                     + "converter rates: hu_source="
                                     + firebox.energyCapacity());

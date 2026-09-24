@@ -4,14 +4,20 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
 import com.masson.cruciblecraft.content.item.CatalogNamedItem;
+import com.masson.cruciblecraft.content.item.CellItem;
+import com.masson.cruciblecraft.content.mte.FluidAttachmentTransfer;
+import com.masson.cruciblecraft.content.mte.MteFluidAttachmentProfile;
+import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverItems;
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModItems;
 
 import net.minecraft.core.BlockPos;
@@ -20,9 +26,15 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.gametest.GameTestHolder;
@@ -120,17 +132,183 @@ public final class MteFluidAttachmentsRuntimeGameTests {
         helper.succeed();
     }
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void allFluidAttachmentTiersAreLive(GameTestHelper helper) {
+        long attachments = MteInPlaceCatalog.specs().stream()
+                .filter(spec -> spec.kind().attachment())
+                .count();
+        helper.assertTrue(attachments == 46, "fluid attachment count drifted: " + attachments);
+        helper.assertTrue(
+                MteFluidAttachmentProfile.all().size() == 24,
+                "phase/proof profile count drifted");
+        for (MteFluidAttachmentProfile profile
+                : MteFluidAttachmentProfile.all()) {
+            helper.assertTrue(
+                    ModItems.mteInPlaceItemsById().containsKey(profile.id()),
+                    "profile has no live BlockItem: " + profile.id());
+            helper.assertTrue(
+                    MteFluidAttachmentProfile.require(
+                            MteInPlaceCatalog.require(profile.id()))
+                            == profile,
+                    "profile lookup drifted: " + profile.id());
+        }
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void fluidAttachmentPhaseFilterMatchesGt6(
+            GameTestHelper helper) {
+        var tap = MteFluidAttachmentProfile.require(
+                MteInPlaceCatalog.require(id("fluid_attachment/stainless_tap")));
+        var nozzle = MteFluidAttachmentProfile.require(
+                MteInPlaceCatalog.require(id("tungsten/nozzle")));
+        FluidStack water = new FluidStack(Fluids.WATER, 1000);
+        FluidStack steam = new FluidStack(ModFluids.STEAM_SOURCE.get(), 1000);
+        helper.assertTrue(
+                FluidAttachmentTransfer.accepted(water, tap),
+                "Tap rejected a liquid");
+        helper.assertFalse(
+                FluidAttachmentTransfer.accepted(steam, tap),
+                "Tap accepted a gas");
+        helper.assertTrue(
+                FluidAttachmentTransfer.accepted(steam, nozzle),
+                "Nozzle rejected a gas");
+        helper.assertFalse(
+                FluidAttachmentTransfer.accepted(water, nozzle),
+                "Nozzle accepted a liquid");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void funnelFillsHostFromFluidCell(GameTestHelper helper) {
+        BlockPos funnelPos = new BlockPos(3, 2, 2);
+        BlockPos hostPos = new BlockPos(4, 2, 2);
+        helper.setBlock(
+                hostPos,
+                ModBlocks.BRONZE_BOILER.get().defaultBlockState());
+        BoilerBlockEntity host = helper.getBlockEntity(hostPos);
+        FluidStack water = new FluidStack(Fluids.WATER, 1000);
+        IFluidHandler hostSide = host.fluids(Direction.WEST);
+        helper.assertTrue(hostSide != null, "Host has no west fluid capability");
+        helper.assertTrue(
+                hostSide.fill(
+                        water.copy(),
+                        IFluidHandler.FluidAction.SIMULATE) > 0,
+                "Host capability rejected water");
+        ItemStack cell = new ItemStack(Items.WATER_BUCKET);
+        MteInPlaceBlock funnel = ModBlocks.mteInPlaceBlocksById()
+                .get(id("fluid_attachment/stainless_funnel"))
+                .get();
+        helper.setBlock(
+                funnelPos,
+                funnel.defaultBlockState().setValue(
+                        MteInPlaceBlock.FACING, Direction.EAST));
+        var player = helper.makeMockPlayer(GameType.SURVIVAL);
+        player.setItemInHand(InteractionHand.MAIN_HAND, cell);
+        helper.assertTrue(
+                helper.getBlockState(funnelPos).useItemOn(
+                                cell,
+                                helper.getLevel(),
+                                player,
+                                InteractionHand.MAIN_HAND,
+                                hit(helper, funnelPos))
+                        .consumesAction(),
+                "Funnel did not consume a filled fluid-cell click");
+        helper.assertTrue(
+                host.waterAmount() == 1000,
+                "Funnel did not fill the adjacent host");
+        helper.assertTrue(
+                player.getMainHandItem().is(Items.BUCKET),
+                "Funnel did not return an empty bucket");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void nozzleFillsGasCellFromHost(GameTestHelper helper) {
+        BlockPos nozzlePos = new BlockPos(3, 2, 2);
+        BlockPos hostPos = new BlockPos(4, 2, 2);
+        FluidPipeBlockEntity host = placePipeConnected(
+                helper, hostPos, "tungsten", Direction.WEST);
+        helper.assertTrue(
+                host.fillInternal(
+                        new FluidStack(ModFluids.STEAM_SOURCE.get(), 1000),
+                        IFluidHandler.FluidAction.EXECUTE) == 1000,
+                "Could not prime the gas host");
+        MteInPlaceBlock nozzle = ModBlocks.mteInPlaceBlocksById()
+                .get(id("tungsten/nozzle"))
+                .get();
+        helper.setBlock(
+                nozzlePos,
+                nozzle.defaultBlockState().setValue(
+                        MteInPlaceBlock.FACING, Direction.EAST));
+        ItemStack cell = new ItemStack(ModItems.GAS_CELL.get());
+        CellItem cellItem = (CellItem) ModItems.GAS_CELL.get();
+        var player = helper.makeMockPlayer(GameType.SURVIVAL);
+        player.setItemInHand(InteractionHand.MAIN_HAND, cell);
+        helper.assertTrue(
+                helper.getBlockState(nozzlePos).useItemOn(
+                                cell,
+                                helper.getLevel(),
+                                player,
+                                InteractionHand.MAIN_HAND,
+                                hit(helper, nozzlePos))
+                        .consumesAction(),
+                "Nozzle did not consume a gas-cell click");
+        helper.assertTrue(
+                cellItem.content(player.getMainHandItem()).getAmount() == 1000,
+                "Nozzle did not fill the gas cell");
+        helper.assertTrue(
+                host.storedFluid().isEmpty(),
+                "Nozzle did not drain the gas host");
+        helper.succeed();
+    }
+
     private static FluidPipeBlockEntity placePipe(
             GameTestHelper helper, BlockPos pos) {
+        return placePipe(helper, pos, "copper");
+    }
+
+    private static FluidPipeBlockEntity placePipe(
+            GameTestHelper helper,
+            BlockPos pos,
+            String material) {
         FluidPipeBlock block = (FluidPipeBlock) ModBlocks.pipeBlock(
-                "copper",
+                material,
+                MaterialPrefixes.FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        BlockState state = block.defaultBlockState();
+        for (Direction direction : Direction.values()) {
+            state = state.setValue(
+                    AbstractPipeBlock.PROPERTY_BY_DIRECTION.get(direction),
+                    true);
+        }
+        helper.setBlock(pos, state);
+        return helper.getBlockEntity(pos);
+    }
+
+    private static FluidPipeBlockEntity placePipeConnected(
+            GameTestHelper helper,
+            BlockPos pos,
+            String material,
+            Direction connection) {
+        FluidPipeBlock block = (FluidPipeBlock) ModBlocks.pipeBlock(
+                material,
                 MaterialPrefixes.FLUID_PIPE,
                 PipeCatalog.Kind.FLUID).get();
         BlockState state = block.defaultBlockState().setValue(
-                AbstractPipeBlock.PROPERTY_BY_DIRECTION.get(Direction.UP),
+                AbstractPipeBlock.PROPERTY_BY_DIRECTION.get(connection),
                 true);
         helper.setBlock(pos, state);
         return helper.getBlockEntity(pos);
+    }
+
+    private static BlockHitResult hit(GameTestHelper helper, BlockPos pos) {
+        BlockPos absolute = helper.absolutePos(pos);
+        return new BlockHitResult(
+                Vec3.atCenterOf(absolute),
+                Direction.NORTH,
+                absolute,
+                false);
     }
 
     private static Item item(String path) {

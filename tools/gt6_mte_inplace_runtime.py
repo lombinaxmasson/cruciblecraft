@@ -123,8 +123,12 @@ DOMAINS: dict[str, dict[str, Any]] = {
     "attachments": {
         "slug": "content/gt6-mte-fluid-attachments-runtime",
         "family": "fluid_attachment",
-        "expected": 33,
+        "expected": 46,
         "tests": [
+            "allFluidAttachmentTiersAreLive",
+            "fluidAttachmentPhaseFilterMatchesGt6",
+            "funnelFillsHostFromFluidCell",
+            "nozzleFillsGasCellFromHost",
             "stainlessTapIsLiveAttachment",
             "stoneFaucetIsLiveBlockNotCover",
             "stoneFaucetPoursIntoTankBelow",
@@ -137,7 +141,7 @@ DOMAINS: dict[str, dict[str, Any]] = {
             "content/gt6-fluid-pipe-runtime",
         ],
         "lock_note": (
-            "33 fluid attachments are live face-placed BlockItems; obtain "
+            "46 fluid attachments are live face-placed BlockItems; obtain "
             "explicitly_blocked; not player_complete"
         ),
     },
@@ -544,10 +548,38 @@ ART_KIND: dict[str, list[tuple[str, str]]] = {
         ("materialicons/metallic/blocksolid.png", "faucet.png"),
         ("materialicons/metallic/blocksolid_overlay.png", "faucet_overlay.png"),
     ],
-    "TAP": [("machines/tools/tap/colored/side.png", "tap.png")],
-    "FUNNEL": [("machines/tools/funnel/colored/side.png", "funnel.png")],
-    "NOZZLE": [("machines/tools/nozzle/colored/side.png", "nozzle.png")],
-    "CAP_NOZZLE": [("machines/tools/capnozzle/colored/side.png", "cap_nozzle.png")],
+    "TAP": [
+        ("machines/tools/tap/colored/bottom.png", "tap/colored/bottom.png"),
+        ("machines/tools/tap/colored/top.png", "tap/colored/top.png"),
+        ("machines/tools/tap/colored/side.png", "tap/colored/side.png"),
+        ("machines/tools/tap/overlay/bottom.png", "tap/overlay/bottom.png"),
+        ("machines/tools/tap/overlay/top.png", "tap/overlay/top.png"),
+        ("machines/tools/tap/overlay/side.png", "tap/overlay/side.png"),
+    ],
+    "FUNNEL": [
+        ("machines/tools/funnel/colored/bottom.png", "funnel/colored/bottom.png"),
+        ("machines/tools/funnel/colored/top.png", "funnel/colored/top.png"),
+        ("machines/tools/funnel/colored/side.png", "funnel/colored/side.png"),
+        ("machines/tools/funnel/overlay/bottom.png", "funnel/overlay/bottom.png"),
+        ("machines/tools/funnel/overlay/top.png", "funnel/overlay/top.png"),
+        ("machines/tools/funnel/overlay/side.png", "funnel/overlay/side.png"),
+    ],
+    "NOZZLE": [
+        ("machines/tools/nozzle/colored/bottom.png", "nozzle/colored/bottom.png"),
+        ("machines/tools/nozzle/colored/top.png", "nozzle/colored/top.png"),
+        ("machines/tools/nozzle/colored/side.png", "nozzle/colored/side.png"),
+        ("machines/tools/nozzle/overlay/bottom.png", "nozzle/overlay/bottom.png"),
+        ("machines/tools/nozzle/overlay/top.png", "nozzle/overlay/top.png"),
+        ("machines/tools/nozzle/overlay/side.png", "nozzle/overlay/side.png"),
+    ],
+    "CAP_NOZZLE": [
+        ("machines/tools/capnozzle/colored/bottom.png", "cap_nozzle/colored/bottom.png"),
+        ("machines/tools/capnozzle/colored/top.png", "cap_nozzle/colored/top.png"),
+        ("machines/tools/capnozzle/colored/side.png", "cap_nozzle/colored/side.png"),
+        ("machines/tools/capnozzle/overlay/bottom.png", "cap_nozzle/overlay/bottom.png"),
+        ("machines/tools/capnozzle/overlay/top.png", "cap_nozzle/overlay/top.png"),
+        ("machines/tools/capnozzle/overlay/side.png", "cap_nozzle/overlay/side.png"),
+    ],
     "TANK_EXTENDER": [("machines/extenders/tank/colored/side.png", "tank_extender.png")],
     "TANK_BRIDGE": [
         ("machines/extenders/bridge_tank/colored/side.png", "tank_bridge.png")
@@ -592,6 +624,36 @@ ART_KIND: dict[str, list[tuple[str, str]]] = {
         ("machines/multiblockmains/crucible/colored/side.png", "crucible_foundry.png")
     ],
 }
+
+FLUID_ATTACHMENT_KINDS = {"TAP", "FUNNEL", "NOZZLE", "CAP_NOZZLE"}
+FLUID_ATTACHMENT_BOUNDS: dict[str, list[tuple[float, float, float, float, float, float]]] = {
+    # GT6 MultiTileEntityFluidTap render passes, SIDE_Z_NEG.
+    "TAP": [
+        (6, 6, 2, 10, 9, 12),
+        (7, 4, 0, 9, 10, 12),
+        (7, 3, 4, 9, 10, 10),
+    ],
+    # GT6 MultiTileEntityFluidFunnel render passes, SIDE_Z_NEG.
+    "FUNNEL": [
+        (5, 9, 0, 11, 10, 6),
+        (6, 8, 0, 10, 9, 12),
+        (7, 7, 0, 9, 9, 14),
+    ],
+    # GT6 MultiTileEntityFluidNozzle render passes, SIDE_Z_NEG.
+    "NOZZLE": [
+        (6, 3, 1, 10, 9, 14),
+        (7, 4, 0, 9, 10, 10),
+    ],
+    # GT6 MultiTileEntityFluidCapNozzle render passes, SIDE_Z_NEG.
+    "CAP_NOZZLE": [
+        (6, 3, 1, 10, 9, 10),
+        (7, 4, 0, 9, 10, 14),
+    ],
+}
+RAW_CERAMIC_ART = (
+    ("items/gt.multiitem.randomtools/987.png", "raw_ceramic_tap.png"),
+    ("items/gt.multiitem.randomtools/988.png", "raw_ceramic_funnel.png"),
+)
 
 
 def _write_json(path: Path, document: Any) -> None:
@@ -732,10 +794,14 @@ def _r0_family_rows(domain: str) -> list[dict[str, Any]]:
     spec = DOMAINS[domain]
     dummy = _dummy_paths()
     inplace: set[str] = set()
+    inplace_rows: list[dict[str, Any]] = []
     if INPLACE_CATALOG.is_file():
+        inplace_rows = list(
+            census.load_json(INPLACE_CATALOG).get("identities") or []
+        )
         inplace = {
             str(row.get("registry_path") or "")
-            for row in census.load_json(INPLACE_CATALOG).get("identities") or []
+            for row in inplace_rows
         }
     live = dummy | inplace
     folded = _t44_folded_metas()
@@ -751,6 +817,32 @@ def _r0_family_rows(domain: str) -> list[dict[str, Any]]:
         if not _class_matches(tag, spec.get("class_contains")):
             continue
         rows.append(row)
+    seen_metas = {int(row["meta"]) for row in rows}
+    if spec["family"] != "fluid_attachment":
+        rows.sort(key=lambda item: int(item["meta"]))
+        return rows
+    for row in inplace_rows:
+        if row.get("family") != spec["family"]:
+            continue
+        meta = int(row["meta"])
+        if meta in seen_metas:
+            continue
+        path = str(row.get("registry_path") or "")
+        if not path or path not in inplace:
+            continue
+        tag = str(row.get("gt6_class") or "")
+        if not _class_matches(tag, spec.get("class_contains")):
+            continue
+        rows.append(
+            {
+                "meta": meta,
+                "registry_path": path,
+                "gt6_class_or_tag": tag,
+                "english_name": row.get("english_name"),
+                "chinese_name": row.get("chinese_name"),
+                "family": row.get("family"),
+            }
+        )
     rows.sort(key=lambda item: int(item["meta"]))
     return rows
 
@@ -851,6 +943,8 @@ def _gt6_file(relative: str) -> Path:
     rel = relative.replace("\\", "/")
     if rel.startswith("model/") or rel.startswith("gui/"):
         return GT6_W / "src/main/resources/assets/gregtech/textures" / rel
+    if rel.startswith("items/"):
+        return GT6_W / "src/main/resources/assets/gregtech/textures" / rel
     return GT6_W / GT6_TEX / rel
 
 
@@ -884,8 +978,132 @@ def _copy_art(kinds: set[str]) -> list[dict[str, Any]]:
     return manifest
 
 
+def _copy_raw_ceramic_art() -> list[dict[str, Any]]:
+    manifest: list[dict[str, Any]] = []
+    destination_root = (
+        census.ROOT
+        / "src"
+        / "main"
+        / "resources"
+        / "assets"
+        / "cruciblecraft"
+        / "textures"
+        / "item"
+        / "gt6_import"
+    )
+    for gt6_rel, destination_name in RAW_CERAMIC_ART:
+        source = _gt6_file(gt6_rel)
+        if not source.is_file():
+            raise FileNotFoundError(f"missing GT6 art {source}")
+        destination = destination_root / destination_name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        if not destination.is_file() or destination.read_bytes() != source.read_bytes():
+            shutil.copyfile(source, destination)
+        manifest.append(
+            {
+                "source": "gt6_referencable_port_code/gregtech6_w",
+                "gt6_source": str(source.relative_to(GT6_W)).replace("\\", "/"),
+                "destination": (
+                    "assets/cruciblecraft/textures/item/gt6_import/"
+                    + destination_name
+                ),
+                "kind": "RAW_CERAMIC_ATTACHMENT",
+                "sha256": _sha256(source),
+            }
+        )
+    return manifest
+
+
 def _texture_name(kind: str) -> str:
+    if kind in FLUID_ATTACHMENT_KINDS:
+        return {
+            "TAP": "tap",
+            "FUNNEL": "funnel",
+            "NOZZLE": "nozzle",
+            "CAP_NOZZLE": "cap_nozzle",
+        }[kind]
     return ART_KIND[kind][0][1].removesuffix(".png")
+
+
+def _fluid_attachment_model(kind: str) -> dict[str, Any]:
+    base = f"cruciblecraft:block/gt6_import/mte/{_texture_name(kind)}"
+    textures: dict[str, str] = {}
+    for layer in ("colored", "overlay"):
+        for face in ("bottom", "top", "side"):
+            textures[f"{layer}_{face}"] = f"{base}/{layer}/{face}"
+
+    elements: list[dict[str, Any]] = []
+    for layer in ("colored", "overlay"):
+        tint = 0 if layer == "colored" else None
+        for bounds in FLUID_ATTACHMENT_BOUNDS[kind]:
+            x0, y0, z0, x1, y1, z1 = bounds
+            faces: dict[str, dict[str, Any]] = {}
+            for side, texture in (
+                ("down", f"#{layer}_bottom"),
+                ("up", f"#{layer}_top"),
+                ("north", f"#{layer}_side"),
+                ("south", f"#{layer}_side"),
+                ("west", f"#{layer}_side"),
+                ("east", f"#{layer}_side"),
+            ):
+                face: dict[str, Any] = {"texture": texture}
+                if tint is not None:
+                    face["tintindex"] = tint
+                faces[side] = face
+            elements.append(
+                {
+                    "from": [x0, y0, z0],
+                    "to": [x1, y1, z1],
+                    "faces": faces,
+                }
+            )
+    return {
+        "parent": "minecraft:block/block",
+        "render_type": "minecraft:cutout",
+        "textures": textures,
+        "elements": elements,
+    }
+
+
+def _write_fluid_attachment_models(kind: str, path: str) -> None:
+    model_name = f"mte_inplace_{kind.lower()}"
+    _write_json(
+        BLOCK_MODELS / f"{model_name}.json",
+        _fluid_attachment_model(kind),
+    )
+    _write_json(
+        BLOCKSTATES / f"{path}.json",
+        {
+            "variants": {
+                "facing=down": {
+                    "model": f"cruciblecraft:block/{model_name}",
+                    "x": 90,
+                },
+                "facing=east": {
+                    "model": f"cruciblecraft:block/{model_name}",
+                    "y": 90,
+                },
+                "facing=north": {"model": f"cruciblecraft:block/{model_name}"},
+                "facing=south": {
+                    "model": f"cruciblecraft:block/{model_name}",
+                    "y": 180,
+                },
+                "facing=up": {
+                    "model": f"cruciblecraft:block/{model_name}",
+                    "x": 270,
+                },
+                "facing=west": {
+                    "model": f"cruciblecraft:block/{model_name}",
+                    "y": 270,
+                },
+            }
+        },
+    )
+    _write_json(
+        ITEM_MODELS / f"{path}.json",
+        {"parent": f"cruciblecraft:block/{model_name}"},
+    )
+    _write_loot(path)
 
 
 def _write_models(rows: list[dict[str, Any]]) -> None:
@@ -922,6 +1140,9 @@ def _write_models(rows: list[dict[str, Any]]) -> None:
         if "MultiTileEntityAnvil" in str(row.get("gt6_class") or ""):
             continue
         path = str(row["dummy_path"])
+        if kind in FLUID_ATTACHMENT_KINDS:
+            _write_fluid_attachment_models(kind, path)
+            continue
         texture = f"cruciblecraft:block/gt6_import/mte/{_texture_name(kind)}"
         model_name = f"mte_inplace_{kind.lower()}"
         if kind in {"CHEST", "SAFE"}:
@@ -1090,7 +1311,7 @@ def write(unique_active: bool = True, domain: str = "attachments") -> dict[str, 
     wave = _wave(domain)
     wave.mkdir(parents=True, exist_ok=True)
     kinds = {str(row["kind"]) for row in overlay["rows"]}
-    manifest = _copy_art(kinds)
+    manifest = _copy_art(kinds) + _copy_raw_ceramic_art()
     _write_json(wave / "runtime_overlay.json", overlay)
     _write_json(wave / "topology.json", topology(domain, unique_active))
     _write_json(wave / "readiness.json", readiness(domain, unique_active))
@@ -1295,6 +1516,11 @@ def _check_domain(domain: str) -> list[str]:
         str(row.get("registry_path") or "")
         for row in census.load_json(INPLACE_CATALOG).get("identities") or []
     }
+    inplace_by_meta = {
+        int(row["meta"]): row
+        for row in census.load_json(INPLACE_CATALOG).get("identities") or []
+        if row.get("family") == "fluid_attachment"
+    }
     for path in (DATA_CATALOG, TOOLS_CATALOG):
         catalog = census.load_json(path)
         catalog_by_meta = {
@@ -1303,6 +1529,8 @@ def _check_domain(domain: str) -> list[str]:
         for meta, row in by_meta.items():
             identity = catalog_by_meta.get(meta)
             if identity is None:
+                if domain == "attachments" and meta in inplace_by_meta:
+                    continue
                 errors.append(f"{census.relative(path)} missing meta {meta}")
                 continue
             dummy_path = str(row["dummy_path"])

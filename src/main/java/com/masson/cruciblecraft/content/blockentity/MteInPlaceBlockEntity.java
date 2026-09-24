@@ -36,7 +36,9 @@ import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.content.menu.StorageMenu;
 import com.masson.cruciblecraft.content.mte.BathingPotRuntime;
+import com.masson.cruciblecraft.content.mte.FluidAttachmentTransfer;
 import com.masson.cruciblecraft.content.mte.MteFoundryTanks;
+import com.masson.cruciblecraft.content.mte.MteFluidAttachmentProfile;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.storage.MassStorageFace;
@@ -776,8 +778,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
         switch (spec().kind()) {
             case FAUCET -> pourFaucet(facing);
-            case TAP, NOZZLE -> pourDown(facing);
-            case FUNNEL, CAP_NOZZLE -> fillAttached(facing);
+            case TAP, NOZZLE -> pourDown(
+                    facing, MteFluidAttachmentProfile.require(spec()));
+            case FUNNEL, CAP_NOZZLE -> fillAttached(
+                    facing, MteFluidAttachmentProfile.require(spec()));
             default -> {
             }
         }
@@ -1705,7 +1709,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             crucible.fillMoldAtSide(this, facing.getOpposite(), facing);
             return;
         }
-        pourDown(facing);
+        pourDown(facing, null);
     }
 
     private BlockPos faucetDestination() {
@@ -1737,7 +1741,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         return MaterialCatalog.contains(candidate) ? candidate : "stone";
     }
 
-    private void pourDown(Direction facing) {
+    private void pourDown(
+            Direction facing,
+            MteFluidAttachmentProfile profile) {
         IFluidHandler source = neighborFluid(facing, facing.getOpposite());
         if (source == null) {
             return;
@@ -1748,13 +1754,19 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             destPos = destPos.below();
         }
         IFluidHandler dest = capabilityFluid(destPos, Direction.UP);
-        move(source, dest);
+        if (profile == null) {
+            move(source, dest);
+        } else {
+            move(source, dest, profile);
+        }
     }
 
-    private void fillAttached(Direction facing) {
+    private void fillAttached(
+            Direction facing,
+            MteFluidAttachmentProfile profile) {
         IFluidHandler dest = neighborFluid(facing, facing.getOpposite());
         IFluidHandler source = neighborFluid(Direction.UP, Direction.DOWN);
-        move(source, dest);
+        move(source, dest, profile);
     }
 
     private void pushExtender() {
@@ -2145,13 +2157,22 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (source == null || dest == null) {
             return;
         }
-        FluidStack drained = source.drain(TRANSFER_MB, IFluidHandler.FluidAction.SIMULATE);
-        if (drained.isEmpty()) {
+        int moved = ExactFluidTransfer.move(source, dest, TRANSFER_MB);
+        if (moved > 0) {
+            setChanged();
+        }
+    }
+
+    private void move(
+            IFluidHandler source,
+            IFluidHandler dest,
+            MteFluidAttachmentProfile profile) {
+        if (source == null || dest == null) {
             return;
         }
-        int filled = dest.fill(drained, IFluidHandler.FluidAction.EXECUTE);
-        if (filled > 0) {
-            source.drain(filled, IFluidHandler.FluidAction.EXECUTE);
+        int moved = FluidAttachmentTransfer.move(
+                source, dest, profile, TRANSFER_MB);
+        if (moved > 0) {
             setChanged();
         }
     }

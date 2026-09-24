@@ -23,6 +23,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         generatedImportedGt6("raw_ceramic_crucible");
         generatedImportedGt6("raw_ceramic_bowl");
+        generatedImportedGt6("raw_ceramic_tap");
+        generatedImportedGt6("raw_ceramic_funnel");
         generatedImportedGt6("raw_ceramic_mold");
         generatedImportedGt6("coin");
         CeramicMoldCatalog.SHAPED.forEach(variant -> {

@@ -548,6 +548,8 @@ public final class ModCreativeTabs {
     private static void acceptCeramicMolds(CreativeModeTab.Output output) {
         output.accept(ModItems.RAW_CERAMIC_CRUCIBLE.get());
         output.accept(ModItems.RAW_CERAMIC_BOWL.get());
+        output.accept(ModItems.RAW_CERAMIC_TAP.get());
+        output.accept(ModItems.RAW_CERAMIC_FUNNEL.get());
         output.accept(ModItems.RAW_CERAMIC_MOLD.get());
         CeramicMoldCatalog.SHAPED.forEach(variant ->
                 output.accept(ModItems.rawShapedMold(variant.id()).get()));

@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.client.color.BedrockOreColor;
 import com.masson.cruciblecraft.client.color.CellItemColor;
 import com.masson.cruciblecraft.client.color.ElectricWireRemainderColor;
 import com.masson.cruciblecraft.client.color.DistillationTowerPartColor;
+import com.masson.cruciblecraft.client.color.FluidAttachmentArtColor;
 import com.masson.cruciblecraft.client.color.FoundryBlockColor;
 import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
 import com.masson.cruciblecraft.client.color.GtBushColor;
@@ -290,6 +291,12 @@ public class ClientSetup {
                 java.util.Arrays.stream(tintedStorageArt)
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
+        Block[] tintedFluidAttachments = FluidAttachmentArtColor.tintedBlocks();
+        event.register(
+                FluidAttachmentArtColor::itemColor,
+                java.util.Arrays.stream(tintedFluidAttachments)
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
         Block[] tintedLogisticsCore = LogisticsCoreBlockColor.tintedBlocks();
         event.register(
                 LogisticsCoreBlockColor::itemColor,
@@ -377,6 +384,9 @@ public class ClientSetup {
         event.register(FoundryBlockColor::blockColor, FoundryBlockColor.tintedBlocks());
         event.register(BathingPotColor::blockColor, BathingPotColor.tintedBlocks());
         event.register(StorageArtColor::blockColor, StorageArtColor.tintedBlocks());
+        event.register(
+                FluidAttachmentArtColor::blockColor,
+                FluidAttachmentArtColor.tintedBlocks());
         event.register(
                 LogisticsCoreBlockColor::blockColor,
                 LogisticsCoreBlockColor.tintedBlocks());

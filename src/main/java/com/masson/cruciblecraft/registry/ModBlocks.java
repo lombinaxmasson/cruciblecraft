@@ -122,6 +122,7 @@ import com.masson.cruciblecraft.content.block.DustFunnelBlock;
 import com.masson.cruciblecraft.content.block.MixingBowlBlock;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
+import com.masson.cruciblecraft.content.mte.MteFluidAttachmentProfile;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
@@ -1889,6 +1890,15 @@ public final class ModBlocks {
     }
 
     private static BlockBehaviour.Properties inplaceProperties(MteInPlaceSpec spec) {
+        if (MteFluidAttachmentProfile.contains(spec)) {
+            MteFluidAttachmentProfile profile =
+                    MteFluidAttachmentProfile.require(spec);
+            return BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.METAL)
+                    .strength(profile.hardness(), profile.resistance())
+                    .noOcclusion()
+                    .sound(SoundType.METAL);
+        }
         if (!AnvilHosts.isAnvil(spec)) {
             return machineProperties().noOcclusion();
         }

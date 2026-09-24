@@ -174,6 +174,16 @@ AMAT_ASSIGN = re.compile(
 SAFE_EXPR = re.compile(r"^[0-9+\-*]+$")
 CHAR_KEY = re.compile(r"^'([^']+)'$")
 D0_SCHEMA = "gt6-mte-inplace-d0-obtain-matrix-v1"
+CERAMIC_ATTACHMENT_RECIPES: dict[int, dict[str, str]] = {
+    32723: {
+        "item": "cruciblecraft:raw_ceramic_funnel",
+        "gt": "IL.Ceramic_Funnel_Raw",
+    },
+    32728: {
+        "item": "cruciblecraft:raw_ceramic_tap",
+        "gt": "IL.Ceramic_Tap_Raw",
+    },
+}
 
 
 def _sha256(path: Path) -> str:
@@ -755,6 +765,13 @@ def _item_matches_expected(expected: str, live: str) -> bool:
     exp = expected.lstrip("#")
     if exp in live or live == expected:
         return True
+    if exp.startswith("cruciblecraft:material_"):
+        tool = exp.split(":", 1)[1].removeprefix("material_")
+        if live == f"cruciblecraft:crafting_tools/{tool}":
+            return True
+    if exp == "cruciblecraft:smithing_hammer" and live == (
+            "cruciblecraft:crafting_tools/hammer"):
+        return True
     if not (live.startswith("c:") and expected.startswith("cruciblecraft:")):
         return False
     path = expected.split(":", 1)[1]
@@ -772,22 +789,42 @@ def _item_matches_expected(expected: str, live: str) -> bool:
     )
 
 
-def _audit_live_recipe(dummy_path: str, pattern: list[str], operands: dict[str, dict[str, Any]]) -> dict[str, Any]:
+def _audit_live_recipe(
+    dummy_path: str,
+    pattern: list[str],
+    operands: dict[str, dict[str, Any]],
+    recipe_kind: str,
+) -> dict[str, Any]:
     path = _live_recipe_path(dummy_path)
     if not path.is_file():
         return {"present": False, "matches_source": False}
     document = census.load_json(path)
-    live_pattern = list(document.get("pattern") or [])
-    ingredients = document.get("ingredients") or {}
-    catalysts = document.get("catalysts") or {}
-    matches = live_pattern == pattern
-    for key, operand in operands.items():
-        expected = operand.get("cc")
-        live_item = _slot_item_id(ingredients.get(key) or catalysts.get(key) or {})
-        if operand.get("tag") and not expected:
-            expected = f"#{operand['tag']}" if not str(operand["tag"]).startswith("#") else operand["tag"]
-        if expected and live_item and not _item_matches_expected(str(expected), str(live_item)):
-            matches = False
+    if recipe_kind == "smelting":
+        ingredient = _slot_item_id(document.get("ingredient") or {})
+        expected = next(iter(operands.values())).get("cc", "")
+        matches = (
+            document.get("type") == "minecraft:smelting"
+            and _item_matches_expected(str(expected), ingredient)
+        )
+    else:
+        live_pattern = list(document.get("pattern") or [])
+        ingredients = document.get("ingredients") or {}
+        catalysts = document.get("catalysts") or {}
+        matches = live_pattern == pattern
+        for key, operand in operands.items():
+            expected = operand.get("cc")
+            live_item = _slot_item_id(
+                ingredients.get(key) or catalysts.get(key) or {}
+            )
+            if operand.get("tag") and not expected:
+                expected = (
+                    f"#{operand['tag']}"
+                    if not str(operand["tag"]).startswith("#")
+                    else operand["tag"]
+                )
+            if expected and live_item and not _item_matches_expected(
+                    str(expected), str(live_item)):
+                matches = False
     return {
         "present": True,
         "matches_source": matches,
@@ -808,10 +845,30 @@ def audit_family(domain: str, recipes: dict[int, list[dict[str, Any]]] | None = 
         shapeless = [item for item in candidates if item.get("kind") == "shapeless"]
         if chosen is None and shapeless:
             chosen = shapeless[0]
+        ceramic = (
+            CERAMIC_ATTACHMENT_RECIPES.get(meta)
+            if domain == "attachments"
+            else None
+        )
         operands: dict[str, dict[str, Any]] = {}
         catalysts: dict[str, dict[str, Any]] = {}
         pattern = list((chosen or {}).get("pattern") or [])
-        if chosen and chosen.get("kind") == "shaped":
+        if ceramic is not None:
+            chosen = {
+                "kind": "smelting",
+                "ingredient": ceramic["item"],
+                "gt": ceramic["gt"],
+                "count": 1,
+            }
+            operands["ingredient"] = {
+                "gt": ceramic["gt"],
+                "cc": ceramic["item"],
+                "status": "source_exact",
+                "resolve_status": "ok",
+                "kind": "il_named",
+            }
+            pattern = []
+        elif chosen and chosen.get("kind") == "shaped":
             keys = chosen.get("keys") or {}
             used = "".join(pattern)
             for char in sorted(set(used) - {" "}):
@@ -849,8 +906,13 @@ def audit_family(domain: str, recipes: dict[int, list[dict[str, Any]]] | None = 
             {"stable_id": dummy, "runtime_id": runtime_id}
         )
         live = (
-            _audit_live_recipe(recipe_rel, pattern, {**operands, **catalysts})
-            if pattern
+            _audit_live_recipe(
+                recipe_rel,
+                pattern,
+                {**operands, **catalysts},
+                (chosen or {}).get("kind", "none"),
+            )
+            if chosen is not None
             else {
                 "present": False,
                 "matches_source": False,
@@ -902,6 +964,19 @@ def audit_family(domain: str, recipes: dict[int, list[dict[str, Any]]] | None = 
 def _recipe_json(host: dict[str, Any]) -> dict[str, Any] | None:
     if host.get("status") != "source_exact":
         return None
+    if host.get("recipe_kind") == "smelting":
+        ingredient = next(iter((host.get("operands") or {}).values()))
+        return {
+            "type": "minecraft:smelting",
+            "category": "misc",
+            "ingredient": {"item": ingredient["cc"]},
+            "result": {
+                "count": int(host.get("count") or 1),
+                "id": host["runtime_id"],
+            },
+            "experience": 0.1,
+            "cookingtime": 200,
+        }
     if host.get("recipe_kind") == "shaped" and host.get("pattern"):
         ingredients = {}
         catalysts = {}
@@ -1179,9 +1254,19 @@ def _write_live_catalog(matrices: list[dict[str, Any]]) -> None:
                 {
                     "path": path,
                     "domain": matrix["domain"],
-                    "pattern": document["pattern"],
-                    "ingredients": document["ingredients"],
+                    "type": document["type"],
+                    "pattern": document.get("pattern") or [],
+                    "ingredients": document.get("ingredients") or {},
                     "catalysts": document.get("catalysts") or {},
+                    **(
+                        {
+                            "ingredient": document["ingredient"],
+                            "experience": document["experience"],
+                            "cookingtime": document["cookingtime"],
+                        }
+                        if document["type"] == "minecraft:smelting"
+                        else {}
+                    ),
                     "result": document["result"],
                 }
             )

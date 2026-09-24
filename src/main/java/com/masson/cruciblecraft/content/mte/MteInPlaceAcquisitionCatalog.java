@@ -36,10 +36,15 @@ public final class MteInPlaceAcquisitionCatalog {
             Map<String, Slot> ingredients,
             Map<String, Slot> catalysts,
             ResourceLocation resultId,
-            int count) {
+            int count,
+            String type,
+            Slot ingredient,
+            float experience,
+            int cookingTime) {
         public Recipe {
             Objects.requireNonNull(path, "path");
             Objects.requireNonNull(domain, "domain");
+            Objects.requireNonNull(type, "type");
             pattern = List.copyOf(pattern);
             ingredients = Map.copyOf(new LinkedHashMap<>(ingredients));
             catalysts = Map.copyOf(new LinkedHashMap<>(catalysts));
@@ -47,6 +52,17 @@ public final class MteInPlaceAcquisitionCatalog {
             if (count < 1) {
                 throw new IllegalArgumentException("count must be positive: " + path);
             }
+            if ("minecraft:smelting".equals(type)
+                    && (ingredient == null
+                            || experience < 0.0F
+                            || cookingTime < 1)) {
+                throw new IllegalArgumentException(
+                        "Incomplete smelting recipe: " + path);
+            }
+        }
+
+        public boolean smelting() {
+            return type.equals("minecraft:smelting");
         }
     }
 
@@ -102,14 +118,19 @@ public final class MteInPlaceAcquisitionCatalog {
     private static final class RecipeRow {
         private String path;
         private String domain;
+        private String type;
         private List<String> pattern;
         private Map<String, Slot> ingredients;
         private Map<String, Slot> catalysts;
+        private Slot ingredient;
+        private Float experience;
+        @SerializedName("cookingtime")
+        private Integer cookingTime;
         private ResultRow result;
 
         private Recipe toRecipe() {
             if (path == null || path.isBlank() || domain == null || domain.isBlank()
-                    || pattern == null || result == null || result.id == null) {
+                    || result == null || result.id == null) {
                 throw new IllegalStateException("Incomplete in-place MTE recipe " + path);
             }
             ResourceLocation resultId = ResourceLocation.tryParse(result.id);
@@ -119,11 +140,15 @@ public final class MteInPlaceAcquisitionCatalog {
             return new Recipe(
                     path,
                     domain,
-                    pattern,
+                    pattern == null ? List.of() : pattern,
                     ingredients == null ? Map.of() : ingredients,
                     catalysts == null ? Map.of() : catalysts,
                     resultId,
-                    result.count < 1 ? 1 : result.count);
+                    result.count < 1 ? 1 : result.count,
+                    type == null ? "cruciblecraft:shaped_catalyst" : type,
+                    ingredient,
+                    experience == null ? 0.1F : experience,
+                    cookingTime == null ? 200 : cookingTime);
         }
     }
 

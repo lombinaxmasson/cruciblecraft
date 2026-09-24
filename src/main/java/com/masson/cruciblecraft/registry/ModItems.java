@@ -411,6 +411,10 @@ public final class ModItems {
             ITEMS.registerSimpleItem("raw_ceramic_crucible", new Item.Properties());
     public static final DeferredItem<Item> RAW_CERAMIC_BOWL =
             ITEMS.registerSimpleItem("raw_ceramic_bowl", new Item.Properties());
+    public static final DeferredItem<Item> RAW_CERAMIC_TAP =
+            ITEMS.registerSimpleItem("raw_ceramic_tap", new Item.Properties());
+    public static final DeferredItem<Item> RAW_CERAMIC_FUNNEL =
+            ITEMS.registerSimpleItem("raw_ceramic_funnel", new Item.Properties());
     public static final DeferredItem<Item> RAW_CERAMIC_MOLD =
             ITEMS.registerSimpleItem("raw_ceramic_mold", new Item.Properties());
     private static final Map<String, DeferredItem<Item>> RAW_SHAPED_MOLDS =

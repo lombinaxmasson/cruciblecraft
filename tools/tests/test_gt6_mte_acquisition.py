@@ -97,6 +97,26 @@ class Gt6MteAcquisitionTest(unittest.TestCase):
             self.assertEqual("cruciblecraft:shaped_catalyst", document["type"])
             self.assertEqual(host["runtime_id"], document["result"]["id"])
 
+    def test_fluid_attachment_family_is_complete(self) -> None:
+        matrix = census.load_json(
+            runtime._wave("attachments") / "d0_obtain_matrix.json"
+        )
+        self.assertEqual(46, matrix["counts"]["hosts"])
+        self.assertEqual(46, matrix["counts"]["source_exact"])
+        self.assertEqual(0, matrix["counts"]["explicitly_blocked"])
+        by_id = {row["stable_id"]: row for row in matrix["hosts"]}
+        self.assertEqual(
+            "smelting",
+            by_id["fluid_attachment/ceramic_tap"]["recipe_kind"],
+        )
+        self.assertEqual(
+            "cruciblecraft:raw_ceramic_tap",
+            by_id["fluid_attachment/ceramic_tap"]["operands"]["ingredient"]["cc"],
+        )
+        self.assertTrue(
+            all(row["live_recipe"]["matches_source"] for row in matrix["hosts"])
+        )
+
     def test_furniture_chest_live_recipes_are_generated(self) -> None:
         catalog = census.load_json(runtime.LIVE_CATALOG)
         missing = []

@@ -5,6 +5,7 @@ import java.util.List;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.ElectricEngineBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
@@ -45,6 +46,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.GameType;
@@ -224,6 +226,162 @@ public final class EnergyConverterCatalogGameTests {
                         && engine.exhaustAmount() == 0,
                 "Steam engine did not convert steam to DistW and push it to a side");
         helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void steamEngineTiersUseGt6RuntimeValues(
+            GameTestHelper helper) {
+        assertSteamEngineTier(
+                helper,
+                new BlockPos(2, 1, 2),
+                "steel_steam_engine",
+                16L,
+                6_400,
+                32_000,
+                50);
+        assertSteamEngineTier(
+                helper,
+                new BlockPos(5, 1, 2),
+                "bronze_strong_steam_engine",
+                48L,
+                19_200,
+                96_000,
+                50);
+        helper.succeed();
+    }
+
+    private static void assertSteamEngineTier(
+            GameTestHelper helper,
+            BlockPos pos,
+            String id,
+            long nominal,
+            int steamCapacity,
+            long kineticCapacity,
+            int kuPerBatch) {
+        SteamEngineBlock block = (SteamEngineBlock) ModBlocks
+                .converterBlocksById()
+                .get(ResourceLocation.fromNamespaceAndPath(
+                        "cruciblecraft", id))
+                .get();
+        helper.setBlock(
+                pos,
+                block.defaultBlockState()
+                        .setValue(SteamEngineBlock.FACING, Direction.EAST));
+        SteamEngineBlockEntity engine = helper.getBlockEntity(pos);
+        helper.assertTrue(engine != null, "Missing steam engine " + id);
+        helper.assertTrue(
+                engine.nominalOutputRate() == nominal
+                        && engine.steamCapacity() == steamCapacity
+                        && engine.kineticCapacity() == kineticCapacity
+                        && engine.kuPerSteamBatch() == kuPerBatch,
+                "GT6 profile values drifted for " + id);
+        IFluidHandler input = engine.fluids(Direction.WEST);
+        helper.assertTrue(
+                input != null
+                        && input.fill(
+                                new FluidStack(
+                                        ModFluids.STEAM_SOURCE.get(), 200),
+                                IFluidHandler.FluidAction.EXECUTE)
+                                == 200,
+                "Could not fill steam into " + id);
+        SteamEngineBlockEntity.serverTick(
+                helper.getLevel(),
+                helper.absolutePos(pos),
+                helper.getBlockState(pos),
+                engine);
+        helper.assertTrue(
+                engine.stored() == kuPerBatch,
+                "GT6 efficiency conversion drifted for " + id);
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void steamEngineDoesNotExposeDistilledDrain(
+            GameTestHelper helper) {
+        BlockPos enginePos = new BlockPos(3, 1, 3);
+        helper.setBlock(
+                enginePos,
+                ModBlocks.BRONZE_STEAM_ENGINE.get().defaultBlockState()
+                        .setValue(SteamEngineBlock.FACING, Direction.EAST));
+        SteamEngineBlockEntity engine = helper.getBlockEntity(enginePos);
+        var registries = helper.getLevel().registryAccess();
+        FluidTank seededExhaust =
+                new FluidTank(engine.exhaustCapacity());
+        seededExhaust.setFluid(SteamConversion.distilledExhaust(6));
+        CompoundTag tag = engine.saveWithoutMetadata(registries);
+        tag.put(
+                "exhaust",
+                seededExhaust.writeToNBT(registries, new CompoundTag()));
+        engine.loadWithComponents(tag, registries);
+        IFluidHandler fluids = engine.fluids(Direction.WEST);
+        helper.assertTrue(
+                fluids != null
+                        && fluids.drain(
+                                        6,
+                                        IFluidHandler.FluidAction.EXECUTE)
+                                .isEmpty()
+                        && engine.exhaustAmount() == 6,
+                "Steam engine exposed a drainable DistW tank");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void fluidPipeFeedsSteamEngineBackInput(
+            GameTestHelper helper) {
+        BlockPos enginePos = new BlockPos(4, 1, 3);
+        BlockPos pipePos = enginePos.west();
+        helper.setBlock(
+                enginePos,
+                ModBlocks.BRONZE_STEAM_ENGINE.get().defaultBlockState()
+                        .setValue(SteamEngineBlock.FACING, Direction.EAST));
+        FluidPipeBlock pipeBlock = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack pipeStack = new ItemStack(pipeBlock.asItem());
+        player.setItemInHand(InteractionHand.MAIN_HAND, pipeStack);
+        BlockPos absoluteEngine = helper.absolutePos(enginePos);
+        var placement = pipeStack.getItem().useOn(new UseOnContext(
+                helper.getLevel(),
+                player,
+                InteractionHand.MAIN_HAND,
+                pipeStack,
+                new BlockHitResult(
+                        Vec3.atCenterOf(absoluteEngine)
+                                .add(-0.5D, 0.0D, 0.0D),
+                        Direction.WEST,
+                        absoluteEngine,
+                        false)));
+        helper.assertTrue(
+                placement.consumesAction(),
+                "Could not place a fluid pipe against the engine back");
+        FluidPipeBlockEntity pipe = helper.getBlockEntity(pipePos);
+        SteamEngineBlockEntity engine = helper.getBlockEntity(enginePos);
+        helper.assertTrue(
+                pipe != null && engine != null,
+                "Steam engine or fluid pipe block entity missing");
+        helper.assertTrue(
+                AbstractPipeBlock.isConnected(
+                        helper.getBlockState(pipePos), Direction.EAST),
+                "Placed fluid pipe did not open its engine-side connection");
+        helper.assertTrue(
+                pipe.fillInternal(
+                                new FluidStack(
+                                        ModFluids.STEAM_SOURCE.get(), 100),
+                                IFluidHandler.FluidAction.EXECUTE)
+                        == 100,
+                "Could not prime the steam pipe");
+        helper.startSequence()
+                .thenIdle(1)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            pipe.storedFluid().isEmpty(),
+                            "Steam pipe did not transfer its contents");
+                    helper.assertTrue(
+                            engine.steamAmount() == 100,
+                            "Fluid pipe did not feed steam into the engine back");
+                })
+                .thenSucceed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)

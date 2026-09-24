@@ -206,6 +206,14 @@ public class ModLanguageProvider extends LanguageProvider {
                     "空气体单元（容量 %s mB）");
             add("tooltip.cruciblecraft.gas_cell.contents",
                     "%s：%s/%s mB");
+            add("tooltip.cruciblecraft.fluid_attachment.liquid",
+                    "GT6 液体附件：右键容器交互");
+            add("tooltip.cruciblecraft.fluid_attachment.gas",
+                    "GT6 气体附件：右键容器交互");
+            add("tooltip.cruciblecraft.fluid_attachment.acid_proof",
+                    "耐酸");
+            add("tooltip.cruciblecraft.fluid_attachment.magic_proof",
+                    "耐魔法流体");
             addItem(ModItems.PIPE_FILTER_COVER, "物品过滤覆盖板");
             addItem(ModItems.PIPE_VALVE_COVER, "管道封闭覆盖板");
             addItem(ModItems.PIPE_PUMP_COVER, "管道输出泵盖板");
@@ -252,6 +260,8 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.CERAMIC_MOLD, "陶瓷模具");
             addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "黏土坩埚");
             addItem(ModItems.RAW_CERAMIC_BOWL, "黏土碗");
+            addItem(ModItems.RAW_CERAMIC_TAP, "黏土龙头");
+            addItem(ModItems.RAW_CERAMIC_FUNNEL, "黏土漏斗");
             addItem(ModItems.RAW_CERAMIC_MOLD, "黏土模具");
             CeramicMoldCatalog.SHAPED.forEach(variant -> {
                 addItem(ModItems.rawShapedMold(variant.id()), variant.chineseRaw());
@@ -625,10 +635,19 @@ public class ModLanguageProvider extends LanguageProvider {
             add("item.cruciblecraft.coin", "%s 硬币");
             add("jade.cruciblecraft.mold_solid", "已凝固");
             add("jade.cruciblecraft.mold_state", "状态：%s，%s °C");
-            add("jade.cruciblecraft.steam_engine",
-                    "蒸汽：%s/%s mB，KU：%s/%s（%s 冲程）");
-            add("jade.cruciblecraft.steam_engine.exhaust",
-                    "蒸馏水：%s/%s mB（%s）");
+            add("jade.cruciblecraft.steam_engine.steam",
+                    "蒸汽：%s/%s mB（输入 %s-%s mB/t）");
+            add("jade.cruciblecraft.steam_engine.kinetic",
+                    "KU：%s/%s");
+            add("jade.cruciblecraft.steam_engine.output",
+                    "输出：%s-%s KU/t");
+            add("jade.cruciblecraft.steam_engine.status",
+                    "状态：%s");
+            add("jade.cruciblecraft.steam_engine.status.running", "运行中");
+            add("jade.cruciblecraft.steam_engine.status.no_steam", "缺少蒸汽");
+            add("jade.cruciblecraft.steam_engine.status.overloaded", "过载停机");
+            add("jade.cruciblecraft.steam_engine.status.stopped", "已停止");
+            add("jade.cruciblecraft.steam_engine.status.unknown", "未知");
             add("jade.cruciblecraft.temperature", "温度：%s %s");
             add("tooltip.cruciblecraft.durability", "耐久：%s / %s");
             add("tooltip.cruciblecraft.machine_material",
@@ -960,6 +979,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("block.cruciblecraft.large_crucible.named", "Large %s Crucible");
         addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "Clay Crucible");
         addItem(ModItems.RAW_CERAMIC_BOWL, "Clay Bowl");
+        addItem(ModItems.RAW_CERAMIC_TAP, "Clay Tap");
+        addItem(ModItems.RAW_CERAMIC_FUNNEL, "Clay Funnel");
         addItem(ModItems.RAW_CERAMIC_MOLD, "Clay Mold");
         CeramicMoldCatalog.SHAPED.forEach(variant -> {
             addItem(ModItems.rawShapedMold(variant.id()), variant.englishRaw());
@@ -1039,6 +1060,14 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Empty gas cell (capacity: %s mB)");
         add("tooltip.cruciblecraft.gas_cell.contents",
                 "%s: %s/%s mB");
+        add("tooltip.cruciblecraft.fluid_attachment.liquid",
+                "GT6 liquid attachment: right-click with a fluid container");
+        add("tooltip.cruciblecraft.fluid_attachment.gas",
+                "GT6 gas attachment: right-click with a fluid container");
+        add("tooltip.cruciblecraft.fluid_attachment.acid_proof",
+                "Acid proof");
+        add("tooltip.cruciblecraft.fluid_attachment.magic_proof",
+                "Magic-fluid proof");
         add("tooltip.cruciblecraft.portable_fluid_tank.empty",
                 "Empty (capacity: %s mB)");
         add("tooltip.cruciblecraft.portable_fluid_tank.contents",
@@ -1070,9 +1099,19 @@ public class ModLanguageProvider extends LanguageProvider {
         add("container.cruciblecraft.bronze_crusher", "Bronze Crusher");
         add("emi.category.cruciblecraft.crusher", "Crusher");
         add("jade.cruciblecraft.boiler", "Water: %s/%s mB, Steam: %s/%s mB, Heat: %s/80 HU");
-        add("jade.cruciblecraft.steam_engine", "Steam: %s/%s mB, KU: %s/%s (%s stroke)");
-        add("jade.cruciblecraft.steam_engine.exhaust",
-                "Distilled water: %s/%s mB (%s)");
+        add("jade.cruciblecraft.steam_engine.steam",
+                "Steam: %s/%s mB (input %s-%s mB/t)");
+        add("jade.cruciblecraft.steam_engine.kinetic",
+                "KU: %s/%s");
+        add("jade.cruciblecraft.steam_engine.output",
+                "Output: %s-%s KU/t");
+        add("jade.cruciblecraft.steam_engine.status",
+                "Status: %s");
+        add("jade.cruciblecraft.steam_engine.status.running", "running");
+        add("jade.cruciblecraft.steam_engine.status.no_steam", "no steam");
+        add("jade.cruciblecraft.steam_engine.status.overloaded", "overloaded and stopped");
+        add("jade.cruciblecraft.steam_engine.status.stopped", "stopped");
+        add("jade.cruciblecraft.steam_engine.status.unknown", "unknown");
         add("jade.cruciblecraft.crusher", "Power: %s KU/t, Progress: %s/%s (%s)");
         add("jade.cruciblecraft.processing_machine",
                 "Power: %s/t, Progress: %s/%s (%s)");

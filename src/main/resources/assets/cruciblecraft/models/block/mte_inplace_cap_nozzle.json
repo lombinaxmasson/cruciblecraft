@@ -1,6 +1,154 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
   "textures": {
-    "all": "cruciblecraft:block/gt6_import/mte/cap_nozzle"
-  }
+    "colored_bottom": "cruciblecraft:block/gt6_import/mte/cap_nozzle/colored/bottom",
+    "colored_top": "cruciblecraft:block/gt6_import/mte/cap_nozzle/colored/top",
+    "colored_side": "cruciblecraft:block/gt6_import/mte/cap_nozzle/colored/side",
+    "overlay_bottom": "cruciblecraft:block/gt6_import/mte/cap_nozzle/overlay/bottom",
+    "overlay_top": "cruciblecraft:block/gt6_import/mte/cap_nozzle/overlay/top",
+    "overlay_side": "cruciblecraft:block/gt6_import/mte/cap_nozzle/overlay/side"
+  },
+  "elements": [
+    {
+      "from": [
+        6,
+        3,
+        1
+      ],
+      "to": [
+        10,
+        9,
+        10
+      ],
+      "faces": {
+        "down": {
+          "texture": "#colored_bottom",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#colored_top",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        4,
+        0
+      ],
+      "to": [
+        9,
+        10,
+        14
+      ],
+      "faces": {
+        "down": {
+          "texture": "#colored_bottom",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#colored_top",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        3,
+        1
+      ],
+      "to": [
+        10,
+        9,
+        10
+      ],
+      "faces": {
+        "down": {
+          "texture": "#overlay_bottom"
+        },
+        "up": {
+          "texture": "#overlay_top"
+        },
+        "north": {
+          "texture": "#overlay_side"
+        },
+        "south": {
+          "texture": "#overlay_side"
+        },
+        "west": {
+          "texture": "#overlay_side"
+        },
+        "east": {
+          "texture": "#overlay_side"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        4,
+        0
+      ],
+      "to": [
+        9,
+        10,
+        14
+      ],
+      "faces": {
+        "down": {
+          "texture": "#overlay_bottom"
+        },
+        "up": {
+          "texture": "#overlay_top"
+        },
+        "north": {
+          "texture": "#overlay_side"
+        },
+        "south": {
+          "texture": "#overlay_side"
+        },
+        "west": {
+          "texture": "#overlay_side"
+        },
+        "east": {
+          "texture": "#overlay_side"
+        }
+      }
+    }
+  ]
 }

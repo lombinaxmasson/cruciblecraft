@@ -174,6 +174,7 @@ class MaterialPrefixCatalogTest {
         assertEquals(
                 List.of(
                         MaterialPrefixes.BLOCK,
+                        MaterialPrefixes.BLOCK_RAW,
                         MaterialPrefixes.ORE,
                         MaterialPrefixes.RAW_ORE,
                         MaterialPrefixes.CRUSHED_ORE,
@@ -187,10 +188,9 @@ class MaterialPrefixCatalogTest {
                         MaterialPrefixes.DUST,
                         MaterialPrefixes.PLATE,
                         MaterialPrefixCatalog.require("plate_gem"),
-                        MaterialPrefixes.ROD,
-                        MaterialPrefixes.SMALL_DUST),
+                        MaterialPrefixes.ROD),
                 List.copyOf(MaterialPrefixCatalog.values()).subList(0, 15));
-        assertEquals(145, MaterialPrefixCatalog.values().size());
+        assertEquals(146, MaterialPrefixCatalog.values().size());
         assertEquals(16, MaterialPrefixes.TINY_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.WASHED_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.CENTRIFUGED_CRUSHED_ORE.units());
@@ -200,8 +200,8 @@ class MaterialPrefixCatalogTest {
         assertEquals(432, MaterialPrefixes.SEXTUPLE_WIRE.units());
         assertEquals(
                 List.of(
-                        1296, 144, 144, 144, 16, 144, 144, 22,
-                        144, 144, 144, 144, 144, 72, 36),
+                        1296, 1296, 144, 144, 144, 16, 144, 144,
+                        22, 144, 144, 144, 144, 144, 72),
                 List.copyOf(MaterialPrefixCatalog.values()).subList(0, 15).stream()
                         .map(MaterialPrefix::units).toList());
         assertEquals("small_dusts", MaterialPrefixes.SMALL_DUST.tagDirectory());

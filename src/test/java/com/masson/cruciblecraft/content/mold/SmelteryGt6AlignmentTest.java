@@ -102,7 +102,7 @@ class SmelteryGt6AlignmentTest {
         assertTrue(dest.contains("getCollisionShape"));
         assertTrue(dest.contains("MteInPlaceKind.FAUCET"));
         String pourDown = faucet.substring(
-                faucet.indexOf("private void pourDown(Direction facing)"),
+                faucet.indexOf("private void pourDown("),
                 faucet.indexOf("private void fillAttached"));
         assertTrue(pourDown.contains("capabilityFluid"));
         assertFalse(pourDown.contains("MoldHost.at"));

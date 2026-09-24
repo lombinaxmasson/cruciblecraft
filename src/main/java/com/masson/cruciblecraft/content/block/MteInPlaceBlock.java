@@ -30,6 +30,8 @@ import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
 import com.masson.cruciblecraft.content.block.SluiceParts;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.content.mte.BathingPotRuntime;
+import com.masson.cruciblecraft.content.mte.FluidAttachmentPlayerInteraction;
+import com.masson.cruciblecraft.content.mte.MteFluidAttachmentProfile;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.multiblock.TankControllerProfiles;
@@ -274,6 +276,10 @@ public final class MteInPlaceBlock extends Block
         if (kind == MteInPlaceKind.CHEST) {
             return CHEST;
         }
+        if (MteFluidAttachmentProfile.contains(spec)) {
+            return FluidAttachmentShapes.shape(
+                    kind, state.getValue(FACING));
+        }
         if (!kind.attachment()) {
             return super.getShape(state, level, pos, context);
         }
@@ -310,6 +316,22 @@ public final class MteInPlaceBlock extends Block
         super.appendHoverText(stack, context, tooltip, flag);
         if (spec.kind() == MteInPlaceKind.GAS_TURBINE) {
             LargeGasTurbineTooltips.append(spec, tooltip);
+        }
+        if (MteFluidAttachmentProfile.contains(spec)) {
+            MteFluidAttachmentProfile profile =
+                    MteFluidAttachmentProfile.require(spec);
+            tooltip.add(Component.translatable(
+                    profile.phase() == MteFluidAttachmentProfile.Phase.GAS
+                            ? "tooltip.cruciblecraft.fluid_attachment.gas"
+                            : "tooltip.cruciblecraft.fluid_attachment.liquid"));
+            if (profile.acidProof()) {
+                tooltip.add(Component.translatable(
+                        "tooltip.cruciblecraft.fluid_attachment.acid_proof"));
+            }
+            if (profile.magicProof()) {
+                tooltip.add(Component.translatable(
+                        "tooltip.cruciblecraft.fluid_attachment.magic_proof"));
+            }
         }
     }
 
@@ -600,6 +622,14 @@ public final class MteInPlaceBlock extends Block
                         machine, level, pos, player, hit)) {
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
+        if (spec.kind().attachment()) {
+            ItemInteractionResult fluidAttachment =
+                    FluidAttachmentPlayerInteraction.useItemOn(
+                            spec, stack, level, pos, player, hand, hit);
+            if (fluidAttachment.consumesAction()) {
+                return fluidAttachment;
+            }
+        }
         if (AnvilHosts.isAnvil(spec)) {
             ItemInteractionResult placed =
                     AnvilInteractions.useItemOn(stack, level, pos, player, hit);
@@ -769,16 +799,8 @@ public final class MteInPlaceBlock extends Block
             }
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
-        if (!spec.kind().attachment()) {
-            return InteractionResult.PASS;
-        }
-        if (level.isClientSide) {
-            return InteractionResult.SUCCESS;
-        }
-        if (level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
-            host.transferOnce();
-        }
-        return InteractionResult.CONSUME;
+        return FluidAttachmentPlayerInteraction.useWithoutItem(
+                spec, level, pos, state, player, hit);
     }
 
     private ToolResult useMassStorageTool(ToolAction action, UseOnContext context) {

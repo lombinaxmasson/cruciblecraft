@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -124,7 +125,7 @@ class EnergyConverterCatalogTest {
                 semantics.sourceNominal().registeredNumerator()
                         / semantics.sourceNominal().steamPerEu());
         assertEquals(
-                "DESIGN_POLICY_FIXED_OUTPUT",
+                "SOURCE_DERIVED_NOMINAL",
                 semantics.fixedOutput().classification());
         assertEquals(12, semantics.fixedOutput().kuPerTick());
         assertEquals(
@@ -146,7 +147,7 @@ class EnergyConverterCatalogTest {
                                 + "58,62-63,77-80,98-103,119-165,175,224-226,239"),
                 semantics.sourceEvidencePaths());
         assertTrue(engine.policy().sourceResolution().contains(
-                "DESIGN_POLICY_FIXED_OUTPUT_12_KU_PER_TICK"));
+                "SOURCE_1302_MOUTPUT_12_EFFICIENCY_5000"));
         assertTrue(engine.policy().sourceResolution().contains(
                 "LIVE_STATE_DEPENDENT_6_TO_24"));
         assertTrue(engine.policy().sourceResolution().contains(
@@ -167,6 +168,8 @@ class EnergyConverterCatalogTest {
         assertEquals(4_000, boiler.inputCapacity());
         assertEquals(200, engine.conservation().primaryInputUnits());
         assertEquals(50, engine.conservation().outputUnits());
+        assertEquals(4_800, engine.inputCapacity());
+        assertEquals(24_000, engine.outputCapacity());
         assertEquals(1, engine.conservation().exhaustUnits());
         assertEquals(
                 "cruciblecraft:water_distilled",
@@ -187,6 +190,58 @@ class EnergyConverterCatalogTest {
         assertEquals(
                 java.util.List.of("FRONT"),
                 engine.faces().energyOutputs());
+    }
+
+    @Test
+    void everySteamEngineTierUsesGt6CapacityAndRangeFormulas() {
+        List<EnergyConverterProfile> engines =
+                EnergyConverterCatalog.profiles().stream()
+                        .filter(profile ->
+                                "steam_engine".equals(
+                                        profile.runtimeBinding()))
+                        .toList();
+        assertEquals(28, engines.size());
+        for (EnergyConverterProfile engine : engines) {
+            long nominal = engine.outputPacket().size();
+            int efficiency = engine.efficiencyBps();
+            assertEquals(nominal * 400L, engine.inputCapacity());
+            assertEquals(nominal / 2L,
+                    engine.outputSemantics().gt6Runtime()
+                            .minimumKuPerTick());
+            assertEquals(nominal * 2L,
+                    engine.outputSemantics().gt6Runtime()
+                            .maximumKuPerTick());
+            assertEquals(
+                    100L * efficiency / 10_000L,
+                    engine.conservation().outputUnits());
+            assertEquals(
+                    nominal * 10_000L / efficiency,
+                    engine.inputWindow().minimum());
+            assertEquals(
+                    nominal * 20_000L / efficiency,
+                    engine.inputWindow().nominal());
+            assertEquals(
+                    nominal * 40_000L / efficiency,
+                    engine.inputWindow().maximum());
+        }
+        for (EnergyConverterProfile normal : engines) {
+            if (!normal.id().getPath().endsWith("_steam_engine")
+                    || normal.id().getPath()
+                            .contains("_strong_steam_engine")) {
+                continue;
+            }
+            String strongId = normal.id().toString()
+                    .replace("_steam_engine", "_strong_steam_engine");
+            EnergyConverterProfile strong =
+                    EnergyConverterCatalog.require(strongId);
+            assertEquals(
+                    normal.outputPacket().size() * 4L,
+                    strong.outputPacket().size());
+            assertEquals(normal.outputCapacity() * 4L,
+                    strong.outputCapacity());
+            assertEquals(normal.efficiencyBps(),
+                    strong.efficiencyBps());
+        }
     }
 
     @Test

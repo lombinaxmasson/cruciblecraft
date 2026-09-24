@@ -56,14 +56,14 @@ class Gt6MteInplaceRuntimeTest(unittest.TestCase):
             self.assertFalse(active.is_file())
             self.assertTrue(closed.is_file())
 
-    def test_attachments_overlay_has_thirty_three_live_hosts(self) -> None:
+    def test_attachments_overlay_has_forty_six_live_hosts(self) -> None:
         wave = runtime._wave("attachments")
         overlay_path = wave / "runtime_overlay.json"
         if not overlay_path.is_file():
             self.skipTest("attachments overlay not written")
         overlay = census.load_json(overlay_path)
         self.assertEqual(ATTACHMENTS, overlay["capability_slug"])
-        self.assertEqual(33, int(overlay["counts"]["in_place"]))
+        self.assertEqual(46, int(overlay["counts"]["in_place"]))
         by_meta = {int(row["meta"]): row for row in overlay["rows"]}
         self.assertEqual("FAUCET", by_meta[1700]["kind"])
         self.assertEqual(
@@ -83,15 +83,18 @@ class Gt6MteInplaceRuntimeTest(unittest.TestCase):
         if not manifest_path.is_file():
             self.skipTest("attachments art manifest not written")
         manifest = census.load_json(manifest_path)
-        self.assertGreaterEqual(len(manifest.get("rows") or []), 5)
+        self.assertGreaterEqual(len(manifest.get("rows") or []), 28)
         for row in manifest["rows"]:
             self.assertEqual(
                 "gt6_referencable_port_code/gregtech6_w",
                 row["source"],
             )
-            self.assertTrue(str(row["destination"]).startswith(
-                "assets/cruciblecraft/textures/block/gt6_import/mte/"
-            ))
+            prefix = (
+                "assets/cruciblecraft/textures/item/gt6_import/"
+                if row.get("kind") == "RAW_CERAMIC_ATTACHMENT"
+                else "assets/cruciblecraft/textures/block/gt6_import/mte/"
+            )
+            self.assertTrue(str(row["destination"]).startswith(prefix))
             dest = ROOT / "src" / "main" / "resources" / row["destination"]
             self.assertTrue(dest.is_file(), dest)
             source = runtime.GT6_W / row["gt6_source"]

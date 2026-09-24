@@ -1,31 +1,20 @@
 {
-  "already_gated_live": 3,
+  "already_gated_live": 4,
   "capability_slug": "registry/material-form-demand-census",
   "catalog_not_prefix": [
     "energy/reactor-backpack-radioactivity",
     "obtain/injector-mv-hv-iv-hosts"
   ],
   "counts": {
-    "already_gated_live": 3,
-    "demand_pairs": 70,
-    "gated_unresolved": 62,
-    "not_form": 72,
+    "already_gated_live": 4,
+    "demand_pairs": 68,
+    "gated_unresolved": 59,
+    "not_form": 68,
     "openable": 5,
     "skipped": 0,
     "ungated_generated_flag_pairs": 5768
   },
   "gated_unresolved": [
-    {
-      "form": "curved_plate",
-      "gt": [
-        "plateCurved(MT.Ad)"
-      ],
-      "item": "cruciblecraft:adamantium/curved_plate",
-      "material": "adamantium",
-      "sources": [
-        "tools/waves/prep/gt6-mte-fluid-attachments-acquisition/current_gap.json"
-      ]
-    },
     {
       "form": "quadruple_ingot",
       "gt": [
@@ -35,17 +24,6 @@
       "material": "adamantium",
       "sources": [
         "tools/waves/prep/gt6-mte-drive-acquisition/current_gap.json"
-      ]
-    },
-    {
-      "form": "round",
-      "gt": [
-        "round(MT.Ad)"
-      ],
-      "item": "cruciblecraft:adamantium/round",
-      "material": "adamantium",
-      "sources": [
-        "tools/waves/prep/gt6-mte-fluid-attachments-acquisition/current_gap.json"
       ]
     },
     {
@@ -588,17 +566,6 @@
       ]
     },
     {
-      "form": "round",
-      "gt": [
-        "round(MT.Ta4HfC5)"
-      ],
-      "item": "cruciblecraft:tantalum_hafnium_carbide/round",
-      "material": "tantalum_hafnium_carbide",
-      "sources": [
-        "tools/waves/prep/gt6-mte-fluid-attachments-acquisition/current_gap.json"
-      ]
-    },
-    {
       "form": "small_casing",
       "gt": [
         "casingSmall(MT.Thaumium)"
@@ -699,15 +666,14 @@
     }
   ],
   "gated_unresolved_by_form": {
-    "curved_plate": 3,
+    "curved_plate": 2,
     "quadruple_ingot": 8,
-    "round": 2,
     "small_casing": 49
   },
   "lane": "prep",
   "not_form_by_reason": {
     "missing_plank_identity": 23,
-    "unmapped": 16,
+    "unmapped": 12,
     "unmapped_il": 3,
     "unmapped_od": 30
   },

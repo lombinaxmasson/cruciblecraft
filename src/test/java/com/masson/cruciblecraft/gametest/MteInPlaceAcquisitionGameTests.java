@@ -112,8 +112,11 @@ public final class MteInPlaceAcquisitionGameTests {
                     holder.isPresent(),
                     "missing source-exact recipe " + recipe.path());
             helper.assertTrue(
-                    holder.get().value().getType() == RecipeType.CRAFTING,
-                    recipe.path() + " is not RecipeType.CRAFTING; EMI vanilla craft cannot see it");
+                    holder.get().value().getType()
+                            == (recipe.smelting()
+                                    ? RecipeType.SMELTING
+                                    : RecipeType.CRAFTING),
+                    recipe.path() + " has the wrong recipe type");
         }
         helper.succeed();
     }

@@ -31,7 +31,7 @@
 
 Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor
 
-## runtime_ready accepted（86）
+## runtime_ready accepted（95）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -94,13 +94,22 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `logistics/item-network-core` — Item network core
 - `logistics/logistics-core` — Logistics Core
 - `machines/bath` — Bath / Bathing Pot — [洗矿浴池详细计划](../history/card-plans/closed/洗矿浴池详细计划.md)
+- `machines/bedrock-drill` — Bedrock Mining Drill 17999/18103
 - `machines/cluster-mill` — Cluster Mill — [集群轧机详细计划](../history/card-plans/closed/集群轧机详细计划.md)
+- `machines/coke-oven` — Coke Oven 17000 with Fire Bricks 18000
 - `machines/distillation-tower` — Distillation Tower GT6 Alignment — [蒸馏塔 GT6 对齐详细计划](../history/card-plans/closed/蒸馏塔GT6对齐详细计划.md)
 - `machines/gt6-coil-hosts` — GT6 coils 18040-18045 and host machines
 - `machines/hammer-squeezer-laser` — Hammer / Squeezer / Laser — [锤 / 榨汁机 / 激光详细计划](../history/card-plans/closed/锤榨汁机激光详细计划.md)
 - `machines/implosion-compressor` — Implosion Compressor 17110 — [聚爆压缩机详细计划](../history/card-plans/closed/聚爆压缩机详细计划.md)
 - `machines/injector` — Injector — [注射机详细计划](../history/card-plans/closed/注射机详细计划.md)
 - `machines/laminator` — Laminator — [层压机详细计划](../history/card-plans/closed/层压机详细计划.md)
+- `machines/large-bathing-vat` — Large Bathing Vat 17104
+- `machines/large-centrifuge` — Large Centrifuge 17100
+- `machines/large-coagulator` — Large Coagulator Array 17105
+- `machines/large-crucible` — Large Crucible 17101
+- `machines/large-crusher` — Large Crusher 17108 with Crusher Wheels 18107
+- `machines/large-mixer` — Large Batch Mixer 17102
+- `machines/large-oven` — Large Electric Oven 17106
 - `machines/large-processing-parts` — Large processing multiblock parts and maps — [大型加工多方块零件与配方图详细计划](../history/card-plans/closed/大型加工多方块零件与配方图详细计划.md)
 - `machines/large-shredder` — Large Shredder 17109
 - `machines/large-sluice` — Large Sluice 17107

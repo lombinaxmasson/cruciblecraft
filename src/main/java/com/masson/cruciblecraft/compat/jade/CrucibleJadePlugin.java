@@ -108,12 +108,6 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 BatteryBlockEntity.class);
         registration.registerBlockDataProvider(
                 ConverterComponentProvider.INSTANCE,
-                BoilerBlockEntity.class);
-        registration.registerBlockDataProvider(
-                ConverterComponentProvider.INSTANCE,
-                SteamEngineBlockEntity.class);
-        registration.registerBlockDataProvider(
-                ConverterComponentProvider.INSTANCE,
                 DynamoBlockEntity.class);
         registration.registerBlockDataProvider(
                 ConverterComponentProvider.INSTANCE,
@@ -167,10 +161,6 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 ReactorCoreComponentProvider.INSTANCE, ReactorCoreBlock.class);
         registration.registerBlockComponent(
                 BatteryComponentProvider.INSTANCE, BatteryBlock.class);
-        registration.registerBlockComponent(
-                ConverterComponentProvider.INSTANCE, BoilerBlock.class);
-        registration.registerBlockComponent(
-                ConverterComponentProvider.INSTANCE, SteamEngineBlock.class);
         registration.registerBlockComponent(
                 ConverterComponentProvider.INSTANCE, DynamoBlock.class);
         registration.registerBlockComponent(
@@ -391,6 +381,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 CrucibleCraft.MODID, "bronze_boiler");
         @Override public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             if (accessor.getBlockEntity() instanceof BoilerBlockEntity boiler) {
+                tooltip.remove(JadeIds.UNIVERSAL_FLUID_STORAGE);
                 tooltip.add(Component.translatable("jade.cruciblecraft.boiler",
                         boiler.waterAmount(), boiler.waterCapacity(),
                         boiler.steamAmount(), boiler.steamCapacity(), boiler.accumulatedHu()));
@@ -402,21 +393,39 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
     private enum SteamEngineComponentProvider implements IBlockComponentProvider {
         INSTANCE;
         private static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(
-                CrucibleCraft.MODID, "bronze_steam_engine");
+                CrucibleCraft.MODID, "steam_engine");
         @Override public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             if (accessor.getBlockEntity() instanceof SteamEngineBlockEntity engine) {
-                tooltip.add(Component.translatable("jade.cruciblecraft.steam_engine",
-                        engine.steamAmount(), SteamEngineBlockEntity.STEAM_CAPACITY,
-                        engine.stored(), SteamEngineBlockEntity.KU_CAPACITY,
-                        engine.strokeSign() > 0 ? "push" : "return"));
+                tooltip.remove(JadeIds.UNIVERSAL_FLUID_STORAGE);
                 tooltip.add(Component.translatable(
-                        "jade.cruciblecraft.steam_engine.exhaust",
-                        engine.exhaustAmount(),
-                        SteamEngineBlockEntity.EXHAUST_CAPACITY,
-                        engine.status()));
+                        "jade.cruciblecraft.steam_engine.steam",
+                        engine.steamAmount(),
+                        engine.steamCapacity(),
+                        engine.inputRateMinimum(),
+                        engine.inputRateMaximum()));
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.steam_engine.kinetic",
+                        engine.stored(),
+                        engine.kineticCapacity()));
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.steam_engine.output",
+                        engine.minimumOutputRate(),
+                        engine.maximumOutputRate()));
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.steam_engine.status",
+                        Component.translatable(
+                                "jade.cruciblecraft.steam_engine.status."
+                                        + steamEngineStatusKey(engine.status()))));
             }
         }
         @Override public ResourceLocation getUid() { return UID; }
+
+        private static String steamEngineStatusKey(String status) {
+            return switch (status) {
+                case "running", "no_steam", "overloaded", "stopped" -> status;
+                default -> "unknown";
+            };
+        }
     }
 
     private enum CrusherComponentProvider implements IBlockComponentProvider {

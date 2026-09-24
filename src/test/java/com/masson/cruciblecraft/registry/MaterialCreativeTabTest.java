@@ -124,16 +124,16 @@ class MaterialCreativeTabTest {
                 Map.ofEntries(
                         Map.entry(MaterialCreativeTab.ORES, 294),
                         Map.entry(MaterialCreativeTab.RAW_ORES, 1_150),
-                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 2_752),
-                        Map.entry(MaterialCreativeTab.DUSTS, 3_589),
-                        Map.entry(MaterialCreativeTab.METALS_GEMS, 4_722),
-                        Map.entry(MaterialCreativeTab.PLATES, 3_783),
+                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 2_755),
+                        Map.entry(MaterialCreativeTab.DUSTS, 3_590),
+                        Map.entry(MaterialCreativeTab.METALS_GEMS, 4_724),
+                        Map.entry(MaterialCreativeTab.PLATES, 3_785),
                         Map.entry(MaterialCreativeTab.PARTS, 4_237),
                         Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 2_152),
                         Map.entry(MaterialCreativeTab.WIRES, 168),
                         Map.entry(MaterialCreativeTab.CABLES, 625),
                         Map.entry(MaterialCreativeTab.PIPES, 406),
-                        Map.entry(MaterialCreativeTab.MISC, 857)),
+                        Map.entry(MaterialCreativeTab.MISC, 859)),
                 counts);
         assertEquals(
                 0,

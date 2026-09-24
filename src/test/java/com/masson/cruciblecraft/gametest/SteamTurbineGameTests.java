@@ -64,6 +64,46 @@ public final class SteamTurbineGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void fluidPipeFeedsSmallSteamTurbine(
+            GameTestHelper helper) {
+        BlockPos turbinePos = new BlockPos(2, 2, 2);
+        BlockPos pipePos = turbinePos.west();
+        placeBronze(helper, turbinePos);
+        FluidPipeBlock pipeBlock = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(
+                pipePos,
+                pipeBlock.defaultBlockState().setValue(
+                        AbstractPipeBlock.PROPERTY_BY_DIRECTION.get(
+                                Direction.EAST),
+                        true));
+        FluidPipeBlockEntity pipe = helper.getBlockEntity(pipePos);
+        MteInPlaceBlockEntity turbine = helper.getBlockEntity(turbinePos);
+        helper.assertTrue(
+                pipe != null && turbine != null,
+                "Steam turbine or fluid pipe block entity missing");
+        helper.assertTrue(
+                pipe.fillInternal(
+                                steam(100),
+                                IFluidHandler.FluidAction.EXECUTE)
+                        == 100,
+                "Could not prime the steam turbine pipe");
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            pipe.storedFluid().isEmpty(),
+                            "Steam pipe did not transfer into the turbine");
+                    helper.assertTrue(
+                            turbine.stored(EnergyType.KINETIC_ROTATION) > 0L,
+                            "Fluid pipe did not feed the small steam turbine");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void largeHousingsRequireStructure(GameTestHelper helper) {
         SteamTurbineCatalog.Profile large = magnalium();
         BlockPos turbinePos = new BlockPos(2, 2, 2);
@@ -202,6 +242,45 @@ public final class SteamTurbineGameTests {
                         && nothing.boundSteamTurbine() == turbine,
                 "NOTHING wall was not bound for tool relay");
         helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void fluidPipeFeedsFormedLargeSteamTurbine(
+            GameTestHelper helper) {
+        MteInPlaceBlockEntity turbine = placeFormed(helper);
+        BlockPos wallPos = CONTROLLER.above();
+        BlockPos pipePos = wallPos.west();
+        FluidPipeBlock pipeBlock = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(
+                pipePos,
+                pipeBlock.defaultBlockState().setValue(
+                        AbstractPipeBlock.PROPERTY_BY_DIRECTION.get(
+                                Direction.EAST),
+                        true));
+        FluidPipeBlockEntity pipe = helper.getBlockEntity(pipePos);
+        helper.assertTrue(
+                pipe != null && turbine.tank().getFluidAmount() == 0,
+                "Large steam turbine pipe fixture was not empty");
+        helper.assertTrue(
+                pipe.fillInternal(
+                                steam(100),
+                                IFluidHandler.FluidAction.EXECUTE)
+                        == 100,
+                "Could not prime the large steam turbine pipe");
+        helper.startSequence()
+                .thenIdle(1)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            pipe.storedFluid().isEmpty(),
+                            "Steam pipe did not transfer to the large turbine wall");
+                    helper.assertTrue(
+                            turbine.tank().getFluidAmount() == 100,
+                            "Large steam turbine wall did not accept pipe steam");
+                })
+                .thenSucceed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)

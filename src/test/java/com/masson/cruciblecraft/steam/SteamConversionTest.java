@@ -1,6 +1,9 @@
 package com.masson.cruciblecraft.steam;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
+
 import org.junit.jupiter.api.Test;
 
 class SteamConversionTest {
@@ -23,6 +26,30 @@ class SteamConversionTest {
                         / SteamConversion.KU_PER_ENGINE_BATCH);
         assertEquals(1, SteamConversion.EXHAUST_WATER_PER_BATCH);
         assertEquals("water_distilled", SteamConversion.DISTILLED_WATER_ID);
+    }
+
+    @Test void engineConversionUsesEachTierEfficiency() {
+        assertEquals(
+                30,
+                SteamConversion.engineKuPerBatch(
+                        EnergyConverterCatalog.require(
+                                "cruciblecraft:lead_steam_engine")));
+        assertEquals(
+                64,
+                SteamConversion.engineKuPerBatch(
+                        EnergyConverterCatalog.require(
+                                "cruciblecraft:invar_steam_engine")));
+        assertEquals(
+                63,
+                SteamConversion.engineKuPerBatch(
+                        EnergyConverterCatalog.require(
+                                "cruciblecraft:chromium_strong_steam_engine")));
+        assertEquals(
+                120,
+                SteamConversion.engineKuForBatches(
+                        EnergyConverterCatalog.require(
+                                "cruciblecraft:lead_steam_engine"),
+                        4));
     }
     @Test void extractionSimulationDoesNotMutateAndRateLimits() {
         KineticBuffer buffer = new KineticBuffer(64, 16);
