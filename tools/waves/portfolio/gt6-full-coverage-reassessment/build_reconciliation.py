@@ -123,6 +123,11 @@ MACHINE_KIND_CAPABILITY_ALIASES: dict[str, tuple[str, ...]] = {
     "MultiTileEntityAxle": ("content/gt6-mte-drive-runtime",),
     "MultiTileEntityGearBox": ("content/gt6-mte-drive-runtime",),
     "MultiTileEntityBatteryBox": ("content/gt6-mte-converter-remainder-runtime",),
+    "MultiTileEntityReactorCore2x2": (
+        "energy/nuclear-fission-hot-fluids",
+        "energy/nuclear-fission-observation-safety",
+        "energy/nuclear-fission-survival",
+    ),
 }
 
 # GT6 RM field -> CC delivery host map, where the names differ.

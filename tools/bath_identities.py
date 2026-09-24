@@ -42,7 +42,7 @@ PREFIX_ITEM_TO_FORM_OVERLAY: dict[str, str] = {
     "gregtech:gt.meta.chunkGt": "chunk",
     "gregtech:gt.meta.minecartWheels": "minecart_wheels",
     "gregtech:gt.meta.storage.plate": "storage_plate",
-    "gregtech:gt.meta.storage.ingot": "storage_ingot",
+    "gregtech:gt.meta.storage.ingot": "block",
 }
 
 CIRCUIT_ITEM = "gregapi:gt.integrated_circuit"

@@ -38,6 +38,16 @@ OUTPUT_PATH = WAVE_ROOT / "semantic_coverage.json"
 EXCLUSIONS_PATH = WAVE_ROOT / "exclusions.json"
 SCOPE_PATH = WAVE_ROOT / "scope.json"
 CROSS_REFERENCE_PATH = ROOT / "tools" / "gt6_oredict_cross_reference.json"
+MACHINE_FLUID_MAPPING_PATH = ROOT / "tools" / "machine_fluid_mapping.json"
+MATERIAL_REGISTRATION_GATE_PATH = (
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "material_registration_gate.json"
+)
 DUMP_MATERIALS = ROOT / "gt6_dump" / "gt6_recipe_dump" / "oredict" / "materials.json"
 RECONCILIATION_PATH = WAVE_ROOT / "build_reconciliation.py"
 COMPARATOR_PATH = ROOT / "tools" / "compare_gt6_recipes.py"
@@ -114,6 +124,17 @@ def load_comparator():
 # --------------------------------------------------------------------------
 
 
+def canonical_legacy_item(runtime: str) -> str:
+    """Keep retired storage-ingot rows comparable to the live block identity."""
+    if not runtime.startswith("cruciblecraft:"):
+        return runtime
+    path = runtime.split(":", 1)[1]
+    material, separator, form = path.partition("/")
+    if separator and form == "storage_ingot":
+        return f"cruciblecraft:{material}/block"
+    return runtime
+
+
 def logical_item(operand: Any) -> str | None:
     """Collapse slash ids and prefix-item components onto one identity."""
     if not isinstance(operand, dict):
@@ -126,7 +147,8 @@ def logical_item(operand: Any) -> str | None:
     components = operand.get("components") or {}
     material = components.get(PREFIX_MATERIAL)
     if material and runtime.startswith("cruciblecraft:"):
-        return f"cruciblecraft:{material}/{runtime.split(':', 1)[1]}"
+        runtime = f"cruciblecraft:{material}/{runtime.split(':', 1)[1]}"
+    runtime = canonical_legacy_item(runtime)
     extra = {key: value for key, value in components.items() if key != PREFIX_MATERIAL}
     return runtime + (stable_json(extra) if extra else "")
 
@@ -240,7 +262,13 @@ def build_cc_projection() -> dict[str, Any]:
 
 
 def translator_fingerprint() -> dict[str, str]:
-    paths = [*TRANSLATOR_SOURCES, BUILDER_PATH]
+    paths = [
+        *TRANSLATOR_SOURCES,
+        BUILDER_PATH,
+        CROSS_REFERENCE_PATH,
+        MACHINE_FLUID_MAPPING_PATH,
+        MATERIAL_REGISTRATION_GATE_PATH,
+    ]
     if EXCLUSIONS_PATH.is_file():
         paths.append(EXCLUSIONS_PATH)
     return {path.relative_to(ROOT).as_posix(): sha256_file(path) for path in paths}

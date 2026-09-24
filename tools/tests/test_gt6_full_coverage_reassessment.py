@@ -97,11 +97,9 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
 
     def test_extruder_shapes_are_not_blamed_on_the_translator(self):
         extruder = self.by_source["gt.recipe.extruder"]["raw_row_classes"]
-        self.assertGreater(extruder.get("missing_object", 0), 100000)
         blockers = self.coverage["semantic_coverage"]["blockers"]
         shapes = [entry for entry in blockers if entry["kind"] == "extruder_shape"]
-        self.assertTrue(shapes)
-        self.assertTrue(all(entry["label"].startswith("Shape_Extruder_") for entry in shapes))
+        self.assertFalse(shapes)
 
     def test_progress_uses_decided_exclusions_only(self):
         grades = self.coverage["summary"]["recipe_evidence_grades"]
@@ -144,7 +142,7 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
         self.assertGreater(classes["missing_material_form"], 0)
         self.assertIn("missing_material", classes)
         kinds = {entry["kind"] for entry in self.coverage["semantic_coverage"]["blockers"]}
-        self.assertTrue({"form", "extruder_shape", "fluid"} <= kinds)
+        self.assertTrue({"form", "fluid"} <= kinds)
 
     def test_recipe_maps_are_unique_and_complete(self):
         rows = self.coverage["recipe_maps"]

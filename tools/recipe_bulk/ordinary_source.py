@@ -976,6 +976,7 @@ CROSS_MOD_FLUID_MARKERS = (
 )
 NATIVE_FLUID_EQUIVALENTS = {
     "ic2constructionfoam": "cruciblecraft:construction_foam",
+    "sluicejuice": "cruciblecraft:sluice_juice",
 }
 NATIVE_ITEM_EQUIVALENTS = {
     ("gregtech:gt.stone.basalt", 0): "minecraft:basalt",

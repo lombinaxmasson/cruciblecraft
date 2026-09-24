@@ -186,7 +186,9 @@ _ANY_MEMBERS = re.compile(
     r"^\s+([A-Za-z][A-Za-z0-9_]*)\s+\.stealLooks.*?addReRegistrationToThis\(([^)]+)\)",
     re.MULTILINE,
 )
-_CATALOG_SHAPE = re.compile(r'shape\(\s*"([^"]+)"')
+_CATALOG_SHAPE = re.compile(
+    r'(?:empty|shape)\(\s*"([^"]+)"\s*,\s*(\d+)'
+)
 _TECH_SHAPE = re.compile(
     r"IL\.(Shape_Extruder_[A-Za-z0-9_]+)\s*\.set\(\s*addItem\(\s*(\d+)"
 )
@@ -310,20 +312,23 @@ def registered_ids() -> set[str]:
 @lru_cache(maxsize=1)
 def extruder_shapes() -> dict[str, dict[str, Any]]:
     shapes: dict[str, dict[str, Any]] = {}
+    catalog_by_meta: dict[int, dict[str, Any]] = {}
     if SHAPE_CATALOG.is_file():
         for match in _CATALOG_SHAPE.finditer(SHAPE_CATALOG.read_text(encoding="utf-8")):
             shape_id = match.group(1)
-            shapes[shape_id] = {
+            row = {
                 "cc_item": f"cruciblecraft:extruder_shape_{shape_id}",
                 "live": True,
             }
+            shapes[shape_id] = row
             shapes[_norm(shape_id)] = shapes[shape_id]
             shapes[f"Shape_Extruder_{shape_id}"] = shapes[shape_id]
+            catalog_by_meta[int(match.group(2))] = row
     if TECH_JAVA.is_file():
         for match in _TECH_SHAPE.finditer(TECH_JAVA.read_text(encoding="utf-8", errors="replace")):
             token, meta = match.group(1), int(match.group(2))
             suffix = token.removeprefix("Shape_Extruder_").lower()
-            row = shapes.get(_norm(suffix)) or shapes.get(token) or {
+            row = shapes.get(_norm(suffix)) or shapes.get(token) or catalog_by_meta.get(meta) or {
                 "cc_item": None,
                 "live": False,
             }
