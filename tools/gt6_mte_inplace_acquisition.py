@@ -175,6 +175,10 @@ SAFE_EXPR = re.compile(r"^[0-9+\-*]+$")
 CHAR_KEY = re.compile(r"^'([^']+)'$")
 D0_SCHEMA = "gt6-mte-inplace-d0-obtain-matrix-v1"
 CERAMIC_ATTACHMENT_RECIPES: dict[int, dict[str, str]] = {
+    1705: {
+        "item": "cruciblecraft:raw_ceramic_faucet",
+        "gt": "IL.Ceramic_Faucet_Raw",
+    },
     32723: {
         "item": "cruciblecraft:raw_ceramic_funnel",
         "gt": "IL.Ceramic_Funnel_Raw",

@@ -123,7 +123,7 @@ DOMAINS: dict[str, dict[str, Any]] = {
     "attachments": {
         "slug": "content/gt6-mte-fluid-attachments-runtime",
         "family": "fluid_attachment",
-        "expected": 46,
+        "expected": 47,
         "tests": [
             "allFluidAttachmentTiersAreLive",
             "creativeFunnelKeepsHeldFluidContainer",
@@ -142,7 +142,7 @@ DOMAINS: dict[str, dict[str, Any]] = {
             "content/gt6-fluid-pipe-runtime",
         ],
         "lock_note": (
-            "46 fluid attachments are live face-placed BlockItems; obtain "
+            "47 fluid attachments are live face-placed BlockItems; obtain "
             "explicitly_blocked; not player_complete"
         ),
     },

@@ -11,6 +11,7 @@
     "src/main/java/com/masson/cruciblecraft/content/blockentity/MteInPlaceBlockEntity.java",
     "src/main/java/com/masson/cruciblecraft/content/mte/FluidAttachmentPlayerInteraction.java",
     "src/main/java/com/masson/cruciblecraft/content/mte/FluidAttachmentTransfer.java",
+    "src/main/java/com/masson/cruciblecraft/content/mte/MteFaucetProfile.java",
     "src/main/java/com/masson/cruciblecraft/content/mte/MteFluidAttachmentProfile.java",
     "src/main/java/com/masson/cruciblecraft/content/mte/MteInPlaceCatalog.java",
     "src/main/java/com/masson/cruciblecraft/content/mte/MteInPlaceKind.java",
@@ -18,6 +19,7 @@
     "src/test/java/com/masson/cruciblecraft/gametest/MteFluidAttachmentsRuntimeGameTests.java",
     "src/main/java/com/masson/cruciblecraft/client/color/FluidAttachmentArtColor.java",
     "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json",
+    "src/main/resources/data/cruciblecraft/mte_faucet_profiles.json",
     "src/main/resources/data/cruciblecraft/mte_fluid_attachment_profiles.json",
     "src/main/resources/data/cruciblecraft_wave_content_gt6_mte_fluid_attachments_runtime/**",
     "tools/capabilities/content/gt6-mte-fluid-attachments-runtime/**",
@@ -52,7 +54,7 @@
         "cruciblecraft:fluid_attachment/crucible_faucet_stone",
         "cruciblecraft:fluid_attachment/stainless_tap"
       ],
-      "reason": "46 faucet/tap/funnel/nozzle/cap-nozzle identities keep their dummy modern ids as live face-placed BlockItems. They are not pipe covers."
+      "reason": "47 faucet/tap/funnel/nozzle/cap-nozzle identities keep their dummy modern ids as live face-placed BlockItems. They are not pipe covers."
     }
   ],
   "note": "In-place AttachmentSmall runtime with GT6 phase/proof/container behavior. Source-exact obtain lives on content/gt6-mte-inplace-acquisition. Do not edit R0. Art from local gregtech6_w."

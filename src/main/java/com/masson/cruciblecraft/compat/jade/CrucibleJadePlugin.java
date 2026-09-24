@@ -460,7 +460,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                     var profile = host.converterProfile();
                     SourceWailaRows.energyIoRecommended(
                             tooltip,
-                            profile.inputPacket().size(),
+                            profile.inputPacket().maxAmountPerTick(),
                             profile.inputPacket().identity(),
                             profile.outputPacket().maxAmountPerTick(),
                             profile.outputPacket().identity());
@@ -470,7 +470,8 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                         boiler.efficiencyBasisPoints());
                 SourceWailaRows.energyAmount(
                         tooltip,
-                        "ENERGY_CONTAINED",
+                        Component.translatable(
+                                "jade.cruciblecraft.source.energy_contained"),
                         boiler.accumulatedHu(),
                         "HU");
                 var fluids = boiler.fluids(null);
@@ -485,9 +486,6 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                         fluids.getFluidInTank(1),
                         fluids.getTankCapacity(1));
                 tooltip.remove(JadeIds.UNIVERSAL_FLUID_STORAGE);
-                tooltip.add(Component.translatable("jade.cruciblecraft.boiler",
-                        boiler.waterAmount(), boiler.waterCapacity(),
-                        boiler.steamAmount(), boiler.steamCapacity(), boiler.accumulatedHu()));
             }
         }
         @Override
@@ -1083,7 +1081,8 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                     && observation.energyType().available()) {
                 SourceWailaRows.energyAmount(
                         tooltip,
-                        "ENERGY_CONTAINED",
+                        Component.translatable(
+                                "jade.cruciblecraft.source.energy_contained"),
                         observation.stored().value(),
                         observation.energyType().value());
             }
@@ -1146,7 +1145,8 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                     && observation.bufferCapacity().available()) {
                 SourceWailaRows.energyAmount(
                         tooltip,
-                        "ENERGY_CONTAINED",
+                        Component.translatable(
+                                "jade.cruciblecraft.source.energy_contained"),
                         observation.bufferStored().value(),
                         observation.emitsDisplay());
             }

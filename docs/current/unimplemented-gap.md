@@ -4,6 +4,8 @@
 > 机器主键仍是 `tools/capabilities/**/capability.json` 与
 > `tools/blockers/catalog.json`。[project-status.md](project-status.md)
 > 与 [blocked.md](blocked.md) 是它们的投影，不要手改。
+> 全量 GT6 源覆盖、RecipeMap 对账和四轴缺口见
+> [gt6-full-coverage.md](gt6-full-coverage.md)；本页不再承担全量进度判断。
 > unique-active、prep 文件列表与试玩 cycle 以状态页为准；
 > blocker 排期以 catalog / blocked 为准。
 > `*_READY` 只表示分母、来源或机制可跑，不表示游戏里已经有完整内容。
@@ -25,10 +27,8 @@
 | 严禁目录掉落物世界生成 | [gt6-no-item-entity-worldgen.md](gt6-no-item-entity-worldgen.md) |
 | GT6 贴图 | [gt6-art-policy.md](gt6-art-policy.md) |
 
-2026-09 人读长文（含过期 MTE 个数与仓储桶旧结论）已冻结在
-[unimplemented-gap-2026-09.md](../history/card-plans/closed/archived-prep/unimplemented-gap-2026-09.md)。
-同期从 prep 挪走的 12 张 MTE 家族合同在
-[archived-prep](../history/card-plans/closed/archived-prep/MTE全量Prep总索引.md)。
-那些文件的 runtime child 已经关 `runtime_ready`；不要把归档目录或 R0 标签抄成待办。
+旧的人读缺口快照已删除；MTE 家族合同仍在
+[archived-prep](../history/card-plans/closed/archived-prep/MTE全量Prep总索引.md)，
+但只能作为契约附件阅读，不能把归档目录或 R0 标签抄成待办。
 
 仍在 `card-plans/prep/` 的签发计划（普查、印刷机、地牢、行星岩、Center、PUV 线、微型燃气涡轮）只以状态页 Prep 表为准。

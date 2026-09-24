@@ -385,7 +385,7 @@ MATERIAL_LANG = {
         "lang_key_zh": "钽铪碳化物",
         "lang_key_en": "Tantalum Hafnium Carbide",
     },
-    "ultimet": {"lang_key_zh": "阿尔蒂姆", "lang_key_en": "Ultimet"},
+    "ultimet": {"lang_key_zh": "哈氏合金", "lang_key_en": "Ultimet"},
     "tin_alloy": {"lang_key_zh": "锡合金", "lang_key_en": "Tin Alloy"},
     "brass": {"lang_key_zh": "黄铜", "lang_key_en": "Brass"},
     "ironwood": {"lang_key_zh": "铁木", "lang_key_en": "Ironwood"},

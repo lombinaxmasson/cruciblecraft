@@ -126,11 +126,29 @@ public final class EnergyConverterCatalog {
                 || boiler.conservation().primaryInputUnits() != 80
                 || boiler.conservation().secondaryInputUnits() != 1
                 || boiler.conservation().outputUnits() != 160
+                || boiler.inputPacket().maxAmountPerTick() != 24L
+                || boiler.outputPacket().maxAmountPerTick() != 48L
+                || boiler.outputCapacity() != 480_000
                 || engine.source().sourceId() != 1302
                 || !"24/STEAM_PER_EU".equals(
                         engine.source().outputExpression())) {
             throw new IllegalStateException(
                     "Steam-chain converter rows drifted");
+        }
+        for (EnergyConverterProfile candidate : profiles.values()) {
+            if (!"boiler".equals(candidate.runtimeBinding())) {
+                continue;
+            }
+            long huPerTick = candidate.inputPacket().maxAmountPerTick();
+            long steamPerTick = candidate.outputPacket().maxAmountPerTick();
+            if (steamPerTick != huPerTick * 2L
+                    || candidate.inputCapacity() != 4_000
+                    || candidate.outputCapacity()
+                            != Math.multiplyExact(steamPerTick, 10_000L)) {
+                throw new IllegalStateException(
+                        "Boiler rate or tank capacity drifted: "
+                                + candidate.id());
+            }
         }
         int steamCount = 0;
         for (EnergyConverterProfile candidate : profiles.values()) {

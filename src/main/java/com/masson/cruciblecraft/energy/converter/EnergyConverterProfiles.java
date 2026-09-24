@@ -36,8 +36,8 @@ final class EnergyConverterProfiles {
     private static EnergyConverterProfile boiler(
             EnergyConverterKindCatalog.Kind kind,
             EnergyConverterTierCatalog.Entry tier) {
-        int huMax = Math.max(1, tier.nbtOutput() / STEAM_PER_EU);
-        int steamMax = scale(1_280, 24, huMax);
+        int steamPerTick = Math.max(1, tier.nbtOutput());
+        int huPerTick = Math.max(1, steamPerTick / STEAM_PER_EU);
         // GT6 MultiTileEntityBoilerTank: water is always FluidTankGT(4000).
         // Steam/heat scale with NBT_OUTPUT_SU; water does not.
         int waterCapacity = 4_000;
@@ -49,9 +49,9 @@ final class EnergyConverterProfiles {
                 source(kind, tier, "NONE", "NONE"),
                 kind.accepts(),
                 kind.emits(),
-                packet("ENERGY", "HU", 1L, huMax),
-                packet("FLUID", "STEAM", 160L, steamMax),
-                window(1L, (long) huMax, (long) huMax),
+                packet("ENERGY", "HU", 1L, huPerTick),
+                packet("FLUID", "STEAM", 160L, steamPerTick),
+                window(1L, (long) huPerTick, (long) huPerTick),
                 10_000,
                 "NONE",
                 conservation(
@@ -66,7 +66,7 @@ final class EnergyConverterProfiles {
                                 + "_WITH_CC_80_HU_PLUS_1_MB_WATER_TO_160_MB_STEAM"),
                 null,
                 waterCapacity,
-                scale(64_000, 24, huMax));
+                Math.multiplyExact(steamPerTick, 10_000));
     }
 
     private static EnergyConverterProfile steamEngine(

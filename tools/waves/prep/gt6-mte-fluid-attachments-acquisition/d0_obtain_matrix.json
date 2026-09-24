@@ -4,11 +4,11 @@
   "capability_slug": "content/gt6-mte-fluid-attachments-acquisition",
   "counts": {
     "explicitly_blocked": 0,
-    "hosts": 46,
-    "source_exact": 46
+    "hosts": 47,
+    "source_exact": 47
   },
   "domain": "attachments",
-  "expected": 46,
+  "expected": 47,
   "hosts": [
     {
       "catalysts": {
@@ -53,6 +53,34 @@
       "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_stone",
       "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
       "stable_id": "fluid_attachment/crucible_faucet_stone",
+      "status": "source_exact"
+    },
+    {
+      "catalysts": {},
+      "count": 1,
+      "gt6_class": "MultiTileEntityFaucet / Crucibles Faucets",
+      "kind": "FAUCET",
+      "live_recipe": {
+        "matches_source": true,
+        "path": "src/generated/resources/data/cruciblecraft/recipe/fluid_attachment/crucible_faucet_ceramic.json",
+        "present": true
+      },
+      "meta": 1705,
+      "operands": {
+        "ingredient": {
+          "cc": "cruciblecraft:raw_ceramic_faucet",
+          "gt": "IL.Ceramic_Faucet_Raw",
+          "kind": "il_named",
+          "resolve_status": "ok",
+          "status": "source_exact"
+        }
+      },
+      "pattern": [],
+      "recipe_kind": "smelting",
+      "replacement": null,
+      "runtime_id": "cruciblecraft:fluid_attachment/crucible_faucet_ceramic",
+      "source_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+      "stable_id": "fluid_attachment/crucible_faucet_ceramic",
       "status": "source_exact"
     },
     {

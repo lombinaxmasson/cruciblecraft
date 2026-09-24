@@ -16,6 +16,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.content.block.AnvilHosts;
 import com.masson.cruciblecraft.content.block.FoundryHosts;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtBuildingBlockCatalog;
@@ -51,10 +52,10 @@ import net.minecraft.resources.ResourceLocation;
  * {@code cruciblecraft:{material}/{form}} and the shared leftover prefix Item
  * {@code cruciblecraft:{form}} both match. Machine groups list exact variant
  * ids so {@code centrifuge} does not steal {@code large_centrifuge}. Building,
- * furniture, hopper, crucible, and mold groups also list exact ids so
- * {@code glass/black} does not steal {@code glass/ingot}. Wider {@code c:dusts}
- * tags stay out so other mods are not pulled in. Recipe lookup is unchanged;
- * this is index grouping only.
+ * furniture, hopper, tool, foundry, and fluid-attachment groups also list
+ * exact ids so {@code glass/black} does not steal {@code glass/ingot}. Wider
+ * {@code c:dusts} tags stay out so other mods are not pulled in. Recipe
+ * lookup is unchanged; this is index grouping only.
  *
  * <p>Generated JSON uses {@code remi:group} {@code contents} item ids, not
  * {@code remi:regex}. Reliable EMI's regex groups disable the id-set fast
@@ -234,7 +235,8 @@ public final class EmiStackGroupPlan {
     }
 
     /**
-     * Building blocks, furniture, hoppers, smelting crucibles, and molds.
+     * Building blocks, furniture, hoppers, tools, foundry parts, fluid
+     * attachments, smelting crucibles, and molds.
      * Glass uses catalog ids, not {@code glass/[^/]+}, so material forms such
      * as {@code glass/ingot} stay in the prefix groups.
      */
@@ -330,6 +332,22 @@ public final class EmiStackGroupPlan {
                 groups,
                 "hopper/queue_hopper",
                 hopperIds(HopperKind.QUEUE_HOPPER));
+        List<String> anvils = new ArrayList<>();
+        anvils.add("cruciblecraft:anvil");
+        anvils.addAll(mteIds(AnvilHosts::isAnvil));
+        addIfMany(groups, "misc_tool/anvil", anvils);
+        addIfMany(
+                groups,
+                "misc_tool/mortar",
+                mteIds(spec -> spec.gt6Class().contains("MultiTileEntityMortar")));
+        addIfMany(groups, "fluid_attachment/faucet", mteIds(MteInPlaceKind.FAUCET));
+        addIfMany(groups, "fluid_attachment/tap", mteIds(MteInPlaceKind.TAP));
+        addIfMany(groups, "fluid_attachment/funnel", mteIds(MteInPlaceKind.FUNNEL));
+        addIfMany(groups, "fluid_attachment/nozzle", mteIds(MteInPlaceKind.NOZZLE));
+        addIfMany(
+                groups,
+                "fluid_attachment/cap_nozzle",
+                mteIds(MteInPlaceKind.CAP_NOZZLE));
         List<String> crucibles = new ArrayList<>();
         List<String> foundryMolds = new ArrayList<>();
         for (MteInPlaceSpec spec : MteInPlaceCatalog.specs()) {
@@ -340,6 +358,8 @@ public final class EmiStackGroupPlan {
             }
         }
         addIfMany(groups, "foundry/crucible", crucibles);
+        addIfMany(groups, "foundry/basin", mteIds(FoundryHosts::isBasin));
+        addIfMany(groups, "foundry/crossing", mteIds(FoundryHosts::isCrossing));
         addIfMany(groups, "foundry/mold", foundryMolds);
         List<String> molds = new ArrayList<>();
         molds.add("cruciblecraft:raw_ceramic_mold");
@@ -380,9 +400,13 @@ public final class EmiStackGroupPlan {
     }
 
     private static List<String> mteIds(MteInPlaceKind kind) {
+        return mteIds(spec -> spec.kind() == kind);
+    }
+
+    private static List<String> mteIds(Predicate<MteInPlaceSpec> keep) {
         List<String> ids = new ArrayList<>();
         for (MteInPlaceSpec spec : MteInPlaceCatalog.specs()) {
-            if (spec.kind() == kind) {
+            if (keep.test(spec)) {
                 ids.add(spec.id().toString());
             }
         }

@@ -1,0 +1,1126 @@
+{
+  "schema_version": 2,
+  "assessment_id": "gt6-full-coverage-reassessment",
+  "status": "CURRENT_WORKTREE_RECONCILIATION",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "map_count": 21,
+  "source_rows": 172327,
+  "traced_source_rows": 79138,
+  "recipe_evidence_grades": {
+    "source_rows": 172327,
+    "grades": {
+      "source_exact": {
+        "source_rows": 79138,
+        "percent_basis": 172327
+      },
+      "implementation_evidence_pending": {
+        "source_rows": 85279,
+        "percent_basis": 172327
+      },
+      "no_cc_evidence_or_legacy_pending": {
+        "source_rows": 7910,
+        "percent_basis": 172327
+      }
+    },
+    "no_cc_evidence_rows": 7910,
+    "legacy_exclusion_pending_rows": 0,
+    "reference_traced_rows": 2003,
+    "rule_expanded_recipes": 0,
+    "untraced_cc_rows": 248
+  },
+  "pipeline_deferred_map_count": 11,
+  "pipeline_deferred_source_rows": 15811,
+  "delivery_depth_counts": {
+    "bounded_subset": 17,
+    "denominator_only": 4
+  },
+  "maps": [
+    {
+      "source_map": "gt.recipe.distillationtower",
+      "normalized_map": "gt.recipe.distillationtower",
+      "local_map": "distillation_tower",
+      "source_rows": 8,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.distillationtower has 8 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillationtower.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [
+        {
+          "slug": "machines/distillation-tower",
+          "title": "Distillation Tower GT6 Alignment",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "partial",
+          "wave_slug": "machines/distillation-tower",
+          "path": "tools/capabilities/machines/distillation-tower/capability.json"
+        }
+      ],
+      "traced_source_rows": 0,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 0,
+        "implementation_evidence_pending_rows": 8,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {},
+      "owned_cc_maps": [
+        "distillation_tower"
+      ],
+      "untraced_cc_rows": 6,
+      "untraced_cc_row_kinds": {
+        "gt6_java_loader": 6
+      },
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [
+          "partial"
+        ],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.cryodistillationtower",
+      "normalized_map": "gt.recipe.cryodistillationtower",
+      "local_map": "cryo_distillation_tower",
+      "source_rows": 3,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.cryodistillationtower has 3 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cryodistillationtower.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [
+        {
+          "slug": "machines/distillation-tower",
+          "title": "Distillation Tower GT6 Alignment",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "partial",
+          "wave_slug": "machines/distillation-tower",
+          "path": "tools/capabilities/machines/distillation-tower/capability.json"
+        }
+      ],
+      "traced_source_rows": 0,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 0,
+        "implementation_evidence_pending_rows": 3,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {},
+      "owned_cc_maps": [
+        "cryo_distillation_tower"
+      ],
+      "untraced_cc_rows": 1,
+      "untraced_cc_row_kinds": {
+        "gt6_java_loader": 1
+      },
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [
+          "partial"
+        ],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.steamcracking",
+      "normalized_map": "gt.recipe.steamcracking",
+      "local_map": "steamcracking",
+      "source_rows": 7746,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.steamcracking has 7746 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.steamcracking.json",
+      "cc_recipe_map_registered": false,
+      "capabilities": [],
+      "traced_source_rows": 0,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 0,
+        "implementation_evidence_pending_rows": 0,
+        "no_cc_evidence_or_legacy_pending_rows": 7746
+      },
+      "cc_host_maps": {},
+      "owned_cc_maps": [
+        "steamcracking"
+      ],
+      "untraced_cc_rows": 0,
+      "untraced_cc_row_kinds": {},
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "denominator_only",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.catalyticcracking",
+      "normalized_map": "gt.recipe.catalyticcracking",
+      "local_map": "catalyticcracking",
+      "source_rows": 3,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.catalyticcracking has 3 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.catalyticcracking.json",
+      "cc_recipe_map_registered": false,
+      "capabilities": [],
+      "traced_source_rows": 0,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 0,
+        "implementation_evidence_pending_rows": 0,
+        "no_cc_evidence_or_legacy_pending_rows": 3
+      },
+      "cc_host_maps": {},
+      "owned_cc_maps": [
+        "catalyticcracking"
+      ],
+      "untraced_cc_rows": 0,
+      "untraced_cc_row_kinds": {},
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "denominator_only",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.fermenter",
+      "normalized_map": "gt.recipe.fermenter",
+      "local_map": "fermenter",
+      "source_rows": 6435,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.fermenter has 6435 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fermenter.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [
+        {
+          "slug": "machines/large-fermenter",
+          "title": "Large Fermenter 17113",
+          "maturity": "frozen",
+          "workflow": "paused",
+          "survival_access": "partial",
+          "wave_slug": "machines/large-fermenter",
+          "path": "tools/capabilities/machines/large-fermenter/capability.json"
+        }
+      ],
+      "traced_source_rows": 0,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 0,
+        "implementation_evidence_pending_rows": 6435,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {},
+      "owned_cc_maps": [
+        "fermenter"
+      ],
+      "untraced_cc_rows": 1,
+      "untraced_cc_row_kinds": {
+        "gt6_java_loader": 1
+      },
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [
+        "worldgen/food"
+      ],
+      "gap_axes": [
+        "runtime"
+      ],
+      "player_path": {
+        "survival_access": [
+          "partial"
+        ],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.distillery",
+      "normalized_map": "gt.recipe.distillery",
+      "local_map": "distillery",
+      "source_rows": 1517,
+      "denominator_class": "in_scope",
+      "owner": "T15",
+      "reason": "T5.5 publishes distilled water and T11 publishes fixed hydrocarbon row 872; all 1517 rows retain explicit T11 dispositions and the remaining subset stays deferred.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [],
+      "traced_source_rows": 6,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 6,
+        "implementation_evidence_pending_rows": 1511,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {
+        "distillery": 7
+      },
+      "owned_cc_maps": [
+        "distillery"
+      ],
+      "untraced_cc_rows": 0,
+      "untraced_cc_row_kinds": {},
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.drying",
+      "normalized_map": "gt.recipe.drying",
+      "local_map": "drying",
+      "source_rows": 217,
+      "denominator_class": "in_scope",
+      "owner": "T15",
+      "reason": "T5 publishes 5 source-pinned drying recipes through the playable host; replay of the full 217-row GT6 map remains deferred.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.drying.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [],
+      "traced_source_rows": 198,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 198,
+        "implementation_evidence_pending_rows": 19,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {
+        "drying": 198
+      },
+      "owned_cc_maps": [
+        "drying"
+      ],
+      "untraced_cc_rows": 0,
+      "untraced_cc_row_kinds": {},
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.coagulator",
+      "normalized_map": "gt.recipe.coagulator",
+      "local_map": "coagulator",
+      "source_rows": 5,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.coagulator has 5 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.coagulator.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [
+        {
+          "slug": "machines/large-coagulator",
+          "title": "Large Coagulator Array 17105",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "blocked",
+          "wave_slug": "machines/large-coagulator",
+          "path": "tools/capabilities/machines/large-coagulator/capability.json"
+        }
+      ],
+      "traced_source_rows": 0,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 0,
+        "implementation_evidence_pending_rows": 5,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {},
+      "owned_cc_maps": [
+        "coagulator"
+      ],
+      "untraced_cc_rows": 2,
+      "untraced_cc_row_kinds": {
+        "design_policy": 1,
+        "gt6_source": 1
+      },
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [
+          "blocked"
+        ],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.crystallisationcrucible",
+      "normalized_map": "gt.recipe.crystallisationcrucible",
+      "local_map": "crystallisationcrucible",
+      "source_rows": 132,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.crystallisationcrucible has 132 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.crystallisationcrucible.json",
+      "cc_recipe_map_registered": false,
+      "capabilities": [],
+      "traced_source_rows": 0,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 0,
+        "implementation_evidence_pending_rows": 0,
+        "no_cc_evidence_or_legacy_pending_rows": 132
+      },
+      "cc_host_maps": {},
+      "owned_cc_maps": [
+        "crystallisationcrucible"
+      ],
+      "untraced_cc_rows": 0,
+      "untraced_cc_row_kinds": {},
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "denominator_only",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.mixer",
+      "normalized_map": "gt.recipe.mixer",
+      "local_map": "mixer",
+      "source_rows": 64245,
+      "denominator_class": "in_scope",
+      "owner": "T15",
+      "reason": "T5 publishes 34 source-pinned mixer recipes through the playable host; replay of the full 64245-row GT6 map remains deferred.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [
+        {
+          "slug": "machines/large-mixer",
+          "title": "Large Batch Mixer 17102",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "partial",
+          "wave_slug": "machines/large-mixer",
+          "path": "tools/capabilities/machines/large-mixer/capability.json"
+        }
+      ],
+      "traced_source_rows": 7198,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 7198,
+        "implementation_evidence_pending_rows": 57047,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {
+        "mixer": 7218
+      },
+      "owned_cc_maps": [
+        "mixer"
+      ],
+      "untraced_cc_rows": 3,
+      "untraced_cc_row_kinds": {
+        "none": 3
+      },
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [
+          "partial"
+        ],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.burnmixer",
+      "normalized_map": "gt.recipe.burnmixer",
+      "local_map": "burnmixer",
+      "source_rows": 29,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.burnmixer has 29 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.burnmixer.json",
+      "cc_recipe_map_registered": false,
+      "capabilities": [],
+      "traced_source_rows": 0,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 0,
+        "implementation_evidence_pending_rows": 0,
+        "no_cc_evidence_or_legacy_pending_rows": 29
+      },
+      "cc_host_maps": {},
+      "owned_cc_maps": [
+        "burnmixer"
+      ],
+      "untraced_cc_rows": 0,
+      "untraced_cc_row_kinds": {},
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "denominator_only",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.cryomixer",
+      "normalized_map": "gt.recipe.cryomixer",
+      "local_map": "cryo_mixer",
+      "source_rows": 57,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.cryomixer has 57 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cryomixer.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [],
+      "traced_source_rows": 0,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 0,
+        "implementation_evidence_pending_rows": 57,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {},
+      "owned_cc_maps": [
+        "cryo_mixer"
+      ],
+      "untraced_cc_rows": 4,
+      "untraced_cc_row_kinds": {
+        "none": 4
+      },
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.cokeoven",
+      "normalized_map": "gt.recipe.cokeoven",
+      "local_map": "coke_oven",
+      "source_rows": 124,
+      "denominator_class": "in_scope",
+      "owner": "T15",
+      "reason": "The playable coke oven implements the committed coal-to-coke and creosote route; this is a bounded subset of the pinned GT6 map.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cokeoven.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [
+        {
+          "slug": "machines/coke-oven",
+          "title": "Coke Oven 17000 with Fire Bricks 18000",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "partial",
+          "wave_slug": "machines/coke-oven",
+          "path": "tools/capabilities/machines/coke-oven/capability.json"
+        }
+      ],
+      "traced_source_rows": 0,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 0,
+        "implementation_evidence_pending_rows": 124,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {},
+      "owned_cc_maps": [
+        "coke_oven"
+      ],
+      "untraced_cc_rows": 77,
+      "untraced_cc_row_kinds": {
+        "gt6_java_source": 56,
+        "none": 21
+      },
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [
+          "partial"
+        ],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.roaster",
+      "normalized_map": "gt.recipe.roaster",
+      "local_map": "roaster",
+      "source_rows": 115,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.roaster has 115 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.roaster.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [],
+      "traced_source_rows": 73,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 73,
+        "implementation_evidence_pending_rows": 42,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {
+        "roaster": 73
+      },
+      "owned_cc_maps": [
+        "roaster"
+      ],
+      "untraced_cc_rows": 1,
+      "untraced_cc_row_kinds": {
+        "design_policy": 1
+      },
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.bath",
+      "normalized_map": "gt.recipe.bath",
+      "local_map": "bath",
+      "source_rows": 59855,
+      "denominator_class": "in_scope",
+      "owner": "T15",
+      "reason": "The playable bath includes the T2 ore-washing scope and 6 source-pinned T5 recipes; replay of the full 59855-row GT6 map remains deferred.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bath.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [
+        {
+          "slug": "machines/bath",
+          "title": "Bath / Bathing Pot",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "partial",
+          "wave_slug": "machines/bath",
+          "path": "tools/capabilities/machines/bath/capability.json"
+        },
+        {
+          "slug": "machines/large-bathing-vat",
+          "title": "Large Bathing Vat 17104",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "partial",
+          "wave_slug": "machines/large-bathing-vat",
+          "path": "tools/capabilities/machines/large-bathing-vat/capability.json"
+        }
+      ],
+      "traced_source_rows": 49417,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 49417,
+        "implementation_evidence_pending_rows": 10438,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {
+        "bath": 49417
+      },
+      "owned_cc_maps": [
+        "bath"
+      ],
+      "untraced_cc_rows": 58,
+      "untraced_cc_row_kinds": {
+        "bath_identity_b1_design_policy": 2,
+        "bath_mte_b1_design_policy": 37,
+        "bath_remainder_b1_design_policy": 10,
+        "gt6_source": 9
+      },
+      "rule_files": 1,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [
+        "identity/bath-large-vat-17104",
+        "obtain/wooden-bathing-pot-glue",
+        "recipe/bath-identity-families",
+        "recipe/bath-remainder-families"
+      ],
+      "gap_axes": [
+        "identity",
+        "operand"
+      ],
+      "player_path": {
+        "survival_access": [
+          "partial"
+        ],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.compressor",
+      "normalized_map": "gt.recipe.compressor",
+      "local_map": "compressor",
+      "source_rows": 1472,
+      "denominator_class": "in_scope",
+      "owner": "T15",
+      "reason": "T5 publishes 5 source-pinned compressor recipes through the playable host; replay of the full 1472-row GT6 map remains deferred.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.compressor.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [],
+      "traced_source_rows": 1289,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 1289,
+        "implementation_evidence_pending_rows": 183,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {
+        "compressor": 1289
+      },
+      "owned_cc_maps": [
+        "compressor"
+      ],
+      "untraced_cc_rows": 0,
+      "untraced_cc_row_kinds": {},
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [
+        {
+          "path": "tools/waves/machines/implosion-compressor/overflow.json",
+          "blocked_rows": 296,
+          "status": "EXPLICITLY_BLOCKED_OVERFLOW",
+          "wave_slug": null,
+          "shared_wave": true
+        }
+      ],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.autoclave",
+      "normalized_map": "gt.recipe.autoclave",
+      "local_map": "autoclave",
+      "source_rows": 392,
+      "denominator_class": "in_scope",
+      "owner": "T15",
+      "reason": "T5 publishes 17 source-pinned autoclave recipes through the playable host; replay of the full 392-row GT6 map remains deferred.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.autoclave.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [],
+      "traced_source_rows": 366,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 366,
+        "implementation_evidence_pending_rows": 26,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {
+        "autoclave": 366
+      },
+      "owned_cc_maps": [
+        "autoclave"
+      ],
+      "untraced_cc_rows": 0,
+      "untraced_cc_row_kinds": {},
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.freezer",
+      "normalized_map": "gt.recipe.freezer",
+      "local_map": "freezer",
+      "source_rows": 957,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.freezer has 957 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.freezer.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [],
+      "traced_source_rows": 0,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 0,
+        "implementation_evidence_pending_rows": 957,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {},
+      "owned_cc_maps": [
+        "freezer"
+      ],
+      "untraced_cc_rows": 4,
+      "untraced_cc_row_kinds": {
+        "none": 4
+      },
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.electrolyzer",
+      "normalized_map": "gt.recipe.electrolyzer",
+      "local_map": "electrolyzer",
+      "source_rows": 290,
+      "denominator_class": "in_scope",
+      "owner": "T15",
+      "reason": "T5 publishes 62 source-pinned electrolyzer recipes through the playable host; replay of the full 290-row GT6 map remains deferred.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [
+        {
+          "slug": "machines/large-electrolyzer",
+          "title": "Large Electrolyzer 17103",
+          "maturity": "frozen",
+          "workflow": "paused",
+          "survival_access": "partial",
+          "wave_slug": "machines/large-electrolyzer",
+          "path": "tools/capabilities/machines/large-electrolyzer/capability.json"
+        }
+      ],
+      "traced_source_rows": 178,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 178,
+        "implementation_evidence_pending_rows": 112,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {
+        "electrolyzer": 178
+      },
+      "owned_cc_maps": [
+        "electrolyzer"
+      ],
+      "untraced_cc_rows": 0,
+      "untraced_cc_row_kinds": {},
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [
+        "architecture/combinatorial-leftover"
+      ],
+      "gap_axes": [
+        "unclaimed_domain"
+      ],
+      "player_path": {
+        "survival_access": [
+          "partial"
+        ],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.melter",
+      "normalized_map": "gt.recipe.melter",
+      "local_map": "melter",
+      "source_rows": 6756,
+      "denominator_class": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.melter has 6756 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.melter.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [
+        {
+          "slug": "machines/melter",
+          "title": "Melter",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": null,
+          "wave_slug": "machines/melter",
+          "path": "tools/capabilities/machines/melter/capability.json"
+        }
+      ],
+      "traced_source_rows": 3601,
+      "reference_traced_rows": 0,
+      "source_evidence": {
+        "source_exact_rows": 3601,
+        "implementation_evidence_pending_rows": 3155,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {
+        "melter": 3601
+      },
+      "owned_cc_maps": [
+        "melter"
+      ],
+      "untraced_cc_rows": 0,
+      "untraced_cc_row_kinds": {},
+      "rule_files": 0,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 3155,
+      "overflow_evidence": [
+        {
+          "path": "tools/waves/machines/melter/overflow.json",
+          "blocked_rows": 3155,
+          "status": "EXPLICITLY_BLOCKED_OVERFLOW",
+          "wave_slug": null,
+          "shared_wave": false
+        },
+        {
+          "path": "tools/waves/prep/melter/overflow.json",
+          "blocked_rows": 2796,
+          "status": "EXPLICITLY_BLOCKED_OVERFLOW",
+          "wave_slug": null,
+          "shared_wave": false
+        }
+      ],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [
+        "recipe/melter-overflow"
+      ],
+      "gap_axes": [
+        "operand"
+      ],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    },
+    {
+      "source_map": "gt.recipe.smelter",
+      "normalized_map": "gt.recipe.smelter",
+      "local_map": "smelter",
+      "source_rows": 21969,
+      "denominator_class": "in_scope",
+      "owner": "T15",
+      "reason": "The playable smelter includes the T2 dust scope and 7 source-pinned T5 recipes; replay of the full 21969-row GT6 map remains deferred.",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
+      "cc_recipe_map_registered": true,
+      "capabilities": [],
+      "traced_source_rows": 16812,
+      "reference_traced_rows": 2003,
+      "source_evidence": {
+        "source_exact_rows": 16812,
+        "implementation_evidence_pending_rows": 5157,
+        "no_cc_evidence_or_legacy_pending_rows": 0
+      },
+      "cc_host_maps": {
+        "smelter": 16933
+      },
+      "owned_cc_maps": [
+        "smelter"
+      ],
+      "untraced_cc_rows": 91,
+      "untraced_cc_row_kinds": {
+        "topology_fallback": 91
+      },
+      "rule_files": 1,
+      "rule_expanded_recipes": 0,
+      "overflow_rows": 0,
+      "overflow_evidence": [],
+      "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
+      "related_blockers": [],
+      "gap_axes": [],
+      "player_path": {
+        "survival_access": [],
+        "signoff_required": true
+      },
+      "delivery_depth": "bounded_subset",
+      "freshness": {
+        "source_revision_matches_scope": true,
+        "evidence_class": "current_worktree_scan"
+      }
+    }
+  ]
+}

@@ -3,6 +3,9 @@
 > 快照日期：2026-09-22  
 > 范围：GT6 `Multiblock Machines` 机器、主机身份、结构部件与移植缺口。  
 > 本文只使用本地 GT6 源码、当前 `capability.json`、当前工作树源码/资源/测试作为证据。
+>
+> 本文是大型机器领域分析快照，不是项目总进度权威。全量 GT6 分母与当前
+> source/runtime/published/survival 对账见 [GT6 全量覆盖重评估](gt6-full-coverage.md)。
 
 ## 1. 这份文档解决什么问题
 

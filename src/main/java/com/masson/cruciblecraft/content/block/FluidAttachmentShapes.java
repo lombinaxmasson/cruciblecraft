@@ -19,9 +19,7 @@ public final class FluidAttachmentShapes {
             Direction facing) {
         List<Box> boxes = switch (kind) {
             case FAUCET -> List.of(
-                    new Box(6, 1, 0, 10, 2, 4),
-                    new Box(5, 2, 0, 11, 6, 4),
-                    new Box(10, 2, 0, 11, 6, 4));
+                    new Box(5, 1, 12, 11, 6, 16));
             case TAP -> List.of(
                     new Box(6, 6, 2, 10, 7, 4),
                     new Box(7, 4, 0, 9, 6, 16),
@@ -45,25 +43,46 @@ public final class FluidAttachmentShapes {
                     box.x0(), box.y0(), box.z0(),
                     box.x1(), box.y1(), box.z1()));
         }
-        if (facing == Direction.NORTH) {
+        boolean canonicalSouth = kind == MteInPlaceKind.FAUCET;
+        if (facing == (canonicalSouth ? Direction.SOUTH : Direction.NORTH)) {
             return result;
         }
-        return rotated(boxes, facing);
+        return rotated(boxes, facing, canonicalSouth);
     }
 
-    private static VoxelShape rotated(List<Box> boxes, Direction facing) {
+    private static VoxelShape rotated(
+            List<Box> boxes,
+            Direction facing,
+            boolean canonicalSouth) {
         Function<Point, Point> transform = switch (facing) {
-            case SOUTH -> point -> new Point(
-                    16.0 - point.x(), point.y(), 16.0 - point.z());
-            case EAST -> point -> new Point(
-                    16.0 - point.z(), point.y(), point.x());
-            case WEST -> point -> new Point(
-                    point.z(), point.y(), 16.0 - point.x());
-            case UP -> point -> new Point(
-                    point.x(), point.z(), 16.0 - point.y());
-            case DOWN -> point -> new Point(
-                    point.x(), 16.0 - point.z(), point.y());
-            case NORTH -> Function.identity();
+            case NORTH -> canonicalSouth
+                    ? point -> new Point(
+                            16.0 - point.x(), point.y(), 16.0 - point.z())
+                    : Function.identity();
+            case EAST -> canonicalSouth
+                    ? point -> new Point(
+                            point.z(), point.y(), 16.0 - point.x())
+                    : point -> new Point(
+                            16.0 - point.z(), point.y(), point.x());
+            case WEST -> canonicalSouth
+                    ? point -> new Point(
+                            16.0 - point.z(), point.y(), point.x())
+                    : point -> new Point(
+                            point.z(), point.y(), 16.0 - point.x());
+            case SOUTH -> canonicalSouth
+                    ? Function.identity()
+                    : point -> new Point(
+                            16.0 - point.x(), point.y(), 16.0 - point.z());
+            case UP -> canonicalSouth
+                    ? point -> new Point(
+                            point.x(), point.z(), 16.0 - point.y())
+                    : point -> new Point(
+                            point.x(), point.z(), 16.0 - point.y());
+            case DOWN -> canonicalSouth
+                    ? point -> new Point(
+                            point.x(), 16.0 - point.z(), point.y())
+                    : point -> new Point(
+                            point.x(), 16.0 - point.z(), point.y());
         };
         VoxelShape result = Shapes.empty();
         for (Box box : boxes) {

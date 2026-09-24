@@ -79,6 +79,7 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
         "> 本页由 `python tools/build_project_status.py --write` 从",
         "> `tools/capabilities/**/capability.json` 与 `docs/history/card-plans/`",
         "> 生成。不要手改。ledger.json 与本页都是可重建投影，不是权威。",
+        "> GT6 全量源覆盖另见 [gt6-full-coverage.md](gt6-full-coverage.md)。",
         "",
         "## Unique active",
         "",
@@ -109,6 +110,11 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
         row["slug"]
         for row in compiled["capabilities"]
         if row["maturity"] == "runtime_ready" and row["workflow"] == "accepted"
+    ]
+    runtime_ready_paused = [
+        row["slug"]
+        for row in compiled["capabilities"]
+        if row["maturity"] == "runtime_ready" and row["workflow"] == "paused"
     ]
     frozen = [
         row["slug"]
@@ -151,6 +157,23 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
         for slug in runtime_ready:
             row = by_slug[slug]
             plan = plans["closed"].get(slug)
+            plan_bit = f" — {_plan_md(plan)}" if plan is not None else ""
+            lines.append(f"- `{slug}` — {row['title']}{plan_bit}")
+    else:
+        lines.append("无。")
+    lines.extend(
+        [
+            "",
+            f"## runtime_ready paused（{len(runtime_ready_paused)}）",
+            "",
+            "已有运行时代码或机制证据，但 workflow 仍暂停，不能视为 accepted。",
+            "",
+        ]
+    )
+    if runtime_ready_paused:
+        for slug in runtime_ready_paused:
+            row = by_slug[slug]
+            plan = plans["prep"].get(slug) or plans["closed"].get(slug)
             plan_bit = f" — {_plan_md(plan)}" if plan is not None else ""
             lines.append(f"- `{slug}` — {row['title']}{plan_bit}")
     else:

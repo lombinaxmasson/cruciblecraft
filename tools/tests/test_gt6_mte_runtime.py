@@ -63,7 +63,7 @@ class Gt6MteInplaceRuntimeTest(unittest.TestCase):
             self.skipTest("attachments overlay not written")
         overlay = census.load_json(overlay_path)
         self.assertEqual(ATTACHMENTS, overlay["capability_slug"])
-        self.assertEqual(46, int(overlay["counts"]["in_place"]))
+        self.assertEqual(47, int(overlay["counts"]["in_place"]))
         by_meta = {int(row["meta"]): row for row in overlay["rows"]}
         self.assertEqual("FAUCET", by_meta[1700]["kind"])
         self.assertEqual(

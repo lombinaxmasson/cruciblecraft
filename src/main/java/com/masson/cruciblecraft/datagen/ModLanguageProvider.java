@@ -210,6 +210,8 @@ public class ModLanguageProvider extends LanguageProvider {
                     "GT6 液体附件：右键容器交互");
             add("tooltip.cruciblecraft.fluid_attachment.gas",
                     "GT6 气体附件：右键容器交互");
+            add("tooltip.cruciblecraft.fluid_attachment.faucet",
+                    "GT6 浇铸口：点击浇铸坩埚或向下方容器排液");
             add("tooltip.cruciblecraft.fluid_attachment.acid_proof",
                     "耐酸");
             add("tooltip.cruciblecraft.fluid_attachment.magic_proof",
@@ -260,6 +262,7 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.CERAMIC_MOLD, "陶瓷模具");
             addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "黏土坩埚");
             addItem(ModItems.RAW_CERAMIC_BOWL, "黏土碗");
+            addItem(ModItems.RAW_CERAMIC_FAUCET, "黏土浇铸口");
             addItem(ModItems.RAW_CERAMIC_TAP, "黏土龙头");
             addItem(ModItems.RAW_CERAMIC_FUNNEL, "黏土漏斗");
             addItem(ModItems.RAW_CERAMIC_MOLD, "黏土模具");
@@ -966,6 +969,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("block.cruciblecraft.large_crucible.named", "Large %s Crucible");
         addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "Clay Crucible");
         addItem(ModItems.RAW_CERAMIC_BOWL, "Clay Bowl");
+        addItem(ModItems.RAW_CERAMIC_FAUCET, "Clay Faucet");
         addItem(ModItems.RAW_CERAMIC_TAP, "Clay Tap");
         addItem(ModItems.RAW_CERAMIC_FUNNEL, "Clay Funnel");
         addItem(ModItems.RAW_CERAMIC_MOLD, "Clay Mold");
@@ -1051,6 +1055,8 @@ public class ModLanguageProvider extends LanguageProvider {
                 "GT6 liquid attachment: right-click with a fluid container");
         add("tooltip.cruciblecraft.fluid_attachment.gas",
                 "GT6 gas attachment: right-click with a fluid container");
+        add("tooltip.cruciblecraft.fluid_attachment.faucet",
+                "GT6 crucible faucet: click to cast from a crucible or drain downward");
         add("tooltip.cruciblecraft.fluid_attachment.acid_proof",
                 "Acid proof");
         add("tooltip.cruciblecraft.fluid_attachment.magic_proof",
@@ -1841,6 +1847,14 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "地表石子" : "Surface Rock");
         add("config.jade.plugin_cruciblecraft.rock_block",
                 chinese ? "石子" : "Rock");
+        add("config.jade.plugin_cruciblecraft.small_ore",
+                chinese ? "小矿石" : "Small Ore");
+        add("config.jade.plugin_cruciblecraft.fluid_spring",
+                chinese ? "流体泉" : "Fluid Spring");
+        add("config.jade.plugin_cruciblecraft.steam_engine_source",
+                chinese ? "蒸汽机源" : "Steam Engine Source");
+        add("config.jade.plugin_cruciblecraft.large_boiler",
+                chinese ? "大型锅炉" : "Large Boiler");
     }
 
     private void addJadeObservation() {
@@ -1874,6 +1888,8 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "能量输入：%s %s/A" : "Energy input: %s %s/A");
         add("jade.cruciblecraft.source.energy_amount",
                 chinese ? "%s：%s %s" : "%s: %s %s");
+        add("jade.cruciblecraft.source.energy_contained",
+                chinese ? "能量储存" : "Energy Contained");
         add("jade.cruciblecraft.source.energy_output",
                 chinese ? "能量输出：%s %s/t" : "Energy output: %s %s/t");
         add("jade.cruciblecraft.source.tank",
@@ -2063,7 +2079,17 @@ public class ModLanguageProvider extends LanguageProvider {
             case "furniture/chest" -> chinese ? "箱子" : "Chest";
             case "hopper/hopper" -> chinese ? "料斗" : "Hopper";
             case "hopper/queue_hopper" -> chinese ? "队列料斗" : "Queue Hopper";
+            case "misc_tool/anvil" -> chinese ? "砧" : "Anvil";
+            case "misc_tool/mortar" -> chinese ? "研钵" : "Mortar";
+            case "fluid_attachment/faucet" -> chinese ? "龙头" : "Faucet";
+            case "fluid_attachment/tap" -> chinese ? "水龙头" : "Tap";
+            case "fluid_attachment/funnel" -> chinese ? "漏斗" : "Funnel";
+            case "fluid_attachment/nozzle" -> chinese ? "喷嘴" : "Nozzle";
+            case "fluid_attachment/cap_nozzle" ->
+                    chinese ? "有盖喷嘴" : "Cap Nozzle";
             case "foundry/crucible" -> chinese ? "坩埚" : "Crucible";
+            case "foundry/basin" -> chinese ? "浇铸盆" : "Casting Basin";
+            case "foundry/crossing" -> chinese ? "浇铸道" : "Crucible Crossing";
             case "foundry/mold" -> chinese ? "铸造模具" : "Foundry Mold";
             case "mold/ceramic" -> chinese ? "模具" : "Mold";
             case "energy/large_gas_turbine" ->

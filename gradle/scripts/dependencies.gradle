@@ -1,6 +1,12 @@
 configurations {
     localRuntime
-    if (providers.gradleProperty('optionalCompat').orNull != 'ccOnly') {
+    // Data generation has no Minecraft client instance. Do not put client
+    // compatibility mods (notably Reliable EMI) on its runtime classpath.
+    def runningDataGeneration = gradle.startParameter.taskNames.any { taskName ->
+        taskName == 'runData' || taskName.endsWith(':runData')
+    }
+    if (!runningDataGeneration
+            && providers.gradleProperty('optionalCompat').orNull != 'ccOnly') {
         runtimeClasspath.extendsFrom localRuntime
     }
 }

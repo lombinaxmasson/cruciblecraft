@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "assessment_id": "gt6-full-coverage-reassessment",
+  "deleted": [
+    {
+      "path": "docs/history/card-plans/closed/archived-prep/unimplemented-gap-2026-09.md",
+      "reason": "Stale human gap snapshot superseded by the current machine-readable reconciliation.",
+      "references_migrated": [
+        "docs/current/unimplemented-gap.md",
+        "docs/history/INDEX.md"
+      ]
+    }
+  ],
+  "preserved_contracts": [
+    "tools/capabilities/**/capability.json",
+    "tools/blockers/catalog.json",
+    "tools/blockers/batches.json",
+    "tools/machine_tree_denominator_policy.json",
+    "tools/machine_tree_denominators/**",
+    "tools/waves/**/production_lock.json",
+    "tools/waves/portfolio/mte-identity-disposition-r0/**",
+    "docs/decisions/**",
+    "docs/history/card-plans/closed/**",
+    "docs/history/card-plans/prep/**"
+  ],
+  "review_required_before_deletion": [
+    "tools/capabilities/**/player_signoff.json",
+    "tools/machine_denominator_recompute.json",
+    "tools/blocked_recipe_ledger.json",
+    "docs/current/gt6-large-machines-porting.md",
+    "docs/current/semantic-naming-closeout-checklist.md"
+  ]
+}

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.fluid.LongFluidHandler;
 import com.masson.cruciblecraft.content.block.LargeBoilerWallParts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
@@ -37,9 +38,11 @@ import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.content.menu.StorageMenu;
 import com.masson.cruciblecraft.content.mte.BathingPotRuntime;
 import com.masson.cruciblecraft.content.mte.FluidAttachmentTransfer;
+import com.masson.cruciblecraft.content.mte.MteFaucetProfile;
 import com.masson.cruciblecraft.content.mte.MteFoundryTanks;
 import com.masson.cruciblecraft.content.mte.MteFluidAttachmentProfile;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
+import com.masson.cruciblecraft.content.mte.MteInPlaceMaterials;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.storage.MassStorageFace;
 import com.masson.cruciblecraft.content.storage.MassStorageHandler;
@@ -137,6 +140,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     private boolean steamFast;
     private boolean steamCounterClockwise;
     private int steamExplosionPrevention;
+    private boolean faucetAutoPull;
     private int massMode;
     private boolean massInventoryChanged;
     private int drawerCompartment;
@@ -586,6 +590,23 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         setChanged();
     }
 
+    public boolean faucetAutoPull() {
+        return faucetAutoPull;
+    }
+
+    public boolean toggleFaucetAutoPull() {
+        faucetAutoPull = !faucetAutoPull;
+        setChanged();
+        return faucetAutoPull;
+    }
+
+    public void clearFaucetAutoPull() {
+        if (faucetAutoPull) {
+            faucetAutoPull = false;
+            setChanged();
+        }
+    }
+
     public boolean autoOutput() {
         return (massMode & AUTO_OUTPUT) != 0;
     }
@@ -746,9 +767,17 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             BlockState state,
             MteInPlaceBlockEntity host) {
         host.tickCovers();
-        if (host.spec().kind().attachment()
-                && level.hasNeighborSignal(pos)) {
-            host.transferOnce();
+        if (host.spec().kind().attachment()) {
+            boolean automaticFaucet = host.spec().kind() == MteInPlaceKind.FAUCET
+                    && host.faucetAutoPull();
+            if (automaticFaucet) {
+                if (level.getGameTime() % 20L == 5L) {
+                    host.transferOnce();
+                }
+            } else if (host.spec().kind() != MteInPlaceKind.FAUCET
+                    && level.hasNeighborSignal(pos)) {
+                host.transferOnce();
+            }
         }
         if (host.spec().kind().extender()) {
             host.pushExtender();
@@ -1531,6 +1560,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         tag.putBoolean("SteamFast", steamFast);
         tag.putBoolean("CounterClockwise", steamCounterClockwise);
         tag.putInt("ExplosionPrevention", steamExplosionPrevention);
+        tag.putBoolean("FaucetAutoPull", faucetAutoPull);
         tag.put("distilled", distilled.writeToNBT(registries, new CompoundTag()));
         if (gasTurbineHost != null && gasTurbineRole != null) {
             tag.putLong("lgt.controller", gasTurbineHost.asLong());
@@ -1582,6 +1612,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         steamFast = tag.getBoolean("SteamFast");
         steamCounterClockwise = tag.getBoolean("CounterClockwise");
         steamExplosionPrevention = Math.max(0, tag.getInt("ExplosionPrevention"));
+        faucetAutoPull = tag.getBoolean("FaucetAutoPull");
         if (tag.contains("distilled")) {
             distilled.readFromNBT(registries, tag.getCompound("distilled"));
         }
@@ -1661,10 +1692,13 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (level == null) {
             return 0;
         }
-        BlockPos dest = faucetDestination();
-        MoldHost mold = MoldHost.at(level, dest);
+        BlockPos below = worldPosition.below();
+        MoldHost mold = faucetMoldAt(below);
         if (mold != null) {
             return mold.moldRequiredMaterialUnits();
+        }
+        if (downstreamFluidHandler(below) != null) {
+            return MaterialPrefixes.INGOT.units();
         }
         return 0;
     }
@@ -1683,19 +1717,33 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 || level == null) {
             return 0;
         }
-        if (temperature > moldMaxTemperatureCelsius()) {
+        MteFaucetProfile profile = MteFaucetProfile.require(spec());
+        if (!profile.acidProof()
+                && MaterialCatalog.find(materialId)
+                        .map(material -> material.hasMaterialTag("PROPERTIES.ACID"))
+                        .orElse(false)) {
+            return 0;
+        }
+        boolean melted = temperature > moldMaxTemperatureCelsius();
+        if (melted) {
+            level.playSound(
+                    null,
+                    worldPosition,
+                    SoundEvents.FIRE_EXTINGUISH,
+                    SoundSource.BLOCKS,
+                    0.5F,
+                    1.0F);
             level.setBlock(
                     worldPosition,
                     CrucibleWorldHazards.meltdownLavaState(),
                     Block.UPDATE_ALL);
-            return 0;
         }
         BlockPos dest = faucetDestination();
-        MoldHost mold = MoldHost.at(level, dest);
+        MoldHost mold = faucetMoldAt(dest);
         if (mold != null) {
             return mold.fillMold(materialId, availableUnits, temperature, Direction.UP);
         }
-        return 0;
+        return fillDownstreamFluid(materialId, availableUnits);
     }
 
     @Override
@@ -1707,9 +1755,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         CruciblePour crucible = CruciblePour.at(level, worldPosition.relative(facing));
         if (crucible != null) {
             crucible.fillMoldAtSide(this, facing.getOpposite(), facing);
-            return;
         }
-        pourDown(facing, null);
     }
 
     private BlockPos faucetDestination() {
@@ -1720,7 +1766,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 dest = dest.below();
                 continue;
             }
-            if (MoldHost.at(level, dest) != null) {
+            if (faucetMoldAt(dest) != null) {
                 break;
             }
             if (level.getBlockState(dest).getCollisionShape(level, dest).isEmpty()) {
@@ -1732,13 +1778,48 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         return dest;
     }
 
+    private MoldHost faucetMoldAt(BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity) {
+            return null;
+        }
+        return MoldHost.at(level, pos);
+    }
+
     private String faucetMaterialId() {
-        String path = spec().registryPath();
-        int slash = path.lastIndexOf('/');
-        String name = slash >= 0 ? path.substring(slash + 1) : path;
-        int under = name.lastIndexOf('_');
-        String candidate = under >= 0 ? name.substring(under + 1) : name;
-        return MaterialCatalog.contains(candidate) ? candidate : "stone";
+        if (MteFaucetProfile.contains(spec())) {
+            return MteFaucetProfile.require(spec()).materialId();
+        }
+        return MteInPlaceMaterials.id(spec());
+    }
+
+    private int fillDownstreamFluid(String materialId, int availableUnits) {
+        IFluidHandler target = downstreamFluidHandler(faucetDestination());
+        var molten = ModFluids.molten(materialId).orElse(null);
+        int amount = Math.min(availableUnits, MaterialPrefixes.INGOT.units());
+        if (target == null || molten == null || amount <= 0) {
+            return 0;
+        }
+        FluidStack offered = new FluidStack(molten.source().get(), amount);
+        if (target.fill(offered, IFluidHandler.FluidAction.SIMULATE)
+                < offered.getAmount()) {
+            return 0;
+        }
+        return target.fill(offered, IFluidHandler.FluidAction.EXECUTE);
+    }
+
+    private IFluidHandler downstreamFluidHandler(BlockPos dest) {
+        if (level == null) {
+            return null;
+        }
+        BlockEntity entity = level.getBlockEntity(dest);
+        if (entity instanceof MteInPlaceBlockEntity other
+                && other.bathingPot != null) {
+            return other.bathingPot.playerFluids();
+        }
+        if (entity instanceof MixingBowlBlockEntity bowl) {
+            return bowl.playerFluids();
+        }
+        return null;
     }
 
     private void pourDown(

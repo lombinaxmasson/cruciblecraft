@@ -12,6 +12,7 @@ Current version `0.1.0-test.20260922.1` — source tree, development snapshot.
 Play notes: [player guide](docs/current/player-guide.md) (new worlds).
 
 - [Project status](docs/current/project-status.md)
+- [GT6 full-coverage assessment](docs/current/gt6-full-coverage.md)
 - [Unimplemented gaps](docs/current/unimplemented-gap.md)
 - [Roadmap](docs/current/roadmap.md)
 - [Issue tracker](https://github.com/icodestuljh/cruciblecraft/issues)
@@ -23,11 +24,12 @@ Play notes: [player guide](docs/current/player-guide.md) (new worlds).
 ## In the tree
 
 - Materials, prefixes, ore processing, and source-generated recipe sets
-- Fire / heat / steam / kinetic / rotational / EU; electric heaters, engines,
-  LU fiber, and fission cores already run. Large heat exchangers, steam
-  turbines, and fusion are in as a CrucibleCraft extension; coolers are next
-- Processing machines through the later tiers, plus distillation towers,
-  large boilers, and tanks
+- Fire / heat / steam / kinetic / rotational / EU and multiple running machine
+  families. Some content is bounded or paused, and survival access is a
+  separate axis.
+- Use the [GT6 full-coverage assessment](docs/current/gt6-full-coverage.md)
+  for source/runtime/published/survival reconciliation rather than capability
+  counts or generated-file counts
 - Large veins, underground oil and gas, surface rocks, stone layers, bedrock
   ores
 - Item pipes, fluid pipes, cables, covers, automation

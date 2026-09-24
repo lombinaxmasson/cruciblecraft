@@ -103,6 +103,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 towerPart,
                 towerHole);
         multiblockPort(
+                ModBlocks.MULTIBLOCK_FLUID_PORT.get(),
+                models().getExistingFile(
+                        modLoc("block/multiblock_item_fluid_port")),
+                towerPart,
+                towerHole);
+        multiblockPort(
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get(),
                 "multiblock_energy_input_port",
                 heatTransmitter,
@@ -1736,6 +1742,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
             ModelFile hole) {
         ModelFile generic = models().cubeAll(
                 genericName, modLoc("block/" + genericName));
+        multiblockPort(block, generic, formed, hole);
+    }
+
+    private void multiblockPort(
+            net.minecraft.world.level.block.Block block,
+            ModelFile generic,
+            ModelFile formed,
+            ModelFile hole) {
         getVariantBuilder(block).forAllStates(state -> {
             boolean skin = state.getValue(MultiblockPortBlock.TOWER_SKIN);
             boolean backHole = state.getValue(MultiblockPortBlock.BACK_HOLE);

@@ -508,6 +508,7 @@ def render_markdown(ledger: dict[str, Any] | None = None) -> str:
         "> 本页由 `python tools/build_blockers.py --write` 从",
         "> `tools/blockers/catalog.json` 与 `tools/blockers/batches.json` 生成，不要手改。",
         "> 条目权威是 catalog，批处理关系权威是 batches；本页和 `tools/blockers/ledger.json` 都是投影。",
+        "> 全量 GT6 源覆盖与配方图对账见 [gt6-full-coverage.md](gt6-full-coverage.md)。",
         "> 不同条目、不同 `unit` **不得相加**。发现旧缺口不是任务制造了缺口。",
         "> `count` 不是剩余工作量。排期看 `planning_bucket`，不要按数字选最大的卡。",
         "> 选批只读 current recipe ledger / catalog / batches；一致性失败时先停排期，历史 candidate selection 不能重新打开已关闭条目。",

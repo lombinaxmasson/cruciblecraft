@@ -72,7 +72,7 @@ public final class SourceWailaRows {
 
     public static void energyAmount(
             ITooltip tooltip,
-            String label,
+            Component label,
             long amount,
             String energyType) {
         tooltip.add(Component.translatable(

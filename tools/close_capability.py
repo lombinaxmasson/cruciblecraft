@@ -25,6 +25,9 @@ from tools import project_status
 PATH_MAP = ROOT / "docs" / "history" / "path-map.json"
 WAVES = ROOT / "tools" / "waves"
 BLOCKED_LEDGER = ROOT / "tools" / "blocked_recipe_ledger.json"
+FULL_COVERAGE_BUILDER = (
+    WAVES / "portfolio" / "gt6-full-coverage-reassessment" / "build_reconciliation.py"
+)
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -102,6 +105,17 @@ def _rebuild_projections() -> list[str]:
     if capability_ledger.LEDGER.read_bytes() != encoded:
         errors.append("capability ledger is stale after close")
     errors.extend(project_status.check_status())
+    coverage = subprocess.run(
+        [sys.executable, str(FULL_COVERAGE_BUILDER), "--write"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    if coverage.returncode != 0:
+        errors.append(
+            "gt6-full-coverage rebuild failed: "
+            + (coverage.stdout + coverage.stderr).strip()
+        )
     return errors
 
 

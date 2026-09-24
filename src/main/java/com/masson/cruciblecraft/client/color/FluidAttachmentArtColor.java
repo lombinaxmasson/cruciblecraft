@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.client.color;
 import java.util.ArrayList;
 
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.mte.MteFaucetProfile;
 import com.masson.cruciblecraft.content.mte.MteFluidAttachmentProfile;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceMaterials;
@@ -48,9 +49,14 @@ public final class FluidAttachmentArtColor {
                 || !fluidAttachment(inplace.spec())) {
             return 0xFFFFFFFF;
         }
-        String materialId = MteFluidAttachmentProfile.contains(inplace.spec())
-                ? MteFluidAttachmentProfile.require(inplace.spec()).materialId()
-                : MteInPlaceMaterials.id(inplace.spec());
+        String materialId;
+        if (MteFaucetProfile.contains(inplace.spec())) {
+            materialId = MteFaucetProfile.require(inplace.spec()).materialId();
+        } else if (MteFluidAttachmentProfile.contains(inplace.spec())) {
+            materialId = MteFluidAttachmentProfile.require(inplace.spec()).materialId();
+        } else {
+            materialId = MteInPlaceMaterials.id(inplace.spec());
+        }
         return MaterialCatalog.find(materialId)
                 .map(material -> 0xFF000000
                         | MaterialItemColor.styleColor(

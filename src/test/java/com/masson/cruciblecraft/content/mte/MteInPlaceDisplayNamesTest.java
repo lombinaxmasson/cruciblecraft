@@ -56,6 +56,40 @@ class MteInPlaceDisplayNamesTest {
     }
 
     @Test
+    void fluidAttachmentsComposeChineseFromMaterialAndKind() {
+        assertEquals(
+                "石制浇铸口",
+                MteInPlaceDisplayNames.chinese(
+                                "fluid_attachment/crucible_faucet_stone")
+                        .orElseThrow());
+        assertEquals(
+                "陶瓷浇铸口",
+                MteInPlaceDisplayNames.chinese(
+                                "fluid_attachment/crucible_faucet_ceramic")
+                        .orElseThrow());
+        assertEquals(
+                "不锈钢浇铸口",
+                MteInPlaceDisplayNames.chinese(
+                                "stainless_steel/crucible_faucet")
+                        .orElseThrow());
+        assertEquals(
+                "塑料有盖喷嘴",
+                MteInPlaceDisplayNames.chinese(
+                                "fluid_attachment/plastic_cap_nozzle")
+                        .orElseThrow());
+        assertEquals(
+                "碳化钽铪漏斗",
+                MteInPlaceDisplayNames.chinese(
+                                "tantalum_hafnium_carbide/funnel")
+                        .orElseThrow());
+        assertEquals(
+                "不锈钢龙头",
+                MteInPlaceDisplayNames.chinese(
+                                "fluid_attachment/stainless_tap")
+                        .orElseThrow());
+    }
+
+    @Test
     void englishWithoutRegistryPathKeepsCatalogName() {
         assertEquals(
                 "Black Granite",

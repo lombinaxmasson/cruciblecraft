@@ -3,6 +3,7 @@
 > 本页由 `python tools/build_project_status.py --write` 从
 > `tools/capabilities/**/capability.json` 与 `docs/history/card-plans/`
 > 生成。不要手改。ledger.json 与本页都是可重建投影，不是权威。
+> GT6 全量源覆盖另见 [gt6-full-coverage.md](gt6-full-coverage.md)。
 
 ## Unique active
 
@@ -130,6 +131,14 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `worldgen/gt-stone-layer-rocks` — GT Stone Layer Rocks — [GT6 石层石子](../history/card-plans/closed/GT6石层石子详细计划.md)
 - `worldgen/gt-surface-rocks` — GT Surface Rocks — [GT6 地表石子保真](../history/card-plans/closed/GT6地表石子保真详细计划.md)
 - `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
+
+## runtime_ready paused（3）
+
+已有运行时代码或机制证据，但 workflow 仍暂停，不能视为 accepted。
+
+- `energy/cooler` — Electric and Flux Coolers — [冷却器详细计划](../history/card-plans/prep/冷却器详细计划.md)
+- `energy/flux-converters` — Flux FE to GU Converters — [通量转换器详细计划](../history/card-plans/prep/通量转换器详细计划.md)
+- `worldgen/gt-small-ores` — GT Small Ores — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
 ## frozen（14）
 

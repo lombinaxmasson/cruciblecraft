@@ -278,6 +278,48 @@ class EmiStackGroupPlanTest {
         assertTrue(EmiStackGroupPlan.matchesAny(mold, "cruciblecraft:raw_ingot_mold"));
         assertFalse(EmiStackGroupPlan.matchesAny(
                 mold, "cruciblecraft:foundry/mold_steel"));
+        EmiStackGroupPlan.ExactGroup anvil = byPath.get("misc_tool/anvil");
+        assertNotNull(anvil);
+        assertTrue(EmiStackGroupPlan.matchesAny(anvil, "cruciblecraft:anvil"));
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                anvil, "cruciblecraft:steel/anvil"));
+        assertFalse(EmiStackGroupPlan.matchesAny(
+                anvil, "cruciblecraft:mortar/mortar"));
+        EmiStackGroupPlan.ExactGroup basin = byPath.get("foundry/basin");
+        assertNotNull(basin);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                basin, "cruciblecraft:foundry/basin_steel"));
+        assertFalse(EmiStackGroupPlan.matchesAny(
+                basin, "cruciblecraft:foundry/crucible_crossing_steel"));
+        EmiStackGroupPlan.ExactGroup crossing = byPath.get("foundry/crossing");
+        assertNotNull(crossing);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                crossing, "cruciblecraft:foundry/crucible_crossing_steel"));
+        EmiStackGroupPlan.ExactGroup faucet =
+                byPath.get("fluid_attachment/faucet");
+        assertNotNull(faucet);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                faucet, "cruciblecraft:fluid_attachment/crucible_faucet_steel"));
+        EmiStackGroupPlan.ExactGroup funnel =
+                byPath.get("fluid_attachment/funnel");
+        assertNotNull(funnel);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                funnel, "cruciblecraft:fluid_attachment/stainless_funnel"));
+        EmiStackGroupPlan.ExactGroup tap = byPath.get("fluid_attachment/tap");
+        assertNotNull(tap);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                tap, "cruciblecraft:fluid_attachment/stainless_tap"));
+        EmiStackGroupPlan.ExactGroup nozzle =
+                byPath.get("fluid_attachment/nozzle");
+        assertNotNull(nozzle);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                nozzle, "cruciblecraft:fluid_attachment/stainless_nozzle"));
+        EmiStackGroupPlan.ExactGroup capNozzle =
+                byPath.get("fluid_attachment/cap_nozzle");
+        assertNotNull(capNozzle);
+        assertTrue(EmiStackGroupPlan.matchesAny(
+                capNozzle,
+                "cruciblecraft:fluid_attachment/stainless_cap_nozzle"));
         assertTrue(byPath.keySet().containsAll(Set.of(
                 "building/glass",
                 "building/glass_slab",
@@ -301,7 +343,16 @@ class EmiStackGroupPlanTest {
                 "furniture/chest",
                 "hopper/hopper",
                 "hopper/queue_hopper",
+                "misc_tool/anvil",
+                "misc_tool/mortar",
+                "fluid_attachment/faucet",
+                "fluid_attachment/tap",
+                "fluid_attachment/funnel",
+                "fluid_attachment/nozzle",
+                "fluid_attachment/cap_nozzle",
                 "foundry/crucible",
+                "foundry/basin",
+                "foundry/crossing",
                 "foundry/mold",
                 "mold/ceramic")));
         Set<String> seen = new HashSet<>();

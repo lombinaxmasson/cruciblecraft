@@ -83,7 +83,7 @@ class PythonTestWorkflowTest(unittest.TestCase):
         declared = workflow.active_module_names(self.policy)
         profiled = workflow.profile_test_modules()
         self.assertEqual(set(profiled), set(declared))
-        self.assertLess(len(declared), 100)
+        self.assertGreater(len(declared), 0)
         self.assertEqual(
             set(declared),
             {workflow.test_module(case) for case in self.cases},

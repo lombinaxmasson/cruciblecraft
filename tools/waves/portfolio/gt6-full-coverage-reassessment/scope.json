@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_SCOPE",
+  "assessment_id": "gt6-full-coverage-reassessment",
+  "as_of": "2026-09-24",
+  "source": {
+    "repository": "local:gt6_code/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee",
+    "policy": "tools/machine_tree_denominator_policy.json"
+  },
+  "denominator_tables": [
+    "tools/machine_tree_denominators/recipe_maps.json",
+    "tools/machine_tree_denominators/prefixes.json",
+    "tools/machine_tree_denominators/itemgenerator_domains.json",
+    "tools/machine_tree_denominators/machine_kinds.json",
+    "tools/machine_tree_denominators/energy_identities.json",
+    "tools/machine_tree_denominators/cover_kinds.json",
+    "tools/machine_tree_denominators/multiblock_kinds.json"
+  ],
+  "live_inputs": {
+    "capabilities": "tools/capabilities/**/capability.json",
+    "blockers": "tools/blockers/catalog.json",
+    "blocker_batches": "tools/blockers/batches.json",
+    "recipe_waves": "tools/waves/**/production_lock.json",
+    "recipe_overflow": "tools/waves/**/overflow.json",
+    "material_form_census": "tools/waves/prep/material-form-demand-census/census.json",
+    "mte_disposition": "tools/waves/portfolio/mte-identity-disposition-r0/disposition_ledger.json",
+    "playtest": "tools/playtest/current_cycle.json"
+  },
+  "target_boundary": {
+    "full_gt6_source": "All source-backed canonical identities in the frozen denominator unless explicitly marked out_of_scope.",
+    "denominator_provenance": "The denominator classifications are a historical frozen baseline, not current implementation status.",
+    "cc_extension": "CrucibleCraft additions are reported separately and never counted as GT6 source coverage.",
+    "out_of_scope": "Explicit source policy exclusions remain visible and are not silently counted as missing.",
+    "player_path": "Survival obtainability is an independent axis and never implied by runtime_ready.",
+    "freshness": "Every derived row carries the frozen source revision and current working-tree evidence class."
+  },
+  "status_vocabulary": [
+    "full_replay",
+    "empty_source",
+    "bounded_subset",
+    "runtime_only",
+    "identity_only",
+    "runtime_code_uncarded",
+    "runtime_paused",
+    "runtime_accepted",
+    "denominator_only",
+    "blocked",
+    "legacy_exclusion_pending",
+    "cc_extension"
+  ],
+  "unit_policy": {
+    "rule": "Rows, families, hosts, fluids, identities, and forms are independent units and must not be summed.",
+    "published_rows": "Counts current source-addressable recipe JSON entries; not equivalent to GT6 dump rows.",
+    "overflow_rows": "Counts selected-wave unresolved rows only; not a global GT6 remainder.",
+    "source_rows": "Counts the frozen GT6 recipe-map denominator."
+  }
+}

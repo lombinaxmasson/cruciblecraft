@@ -23,6 +23,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         generatedImportedGt6("raw_ceramic_crucible");
         generatedImportedGt6("raw_ceramic_bowl");
+        generatedImportedGt6("raw_ceramic_faucet");
         generatedImportedGt6("raw_ceramic_tap");
         generatedImportedGt6("raw_ceramic_funnel");
         generatedImportedGt6("raw_ceramic_mold");
@@ -103,6 +104,18 @@ public class ModItemModelProvider extends ItemModelProvider {
         MachineCoverKinds.ITEMS.forEach(entry ->
                 generatedImportedGt6(entry.itemPath()));
         generatedCc("unknown_material");
+        withExistingParent(
+                SlashItemModels.path("empty/tool_head_chainsaw"),
+                mcLoc("item/generated"));
+        withExistingParent(
+                SlashItemModels.path("empty/tool_head_drill"),
+                mcLoc("item/generated"));
+        withExistingParent(
+                SlashItemModels.path("empty/tool_head_pickaxe_gem"),
+                mcLoc("item/generated"));
+        withExistingParent(
+                SlashItemModels.path("empty/tool_head_wrench"),
+                mcLoc("item/generated"));
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 generatedCc(shape.registryPath()));
 

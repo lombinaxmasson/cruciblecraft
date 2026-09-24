@@ -24,13 +24,24 @@ public final class MteInPlaceDisplayNames {
             Map.entry("wood_treated", "防腐木"),
             Map.entry("nichrome", "镍铬"),
             Map.entry("carborundum", "碳化硅"),
-            Map.entry("niobium_titanium", "铌钛"));
+            Map.entry("niobium_titanium", "铌钛"),
+            Map.entry("fiery_steel", "炽钢"),
+            Map.entry("hslasteel", "HSLA钢"),
+            Map.entry("knightmetal", "骑士金属"),
+            Map.entry("octine", "奥金"),
+            Map.entry("tantalum_hafnium_carbide", "碳化钽铪"),
+            Map.entry("thaumium", "神秘金属"),
+            Map.entry("void_metal", "虚空金属"));
 
     private MteInPlaceDisplayNames() {}
 
     public static Optional<String> chinese(String registryPath) {
         if (registryPath == null || registryPath.isEmpty()) {
             return Optional.empty();
+        }
+        Optional<String> fluidAttachment = chineseFluidAttachment(registryPath);
+        if (fluidAttachment.isPresent()) {
+            return fluidAttachment;
         }
         if (registryPath.startsWith("multiblock/large_")
                 && registryPath.endsWith("_coil")) {
@@ -56,6 +67,82 @@ public final class MteInPlaceDisplayNames {
         }
         return FoundryHosts.kindTemplate(registryPath)
                 .map(template -> template.replace("%s", name));
+    }
+
+    private static Optional<String> chineseFluidAttachment(String registryPath) {
+        String materialToken;
+        String kind;
+        if (registryPath.contains("/crucible_faucet")) {
+            kind = "faucet";
+            int slash = registryPath.indexOf('/');
+            materialToken = slash > 0
+                    ? registryPath.substring(0, slash)
+                    : registryPath.substring(
+                            registryPath.lastIndexOf("crucible_faucet_")
+                                    + "crucible_faucet_".length());
+            if (registryPath.startsWith("fluid_attachment/")) {
+                materialToken = registryPath.substring(
+                        registryPath.lastIndexOf("crucible_faucet_")
+                                + "crucible_faucet_".length());
+            }
+        } else {
+            String[] suffixes = {
+                "/cap_nozzle", "/nozzle", "/funnel", "/tap"
+            };
+            kind = null;
+            for (String suffix : suffixes) {
+                if (registryPath.endsWith(suffix)) {
+                    kind = suffix.substring(1);
+                    break;
+                }
+            }
+            if (kind == null && registryPath.startsWith("fluid_attachment/")) {
+                for (String candidate : new String[] {
+                    "cap_nozzle", "nozzle", "funnel", "tap"
+                }) {
+                    if (registryPath.endsWith("_" + candidate)) {
+                        kind = candidate;
+                        break;
+                    }
+                }
+            }
+            if (kind == null) {
+                return Optional.empty();
+            }
+            int slash = registryPath.indexOf('/');
+            if (slash <= 0) {
+                return Optional.empty();
+            }
+            materialToken = registryPath.substring(0, slash);
+            if ("fluid_attachment".equals(materialToken)) {
+                String remainder = registryPath.substring(slash + 1);
+                String kindSuffix = "_" + kind;
+                if (!remainder.endsWith(kindSuffix)
+                        || remainder.length() <= kindSuffix.length()) {
+                    return Optional.empty();
+                }
+                materialToken = remainder.substring(
+                        0, remainder.length() - kindSuffix.length());
+            }
+        }
+        String resolvedMaterialToken = "stainless".equals(materialToken)
+                ? "stainless_steel"
+                : materialToken;
+        String resolvedKind = kind;
+        return chineseMaterialName(resolvedMaterialToken).map(material -> {
+            if ("faucet".equals(resolvedKind)) {
+                return "stone".equals(resolvedMaterialToken)
+                        ? "石制浇铸口"
+                        : material + "浇铸口";
+            }
+            return material + switch (resolvedKind) {
+                case "tap" -> "龙头";
+                case "funnel" -> "漏斗";
+                case "nozzle" -> "喷嘴";
+                case "cap_nozzle" -> "有盖喷嘴";
+                default -> "";
+            };
+        });
     }
 
     static boolean isWallPath(String registryPath) {

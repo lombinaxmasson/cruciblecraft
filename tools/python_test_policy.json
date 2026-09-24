@@ -100,6 +100,8 @@
     "test_gt6_connector_acquisition",
     "test_gt6_mte_host_fold",
     "test_gt6_mte_runtime",
+    "test_gt6_fluid_attachment_contract",
+    "test_gt6_full_coverage_reassessment",
     "test_gt6_mte_acquisition",
     "test_gt6_paper_tiny_plate",
     "test_registry_identity",
@@ -1216,6 +1218,8 @@
         "tools/gt6_mte_inplace_runtime.py",
         "tools/build_gt6_mte_inplace_runtime.py",
         "tools/tests/test_gt6_mte_runtime.py",
+        "tools/gt6_fluid_attachment_contract.py",
+        "tools/tests/test_gt6_fluid_attachment_contract.py",
         "tools/capabilities/content/gt6-mte-fluid-attachments-runtime/**",
         "tools/waves/content/gt6-mte-fluid-attachments-runtime/**",
         "tools/capabilities/content/gt6-mte-extender-runtime/**",
@@ -1308,6 +1312,7 @@
       ],
       "test_modules": [
         "test_gt6_mte_runtime",
+        "test_gt6_fluid_attachment_contract",
         "test_catalog_modern_ids"
       ]
     },
@@ -1375,6 +1380,16 @@
       ],
       "test_modules": [
         "test_blocked_recipe_ledger"
+      ]
+    },
+    {
+      "paths": [
+        "tools/waves/portfolio/gt6-full-coverage-reassessment/**",
+        "tools/tests/test_gt6_full_coverage_reassessment.py",
+        "docs/current/gt6-full-coverage.md"
+      ],
+      "test_modules": [
+        "test_gt6_full_coverage_reassessment"
       ]
     },
     {

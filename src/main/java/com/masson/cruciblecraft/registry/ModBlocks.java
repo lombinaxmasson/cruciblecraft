@@ -121,6 +121,7 @@ import com.masson.cruciblecraft.content.block.StoneLayerRockOreBlock;
 import com.masson.cruciblecraft.content.block.DustFunnelBlock;
 import com.masson.cruciblecraft.content.block.MixingBowlBlock;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
+import com.masson.cruciblecraft.content.mte.MteFaucetProfile;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
 import com.masson.cruciblecraft.content.mte.MteFluidAttachmentProfile;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
@@ -1890,6 +1891,16 @@ public final class ModBlocks {
     }
 
     private static BlockBehaviour.Properties inplaceProperties(MteInPlaceSpec spec) {
+        if (MteFaucetProfile.contains(spec)) {
+            MteFaucetProfile profile = MteFaucetProfile.require(spec);
+            boolean stoneLike = "stone".equals(profile.materialId())
+                    || "ceramic".equals(profile.materialId());
+            return BlockBehaviour.Properties.of()
+                    .mapColor(stoneLike ? MapColor.STONE : MapColor.METAL)
+                    .strength(profile.hardness(), profile.resistance())
+                    .noOcclusion()
+                    .sound(stoneLike ? SoundType.STONE : SoundType.METAL);
+        }
         if (MteFluidAttachmentProfile.contains(spec)) {
             MteFluidAttachmentProfile profile =
                     MteFluidAttachmentProfile.require(spec);
@@ -2664,6 +2675,7 @@ public final class ModBlocks {
         boolean complete = ModProcessingMachines.CONFIGURED_MACHINES.stream()
                 .allMatch(machine ->
                         machine == ModProcessingMachines.LASER_ENGRAVER
+                                || machine == ModProcessingMachines.IMPLOSION_COMPRESSOR
                                 || CONFIGURED_PROCESSING_BLOCKS.containsKey(machine.id())
                                 || !ModMachineVariants.forKind(machine.id())
                                         .isEmpty());
@@ -2673,6 +2685,9 @@ public final class ModBlocks {
         }
         if (spec == ModProcessingMachines.LASER_ENGRAVER) {
             return LASER_ENGRAVER.get();
+        }
+        if (spec == ModProcessingMachines.IMPLOSION_COMPRESSOR) {
+            return IMPLOSION_COMPRESSOR.get();
         }
         boolean configured = ModProcessingMachines.CONFIGURED_MACHINES.stream()
                 .anyMatch(candidate -> candidate == spec);

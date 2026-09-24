@@ -119,7 +119,7 @@ public record ConverterObservation(
         if (be instanceof BoilerBlockEntity boiler) {
             data.putString(ACTIVITY, boiler.status());
             data.putLong(BUFFER_STORED, boiler.accumulatedHu());
-            data.putLong(BUFFER_CAP, BoilerBlockEntity.WATER_CAPACITY);
+            data.putLong(BUFFER_CAP, boiler.capacity(EnergyType.HEAT));
             return;
         }
         if (be instanceof SteamEngineBlockEntity engine) {

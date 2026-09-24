@@ -12,7 +12,6 @@
 | --- | --- | --- |
 | `CrucibleCraft-总体规划.md` | [docs/current/roadmap.md](../current/roadmap.md) | 现行 |
 | （无历史入口；现行缺口入口） | [docs/current/unimplemented-gap.md](../current/unimplemented-gap.md) | 只指路；不要手抄库存 |
-| 2026-09 人读缺口长文 | [card-plans/closed/archived-prep/unimplemented-gap-2026-09.md](card-plans/closed/archived-prep/unimplemented-gap-2026-09.md) | 归档快照，勿当现盘 |
 | 已关 runtime 的 MTE 家族 prep | [card-plans/closed/archived-prep](card-plans/closed/archived-prep/) | 2026-09-11 冻结合同，不是剩余待办 |
 | `docs/CrucibleCraft-玩家指南.md` | [docs/current/player-guide.md](../current/player-guide.md) | 现行 |
 | `.plans/` | [card-plans/active](card-plans/active/) | unique-active 计划 |

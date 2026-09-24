@@ -11,7 +11,13 @@ class MteFluidAttachmentCatalogTest {
         long attachmentCount = MteInPlaceCatalog.specs().stream()
                 .filter(spec -> spec.kind().attachment())
                 .count();
-        assertEquals(46, attachmentCount);
+        assertEquals(47, attachmentCount);
+        assertEquals(
+                23,
+                MteInPlaceCatalog.specs().stream()
+                        .filter(spec -> spec.kind() == MteInPlaceKind.FAUCET)
+                        .count());
+        assertEquals(23, MteFaucetProfile.all().size());
         assertEquals(24, MteFluidAttachmentProfile.all().size());
         assertEquals(
                 6,
@@ -56,5 +62,24 @@ class MteFluidAttachmentCatalogTest {
                 tungstenNozzle.phase());
         assertTrue(tungstenNozzle.acidProof());
         assertTrue(tungstenNozzle.magicProof());
+    }
+
+    @Test
+    void faucetMaterialAndProofPropertiesMatchGt6Rows() {
+        MteFaucetProfile ceramic = MteFaucetProfile.require(
+                MteInPlaceCatalog.require(
+                        net.minecraft.resources.ResourceLocation.parse(
+                                "cruciblecraft:fluid_attachment/crucible_faucet_ceramic")));
+        MteFaucetProfile stainless = MteFaucetProfile.require(
+                MteInPlaceCatalog.require(
+                        net.minecraft.resources.ResourceLocation.parse(
+                                "cruciblecraft:stainless_steel/crucible_faucet")));
+        assertEquals("ceramic", ceramic.materialId());
+        assertTrue(!ceramic.acidProof());
+        assertEquals("stainless_steel", stainless.materialId());
+        assertTrue(stainless.acidProof());
+        assertEquals(
+                "stainless_steel",
+                MteInPlaceMaterials.token("stainless_steel/crucible_faucet"));
     }
 }

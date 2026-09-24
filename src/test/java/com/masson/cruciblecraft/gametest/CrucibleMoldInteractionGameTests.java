@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MixingBowlBlockEntity;
 import com.masson.cruciblecraft.content.mold.MoldRecipes;
 import com.masson.cruciblecraft.content.mold.MoldShape;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
@@ -281,6 +282,66 @@ public final class CrucibleMoldInteractionGameTests {
         helper.assertTrue(
                 mold.isFilled() && "copper".equals(mold.materialId()),
                 "stone faucet facing a ceramic crucible did not fill the mold below");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void faucetPoursCrucibleIntoMixingBowl(GameTestHelper helper) {
+        BlockPos cruciblePos = new BlockPos(2, 2, 2);
+        BlockPos faucetPos = new BlockPos(2, 2, 3);
+        BlockPos bowlPos = new BlockPos(2, 1, 3);
+        placeMolten(helper, cruciblePos, "copper", 1, 1090.0F);
+        helper.setBlock(bowlPos, ModBlocks.MIXING_BOWL.get());
+        helper.setBlock(
+                faucetPos,
+                ModBlocks.mteInPlaceBlocksById()
+                        .get(MteInPlaceGameTestSupport.id(
+                                "fluid_attachment/crucible_faucet_stone"))
+                        .get()
+                        .defaultBlockState()
+                        .setValue(MteInPlaceBlock.FACING, Direction.NORTH));
+        MteInPlaceBlockEntity faucet = helper.getBlockEntity(faucetPos);
+        faucet.transferOnce();
+        MixingBowlBlockEntity bowl = helper.getBlockEntity(bowlPos);
+        helper.assertTrue(
+                bowl.tanks().get(MixingBowlBlockEntity.INPUT_TANKS.getFirst())
+                                .getFluidAmount()
+                        == MaterialPrefixes.INGOT.units(),
+                "faucet did not fill the mixing bowl from the crucible");
+        helper.assertTrue(
+                crucibleAt(helper, cruciblePos).totalUnits() == 0,
+                "faucet did not consume the poured ingot");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void faucetPoursCrucibleIntoBathingPot(GameTestHelper helper) {
+        BlockPos cruciblePos = new BlockPos(2, 2, 2);
+        BlockPos faucetPos = new BlockPos(2, 2, 3);
+        BlockPos potPos = new BlockPos(2, 1, 3);
+        placeMolten(helper, cruciblePos, "copper", 1, 1090.0F);
+        MteInPlaceBlock pot = ModBlocks.mteInPlaceBlocksById()
+                .get(MteInPlaceGameTestSupport.id("misc_tool/bathing_pot"))
+                .get();
+        helper.setBlock(potPos, pot.defaultBlockState());
+        helper.setBlock(
+                faucetPos,
+                ModBlocks.mteInPlaceBlocksById()
+                        .get(MteInPlaceGameTestSupport.id(
+                                "fluid_attachment/crucible_faucet_stone"))
+                        .get()
+                        .defaultBlockState()
+                        .setValue(MteInPlaceBlock.FACING, Direction.NORTH));
+        MteInPlaceBlockEntity faucet = helper.getBlockEntity(faucetPos);
+        faucet.transferOnce();
+        MteInPlaceBlockEntity bathingPot = helper.getBlockEntity(potPos);
+        helper.assertTrue(
+                bathingPot.bathingPot().tank(0).getFluidAmount()
+                        == MaterialPrefixes.INGOT.units(),
+                "faucet did not fill the bathing pot from the crucible");
+        helper.assertTrue(
+                crucibleAt(helper, cruciblePos).totalUnits() == 0,
+                "faucet did not consume the poured ingot");
         helper.succeed();
     }
 

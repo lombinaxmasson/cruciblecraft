@@ -31,6 +31,7 @@ import com.masson.cruciblecraft.content.block.SluiceParts;
 import com.masson.cruciblecraft.content.item.tool.ToolClick;
 import com.masson.cruciblecraft.content.mte.BathingPotRuntime;
 import com.masson.cruciblecraft.content.mte.FluidAttachmentPlayerInteraction;
+import com.masson.cruciblecraft.content.mte.MteFaucetProfile;
 import com.masson.cruciblecraft.content.mte.MteFluidAttachmentProfile;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
@@ -318,6 +319,14 @@ public final class MteInPlaceBlock extends Block
         if (spec.kind() == MteInPlaceKind.GAS_TURBINE) {
             LargeGasTurbineTooltips.append(spec, tooltip);
         }
+        if (MteFaucetProfile.contains(spec)) {
+            tooltip.add(Component.translatable(
+                    "tooltip.cruciblecraft.fluid_attachment.faucet"));
+            if (MteFaucetProfile.require(spec).acidProof()) {
+                tooltip.add(Component.translatable(
+                        "tooltip.cruciblecraft.fluid_attachment.acid_proof"));
+            }
+        }
         if (MteFluidAttachmentProfile.contains(spec)) {
             MteFluidAttachmentProfile profile =
                     MteFluidAttachmentProfile.require(spec);
@@ -425,6 +434,40 @@ public final class MteInPlaceBlock extends Block
             ToolResult mass = useMassStorageTool(action, context);
             if (mass != ToolResult.PASS) {
                 return mass;
+            }
+        }
+        if (spec.kind() == MteInPlaceKind.FAUCET
+                && context.getLevel().getBlockEntity(context.getClickedPos())
+                        instanceof MteInPlaceBlockEntity faucet) {
+            if (action == ToolAction.SOFT_HAMMER) {
+                if (!context.getLevel().isClientSide) {
+                    faucet.clearFaucetAutoPull();
+                    Player player = context.getPlayer();
+                    if (player != null) {
+                        player.displayClientMessage(
+                                Component.translatable(
+                                        "message.cruciblecraft.mold_auto_input_cleared"),
+                                true);
+                    }
+                    ToolClick.hurt(context);
+                }
+                return ToolResult.SUCCESS;
+            }
+            if (action == ToolAction.MONKEY_WRENCH) {
+                if (!context.getLevel().isClientSide) {
+                    boolean automatic = faucet.toggleFaucetAutoPull();
+                    Player player = context.getPlayer();
+                    if (player != null) {
+                        player.displayClientMessage(
+                                Component.translatable(
+                                        automatic
+                                                ? "message.cruciblecraft.mold_auto_input_on"
+                                                : "message.cruciblecraft.mold_auto_input_redstone"),
+                                true);
+                    }
+                    ToolClick.hurt(context);
+                }
+                return ToolResult.SUCCESS;
             }
         }
         if (action == ToolAction.PLUNGER
@@ -978,6 +1021,13 @@ public final class MteInPlaceBlock extends Block
                 && FoundryHosts.isMold(spec)
                 && level.getBlockEntity(pos) instanceof FoundryCastingBlockEntity mold) {
             mold.onNeighborChanged();
+        }
+        if (!level.isClientSide
+                && spec.kind() == MteInPlaceKind.FAUCET
+                && level.hasNeighborSignal(pos)
+                && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity faucet
+                && !faucet.faucetAutoPull()) {
+            faucet.transferOnce();
         }
     }
 

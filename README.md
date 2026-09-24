@@ -7,13 +7,14 @@
 当前版本是开发快照 `0.1.0-test.20260922.1`，以源码仓库的形式发布。想直接上手玩，先看[玩家指南](docs/current/player-guide.md)。
 
 - [项目状态](docs/current/project-status.md)
+- [GT6 全量覆盖重评估](docs/current/gt6-full-coverage.md)
 - [未实现与缺口](docs/current/unimplemented-gap.md)
 - [总体规划](docs/current/roadmap.md)
 - [问题反馈](https://github.com/icodestuljh/cruciblecraft/issues)
 
 ## 目前进了运行时的东西
 
-材料、前缀和矿物处理这套配方都是按 GT6 来源生成的；火、热、蒸汽、动能、旋转能、电力几条能源链路都在跑，电加热器、电引擎、LU 光纤、裂变堆芯已经能用，大型热交换器、蒸汽涡轮和聚变作为 CrucibleCraft 的扩展也进了运行时（冷却器还没开）。加工机从青铜一路做到高档，蒸馏塔、大型锅炉、储罐这些多方块也在。世界生成这边有大型矿脉、地下油气、地表石子、石层和基岩矿。物流上是物品管、流体管、电缆、封面加自动化。原油和天然气可以蒸馏出燃油，送去引擎和燃气发电。第三方集成方面，EMI 能看配方，Jade 能看方块信息，Reliable EMI（REMI / EMI++）能把同形态材料、同种工具、同种加工机 / 能量转换器，以及玻璃 / 木板 / 台阶等建筑方块、书架、抽屉、保险箱、箱子、料斗、坩埚、模具在物品列表里折叠，KubeJS 是可选项——这些都不会强制捆绑进包里。
+当前工作树已经有材料、能源、加工机、物流、世界生成和多方块等多类可运行机制；其中部分内容是 bounded subset，部分 capability 仍 frozen/paused，生存获得和试玩另算。完整 GT6 源码覆盖不以运行时 capability 数量或资源文件数代替，必须查看 [GT6 全量覆盖重评估](docs/current/gt6-full-coverage.md) 的 source/runtime/published/survival 四个独立轴。第三方集成方面，EMI 能看配方，Jade 能看方块信息，Reliable EMI（REMI / EMI++）能把同形态材料、同种工具、同种加工机 / 能量转换器，以及玻璃 / 木板 / 台阶等建筑方块、书架、抽屉、保险箱、箱子、料斗、坩埚、模具在物品列表里折叠，KubeJS 是可选项——这些都不会强制捆绑进包里。
 
 具体进度和缺口记在 [项目状态](docs/current/project-status.md)、[未实现与缺口](docs/current/unimplemented-gap.md)、[已阻塞项](docs/current/blocked.md) 里。
 
@@ -116,6 +117,7 @@ python tools/playtest.py check
 面向玩家和项目概览：
 
 - [玩家指南](docs/current/player-guide.md)
+- [GT6 全量覆盖重评估](docs/current/gt6-full-coverage.md)
 - [总体规划](docs/current/roadmap.md)
 - [当前已知问题](docs/current/known-issues.md)
 - [变更记录](CHANGELOG.md)

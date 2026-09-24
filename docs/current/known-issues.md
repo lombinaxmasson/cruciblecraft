@@ -5,6 +5,14 @@
 分类合同见 [capability-delivery-workflow.md](capability-delivery-workflow.md) §5。
 本页不再把「未关门但下一张照开」和「有理由的 divergence」混在一段里。
 
+## Full GT6 coverage baseline
+
+完整 GT6 源码目标不再用历史 `1.x` portfolio、`*_READY` 收据、capability 数量或
+生成文件数量判断。当前 source/runtime/published/survival 四轴对账见
+[GT6 全量覆盖重评估](gt6-full-coverage.md)；`runtime_ready` 仍只表示机制可运行。
+Blocker catalog 中的 `blocks_maturity: player_complete` 是兼容旧账本字段，不是
+当前 capability maturity 枚举，也不代表项目仍允许声明 `player_complete`。
+
 ## Accepted divergence
 
 这些是显式身份决策，不是漏做的冲突。
@@ -21,7 +29,8 @@
 
 - compact family 作者正文已改为 `matrix_v1`（`COMPACT_RECIPE_AUTHORED_MATRIX_READY`），线上 `StreamCodec` v2 编矩阵而不是展开表。修的仍是写法，不是 Holder 粒度。compact snapshot `13845 != 14201` 仍是 scope-external 债（mortar / assembler fingerprints），未 `--update-baseline`。它不挡 `semantic-generators` 的 fresh 结构/字节比较。
 - 隔离 census 的 `cover_behaviors` 冻结表仍是 `registerBuiltin` 那 8 个；物品/流体/通用网行为走 identity gate 精确比对 extras。该探针不再挡普通配方卡闭卡。物流九件盖板物品图标已从本地 `gregtech6_w` 迁入 `gt6_import/`（含 Dump）。传送带 / 检索器 / 机械臂等管网盖板仍用各自现有 item 贴图，未在本卡重核。
-- 化学语义 artifact 与现行生成器存在结构漂移：留给后续配方工作
+- 化学语义 artifact 与现行生成器存在结构漂移：当前全量对账见
+  [gt6-full-coverage.md](gt6-full-coverage.md)，逐图差异留给对应配方工作
 - 历史 READY 已退出 active verification；日常门不再消费历史收据
 - 历史 full verification report 已从工作树删除，不是当前执行结果
 - 能量链 GameTest 方法名已语义化；历史 `energy_chain_readiness*` token 若仍存在，以 [semantic-naming.md](semantic-naming.md) 为准。

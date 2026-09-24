@@ -132,11 +132,45 @@ class EmiStackGroupResourceTest {
                 "料斗",
                 chinese.get("emi.cruciblecraft.group.hopper.hopper").getAsString());
         assertEquals(
+                "Anvil",
+                english.get("emi.cruciblecraft.group.misc_tool.anvil").getAsString());
+        assertEquals(
+                "砧",
+                chinese.get("emi.cruciblecraft.group.misc_tool.anvil").getAsString());
+        assertEquals(
+                "Faucet",
+                english.get("emi.cruciblecraft.group.fluid_attachment.faucet")
+                        .getAsString());
+        assertEquals(
+                "龙头",
+                chinese.get("emi.cruciblecraft.group.fluid_attachment.faucet")
+                        .getAsString());
+        assertEquals(
+                "Funnel",
+                english.get("emi.cruciblecraft.group.fluid_attachment.funnel")
+                        .getAsString());
+        assertEquals(
+                "漏斗",
+                chinese.get("emi.cruciblecraft.group.fluid_attachment.funnel")
+                        .getAsString());
+        assertEquals(
                 "Crucible",
                 english.get("emi.cruciblecraft.group.foundry.crucible").getAsString());
         assertEquals(
                 "坩埚",
                 chinese.get("emi.cruciblecraft.group.foundry.crucible").getAsString());
+        assertEquals(
+                "Casting Basin",
+                english.get("emi.cruciblecraft.group.foundry.basin").getAsString());
+        assertEquals(
+                "浇铸盆",
+                chinese.get("emi.cruciblecraft.group.foundry.basin").getAsString());
+        assertEquals(
+                "Crucible Crossing",
+                english.get("emi.cruciblecraft.group.foundry.crossing").getAsString());
+        assertEquals(
+                "浇铸道",
+                chinese.get("emi.cruciblecraft.group.foundry.crossing").getAsString());
         assertEquals(
                 "Mold",
                 english.get("emi.cruciblecraft.group.mold.ceramic").getAsString());

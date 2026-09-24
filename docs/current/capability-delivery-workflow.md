@@ -128,6 +128,7 @@ known-issues 不得再充当「未关门但下一张卡照开」的垃圾桶。
 python tools/build_capability_ledger.py --check
 python tools/build_blockers.py --check
 python tools/build_project_status.py --check
+python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation.py --check
 python tools/playtest.py check
 python tools/verify.py integration --profile capability-runtime
 python tools/close_capability.py --capability <slug> --change-class major

@@ -123,17 +123,7 @@ abstract class IncrementalResourceSync extends DefaultTask {
                 relative == '.gitkeep' ||
                 relative.endsWith('/.gitkeep') ||
                 relative.startsWith(
-                        'data/cruciblecraft/recipe/player_path_recovery/roaster/') ||
-                relative in [
-                        'assets/cruciblecraft/blockstates/multiblock/' +
-                                'distillation_tower_part.json',
-                        'assets/cruciblecraft/blockstates/multiblock/' +
-                                'heat_transmitter.json',
-                        'assets/cruciblecraft/models/item/multiblock/' +
-                                'distillation_tower_part.json',
-                        'assets/cruciblecraft/models/item/multiblock/' +
-                                'heat_transmitter.json',
-                ]
+                        'data/cruciblecraft/recipe/player_path_recovery/roaster/')
     }
 
     static void copyIfChanged(File source, File target) {
@@ -203,10 +193,6 @@ def resourceExcludes = [
         '**/.cache/**',
         '**/.gitkeep',
         'data/cruciblecraft/recipe/player_path_recovery/roaster/**',
-        'assets/cruciblecraft/blockstates/multiblock/distillation_tower_part.json',
-        'assets/cruciblecraft/blockstates/multiblock/heat_transmitter.json',
-        'assets/cruciblecraft/models/item/multiblock/distillation_tower_part.json',
-        'assets/cruciblecraft/models/item/multiblock/heat_transmitter.json',
 ]
 
 def resourceTrees = resourceRoots.collect { root ->

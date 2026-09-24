@@ -26,7 +26,8 @@ live 已由 `registry/hybrid-material-identity` 对齐该目标（已关 `runtim
 必须分别记录为 `SOURCE_BACKED`、`SOURCE_DERIVED` 或 `DESIGN_POLICY`。
 
 「不全量移植 GT6」是历史产品声明，不是增长禁令。它不能再用来阻止生成器、
-catalog 或对照工具。1.x 已关闭的分母也不因此作废。
+catalog 或对照工具。全量 GT6 源码目标与当前 runtime portfolio 分开核算；
+唯一的全量覆盖入口是 [GT6 全量覆盖重评估](gt6-full-coverage.md)。
 
 ## 2. 阶段状态与证据
 
@@ -51,14 +52,11 @@ catalog 或对照工具。1.x 已关闭的分母也不因此作废。
 任一历史阶段显示 READY，只说明其当时约定的分母和判据成立；它不自动证明玩家可玩性、
 视觉完成度或完整 GT6 覆盖。
 
-## 3. 2026-08-21 路线修订
+## 3. 历史源码留档语义
 
-本次 `1.0` 的含义是**源码阶段留档**。留档由 canonical Git commit、annotated tag 与
-GitHub push 承担，不创建 GitHub Release、不上传 jar、不累计 RC soak 时间。
-
-历史审计中发现的发行工程缺口（readiness 自证、source replay/SKIP、F005 指标语义、
-发行 jar smoke/provenance）统一转交未来的玩家发行卡。它们不阻断本次源码留档，也不能
-被写成“已关闭”。
+仓库历史中的 `1.0` / `1.x` 只表示当时定义的源码阶段 portfolio 与留档边界，
+不是正式 `1.0.0`、GA、完整 GT6 覆盖或玩家发行承诺。当前版本仍是
+`0.1.0-test.20260922.1`；历史退出门不能替代本地 GT6 全量 reconciliation。
 
 ## 4. 当前内容顺序
 
@@ -69,42 +67,22 @@ semantic wave，不是下一张里程碑编号。
 [project-status.md](project-status.md)。同一时刻只允许一张内容工作处于
 active 状态；prep 不占落地锁，规则见
 [能力交付流程 §8](capability-delivery-workflow.md)。
-第 1–8 项第一张已关。蒸汽涡轮、大型热交换器 17197、聚变 / 量子物质已作为
-CC 扩展落地，capability `frozen`+`paused`，不是 `player_complete`，
-也不要当下一张 unique-active。读法见
-[project-status.md](project-status.md) 的 frozen 表与 [blocked.md](blocked.md)。
-Bath remainder / identity 已由 T48/T49 关完，不是下一张 unique-active。后续排期
-读 [blocked.md](blocked.md) 与 `tools/blockers/batches.json`，不要从只读
-growth-order 档案倒推。缺形态不做到配方才补：prep
-[材料形态需求普查](../history/card-plans/prep/材料形态需求普查详细计划.md)
-出冻结核，再开 bounded unique-active；禁止按生成旗标全开长尾。
+当前 active/prep/paused 排期只读
+[project-status.md](project-status.md)；跨能力排期只读 [blocked.md](blocked.md)
+与 `tools/blockers/batches.json`。历史 `1.x` / R0 / READY 记录只作来源和审计背景，
+不代表 GT6 全量完成，也不代表玩家完成。
 
-电能转换已关 `runtime_ready`。聚变 18 源行是 `frozen`+`paused` 的 CC 扩展，
-不是「尚未签发」。Dump 的来源执行器是 Core，
-不是 Generic 管网；`dump_policy` 见已关闭的
-[物流封面网余量](../history/card-plans/closed/物流封面网余量详细计划.md)。
-后继能源卡见已关闭的
-[能源后续卡收口](../history/card-plans/closed/能源后续卡收口详细计划.md)
-与 [blocked.md](blocked.md) / [`leftover_later.json`](../../tools/waves/portfolio/source-capability-map-r0/leftover_later.json)。
-
-已认领的 1.x / R0 / 导入器 / 对照图工作仍然有效；对照图不把它写成 GT6
-全量完成。`portfolio/count-ceiling-kind-envelope` 仍是 telemetry /
-report-only。语义命名剩余工作见 [semantic-naming.md](semantic-naming.md)
-与 [semantic-naming-closeout-checklist.md](semantic-naming-closeout-checklist.md)，
-不占用 active child。
+完整 GT6 源码目标、当前 RecipeMap 对应关系、已发布行、overflow、身份/形态/流体/
+获得性缺口统一读 [GT6 全量覆盖重评估](gt6-full-coverage.md)。缺形态进入
+[材料形态需求普查](../history/card-plans/prep/材料形态需求普查详细计划.md)，
+不能按生成旗标全开长尾。
 
 已关闭且仍约束现行账本的事实：
 
-- census foundation 仍是只读的 78,682 rows / 5,718 families；
-- compact 生产波从 assembler compact 走到 bath tiny-purified；
-- Smelter / Mixer ordinary-closure 已关闭；
-- Ordinary 尾账五 host 已关闭，current execution gap = 0；
-- deferred recycling = 0，deferred ledger total = 0（1,817 complete + 28
-  independent post-1.x scope）；hanging `later:*` = 0；
-- opening execution gap 为 1,349，Bath ordinary 为 0；
-- forward-v2 与历史 closeout 记录只作档案，不是 active `--check` 绑定面；
-- compact-load closing 是 19 组 production mix 同载重测
-  （eager 14 / lazy 50,652 / cache 876 / authored 6,269）。
+- 历史 census、compact wave、ordinary closeout 和 load measurement 仍保留为各自证据，
+  但不作为全量 GT6 覆盖率或单一剩余数字；
+- 当前 fresh reconciliation 的 source/runtime/published/survival 四轴见
+  [GT6 全量覆盖重评估](gt6-full-coverage.md)。
 
 后续 bounded wave 必须在前一张 closing artifact 上重新签发。选择顺序仍是：
 
@@ -151,7 +129,7 @@ fresh runtime 验证、integrated load、census/topology 与撤回规则见
 
 GT6、未来 GT6U 与 design recipes 使用独立 append-only Source Packs。完全重复只增加
 provenance alias；新增 relation 建 extension contribution；override 建 compatibility
-overlay。新来源是否扩大 1.x gap 由新 census intake 明确决定，不回写历史 compact source、
+overlay。新来源是否扩大 GT6 full-coverage gap 由新 census intake 明确决定，不回写历史 compact source、
 stable ids 或 closing gap。未来核心 runtime 变化走当前 compatibility/migration profile，
 不逐卡重签历史记录。
 
@@ -192,34 +170,21 @@ Recipe gap 清零后，deferred ordinary ledger 也已关闭或独立 scope。st
 [docs/history](../history/INDEX.md)，由 legacy index 标记为只读。Active verification
 不 import 或重建它们，也不要求为当前代码刷新历史 READY。
 
-## 7. 1.x 阶段退出门
+## 7. 全量 GT6 目标退出门
 
-只有以下条件同时成立，当前 1.x portfolio 才允许结束：
+当前没有“全量 GT6 已完成”的退出结论。新退出门必须由
+[GT6 全量覆盖重评估](gt6-full-coverage.md) fresh 派生，并同时满足：
 
-- census 对当前分母 current，所有条目均有 disposition 与 owner；
-- RU、KU、HU 的已选 source-backed material matrix 与 EU voltage pilot 已固定，
-  并由机器 catalog 无损投影；
-- current closing artifact 派生的 **current recipe execution gap = 0**；不能用模板存在、
-  文件数或 P0/P1 完成替代全量 family 关闭；
-- deferred ordinary ledger 中每一项均已关闭，或经独立、明确的 post-1.x scope decision
-  处理；`later:*` 不能无限期删除；
-- 所有 `in_scope` source-backed storage bundle 全部关闭，Storage 28/624 分母与
-  独立的 cross-category owner 均有 current disposition；
-- closure / fidelity / load 三轴无 pending blocker，玩家路径、census 与 compact-load
-  ledger 全部 current，且各 load 轴不越 hard ceiling。
+- 本地 GT6 分母、机器 kind、身份、配方图和明确 out-of-scope 项均有 current disposition；
+- source coverage、runtime coverage、published recipe coverage、survival/obtain
+  coverage 分开报告，不能以 capability 数、文件数或历史 READY 替代；
+- 化学/热处理和其他 recipe map 的 bounded subset、full replay、overflow 与 deferred
+  pipeline 已逐图对账；
+- identity、material form、fluid、obtain、worldgen、runtime 和 verification 缺口均有
+  owner 或明确的 out-of-scope 决策；
+- `tools/playtest/current_cycle.json` 已由人工 `runClient` 签收，或者明确保持未签收。
 
-退出门已经通过。growth-order 指定的
-`next_major = portfolio/generic-recipe-generator` 已被
-[通用 Source Pack 导入器](../history/card-plans/closed/通用Source-Pack导入器详细计划.md)
-消费，没有 production lock。核能、新 kind 信封数据化仍只是图上的行，不是自动开工。
-已有 kind 的显式档位已经走 `machine_tiers.json`。
-
-裂变堆芯 / 棒 / Canner 生存配方已由 `energy/nuclear-fission-survival` 关闭。
-热流体与热量合同已由 `energy/nuclear-fission-hot-fluids` 关闭。
-聚变 18 源行已由 `energy/fusion-quantum` 落地（`frozen`+`paused`，
-`energy/reactor-fusion` 已 `resolved`）。`FUELS_PLASMA` 保持空。
-冷却器仍 blocked。体积与后继候选见
-[project-status.md](project-status.md) 与 [blocked.md](blocked.md)。
+历史 `1.x` portfolio 退出门继续作为历史审计上下文保存，但不再作为全量 GT6 目标的完成证明。
 
 ## 8. 日常开发与留档纪律
 

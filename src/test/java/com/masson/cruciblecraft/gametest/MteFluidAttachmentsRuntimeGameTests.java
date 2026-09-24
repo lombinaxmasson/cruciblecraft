@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
 import com.masson.cruciblecraft.content.item.CatalogNamedItem;
 import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.mte.FluidAttachmentTransfer;
+import com.masson.cruciblecraft.content.mte.MteFaucetProfile;
 import com.masson.cruciblecraft.content.mte.MteFluidAttachmentProfile;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
@@ -107,8 +108,11 @@ public final class MteFluidAttachmentsRuntimeGameTests {
         MteInPlaceBlockEntity faucet = helper.getBlockEntity(faucetPos);
         faucet.transferOnce();
         helper.assertTrue(
-                dest.storedFluid().getAmount() > 0,
-                "faucet did not pour into the tank below");
+                dest.storedFluid().isEmpty(),
+                "faucet piped water; GT6 only pours molten material from a crucible");
+        helper.assertTrue(
+                source.storedFluid().getAmount() == 200,
+                "faucet consumed pipe fluid without a crucible");
         helper.succeed();
     }
 
@@ -137,7 +141,19 @@ public final class MteFluidAttachmentsRuntimeGameTests {
         long attachments = MteInPlaceCatalog.specs().stream()
                 .filter(spec -> spec.kind().attachment())
                 .count();
-        helper.assertTrue(attachments == 46, "fluid attachment count drifted: " + attachments);
+        helper.assertTrue(attachments == 47, "fluid attachment count drifted: " + attachments);
+        helper.assertTrue(
+                MteFaucetProfile.all().size() == 23,
+                "faucet profile count drifted");
+        for (MteFaucetProfile profile : MteFaucetProfile.all()) {
+            helper.assertTrue(
+                    ModItems.mteInPlaceItemsById().containsKey(profile.id()),
+                    "faucet has no live BlockItem: " + profile.id());
+            helper.assertTrue(
+                    MteInPlaceCatalog.require(profile.id()).kind()
+                            == MteInPlaceKind.FAUCET,
+                    "faucet profile kind drifted: " + profile.id());
+        }
         helper.assertTrue(
                 MteFluidAttachmentProfile.all().size() == 24,
                 "phase/proof profile count drifted");

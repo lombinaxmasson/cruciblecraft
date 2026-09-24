@@ -6,6 +6,12 @@ Compact / Bath / ordinary-closure live ledgers, receipts, and currentness
 sidecars already use those slugs. Daily verification is
 `python tools/verify.py`. Layout, generated-resource freeze, and local
 working-copy noise are documented in `docs/current/code-tree.md`.
+Project-wide GT6 source coverage is audited separately by
+`tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation.py`;
+read the generated `docs/current/gt6-full-coverage.md` for the current
+source/runtime/published/survival reconciliation. Its `--check` runs in the
+`capability-runtime` profile; column definitions and the regeneration rules
+are in `docs/current/gt6-full-coverage-workflow.md`.
 
 `build_t*.py` builders were deleted. Numbered JSON that remains is either an
 earlier independent stage, a frozen v2 snapshot, or the translation map

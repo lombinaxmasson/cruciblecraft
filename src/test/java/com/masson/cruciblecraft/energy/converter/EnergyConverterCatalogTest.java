@@ -256,6 +256,39 @@ class EnergyConverterCatalogTest {
     }
 
     @Test
+    void strongBoilerRatesAndSteamTankCapacityMatchGt6() {
+        Map<String, Long> expectedHu = Map.ofEntries(
+                Map.entry("lead", 64L),
+                Map.entry("bismuth", 80L),
+                Map.entry("bronze", 96L),
+                Map.entry("arsenic_copper", 96L),
+                Map.entry("arsenic_bronze", 112L),
+                Map.entry("invar", 64L),
+                Map.entry("steel", 128L),
+                Map.entry("chromium", 384L),
+                Map.entry("titanium", 448L),
+                Map.entry("netherite", 448L),
+                Map.entry("tungsten", 512L),
+                Map.entry("tungstensteel", 512L),
+                Map.entry("ultimet", 1_024L));
+        expectedHu.forEach((material, huPerTick) -> {
+            EnergyConverterProfile profile =
+                    EnergyConverterCatalog.require(
+                            "cruciblecraft:" + material + "_strong_boiler");
+            long steamPerTick = huPerTick * 2L;
+            assertEquals(
+                    huPerTick,
+                    profile.inputPacket().maxAmountPerTick());
+            assertEquals(
+                    steamPerTick,
+                    profile.outputPacket().maxAmountPerTick());
+            assertEquals(
+                    steamPerTick * 10_000L,
+                    profile.outputCapacity());
+        });
+    }
+
+    @Test
     void dynamoCorrectsLegacy24To24WithAuditableSourceLoss() {
         EnergyConverterProfile dynamo = EnergyConverterCatalog.require(
                 "cruciblecraft:bronze_dynamo");

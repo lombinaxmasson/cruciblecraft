@@ -39,7 +39,8 @@
         "test_check_no_workflow_hashes",
         "test_check_zero_milestone_names",
         "test_tree_compare",
-        "test_blocked_recipe_ledger"
+        "test_blocked_recipe_ledger",
+        "test_gt6_full_coverage_reassessment"
       ],
       "builders": [],
       "owned_paths": [
@@ -60,6 +61,7 @@
         "tools/workflow_hash_policy.json",
         "tools/tree_compare.py",
         "tools/legacy_verification_index.json",
+        "tools/waves/portfolio/gt6-full-coverage-reassessment/**",
         "tools/tests/test_verification_profiles.py",
         "tools/tests/test_python_test_workflow.py",
         "tools/tests/test_check_no_workflow_hashes.py",
@@ -229,6 +231,7 @@
         "test_energy_nuclear_fission_observation_safety",
         "test_registry_identity",
         "test_jade_observation",
+        "test_jade_source_mapping",
         "test_roll_former",
         "test_cluster_mill",
         "test_hammer_squeezer_laser",
@@ -250,6 +253,7 @@
         "test_gt6_large_crusher",
         "test_gt6_large_shredder",
         "test_gt6_large_sluice",
+        "test_gt6_large_squeezer",
         "test_gt6_implosion_compressor",
         "test_large_bath",
         "test_large_autoclave",
@@ -284,6 +288,7 @@
         "test_gt6_connector_acquisition",
         "test_gt6_mte_host_fold",
         "test_gt6_mte_runtime",
+        "test_gt6_fluid_attachment_contract",
         "test_gt6_mte_acquisition",
         "test_gt6_paper_tiny_plate",
         "test_material_form_demand_census",
@@ -318,7 +323,8 @@
         "build_gt6_mte_host_fold",
         "build_gt6_mte_inplace_runtime",
         "build_gt6_mte_inplace_acquisition",
-        "build_gt6_paper_tiny_plate"
+        "build_gt6_paper_tiny_plate",
+        "build_gt6_full_coverage"
       ],
       "owned_paths": [
         "tools/catalog_modern_ids.py",
@@ -348,6 +354,9 @@
         "tools/tests/test_gt6_connector_acquisition.py",
         "tools/tests/test_gt6_mte_host_fold.py",
         "tools/tests/test_gt6_mte_runtime.py",
+        "tools/gt6_fluid_attachment_contract.py",
+        "tools/tests/test_gt6_fluid_attachment_contract.py",
+        "tools/waves/content/gt6-mte-fluid-attachments-runtime/**",
         "tools/tests/test_gt6_mte_acquisition.py",
         "tools/gt6_mte_inplace_acquisition.py",
         "tools/build_gt6_mte_inplace_acquisition.py",
