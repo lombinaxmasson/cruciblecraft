@@ -25,7 +25,7 @@
     "tools/gt6_resolve.py": "8b14753770430ada920a1fab35abf5bf08fedf0757c1734eec9eec6c3de89799",
     "tools/compare_gt6_recipes.py": "1a77bdbad83a7d8e004f84876397c506b8d53d2c81f6691dd7497a7e9f78fa37",
     "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py": "9eb53615fb007337761b768bae03b477c348fa818a15c9bb9d3718480f4f1d3a",
-    "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "9bd7ad4fc6bb8dab4766cd952f2b04d7de15df41e89a3eb85bdb4295b3bd8c65"
+    "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "594a79e57f79a92b6d13cd9b1e08aa72ab1b837e3c7a3d15f21e7735de1067b3"
   },
   "cc_projection": {
     "runtime_rows": 121854,
@@ -46,9 +46,13 @@
     "missing_object": 178279
   },
   "excluded_summary": {
-    "display_only": 13576
+    "display_only": 13576,
+    "missing_fluid": 135,
+    "missing_object": 150
   },
   "excluded_by_rule": {
+    "external-mod-binnie-juicecranberry": 135,
+    "external-mod-forgemicroblock-stonerod": 150,
     "gt6-nei-display-rows": 13576
   },
   "total_rows": 720841,
@@ -447,7 +451,8 @@
   },
   "maps_excluded": {
     "gt.recipe.bath": {
-      "display_only": 2
+      "display_only": 2,
+      "missing_fluid": 62
     },
     "gt.recipe.bedrockorelist": {
       "display_only": 52
@@ -461,6 +466,31 @@
     "gt.recipe.byproductlist": {
       "display_only": 289
     },
+    "gt.recipe.cryomixer": {
+      "missing_fluid": 1
+    },
+    "gt.recipe.cutter": {
+      "missing_object": 8
+    },
+    "gt.recipe.extruder": {
+      "missing_object": 65
+    },
+    "gt.recipe.fermenter": {
+      "missing_fluid": 65
+    },
+    "gt.recipe.generifier": {
+      "missing_fluid": 1,
+      "missing_object": 73
+    },
+    "gt.recipe.melter": {
+      "missing_object": 1
+    },
+    "gt.recipe.mixer": {
+      "missing_fluid": 6
+    },
+    "gt.recipe.mortar": {
+      "missing_object": 1
+    },
     "gt.recipe.other": {
       "display_only": 71
     },
@@ -472,6 +502,12 @@
     },
     "gt.recipe.scannervisuals": {
       "display_only": 50
+    },
+    "gt.recipe.shredder": {
+      "missing_object": 1
+    },
+    "gt.recipe.smelter": {
+      "missing_object": 1
     },
     "gt.recipe.toolhead": {
       "display_only": 10960
@@ -485,9 +521,9 @@
   },
   "blocker_kinds": {
     "extruder_shape": 162800,
-    "fluid": 12016,
+    "fluid": 11881,
     "form": 155531,
-    "object": 15479
+    "object": 15329
   },
   "blockers": [
     {
@@ -2202,22 +2238,6 @@
       }
     },
     {
-      "kind": "object",
-      "key": "ForgeMicroblock:stoneRod@0",
-      "label": "ForgeMicroblock:stoneRod",
-      "class": "missing_object",
-      "other_mod": true,
-      "rows": 150,
-      "materials": null,
-      "top_maps": {
-        "gt.recipe.generifier": 73,
-        "gt.recipe.extruder": 65,
-        "gt.recipe.cutter": 8,
-        "gt.recipe.melter": 1,
-        "gt.recipe.smelter": 1
-      }
-    },
-    {
       "kind": "fluid",
       "key": "fluid:blueberryjuice",
       "label": "blueberryjuice",
@@ -2229,22 +2249,6 @@
         "gt.recipe.fermenter": 64,
         "gt.recipe.bath": 63,
         "gt.recipe.mixer": 7,
-        "gt.recipe.cryomixer": 1,
-        "gt.recipe.generifier": 1
-      }
-    },
-    {
-      "kind": "fluid",
-      "key": "fluid:binnie.juicecranberry",
-      "label": "binnie.juicecranberry",
-      "class": "missing_fluid",
-      "other_mod": true,
-      "rows": 135,
-      "materials": null,
-      "top_maps": {
-        "gt.recipe.fermenter": 65,
-        "gt.recipe.bath": 62,
-        "gt.recipe.mixer": 6,
         "gt.recipe.cryomixer": 1,
         "gt.recipe.generifier": 1
       }
@@ -2587,6 +2591,38 @@
       "top_maps": {
         "gt.recipe.laserengraver": 75,
         "gt.recipe.extruder": 32,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.prismarine.dark@7",
+      "label": "gregtech:gt.stone.prismarine.dark",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 112,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 28,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.prismarine.light@7",
+      "label": "gregtech:gt.stone.prismarine.light",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 112,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 28,
         "gt.recipe.cutter": 5,
         "gt.recipe.shredder": 1,
         "gt.recipe.crusher": 1

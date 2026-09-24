@@ -9,6 +9,22 @@
       },
       "reason": "GT6 marks these rows fake or hidden: they only render in NEI (tool-head previews, bumblelyzer, byproduct lists). They are not RecipeMap recipes a machine executes; the behaviour they illustrate is tracked on the machine axis.",
       "decision": "default"
+    },
+    {
+      "id": "external-mod-forgemicroblock-stonerod",
+      "match": {
+        "blocker_keys": ["ForgeMicroblock:stoneRod@0"]
+      },
+      "reason": "ForgeMicroblock is an external mod identity, not a CrucibleCraft/vanilla/GT6-native object. The user explicitly decided on 2026-09-24 to exclude this source-row blocker from the CrucibleCraft recipe target.",
+      "decision": "user_confirmed_2026-09-24"
+    },
+    {
+      "id": "external-mod-binnie-juicecranberry",
+      "match": {
+        "blocker_keys": ["fluid:binnie.juicecranberry"]
+      },
+      "reason": "Binnie fluid identity belongs to an external mod and is not a CrucibleCraft fluid contract. The user explicitly decided on 2026-09-24 to exclude this source-row blocker from the CrucibleCraft recipe target.",
+      "decision": "user_confirmed_2026-09-24"
     }
   ]
 }

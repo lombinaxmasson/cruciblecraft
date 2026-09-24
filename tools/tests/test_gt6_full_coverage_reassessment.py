@@ -112,10 +112,17 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
         )
         exclusions = load("exclusions.json")
         self.assertEqual(
-            ["gt6-nei-display-rows"],
+            [
+                "gt6-nei-display-rows",
+                "external-mod-forgemicroblock-stonerod",
+                "external-mod-binnie-juicecranberry",
+            ],
             [rule["id"] for rule in exclusions["rules"]],
         )
-        self.assertEqual(grades["classes"]["display_only"], progress["excluded_rows"])
+        self.assertEqual(
+            progress["excluded_rows"],
+            sum(grades["excluded"].values()),
+        )
         self.assertEqual(
             progress["proven_rows"],
             grades["classes"]["source_exact"] + grades["classes"]["translated_exact"],
