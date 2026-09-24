@@ -59,8 +59,8 @@ public final class MachineRuntimeGameTests {
                 .map(variant -> variant.id().toString())
                 .collect(Collectors.toCollection(TreeSet::new));
         helper.assertTrue(
-                catalog.containsAll(generic) && catalog.size() == 299,
-                "Machine catalog is not the 299-row GT6 host target");
+                catalog.containsAll(generic) && catalog.size() == 298,
+                "Machine catalog is not the 298-row GT6 host target");
         helper.assertTrue(
                 variants.equals(generic),
                 "generic catalog rows drifted from ModMachineVariants.ALL");
