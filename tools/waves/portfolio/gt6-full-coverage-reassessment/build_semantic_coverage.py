@@ -18,6 +18,7 @@ import argparse
 import hashlib
 import importlib.util
 import json
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -249,22 +250,354 @@ def load_compact_runtime_recipes(
     }
 
 
+def _generic_runtime_resource(
+    comparator: Any, operand: Any, count: int
+) -> Any | None:
+    if count <= 0 or not isinstance(operand, dict):
+        return None
+    simple = _simple_item_resource(comparator, operand)
+    if simple is not None:
+        return comparator.Resource("item", f"{simple[0]}:{simple[1]}", count)
+    item_id = operand.get("item") or operand.get("id") or operand.get("items")
+    if isinstance(item_id, str) and item_id:
+        return comparator.Resource("item", f"fixed:{item_id}@none", count)
+    return None
+
+
+def _source_map_from_provenance(value: Any) -> str | None:
+    if not isinstance(value, str):
+        return None
+    match = re.search(r"((?:gt|mc)\.recipe\.[a-z0-9.]+)", value)
+    return match.group(1) if match else None
+
+
+def _source_map_index(helpers: Any) -> tuple[dict[str, list[str]], set[str]]:
+    local_to_source: dict[str, list[str]] = {}
+    all_sources: set[str] = set()
+    for row in helpers.load_recipe_maps():
+        source = str(row.get("name_internal") or "")
+        if not source:
+            continue
+        all_sources.add(source)
+        local_to_source.setdefault(helpers.map_key(source), []).append(source)
+    return local_to_source, all_sources
+
+
+def _generic_source_maps_for_row(
+    helpers: Any,
+    local_to_source: dict[str, list[str]],
+    all_sources: set[str],
+    target: str,
+    relation: dict[str, Any],
+) -> list[str]:
+    provenance = relation.get("provenance") or {}
+    declared = _source_map_from_provenance(
+        provenance.get("selected_source_recipe")
+    )
+    if declared in all_sources:
+        return [declared]
+    local = str(target).split(":", 1)[-1]
+    candidates = local_to_source.get(local) or []
+    return candidates[:1]
+
+
+def load_generic_runtime_rows(
+    comparator: Any,
+) -> tuple[dict[str, list[Any]], dict[str, int]]:
+    """Normalize runtime rows for every GT map with a simple raw-map match.
+
+    This is intentionally exact-only and separate from the family heuristics.
+    It expands the map boundary before we attempt richer family semantics.
+    """
+    helpers = load_reconciliation_helpers()
+    local_to_source, all_sources = _source_map_index(helpers)
+    by_source: dict[str, list[Any]] = {}
+    seen: set[str] = set()
+    rows_seen = 0
+    rows_normalized = 0
+    for path in helpers.runtime_recipe_files():
+        try:
+            document = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if not isinstance(document, dict):
+            continue
+        target, relations = _runtime_relations(document)
+        if not target:
+            continue
+        for relation in relations:
+            rows_seen += 1
+            item_inputs = list(relation.get("item_inputs") or [])
+            item_outputs = list(relation.get("item_outputs") or [])
+            counts = [int(value) for value in relation.get("item_input_counts") or []]
+            inputs = [
+                _generic_runtime_resource(
+                    comparator,
+                    operand,
+                    counts[index] if index < len(counts) else 1,
+                )
+                for index, operand in enumerate(item_inputs)
+            ]
+            outputs = [
+                _generic_runtime_resource(
+                    comparator,
+                    operand,
+                    int(operand.get("count") or 1),
+                )
+                for operand in item_outputs
+                if isinstance(operand, dict)
+            ]
+            if any(resource is None for resource in inputs + outputs):
+                continue
+            fluid_inputs = [
+                _fluid_resource(comparator, operand)
+                for operand in relation.get("fluid_inputs") or []
+            ]
+            fluid_outputs = [
+                _fluid_resource(comparator, operand)
+                for operand in relation.get("fluid_outputs") or []
+            ]
+            if any(resource is None for resource in fluid_inputs + fluid_outputs):
+                continue
+            source_maps = _generic_source_maps_for_row(
+                helpers, local_to_source, all_sources, str(target), relation
+            )
+            for source_map in source_maps:
+                family = f"raw_map::{source_map}"
+                material = next(
+                    (
+                        resource.id.split(":", 1)[0]
+                        for resource in inputs + outputs
+                        if resource.id.count(":") == 1
+                        and not resource.id.startswith("fixed:")
+                    ),
+                    None,
+                )
+                recipe = comparator.NormRecipe(
+                    family=family,
+                    source="cc",
+                    map_name=str(target),
+                    material=material,
+                    inputs=[*inputs, *fluid_inputs],
+                    outputs=[*outputs, *fluid_outputs],
+                    duration=int(relation.get("duration") or 0),
+                    eut=int(relation.get("eut") or 0),
+                    special_value=int(relation.get("special_value") or 0),
+                    chances=[
+                        int(value)
+                        for value in relation.get("output_chances") or []
+                    ],
+                    raw_hint=path.relative_to(ROOT).as_posix(),
+                )
+                key = stable_json(recipe_projection_with(comparator, recipe))
+                if key in seen:
+                    continue
+                seen.add(key)
+                by_source.setdefault(source_map, []).append(recipe)
+                rows_normalized += 1
+    return by_source, {
+        "runtime_rows_seen": rows_seen,
+        "runtime_rows_normalized": rows_normalized,
+        "source_maps_with_generic_rows": len(by_source),
+    }
+
+
+def load_generic_gt_rows(
+    comparator: Any,
+    source_maps: set[str],
+    materials: dict[str, dict[str, Any]],
+) -> dict[str, list[Any]]:
+    meta_map = comparator.build_meta_map(materials)
+    known = set(materials)
+    result: dict[str, list[Any]] = {}
+    for source_map in sorted(source_maps):
+        path = comparator.GT_MAPS / f"{source_map}.json"
+        if not path.is_file():
+            continue
+        rows: list[Any] = []
+        document = json.loads(path.read_text(encoding="utf-8"))
+        for index, raw in enumerate(document.get("recipes") or []):
+            if raw.get("enabled") is False:
+                continue
+            inputs = []
+            outputs = []
+            for item in raw.get("inputs") or []:
+                normalized = comparator.normalize_gt_item(item, known, meta_map)
+                if normalized is not None:
+                    inputs.append(normalized)
+            for item in raw.get("outputs") or []:
+                normalized = comparator.normalize_gt_item(item, known, meta_map)
+                if normalized is not None:
+                    outputs.append(normalized)
+            for fluid in raw.get("fluidInputs") or []:
+                normalized = comparator.normalize_gt_fluid(fluid)
+                if normalized is not None:
+                    inputs.append(normalized)
+            for fluid in raw.get("fluidOutputs") or []:
+                normalized = comparator.normalize_gt_fluid(fluid)
+                if normalized is not None:
+                    outputs.append(normalized)
+            if not inputs or not outputs:
+                continue
+            material = next(
+                (
+                    resource.id.split(":", 1)[0]
+                    for resource in inputs + outputs
+                    if resource.kind == "item"
+                    and ":" in resource.id
+                    and not resource.id.startswith("fixed:")
+                    and resource.id.split(":", 1)[0] in known
+                ),
+                None,
+            )
+            rows.append(
+                comparator.NormRecipe(
+                    family=f"raw_map::{source_map}",
+                    source="gt",
+                    map_name=source_map,
+                    material=material,
+                    inputs=inputs,
+                    outputs=outputs,
+                    duration=int(raw.get("duration") or 0),
+                    eut=int(raw.get("euPerTick") or 0),
+                    special_value=comparator.gt_special_value_for_compare(
+                        source_map, int(raw.get("specialValue") or 0)
+                    ),
+                    chances=[
+                        int(value)
+                        for value in raw.get("chances") or []
+                    ],
+                    fake=bool(raw.get("fake", False)),
+                    raw_hint=f"{source_map}#recipes[{index}]",
+                    source_refs=(
+                        {
+                            "map": source_map,
+                            "index": index,
+                            "sha256": comparator.stable_hash(raw),
+                        },
+                    ),
+                )
+            )
+        result[source_map] = rows
+    return result
+
+
+def generic_map_summary(
+    comparator: Any,
+    cc_by_source: dict[str, list[Any]],
+    gt_by_source: dict[str, list[Any]],
+) -> tuple[dict[str, Any], dict[str, int]]:
+    rows = []
+    totals = Counter()
+    raw_refs = 0
+    for source_map in sorted(set(cc_by_source) | set(gt_by_source)):
+        cc = cc_by_source.get(source_map, [])
+        gt = gt_by_source.get(source_map, [])
+        cc_counts = Counter(recipe.signature() for recipe in cc)
+        gt_counts = Counter(recipe.signature() for recipe in gt)
+        exact = sum(min(cc_counts[key], gt_counts[key]) for key in cc_counts)
+        cc_none = len(cc) - exact
+        gt_exact = exact
+        gt_none = len(gt) - gt_exact
+        raw_refs_for_exact = []
+        remaining = Counter(cc_counts)
+        for recipe in gt:
+            signature = recipe.signature()
+            if remaining[signature] <= 0:
+                continue
+            remaining[signature] -= 1
+            raw_refs_for_exact.extend(recipe.source_refs)
+        raw_refs += len(raw_refs_for_exact)
+        row = {
+            "source_map": source_map,
+            "cc_rows": len(cc),
+            "gt_rows": len(gt),
+            "cc_exact": exact,
+            "cc_none": cc_none,
+            "gt_exact": gt_exact,
+            "gt_none": gt_none,
+            "raw_exact_ref_count": len(raw_refs_for_exact),
+            "raw_exact_ref_digest": sha256_text(
+                stable_json(sorted(raw_refs_for_exact, key=stable_json))
+            )
+            if raw_refs_for_exact
+            else None,
+        }
+        rows.append(row)
+        totals.update(
+            {
+                "cc_rows": len(cc),
+                "gt_rows": len(gt),
+                "cc_exact": exact,
+                "cc_none": cc_none,
+                "gt_exact": gt_exact,
+                "gt_none": gt_none,
+            }
+        )
+    return {
+        "source_map_count": len(rows),
+        "rows": rows,
+        "totals": dict(totals),
+        "raw_exact_ref_count": raw_refs,
+    }, {
+        "source_maps_with_generic_rows": len(rows),
+        "generic_cc_rows": totals["cc_rows"],
+        "generic_gt_rows": totals["gt_rows"],
+    }
+
+
+def load_gt_families(
+    comparator: Any,
+    materials: dict[str, dict[str, Any]],
+    cc_all: list[Any],
+    reference: dict[str, Any],
+) -> tuple[dict[str, list[Any]], str]:
+    if comparator.GT_INDEX.is_file():
+        meta_map = comparator.build_meta_map(materials)
+        meta_map = {
+            key: value
+            for key, value in meta_map.items()
+            if value in materials or value in {"coal", "coal_coke"}
+        }
+        families = {}
+        for family in comparator.FAMILIES:
+            if family in {"cook_smelting", "cook_blasting"}:
+                families[family] = comparator.source_derived_gt_recipes(
+                    family, cc_all
+                )
+            else:
+                families[family] = comparator.gt_recipes_for_family(
+                    family, materials, meta_map
+                )
+        return families, "raw_dump"
+    return (
+        {
+            family: [
+                comparator.recipe_from_reference(family, row)
+                for row in reference["families"][family]
+            ]
+            for family in comparator.FAMILIES
+        },
+        "normalized_reference",
+    )
+
+
 def cc_projection_digest(comparator: Any, recipes: list[Any]) -> str:
     rows = [recipe_projection_with(comparator, recipe) for recipe in recipes]
     rows.sort(key=stable_json)
     return sha256_text(stable_json(rows))
 
 
-def reverse_gt_tier_counts(
+def reverse_gt_tier_labels(
     comparator: Any, family: str, cc: list[Any], gt: list[Any]
-) -> dict[str, int]:
+) -> list[str]:
     """Classify normalized GT rows against the expanded CC projection.
 
     This is deliberately separate from the comparator's CC→GT rows. It makes
     the denominator visible in the sidecar, while staying at normalized-row
     granularity rather than pretending these rows are raw dump rows.
     """
-    counts: Counter[str] = Counter()
+    labels: list[str] = []
     cc_signatures = {recipe.signature() for recipe in cc}
     cc_forms = {
         recipe.io_form_signature()
@@ -298,11 +631,11 @@ def reverse_gt_tier_counts(
                 )
     for recipe in gt:
         if recipe.signature() in cc_signatures:
-            counts["EXACT"] += 1
+            labels.append("EXACT")
             continue
         form = recipe.io_form_signature()
         if form is not None and form in cc_forms:
-            counts["FORM_PATH"] += 1
+            labels.append("FORM_PATH")
             continue
         semantic = False
         if family.startswith("component_") and recipe.material:
@@ -330,7 +663,14 @@ def reverse_gt_tier_counts(
                 item.id.startswith("coal_coke:") and item.count == 1
                 for item in recipe.outputs
             )
-        counts["SEMANTIC" if semantic else "NONE"] += 1
+        labels.append("SEMANTIC" if semantic else "NONE")
+    return labels
+
+
+def reverse_gt_tier_counts(
+    comparator: Any, family: str, cc: list[Any], gt: list[Any]
+) -> dict[str, int]:
+    counts = Counter(reverse_gt_tier_labels(comparator, family, cc, gt))
     return {tier: counts[tier] for tier in ("EXACT", "FORM_PATH", "SEMANTIC", "NONE")}
 
 
@@ -365,7 +705,22 @@ def recipe_projection_with(comparator: Any, recipe: Any) -> dict[str, Any]:
 def family_summary(comparator: Any, family: str, cc: list[Any], gt: list[Any]) -> dict[str, Any]:
     comparison = comparator.compare_family(family, cc, gt)
     buckets = comparison["bucket_counts"]
-    gt_tiers = reverse_gt_tier_counts(comparator, family, cc, gt)
+    gt_labels = reverse_gt_tier_labels(comparator, family, cc, gt)
+    gt_tiers_counter = Counter(gt_labels)
+    gt_tiers = {
+        tier: gt_tiers_counter[tier]
+        for tier in ("EXACT", "FORM_PATH", "SEMANTIC", "NONE")
+    }
+    raw_tiers_counter = Counter(
+        label
+        for label, recipe in zip(gt_labels, gt)
+        if recipe.source_refs
+    )
+    source_refs = [
+        reference
+        for recipe in gt
+        for reference in recipe.source_refs
+    ]
     return {
         "family": family,
         "gt_maps": list(comparator.FAMILIES[family]["gt_maps"]),
@@ -374,6 +729,17 @@ def family_summary(comparator: Any, family: str, cc: list[Any], gt: list[Any]) -
         "gt_normalized_rows": comparison["gt_normalized_count"],
         "match_tiers": dict(buckets),
         "gt_match_tiers": gt_tiers,
+        "raw_source_ref_tiers": {
+            tier: raw_tiers_counter[tier]
+            for tier in ("EXACT", "FORM_PATH", "SEMANTIC", "NONE")
+        },
+        "raw_source_ref_count": len(source_refs),
+        "raw_source_ref_digest": sha256_text(
+            stable_json(sorted(source_refs, key=stable_json))
+        )
+        if source_refs
+        else None,
+        "raw_source_ref_samples": sorted(source_refs, key=stable_json)[:8],
         "candidate_rows": (
             buckets["EXACT"] + buckets["FORM_PATH"] + buckets["SEMANTIC"]
         ),
@@ -408,13 +774,20 @@ def build_report() -> dict[str, Any]:
     cc_all = list(comparator.cached_expanded_cc_recipes())
     compact_rows, runtime_stats = load_compact_runtime_recipes(comparator)
     cc_all.extend(compact_rows)
+    generic_cc, generic_runtime_stats = load_generic_runtime_rows(comparator)
+    generic_gt = load_generic_gt_rows(
+        comparator, set(generic_cc), materials
+    )
+    generic_projection, generic_projection_stats = generic_map_summary(
+        comparator, generic_cc, generic_gt
+    )
     reference = load_json(REFERENCE_PATH)
+    gt_by_family, gt_source_mode = load_gt_families(
+        comparator, materials, cc_all, reference
+    )
     families = []
     for family in comparator.FAMILIES:
-        gt = [
-            comparator.recipe_from_reference(family, row)
-            for row in reference["families"][family]
-        ]
+        gt = gt_by_family[family]
         cc = [recipe for recipe in cc_all if recipe.family == family]
         families.append(family_summary(comparator, family, cc, gt))
     tier_counts = {
@@ -423,6 +796,10 @@ def build_report() -> dict[str, Any]:
     }
     gt_tier_counts = {
         tier: sum(row["gt_match_tiers"][tier] for row in families)
+        for tier in ("EXACT", "FORM_PATH", "SEMANTIC", "NONE")
+    }
+    raw_tier_counts = {
+        tier: sum(row["raw_source_ref_tiers"][tier] for row in families)
         for tier in ("EXACT", "FORM_PATH", "SEMANTIC", "NONE")
     }
     scope = load_json(SCOPE_PATH)
@@ -445,18 +822,29 @@ def build_report() -> dict[str, Any]:
             "sha256": sha256_file(REFERENCE_PATH),
             "reference_fingerprint": reference.get("reference_fingerprint"),
         },
+        "gt_source_mode": gt_source_mode,
         "cc_projection": {
             "material_count": len(materials),
             "normalized_recipe_count": len(cc_all),
             "digest": cc_projection_digest(comparator, cc_all),
             **runtime_stats,
+            "generic_digest": cc_projection_digest(
+                comparator,
+                [recipe for rows in generic_cc.values() for recipe in rows],
+            ),
+            **generic_runtime_stats,
+            **generic_projection_stats,
         },
         "summary": {
             "family_count": len(families),
             "cc_normalized_rows": sum(row["cc_normalized_rows"] for row in families),
             "gt_normalized_rows": sum(row["gt_normalized_rows"] for row in families),
+            "raw_source_ref_count": sum(
+                row["raw_source_ref_count"] for row in families
+            ),
             "tier_counts": tier_counts,
             "gt_tier_counts": gt_tier_counts,
+            "raw_source_ref_tiers": raw_tier_counts,
             "candidate_rows": sum(row["candidate_rows"] for row in families),
             "unmatched_cc_rows": sum(row["unmatched_cc_rows"] for row in families),
             "gt_only_signature_groups": sum(
@@ -464,6 +852,7 @@ def build_report() -> dict[str, Any]:
             ),
         },
         "families": families,
+        "generic_map_projection": generic_projection,
     }
 
 
@@ -474,11 +863,19 @@ def current_cc_digest() -> tuple[str, int, int]:
     cc_all = list(comparator.cached_expanded_cc_recipes())
     compact_rows, runtime_stats = load_compact_runtime_recipes(comparator)
     cc_all.extend(compact_rows)
+    generic_cc, generic_runtime_stats = load_generic_runtime_rows(comparator)
     return (
         cc_projection_digest(comparator, cc_all),
         len(materials),
         len(cc_all),
-        runtime_stats,
+        {
+            **runtime_stats,
+            "generic_digest": cc_projection_digest(
+                comparator,
+                [recipe for rows in generic_cc.values() for recipe in rows],
+            ),
+            **generic_runtime_stats,
+        },
     )
 
 

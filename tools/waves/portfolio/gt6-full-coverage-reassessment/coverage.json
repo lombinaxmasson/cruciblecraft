@@ -9411,12 +9411,12 @@
     "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
     "comparator": {
       "path": "tools/compare_gt6_recipes.py",
-      "sha256": "4f146bb39377c1552419373b7f166e469a9915464d03113dd270a7f44d241c7c",
+      "sha256": "1a77bdbad83a7d8e004f84876397c506b8d53d2c81f6691dd7497a7e9f78fa37",
       "ir": "compare_gt6_recipes.NormRecipe"
     },
     "builder": {
       "path": "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py",
-      "sha256": "7df4095f13ace18aab4abfcb52e190ea471f2eaa323f82c91eb3f4ad9ccd0e8e"
+      "sha256": "671095fa10667a33048a5c9e0b6e17e015e2dc83ac7a6633797ffa42875ed5be"
     },
     "reference": {
       "path": "tools/gt6_recipe_normalized_reference.json",
@@ -9441,33 +9441,46 @@
         "normalized_reference_sha256": "c5f81aa8c69df85f3036af161a093b5394a6cfe58dc64fe3e6d4813b06a4b408"
       }
     },
+    "gt_source_mode": "raw_dump",
     "cc_projection": {
       "material_count": 1776,
       "normalized_recipe_count": 20086,
       "digest": "5d339e3bd36912b01ed7da8de64fe1fb20fb215f55982b0890adf6fdeff21e33",
       "runtime_documents_seen": 8439,
       "runtime_rows_seen": 121854,
-      "recognized_runtime_rows": 1069
+      "recognized_runtime_rows": 1069,
+      "generic_digest": "d26e89d05716a98b389068449f6d9da57c6bc78e9a7577966b7b914ccb544d87",
+      "runtime_rows_normalized": 117526,
+      "source_maps_with_generic_rows": 36,
+      "generic_cc_rows": 117526,
+      "generic_gt_rows": 240454
     },
     "summary": {
       "family_count": 26,
       "cc_normalized_rows": 20086,
-      "gt_normalized_rows": 359130,
+      "gt_normalized_rows": 359303,
+      "raw_source_ref_count": 358918,
       "tier_counts": {
-        "EXACT": 3830,
+        "EXACT": 3832,
         "FORM_PATH": 0,
         "SEMANTIC": 4330,
-        "NONE": 11926
+        "NONE": 11924
       },
       "gt_tier_counts": {
-        "EXACT": 4568,
+        "EXACT": 4570,
         "FORM_PATH": 0,
         "SEMANTIC": 136019,
-        "NONE": 218543
+        "NONE": 218714
       },
-      "candidate_rows": 8160,
-      "unmatched_cc_rows": 11926,
-      "gt_only_signature_groups": 303126
+      "raw_source_ref_tiers": {
+        "EXACT": 4185,
+        "FORM_PATH": 0,
+        "SEMANTIC": 136019,
+        "NONE": 218714
+      },
+      "candidate_rows": 8162,
+      "unmatched_cc_rows": 11924,
+      "gt_only_signature_groups": 303297
     },
     "families": [
       {
@@ -9490,6 +9503,56 @@
           "SEMANTIC": 2,
           "NONE": 6
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 1,
+          "FORM_PATH": 0,
+          "SEMANTIC": 2,
+          "NONE": 6
+        },
+        "raw_source_ref_count": 9,
+        "raw_source_ref_digest": "d4b4c89b515cbe05e98b0c3b7a43659346e021d89014cf8300ee070691351400",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.cokeoven",
+            "index": 10,
+            "sha256": "27ad54a491cd488c875670192e0e431cfef2f1d6e177ce3b020e326ea46897ec"
+          },
+          {
+            "map": "gt.recipe.cokeoven",
+            "index": 101,
+            "sha256": "d6931c2e08f4915ad0f69051548ca2700ac70b8a813aec2e30d1c43b5a74c684"
+          },
+          {
+            "map": "gt.recipe.cokeoven",
+            "index": 26,
+            "sha256": "19e040a5c81e5d6d35d82d97c3ccf4de8920ee40521dbfb97a2bdd26e59059b8"
+          },
+          {
+            "map": "gt.recipe.cokeoven",
+            "index": 27,
+            "sha256": "9b967d1e245d33d0c55e4ce513ae620bd82595f04b1613205374a6ceaa01cc37"
+          },
+          {
+            "map": "gt.recipe.cokeoven",
+            "index": 45,
+            "sha256": "e3e6bc8903ba1d39ede6b9765c9bde778f4d1a4616ff37eb9d20092a0203f05e"
+          },
+          {
+            "map": "gt.recipe.cokeoven",
+            "index": 67,
+            "sha256": "9bbfed6869831da2b6cfd89a26b618717dd822d67f8379b373a2fa1b90bc5bc1"
+          },
+          {
+            "map": "gt.recipe.cokeoven",
+            "index": 7,
+            "sha256": "37f64177e88f45987c6dec5554edc318aff34b51dfa8bf52c9caa19685435b19"
+          },
+          {
+            "map": "gt.recipe.cokeoven",
+            "index": 92,
+            "sha256": "6cb6e440aefeac4af0d5455a9840794a77903de5a801edd2fafe50ce749e3f67"
+          }
+        ],
         "candidate_rows": 1,
         "unmatched_cc_rows": 0,
         "gt_only_signature_groups": 8,
@@ -9522,6 +9585,56 @@
           "SEMANTIC": 50,
           "NONE": 140
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 302,
+          "FORM_PATH": 0,
+          "SEMANTIC": 50,
+          "NONE": 140
+        },
+        "raw_source_ref_count": 492,
+        "raw_source_ref_digest": "059a5ed081320445b03f2b6b9ca95feb0c836b4dd72b20f5684bf524502ab3b5",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.crusher",
+            "index": 10000,
+            "sha256": "3b0dc9a31902d8956fcbde478066d34535583fd66cbd70343cd777e8781c8d94"
+          },
+          {
+            "map": "gt.recipe.crusher",
+            "index": 10029,
+            "sha256": "9474aab72b692e530caaea5c0f02d4ba01ebb45530c5b5e52aaecf4cb9c9d794"
+          },
+          {
+            "map": "gt.recipe.crusher",
+            "index": 10115,
+            "sha256": "8fa07a16b7d33fd29f455f8a3a7aea092fe1f9232f6e997a154c998b68329272"
+          },
+          {
+            "map": "gt.recipe.crusher",
+            "index": 10119,
+            "sha256": "d3569cb4c7a031aa5cdda45001011c628d27c1425ad595770771fa450624a132"
+          },
+          {
+            "map": "gt.recipe.crusher",
+            "index": 10191,
+            "sha256": "d27274be6dc258772324ee48264f881a78f43e1cadc9a7cefc16478b5b5af049"
+          },
+          {
+            "map": "gt.recipe.crusher",
+            "index": 1025,
+            "sha256": "1957b39101f87424eca04a5ab0886d86cf69e5a544b38787760ef558d3fd6564"
+          },
+          {
+            "map": "gt.recipe.crusher",
+            "index": 10291,
+            "sha256": "da22011e04aad17984228c494e77a9493ca77595380213293eed8ede9856194f"
+          },
+          {
+            "map": "gt.recipe.crusher",
+            "index": 10361,
+            "sha256": "c70860a68e1458ea1f75bd81847c21f42ecaf16eb6a9489525b4ef73ccea0bc7"
+          }
+        ],
         "candidate_rows": 352,
         "unmatched_cc_rows": 5,
         "gt_only_signature_groups": 190,
@@ -9585,6 +9698,56 @@
           "SEMANTIC": 0,
           "NONE": 8
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 702,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 8
+        },
+        "raw_source_ref_count": 710,
+        "raw_source_ref_digest": "d8e015f8d15e140a12affe688f3ff1fecae82a4038625f88308a1bf39b2b57cc",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 0,
+            "sha256": "66f3a4b6d68aaf6130c8ad87da292729687df7fb69ac50c853717c8e1be5040d"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 100386,
+            "sha256": "c7339ac5f92ac25540232cc0b2ea6db949a8ee110f1aac0bbb3d645ea7ac114b"
+          },
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 1006,
+            "sha256": "d1f7d2305baa982993105b771f300502d03cf5ee2712e1899a93f5a2d2ae61f8"
+          },
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 1007,
+            "sha256": "b8ca893aff4e6abbb6ebaea2a03c0a478de8078d336ff02572985bdb540fc9c4"
+          },
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 1009,
+            "sha256": "a3ffa924d6d210632953d591aab1d798823c8be71f6e728b75927276c69cb9bf"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 100912,
+            "sha256": "b02a02d372f2ef6e8e0a949ea481a398909ef23513fcdc20a3baa7ec0867281f"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 101847,
+            "sha256": "8a2e323d4336cfa9d27912f5d778003087db1fa2f6ebbc18b551a9be931606de"
+          },
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 1022,
+            "sha256": "7a8ddffa9427ce73e17d4b1f6bc923bdb2f1624f3d291a97a9916197f4e9e2cd"
+          }
+        ],
         "candidate_rows": 318,
         "unmatched_cc_rows": 26,
         "gt_only_signature_groups": 8,
@@ -9641,6 +9804,56 @@
           "SEMANTIC": 0,
           "NONE": 8
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 531,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 8
+        },
+        "raw_source_ref_count": 539,
+        "raw_source_ref_digest": "32c5df040022e66c36c804ff3be79e6cf384c5f403d6bc8f3479b0ac9cd1cfc4",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.extruder",
+            "index": 100052,
+            "sha256": "4bd237a439c5ce67b454abfeb6d55bd4bf1068ee8d090d207d0861a7d39534dd"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 101477,
+            "sha256": "ed413aac0516c2861208d89f3f639ea052588cff39172ef54a8fc47fa3b197a5"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 101795,
+            "sha256": "eac6bfc83bb22d1b36754f9412716b9c71d4ddbd1b419233dd4d402afe28cf6e"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 102060,
+            "sha256": "5c2229dfdc9101fdbcbf5c6b3b5d26d9ce0bf80471b336be04932d90e7323911"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 102612,
+            "sha256": "0b1e78a206681a7305c97f21313c59c7ed0fd1d2ee4a850ae45cb960f37efa63"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 102871,
+            "sha256": "2639188746f848723927f39ea64bef0201ea57f9922a5eb452c2aa9fc9bf39db"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 103032,
+            "sha256": "6e7166d092c113673e582fe9dc5f110fabe30293d1d578b3bf3fdf4b81910220"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 106349,
+            "sha256": "282543e6b57cf95b2d40710a71d3d3755e892ab11d07a48a1327bd8a2161a37a"
+          }
+        ],
         "candidate_rows": 379,
         "unmatched_cc_rows": 49,
         "gt_only_signature_groups": 8,
@@ -9698,6 +9911,56 @@
           "SEMANTIC": 0,
           "NONE": 8
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 539,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 8
+        },
+        "raw_source_ref_count": 547,
+        "raw_source_ref_digest": "06ee75dce8fbfaea2f9e921a1fbcd31ca14921081514d2f12b3228f55f8d0a49",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.extruder",
+            "index": 100737,
+            "sha256": "b6ed17278684faabc8e0398e85a93ddde5bec2997072cbcd487af335ac851ea7"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 10137,
+            "sha256": "706212834f4680498a6eeca5479abcd81a34f0b00a1b8fbbb3661a9148387f74"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 102444,
+            "sha256": "fc80913e5f91cb776576d93b876a0215b545345689bcd698cc5c01bcc216b1fa"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 10305,
+            "sha256": "be176a3cba2480d6d554bb2b5888c6d2a233ef1c2ddab44f190d7e2bcc5690bc"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 103244,
+            "sha256": "5d00dc9dcb6552435b8fd30bfb8429da8d53bcf1cd26efa54f0c9ce10d0dff3b"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 103784,
+            "sha256": "0fc1fbf050d0c8dbdc398382969a6d20d7a454cf4386d63a5c0ef03765a4c5d0"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 10388,
+            "sha256": "65a6a770dcac1b83930144f83094298a840c2e5ff7768b1577b61d6e27b6c3af"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 103986,
+            "sha256": "83da1cc0a2c6918a16f957bf81bdfdf0cd42abee626b9e1d1ee0fb272299aaf0"
+          }
+        ],
         "candidate_rows": 383,
         "unmatched_cc_rows": 353,
         "gt_only_signature_groups": 8,
@@ -9754,6 +10017,56 @@
           "SEMANTIC": 0,
           "NONE": 26
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 198,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 26
+        },
+        "raw_source_ref_count": 224,
+        "raw_source_ref_digest": "f6cee7fef8bbc79459984a4cb006c53816c1c933c4c45aeb875da1270b9a67a6",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.anvil",
+            "index": 1047,
+            "sha256": "144b3f3864c06dcf0d2cc0c0dc3a4a6f1fddffa05ac254bea78493adcc3a810f"
+          },
+          {
+            "map": "gt.recipe.anvil",
+            "index": 1069,
+            "sha256": "2a79bd59cb17da6920721adb676b3a477a74eb5f10e7b86e39446aa02448a51e"
+          },
+          {
+            "map": "gt.recipe.anvil",
+            "index": 1089,
+            "sha256": "ce7d5a4b191ecc5ba329e3493e92dbefbcce090fccccc60265887908e9f01664"
+          },
+          {
+            "map": "gt.recipe.anvil",
+            "index": 1134,
+            "sha256": "6a4bcb69a2923c22e587302eb972da467f20dd6820019e681388a0284ab974b5"
+          },
+          {
+            "map": "gt.recipe.anvil",
+            "index": 1186,
+            "sha256": "b45a1a279a69c798d699cca48a522b8326de0418eb348fd0102f35cbc08c75b5"
+          },
+          {
+            "map": "gt.recipe.anvil",
+            "index": 1212,
+            "sha256": "43683e7639b4edad00f1409e3f104235e4dbb151de8be6a6ff15efca47389655"
+          },
+          {
+            "map": "gt.recipe.anvil",
+            "index": 1249,
+            "sha256": "89f190825732c9f6ff67abb4e3535716e8c9f7ce0891a309456db9d71c5eacfb"
+          },
+          {
+            "map": "gt.recipe.anvil",
+            "index": 1250,
+            "sha256": "93908c00ecbb46a3e1d16d40829dd23127d9a62e2325874b9d730718febdbd31"
+          }
+        ],
         "candidate_rows": 198,
         "unmatched_cc_rows": 247,
         "gt_only_signature_groups": 26,
@@ -9810,6 +10123,56 @@
           "SEMANTIC": 0,
           "NONE": 4840
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 4840
+        },
+        "raw_source_ref_count": 4840,
+        "raw_source_ref_digest": "760080522b0b7e5a89055c0b320d016860296558a758862d1e77dcf474b7b03a",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.sluice",
+            "index": 0,
+            "sha256": "f6a88ad3bcd2a2e4d7f60b775e79c0589aeee0fadf443d2c9d34d5c1d1049ec1"
+          },
+          {
+            "map": "gt.recipe.sluice",
+            "index": 1,
+            "sha256": "66c3709baf5c61e1fbd982c61966318eec618bce8aad437fb0447545f6283873"
+          },
+          {
+            "map": "gt.recipe.sluice",
+            "index": 10,
+            "sha256": "b47fcd595ab6f706f240214956a562cfb5fc7a2e80b22f221026c50380abfb44"
+          },
+          {
+            "map": "gt.recipe.sluice",
+            "index": 100,
+            "sha256": "4510cbfb3fb1597efdd5ac4ce8cc2eb9f4bf149e8c9ed9a98c1af84df8d1e7fc"
+          },
+          {
+            "map": "gt.recipe.sluice",
+            "index": 1000,
+            "sha256": "4346e7ec4e0bc330bea99c2c209c40a0f40351f8bc45089f232b48ad53e15114"
+          },
+          {
+            "map": "gt.recipe.sluice",
+            "index": 1001,
+            "sha256": "71cce0a2425d0235077d631147ca71cb4d64ff512bf4ca8a2688a69274fab337"
+          },
+          {
+            "map": "gt.recipe.sluice",
+            "index": 1002,
+            "sha256": "b1d411eb1af729ccbfc4ad13f3872c6df8525c1c0650448c2b0a487c04da61ec"
+          },
+          {
+            "map": "gt.recipe.sluice",
+            "index": 1003,
+            "sha256": "bfb2f7eedc13a55eec9cfe219ad9cdfacbfe876c5c03facba41365d737f8a8bc"
+          }
+        ],
         "candidate_rows": 0,
         "unmatched_cc_rows": 357,
         "gt_only_signature_groups": 4840,
@@ -9853,6 +10216,56 @@
           "SEMANTIC": 0,
           "NONE": 19265
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 19265
+        },
+        "raw_source_ref_count": 19265,
+        "raw_source_ref_digest": "2171804330d0c260c8c6f4f158e00153f8b24fcefd2d1dca02f08c24be980e58",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.bath",
+            "index": 10,
+            "sha256": "d506c6b04df20451c561349e24239205de811c450185605208ee4d8899c97923"
+          },
+          {
+            "map": "gt.recipe.bath",
+            "index": 10001,
+            "sha256": "faf9290aa7196e88bcc4f4d38427758489d2cfd50ff0a177baa23c951a6ef8f4"
+          },
+          {
+            "map": "gt.recipe.bath",
+            "index": 10009,
+            "sha256": "67aab65e0dd119a2f3e31e6f965182ee2f1237fa0ca348c54795f60b32282923"
+          },
+          {
+            "map": "gt.recipe.bath",
+            "index": 10010,
+            "sha256": "b4325aacfda7e7cae77b07ae8e7eda40ce3bd2443183f0da850da4ba97df845b"
+          },
+          {
+            "map": "gt.recipe.bath",
+            "index": 10018,
+            "sha256": "708b860c75450cbb7efd60a5d405fc84c3b62028fe5748f3ba1894f727e48449"
+          },
+          {
+            "map": "gt.recipe.bath",
+            "index": 10019,
+            "sha256": "3cb67616dca193b10c4f8aa8459f9cc3c4cddc209d6edf462b7b2ff2a8b633ad"
+          },
+          {
+            "map": "gt.recipe.bath",
+            "index": 1002,
+            "sha256": "d9ff07fa0735c2e44a7018347a5571957997d5834ebecdb48e7a485e3d4fb484"
+          },
+          {
+            "map": "gt.recipe.bath",
+            "index": 10021,
+            "sha256": "605900fa2fd2c93929b5b72ee2181215ac53624456c2efe4ad01f8ae7fc279de"
+          }
+        ],
         "candidate_rows": 0,
         "unmatched_cc_rows": 1551,
         "gt_only_signature_groups": 19265,
@@ -9896,6 +10309,56 @@
           "SEMANTIC": 0,
           "NONE": 1182
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 1182
+        },
+        "raw_source_ref_count": 1182,
+        "raw_source_ref_digest": "00f0fa3b86ef74572f9e0c3e86a85578278fab80648ffdceafa699a153c40e72",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.centrifuge",
+            "index": 0,
+            "sha256": "1cec07069bbcb21ecf4593731b7ff3e351ed9877a68ab07677e64cf50786b755"
+          },
+          {
+            "map": "gt.recipe.centrifuge",
+            "index": 1,
+            "sha256": "8f842ee68444902aa9c3c002c1cea43024236a3317e81a19e90df1aadedaf43f"
+          },
+          {
+            "map": "gt.recipe.centrifuge",
+            "index": 10,
+            "sha256": "5d1073012bed25feb8efc0908b3a978f1d41b1bcc13d1aee5b05b5ebb1d24094"
+          },
+          {
+            "map": "gt.recipe.centrifuge",
+            "index": 100,
+            "sha256": "ccfb765d9c3016befe1ddc20dc8e10af2972ba512a9bf5ccf117907438be3253"
+          },
+          {
+            "map": "gt.recipe.centrifuge",
+            "index": 1000,
+            "sha256": "70b212097fd780ba69b80a205557d3f632a10813a23b8023fbfbccf4763a7ce9"
+          },
+          {
+            "map": "gt.recipe.centrifuge",
+            "index": 1001,
+            "sha256": "69fb549da4c40e155d73c7701b3d7bc6b89ae606c3ad6a7d7aa6bc5dc80f2e43"
+          },
+          {
+            "map": "gt.recipe.centrifuge",
+            "index": 1002,
+            "sha256": "f942dd0a02a30d9885a44ca837bdee33714fdb6520254446dfd83d93635ee772"
+          },
+          {
+            "map": "gt.recipe.centrifuge",
+            "index": 1003,
+            "sha256": "ea6ed4aa95cfdeb46c7edbef4f106f4fcf338f45ec928b53e59a97430eda36e7"
+          }
+        ],
         "candidate_rows": 0,
         "unmatched_cc_rows": 357,
         "gt_only_signature_groups": 1182,
@@ -9939,6 +10402,56 @@
           "SEMANTIC": 0,
           "NONE": 40244
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 40244
+        },
+        "raw_source_ref_count": 40244,
+        "raw_source_ref_digest": "d6421cbaaf567379391ceb9751536c9869e1fba4598d625160823930b22d39fd",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.shredder",
+            "index": 0,
+            "sha256": "bb7dbf43ea74e33101c8518fe0536aa3a126b921bb620102700995288a179839"
+          },
+          {
+            "map": "gt.recipe.shredder",
+            "index": 1,
+            "sha256": "b9365cbd5c77c1b0a51f60d6e1040b184293944e38f3a7899cec8ed3ebf1de31"
+          },
+          {
+            "map": "gt.recipe.shredder",
+            "index": 10,
+            "sha256": "f98faff073b7b3bc37f1a0f027090235add7d09795538e5ca25212a221ddc36d"
+          },
+          {
+            "map": "gt.recipe.shredder",
+            "index": 100,
+            "sha256": "8ed0281d5e38398ebcfd8364dd75679848816020160179759177ebc5708c1142"
+          },
+          {
+            "map": "gt.recipe.shredder",
+            "index": 1000,
+            "sha256": "322ce606695bc7dddfa2d3951dfb1debc1fae87f2704a004ac3049ba15e380aa"
+          },
+          {
+            "map": "gt.recipe.shredder",
+            "index": 10000,
+            "sha256": "1775e88640a87876da58c626dc37d0cfea89cdc0ddbb97bf5c70f64ca816c766"
+          },
+          {
+            "map": "gt.recipe.shredder",
+            "index": 10001,
+            "sha256": "76c65169b5be15ab2bff92ddb6ee4757f069c5e0d6d5487d9010ecc1ad5fb129"
+          },
+          {
+            "map": "gt.recipe.shredder",
+            "index": 10002,
+            "sha256": "63401ab122bc483273942b0173426ae22234f52d44a20a39fea3b61b2c3dd840"
+          }
+        ],
         "candidate_rows": 0,
         "unmatched_cc_rows": 357,
         "gt_only_signature_groups": 40244,
@@ -9982,6 +10495,56 @@
           "SEMANTIC": 0,
           "NONE": 2872
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 2872
+        },
+        "raw_source_ref_count": 2872,
+        "raw_source_ref_digest": "95a6d0c66e6fbf8c0579ffe728a52089314a84565609cb98f45798fa07a7fed0",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.sifter",
+            "index": 0,
+            "sha256": "807526cb23901416417955ab3872d4197f099fc1c2449d70985b340cba70aecb"
+          },
+          {
+            "map": "gt.recipe.sifter",
+            "index": 1,
+            "sha256": "d2472c7d0f4ded853525307d394f4eb64f77645fee4719e49ad3d9bb1d50de1f"
+          },
+          {
+            "map": "gt.recipe.sifter",
+            "index": 10,
+            "sha256": "fb54576d8294369060ccaef57e65ff3e591834ff1dd0d479c18a2a81536ddd3a"
+          },
+          {
+            "map": "gt.recipe.sifter",
+            "index": 100,
+            "sha256": "9a0aeaf5e79006494809f0984785809bfc74c3c06e44db6aecab001b829cd40f"
+          },
+          {
+            "map": "gt.recipe.sifter",
+            "index": 1000,
+            "sha256": "c8cf5a9075ccd7b32aec79a16ea06351bca99a32a4810f4f877114e5083d3a1e"
+          },
+          {
+            "map": "gt.recipe.sifter",
+            "index": 1001,
+            "sha256": "18562c6039dee0067794773eddfc5aa7792e4590914645c94a9acf67bd31439a"
+          },
+          {
+            "map": "gt.recipe.sifter",
+            "index": 1002,
+            "sha256": "434f51e4f35ac90a6c5055dfe9ecc14f6ef7dccfd034dfa57742fb9ae87f24cf"
+          },
+          {
+            "map": "gt.recipe.sifter",
+            "index": 1003,
+            "sha256": "a33d1b056513b41cffd3e3807cad91cf55501dbe37c0815604c0584133065d41"
+          }
+        ],
         "candidate_rows": 0,
         "unmatched_cc_rows": 357,
         "gt_only_signature_groups": 2872,
@@ -10012,7 +10575,7 @@
         ],
         "note": "Metadata-targeted dust smelting",
         "cc_normalized_rows": 195,
-        "gt_normalized_rows": 5178,
+        "gt_normalized_rows": 5349,
         "match_tiers": {
           "EXACT": 0,
           "FORM_PATH": 0,
@@ -10023,11 +10586,61 @@
           "EXACT": 0,
           "FORM_PATH": 0,
           "SEMANTIC": 0,
-          "NONE": 5178
+          "NONE": 5349
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 5349
+        },
+        "raw_source_ref_count": 5349,
+        "raw_source_ref_digest": "cc7845184e3eadda800ea325039dde830c029ba0a77a6d978605fd781c6f2726",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.smelter",
+            "index": 10002,
+            "sha256": "4618828a02f471776033d680c5d277b91e23d606e2ed84d914dcdb729bed7c39"
+          },
+          {
+            "map": "gt.recipe.smelter",
+            "index": 10004,
+            "sha256": "48f0c3956e7a0cb127cf7973e97be747a0f936e140f6cfebcccf0c2f2a74cc8f"
+          },
+          {
+            "map": "gt.recipe.smelter",
+            "index": 10009,
+            "sha256": "32220ef7cec3ece20f272202dd811baa73f7bec3318f272836435b406af5aa02"
+          },
+          {
+            "map": "gt.recipe.smelter",
+            "index": 10017,
+            "sha256": "5c5f69be8a0e9974f64e08f9d64cd825abda39ec38d3dc19820d2c08816e34c0"
+          },
+          {
+            "map": "gt.recipe.smelter",
+            "index": 10018,
+            "sha256": "26b6a9b71e6081a5aeeed43f42a134cc1bb49446facf6c9f85e6c737211e7022"
+          },
+          {
+            "map": "gt.recipe.smelter",
+            "index": 1002,
+            "sha256": "cfede6d493231aee74ec5dfcd398a5756a3d697b47918c285383d4e65fa5d62e"
+          },
+          {
+            "map": "gt.recipe.smelter",
+            "index": 10021,
+            "sha256": "2d03f6c98e923dcfb465b74922e9a484fcad5dbf300c72b5372af884dc975c05"
+          },
+          {
+            "map": "gt.recipe.smelter",
+            "index": 10024,
+            "sha256": "77530a36fa2493fad0e89a0d4fd04e102661d37275e76af8904c174cb323b9f0"
+          }
+        ],
         "candidate_rows": 0,
         "unmatched_cc_rows": 195,
-        "gt_only_signature_groups": 5177,
+        "gt_only_signature_groups": 5348,
         "samples": {
           "exact": [],
           "form_path": [],
@@ -10068,6 +10681,56 @@
           "SEMANTIC": 0,
           "NONE": 5688
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 5688
+        },
+        "raw_source_ref_count": 5688,
+        "raw_source_ref_digest": "548d310562e115bbd42d25ce0adec5abfccda22db02ad1842b10c17cb7a5fe98",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.mortar",
+            "index": 0,
+            "sha256": "592e6a5bc9d70f873ceafa0649bb9247305ebac5f9abf111859eef17944b41e1"
+          },
+          {
+            "map": "gt.recipe.mortar",
+            "index": 1,
+            "sha256": "4f6d25966bed2c9fabbf44499088000153302bf0c69ce3e8591c28113c8933c4"
+          },
+          {
+            "map": "gt.recipe.mortar",
+            "index": 10,
+            "sha256": "0f0365ab45f0d693f9efdf4af5e755b9cde0c09fed5938f71f4b6b098de3e328"
+          },
+          {
+            "map": "gt.recipe.mortar",
+            "index": 100,
+            "sha256": "f153667681041bd13dcfad07b469991f8aa951b0f2788c302eaf3fe203a343fa"
+          },
+          {
+            "map": "gt.recipe.mortar",
+            "index": 1001,
+            "sha256": "9b2c544a5d43187eaebff1aab2b9095c71f414f97859a462d242022461fbd504"
+          },
+          {
+            "map": "gt.recipe.mortar",
+            "index": 1002,
+            "sha256": "e20f882935017ad612715c31fd25351c11974193c10c0320b959a8ae6b2ab93b"
+          },
+          {
+            "map": "gt.recipe.mortar",
+            "index": 1003,
+            "sha256": "649a17e6a69c2f53eeecf3261732e2ac0d4cc424e540ab7a4de17d1204e231e5"
+          },
+          {
+            "map": "gt.recipe.mortar",
+            "index": 1004,
+            "sha256": "3336e681be8b9723a94c549f8f737a82be4494018a4a3c27088a7dea176462fe"
+          }
+        ],
         "candidate_rows": 0,
         "unmatched_cc_rows": 473,
         "gt_only_signature_groups": 5688,
@@ -10111,6 +10774,56 @@
           "SEMANTIC": 133673,
           "NONE": 103385
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 133673,
+          "NONE": 103385
+        },
+        "raw_source_ref_count": 237058,
+        "raw_source_ref_digest": "a8b55eb47dcb07ebe890122774205da5256e9ad5a8bffc094f971a4ec3ccb20c",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.extruder",
+            "index": 1,
+            "sha256": "2710d5d3204e9360d06c51d53734526619aaaaf9455ed15b0fc6702b22dfe24c"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 10,
+            "sha256": "b3ce35c8bbdae31fb2b42e54a54c472d695c271d729f347966790bc5c3b1275f"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 100,
+            "sha256": "efc4341a835d772f1d07a8edc755ee77cd4a99659056a2fba48f73f26a875b73"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 1000,
+            "sha256": "94ba841e974de71bd1975255cc2600f3b22dfefac710609d402570815cd649f3"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 10000,
+            "sha256": "7c14421a7a1419c711c2e28df059eb8d7b02c041936f9e083bab05167f633ec9"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 100002,
+            "sha256": "219dc49d7223f40d76b6c7d4fa6418177c95b1cf98bdc7a178ebf971b3968253"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 100003,
+            "sha256": "1de4f646780d6bd50db450bcd2c1d2c995cd7ac52b9975f7fbdf343f742be1e8"
+          },
+          {
+            "map": "gt.recipe.extruder",
+            "index": 100004,
+            "sha256": "f1b09c77304219b3ae7ab68f7bdfeae4c910b04b16db829a5b83fd76842c1f11"
+          }
+        ],
         "candidate_rows": 2782,
         "unmatched_cc_rows": 0,
         "gt_only_signature_groups": 185628,
@@ -10154,6 +10867,56 @@
           "SEMANTIC": 0,
           "NONE": 24015
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 24015
+        },
+        "raw_source_ref_count": 24015,
+        "raw_source_ref_digest": "6cceac00d24d856092c5dee0fdd6d6ac3f740ebb403e73bdd7ea2078632663e6",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.cutter",
+            "index": 1,
+            "sha256": "c0d679e3509b519a07c8e493f96edd7c800a41b5505d51a69eb5d6644cca9d0a"
+          },
+          {
+            "map": "gt.recipe.cutter",
+            "index": 10,
+            "sha256": "80757b990079d5c9d36c40fd812314c1cbeb7ff13dc0c9e7c404e8e18ca1983b"
+          },
+          {
+            "map": "gt.recipe.cutter",
+            "index": 100,
+            "sha256": "f9e849727c8659a218c3f1c8d6dcc0ed790c862919988848a8f838d169120fbe"
+          },
+          {
+            "map": "gt.recipe.cutter",
+            "index": 1000,
+            "sha256": "4a2fd2cf783f0c1184df520abe8bd8c70a8a31ae183236a7e749c909df67e522"
+          },
+          {
+            "map": "gt.recipe.cutter",
+            "index": 10001,
+            "sha256": "21a67365e4b23ef4139520adcc985543f1049a7e25664d4dfe8ef2df271649c4"
+          },
+          {
+            "map": "gt.recipe.cutter",
+            "index": 10002,
+            "sha256": "a8df36936516a8584db0c304eb962c14af849c4d3629b46f51f713da136f09d2"
+          },
+          {
+            "map": "gt.recipe.cutter",
+            "index": 10003,
+            "sha256": "5ca08add7f0f27048b3871a87c52ba7b80ad139a11d7e3a6e4a93aceaa211b7e"
+          },
+          {
+            "map": "gt.recipe.cutter",
+            "index": 10004,
+            "sha256": "844787956fbf8aa319a88e51a09efa6435f19c08ef4487a320f9c22f1150a745"
+          }
+        ],
         "candidate_rows": 0,
         "unmatched_cc_rows": 771,
         "gt_only_signature_groups": 24015,
@@ -10197,6 +10960,56 @@
           "SEMANTIC": 1276,
           "NONE": 1243
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 1276,
+          "NONE": 1243
+        },
+        "raw_source_ref_count": 2519,
+        "raw_source_ref_digest": "1af76fefab084fd7b685c0ea16ef51ef561ae695e1000b81ca99b6a91dbaffdd",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.lathe",
+            "index": 0,
+            "sha256": "565d0b4df94400f87ef600c99fd3eccf1c7c304e563d4fd9d1889562c09252c1"
+          },
+          {
+            "map": "gt.recipe.lathe",
+            "index": 1,
+            "sha256": "7023b12b67b93d3cec2381c0ebea71993046553e2b8f84a99937c365e902f04a"
+          },
+          {
+            "map": "gt.recipe.lathe",
+            "index": 10,
+            "sha256": "278f8b889e982f55f1d3e0b97bdd50732afc36095e985e2bc1ba2cc98606f376"
+          },
+          {
+            "map": "gt.recipe.lathe",
+            "index": 100,
+            "sha256": "131cbe95e10f718b7940dc4666f869dc683cc270a2d6eeba4f0c16f3e42cf032"
+          },
+          {
+            "map": "gt.recipe.lathe",
+            "index": 1000,
+            "sha256": "b33f02f0d7e3eb88568e384cb5dcae5b26483c8263dd589c6d9b130b6f636ea7"
+          },
+          {
+            "map": "gt.recipe.lathe",
+            "index": 1001,
+            "sha256": "4494863172e771f84725acf68d21ac5cd8cf774fc3dc38de2739fec971fb01c1"
+          },
+          {
+            "map": "gt.recipe.lathe",
+            "index": 1002,
+            "sha256": "2dd9c4d61e815c5e03c92cff1433f39da0456faa235fefa5dfc59e2cc36cc7fb"
+          },
+          {
+            "map": "gt.recipe.lathe",
+            "index": 1003,
+            "sha256": "f4e8af2f7c2dabe5f5961531ea37cdb4aab7372c7c576695f682d1658c33ec2f"
+          }
+        ],
         "candidate_rows": 938,
         "unmatched_cc_rows": 26,
         "gt_only_signature_groups": 2519,
@@ -10253,6 +11066,56 @@
           "SEMANTIC": 297,
           "NONE": 1841
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 297,
+          "FORM_PATH": 0,
+          "SEMANTIC": 297,
+          "NONE": 1841
+        },
+        "raw_source_ref_count": 2435,
+        "raw_source_ref_digest": "a9e44ab42a9dd4f3dfe1a557f353fa6beb242214749e85fb2d6bf5d5a244fedf",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 0,
+            "sha256": "66f3a4b6d68aaf6130c8ad87da292729687df7fb69ac50c853717c8e1be5040d"
+          },
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 1,
+            "sha256": "ff360b81122d167a16a166b54af514b87f9210e2e258a75d4e2b53e0882b3c2d"
+          },
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 10,
+            "sha256": "4a75c55954eb5d8e28501af420eb4a709674d7b06991627f596012c11dadaa61"
+          },
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 100,
+            "sha256": "5f0afd78afb3c2b89ce8ef22c1dea54e4f764c42cf1e6fa5f33c0515c99193d7"
+          },
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 1000,
+            "sha256": "6f3f83f7635bad07b952b7fbb59af60f9d64d82d802b8d34913c314fc0ee63da"
+          },
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 1001,
+            "sha256": "31ec23e49ba1b35e68319b04fff4b88968287fda300a427a4ba8eb798a3c697c"
+          },
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 1002,
+            "sha256": "8cae196621bafa6fc425b7d40c4434210bc2be9ac12d0116e7337c7e069c6a5c"
+          },
+          {
+            "map": "gt.recipe.rollingmill",
+            "index": 1003,
+            "sha256": "dfa682703415cc6588770f36696bca864948ca8c45ce2d93f2db06b56ab6e60e"
+          }
+        ],
         "candidate_rows": 297,
         "unmatched_cc_rows": 46,
         "gt_only_signature_groups": 2138,
@@ -10309,6 +11172,56 @@
           "SEMANTIC": 0,
           "NONE": 778
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 154,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 778
+        },
+        "raw_source_ref_count": 932,
+        "raw_source_ref_digest": "4431cfd6345044e6a40dc78ad71bb985ad76097e2e42600eed7de8efe0fbed12",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 0,
+            "sha256": "35457b4af7f4a68e9158c5773d8e6defa10fe40bbec25e18ec0677a2e28229d6"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 1,
+            "sha256": "447d47da6cc27e3e720c2456b76b5c057732dfa44d8045d5c1766fc148d1d3d7"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 10,
+            "sha256": "222905979f96b678954e1e469c93b9af6e708f10cb78150d9a95035007935265"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 100,
+            "sha256": "bbd19458437b20780a51b05224e5772726cdd7f35c8d573e87ced174ac9d44ac"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 101,
+            "sha256": "068aa35307af0746431c22a2e6c21f2342abc5d2c0ad0f8a45cf362acbcb6f38"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 102,
+            "sha256": "ab141f1da19dba21742c64295a23daadd42c5f6f73ce2fe49e87cf2d5b5ad164"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 103,
+            "sha256": "183e2e4ef47e2ee23cc955ca535d80181bcbe8a7a8427bd95f696d980f345fd5"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 104,
+            "sha256": "51a66922ea74713b865146ab8c4d8da27bcaa439ede5eb867b35bd5ff1e97fdd"
+          }
+        ],
         "candidate_rows": 154,
         "unmatched_cc_rows": 310,
         "gt_only_signature_groups": 778,
@@ -10365,6 +11278,56 @@
           "SEMANTIC": 316,
           "NONE": 139
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 316,
+          "NONE": 139
+        },
+        "raw_source_ref_count": 455,
+        "raw_source_ref_digest": "b07250031d74639f70d65aa209447e8e0a5952a4ed21e6d129dd49b16ed46990",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.wiremill",
+            "index": 0,
+            "sha256": "c502147ef8714b182e8139dc5ddd3a0662b1da166d6f95e34651592ce4b57453"
+          },
+          {
+            "map": "gt.recipe.wiremill",
+            "index": 1,
+            "sha256": "caf4f84da192280d29b4ae9dcf51306700c9abdf7a89f179b46bdcbfe3a4afd9"
+          },
+          {
+            "map": "gt.recipe.wiremill",
+            "index": 10,
+            "sha256": "55611eb972e126b6c3ccdd6fc1d58d9fd237ec651151efd0886a236918810ebe"
+          },
+          {
+            "map": "gt.recipe.wiremill",
+            "index": 100,
+            "sha256": "ed4f25912a22285318e5657c2c6815949137cfd6be6eb3bd4ddc30a0ed3e6e43"
+          },
+          {
+            "map": "gt.recipe.wiremill",
+            "index": 101,
+            "sha256": "9ee80f1bd8ecc5b3f81d099644b7fa2cab4a2b84e6434a2fa14735787802689b"
+          },
+          {
+            "map": "gt.recipe.wiremill",
+            "index": 102,
+            "sha256": "450e9f91670ba6290ecf9894a0dfad31b979b01df037e5d059ff4bb4f42d13a0"
+          },
+          {
+            "map": "gt.recipe.wiremill",
+            "index": 103,
+            "sha256": "a34c50d71be9ada7ddc08b082eee83715e1f0096b236fb11d9f6aa6cdd111bc1"
+          },
+          {
+            "map": "gt.recipe.wiremill",
+            "index": 104,
+            "sha256": "3e921a8c939f0d29145cb003ef8b6356f671f6ffa10d8a36d965ff06ec1cf6db"
+          }
+        ],
         "candidate_rows": 158,
         "unmatched_cc_rows": 285,
         "gt_only_signature_groups": 455,
@@ -10421,6 +11384,56 @@
           "SEMANTIC": 153,
           "NONE": 626
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 153,
+          "FORM_PATH": 0,
+          "SEMANTIC": 153,
+          "NONE": 626
+        },
+        "raw_source_ref_count": 932,
+        "raw_source_ref_digest": "4431cfd6345044e6a40dc78ad71bb985ad76097e2e42600eed7de8efe0fbed12",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 0,
+            "sha256": "35457b4af7f4a68e9158c5773d8e6defa10fe40bbec25e18ec0677a2e28229d6"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 1,
+            "sha256": "447d47da6cc27e3e720c2456b76b5c057732dfa44d8045d5c1766fc148d1d3d7"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 10,
+            "sha256": "222905979f96b678954e1e469c93b9af6e708f10cb78150d9a95035007935265"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 100,
+            "sha256": "bbd19458437b20780a51b05224e5772726cdd7f35c8d573e87ced174ac9d44ac"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 101,
+            "sha256": "068aa35307af0746431c22a2e6c21f2342abc5d2c0ad0f8a45cf362acbcb6f38"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 102,
+            "sha256": "ab141f1da19dba21742c64295a23daadd42c5f6f73ce2fe49e87cf2d5b5ad164"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 103,
+            "sha256": "183e2e4ef47e2ee23cc955ca535d80181bcbe8a7a8427bd95f696d980f345fd5"
+          },
+          {
+            "map": "gt.recipe.rollbender",
+            "index": 104,
+            "sha256": "51a66922ea74713b865146ab8c4d8da27bcaa439ede5eb867b35bd5ff1e97fdd"
+          }
+        ],
         "candidate_rows": 306,
         "unmatched_cc_rows": 384,
         "gt_only_signature_groups": 779,
@@ -10490,6 +11503,56 @@
           "SEMANTIC": 0,
           "NONE": 1240
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 1240
+        },
+        "raw_source_ref_count": 1240,
+        "raw_source_ref_digest": "3c6c37e98df4e870e18e889561b6239677aa65f7547deb1c517f45d9e3e0ff6c",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.assembler",
+            "index": 0,
+            "sha256": "3502cc39419396dcc9218b169549e8d5916451a7fc9534634043e39d4bd90549"
+          },
+          {
+            "map": "gt.recipe.assembler",
+            "index": 1,
+            "sha256": "e3661e3567860cf12adfcf66adcf8c26e8d35333799ff5fc1ba8331e4c6e433b"
+          },
+          {
+            "map": "gt.recipe.assembler",
+            "index": 10,
+            "sha256": "4a5f6f5eaa5e4f3f9ae9e20c8f05cad7d47fb3765e2650243656bd50a6c7e9ee"
+          },
+          {
+            "map": "gt.recipe.assembler",
+            "index": 100,
+            "sha256": "addfb314c3ea2bc80e08f0339ceb020d306e174b135c22a6b84e8fa2a9c78cf7"
+          },
+          {
+            "map": "gt.recipe.assembler",
+            "index": 1001,
+            "sha256": "470a4c0227a27200252937777de91114698c462a78d90c898a1d501dcaf78d80"
+          },
+          {
+            "map": "gt.recipe.assembler",
+            "index": 1002,
+            "sha256": "16625e701b157d2f0504892c0c5a412c3e6a38a322bc163aae4f43d77bc0a0a5"
+          },
+          {
+            "map": "gt.recipe.assembler",
+            "index": 1003,
+            "sha256": "e0fb2cfff5379b8d85df297c45c28967ebe3ca24165132712c1830c90c065e0c"
+          },
+          {
+            "map": "gt.recipe.assembler",
+            "index": 1005,
+            "sha256": "89da7ff445e574bf49f9da092b10701aac804ad984375397f216e8eca942bb24"
+          }
+        ],
         "candidate_rows": 0,
         "unmatched_cc_rows": 658,
         "gt_only_signature_groups": 1240,
@@ -10533,6 +11596,56 @@
           "SEMANTIC": 246,
           "NONE": 3067
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 1216,
+          "FORM_PATH": 0,
+          "SEMANTIC": 246,
+          "NONE": 3067
+        },
+        "raw_source_ref_count": 4529,
+        "raw_source_ref_digest": "9396d527af3044fc7b77216597f192d8828860acf39de56c18fcd7cc5a244fa5",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.welder",
+            "index": 0,
+            "sha256": "054e26309f7f66e2702abb6611cf620a7be7bb4d43a7b28e296146c3758e7ba3"
+          },
+          {
+            "map": "gt.recipe.welder",
+            "index": 1,
+            "sha256": "3938d4af0b764900bfebc8365252dfc25cc4c33b83399cdce200edc40ee82cd2"
+          },
+          {
+            "map": "gt.recipe.welder",
+            "index": 10,
+            "sha256": "287f9337c13cdbab0f499efa61bf01349467f2aa30ddf9ac8de6ebf382dd553d"
+          },
+          {
+            "map": "gt.recipe.welder",
+            "index": 100,
+            "sha256": "c038567d9ed9261a993daa0bed0cc1bd2ed51583488e7b1ac4f135af4347b834"
+          },
+          {
+            "map": "gt.recipe.welder",
+            "index": 1000,
+            "sha256": "6b591736d6b3dc50daeaa61812528d1ef5a4c7af6694d3aba920bcd4f71e7576"
+          },
+          {
+            "map": "gt.recipe.welder",
+            "index": 1001,
+            "sha256": "afb6ce3d938916e844555449aa14ae37cab564c006ca31513f39f54e15b5244f"
+          },
+          {
+            "map": "gt.recipe.welder",
+            "index": 1002,
+            "sha256": "cded55e4cbc0db5151e21e980c83a919cba0b3721aec7cb894085ec1a7e28749"
+          },
+          {
+            "map": "gt.recipe.welder",
+            "index": 1003,
+            "sha256": "416a334e18a3494bf02346113af4da296dbfd2186e01fcdf8e018e393f868835"
+          }
+        ],
         "candidate_rows": 1462,
         "unmatched_cc_rows": 3431,
         "gt_only_signature_groups": 3313,
@@ -10602,6 +11715,56 @@
           "SEMANTIC": 0,
           "NONE": 2716
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 2716
+        },
+        "raw_source_ref_count": 2716,
+        "raw_source_ref_digest": "c746d92e9dd46646ab7200e82d19142f80c01798e1bd458822df44e733845daf",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.press",
+            "index": 10,
+            "sha256": "06125fb15d2db2c71cc0be079971b46604b5458b512a31966b9fd8d919f5cf98"
+          },
+          {
+            "map": "gt.recipe.press",
+            "index": 100,
+            "sha256": "fc131ede79f879e97a4e216d8bcba0a5b77ea739d5960ce2ff82666a374f1e5f"
+          },
+          {
+            "map": "gt.recipe.press",
+            "index": 1003,
+            "sha256": "b1582a0865625f8f68ef6c191caf83fbcadb4cbcf986e1a1eb66dbadbabb1d18"
+          },
+          {
+            "map": "gt.recipe.press",
+            "index": 1010,
+            "sha256": "fedf2550713bd2f8fe06cf5040e4f3e04d3204cfe9cd3e67fe3e8630da89fa7b"
+          },
+          {
+            "map": "gt.recipe.press",
+            "index": 1011,
+            "sha256": "e912ccb9431b760af616aebf93003eaec8f8f8e59fa67d7d7697060fca28ccdf"
+          },
+          {
+            "map": "gt.recipe.press",
+            "index": 1012,
+            "sha256": "4f8553b806dc3b6c514ffbabf4527dc34801d4a813695ab86d6feb4c342f3bef"
+          },
+          {
+            "map": "gt.recipe.press",
+            "index": 1014,
+            "sha256": "209c4217dbcac50dc94ce31f4220875dcaff1959f9e15d16f1c8f810de6fe243"
+          },
+          {
+            "map": "gt.recipe.press",
+            "index": 1015,
+            "sha256": "00f50157a3b60c4c12b227e4470ff6ace3d24aa49f3edba18208e319152907f6"
+          }
+        ],
         "candidate_rows": 0,
         "unmatched_cc_rows": 1286,
         "gt_only_signature_groups": 2716,
@@ -10645,6 +11808,56 @@
           "SEMANTIC": 6,
           "NONE": 28
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 92,
+          "FORM_PATH": 0,
+          "SEMANTIC": 6,
+          "NONE": 28
+        },
+        "raw_source_ref_count": 126,
+        "raw_source_ref_digest": "42b30038f35816fbdb5247f94d17ebd838bed454aecc1805470a5fd6b6c3243a",
+        "raw_source_ref_samples": [
+          {
+            "map": "gt.recipe.cruciblealloying",
+            "index": 10,
+            "sha256": "326e9f36326bfaca150e7b95086860d3543d0a829fe7538ca06ec48bf576980d"
+          },
+          {
+            "map": "gt.recipe.cruciblealloying",
+            "index": 101,
+            "sha256": "bf11fab45f6c6a924d779b8e45ad957626cecf4ced6d50fa20f0b99c19dba920"
+          },
+          {
+            "map": "gt.recipe.cruciblealloying",
+            "index": 103,
+            "sha256": "5371ce6d1b76eecb3f5562d1aebdf84f340b3b8cfdddfd3807bd9383507f0158"
+          },
+          {
+            "map": "gt.recipe.cruciblealloying",
+            "index": 105,
+            "sha256": "6e61fee06f75d05c35c620ce28c6f0f4831800cdec8796c46c95d6059a615639"
+          },
+          {
+            "map": "gt.recipe.cruciblealloying",
+            "index": 109,
+            "sha256": "c0f794e61007e057b1d12ffd48f81f0fe3dabef8385682fcbf3cc18afe2ef59f"
+          },
+          {
+            "map": "gt.recipe.cruciblealloying",
+            "index": 112,
+            "sha256": "48e7867006e67b21b95981910c65865a31d2c0c26608152e97957ef7d9a2542c"
+          },
+          {
+            "map": "gt.recipe.cruciblealloying",
+            "index": 115,
+            "sha256": "43745250fa45c04d054b97491ac3ddb625ccb8728b39173481b9c7ddf6811541"
+          },
+          {
+            "map": "gt.recipe.cruciblealloying",
+            "index": 116,
+            "sha256": "89c7cd5a7f2f871fd8010fe08fc872c1bd70e1601a2ccc4c29a8108b4d6d8184"
+          }
+        ],
         "candidate_rows": 49,
         "unmatched_cc_rows": 15,
         "gt_only_signature_groups": 29,
@@ -10692,21 +11905,30 @@
         ],
         "note": "GT6 source-derived furnace IO; its non-GT recipe map executes at 16 ticks and 16 EU/t.",
         "cc_normalized_rows": 385,
-        "gt_normalized_rows": 383,
+        "gt_normalized_rows": 385,
         "match_tiers": {
-          "EXACT": 383,
-          "FORM_PATH": 0,
-          "SEMANTIC": 0,
-          "NONE": 2
-        },
-        "gt_match_tiers": {
-          "EXACT": 383,
+          "EXACT": 385,
           "FORM_PATH": 0,
           "SEMANTIC": 0,
           "NONE": 0
         },
-        "candidate_rows": 383,
-        "unmatched_cc_rows": 2,
+        "gt_match_tiers": {
+          "EXACT": 385,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 0
+        },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 0
+        },
+        "raw_source_ref_count": 0,
+        "raw_source_ref_digest": null,
+        "raw_source_ref_samples": [],
+        "candidate_rows": 385,
+        "unmatched_cc_rows": 0,
         "gt_only_signature_groups": 0,
         "samples": {
           "exact": [
@@ -10725,10 +11947,7 @@
           ],
           "form_path": [],
           "semantic": [],
-          "none": [
-            "cook_smelting/lonsdaleite/4e53f6a9d950",
-            "cook_smelting/prismane/3082b7ebf317"
-          ]
+          "none": []
         }
       },
       {
@@ -10749,6 +11968,15 @@
           "SEMANTIC": 0,
           "NONE": 0
         },
+        "raw_source_ref_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 0
+        },
+        "raw_source_ref_count": 0,
+        "raw_source_ref_digest": null,
+        "raw_source_ref_samples": [],
         "candidate_rows": 0,
         "unmatched_cc_rows": 385,
         "gt_only_signature_groups": 0,
@@ -10772,7 +12000,417 @@
           ]
         }
       }
-    ]
+    ],
+    "generic_map_projection": {
+      "source_map_count": 36,
+      "rows": [
+        {
+          "source_map": "gt.recipe.assembler",
+          "cc_rows": 66,
+          "gt_rows": 1582,
+          "cc_exact": 0,
+          "cc_none": 66,
+          "gt_exact": 0,
+          "gt_none": 1582,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.autoclave",
+          "cc_rows": 11,
+          "gt_rows": 392,
+          "cc_exact": 0,
+          "cc_none": 11,
+          "gt_exact": 0,
+          "gt_none": 392,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.bath",
+          "cc_rows": 49462,
+          "gt_rows": 59855,
+          "cc_exact": 1335,
+          "cc_none": 48127,
+          "gt_exact": 1335,
+          "gt_none": 58520,
+          "raw_exact_ref_count": 1335,
+          "raw_exact_ref_digest": "6ffc97afbf9d198c59236f7a4125e9f89f1859e722909525df8042adf3e64a3e"
+        },
+        {
+          "source_map": "gt.recipe.canner",
+          "cc_rows": 32,
+          "gt_rows": 3609,
+          "cc_exact": 0,
+          "cc_none": 32,
+          "gt_exact": 0,
+          "gt_none": 3609,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.centrifuge",
+          "cc_rows": 259,
+          "gt_rows": 1296,
+          "cc_exact": 24,
+          "cc_none": 235,
+          "gt_exact": 24,
+          "gt_none": 1272,
+          "raw_exact_ref_count": 24,
+          "raw_exact_ref_digest": "0857d7c77ad4709d9a9e9f9d7b62a02ac7e2fb0866681794545b21f277bac6af"
+        },
+        {
+          "source_map": "gt.recipe.clustermill",
+          "cc_rows": 307,
+          "gt_rows": 307,
+          "cc_exact": 307,
+          "cc_none": 0,
+          "gt_exact": 307,
+          "gt_none": 0,
+          "raw_exact_ref_count": 307,
+          "raw_exact_ref_digest": "b8601d2b1ba5154f2dbb56529aa96b911bb2115e965a8b9fbcbd81d533c3431a"
+        },
+        {
+          "source_map": "gt.recipe.coagulator",
+          "cc_rows": 2,
+          "gt_rows": 5,
+          "cc_exact": 1,
+          "cc_none": 1,
+          "gt_exact": 1,
+          "gt_none": 4,
+          "raw_exact_ref_count": 1,
+          "raw_exact_ref_digest": "73d3f5eb761016695ef604d89cd63620396bdf72b8757ff559ebba074a862c57"
+        },
+        {
+          "source_map": "gt.recipe.cokeoven",
+          "cc_rows": 77,
+          "gt_rows": 124,
+          "cc_exact": 19,
+          "cc_none": 58,
+          "gt_exact": 19,
+          "gt_none": 105,
+          "raw_exact_ref_count": 19,
+          "raw_exact_ref_digest": "c94a8f6071ad1a27563cb2fc107ae62437809b7efeafaec58059d33bc2439f3d"
+        },
+        {
+          "source_map": "gt.recipe.compressor",
+          "cc_rows": 1284,
+          "gt_rows": 1472,
+          "cc_exact": 935,
+          "cc_none": 349,
+          "gt_exact": 935,
+          "gt_none": 537,
+          "raw_exact_ref_count": 935,
+          "raw_exact_ref_digest": "2fab52cbca84f1cfc9db73bbc78b05c64b1fbb72241ae1a5cc5dbe6628d38360"
+        },
+        {
+          "source_map": "gt.recipe.cryodistillationtower",
+          "cc_rows": 1,
+          "gt_rows": 3,
+          "cc_exact": 0,
+          "cc_none": 1,
+          "gt_exact": 0,
+          "gt_none": 3,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.cryomixer",
+          "cc_rows": 4,
+          "gt_rows": 57,
+          "cc_exact": 0,
+          "cc_none": 4,
+          "gt_exact": 0,
+          "gt_none": 57,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.distillationtower",
+          "cc_rows": 6,
+          "gt_rows": 8,
+          "cc_exact": 1,
+          "cc_none": 5,
+          "gt_exact": 1,
+          "gt_none": 7,
+          "raw_exact_ref_count": 1,
+          "raw_exact_ref_digest": "736f58aef503785764417fb46b4211ce12805258cd24590ba2811fa3464a65b3"
+        },
+        {
+          "source_map": "gt.recipe.distillery",
+          "cc_rows": 7,
+          "gt_rows": 1517,
+          "cc_exact": 1,
+          "cc_none": 6,
+          "gt_exact": 1,
+          "gt_none": 1516,
+          "raw_exact_ref_count": 1,
+          "raw_exact_ref_digest": "1c92d144758da85658e924bd64db9b90f0284c1d61f0869c411a97ce5038cc67"
+        },
+        {
+          "source_map": "gt.recipe.drying",
+          "cc_rows": 191,
+          "gt_rows": 217,
+          "cc_exact": 1,
+          "cc_none": 190,
+          "gt_exact": 1,
+          "gt_none": 216,
+          "raw_exact_ref_count": 1,
+          "raw_exact_ref_digest": "3bd89e32a23cf2a6c6b521fd8c4b5d75060da18c2ba732457f3b0337fe05a2aa"
+        },
+        {
+          "source_map": "gt.recipe.electrolyzer",
+          "cc_rows": 27,
+          "gt_rows": 290,
+          "cc_exact": 1,
+          "cc_none": 26,
+          "gt_exact": 1,
+          "gt_none": 289,
+          "raw_exact_ref_count": 1,
+          "raw_exact_ref_digest": "32c19a3138118e214e3c58bc103f7602536aafba8eb564893c50e98d559b4319"
+        },
+        {
+          "source_map": "gt.recipe.fuels.burn",
+          "cc_rows": 23,
+          "gt_rows": 49,
+          "cc_exact": 1,
+          "cc_none": 22,
+          "gt_exact": 1,
+          "gt_none": 48,
+          "raw_exact_ref_count": 1,
+          "raw_exact_ref_digest": "6224a975ae8e685370e67af4410de89fb42a8059e2d7425b302aa243f7be0cbc"
+        },
+        {
+          "source_map": "gt.recipe.fuels.engine",
+          "cc_rows": 7,
+          "gt_rows": 21,
+          "cc_exact": 0,
+          "cc_none": 7,
+          "gt_exact": 0,
+          "gt_none": 21,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.fuels.fluidbed",
+          "cc_rows": 55,
+          "gt_rows": 38,
+          "cc_exact": 0,
+          "cc_none": 55,
+          "gt_exact": 0,
+          "gt_none": 38,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.fuels.gas",
+          "cc_rows": 9,
+          "gt_rows": 9,
+          "cc_exact": 1,
+          "cc_none": 8,
+          "gt_exact": 1,
+          "gt_none": 8,
+          "raw_exact_ref_count": 1,
+          "raw_exact_ref_digest": "2082182ce78b8e4b422e59cc12743cce937f7d28bf14c8f519fbb18005d6f3bf"
+        },
+        {
+          "source_map": "gt.recipe.fuels.hot",
+          "cc_rows": 8,
+          "gt_rows": 11,
+          "cc_exact": 0,
+          "cc_none": 8,
+          "gt_exact": 0,
+          "gt_none": 11,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.generifier",
+          "cc_rows": 6,
+          "gt_rows": 10236,
+          "cc_exact": 0,
+          "cc_none": 6,
+          "gt_exact": 0,
+          "gt_none": 10236,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.injector",
+          "cc_rows": 103,
+          "gt_rows": 638,
+          "cc_exact": 0,
+          "cc_none": 103,
+          "gt_exact": 0,
+          "gt_none": 638,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.laminator",
+          "cc_rows": 492,
+          "gt_rows": 498,
+          "cc_exact": 0,
+          "cc_none": 492,
+          "gt_exact": 0,
+          "gt_none": 498,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.loom",
+          "cc_rows": 132,
+          "gt_rows": 1334,
+          "cc_exact": 0,
+          "cc_none": 132,
+          "gt_exact": 0,
+          "gt_none": 1334,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.magneticseparator",
+          "cc_rows": 1,
+          "gt_rows": 179,
+          "cc_exact": 0,
+          "cc_none": 1,
+          "gt_exact": 0,
+          "gt_none": 179,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.massfab",
+          "cc_rows": 1,
+          "gt_rows": 920,
+          "cc_exact": 0,
+          "cc_none": 1,
+          "gt_exact": 0,
+          "gt_none": 920,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.melter",
+          "cc_rows": 3601,
+          "gt_rows": 6756,
+          "cc_exact": 0,
+          "cc_none": 3601,
+          "gt_exact": 0,
+          "gt_none": 6756,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.mixer",
+          "cc_rows": 7068,
+          "gt_rows": 64245,
+          "cc_exact": 1676,
+          "cc_none": 5392,
+          "gt_exact": 1676,
+          "gt_none": 62569,
+          "raw_exact_ref_count": 1676,
+          "raw_exact_ref_digest": "577ee0fdeb5750cb8d5b4fb784257db26327dc7ed79db5dbff2d0052e552f58f"
+        },
+        {
+          "source_map": "gt.recipe.press",
+          "cc_rows": 20,
+          "gt_rows": 8160,
+          "cc_exact": 0,
+          "cc_none": 20,
+          "gt_exact": 0,
+          "gt_none": 8160,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.pressurewasher",
+          "cc_rows": 336,
+          "gt_rows": 312,
+          "cc_exact": 0,
+          "cc_none": 336,
+          "gt_exact": 0,
+          "gt_none": 312,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.roaster",
+          "cc_rows": 73,
+          "gt_rows": 115,
+          "cc_exact": 5,
+          "cc_none": 68,
+          "gt_exact": 5,
+          "gt_none": 110,
+          "raw_exact_ref_count": 5,
+          "raw_exact_ref_digest": "2ade68551526a4602f54b94fd88d91bd716da1cbc203b7b7187278ca50061aab"
+        },
+        {
+          "source_map": "gt.recipe.rollformer",
+          "cc_rows": 26,
+          "gt_rows": 28,
+          "cc_exact": 0,
+          "cc_none": 26,
+          "gt_exact": 0,
+          "gt_none": 28,
+          "raw_exact_ref_count": 0,
+          "raw_exact_ref_digest": null
+        },
+        {
+          "source_map": "gt.recipe.sharpener",
+          "cc_rows": 7637,
+          "gt_rows": 7637,
+          "cc_exact": 517,
+          "cc_none": 7120,
+          "gt_exact": 517,
+          "gt_none": 7120,
+          "raw_exact_ref_count": 517,
+          "raw_exact_ref_digest": "8f6c1abf4c8d643223f315dc3d421ffa9928f66f5431c6752e6262af7356ecd8"
+        },
+        {
+          "source_map": "gt.recipe.shredder",
+          "cc_rows": 29365,
+          "gt_rows": 41243,
+          "cc_exact": 8937,
+          "cc_none": 20428,
+          "gt_exact": 8937,
+          "gt_none": 32306,
+          "raw_exact_ref_count": 8937,
+          "raw_exact_ref_digest": "a792f2f960ea592e1e836141a38d8a7b73cbfc643c93baab48e5da122c393fad"
+        },
+        {
+          "source_map": "gt.recipe.smelter",
+          "cc_rows": 16807,
+          "gt_rows": 21969,
+          "cc_exact": 56,
+          "cc_none": 16751,
+          "gt_exact": 56,
+          "gt_none": 21913,
+          "raw_exact_ref_count": 56,
+          "raw_exact_ref_digest": "e19644bfb6fcb1260d2de180249e71df0ac43abdc62ff9a9111fb57ce23be19d"
+        },
+        {
+          "source_map": "gt.recipe.squeezer",
+          "cc_rows": 20,
+          "gt_rows": 5322,
+          "cc_exact": 4,
+          "cc_none": 16,
+          "gt_exact": 4,
+          "gt_none": 5318,
+          "raw_exact_ref_count": 4,
+          "raw_exact_ref_digest": "b36bf1037f97394b17aee7df6304769b3c0af614b4f8e9deea157e4475eb1bbc"
+        }
+      ],
+      "totals": {
+        "cc_rows": 117526,
+        "gt_rows": 240454,
+        "cc_exact": 13822,
+        "cc_none": 103704,
+        "gt_exact": 13822,
+        "gt_none": 226632
+      },
+      "raw_exact_ref_count": 13822
+    }
   },
   "unowned_cc_maps": [
     {

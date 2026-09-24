@@ -14,7 +14,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | --- | --- | --- |
 | 配方图 | 95 maps / 720841 源行 | `denominator_only` 17，`runtime_only` 4，`bounded_subset` 52，`full_replay` 6，`empty_source` 14，`legacy_exclusion_pending` 2 |
 | 配方源行证据分级 | 720841 源行 | `source_exact` 119375（16.6%）；`implementation_evidence_pending` 524790（72.8%）；`no_cc_evidence_or_legacy_pending` 76676（10.6%） （三档互斥且合计等于分母） |
-| 语义投影（辅助证据） | 20086 CC normalized rows / 359130 GT normalized rows | `EXACT` 3830，`SEMANTIC` 4330，`NONE` 11926；不换算成 GT6 源行完成率 |
+| 语义投影（辅助证据） | 20086 CC normalized rows / 359303 GT normalized rows | `EXACT` 3832，`SEMANTIC` 4330，`NONE` 11924；不换算成 GT6 源行完成率 |
 | 机器 kind | 96 canonical kinds | `denominator_only` 17，`identity_only` 1，`runtime_code_uncarded` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 43，`runtime_accepted` 20，`full_replay` 4 |
 | 多方块控制器 | 30 canonical kinds | `identity_only` 2，`runtime_code_uncarded` 2，`runtime_paused` 6，`runtime_accepted` 20 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
@@ -167,11 +167,13 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 这里复用 `tools/compare_gt6_recipes.py` 的 `NormRecipe`、材料规则展开和 `EXACT / FORM_PATH / SEMANTIC / NONE` 判定。它比较的是 normalized CC/GT 配方，不是 GT6 原始行；一条 semantic candidate 也不自动证明机器数值、获得格或全部源行。
 
 - CC normalized rows：20086
-- GT normalized rows：359130
+- GT normalized rows：359303
+- GT source mode：`raw_dump`；带稳定 raw refs 的 normalized rows：358918
 - 运行时 `gt_recipe` / compact family rows：扫描 121854，当前 family 可归一化 1069；其余保留在 source-row/hash 轴，不强行归入 semantic family。
-- tiers：`EXACT` 3830，`FORM_PATH` 0，`SEMANTIC` 4330，`NONE` 11926
-- reverse GT normalized tiers：`EXACT` 4568，`FORM_PATH` 0，`SEMANTIC` 136019，`NONE` 218543；仍不是 raw GT6 源行覆盖率
-- 有 candidate 的 CC rows：8160；无 candidate：11926；GT-only signature groups：303126
+- tiers：`EXACT` 3832，`FORM_PATH` 0，`SEMANTIC` 4330，`NONE` 11924
+- reverse GT normalized tiers：`EXACT` 4570，`FORM_PATH` 0，`SEMANTIC` 136019，`NONE` 218714；仍不是 raw GT6 源行覆盖率
+- 带 raw ref 的 GT rows 按同一 heuristic：`EXACT` 4185，`FORM_PATH` 0，`SEMANTIC` 136019，`NONE` 218714；此处 source identity 已稳定，但 semantic 仍是候选级别
+- 有 candidate 的 CC rows：8162；无 candidate：11924；GT-only signature groups：303297
 
 | family | GT map | CC normalized | GT normalized | EXACT | FORM_PATH | SEMANTIC | NONE | GT-only sig groups |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -186,7 +188,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `chain_centrifuge` | gt.recipe.centrifuge | 357 | 1182 | 0 | 0 | 0 | 357 | 1182 |
 | `chain_shredder` | gt.recipe.shredder | 357 | 40244 | 0 | 0 | 0 | 357 | 40244 |
 | `chain_sifter` | gt.recipe.sifter | 357 | 2872 | 0 | 0 | 0 | 357 | 2872 |
-| `chain_smelter` | gt.recipe.smelter | 195 | 5178 | 0 | 0 | 0 | 195 | 5177 |
+| `chain_smelter` | gt.recipe.smelter | 195 | 5349 | 0 | 0 | 0 | 195 | 5348 |
 | `chain_mortar` | gt.recipe.mortar | 473 | 5688 | 0 | 0 | 0 | 473 | 5688 |
 | `component_extruder` | gt.recipe.extruder | 2782 | 237058 | 0 | 0 | 2782 | 0 | 185628 |
 | `component_cutter` | gt.recipe.cutter | 771 | 24015 | 0 | 0 | 0 | 771 | 24015 |
@@ -199,8 +201,52 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `component_welder` | gt.recipe.welder | 4893 | 4529 | 1216 | 0 | 246 | 3431 | 3313 |
 | `component_press` | gt.recipe.press | 1286 | 2716 | 0 | 0 | 0 | 1286 | 2716 |
 | `alloy` | gt.recipe.cruciblealloying | 64 | 126 | 46 | 0 | 3 | 15 | 29 |
-| `cook_smelting` | mc.recipe.furnace | 385 | 383 | 383 | 0 | 0 | 2 | 0 |
+| `cook_smelting` | mc.recipe.furnace | 385 | 385 | 385 | 0 | 0 | 0 | 0 |
 | `cook_blasting` | — | 385 | 0 | 0 | 0 | 0 | 385 | 0 |
+
+### 2.3 raw-map exact projection
+
+这是对当前 family 集合之外的 map 做的 normalized signature exact matching；不执行 semantic heuristic，也不把 exact count 直接提升为 raw source-row 完成率。
+- source maps：36；CC rows 117526，GT rows 240454；CC exact 13822，CC unmatched 103704；GT exact 13822，GT unmatched 226632。
+
+| raw GT map | CC rows | GT rows | CC exact | CC unmatched | GT exact | GT unmatched | raw exact refs |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `gt.recipe.assembler` | 66 | 1582 | 0 | 66 | 0 | 1582 | 0 |
+| `gt.recipe.autoclave` | 11 | 392 | 0 | 11 | 0 | 392 | 0 |
+| `gt.recipe.bath` | 49462 | 59855 | 1335 | 48127 | 1335 | 58520 | 1335 |
+| `gt.recipe.canner` | 32 | 3609 | 0 | 32 | 0 | 3609 | 0 |
+| `gt.recipe.centrifuge` | 259 | 1296 | 24 | 235 | 24 | 1272 | 24 |
+| `gt.recipe.clustermill` | 307 | 307 | 307 | 0 | 307 | 0 | 307 |
+| `gt.recipe.coagulator` | 2 | 5 | 1 | 1 | 1 | 4 | 1 |
+| `gt.recipe.cokeoven` | 77 | 124 | 19 | 58 | 19 | 105 | 19 |
+| `gt.recipe.compressor` | 1284 | 1472 | 935 | 349 | 935 | 537 | 935 |
+| `gt.recipe.cryodistillationtower` | 1 | 3 | 0 | 1 | 0 | 3 | 0 |
+| `gt.recipe.cryomixer` | 4 | 57 | 0 | 4 | 0 | 57 | 0 |
+| `gt.recipe.distillationtower` | 6 | 8 | 1 | 5 | 1 | 7 | 1 |
+| `gt.recipe.distillery` | 7 | 1517 | 1 | 6 | 1 | 1516 | 1 |
+| `gt.recipe.drying` | 191 | 217 | 1 | 190 | 1 | 216 | 1 |
+| `gt.recipe.electrolyzer` | 27 | 290 | 1 | 26 | 1 | 289 | 1 |
+| `gt.recipe.fuels.burn` | 23 | 49 | 1 | 22 | 1 | 48 | 1 |
+| `gt.recipe.fuels.engine` | 7 | 21 | 0 | 7 | 0 | 21 | 0 |
+| `gt.recipe.fuels.fluidbed` | 55 | 38 | 0 | 55 | 0 | 38 | 0 |
+| `gt.recipe.fuels.gas` | 9 | 9 | 1 | 8 | 1 | 8 | 1 |
+| `gt.recipe.fuels.hot` | 8 | 11 | 0 | 8 | 0 | 11 | 0 |
+| `gt.recipe.generifier` | 6 | 10236 | 0 | 6 | 0 | 10236 | 0 |
+| `gt.recipe.injector` | 103 | 638 | 0 | 103 | 0 | 638 | 0 |
+| `gt.recipe.laminator` | 492 | 498 | 0 | 492 | 0 | 498 | 0 |
+| `gt.recipe.loom` | 132 | 1334 | 0 | 132 | 0 | 1334 | 0 |
+| `gt.recipe.magneticseparator` | 1 | 179 | 0 | 1 | 0 | 179 | 0 |
+| `gt.recipe.massfab` | 1 | 920 | 0 | 1 | 0 | 920 | 0 |
+| `gt.recipe.melter` | 3601 | 6756 | 0 | 3601 | 0 | 6756 | 0 |
+| `gt.recipe.mixer` | 7068 | 64245 | 1676 | 5392 | 1676 | 62569 | 1676 |
+| `gt.recipe.press` | 20 | 8160 | 0 | 20 | 0 | 8160 | 0 |
+| `gt.recipe.pressurewasher` | 336 | 312 | 0 | 336 | 0 | 312 | 0 |
+| `gt.recipe.roaster` | 73 | 115 | 5 | 68 | 5 | 110 | 5 |
+| `gt.recipe.rollformer` | 26 | 28 | 0 | 26 | 0 | 28 | 0 |
+| `gt.recipe.sharpener` | 7637 | 7637 | 517 | 7120 | 517 | 7120 | 517 |
+| `gt.recipe.shredder` | 29365 | 41243 | 8937 | 20428 | 8937 | 32306 | 8937 |
+| `gt.recipe.smelter` | 16807 | 21969 | 56 | 16751 | 56 | 21913 | 56 |
+| `gt.recipe.squeezer` | 20 | 5322 | 4 | 16 | 4 | 5318 | 4 |
 
 语义投影的 `EXACT` / `SEMANTIC` 结果只能作为第二档 `implementation_evidence_pending` 的拆分线索；在建立 normalized 行到 GT6 原始行的稳定映射前，不会修改三档源行数字。
 

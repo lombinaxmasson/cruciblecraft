@@ -108,6 +108,38 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
             semantic["summary"]["gt_normalized_rows"],
             sum(semantic["summary"]["gt_tier_counts"].values()),
         )
+        self.assertEqual("raw_dump", semantic["gt_source_mode"])
+        self.assertGreater(semantic["summary"]["raw_source_ref_count"], 0)
+        self.assertLessEqual(
+            semantic["summary"]["raw_source_ref_count"],
+            semantic["summary"]["gt_normalized_rows"],
+        )
+        self.assertEqual(
+            semantic["summary"]["raw_source_ref_count"],
+            sum(semantic["summary"]["raw_source_ref_tiers"].values()),
+        )
+        sample_refs = [
+            ref
+            for family in semantic["families"]
+            for ref in family["raw_source_ref_samples"]
+        ]
+        self.assertTrue(sample_refs)
+        self.assertTrue(
+            all(
+                set(("map", "index", "sha256")) <= set(ref)
+                for ref in sample_refs
+            )
+        )
+        generic = semantic["generic_map_projection"]
+        self.assertGreater(generic["source_map_count"], 0)
+        self.assertEqual(
+            generic["source_map_count"],
+            len(generic["rows"]),
+        )
+        self.assertEqual(
+            generic["totals"]["cc_rows"],
+            sum(row["cc_rows"] for row in generic["rows"]),
+        )
         for row in self.coverage["recipe_maps"]:
             evidence = row["source_evidence"]
             self.assertEqual(

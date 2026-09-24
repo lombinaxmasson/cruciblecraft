@@ -163,6 +163,11 @@ multiplicity 仍需后续逐项验证。该摘要因此只作为
 CC candidate；它仍然只在 normalized 单位内成立，不能把 `SEMANTIC` 数字直接加回
 720,841 条 raw source rows。
 
+当本地 raw dump 存在时，GT normalized rows 还会携带稳定 source ref：
+`{map, index, sha256}`。`map + index` 解决同内容跨图/重复行的身份问题，
+`sha256` 用于检测 dump 行内容是否变化；没有 raw dump 时则退回
+`normalized_reference` 模式，明确没有 raw ref。
+
 `--write` 需要本地 `tools/gt6_recipe_normalized_reference.json`；`--check` 不需要参考树，
 只检查当前 CC 材料/规则展开摘要、比较器源码 hash 和已提交摘要是否一致。
 

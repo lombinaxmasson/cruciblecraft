@@ -1802,6 +1802,7 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
     playtest = report["playtest"]
     semantic = report["semantic_coverage"]
     semantic_summary = semantic["summary"]
+    generic = semantic["generic_map_projection"]
     recipe_grades = summary["recipe_evidence_grades"]
     recipe_grade_counts = recipe_grades["grades"]
 
@@ -1976,6 +1977,8 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
             "",
             f"- CC normalized rows：{semantic_summary['cc_normalized_rows']}",
             f"- GT normalized rows：{semantic_summary['gt_normalized_rows']}",
+            f"- GT source mode：`{semantic['gt_source_mode']}`；"
+            f"带稳定 raw refs 的 normalized rows：{semantic_summary['raw_source_ref_count']}",
             f"- 运行时 `gt_recipe` / compact family rows："
             f"扫描 {semantic['cc_projection']['runtime_rows_seen']}，"
             f"当前 family 可归一化 {semantic['cc_projection']['recognized_runtime_rows']}；"
@@ -1989,6 +1992,12 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
             f"`SEMANTIC` {semantic_summary['gt_tier_counts']['SEMANTIC']}，"
             f"`NONE` {semantic_summary['gt_tier_counts']['NONE']}；"
             "仍不是 raw GT6 源行覆盖率",
+            f"- 带 raw ref 的 GT rows 按同一 heuristic："
+            f"`EXACT` {semantic_summary['raw_source_ref_tiers']['EXACT']}，"
+            f"`FORM_PATH` {semantic_summary['raw_source_ref_tiers']['FORM_PATH']}，"
+            f"`SEMANTIC` {semantic_summary['raw_source_ref_tiers']['SEMANTIC']}，"
+            f"`NONE` {semantic_summary['raw_source_ref_tiers']['NONE']}；"
+            "此处 source identity 已稳定，但 semantic 仍是候选级别",
             f"- 有 candidate 的 CC rows：{semantic_summary['candidate_rows']}；"
             f"无 candidate：{semantic_summary['unmatched_cc_rows']}；"
             f"GT-only signature groups：{semantic_summary['gt_only_signature_groups']}",
@@ -2005,6 +2014,32 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
             f"{tiers['EXACT']} | {tiers['FORM_PATH']} | {tiers['SEMANTIC']} | "
             f"{tiers['NONE']} | {row['gt_only_signature_groups']} |"
         )
+    lines.extend(
+        [
+            "",
+            "### 2.3 raw-map exact projection",
+            "",
+            "这是对当前 family 集合之外的 map 做的 normalized signature exact matching；"
+            "不执行 semantic heuristic，也不把 exact count 直接提升为 raw source-row 完成率。",
+            f"- source maps：{generic['source_map_count']}；"
+            f"CC rows {generic['totals'].get('cc_rows', 0)}，"
+            f"GT rows {generic['totals'].get('gt_rows', 0)}；"
+            f"CC exact {generic['totals'].get('cc_exact', 0)}，"
+            f"CC unmatched {generic['totals'].get('cc_none', 0)}；"
+            f"GT exact {generic['totals'].get('gt_exact', 0)}，"
+            f"GT unmatched {generic['totals'].get('gt_none', 0)}。",
+            "",
+            "| raw GT map | CC rows | GT rows | CC exact | CC unmatched | GT exact | GT unmatched | raw exact refs |",
+            "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+    )
+    for row in generic["rows"]:
+        lines.append(
+            f"| `{row['source_map']}` | {row['cc_rows']} | {row['gt_rows']} | "
+            f"{row['cc_exact']} | {row['cc_none']} | {row['gt_exact']} | "
+            f"{row['gt_none']} | {row['raw_exact_ref_count']} |"
+        )
+
     lines.extend(
         [
             "",

@@ -371,6 +371,7 @@ class NormRecipe:
     fake: bool = False
     notes: list[str] = field(default_factory=list)
     raw_hint: str = ""
+    source_refs: tuple[dict[str, Any], ...] = field(default_factory=tuple)
 
     def signature(self) -> tuple:
         in_keys = tuple(r.key() for r in canonical_resources(self.inputs))
@@ -1578,7 +1579,7 @@ def gt_recipes_for_family(
     out: list[NormRecipe] = []
     for map_name in map_names or cfg["gt_maps"]:
         data = load_gt_map(map_name)
-        for recipe in data.get("recipes") or []:
+        for source_index, recipe in enumerate(data.get("recipes") or []):
             if recipe.get("enabled") is False:
                 continue
             inputs: list[Resource] = []
@@ -1699,6 +1700,13 @@ def gt_recipes_for_family(
                     chances=chances,
                     fake=bool(recipe.get("fake", False)),
                     raw_hint=display_hint(recipe),
+                    source_refs=(
+                        {
+                            "map": map_name,
+                            "index": source_index,
+                            "sha256": stable_hash(recipe),
+                        },
+                    ),
                 )
             )
     return out
@@ -3749,6 +3757,7 @@ def recipe_to_reference(recipe: NormRecipe) -> dict[str, Any]:
         "chances": recipe.chances,
         "fake": recipe.fake,
         "hint": recipe.raw_hint,
+        "source_refs": list(recipe.source_refs),
     }
 
 
@@ -3772,6 +3781,7 @@ def recipe_from_reference(family: str, data: dict[str, Any]) -> NormRecipe:
         chances=[int(chance) for chance in data.get("chances", [])],
         fake=bool(data.get("fake", False)),
         raw_hint=data.get("hint", ""),
+        source_refs=tuple(data.get("source_refs") or ()),
     )
 
 
