@@ -38,6 +38,8 @@ SCOPE_PATH = WAVE_ROOT / "scope.json"
 OUTPUT_PATH = WAVE_ROOT / "coverage.json"
 CHEM_OUTPUT_PATH = WAVE_ROOT / "chem_thermal.json"
 ATTRIBUTION_PATH = WAVE_ROOT / "source_attribution.json"
+SEMANTIC_BUILDER_PATH = WAVE_ROOT / "build_semantic_coverage.py"
+SEMANTIC_OUTPUT_PATH = WAVE_ROOT / "semantic_coverage.json"
 MARKDOWN_PATH = ROOT / "docs" / "current" / "gt6-full-coverage.md"
 WORKFLOW_DOC = "docs/current/gt6-full-coverage-workflow.md"
 
@@ -172,6 +174,30 @@ class StaleAttribution(RuntimeError):
 
 def read_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_semantic_coverage() -> dict[str, Any]:
+    if not SEMANTIC_OUTPUT_PATH.is_file():
+        raise FileNotFoundError(
+            f"{SEMANTIC_OUTPUT_PATH.relative_to(ROOT)} is missing; run the "
+            "semantic coverage builder first"
+        )
+    return read_json(SEMANTIC_OUTPUT_PATH)
+
+
+def run_semantic_builder(mode: str) -> None:
+    completed = subprocess.run(
+        [sys.executable, str(SEMANTIC_BUILDER_PATH), mode],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    if completed.returncode != 0:
+        detail = (completed.stdout + completed.stderr).strip()
+        raise RuntimeError(
+            f"semantic coverage builder {mode} failed"
+            + (f": {detail}" if detail else "")
+        )
 
 
 def local_source_revision() -> str | None:
@@ -1450,6 +1476,7 @@ def build_report(*, refresh_attribution: bool) -> tuple[dict[str, Any], dict[str
             f"{actual_source_revision} != {expected_source_revision}"
         )
     capabilities = load_capabilities()
+    semantic_coverage = load_semantic_coverage()
     evidence_index = EvidenceIndex(capabilities)
     live_cover_definitions = load_live_cover_definitions()
     blockers = load_blockers()
@@ -1549,6 +1576,7 @@ def build_report(*, refresh_attribution: bool) -> tuple[dict[str, Any], dict[str
         "form_demand_census": load_form_census(),
         "recipe_maps": maps,
         "recipe_evidence_grades": recipe_evidence_grades,
+        "semantic_coverage": semantic_coverage,
         "unowned_cc_maps": unowned_cc_maps,
         "overflow_artifacts": overflow_files,
         "machine_kinds": attach_machine_kind_evidence(
@@ -1772,6 +1800,8 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
     capabilities = report["capabilities"]
     blockers = report["blockers"]
     playtest = report["playtest"]
+    semantic = report["semantic_coverage"]
+    semantic_summary = semantic["summary"]
     recipe_grades = summary["recipe_evidence_grades"]
     recipe_grade_counts = recipe_grades["grades"]
 
@@ -1810,6 +1840,11 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
         f"`no_cc_evidence_or_legacy_pending` "
         f"{_grade_cell(recipe_grade_counts, 'no_cc_evidence_or_legacy_pending')} "
         f"（三档互斥且合计等于分母） |",
+        f"| 语义投影（辅助证据） | {semantic_summary['cc_normalized_rows']} CC normalized rows / "
+        f"{semantic_summary['gt_normalized_rows']} GT normalized rows | "
+        f"`EXACT` {semantic_summary['tier_counts']['EXACT']}，"
+        f"`SEMANTIC` {semantic_summary['tier_counts']['SEMANTIC']}，"
+        f"`NONE` {semantic_summary['tier_counts']['NONE']}；不换算成 GT6 源行完成率 |",
         f"| 机器 kind | {len(kinds)} canonical kinds | "
         f"{_counter_line(row['delivery_depth'] for row in kinds)} |",
         f"| 多方块控制器 | {len(multiblocks)} canonical kinds | "
@@ -1929,6 +1964,55 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
             )
     else:
         lines.append("（无）")
+
+    lines.extend(
+        [
+            "",
+            "### 2.2 语义比对（辅助证据，不与三档源行相加）",
+            "",
+            "这里复用 `tools/compare_gt6_recipes.py` 的 `NormRecipe`、材料规则展开和 "
+            "`EXACT / FORM_PATH / SEMANTIC / NONE` 判定。它比较的是 normalized CC/GT 配方，"
+            "不是 GT6 原始行；一条 semantic candidate 也不自动证明机器数值、获得格或全部源行。",
+            "",
+            f"- CC normalized rows：{semantic_summary['cc_normalized_rows']}",
+            f"- GT normalized rows：{semantic_summary['gt_normalized_rows']}",
+            f"- 运行时 `gt_recipe` / compact family rows："
+            f"扫描 {semantic['cc_projection']['runtime_rows_seen']}，"
+            f"当前 family 可归一化 {semantic['cc_projection']['recognized_runtime_rows']}；"
+            "其余保留在 source-row/hash 轴，不强行归入 semantic family。",
+            f"- tiers：`EXACT` {semantic_summary['tier_counts']['EXACT']}，"
+            f"`FORM_PATH` {semantic_summary['tier_counts']['FORM_PATH']}，"
+            f"`SEMANTIC` {semantic_summary['tier_counts']['SEMANTIC']}，"
+            f"`NONE` {semantic_summary['tier_counts']['NONE']}",
+            f"- reverse GT normalized tiers：`EXACT` {semantic_summary['gt_tier_counts']['EXACT']}，"
+            f"`FORM_PATH` {semantic_summary['gt_tier_counts']['FORM_PATH']}，"
+            f"`SEMANTIC` {semantic_summary['gt_tier_counts']['SEMANTIC']}，"
+            f"`NONE` {semantic_summary['gt_tier_counts']['NONE']}；"
+            "仍不是 raw GT6 源行覆盖率",
+            f"- 有 candidate 的 CC rows：{semantic_summary['candidate_rows']}；"
+            f"无 candidate：{semantic_summary['unmatched_cc_rows']}；"
+            f"GT-only signature groups：{semantic_summary['gt_only_signature_groups']}",
+            "",
+            "| family | GT map | CC normalized | GT normalized | EXACT | FORM_PATH | SEMANTIC | NONE | GT-only sig groups |",
+            "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+    )
+    for row in semantic["families"]:
+        tiers = row["match_tiers"]
+        lines.append(
+            f"| `{row['family']}` | {_cell(row['gt_maps'])} | "
+            f"{row['cc_normalized_rows']} | {row['gt_normalized_rows']} | "
+            f"{tiers['EXACT']} | {tiers['FORM_PATH']} | {tiers['SEMANTIC']} | "
+            f"{tiers['NONE']} | {row['gt_only_signature_groups']} |"
+        )
+    lines.extend(
+        [
+            "",
+            "语义投影的 `EXACT` / `SEMANTIC` 结果只能作为第二档"
+            " `implementation_evidence_pending` 的拆分线索；在建立 normalized 行到 GT6 "
+            "原始行的稳定映射前，不会修改三档源行数字。",
+        ]
+    )
 
     lines.extend(
         [
@@ -2258,6 +2342,11 @@ def main(argv: list[str] | None = None) -> int:
             f"{len(fresh['ambiguous_hashes'])} ambiguous"
         )
         return 0
+    try:
+        run_semantic_builder("--check" if args.check else "--write")
+    except (OSError, RuntimeError) as error:
+        print(error)
+        return 1
     try:
         report, chemistry, attribution = build_report(refresh_attribution=args.write)
     except StaleAttribution as error:

@@ -9404,6 +9404,1376 @@
     "rule_expanded_recipes": 8210,
     "untraced_cc_rows": 563
   },
+  "semantic_coverage": {
+    "schema_version": 1,
+    "assessment_id": "gt6-full-coverage-reassessment",
+    "status": "CURRENT_SEMANTIC_PROJECTION",
+    "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "comparator": {
+      "path": "tools/compare_gt6_recipes.py",
+      "sha256": "4f146bb39377c1552419373b7f166e469a9915464d03113dd270a7f44d241c7c",
+      "ir": "compare_gt6_recipes.NormRecipe"
+    },
+    "builder": {
+      "path": "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py",
+      "sha256": "7df4095f13ace18aab4abfcb52e190ea471f2eaa323f82c91eb3f4ad9ccd0e8e"
+    },
+    "reference": {
+      "path": "tools/gt6_recipe_normalized_reference.json",
+      "sha256": "9cc36733316182976726cd9842f62ba73f2befabe2023eec86b2737f179faef8",
+      "reference_fingerprint": {
+        "schema_version": 2,
+        "gt6_version": "6.17.06-22-g3703e4030",
+        "config_digest": "2f0c1e99d2bcddbbf2ab733c521bdc4f52396d7c23038ced4dba106485518a2e",
+        "dump_tool_version": "gt6dump-1.0",
+        "gt_map_count": 95,
+        "gt_recipe_count": 720841,
+        "section_sha256": {
+          "source": "3781da649bbce1d302c27901aeada0130f74471c9c20af0c56aedbddbc022b7e",
+          "metadata": "1f867bed0ccb47c6b0d09373f79c51cde1d1e02ea96c602e4ca341f04e718f86",
+          "gt_map_count": "ad48ff99415b2f007dc35b7eb553fd1eb35ebfa2f2f308acd9488eeb86f71fa8",
+          "gt_recipe_count": "3bd8d53b0f78e8405c2ca9d9384bd024340c4db063f71ce7174254c69546c4ce",
+          "families": "d86e4770a9ea5ab98481414260fb8e53687bb261389630b6d9b489550baa06e6",
+          "map_inventory": "21fef9dbe1153b875af6e5efbff4855db1ca624d6d6139ec1b3b23a74c95504a",
+          "gt_anvil_audit": "e934920500f8a42e359e1d38cc36ce6967130bebfc8aa945a462f4a6a60271ae",
+          "coverage": "104b4586fc8af5921f403454966a53e0f62ca4f74b62ae94fd1f8756f16f0a35"
+        },
+        "normalized_reference_sha256": "c5f81aa8c69df85f3036af161a093b5394a6cfe58dc64fe3e6d4813b06a4b408"
+      }
+    },
+    "cc_projection": {
+      "material_count": 1776,
+      "normalized_recipe_count": 20086,
+      "digest": "5d339e3bd36912b01ed7da8de64fe1fb20fb215f55982b0890adf6fdeff21e33",
+      "runtime_documents_seen": 8439,
+      "runtime_rows_seen": 121854,
+      "recognized_runtime_rows": 1069
+    },
+    "summary": {
+      "family_count": 26,
+      "cc_normalized_rows": 20086,
+      "gt_normalized_rows": 359130,
+      "tier_counts": {
+        "EXACT": 3830,
+        "FORM_PATH": 0,
+        "SEMANTIC": 4330,
+        "NONE": 11926
+      },
+      "gt_tier_counts": {
+        "EXACT": 4568,
+        "FORM_PATH": 0,
+        "SEMANTIC": 136019,
+        "NONE": 218543
+      },
+      "candidate_rows": 8160,
+      "unmatched_cc_rows": 11926,
+      "gt_only_signature_groups": 303126
+    },
+    "families": [
+      {
+        "family": "coke_oven",
+        "gt_maps": [
+          "gt.recipe.cokeoven"
+        ],
+        "note": "Direct GTRecipe parity candidate",
+        "cc_normalized_rows": 1,
+        "gt_normalized_rows": 9,
+        "match_tiers": {
+          "EXACT": 1,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 0
+        },
+        "gt_match_tiers": {
+          "EXACT": 1,
+          "FORM_PATH": 0,
+          "SEMANTIC": 2,
+          "NONE": 6
+        },
+        "candidate_rows": 1,
+        "unmatched_cc_rows": 0,
+        "gt_only_signature_groups": 8,
+        "samples": {
+          "exact": [
+            "coke_oven/global/e81dd4be9b5a"
+          ],
+          "form_path": [],
+          "semantic": [],
+          "none": []
+        }
+      },
+      {
+        "family": "crush_raw_to_crushed",
+        "gt_maps": [
+          "gt.recipe.crusher"
+        ],
+        "note": "CC is same-material 1:1; GT6 ore chemistry often remaps minerals",
+        "cc_normalized_rows": 357,
+        "gt_normalized_rows": 492,
+        "match_tiers": {
+          "EXACT": 302,
+          "FORM_PATH": 0,
+          "SEMANTIC": 50,
+          "NONE": 5
+        },
+        "gt_match_tiers": {
+          "EXACT": 302,
+          "FORM_PATH": 0,
+          "SEMANTIC": 50,
+          "NONE": 140
+        },
+        "candidate_rows": 352,
+        "unmatched_cc_rows": 5,
+        "gt_only_signature_groups": 190,
+        "samples": {
+          "exact": [
+            "crush_raw_to_crushed/abyssalnite/1737bd67e09b",
+            "crush_raw_to_crushed/actinium/f48960503607",
+            "crush_raw_to_crushed/adamantite/d03ca4193f2b",
+            "crush_raw_to_crushed/almandine/1f7cf209cf93",
+            "crush_raw_to_crushed/alumina/e32da48e7bfa",
+            "crush_raw_to_crushed/aluminium_hydroxide/e3d064f480a3",
+            "crush_raw_to_crushed/alunite/11fc3503066b",
+            "crush_raw_to_crushed/ambrosium/e4d7f087f746",
+            "crush_raw_to_crushed/americium/7617190df778",
+            "crush_raw_to_crushed/amethyst/0e9c32238d1c",
+            "crush_raw_to_crushed/amethyst_ender/273a31b1e0b6",
+            "crush_raw_to_crushed/ancient_debris/3f15792c2be7"
+          ],
+          "form_path": [],
+          "semantic": [
+            "crush_raw_to_crushed/amber/fd460ca2339d",
+            "crush_raw_to_crushed/antimony/8bc4f8aeb1d0",
+            "crush_raw_to_crushed/bastnasite/beea813b1ce6",
+            "crush_raw_to_crushed/bone/8a965b6d97c8",
+            "crush_raw_to_crushed/borax/b39120d91dce",
+            "crush_raw_to_crushed/cassiterite/64d1c7eb8a7c",
+            "crush_raw_to_crushed/certus_quartz/3c2604efad78",
+            "crush_raw_to_crushed/charged_certus_quartz/04f67ebb97ef",
+            "crush_raw_to_crushed/chimerite/48c0b00d7ab6",
+            "crush_raw_to_crushed/cinnabar/0def8b6e0512",
+            "crush_raw_to_crushed/dominican_amber/730759e5eb50",
+            "crush_raw_to_crushed/draconium/f3297a90d615"
+          ],
+          "none": [
+            "crush_raw_to_crushed/iron/35f1299c7bed",
+            "crush_raw_to_crushed/naquadah_enriched/beac5ecfee3a",
+            "crush_raw_to_crushed/naquadria/d5941b5498a8",
+            "crush_raw_to_crushed/tungsten/8bfd4f2fabc0",
+            "crush_raw_to_crushed/uranium/29efe4523c68"
+          ]
+        }
+      },
+      {
+        "family": "form_ingot_to_plate",
+        "gt_maps": [
+          "gt.recipe.rollingmill",
+          "gt.recipe.extruder"
+        ],
+        "note": "Machine IO benchmark: rolling mill / extruder; GT anvil audited separately",
+        "cc_normalized_rows": 344,
+        "gt_normalized_rows": 710,
+        "match_tiers": {
+          "EXACT": 318,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 26
+        },
+        "gt_match_tiers": {
+          "EXACT": 702,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 8
+        },
+        "candidate_rows": 318,
+        "unmatched_cc_rows": 26,
+        "gt_only_signature_groups": 8,
+        "samples": {
+          "exact": [
+            "form_ingot_to_plate/abyssalnite/0765b7411df7",
+            "form_ingot_to_plate/actinium/eaea69306817",
+            "form_ingot_to_plate/adamantine/4f4bfaa15946",
+            "form_ingot_to_plate/adamantite/6bc8adf39861",
+            "form_ingot_to_plate/adamantium/59f20b73e6f5",
+            "form_ingot_to_plate/alduorite/e5eb22e827ce",
+            "form_ingot_to_plate/aluminium/6e77aeb431af",
+            "form_ingot_to_plate/aluminium_alloy/ba0cde96043a",
+            "form_ingot_to_plate/aluminium_brass/b19eedeaaa90",
+            "form_ingot_to_plate/alumite/d601d577398d",
+            "form_ingot_to_plate/americium/6482f0c836a7",
+            "form_ingot_to_plate/americium241/0e6802fcdac3"
+          ],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "form_ingot_to_plate/anthracite/efb3157c2d2a",
+            "form_ingot_to_plate/charcoal/bfe14aa26e52",
+            "form_ingot_to_plate/coal/7c6af5ffd90d",
+            "form_ingot_to_plate/coal_coke/cae4bfd7909c",
+            "form_ingot_to_plate/darmstadtium/6de7365ce879",
+            "form_ingot_to_plate/farnsium/3c8461e88f2b",
+            "form_ingot_to_plate/fluorite/d70ea4ae0fa8",
+            "form_ingot_to_plate/force/02e2b20c8b3b",
+            "form_ingot_to_plate/gilded_iron/ea1ba71f0b39",
+            "form_ingot_to_plate/lignite/a0370d47a784",
+            "form_ingot_to_plate/lignite_coke/2187c3b9df9d",
+            "form_ingot_to_plate/livermorium/98742bc17a14"
+          ]
+        }
+      },
+      {
+        "family": "form_plate_to_rod",
+        "gt_maps": [
+          "gt.recipe.extruder"
+        ],
+        "note": "Machine IO benchmark: GT extruder plate→2 rods; GT anvil audited separately",
+        "cc_normalized_rows": 428,
+        "gt_normalized_rows": 539,
+        "match_tiers": {
+          "EXACT": 379,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 49
+        },
+        "gt_match_tiers": {
+          "EXACT": 531,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 8
+        },
+        "candidate_rows": 379,
+        "unmatched_cc_rows": 49,
+        "gt_only_signature_groups": 8,
+        "samples": {
+          "exact": [
+            "form_plate_to_rod/abyssalnite/87441564fc5b",
+            "form_plate_to_rod/actinium/a0467f4276bb",
+            "form_plate_to_rod/adamantine/021eb42bad9d",
+            "form_plate_to_rod/adamantite/c02a303648ac",
+            "form_plate_to_rod/adamantium/95b62c064fac",
+            "form_plate_to_rod/alduorite/926f98f28aaa",
+            "form_plate_to_rod/aluminium/9e2a1baf69fe",
+            "form_plate_to_rod/aluminium_alloy/42dfc36b631d",
+            "form_plate_to_rod/aluminium_brass/527038ab1402",
+            "form_plate_to_rod/alumite/0e137224dc13",
+            "form_plate_to_rod/americium/a0617b404506",
+            "form_plate_to_rod/americium241/e087cd0089cb"
+          ],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "form_plate_to_rod/anthracite/9afd8f3e8fa0",
+            "form_plate_to_rod/basalz/bfcbf38454ed",
+            "form_plate_to_rod/bedrock/f0d50b6d9a4e",
+            "form_plate_to_rod/blaze/cfae7c24be56",
+            "form_plate_to_rod/blitz/a6a43e2f6a57",
+            "form_plate_to_rod/blizz/ff56f7dd27ae",
+            "form_plate_to_rod/breeze/8922c850dad6",
+            "form_plate_to_rod/charcoal/114e9e692dd3",
+            "form_plate_to_rod/coal/00c4ab8c9fe9",
+            "form_plate_to_rod/coal_coke/bde7816e6e58",
+            "form_plate_to_rod/darmstadtium/8809edb5d948",
+            "form_plate_to_rod/farnsium/05c2bdd48f53"
+          ]
+        }
+      },
+      {
+        "family": "form_rod_to_bolt",
+        "gt_maps": [
+          "gt.recipe.cutter",
+          "gt.recipe.extruder"
+        ],
+        "note": "Machine IO benchmark: GT cutter/extruder rod→4 bolts; GT anvil audited separately",
+        "cc_normalized_rows": 736,
+        "gt_normalized_rows": 547,
+        "match_tiers": {
+          "EXACT": 383,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 353
+        },
+        "gt_match_tiers": {
+          "EXACT": 539,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 8
+        },
+        "candidate_rows": 383,
+        "unmatched_cc_rows": 353,
+        "gt_only_signature_groups": 8,
+        "samples": {
+          "exact": [
+            "form_rod_to_bolt/abyssalnite/c712ae660c7e",
+            "form_rod_to_bolt/actinium/e823cab2d9cc",
+            "form_rod_to_bolt/adamantine/acd59c511485",
+            "form_rod_to_bolt/adamantite/debf192385b8",
+            "form_rod_to_bolt/adamantium/bd251cec2917",
+            "form_rod_to_bolt/alduorite/d5474466d6cd",
+            "form_rod_to_bolt/aluminium/390a26652288",
+            "form_rod_to_bolt/aluminium_alloy/88495d5934b6",
+            "form_rod_to_bolt/aluminium_brass/a5845c1fdf5e",
+            "form_rod_to_bolt/alumite/5cfafa1fdcf3",
+            "form_rod_to_bolt/americium/4a2f7b3bc862",
+            "form_rod_to_bolt/americium241/032303461442"
+          ],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "form_rod_to_bolt/acacia/0d01bbe1a09a",
+            "form_rod_to_bolt/alder/f223d4e7197d",
+            "form_rod_to_bolt/alexandrite/f6bc9d3b632b",
+            "form_rod_to_bolt/almandine/c9d04166436c",
+            "form_rod_to_bolt/amazonite/9bdff67ff6f2",
+            "form_rod_to_bolt/amber/b16dc4a8c572",
+            "form_rod_to_bolt/ambrosium/561d02a8053f",
+            "form_rod_to_bolt/amethyst/03e0adcb9098",
+            "form_rod_to_bolt/amethyst_ender/26f1ee807d99",
+            "form_rod_to_bolt/andradite/6cd925db79fe",
+            "form_rod_to_bolt/anthracite/248c6a3f82ce",
+            "form_rod_to_bolt/apatite/98ffa7da6825"
+          ]
+        }
+      },
+      {
+        "family": "anvil_raw_to_crushed",
+        "gt_maps": [
+          "gt.recipe.anvil"
+        ],
+        "note": "Direct GT anvil benchmark; GT adds 6 tiny crushed ore and uses 30–90 ticks",
+        "cc_normalized_rows": 445,
+        "gt_normalized_rows": 224,
+        "match_tiers": {
+          "EXACT": 198,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 247
+        },
+        "gt_match_tiers": {
+          "EXACT": 198,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 26
+        },
+        "candidate_rows": 198,
+        "unmatched_cc_rows": 247,
+        "gt_only_signature_groups": 26,
+        "samples": {
+          "exact": [
+            "anvil_raw_to_crushed/alunite/86681a306fb9",
+            "anvil_raw_to_crushed/amber/313df4e03335",
+            "anvil_raw_to_crushed/anthracite/7cda04ac99f3",
+            "anvil_raw_to_crushed/antimony/e1d260dc6009",
+            "anvil_raw_to_crushed/apatite/3888320bfde5",
+            "anvil_raw_to_crushed/arsenic/8c6cc4b2fdb2",
+            "anvil_raw_to_crushed/arsenopyrite/8190ebba3c8a",
+            "anvil_raw_to_crushed/asbestos/61cc7e65cf90",
+            "anvil_raw_to_crushed/astatine/b53c5f900a76",
+            "anvil_raw_to_crushed/azurite/ad6a0b390a31",
+            "anvil_raw_to_crushed/barite/9fd744dbf3a1",
+            "anvil_raw_to_crushed/barium/3dd7ef848588"
+          ],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "anvil_raw_to_crushed/abyssalnite/e99a1813d9a1",
+            "anvil_raw_to_crushed/actinium/67a51b0594b4",
+            "anvil_raw_to_crushed/adamantine/b1b3b481555d",
+            "anvil_raw_to_crushed/adamantite/af45e58e3796",
+            "anvil_raw_to_crushed/alduorite/c7a1016bf660",
+            "anvil_raw_to_crushed/alexandrite/157a902c4e7d",
+            "anvil_raw_to_crushed/almandine/f1c41c08fbb5",
+            "anvil_raw_to_crushed/alumina/dbaece783d5b",
+            "anvil_raw_to_crushed/aluminium_hydroxide/3b34be7821f6",
+            "anvil_raw_to_crushed/ambrosium/7dc007224526",
+            "anvil_raw_to_crushed/americium/8748b1244038",
+            "anvil_raw_to_crushed/americium241/5a70d0528434"
+          ]
+        }
+      },
+      {
+        "family": "chain_sluice",
+        "gt_maps": [
+          "gt.recipe.sluice"
+        ],
+        "note": "Water-assisted crushed-ore washing with ordered GT6 byproducts",
+        "cc_normalized_rows": 357,
+        "gt_normalized_rows": 4840,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 357
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 4840
+        },
+        "candidate_rows": 0,
+        "unmatched_cc_rows": 357,
+        "gt_only_signature_groups": 4840,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "chain_sluice/abyssalnite/9c952550eef7",
+            "chain_sluice/actinium/b1df19e62582",
+            "chain_sluice/adamantite/f88cd59f0353",
+            "chain_sluice/almandine/81d78c6c1cca",
+            "chain_sluice/alumina/6eead2f1e6a6",
+            "chain_sluice/aluminium_hydroxide/b9acbd2c71dc",
+            "chain_sluice/alunite/de93602ce609",
+            "chain_sluice/amber/1687a8d8b0ca",
+            "chain_sluice/ambrosium/502514b97899",
+            "chain_sluice/americium/bb603542248f",
+            "chain_sluice/amethyst/91377d884fd5",
+            "chain_sluice/amethyst_ender/d1e276a31f93"
+          ]
+        }
+      },
+      {
+        "family": "chain_bath",
+        "gt_maps": [
+          "gt.recipe.bath"
+        ],
+        "note": "Bath alternative for water-assisted crushed-ore washing",
+        "cc_normalized_rows": 1551,
+        "gt_normalized_rows": 19265,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 1551
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 19265
+        },
+        "candidate_rows": 0,
+        "unmatched_cc_rows": 1551,
+        "gt_only_signature_groups": 19265,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "chain_bath/abyssalnite/c0fd01123890",
+            "chain_bath/actinium/636c72e86470",
+            "chain_bath/adamantine/81fb51a4a713",
+            "chain_bath/adamantite/0951367c2f92",
+            "chain_bath/alduorite/2fe7955cf783",
+            "chain_bath/alexandrite/779f88ed3b30",
+            "chain_bath/almandine/73dfc8b4ea2e",
+            "chain_bath/alumina/6c50ad281a1f",
+            "chain_bath/aluminium_hydroxide/7e6af5008949",
+            "chain_bath/alunite/95e454ce4ca4",
+            "chain_bath/amazonite/73a410c5b0e8",
+            "chain_bath/amber/53a0dfd51756"
+          ]
+        }
+      },
+      {
+        "family": "chain_centrifuge",
+        "gt_maps": [
+          "gt.recipe.centrifuge"
+        ],
+        "note": "Washed ore refinement with ordered GT6 byproducts",
+        "cc_normalized_rows": 357,
+        "gt_normalized_rows": 1182,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 357
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 1182
+        },
+        "candidate_rows": 0,
+        "unmatched_cc_rows": 357,
+        "gt_only_signature_groups": 1182,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "chain_centrifuge/abyssalnite/4ab75cbd5711",
+            "chain_centrifuge/actinium/8895ca6cb3fa",
+            "chain_centrifuge/adamantite/1657ad958624",
+            "chain_centrifuge/almandine/34b1d6b5268f",
+            "chain_centrifuge/alumina/ed8ad7a3efe8",
+            "chain_centrifuge/aluminium_hydroxide/b55b24268ea4",
+            "chain_centrifuge/alunite/8bef4391b466",
+            "chain_centrifuge/amber/942f9a6ba3b1",
+            "chain_centrifuge/ambrosium/49ba69eb1b3b",
+            "chain_centrifuge/americium/fd6e57283788",
+            "chain_centrifuge/amethyst/67a88689bb43",
+            "chain_centrifuge/amethyst_ender/04917fcce979"
+          ]
+        }
+      },
+      {
+        "family": "chain_shredder",
+        "gt_maps": [
+          "gt.recipe.shredder"
+        ],
+        "note": "Refined ore comminution into purified dust",
+        "cc_normalized_rows": 357,
+        "gt_normalized_rows": 40244,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 357
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 40244
+        },
+        "candidate_rows": 0,
+        "unmatched_cc_rows": 357,
+        "gt_only_signature_groups": 40244,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "chain_shredder/abyssalnite/edb48a95f6af",
+            "chain_shredder/actinium/6b2f20c1c53c",
+            "chain_shredder/adamantite/de3c3ba390aa",
+            "chain_shredder/almandine/ca214fdc16e7",
+            "chain_shredder/alumina/d272b656b158",
+            "chain_shredder/aluminium_hydroxide/fca8e6a8242d",
+            "chain_shredder/alunite/59edd01f6e19",
+            "chain_shredder/amber/d989f0da3a19",
+            "chain_shredder/ambrosium/312d4d94dcce",
+            "chain_shredder/americium/3c2f75eb9efd",
+            "chain_shredder/amethyst/c9b31d71a058",
+            "chain_shredder/amethyst_ender/d6665144b65c"
+          ]
+        }
+      },
+      {
+        "family": "chain_sifter",
+        "gt_maps": [
+          "gt.recipe.sifter"
+        ],
+        "note": "Purified dust finishing",
+        "cc_normalized_rows": 357,
+        "gt_normalized_rows": 2872,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 357
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 2872
+        },
+        "candidate_rows": 0,
+        "unmatched_cc_rows": 357,
+        "gt_only_signature_groups": 2872,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "chain_sifter/abyssalnite/fac8f28df214",
+            "chain_sifter/actinium/f41bd7317cf1",
+            "chain_sifter/adamantite/c34e4dd0e07d",
+            "chain_sifter/almandine/2fe218ce75f1",
+            "chain_sifter/alumina/c6d51e3f51c9",
+            "chain_sifter/aluminium_hydroxide/3c7856722064",
+            "chain_sifter/alunite/ac0e10d8b459",
+            "chain_sifter/amber/f26d4c8dfde4",
+            "chain_sifter/ambrosium/b3f44b661657",
+            "chain_sifter/americium/03945920bc34",
+            "chain_sifter/amethyst/9a04c8f1cb82",
+            "chain_sifter/amethyst_ender/1291f4cf4384"
+          ]
+        }
+      },
+      {
+        "family": "chain_smelter",
+        "gt_maps": [
+          "gt.recipe.smelter"
+        ],
+        "note": "Metadata-targeted dust smelting",
+        "cc_normalized_rows": 195,
+        "gt_normalized_rows": 5178,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 195
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 5178
+        },
+        "candidate_rows": 0,
+        "unmatched_cc_rows": 195,
+        "gt_only_signature_groups": 5177,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "chain_smelter/abyssalnite/16fd5e4fcda9",
+            "chain_smelter/actinium/b1b2ba5e7b06",
+            "chain_smelter/adamantite/e1ccda549581",
+            "chain_smelter/alumina/ea76a04e6e3d",
+            "chain_smelter/americium/2cad2d32f33d",
+            "chain_smelter/ancient_debris/dbe475b6055c",
+            "chain_smelter/antimony/3d63a260bfa2",
+            "chain_smelter/aquamarine/cc15a73b1c4c",
+            "chain_smelter/ardite/86139cf6fb4d",
+            "chain_smelter/arsenic/4c8ea9e18a92",
+            "chain_smelter/arsenopyrite/409ee90c4ab6",
+            "chain_smelter/asbestos/53f56f22f3a3"
+          ]
+        }
+      },
+      {
+        "family": "chain_mortar",
+        "gt_maps": [
+          "gt.recipe.mortar"
+        ],
+        "note": "Mechanical crushed-ore grinding alternative",
+        "cc_normalized_rows": 473,
+        "gt_normalized_rows": 5688,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 473
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 5688
+        },
+        "candidate_rows": 0,
+        "unmatched_cc_rows": 473,
+        "gt_only_signature_groups": 5688,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "chain_mortar/abyssalnite/2763c94ef4ec",
+            "chain_mortar/actinium/8effd4e8ad7b",
+            "chain_mortar/adamantine/97a20bc56db1",
+            "chain_mortar/adamantite/5fe53a09455b",
+            "chain_mortar/alduorite/44017b1bfd1e",
+            "chain_mortar/alexandrite/98b00b405cb8",
+            "chain_mortar/almandine/68be1fd122c2",
+            "chain_mortar/alumina/1b59d52c4829",
+            "chain_mortar/aluminium_hydroxide/3f7152526649",
+            "chain_mortar/alunite/3446f4287ee6",
+            "chain_mortar/amazonite/c2566375bb3f",
+            "chain_mortar/amber/d852f792e1ff"
+          ]
+        }
+      },
+      {
+        "family": "component_extruder",
+        "gt_maps": [
+          "gt.recipe.extruder"
+        ],
+        "note": "T3 metadata-gated component rules; machine implementation deferred.",
+        "cc_normalized_rows": 2782,
+        "gt_normalized_rows": 237058,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 2782,
+          "NONE": 0
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 133673,
+          "NONE": 103385
+        },
+        "candidate_rows": 2782,
+        "unmatched_cc_rows": 0,
+        "gt_only_signature_groups": 185628,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [
+            "component_extruder/abyssalnite/e80621edb099",
+            "component_extruder/actinium/d5f02ea2f475",
+            "component_extruder/adamantine/0d10fbe0084d",
+            "component_extruder/adamantite/5dffa4168b57",
+            "component_extruder/adamantium/852ee3e6254d",
+            "component_extruder/alduorite/f442d8b9e3fa",
+            "component_extruder/aluminium/5e8e94b557d7",
+            "component_extruder/aluminium_alloy/893944022c3b",
+            "component_extruder/aluminium_brass/634eac846768",
+            "component_extruder/alumite/beb9dcb43fee",
+            "component_extruder/americium/3784376b7b07",
+            "component_extruder/americium241/d516c32c4e26"
+          ],
+          "none": []
+        }
+      },
+      {
+        "family": "component_cutter",
+        "gt_maps": [
+          "gt.recipe.cutter"
+        ],
+        "note": "T3 metadata-gated component rules; machine implementation deferred.",
+        "cc_normalized_rows": 771,
+        "gt_normalized_rows": 24015,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 771
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 24015
+        },
+        "candidate_rows": 0,
+        "unmatched_cc_rows": 771,
+        "gt_only_signature_groups": 24015,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "component_cutter/abyssalnite/149c3f704725",
+            "component_cutter/acacia/24d594cc0921",
+            "component_cutter/adamantine/9b11bb2056e5",
+            "component_cutter/adamantite/0530e76ce660",
+            "component_cutter/adamantium/0c1174bd3706",
+            "component_cutter/alder/53c4b45ef218",
+            "component_cutter/almandine/8e9aa7030db2",
+            "component_cutter/aluminium/ede78ea0d35f",
+            "component_cutter/aluminium_brass/0866cab44f41",
+            "component_cutter/alumite/653611f27a83",
+            "component_cutter/amber/6d19b2687248",
+            "component_cutter/americium/b0048c50107d"
+          ]
+        }
+      },
+      {
+        "family": "component_lathe",
+        "gt_maps": [
+          "gt.recipe.lathe"
+        ],
+        "note": "T3 metadata-gated component rules; machine implementation deferred.",
+        "cc_normalized_rows": 964,
+        "gt_normalized_rows": 2519,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 938,
+          "NONE": 26
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 1276,
+          "NONE": 1243
+        },
+        "candidate_rows": 938,
+        "unmatched_cc_rows": 26,
+        "gt_only_signature_groups": 2519,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [
+            "component_lathe/abyssalnite/38f5ba5ac724",
+            "component_lathe/acacia/a3a8f6392cee",
+            "component_lathe/actinium/fbd1c5925cd2",
+            "component_lathe/adamantine/39ba12366c2f",
+            "component_lathe/adamantite/ab1814c07d51",
+            "component_lathe/adamantium/a1c71cdcce3b",
+            "component_lathe/alder/d472f9c1b810",
+            "component_lathe/alexandrite/863fc2b084fa",
+            "component_lathe/almandine/e2105dfb8510",
+            "component_lathe/aluminium/73ca8cb49dce",
+            "component_lathe/aluminium_brass/ac5511bb8f91",
+            "component_lathe/alumite/5104d3db5fca"
+          ],
+          "none": [
+            "component_lathe/diamantine/125224a0660f",
+            "component_lathe/emeradic/fbf076a7aee2",
+            "component_lathe/enori/8b40bf4c6ea8",
+            "component_lathe/gilded_iron/52294d5bcde2",
+            "component_lathe/glowstone_refined/02a6253fae9b",
+            "component_lathe/iron_magnetic/c156d94613fe",
+            "component_lathe/neodymium_magnetic/a23777d8bdcb",
+            "component_lathe/netherized_diamond/23b65a4d9e3c",
+            "component_lathe/neutronium/2a9b4b80a308",
+            "component_lathe/obsidian_refined/eccd7257a74b",
+            "component_lathe/palis/e5e675c2e0c3",
+            "component_lathe/redstonia/812baf626962"
+          ]
+        }
+      },
+      {
+        "family": "component_rollingmill",
+        "gt_maps": [
+          "gt.recipe.rollingmill"
+        ],
+        "note": "T3 metadata-gated component rules; machine implementation deferred.",
+        "cc_normalized_rows": 343,
+        "gt_normalized_rows": 2435,
+        "match_tiers": {
+          "EXACT": 297,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 46
+        },
+        "gt_match_tiers": {
+          "EXACT": 297,
+          "FORM_PATH": 0,
+          "SEMANTIC": 297,
+          "NONE": 1841
+        },
+        "candidate_rows": 297,
+        "unmatched_cc_rows": 46,
+        "gt_only_signature_groups": 2138,
+        "samples": {
+          "exact": [
+            "component_rollingmill/abyssalnite/d0ea1c5874fa",
+            "component_rollingmill/actinium/458898ec81a9",
+            "component_rollingmill/adamantine/4aafa5f74b6b",
+            "component_rollingmill/adamantite/040765114912",
+            "component_rollingmill/adamantium/85b9b014cfb4",
+            "component_rollingmill/alduorite/aaa4b496e58f",
+            "component_rollingmill/aluminium/754e3e849a7e",
+            "component_rollingmill/aluminium_alloy/ac019fc67e08",
+            "component_rollingmill/aluminium_brass/874ba567e228",
+            "component_rollingmill/alumite/3cde6e3422fd",
+            "component_rollingmill/americium/6de24872f00f",
+            "component_rollingmill/americium241/ddc4f5c52216"
+          ],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "component_rollingmill/anthracite/37a95317343e",
+            "component_rollingmill/asbestos/99f7b6e0bde6",
+            "component_rollingmill/bakelite/4f473afd221b",
+            "component_rollingmill/charcoal/43c82ec796fb",
+            "component_rollingmill/coal/68716bd0a353",
+            "component_rollingmill/coal_coke/49e5e11d4eb5",
+            "component_rollingmill/darmstadtium/44b7dea72b8a",
+            "component_rollingmill/farnsium/11ba4288e46f",
+            "component_rollingmill/fluorite/51492e90e7ea",
+            "component_rollingmill/force/1a4998cb3bb9",
+            "component_rollingmill/gilded_iron/cf90eba2e538",
+            "component_rollingmill/hard_plastic/08fd34719283"
+          ]
+        }
+      },
+      {
+        "family": "component_rollbender",
+        "gt_maps": [
+          "gt.recipe.rollbender"
+        ],
+        "note": "T3 metadata-gated component rules; machine implementation deferred.",
+        "cc_normalized_rows": 464,
+        "gt_normalized_rows": 932,
+        "match_tiers": {
+          "EXACT": 154,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 310
+        },
+        "gt_match_tiers": {
+          "EXACT": 154,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 778
+        },
+        "candidate_rows": 154,
+        "unmatched_cc_rows": 310,
+        "gt_only_signature_groups": 778,
+        "samples": {
+          "exact": [
+            "component_rollbender/abyssalnite/02e8a9dbb904",
+            "component_rollbender/adamantine/02b999192937",
+            "component_rollbender/adamantite/20271f7c1ba6",
+            "component_rollbender/adamantium/1f7be1f2b7ad",
+            "component_rollbender/aluminium/be13ade46d1d",
+            "component_rollbender/aluminium_brass/01c90c3c37c6",
+            "component_rollbender/alumite/b8f7978d30d8",
+            "component_rollbender/americium/5e011c9fe6b6",
+            "component_rollbender/americium241/f72e264d68cc",
+            "component_rollbender/americium242/d2d576483626",
+            "component_rollbender/angmallen/bc3a4c431b81",
+            "component_rollbender/annealed_copper/9594ca9873bd"
+          ],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "component_rollbender/acacia/4494df1ec637",
+            "component_rollbender/alder/d68ac2756077",
+            "component_rollbender/alexandrite/34a61606bc9a",
+            "component_rollbender/almandine/7bea2accf3af",
+            "component_rollbender/amber/5b779feda8d3",
+            "component_rollbender/andesite/d5bf1f430606",
+            "component_rollbender/andradite/64f563a9e790",
+            "component_rollbender/applewood/21caa9655e3d",
+            "component_rollbender/aquamarine/508ce2bea36b",
+            "component_rollbender/ashwood/7d7a319b2595",
+            "component_rollbender/aspen/1faf5332880e",
+            "component_rollbender/autumnwood/345f7496766b"
+          ]
+        }
+      },
+      {
+        "family": "component_wiremill",
+        "gt_maps": [
+          "gt.recipe.wiremill"
+        ],
+        "note": "T3 metadata-gated component rules; machine implementation deferred.",
+        "cc_normalized_rows": 443,
+        "gt_normalized_rows": 455,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 158,
+          "NONE": 285
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 316,
+          "NONE": 139
+        },
+        "candidate_rows": 158,
+        "unmatched_cc_rows": 285,
+        "gt_only_signature_groups": 455,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [
+            "component_wiremill/abyssalnite/5e3f938fa6c4",
+            "component_wiremill/adamantine/afddd89adfc4",
+            "component_wiremill/adamantite/57751948cb86",
+            "component_wiremill/adamantium/d2d730cfd221",
+            "component_wiremill/aluminium/0952319c51cd",
+            "component_wiremill/aluminium_brass/eb7d53823c86",
+            "component_wiremill/alumite/429d9aec17d5",
+            "component_wiremill/americium/e7a27998cf3c",
+            "component_wiremill/americium241/478996a9af2d",
+            "component_wiremill/americium242/5b2984c6419a",
+            "component_wiremill/angmallen/c931ff27e7a5",
+            "component_wiremill/annealed_copper/a4c4cb5e1441"
+          ],
+          "none": [
+            "component_wiremill/aluminium/2bc4accfa870",
+            "component_wiremill/annealed_copper/ea90f907ace8",
+            "component_wiremill/blue_alloy/6874b64e08e1",
+            "component_wiremill/carborundum/47d4d4446fb0",
+            "component_wiremill/constantan/53fc7aa01ad7",
+            "component_wiremill/copper/23667e564db9",
+            "component_wiremill/efrine/46b919408795",
+            "component_wiremill/electrotine_alloy/53e65ed2dbdc",
+            "component_wiremill/electrum/aa4f97d11e92",
+            "component_wiremill/gold/9cdaf2dca636",
+            "component_wiremill/graphene/390806ce7892",
+            "component_wiremill/hslasteel/da09b114f4ff"
+          ]
+        }
+      },
+      {
+        "family": "component_bender",
+        "gt_maps": [
+          "gt.recipe.rollbender"
+        ],
+        "note": "T3 metadata-gated component rules; machine implementation deferred.",
+        "cc_normalized_rows": 690,
+        "gt_normalized_rows": 932,
+        "match_tiers": {
+          "EXACT": 153,
+          "FORM_PATH": 0,
+          "SEMANTIC": 153,
+          "NONE": 384
+        },
+        "gt_match_tiers": {
+          "EXACT": 153,
+          "FORM_PATH": 0,
+          "SEMANTIC": 153,
+          "NONE": 626
+        },
+        "candidate_rows": 306,
+        "unmatched_cc_rows": 384,
+        "gt_only_signature_groups": 779,
+        "samples": {
+          "exact": [
+            "component_bender/abyssalnite/a4677d11cb7c",
+            "component_bender/adamantine/fbc456f9f4ad",
+            "component_bender/adamantite/e9c331723d34",
+            "component_bender/adamantium/614184f19dc6",
+            "component_bender/aluminium/af0d9c40f262",
+            "component_bender/aluminium_brass/65f9d8c21637",
+            "component_bender/alumite/ef3d0f4c18d6",
+            "component_bender/americium/ba69b343d9b9",
+            "component_bender/americium241/3c40d13a449c",
+            "component_bender/americium242/bbf34e292912",
+            "component_bender/angmallen/ac8e3a4480ba",
+            "component_bender/annealed_copper/f7a53e0d8815"
+          ],
+          "form_path": [],
+          "semantic": [
+            "component_bender/abyssalnite/287cf04727bc",
+            "component_bender/adamantine/3f07a4d6876d",
+            "component_bender/adamantite/aa94e55756fd",
+            "component_bender/adamantium/a5ca54e47ed2",
+            "component_bender/aluminium/f6d7cd1c2724",
+            "component_bender/aluminium_brass/2946e7627c65",
+            "component_bender/alumite/515b52c88fc4",
+            "component_bender/americium/7f03d7ea4918",
+            "component_bender/americium241/a55b7dca0bd3",
+            "component_bender/americium242/633d791bd325",
+            "component_bender/angmallen/2fe93402c0fc",
+            "component_bender/annealed_copper/29d476790930"
+          ],
+          "none": [
+            "component_bender/acacia/81f4bec9ce31",
+            "component_bender/alder/0a950dab5e9b",
+            "component_bender/almandine/99c14e972751",
+            "component_bender/amber/1fba2fc0adea",
+            "component_bender/andradite/726b4df2fff4",
+            "component_bender/applewood/812c2e0bc794",
+            "component_bender/aquamarine/4afa9b0713eb",
+            "component_bender/ashwood/50b19617657a",
+            "component_bender/aspen/a196df9422cc",
+            "component_bender/autumnwood/d47073f22e99",
+            "component_bender/balsa/aedbba1ff660",
+            "component_bender/bamboo/550a33f71d60"
+          ]
+        }
+      },
+      {
+        "family": "component_assembler",
+        "gt_maps": [
+          "gt.recipe.assembler"
+        ],
+        "note": "T3 metadata-gated component rules; machine implementation deferred.",
+        "cc_normalized_rows": 658,
+        "gt_normalized_rows": 1240,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 658
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 1240
+        },
+        "candidate_rows": 0,
+        "unmatched_cc_rows": 658,
+        "gt_only_signature_groups": 1240,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "component_assembler/aluminium/46205ae55a10",
+            "component_assembler/annealed_copper/2af8d858a333",
+            "component_assembler/blue_alloy/28a423cb2453",
+            "component_assembler/carborundum/ab26a7c14495",
+            "component_assembler/constantan/d2f70d6b1ada",
+            "component_assembler/copper/a4508474ee62",
+            "component_assembler/efrine/c6b6983d0c80",
+            "component_assembler/electrotine_alloy/090939f41131",
+            "component_assembler/electrum/f4234a7e7a4c",
+            "component_assembler/gold/c4b90233a0fa",
+            "component_assembler/hslasteel/eecf87fce1ce",
+            "component_assembler/iridium/2f84d7ce46ec"
+          ]
+        }
+      },
+      {
+        "family": "component_welder",
+        "gt_maps": [
+          "gt.recipe.welder"
+        ],
+        "note": "T3 metadata-gated component rules; machine implementation deferred.",
+        "cc_normalized_rows": 4893,
+        "gt_normalized_rows": 4529,
+        "match_tiers": {
+          "EXACT": 1216,
+          "FORM_PATH": 0,
+          "SEMANTIC": 246,
+          "NONE": 3431
+        },
+        "gt_match_tiers": {
+          "EXACT": 1216,
+          "FORM_PATH": 0,
+          "SEMANTIC": 246,
+          "NONE": 3067
+        },
+        "candidate_rows": 1462,
+        "unmatched_cc_rows": 3431,
+        "gt_only_signature_groups": 3313,
+        "samples": {
+          "exact": [
+            "component_welder/abyssalnite/45dc8bc16f20",
+            "component_welder/actinium/2b2458bebbe7",
+            "component_welder/adamantine/df0391e312cf",
+            "component_welder/adamantite/78ddbc5c4810",
+            "component_welder/adamantium/007110a360b0",
+            "component_welder/alduorite/3b090a8a8ff2",
+            "component_welder/aluminium/4ac727013de1",
+            "component_welder/aluminium_alloy/65d9d6a37caa",
+            "component_welder/aluminium_brass/2f22b29ab3be",
+            "component_welder/alumite/b065695fd9c0",
+            "component_welder/americium/28e4cab64ed0",
+            "component_welder/americium241/4ccb2eb44d6f"
+          ],
+          "form_path": [],
+          "semantic": [
+            "component_welder/abyssalnite/61c2054932c6",
+            "component_welder/adamantium/7c18baade287",
+            "component_welder/aluminium/788ec6cb4bc2",
+            "component_welder/aluminium_brass/fa878a4e5c2d",
+            "component_welder/alumite/e2aeeee18f3f",
+            "component_welder/angmallen/406b531343a7",
+            "component_welder/annealed_copper/3b4c44366cf0",
+            "component_welder/antimony/c2dbc399b98d",
+            "component_welder/ardite/e8d0ab5e967f",
+            "component_welder/arsenic_bronze/cad801aa52bf",
+            "component_welder/arsenic_copper/74c87c82a0c1",
+            "component_welder/astral_silver/0de7332de638"
+          ],
+          "none": [
+            "component_welder/abyssalnite/e04aa40617c0",
+            "component_welder/actinium/cd3e268753f2",
+            "component_welder/adamantine/dcd38359dffc",
+            "component_welder/adamantite/c4e30d72804d",
+            "component_welder/adamantium/9f733378ba06",
+            "component_welder/alduorite/3a3717d44764",
+            "component_welder/aluminium/2c0eaf3819cb",
+            "component_welder/aluminium_alloy/b187cfbfb15e",
+            "component_welder/aluminium_brass/bd254a6b97c3",
+            "component_welder/alumite/41165554956b",
+            "component_welder/americium/cb44070f0f09",
+            "component_welder/americium241/43c77c8bd36f"
+          ]
+        }
+      },
+      {
+        "family": "component_press",
+        "gt_maps": [
+          "gt.recipe.press"
+        ],
+        "note": "T3 metadata-gated component rules; machine implementation deferred.",
+        "cc_normalized_rows": 1286,
+        "gt_normalized_rows": 2716,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 1286
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 2716
+        },
+        "candidate_rows": 0,
+        "unmatched_cc_rows": 1286,
+        "gt_only_signature_groups": 2716,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "component_press/abyssalnite/9e811e550fe1",
+            "component_press/actinium/5bf14f981824",
+            "component_press/adamantine/01699eccc598",
+            "component_press/adamantite/20d98453a726",
+            "component_press/adamantium/efaff79684e4",
+            "component_press/alduorite/109ac0ae5448",
+            "component_press/aluminium/c27bf430b7eb",
+            "component_press/aluminium_alloy/f780c4490e82",
+            "component_press/aluminium_brass/ecc6197c7786",
+            "component_press/alumite/e6e407be8640",
+            "component_press/americium/e3a1488ee583",
+            "component_press/americium241/13f4829a989f"
+          ]
+        }
+      },
+      {
+        "family": "alloy",
+        "gt_maps": [
+          "gt.recipe.cruciblealloying"
+        ],
+        "note": "CC composition rules vs GT fake alloying recipes",
+        "cc_normalized_rows": 64,
+        "gt_normalized_rows": 126,
+        "match_tiers": {
+          "EXACT": 46,
+          "FORM_PATH": 0,
+          "SEMANTIC": 3,
+          "NONE": 15
+        },
+        "gt_match_tiers": {
+          "EXACT": 92,
+          "FORM_PATH": 0,
+          "SEMANTIC": 6,
+          "NONE": 28
+        },
+        "candidate_rows": 49,
+        "unmatched_cc_rows": 15,
+        "gt_only_signature_groups": 29,
+        "samples": {
+          "exact": [
+            "alloy/aluminium_brass/eb9f8a07bf1f",
+            "alloy/angmallen/5e2a9788ba71",
+            "alloy/arsenic_bronze/da85aa9191c1",
+            "alloy/arsenic_copper/a90144913de8",
+            "alloy/battery_alloy/75c96030dce5",
+            "alloy/bismuth_bronze/b1152acf500c",
+            "alloy/black_bronze/8e2f68ad121e",
+            "alloy/black_steel/318ef7208e34",
+            "alloy/blue_steel/bc5750b1b72d",
+            "alloy/brass/68722b76ab07",
+            "alloy/bronze/28641ca6d2ff",
+            "alloy/cd_in_ag_alloy/a2fd27836be4"
+          ],
+          "form_path": [],
+          "semantic": [
+            "alloy/electrical_steel/4d086c1a257b",
+            "alloy/netherite/d0155b565196",
+            "alloy/titanium_aluminide/4352d8d1b42c"
+          ],
+          "none": [
+            "alloy/aluminium_alloy/e5ef495ea904",
+            "alloy/amordrine/3cf946d08740",
+            "alloy/damascus_steel/f57ad158f0ff",
+            "alloy/desichalkos/e0741d9e8e8f",
+            "alloy/duralumin/5c9fc7353e85",
+            "alloy/gilded_iron/57335decfc52",
+            "alloy/haderoth/562550005b58",
+            "alloy/hslatungsten_alloy/b14127afa5f8",
+            "alloy/inolashite/84dd32631324",
+            "alloy/manyullyn/bc344e315fb3",
+            "alloy/purple_alloy/9c5299a6fa23",
+            "alloy/shadow_steel/345869386c5d"
+          ]
+        }
+      },
+      {
+        "family": "cook_smelting",
+        "gt_maps": [
+          "mc.recipe.furnace"
+        ],
+        "note": "GT6 source-derived furnace IO; its non-GT recipe map executes at 16 ticks and 16 EU/t.",
+        "cc_normalized_rows": 385,
+        "gt_normalized_rows": 383,
+        "match_tiers": {
+          "EXACT": 383,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 2
+        },
+        "gt_match_tiers": {
+          "EXACT": 383,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 0
+        },
+        "candidate_rows": 383,
+        "unmatched_cc_rows": 2,
+        "gt_only_signature_groups": 0,
+        "samples": {
+          "exact": [
+            "cook_smelting/abyssalnite/b73bdf436b4a",
+            "cook_smelting/abyssalnite/ec7e538ccf93",
+            "cook_smelting/actinium/a0e29218bce0",
+            "cook_smelting/actinium/819a3cde8d55",
+            "cook_smelting/adamantine/b4b019bc4e73",
+            "cook_smelting/adamantine/1dcfff49352f",
+            "cook_smelting/adamantite/0214082368c6",
+            "cook_smelting/adamantite/9dff0a0408c9",
+            "cook_smelting/adamantium/e2f017090c49",
+            "cook_smelting/alduorite/e7b6d9159c38",
+            "cook_smelting/alduorite/137fb7941b66",
+            "cook_smelting/alumina/48751096bf2c"
+          ],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "cook_smelting/lonsdaleite/4e53f6a9d950",
+            "cook_smelting/prismane/3082b7ebf317"
+          ]
+        }
+      },
+      {
+        "family": "cook_blasting",
+        "gt_maps": [],
+        "note": "Minecraft 1.21 blasting has no GT6/1.7.10 equivalent.",
+        "cc_normalized_rows": 385,
+        "gt_normalized_rows": 0,
+        "match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 385
+        },
+        "gt_match_tiers": {
+          "EXACT": 0,
+          "FORM_PATH": 0,
+          "SEMANTIC": 0,
+          "NONE": 0
+        },
+        "candidate_rows": 0,
+        "unmatched_cc_rows": 385,
+        "gt_only_signature_groups": 0,
+        "samples": {
+          "exact": [],
+          "form_path": [],
+          "semantic": [],
+          "none": [
+            "cook_blasting/abyssalnite/52ad0fddd18e",
+            "cook_blasting/abyssalnite/bab5f0d3f945",
+            "cook_blasting/actinium/81256b4a36a9",
+            "cook_blasting/actinium/736c195080da",
+            "cook_blasting/adamantine/0f1a8306c2aa",
+            "cook_blasting/adamantine/90d74a9b004f",
+            "cook_blasting/adamantite/ca0d76050422",
+            "cook_blasting/adamantite/065545e5936a",
+            "cook_blasting/adamantium/0e8141091edc",
+            "cook_blasting/alduorite/b23436bf3156",
+            "cook_blasting/alduorite/d31721bf7439",
+            "cook_blasting/alumina/7c4d2318914b"
+          ]
+        }
+      }
+    ]
+  },
   "unowned_cc_maps": [
     {
       "cc_map": "fusion_extension",

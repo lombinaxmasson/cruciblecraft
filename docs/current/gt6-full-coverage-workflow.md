@@ -17,6 +17,7 @@ Builder：`tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconcilia
 | `…/coverage.json` | 全部轴的机器可读结果 |
 | `…/chem_thermal.json` | 化学 / 热处理子集 |
 | `…/source_attribution.json` | 配方源行归属钉（见第 3 节） |
+| `…/semantic_coverage.json` | normalized CC/GT 语义投影辅助证据（见第 3.7 节） |
 
 ```powershell
 # 重建全部产物
@@ -25,6 +26,9 @@ python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation.py --check
 # 用本地 gt6_dump 重新核对归属钉，不写
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation.py --verify-source
+# 单独重建/检查语义投影（通常由上面的命令自动调用）
+python tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py --write
+python tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py --check
 ```
 
 `--check` 和“配方证据没变”时的 `--write` 都不需要参考树。只有配方证据变了，`--write`
@@ -139,6 +143,28 @@ CI 上没有 `gt6_dump`。`source_attribution.json` 记录了：
 
 `--check` 会重算 `evidence_digest`，和钉不一致就失败，并提示去有 dump 的机器上跑 `--write`。
 所以只要配方证据有增减，CI 都会拦下来，不会用旧的归属静默算出新数字。
+
+### 3.7 语义投影辅助证据
+
+`build_semantic_coverage.py` 复用 `tools/compare_gt6_recipes.py` 的 normalized IR 和
+材料规则展开，输出每个比较 family 的：
+
+- `EXACT`：normalized 输入/输出/机会签名完全一致；
+- `FORM_PATH`：同一材料形态路径匹配；
+- `SEMANTIC`：比较器找到同 family/material 的语义候选；
+- `NONE`：没有候选。
+
+这四档只对比较器当前能展开的 CC normalized rows 计数，不能直接换算成 GT6 原始源行。
+尤其 `SEMANTIC` 不是完成证明；机器时间、EU/t、special value、获得格和 raw-row
+multiplicity 仍需后续逐项验证。该摘要因此只作为
+`implementation_evidence_pending` 的拆分线索，不改变三档源行分母。
+
+摘要同时做一遍反向 GT normalized-row 分类，方便看 GT 侧有多少 normalized 行能找到
+CC candidate；它仍然只在 normalized 单位内成立，不能把 `SEMANTIC` 数字直接加回
+720,841 条 raw source rows。
+
+`--write` 需要本地 `tools/gt6_recipe_normalized_reference.json`；`--check` 不需要参考树，
+只检查当前 CC 材料/规则展开摘要、比较器源码 hash 和已提交摘要是否一致。
 
 ## 4. CI 与测试
 

@@ -88,6 +88,26 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
             grades,
             self.coverage["recipe_evidence_grades"],
         )
+        semantic = self.coverage["semantic_coverage"]
+        tiers = semantic["summary"]["tier_counts"]
+        self.assertEqual(
+            semantic["summary"]["cc_normalized_rows"],
+            sum(tiers.values()),
+        )
+        self.assertGreater(semantic["summary"]["candidate_rows"], 0)
+        self.assertEqual(
+            semantic["summary"]["candidate_rows"],
+            tiers["EXACT"] + tiers["FORM_PATH"] + tiers["SEMANTIC"],
+        )
+        self.assertGreater(
+            semantic["cc_projection"]["runtime_rows_seen"],
+            semantic["cc_projection"]["recognized_runtime_rows"],
+        )
+        self.assertGreater(semantic["cc_projection"]["recognized_runtime_rows"], 0)
+        self.assertEqual(
+            semantic["summary"]["gt_normalized_rows"],
+            sum(semantic["summary"]["gt_tier_counts"].values()),
+        )
         for row in self.coverage["recipe_maps"]:
             evidence = row["source_evidence"]
             self.assertEqual(
@@ -176,6 +196,10 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
             name = row["source_map"] or "(unnamed)"
             self.assertIn(f"`{name}`", text)
         self.assertIn("gt6-full-coverage-workflow.md", text)
+        self.assertIn("语义比对（辅助证据", text)
+        self.assertIn("EXACT", text)
+        self.assertIn("SEMANTIC", text)
+        self.assertIn("reverse GT normalized tiers", text)
 
     def test_empty_maps_are_not_reported_as_full_replay(self):
         for row in self.coverage["recipe_maps"]:

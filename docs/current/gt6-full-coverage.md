@@ -14,6 +14,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | --- | --- | --- |
 | 配方图 | 95 maps / 720841 源行 | `denominator_only` 17，`runtime_only` 4，`bounded_subset` 52，`full_replay` 6，`empty_source` 14，`legacy_exclusion_pending` 2 |
 | 配方源行证据分级 | 720841 源行 | `source_exact` 119375（16.6%）；`implementation_evidence_pending` 524790（72.8%）；`no_cc_evidence_or_legacy_pending` 76676（10.6%） （三档互斥且合计等于分母） |
+| 语义投影（辅助证据） | 20086 CC normalized rows / 359130 GT normalized rows | `EXACT` 3830，`SEMANTIC` 4330，`NONE` 11926；不换算成 GT6 源行完成率 |
 | 机器 kind | 96 canonical kinds | `denominator_only` 17，`identity_only` 1，`runtime_code_uncarded` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 43，`runtime_accepted` 20，`full_replay` 4 |
 | 多方块控制器 | 30 canonical kinds | `identity_only` 2，`runtime_code_uncarded` 2，`runtime_paused` 6，`runtime_accepted` 20 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
@@ -160,6 +161,48 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | CC map | 已注册 | CC 行 | 已追溯到 GT6 | 未追溯 | 材料规则 |
 | --- | --- | ---: | ---: | ---: | ---: |
 | `fusion_extension` | 是 | 1 | 0 | 1 | — |
+
+### 2.2 语义比对（辅助证据，不与三档源行相加）
+
+这里复用 `tools/compare_gt6_recipes.py` 的 `NormRecipe`、材料规则展开和 `EXACT / FORM_PATH / SEMANTIC / NONE` 判定。它比较的是 normalized CC/GT 配方，不是 GT6 原始行；一条 semantic candidate 也不自动证明机器数值、获得格或全部源行。
+
+- CC normalized rows：20086
+- GT normalized rows：359130
+- 运行时 `gt_recipe` / compact family rows：扫描 121854，当前 family 可归一化 1069；其余保留在 source-row/hash 轴，不强行归入 semantic family。
+- tiers：`EXACT` 3830，`FORM_PATH` 0，`SEMANTIC` 4330，`NONE` 11926
+- reverse GT normalized tiers：`EXACT` 4568，`FORM_PATH` 0，`SEMANTIC` 136019，`NONE` 218543；仍不是 raw GT6 源行覆盖率
+- 有 candidate 的 CC rows：8160；无 candidate：11926；GT-only signature groups：303126
+
+| family | GT map | CC normalized | GT normalized | EXACT | FORM_PATH | SEMANTIC | NONE | GT-only sig groups |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `coke_oven` | gt.recipe.cokeoven | 1 | 9 | 1 | 0 | 0 | 0 | 8 |
+| `crush_raw_to_crushed` | gt.recipe.crusher | 357 | 492 | 302 | 0 | 50 | 5 | 190 |
+| `form_ingot_to_plate` | gt.recipe.rollingmill, gt.recipe.extruder | 344 | 710 | 318 | 0 | 0 | 26 | 8 |
+| `form_plate_to_rod` | gt.recipe.extruder | 428 | 539 | 379 | 0 | 0 | 49 | 8 |
+| `form_rod_to_bolt` | gt.recipe.cutter, gt.recipe.extruder | 736 | 547 | 383 | 0 | 0 | 353 | 8 |
+| `anvil_raw_to_crushed` | gt.recipe.anvil | 445 | 224 | 198 | 0 | 0 | 247 | 26 |
+| `chain_sluice` | gt.recipe.sluice | 357 | 4840 | 0 | 0 | 0 | 357 | 4840 |
+| `chain_bath` | gt.recipe.bath | 1551 | 19265 | 0 | 0 | 0 | 1551 | 19265 |
+| `chain_centrifuge` | gt.recipe.centrifuge | 357 | 1182 | 0 | 0 | 0 | 357 | 1182 |
+| `chain_shredder` | gt.recipe.shredder | 357 | 40244 | 0 | 0 | 0 | 357 | 40244 |
+| `chain_sifter` | gt.recipe.sifter | 357 | 2872 | 0 | 0 | 0 | 357 | 2872 |
+| `chain_smelter` | gt.recipe.smelter | 195 | 5178 | 0 | 0 | 0 | 195 | 5177 |
+| `chain_mortar` | gt.recipe.mortar | 473 | 5688 | 0 | 0 | 0 | 473 | 5688 |
+| `component_extruder` | gt.recipe.extruder | 2782 | 237058 | 0 | 0 | 2782 | 0 | 185628 |
+| `component_cutter` | gt.recipe.cutter | 771 | 24015 | 0 | 0 | 0 | 771 | 24015 |
+| `component_lathe` | gt.recipe.lathe | 964 | 2519 | 0 | 0 | 938 | 26 | 2519 |
+| `component_rollingmill` | gt.recipe.rollingmill | 343 | 2435 | 297 | 0 | 0 | 46 | 2138 |
+| `component_rollbender` | gt.recipe.rollbender | 464 | 932 | 154 | 0 | 0 | 310 | 778 |
+| `component_wiremill` | gt.recipe.wiremill | 443 | 455 | 0 | 0 | 158 | 285 | 455 |
+| `component_bender` | gt.recipe.rollbender | 690 | 932 | 153 | 0 | 153 | 384 | 779 |
+| `component_assembler` | gt.recipe.assembler | 658 | 1240 | 0 | 0 | 0 | 658 | 1240 |
+| `component_welder` | gt.recipe.welder | 4893 | 4529 | 1216 | 0 | 246 | 3431 | 3313 |
+| `component_press` | gt.recipe.press | 1286 | 2716 | 0 | 0 | 0 | 1286 | 2716 |
+| `alloy` | gt.recipe.cruciblealloying | 64 | 126 | 46 | 0 | 3 | 15 | 29 |
+| `cook_smelting` | mc.recipe.furnace | 385 | 383 | 383 | 0 | 0 | 2 | 0 |
+| `cook_blasting` | — | 385 | 0 | 0 | 0 | 0 | 385 | 0 |
+
+语义投影的 `EXACT` / `SEMANTIC` 结果只能作为第二档 `implementation_evidence_pending` 的拆分线索；在建立 normalized 行到 GT6 原始行的稳定映射前，不会修改三档源行数字。
 
 ## 3. 化学 / 热处理子集
 
