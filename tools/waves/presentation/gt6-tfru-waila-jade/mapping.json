@@ -1,0 +1,921 @@
+{
+  "schema_version": 1,
+  "source_revision": "local-gt6-tfru-and-ktfruaddon",
+  "purpose": "Source-backed Waila to Jade migration ledger. This file describes observable rows; it does not register Jade providers.",
+  "source_trees": [
+    "gt6_tfru/gregtech6-TFRU/src/main/java",
+    "ktfruaddon/kTFRUAddon/src/main/java"
+  ],
+  "protocol": {
+    "waila_registration": "gregapi.compat.waila.CompatWaila.callbackRegister",
+    "registration_scope": "IWailaTile.class",
+    "callbacks": [
+      "getWailaStack",
+      "getWailaHead",
+      "getWailaBody",
+      "getWailaTail",
+      "getWailaNBT"
+    ],
+    "jade_projection": {
+      "server_data": "IServerDataProvider<BlockAccessor>.appendServerData",
+      "client_rows": "IBlockComponentProvider.appendTooltip",
+      "source_data_policy": "Do not invent rows absent from the Waila contract."
+    }
+  },
+  "color_tokens": {
+    "value_white": "LH.Chat.WHITE",
+    "unit_cyan": "LH.Chat.CYAN",
+    "state_forced_stop": "LH.Chat.YELLOW",
+    "state_active": "LH.Chat.GREEN",
+    "state_passive": "LH.Chat.BLUE",
+    "state_ready": "LH.Chat.GREEN",
+    "state_stopped": "LH.Chat.RED",
+    "state_power_saving": "LH.Chat.CYAN",
+    "item_section_cyan": "LH.Chat.CYAN",
+    "item_efficiency_yellow": "LH.Chat.YELLOW",
+    "item_input_green": "LH.Chat.GREEN",
+    "item_output_red": "LH.Chat.RED",
+    "item_warning_orange": "LH.Chat.ORANGE",
+    "item_hazard_dark_red": "LH.Chat.DRED",
+    "item_hint_dark_gray": "LH.Chat.DGRAY"
+  },
+  "standard_rows": {
+    "state": {
+      "provider": "IWailaTile.instanceInfoState",
+      "server_keys": [
+        {
+          "key": "gt.waila.state",
+          "type": "byte",
+          "source": "InfoState.getState(TileEntity)"
+        }
+      ],
+      "state_colors": {
+        "stopped_force": "state_forced_stop",
+        "active": "state_active",
+        "passive": "state_passive",
+        "ready": "state_ready",
+        "stopped": "state_stopped",
+        "power_saving": "state_power_saving"
+      },
+      "jade_section": "state"
+    },
+    "energy_io_range": {
+      "provider": "IWailaTile.instanceInfoEnergyIORange",
+      "source": "ITileEntityEnergy.getEnergySizeInputMin/Max and getEnergySizeOutputMin/Max",
+      "row_shape": "ENERGY_INPUT/ENERGY_OUTPUT + min-max + energy type + /A",
+      "value_color": "value_white",
+      "amperage_color": "unit_cyan",
+      "jade_section": "energy_io_range"
+    },
+    "energy_io_recommended": {
+      "provider": "IWailaTile.instanceInfoEnergyIORec",
+      "source": "ITileEntityEnergy.getEnergySizeInputRecommended/getEnergySizeOutputRecommended",
+      "row_shape": "ENERGY_INPUT/ENERGY_OUTPUT + recommended value + energy type + /A",
+      "value_color": "value_white",
+      "jade_section": "energy_io_recommended"
+    },
+    "tank": {
+      "provider": "IWailaTile.InfoTank or IWailaTile.addTankDesc",
+      "row_shape": "prefix + amount/capacity + L + localized fluid name",
+      "amount_color": "value_white",
+      "unit_color": "unit_cyan",
+      "fluid_name_color": "value_white",
+      "jade_section": "fluid_tanks"
+    },
+    "fluid_stack": {
+      "provider": "IWailaTile.addFluidStackDesc",
+      "row_shape": "prefix + amount + L + localized fluid name",
+      "amount_color": "value_white",
+      "unit_color": "unit_cyan",
+      "fluid_name_color": "value_white",
+      "jade_section": "fluid_output"
+    },
+    "energy_amount": {
+      "provider": "IWailaTile.addEnergyAmountDesc",
+      "row_shape": "prefix + amount + localized energy type",
+      "amount_color": "value_white",
+      "jade_section": "energy_buffer"
+    }
+  },
+  "families": [
+    {
+      "family": "large_gas_turbine",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.energy.generator.MultiTileEntityLargeTurbineGas",
+        "base_class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.energy.generator.MultiTileEntityLargeTurbine",
+        "implements": "IWailaTile",
+        "methods": [
+          "MultiTileEntityLargeTurbine.getWailaInfos",
+          "MultiTileEntityLargeTurbine.getWailaNBT",
+          "MultiTileEntityLargeTurbine.getWailaBody",
+          "MultiTileEntityLargeTurbineGas.getWailaInfos"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "state"
+        },
+        {
+          "row_type": "custom",
+          "section": "turbine_durability",
+          "label_key": "I18nHandler.TURBINE_DURABILITY",
+          "value_source": "NBT:turbine.dura",
+          "unit": "RU*h",
+          "value_color": "value_white"
+        },
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "tank",
+          "role": "input"
+        },
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "tank",
+          "role": "output"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "turbine.dura",
+          "type": "long",
+          "source": "mTurbineDurability/(20*3600)"
+        }
+      ],
+      "jade_projection": {
+        "provider": "one block component provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "state",
+          "turbine_durability",
+          "input_tank",
+          "output_tanks"
+        ],
+        "color_policy": "Use standard state/tank tokens; only durability value is explicitly white in source."
+      },
+      "item_tooltip": {
+        "source": "MultiTileEntityLargeTurbineGas.addToolTips",
+        "rows": [
+          {
+            "section": "structure",
+            "color": "item_section_cyan"
+          },
+          {
+            "section": "structure_details",
+            "color": "value_white"
+          },
+          {
+            "section": "exhaust_warning",
+            "color": "item_warning_orange"
+          }
+        ]
+      }
+    },
+    {
+      "family": "large_steam_turbine",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.energy.generator.MultiTileEntityLargeTurbineSteam",
+        "base_class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.energy.generator.MultiTileEntityLargeTurbine",
+        "implements": "IWailaTile",
+        "methods": [
+          "MultiTileEntityLargeTurbine.getWailaInfos",
+          "MultiTileEntityLargeTurbine.getWailaNBT",
+          "MultiTileEntityLargeTurbine.getWailaBody",
+          "MultiTileEntityLargeTurbineSteam.getWailaInfos"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "state"
+        },
+        {
+          "row_type": "custom",
+          "section": "turbine_durability",
+          "label_key": "I18nHandler.TURBINE_DURABILITY",
+          "value_source": "NBT:turbine.dura",
+          "unit": "RU*h",
+          "value_color": "value_white"
+        },
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "tank",
+          "role": "input"
+        },
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "tank",
+          "role": "output"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "turbine.dura",
+          "type": "long",
+          "source": "mTurbineDurability/(20*3600)"
+        }
+      ],
+      "jade_projection": {
+        "provider": "one block component provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "state",
+          "turbine_durability",
+          "input_tank",
+          "output_tanks"
+        ]
+      },
+      "item_tooltip": {
+        "source": "MultiTileEntityLargeTurbineSteam.addToolTips",
+        "rows": [
+          {
+            "section": "structure",
+            "color": "item_section_cyan"
+          },
+          {
+            "section": "structure_details",
+            "color": "value_white"
+          },
+          {
+            "section": "used_steam_warning",
+            "color": "item_warning_orange"
+          }
+        ]
+      }
+    },
+    {
+      "family": "steam_engine",
+      "source": {
+        "tree": "gt6_tfru/gregtech6-TFRU",
+        "class": "gregtech.tileentity.energy.converters.MultiTileEntityEngineSteam",
+        "implements": "IWailaTile",
+        "methods": [
+          "IWailaTile.getWailaInfos (default empty)",
+          "IWailaTile.getWailaNBT (default provider fold)",
+          "IWailaTile.getWailaBody (default provider fold)"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [],
+      "tail": [],
+      "server_data": [],
+      "jade_projection": {
+        "provider": "none for source-faithful migration",
+        "sync_path": "none",
+        "display_sections": [],
+        "policy": "Do not migrate addToolTips rows into Jade; the source class has no Waila rows."
+      },
+      "item_tooltip": {
+        "source": "MultiTileEntityEngineSteam.addToolTips",
+        "rows": [
+          {
+            "section": "conversion",
+            "color": "item_section_cyan"
+          },
+          {
+            "section": "efficiency",
+            "color": "item_efficiency_yellow"
+          },
+          {
+            "section": "energy_input_range_and_capacity",
+            "color": "item_input_green"
+          },
+          {
+            "section": "energy_output_range_and_capacity",
+            "color": "item_output_red"
+          },
+          {
+            "section": "used_steam",
+            "color": "item_warning_orange"
+          },
+          {
+            "section": "tool_hints",
+            "color": "item_hint_dark_gray"
+          }
+        ]
+      }
+    },
+    {
+      "family": "burning_chamber",
+      "source": {
+        "tree": "gt6_tfru/gregtech6-TFRU",
+        "classes": [
+          "gregtech.tileentity.energy.generators.MultiTileEntityGeneratorLiquid",
+          "gregtech.tileentity.energy.generators.MultiTileEntityGeneratorGas"
+        ],
+        "implements": "IWailaTile",
+        "methods": [
+          "IWailaTile.getWailaInfos (default empty)",
+          "IWailaTile.getWailaNBT (default provider fold)",
+          "IWailaTile.getWailaBody (default provider fold)"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [],
+      "tail": [],
+      "server_data": [],
+      "jade_projection": {
+        "provider": "none for source-faithful migration",
+        "sync_path": "none",
+        "display_sections": [],
+        "policy": "Do not promote item tooltip hazards into Jade rows."
+      },
+      "item_tooltip": {
+        "source": "MultiTileEntityGeneratorLiquid.addToolTips",
+        "rows": [
+          {
+            "section": "recipe",
+            "color": "item_section_cyan"
+          },
+          {
+            "section": "efficiency",
+            "color": "item_efficiency_yellow"
+          },
+          {
+            "section": "energy_output",
+            "color": "item_output_red"
+          },
+          {
+            "section": "air_ignite_and_inventory_requirements",
+            "color": "item_warning_orange"
+          },
+          {
+            "section": "fire_and_contact_hazards",
+            "color": "item_hazard_dark_red"
+          },
+          {
+            "section": "tool_hints",
+            "color": "item_hint_dark_gray"
+          }
+        ]
+      }
+    },
+    {
+      "family": "boiler_tank",
+      "source": {
+        "tree": "gt6_tfru/gregtech6-TFRU",
+        "class": "gregtech.tileentity.energy.converters.MultiTileEntityBoilerTank",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaInfos",
+          "getWailaNBT",
+          "getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "energy_io_recommended"
+        },
+        {
+          "row_type": "custom",
+          "section": "efficiency",
+          "label": "Efficiency",
+          "value_source": "NBT:efficiency",
+          "unit": "%",
+          "value_color": "value_white"
+        },
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "energy_amount",
+          "label": "ENERGY_CONTAINED"
+        },
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "tank",
+          "role": "all_tanks"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "efficiency",
+          "type": "short",
+          "source": "mEfficiency"
+        },
+        {
+          "key": "energy",
+          "type": "long",
+          "source": "mEnergy"
+        },
+        {
+          "key": "tank.*",
+          "type": "FluidTankGT",
+          "source": "mTanks"
+        }
+      ],
+      "jade_projection": {
+        "provider": "block component + server data provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "energy_io_recommended",
+          "efficiency",
+          "energy_buffer",
+          "fluid_tanks"
+        ]
+      }
+    },
+    {
+      "family": "liquid_motor",
+      "source": {
+        "tree": "gt6_tfru/gregtech6-TFRU",
+        "class": "gregtech.tileentity.energy.generators.MultiTileEntityMotorLiquid",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaInfos",
+          "getWailaNBT",
+          "getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "state"
+        },
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "energy_io_range"
+        },
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "tank",
+          "role": "tank_1_to_4"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "tank.0..3",
+          "type": "FluidTankGT",
+          "source": "mTanks[0..3]"
+        }
+      ],
+      "jade_projection": {
+        "provider": "block component + server data provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "state",
+          "energy_io_range",
+          "fluid_tanks"
+        ]
+      }
+    },
+    {
+      "family": "wireless_battery",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.energy.storage.WirelessBatteryBase",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaInfos",
+          "getWailaNBT",
+          "getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "energy_io_range"
+        },
+        {
+          "row_type": "custom",
+          "section": "stored_energy",
+          "value_source": "NBT:stored/capa",
+          "unit": "k + energy type",
+          "value_color": "value_white"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "stored",
+          "type": "long",
+          "source": "mEnergyStored/1000"
+        },
+        {
+          "key": "capa",
+          "type": "long",
+          "source": "mCapacity/1000"
+        }
+      ],
+      "jade_projection": {
+        "provider": "block component + server data provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "energy_io_range",
+          "energy_buffer"
+        ]
+      }
+    },
+    {
+      "family": "transform_battery",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.energy.storage.TransformBattery",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaInfos",
+          "getWailaNBT",
+          "getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "energy_io_range"
+        },
+        {
+          "row_type": "custom",
+          "section": "stored_energy",
+          "value_source": "NBT:stored/capa",
+          "unit": "k + energy type",
+          "value_color": "value_white"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "stored",
+          "type": "long",
+          "source": "mEnergyStored/1000"
+        },
+        {
+          "key": "capa",
+          "type": "long",
+          "source": "mCapacity/1000"
+        }
+      ],
+      "jade_projection": {
+        "provider": "block component + server data provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "energy_io_range",
+          "energy_buffer"
+        ]
+      }
+    },
+    {
+      "family": "tidal_wave_generator",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.energy.generator.TidalWaveGenerater",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaInfos"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "state"
+        }
+      ],
+      "tail": [],
+      "server_data": [],
+      "jade_projection": {
+        "provider": "block component provider",
+        "sync_path": "client_block_entity",
+        "display_sections": [
+          "state"
+        ]
+      }
+    },
+    {
+      "family": "electromagnet_crucible",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.machine.ElectromagnetCrucible",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaNBT",
+          "getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "custom",
+          "section": "core_temperature",
+          "value_source": "NBT:mTemp.c",
+          "unit": "localized temperature",
+          "value_color": "value_white"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "mTemp.c",
+          "type": "int",
+          "source": "floor(mTemp)"
+        }
+      ],
+      "jade_projection": {
+        "provider": "block component + server data provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "temperature"
+        ]
+      }
+    },
+    {
+      "family": "quantum_storage",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.machine.QuantumStorage",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaNBT",
+          "getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "custom",
+          "section": "core_temperature",
+          "value_source": "NBT:mTemp.c",
+          "unit": "localized temperature",
+          "value_color": "value_white"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "mTemp.c",
+          "type": "int",
+          "source": "constant 0"
+        }
+      ],
+      "jade_projection": {
+        "provider": "block component + server data provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "temperature"
+        ]
+      }
+    },
+    {
+      "family": "valve",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.random.MultiTileEntityValve",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaNBT",
+          "getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "tank",
+          "role": "content"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "gt.tank",
+          "type": "FluidTankGT",
+          "source": "mTank"
+        }
+      ],
+      "jade_projection": {
+        "provider": "block component + server data provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "fluid_content"
+        ]
+      }
+    },
+    {
+      "family": "research_table_item",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.research.ResearchTableItem",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaNBT",
+          "getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "custom",
+          "section": "progress",
+          "value_source": "NBT:progress/interval",
+          "unit": "%",
+          "value_color": "waila_default"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "progress",
+          "type": "int",
+          "source": "progress"
+        }
+      ],
+      "jade_projection": {
+        "provider": "block component + server data provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "progress"
+        ]
+      }
+    },
+    {
+      "family": "research_table_printer",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.research.ResearchTablePrinterTech",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaNBT",
+          "getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "custom",
+          "section": "progress",
+          "value_source": "NBT:progress/interval",
+          "unit": "%",
+          "value_color": "waila_default"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "progress",
+          "type": "long",
+          "source": "progress"
+        }
+      ],
+      "jade_projection": {
+        "provider": "block component + server data provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "progress"
+        ]
+      }
+    },
+    {
+      "family": "asteroid_miner",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.miner.AsteroidMiner",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaNBT",
+          "getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [],
+      "tail": [],
+      "server_data": [],
+      "jade_projection": {
+        "provider": "none for source-faithful migration",
+        "sync_path": "none",
+        "display_sections": [],
+        "policy": "Only the IWailaTile default chain is invoked; no custom row is emitted by this class."
+      }
+    },
+    {
+      "family": "asteroid_finder",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.miner.AsteroidFinder",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaNBT",
+          "getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [],
+      "tail": [],
+      "server_data": [],
+      "jade_projection": {
+        "provider": "none for source-faithful migration",
+        "sync_path": "none",
+        "display_sections": [],
+        "policy": "Only the IWailaTile default chain is invoked; no custom row is emitted by this class."
+      }
+    },
+    {
+      "family": "dummy_multiblock_part",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.multiblock.parts.DummyCrucibleScreen + api.tile.part.IMultiBlockPart",
+        "implements": "IWailaTile",
+        "methods": [
+          "IMultiBlockPart.getWailaNBT",
+          "IMultiBlockPart.getWailaBody"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "custom",
+          "section": "formed",
+          "value_source": "target controller",
+          "value_color": "value_white"
+        },
+        {
+          "row_type": "forwarded",
+          "section": "controller_waila_body",
+          "source": "target controller IWailaTile"
+        }
+      ],
+      "tail": [],
+      "server_data": [
+        {
+          "key": "part.target",
+          "type": "position",
+          "source": "target controller"
+        },
+        {
+          "key": "part.target.*",
+          "type": "forwarded NBT",
+          "source": "target controller IWailaTile"
+        }
+      ],
+      "jade_projection": {
+        "provider": "block component + server data provider",
+        "sync_path": "jade_server_data",
+        "display_sections": [
+          "formed",
+          "controller_rows"
+        ]
+      }
+    },
+    {
+      "family": "nuclear_attachment_neutron_liquid_breeder",
+      "source": {
+        "tree": "ktfruaddon/kTFRUAddon",
+        "class": "cn.kuzuanpa.ktfruaddon.tile.machine.NuclearAttachmentNeutronLiquidBreeder",
+        "implements": "IWailaTile",
+        "methods": [
+          "getWailaInfos"
+        ]
+      },
+      "surface": "waila",
+      "head": [],
+      "body": [
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "tank",
+          "role": "input"
+        },
+        {
+          "row_type": "standard_provider",
+          "provider_ref": "tank",
+          "role": "output"
+        }
+      ],
+      "tail": [],
+      "server_data": [],
+      "jade_projection": {
+        "provider": "block component provider",
+        "sync_path": "client_block_entity",
+        "display_sections": [
+          "input_tank",
+          "output_tank"
+        ]
+      }
+    }
+  ]
+}

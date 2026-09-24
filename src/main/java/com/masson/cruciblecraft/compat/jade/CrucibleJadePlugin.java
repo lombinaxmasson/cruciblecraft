@@ -12,7 +12,6 @@ import com.masson.cruciblecraft.content.block.RockBlock;
 import com.masson.cruciblecraft.content.item.MaterialFormItem;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
-import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.compat.jade.observation.BatteryObservation;
@@ -55,7 +54,6 @@ import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FoundryCastingBlockEntity;
 import com.masson.cruciblecraft.content.mold.MoldRecipes;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
-import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
@@ -141,7 +139,6 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         registration.registerBlockComponent(CeramicMoldComponentProvider.INSTANCE, CeramicMoldBlock.class);
         registration.registerBlockComponent(CeramicMoldComponentProvider.INSTANCE, MteInPlaceBlock.class);
         registration.registerBlockComponent(BoilerComponentProvider.INSTANCE, BoilerBlock.class);
-        registration.registerBlockComponent(SteamEngineComponentProvider.INSTANCE, SteamEngineBlock.class);
         registration.registerBlockComponent(CrusherComponentProvider.INSTANCE, CrusherBlock.class);
         registration.registerBlockComponent(
                 ProcessingMachineComponentProvider.INSTANCE,
@@ -388,44 +385,6 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
             }
         }
         @Override public ResourceLocation getUid() { return UID; }
-    }
-
-    private enum SteamEngineComponentProvider implements IBlockComponentProvider {
-        INSTANCE;
-        private static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(
-                CrucibleCraft.MODID, "steam_engine");
-        @Override public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-            if (accessor.getBlockEntity() instanceof SteamEngineBlockEntity engine) {
-                tooltip.remove(JadeIds.UNIVERSAL_FLUID_STORAGE);
-                tooltip.add(Component.translatable(
-                        "jade.cruciblecraft.steam_engine.steam",
-                        engine.steamAmount(),
-                        engine.steamCapacity(),
-                        engine.inputRateMinimum(),
-                        engine.inputRateMaximum()));
-                tooltip.add(Component.translatable(
-                        "jade.cruciblecraft.steam_engine.kinetic",
-                        engine.stored(),
-                        engine.kineticCapacity()));
-                tooltip.add(Component.translatable(
-                        "jade.cruciblecraft.steam_engine.output",
-                        engine.minimumOutputRate(),
-                        engine.maximumOutputRate()));
-                tooltip.add(Component.translatable(
-                        "jade.cruciblecraft.steam_engine.status",
-                        Component.translatable(
-                                "jade.cruciblecraft.steam_engine.status."
-                                        + steamEngineStatusKey(engine.status()))));
-            }
-        }
-        @Override public ResourceLocation getUid() { return UID; }
-
-        private static String steamEngineStatusKey(String status) {
-            return switch (status) {
-                case "running", "no_steam", "overloaded", "stopped" -> status;
-                default -> "unknown";
-            };
-        }
     }
 
     private enum CrusherComponentProvider implements IBlockComponentProvider {

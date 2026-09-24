@@ -635,19 +635,6 @@ public class ModLanguageProvider extends LanguageProvider {
             add("item.cruciblecraft.coin", "%s 硬币");
             add("jade.cruciblecraft.mold_solid", "已凝固");
             add("jade.cruciblecraft.mold_state", "状态：%s，%s °C");
-            add("jade.cruciblecraft.steam_engine.steam",
-                    "蒸汽：%s/%s mB（输入 %s-%s mB/t）");
-            add("jade.cruciblecraft.steam_engine.kinetic",
-                    "KU：%s/%s");
-            add("jade.cruciblecraft.steam_engine.output",
-                    "输出：%s-%s KU/t");
-            add("jade.cruciblecraft.steam_engine.status",
-                    "状态：%s");
-            add("jade.cruciblecraft.steam_engine.status.running", "运行中");
-            add("jade.cruciblecraft.steam_engine.status.no_steam", "缺少蒸汽");
-            add("jade.cruciblecraft.steam_engine.status.overloaded", "过载停机");
-            add("jade.cruciblecraft.steam_engine.status.stopped", "已停止");
-            add("jade.cruciblecraft.steam_engine.status.unknown", "未知");
             add("jade.cruciblecraft.temperature", "温度：%s %s");
             add("tooltip.cruciblecraft.durability", "耐久：%s / %s");
             add("tooltip.cruciblecraft.machine_material",
@@ -1099,19 +1086,6 @@ public class ModLanguageProvider extends LanguageProvider {
         add("container.cruciblecraft.bronze_crusher", "Bronze Crusher");
         add("emi.category.cruciblecraft.crusher", "Crusher");
         add("jade.cruciblecraft.boiler", "Water: %s/%s mB, Steam: %s/%s mB, Heat: %s/80 HU");
-        add("jade.cruciblecraft.steam_engine.steam",
-                "Steam: %s/%s mB (input %s-%s mB/t)");
-        add("jade.cruciblecraft.steam_engine.kinetic",
-                "KU: %s/%s");
-        add("jade.cruciblecraft.steam_engine.output",
-                "Output: %s-%s KU/t");
-        add("jade.cruciblecraft.steam_engine.status",
-                "Status: %s");
-        add("jade.cruciblecraft.steam_engine.status.running", "running");
-        add("jade.cruciblecraft.steam_engine.status.no_steam", "no steam");
-        add("jade.cruciblecraft.steam_engine.status.overloaded", "overloaded and stopped");
-        add("jade.cruciblecraft.steam_engine.status.stopped", "stopped");
-        add("jade.cruciblecraft.steam_engine.status.unknown", "unknown");
         add("jade.cruciblecraft.crusher", "Power: %s KU/t, Progress: %s/%s (%s)");
         add("jade.cruciblecraft.processing_machine",
                 "Power: %s/t, Progress: %s/%s (%s)");

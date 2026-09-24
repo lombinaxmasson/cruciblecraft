@@ -67,17 +67,15 @@
     {
       "family": "bronze_steam_engine",
       "live_identities": ["cruciblecraft:bronze_steam_engine"],
-      "static_profile_source": "SteamEngineBlockEntity capacities",
-      "dynamic_state_source": "SteamEngineBlockEntity steam/stored/stroke",
-      "sync_path": "client_block_entity",
-      "display_sections": ["steam", "ku", "stroke"],
-      "translation_keys": [
-        "jade.cruciblecraft.steam_engine",
-        "config.jade.plugin_cruciblecraft.bronze_steam_engine"
-      ],
+      "static_profile_source": "GT6-TFRU IWailaTile default contract (no custom rows)",
+      "dynamic_state_source": "none",
+      "sync_path": "none",
+      "display_sections": [],
+      "translation_keys": [],
       "status": "ready_existing",
       "owner": "presentation/live-art-jade",
-      "reason": "Existing provider kept."
+      "reason": "Source-faithful GT6 migration has no custom Waila body; the existing CC-specific Jade provider is removed.",
+      "source_waila_contract": "tools/waves/presentation/gt6-tfru-waila-jade/mapping.json#families[steam_engine]"
     },
     {
       "family": "bronze_crusher",
