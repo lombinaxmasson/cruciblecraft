@@ -283,6 +283,21 @@ def affected_modules_for_path(
     policy: dict[str, Any],
     path: str,
 ) -> set[str] | None:
+    normalized = path.replace("\\", "/")
+    if normalized.endswith(".currentness.json"):
+        return set()
+    from tools import material_form_authority as form_authority
+
+    if form_authority.is_historical_receipt(normalized):
+        return set()
+    if normalized in {
+        "tools/material_form_authority.json",
+        "tools/material_form_authority.py",
+    }:
+        selected = set(form_authority.consumer_test_modules())
+        selected.add("test_material_form_authority")
+        selected.add("test_bulk_port_verification")
+        return selected
     modules: set[str] = set()
     matched = False
     for rule in policy["affected_rules"]:

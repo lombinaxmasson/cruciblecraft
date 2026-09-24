@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import argparse
+import fnmatch
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -27,6 +29,12 @@ GATE_OUT = (
     / "cruciblecraft"
     / "material_registration_gate.json"
 )
+LEGACY_WHOLE_FILE = "legacy_whole_file"
+SECTION_SCOPE = "section"
+REAL_REGRESSION = "real_regression"
+CURRENT_DEPENDENCY_DRIFT = "current_dependency_drift"
+HISTORICAL = "historical"
+_CAPABILITIES: list[dict[str, Any]] | None = None
 
 def load_authority() -> dict[str, Any]:
     document = io.load_json(AUTHORITY)
@@ -120,8 +128,153 @@ def source_by_id(source_id: str, document: dict[str, Any] | None = None) -> dict
     raise KeyError(f"unknown material form authority source {source_id}")
 
 
+def _digest(payload: bytes) -> str:
+    return hashlib.sha256(payload).hexdigest()
+
+
+def whole_file_sha256(path: Path | None = None) -> str:
+    target = path if path is not None else AUTHORITY
+    return _digest(target.read_bytes())
+
+
+def section_slice(source: dict[str, Any]) -> dict[str, Any]:
+    """Stable slice: gate section, required-forms file, extras, and prereqs."""
+    path = ROOT / str(source["path"])
+    if not path.is_file():
+        raise ValueError(f"material form source is missing: {source['path']}")
+    return {
+        "extra_factual_forms": list(source.get("extra_factual_forms") or []),
+        "gate_section": str(source.get("gate_section") or ""),
+        "required_factual_prereqs": dict(source.get("required_factual_prereqs") or {}),
+        "required_forms_sha256": _digest(path.read_bytes()),
+    }
+
+
+def section_sha256(source: dict[str, Any]) -> str:
+    return _digest(io.stable_json(section_slice(source)).encode("utf-8"))
+
+
+def section_index(document: dict[str, Any] | None = None) -> dict[str, dict[str, Any]]:
+    authority = document if document is not None else load_authority()
+    indexed: dict[str, dict[str, Any]] = {}
+    for source in authority.get("sources") or []:
+        source_id = str(source["id"])
+        record = section_slice(source)
+        record["slice_sha256"] = section_sha256(source)
+        indexed[source_id] = record
+    return indexed
+
+
+def load_capabilities() -> list[dict[str, Any]]:
+    global _CAPABILITIES
+    if _CAPABILITIES is None:
+        rows: list[dict[str, Any]] = []
+        root = TOOLS / "capabilities"
+        for path in sorted(root.glob("**/capability.json")):
+            rows.append(io.load_json(path))
+        _CAPABILITIES = rows
+    return _CAPABILITIES
+
+
+def capability_for_path(relative_path: str) -> dict[str, Any] | None:
+    normalized = relative_path.replace("\\", "/")
+    for capability in load_capabilities():
+        for pattern in capability.get("owned_paths") or []:
+            if fnmatch.fnmatchcase(normalized, str(pattern)):
+                return capability
+    return None
+
+
+def capability_for_owner(owner: str) -> dict[str, Any] | None:
+    for capability in load_capabilities():
+        slug = str(capability.get("slug") or "")
+        if slug == owner or slug.endswith("/" + owner):
+            return capability
+    return None
+
+
+def workflow_requires_current_slice(capability: dict[str, Any] | None) -> bool:
+    if capability is None:
+        return False
+    workflow = str(capability.get("workflow") or "")
+    maturity = str(capability.get("maturity") or "")
+    return workflow == "active" or (
+        maturity == "runtime_ready" and workflow not in {"accepted", "paused"}
+    )
+
+
+def is_historical_receipt(relative_path: str) -> bool:
+    normalized = relative_path.replace("\\", "/")
+    if normalized.endswith(".currentness.json"):
+        return True
+    if not normalized.endswith("source_receipt.json"):
+        return False
+    capability = capability_for_path(normalized)
+    if capability is None:
+        return False
+    return not workflow_requires_current_slice(capability)
+
+
+def consumer_test_modules(section_ids: set[str] | None = None) -> list[str]:
+    """Active cards that consume the given authority sections."""
+    modules: list[str] = []
+    seen: set[str] = set()
+    for source in load_authority().get("sources") or []:
+        source_id = str(source.get("id") or "")
+        gate_section = str(source.get("gate_section") or "")
+        if section_ids is not None and section_ids.isdisjoint({source_id, gate_section}):
+            continue
+        capability = capability_for_owner(str(source.get("owner") or ""))
+        if not workflow_requires_current_slice(capability):
+            continue
+        for pattern in (capability or {}).get("owned_paths") or []:
+            text = str(pattern)
+            if not text.startswith("tools/tests/test_") or not text.endswith(".py"):
+                continue
+            module = Path(text).stem
+            if module not in seen:
+                seen.add(module)
+                modules.append(module)
+    return modules
+
+
+def classify_authority_binding(
+    receipt: dict[str, Any],
+    *,
+    workflow: str,
+) -> str:
+    """Separate real regressions, live slice drift, and closed-card snapshots."""
+    stored_map = receipt.get("authority_sha256")
+    stored = stored_map.get("material_form_authority") if isinstance(stored_map, dict) else None
+    scope = str(receipt.get("authority_scope") or LEGACY_WHOLE_FILE)
+    closed = workflow in {"accepted", "paused"}
+    revision = str(receipt.get("source_revision") or "")
+    if stored is None and scope == LEGACY_WHOLE_FILE:
+        if not revision or revision == io.SOURCE_REVISION:
+            return "current"
+        return HISTORICAL if closed else REAL_REGRESSION
+    if scope == SECTION_SCOPE:
+        if not isinstance(stored, dict) or not stored:
+            return REAL_REGRESSION
+        live = section_index()
+        for section_id, digest in stored.items():
+            record = live.get(str(section_id))
+            if record is None or record.get("slice_sha256") != digest:
+                return HISTORICAL if closed else CURRENT_DEPENDENCY_DRIFT
+        if revision and revision != io.SOURCE_REVISION:
+            return REAL_REGRESSION if not closed else HISTORICAL
+        return "current"
+    if not isinstance(stored, str) or len(stored) != 64:
+        return REAL_REGRESSION
+    if stored == whole_file_sha256():
+        return "current"
+    return HISTORICAL if closed else CURRENT_DEPENDENCY_DRIFT
+
+
 def build() -> dict[str, Any]:
     document = json.loads(io.stable_json(load_authority()))
+    document.pop("authority_sections", None)
+    document.pop("whole_file_sha256", None)
     java_overlay_sections(document)
     for source in document.get("sources") or []:
         path = ROOT / str(source["path"])
@@ -137,6 +290,13 @@ def build() -> dict[str, Any]:
         if int(denominators.get(key) or 0) != expected:
             raise ValueError(f"typed ore denominator {key} drifted")
     document["generated_by"] = "python tools/material_form_authority.py"
+    document["authority_sections"] = section_index(document)
+    body = {
+        key: value
+        for key, value in document.items()
+        if key != "whole_file_sha256"
+    }
+    document["whole_file_sha256"] = _digest(io.stable_json(body).encode("utf-8"))
     return document
 
 

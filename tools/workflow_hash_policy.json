@@ -97,6 +97,15 @@
       "token_regex": "(?i)(?:check_no_workflow_hashes|test_check_no_workflow_hashes|workflow_hash)"
     },
     {
+      "id": "material_form_section_identity",
+      "path_patterns": [
+        "tools/material_form_authority.py",
+        "tools/material_form_authority.json",
+        "tools/tests/test_bulk_port_verification.py"
+      ],
+      "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
+    },
+    {
       "id": "external_source_integrity_implementation",
       "path_patterns": [
         "tools/recipe_bulk/source_pack.py"

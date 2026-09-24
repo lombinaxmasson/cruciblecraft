@@ -1,7 +1,7 @@
 # GT6 批量移植基础设施收口
 
 > 计划 slug：`portfolio/gt6-bulk-port-verification`
-> 状态：prep
+> 状态：prep 已完成（2026-09-25）。不占 unique-active。
 > 性质：批量移植前的验证基础设施收口；不占 unique-active，不实现新 GT6
 > 机器、配方或材料公共前缀。
 
@@ -88,3 +88,33 @@ python -m unittest discover -s tools/tests -p "test_*verification*.py"
 - `boxinator` / `unboxinator`、`crate.*`、`bulletGt*`；
 - 管、缆或 crops addon 的后续功能；
 - 通过删除测试、放宽 blocker 或批量覆盖 receipt 来“修绿”。
+
+## 5. 实施结果（2026-09-25）
+
+- `material_form_authority` 在整文件摘要之外写出每个 source 的 section slice
+  （`gate_section`、required-forms 文件摘要、`extra_factual_forms`、
+  `required_factual_prereqs`）。
+- 已有 source receipt 没有 `authority_scope` 时保持 `legacy_whole_file`，
+  核对时沿用 receipt 里记下的摘要，不批量 `--write`。
+  新导入只有在 spec 写了 `authority_scope=section` 且列出
+  `authority_sections` 时，才记录所消费 section 的 slice。
+- 已关卡（`workflow=accepted` / `paused`）的整文件摘要漂移记为 `historical`。
+  `workflow=active` 的同类漂移仍是 `current_dependency_drift`。
+  空 section 绑定或活动卡的 `source_revision` 对不上冻结 GT6 revision，记为
+  `real_regression`。本工作树 source receipt 扫描：这两类都是 0。
+- `*.currentness.json` 与已关卡 `source_receipt.json` 不再选中
+  `capability-runtime`。只改 `material_form_authority` 时，受影响测试限于
+  仍开着的 section 消费卡，加上 authority / 本卡测试。
+- 公共 16 前缀名单未改。没有新的配方 stand-in。历史测试仍在
+  `manual_replay` / `historical`。
+- `capability-runtime` 已跑过。失败项不是已关卡的整文件 authority 摘要：
+  它们是既有的投影计数锁（例如 builtin 8/13）和已提交 source /
+  `lock_candidate` 与当前编译体不一致。本卡没有 `--write` 覆盖这些
+  receipt，也没有把它们改成 `historical` 测试。
+
+```powershell
+python tools/registry_identity.py --check
+python tools/build_gt6_material_form_gate.py --check
+python tools/material_form_authority.py --check
+python -m unittest discover -s tools/tests -p "test_*verification*.py"
+```

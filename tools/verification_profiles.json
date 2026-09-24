@@ -10,6 +10,10 @@
     "LICENSE",
     "NOTICE"
   ],
+  "historical_receipt_patterns": [
+    "**/*.currentness.json",
+    "tools/**/*.currentness.json"
+  ],
   "active_profiles": [
     "verification",
     "runtime-java",
@@ -35,6 +39,7 @@
       "gradle_tasks": [],
       "python_modules": [
         "test_verification_profiles",
+        "test_bulk_port_verification",
         "test_python_test_workflow",
         "test_check_no_workflow_hashes",
         "test_check_zero_milestone_names",
@@ -63,6 +68,8 @@
         "tools/legacy_verification_index.json",
         "tools/waves/portfolio/gt6-full-coverage-reassessment/**",
         "tools/tests/test_verification_profiles.py",
+        "tools/tests/test_bulk_port_verification.py",
+        "tools/material_form_authority.py",
         "tools/tests/test_python_test_workflow.py",
         "tools/tests/test_check_no_workflow_hashes.py",
         "tools/tests/test_check_zero_milestone_names.py",

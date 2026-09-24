@@ -134,6 +134,14 @@ IMPORT_SPEC_SCHEMA: dict[str, Any] = {
             },
         },
         "compare_corpus": {"type": "string", "minLength": 1},
+        "authority_scope": {
+            "type": "string",
+            "enum": ["legacy_whole_file", "section"],
+        },
+        "authority_sections": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+        },
     },
     "$defs": {
         "authority": {

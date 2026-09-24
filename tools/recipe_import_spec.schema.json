@@ -161,6 +161,17 @@
     "target_map": {
       "minLength": 1,
       "type": "string"
+    },
+    "authority_scope": {
+      "enum": ["legacy_whole_file", "section"],
+      "type": "string"
+    },
+    "authority_sections": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
     }
   },
   "required": [

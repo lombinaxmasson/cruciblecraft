@@ -25,6 +25,7 @@
 - `machines/large-bath` — [大型洗矿机详细计划](../history/card-plans/prep/大型洗矿机详细计划.md)
 - `machines/printer` — [印刷机详细计划](../history/card-plans/prep/印刷机详细计划.md)
 - `portfolio/gt6-bulk-port` — [GT6 批量移植总计划](../history/card-plans/prep/GT6批量移植总计划.md)
+- `portfolio/gt6-bulk-port-verification` — [GT6 批量移植基础设施收口](../history/card-plans/prep/GT6批量移植基础设施收口详细计划.md)
 - `recipe/gt6-bulk-capacity` — [GT6 批量配方容量门详细计划](../history/card-plans/prep/GT6批量配方容量门详细计划.md)
 - `recipe/gt6-chemical-misc-bulk` — [GT6 化学杂项配方批量详细计划](../history/card-plans/prep/GT6化学杂项配方批量详细计划.md)
 - `recipe/gt6-extruder-bulk` — [GT6 挤压机配方批量详细计划](../history/card-plans/prep/GT6挤压机配方批量详细计划.md)

@@ -135,6 +135,15 @@ def is_local_run_path(path: str) -> bool:
     return any(path_matches(path, pattern) for pattern in LOCAL_RUN_PATH_PATTERNS)
 
 
+def is_historical_receipt_path(document: dict[str, Any], path: str) -> bool:
+    patterns = document.get("historical_receipt_patterns") or []
+    if any(path_matches(path, pattern) for pattern in patterns):
+        return True
+    from tools import material_form_authority as form_authority
+
+    return form_authority.is_historical_receipt(path)
+
+
 def classify_paths(
     document: dict[str, Any],
     paths: Iterable[str],
@@ -148,6 +157,8 @@ def classify_paths(
         if is_local_run_path(path) or is_documentation_path(document, path):
             if is_documentation_path(document, path):
                 documentation.append(path)
+            continue
+        if is_historical_receipt_path(document, path):
             continue
         hits = [
             name
@@ -281,6 +292,18 @@ def python_modules_for_changed_paths(
     )
     wanted = set(affected)
     return [name for name in declared if name in wanted]
+
+
+def gradle_full_suite_errors(summary: dict[str, Any]) -> list[str]:
+    """Missing or failed Gradle XML is not a pass."""
+    errors: list[str] = []
+    if not summary.get("xml_present"):
+        errors.append("gradle test xml missing")
+    if int(summary.get("tests") or 0) < 1:
+        errors.append("gradle test count is empty")
+    if int(summary.get("failures") or 0) or int(summary.get("errors") or 0):
+        errors.append("gradle tests failed")
+    return errors
 
 
 def parse_gradle_test_xml(results_dir: Path = TEST_RESULTS) -> dict[str, Any]:
@@ -486,15 +509,7 @@ def run_profile(
         if task == "test":
             summary = parse_gradle_test_xml()
             profile_result["gradle_test"] = summary
-            if (
-                code == 0
-                and (
-                    not summary["xml_present"]
-                    or summary["tests"] < 1
-                    or summary["failures"]
-                    or summary["errors"]
-                )
-            ):
+            if code == 0 and gradle_full_suite_errors(summary):
                 code = 1
         if code:
             profile_result["status"] = "FAIL"

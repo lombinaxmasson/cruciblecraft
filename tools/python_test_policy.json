@@ -27,6 +27,7 @@
     "test_display_cpu",
     "test_cover_remainder",
     "test_verification_profiles",
+    "test_bulk_port_verification",
     "test_python_test_workflow",
     "test_check_no_workflow_hashes",
     "test_check_zero_milestone_names",
@@ -230,6 +231,15 @@
         "test_check_no_workflow_hashes",
         "test_check_zero_milestone_names",
         "test_tree_compare"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_bulk_port_verification.py",
+        "tools/recipe_bulk/source_import.py"
+      ],
+      "test_modules": [
+        "test_bulk_port_verification"
       ]
     },
     {

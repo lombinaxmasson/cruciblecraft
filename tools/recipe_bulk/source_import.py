@@ -71,8 +71,60 @@ def load_dump_slice(path: Path) -> dict[str, Any]:
     return document
 
 
-def _authority_hashes(spec: dict[str, Any]) -> dict[str, str]:
-    hashes: dict[str, str] = {}
+def _existing_receipt(spec: dict[str, Any]) -> dict[str, Any] | None:
+    raw = (spec.get("output_paths") or {}).get("receipt")
+    if not raw:
+        return None
+    path = census.ROOT / str(raw)
+    if not path.is_file():
+        return None
+    document = census.load_json(path)
+    return document if isinstance(document, dict) else None
+
+
+def authority_scope_for(
+    spec: dict[str, Any],
+    existing: dict[str, Any] | None = None,
+) -> str:
+    """Legacy receipts stay whole-file. Section scope is explicit."""
+    from tools import material_form_authority as form_authority
+
+    if existing is not None:
+        stored = existing.get("authority_scope")
+        return str(stored or form_authority.LEGACY_WHOLE_FILE)
+    declared = spec.get("authority_scope")
+    if declared:
+        return str(declared)
+    return form_authority.LEGACY_WHOLE_FILE
+
+
+def _section_binding(spec: dict[str, Any]) -> dict[str, str]:
+    from tools import material_form_authority as form_authority
+
+    wanted = [str(item) for item in spec.get("authority_sections") or []]
+    if not wanted:
+        raise SourceImportError(
+            "section authority_scope requires authority_sections"
+        )
+    live = form_authority.section_index()
+    binding: dict[str, str] = {}
+    for section_id in wanted:
+        record = live.get(section_id)
+        if record is None:
+            raise SourceImportError(f"unknown authority section {section_id}")
+        binding[section_id] = str(record["slice_sha256"])
+    return binding
+
+
+def _authority_hashes(
+    spec: dict[str, Any],
+    existing: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    from tools import material_form_authority as form_authority
+
+    scope = authority_scope_for(spec, existing)
+    hashes: dict[str, Any] = {}
+    stored = (existing or {}).get("authority_sha256") or {}
     for row in spec.get("operand_authorities") or []:
         if row.get("kind") != "data":
             continue
@@ -80,6 +132,19 @@ def _authority_hashes(spec: dict[str, Any]) -> dict[str, str]:
         path = AUTHORITY_PATHS.get(authority_id)
         if path is None or not path.is_file():
             raise SourceImportError(f"missing authority {authority_id}")
+        if (
+            authority_id == "material_form_authority"
+            and scope == form_authority.SECTION_SCOPE
+        ):
+            hashes[authority_id] = _section_binding(spec)
+            continue
+        if (
+            authority_id == "material_form_authority"
+            and scope == form_authority.LEGACY_WHOLE_FILE
+            and isinstance(stored.get(authority_id), str)
+        ):
+            hashes[authority_id] = stored[authority_id]
+            continue
         hashes[authority_id] = sha256_file(path)
     return hashes
 
@@ -319,10 +384,12 @@ def import_documents(spec_path: Path) -> dict[str, Any]:
             + list(relation.get("fluid_outputs") or [])
         ):
             mapping_counts[str(operand.get("mapping") or "unknown")] += 1
+    existing_receipt = _existing_receipt(spec)
+    scope = authority_scope_for(spec, existing_receipt)
     receipt = {
         "adapter_abi": gt6.ADAPTER_ABI,
         "adapter_sha256": gt6.adapter_sha256(),
-        "authority_sha256": _authority_hashes(spec),
+        "authority_sha256": _authority_hashes(spec, existing_receipt),
         "files": {
             str(entry["path"]): str(entry["sha256"])
             for entry in manifest.get("files") or []
@@ -341,6 +408,8 @@ def import_documents(spec_path: Path) -> dict[str, Any]:
         "spec_sha256": sha256_file(spec_path),
         "status": "SOURCE_IMPORT_RECEIPT",
     }
+    if scope != "legacy_whole_file":
+        receipt["authority_scope"] = scope
     review = {
         "blockers": review_blockers,
         "family_count": len(families_out),
