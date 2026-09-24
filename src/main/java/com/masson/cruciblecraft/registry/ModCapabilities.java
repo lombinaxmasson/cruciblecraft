@@ -122,7 +122,11 @@ public final class ModCapabilities {
         event.registerBlockEntity(ENERGY, ModBlockEntities.CRUSHER.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
                 ENERGY, ModBlockEntities.PROCESSING_MACHINE.get(),
-                (blockEntity, side) -> blockEntity);
+                (blockEntity, side) ->
+                        blockEntity.handles(
+                                blockEntity.spec().energy().type(), side)
+                                ? blockEntity
+                                : null);
         event.registerBlockEntity(
                 ENERGY,
                 ModBlockEntities.LARGE_ELECTROLYZER.get(),

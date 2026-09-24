@@ -38,15 +38,15 @@ class ProcessingMachineEnergyBoundaryTest {
     }
 
     @Test
-    void bufferedMachineUsesGt6PacketWindow() {
+    void bufferedMachineAccumulatesBelowOperatingVoltage() {
         TestMachine machine = new TestMachine();
 
         assertEquals(
-                0L,
+                1L,
                 machine.insertFromMultiblockPort(
                         EnergyType.KINETIC_ROTATION, 511L, 1L, false));
         assertEquals(
-                0L,
+                511L,
                 machine.stored(EnergyType.KINETIC_ROTATION));
 
         assertEquals(
@@ -54,7 +54,7 @@ class ProcessingMachineEnergyBoundaryTest {
                 machine.insertFromMultiblockPort(
                         EnergyType.KINETIC_ROTATION, 512L, 1L, false));
         assertEquals(
-                512L,
+                1_023L,
                 machine.stored(EnergyType.KINETIC_ROTATION));
 
         assertEquals(
@@ -62,7 +62,7 @@ class ProcessingMachineEnergyBoundaryTest {
                 machine.insertFromMultiblockPort(
                         EnergyType.KINETIC_ROTATION, 4_097L, 1L, false));
         assertEquals(
-                512L,
+                1_023L,
                 machine.stored(EnergyType.KINETIC_ROTATION));
     }
 

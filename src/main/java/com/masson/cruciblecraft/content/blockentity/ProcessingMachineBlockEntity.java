@@ -153,7 +153,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         this.variant = variant;
         this.spec = variant.runtimeSpec();
         this.recipeCache = new GTRecipeCache(spec.requireRecipeMap());
-        this.energy = energyBufferFor(spec, variant);
+        this.energy = energyBufferFor(spec);
         this.inventory = new LayoutAwareItemStackHandler(
                 spec.items().slotCount(),
                 (slot, stack) -> spec.items().accepts(slot, stack)
@@ -1810,12 +1810,10 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
 
     private static MachineEnergyBuffer energyBufferFor(
-            ProcessingMachineSpec spec,
-            MachineVariant variant) {
+            ProcessingMachineSpec spec) {
         if (spec.energy().mode() == ProcessingMachineSpec.EnergyMode.BUFFERED) {
             return new MachineEnergyBuffer(
                     spec.energy().capacity(),
-                    variant.tierBand().inputMinimum(),
                     spec.energy().maxPacket());
         }
         if (spec.energy().mode() == ProcessingMachineSpec.EnergyMode.ADJACENT
