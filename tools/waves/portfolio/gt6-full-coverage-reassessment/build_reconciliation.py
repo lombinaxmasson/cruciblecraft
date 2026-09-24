@@ -1503,6 +1503,10 @@ def build_report(*, refresh_attribution: bool) -> tuple[dict[str, Any], dict[str
         row["raw_row_classes"] = dict(
             (semantic_coverage.get("maps") or {}).get(row["source_map"] or "", {})
         )
+        row["raw_row_excluded"] = dict(
+            (semantic_coverage.get("maps_excluded") or {}).get(row["source_map"] or "", {})
+        )
+        row["progress"] = map_progress(row)
     recipe_evidence_grades = raw_row_grades(maps)
     report = {
         "schema_version": 2,
@@ -1626,16 +1630,18 @@ RAW_ROW_CLASSES = (
     "translated_item_io",
     "translatable_missing",
     "missing_material_form",
+    "missing_material",
     "missing_fluid",
     "missing_object",
     "display_only",
     "legacy_exclusion_pending",
 )
+IDENTITY_GAP_CLASSES = ("missing_material_form", "missing_material", "missing_fluid", "missing_object")
 RAW_ROW_GROUPS = (
     ("proven", "已证明", ("source_exact", "translated_exact")),
     ("partial_match", "部分一致", ("translated_io_only", "translated_item_io")),
     ("recipe_gap", "缺配方", ("translatable_missing",)),
-    ("identity_gap", "缺身份", ("missing_material_form", "missing_fluid", "missing_object")),
+    ("identity_gap", "缺身份", IDENTITY_GAP_CLASSES),
     ("display_only", "展示用", ("display_only",)),
     ("legacy_exclusion_pending", "旧排除待决策", ("legacy_exclusion_pending",)),
 )
@@ -1645,7 +1651,8 @@ RAW_ROW_CLASS_LABELS = {
     "translated_io_only": "输入输出一致，时间/功率不同",
     "translated_item_io": "物品一致，流体不同",
     "translatable_missing": "可翻译但 CC 无此配方",
-    "missing_material_form": "CC 缺材料形态",
+    "missing_material_form": "CC 有这个材料，但缺这个形态",
+    "missing_material": "CC 没有这个材料",
     "missing_fluid": "CC 缺流体",
     "missing_object": "CC 缺物品/方块/模具",
     "display_only": "GT6 NEI 展示行（fake/hidden）",
@@ -1691,9 +1698,11 @@ def raw_row_grades(rows: list[dict[str, Any]]) -> dict[str, Any]:
     """
     total = sum(int(row.get("source_rows") or 0) for row in rows)
     classes: Counter[str] = Counter()
+    excluded: Counter[str] = Counter()
     for row in rows:
         classes.update(row.get("raw_row_classes") or {})
-    unknown = set(classes) - set(RAW_ROW_CLASSES)
+        excluded.update(row.get("raw_row_excluded") or {})
+    unknown = (set(classes) | set(excluded)) - set(RAW_ROW_CLASSES)
     if unknown:
         raise ValueError(f"unknown raw-row classes: {sorted(unknown)}")
     if sum(classes.values()) != total:
@@ -1701,6 +1710,8 @@ def raw_row_grades(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "raw-row classes do not partition the source denominator: "
             f"{sum(classes.values())} != {total}; rerun build_semantic_coverage.py --write"
         )
+    progress = _progress_from(classes, excluded)
+    maps_with_target = [row["progress"] for row in rows if row.get("progress", {}).get("target_rows")]
     return {
         "source_rows": total,
         "classes": {name: classes[name] for name in RAW_ROW_CLASSES},
@@ -1708,7 +1719,44 @@ def raw_row_grades(rows: list[dict[str, Any]]) -> dict[str, Any]:
             key: sum(classes[name] for name in members)
             for key, _label, members in RAW_ROW_GROUPS
         },
+        "excluded": {name: excluded[name] for name in RAW_ROW_CLASSES if excluded[name]},
+        "progress": progress,
+        "machine_progress": {
+            "maps": len(maps_with_target),
+            "mean_recipe_progress": round(
+                sum(item["recipe_progress"] for item in maps_with_target) / len(maps_with_target), 4
+            )
+            if maps_with_target
+            else None,
+            "maps_complete": sum(1 for item in maps_with_target if item["recipe_progress"] >= 1),
+            "maps_untouched": sum(1 for item in maps_with_target if item["proven_rows"] == 0),
+        },
     }
+
+
+def _progress_from(classes: Counter[str] | dict[str, int], excluded: Counter[str] | dict[str, int]) -> dict[str, Any]:
+    total = sum(classes.values())
+    excluded_total = sum(excluded.values())
+    target = total - excluded_total
+    proven = sum(classes.get(name, 0) for name in ("source_exact", "translated_exact"))
+    identity = sum(
+        classes.get(name, 0) - excluded.get(name, 0) for name in IDENTITY_GAP_CLASSES
+    )
+    legacy = classes.get("legacy_exclusion_pending", 0) - excluded.get("legacy_exclusion_pending", 0)
+    return {
+        "source_rows": total,
+        "excluded_rows": excluded_total,
+        "target_rows": target,
+        "proven_rows": proven,
+        "identity_blocked_rows": identity,
+        "undecided_rows": legacy,
+        "recipe_progress": round(proven / target, 4) if target else None,
+        "identity_ready": round((target - identity - legacy) / target, 4) if target else None,
+    }
+
+
+def map_progress(row: dict[str, Any]) -> dict[str, Any]:
+    return _progress_from(row.get("raw_row_classes") or {}, row.get("raw_row_excluded") or {})
 
 
 def _traced_cell(row: dict[str, Any]) -> str:
@@ -1786,6 +1834,11 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
     grade_total = recipe_grades["source_rows"]
     grade_classes = recipe_grades["classes"]
     grade_groups = recipe_grades["groups"]
+    progress = recipe_grades["progress"]
+    machine_progress = recipe_grades["machine_progress"]
+
+    def pct(value: float | None) -> str:
+        return "—" if value is None else f"{100 * value:.1f}%"
 
     open_blockers = [row for row in blockers if row["status"] in {"open", "partial"}]
     source_rows_by_depth: Counter[str] = Counter()
@@ -1815,6 +1868,13 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
         "| --- | --- | --- |",
         f"| 配方图 | {summary['recipe_map_count']} maps / {summary['recipe_source_rows']} 源行 | "
         f"{_counter_line(row['delivery_depth'] for row in maps)} |",
+        f"| **配方移植进度** | 目标 {progress['target_rows']} 源行"
+        f"（{grade_total} − 决策排除 {progress['excluded_rows']}） | "
+        f"**已证明 {pct(progress['recipe_progress'])}**（{progress['proven_rows']}）；"
+        f"身份就绪 {pct(progress['identity_ready'])}；"
+        f"按机器平均 {pct(machine_progress['mean_recipe_progress'])}"
+        f"（{machine_progress['maps']} 台，完成 {machine_progress['maps_complete']}，"
+        f"未开始 {machine_progress['maps_untouched']}） |",
         f"| 配方源行逐行分类 | {grade_total} 源行 | "
         + "；".join(
             f"{label} {_share(grade_groups[key], grade_total)}"
@@ -1953,34 +2013,24 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
     lines.extend(
         [
             "",
-            "| GT6 map | 源行 | " + " | ".join(f"`{name}`" for name in header_names) + " |",
-            "| --- | ---: | " + " | ".join("---:" for _ in header_names) + " |",
+            "“目标”= 源行 − 决策排除；“进度”= 已证明 / 目标；“就绪”= 不缺身份、不待决策的目标行占比。",
+            "",
+            "| GT6 map | 源行 | 目标 | 进度 | 就绪 | "
+            + " | ".join(f"`{name}`" for name in header_names)
+            + " |",
+            "| --- | ---: | ---: | ---: | ---: | " + " | ".join("---:" for _ in header_names) + " |",
         ]
     )
     for row in sorted(maps, key=lambda item: -int(item["source_rows"] or 0)):
         if not row["source_rows"]:
             continue
         classes = row.get("raw_row_classes") or {}
+        row_progress = row.get("progress") or {}
         lines.append(
-            f"| `{row['source_map']}` | {row['source_rows']} | "
+            f"| `{row['source_map']}` | {row['source_rows']} | {row_progress.get('target_rows', 0)} | "
+            f"{pct(row_progress.get('recipe_progress'))} | {pct(row_progress.get('identity_ready'))} | "
             + " | ".join(str(classes.get(name, 0)) for name in header_names)
             + " |"
-        )
-    failure_top = semantic.get("failure_top") or {}
-    lines.extend(
-        [
-            "",
-            "缺身份的前几名来源（GT6 物品 / 流体，括号是受影响源行数）：",
-            "",
-        ]
-    )
-    for bucket in ("missing_material_form", "missing_fluid", "missing_object"):
-        top = failure_top.get(bucket) or []
-        if not top:
-            continue
-        lines.append(
-            f"- `{bucket}`："
-            + "、".join(f"`{entry['key']}`（{entry['rows']}）" for entry in top[:10])
         )
 
     lines.extend(
@@ -2279,9 +2329,120 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
             "| 形态需求 | `tools/waves/prep/material-form-demand-census/census.json` | 上游产物（census builder） |",
             "| Capability / Blocker / 试玩 | `tools/capabilities/**`、`tools/blockers/catalog.json`、"
             "`tools/playtest/current_cycle.json` | live 扫描 |",
+            "| 逐行分类 / 进度 / 行动清单 | `semantic_coverage.json`、`exclusions.json` | "
+            "live 扫描 + 翻译链（`--write` 需本地 dump） |",
         ]
     )
+    lines.extend(_render_action_queue(maps, semantic))
     return "\n".join(lines) + "\n"
+
+
+BLOCKER_KIND_LABELS = {
+    "extruder_shape": "挤压模具",
+    "form": "材料形态",
+    "material": "材料",
+    "fluid": "流体",
+    "object": "物品/方块",
+}
+
+
+def _recipe_gap_hint(row: dict[str, Any]) -> str:
+    if row.get("rule_expanded_recipes") or row.get("rule_files"):
+        return "补材料规则模板"
+    if row.get("traced_source_rows"):
+        return "扩展已有 wave"
+    if row.get("delivery_depth") == "denominator_only":
+        return "先做机器，再做 wave"
+    return "新开 dump wave"
+
+
+def _render_action_queue(maps: list[dict[str, Any]], semantic: dict[str, Any]) -> list[str]:
+    blockers = semantic.get("blockers") or []
+    lines = [
+        "",
+        "## 17. 缺口行动清单（按杠杆排序，自动生成）",
+        "",
+        "本节只列事实和提示，不是 unique-active 队列；开工仍按能力交付流程开卡。"
+        "每条不可翻译的源行只记它**第一个**缺的身份，补上后可能还卡在下一个，"
+        "所以“受影响源行”是解锁数的上界。已被 `exclusions.json` 排除的行不计入。",
+        "",
+        "### 17.1 缺身份（前 40 项）",
+        "",
+        "“材料形态”是 GT6 配方实际用到、CC 材料已存在但没开的 (材料, 形态)，"
+        "按仓库规则应进材料形态需求普查，再由开形态卡打开，不在配方卡上顺手开。",
+        "",
+        "| 类型 | 缺什么 | 受影响源行 | 涉及材料 | 主要机器 | 来自别的 mod |",
+        "| --- | --- | ---: | ---: | --- | --- |",
+    ]
+    for entry in blockers[:40]:
+        top_maps = ", ".join(
+            f"{name.removeprefix('gt.recipe.')} {count}"
+            for name, count in list((entry.get("top_maps") or {}).items())[:3]
+        )
+        lines.append(
+            f"| {BLOCKER_KIND_LABELS.get(entry['kind'], entry['kind'])} | `{entry['label']}` | "
+            f"{entry['rows']} | {entry.get('materials') or '—'} | {top_maps or '—'} | "
+            f"{'是' if entry.get('other_mod') else ''} |"
+        )
+    kinds = semantic.get("blocker_kinds") or {}
+    lines.extend(
+        [
+            "",
+            "按类型合计（第一缺口口径）："
+            + "，".join(
+                f"{BLOCKER_KIND_LABELS.get(kind, kind)} {rows}"
+                for kind, rows in sorted(kinds.items(), key=lambda item: -item[1])
+            ),
+            "",
+            "### 17.2 缺配方（按机器，前 20 项）",
+            "",
+            "这些行已经能完整翻译成 CC 身份，只差配方本身。“提示”按已有内容给出，仅供排期参考。",
+            "",
+            "| GT6 map | 缺配方行 | 部分一致 | 已证明 | 交付深度 | 提示 |",
+            "| --- | ---: | ---: | ---: | --- | --- |",
+        ]
+    )
+    gaps = sorted(
+        (row for row in maps if (row.get("raw_row_classes") or {}).get("translatable_missing")),
+        key=lambda row: -row["raw_row_classes"]["translatable_missing"],
+    )
+    for row in gaps[:20]:
+        classes = row["raw_row_classes"]
+        partial = classes.get("translated_io_only", 0) + classes.get("translated_item_io", 0)
+        proven = classes.get("source_exact", 0) + classes.get("translated_exact", 0)
+        lines.append(
+            f"| `{row['source_map']}` | {classes['translatable_missing']} | {partial} | {proven} | "
+            f"`{row['delivery_depth']}` | {_recipe_gap_hint(row)} |"
+        )
+    candidates = [entry for entry in blockers if entry.get("other_mod")]
+    legacy = [row for row in maps if (row.get("raw_row_classes") or {}).get("legacy_exclusion_pending")]
+    lines.extend(
+        [
+            "",
+            "### 17.3 排除候选（待决策，不会自动生效）",
+            "",
+            "下列缺口来自 GT6 以外的 mod，或是旧分母排除的图。"
+            "决定不移植的，把规则写进 `tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json` "
+            "（要写理由和决策人），它们就会从进度目标里移出；决定移植的，留在上面的清单里。",
+            "",
+        ]
+    )
+    if candidates:
+        lines.append(
+            "- 别的 mod："
+            + "、".join(f"`{entry['label']}`（{entry['rows']}）" for entry in candidates[:25])
+        )
+    if legacy:
+        lines.append(
+            "- 旧分母排除的图："
+            + "、".join(
+                f"`{row['source_map']}`（{row['raw_row_classes']['legacy_exclusion_pending']}）"
+                for row in legacy
+            )
+        )
+    if not candidates and not legacy:
+        lines.append("（无）")
+    return lines
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -13,6 +13,7 @@
     "translated_item_io",
     "translatable_missing",
     "missing_material_form",
+    "missing_material",
     "missing_fluid",
     "missing_object"
   ],
@@ -23,7 +24,8 @@
     "tools/recipe_bulk/matrix.py": "445f496e726bbc35ee6b837a98da7f306a5824c19d163e0d9969e883acd3b5af",
     "tools/gt6_resolve.py": "8b14753770430ada920a1fab35abf5bf08fedf0757c1734eec9eec6c3de89799",
     "tools/compare_gt6_recipes.py": "1a77bdbad83a7d8e004f84876397c506b8d53d2c81f6691dd7497a7e9f78fa37",
-    "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py": "76379128b68a7ae0aaa01f0f712c381df2b356ded5f999a3d68228e81f824885"
+    "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py": "9eb53615fb007337761b768bae03b477c348fa818a15c9bb9d3718480f4f1d3a",
+    "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "9bd7ad4fc6bb8dab4766cd952f2b04d7de15df41e89a3eb85bdb4295b3bd8c65"
   },
   "cc_projection": {
     "runtime_rows": 121854,
@@ -38,9 +40,16 @@
     "translated_io_only": 761,
     "translated_item_io": 7625,
     "translatable_missing": 221422,
-    "missing_material_form": 155558,
+    "missing_material_form": 155531,
+    "missing_material": 0,
     "missing_fluid": 12016,
-    "missing_object": 178252
+    "missing_object": 178279
+  },
+  "excluded_summary": {
+    "display_only": 13576
+  },
+  "excluded_by_rule": {
+    "gt6-nei-display-rows": 13576
   },
   "total_rows": 720841,
   "maps": {
@@ -281,8 +290,8 @@
     "gt.recipe.loom": {
       "source_exact": 476,
       "translatable_missing": 691,
-      "missing_material_form": 37,
-      "missing_object": 130
+      "missing_material_form": 34,
+      "missing_object": 133
     },
     "gt.recipe.magneticseparator": {
       "translatable_missing": 106,
@@ -330,8 +339,8 @@
     },
     "gt.recipe.press": {
       "translatable_missing": 592,
-      "missing_material_form": 7271,
-      "missing_object": 297
+      "missing_material_form": 7247,
+      "missing_object": 321
     },
     "gt.recipe.pressurewasher": {
       "source_exact": 312
@@ -436,314 +445,2154 @@
       "missing_material_form": 98
     }
   },
-  "failure_top": {
-    "missing_fluid": [
-      {
-        "key": "fluid:sluicejuice",
-        "rows": 1362
-      },
-      {
-        "key": "fluid:fierytears",
-        "rows": 1095
-      },
-      {
-        "key": "fluid:fieryblood",
-        "rows": 1095
-      },
-      {
-        "key": "fluid:chargedmatter",
-        "rows": 652
-      },
-      {
-        "key": "fluid:petrotheum",
-        "rows": 434
-      },
-      {
-        "key": "fluid:plastic",
-        "rows": 356
-      },
-      {
-        "key": "fluid:mercury",
-        "rows": 213
-      },
-      {
-        "key": "fluid:blueberryjuice",
-        "rows": 136
-      },
-      {
-        "key": "fluid:ice",
-        "rows": 135
-      },
-      {
-        "key": "fluid:binnie.juicecranberry",
-        "rows": 135
-      },
-      {
-        "key": "fluid:glass",
-        "rows": 133
-      },
-      {
-        "key": "fluid:neutralmatter",
-        "rows": 110
-      },
-      {
-        "key": "fluid:dye.watermixed.blue",
-        "rows": 97
-      },
-      {
-        "key": "fluid:dye.watermixed.brown",
-        "rows": 94
-      },
-      {
-        "key": "fluid:dye.watermixed.cyan",
-        "rows": 85
-      },
-      {
-        "key": "fluid:dye.watermixed.yellow",
-        "rows": 83
-      },
-      {
-        "key": "fluid:dye.chemical.black",
-        "rows": 83
-      },
-      {
-        "key": "fluid:binnie.juicelemon",
-        "rows": 82
-      },
-      {
-        "key": "fluid:for.honey",
-        "rows": 80
-      },
-      {
-        "key": "fluid:coconutmilk",
-        "rows": 79
-      },
-      {
-        "key": "fluid:honeydew",
-        "rows": 79
-      },
-      {
-        "key": "fluid:milk",
-        "rows": 79
-      },
-      {
-        "key": "fluid:dye.chemical.red",
-        "rows": 78
-      },
-      {
-        "key": "fluid:dye.chemical.green",
-        "rows": 78
-      },
-      {
-        "key": "fluid:binnie.juicelime",
-        "rows": 77
-      }
-    ],
-    "missing_material_form": [
-      {
-        "key": "gregtech:gt.meta.storage.dust",
-        "rows": 15727
-      },
-      {
-        "key": "gregtech:gt.meta.plateTiny",
-        "rows": 5912
-      },
-      {
-        "key": "gregtech:gt.meta.plateCurved",
-        "rows": 4987
-      },
-      {
-        "key": "gregtech:gt.meta.bulletGtSmall",
-        "rows": 4672
-      },
-      {
-        "key": "gregtech:gt.meta.bulletGtLarge",
-        "rows": 4672
-      },
-      {
-        "key": "gregtech:gt.meta.bulletGtMedium",
-        "rows": 4672
-      },
-      {
-        "key": "gregtech:gt.meta.crushedPurifiedTiny",
-        "rows": 4394
-      },
-      {
-        "key": "gregtech:gt.meta.crushedCentrifugedTiny",
-        "rows": 3943
-      },
-      {
-        "key": "gregtech:gt.meta.tool",
-        "rows": 3941
-      },
-      {
-        "key": "gregtech:gt.meta.scrapGt",
-        "rows": 3886
-      },
-      {
-        "key": "gregtech:gt.meta.casingSmall",
-        "rows": 3749
-      },
-      {
-        "key": "gregtech:gt.meta.machine",
-        "rows": 2906
-      },
-      {
-        "key": "gregtech:gt.meta.machine.quadruple",
-        "rows": 2904
-      },
-      {
-        "key": "gregtech:gt.meta.machine.double",
-        "rows": 2904
-      },
-      {
-        "key": "gregtech:gt.meta.machine.dense",
-        "rows": 2900
-      },
-      {
-        "key": "gregtech:gt.meta.crate.64.dust",
-        "rows": 2887
-      },
-      {
-        "key": "gregtech:gt.meta.crate.dust",
-        "rows": 2859
-      },
-      {
-        "key": "gregtech:gt.meta.chain",
-        "rows": 2643
-      },
-      {
-        "key": "gregtech:gt.meta.storage.ingot",
-        "rows": 2634
-      },
-      {
-        "key": "gregtech:gt.meta.ingotQuadruple",
-        "rows": 2556
-      },
-      {
-        "key": "gregtech:gt.meta.ingotQuintuple",
-        "rows": 2556
-      },
-      {
-        "key": "gregtech:gt.meta.plantGtFiber",
-        "rows": 2458
-      },
-      {
-        "key": "gregtech:gt.meta.storage.raw",
-        "rows": 2428
-      },
-      {
-        "key": "gregtech:gt.meta.storage.plate",
-        "rows": 2399
-      },
-      {
-        "key": "gregtech:gt.meta.crate.64.plate",
-        "rows": 2398
-      }
-    ],
-    "missing_object": [
-      {
-        "key": "gregtech:gt.multiitem.technological",
-        "rows": 163179
-      },
-      {
-        "key": "gregtech:gt.multitileentity",
-        "rows": 4096
-      },
-      {
-        "key": "gregtech:gt.multiitem.randomtools",
-        "rows": 1932
-      },
-      {
-        "key": "gregtech:gt.multiitem.food",
-        "rows": 1404
-      },
-      {
-        "key": "gregtech:gt.block.bale.grass",
-        "rows": 585
-      },
-      {
-        "key": "gregtech:gt.multiitem.bottles",
-        "rows": 424
-      },
-      {
-        "key": "gregtech:gt.block.glass",
-        "rows": 382
-      },
-      {
-        "key": "gregtech:gt.multiitem.bumblebee",
-        "rows": 320
-      },
-      {
-        "key": "gregtech:gt.block.glass.slab.0",
-        "rows": 258
-      },
-      {
-        "key": "gregtech:gt.stone.granite.black",
-        "rows": 226
-      },
-      {
-        "key": "gregtech:gt.stone.greenschist",
-        "rows": 226
-      },
-      {
-        "key": "gregtech:gt.stone.blueschist",
-        "rows": 226
-      },
-      {
-        "key": "gregtech:gt.stone.kimberlite",
-        "rows": 226
-      },
-      {
-        "key": "gregtech:gt.stone.diorite",
-        "rows": 226
-      },
-      {
-        "key": "gregtech:gt.stone.granite.red",
-        "rows": 226
-      },
-      {
-        "key": "gregtech:gt.stone.granite",
-        "rows": 226
-      },
-      {
-        "key": "gregtech:gt.stone.slate",
-        "rows": 226
-      },
-      {
-        "key": "gregtech:gt.stone.andesite",
-        "rows": 226
-      },
-      {
-        "key": "gregtech:gt.stone.shale",
-        "rows": 226
-      },
-      {
-        "key": "gregtech:gt.stone.komatiite",
-        "rows": 226
-      },
-      {
-        "key": "gregtech:gt.stone.quartzite",
-        "rows": 219
-      },
-      {
-        "key": "gregtech:gt.stone.prismarine.light",
-        "rows": 215
-      },
-      {
-        "key": "gregtech:gt.stone.prismarine.dark",
-        "rows": 215
-      },
-      {
-        "key": "gregtech:gt.stone.basalt",
-        "rows": 195
-      },
-      {
-        "key": "ForgeMicroblock:stoneRod",
-        "rows": 150
-      }
-    ]
+  "maps_excluded": {
+    "gt.recipe.bath": {
+      "display_only": 2
+    },
+    "gt.recipe.bedrockorelist": {
+      "display_only": 52
+    },
+    "gt.recipe.bumblelyzer": {
+      "display_only": 1440
+    },
+    "gt.recipe.bumblequeen": {
+      "display_only": 80
+    },
+    "gt.recipe.byproductlist": {
+      "display_only": 289
+    },
+    "gt.recipe.other": {
+      "display_only": 71
+    },
+    "gt.recipe.printer": {
+      "display_only": 21
+    },
+    "gt.recipe.replicator": {
+      "display_only": 588
+    },
+    "gt.recipe.scannervisuals": {
+      "display_only": 50
+    },
+    "gt.recipe.toolhead": {
+      "display_only": 10960
+    },
+    "gt.recipe.trees": {
+      "display_only": 15
+    },
+    "gt.recipe.unboxinator": {
+      "display_only": 8
+    }
   },
+  "blocker_kinds": {
+    "extruder_shape": 162800,
+    "fluid": 12016,
+    "form": 155531,
+    "object": 15479
+  },
+  "blockers": [
+    {
+      "kind": "form",
+      "key": "form:storage.dust",
+      "label": "storage.dust",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 15727,
+      "materials": 963,
+      "top_maps": {
+        "gt.recipe.extruder": 4758,
+        "gt.recipe.mixer": 4492,
+        "gt.recipe.boxinator": 3804,
+        "gt.recipe.unboxinator": 962,
+        "gt.recipe.fermenter": 640
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10030",
+      "label": "Shape_Extruder_Plate_Tiny",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 14573,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 14573
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10025",
+      "label": "Shape_Extruder_Plate_Curved",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 14215,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 14215
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10002",
+      "label": "Shape_Extruder_Rod_Long",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 14156,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 14156
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10008",
+      "label": "Shape_Extruder_Casing",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 11567,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 11567
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10026",
+      "label": "Shape_Extruder_Gear_Small",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 11313,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 11313
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10015",
+      "label": "Shape_Extruder_Sword",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 10970,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 10970
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10016",
+      "label": "Shape_Extruder_Pickaxe",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 10970,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 10970
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10017",
+      "label": "Shape_Extruder_Shovel",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 10970,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 10970
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10018",
+      "label": "Shape_Extruder_Axe",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 10970,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 10970
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10019",
+      "label": "Shape_Extruder_Hoe",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 10970,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 10970
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10020",
+      "label": "Shape_Extruder_Hammer",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 10699,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 10699
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10021",
+      "label": "Shape_Extruder_File",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 9172,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 9172
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10022",
+      "label": "Shape_Extruder_Saw",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 9172,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 9172
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:plateTiny",
+      "label": "plateTiny",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 5912,
+      "materials": 265,
+      "top_maps": {
+        "gt.recipe.extruder": 4061,
+        "gt.recipe.cutter": 1048,
+        "gt.recipe.shredder": 264,
+        "gt.recipe.boxinator": 172,
+        "gt.recipe.rollingmill": 151
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:plateCurved",
+      "label": "plateCurved",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 4987,
+      "materials": 258,
+      "top_maps": {
+        "gt.recipe.extruder": 4070,
+        "gt.recipe.shredder": 258,
+        "gt.recipe.rollbender": 148,
+        "gt.recipe.anvil.bend.big": 148,
+        "gt.recipe.rollingmill": 147
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:bulletGtLarge",
+      "label": "bulletGtLarge",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 4672,
+      "materials": 854,
+      "top_maps": {
+        "gt.recipe.press": 1225,
+        "gt.recipe.bath": 1148,
+        "gt.recipe.unboxinator": 724,
+        "gt.recipe.melter": 624,
+        "gt.recipe.smelter": 624
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:bulletGtMedium",
+      "label": "bulletGtMedium",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 4672,
+      "materials": 854,
+      "top_maps": {
+        "gt.recipe.press": 1225,
+        "gt.recipe.bath": 1148,
+        "gt.recipe.unboxinator": 724,
+        "gt.recipe.melter": 624,
+        "gt.recipe.smelter": 624
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:bulletGtSmall",
+      "label": "bulletGtSmall",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 4672,
+      "materials": 854,
+      "top_maps": {
+        "gt.recipe.press": 1225,
+        "gt.recipe.bath": 1148,
+        "gt.recipe.unboxinator": 724,
+        "gt.recipe.melter": 624,
+        "gt.recipe.smelter": 624
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crushedPurifiedTiny",
+      "label": "crushedPurifiedTiny",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 4394,
+      "materials": 268,
+      "top_maps": {
+        "gt.recipe.sluice": 3043,
+        "gt.recipe.centrifuge": 268,
+        "gt.recipe.shredder": 268,
+        "gt.recipe.boxinator": 268,
+        "gt.recipe.unboxinator": 268
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crushedCentrifugedTiny",
+      "label": "crushedCentrifugedTiny",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 3943,
+      "materials": 300,
+      "top_maps": {
+        "gt.recipe.steamcracking": 2400,
+        "gt.recipe.centrifuge": 443,
+        "gt.recipe.shredder": 300,
+        "gt.recipe.boxinator": 300,
+        "gt.recipe.unboxinator": 300
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:scrapGt",
+      "label": "scrapGt",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 3886,
+      "materials": 581,
+      "top_maps": {
+        "gt.recipe.extruder": 2610,
+        "gt.recipe.shredder": 581,
+        "gt.recipe.mortar": 329,
+        "gt.recipe.anvil.bend.small": 187,
+        "gt.recipe.generifier": 121
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:casingSmall",
+      "label": "casingSmall",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 3749,
+      "materials": 263,
+      "top_maps": {
+        "gt.recipe.extruder": 3291,
+        "gt.recipe.shredder": 263,
+        "gt.recipe.generifier": 98,
+        "gt.recipe.welder": 86,
+        "gt.recipe.smelter": 5
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10011",
+      "label": "Shape_Extruder_Pipe_Medium",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 3074,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 3074
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10012",
+      "label": "Shape_Extruder_Pipe_Large",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 3074,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 3074
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:machine",
+      "label": "machine",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2906,
+      "materials": 209,
+      "top_maps": {
+        "gt.recipe.extruder": 2045,
+        "gt.recipe.welder": 418,
+        "gt.recipe.shredder": 209,
+        "gt.recipe.smelter": 123,
+        "gt.recipe.bath": 41
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:machine.double",
+      "label": "machine.double",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2904,
+      "materials": 209,
+      "top_maps": {
+        "gt.recipe.extruder": 2045,
+        "gt.recipe.welder": 416,
+        "gt.recipe.shredder": 209,
+        "gt.recipe.smelter": 123,
+        "gt.recipe.bath": 41
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:machine.quadruple",
+      "label": "machine.quadruple",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2904,
+      "materials": 209,
+      "top_maps": {
+        "gt.recipe.extruder": 2045,
+        "gt.recipe.welder": 416,
+        "gt.recipe.shredder": 209,
+        "gt.recipe.smelter": 123,
+        "gt.recipe.bath": 41
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:machine.dense",
+      "label": "machine.dense",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2900,
+      "materials": 209,
+      "top_maps": {
+        "gt.recipe.extruder": 2045,
+        "gt.recipe.welder": 412,
+        "gt.recipe.shredder": 209,
+        "gt.recipe.smelter": 123,
+        "gt.recipe.bath": 41
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.64.dust",
+      "label": "crate.64.dust",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2887,
+      "materials": 971,
+      "top_maps": {
+        "gt.recipe.boxinator": 1916,
+        "gt.recipe.unboxinator": 971
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.dust",
+      "label": "crate.dust",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2859,
+      "materials": 971,
+      "top_maps": {
+        "gt.recipe.boxinator": 1888,
+        "gt.recipe.unboxinator": 971
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:chain",
+      "label": "chain",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2643,
+      "materials": 263,
+      "top_maps": {
+        "gt.recipe.extruder": 2275,
+        "gt.recipe.shredder": 263,
+        "gt.recipe.generifier": 98,
+        "gt.recipe.smelter": 5,
+        "gt.recipe.melter": 2
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:storage.ingot",
+      "label": "storage.ingot",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2634,
+      "materials": 187,
+      "top_maps": {
+        "gt.recipe.extruder": 1435,
+        "gt.recipe.boxinator": 741,
+        "gt.recipe.unboxinator": 186,
+        "gt.recipe.shredder": 185,
+        "gt.recipe.massfab": 74
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10013",
+      "label": "Shape_Extruder_Pipe_Huge",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 2575,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 2575
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ingotQuadruple",
+      "label": "ingotQuadruple",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2556,
+      "materials": 171,
+      "top_maps": {
+        "gt.recipe.extruder": 1395,
+        "gt.recipe.cutter": 676,
+        "gt.recipe.shredder": 171,
+        "gt.recipe.rollingmill": 152,
+        "gt.recipe.welder": 150
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ingotQuintuple",
+      "label": "ingotQuintuple",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2556,
+      "materials": 171,
+      "top_maps": {
+        "gt.recipe.extruder": 1395,
+        "gt.recipe.cutter": 676,
+        "gt.recipe.shredder": 171,
+        "gt.recipe.rollingmill": 152,
+        "gt.recipe.welder": 150
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:plantGtFiber",
+      "label": "plantGtFiber",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2431,
+      "materials": 1038,
+      "top_maps": {
+        "gt.recipe.squeezer": 1038,
+        "gt.recipe.shredder": 986,
+        "gt.recipe.smelter": 276,
+        "gt.recipe.melter": 80,
+        "gt.recipe.loom": 34
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:storage.raw",
+      "label": "storage.raw",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2428,
+      "materials": 493,
+      "top_maps": {
+        "gt.recipe.boxinator": 1439,
+        "gt.recipe.crusher": 493,
+        "gt.recipe.unboxinator": 493,
+        "gt.recipe.cokeoven": 2,
+        "gt.recipe.centrifuge": 1
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:storage.plate",
+      "label": "storage.plate",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2399,
+      "materials": 121,
+      "top_maps": {
+        "gt.recipe.extruder": 1674,
+        "gt.recipe.boxinator": 361,
+        "gt.recipe.shredder": 120,
+        "gt.recipe.unboxinator": 120,
+        "gt.recipe.generifier": 73
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.64.plate",
+      "label": "crate.64.plate",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2398,
+      "materials": 563,
+      "top_maps": {
+        "gt.recipe.boxinator": 1836,
+        "gt.recipe.unboxinator": 562
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:plantGtWart",
+      "label": "plantGtWart",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2384,
+      "materials": 1038,
+      "top_maps": {
+        "gt.recipe.squeezer": 1038,
+        "gt.recipe.shredder": 971,
+        "gt.recipe.smelter": 284,
+        "gt.recipe.melter": 80,
+        "gt.recipe.replicator": 8
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:plantGtBlossom",
+      "label": "plantGtBlossom",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2378,
+      "materials": 1038,
+      "top_maps": {
+        "gt.recipe.squeezer": 1038,
+        "gt.recipe.shredder": 971,
+        "gt.recipe.smelter": 276,
+        "gt.recipe.melter": 80,
+        "gt.recipe.replicator": 12
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:plantGtBerry",
+      "label": "plantGtBerry",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2365,
+      "materials": 1038,
+      "top_maps": {
+        "gt.recipe.squeezer": 1038,
+        "gt.recipe.shredder": 971,
+        "gt.recipe.smelter": 276,
+        "gt.recipe.melter": 80
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:chemtube",
+      "label": "chemtube",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2351,
+      "materials": 1066,
+      "top_maps": {
+        "gt.recipe.canner": 2323,
+        "gt.recipe.extruder": 26,
+        "gt.recipe.melter": 1,
+        "gt.recipe.smelter": 1
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:chunkGt",
+      "label": "chunkGt",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2345,
+      "materials": 177,
+      "top_maps": {
+        "gt.recipe.extruder": 1406,
+        "gt.recipe.boxinator": 706,
+        "gt.recipe.shredder": 175,
+        "gt.recipe.mortar": 42,
+        "gt.recipe.generifier": 6
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:round",
+      "label": "round",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 2292,
+      "materials": 180,
+      "top_maps": {
+        "gt.recipe.extruder": 1375,
+        "gt.recipe.press": 528,
+        "gt.recipe.shredder": 180,
+        "gt.recipe.mortar": 107,
+        "gt.recipe.generifier": 99
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10009",
+      "label": "Shape_Extruder_Pipe_Tiny",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 2077,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 2077
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10010",
+      "label": "Shape_Extruder_Pipe_Small",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 2040,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 2040
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:toolHeadHammer",
+      "label": "toolHeadHammer",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1954,
+      "materials": 252,
+      "top_maps": {
+        "gt.recipe.extruder": 1697,
+        "gt.recipe.shredder": 252,
+        "gt.recipe.smelter": 4,
+        "gt.recipe.melter": 1
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ring",
+      "label": "ring",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1932,
+      "materials": 87,
+      "top_maps": {
+        "gt.recipe.extruder": 1715,
+        "gt.recipe.shredder": 87,
+        "gt.recipe.rollbender": 49,
+        "gt.recipe.anvil.bend.small": 49,
+        "gt.recipe.lathe": 25
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:gearGt",
+      "label": "gearGt",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1863,
+      "materials": 116,
+      "top_maps": {
+        "gt.recipe.extruder": 1728,
+        "gt.recipe.shredder": 116,
+        "gt.recipe.generifier": 19
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:arrowGtPlastic",
+      "label": "arrowGtPlastic",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1775,
+      "materials": 387,
+      "top_maps": {
+        "gt.recipe.press": 539,
+        "gt.recipe.unboxinator": 539,
+        "gt.recipe.melter": 253,
+        "gt.recipe.smelter": 253,
+        "gt.recipe.generifier": 139
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:gemFlawed",
+      "label": "gemFlawed",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1713,
+      "materials": 56,
+      "top_maps": {
+        "gt.recipe.press": 1173,
+        "gt.recipe.cutter": 212,
+        "gt.recipe.crusher": 112,
+        "gt.recipe.shredder": 56,
+        "gt.recipe.lathe": 53
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:dustDiv72",
+      "label": "dustDiv72",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1655,
+      "materials": 242,
+      "top_maps": {
+        "gt.recipe.shredder": 524,
+        "gt.recipe.boxinator": 484,
+        "gt.recipe.unboxinator": 440,
+        "gt.recipe.mortar": 95,
+        "gt.recipe.lathe": 43
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.64.ingot",
+      "label": "crate.64.ingot",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1491,
+      "materials": 373,
+      "top_maps": {
+        "gt.recipe.boxinator": 1118,
+        "gt.recipe.unboxinator": 373
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.ingot",
+      "label": "crate.ingot",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1487,
+      "materials": 374,
+      "top_maps": {
+        "gt.recipe.boxinator": 1114,
+        "gt.recipe.unboxinator": 373
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.64.raw",
+      "label": "crate.64.raw",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1399,
+      "materials": 493,
+      "top_maps": {
+        "gt.recipe.boxinator": 906,
+        "gt.recipe.unboxinator": 493
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:plantGtTwig",
+      "label": "plantGtTwig",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1394,
+      "materials": 1038,
+      "top_maps": {
+        "gt.recipe.squeezer": 1038,
+        "gt.recipe.smelter": 276,
+        "gt.recipe.melter": 80
+      }
+    },
+    {
+      "kind": "fluid",
+      "key": "fluid:sluicejuice",
+      "label": "sluicejuice",
+      "class": "missing_fluid",
+      "other_mod": false,
+      "rows": 1362,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.sluice": 1352,
+        "gt.recipe.mixer": 8,
+        "gt.recipe.drying": 1,
+        "gt.recipe.centrifuge": 1
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:storage.gem",
+      "label": "storage.gem",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1299,
+      "materials": 207,
+      "top_maps": {
+        "gt.recipe.boxinator": 617,
+        "gt.recipe.shredder": 206,
+        "gt.recipe.unboxinator": 205,
+        "gt.recipe.extruder": 100,
+        "gt.recipe.generifier": 73
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:storage.plateGem",
+      "label": "storage.plateGem",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1297,
+      "materials": 207,
+      "top_maps": {
+        "gt.recipe.boxinator": 566,
+        "gt.recipe.shredder": 207,
+        "gt.recipe.unboxinator": 207,
+        "gt.recipe.extruder": 145,
+        "gt.recipe.generifier": 73
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.multiitem.randomtools@5000",
+      "label": "gregtech:gt.multiitem.randomtools",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 1240,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.assembler": 1239,
+        "gt.recipe.boxinator": 1
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:arrowGtWood",
+      "label": "arrowGtWood",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1190,
+      "materials": 263,
+      "top_maps": {
+        "gt.recipe.press": 539,
+        "gt.recipe.unboxinator": 539,
+        "gt.recipe.generifier": 105,
+        "gt.recipe.smelter": 5,
+        "gt.recipe.melter": 2
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:plateGemTiny",
+      "label": "plateGemTiny",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 1142,
+      "materials": 143,
+      "top_maps": {
+        "gt.recipe.cutter": 712,
+        "gt.recipe.shredder": 143,
+        "gt.recipe.boxinator": 103,
+        "gt.recipe.extruder": 81,
+        "gt.recipe.mortar": 62
+      }
+    },
+    {
+      "kind": "fluid",
+      "key": "fluid:fieryblood",
+      "label": "fieryblood",
+      "class": "missing_fluid",
+      "other_mod": false,
+      "rows": 1095,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.bath": 1095
+      }
+    },
+    {
+      "kind": "fluid",
+      "key": "fluid:fierytears",
+      "label": "fierytears",
+      "class": "missing_fluid",
+      "other_mod": false,
+      "rows": 1095,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.bath": 1095
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:plateGem",
+      "label": "plateGem",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 841,
+      "materials": 55,
+      "top_maps": {
+        "gt.recipe.cutter": 436,
+        "gt.recipe.boxinator": 165,
+        "gt.recipe.extruder": 59,
+        "gt.recipe.shredder": 55,
+        "gt.recipe.compressor": 50
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:minecartWheels",
+      "label": "minecartWheels",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 821,
+      "materials": 87,
+      "top_maps": {
+        "gt.recipe.extruder": 730,
+        "gt.recipe.shredder": 87,
+        "gt.recipe.smelter": 2,
+        "gt.recipe.generifier": 2
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:gearGtSmall",
+      "label": "gearGtSmall",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 793,
+      "materials": 116,
+      "top_maps": {
+        "gt.recipe.extruder": 658,
+        "gt.recipe.shredder": 116,
+        "gt.recipe.generifier": 19
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:toolHeadPickaxeGem",
+      "label": "toolHeadPickaxeGem",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 744,
+      "materials": 31,
+      "top_maps": {
+        "gt.recipe.press": 713,
+        "gt.recipe.unboxinator": 31
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:wireFine",
+      "label": "wireFine",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 732,
+      "materials": 54,
+      "top_maps": {
+        "gt.recipe.extruder": 519,
+        "gt.recipe.wiremill": 98,
+        "gt.recipe.shredder": 54,
+        "gt.recipe.rollbender": 50,
+        "gt.recipe.mortar": 6
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:screw",
+      "label": "screw",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 723,
+      "materials": 107,
+      "top_maps": {
+        "gt.recipe.extruder": 479,
+        "gt.recipe.lathe": 107,
+        "gt.recipe.shredder": 107,
+        "gt.recipe.mortar": 23,
+        "gt.recipe.generifier": 7
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:spring",
+      "label": "spring",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 714,
+      "materials": 106,
+      "top_maps": {
+        "gt.recipe.extruder": 492,
+        "gt.recipe.shredder": 106,
+        "gt.recipe.rollbender": 49,
+        "gt.recipe.anvil.bend.big": 49,
+        "gt.recipe.generifier": 18
+      }
+    },
+    {
+      "kind": "fluid",
+      "key": "fluid:chargedmatter",
+      "label": "chargedmatter",
+      "class": "missing_fluid",
+      "other_mod": false,
+      "rows": 652,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.massfab": 652
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.64.gem",
+      "label": "crate.64.gem",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 635,
+      "materials": 209,
+      "top_maps": {
+        "gt.recipe.boxinator": 426,
+        "gt.recipe.unboxinator": 209
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:springSmall",
+      "label": "springSmall",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 626,
+      "materials": 79,
+      "top_maps": {
+        "gt.recipe.extruder": 492,
+        "gt.recipe.shredder": 79,
+        "gt.recipe.anvil.bend.big": 49,
+        "gt.recipe.generifier": 6
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.normal.gravel",
+      "label": "ore.normal.gravel",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 617,
+      "materials": 617,
+      "top_maps": {
+        "gt.recipe.sifter": 617
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.normal.mud",
+      "label": "ore.normal.mud",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 617,
+      "materials": 617,
+      "top_maps": {
+        "gt.recipe.sifter": 617
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.normal.redsand",
+      "label": "ore.normal.redsand",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 617,
+      "materials": 617,
+      "top_maps": {
+        "gt.recipe.sifter": 617
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.normal.sand",
+      "label": "ore.normal.sand",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 617,
+      "materials": 617,
+      "top_maps": {
+        "gt.recipe.sifter": 617
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.plate",
+      "label": "crate.plate",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 562,
+      "materials": 562,
+      "top_maps": {
+        "gt.recipe.unboxinator": 562
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:gemExquisite",
+      "label": "gemExquisite",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 515,
+      "materials": 53,
+      "top_maps": {
+        "gt.recipe.cutter": 212,
+        "gt.recipe.implosioncompressor": 148,
+        "gt.recipe.shredder": 53,
+        "gt.recipe.crusher": 53,
+        "gt.recipe.extruder": 27
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:gemFlawless",
+      "label": "gemFlawless",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 513,
+      "materials": 53,
+      "top_maps": {
+        "gt.recipe.cutter": 212,
+        "gt.recipe.implosioncompressor": 148,
+        "gt.recipe.shredder": 53,
+        "gt.recipe.crusher": 53,
+        "gt.recipe.extruder": 27
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.64.plateGem",
+      "label": "crate.64.plateGem",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 511,
+      "materials": 207,
+      "top_maps": {
+        "gt.recipe.boxinator": 304,
+        "gt.recipe.unboxinator": 207
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.raw",
+      "label": "crate.raw",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 493,
+      "materials": 493,
+      "top_maps": {
+        "gt.recipe.unboxinator": 493
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.andesite",
+      "label": "ore.broken.andesite",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.basalt",
+      "label": "ore.broken.basalt",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.blackgranite",
+      "label": "ore.broken.blackgranite",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.blueschist",
+      "label": "ore.broken.blueschist",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.diorite",
+      "label": "ore.broken.diorite",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.granite",
+      "label": "ore.broken.granite",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.greenschist",
+      "label": "ore.broken.greenschist",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.kimberlite",
+      "label": "ore.broken.kimberlite",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.komatiite",
+      "label": "ore.broken.komatiite",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.limestone",
+      "label": "ore.broken.limestone",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.marble",
+      "label": "ore.broken.marble",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.prismarine.dark",
+      "label": "ore.broken.prismarine.dark",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.prismarine.light",
+      "label": "ore.broken.prismarine.light",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.quartzite",
+      "label": "ore.broken.quartzite",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.redgranite",
+      "label": "ore.broken.redgranite",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.shale",
+      "label": "ore.broken.shale",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.broken.slate",
+      "label": "ore.broken.slate",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.normal.endstone",
+      "label": "ore.normal.endstone",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.normal.sandstone",
+      "label": "ore.normal.sandstone",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 492,
+      "materials": 492,
+      "top_maps": {
+        "gt.recipe.crusher": 492
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.normal.netherrack",
+      "label": "ore.normal.netherrack",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 491,
+      "materials": 491,
+      "top_maps": {
+        "gt.recipe.crusher": 491
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:ore.normal.default",
+      "label": "ore.normal.default",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 485,
+      "materials": 485,
+      "top_maps": {
+        "gt.recipe.crusher": 485
+      }
+    },
+    {
+      "kind": "fluid",
+      "key": "fluid:petrotheum",
+      "label": "petrotheum",
+      "class": "missing_fluid",
+      "other_mod": false,
+      "rows": 434,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.sluice": 430,
+        "gt.recipe.smelter": 3,
+        "gt.recipe.centrifuge": 1
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:gemLegendary",
+      "label": "gemLegendary",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 423,
+      "materials": 53,
+      "top_maps": {
+        "gt.recipe.cutter": 212,
+        "gt.recipe.sifter": 60,
+        "gt.recipe.shredder": 53,
+        "gt.recipe.crusher": 53,
+        "gt.recipe.extruder": 27
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:toolHeadFile",
+      "label": "toolHeadFile",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 419,
+      "materials": 159,
+      "top_maps": {
+        "gt.recipe.extruder": 258,
+        "gt.recipe.shredder": 159,
+        "gt.recipe.smelter": 2
+      }
+    },
+    {
+      "kind": "fluid",
+      "key": "fluid:plastic",
+      "label": "plastic",
+      "class": "missing_fluid",
+      "other_mod": false,
+      "rows": 356,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.melter": 178,
+        "gt.recipe.smelter": 178
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:dust",
+      "label": "dust",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 309,
+      "materials": 21,
+      "top_maps": {
+        "gt.recipe.shredder": 161,
+        "gt.recipe.boxinator": 90,
+        "gt.recipe.unboxinator": 21,
+        "gt.recipe.mortar": 13,
+        "gt.recipe.compressor": 10
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:foil",
+      "label": "foil",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 278,
+      "materials": 6,
+      "top_maps": {
+        "gt.recipe.extruder": 268,
+        "gt.recipe.shredder": 6,
+        "gt.recipe.generifier": 4
+      }
+    },
+    {
+      "kind": "extruder_shape",
+      "key": "gregtech:gt.multiitem.technological@10031",
+      "label": "Shape_Extruder_Wire_Fine",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 243,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 243
+      }
+    },
+    {
+      "kind": "fluid",
+      "key": "fluid:mercury",
+      "label": "mercury",
+      "class": "missing_fluid",
+      "other_mod": false,
+      "rows": 213,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.bath": 112,
+        "gt.recipe.melter": 39,
+        "gt.recipe.smelter": 39,
+        "gt.recipe.steamcracking": 16,
+        "gt.recipe.centrifuge": 4
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.gem",
+      "label": "crate.gem",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 209,
+      "materials": 209,
+      "top_maps": {
+        "gt.recipe.unboxinator": 209
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:crate.plateGem",
+      "label": "crate.plateGem",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 207,
+      "materials": 207,
+      "top_maps": {
+        "gt.recipe.unboxinator": 207
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:dustSmall",
+      "label": "dustSmall",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 197,
+      "materials": 27,
+      "top_maps": {
+        "gt.recipe.boxinator": 107,
+        "gt.recipe.unboxinator": 26,
+        "gt.recipe.shredder": 25,
+        "gt.recipe.mortar": 18,
+        "gt.recipe.extruder": 11
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:billet",
+      "label": "billet",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 168,
+      "materials": 14,
+      "top_maps": {
+        "gt.recipe.boxinator": 80,
+        "gt.recipe.extruder": 47,
+        "gt.recipe.unboxinator": 14,
+        "gt.recipe.shredder": 12,
+        "gt.recipe.mortar": 11
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:toolHeadBuilderwand",
+      "label": "toolHeadBuilderwand",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 161,
+      "materials": 159,
+      "top_maps": {
+        "gt.recipe.shredder": 159,
+        "gt.recipe.smelter": 2
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:toolHeadBuzzSaw",
+      "label": "toolHeadBuzzSaw",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 161,
+      "materials": 159,
+      "top_maps": {
+        "gt.recipe.shredder": 159,
+        "gt.recipe.smelter": 2
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:toolHeadConstructionPickaxe",
+      "label": "toolHeadConstructionPickaxe",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 161,
+      "materials": 159,
+      "top_maps": {
+        "gt.recipe.shredder": 159,
+        "gt.recipe.smelter": 2
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:toolHeadScrewdriver",
+      "label": "toolHeadScrewdriver",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 161,
+      "materials": 159,
+      "top_maps": {
+        "gt.recipe.shredder": 159,
+        "gt.recipe.smelter": 2
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:oreRaw",
+      "label": "oreRaw",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 160,
+      "materials": 40,
+      "top_maps": {
+        "gt.recipe.boxinator": 120,
+        "gt.recipe.crusher": 40
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.multitileentity@32610",
+      "label": "gregtech:gt.multitileentity",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 158,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 157,
+        "gt.recipe.shredder": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "ForgeMicroblock:stoneRod@0",
+      "label": "ForgeMicroblock:stoneRod",
+      "class": "missing_object",
+      "other_mod": true,
+      "rows": 150,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.generifier": 73,
+        "gt.recipe.extruder": 65,
+        "gt.recipe.cutter": 8,
+        "gt.recipe.melter": 1,
+        "gt.recipe.smelter": 1
+      }
+    },
+    {
+      "kind": "fluid",
+      "key": "fluid:blueberryjuice",
+      "label": "blueberryjuice",
+      "class": "missing_fluid",
+      "other_mod": false,
+      "rows": 136,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.fermenter": 64,
+        "gt.recipe.bath": 63,
+        "gt.recipe.mixer": 7,
+        "gt.recipe.cryomixer": 1,
+        "gt.recipe.generifier": 1
+      }
+    },
+    {
+      "kind": "fluid",
+      "key": "fluid:binnie.juicecranberry",
+      "label": "binnie.juicecranberry",
+      "class": "missing_fluid",
+      "other_mod": true,
+      "rows": 135,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.fermenter": 65,
+        "gt.recipe.bath": 62,
+        "gt.recipe.mixer": 6,
+        "gt.recipe.cryomixer": 1,
+        "gt.recipe.generifier": 1
+      }
+    },
+    {
+      "kind": "fluid",
+      "key": "fluid:ice",
+      "label": "ice",
+      "class": "missing_fluid",
+      "other_mod": false,
+      "rows": 135,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.fermenter": 64,
+        "gt.recipe.mixer": 38,
+        "gt.recipe.squeezer": 13,
+        "gt.recipe.juicer": 13,
+        "gt.recipe.freezer": 4
+      }
+    },
+    {
+      "kind": "form",
+      "key": "form:rotor",
+      "label": "rotor",
+      "class": "missing_material_form",
+      "other_mod": false,
+      "rows": 135,
+      "materials": 116,
+      "top_maps": {
+        "gt.recipe.shredder": 116,
+        "gt.recipe.generifier": 19
+      }
+    },
+    {
+      "kind": "fluid",
+      "key": "fluid:glass",
+      "label": "glass",
+      "class": "missing_fluid",
+      "other_mod": false,
+      "rows": 133,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.melter": 66,
+        "gt.recipe.smelter": 66,
+        "gt.recipe.centrifuge": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.multitileentity@32607",
+      "label": "gregtech:gt.multitileentity",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 130,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 129,
+        "gt.recipe.shredder": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.multiitem.food@10010",
+      "label": "gregtech:gt.multiitem.food",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 124,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.boxinator": 124
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.multiitem.food@32700",
+      "label": "gregtech:gt.multiitem.food",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 124,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.boxinator": 124
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.multiitem.food@32701",
+      "label": "gregtech:gt.multiitem.food",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 124,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.boxinator": 124
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.multitileentity@32608",
+      "label": "gregtech:gt.multitileentity",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 124,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.extruder": 123,
+        "gt.recipe.shredder": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.andesite@7",
+      "label": "gregtech:gt.stone.andesite",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.basalt@7",
+      "label": "gregtech:gt.stone.basalt",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.blueschist@7",
+      "label": "gregtech:gt.stone.blueschist",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.diorite@7",
+      "label": "gregtech:gt.stone.diorite",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.granite.black@7",
+      "label": "gregtech:gt.stone.granite.black",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.granite.red@7",
+      "label": "gregtech:gt.stone.granite.red",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.granite@7",
+      "label": "gregtech:gt.stone.granite",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.greenschist@7",
+      "label": "gregtech:gt.stone.greenschist",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.kimberlite@7",
+      "label": "gregtech:gt.stone.kimberlite",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.komatiite@7",
+      "label": "gregtech:gt.stone.komatiite",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.shale@7",
+      "label": "gregtech:gt.stone.shale",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.slate@7",
+      "label": "gregtech:gt.stone.slate",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 120,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 36,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.multiitem.food@12101",
+      "label": "gregtech:gt.multiitem.food",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 119,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.fermenter": 64,
+        "gt.recipe.squeezer": 14,
+        "gt.recipe.shredder": 14,
+        "gt.recipe.juicer": 13,
+        "gt.recipe.mortar": 13
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.multiitem.technological@30000",
+      "label": "technological@30000",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 118,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.press": 116,
+        "gt.recipe.melter": 1,
+        "gt.recipe.smelter": 1
+      }
+    },
+    {
+      "kind": "object",
+      "key": "gregtech:gt.stone.quartzite@7",
+      "label": "gregtech:gt.stone.quartzite",
+      "class": "missing_object",
+      "other_mod": false,
+      "rows": 116,
+      "materials": null,
+      "top_maps": {
+        "gt.recipe.laserengraver": 75,
+        "gt.recipe.extruder": 32,
+        "gt.recipe.cutter": 5,
+        "gt.recipe.shredder": 1,
+        "gt.recipe.crusher": 1
+      }
+    }
+  ],
   "calibration": {
     "pairs": 119168,
     "equal": 118618,

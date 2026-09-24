@@ -680,9 +680,10 @@
         "translated_io_only": 761,
         "translated_item_io": 7625,
         "translatable_missing": 221422,
-        "missing_material_form": 155558,
+        "missing_material_form": 155531,
+        "missing_material": 0,
         "missing_fluid": 12016,
-        "missing_object": 178252,
+        "missing_object": 178279,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
       },
@@ -693,6 +694,25 @@
         "identity_gap": 345826,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
+      },
+      "excluded": {
+        "display_only": 13576
+      },
+      "progress": {
+        "source_rows": 720841,
+        "excluded_rows": 13576,
+        "target_rows": 707265,
+        "proven_rows": 121989,
+        "identity_blocked_rows": 345826,
+        "undecided_rows": 9642,
+        "recipe_progress": 0.1725,
+        "identity_ready": 0.4974
+      },
+      "machine_progress": {
+        "maps": 73,
+        "mean_recipe_progress": 0.2719,
+        "maps_complete": 7,
+        "maps_untouched": 33
       }
     },
     "cc_recipe_rows": 121854,
@@ -4785,7 +4805,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "mc.recipe.furnacefuel",
@@ -4823,7 +4854,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.fuels.fluidbed",
@@ -4865,6 +4907,17 @@
       },
       "raw_row_classes": {
         "source_exact": 55
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 55,
+        "excluded_rows": 0,
+        "target_rows": 55,
+        "proven_rows": 55,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 1.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -4910,6 +4963,17 @@
         "translated_exact": 3,
         "translated_item_io": 8,
         "missing_fluid": 15
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 49,
+        "excluded_rows": 0,
+        "target_rows": 49,
+        "proven_rows": 26,
+        "identity_blocked_rows": 15,
+        "undecided_rows": 0,
+        "recipe_progress": 0.5306,
+        "identity_ready": 0.6939
       }
     },
     {
@@ -4952,6 +5016,17 @@
       },
       "raw_row_classes": {
         "source_exact": 9
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 9,
+        "excluded_rows": 0,
+        "target_rows": 9,
+        "proven_rows": 9,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 1.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -4995,6 +5070,17 @@
       "raw_row_classes": {
         "translated_item_io": 1,
         "missing_fluid": 11
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 12,
+        "excluded_rows": 0,
+        "target_rows": 12,
+        "proven_rows": 0,
+        "identity_blocked_rows": 11,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.0833
       }
     },
     {
@@ -5037,7 +5123,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.fuels.engine",
@@ -5083,6 +5180,17 @@
         "source_exact": 6,
         "translated_exact": 2,
         "missing_fluid": 13
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 21,
+        "excluded_rows": 0,
+        "target_rows": 21,
+        "proven_rows": 8,
+        "identity_blocked_rows": 13,
+        "undecided_rows": 0,
+        "recipe_progress": 0.381,
+        "identity_ready": 0.381
       }
     },
     {
@@ -5123,6 +5231,17 @@
       },
       "raw_row_classes": {
         "translatable_missing": 1
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 1,
+        "excluded_rows": 0,
+        "target_rows": 1,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -5161,7 +5280,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.other",
@@ -5208,6 +5338,19 @@
       },
       "raw_row_classes": {
         "display_only": 71
+      },
+      "raw_row_excluded": {
+        "display_only": 71
+      },
+      "progress": {
+        "source_rows": 71,
+        "excluded_rows": 71,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
       }
     },
     {
@@ -5246,7 +5389,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.distillationtower",
@@ -5301,6 +5455,17 @@
       "raw_row_classes": {
         "translated_exact": 3,
         "missing_fluid": 5
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 8,
+        "excluded_rows": 0,
+        "target_rows": 8,
+        "proven_rows": 3,
+        "identity_blocked_rows": 5,
+        "undecided_rows": 0,
+        "recipe_progress": 0.375,
+        "identity_ready": 0.375
       }
     },
     {
@@ -5357,6 +5522,17 @@
         "translated_exact": 1,
         "translated_item_io": 1,
         "translatable_missing": 1
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 3,
+        "excluded_rows": 0,
+        "target_rows": 3,
+        "proven_rows": 1,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 0.3333,
+        "identity_ready": 1.0
       }
     },
     {
@@ -5399,6 +5575,17 @@
         "translatable_missing": 5314,
         "missing_material_form": 2400,
         "missing_fluid": 32
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 7746,
+        "excluded_rows": 0,
+        "target_rows": 7746,
+        "proven_rows": 0,
+        "identity_blocked_rows": 2432,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.686
       }
     },
     {
@@ -5439,6 +5626,17 @@
       },
       "raw_row_classes": {
         "translatable_missing": 3
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 3,
+        "excluded_rows": 0,
+        "target_rows": 3,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -5502,6 +5700,17 @@
         "missing_material_form": 644,
         "missing_fluid": 3586,
         "missing_object": 1482
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 6435,
+        "excluded_rows": 0,
+        "target_rows": 6435,
+        "proven_rows": 2,
+        "identity_blocked_rows": 5712,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0003,
+        "identity_ready": 0.1124
       }
     },
     {
@@ -5547,6 +5756,17 @@
         "translatable_missing": 888,
         "missing_material_form": 3,
         "missing_fluid": 620
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 1517,
+        "excluded_rows": 0,
+        "target_rows": 1517,
+        "proven_rows": 6,
+        "identity_blocked_rows": 623,
+        "undecided_rows": 0,
+        "recipe_progress": 0.004,
+        "identity_ready": 0.5893
       }
     },
     {
@@ -5591,6 +5811,17 @@
         "source_exact": 198,
         "translated_item_io": 2,
         "missing_fluid": 17
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 217,
+        "excluded_rows": 0,
+        "target_rows": 217,
+        "proven_rows": 198,
+        "identity_blocked_rows": 17,
+        "undecided_rows": 0,
+        "recipe_progress": 0.9124,
+        "identity_ready": 0.9217
       }
     },
     {
@@ -5648,6 +5879,17 @@
         "translated_exact": 1,
         "translated_item_io": 1,
         "missing_fluid": 3
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 5,
+        "excluded_rows": 0,
+        "target_rows": 5,
+        "proven_rows": 1,
+        "identity_blocked_rows": 3,
+        "undecided_rows": 0,
+        "recipe_progress": 0.2,
+        "identity_ready": 0.4
       }
     },
     {
@@ -5688,6 +5930,17 @@
       },
       "raw_row_classes": {
         "translatable_missing": 132
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 132,
+        "excluded_rows": 0,
+        "target_rows": 132,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -5750,6 +6003,17 @@
         "missing_material_form": 4502,
         "missing_fluid": 573,
         "missing_object": 87
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 64245,
+        "excluded_rows": 0,
+        "target_rows": 64245,
+        "proven_rows": 7228,
+        "identity_blocked_rows": 5162,
+        "undecided_rows": 0,
+        "recipe_progress": 0.1125,
+        "identity_ready": 0.9197
       }
     },
     {
@@ -5790,6 +6054,17 @@
       },
       "raw_row_classes": {
         "translatable_missing": 29
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 29,
+        "excluded_rows": 0,
+        "target_rows": 29,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -5833,6 +6108,17 @@
       "raw_row_classes": {
         "translatable_missing": 12,
         "missing_fluid": 45
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 57,
+        "excluded_rows": 0,
+        "target_rows": 57,
+        "proven_rows": 0,
+        "identity_blocked_rows": 45,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.2105
       }
     },
     {
@@ -5891,6 +6177,17 @@
         "translated_item_io": 1,
         "translatable_missing": 82,
         "missing_material_form": 6
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 124,
+        "excluded_rows": 0,
+        "target_rows": 124,
+        "proven_rows": 35,
+        "identity_blocked_rows": 6,
+        "undecided_rows": 0,
+        "recipe_progress": 0.2823,
+        "identity_ready": 0.9516
       }
     },
     {
@@ -5937,6 +6234,17 @@
         "source_exact": 73,
         "translated_item_io": 34,
         "missing_material_form": 8
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 115,
+        "excluded_rows": 0,
+        "target_rows": 115,
+        "proven_rows": 73,
+        "identity_blocked_rows": 8,
+        "undecided_rows": 0,
+        "recipe_progress": 0.6348,
+        "identity_ready": 0.9304
       }
     },
     {
@@ -6018,6 +6326,19 @@
         "missing_material_form": 3788,
         "missing_fluid": 3729,
         "missing_object": 1
+      },
+      "raw_row_excluded": {
+        "display_only": 2
+      },
+      "progress": {
+        "source_rows": 59855,
+        "excluded_rows": 2,
+        "target_rows": 59853,
+        "proven_rows": 49417,
+        "identity_blocked_rows": 7518,
+        "undecided_rows": 0,
+        "recipe_progress": 0.8256,
+        "identity_ready": 0.8744
       }
     },
     {
@@ -6083,6 +6404,17 @@
       "raw_row_classes": {
         "missing_material_form": 3058,
         "missing_fluid": 1782
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 4840,
+        "excluded_rows": 0,
+        "target_rows": 4840,
+        "proven_rows": 0,
+        "identity_blocked_rows": 4840,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.0
       }
     },
     {
@@ -6126,6 +6458,17 @@
       "raw_row_classes": {
         "translatable_missing": 106,
         "missing_material_form": 73
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 179,
+        "excluded_rows": 0,
+        "target_rows": 179,
+        "proven_rows": 0,
+        "identity_blocked_rows": 73,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.5922
       }
     },
     {
@@ -6172,6 +6515,17 @@
         "translatable_missing": 208,
         "missing_material_form": 2667,
         "missing_object": 2
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 2877,
+        "excluded_rows": 0,
+        "target_rows": 2877,
+        "proven_rows": 0,
+        "identity_blocked_rows": 2669,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.0723
       }
     },
     {
@@ -6210,7 +6564,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.implosioncompressor",
@@ -6265,6 +6630,17 @@
       "raw_row_classes": {
         "source_exact": 776,
         "missing_material_form": 296
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 1072,
+        "excluded_rows": 0,
+        "target_rows": 1072,
+        "proven_rows": 776,
+        "identity_blocked_rows": 296,
+        "undecided_rows": 0,
+        "recipe_progress": 0.7239,
+        "identity_ready": 0.7239
       }
     },
     {
@@ -6317,6 +6693,17 @@
         "source_exact": 1289,
         "translatable_missing": 93,
         "missing_material_form": 90
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 1472,
+        "excluded_rows": 0,
+        "target_rows": 1472,
+        "proven_rows": 1289,
+        "identity_blocked_rows": 90,
+        "undecided_rows": 0,
+        "recipe_progress": 0.8757,
+        "identity_ready": 0.9389
       }
     },
     {
@@ -6397,6 +6784,17 @@
         "translatable_missing": 51,
         "missing_fluid": 22,
         "missing_object": 448
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 638,
+        "excluded_rows": 0,
+        "target_rows": 638,
+        "proven_rows": 103,
+        "identity_blocked_rows": 470,
+        "undecided_rows": 0,
+        "recipe_progress": 0.1614,
+        "identity_ready": 0.2633
       }
     },
     {
@@ -6469,8 +6867,19 @@
       "raw_row_classes": {
         "source_exact": 476,
         "translatable_missing": 691,
-        "missing_material_form": 37,
-        "missing_object": 130
+        "missing_material_form": 34,
+        "missing_object": 133
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 1334,
+        "excluded_rows": 0,
+        "target_rows": 1334,
+        "proven_rows": 476,
+        "identity_blocked_rows": 167,
+        "undecided_rows": 0,
+        "recipe_progress": 0.3568,
+        "identity_ready": 0.8748
       }
     },
     {
@@ -6549,6 +6958,17 @@
       "raw_row_classes": {
         "source_exact": 486,
         "missing_object": 12
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 498,
+        "excluded_rows": 0,
+        "target_rows": 498,
+        "proven_rows": 486,
+        "identity_blocked_rows": 12,
+        "undecided_rows": 0,
+        "recipe_progress": 0.9759,
+        "identity_ready": 0.9759
       }
     },
     {
@@ -6593,6 +7013,17 @@
         "source_exact": 366,
         "translatable_missing": 6,
         "missing_object": 20
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 392,
+        "excluded_rows": 0,
+        "target_rows": 392,
+        "proven_rows": 366,
+        "identity_blocked_rows": 20,
+        "undecided_rows": 0,
+        "recipe_progress": 0.9337,
+        "identity_ready": 0.949
       }
     },
     {
@@ -6639,6 +7070,17 @@
         "translatable_missing": 860,
         "missing_material_form": 84,
         "missing_fluid": 5
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 957,
+        "excluded_rows": 0,
+        "target_rows": 957,
+        "proven_rows": 2,
+        "identity_blocked_rows": 89,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0021,
+        "identity_ready": 0.907
       }
     },
     {
@@ -6686,6 +7128,17 @@
       "raw_row_classes": {
         "translatable_missing": 824,
         "missing_material_form": 119
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 943,
+        "excluded_rows": 0,
+        "target_rows": 943,
+        "proven_rows": 0,
+        "identity_blocked_rows": 119,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.8738
       }
     },
     {
@@ -6731,6 +7184,17 @@
         "translatable_missing": 8,
         "missing_material_form": 2,
         "missing_fluid": 1
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 12,
+        "excluded_rows": 0,
+        "target_rows": 12,
+        "proven_rows": 1,
+        "identity_blocked_rows": 3,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0833,
+        "identity_ready": 0.75
       }
     },
     {
@@ -6802,6 +7266,17 @@
       },
       "raw_row_classes": {
         "source_exact": 33
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 33,
+        "excluded_rows": 0,
+        "target_rows": 33,
+        "proven_rows": 33,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 1.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -6844,6 +7319,17 @@
         "translatable_missing": 2261,
         "missing_material_form": 260,
         "missing_object": 7
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 2528,
+        "excluded_rows": 0,
+        "target_rows": 2528,
+        "proven_rows": 0,
+        "identity_blocked_rows": 267,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.8944
       }
     },
     {
@@ -6888,6 +7374,17 @@
       },
       "raw_row_classes": {
         "source_exact": 312
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 312,
+        "excluded_rows": 0,
+        "target_rows": 312,
+        "proven_rows": 312,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 1.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -6935,8 +7432,19 @@
       },
       "raw_row_classes": {
         "translatable_missing": 592,
-        "missing_material_form": 7271,
-        "missing_object": 297
+        "missing_material_form": 7247,
+        "missing_object": 321
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 8160,
+        "excluded_rows": 0,
+        "target_rows": 8160,
+        "proven_rows": 0,
+        "identity_blocked_rows": 7568,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.0725
       }
     },
     {
@@ -7014,6 +7522,17 @@
         "missing_material_form": 5190,
         "missing_fluid": 21,
         "missing_object": 68
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 5322,
+        "excluded_rows": 0,
+        "target_rows": 5322,
+        "proven_rows": 16,
+        "identity_blocked_rows": 5279,
+        "undecided_rows": 0,
+        "recipe_progress": 0.003,
+        "identity_ready": 0.0081
       }
     },
     {
@@ -7062,6 +7581,17 @@
         "translatable_missing": 15,
         "missing_fluid": 18,
         "missing_object": 63
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 96,
+        "excluded_rows": 0,
+        "target_rows": 96,
+        "proven_rows": 0,
+        "identity_blocked_rows": 81,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.1562
       }
     },
     {
@@ -7104,7 +7634,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.microwave",
@@ -7142,7 +7683,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.cooker",
@@ -7180,7 +7732,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.bumblequeen",
@@ -7220,6 +7783,19 @@
       },
       "raw_row_classes": {
         "display_only": 80
+      },
+      "raw_row_excluded": {
+        "display_only": 80
+      },
+      "progress": {
+        "source_rows": 80,
+        "excluded_rows": 80,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
       }
     },
     {
@@ -7260,6 +7836,19 @@
       },
       "raw_row_classes": {
         "display_only": 1440
+      },
+      "raw_row_excluded": {
+        "display_only": 1440
+      },
+      "progress": {
+        "source_rows": 1440,
+        "excluded_rows": 1440,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
       }
     },
     {
@@ -7307,6 +7896,19 @@
       },
       "raw_row_classes": {
         "display_only": 15
+      },
+      "raw_row_excluded": {
+        "display_only": 15
+      },
+      "progress": {
+        "source_rows": 15,
+        "excluded_rows": 15,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
       }
     },
     {
@@ -7345,7 +7947,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.wiremill",
@@ -7387,6 +8000,17 @@
         "translated_io_only": 31,
         "translatable_missing": 326,
         "missing_material_form": 98
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 455,
+        "excluded_rows": 0,
+        "target_rows": 455,
+        "proven_rows": 0,
+        "identity_blocked_rows": 98,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.7846
       }
     },
     {
@@ -7429,6 +8053,17 @@
       },
       "raw_row_classes": {
         "source_exact": 307
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 307,
+        "excluded_rows": 0,
+        "target_rows": 307,
+        "proven_rows": 307,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 1.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -7472,6 +8107,17 @@
         "translatable_missing": 1532,
         "missing_material_form": 607,
         "missing_object": 2
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 2438,
+        "excluded_rows": 0,
+        "target_rows": 2438,
+        "proven_rows": 0,
+        "identity_blocked_rows": 609,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.7502
       }
     },
     {
@@ -7515,6 +8161,17 @@
         "translated_io_only": 307,
         "translatable_missing": 337,
         "missing_material_form": 296
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 940,
+        "excluded_rows": 0,
+        "target_rows": 940,
+        "proven_rows": 0,
+        "identity_blocked_rows": 296,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.6851
       }
     },
     {
@@ -7562,6 +8219,17 @@
       "raw_row_classes": {
         "source_exact": 26,
         "missing_material_form": 2
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 28,
+        "excluded_rows": 0,
+        "target_rows": 28,
+        "proven_rows": 26,
+        "identity_blocked_rows": 2,
+        "undecided_rows": 0,
+        "recipe_progress": 0.9286,
+        "identity_ready": 0.9286
       }
     },
     {
@@ -7606,6 +8274,17 @@
       "raw_row_classes": {
         "translatable_missing": 577,
         "missing_object": 1210
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 1787,
+        "excluded_rows": 0,
+        "target_rows": 1787,
+        "proven_rows": 0,
+        "identity_blocked_rows": 1210,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.3229
       }
     },
     {
@@ -7649,6 +8328,17 @@
         "translatable_missing": 2442,
         "missing_material_form": 2187,
         "missing_object": 7
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 4762,
+        "excluded_rows": 0,
+        "target_rows": 4762,
+        "proven_rows": 0,
+        "identity_blocked_rows": 2194,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.5393
       }
     },
     {
@@ -7689,6 +8379,17 @@
       },
       "raw_row_classes": {
         "legacy_exclusion_pending": 9228
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 9228,
+        "excluded_rows": 0,
+        "target_rows": 9228,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 9228,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.0
       }
     },
     {
@@ -7730,6 +8431,17 @@
       "raw_row_classes": {
         "translatable_missing": 271,
         "missing_material_form": 236
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 507,
+        "excluded_rows": 0,
+        "target_rows": 507,
+        "proven_rows": 0,
+        "identity_blocked_rows": 236,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.5345
       }
     },
     {
@@ -7771,6 +8483,17 @@
       "raw_row_classes": {
         "translatable_missing": 442,
         "missing_material_form": 281
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 723,
+        "excluded_rows": 0,
+        "target_rows": 723,
+        "proven_rows": 0,
+        "identity_blocked_rows": 281,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.6113
       }
     },
     {
@@ -7832,6 +8555,17 @@
         "missing_material_form": 729,
         "missing_fluid": 17,
         "missing_object": 23
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 1296,
+        "excluded_rows": 0,
+        "target_rows": 1296,
+        "proven_rows": 252,
+        "identity_blocked_rows": 769,
+        "undecided_rows": 0,
+        "recipe_progress": 0.1944,
+        "identity_ready": 0.4066
       }
     },
     {
@@ -7893,6 +8627,17 @@
         "translated_item_io": 18,
         "translatable_missing": 73,
         "missing_material_form": 21
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 290,
+        "excluded_rows": 0,
+        "target_rows": 290,
+        "proven_rows": 178,
+        "identity_blocked_rows": 21,
+        "undecided_rows": 0,
+        "recipe_progress": 0.6138,
+        "identity_ready": 0.9276
       }
     },
     {
@@ -7933,6 +8678,19 @@
       },
       "raw_row_classes": {
         "display_only": 10960
+      },
+      "raw_row_excluded": {
+        "display_only": 10960
+      },
+      "progress": {
+        "source_rows": 10960,
+        "excluded_rows": 10960,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
       }
     },
     {
@@ -8004,6 +8762,17 @@
       },
       "raw_row_classes": {
         "source_exact": 7637
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 7637,
+        "excluded_rows": 0,
+        "target_rows": 7637,
+        "proven_rows": 7637,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 1.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -8044,6 +8813,17 @@
       },
       "raw_row_classes": {
         "legacy_exclusion_pending": 414
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 414,
+        "excluded_rows": 0,
+        "target_rows": 414,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 414,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.0
       }
     },
     {
@@ -8082,7 +8862,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.cutter",
@@ -8124,6 +8915,17 @@
         "translatable_missing": 20774,
         "missing_material_form": 4432,
         "missing_object": 2248
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 27454,
+        "excluded_rows": 0,
+        "target_rows": 27454,
+        "proven_rows": 0,
+        "identity_blocked_rows": 6680,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.7567
       }
     },
     {
@@ -8200,6 +9002,17 @@
         "missing_material_form": 2750,
         "missing_fluid": 284,
         "missing_object": 111
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 6756,
+        "excluded_rows": 0,
+        "target_rows": 6756,
+        "proven_rows": 3610,
+        "identity_blocked_rows": 3145,
+        "undecided_rows": 0,
+        "recipe_progress": 0.5343,
+        "identity_ready": 0.5345
       }
     },
     {
@@ -8249,6 +9062,17 @@
         "missing_material_form": 4559,
         "missing_fluid": 325,
         "missing_object": 106
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 21969,
+        "excluded_rows": 0,
+        "target_rows": 21969,
+        "proven_rows": 16821,
+        "identity_blocked_rows": 4990,
+        "undecided_rows": 0,
+        "recipe_progress": 0.7657,
+        "identity_ready": 0.7729
       }
     },
     {
@@ -8291,6 +9115,17 @@
         "translatable_missing": 4699,
         "missing_material_form": 1136,
         "missing_object": 483
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 6318,
+        "excluded_rows": 0,
+        "target_rows": 6318,
+        "proven_rows": 0,
+        "identity_blocked_rows": 1619,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.7437
       }
     },
     {
@@ -8356,6 +9191,17 @@
         "translatable_missing": 5,
         "missing_material_form": 11557,
         "missing_object": 319
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 41246,
+        "excluded_rows": 0,
+        "target_rows": 41246,
+        "proven_rows": 29365,
+        "identity_blocked_rows": 11876,
+        "undecided_rows": 0,
+        "recipe_progress": 0.7119,
+        "identity_ready": 0.7121
       }
     },
     {
@@ -8404,6 +9250,17 @@
         "translatable_missing": 1257,
         "missing_material_form": 11147,
         "missing_object": 226
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 12932,
+        "excluded_rows": 0,
+        "target_rows": 12932,
+        "proven_rows": 302,
+        "identity_blocked_rows": 11373,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0234,
+        "identity_ready": 0.1206
       }
     },
     {
@@ -8449,6 +9306,17 @@
         "translatable_missing": 108210,
         "missing_material_form": 47806,
         "missing_object": 167390
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 325595,
+        "excluded_rows": 0,
+        "target_rows": 325595,
+        "proven_rows": 2189,
+        "identity_blocked_rows": 215196,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0067,
+        "identity_ready": 0.3391
       }
     },
     {
@@ -8504,6 +9372,17 @@
       "raw_row_classes": {
         "translatable_missing": 138,
         "missing_object": 171
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 309,
+        "excluded_rows": 0,
+        "target_rows": 309,
+        "proven_rows": 0,
+        "identity_blocked_rows": 171,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.4466
       }
     },
     {
@@ -8544,6 +9423,17 @@
       },
       "raw_row_classes": {
         "translatable_missing": 2
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 2,
+        "excluded_rows": 0,
+        "target_rows": 2,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -8622,6 +9512,17 @@
         "translated_exact": 2,
         "translatable_missing": 47,
         "missing_material_form": 8
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 64,
+        "excluded_rows": 0,
+        "target_rows": 64,
+        "proven_rows": 9,
+        "identity_blocked_rows": 8,
+        "undecided_rows": 0,
+        "recipe_progress": 0.1406,
+        "identity_ready": 0.875
       }
     },
     {
@@ -8675,6 +9576,19 @@
       "raw_row_classes": {
         "display_only": 21,
         "missing_object": 1
+      },
+      "raw_row_excluded": {
+        "display_only": 21
+      },
+      "progress": {
+        "source_rows": 22,
+        "excluded_rows": 21,
+        "target_rows": 1,
+        "proven_rows": 0,
+        "identity_blocked_rows": 1,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.0
       }
     },
     {
@@ -8715,6 +9629,19 @@
       },
       "raw_row_classes": {
         "display_only": 50
+      },
+      "raw_row_excluded": {
+        "display_only": 50
+      },
+      "progress": {
+        "source_rows": 50,
+        "excluded_rows": 50,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
       }
     },
     {
@@ -8753,7 +9680,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.massfab",
@@ -8797,6 +9735,17 @@
         "translatable_missing": 10,
         "missing_material_form": 256,
         "missing_fluid": 654
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 920,
+        "excluded_rows": 0,
+        "target_rows": 920,
+        "proven_rows": 0,
+        "identity_blocked_rows": 910,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.0109
       }
     },
     {
@@ -8841,6 +9790,19 @@
         "missing_material_form": 20,
         "missing_fluid": 110,
         "missing_object": 60
+      },
+      "raw_row_excluded": {
+        "display_only": 588
+      },
+      "progress": {
+        "source_rows": 895,
+        "excluded_rows": 588,
+        "target_rows": 307,
+        "proven_rows": 0,
+        "identity_blocked_rows": 190,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.3811
       }
     },
     {
@@ -8887,6 +9849,17 @@
       },
       "raw_row_classes": {
         "translated_exact": 18
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 18,
+        "excluded_rows": 0,
+        "target_rows": 18,
+        "proven_rows": 18,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 1.0,
+        "identity_ready": 1.0
       }
     },
     {
@@ -8934,6 +9907,17 @@
         "missing_material_form": 2343,
         "missing_fluid": 72,
         "missing_object": 1109
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 3609,
+        "excluded_rows": 0,
+        "target_rows": 3609,
+        "proven_rows": 3,
+        "identity_blocked_rows": 3524,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0008,
+        "identity_ready": 0.0236
       }
     },
     {
@@ -8976,6 +9960,17 @@
         "translatable_missing": 7211,
         "missing_material_form": 19668,
         "missing_object": 412
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 27291,
+        "excluded_rows": 0,
+        "target_rows": 27291,
+        "proven_rows": 0,
+        "identity_blocked_rows": 20080,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.2642
       }
     },
     {
@@ -9019,6 +10014,19 @@
         "translatable_missing": 5166,
         "missing_material_form": 12244,
         "missing_object": 95
+      },
+      "raw_row_excluded": {
+        "display_only": 8
+      },
+      "progress": {
+        "source_rows": 17513,
+        "excluded_rows": 8,
+        "target_rows": 17505,
+        "proven_rows": 0,
+        "identity_blocked_rows": 12339,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 0.2951
       }
     },
     {
@@ -9067,6 +10075,17 @@
         "missing_material_form": 2677,
         "missing_fluid": 56,
         "missing_object": 423
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 10236,
+        "excluded_rows": 0,
+        "target_rows": 10236,
+        "proven_rows": 7,
+        "identity_blocked_rows": 3156,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0007,
+        "identity_ready": 0.6917
       }
     },
     {
@@ -9107,6 +10126,19 @@
       },
       "raw_row_classes": {
         "display_only": 52
+      },
+      "raw_row_excluded": {
+        "display_only": 52
+      },
+      "progress": {
+        "source_rows": 52,
+        "excluded_rows": 52,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
       }
     },
     {
@@ -9147,6 +10179,19 @@
       },
       "raw_row_classes": {
         "display_only": 289
+      },
+      "raw_row_excluded": {
+        "display_only": 289
+      },
+      "progress": {
+        "source_rows": 289,
+        "excluded_rows": 289,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
       }
     },
     {
@@ -9185,7 +10230,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.vacuumfreezer",
@@ -9223,7 +10279,18 @@
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
-      "raw_row_classes": {}
+      "raw_row_classes": {},
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 0,
+        "excluded_rows": 0,
+        "target_rows": 0,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": null,
+        "identity_ready": null
+      }
     },
     {
       "source_map": "gt.recipe.assembler",
@@ -9270,6 +10337,17 @@
       "raw_row_classes": {
         "source_exact": 343,
         "missing_object": 1239
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 1582,
+        "excluded_rows": 0,
+        "target_rows": 1582,
+        "proven_rows": 343,
+        "identity_blocked_rows": 1239,
+        "undecided_rows": 0,
+        "recipe_progress": 0.2168,
+        "identity_ready": 0.2168
       }
     },
     {
@@ -9310,6 +10388,17 @@
       },
       "raw_row_classes": {
         "translatable_missing": 38
+      },
+      "raw_row_excluded": {},
+      "progress": {
+        "source_rows": 38,
+        "excluded_rows": 0,
+        "target_rows": 38,
+        "proven_rows": 0,
+        "identity_blocked_rows": 0,
+        "undecided_rows": 0,
+        "recipe_progress": 0.0,
+        "identity_ready": 1.0
       }
     }
   ],
@@ -9321,9 +10410,10 @@
       "translated_io_only": 761,
       "translated_item_io": 7625,
       "translatable_missing": 221422,
-      "missing_material_form": 155558,
+      "missing_material_form": 155531,
+      "missing_material": 0,
       "missing_fluid": 12016,
-      "missing_object": 178252,
+      "missing_object": 178279,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
     },
@@ -9334,6 +10424,25 @@
       "identity_gap": 345826,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
+    },
+    "excluded": {
+      "display_only": 13576
+    },
+    "progress": {
+      "source_rows": 720841,
+      "excluded_rows": 13576,
+      "target_rows": 707265,
+      "proven_rows": 121989,
+      "identity_blocked_rows": 345826,
+      "undecided_rows": 9642,
+      "recipe_progress": 0.1725,
+      "identity_ready": 0.4974
+    },
+    "machine_progress": {
+      "maps": 73,
+      "mean_recipe_progress": 0.2719,
+      "maps_complete": 7,
+      "maps_untouched": 33
     }
   },
   "semantic_coverage": {
@@ -9351,6 +10460,7 @@
       "translated_item_io",
       "translatable_missing",
       "missing_material_form",
+      "missing_material",
       "missing_fluid",
       "missing_object"
     ],
@@ -9361,7 +10471,8 @@
       "tools/recipe_bulk/matrix.py": "445f496e726bbc35ee6b837a98da7f306a5824c19d163e0d9969e883acd3b5af",
       "tools/gt6_resolve.py": "8b14753770430ada920a1fab35abf5bf08fedf0757c1734eec9eec6c3de89799",
       "tools/compare_gt6_recipes.py": "1a77bdbad83a7d8e004f84876397c506b8d53d2c81f6691dd7497a7e9f78fa37",
-      "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py": "76379128b68a7ae0aaa01f0f712c381df2b356ded5f999a3d68228e81f824885"
+      "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py": "9eb53615fb007337761b768bae03b477c348fa818a15c9bb9d3718480f4f1d3a",
+      "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "9bd7ad4fc6bb8dab4766cd952f2b04d7de15df41e89a3eb85bdb4295b3bd8c65"
     },
     "cc_projection": {
       "runtime_rows": 121854,
@@ -9376,9 +10487,16 @@
       "translated_io_only": 761,
       "translated_item_io": 7625,
       "translatable_missing": 221422,
-      "missing_material_form": 155558,
+      "missing_material_form": 155531,
+      "missing_material": 0,
       "missing_fluid": 12016,
-      "missing_object": 178252
+      "missing_object": 178279
+    },
+    "excluded_summary": {
+      "display_only": 13576
+    },
+    "excluded_by_rule": {
+      "gt6-nei-display-rows": 13576
     },
     "total_rows": 720841,
     "maps": {
@@ -9619,8 +10737,8 @@
       "gt.recipe.loom": {
         "source_exact": 476,
         "translatable_missing": 691,
-        "missing_material_form": 37,
-        "missing_object": 130
+        "missing_material_form": 34,
+        "missing_object": 133
       },
       "gt.recipe.magneticseparator": {
         "translatable_missing": 106,
@@ -9668,8 +10786,8 @@
       },
       "gt.recipe.press": {
         "translatable_missing": 592,
-        "missing_material_form": 7271,
-        "missing_object": 297
+        "missing_material_form": 7247,
+        "missing_object": 321
       },
       "gt.recipe.pressurewasher": {
         "source_exact": 312
@@ -9774,314 +10892,2154 @@
         "missing_material_form": 98
       }
     },
-    "failure_top": {
-      "missing_fluid": [
-        {
-          "key": "fluid:sluicejuice",
-          "rows": 1362
-        },
-        {
-          "key": "fluid:fierytears",
-          "rows": 1095
-        },
-        {
-          "key": "fluid:fieryblood",
-          "rows": 1095
-        },
-        {
-          "key": "fluid:chargedmatter",
-          "rows": 652
-        },
-        {
-          "key": "fluid:petrotheum",
-          "rows": 434
-        },
-        {
-          "key": "fluid:plastic",
-          "rows": 356
-        },
-        {
-          "key": "fluid:mercury",
-          "rows": 213
-        },
-        {
-          "key": "fluid:blueberryjuice",
-          "rows": 136
-        },
-        {
-          "key": "fluid:ice",
-          "rows": 135
-        },
-        {
-          "key": "fluid:binnie.juicecranberry",
-          "rows": 135
-        },
-        {
-          "key": "fluid:glass",
-          "rows": 133
-        },
-        {
-          "key": "fluid:neutralmatter",
-          "rows": 110
-        },
-        {
-          "key": "fluid:dye.watermixed.blue",
-          "rows": 97
-        },
-        {
-          "key": "fluid:dye.watermixed.brown",
-          "rows": 94
-        },
-        {
-          "key": "fluid:dye.watermixed.cyan",
-          "rows": 85
-        },
-        {
-          "key": "fluid:dye.watermixed.yellow",
-          "rows": 83
-        },
-        {
-          "key": "fluid:dye.chemical.black",
-          "rows": 83
-        },
-        {
-          "key": "fluid:binnie.juicelemon",
-          "rows": 82
-        },
-        {
-          "key": "fluid:for.honey",
-          "rows": 80
-        },
-        {
-          "key": "fluid:coconutmilk",
-          "rows": 79
-        },
-        {
-          "key": "fluid:honeydew",
-          "rows": 79
-        },
-        {
-          "key": "fluid:milk",
-          "rows": 79
-        },
-        {
-          "key": "fluid:dye.chemical.red",
-          "rows": 78
-        },
-        {
-          "key": "fluid:dye.chemical.green",
-          "rows": 78
-        },
-        {
-          "key": "fluid:binnie.juicelime",
-          "rows": 77
-        }
-      ],
-      "missing_material_form": [
-        {
-          "key": "gregtech:gt.meta.storage.dust",
-          "rows": 15727
-        },
-        {
-          "key": "gregtech:gt.meta.plateTiny",
-          "rows": 5912
-        },
-        {
-          "key": "gregtech:gt.meta.plateCurved",
-          "rows": 4987
-        },
-        {
-          "key": "gregtech:gt.meta.bulletGtSmall",
-          "rows": 4672
-        },
-        {
-          "key": "gregtech:gt.meta.bulletGtLarge",
-          "rows": 4672
-        },
-        {
-          "key": "gregtech:gt.meta.bulletGtMedium",
-          "rows": 4672
-        },
-        {
-          "key": "gregtech:gt.meta.crushedPurifiedTiny",
-          "rows": 4394
-        },
-        {
-          "key": "gregtech:gt.meta.crushedCentrifugedTiny",
-          "rows": 3943
-        },
-        {
-          "key": "gregtech:gt.meta.tool",
-          "rows": 3941
-        },
-        {
-          "key": "gregtech:gt.meta.scrapGt",
-          "rows": 3886
-        },
-        {
-          "key": "gregtech:gt.meta.casingSmall",
-          "rows": 3749
-        },
-        {
-          "key": "gregtech:gt.meta.machine",
-          "rows": 2906
-        },
-        {
-          "key": "gregtech:gt.meta.machine.quadruple",
-          "rows": 2904
-        },
-        {
-          "key": "gregtech:gt.meta.machine.double",
-          "rows": 2904
-        },
-        {
-          "key": "gregtech:gt.meta.machine.dense",
-          "rows": 2900
-        },
-        {
-          "key": "gregtech:gt.meta.crate.64.dust",
-          "rows": 2887
-        },
-        {
-          "key": "gregtech:gt.meta.crate.dust",
-          "rows": 2859
-        },
-        {
-          "key": "gregtech:gt.meta.chain",
-          "rows": 2643
-        },
-        {
-          "key": "gregtech:gt.meta.storage.ingot",
-          "rows": 2634
-        },
-        {
-          "key": "gregtech:gt.meta.ingotQuadruple",
-          "rows": 2556
-        },
-        {
-          "key": "gregtech:gt.meta.ingotQuintuple",
-          "rows": 2556
-        },
-        {
-          "key": "gregtech:gt.meta.plantGtFiber",
-          "rows": 2458
-        },
-        {
-          "key": "gregtech:gt.meta.storage.raw",
-          "rows": 2428
-        },
-        {
-          "key": "gregtech:gt.meta.storage.plate",
-          "rows": 2399
-        },
-        {
-          "key": "gregtech:gt.meta.crate.64.plate",
-          "rows": 2398
-        }
-      ],
-      "missing_object": [
-        {
-          "key": "gregtech:gt.multiitem.technological",
-          "rows": 163179
-        },
-        {
-          "key": "gregtech:gt.multitileentity",
-          "rows": 4096
-        },
-        {
-          "key": "gregtech:gt.multiitem.randomtools",
-          "rows": 1932
-        },
-        {
-          "key": "gregtech:gt.multiitem.food",
-          "rows": 1404
-        },
-        {
-          "key": "gregtech:gt.block.bale.grass",
-          "rows": 585
-        },
-        {
-          "key": "gregtech:gt.multiitem.bottles",
-          "rows": 424
-        },
-        {
-          "key": "gregtech:gt.block.glass",
-          "rows": 382
-        },
-        {
-          "key": "gregtech:gt.multiitem.bumblebee",
-          "rows": 320
-        },
-        {
-          "key": "gregtech:gt.block.glass.slab.0",
-          "rows": 258
-        },
-        {
-          "key": "gregtech:gt.stone.granite.black",
-          "rows": 226
-        },
-        {
-          "key": "gregtech:gt.stone.greenschist",
-          "rows": 226
-        },
-        {
-          "key": "gregtech:gt.stone.blueschist",
-          "rows": 226
-        },
-        {
-          "key": "gregtech:gt.stone.kimberlite",
-          "rows": 226
-        },
-        {
-          "key": "gregtech:gt.stone.diorite",
-          "rows": 226
-        },
-        {
-          "key": "gregtech:gt.stone.granite.red",
-          "rows": 226
-        },
-        {
-          "key": "gregtech:gt.stone.granite",
-          "rows": 226
-        },
-        {
-          "key": "gregtech:gt.stone.slate",
-          "rows": 226
-        },
-        {
-          "key": "gregtech:gt.stone.andesite",
-          "rows": 226
-        },
-        {
-          "key": "gregtech:gt.stone.shale",
-          "rows": 226
-        },
-        {
-          "key": "gregtech:gt.stone.komatiite",
-          "rows": 226
-        },
-        {
-          "key": "gregtech:gt.stone.quartzite",
-          "rows": 219
-        },
-        {
-          "key": "gregtech:gt.stone.prismarine.light",
-          "rows": 215
-        },
-        {
-          "key": "gregtech:gt.stone.prismarine.dark",
-          "rows": 215
-        },
-        {
-          "key": "gregtech:gt.stone.basalt",
-          "rows": 195
-        },
-        {
-          "key": "ForgeMicroblock:stoneRod",
-          "rows": 150
-        }
-      ]
+    "maps_excluded": {
+      "gt.recipe.bath": {
+        "display_only": 2
+      },
+      "gt.recipe.bedrockorelist": {
+        "display_only": 52
+      },
+      "gt.recipe.bumblelyzer": {
+        "display_only": 1440
+      },
+      "gt.recipe.bumblequeen": {
+        "display_only": 80
+      },
+      "gt.recipe.byproductlist": {
+        "display_only": 289
+      },
+      "gt.recipe.other": {
+        "display_only": 71
+      },
+      "gt.recipe.printer": {
+        "display_only": 21
+      },
+      "gt.recipe.replicator": {
+        "display_only": 588
+      },
+      "gt.recipe.scannervisuals": {
+        "display_only": 50
+      },
+      "gt.recipe.toolhead": {
+        "display_only": 10960
+      },
+      "gt.recipe.trees": {
+        "display_only": 15
+      },
+      "gt.recipe.unboxinator": {
+        "display_only": 8
+      }
     },
+    "blocker_kinds": {
+      "extruder_shape": 162800,
+      "fluid": 12016,
+      "form": 155531,
+      "object": 15479
+    },
+    "blockers": [
+      {
+        "kind": "form",
+        "key": "form:storage.dust",
+        "label": "storage.dust",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 15727,
+        "materials": 963,
+        "top_maps": {
+          "gt.recipe.extruder": 4758,
+          "gt.recipe.mixer": 4492,
+          "gt.recipe.boxinator": 3804,
+          "gt.recipe.unboxinator": 962,
+          "gt.recipe.fermenter": 640
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10030",
+        "label": "Shape_Extruder_Plate_Tiny",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 14573,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 14573
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10025",
+        "label": "Shape_Extruder_Plate_Curved",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 14215,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 14215
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10002",
+        "label": "Shape_Extruder_Rod_Long",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 14156,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 14156
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10008",
+        "label": "Shape_Extruder_Casing",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 11567,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 11567
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10026",
+        "label": "Shape_Extruder_Gear_Small",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 11313,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 11313
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10015",
+        "label": "Shape_Extruder_Sword",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 10970,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 10970
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10016",
+        "label": "Shape_Extruder_Pickaxe",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 10970,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 10970
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10017",
+        "label": "Shape_Extruder_Shovel",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 10970,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 10970
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10018",
+        "label": "Shape_Extruder_Axe",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 10970,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 10970
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10019",
+        "label": "Shape_Extruder_Hoe",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 10970,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 10970
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10020",
+        "label": "Shape_Extruder_Hammer",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 10699,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 10699
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10021",
+        "label": "Shape_Extruder_File",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 9172,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 9172
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10022",
+        "label": "Shape_Extruder_Saw",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 9172,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 9172
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:plateTiny",
+        "label": "plateTiny",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 5912,
+        "materials": 265,
+        "top_maps": {
+          "gt.recipe.extruder": 4061,
+          "gt.recipe.cutter": 1048,
+          "gt.recipe.shredder": 264,
+          "gt.recipe.boxinator": 172,
+          "gt.recipe.rollingmill": 151
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:plateCurved",
+        "label": "plateCurved",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 4987,
+        "materials": 258,
+        "top_maps": {
+          "gt.recipe.extruder": 4070,
+          "gt.recipe.shredder": 258,
+          "gt.recipe.rollbender": 148,
+          "gt.recipe.anvil.bend.big": 148,
+          "gt.recipe.rollingmill": 147
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:bulletGtLarge",
+        "label": "bulletGtLarge",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 4672,
+        "materials": 854,
+        "top_maps": {
+          "gt.recipe.press": 1225,
+          "gt.recipe.bath": 1148,
+          "gt.recipe.unboxinator": 724,
+          "gt.recipe.melter": 624,
+          "gt.recipe.smelter": 624
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:bulletGtMedium",
+        "label": "bulletGtMedium",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 4672,
+        "materials": 854,
+        "top_maps": {
+          "gt.recipe.press": 1225,
+          "gt.recipe.bath": 1148,
+          "gt.recipe.unboxinator": 724,
+          "gt.recipe.melter": 624,
+          "gt.recipe.smelter": 624
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:bulletGtSmall",
+        "label": "bulletGtSmall",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 4672,
+        "materials": 854,
+        "top_maps": {
+          "gt.recipe.press": 1225,
+          "gt.recipe.bath": 1148,
+          "gt.recipe.unboxinator": 724,
+          "gt.recipe.melter": 624,
+          "gt.recipe.smelter": 624
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crushedPurifiedTiny",
+        "label": "crushedPurifiedTiny",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 4394,
+        "materials": 268,
+        "top_maps": {
+          "gt.recipe.sluice": 3043,
+          "gt.recipe.centrifuge": 268,
+          "gt.recipe.shredder": 268,
+          "gt.recipe.boxinator": 268,
+          "gt.recipe.unboxinator": 268
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crushedCentrifugedTiny",
+        "label": "crushedCentrifugedTiny",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 3943,
+        "materials": 300,
+        "top_maps": {
+          "gt.recipe.steamcracking": 2400,
+          "gt.recipe.centrifuge": 443,
+          "gt.recipe.shredder": 300,
+          "gt.recipe.boxinator": 300,
+          "gt.recipe.unboxinator": 300
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:scrapGt",
+        "label": "scrapGt",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 3886,
+        "materials": 581,
+        "top_maps": {
+          "gt.recipe.extruder": 2610,
+          "gt.recipe.shredder": 581,
+          "gt.recipe.mortar": 329,
+          "gt.recipe.anvil.bend.small": 187,
+          "gt.recipe.generifier": 121
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:casingSmall",
+        "label": "casingSmall",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 3749,
+        "materials": 263,
+        "top_maps": {
+          "gt.recipe.extruder": 3291,
+          "gt.recipe.shredder": 263,
+          "gt.recipe.generifier": 98,
+          "gt.recipe.welder": 86,
+          "gt.recipe.smelter": 5
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10011",
+        "label": "Shape_Extruder_Pipe_Medium",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 3074,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 3074
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10012",
+        "label": "Shape_Extruder_Pipe_Large",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 3074,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 3074
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:machine",
+        "label": "machine",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2906,
+        "materials": 209,
+        "top_maps": {
+          "gt.recipe.extruder": 2045,
+          "gt.recipe.welder": 418,
+          "gt.recipe.shredder": 209,
+          "gt.recipe.smelter": 123,
+          "gt.recipe.bath": 41
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:machine.double",
+        "label": "machine.double",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2904,
+        "materials": 209,
+        "top_maps": {
+          "gt.recipe.extruder": 2045,
+          "gt.recipe.welder": 416,
+          "gt.recipe.shredder": 209,
+          "gt.recipe.smelter": 123,
+          "gt.recipe.bath": 41
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:machine.quadruple",
+        "label": "machine.quadruple",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2904,
+        "materials": 209,
+        "top_maps": {
+          "gt.recipe.extruder": 2045,
+          "gt.recipe.welder": 416,
+          "gt.recipe.shredder": 209,
+          "gt.recipe.smelter": 123,
+          "gt.recipe.bath": 41
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:machine.dense",
+        "label": "machine.dense",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2900,
+        "materials": 209,
+        "top_maps": {
+          "gt.recipe.extruder": 2045,
+          "gt.recipe.welder": 412,
+          "gt.recipe.shredder": 209,
+          "gt.recipe.smelter": 123,
+          "gt.recipe.bath": 41
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.64.dust",
+        "label": "crate.64.dust",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2887,
+        "materials": 971,
+        "top_maps": {
+          "gt.recipe.boxinator": 1916,
+          "gt.recipe.unboxinator": 971
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.dust",
+        "label": "crate.dust",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2859,
+        "materials": 971,
+        "top_maps": {
+          "gt.recipe.boxinator": 1888,
+          "gt.recipe.unboxinator": 971
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:chain",
+        "label": "chain",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2643,
+        "materials": 263,
+        "top_maps": {
+          "gt.recipe.extruder": 2275,
+          "gt.recipe.shredder": 263,
+          "gt.recipe.generifier": 98,
+          "gt.recipe.smelter": 5,
+          "gt.recipe.melter": 2
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:storage.ingot",
+        "label": "storage.ingot",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2634,
+        "materials": 187,
+        "top_maps": {
+          "gt.recipe.extruder": 1435,
+          "gt.recipe.boxinator": 741,
+          "gt.recipe.unboxinator": 186,
+          "gt.recipe.shredder": 185,
+          "gt.recipe.massfab": 74
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10013",
+        "label": "Shape_Extruder_Pipe_Huge",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 2575,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 2575
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ingotQuadruple",
+        "label": "ingotQuadruple",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2556,
+        "materials": 171,
+        "top_maps": {
+          "gt.recipe.extruder": 1395,
+          "gt.recipe.cutter": 676,
+          "gt.recipe.shredder": 171,
+          "gt.recipe.rollingmill": 152,
+          "gt.recipe.welder": 150
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ingotQuintuple",
+        "label": "ingotQuintuple",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2556,
+        "materials": 171,
+        "top_maps": {
+          "gt.recipe.extruder": 1395,
+          "gt.recipe.cutter": 676,
+          "gt.recipe.shredder": 171,
+          "gt.recipe.rollingmill": 152,
+          "gt.recipe.welder": 150
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:plantGtFiber",
+        "label": "plantGtFiber",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2431,
+        "materials": 1038,
+        "top_maps": {
+          "gt.recipe.squeezer": 1038,
+          "gt.recipe.shredder": 986,
+          "gt.recipe.smelter": 276,
+          "gt.recipe.melter": 80,
+          "gt.recipe.loom": 34
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:storage.raw",
+        "label": "storage.raw",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2428,
+        "materials": 493,
+        "top_maps": {
+          "gt.recipe.boxinator": 1439,
+          "gt.recipe.crusher": 493,
+          "gt.recipe.unboxinator": 493,
+          "gt.recipe.cokeoven": 2,
+          "gt.recipe.centrifuge": 1
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:storage.plate",
+        "label": "storage.plate",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2399,
+        "materials": 121,
+        "top_maps": {
+          "gt.recipe.extruder": 1674,
+          "gt.recipe.boxinator": 361,
+          "gt.recipe.shredder": 120,
+          "gt.recipe.unboxinator": 120,
+          "gt.recipe.generifier": 73
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.64.plate",
+        "label": "crate.64.plate",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2398,
+        "materials": 563,
+        "top_maps": {
+          "gt.recipe.boxinator": 1836,
+          "gt.recipe.unboxinator": 562
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:plantGtWart",
+        "label": "plantGtWart",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2384,
+        "materials": 1038,
+        "top_maps": {
+          "gt.recipe.squeezer": 1038,
+          "gt.recipe.shredder": 971,
+          "gt.recipe.smelter": 284,
+          "gt.recipe.melter": 80,
+          "gt.recipe.replicator": 8
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:plantGtBlossom",
+        "label": "plantGtBlossom",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2378,
+        "materials": 1038,
+        "top_maps": {
+          "gt.recipe.squeezer": 1038,
+          "gt.recipe.shredder": 971,
+          "gt.recipe.smelter": 276,
+          "gt.recipe.melter": 80,
+          "gt.recipe.replicator": 12
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:plantGtBerry",
+        "label": "plantGtBerry",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2365,
+        "materials": 1038,
+        "top_maps": {
+          "gt.recipe.squeezer": 1038,
+          "gt.recipe.shredder": 971,
+          "gt.recipe.smelter": 276,
+          "gt.recipe.melter": 80
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:chemtube",
+        "label": "chemtube",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2351,
+        "materials": 1066,
+        "top_maps": {
+          "gt.recipe.canner": 2323,
+          "gt.recipe.extruder": 26,
+          "gt.recipe.melter": 1,
+          "gt.recipe.smelter": 1
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:chunkGt",
+        "label": "chunkGt",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2345,
+        "materials": 177,
+        "top_maps": {
+          "gt.recipe.extruder": 1406,
+          "gt.recipe.boxinator": 706,
+          "gt.recipe.shredder": 175,
+          "gt.recipe.mortar": 42,
+          "gt.recipe.generifier": 6
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:round",
+        "label": "round",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 2292,
+        "materials": 180,
+        "top_maps": {
+          "gt.recipe.extruder": 1375,
+          "gt.recipe.press": 528,
+          "gt.recipe.shredder": 180,
+          "gt.recipe.mortar": 107,
+          "gt.recipe.generifier": 99
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10009",
+        "label": "Shape_Extruder_Pipe_Tiny",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 2077,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 2077
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10010",
+        "label": "Shape_Extruder_Pipe_Small",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 2040,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 2040
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:toolHeadHammer",
+        "label": "toolHeadHammer",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1954,
+        "materials": 252,
+        "top_maps": {
+          "gt.recipe.extruder": 1697,
+          "gt.recipe.shredder": 252,
+          "gt.recipe.smelter": 4,
+          "gt.recipe.melter": 1
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ring",
+        "label": "ring",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1932,
+        "materials": 87,
+        "top_maps": {
+          "gt.recipe.extruder": 1715,
+          "gt.recipe.shredder": 87,
+          "gt.recipe.rollbender": 49,
+          "gt.recipe.anvil.bend.small": 49,
+          "gt.recipe.lathe": 25
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:gearGt",
+        "label": "gearGt",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1863,
+        "materials": 116,
+        "top_maps": {
+          "gt.recipe.extruder": 1728,
+          "gt.recipe.shredder": 116,
+          "gt.recipe.generifier": 19
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:arrowGtPlastic",
+        "label": "arrowGtPlastic",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1775,
+        "materials": 387,
+        "top_maps": {
+          "gt.recipe.press": 539,
+          "gt.recipe.unboxinator": 539,
+          "gt.recipe.melter": 253,
+          "gt.recipe.smelter": 253,
+          "gt.recipe.generifier": 139
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:gemFlawed",
+        "label": "gemFlawed",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1713,
+        "materials": 56,
+        "top_maps": {
+          "gt.recipe.press": 1173,
+          "gt.recipe.cutter": 212,
+          "gt.recipe.crusher": 112,
+          "gt.recipe.shredder": 56,
+          "gt.recipe.lathe": 53
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:dustDiv72",
+        "label": "dustDiv72",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1655,
+        "materials": 242,
+        "top_maps": {
+          "gt.recipe.shredder": 524,
+          "gt.recipe.boxinator": 484,
+          "gt.recipe.unboxinator": 440,
+          "gt.recipe.mortar": 95,
+          "gt.recipe.lathe": 43
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.64.ingot",
+        "label": "crate.64.ingot",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1491,
+        "materials": 373,
+        "top_maps": {
+          "gt.recipe.boxinator": 1118,
+          "gt.recipe.unboxinator": 373
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.ingot",
+        "label": "crate.ingot",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1487,
+        "materials": 374,
+        "top_maps": {
+          "gt.recipe.boxinator": 1114,
+          "gt.recipe.unboxinator": 373
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.64.raw",
+        "label": "crate.64.raw",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1399,
+        "materials": 493,
+        "top_maps": {
+          "gt.recipe.boxinator": 906,
+          "gt.recipe.unboxinator": 493
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:plantGtTwig",
+        "label": "plantGtTwig",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1394,
+        "materials": 1038,
+        "top_maps": {
+          "gt.recipe.squeezer": 1038,
+          "gt.recipe.smelter": 276,
+          "gt.recipe.melter": 80
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:sluicejuice",
+        "label": "sluicejuice",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 1362,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.sluice": 1352,
+          "gt.recipe.mixer": 8,
+          "gt.recipe.drying": 1,
+          "gt.recipe.centrifuge": 1
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:storage.gem",
+        "label": "storage.gem",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1299,
+        "materials": 207,
+        "top_maps": {
+          "gt.recipe.boxinator": 617,
+          "gt.recipe.shredder": 206,
+          "gt.recipe.unboxinator": 205,
+          "gt.recipe.extruder": 100,
+          "gt.recipe.generifier": 73
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:storage.plateGem",
+        "label": "storage.plateGem",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1297,
+        "materials": 207,
+        "top_maps": {
+          "gt.recipe.boxinator": 566,
+          "gt.recipe.shredder": 207,
+          "gt.recipe.unboxinator": 207,
+          "gt.recipe.extruder": 145,
+          "gt.recipe.generifier": 73
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multiitem.randomtools@5000",
+        "label": "gregtech:gt.multiitem.randomtools",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 1240,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.assembler": 1239,
+          "gt.recipe.boxinator": 1
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:arrowGtWood",
+        "label": "arrowGtWood",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1190,
+        "materials": 263,
+        "top_maps": {
+          "gt.recipe.press": 539,
+          "gt.recipe.unboxinator": 539,
+          "gt.recipe.generifier": 105,
+          "gt.recipe.smelter": 5,
+          "gt.recipe.melter": 2
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:plateGemTiny",
+        "label": "plateGemTiny",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 1142,
+        "materials": 143,
+        "top_maps": {
+          "gt.recipe.cutter": 712,
+          "gt.recipe.shredder": 143,
+          "gt.recipe.boxinator": 103,
+          "gt.recipe.extruder": 81,
+          "gt.recipe.mortar": 62
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:fieryblood",
+        "label": "fieryblood",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 1095,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 1095
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:fierytears",
+        "label": "fierytears",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 1095,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 1095
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:plateGem",
+        "label": "plateGem",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 841,
+        "materials": 55,
+        "top_maps": {
+          "gt.recipe.cutter": 436,
+          "gt.recipe.boxinator": 165,
+          "gt.recipe.extruder": 59,
+          "gt.recipe.shredder": 55,
+          "gt.recipe.compressor": 50
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:minecartWheels",
+        "label": "minecartWheels",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 821,
+        "materials": 87,
+        "top_maps": {
+          "gt.recipe.extruder": 730,
+          "gt.recipe.shredder": 87,
+          "gt.recipe.smelter": 2,
+          "gt.recipe.generifier": 2
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:gearGtSmall",
+        "label": "gearGtSmall",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 793,
+        "materials": 116,
+        "top_maps": {
+          "gt.recipe.extruder": 658,
+          "gt.recipe.shredder": 116,
+          "gt.recipe.generifier": 19
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:toolHeadPickaxeGem",
+        "label": "toolHeadPickaxeGem",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 744,
+        "materials": 31,
+        "top_maps": {
+          "gt.recipe.press": 713,
+          "gt.recipe.unboxinator": 31
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:wireFine",
+        "label": "wireFine",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 732,
+        "materials": 54,
+        "top_maps": {
+          "gt.recipe.extruder": 519,
+          "gt.recipe.wiremill": 98,
+          "gt.recipe.shredder": 54,
+          "gt.recipe.rollbender": 50,
+          "gt.recipe.mortar": 6
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:screw",
+        "label": "screw",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 723,
+        "materials": 107,
+        "top_maps": {
+          "gt.recipe.extruder": 479,
+          "gt.recipe.lathe": 107,
+          "gt.recipe.shredder": 107,
+          "gt.recipe.mortar": 23,
+          "gt.recipe.generifier": 7
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:spring",
+        "label": "spring",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 714,
+        "materials": 106,
+        "top_maps": {
+          "gt.recipe.extruder": 492,
+          "gt.recipe.shredder": 106,
+          "gt.recipe.rollbender": 49,
+          "gt.recipe.anvil.bend.big": 49,
+          "gt.recipe.generifier": 18
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:chargedmatter",
+        "label": "chargedmatter",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 652,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.massfab": 652
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.64.gem",
+        "label": "crate.64.gem",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 635,
+        "materials": 209,
+        "top_maps": {
+          "gt.recipe.boxinator": 426,
+          "gt.recipe.unboxinator": 209
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:springSmall",
+        "label": "springSmall",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 626,
+        "materials": 79,
+        "top_maps": {
+          "gt.recipe.extruder": 492,
+          "gt.recipe.shredder": 79,
+          "gt.recipe.anvil.bend.big": 49,
+          "gt.recipe.generifier": 6
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.normal.gravel",
+        "label": "ore.normal.gravel",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 617,
+        "materials": 617,
+        "top_maps": {
+          "gt.recipe.sifter": 617
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.normal.mud",
+        "label": "ore.normal.mud",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 617,
+        "materials": 617,
+        "top_maps": {
+          "gt.recipe.sifter": 617
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.normal.redsand",
+        "label": "ore.normal.redsand",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 617,
+        "materials": 617,
+        "top_maps": {
+          "gt.recipe.sifter": 617
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.normal.sand",
+        "label": "ore.normal.sand",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 617,
+        "materials": 617,
+        "top_maps": {
+          "gt.recipe.sifter": 617
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.plate",
+        "label": "crate.plate",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 562,
+        "materials": 562,
+        "top_maps": {
+          "gt.recipe.unboxinator": 562
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:gemExquisite",
+        "label": "gemExquisite",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 515,
+        "materials": 53,
+        "top_maps": {
+          "gt.recipe.cutter": 212,
+          "gt.recipe.implosioncompressor": 148,
+          "gt.recipe.shredder": 53,
+          "gt.recipe.crusher": 53,
+          "gt.recipe.extruder": 27
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:gemFlawless",
+        "label": "gemFlawless",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 513,
+        "materials": 53,
+        "top_maps": {
+          "gt.recipe.cutter": 212,
+          "gt.recipe.implosioncompressor": 148,
+          "gt.recipe.shredder": 53,
+          "gt.recipe.crusher": 53,
+          "gt.recipe.extruder": 27
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.64.plateGem",
+        "label": "crate.64.plateGem",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 511,
+        "materials": 207,
+        "top_maps": {
+          "gt.recipe.boxinator": 304,
+          "gt.recipe.unboxinator": 207
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.raw",
+        "label": "crate.raw",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 493,
+        "materials": 493,
+        "top_maps": {
+          "gt.recipe.unboxinator": 493
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.andesite",
+        "label": "ore.broken.andesite",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.basalt",
+        "label": "ore.broken.basalt",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.blackgranite",
+        "label": "ore.broken.blackgranite",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.blueschist",
+        "label": "ore.broken.blueschist",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.diorite",
+        "label": "ore.broken.diorite",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.granite",
+        "label": "ore.broken.granite",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.greenschist",
+        "label": "ore.broken.greenschist",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.kimberlite",
+        "label": "ore.broken.kimberlite",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.komatiite",
+        "label": "ore.broken.komatiite",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.limestone",
+        "label": "ore.broken.limestone",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.marble",
+        "label": "ore.broken.marble",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.prismarine.dark",
+        "label": "ore.broken.prismarine.dark",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.prismarine.light",
+        "label": "ore.broken.prismarine.light",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.quartzite",
+        "label": "ore.broken.quartzite",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.redgranite",
+        "label": "ore.broken.redgranite",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.shale",
+        "label": "ore.broken.shale",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.broken.slate",
+        "label": "ore.broken.slate",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.normal.endstone",
+        "label": "ore.normal.endstone",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.normal.sandstone",
+        "label": "ore.normal.sandstone",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 492,
+        "materials": 492,
+        "top_maps": {
+          "gt.recipe.crusher": 492
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.normal.netherrack",
+        "label": "ore.normal.netherrack",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 491,
+        "materials": 491,
+        "top_maps": {
+          "gt.recipe.crusher": 491
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:ore.normal.default",
+        "label": "ore.normal.default",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 485,
+        "materials": 485,
+        "top_maps": {
+          "gt.recipe.crusher": 485
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:petrotheum",
+        "label": "petrotheum",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 434,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.sluice": 430,
+          "gt.recipe.smelter": 3,
+          "gt.recipe.centrifuge": 1
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:gemLegendary",
+        "label": "gemLegendary",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 423,
+        "materials": 53,
+        "top_maps": {
+          "gt.recipe.cutter": 212,
+          "gt.recipe.sifter": 60,
+          "gt.recipe.shredder": 53,
+          "gt.recipe.crusher": 53,
+          "gt.recipe.extruder": 27
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:toolHeadFile",
+        "label": "toolHeadFile",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 419,
+        "materials": 159,
+        "top_maps": {
+          "gt.recipe.extruder": 258,
+          "gt.recipe.shredder": 159,
+          "gt.recipe.smelter": 2
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:plastic",
+        "label": "plastic",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 356,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.melter": 178,
+          "gt.recipe.smelter": 178
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:dust",
+        "label": "dust",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 309,
+        "materials": 21,
+        "top_maps": {
+          "gt.recipe.shredder": 161,
+          "gt.recipe.boxinator": 90,
+          "gt.recipe.unboxinator": 21,
+          "gt.recipe.mortar": 13,
+          "gt.recipe.compressor": 10
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:foil",
+        "label": "foil",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 278,
+        "materials": 6,
+        "top_maps": {
+          "gt.recipe.extruder": 268,
+          "gt.recipe.shredder": 6,
+          "gt.recipe.generifier": 4
+        }
+      },
+      {
+        "kind": "extruder_shape",
+        "key": "gregtech:gt.multiitem.technological@10031",
+        "label": "Shape_Extruder_Wire_Fine",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 243,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 243
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:mercury",
+        "label": "mercury",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 213,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 112,
+          "gt.recipe.melter": 39,
+          "gt.recipe.smelter": 39,
+          "gt.recipe.steamcracking": 16,
+          "gt.recipe.centrifuge": 4
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.gem",
+        "label": "crate.gem",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 209,
+        "materials": 209,
+        "top_maps": {
+          "gt.recipe.unboxinator": 209
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:crate.plateGem",
+        "label": "crate.plateGem",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 207,
+        "materials": 207,
+        "top_maps": {
+          "gt.recipe.unboxinator": 207
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:dustSmall",
+        "label": "dustSmall",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 197,
+        "materials": 27,
+        "top_maps": {
+          "gt.recipe.boxinator": 107,
+          "gt.recipe.unboxinator": 26,
+          "gt.recipe.shredder": 25,
+          "gt.recipe.mortar": 18,
+          "gt.recipe.extruder": 11
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:billet",
+        "label": "billet",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 168,
+        "materials": 14,
+        "top_maps": {
+          "gt.recipe.boxinator": 80,
+          "gt.recipe.extruder": 47,
+          "gt.recipe.unboxinator": 14,
+          "gt.recipe.shredder": 12,
+          "gt.recipe.mortar": 11
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:toolHeadBuilderwand",
+        "label": "toolHeadBuilderwand",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 161,
+        "materials": 159,
+        "top_maps": {
+          "gt.recipe.shredder": 159,
+          "gt.recipe.smelter": 2
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:toolHeadBuzzSaw",
+        "label": "toolHeadBuzzSaw",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 161,
+        "materials": 159,
+        "top_maps": {
+          "gt.recipe.shredder": 159,
+          "gt.recipe.smelter": 2
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:toolHeadConstructionPickaxe",
+        "label": "toolHeadConstructionPickaxe",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 161,
+        "materials": 159,
+        "top_maps": {
+          "gt.recipe.shredder": 159,
+          "gt.recipe.smelter": 2
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:toolHeadScrewdriver",
+        "label": "toolHeadScrewdriver",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 161,
+        "materials": 159,
+        "top_maps": {
+          "gt.recipe.shredder": 159,
+          "gt.recipe.smelter": 2
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:oreRaw",
+        "label": "oreRaw",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 160,
+        "materials": 40,
+        "top_maps": {
+          "gt.recipe.boxinator": 120,
+          "gt.recipe.crusher": 40
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32610",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 158,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 157,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "ForgeMicroblock:stoneRod@0",
+        "label": "ForgeMicroblock:stoneRod",
+        "class": "missing_object",
+        "other_mod": true,
+        "rows": 150,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.generifier": 73,
+          "gt.recipe.extruder": 65,
+          "gt.recipe.cutter": 8,
+          "gt.recipe.melter": 1,
+          "gt.recipe.smelter": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:blueberryjuice",
+        "label": "blueberryjuice",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 136,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 64,
+          "gt.recipe.bath": 63,
+          "gt.recipe.mixer": 7,
+          "gt.recipe.cryomixer": 1,
+          "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:binnie.juicecranberry",
+        "label": "binnie.juicecranberry",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 135,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 65,
+          "gt.recipe.bath": 62,
+          "gt.recipe.mixer": 6,
+          "gt.recipe.cryomixer": 1,
+          "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:ice",
+        "label": "ice",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 135,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 64,
+          "gt.recipe.mixer": 38,
+          "gt.recipe.squeezer": 13,
+          "gt.recipe.juicer": 13,
+          "gt.recipe.freezer": 4
+        }
+      },
+      {
+        "kind": "form",
+        "key": "form:rotor",
+        "label": "rotor",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 135,
+        "materials": 116,
+        "top_maps": {
+          "gt.recipe.shredder": 116,
+          "gt.recipe.generifier": 19
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:glass",
+        "label": "glass",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 133,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.melter": 66,
+          "gt.recipe.smelter": 66,
+          "gt.recipe.centrifuge": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32607",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 130,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 129,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multiitem.food@10010",
+        "label": "gregtech:gt.multiitem.food",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 124,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.boxinator": 124
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multiitem.food@32700",
+        "label": "gregtech:gt.multiitem.food",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 124,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.boxinator": 124
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multiitem.food@32701",
+        "label": "gregtech:gt.multiitem.food",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 124,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.boxinator": 124
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32608",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 124,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 123,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.andesite@7",
+        "label": "gregtech:gt.stone.andesite",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.basalt@7",
+        "label": "gregtech:gt.stone.basalt",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.blueschist@7",
+        "label": "gregtech:gt.stone.blueschist",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.diorite@7",
+        "label": "gregtech:gt.stone.diorite",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.granite.black@7",
+        "label": "gregtech:gt.stone.granite.black",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.granite.red@7",
+        "label": "gregtech:gt.stone.granite.red",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.granite@7",
+        "label": "gregtech:gt.stone.granite",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.greenschist@7",
+        "label": "gregtech:gt.stone.greenschist",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.kimberlite@7",
+        "label": "gregtech:gt.stone.kimberlite",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.komatiite@7",
+        "label": "gregtech:gt.stone.komatiite",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.shale@7",
+        "label": "gregtech:gt.stone.shale",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.slate@7",
+        "label": "gregtech:gt.stone.slate",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 120,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 36,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multiitem.food@12101",
+        "label": "gregtech:gt.multiitem.food",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 119,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 64,
+          "gt.recipe.squeezer": 14,
+          "gt.recipe.shredder": 14,
+          "gt.recipe.juicer": 13,
+          "gt.recipe.mortar": 13
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multiitem.technological@30000",
+        "label": "technological@30000",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 118,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.press": 116,
+          "gt.recipe.melter": 1,
+          "gt.recipe.smelter": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.stone.quartzite@7",
+        "label": "gregtech:gt.stone.quartzite",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 116,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.laserengraver": 75,
+          "gt.recipe.extruder": 32,
+          "gt.recipe.cutter": 5,
+          "gt.recipe.shredder": 1,
+          "gt.recipe.crusher": 1
+        }
+      }
+    ],
     "calibration": {
       "pairs": 119168,
       "equal": 118618,

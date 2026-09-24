@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "policy": "Decided exclusions from the GT6 recipe-row progress target. Every rule needs an id, a reason and a decision (who decided / on what basis). Proven rows are never excluded. Rules are applied in order; the first matching rule wins. Match keys: classes, source_maps, blocker_keys, blocker_key_prefixes (blocker keys are listed in docs/current/gt6-full-coverage.md section 17). Adding a rule is a design decision: do not add one without the project owner's confirmation.",
+  "rules": [
+    {
+      "id": "gt6-nei-display-rows",
+      "match": {
+        "classes": ["display_only"]
+      },
+      "reason": "GT6 marks these rows fake or hidden: they only render in NEI (tool-head previews, bumblelyzer, byproduct lists). They are not RecipeMap recipes a machine executes; the behaviour they illustrate is tracked on the machine axis.",
+      "decision": "default"
+    }
+  ]
+}

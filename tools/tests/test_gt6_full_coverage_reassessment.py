@@ -98,8 +98,46 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
     def test_extruder_shapes_are_not_blamed_on_the_translator(self):
         extruder = self.by_source["gt.recipe.extruder"]["raw_row_classes"]
         self.assertGreater(extruder.get("missing_object", 0), 100000)
-        top = self.coverage["semantic_coverage"]["failure_top"]["missing_object"]
-        self.assertTrue(any("technological" in entry["key"] for entry in top))
+        blockers = self.coverage["semantic_coverage"]["blockers"]
+        shapes = [entry for entry in blockers if entry["kind"] == "extruder_shape"]
+        self.assertTrue(shapes)
+        self.assertTrue(all(entry["label"].startswith("Shape_Extruder_") for entry in shapes))
+
+    def test_progress_uses_decided_exclusions_only(self):
+        grades = self.coverage["summary"]["recipe_evidence_grades"]
+        progress = grades["progress"]
+        self.assertEqual(
+            progress["target_rows"],
+            progress["source_rows"] - progress["excluded_rows"],
+        )
+        exclusions = load("exclusions.json")
+        self.assertEqual(
+            ["gt6-nei-display-rows"],
+            [rule["id"] for rule in exclusions["rules"]],
+        )
+        self.assertEqual(grades["classes"]["display_only"], progress["excluded_rows"])
+        self.assertEqual(
+            progress["proven_rows"],
+            grades["classes"]["source_exact"] + grades["classes"]["translated_exact"],
+        )
+        self.assertGreater(progress["recipe_progress"], grades["groups"]["proven"] / progress["source_rows"])
+        for row in self.coverage["recipe_maps"]:
+            if row["source_rows"]:
+                self.assertEqual(
+                    row["progress"]["target_rows"],
+                    row["source_rows"] - sum(row["raw_row_excluded"].values()),
+                    row["source_map"],
+                )
+        machine = grades["machine_progress"]
+        self.assertGreater(machine["maps"], 50)
+        self.assertLessEqual(machine["maps_complete"] + machine["maps_untouched"], machine["maps"])
+
+    def test_missing_material_is_split_from_missing_form(self):
+        classes = self.coverage["summary"]["recipe_evidence_grades"]["classes"]
+        self.assertGreater(classes["missing_material_form"], 0)
+        self.assertIn("missing_material", classes)
+        kinds = {entry["kind"] for entry in self.coverage["semantic_coverage"]["blockers"]}
+        self.assertTrue({"form", "extruder_shape", "fluid"} <= kinds)
 
     def test_recipe_maps_are_unique_and_complete(self):
         rows = self.coverage["recipe_maps"]
@@ -185,6 +223,8 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
             self.assertIn(f"`{name}`", text)
         self.assertIn("gt6-full-coverage-workflow.md", text)
         self.assertIn("### 2.2 逐行分类", text)
+        self.assertIn("配方移植进度", text)
+        self.assertIn("## 17. 缺口行动清单", text)
 
     def test_empty_maps_are_not_reported_as_full_replay(self):
         for row in self.coverage["recipe_maps"]:

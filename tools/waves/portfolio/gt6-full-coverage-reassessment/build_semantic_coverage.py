@@ -35,7 +35,10 @@ if str(ROOT / "tools") not in sys.path:
     sys.path.insert(0, str(ROOT / "tools"))
 WAVE_ROOT = ROOT / "tools" / "waves" / "portfolio" / "gt6-full-coverage-reassessment"
 OUTPUT_PATH = WAVE_ROOT / "semantic_coverage.json"
+EXCLUSIONS_PATH = WAVE_ROOT / "exclusions.json"
 SCOPE_PATH = WAVE_ROOT / "scope.json"
+CROSS_REFERENCE_PATH = ROOT / "tools" / "gt6_oredict_cross_reference.json"
+DUMP_MATERIALS = ROOT / "gt6_dump" / "gt6_recipe_dump" / "oredict" / "materials.json"
 RECONCILIATION_PATH = WAVE_ROOT / "build_reconciliation.py"
 COMPARATOR_PATH = ROOT / "tools" / "compare_gt6_recipes.py"
 DUMP_MAPS = ROOT / "gt6_dump" / "gt6_recipe_dump" / "maps"
@@ -64,9 +67,12 @@ CLASSES = (
     "translated_item_io",
     "translatable_missing",
     "missing_material_form",
+    "missing_material",
     "missing_fluid",
     "missing_object",
 )
+PROVEN_CLASSES = frozenset({"source_exact", "translated_exact"})
+NATIVE_MODS = frozenset({"gregtech", "minecraft"})
 
 
 def stable_json(value: Any) -> str:
@@ -234,10 +240,10 @@ def build_cc_projection() -> dict[str, Any]:
 
 
 def translator_fingerprint() -> dict[str, str]:
-    return {
-        path.relative_to(ROOT).as_posix(): sha256_file(path)
-        for path in (*TRANSLATOR_SOURCES, BUILDER_PATH)
-    }
+    paths = [*TRANSLATOR_SOURCES, BUILDER_PATH]
+    if EXCLUSIONS_PATH.is_file():
+        paths.append(EXCLUSIONS_PATH)
+    return {path.relative_to(ROOT).as_posix(): sha256_file(path) for path in paths}
 
 
 # --------------------------------------------------------------------------
@@ -272,27 +278,133 @@ def translator_maps() -> dict[str, Any]:
     return maps
 
 
-def _failure_class(error: Exception) -> str:
-    text = str(error)
-    if "'fluid'" in text:
-        return "missing_fluid"
-    if "gregtech:gt.meta." in text:
-        return "missing_material_form"
-    return "missing_object"
+class BlockerResolver:
+    """Turn a translation failure into (class, kind, key, label, other_mod)."""
+
+    def __init__(self, materials: dict[str, dict[str, Any]]) -> None:
+        from tools import gt6_resolve
+
+        cross = load_json(CROSS_REFERENCE_PATH)
+        self.materials = materials
+        self.material_id_to_cc = {int(key): value for key, value in cross["material_id_to_cc"].items()}
+        self.prefix_names = dict(cross.get("prefix_item_to_gt_prefix") or {})
+        self.gt_materials: dict[int, dict[str, Any]] = {}
+        if DUMP_MATERIALS.is_file():
+            for row in load_json(DUMP_MATERIALS):
+                self.gt_materials[int(row["id"])] = row
+        self.shapes = {
+            row["meta"]: row
+            for row in gt6_resolve.extruder_shapes().values()
+            if isinstance(row, dict) and isinstance(row.get("meta"), int)
+        }
+
+    def _gt_material(self, meta: int) -> tuple[str, bool]:
+        row = self.gt_materials.get(meta) or {}
+        name = str(row.get("nameInternal") or f"material#{meta}")
+        mod = str(row.get("originalMod") or "gregtech")
+        return name, mod not in NATIVE_MODS
+
+    def resolve(self, error: Exception) -> dict[str, Any]:
+        text = str(error)
+        fluid = re.search(r"'fluid': '([^']+)'", text)
+        if fluid:
+            name = fluid.group(1)
+            return {
+                "class": "missing_fluid",
+                "kind": "fluid",
+                "key": f"fluid:{name}",
+                "label": name,
+                "other_mod": "." in name,
+            }
+        item = re.search(r"'item': '([^']+)'", text)
+        meta = re.search(r"'meta': (\d+)", text)
+        if item is None:
+            located = re.search(r"([A-Za-z0-9_]+:[A-Za-z0-9_.]+)@(\d+)", text)
+            if located:
+                item_id, meta_value = located.group(1), int(located.group(2))
+            else:
+                bare = re.search(r"([A-Za-z0-9_]+:[A-Za-z0-9_.]+)", text)
+                item_id, meta_value = (bare.group(1) if bare else "unknown"), None
+        else:
+            item_id = item.group(1)
+            meta_value = int(meta.group(1)) if meta else None
+        namespace = item_id.split(":", 1)[0]
+        if item_id == TECHNOLOGICAL_ITEM and meta_value is not None:
+            shape = self.shapes.get(meta_value)
+            label = (shape or {}).get("gt") or f"technological@{meta_value}"
+            return {
+                "class": "missing_object",
+                "kind": "extruder_shape" if shape else "object",
+                "key": f"{item_id}@{meta_value}",
+                "label": label,
+                "other_mod": False,
+            }
+        if item_id.startswith("gregtech:gt.meta.") and meta_value is not None:
+            prefix = self.prefix_names.get(item_id) or item_id.removeprefix("gregtech:gt.meta.")
+            cc_material = self.material_id_to_cc.get(meta_value)
+            if cc_material and cc_material in self.materials:
+                return {
+                    "class": "missing_material_form",
+                    "kind": "form",
+                    "key": f"form:{prefix}",
+                    "label": prefix,
+                    "pair": f"{cc_material}/{prefix}",
+                    "other_mod": False,
+                }
+            name, other_mod = self._gt_material(meta_value)
+            return {
+                "class": "missing_material",
+                "kind": "material",
+                "key": f"material:{name}",
+                "label": name,
+                "other_mod": other_mod,
+            }
+        return {
+            "class": "missing_object",
+            "kind": "object",
+            "key": item_id if meta_value is None else f"{item_id}@{meta_value}",
+            "label": item_id,
+            "other_mod": namespace not in ("gregtech", "minecraft"),
+        }
 
 
-def _failure_key(error: Exception) -> str:
-    text = str(error)
-    item = re.search(r"'item': '([^']+)'", text)
-    if item:
-        return item.group(1)
-    fluid = re.search(r"'fluid': '([^']+)'", text)
-    if fluid:
-        return "fluid:" + fluid.group(1)
-    obj = re.search(r"(gregtech:[a-z0-9_.]+)", text)
-    if obj:
-        return obj.group(1)
-    return re.sub(r"\d+", "N", text)[:80]
+def load_exclusion_rules() -> list[dict[str, Any]]:
+    if not EXCLUSIONS_PATH.is_file():
+        return []
+    document = load_json(EXCLUSIONS_PATH)
+    rules = document.get("rules") or []
+    for rule in rules:
+        if not rule.get("id") or not rule.get("reason") or not rule.get("decision"):
+            raise ValueError(f"exclusion rule needs id, reason and decision: {rule}")
+    return rules
+
+
+def matching_rule(
+    rules: list[dict[str, Any]],
+    row_class: str,
+    source_map: str,
+    blocker_key: str | None,
+) -> str | None:
+    if row_class in PROVEN_CLASSES:
+        return None
+    for rule in rules:
+        match = rule.get("match") or {}
+        if match.get("classes") and row_class not in match["classes"]:
+            continue
+        if match.get("source_maps") and source_map not in match["source_maps"]:
+            continue
+        keys = match.get("blocker_keys")
+        prefixes = match.get("blocker_key_prefixes")
+        if keys or prefixes:
+            if blocker_key is None:
+                continue
+            if not (
+                (keys and blocker_key in keys)
+                or (prefixes and any(blocker_key.startswith(prefix) for prefix in prefixes))
+            ):
+                continue
+        return str(rule["id"])
+    return None
 
 
 def translate_row(raw: dict[str, Any], source_map: str, index: int, row_hash: str, maps: dict[str, Any]):
@@ -373,10 +485,13 @@ def _proven_rows(rec) -> tuple[dict[str, set[str]], dict[str, set[str]], dict[tu
 
 def classify(projection: dict[str, Any]) -> dict[str, Any]:
     rec = load_reconciliation()
+    comparator = load_comparator()
     recipe_maps = rec.load_recipe_maps()
     dump_rows = rec.load_dump_rows()
     proven, hosts, cc_proven_signatures = _proven_rows(rec)
     maps = translator_maps()
+    resolver = BlockerResolver(comparator.cached_cc_materials())
+    rules = load_exclusion_rules()
     index = projection["index"]
     item_index = {
         cc_map: {(sig[0], sig[1]) for sig in sigs}
@@ -384,19 +499,50 @@ def classify(projection: dict[str, Any]) -> dict[str, Any]:
     }
 
     per_map: dict[str, Counter[str]] = {}
-    failures: dict[str, Counter[str]] = defaultdict(Counter)
+    excluded_per_map: dict[str, Counter[str]] = {}
+    excluded_by_rule: Counter[str] = Counter()
+    blockers: dict[str, dict[str, Any]] = {}
+    form_pairs: dict[str, set[str]] = defaultdict(set)
     calibration = Counter()
     calibration_by_map: dict[str, Counter[str]] = defaultdict(Counter)
     calibration_samples: list[dict[str, Any]] = []
+
+    def settle(source_map: str, row_class: str, blocker: dict[str, Any] | None) -> None:
+        per_map[source_map][row_class] += 1
+        rule = matching_rule(rules, row_class, source_map, blocker["key"] if blocker else None)
+        if rule:
+            excluded_per_map[source_map][row_class] += 1
+            excluded_by_rule[rule] += 1
+            return
+        if blocker is None:
+            return
+        entry = blockers.setdefault(
+            blocker["key"],
+            {
+                "kind": blocker["kind"],
+                "key": blocker["key"],
+                "label": blocker["label"],
+                "class": blocker["class"],
+                "other_mod": blocker["other_mod"],
+                "rows": 0,
+                "maps": Counter(),
+            },
+        )
+        entry["rows"] += 1
+        entry["maps"][source_map] += 1
+        if blocker.get("pair"):
+            form_pairs[blocker["key"]].add(blocker["pair"])
+
     for row in recipe_maps:
         source_map = str(row.get("name_internal") or "")
         count = int(row.get("recipe_count") or 0)
         if not source_map or not count:
             continue
-        counts: Counter[str] = Counter()
-        per_map[source_map] = counts
+        per_map[source_map] = Counter()
+        excluded_per_map[source_map] = Counter()
         if row.get("classification") == "out_of_scope":
-            counts["legacy_exclusion_pending"] = count
+            for _ in range(count):
+                settle(source_map, "legacy_exclusion_pending", None)
             continue
         candidates = (
             {rec.map_key(source_map)}
@@ -410,11 +556,11 @@ def classify(projection: dict[str, Any]) -> dict[str, Any]:
             row_hash = hashes[position]
             is_proven = row_hash in proven_here
             if not is_proven and (raw.get("fake") is True or raw.get("hidden") is True):
-                counts["display_only"] += 1
+                settle(source_map, "display_only", None)
                 continue
             translated, error = translate_row(raw, source_map, position, row_hash, maps)
             if is_proven:
-                counts["source_exact"] += 1
+                settle(source_map, "source_exact", None)
                 cc_sig = cc_proven_signatures.get((source_map, row_hash))
                 if cc_sig is None:
                     continue
@@ -434,39 +580,64 @@ def classify(projection: dict[str, Any]) -> dict[str, Any]:
                         )
                 continue
             if translated is None:
-                bucket = _failure_class(error)
-                counts[bucket] += 1
-                failures[bucket][_failure_key(error)] += 1
+                blocker = resolver.resolve(error)
+                settle(source_map, blocker["class"], blocker)
                 continue
             sig, numbers = translated
             hits = [index[cc_map][sig] for cc_map in candidates if sig in index.get(cc_map, {})]
             if hits:
-                counts["translated_exact" if any(numbers in hit for hit in hits) else "translated_io_only"] += 1
+                settle(
+                    source_map,
+                    "translated_exact" if any(numbers in hit for hit in hits) else "translated_io_only",
+                    None,
+                )
             elif any((sig[0], sig[1]) in item_index.get(cc_map, ()) for cc_map in candidates):
-                counts["translated_item_io"] += 1
+                settle(source_map, "translated_item_io", None)
             else:
-                counts["translatable_missing"] += 1
-        if sum(counts.values()) != count:
-            raise ValueError(f"{source_map}: classified {sum(counts.values())} of {count} rows")
+                settle(source_map, "translatable_missing", None)
+        if sum(per_map[source_map].values()) != count:
+            raise ValueError(
+                f"{source_map}: classified {sum(per_map[source_map].values())} of {count} rows"
+            )
 
     summary = Counter()
-    for counts in per_map.values():
-        summary.update(counts)
+    excluded = Counter()
+    for name in per_map:
+        summary.update(per_map[name])
+        excluded.update(excluded_per_map[name])
+    ranked = sorted(blockers.values(), key=lambda entry: (-entry["rows"], entry["key"]))
+    blocker_kinds = Counter()
+    for entry in ranked:
+        blocker_kinds[entry["kind"]] += entry["rows"]
     pairs = calibration["pairs"]
     return {
         "summary": {name: summary[name] for name in CLASSES},
+        "excluded_summary": {name: excluded[name] for name in CLASSES if excluded[name]},
+        "excluded_by_rule": dict(sorted(excluded_by_rule.items())),
         "total_rows": sum(summary.values()),
         "maps": {
             name: {cls: counts[cls] for cls in CLASSES if counts[cls]}
             for name, counts in sorted(per_map.items())
         },
-        "failure_top": {
-            bucket: [
-                {"key": key, "rows": rows}
-                for key, rows in counter.most_common(25)
-            ]
-            for bucket, counter in sorted(failures.items())
+        "maps_excluded": {
+            name: {cls: counts[cls] for cls in CLASSES if counts[cls]}
+            for name, counts in sorted(excluded_per_map.items())
+            if counts
         },
+        "blocker_kinds": dict(sorted(blocker_kinds.items())),
+        "blockers": [
+            {
+                "kind": entry["kind"],
+                "key": entry["key"],
+                "label": entry["label"],
+                "class": entry["class"],
+                "other_mod": entry["other_mod"],
+                "rows": entry["rows"],
+                "materials": len(form_pairs.get(entry["key"], ())) or None,
+                "top_maps": dict(entry["maps"].most_common(5)),
+            }
+            for entry in ranked[:150]
+        ],
         "calibration": {
             "pairs": pairs,
             "equal": calibration["equal"],
