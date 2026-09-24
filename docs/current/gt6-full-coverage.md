@@ -22,7 +22,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 物品/流体生成域 | 25 domains | `deferred_with_reason` 3，`in_scope` 16，`out_of_scope` 6（冻结分母） |
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 152（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
-| 材料形态需求 | 68 demand pairs | openable 5，gated_unresolved 59，ungated 规模 5768（规模，非待办） |
+| 材料形态需求 | 13982 demand pairs | openable 12854，gated_unresolved 59，ungated 规模 5768（规模，非待办） |
 | Capability | 112 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 95，`runtime_ready:paused` 3；survival_access `blocked` 2，`not_applicable` 2，`partial` 23，`unreviewed` 21，`unset` 64 |
 | Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
@@ -561,12 +561,15 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 ## 11. 材料形态需求普查
 
 - 来源：`tools/waves/prep/material-form-demand-census/census.json`
-- `already_gated_live`：4
-- `demand_pairs`：68
+- `already_gated_live`：3
+- `deferred_by_decision`：0
+- `demand_pairs`：13982
+- `dump_demand_pairs`：13915
+- `dump_demand_rows`：146815
 - `gated_unresolved`：59
 - `not_form`：68
-- `openable`：5
-- `skipped`：0
+- `openable`：12854
+- `skipped`：1066
 - `ungated_generated_flag_pairs`：5768
 
 ## 12. Capability（112）

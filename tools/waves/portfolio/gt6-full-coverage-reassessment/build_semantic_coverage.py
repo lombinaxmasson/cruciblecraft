@@ -48,6 +48,14 @@ MATERIAL_REGISTRATION_GATE_PATH = (
     / "cruciblecraft"
     / "material_registration_gate.json"
 )
+FORM_DEMAND_PATH = (
+    ROOT
+    / "tools"
+    / "waves"
+    / "prep"
+    / "material-form-demand-census"
+    / "form_demand_pairs.json"
+)
 DUMP_MATERIALS = ROOT / "gt6_dump" / "gt6_recipe_dump" / "oredict" / "materials.json"
 RECONCILIATION_PATH = WAVE_ROOT / "build_reconciliation.py"
 COMPARATOR_PATH = ROOT / "tools" / "compare_gt6_recipes.py"
@@ -309,13 +317,19 @@ def translator_maps() -> dict[str, Any]:
 class BlockerResolver:
     """Turn a translation failure into (class, kind, key, label, other_mod)."""
 
-    def __init__(self, materials: dict[str, dict[str, Any]]) -> None:
+    def __init__(
+        self,
+        materials: dict[str, dict[str, Any]],
+        prefix_item_to_form: dict[str, str],
+    ) -> None:
         from tools import gt6_resolve
 
         cross = load_json(CROSS_REFERENCE_PATH)
+        self.gt6_resolve = gt6_resolve
         self.materials = materials
         self.material_id_to_cc = {int(key): value for key, value in cross["material_id_to_cc"].items()}
         self.prefix_names = dict(cross.get("prefix_item_to_gt_prefix") or {})
+        self.prefix_item_to_form = dict(prefix_item_to_form)
         self.gt_materials: dict[int, dict[str, Any]] = {}
         if DUMP_MATERIALS.is_file():
             for row in load_json(DUMP_MATERIALS):
@@ -371,12 +385,18 @@ class BlockerResolver:
             prefix = self.prefix_names.get(item_id) or item_id.removeprefix("gregtech:gt.meta.")
             cc_material = self.material_id_to_cc.get(meta_value)
             if cc_material and cc_material in self.materials:
+                cc_form = self.prefix_item_to_form.get(item_id)
+                if not cc_form:
+                    cc_form = str(self.gt6_resolve.resolve_prefix(prefix).get("cc_prefix") or "")
                 return {
                     "class": "missing_material_form",
                     "kind": "form",
                     "key": f"form:{prefix}",
                     "label": prefix,
-                    "pair": f"{cc_material}/{prefix}",
+                    "pair": f"{cc_material}/{cc_form or prefix}",
+                    "cc_material": cc_material,
+                    "cc_form": cc_form or None,
+                    "gt_prefix": prefix,
                     "other_mod": False,
                 }
             name, other_mod = self._gt_material(meta_value)
@@ -518,7 +538,10 @@ def classify(projection: dict[str, Any]) -> dict[str, Any]:
     dump_rows = rec.load_dump_rows()
     proven, hosts, cc_proven_signatures = _proven_rows(rec)
     maps = translator_maps()
-    resolver = BlockerResolver(comparator.cached_cc_materials())
+    resolver = BlockerResolver(
+        comparator.cached_cc_materials(),
+        maps["catalogs"].prefix_item_to_form,
+    )
     rules = load_exclusion_rules()
     index = projection["index"]
     item_index = {
@@ -531,6 +554,7 @@ def classify(projection: dict[str, Any]) -> dict[str, Any]:
     excluded_by_rule: Counter[str] = Counter()
     blockers: dict[str, dict[str, Any]] = {}
     form_pairs: dict[str, set[str]] = defaultdict(set)
+    form_demand: dict[tuple[str, str], dict[str, Any]] = {}
     calibration = Counter()
     calibration_by_map: dict[str, Counter[str]] = defaultdict(Counter)
     calibration_samples: list[dict[str, Any]] = []
@@ -542,6 +566,26 @@ def classify(projection: dict[str, Any]) -> dict[str, Any]:
             excluded_per_map[source_map][row_class] += 1
             excluded_by_rule[rule] += 1
             return
+        if (
+            blocker is not None
+            and blocker.get("kind") == "form"
+            and blocker.get("cc_material")
+            and blocker.get("cc_form")
+        ):
+            pair_key = (str(blocker["cc_material"]), str(blocker["cc_form"]))
+            demand = form_demand.setdefault(
+                pair_key,
+                {
+                    "cc_material": pair_key[0],
+                    "cc_form": pair_key[1],
+                    "gt_prefixes": set(),
+                    "rows": 0,
+                    "maps": Counter(),
+                },
+            )
+            demand["gt_prefixes"].add(str(blocker.get("gt_prefix") or ""))
+            demand["rows"] += 1
+            demand["maps"][source_map] += 1
         if blocker is None:
             return
         entry = blockers.setdefault(
@@ -666,6 +710,21 @@ def classify(projection: dict[str, Any]) -> dict[str, Any]:
             }
             for entry in ranked[:150]
         ],
+        "form_demand_pairs": [
+            {
+                "cc_material": entry["cc_material"],
+                "cc_form": entry["cc_form"],
+                "gt_prefix": sorted(
+                    prefix for prefix in entry["gt_prefixes"] if prefix
+                ),
+                "rows": entry["rows"],
+                "maps": dict(sorted(entry["maps"].items())),
+            }
+            for entry in sorted(
+                form_demand.values(),
+                key=lambda value: (value["cc_material"], value["cc_form"]),
+            )
+        ],
         "calibration": {
             "pairs": pairs,
             "equal": calibration["equal"],
@@ -721,6 +780,10 @@ def check_report() -> int:
         errors.append("semantic coverage schema changed")
     if pinned.get("translator") != translator_fingerprint():
         errors.append("translator or builder sources changed")
+    if not FORM_DEMAND_PATH.is_file():
+        errors.append("form demand pairs output is missing")
+    elif pinned.get("form_demand_pairs_sha256") != sha256_file(FORM_DEMAND_PATH):
+        errors.append("form demand pairs output is stale")
     projection = build_cc_projection()
     pinned_projection = pinned.get("cc_projection") or {}
     for key in ("runtime_rows", "rule_rows", "digest"):
@@ -748,6 +811,27 @@ def main(argv: list[str] | None = None) -> int:
     if args.check:
         return check_report()
     report = build_report()
+    form_demand_pairs = report.pop("form_demand_pairs")
+    form_demand_document = {
+        "generated_by": (
+            "python tools/waves/portfolio/gt6-full-coverage-reassessment/"
+            "build_semantic_coverage.py --write"
+        ),
+        "pairs": form_demand_pairs,
+        "counts": {
+            "pairs": len(form_demand_pairs),
+            "rows": sum(int(row["rows"]) for row in form_demand_pairs),
+        },
+        "schema_version": 1,
+        "source_revision": report["source_revision"],
+        "status": "GT6_FORM_DEMAND_PAIRS",
+    }
+    form_demand_text = (
+        json.dumps(form_demand_document, ensure_ascii=False, indent=2) + "\n"
+    )
+    FORM_DEMAND_PATH.parent.mkdir(parents=True, exist_ok=True)
+    FORM_DEMAND_PATH.write_bytes(form_demand_text.encode("utf-8"))
+    report["form_demand_pairs_sha256"] = sha256_text(form_demand_text)
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {OUTPUT_PATH.relative_to(ROOT)}")

@@ -4760,12 +4760,15 @@
   "form_demand_census": {
     "path": "tools/waves/prep/material-form-demand-census/census.json",
     "counts": {
-      "already_gated_live": 4,
-      "demand_pairs": 68,
+      "already_gated_live": 3,
+      "deferred_by_decision": 0,
+      "demand_pairs": 13982,
+      "dump_demand_pairs": 13915,
+      "dump_demand_rows": 146815,
       "gated_unresolved": 59,
       "not_form": 68,
-      "openable": 5,
-      "skipped": 0,
+      "openable": 12854,
+      "skipped": 1066,
       "ungated_generated_flag_pairs": 5768
     },
     "capability_slug": "registry/material-form-demand-census"
@@ -10501,7 +10504,7 @@
       "tools/recipe_bulk/matrix.py": "445f496e726bbc35ee6b837a98da7f306a5824c19d163e0d9969e883acd3b5af",
       "tools/gt6_resolve.py": "d329ed6aef840bad5d0e4b002aa2963b2439f75a01a9f80c9479f44be5b7b869",
       "tools/compare_gt6_recipes.py": "1a77bdbad83a7d8e004f84876397c506b8d53d2c81f6691dd7497a7e9f78fa37",
-      "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py": "2db01c0224f2ace4c07194e0b10a600a46467165a66cb54e70e093368914741b",
+      "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py": "5765d66c2537e58e96a6213055580011e25f38f8e2ee92dba6e75f496913a768",
       "tools/gt6_oredict_cross_reference.json": "7b4dd75801b9c04437c176e39e4fbd6c9579dbd30af38e0fc2d8aebe322aa60b",
       "tools/machine_fluid_mapping.json": "b7fe286a30e006ed257b50bd4078f70eed4d7ba9011f570e4197b1957c25b356",
       "src/main/resources/data/cruciblecraft/material_registration_gate.json": "aa077152d11a54535a73012c8c15493b01980595a86df62956a952a3a022ebec",
@@ -13279,7 +13282,8 @@
           "sha256": "6fb243be99d4f4ee44ca3fafcdece197540eda9f3c9e20eaa76113a0f5b13283"
         }
       ]
-    }
+    },
+    "form_demand_pairs_sha256": "a7de35864245d76383c4e33d93984462752a62050d346c9efc36e4fe0dee54a9"
   },
   "unowned_cc_maps": [
     {

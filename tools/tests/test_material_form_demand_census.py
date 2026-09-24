@@ -103,6 +103,49 @@ class MaterialFormDemandCensusTest(unittest.TestCase):
             self.assertNotIn(row["form"], gated.get(row["material"], set()))
             self.assertIn(row["generation"], {"flagged", "dump_proven"})
             self.assertTrue(row["sources"])
+        self.assertIn("openable_rows_by_form", self.document)
+        self.assertGreater(
+            self.document["openable_rows_by_form"].get("plate", 0),
+            0,
+        )
+
+    def test_dump_demand_is_primary_and_retains_legacy_openable_pairs(self) -> None:
+        counts = self.document["counts"]
+        self.assertGreater(counts["dump_demand_pairs"], 0)
+        self.assertGreater(counts["dump_demand_rows"], 0)
+        legacy: dict[tuple[str, str], dict[str, object]] = {}
+        not_form = census.Counter()
+        census.collect_gap_demand(legacy, not_form)
+        census.collect_catalog_demand(legacy, [])
+        gate = census.load_gated_forms(census.load_json(census.GATE))
+        prefixes = census.load_prefixes()
+        materials = census.load_material_flags()
+        old_openable = {
+            key
+            for key in legacy
+            if census.classify_pair(
+                key[0],
+                key[1],
+                gated=gate,
+                prefixes=prefixes,
+                materials=materials,
+            )
+            in {"openable_flagged", "openable_dump_proven"}
+        }
+        current_openable = {
+            (row["material"], row["form"]) for row in self.document["openable"]
+        }
+        self.assertTrue(old_openable <= current_openable)
+
+    def test_deferred_decisions_never_enter_openable(self) -> None:
+        deferred = {
+            (row["material"], row["form"])
+            for row in self.document["deferred_by_decision"]
+        }
+        openable = {
+            (row["material"], row["form"]) for row in self.document["openable"]
+        }
+        self.assertTrue(deferred.isdisjoint(openable))
 
     def test_gated_unresolved_is_not_a_reopen_queue(self) -> None:
         gated = census.load_gated_forms(
@@ -127,7 +170,11 @@ class MaterialFormDemandCensusTest(unittest.TestCase):
 
     def test_full_generated_dump_is_not_the_queue(self) -> None:
         counts = self.document["counts"]
-        self.assertGreater(counts["ungated_generated_flag_pairs"], counts["openable"])
+        self.assertLessEqual(counts["openable"], counts["dump_demand_pairs"])
+        self.assertNotEqual(
+            counts["ungated_generated_flag_pairs"],
+            counts["dump_demand_pairs"],
+        )
         self.assertEqual(self.document["status"], "MATERIAL_FORM_DEMAND_CENSUS")
         self.assertEqual(self.document["lane"], "prep")
 

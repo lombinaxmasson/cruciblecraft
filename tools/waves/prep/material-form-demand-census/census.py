@@ -44,6 +44,7 @@ MATERIAL_DIR = (
     ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "materials"
 )
 CATALOG = ROOT / "tools" / "blockers" / "catalog.json"
+FORM_DEMAND = WAVE / "form_demand_pairs.json"
 COPPER_FAMILY_FORMS = ("curved_plate", "double_plate")
 COPPER_FAMILY_BLOCKER = "material-form/copper-family-curved-plate"
 SLUG = "registry/material-form-demand-census"
@@ -133,6 +134,35 @@ def current_gap_files() -> list[Path]:
     return files
 
 
+def decision_for_dump_prefix(
+    gt_prefixes: Iterable[str],
+    form: str,
+) -> str | None:
+    values = {str(value).lower() for value in gt_prefixes if value}
+    values.add(str(form).lower())
+    if any("crate" in value for value in values):
+        return "crate_packaging"
+    if any(value.startswith("bulletgt") or value.startswith("bullet_") for value in values):
+        return "bullet_forms"
+    storage_variants = {
+        "storage.raw",
+        "storage.gem",
+        "storage.plategem",
+        "blockraw",
+        "blockgem",
+        "blockplategem",
+        "block_raw",
+        "block_gem",
+        "block_plate_gem",
+        "raw_storage_block",
+        "gem_storage_block",
+        "plate_gem_storage_block",
+    }
+    if values & storage_variants:
+        return "storage_variant"
+    return None
+
+
 def add_demand(
     demand: dict[tuple[str, str], dict[str, Any]],
     material: str,
@@ -142,6 +172,9 @@ def add_demand(
     gt: str | None = None,
     kind: str | None = None,
     reason: str | None = None,
+    rows: int = 0,
+    maps: dict[str, int] | None = None,
+    decision: str | None = None,
 ) -> None:
     key = (material, form)
     row = demand.setdefault(
@@ -154,6 +187,9 @@ def add_demand(
             "gt": [],
             "kinds": [],
             "reasons": [],
+            "rows": 0,
+            "maps": {},
+            "decision_reasons": [],
         },
     )
     if source not in row["sources"]:
@@ -164,6 +200,52 @@ def add_demand(
         row["kinds"].append(kind)
     if reason and reason not in row["reasons"]:
         row["reasons"].append(reason)
+    row["rows"] += int(rows or 0)
+    for map_name, count in (maps or {}).items():
+        row["maps"][str(map_name)] = (
+            int(row["maps"].get(str(map_name), 0)) + int(count or 0)
+        )
+    if decision and decision not in row["decision_reasons"]:
+        row["decision_reasons"].append(decision)
+
+
+def collect_dump_demand(
+    demand: dict[tuple[str, str], dict[str, Any]],
+) -> tuple[int, int]:
+    document = load_json(FORM_DEMAND)
+    pair_count = 0
+    row_count = 0
+    source = io.relative(FORM_DEMAND)
+    for entry in document.get("pairs") or []:
+        material = str(entry.get("cc_material") or "")
+        form = str(entry.get("cc_form") or "")
+        if not material or not form:
+            continue
+        gt_prefixes = entry.get("gt_prefix") or []
+        if isinstance(gt_prefixes, str):
+            gt_prefixes = [gt_prefixes]
+        rows = int(entry.get("rows") or 0)
+        maps = {
+            str(name): int(count)
+            for name, count in (entry.get("maps") or {}).items()
+        }
+        decision = decision_for_dump_prefix(gt_prefixes, form)
+        for gt_prefix in gt_prefixes:
+            add_demand(
+                demand,
+                material,
+                form,
+                source=source,
+                gt=str(gt_prefix),
+                kind="dump_missing_material_form",
+                reason="missing_material_form",
+                rows=rows if gt_prefix == gt_prefixes[0] else 0,
+                maps=maps if gt_prefix == gt_prefixes[0] else None,
+                decision=decision,
+            )
+        pair_count += 1
+        row_count += rows
+    return pair_count, row_count
 
 
 def collect_gap_demand(
@@ -266,12 +348,14 @@ def build_document() -> dict[str, Any]:
     demand: dict[tuple[str, str], dict[str, Any]] = {}
     not_form: Counter[str] = Counter()
     catalog_not_prefix: list[str] = []
+    dump_demand_pairs, dump_demand_rows = collect_dump_demand(demand)
     collect_gap_demand(demand, not_form)
     collect_catalog_demand(demand, catalog_not_prefix)
 
     from tools import gt6_resolve
 
     openable: list[dict[str, Any]] = []
+    deferred_by_decision: list[dict[str, Any]] = []
     gated_unresolved: list[dict[str, Any]] = []
     already_gated_live = 0
     skipped: Counter[str] = Counter()
@@ -291,7 +375,15 @@ def build_document() -> dict[str, Any]:
             "material": row["material"],
             "sources": sorted(row["sources"]),
         }
-        if status in {"openable_flagged", "openable_dump_proven"}:
+        if row["rows"]:
+            payload["rows"] = row["rows"]
+        if row["maps"]:
+            payload["maps"] = dict(sorted(row["maps"].items()))
+        decisions = sorted(set(row["decision_reasons"]))
+        if decisions:
+            payload["reason"] = decisions
+            deferred_by_decision.append(payload)
+        elif status in {"openable_flagged", "openable_dump_proven"}:
             payload["generation"] = (
                 "flagged" if status == "openable_flagged" else "dump_proven"
             )
@@ -305,6 +397,9 @@ def build_document() -> dict[str, Any]:
             skipped[status] += 1
 
     form_counts = Counter(row["form"] for row in openable)
+    form_rows = Counter(
+        row["form"] for row in openable for _ in range(int(row.get("rows") or 0))
+    )
     unresolved_counts = Counter(row["form"] for row in gated_unresolved)
     return {
         "already_gated_live": already_gated_live,
@@ -313,6 +408,9 @@ def build_document() -> dict[str, Any]:
         "counts": {
             "already_gated_live": already_gated_live,
             "demand_pairs": len(demand),
+            "dump_demand_pairs": dump_demand_pairs,
+            "dump_demand_rows": dump_demand_rows,
+            "deferred_by_decision": len(deferred_by_decision),
             "gated_unresolved": len(gated_unresolved),
             "not_form": int(sum(not_form.values())),
             "openable": len(openable),
@@ -321,6 +419,7 @@ def build_document() -> dict[str, Any]:
                 gated, prefixes, materials
             ),
         },
+        "deferred_by_decision": deferred_by_decision,
         "gated_unresolved": gated_unresolved,
         "gated_unresolved_by_form": {
             form: unresolved_counts[form] for form in sorted(unresolved_counts)
@@ -337,6 +436,9 @@ def build_document() -> dict[str, Any]:
         "openable": openable,
         "openable_by_form": {
             form: form_counts[form] for form in sorted(form_counts)
+        },
+        "openable_rows_by_form": {
+            form: form_rows[form] for form in sorted(form_rows)
         },
         "schema_version": 1,
         "skipped_demand": dict(sorted(skipped.items())),
