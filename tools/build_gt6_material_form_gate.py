@@ -354,6 +354,9 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         for record in policy["records"]
         if record.get("cc_id")
     }
+    for material_id, forms in (
+            policy.get("legacy_compatibility_forms") or {}).items():
+        pre_gate_forms.setdefault(material_id, set()).update(forms)
     roaster_acquisition_document = load(ROASTER_COMPACT_ACQUISITION)
     if (
         roaster_acquisition_document.get("status")

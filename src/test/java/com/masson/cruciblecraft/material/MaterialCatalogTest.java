@@ -148,7 +148,9 @@ class MaterialCatalogTest {
                 MaterialPrefixes.BLOCK)));
         MaterialDefinition almond = MaterialCatalog.require("almond");
         assertTrue(almond.forms().contains(MaterialPrefixes.DUST));
-        assertTrue(MaterialCatalog.registeredForms(almond).isEmpty());
+        assertEquals(
+                List.of(MaterialPrefixes.STORAGE_DUST),
+                MaterialCatalog.registeredForms(almond));
         assertTrue(MaterialCatalog.require("oxygen").metadataOnly());
         assertTrue(MaterialCatalog.registeredForms("oxygen").isEmpty());
         assertEquals("tungsten/ingot", tungsten.registryName(MaterialPrefixes.INGOT));

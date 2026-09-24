@@ -101,6 +101,25 @@ public final class PrefixPackGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void gt6StorageDustBatchHasCensusDenominator(
+            GameTestHelper helper) {
+        helper.assertTrue(
+                ModBlocks.dustBlocks().size() == 963,
+                "storage_dust block denominator drifted: "
+                        + ModBlocks.dustBlocks().size());
+        for (String material : List.of("iron", "diamond", "rubber", "sugar")) {
+            helper.assertTrue(
+                    ModBlocks.hasDustBlock(material)
+                            && BuiltInRegistries.ITEM.containsKey(
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            CrucibleCraft.MODID,
+                                            material + "/storage_dust")),
+                    material + "/storage_dust is not fully registered");
+        }
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void nineIronPlatesCraftPlaceableStoragePlate(
             GameTestHelper helper) {
         ItemStack plate = MaterialLookup.stack("iron", MaterialPrefixes.PLATE);

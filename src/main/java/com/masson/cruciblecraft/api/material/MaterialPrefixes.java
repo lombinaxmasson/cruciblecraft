@@ -105,7 +105,6 @@ public final class MaterialPrefixes {
     public static final MaterialPrefix TINY_DUST = builtin("tiny_dust");
     public static final MaterialPrefix DUST_DIV72 = builtin("dust_div72");
     public static final MaterialPrefix STORAGE_DUST = builtin("storage_dust");
-    public static final MaterialPrefix STORAGE_INGOT = builtin("storage_ingot");
     public static final MaterialPrefix STORAGE_PLATE = builtin("storage_plate");
     public static final MaterialPrefix MACHINE_CASING = builtin("machine_casing");
     public static final MaterialPrefix MACHINE_CASING_DOUBLE =

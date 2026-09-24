@@ -77,7 +77,6 @@ public enum MaterialCreativeTab {
                     "nugget",
                     "billet",
                     "chunk",
-                    "storage_ingot",
                     "boule",
                     "gem",
                     "gem_exquisite",

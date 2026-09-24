@@ -23,7 +23,8 @@
     "fission_survival_required_forms",
     "converter_catalog_fluidbed_required_forms",
     "coke_oven_recipe_forms_required_forms",
-    "fluid_attachment_required_forms"
+    "fluid_attachment_required_forms",
+    "gt6_storage_dust_blocks_required_forms"
   ],
   "note": "Single overlay authority. Card builders write required_forms.json only; they do not write material_registration_gate.json.",
   "schema_version": 1,
@@ -124,7 +125,7 @@
         "round",
         "scrap",
         "small_casing",
-        "storage_ingot",
+        "block",
         "storage_plate",
         "tiny_centrifuged_crushed_ore",
         "tiny_plate",
@@ -267,7 +268,7 @@
         "small_gear",
         "small_spring",
         "spring",
-        "storage_ingot",
+        "block",
         "storage_plate",
         "tiny_centrifuged_crushed_ore",
         "tiny_dust",
@@ -556,7 +557,12 @@
       }
     },
     {
-      "extra_factual_forms": [],
+      "extra_factual_forms": [
+        "billet",
+        "block_raw",
+        "chunk",
+        "tiny_washed_crushed_ore"
+      ],
       "field": "required_forms",
       "gate_section": "coke_oven_recipe_forms_required_forms",
       "id": "coke_oven_recipe_forms_required_forms",
@@ -566,7 +572,10 @@
       "required_factual_prereqs": {}
     },
     {
-      "extra_factual_forms": [],
+      "extra_factual_forms": [
+        "curved_plate",
+        "round"
+      ],
       "field": "required_forms",
       "gate_section": "fluid_attachment_required_forms",
       "id": "fluid_attachment_required_forms",
@@ -574,6 +583,20 @@
       "owner": "gt6-mte-fluid-attachments",
       "path": "tools/waves/prep/material-form-demand-census/fluid_attachment_required_forms.json",
       "required_factual_prereqs": {}
+    },
+    {
+      "extra_factual_forms": [],
+      "field": "required_forms",
+      "gate_section": "gt6_storage_dust_blocks_required_forms",
+      "id": "gt6_storage_dust_blocks_required_forms",
+      "java_runtime_visible": true,
+      "owner": "registry/gt6-storage-dust-blocks",
+      "path": "tools/waves/registry/gt6-storage-dust-blocks/required_forms.json",
+      "required_factual_prereqs": {
+        "storage_dust": [
+          "dust"
+        ]
+      }
     }
   ],
   "status": "MATERIAL_FORM_AUTHORITY",

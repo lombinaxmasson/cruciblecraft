@@ -44,8 +44,7 @@ public final class MassStoragePrefixUnits {
             MaterialPrefixes.INGOT,
             MaterialPrefixes.NUGGET,
             MaterialPrefixes.CHUNK,
-            MaterialPrefixes.BILLET,
-            MaterialPrefixes.STORAGE_INGOT);
+            MaterialPrefixes.BILLET);
     static final Set<MaterialPrefix> WIRE_FAMILY = Set.of(
             MaterialPrefixes.WIRE,
             MaterialPrefixes.DOUBLE_WIRE,

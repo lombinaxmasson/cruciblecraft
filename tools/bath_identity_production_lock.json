@@ -53,8 +53,8 @@
   "partial_family_count": 0,
   "phase_deferred": [],
   "production": {
-    "exact_families": 47,
-    "exact_multi_families": 98,
+    "exact_families": 46,
+    "exact_multi_families": 97,
     "families": [
       {
         "b0_status": "needs_b1_support",
@@ -69152,44 +69152,6 @@
         "b0_status": "needs_b1_support",
         "b1_status": "real_support",
         "capability_cohort": "bath_typed_exact_multi",
-        "expanded_count": 9,
-        "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0095",
-        "host": "cruciblecraft:bath",
-        "mapped_cc_identity": "cruciblecraft:pig_iron/storage_ingot",
-        "mapped_runtime_id": "cruciblecraft:pig_iron/storage_ingot",
-        "mapping_class": "registered_material_form",
-        "publication_group": "cruciblecraft:bath/identity/exact_multi",
-        "representation": "exact_multi",
-        "source_identity": "gregtech:gt.meta.storage.ingot",
-        "source_row_sha256": [
-          "b4c3df0a85316ecafef95281c4c502537ca2d5a7ebd9f89fc90867b3da91929f",
-          "da2f873216dfe258e4658075df5db6244f5a0e1430edacb3c95a3eced4a575c1",
-          "635aa1224710cfedcbba74b1081472c4d6e7152cb277f71b875bd6e6996965df",
-          "172b90f039825984fd5d083847d5b38e4930ff53b8168686947d4cc872415aa9",
-          "413aa2051102aba75c53666942fab7c2f8bed87a3a17a4b59eb707fc689a6b32",
-          "45a1064b9616ce30eec1f049145a5f968e55be587a5d9139ff5dbdd4a00f3501",
-          "1503c05037cc406c2aedf2241f14e8cecccc46eb549fea711104b3cc7f1bc673",
-          "d8d4eb463c2f2f4f24376c5b6a6eff90df8861e9255494aab1cd8e9f72a9ea77",
-          "75ff88a15c604751bdd11731e372fb365739e73015578b33aeda81914ffbe6b5"
-        ],
-        "source_template": "gt.recipe.bath#0095",
-        "stable_ids": [
-          "cruciblecraft:bath/identity/539dc14b306d9c4a",
-          "cruciblecraft:bath/identity/d9786c3fffc101a0",
-          "cruciblecraft:bath/identity/c4ff57c5407203ae",
-          "cruciblecraft:bath/identity/35de4c0445e80d7b",
-          "cruciblecraft:bath/identity/156b9185fadb8cc5",
-          "cruciblecraft:bath/identity/ec8d271aa8e30769",
-          "cruciblecraft:bath/identity/516409e436b19a20",
-          "cruciblecraft:bath/identity/e3b065ad36e80e9d",
-          "cruciblecraft:bath/identity/92553b01ec7c83a0"
-        ],
-        "template_key": "gt.recipe.bath#0095"
-      },
-      {
-        "b0_status": "needs_b1_support",
-        "b1_status": "real_support",
-        "capability_cohort": "bath_typed_exact_multi",
         "expanded_count": 14,
         "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0097",
         "host": "cruciblecraft:bath",
@@ -71115,31 +71077,9 @@
           "cruciblecraft:bath/identity/d92f71cb5ceb7bab"
         ],
         "template_key": "gt.recipe.bath#1340"
-      },
-      {
-        "b0_status": "needs_b1_support",
-        "b1_status": "real_support",
-        "capability_cohort": "bath_exact",
-        "expanded_count": 1,
-        "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#1372",
-        "host": "cruciblecraft:bath",
-        "mapped_cc_identity": "cruciblecraft:lead/storage_ingot",
-        "mapped_runtime_id": "cruciblecraft:lead/storage_ingot",
-        "mapping_class": "registered_material_form",
-        "publication_group": "cruciblecraft:bath/identity/exact",
-        "representation": "exact",
-        "source_identity": "gregtech:gt.meta.storage.ingot",
-        "source_row_sha256": [
-          "2cbcd4df77963162e6f112067fdfa2da2265ccc2c1d854d0934a14c589977e55"
-        ],
-        "source_template": "gt.recipe.bath#1372",
-        "stable_ids": [
-          "cruciblecraft:bath/identity/d5c48b916c2783b9"
-        ],
-        "template_key": "gt.recipe.bath#1372"
       }
     ],
-    "family_count": 145,
+    "family_count": 143,
     "family_ids": [
       "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0000",
       "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0001",
@@ -71204,7 +71144,6 @@
       "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0090",
       "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0092",
       "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0093",
-      "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0095",
       "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0097",
       "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0099",
       "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0100",
@@ -71284,17 +71223,16 @@
       "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#1335",
       "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#1338",
       "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#1339",
-      "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#1340",
-      "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#1372"
+      "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#1340"
     ],
     "publication_groups": [
       "cruciblecraft:bath/identity/exact",
       "cruciblecraft:bath/identity/exact_multi",
       "cruciblecraft:bath/identity/tool_head"
     ],
-    "relation_count": 34091,
+    "relation_count": 34081,
     "selection_rule": "Lock every remainder family whose candidate_outcome is production: all source operands have a minecraft:/cruciblecraft: runtime. Families stay complete (partial=0). Complete identity-kind cohorts may lock as a subset. Mixer padding is forbidden. B0-open families are included with needs_b1_support.",
-    "selection_sha256": "4f5fbdb0aad900a2ab98a1506919d3fff340a73fbac26b50fd8bdfe24bfabd98",
+    "selection_sha256": "dad20c13ed9336edff34d6b1dbeff9fe606570261139400d2f9f7385e45cb9f0",
     "source_row_sha256": [
       "f77bc7b0347648ad4130feb0ac8eb642234aa5b28ee542ff137c324567cb578b",
       "279f1083cc867a88e427c7a4eb668a91bb279f0a40fb258992404fd1b507f3dc",
@@ -105212,15 +105150,6 @@
       "4ff0198cdd935c030b5494700f3bb6c295aec85741bb1352c1eef411d573c6a8",
       "93a1cacb5b799761b4455d6d0fa6038c846a9de2b66ddf8ee6233e9c94a6b705",
       "42b3ffdd34bb0d7fc218435e6bfda573deedd3438d8f28ba4f6538f61e13060a",
-      "b4c3df0a85316ecafef95281c4c502537ca2d5a7ebd9f89fc90867b3da91929f",
-      "da2f873216dfe258e4658075df5db6244f5a0e1430edacb3c95a3eced4a575c1",
-      "635aa1224710cfedcbba74b1081472c4d6e7152cb277f71b875bd6e6996965df",
-      "172b90f039825984fd5d083847d5b38e4930ff53b8168686947d4cc872415aa9",
-      "413aa2051102aba75c53666942fab7c2f8bed87a3a17a4b59eb707fc689a6b32",
-      "45a1064b9616ce30eec1f049145a5f968e55be587a5d9139ff5dbdd4a00f3501",
-      "1503c05037cc406c2aedf2241f14e8cecccc46eb549fea711104b3cc7f1bc673",
-      "d8d4eb463c2f2f4f24376c5b6a6eff90df8861e9255494aab1cd8e9f72a9ea77",
-      "75ff88a15c604751bdd11731e372fb365739e73015578b33aeda81914ffbe6b5",
       "0875db3e16605d5db417cc62da58f43231fc0925724585cd38fd3df903d2ba74",
       "0e3b1839cf1e5b1124ca8f4e43700181a65a735c06e78a97f07ecc2221ab2312",
       "80ece35c4840b0ae93f44385a1b4a9709cd4bab55513403fad55391dcdedef26",
@@ -105385,8 +105314,7 @@
       "9d49b656773aa500fda40d38715f793bc84e39df719f22744bcf2abc80070813",
       "8835413c4476062a8b5f8845c132dcfe1187521aaa86577a45c74f83d322bdad",
       "d3cc6a1dac6d1c11e87d4a9bce99216d2cc6ccdf196ef49ba789fe224829b6b9",
-      "1771404f9eb87eac9c9ac29df24570dd9c995bc65c01fbb965ebe73a0fd76434",
-      "2cbcd4df77963162e6f112067fdfa2da2265ccc2c1d854d0934a14c589977e55"
+      "1771404f9eb87eac9c9ac29df24570dd9c995bc65c01fbb965ebe73a0fd76434"
     ],
     "stable_ids": [
       "cruciblecraft:bath/identity/a09fac5eb7a46dc0",
@@ -139305,15 +139233,6 @@
       "cruciblecraft:bath/identity/a2dc07eaf5586e71",
       "cruciblecraft:bath/identity/1f5f6707277e36d6",
       "cruciblecraft:bath/identity/a833b3ceca1ce27f",
-      "cruciblecraft:bath/identity/539dc14b306d9c4a",
-      "cruciblecraft:bath/identity/d9786c3fffc101a0",
-      "cruciblecraft:bath/identity/c4ff57c5407203ae",
-      "cruciblecraft:bath/identity/35de4c0445e80d7b",
-      "cruciblecraft:bath/identity/156b9185fadb8cc5",
-      "cruciblecraft:bath/identity/ec8d271aa8e30769",
-      "cruciblecraft:bath/identity/516409e436b19a20",
-      "cruciblecraft:bath/identity/e3b065ad36e80e9d",
-      "cruciblecraft:bath/identity/92553b01ec7c83a0",
       "cruciblecraft:bath/identity/11a4236d9c7bc294",
       "cruciblecraft:bath/identity/b63e97f1ac152a71",
       "cruciblecraft:bath/identity/b5dd8d80ab86ae46",
@@ -139478,8 +139397,7 @@
       "cruciblecraft:bath/identity/99684a1e9b352399",
       "cruciblecraft:bath/identity/9082c1598d362a4c",
       "cruciblecraft:bath/identity/e026ed44a6bf2f4a",
-      "cruciblecraft:bath/identity/d92f71cb5ceb7bab",
-      "cruciblecraft:bath/identity/d5c48b916c2783b9"
+      "cruciblecraft:bath/identity/d92f71cb5ceb7bab"
     ],
     "template_keys": [
       "gt.recipe.bath#0000",
@@ -139545,7 +139463,6 @@
       "gt.recipe.bath#0090",
       "gt.recipe.bath#0092",
       "gt.recipe.bath#0093",
-      "gt.recipe.bath#0095",
       "gt.recipe.bath#0097",
       "gt.recipe.bath#0099",
       "gt.recipe.bath#0100",
@@ -139625,8 +139542,7 @@
       "gt.recipe.bath#1335",
       "gt.recipe.bath#1338",
       "gt.recipe.bath#1339",
-      "gt.recipe.bath#1340",
-      "gt.recipe.bath#1372"
+      "gt.recipe.bath#1340"
     ]
   },
   "remainder_not_locked": {

@@ -84,7 +84,7 @@ class PrefixMaterialIdentityTest {
                         .formItems()
                         .get(MaterialPrefixes.DUST));
         assertTrue(registered.get("sugar").contains(MaterialPrefixes.DUST));
-        assertFalse(registered.get("sugar").contains(MaterialPrefixes.STORAGE_DUST));
+        assertTrue(registered.get("sugar").contains(MaterialPrefixes.STORAGE_DUST));
     }
 
     @Test
@@ -146,7 +146,7 @@ class PrefixMaterialIdentityTest {
         assertEquals("minecraft:sugar", sugar.formItems().get(MaterialPrefixes.DUST));
         assertTrue(registered.get("sugar").contains(MaterialPrefixes.DUST));
         assertTrue(registered.get("sugar").contains(MaterialPrefixes.TINY_DUST));
-        assertFalse(registered.get("sugar").contains(MaterialPrefixes.STORAGE_DUST));
+        assertTrue(registered.get("sugar").contains(MaterialPrefixes.STORAGE_DUST));
         var serverFiles = GeneratedMaterialPack.planServerFiles(materials, registered);
         var dusts = JsonParser.parseString(
                         serverFiles.get("data/c/tags/item/dusts/sugar.json"))

@@ -106,7 +106,6 @@ PREFIX_FORM_UNITS: dict[str, int] = {
     "chunk": 36,
     "minecart_wheels": 144,
     "storage_plate": 1296,
-    "storage_ingot": 1296,
     "quadruple_ingot": 576,
     "quintuple_ingot": 720,
 }
@@ -264,12 +263,6 @@ PREFIX_FORM_DOCS: dict[str, dict[str, Any]] = {
         "generation_flag": "cruciblecraft:generates_storage_plate",
         "tag_directory": "storage_plates",
     },
-    "storage_ingot": {
-        "aliases": ["storageingot"],
-        "capabilities": [],
-        "generation_flag": "cruciblecraft:generates_storage_ingot",
-        "tag_directory": "storage_ingots",
-    },
     "quadruple_ingot": {
         "aliases": ["ingotquadruple"],
         "capabilities": [],
@@ -312,7 +305,6 @@ PREFIX_FORM_TEXTURE: dict[str, str] = {
     "chunk": "cruciblecraft:item/material/chunk",
     "minecart_wheels": "cruciblecraft:item/material/minecart_wheels",
     "storage_plate": "cruciblecraft:item/material/storage_plate",
-    "storage_ingot": "cruciblecraft:item/material/storage_ingot",
     "quadruple_ingot": "cruciblecraft:item/material/quadruple_ingot",
     "quintuple_ingot": "cruciblecraft:item/material/quintuple_ingot",
 }

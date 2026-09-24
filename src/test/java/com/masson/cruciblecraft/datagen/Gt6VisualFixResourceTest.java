@@ -33,7 +33,6 @@ class Gt6VisualFixResourceTest {
             "triple_ingot",
             "quadruple_ingot",
             "quintuple_ingot",
-            "storage_ingot",
             "storage_plate",
             "gem",
             "gem_chipped",

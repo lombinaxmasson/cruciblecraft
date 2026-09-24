@@ -81,6 +81,21 @@ public final class StorageGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void legacyStorageIngotAliasesBlock(GameTestHelper helper) {
+        ResourceLocation legacy = ResourceLocation.fromNamespaceAndPath(
+                "cruciblecraft", "iron/storage_ingot");
+        helper.assertTrue(
+                BuiltInRegistries.BLOCK.get(legacy)
+                        == ModBlocks.storageBlock("iron").get(),
+                "legacy iron/storage_ingot block alias is missing");
+        helper.assertTrue(
+                BuiltInRegistries.ITEM.get(legacy)
+                        == ModItems.materialItem("iron", MaterialPrefixes.BLOCK).get(),
+                "legacy iron/storage_ingot item alias is missing");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void bookshelfAcceptsBooksAndRejectsIngots(GameTestHelper helper) {
         BlockPos pos = new BlockPos(2, 2, 2);
         place(helper, pos, "cruciblecraft:bookshelf_7100");

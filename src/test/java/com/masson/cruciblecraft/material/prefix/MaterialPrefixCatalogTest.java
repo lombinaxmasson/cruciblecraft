@@ -190,7 +190,7 @@ class MaterialPrefixCatalogTest {
                         MaterialPrefixCatalog.require("plate_gem"),
                         MaterialPrefixes.ROD),
                 List.copyOf(MaterialPrefixCatalog.values()).subList(0, 15));
-        assertEquals(146, MaterialPrefixCatalog.values().size());
+        assertEquals(145, MaterialPrefixCatalog.values().size());
         assertEquals(16, MaterialPrefixes.TINY_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.WASHED_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.CENTRIFUGED_CRUSHED_ORE.units());
@@ -225,8 +225,9 @@ class MaterialPrefixCatalogTest {
         assertEquals(36, MaterialPrefixes.CHUNK.units());
         assertEquals(MaterialPrefixes.BILLET, MaterialPrefixCatalog.require("billet"));
         assertEquals(96, MaterialPrefixes.BILLET.units());
-        assertEquals(MaterialPrefixes.STORAGE_INGOT, MaterialPrefixCatalog.require("storageingot"));
-        assertEquals(1296, MaterialPrefixes.STORAGE_INGOT.units());
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> MaterialPrefixCatalog.require("storageingot"));
         assertEquals(
                 MaterialPrefixes.MACHINE_CASING,
                 MaterialPrefixCatalog.require("casingMachine"));

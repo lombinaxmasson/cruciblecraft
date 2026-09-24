@@ -72,8 +72,6 @@ class MassStorageHandlerTest {
                 .contains(MaterialPrefixes.CHUNK));
         assertTrue(MassStoragePrefixUnits.familyOf(MaterialPrefixes.INGOT)
                 .contains(MaterialPrefixes.BILLET));
-        assertTrue(MassStoragePrefixUnits.familyOf(MaterialPrefixes.INGOT)
-                .contains(MaterialPrefixes.STORAGE_INGOT));
         assertFalse(MassStoragePrefixUnits.familyOf(MaterialPrefixes.INGOT)
                 .contains(MaterialPrefixes.BLOCK));
         assertTrue(MassStoragePrefixUnits.familyOf(MaterialPrefixes.PLATE)
