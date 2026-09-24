@@ -1846,6 +1846,55 @@ public class ModLanguageProvider extends LanguageProvider {
     private void addJadeObservation() {
         add("jade.cruciblecraft.unavailable",
                 chinese ? "不可用" : "unavailable");
+        add("jade.cruciblecraft.source.state",
+                chinese ? "状态：%s" : "State: %s");
+        add("jade.cruciblecraft.source.state.active",
+                chinese ? "运行中" : "active");
+        add("jade.cruciblecraft.source.state.passive",
+                chinese ? "被动运行" : "passive");
+        add("jade.cruciblecraft.source.state.ready",
+                chinese ? "待机" : "ready");
+        add("jade.cruciblecraft.source.state.stopped",
+                chinese ? "已停止" : "stopped");
+        add("jade.cruciblecraft.source.state.stopped_force",
+                chinese ? "强制停止" : "forced stop");
+        add("jade.cruciblecraft.source.state.power_saving",
+                chinese ? "节能" : "power saving");
+        add("jade.cruciblecraft.source.state.unavailable",
+                chinese ? "不可用" : "unavailable");
+        add("jade.cruciblecraft.source.energy_io_range",
+                chinese
+                        ? "输入：%s %s/A；输出：%s %s/A"
+                        : "Input: %s %s/A; Output: %s %s/A");
+        add("jade.cruciblecraft.source.energy_io_recommended",
+                chinese
+                        ? "推荐输入：%s %s/A；推荐输出：%s %s/A"
+                        : "Recommended input: %s %s/A; recommended output: %s %s/A");
+        add("jade.cruciblecraft.source.energy_input_range",
+                chinese ? "能量输入：%s %s/A" : "Energy input: %s %s/A");
+        add("jade.cruciblecraft.source.energy_amount",
+                chinese ? "%s：%s %s" : "%s: %s %s");
+        add("jade.cruciblecraft.source.energy_output",
+                chinese ? "能量输出：%s %s/t" : "Energy output: %s %s/t");
+        add("jade.cruciblecraft.source.tank",
+                chinese ? "罐 %s：%s/%s %s %s" : "Tank %s: %s/%s %s %s");
+        add("jade.cruciblecraft.source.fluid_output",
+                chinese ? "流体输出 %s：%s %s %s"
+                        : "Fluid output %s: %s %s %s");
+        add("jade.cruciblecraft.source.efficiency",
+                chinese ? "效率：%s%s" : "Efficiency: %s%s");
+        add("jade.cruciblecraft.source.contents",
+                chinese ? "内容物：%s %s" : "Contents: %s %s");
+        add("jade.cruciblecraft.source.temperature",
+                chinese ? "温度：%s%s / %s%s"
+                        : "Temperature: %s%s / %s%s");
+        add("jade.cruciblecraft.source.weight",
+                chinese ? "重量：%s %s" : "Weight: %s %s");
+        add("jade.cruciblecraft.source.producing",
+                chinese ? "产出：%s" : "Producing: %s");
+        add("jade.cruciblecraft.source.rod",
+                chinese ? "%s %s %s，剩余 %s %s%s"
+                        : "%s %s %s, remaining %s %s%s");
         add("jade.cruciblecraft.temperature_k",
                 chinese ? "温度：%s K" : "Temperature: %s K");
         add("jade.cruciblecraft.buffered_heat",

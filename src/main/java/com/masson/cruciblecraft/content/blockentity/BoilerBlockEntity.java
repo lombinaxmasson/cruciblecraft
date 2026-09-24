@@ -314,6 +314,9 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
     public int accumulatedHu() {
         return heatUnitsForConversion();
     }
+    public int efficiencyBasisPoints() {
+        return efficiency;
+    }
     public String status() { return status; }
 
     @Override protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {

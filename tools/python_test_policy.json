@@ -109,6 +109,7 @@
     "test_multiitem_art",
     "test_generated_resource_gate",
     "test_jade_observation",
+    "test_jade_source_mapping",
     "test_build_component_rules"
   ],
   "test_tiers": {
@@ -1573,7 +1574,11 @@
         "tools/jade_observation.py",
         "tools/build_jade_observation.py",
         "tools/jade_observation_matrix.json",
-        "tools/tests/test_jade_observation.py"
+        "tools/tests/test_jade_observation.py",
+        "tools/tests/test_jade_source_mapping.py",
+        "tools/waves/presentation/gt6-tfru-waila-jade/source_inventory.json",
+        "tools/waves/presentation/gt6-tfru-waila-jade/mapping.json",
+        "tools/waves/presentation/gt6-tfru-waila-jade/live_provider_mapping.json"
       ],
       "test_modules": [
         "test_capability_ledger",

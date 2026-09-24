@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "source_inventory": "tools/waves/presentation/gt6-tfru-waila-jade/source_inventory.json",
+  "source_mapping": "tools/waves/presentation/gt6-tfru-waila-jade/mapping.json",
+  "purpose": "Current CrucibleCraft Jade providers mapped one by one to source-backed GT6-TFRU Waila contracts.",
+  "policy": {
+    "source_rows_only": true,
+    "blocked_rows_are_not_replaced": true,
+    "item_tooltips_are_not_block_components": true,
+    "missing_runtime_fields": "unavailable"
+  },
+  "providers": [
+    {
+      "provider": "fluid_pipe",
+      "live_identities": ["cruciblecraft:fluid_pipe"],
+      "source_classes": [
+        "gregapi.tileentity.connectors.MultiTileEntityPipeFluid"
+      ],
+      "source_rows": ["tank"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "item_pipe",
+      "live_identities": ["cruciblecraft:item_pipe"],
+      "source_classes": [],
+      "source_rows": [],
+      "status": "blocked",
+      "blocked_reason": "Current ItemPipeBlockEntity has no matching IWailaTile source class in the inventory; its transport and cover metrics remain CC-specific."
+    },
+    {
+      "provider": "crucible",
+      "live_identities": ["cruciblecraft:foundry/smelting_crucible_steel"],
+      "source_classes": [
+        "gregtech.tileentity.multiblocks.MultiTileEntityCrucible"
+      ],
+      "source_rows": ["contents", "temperature", "weight"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "transformer",
+      "live_identities": ["cruciblecraft:electric_transformer"],
+      "source_classes": [
+        "gregtech.tileentity.energy.transformers.MultiTileEntityLongDistanceTransformer"
+      ],
+      "source_rows": ["state", "energy_io_range"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "reactor_core",
+      "live_identities": [
+        "cruciblecraft:reactor_core_1x1",
+        "cruciblecraft:reactor_core_2x2"
+      ],
+      "source_classes": [
+        "gregtech.tileentity.energy.reactors.MultiTileEntityReactorCore"
+      ],
+      "source_rows": ["state", "fluid_tanks", "rod_rows"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "battery",
+      "live_identities": ["cruciblecraft:energy_battery"],
+      "source_classes": [
+        "gregapi.tileentity.energy.TileEntityBase10EnergyBatBox"
+      ],
+      "source_rows": ["state", "energy_io_range", "energy_buffer"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "bronze_boiler",
+      "live_identities": ["cruciblecraft:bronze_boiler"],
+      "source_classes": [
+        "gregtech.tileentity.energy.converters.MultiTileEntityBoilerTank"
+      ],
+      "source_rows": [
+        "energy_io_recommended",
+        "efficiency",
+        "energy_buffer",
+        "fluid_tanks"
+      ],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "bronze_steam_engine",
+      "live_identities": ["cruciblecraft:bronze_steam_engine"],
+      "source_classes": [
+        "gregtech.tileentity.energy.converters.MultiTileEntityEngineSteam"
+      ],
+      "source_rows": ["state", "energy_io_range", "energy_output"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "converter_dynamo",
+      "live_identities": ["cruciblecraft:energy_converter"],
+      "source_classes": [
+        "gregtech.tileentity.energy.converters.MultiTileEntityEngineFlux",
+        "gregapi.tileentity.energy.TileEntityBase10EnergyConverter"
+      ],
+      "source_rows": ["state", "energy_flow"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "electric_engine",
+      "live_identities": ["cruciblecraft:electric_engine"],
+      "source_classes": [
+        "gregtech.tileentity.energy.converters.MultiTileEntityEngineElectric"
+      ],
+      "source_rows": ["state", "energy_io_range", "energy_output"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "fuel_generator",
+      "live_identities": ["cruciblecraft:fuel_generator"],
+      "source_classes": [
+        "gregtech.tileentity.energy.generators.MultiTileEntityGeneratorLiquid"
+      ],
+      "source_rows": ["state", "energy_io_range", "fluid_tanks", "energy_buffer"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "solid_burning_box",
+      "live_identities": ["cruciblecraft:solid_burning_box"],
+      "source_classes": [
+        "gregtech.tileentity.energy.generators.MultiTileEntityGeneratorSolid"
+      ],
+      "source_rows": ["state", "energy_io_range", "energy_buffer"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "fluid_bed_burning_box",
+      "live_identities": ["cruciblecraft:fluid_bed_burning_box"],
+      "source_classes": [
+        "gregtech.tileentity.energy.generators.MultiTileEntityGeneratorFluidBed"
+      ],
+      "source_rows": ["state", "energy_io_range", "fluid_tanks", "energy_buffer"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "electric_motor",
+      "live_identities": ["cruciblecraft:electric_motor"],
+      "source_classes": [
+        "gregtech.tileentity.energy.converters.MultiTileEntityEngineElectric"
+      ],
+      "source_rows": ["state", "energy_io_range", "energy_output"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "anvil",
+      "live_identities": ["cruciblecraft:anvil"],
+      "source_classes": [],
+      "source_rows": [],
+      "status": "blocked",
+      "blocked_reason": "No matching Anvil IWailaTile source class was found in source_inventory."
+    },
+    {
+      "provider": "coke_oven",
+      "live_identities": ["cruciblecraft:coke_oven"],
+      "source_classes": [
+        "gregapi.tileentity.multiblocks.MultiTileEntityMultiBlockPart"
+      ],
+      "source_rows": ["formed", "controller_rows"],
+      "status": "blocked",
+      "blocked_reason": "The source class only forwards a formed controller; the current standalone CokeOvenBlockEntity has no controller-forwarding contract."
+    },
+    {
+      "provider": "ceramic_mold",
+      "live_identities": ["cruciblecraft:ceramic_mold"],
+      "source_classes": ["gregtech.tileentity.tools.MultiTileEntityMold"],
+      "source_rows": ["temperature", "producing"],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "bronze_crusher",
+      "live_identities": ["cruciblecraft:bronze_crusher"],
+      "source_classes": [],
+      "source_rows": [],
+      "status": "blocked",
+      "blocked_reason": "The registration inventory names MultiTileEntityCrusher, but no source class contract is present to translate its rows."
+    },
+    {
+      "provider": "processing_machine",
+      "live_identities": ["cruciblecraft:processing_machine"],
+      "source_classes": [
+        "gregapi.tileentity.machines.MultiTileEntityBasicMachine"
+      ],
+      "source_rows": [
+        "state",
+        "energy_io_range",
+        "fluid_tanks",
+        "fluid_output",
+        "progress"
+      ],
+      "status": "migrated",
+      "blocked_reason": null
+    },
+    {
+      "provider": "cable",
+      "live_identities": [
+        "cruciblecraft:cable",
+        "cruciblecraft:lu_fiber_cable"
+      ],
+      "source_classes": [],
+      "source_rows": [],
+      "status": "blocked",
+      "blocked_reason": "Current CableBlockEntity transport diagnostics have no matching IWailaTile class in source_inventory."
+    },
+    {
+      "provider": "fluid_spring",
+      "live_identities": ["cruciblecraft:fluid_spring"],
+      "source_classes": [],
+      "source_rows": [],
+      "status": "blocked",
+      "blocked_reason": "No matching fluid-spring IWailaTile source class."
+    },
+    {
+      "provider": "surface_rock",
+      "live_identities": ["cruciblecraft:gt_surface_rock"],
+      "source_classes": [],
+      "source_rows": [],
+      "status": "blocked",
+      "blocked_reason": "Worldgen rock display is a CC acquisition projection, not a GT6-TFRU IWailaTile contract."
+    },
+    {
+      "provider": "small_ore",
+      "live_identities": ["cruciblecraft:gt_small_ore"],
+      "source_classes": [],
+      "source_rows": [],
+      "status": "blocked",
+      "blocked_reason": "Small-ore material display has no matching source Waila class."
+    },
+    {
+      "provider": "rock_block",
+      "live_identities": ["cruciblecraft:rock"],
+      "source_classes": [],
+      "source_rows": [],
+      "status": "blocked",
+      "blocked_reason": "Rock block material display has no matching source Waila class."
+    }
+  ]
+}

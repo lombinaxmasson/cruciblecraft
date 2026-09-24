@@ -3,6 +3,38 @@
   "generated_by": "tools/jade_observation.py",
   "jade_scope_decision": "foundation_plus_followup",
   "decision_reason": "Logistics Core, tanks, fusion, reactor cores, batteries, converters/dynamos, hoppers and storage need extra runtime, multiblock state or are out of this card. Claiming every live processing-machine variant as a new provider would be unreviewable; they already share ProcessingMachineComponentProvider. This card delivers the unified contract, the matrix, and source-backed Crucible + Transformer Jade.",
+  "source_waila_migration": {
+    "ledger": "tools/waves/presentation/gt6-tfru-waila-jade/live_provider_mapping.json",
+    "source_inventory": "tools/waves/presentation/gt6-tfru-waila-jade/source_inventory.json",
+    "migrated_providers": [
+      "fluid_pipe",
+      "crucible",
+      "transformer",
+      "reactor_core",
+      "battery",
+      "bronze_boiler",
+      "bronze_steam_engine",
+      "converter_dynamo",
+      "electric_engine",
+      "fuel_generator",
+      "solid_burning_box",
+      "fluid_bed_burning_box",
+      "electric_motor",
+      "ceramic_mold",
+      "processing_machine"
+    ],
+    "blocked_providers": [
+      "item_pipe",
+      "anvil",
+      "coke_oven",
+      "bronze_crusher",
+      "cable",
+      "fluid_spring",
+      "surface_rock",
+      "small_ore",
+      "rock_block"
+    ]
+  },
   "families": [
     {
       "family": "fluid_pipe",

@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.content.block.GtSurfaceRockBlock;
 import com.masson.cruciblecraft.content.block.RockBlock;
+import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.item.MaterialFormItem;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
@@ -17,9 +18,12 @@ import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.compat.jade.observation.BatteryObservation;
 import com.masson.cruciblecraft.compat.jade.observation.ConverterObservation;
 import com.masson.cruciblecraft.compat.jade.observation.CrucibleObservation;
+import com.masson.cruciblecraft.compat.jade.observation.FluidPipeObservation;
 import com.masson.cruciblecraft.compat.jade.observation.JadeDisplayUnits;
 import com.masson.cruciblecraft.compat.jade.observation.ObservationField;
 import com.masson.cruciblecraft.compat.jade.observation.ReactorCoreObservation;
+import com.masson.cruciblecraft.compat.jade.observation.SourceWailaRows;
+import com.masson.cruciblecraft.compat.jade.observation.SteamEngineObservation;
 import com.masson.cruciblecraft.compat.jade.observation.TransformerObservation;
 import com.masson.cruciblecraft.content.block.DynamoBlock;
 import com.masson.cruciblecraft.content.block.ElectricEngineBlock;
@@ -39,6 +43,7 @@ import com.masson.cruciblecraft.content.blockentity.ElectricMotorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidBedBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidSpringBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BedrockOreBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ReactorCoreBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SolidBurningBoxBlockEntity;
@@ -61,6 +66,7 @@ import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlock;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlockEntity;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterHost;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
 
 import net.minecraft.core.Direction;
@@ -92,6 +98,15 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         registration.registerBlockDataProvider(
                 ItemPipeComponentProvider.INSTANCE,
                 ItemPipeBlockEntity.class);
+        registration.registerBlockDataProvider(
+                BoilerComponentProvider.INSTANCE,
+                BoilerBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ProcessingMachineComponentProvider.INSTANCE,
+                ConfiguredProcessingMachineBlockEntity.class);
+        registration.registerBlockDataProvider(
+                SteamEngineComponentProvider.INSTANCE,
+                SteamEngineBlockEntity.class);
         registration.registerBlockDataProvider(
                 CrucibleComponentProvider.INSTANCE,
                 CrucibleBlockEntity.class);
@@ -133,6 +148,8 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 CrucibleComponentProvider.INSTANCE, MteInPlaceBlock.class);
         registration.registerBlockComponent(
                 TransformerComponentProvider.INSTANCE, TransformerBlock.class);
+        registration.registerBlockComponent(
+                SteamEngineComponentProvider.INSTANCE, SteamEngineBlock.class);
         registration.registerBlockComponent(AnvilComponentProvider.INSTANCE, AnvilBlock.class);
         registration.registerBlockComponent(AnvilComponentProvider.INSTANCE, MteInPlaceBlock.class);
         registration.registerBlockComponent(CokeOvenComponentProvider.INSTANCE, CokeOvenBlock.class);
@@ -186,8 +203,6 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
             implements IBlockComponentProvider,
             IServerDataProvider<BlockAccessor> {
         INSTANCE;
-        private static final String TRANSFERRED = "cc_transferred";
-        private static final String COVERS = "cc_covers";
         private static final ResourceLocation UID =
                 ResourceLocation.fromNamespaceAndPath(
                         CrucibleCraft.MODID, "fluid_pipe");
@@ -197,28 +212,21 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 ITooltip tooltip,
                 BlockAccessor accessor,
                 IPluginConfig config) {
-            if (!(accessor.getBlock() instanceof FluidPipeBlock block)
-                    || !(accessor.getBlockEntity()
-                            instanceof FluidPipeBlockEntity pipe)) {
+            if (!(accessor.getBlockEntity()
+                    instanceof FluidPipeBlockEntity)) {
                 return;
             }
-            var fluid = pipe.storedFluid();
-            tooltip.add(Component.translatable(
-                    "jade.cruciblecraft.fluid_pipe",
-                    block.pipe().materialId(),
-                    fluid.getAmount(),
-                    pipe.capacity(),
-                    accessor.getServerData().contains(TRANSFERRED)
-                            ? accessor.getServerData().getLong(TRANSFERRED)
-                            : 0L,
-                    pipe.failureSnapshot().pendingFailure()
-                            .serializedName()));
-            if (accessor.getServerData().contains(COVERS)
-                    && !accessor.getServerData()
-                            .getString(COVERS).isBlank()) {
-                tooltip.add(Component.translatable(
-                        "jade.cruciblecraft.pipe_covers",
-                        accessor.getServerData().getString(COVERS)));
+            FluidPipeObservation observation =
+                    FluidPipeObservation.fromServerData(
+                            accessor.getServerData());
+            for (int index = 0; index < observation.tanks().size(); index++) {
+                FluidPipeObservation.Tank tank =
+                        observation.tanks().get(index);
+                SourceWailaRows.tank(
+                        tooltip,
+                        Integer.toString(index + 1),
+                        observation.fluid(index),
+                        tank.capacity());
             }
         }
 
@@ -227,8 +235,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 CompoundTag data, BlockAccessor accessor) {
             if (accessor.getBlockEntity()
                     instanceof FluidPipeBlockEntity pipe) {
-                data.putLong(TRANSFERRED, pipe.transferredThisWindow());
-                data.putString(COVERS, pipe.coverSummary());
+                FluidPipeObservation.writeServerData(data, pipe);
             }
         }
 
@@ -263,6 +270,64 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 tooltip.add(Component.translatable(
                         "jade.cruciblecraft.fluid_spring.amount",
                         spring.amount()));
+            }
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
+    }
+
+    private enum SteamEngineComponentProvider
+            implements IBlockComponentProvider,
+            IServerDataProvider<BlockAccessor> {
+        INSTANCE;
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "steam_engine_source");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip,
+                BlockAccessor accessor,
+                IPluginConfig config) {
+            SteamEngineObservation observation =
+                    SteamEngineObservation.fromServerData(
+                            accessor.getServerData());
+            if (observation.state().available()) {
+                SourceWailaRows.state(
+                        tooltip,
+                        observation.state().value());
+            }
+            if (observation.inputMinimum().available()
+                    && observation.inputMaximum().available()
+                    && observation.outputMinimum().available()
+                    && observation.outputMaximum().available()) {
+                SourceWailaRows.energyIoRange(
+                        tooltip,
+                        observation.inputMinimum().value(),
+                        observation.inputMaximum().value(),
+                        "SU",
+                        observation.outputMinimum().value(),
+                        observation.outputMaximum().value(),
+                        "KU");
+            }
+            if (observation.outputRate().available()) {
+                SourceWailaRows.energyOutput(
+                        tooltip,
+                        observation.outputRate().value(),
+                        "KU");
+            }
+        }
+
+        @Override
+        public void appendServerData(
+                CompoundTag data,
+                BlockAccessor accessor) {
+            if (accessor.getBlockEntity()
+                    instanceof SteamEngineBlockEntity engine) {
+                SteamEngineObservation.writeServerData(data, engine);
             }
         }
 
@@ -372,16 +437,55 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         }
     }
 
-    private enum BoilerComponentProvider implements IBlockComponentProvider {
+    private enum BoilerComponentProvider
+            implements IBlockComponentProvider,
+            IServerDataProvider<BlockAccessor> {
         INSTANCE;
         private static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(
                 CrucibleCraft.MODID, "bronze_boiler");
         @Override public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             if (accessor.getBlockEntity() instanceof BoilerBlockEntity boiler) {
+                SourceWailaRows.state(tooltip, boiler.status());
+                if (accessor.getBlock() instanceof EnergyConverterHost host) {
+                    var profile = host.converterProfile();
+                    SourceWailaRows.energyIoRecommended(
+                            tooltip,
+                            profile.inputPacket().size(),
+                            profile.inputPacket().identity(),
+                            profile.outputPacket().maxAmountPerTick(),
+                            profile.outputPacket().identity());
+                }
+                SourceWailaRows.efficiency(
+                        tooltip,
+                        boiler.efficiencyBasisPoints());
+                SourceWailaRows.energyAmount(
+                        tooltip,
+                        "ENERGY_CONTAINED",
+                        boiler.accumulatedHu(),
+                        "HU");
+                var fluids = boiler.fluids(null);
+                SourceWailaRows.tank(
+                        tooltip,
+                        "1",
+                        fluids.getFluidInTank(0),
+                        fluids.getTankCapacity(0));
+                SourceWailaRows.tank(
+                        tooltip,
+                        "2",
+                        fluids.getFluidInTank(1),
+                        fluids.getTankCapacity(1));
                 tooltip.remove(JadeIds.UNIVERSAL_FLUID_STORAGE);
                 tooltip.add(Component.translatable("jade.cruciblecraft.boiler",
                         boiler.waterAmount(), boiler.waterCapacity(),
                         boiler.steamAmount(), boiler.steamCapacity(), boiler.accumulatedHu()));
+            }
+        }
+        @Override
+        public void appendServerData(
+                CompoundTag data,
+                BlockAccessor accessor) {
+            if (accessor.getBlockEntity() instanceof BoilerBlockEntity boiler) {
+                ConverterObservation.writeServerData(data, boiler);
             }
         }
         @Override public ResourceLocation getUid() { return UID; }
@@ -404,10 +508,19 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         @Override public ResourceLocation getUid() { return UID; }
     }
 
-    private enum ProcessingMachineComponentProvider implements IBlockComponentProvider {
+    private enum ProcessingMachineComponentProvider
+            implements IBlockComponentProvider,
+            IServerDataProvider<BlockAccessor> {
         INSTANCE;
         private static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(
                 CrucibleCraft.MODID, "processing_machine");
+        private static final String SOURCE_STATE = "cc_waila_processing_state";
+        private static final String SOURCE_ENERGY_MAX = "cc_waila_processing_energy_max";
+        private static final String SOURCE_ENERGY_TYPE = "cc_waila_processing_energy_type";
+        private static final String SOURCE_TANK_COUNT = "cc_waila_processing_tank_count";
+        private static final String SOURCE_TANK_ID = "cc_waila_processing_tank_id_";
+        private static final String SOURCE_TANK_AMOUNT = "cc_waila_processing_tank_amount_";
+        private static final String SOURCE_TANK_CAPACITY = "cc_waila_processing_tank_capacity_";
 
         @Override
         public void appendTooltip(
@@ -416,6 +529,42 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 IPluginConfig config) {
             if (accessor.getBlockEntity()
                     instanceof ConfiguredProcessingMachineBlockEntity machine) {
+                CompoundTag sourceData = accessor.getServerData();
+                if (sourceData.contains(SOURCE_STATE)) {
+                    SourceWailaRows.state(
+                            tooltip,
+                            sourceData.getString(SOURCE_STATE));
+                }
+                if (sourceData.contains(SOURCE_ENERGY_MAX)
+                        && sourceData.contains(SOURCE_ENERGY_TYPE)) {
+                    SourceWailaRows.energyInputRange(
+                            tooltip,
+                            1L,
+                            sourceData.getLong(SOURCE_ENERGY_MAX),
+                            sourceData.getString(SOURCE_ENERGY_TYPE));
+                }
+                if (sourceData.contains(SOURCE_TANK_COUNT)) {
+                    int sourceTankCount = Math.max(
+                            0,
+                            sourceData.getInt(SOURCE_TANK_COUNT));
+                    for (int tank = 0; tank < sourceTankCount; tank++) {
+                        SourceWailaRows.tank(
+                                tooltip,
+                                Integer.toString(tank + 1),
+                                SourceWailaRows.fluid(
+                                        sourceData.getString(SOURCE_TANK_ID + tank),
+                                        sourceData.getInt(SOURCE_TANK_AMOUNT + tank)),
+                                sourceData.getInt(SOURCE_TANK_CAPACITY + tank));
+                    }
+                }
+                if (machine.spec().energy() != null
+                        && !sourceData.contains(SOURCE_ENERGY_MAX)) {
+                    SourceWailaRows.energyInputRange(
+                            tooltip,
+                            1L,
+                            machine.spec().energy().maxPacket(),
+                            machine.spec().energy().type().name());
+                }
                 tooltip.add(Component.translatable(
                         "jade.cruciblecraft.processing_machine",
                         machine.powerDemandLong(),
@@ -432,8 +581,61 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                                 fluidTank.getFluid().getHoverName(),
                                 fluidTank.getFluidAmount(),
                                 fluidTank.getCapacity()));
+                        if (machine.fluidOutputTanks().contains(tank)) {
+                            SourceWailaRows.fluidOutput(
+                                    tooltip,
+                                    Integer.toString(tank + 1),
+                                    fluidTank.getFluid());
+                        } else {
+                            SourceWailaRows.tank(
+                                    tooltip,
+                                    Integer.toString(tank + 1),
+                                    fluidTank.getFluid(),
+                                    fluidTank.getCapacity());
+                        }
                     }
                 }
+            }
+        }
+
+        @Override
+        public void appendServerData(
+                CompoundTag data,
+                BlockAccessor accessor) {
+            if (!(accessor.getBlockEntity()
+                    instanceof ConfiguredProcessingMachineBlockEntity machine)) {
+                return;
+            }
+            data.putString(
+                    SOURCE_STATE,
+                    machine.runningActively()
+                            ? "active"
+                            : machine.pausedReason().isBlank()
+                                    ? "ready"
+                                    : "stopped");
+            if (machine.spec().energy() != null) {
+                data.putLong(
+                        SOURCE_ENERGY_MAX,
+                        machine.spec().energy().maxPacket());
+                data.putString(
+                        SOURCE_ENERGY_TYPE,
+                        machine.spec().energy().type().name());
+            }
+            data.putInt(SOURCE_TANK_COUNT, machine.tanks().size());
+            for (int tank = 0; tank < machine.tanks().size(); tank++) {
+                var fluid = machine.tanks().get(tank).getFluid();
+                var id = fluid.isEmpty()
+                        ? null
+                        : BuiltInRegistries.FLUID.getKey(fluid.getFluid());
+                data.putString(
+                        SOURCE_TANK_ID + tank,
+                        id == null ? "" : id.toString());
+                data.putInt(
+                        SOURCE_TANK_AMOUNT + tank,
+                        fluid.getAmount());
+                data.putInt(
+                        SOURCE_TANK_CAPACITY + tank,
+                        machine.tanks().get(tank).getCapacity());
             }
         }
 
@@ -466,6 +668,25 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                     crucible.processingTier()));
             CrucibleObservation observation =
                     CrucibleObservation.fromServerData(accessor.getServerData());
+            if (observation.temperatureKelvin().available()) {
+                SourceWailaRows.temperature(
+                        tooltip,
+                        kelvinText(observation.temperatureKelvin()),
+                        observation.meltdownKelvin().available()
+                                ? kelvinText(observation.meltdownKelvin())
+                                : SourceWailaRows.unavailable());
+            }
+            SourceWailaRows.weight(tooltip, SourceWailaRows.unavailable());
+            if (observation.metals().available()
+                    && observation.metals().value() != null) {
+                for (CrucibleObservation.MetalAmount metal
+                        : observation.metals().value()) {
+                    SourceWailaRows.contents(
+                            tooltip,
+                            metal.materialId(),
+                            JadeDisplayUnits.formatIngotAmount(metal.units()));
+                }
+            }
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.temperature_k",
                     kelvinText(observation.temperatureKelvin())));
@@ -566,6 +787,26 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                     TransformerObservation.fromBlockAndServerData(
                             block.profile(),
                             accessor.getServerData());
+            if (observation.active().available()) {
+                SourceWailaRows.state(
+                        tooltip,
+                        Boolean.TRUE.equals(observation.active().value())
+                                ? "active"
+                                : "ready");
+            }
+            SourceWailaRows.energyIoRange(
+                    tooltip,
+                    block.profile().acceptMin(observation.reversed()),
+                    block.profile().acceptMax(observation.reversed()),
+                    "EU",
+                    Math.max(
+                            1L,
+                            block.profile().emitRec(observation.reversed())
+                                    / 2L),
+                    Math.multiplyExact(
+                            block.profile().emitRec(observation.reversed()),
+                            2L),
+                    "EU");
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.transformer.profile",
                     observation.lowVoltage().toUpperCase(Locale.ROOT),
@@ -653,6 +894,52 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             ReactorCoreObservation observation =
                     ReactorCoreObservation.fromServerData(accessor.getServerData());
+            if (observation.running().available()
+                    && observation.stopped().available()) {
+                SourceWailaRows.state(
+                        tooltip,
+                        observation.stopped().value()
+                                ? "stopped"
+                                : observation.running().value()
+                                        ? "active"
+                                        : "ready");
+            }
+            if (observation.coolantId().available()
+                    && observation.coolantAmount().available()) {
+                SourceWailaRows.tank(
+                        tooltip,
+                        "1",
+                        SourceWailaRows.fluid(
+                                observation.coolantId().value(),
+                                observation.coolantAmount().value()),
+                        ReactorCoreBlockEntity.COOLANT_CAPACITY);
+            }
+            if (observation.outputId().available()
+                    && observation.outputAmount().available()) {
+                SourceWailaRows.tank(
+                        tooltip,
+                        "2",
+                        SourceWailaRows.fluid(
+                                observation.outputId().value(),
+                                observation.outputAmount().value()),
+                        ReactorCoreBlockEntity.COOLANT_CAPACITY
+                                * com.masson.cruciblecraft.nuclear.ReactorCoolant.STEAM_PER_WATER);
+            }
+            if (observation.rods().available()
+                    && observation.rods().value() != null) {
+                for (ReactorCoreObservation.Rod rod
+                        : observation.rods().value()) {
+                    if (rod.name().isBlank()) {
+                        continue;
+                    }
+                    SourceWailaRows.rod(
+                            tooltip,
+                            rod.name(),
+                            rod.remaining(),
+                            rod.neutrons(),
+                            rod.moderated());
+                }
+            }
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.reactor.heat",
                     fieldLong(observation.heatHu())));
@@ -702,6 +989,33 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             BatteryObservation observation =
                     BatteryObservation.fromServerData(accessor.getServerData());
+            if (observation.stored().available()) {
+                SourceWailaRows.state(
+                        tooltip,
+                        observation.stored().value() > 0L
+                                ? "active"
+                                : "ready");
+            }
+            if (observation.sizeMin().available()
+                    && observation.sizeMax().available()
+                    && observation.energyType().available()) {
+                SourceWailaRows.energyIoRange(
+                        tooltip,
+                        observation.sizeMin().value(),
+                        observation.sizeMax().value(),
+                        observation.energyType().value(),
+                        observation.sizeMin().value(),
+                        observation.sizeMax().value(),
+                        observation.energyType().value());
+            }
+            if (observation.stored().available()
+                    && observation.energyType().available()) {
+                SourceWailaRows.energyAmount(
+                        tooltip,
+                        "ENERGY_CONTAINED",
+                        observation.stored().value(),
+                        observation.energyType().value());
+            }
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.battery.charge",
                     fieldString(observation.energyType()),
@@ -739,6 +1053,32 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             ConverterObservation observation =
                     ConverterObservation.fromServerData(accessor.getServerData());
+            if (observation.activity().available()) {
+                SourceWailaRows.state(
+                        tooltip,
+                        observation.activity().value());
+            }
+            if (observation.windowMin().available()
+                    && observation.windowMax().available()
+                    && observation.inputPacket().available()
+                    && observation.outputPacket().available()) {
+                SourceWailaRows.energyIoRange(
+                        tooltip,
+                        observation.windowMin().value(),
+                        observation.windowMax().value(),
+                        observation.acceptsDisplay(),
+                        observation.outputPacket().value(),
+                        observation.outputPacket().value(),
+                        observation.emitsDisplay());
+            }
+            if (observation.bufferStored().available()
+                    && observation.bufferCapacity().available()) {
+                SourceWailaRows.energyAmount(
+                        tooltip,
+                        "ENERGY_CONTAINED",
+                        observation.bufferStored().value(),
+                        observation.emitsDisplay());
+            }
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.converter.accepts",
                     fieldString(observation.accepts())));
@@ -937,7 +1277,8 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                         mold.outputCount(),
                         mold.materialId(),
                         mold.isSolidified(),
-                        mold.temperature());
+                        mold.temperature(),
+                        mold.moldMaxTemperatureCelsius());
                 return;
             }
             if (accessor.getBlockEntity() instanceof FoundryCastingBlockEntity mold
@@ -949,7 +1290,8 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                         mold.outputCount(),
                         mold.materialId(),
                         mold.isSolidified(),
-                        mold.temperature());
+                        mold.temperature(),
+                        mold.moldMaxTemperatureCelsius());
             }
         }
 
@@ -960,7 +1302,23 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 int outputCount,
                 String materialId,
                 boolean solidified,
-                float temperature) {
+                float temperature,
+                float maximumTemperature) {
+            SourceWailaRows.temperature(
+                    tooltip,
+                    Component.literal(String.format(
+                            Locale.ROOT,
+                            "%.2f K",
+                            JadeDisplayUnits.celsiusToKelvin(temperature))),
+                    Component.literal(String.format(
+                            Locale.ROOT,
+                            "%.2f K",
+                            JadeDisplayUnits.celsiusToKelvin(
+                                    maximumTemperature))));
+            MoldRecipes.recipe(pattern).ifPresent(prefix ->
+                    SourceWailaRows.producing(
+                            tooltip,
+                            Component.literal(title(prefix.serializedName()))));
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.mold_shape",
                     MoldRecipes.recipe(pattern)

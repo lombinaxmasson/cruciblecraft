@@ -14,6 +14,12 @@
 - `server_data`：Waila NBT key、类型、来源；
 - `jade_projection`：未来 Jade Provider、同步路径和 display sections。
 
+当前 CC live provider 的逐项落地状态记录在
+`tools/waves/presentation/gt6-tfru-waila-jade/live_provider_mapping.json`。
+其中 `migrated` 才会按源行投影；`blocked` 表示当前 CC 有自己的 live
+显示但源普查没有可安全复用的 IWailaTile 合同，保留现有 provider，不把它
+伪装成 GT6 迁移结果。
+
 `surface` 必须严格区分：
 
 - `waila`：`IWailaTile` 回调真正输出的内容；

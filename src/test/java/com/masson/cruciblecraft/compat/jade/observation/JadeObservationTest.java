@@ -178,6 +178,39 @@ class JadeObservationTest {
     }
 
     @Test
+    void sourcePipeAndSteamRowsStayUnavailableWhenServerDataIsMissing() {
+        FluidPipeObservation pipe =
+                FluidPipeObservation.fromServerData(new CompoundTag());
+        assertTrue(pipe.tanks().isEmpty());
+
+        SteamEngineObservation steam =
+                SteamEngineObservation.fromServerData(new CompoundTag());
+        assertFalse(steam.outputRate().available());
+        assertFalse(steam.inputMinimum().available());
+    }
+
+    @Test
+    void reactorSourceRowsPreserveRodTelemetry() {
+        CompoundTag data = new CompoundTag();
+        data.putInt(ReactorCoreObservation.ROD_COUNT, 1);
+        data.putString(ReactorCoreObservation.ROD_NAME + 0, "Uranium Rod");
+        data.putLong(ReactorCoreObservation.ROD_REMAINING + 0, 120L);
+        data.putInt(ReactorCoreObservation.ROD_NEUTRONS + 0, 4);
+        data.putBoolean(ReactorCoreObservation.ROD_MODERATED + 0, true);
+
+        ReactorCoreObservation observation =
+                ReactorCoreObservation.fromServerData(data);
+        assertTrue(observation.rods().available());
+        assertEquals(
+                "Uranium Rod",
+                observation.rods().value().getFirst().name());
+        assertEquals(
+                120L,
+                observation.rods().value().getFirst().remaining());
+        assertTrue(observation.rods().value().getFirst().moderated());
+    }
+
+    @Test
     void fillPercentClampsAndRounds() {
         assertEquals(0, JadeDisplayUnits.fillPercent(0.0f));
         assertEquals(100, JadeDisplayUnits.fillPercent(1.0f));
