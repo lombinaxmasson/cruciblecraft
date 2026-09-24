@@ -93,10 +93,11 @@ public final class RecipeLoadLog {
             long epoch,
             GTRecipeMapLoader.PublicationMetrics metrics,
             int mapCount,
-            int unindexedMaps) {
+            int unindexedMaps,
+            long totalMillis) {
         CrucibleCraft.LOGGER.info(
                 "Published recipe epoch {} maps={} unindexedMaps={} logical={} eager={} "
-                        + "reload={}ms index={}ms gen={} cause={} requests={} publications={} "
+                        + "reload={}ms index={}ms total={}ms gen={} cause={} requests={} publications={} "
                         + "suppressed={}",
                 epoch,
                 mapCount,
@@ -105,6 +106,7 @@ public final class RecipeLoadLog {
                 metrics.eagerPublishedRecipes(),
                 metrics.reloadMillis(),
                 metrics.indexMillis(),
+                totalMillis,
                 metrics.control().dataGeneration(),
                 metrics.control().requestCause(),
                 metrics.control().reloadRequestCount(),

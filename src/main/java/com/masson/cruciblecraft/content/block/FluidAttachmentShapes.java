@@ -18,20 +18,24 @@ public final class FluidAttachmentShapes {
             MteInPlaceKind kind,
             Direction facing) {
         List<Box> boxes = switch (kind) {
+            case FAUCET -> List.of(
+                    new Box(6, 1, 0, 10, 2, 4),
+                    new Box(5, 2, 0, 11, 6, 4),
+                    new Box(10, 2, 0, 11, 6, 4));
             case TAP -> List.of(
-                    new Box(6, 6, 2, 10, 9, 12),
-                    new Box(7, 4, 0, 9, 10, 12),
-                    new Box(7, 3, 4, 9, 10, 10));
+                    new Box(6, 6, 2, 10, 7, 4),
+                    new Box(7, 4, 0, 9, 6, 16),
+                    new Box(7, 3, 4, 9, 6, 6));
             case FUNNEL -> List.of(
                     new Box(5, 9, 0, 11, 10, 6),
-                    new Box(6, 8, 0, 10, 9, 12),
-                    new Box(7, 7, 0, 9, 9, 14));
+                    new Box(6, 8, 0, 10, 9, 4),
+                    new Box(7, 7, 0, 9, 9, 2));
             case NOZZLE -> List.of(
-                    new Box(6, 3, 1, 10, 9, 14),
-                    new Box(7, 4, 0, 9, 10, 10));
+                    new Box(6, 3, 1, 10, 7, 2),
+                    new Box(7, 4, 0, 9, 6, 6));
             case CAP_NOZZLE -> List.of(
-                    new Box(6, 3, 1, 10, 9, 10),
-                    new Box(7, 4, 0, 9, 10, 14));
+                    new Box(6, 3, 1, 10, 7, 6),
+                    new Box(7, 4, 0, 9, 6, 2));
             default -> throw new IllegalArgumentException(
                     "Not a fluid attachment kind: " + kind);
         };

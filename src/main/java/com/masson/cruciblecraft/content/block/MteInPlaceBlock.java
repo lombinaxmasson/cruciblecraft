@@ -276,7 +276,8 @@ public final class MteInPlaceBlock extends Block
         if (kind == MteInPlaceKind.CHEST) {
             return CHEST;
         }
-        if (MteFluidAttachmentProfile.contains(spec)) {
+        if (MteFluidAttachmentProfile.contains(spec)
+                || kind == MteInPlaceKind.FAUCET) {
             return FluidAttachmentShapes.shape(
                     kind, state.getValue(FACING));
         }

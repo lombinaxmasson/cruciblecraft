@@ -211,6 +211,23 @@ class JadeObservationTest {
     }
 
     @Test
+    void largeBoilerJadeKeepsLongSteamCapacity() {
+        CompoundTag data = new CompoundTag();
+        data.putLong(LargeBoilerObservation.STEAM_AMOUNT, 123L);
+        data.putLong(
+                LargeBoilerObservation.STEAM_CAPACITY,
+                2_621_440_000L);
+        data.putString(
+                LargeBoilerObservation.STEAM_ID,
+                "cruciblecraft:steam");
+
+        LargeBoilerObservation observation =
+                LargeBoilerObservation.fromServerData(data);
+        assertEquals(2_621_440_000L, observation.steamCapacity().value());
+        assertEquals("cruciblecraft:steam", observation.steamId().value());
+    }
+
+    @Test
     void fillPercentClampsAndRounds() {
         assertEquals(0, JadeDisplayUnits.fillPercent(0.0f));
         assertEquals(100, JadeDisplayUnits.fillPercent(1.0f));

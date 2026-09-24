@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.mte.MteFluidAttachmentProfile;
+import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
+import com.masson.cruciblecraft.content.mte.MteInPlaceMaterials;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 
@@ -34,7 +36,7 @@ public final class FluidAttachmentArtColor {
     public static Block[] tintedBlocks() {
         ArrayList<Block> blocks = new ArrayList<>();
         ModBlocks.mteInPlaceBlocksById().values().forEach(holder -> {
-            if (MteFluidAttachmentProfile.contains(holder.get().spec())) {
+            if (fluidAttachment(holder.get().spec())) {
                 blocks.add(holder.get());
             }
         });
@@ -43,15 +45,22 @@ public final class FluidAttachmentArtColor {
 
     private static int colorFor(Block block) {
         if (!(block instanceof MteInPlaceBlock inplace)
-                || !MteFluidAttachmentProfile.contains(inplace.spec())) {
+                || !fluidAttachment(inplace.spec())) {
             return 0xFFFFFFFF;
         }
-        String materialId =
-                MteFluidAttachmentProfile.require(inplace.spec()).materialId();
+        String materialId = MteFluidAttachmentProfile.contains(inplace.spec())
+                ? MteFluidAttachmentProfile.require(inplace.spec()).materialId()
+                : MteInPlaceMaterials.id(inplace.spec());
         return MaterialCatalog.find(materialId)
                 .map(material -> 0xFF000000
                         | MaterialItemColor.styleColor(
                                 material.colorRgb(), material.tintStyle()))
                 .orElse(0xFFCD7F32);
+    }
+
+    private static boolean fluidAttachment(
+            com.masson.cruciblecraft.content.mte.MteInPlaceSpec spec) {
+        return spec.kind() == MteInPlaceKind.FAUCET
+                || MteFluidAttachmentProfile.contains(spec);
     }
 }

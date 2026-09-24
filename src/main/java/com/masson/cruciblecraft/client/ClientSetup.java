@@ -42,6 +42,8 @@ import com.masson.cruciblecraft.client.render.LargeBoilerRenderer;
 import com.masson.cruciblecraft.client.render.MassStorageRenderer;
 import com.masson.cruciblecraft.client.render.MteInPlaceStorageRenderer;
 import com.masson.cruciblecraft.client.render.GtChestRenderer;
+import com.masson.cruciblecraft.client.render.MoldContentsRenderer;
+import com.masson.cruciblecraft.client.render.FluidSpringRenderer;
 import com.masson.cruciblecraft.client.render.PipeCoverRenderer;
 import com.masson.cruciblecraft.client.render.SensorRenderer;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
@@ -457,6 +459,12 @@ public class ClientSetup {
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.CRUCIBLE.get(), CrucibleRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.CERAMIC_MOLD.get(), MoldContentsRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.FOUNDRY_CASTING.get(), MoldContentsRenderer::new);
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.FLUID_SPRING.get(), FluidSpringRenderer::new);
         event.registerBlockEntityRenderer(
                 ModBlockEntities.LARGE_CRUCIBLE.get(), LargeCrucibleRenderer::new);
         event.registerBlockEntityRenderer(

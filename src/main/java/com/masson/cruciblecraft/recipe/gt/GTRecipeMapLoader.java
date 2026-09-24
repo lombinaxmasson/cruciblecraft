@@ -492,12 +492,14 @@ public final class GTRecipeMapLoader {
                         unindexed);
             }
         }
+        long totalPublicationMillis = elapsedMs(started);
         RecipeLoadLog.flushEpoch(epoch, 0, cause.name(), identity.dataGeneration());
         RecipeLoadLog.publicationSummary(
                 epoch,
                 candidateMetrics,
                 preparedByMap.size(),
-                unindexedMaps);
+                unindexedMaps,
+                totalPublicationMillis);
     }
 
     /** Runs production Extruder lookup p95/candidate gates for verification. */

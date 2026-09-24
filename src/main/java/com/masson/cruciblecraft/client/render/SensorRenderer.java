@@ -30,7 +30,10 @@ public final class SensorRenderer
         implements BlockEntityRenderer<SensorBlockEntity> {
     private static final float FACE_OFFSET = 0.377F;
     private static final float TEXT_OFFSET = 0.003F;
-    private static final float BASELINE = 0.25F;
+    // The imported face puts the display cells above the block centre.  The
+    // previous baseline placed the font origin at the lower edge of those
+    // cells, making every readout visibly sag.
+    private static final float BASELINE = 0.3125F;
     private static final float TEXT_SCALE = 0.0125F;
 
     public SensorRenderer(BlockEntityRendererProvider.Context context) {}

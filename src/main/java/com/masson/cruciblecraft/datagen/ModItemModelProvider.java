@@ -203,38 +203,38 @@ public class ModItemModelProvider extends ItemModelProvider {
                 "power_unit_hv_overlay");
         tool(
                 "material_wrench_lv",
-                "wrench",
-                "wrench_overlay",
+                "tool_head_wrench",
+                "tool_head_wrench_overlay",
                 "power_unit_lv",
                 "power_unit_lv_overlay");
         tool(
                 "material_wrench_mv",
-                "wrench",
-                "wrench_overlay",
+                "tool_head_wrench",
+                "tool_head_wrench_overlay",
                 "power_unit_mv",
                 "power_unit_mv_overlay");
         tool(
                 "material_wrench_hv",
-                "wrench",
-                "wrench_overlay",
+                "tool_head_wrench",
+                "tool_head_wrench_overlay",
                 "power_unit_hv",
                 "power_unit_hv_overlay");
         tool(
                 "material_monkey_wrench_lv",
-                "monkey_wrench",
-                "monkey_wrench_overlay",
+                "tool_head_wrench",
+                "tool_head_wrench_overlay",
                 "power_unit_lv",
                 "power_unit_lv_overlay");
         tool(
                 "material_monkey_wrench_mv",
-                "monkey_wrench",
-                "monkey_wrench_overlay",
+                "tool_head_wrench",
+                "tool_head_wrench_overlay",
                 "power_unit_mv",
                 "power_unit_mv_overlay");
         tool(
                 "material_monkey_wrench_hv",
-                "monkey_wrench",
-                "monkey_wrench_overlay",
+                "tool_head_wrench",
+                "tool_head_wrench_overlay",
                 "power_unit_hv",
                 "power_unit_hv_overlay");
         tool(

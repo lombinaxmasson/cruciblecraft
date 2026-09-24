@@ -80,11 +80,19 @@ public class CrucibleCraft {
     }
 
     private void construct(FMLConstructModEvent event) {
+        long constructStarted = System.nanoTime();
         var configRoot = FMLPaths.CONFIGDIR.get().resolve(MODID);
+        long phaseStarted = System.nanoTime();
         // NeoForge dispatches this synchronously and reentrantly during construction;
         // listeners may only add startup prefixes and must not bootstrap catalogs.
         ModLoader.postEvent(new MaterialPrefixRegistrationEvent());
+        long prefixRegistrationMillis = elapsedMillis(phaseStarted);
+
+        phaseStarted = System.nanoTime();
         MaterialPrefixCatalog.bootstrap(configRoot.resolve("material_prefixes"));
+        long prefixBootstrapMillis = elapsedMillis(phaseStarted);
+
+        phaseStarted = System.nanoTime();
         // NeoForge dispatches this synchronously and reentrantly during construction;
         // listeners may only add startup materials and must not bootstrap catalogs.
         ModLoader.postEvent(new MaterialRegistrationEvent());
@@ -92,21 +100,63 @@ public class CrucibleCraft {
             KubeJSCompat.fireMaterialRegistration();
         }
         MaterialStressFixture.installFromSystemProperties();
+        long materialRegistrationMillis = elapsedMillis(phaseStarted);
+
+        phaseStarted = System.nanoTime();
         MaterialCatalog.bootstrap(configRoot.resolve("materials"));
+        long materialBootstrapMillis = elapsedMillis(phaseStarted);
+
+        phaseStarted = System.nanoTime();
         ModFluids.registerMaterials(MaterialCatalog.values());
+        long fluidRegistrationMillis = elapsedMillis(phaseStarted);
+
+        phaseStarted = System.nanoTime();
         ModBlocks.registerMaterials(MaterialCatalog.values());
+        long blockRegistrationMillis = elapsedMillis(phaseStarted);
+
+        phaseStarted = System.nanoTime();
         ModItems.registerMaterials(MaterialCatalog.values());
+        long itemRegistrationMillis = elapsedMillis(phaseStarted);
+
+        phaseStarted = System.nanoTime();
         GeneratedMaterialPack.initialize(configRoot);
+        long generatedPackMillis = elapsedMillis(phaseStarted);
+        LOGGER.info(
+                "CrucibleCraft construct timings: prefixEvent={}ms prefixBootstrap={}ms "
+                        + "materialEvent={}ms materialBootstrap={}ms fluids={}ms blocks={}ms "
+                        + "items={}ms generatedPack={}ms total={}ms materials={} prefixes={}",
+                prefixRegistrationMillis,
+                prefixBootstrapMillis,
+                materialRegistrationMillis,
+                materialBootstrapMillis,
+                fluidRegistrationMillis,
+                blockRegistrationMillis,
+                itemRegistrationMillis,
+                generatedPackMillis,
+                elapsedMillis(constructStarted),
+                MaterialCatalog.startupValues().size(),
+                MaterialPrefixCatalog.definitions().size());
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            long setupStarted = System.nanoTime();
+            long phaseStarted = System.nanoTime();
             // Deferred registers from every mod are populated only after
             // construction, so registry-backed material overrides are first
             // knowable here.
             MaterialCatalog.validateFormItemMappings();
+            long formMappingValidationMillis = elapsedMillis(phaseStarted);
+
+            phaseStarted = System.nanoTime();
             ModFluids.finalizeMaterialLookup();
+            long fluidLookupMillis = elapsedMillis(phaseStarted);
+
+            phaseStarted = System.nanoTime();
             MissingMaterialStackCodec.verifyInstalled();
+            long codecVerificationMillis = elapsedMillis(phaseStarted);
+
+            phaseStarted = System.nanoTime();
             ItemNetworkCovers.bootstrap();
             FluidNetworkCovers.bootstrap();
             GenericNetworkCovers.bootstrap();
@@ -114,7 +164,19 @@ public class CrucibleCraft {
             DisplayCpuCovers.bootstrap();
             MachineCoverCovers.bootstrap();
             CoverBehaviorRegistry.validateDefinitions();
+            long coverBootstrapMillis = elapsedMillis(phaseStarted);
+            LOGGER.info(
+                    "CrucibleCraft common setup timings: formMappings={}ms fluidLookup={}ms "
+                            + "codec={}ms covers={}ms total={}ms",
+                    formMappingValidationMillis,
+                    fluidLookupMillis,
+                    codecVerificationMillis,
+                    coverBootstrapMillis,
+                    elapsedMillis(setupStarted));
         });
-        LOGGER.info("CrucibleCraft common setup");
+    }
+
+    private static long elapsedMillis(long started) {
+        return (System.nanoTime() - started) / 1_000_000L;
     }
 }

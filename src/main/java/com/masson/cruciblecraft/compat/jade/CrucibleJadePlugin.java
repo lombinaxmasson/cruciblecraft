@@ -20,6 +20,7 @@ import com.masson.cruciblecraft.compat.jade.observation.ConverterObservation;
 import com.masson.cruciblecraft.compat.jade.observation.CrucibleObservation;
 import com.masson.cruciblecraft.compat.jade.observation.FluidPipeObservation;
 import com.masson.cruciblecraft.compat.jade.observation.JadeDisplayUnits;
+import com.masson.cruciblecraft.compat.jade.observation.LargeBoilerObservation;
 import com.masson.cruciblecraft.compat.jade.observation.ObservationField;
 import com.masson.cruciblecraft.compat.jade.observation.ReactorCoreObservation;
 import com.masson.cruciblecraft.compat.jade.observation.SourceWailaRows;
@@ -52,6 +53,7 @@ import com.masson.cruciblecraft.energy.battery.BatteryBlockEntity;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
+import com.masson.cruciblecraft.content.block.LargeBoilerBlock;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
@@ -64,6 +66,7 @@ import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineB
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlock;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlockEntity;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterHost;
@@ -101,6 +104,9 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         registration.registerBlockDataProvider(
                 BoilerComponentProvider.INSTANCE,
                 BoilerBlockEntity.class);
+        registration.registerBlockDataProvider(
+                LargeBoilerComponentProvider.INSTANCE,
+                LargeBoilerBlockEntity.class);
         registration.registerBlockDataProvider(
                 ProcessingMachineComponentProvider.INSTANCE,
                 ConfiguredProcessingMachineBlockEntity.class);
@@ -156,6 +162,10 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         registration.registerBlockComponent(CeramicMoldComponentProvider.INSTANCE, CeramicMoldBlock.class);
         registration.registerBlockComponent(CeramicMoldComponentProvider.INSTANCE, MteInPlaceBlock.class);
         registration.registerBlockComponent(BoilerComponentProvider.INSTANCE, BoilerBlock.class);
+        registration.registerBlockComponent(
+                LargeBoilerComponentProvider.INSTANCE, LargeBoilerBlock.class);
+        registration.registerBlockComponent(
+                LargeBoilerComponentProvider.INSTANCE, MteInPlaceBlock.class);
         registration.registerBlockComponent(CrusherComponentProvider.INSTANCE, CrusherBlock.class);
         registration.registerBlockComponent(
                 ProcessingMachineComponentProvider.INSTANCE,
@@ -489,6 +499,67 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
             }
         }
         @Override public ResourceLocation getUid() { return UID; }
+    }
+
+    private enum LargeBoilerComponentProvider
+            implements IBlockComponentProvider,
+            IServerDataProvider<BlockAccessor> {
+        INSTANCE;
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "large_boiler");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip,
+                BlockAccessor accessor,
+                IPluginConfig config) {
+            if (!(accessor.getBlockEntity()
+                    instanceof LargeBoilerBlockEntity)) {
+                return;
+            }
+            tooltip.remove(JadeIds.UNIVERSAL_FLUID_STORAGE);
+            LargeBoilerObservation observation =
+                    LargeBoilerObservation.fromServerData(
+                            accessor.getServerData());
+            if (observation.waterAmount().available()
+                    && observation.waterCapacity().available()
+                    && observation.waterId().available()) {
+                SourceWailaRows.longTank(
+                        tooltip,
+                        "water",
+                        observation.waterAmount().value(),
+                        observation.waterCapacity().value(),
+                        SourceWailaRows.fluidName(
+                                observation.waterId().value()));
+            }
+            if (observation.steamAmount().available()
+                    && observation.steamCapacity().available()
+                    && observation.steamId().available()) {
+                SourceWailaRows.longTank(
+                        tooltip,
+                        "steam",
+                        observation.steamAmount().value(),
+                        observation.steamCapacity().value(),
+                        SourceWailaRows.fluidName(
+                                observation.steamId().value()));
+            }
+        }
+
+        @Override
+        public void appendServerData(
+                CompoundTag data,
+                BlockAccessor accessor) {
+            if (accessor.getBlockEntity()
+                    instanceof LargeBoilerBlockEntity boiler) {
+                LargeBoilerObservation.writeServerData(data, boiler);
+            }
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
     }
 
     private enum CrusherComponentProvider implements IBlockComponentProvider {

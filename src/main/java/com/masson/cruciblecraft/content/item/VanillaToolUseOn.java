@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.content.item;
 
+import com.masson.cruciblecraft.content.block.WoodDebark;
+
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,9 +15,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 /** Stack-safe copies of vanilla tool interactions using NeoForge abilities. */
 final class VanillaToolUseOn {
@@ -31,6 +35,7 @@ final class VanillaToolUseOn {
         BlockState original = level.getBlockState(pos);
         BlockState modified = original.getToolModifiedState(
                 context, ItemAbilities.AXE_STRIP, false);
+        boolean stripped = modified != null;
         if (modified != null) {
             level.playSound(
                     player,
@@ -76,6 +81,16 @@ final class VanillaToolUseOn {
                 GameEvent.BLOCK_CHANGE,
                 pos,
                 GameEvent.Context.of(player, modified));
+        if (stripped && !level.isClientSide) {
+            ItemStack bark = WoodDebark.axeBarkDrop(original);
+            if (!bark.isEmpty()) {
+                if (player != null) {
+                    ItemHandlerHelper.giveItemToPlayer(player, bark);
+                } else {
+                    Block.popResource(level, pos, bark);
+                }
+            }
+        }
         hurt(stack, player, context);
         return InteractionResult.sidedSuccess(level.isClientSide);
     }

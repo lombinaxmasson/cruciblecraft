@@ -106,6 +106,21 @@ public final class SourceWailaRows {
                 fluidName(fluid)));
     }
 
+    public static void longTank(
+            ITooltip tooltip,
+            String label,
+            long amount,
+            long capacity,
+            Component fluidName) {
+        tooltip.add(Component.translatable(
+                "jade.cruciblecraft.source.tank",
+                label,
+                white(amount),
+                white(capacity),
+                cyan("mB"),
+                styled(fluidName, ChatFormatting.WHITE)));
+    }
+
     public static void fluidOutput(
             ITooltip tooltip,
             String label,
@@ -202,6 +217,17 @@ public final class SourceWailaRows {
             return unavailable();
         }
         return styled(fluid.getHoverName(), ChatFormatting.WHITE);
+    }
+
+    public static Component fluidName(String id) {
+        ResourceLocation key = ResourceLocation.tryParse(id);
+        if (key == null || !BuiltInRegistries.FLUID.containsKey(key)) {
+            return unavailable();
+        }
+        return styled(
+                new FluidStack(BuiltInRegistries.FLUID.get(key), 1)
+                        .getHoverName(),
+                ChatFormatting.WHITE);
     }
 
     private static Component white(Object value) {

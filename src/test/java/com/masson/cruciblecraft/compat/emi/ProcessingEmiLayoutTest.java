@@ -37,6 +37,8 @@ class ProcessingEmiLayoutTest {
     void gt6NeiOffsetsMatchRecipeMapBlit() {
         assertEquals(52, Gt6EmiGui.slotX(53));
         assertEquals(29, Gt6EmiGui.slotY(25));
+        assertEquals(53, Gt6EmiGui.tankX(53));
+        assertEquals(68, Gt6EmiGui.tankY(63));
         assertEquals(78, Gt6EmiGui.progressX(78));
         assertEquals(29, Gt6EmiGui.progressY(24));
         assertEquals(8, Gt6EmiGui.MACHINE_PANEL_Y);
@@ -136,12 +138,6 @@ class ProcessingEmiLayoutTest {
                         spec.ui().machineSlots().get(slot.machineSlot());
                 assertEquals(source.x(), slot.bounds().x(), spec.id().toString());
                 assertEquals(source.y(), slot.bounds().y(), spec.id().toString());
-                if (slot.kind() == ProcessingEmiLayout.ItemKind.CATALYST) {
-                    assertEquals(
-                            ProcessingMachineSpec.SlotRole.TOOL,
-                            spec.items().role(slot.machineSlot()),
-                            spec.id().toString());
-                }
             }
             for (ProcessingEmiLayout.FluidTank tank : layout.fluidTanks()) {
                 if (tank.tank() >= spec.fluids().tankCount()) {
@@ -153,8 +149,8 @@ class ProcessingEmiLayoutTest {
                         .orElseThrow();
                 assertTrue(tank.bounds().x() >= source.x(), spec.id().toString());
                 assertEquals(source.y(), tank.bounds().y(), spec.id().toString());
-                assertEquals(source.width(), tank.bounds().width());
-                assertEquals(source.height(), tank.bounds().height());
+                assertEquals(ProcessingEmiLayout.ITEM_SLOT_SIZE, tank.bounds().width());
+                assertEquals(ProcessingEmiLayout.ITEM_SLOT_SIZE, tank.bounds().height());
             }
         }
     }

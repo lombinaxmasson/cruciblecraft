@@ -126,6 +126,7 @@ DOMAINS: dict[str, dict[str, Any]] = {
         "expected": 46,
         "tests": [
             "allFluidAttachmentTiersAreLive",
+            "creativeFunnelKeepsHeldFluidContainer",
             "fluidAttachmentPhaseFilterMatchesGt6",
             "funnelFillsHostFromFluidCell",
             "nozzleFillsGasCellFromHost",
@@ -546,7 +547,6 @@ ISSUE: dict[str, dict[str, Any]] = {
 ART_KIND: dict[str, list[tuple[str, str]]] = {
     "FAUCET": [
         ("materialicons/metallic/blocksolid.png", "faucet.png"),
-        ("materialicons/metallic/blocksolid_overlay.png", "faucet_overlay.png"),
     ],
     "TAP": [
         ("machines/tools/tap/colored/bottom.png", "tap/colored/bottom.png"),
@@ -626,28 +626,35 @@ ART_KIND: dict[str, list[tuple[str, str]]] = {
 }
 
 FLUID_ATTACHMENT_KINDS = {"TAP", "FUNNEL", "NOZZLE", "CAP_NOZZLE"}
+FLUID_MODEL_KINDS = FLUID_ATTACHMENT_KINDS | {"FAUCET"}
 FLUID_ATTACHMENT_BOUNDS: dict[str, list[tuple[float, float, float, float, float, float]]] = {
+    # GT6 MultiTileEntityFaucet render passes, SIDE_Z_NEG.
+    "FAUCET": [
+        (6, 1, 0, 10, 2, 4),
+        (5, 2, 0, 11, 6, 4),
+        (10, 2, 0, 11, 6, 4),
+    ],
     # GT6 MultiTileEntityFluidTap render passes, SIDE_Z_NEG.
     "TAP": [
-        (6, 6, 2, 10, 9, 12),
-        (7, 4, 0, 9, 10, 12),
-        (7, 3, 4, 9, 10, 10),
+        (6, 6, 2, 10, 7, 4),
+        (7, 4, 0, 9, 6, 16),
+        (7, 3, 4, 9, 6, 6),
     ],
     # GT6 MultiTileEntityFluidFunnel render passes, SIDE_Z_NEG.
     "FUNNEL": [
         (5, 9, 0, 11, 10, 6),
-        (6, 8, 0, 10, 9, 12),
-        (7, 7, 0, 9, 9, 14),
+        (6, 8, 0, 10, 9, 4),
+        (7, 7, 0, 9, 9, 2),
     ],
     # GT6 MultiTileEntityFluidNozzle render passes, SIDE_Z_NEG.
     "NOZZLE": [
-        (6, 3, 1, 10, 9, 14),
-        (7, 4, 0, 9, 10, 10),
+        (6, 3, 1, 10, 7, 2),
+        (7, 4, 0, 9, 6, 6),
     ],
     # GT6 MultiTileEntityFluidCapNozzle render passes, SIDE_Z_NEG.
     "CAP_NOZZLE": [
-        (6, 3, 1, 10, 9, 10),
-        (7, 4, 0, 9, 10, 14),
+        (6, 3, 1, 10, 7, 6),
+        (7, 4, 0, 9, 6, 2),
     ],
 }
 RAW_CERAMIC_ART = (
@@ -1015,8 +1022,9 @@ def _copy_raw_ceramic_art() -> list[dict[str, Any]]:
 
 
 def _texture_name(kind: str) -> str:
-    if kind in FLUID_ATTACHMENT_KINDS:
+    if kind in FLUID_MODEL_KINDS:
         return {
+            "FAUCET": "faucet",
             "TAP": "tap",
             "FUNNEL": "funnel",
             "NOZZLE": "nozzle",
@@ -1027,16 +1035,48 @@ def _texture_name(kind: str) -> str:
 
 def _fluid_attachment_model(kind: str) -> dict[str, Any]:
     base = f"cruciblecraft:block/gt6_import/mte/{_texture_name(kind)}"
+    if kind == "FAUCET":
+        faces = {
+            side: {"texture": "#body", "tintindex": 0}
+            for side in ("down", "up", "north", "south", "west", "east")
+        }
+        return {
+            "parent": "minecraft:block/block",
+            "render_type": "minecraft:cutout",
+            "textures": {
+                "body": base,
+                "particle": "#body",
+            },
+            "elements": [
+                {
+                    "from": list(bounds[:3]),
+                    "to": list(bounds[3:]),
+                    "faces": faces,
+                }
+                for bounds in FLUID_ATTACHMENT_BOUNDS[kind]
+            ],
+        }
     textures: dict[str, str] = {}
     for layer in ("colored", "overlay"):
         for face in ("bottom", "top", "side"):
             textures[f"{layer}_{face}"] = f"{base}/{layer}/{face}"
+    textures["particle"] = "#colored_side"
 
     elements: list[dict[str, Any]] = []
     for layer in ("colored", "overlay"):
         tint = 0 if layer == "colored" else None
         for bounds in FLUID_ATTACHMENT_BOUNDS[kind]:
             x0, y0, z0, x1, y1, z1 = bounds
+            if layer == "overlay":
+                # GT6 uses a second render pass. Keep the imported overlay
+                # visible in a vanilla baked model without coplanar z-fighting.
+                epsilon = 0.01
+                x0 = max(0.0, x0 - epsilon)
+                y0 = max(0.0, y0 - epsilon)
+                z0 = max(0.0, z0 - epsilon)
+                x1 = min(16.0, x1 + epsilon)
+                y1 = min(16.0, y1 + epsilon)
+                z1 = min(16.0, z1 + epsilon)
             faces: dict[str, dict[str, Any]] = {}
             for side, texture in (
                 ("down", f"#{layer}_bottom"),
@@ -1140,7 +1180,7 @@ def _write_models(rows: list[dict[str, Any]]) -> None:
         if "MultiTileEntityAnvil" in str(row.get("gt6_class") or ""):
             continue
         path = str(row["dummy_path"])
-        if kind in FLUID_ATTACHMENT_KINDS:
+        if kind in FLUID_MODEL_KINDS:
             _write_fluid_attachment_models(kind, path)
             continue
         texture = f"cruciblecraft:block/gt6_import/mte/{_texture_name(kind)}"

@@ -45,6 +45,14 @@ final class Gt6EmiGui {
         return guiY + 4;
     }
 
+    static int tankX(int guiX) {
+        return guiX;
+    }
+
+    static int tankY(int guiY) {
+        return guiY + MACHINE_PANEL_Y - MACHINE_PANEL_V;
+    }
+
     static int progressX(int guiX) {
         return guiX;
     }
@@ -135,8 +143,8 @@ final class Gt6EmiGui {
             int capacity) {
         return widgets.addTank(
                 stack,
-                slotX(guiX),
-                slotY(guiY),
+                tankX(guiX),
+                tankY(guiY),
                 width,
                 height,
                 capacity)

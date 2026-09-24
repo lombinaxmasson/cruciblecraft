@@ -224,6 +224,44 @@ public final class MteFluidAttachmentsRuntimeGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void creativeFunnelKeepsHeldFluidContainer(
+            GameTestHelper helper) {
+        BlockPos funnelPos = new BlockPos(3, 2, 2);
+        BlockPos hostPos = new BlockPos(4, 2, 2);
+        helper.setBlock(
+                hostPos,
+                ModBlocks.BRONZE_BOILER.get().defaultBlockState());
+        BoilerBlockEntity host = helper.getBlockEntity(hostPos);
+        MteInPlaceBlock funnel = ModBlocks.mteInPlaceBlocksById()
+                .get(id("fluid_attachment/stainless_funnel"))
+                .get();
+        helper.setBlock(
+                funnelPos,
+                funnel.defaultBlockState().setValue(
+                        MteInPlaceBlock.FACING, Direction.EAST));
+        var player = helper.makeMockPlayer(GameType.CREATIVE);
+        player.getAbilities().instabuild = true;
+        ItemStack bucket = new ItemStack(Items.WATER_BUCKET);
+        player.setItemInHand(InteractionHand.MAIN_HAND, bucket);
+        helper.assertTrue(
+                helper.getBlockState(funnelPos).useItemOn(
+                                bucket,
+                                helper.getLevel(),
+                                player,
+                                InteractionHand.MAIN_HAND,
+                                hit(helper, funnelPos))
+                        .consumesAction(),
+                "Creative Funnel did not consume the click");
+        helper.assertTrue(
+                player.getMainHandItem().is(Items.WATER_BUCKET),
+                "Creative Funnel consumed the held water bucket");
+        helper.assertTrue(
+                host.waterAmount() == 1000,
+                "Creative Funnel did not fill the host");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
     public static void nozzleFillsGasCellFromHost(GameTestHelper helper) {
         BlockPos nozzlePos = new BlockPos(3, 2, 2);
         BlockPos hostPos = new BlockPos(4, 2, 2);

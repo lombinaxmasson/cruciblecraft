@@ -41,6 +41,7 @@ public final class FluidAttachmentPlayerInteraction {
         if (!MteFluidAttachmentProfile.contains(spec)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
+        ItemStack creativeOriginal = stack.copy();
         Optional<IFluidHandlerItem> container =
                 FluidUtil.getFluidHandler(stack);
         if (container.isEmpty()) {
@@ -63,16 +64,24 @@ public final class FluidAttachmentPlayerInteraction {
                     container.orElseThrow(),
                     profile,
                     Integer.MAX_VALUE);
-            case FUNNEL, CAP_NOZZLE -> FluidAttachmentTransfer.move(
-                    container.orElseThrow(),
-                    filtered,
-                    profile,
-                    Integer.MAX_VALUE);
+            case FUNNEL, CAP_NOZZLE -> player.getAbilities().instabuild
+                    ? creativeFill(
+                            container.orElseThrow(),
+                            filtered)
+                    : FluidAttachmentTransfer.move(
+                            container.orElseThrow(),
+                            filtered,
+                            profile,
+                            Integer.MAX_VALUE);
             default -> 0;
         };
         return moved <= 0
                 ? ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
-                : replaceContainer(player, hand, container.orElseThrow());
+                : player.getAbilities().instabuild
+                        && (spec.kind() == MteInPlaceKind.FUNNEL
+                                || spec.kind() == MteInPlaceKind.CAP_NOZZLE)
+                        ? keepCreativeContainer(player, hand, creativeOriginal)
+                        : replaceContainer(player, hand, container.orElseThrow());
     }
 
     public static InteractionResult useWithoutItem(
@@ -125,5 +134,33 @@ public final class FluidAttachmentPlayerInteraction {
             IFluidHandlerItem container) {
         player.setItemInHand(hand, container.getContainer());
         return ItemInteractionResult.SUCCESS;
+    }
+
+    private static ItemInteractionResult keepCreativeContainer(
+            Player player,
+            InteractionHand hand,
+            ItemStack original) {
+        player.setItemInHand(hand, original);
+        return ItemInteractionResult.SUCCESS;
+    }
+
+    private static int creativeFill(
+            IFluidHandlerItem container,
+            IFluidHandler target) {
+        FluidStack offered = container.drain(
+                Integer.MAX_VALUE,
+                IFluidHandler.FluidAction.SIMULATE);
+        if (offered.isEmpty()) {
+            return 0;
+        }
+        int accepted = target.fill(
+                offered,
+                IFluidHandler.FluidAction.SIMULATE);
+        if (accepted <= 0) {
+            return 0;
+        }
+        return target.fill(
+                offered.copyWithAmount(accepted),
+                IFluidHandler.FluidAction.EXECUTE);
     }
 }

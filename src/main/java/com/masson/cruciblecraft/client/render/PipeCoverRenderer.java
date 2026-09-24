@@ -160,6 +160,10 @@ public final class PipeCoverRenderer<T extends BlockEntity>
                     blockEntity)) {
                 continue;
             }
+            if (renderCompactPump(
+                    poseStack, vertices, cover, face, packedLight)) {
+                continue;
+            }
             pose(poseStack, vertices, face, half, 0.0f, base, packedLight);
             ResourceLocation overlay = overlay(cover);
             if (overlay == null) {
@@ -174,6 +178,28 @@ public final class PipeCoverRenderer<T extends BlockEntity>
                     sprite(overlay),
                     packedLight);
         }
+    }
+
+    private static boolean renderCompactPump(
+            PoseStack poseStack,
+            VertexConsumer vertices,
+            PipeCover cover,
+            Direction face,
+            int packedLight) {
+        if (CoverComponentTiers.findByDefinition(cover.definitionId())
+                .map(entry -> entry.family() != CoverComponentTiers.Family.PUMP)
+                .orElse(true)) {
+            return false;
+        }
+        pose(
+                poseStack,
+                vertices,
+                face,
+                0.5f,
+                OVERLAY,
+                sprite(coverTexture("pump_in", null)),
+                packedLight);
+        return true;
     }
 
     private static boolean renderPlate(
@@ -445,7 +471,9 @@ public final class PipeCoverRenderer<T extends BlockEntity>
         String name = switch (path) {
             case "filter" -> invert ? "filter_inverted" : "filter_normal";
             case "shutter" -> "shutter";
-            case "pump" -> "pump_in";
+            case "pump" -> cover.config().visual() == 0
+                    ? "pump_out"
+                    : "pump_in";
             case "conveyor", "conveyor_fast" -> "conveyor_in";
             case "retriever_item" -> invert
                     ? "retriever_inverted"

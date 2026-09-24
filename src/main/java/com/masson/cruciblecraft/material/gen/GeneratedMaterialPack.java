@@ -86,6 +86,7 @@ public final class GeneratedMaterialPack {
     }
 
     static void initialize(Path configRoot, boolean clientDistribution) {
+        long initializeStarted = System.nanoTime();
         Path generatedRoot = configRoot.resolve(".generated-material-pack");
         Path serverRoot = requireGeneratedRoot(generatedRoot.resolve("server"), "server");
         GeneratedMaterialPackPlan plan =
@@ -95,9 +96,14 @@ public final class GeneratedMaterialPack {
                 : null;
         Collection<MaterialDefinition> materials = MaterialCatalog.startupValues();
         Map<String, List<MaterialPrefix>> registeredForms = registeredForms(materials);
+        long serverMillis = 0L;
+        long clientMillis = 0L;
+        boolean serverRebuilt = false;
+        boolean clientRebuilt = false;
         try {
             if (plan.serverData()) {
-                GeneratedMaterialPackCache.ensure(
+                long sideStarted = System.nanoTime();
+                serverRebuilt = GeneratedMaterialPackCache.ensure(
                         serverRoot,
                         generationFingerprint(
                                 "server",
@@ -107,9 +113,11 @@ public final class GeneratedMaterialPack {
                                 SERVER_PACK_FORMAT,
                                 OUTPUT_GENERATOR_IDENTITY),
                         () -> planServerFiles(materials, registeredForms));
+                serverMillis = elapsedMillis(sideStarted);
             }
             if (plan.clientAssets()) {
-                GeneratedMaterialPackCache.ensure(
+                long sideStarted = System.nanoTime();
+                clientRebuilt = GeneratedMaterialPackCache.ensure(
                         clientRoot,
                         generationFingerprint(
                                 "client",
@@ -119,12 +127,22 @@ public final class GeneratedMaterialPack {
                                 CLIENT_PACK_FORMAT,
                                 OUTPUT_GENERATOR_IDENTITY),
                         () -> planClientFiles(materials, registeredForms));
+                clientMillis = elapsedMillis(sideStarted);
             }
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to generate material resource pack", exception);
         }
 
         roots = new Roots(serverRoot, clientRoot);
+        CrucibleCraft.LOGGER.info(
+                "Generated material pack timings: materials={} server={}ms rebuilt={} "
+                        + "client={}ms rebuilt={} total={}ms",
+                materials.size(),
+                serverMillis,
+                serverRebuilt,
+                clientMillis,
+                clientRebuilt,
+                elapsedMillis(initializeStarted));
     }
 
     public static void addPackFinders(AddPackFindersEvent event) {
@@ -724,6 +742,10 @@ public final class GeneratedMaterialPack {
         } catch (NoSuchAlgorithmException exception) {
             throw new IllegalStateException("SHA-256 unavailable", exception);
         }
+    }
+
+    private static long elapsedMillis(long started) {
+        return (System.nanoTime() - started) / 1_000_000L;
     }
 
     private static List<MaterialPrefix> requireRegisteredForms(

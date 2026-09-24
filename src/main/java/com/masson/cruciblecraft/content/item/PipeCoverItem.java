@@ -14,6 +14,7 @@ import com.masson.cruciblecraft.logistics.machinecover.MachineCoverHost;
 import com.masson.cruciblecraft.logistics.machinecover.MachineCoverKinds;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinitionCatalog;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverComponentTiers;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverPlacement;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverSounds;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
@@ -163,6 +164,12 @@ public final class PipeCoverItem extends Item {
         CoverDefinition definition =
                 CoverDefinitionCatalog.require(definitionId);
         PipeCover base = PipeCover.of(definitionId);
+        if (fluidPipe
+                && CoverComponentTiers.findByDefinition(definitionId)
+                        .map(entry -> entry.family() == CoverComponentTiers.Family.PUMP)
+                        .orElse(false)) {
+            base = base.withDisplay(1, base.config().redstone());
+        }
         if (!definition.configurable().contains(
                     CoverDefinition.ConfigField.MATCH_ID)
                 || context.getPlayer() == null

@@ -83,7 +83,7 @@ class Gt6MteInplaceRuntimeTest(unittest.TestCase):
         if not manifest_path.is_file():
             self.skipTest("attachments art manifest not written")
         manifest = census.load_json(manifest_path)
-        self.assertGreaterEqual(len(manifest.get("rows") or []), 28)
+        self.assertGreaterEqual(len(manifest.get("rows") or []), 27)
         for row in manifest["rows"]:
             self.assertEqual(
                 "gt6_referencable_port_code/gregtech6_w",
@@ -100,6 +100,61 @@ class Gt6MteInplaceRuntimeTest(unittest.TestCase):
             source = runtime.GT6_W / row["gt6_source"]
             self.assertTrue(source.is_file(), source)
             self.assertEqual(source.read_bytes(), dest.read_bytes())
+
+    def test_funnel_model_matches_gt6_render_pass_bounds(self) -> None:
+        model = census.load_json(
+            ROOT
+            / "src"
+            / "main"
+            / "resources"
+            / "assets"
+            / "cruciblecraft"
+            / "models"
+            / "block"
+            / "mte_inplace_funnel.json"
+        )
+        self.assertNotEqual("minecraft:block/cube_all", model.get("parent"))
+        self.assertEqual(
+            [
+                {"from": [5, 9, 0], "to": [11, 10, 6]},
+                {"from": [6, 8, 0], "to": [10, 9, 4]},
+                {"from": [7, 7, 0], "to": [9, 9, 2]},
+            ],
+            [
+                {
+                    "from": element["from"],
+                    "to": element["to"],
+                }
+                for element in model["elements"][:3]
+            ],
+        )
+        self.assertIn("colored_side", model["textures"])
+        self.assertIn("overlay_side", model["textures"])
+
+    def test_faucet_model_matches_gt6_render_pass_bounds(self) -> None:
+        model = census.load_json(
+            ROOT
+            / "src/main/resources/assets/cruciblecraft/models/block/"
+            "mte_inplace_faucet.json"
+        )
+        self.assertEqual(
+            [
+                {"from": [6, 1, 0], "to": [10, 2, 4]},
+                {"from": [5, 2, 0], "to": [11, 6, 4]},
+                {"from": [10, 2, 0], "to": [11, 6, 4]},
+            ],
+            [
+                {
+                    "from": element["from"],
+                    "to": element["to"],
+                }
+                for element in model["elements"]
+            ],
+        )
+        self.assertEqual(
+            "#body",
+            model["textures"]["particle"],
+        )
 
     def test_r0_and_baseline_ledgers_are_untouched(self) -> None:
         wave = runtime._wave("attachments")

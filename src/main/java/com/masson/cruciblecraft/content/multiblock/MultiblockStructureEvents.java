@@ -28,15 +28,37 @@ public final class MultiblockStructureEvents {
                     ProfilerFiller reloadProfiler,
                     Executor preparationExecutor,
                     Executor reloadExecutor) {
+                long reloadStarted = System.nanoTime();
                 return CompletableFuture.supplyAsync(
-                                () -> MultiblockStructureCatalog.prepare(
-                                        resourceManager),
+                                () -> {
+                                    long preparationStarted = System.nanoTime();
+                                    var prepared = MultiblockStructureCatalog.prepare(
+                                            resourceManager);
+                                    CrucibleCraft.LOGGER.info(
+                                            "Multiblock resource reload preparation: "
+                                                    + "{}ms definitions={}",
+                                            elapsedMillis(preparationStarted),
+                                            prepared.size());
+                                    return prepared;
+                                },
                                 preparationExecutor)
                         .thenCompose(barrier::wait)
                         .thenAcceptAsync(
-                                MultiblockStructureCatalog::publish,
+                                prepared -> {
+                                    long publicationStarted = System.nanoTime();
+                                    MultiblockStructureCatalog.publish(prepared);
+                                    CrucibleCraft.LOGGER.info(
+                                            "Multiblock resource reload total: "
+                                                    + "{}ms publish={}ms",
+                                            elapsedMillis(reloadStarted),
+                                            elapsedMillis(publicationStarted));
+                                },
                                 reloadExecutor);
             }
         });
+    }
+
+    private static long elapsedMillis(long started) {
+        return (System.nanoTime() - started) / 1_000_000L;
     }
 }

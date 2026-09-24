@@ -84,49 +84,56 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
 
     @Override
     public void register(EmiRegistry registry) {
-        Set<ResourceLocation> addedCategories = new HashSet<>();
-        addCategory(registry, CRUCIBLE, addedCategories);
-        addCategory(registry, ANVIL, addedCategories);
-        addCategory(registry, COKE_OVEN, addedCategories);
-        addCategory(registry, MOLD_CASTING, addedCategories);
-        addCategory(registry, CRUSHER, addedCategories);
-        addCategory(registry, FUSION, addedCategories);
-        for (Block smeltery : ModBlocks.crucibleBlockArray()) {
-            registry.addWorkstation(CRUCIBLE, EmiStack.of(smeltery));
-        }
-        for (String material : List.of("stone", "iron", "bronze", "steel")) {
-            registry.addWorkstation(ANVIL, EmiStacks.ofItem(anvilVariant(material)));
-        }
-        registry.addWorkstation(COKE_OVEN, EmiStack.of(ModBlocks.COKE_OVEN.get()));
-        registry.addWorkstation(CRUSHER, EmiStack.of(ModBlocks.BRONZE_CRUSHER.get()));
-        registry.addWorkstation(CRUSHER, EmiStack.of(ModBlocks.LARGE_CRUSHER.get()));
-        registry.addWorkstation(FUSION, EmiStack.of(ModBlocks.FUSION_REACTOR.get()));
-        registry.addWorkstation(MOLD_CASTING, EmiStack.of(ModItems.CERAMIC_MOLD.get()));
-        ModItems.firedShapedMolds().forEach(item ->
-                registry.addWorkstation(MOLD_CASTING, EmiStack.of(item.get())));
+        long started = System.nanoTime();
+        try {
+            Set<ResourceLocation> addedCategories = new HashSet<>();
+            addCategory(registry, CRUCIBLE, addedCategories);
+            addCategory(registry, ANVIL, addedCategories);
+            addCategory(registry, COKE_OVEN, addedCategories);
+            addCategory(registry, MOLD_CASTING, addedCategories);
+            addCategory(registry, CRUSHER, addedCategories);
+            addCategory(registry, FUSION, addedCategories);
+            for (Block smeltery : ModBlocks.crucibleBlockArray()) {
+                registry.addWorkstation(CRUCIBLE, EmiStack.of(smeltery));
+            }
+            for (String material : List.of("stone", "iron", "bronze", "steel")) {
+                registry.addWorkstation(ANVIL, EmiStacks.ofItem(anvilVariant(material)));
+            }
+            registry.addWorkstation(COKE_OVEN, EmiStack.of(ModBlocks.COKE_OVEN.get()));
+            registry.addWorkstation(CRUSHER, EmiStack.of(ModBlocks.BRONZE_CRUSHER.get()));
+            registry.addWorkstation(CRUSHER, EmiStack.of(ModBlocks.LARGE_CRUSHER.get()));
+            registry.addWorkstation(FUSION, EmiStack.of(ModBlocks.FUSION_REACTOR.get()));
+            registry.addWorkstation(MOLD_CASTING, EmiStack.of(ModItems.CERAMIC_MOLD.get()));
+            ModItems.firedShapedMolds().forEach(item ->
+                    registry.addWorkstation(MOLD_CASTING, EmiStack.of(item.get())));
 
-        registerAlloys(registry);
-        registerAnvilRecipes(registry);
-        registerCokeOvenRecipes(registry);
-        registerMoldCasting(registry);
-        registerCrusherRecipes(registry);
-        registerFusionRecipes(registry);
-        registerProcessingMachines(registry, addedCategories);
-        registerMultiblockMenuHosts(registry, addedCategories);
-        registerMultiblockBlueprints(registry, addedCategories);
-        registerFuelMaps(registry, addedCategories);
-        registerHeatExchangerFuels(registry, addedCategories);
-        registerDisplayStacks(registry);
-        registerToolHeadAssemblies(registry);
-        // EMI already indexes creative-tab rows (and the item registry when
-        // that is the index source). addEmiStack appends without merging, so
-        // re-adding default converter/cover items listed each fuel engine
-        // twice in search. Variant addEmiStack calls still happen for
-        // REGISTERED-index polish; drop later identical item+patch copies
-        // at bake so CREATIVE-index players do not see those twice either.
-        Set<EmiIndexDedupe.ItemIndexKey> indexedItems = new HashSet<>();
-        registry.removeEmiStacks(stack ->
-                EmiIndexDedupe.isLaterCopy(indexedItems, stack.getItemStack()));
+            registerAlloys(registry);
+            registerAnvilRecipes(registry);
+            registerCokeOvenRecipes(registry);
+            registerMoldCasting(registry);
+            registerCrusherRecipes(registry);
+            registerFusionRecipes(registry);
+            registerProcessingMachines(registry, addedCategories);
+            registerMultiblockMenuHosts(registry, addedCategories);
+            registerMultiblockBlueprints(registry, addedCategories);
+            registerFuelMaps(registry, addedCategories);
+            registerHeatExchangerFuels(registry, addedCategories);
+            registerDisplayStacks(registry);
+            registerToolHeadAssemblies(registry);
+            // EMI already indexes creative-tab rows (and the item registry when
+            // that is the index source). addEmiStack appends without merging, so
+            // re-adding default converter/cover items listed each fuel engine
+            // twice in search. Variant addEmiStack calls still happen for
+            // REGISTERED-index polish; drop later identical item+patch copies
+            // at bake so CREATIVE-index players do not see those twice either.
+            Set<EmiIndexDedupe.ItemIndexKey> indexedItems = new HashSet<>();
+            registry.removeEmiStacks(stack ->
+                    EmiIndexDedupe.isLaterCopy(indexedItems, stack.getItemStack()));
+        } finally {
+            CrucibleCraft.LOGGER.info(
+                    "CrucibleCraft EMI plugin registration timing: {}ms",
+                    elapsedMillis(started));
+        }
     }
 
     /** Item-list polish layers: gated prefix+material stacks join the index,
@@ -645,5 +652,9 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         long max = MachineMaterialRules.anvilMaxDurability(material);
         stack.set(ModComponents.MACHINE_DURABILITY, new MachineDurabilityComponent(max, max));
         return stack;
+    }
+
+    private static long elapsedMillis(long started) {
+        return (System.nanoTime() - started) / 1_000_000L;
     }
 }

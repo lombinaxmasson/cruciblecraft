@@ -61,11 +61,7 @@ public final class MaterialItemColor {
     private static int toolColor(
             ItemStack stack, MaterialToolItem tool, int tintIndex) {
         if (tintIndex == 2 && ElectricToolCatalog.isElectric(tool.kind())) {
-            return 0xFF000000
-                    | ElectricToolCatalog.of(tool.kind())
-                            .orElseThrow()
-                            .voltage()
-                            .handleColor();
+            return 0xFF000000 | electricHullColor(tool);
         }
         if (tintIndex == 2 && isWoodHandleKind(tool.kind())) {
             return 0xFF000000 | woodHandleColor();
@@ -108,7 +104,7 @@ public final class MaterialItemColor {
             return headColor;
         }
         if (tintIndex == 2 && ElectricToolCatalog.isElectric(kind)) {
-            return ElectricToolCatalog.of(kind).orElseThrow().voltage().handleColor();
+            return electricHullColor(kind);
         }
         if (tintIndex == 2 && isWoodHandleKind(kind)) {
             return woodColor;
@@ -121,6 +117,21 @@ public final class MaterialItemColor {
                 .map(material -> styleColor(
                         material.colorRgb(), material.tintStyle()))
                 .orElse(0x664F2F);
+    }
+
+    private static int electricHullColor(MaterialToolItem tool) {
+        return electricHullColor(tool.kind());
+    }
+
+    private static int electricHullColor(ToolKind kind) {
+        String materialId = ElectricToolCatalog.of(kind)
+                .orElseThrow()
+                .voltage()
+                .hullMaterial();
+        return MaterialCatalog.find(materialId)
+                .map(material -> styleColor(
+                        material.colorRgb(), material.tintStyle()))
+                .orElse(0xFFFFFF);
     }
 
     static int baseColor(

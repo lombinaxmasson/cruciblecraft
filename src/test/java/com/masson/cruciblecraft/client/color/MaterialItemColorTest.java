@@ -29,7 +29,7 @@ class MaterialItemColorTest {
                 MaterialItemColor.layerTint(
                         ToolKind.UNIVERSAL_SPADE, 2, 0x888888, 0x664F2F));
         assertEquals(
-                0xFF7F00,
+                0xFAF0F0,
                 MaterialItemColor.layerTint(
                         ToolKind.MINING_DRILL_LV, 2, 0x888888, 0x664F2F));
         assertEquals(

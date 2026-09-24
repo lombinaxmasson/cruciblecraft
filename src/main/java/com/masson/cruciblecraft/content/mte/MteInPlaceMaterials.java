@@ -25,6 +25,9 @@ public final class MteInPlaceMaterials {
 
     public static String id(MteInPlaceSpec spec) {
         String path = spec.registryPath();
+        if (spec.kind() == MteInPlaceKind.FAUCET) {
+            return faucetMaterial(path);
+        }
         if (path.contains("stone_chest")) {
             return "stone";
         }
@@ -44,6 +47,25 @@ public final class MteInPlaceMaterials {
             }
             return "steel";
         });
+    }
+
+    private static String faucetMaterial(String path) {
+        String token;
+        int slash = path.indexOf('/');
+        if (slash > 0 && path.endsWith("/crucible_faucet")) {
+            token = path.substring(0, slash);
+        } else {
+            String marker = "crucible_faucet_";
+            int markerIndex = path.lastIndexOf(marker);
+            token = markerIndex >= 0
+                    ? path.substring(markerIndex + marker.length())
+                    : "stone";
+        }
+        String resolved = resolve(token).orElse(token);
+        if ("osmium".equals(resolved)) {
+            return "osmium_elemental";
+        }
+        return MaterialCatalog.contains(resolved) ? resolved : "stone";
     }
 
     public static String token(String registryPath) {

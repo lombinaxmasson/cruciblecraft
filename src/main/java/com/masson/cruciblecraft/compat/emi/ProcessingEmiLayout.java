@@ -1,11 +1,9 @@
 package com.masson.cruciblecraft.compat.emi;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.OptionalInt;
-import java.util.Set;
 
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 
@@ -114,15 +112,10 @@ public record ProcessingEmiLayout(
     private static List<ItemSlot> positionItems(
             ProcessingMachineSpec spec,
             ProcessingEmiRecipeData data) {
-        Set<Integer> available = new LinkedHashSet<>(spec.items().inputs());
         List<ItemSlot> result = new ArrayList<>();
         int overflow = 0;
         for (ProcessingEmiRecipeData.ItemInput input : data.consumedInputs()) {
-            OptionalInt machineSlot = takeSlot(
-                    spec,
-                    available,
-                    ProcessingMachineSpec.SlotRole.MATERIAL,
-                    true);
+            OptionalInt machineSlot = recipeInputSlot(spec, input.recipeIndex());
             if (machineSlot.isPresent()) {
                 result.add(itemSlot(
                         spec, ItemKind.INPUT, input.recipeIndex(), machineSlot.getAsInt()));
@@ -132,11 +125,7 @@ public record ProcessingEmiLayout(
             }
         }
         for (ProcessingEmiRecipeData.ItemInput catalyst : data.catalysts()) {
-            OptionalInt machineSlot = takeSlot(
-                    spec,
-                    available,
-                    ProcessingMachineSpec.SlotRole.TOOL,
-                    false);
+            OptionalInt machineSlot = recipeInputSlot(spec, catalyst.recipeIndex());
             if (machineSlot.isPresent()) {
                 result.add(itemSlot(
                         spec,
@@ -164,28 +153,13 @@ public record ProcessingEmiLayout(
         return List.copyOf(result);
     }
 
-    private static OptionalInt takeSlot(
+    private static OptionalInt recipeInputSlot(
             ProcessingMachineSpec spec,
-            Set<Integer> available,
-            ProcessingMachineSpec.SlotRole preferredRole,
-            boolean allowFallback) {
-        Integer preferred = null;
-        for (int slot : available) {
-            if (spec.items().role(slot) == preferredRole) {
-                preferred = slot;
-                break;
-            }
-        }
-        if (preferred != null) {
-            available.remove(preferred);
-            return OptionalInt.of(preferred);
-        }
-        if (!allowFallback || available.isEmpty()) {
-            return OptionalInt.empty();
-        }
-        int fallback = available.iterator().next();
-        available.remove(fallback);
-        return OptionalInt.of(fallback);
+            int recipeIndex) {
+        List<Integer> inputs = spec.items().inputs();
+        return recipeIndex >= 0 && recipeIndex < inputs.size()
+                ? OptionalInt.of(inputs.get(recipeIndex))
+                : OptionalInt.empty();
     }
 
     private static ItemSlot itemSlot(
@@ -286,7 +260,7 @@ public record ProcessingEmiLayout(
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Missing UI position for tank " + tank.index()));
         Rect bounds = new Rect(
-                position.x(), position.y(), position.width(), position.height());
+                position.x(), position.y(), ITEM_SLOT_SIZE, ITEM_SLOT_SIZE);
         while (occupied.stream().anyMatch(bounds::overlaps)) {
             bounds = new Rect(
                     bounds.x() + 1, bounds.y(), bounds.width(), bounds.height());
@@ -310,11 +284,6 @@ public record ProcessingEmiLayout(
         int width = ITEM_SLOT_SIZE;
         int height = ITEM_SLOT_SIZE;
         long capacity = 1_000L;
-        if (!spec.ui().tanks().isEmpty()) {
-            ProcessingMachineSpec.TankPosition source = spec.ui().tanks().getFirst();
-            width = source.width();
-            height = source.height();
-        }
         if (!spec.fluids().all().isEmpty()) {
             capacity = spec.fluids().all().getFirst().capacity();
         }

@@ -566,6 +566,7 @@ public final class ModCreativeTabs {
                 || spec.kind() == MteInPlaceKind.MATTER_FABRICATOR
                 || spec.kind() == MteInPlaceKind.VON_DA_GRAAGG
                 || spec.kind() == MteInPlaceKind.LARGE_BOILER
+                || spec.kind().attachment()
                 || CoilHosts.isCoilMeta(spec.meta())
                 || spec.meta() == CoilHosts.LIGHTNING_ROD_PART_META;
     }
