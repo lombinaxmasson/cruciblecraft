@@ -8,25 +8,26 @@
   "traced_source_rows": 79138,
   "recipe_evidence_grades": {
     "source_rows": 172327,
-    "grades": {
-      "source_exact": {
-        "source_rows": 79138,
-        "percent_basis": 172327
-      },
-      "implementation_evidence_pending": {
-        "source_rows": 85279,
-        "percent_basis": 172327
-      },
-      "no_cc_evidence_or_legacy_pending": {
-        "source_rows": 7910,
-        "percent_basis": 172327
-      }
+    "classes": {
+      "source_exact": 79138,
+      "translated_exact": 92,
+      "translated_io_only": 0,
+      "translated_item_io": 7581,
+      "translatable_missing": 55628,
+      "missing_material_form": 18855,
+      "missing_fluid": 9224,
+      "missing_object": 1807,
+      "display_only": 2,
+      "legacy_exclusion_pending": 0
     },
-    "no_cc_evidence_rows": 7910,
-    "legacy_exclusion_pending_rows": 0,
-    "reference_traced_rows": 2003,
-    "rule_expanded_recipes": 0,
-    "untraced_cc_rows": 248
+    "groups": {
+      "proven": 79230,
+      "partial_match": 7581,
+      "recipe_gap": 55628,
+      "identity_gap": 29886,
+      "display_only": 2,
+      "legacy_exclusion_pending": 0
+    }
   },
   "pipeline_deferred_map_count": 11,
   "pipeline_deferred_source_rows": 15811,
@@ -59,11 +60,6 @@
       ],
       "traced_source_rows": 0,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 0,
-        "implementation_evidence_pending_rows": 8,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {},
       "owned_cc_maps": [
         "distillation_tower"
@@ -89,6 +85,10 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "translated_exact": 3,
+        "missing_fluid": 5
       }
     },
     {
@@ -115,11 +115,6 @@
       ],
       "traced_source_rows": 0,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 0,
-        "implementation_evidence_pending_rows": 3,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {},
       "owned_cc_maps": [
         "cryo_distillation_tower"
@@ -145,6 +140,11 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "translated_exact": 1,
+        "translated_item_io": 1,
+        "translatable_missing": 1
       }
     },
     {
@@ -161,11 +161,6 @@
       "capabilities": [],
       "traced_source_rows": 0,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 0,
-        "implementation_evidence_pending_rows": 0,
-        "no_cc_evidence_or_legacy_pending_rows": 7746
-      },
       "cc_host_maps": {},
       "owned_cc_maps": [
         "steamcracking"
@@ -187,6 +182,11 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "translatable_missing": 5314,
+        "missing_material_form": 2400,
+        "missing_fluid": 32
       }
     },
     {
@@ -203,11 +203,6 @@
       "capabilities": [],
       "traced_source_rows": 0,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 0,
-        "implementation_evidence_pending_rows": 0,
-        "no_cc_evidence_or_legacy_pending_rows": 3
-      },
       "cc_host_maps": {},
       "owned_cc_maps": [
         "catalyticcracking"
@@ -229,6 +224,9 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "translatable_missing": 3
       }
     },
     {
@@ -255,11 +253,6 @@
       ],
       "traced_source_rows": 0,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 0,
-        "implementation_evidence_pending_rows": 6435,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {},
       "owned_cc_maps": [
         "fermenter"
@@ -289,6 +282,14 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "translated_exact": 2,
+        "translated_item_io": 44,
+        "translatable_missing": 677,
+        "missing_material_form": 644,
+        "missing_fluid": 3586,
+        "missing_object": 1482
       }
     },
     {
@@ -305,11 +306,6 @@
       "capabilities": [],
       "traced_source_rows": 6,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 6,
-        "implementation_evidence_pending_rows": 1511,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {
         "distillery": 7
       },
@@ -333,6 +329,12 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "source_exact": 6,
+        "translatable_missing": 888,
+        "missing_material_form": 3,
+        "missing_fluid": 620
       }
     },
     {
@@ -349,11 +351,6 @@
       "capabilities": [],
       "traced_source_rows": 198,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 198,
-        "implementation_evidence_pending_rows": 19,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {
         "drying": 198
       },
@@ -377,6 +374,11 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "source_exact": 198,
+        "translated_item_io": 2,
+        "missing_fluid": 17
       }
     },
     {
@@ -403,11 +405,6 @@
       ],
       "traced_source_rows": 0,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 0,
-        "implementation_evidence_pending_rows": 5,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {},
       "owned_cc_maps": [
         "coagulator"
@@ -434,6 +431,11 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "translated_exact": 1,
+        "translated_item_io": 1,
+        "missing_fluid": 3
       }
     },
     {
@@ -450,11 +452,6 @@
       "capabilities": [],
       "traced_source_rows": 0,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 0,
-        "implementation_evidence_pending_rows": 0,
-        "no_cc_evidence_or_legacy_pending_rows": 132
-      },
       "cc_host_maps": {},
       "owned_cc_maps": [
         "crystallisationcrucible"
@@ -476,6 +473,9 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "translatable_missing": 132
       }
     },
     {
@@ -502,11 +502,6 @@
       ],
       "traced_source_rows": 7198,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 7198,
-        "implementation_evidence_pending_rows": 57047,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {
         "mixer": 7218
       },
@@ -534,6 +529,15 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "source_exact": 7198,
+        "translated_exact": 30,
+        "translated_item_io": 4556,
+        "translatable_missing": 47299,
+        "missing_material_form": 4502,
+        "missing_fluid": 573,
+        "missing_object": 87
       }
     },
     {
@@ -550,11 +554,6 @@
       "capabilities": [],
       "traced_source_rows": 0,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 0,
-        "implementation_evidence_pending_rows": 0,
-        "no_cc_evidence_or_legacy_pending_rows": 29
-      },
       "cc_host_maps": {},
       "owned_cc_maps": [
         "burnmixer"
@@ -576,6 +575,9 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "translatable_missing": 29
       }
     },
     {
@@ -592,11 +594,6 @@
       "capabilities": [],
       "traced_source_rows": 0,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 0,
-        "implementation_evidence_pending_rows": 57,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {},
       "owned_cc_maps": [
         "cryo_mixer"
@@ -620,6 +617,10 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "translatable_missing": 12,
+        "missing_fluid": 45
       }
     },
     {
@@ -646,11 +647,6 @@
       ],
       "traced_source_rows": 0,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 0,
-        "implementation_evidence_pending_rows": 124,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {},
       "owned_cc_maps": [
         "coke_oven"
@@ -677,6 +673,12 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "translated_exact": 35,
+        "translated_item_io": 1,
+        "translatable_missing": 82,
+        "missing_material_form": 6
       }
     },
     {
@@ -693,11 +695,6 @@
       "capabilities": [],
       "traced_source_rows": 73,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 73,
-        "implementation_evidence_pending_rows": 42,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {
         "roaster": 73
       },
@@ -723,6 +720,11 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "source_exact": 73,
+        "translated_item_io": 34,
+        "missing_material_form": 8
       }
     },
     {
@@ -758,11 +760,6 @@
       ],
       "traced_source_rows": 49417,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 49417,
-        "implementation_evidence_pending_rows": 10438,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {
         "bath": 49417
       },
@@ -801,6 +798,14 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "source_exact": 49417,
+        "display_only": 2,
+        "translated_item_io": 2918,
+        "missing_material_form": 3788,
+        "missing_fluid": 3729,
+        "missing_object": 1
       }
     },
     {
@@ -817,11 +822,6 @@
       "capabilities": [],
       "traced_source_rows": 1289,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 1289,
-        "implementation_evidence_pending_rows": 183,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {
         "compressor": 1289
       },
@@ -853,6 +853,11 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "source_exact": 1289,
+        "translatable_missing": 93,
+        "missing_material_form": 90
       }
     },
     {
@@ -869,11 +874,6 @@
       "capabilities": [],
       "traced_source_rows": 366,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 366,
-        "implementation_evidence_pending_rows": 26,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {
         "autoclave": 366
       },
@@ -897,6 +897,11 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "source_exact": 366,
+        "translatable_missing": 6,
+        "missing_object": 20
       }
     },
     {
@@ -913,11 +918,6 @@
       "capabilities": [],
       "traced_source_rows": 0,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 0,
-        "implementation_evidence_pending_rows": 957,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {},
       "owned_cc_maps": [
         "freezer"
@@ -941,6 +941,13 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "translated_exact": 2,
+        "translated_item_io": 6,
+        "translatable_missing": 860,
+        "missing_material_form": 84,
+        "missing_fluid": 5
       }
     },
     {
@@ -967,11 +974,6 @@
       ],
       "traced_source_rows": 178,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 178,
-        "implementation_evidence_pending_rows": 112,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {
         "electrolyzer": 178
       },
@@ -1001,6 +1003,12 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "source_exact": 178,
+        "translated_item_io": 18,
+        "translatable_missing": 73,
+        "missing_material_form": 21
       }
     },
     {
@@ -1027,11 +1035,6 @@
       ],
       "traced_source_rows": 3601,
       "reference_traced_rows": 0,
-      "source_evidence": {
-        "source_exact_rows": 3601,
-        "implementation_evidence_pending_rows": 3155,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {
         "melter": 3601
       },
@@ -1074,6 +1077,14 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "source_exact": 3601,
+        "translated_exact": 9,
+        "translatable_missing": 1,
+        "missing_material_form": 2750,
+        "missing_fluid": 284,
+        "missing_object": 111
       }
     },
     {
@@ -1090,11 +1101,6 @@
       "capabilities": [],
       "traced_source_rows": 16812,
       "reference_traced_rows": 2003,
-      "source_evidence": {
-        "source_exact_rows": 16812,
-        "implementation_evidence_pending_rows": 5157,
-        "no_cc_evidence_or_legacy_pending_rows": 0
-      },
       "cc_host_maps": {
         "smelter": 16933
       },
@@ -1120,6 +1126,14 @@
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
+      },
+      "raw_row_classes": {
+        "source_exact": 16812,
+        "translated_exact": 9,
+        "translatable_missing": 158,
+        "missing_material_form": 4559,
+        "missing_fluid": 325,
+        "missing_object": 106
       }
     }
   ]

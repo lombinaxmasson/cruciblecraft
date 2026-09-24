@@ -62,91 +62,44 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
         self.assertEqual(summary["blocker_count"], len(entries))
         self.assertNotEqual(summary["recipe_source_rows"], summary["capability_count"])
 
-    def test_recipe_evidence_grades_partition_the_denominator(self):
+    def test_raw_row_classes_partition_the_denominator(self):
         summary = self.coverage["summary"]
         grades = summary["recipe_evidence_grades"]
-        self.assertEqual(
-            summary["recipe_source_rows"],
-            grades["source_rows"],
-        )
-        self.assertEqual(
-            summary["recipe_source_rows"],
-            sum(item["source_rows"] for item in grades["grades"].values()),
-        )
-        self.assertEqual(119375, grades["grades"]["source_exact"]["source_rows"])
-        self.assertEqual(
-            524790,
-            grades["grades"]["implementation_evidence_pending"]["source_rows"],
-        )
-        self.assertEqual(
-            76676,
-            grades["grades"]["no_cc_evidence_or_legacy_pending"]["source_rows"],
-        )
-        self.assertEqual(67034, grades["no_cc_evidence_rows"])
-        self.assertEqual(9642, grades["legacy_exclusion_pending_rows"])
-        self.assertEqual(
-            grades,
-            self.coverage["recipe_evidence_grades"],
-        )
-        semantic = self.coverage["semantic_coverage"]
-        tiers = semantic["summary"]["tier_counts"]
-        self.assertEqual(
-            semantic["summary"]["cc_normalized_rows"],
-            sum(tiers.values()),
-        )
-        self.assertGreater(semantic["summary"]["candidate_rows"], 0)
-        self.assertEqual(
-            semantic["summary"]["candidate_rows"],
-            tiers["EXACT"] + tiers["FORM_PATH"] + tiers["SEMANTIC"],
-        )
-        self.assertGreater(
-            semantic["cc_projection"]["runtime_rows_seen"],
-            semantic["cc_projection"]["recognized_runtime_rows"],
-        )
-        self.assertGreater(semantic["cc_projection"]["recognized_runtime_rows"], 0)
-        self.assertEqual(
-            semantic["summary"]["gt_normalized_rows"],
-            sum(semantic["summary"]["gt_tier_counts"].values()),
-        )
-        self.assertEqual("raw_dump", semantic["gt_source_mode"])
-        self.assertGreater(semantic["summary"]["raw_source_ref_count"], 0)
-        self.assertLessEqual(
-            semantic["summary"]["raw_source_ref_count"],
-            semantic["summary"]["gt_normalized_rows"],
-        )
-        self.assertEqual(
-            semantic["summary"]["raw_source_ref_count"],
-            sum(semantic["summary"]["raw_source_ref_tiers"].values()),
-        )
-        sample_refs = [
-            ref
-            for family in semantic["families"]
-            for ref in family["raw_source_ref_samples"]
-        ]
-        self.assertTrue(sample_refs)
-        self.assertTrue(
-            all(
-                set(("map", "index", "sha256")) <= set(ref)
-                for ref in sample_refs
-            )
-        )
-        generic = semantic["generic_map_projection"]
-        self.assertGreater(generic["source_map_count"], 0)
-        self.assertEqual(
-            generic["source_map_count"],
-            len(generic["rows"]),
-        )
-        self.assertEqual(
-            generic["totals"]["cc_rows"],
-            sum(row["cc_rows"] for row in generic["rows"]),
-        )
+        self.assertEqual(summary["recipe_source_rows"], grades["source_rows"])
+        self.assertEqual(summary["recipe_source_rows"], sum(grades["classes"].values()))
+        self.assertEqual(summary["recipe_source_rows"], sum(grades["groups"].values()))
+        self.assertEqual(grades, self.coverage["recipe_evidence_grades"])
         for row in self.coverage["recipe_maps"]:
-            evidence = row["source_evidence"]
             self.assertEqual(
                 row["source_rows"],
-                sum(evidence.values()),
+                sum(row["raw_row_classes"].values()),
                 row["source_map"],
             )
+        semantic = self.coverage["semantic_coverage"]
+        self.assertEqual(2, semantic["schema_version"])
+        self.assertEqual(summary["recipe_source_rows"], semantic["total_rows"])
+        self.assertEqual(9642, grades["classes"]["legacy_exclusion_pending"])
+        self.assertGreaterEqual(
+            grades["classes"]["source_exact"],
+            summary["traced_source_rows"] - 1000,
+        )
+
+    def test_translator_is_calibrated_on_hash_proven_rows(self):
+        calibration = self.coverage["semantic_coverage"]["calibration"]
+        self.assertGreater(calibration["pairs"], 100000)
+        self.assertEqual(
+            calibration["pairs"],
+            calibration["equal"] + calibration["differs"] + calibration["untranslatable"],
+        )
+        self.assertGreaterEqual(calibration["agreement"], 0.99)
+        for sample in calibration["differs_samples"]:
+            self.assertTrue({"map", "index", "sha256"} <= set(sample))
+
+    def test_extruder_shapes_are_not_blamed_on_the_translator(self):
+        extruder = self.by_source["gt.recipe.extruder"]["raw_row_classes"]
+        self.assertGreater(extruder.get("missing_object", 0), 100000)
+        top = self.coverage["semantic_coverage"]["failure_top"]["missing_object"]
+        self.assertTrue(any("technological" in entry["key"] for entry in top))
 
     def test_recipe_maps_are_unique_and_complete(self):
         rows = self.coverage["recipe_maps"]
@@ -219,19 +172,19 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
             self.assertIn(heading, text)
         for grade in (
             "source_exact",
-            "implementation_evidence_pending",
-            "no_cc_evidence_or_legacy_pending",
+            "translated_exact",
+            "translatable_missing",
+            "missing_material_form",
+            "display_only",
         ):
             self.assertIn(grade, text)
-        self.assertIn("三档互斥且合计等于分母", text)
+        self.assertIn("互斥，合计等于分母", text)
+        self.assertIn("翻译链校准", text)
         for row in self.coverage["recipe_maps"]:
             name = row["source_map"] or "(unnamed)"
             self.assertIn(f"`{name}`", text)
         self.assertIn("gt6-full-coverage-workflow.md", text)
-        self.assertIn("语义比对（辅助证据", text)
-        self.assertIn("EXACT", text)
-        self.assertIn("SEMANTIC", text)
-        self.assertIn("reverse GT normalized tiers", text)
+        self.assertIn("### 2.2 逐行分类", text)
 
     def test_empty_maps_are_not_reported_as_full_replay(self):
         for row in self.coverage["recipe_maps"]:

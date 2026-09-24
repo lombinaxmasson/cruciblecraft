@@ -5,7 +5,7 @@
 
 这份覆盖文档不是进度权威（进度看 [项目状态](project-status.md)），也不是移植队列
 （队列看 [已阻塞项](blocked.md) 和形态需求普查）。它只把 GT6 分母和工作树现状并排放在一起。
-配方源行总览采用三档互斥证据分级，不再把一个逐行 hash 百分比当作总体完成率。
+配方源行总览按逐行分类给出（第 3.3 节），不再把一个 hash 百分比当作总体完成率。
 
 ## 1. 产物与命令
 
@@ -17,7 +17,7 @@ Builder：`tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconcilia
 | `…/coverage.json` | 全部轴的机器可读结果 |
 | `…/chem_thermal.json` | 化学 / 热处理子集 |
 | `…/source_attribution.json` | 配方源行归属钉（见第 3 节） |
-| `…/semantic_coverage.json` | normalized CC/GT 语义投影辅助证据（见第 3.7 节） |
+| `…/semantic_coverage.json` | 每条 GT6 源行的分类与翻译链校准（见第 3.3、3.7 节） |
 
 ```powershell
 # 重建全部产物
@@ -26,7 +26,7 @@ python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation.py --check
 # 用本地 gt6_dump 重新核对归属钉，不写
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation.py --verify-source
-# 单独重建/检查语义投影（通常由上面的命令自动调用）
+# 单独重建/检查逐行分类（通常由上面的命令自动调用）
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py --write
 python tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py --check
 ```
@@ -92,21 +92,35 @@ compressor/rollingmill、mortar/shredder 也有重合。所以**只要声明的�
 每张 GT6 图按不同 hash 去重计数，与“源行”同单位。`full_replay` 只在
 “已追溯源行 = 源行数且 overflow = 0”时成立。
 
-### 3.3 三档源行证据分级
+### 3.3 逐行分类
 
-总览中的三档是互斥分区，严格加总到 GT6 源行分母：
+`build_semantic_coverage.py` 把每一条 GT6 源行归到下面**一个**类别，按顺序取第一个成立的，
+所以各类互斥、合计严格等于分母：
 
-1. **`source_exact` / 逐行已证明**：已经用 dump 行 evidence hash 对上的源行。
-2. **`implementation_evidence_pending` / 已有 CC 实现证据、待语义确认**：该图已有
-   CC 配方行、材料规则或归一化 reference，但剩余源行还没有逐行语义比对。
-   这是“可能已经覆盖但证据不足”的桶，不能直接当完成。
-3. **`no_cc_evidence_or_legacy_pending` / 无 CC 证据或旧排除待决策**：
-   `denominator_only`、`runtime_only` 和 `legacy_exclusion_pending` 的源行。
-   其中旧排除单独列出，避免和真正没有 CC 证据混淆。
+| 类别 | 含义 | 总览分组 |
+| --- | --- | --- |
+| `legacy_exclusion_pending` | 旧分母标 `out_of_scope` 的图，待重新决策 | 旧排除待决策 |
+| `source_exact` | CC 行的 evidence hash 对上这条源行（3.2） | 已证明 |
+| `display_only` | GT6 的 `fake` / `hidden` 行，只是 NEI 展示 | 展示用 |
+| `translated_exact` | 翻译成 CC 身份后，输入、输出、流体、时间、EU/t 都与某条 CC 行或规则展开一致 | 已证明 |
+| `translated_io_only` | 输入输出和流体一致，时间或 EU/t 不同 | 部分一致 |
+| `translated_item_io` | 物品输入输出一致，流体不同（例如 GT6 要冷却液） | 部分一致 |
+| `translatable_missing` | 能完整翻译成 CC 身份，但 CC 没有对应配方 | 缺配方 |
+| `missing_material_form` | 用到 CC 还没有的（材料, 形态） | 缺身份 |
+| `missing_fluid` | 用到 CC 还没有的流体 | 缺身份 |
+| `missing_object` | 用到 CC 还没有的物品、方块、MTE 或挤压模具 | 缺身份 |
 
-因此页面里的三档不是三个完成度百分比：第一档是下界，第二档是待确认区，
-第三档是明确缺口与范围决策区。reference 行、材料规则展开数和无 provenance 的
-CC 行会作为第二档的辅助信号单独显示，不会伪装成 GT6 源行数。
+“缺配方”是真正要写配方的缺口；“缺身份”要先开材料形态、流体或物品，
+配方才有地方落。两者分开，是为了不把形态缺口算成配方工作量。
+
+翻译用的是 recipe wave 自己的链路（`dialects/gt6.compile_row` + `emit`），
+比较在 CC 逻辑身份空间里做：slash id 与 `prefix_material` 组件视为同一身份。
+GT6 挤压模具额外用 `gt6_resolve.extruder_shapes()` 映射到 live 的 CC 模具。
+
+**校准**：同一轮里，每条 hash 已证明的 CC 行都会把它的 GT6 源行翻译回来比对。
+当前一致率写在总览下方（约 99.5%）；不一致的都是真实移植差异（缺电路编号、
+有意替换等），样例在 `semantic_coverage.json` 的 `calibration.differs_samples`。
+一致率明显下降时，先修翻译链，不要相信其余类别的数字。
 
 ### 3.4 其他三列
 
@@ -144,32 +158,16 @@ CI 上没有 `gt6_dump`。`source_attribution.json` 记录了：
 `--check` 会重算 `evidence_digest`，和钉不一致就失败，并提示去有 dump 的机器上跑 `--write`。
 所以只要配方证据有增减，CI 都会拦下来，不会用旧的归属静默算出新数字。
 
-### 3.7 语义投影辅助证据
+### 3.7 逐行分类的产物与检查
 
-`build_semantic_coverage.py` 复用 `tools/compare_gt6_recipes.py` 的 normalized IR 和
-材料规则展开，输出每个比较 family 的：
+`semantic_coverage.json` 记录每张 GT6 图的类别计数、校准结果、缺身份的前 25 个来源，
+以及翻译链源码的 hash 和 CC 侧投影摘要（运行时配方行 + 材料规则展开）。
 
-- `EXACT`：normalized 输入/输出/机会签名完全一致；
-- `FORM_PATH`：同一材料形态路径匹配；
-- `SEMANTIC`：比较器找到同 family/material 的语义候选；
-- `NONE`：没有候选。
-
-这四档只对比较器当前能展开的 CC normalized rows 计数，不能直接换算成 GT6 原始源行。
-尤其 `SEMANTIC` 不是完成证明；机器时间、EU/t、special value、获得格和 raw-row
-multiplicity 仍需后续逐项验证。该摘要因此只作为
-`implementation_evidence_pending` 的拆分线索，不改变三档源行分母。
-
-摘要同时做一遍反向 GT normalized-row 分类，方便看 GT 侧有多少 normalized 行能找到
-CC candidate；它仍然只在 normalized 单位内成立，不能把 `SEMANTIC` 数字直接加回
-720,841 条 raw source rows。
-
-当本地 raw dump 存在时，GT normalized rows 还会携带稳定 source ref：
-`{map, index, sha256}`。`map + index` 解决同内容跨图/重复行的身份问题，
-`sha256` 用于检测 dump 行内容是否变化；没有 raw dump 时则退回
-`normalized_reference` 模式，明确没有 raw ref。
-
-`--write` 需要本地 `tools/gt6_recipe_normalized_reference.json`；`--check` 不需要参考树，
-只检查当前 CC 材料/规则展开摘要、比较器源码 hash 和已提交摘要是否一致。
+- `--write` 需要本地 `gt6_dump/`，约 4 分钟；`build_reconciliation.py --write` 会先调用它。
+- `--check` 不需要参考树：只核对翻译链源码 hash 和 CC 侧投影摘要。
+  CC 配方或规则一变，或翻译链代码一变，CI 就会报过期，要在有 dump 的机器上重跑 `--write`。
+- 已知局限：只改了材料/流体/物品注册、没改任何配方时，`--check` 看不出分类变化，
+  要手动重跑 `--write`（比如刚开完一批材料形态之后）。
 
 ## 4. CI 与测试
 

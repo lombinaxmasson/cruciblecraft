@@ -1377,20 +1377,6 @@ def map_rows(
             len(trace.reference) + untraced_rows + rules,
             overflow_rows,
         )
-        source_count = int(row.get("recipe_count") or 0)
-        exact_source_count = len(trace.exact)
-        no_cc_source_count = (
-            source_count
-            if depth in {"denominator_only", "runtime_only", "legacy_exclusion_pending"}
-            else 0
-        )
-        pending_source_count = (
-            source_count - exact_source_count - no_cc_source_count
-        )
-        if pending_source_count < 0:
-            raise ValueError(
-                f"{row.get('name_internal')}: source evidence partition became negative"
-            )
         result.append(
             {
                 "source_map": row.get("name_internal"),
@@ -1406,11 +1392,6 @@ def map_rows(
                 "capabilities": cap_rows,
                 "traced_source_rows": len(trace.exact),
                 "reference_traced_rows": len(trace.reference),
-                "source_evidence": {
-                    "source_exact_rows": exact_source_count,
-                    "implementation_evidence_pending_rows": pending_source_count,
-                    "no_cc_evidence_or_legacy_pending_rows": no_cc_source_count,
-                },
                 "cc_host_maps": dict(sorted((trace.exact_hosts + trace.reference_hosts).items())),
                 "owned_cc_maps": mine,
                 "untraced_cc_rows": untraced_rows,
@@ -1518,7 +1499,11 @@ def build_report(*, refresh_attribution: bool) -> tuple[dict[str, Any], dict[str
         for row in chemistry_maps
         if "CHEMICAL_OR_THERMAL_PIPELINE" in (row.get("reason") or "")
     ]
-    recipe_evidence_grades = source_evidence_grades(maps)
+    for row in maps:
+        row["raw_row_classes"] = dict(
+            (semantic_coverage.get("maps") or {}).get(row["source_map"] or "", {})
+        )
+    recipe_evidence_grades = raw_row_grades(maps)
     report = {
         "schema_version": 2,
         "assessment_id": scope["assessment_id"],
@@ -1602,7 +1587,7 @@ def build_report(*, refresh_attribution: bool) -> tuple[dict[str, Any], dict[str
         "map_count": len(chemistry_maps),
         "source_rows": sum(row["source_rows"] for row in chemistry_maps),
         "traced_source_rows": sum(row["traced_source_rows"] for row in chemistry_maps),
-        "recipe_evidence_grades": source_evidence_grades(chemistry_maps),
+        "recipe_evidence_grades": raw_row_grades(chemistry_maps),
         "pipeline_deferred_map_count": len(chemistry_pipeline_deferred),
         "pipeline_deferred_source_rows": sum(
             row["source_rows"] for row in chemistry_pipeline_deferred
@@ -1633,11 +1618,39 @@ DEPTH_ORDER = (
     "legacy_exclusion_pending",
 )
 
-SOURCE_EVIDENCE_GRADE_ORDER = (
+# Row classes come from semantic_coverage.json; groups are what the overview shows.
+RAW_ROW_CLASSES = (
     "source_exact",
-    "implementation_evidence_pending",
-    "no_cc_evidence_or_legacy_pending",
+    "translated_exact",
+    "translated_io_only",
+    "translated_item_io",
+    "translatable_missing",
+    "missing_material_form",
+    "missing_fluid",
+    "missing_object",
+    "display_only",
+    "legacy_exclusion_pending",
 )
+RAW_ROW_GROUPS = (
+    ("proven", "已证明", ("source_exact", "translated_exact")),
+    ("partial_match", "部分一致", ("translated_io_only", "translated_item_io")),
+    ("recipe_gap", "缺配方", ("translatable_missing",)),
+    ("identity_gap", "缺身份", ("missing_material_form", "missing_fluid", "missing_object")),
+    ("display_only", "展示用", ("display_only",)),
+    ("legacy_exclusion_pending", "旧排除待决策", ("legacy_exclusion_pending",)),
+)
+RAW_ROW_CLASS_LABELS = {
+    "source_exact": "hash 逐行证明",
+    "translated_exact": "翻译后完全一致",
+    "translated_io_only": "输入输出一致，时间/功率不同",
+    "translated_item_io": "物品一致，流体不同",
+    "translatable_missing": "可翻译但 CC 无此配方",
+    "missing_material_form": "CC 缺材料形态",
+    "missing_fluid": "CC 缺流体",
+    "missing_object": "CC 缺物品/方块/模具",
+    "display_only": "GT6 NEI 展示行（fake/hidden）",
+    "legacy_exclusion_pending": "旧分母排除，待重新决策",
+}
 
 
 def _cell(value: Any) -> str:
@@ -1670,62 +1683,31 @@ def _percent(part: int, whole: int) -> str:
     return f"{value:.1f}%"
 
 
-def source_evidence_grades(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    """Partition every non-empty GT6 source row into three honest buckets.
+def raw_row_grades(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """Aggregate the per-row classes of semantic_coverage.json over some maps.
 
-    ``source_exact`` is the only bucket proven row-for-row. A bounded map's
-    remaining source rows are deliberately not called complete: a compact
-    rule, normalized reference, or CC row without source provenance may cover
-    them, but the current report cannot prove that without semantic replay.
-    ``no_cc_evidence_or_legacy_pending`` keeps denominator-only, runtime-only,
-    and historical out-of-scope rows visible instead of hiding them in the
-    uncertain bucket.
+    Every GT6 source row lands in exactly one class, so the classes (and the
+    groups built from them) partition the source denominator.
     """
     total = sum(int(row.get("source_rows") or 0) for row in rows)
-    exact = sum(int(row.get("traced_source_rows") or 0) for row in rows)
-    no_cc = sum(
-        int(row.get("source_rows") or 0)
-        for row in rows
-        if row.get("delivery_depth") in {"denominator_only", "runtime_only"}
-    )
-    legacy = sum(
-        int(row.get("source_rows") or 0)
-        for row in rows
-        if row.get("delivery_depth") == "legacy_exclusion_pending"
-    )
-    pending = total - exact - no_cc - legacy
-    if min(total, exact, no_cc, legacy, pending) < 0:
-        raise ValueError("recipe source evidence grade counts became negative")
-    grades = {
-        "source_exact": exact,
-        "implementation_evidence_pending": pending,
-        "no_cc_evidence_or_legacy_pending": no_cc + legacy,
-    }
-    if sum(grades.values()) != total:
+    classes: Counter[str] = Counter()
+    for row in rows:
+        classes.update(row.get("raw_row_classes") or {})
+    unknown = set(classes) - set(RAW_ROW_CLASSES)
+    if unknown:
+        raise ValueError(f"unknown raw-row classes: {sorted(unknown)}")
+    if sum(classes.values()) != total:
         raise ValueError(
-            "recipe source evidence grades do not partition the source denominator: "
-            f"{grades} != {total}"
+            "raw-row classes do not partition the source denominator: "
+            f"{sum(classes.values())} != {total}; rerun build_semantic_coverage.py --write"
         )
     return {
         "source_rows": total,
-        "grades": {
-            grade: {
-                "source_rows": grades[grade],
-                "percent_basis": total,
-            }
-            for grade in SOURCE_EVIDENCE_GRADE_ORDER
+        "classes": {name: classes[name] for name in RAW_ROW_CLASSES},
+        "groups": {
+            key: sum(classes[name] for name in members)
+            for key, _label, members in RAW_ROW_GROUPS
         },
-        "no_cc_evidence_rows": no_cc,
-        "legacy_exclusion_pending_rows": legacy,
-        "reference_traced_rows": sum(
-            int(row.get("reference_traced_rows") or 0) for row in rows
-        ),
-        "rule_expanded_recipes": sum(
-            int(row.get("rule_expanded_recipes") or 0) for row in rows
-        ),
-        "untraced_cc_rows": sum(
-            int(row.get("untraced_cc_rows") or 0) for row in rows
-        ),
     }
 
 
@@ -1736,10 +1718,8 @@ def _traced_cell(row: dict[str, Any]) -> str:
     return f"{traced}（{_percent(traced, row['source_rows'])}）"
 
 
-def _grade_cell(grades: dict[str, Any], grade: str) -> str:
-    value = grades[grade]["source_rows"]
-    basis = grades[grade]["percent_basis"]
-    return f"{value}（{_percent(value, basis)}）"
+def _share(value: int, total: int) -> str:
+    return f"{value}（{_percent(value, total)}）"
 
 
 def _hosts_cell(row: dict[str, Any]) -> str:
@@ -1801,10 +1781,11 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
     blockers = report["blockers"]
     playtest = report["playtest"]
     semantic = report["semantic_coverage"]
-    semantic_summary = semantic["summary"]
-    generic = semantic["generic_map_projection"]
+    calibration = semantic["calibration"]
     recipe_grades = summary["recipe_evidence_grades"]
-    recipe_grade_counts = recipe_grades["grades"]
+    grade_total = recipe_grades["source_rows"]
+    grade_classes = recipe_grades["classes"]
+    grade_groups = recipe_grades["groups"]
 
     open_blockers = [row for row in blockers if row["status"] in {"open", "partial"}]
     source_rows_by_depth: Counter[str] = Counter()
@@ -1834,18 +1815,12 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
         "| --- | --- | --- |",
         f"| 配方图 | {summary['recipe_map_count']} maps / {summary['recipe_source_rows']} 源行 | "
         f"{_counter_line(row['delivery_depth'] for row in maps)} |",
-        f"| 配方源行证据分级 | {recipe_grades['source_rows']} 源行 | "
-        f"`source_exact` {_grade_cell(recipe_grade_counts, 'source_exact')}；"
-        f"`implementation_evidence_pending` "
-        f"{_grade_cell(recipe_grade_counts, 'implementation_evidence_pending')}；"
-        f"`no_cc_evidence_or_legacy_pending` "
-        f"{_grade_cell(recipe_grade_counts, 'no_cc_evidence_or_legacy_pending')} "
-        f"（三档互斥且合计等于分母） |",
-        f"| 语义投影（辅助证据） | {semantic_summary['cc_normalized_rows']} CC normalized rows / "
-        f"{semantic_summary['gt_normalized_rows']} GT normalized rows | "
-        f"`EXACT` {semantic_summary['tier_counts']['EXACT']}，"
-        f"`SEMANTIC` {semantic_summary['tier_counts']['SEMANTIC']}，"
-        f"`NONE` {semantic_summary['tier_counts']['NONE']}；不换算成 GT6 源行完成率 |",
+        f"| 配方源行逐行分类 | {grade_total} 源行 | "
+        + "；".join(
+            f"{label} {_share(grade_groups[key], grade_total)}"
+            for key, label, _members in RAW_ROW_GROUPS
+        )
+        + "（互斥，合计等于分母） |",
         f"| 机器 kind | {len(kinds)} canonical kinds | "
         f"{_counter_line(row['delivery_depth'] for row in kinds)} |",
         f"| 多方块控制器 | {len(multiblocks)} canonical kinds | "
@@ -1874,27 +1849,26 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
         + " |",
         f"| 项目试玩 | `{playtest.get('id')}` | `{playtest.get('status')}` |",
         "",
-        "配方源行按证据分级（互斥，加总等于 GT6 源分母；不是功能完成率）：",
+        "配方源行逐行分类（每一条 GT6 源行只落一类，合计等于分母；口径见工作流文档第 3.3 节）：",
         "",
     ]
-    for grade in SOURCE_EVIDENCE_GRADE_ORDER:
-        label = {
-            "source_exact": "逐行已证明",
-            "implementation_evidence_pending": "已有 CC 实现证据、待语义确认",
-            "no_cc_evidence_or_legacy_pending": "无 CC 证据或旧排除待决策",
-        }[grade]
-        lines.append(
-            f"- `{grade}`（{label}）："
-            f"{_grade_cell(recipe_grade_counts, grade)} 源行"
+    for key, label, members in RAW_ROW_GROUPS:
+        detail = "，".join(
+            f"`{name}` {grade_classes[name]}"
+            for name in members
         )
+        lines.append(f"- **{label}** {_share(grade_groups[key], grade_total)}：{detail}")
+    agreement = calibration.get("agreement")
     lines.extend(
         [
-            f"- 其中 `no_cc_evidence`：{recipe_grades['no_cc_evidence_rows']} 源行；"
-            f"`legacy_exclusion_pending`：{recipe_grades['legacy_exclusion_pending_rows']} 源行。",
-            f"- `implementation_evidence_pending` 内的辅助信号："
-            f"reference 追溯 {recipe_grades['reference_traced_rows']} 行（归一化，不与三档相加），"
-            f"材料规则展开 {recipe_grades['rule_expanded_recipes']} 条，"
-            f"无 provenance 的 CC 行 {recipe_grades['untraced_cc_rows']} 条。",
+            "",
+            f"翻译链校准：在 {calibration['pairs']} 对 hash 已证明的“CC 行 ↔ GT6 源行”上，"
+            f"翻译后完全一致 {calibration['equal']}"
+            f"（{'—' if agreement is None else f'{100 * agreement:.1f}%'}），"
+            f"不一致 {calibration['differs']}，不可翻译 {calibration['untranslatable']}。"
+            "不一致的是真实移植差异（例如缺电路编号、有意替换），样例见 `semantic_coverage.json`。",
+            "",
+            "按交付深度的源行数：",
             "",
         ]
     )
@@ -1911,12 +1885,8 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
             "列口径（详见工作流文档第 3 节）：",
             "",
             "- **逐行已证明**：CC 运行时配方行上的 evidence hash 对上 GT6 dump 行后，按不同源行去重计数，"
-            "与“源行”同单位，括号是占比。它是严格证据指标，不是总体功能完成率；"
-            "`full_replay` 只看这一列是否等于源行数。",
-            "- **已有 CC 实现证据、待语义确认**：该 GT6 图已有 CC 行、材料规则或归一化 reference，"
-            "但还不能把剩余源行一对一证明为相同配方。这个桶不是“已完成”，也不是“空白”。",
-            "- **无 CC 证据或旧排除待决策**：`denominator_only`、`runtime_only` 和旧的"
-            "`legacy_exclusion_pending` 源行；这是当前最明确的缺口/待决策桶。",
+            "与“源行”同单位，括号是占比。`full_replay` 只看这一列是否等于源行数；"
+            "逐行分类见第 2.2 节。",
             "- **reference 追溯**：ore-chain 这类按材料族投影的配方只能追到 "
             "`gt6_recipe_normalized_reference.json` 的归一化行；归一化会合并多条 dump 行，所以单列、不相加、不判 `full_replay`。",
             "- **CC 承载图**：这些源行落在哪些 CC RecipeMap 上，数字是 CC 配方行数；"
@@ -1969,85 +1939,49 @@ def render_markdown(report: dict[str, Any], chemistry: dict[str, Any]) -> str:
     lines.extend(
         [
             "",
-            "### 2.2 语义比对（辅助证据，不与三档源行相加）",
+            "### 2.2 逐行分类（每张 GT6 图）",
             "",
-            "这里复用 `tools/compare_gt6_recipes.py` 的 `NormRecipe`、材料规则展开和 "
-            "`EXACT / FORM_PATH / SEMANTIC / NONE` 判定。它比较的是 normalized CC/GT 配方，"
-            "不是 GT6 原始行；一条 semantic candidate 也不自动证明机器数值、获得格或全部源行。",
+            "每条 GT6 源行都用 recipe wave 的翻译链（`dialects/gt6.compile_row` + `emit`）翻成 CC 身份，"
+            "再和该图对应 CC RecipeMap 上的全部运行时配方行、材料规则展开逐条比较。"
+            "类别含义：",
             "",
-            f"- CC normalized rows：{semantic_summary['cc_normalized_rows']}",
-            f"- GT normalized rows：{semantic_summary['gt_normalized_rows']}",
-            f"- GT source mode：`{semantic['gt_source_mode']}`；"
-            f"带稳定 raw refs 的 normalized rows：{semantic_summary['raw_source_ref_count']}",
-            f"- 运行时 `gt_recipe` / compact family rows："
-            f"扫描 {semantic['cc_projection']['runtime_rows_seen']}，"
-            f"当前 family 可归一化 {semantic['cc_projection']['recognized_runtime_rows']}；"
-            "其余保留在 source-row/hash 轴，不强行归入 semantic family。",
-            f"- tiers：`EXACT` {semantic_summary['tier_counts']['EXACT']}，"
-            f"`FORM_PATH` {semantic_summary['tier_counts']['FORM_PATH']}，"
-            f"`SEMANTIC` {semantic_summary['tier_counts']['SEMANTIC']}，"
-            f"`NONE` {semantic_summary['tier_counts']['NONE']}",
-            f"- reverse GT normalized tiers：`EXACT` {semantic_summary['gt_tier_counts']['EXACT']}，"
-            f"`FORM_PATH` {semantic_summary['gt_tier_counts']['FORM_PATH']}，"
-            f"`SEMANTIC` {semantic_summary['gt_tier_counts']['SEMANTIC']}，"
-            f"`NONE` {semantic_summary['gt_tier_counts']['NONE']}；"
-            "仍不是 raw GT6 源行覆盖率",
-            f"- 带 raw ref 的 GT rows 按同一 heuristic："
-            f"`EXACT` {semantic_summary['raw_source_ref_tiers']['EXACT']}，"
-            f"`FORM_PATH` {semantic_summary['raw_source_ref_tiers']['FORM_PATH']}，"
-            f"`SEMANTIC` {semantic_summary['raw_source_ref_tiers']['SEMANTIC']}，"
-            f"`NONE` {semantic_summary['raw_source_ref_tiers']['NONE']}；"
-            "此处 source identity 已稳定，但 semantic 仍是候选级别",
-            f"- 有 candidate 的 CC rows：{semantic_summary['candidate_rows']}；"
-            f"无 candidate：{semantic_summary['unmatched_cc_rows']}；"
-            f"GT-only signature groups：{semantic_summary['gt_only_signature_groups']}",
-            "",
-            "| family | GT map | CC normalized | GT normalized | EXACT | FORM_PATH | SEMANTIC | NONE | GT-only sig groups |",
-            "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
         ]
     )
-    for row in semantic["families"]:
-        tiers = row["match_tiers"]
-        lines.append(
-            f"| `{row['family']}` | {_cell(row['gt_maps'])} | "
-            f"{row['cc_normalized_rows']} | {row['gt_normalized_rows']} | "
-            f"{tiers['EXACT']} | {tiers['FORM_PATH']} | {tiers['SEMANTIC']} | "
-            f"{tiers['NONE']} | {row['gt_only_signature_groups']} |"
-        )
+    for name in RAW_ROW_CLASSES:
+        lines.append(f"- `{name}`：{RAW_ROW_CLASS_LABELS[name]}")
+    header_names = [name for name in RAW_ROW_CLASSES]
     lines.extend(
         [
             "",
-            "### 2.3 raw-map exact projection",
-            "",
-            "这是对当前 family 集合之外的 map 做的 normalized signature exact matching；"
-            "不执行 semantic heuristic，也不把 exact count 直接提升为 raw source-row 完成率。",
-            f"- source maps：{generic['source_map_count']}；"
-            f"CC rows {generic['totals'].get('cc_rows', 0)}，"
-            f"GT rows {generic['totals'].get('gt_rows', 0)}；"
-            f"CC exact {generic['totals'].get('cc_exact', 0)}，"
-            f"CC unmatched {generic['totals'].get('cc_none', 0)}；"
-            f"GT exact {generic['totals'].get('gt_exact', 0)}，"
-            f"GT unmatched {generic['totals'].get('gt_none', 0)}。",
-            "",
-            "| raw GT map | CC rows | GT rows | CC exact | CC unmatched | GT exact | GT unmatched | raw exact refs |",
-            "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+            "| GT6 map | 源行 | " + " | ".join(f"`{name}`" for name in header_names) + " |",
+            "| --- | ---: | " + " | ".join("---:" for _ in header_names) + " |",
         ]
     )
-    for row in generic["rows"]:
+    for row in sorted(maps, key=lambda item: -int(item["source_rows"] or 0)):
+        if not row["source_rows"]:
+            continue
+        classes = row.get("raw_row_classes") or {}
         lines.append(
-            f"| `{row['source_map']}` | {row['cc_rows']} | {row['gt_rows']} | "
-            f"{row['cc_exact']} | {row['cc_none']} | {row['gt_exact']} | "
-            f"{row['gt_none']} | {row['raw_exact_ref_count']} |"
+            f"| `{row['source_map']}` | {row['source_rows']} | "
+            + " | ".join(str(classes.get(name, 0)) for name in header_names)
+            + " |"
         )
-
+    failure_top = semantic.get("failure_top") or {}
     lines.extend(
         [
             "",
-            "语义投影的 `EXACT` / `SEMANTIC` 结果只能作为第二档"
-            " `implementation_evidence_pending` 的拆分线索；在建立 normalized 行到 GT6 "
-            "原始行的稳定映射前，不会修改三档源行数字。",
+            "缺身份的前几名来源（GT6 物品 / 流体，括号是受影响源行数）：",
+            "",
         ]
     )
+    for bucket in ("missing_material_form", "missing_fluid", "missing_object"):
+        top = failure_top.get(bucket) or []
+        if not top:
+            continue
+        lines.append(
+            f"- `{bucket}`："
+            + "、".join(f"`{entry['key']}`（{entry['rows']}）" for entry in top[:10])
+        )
 
     lines.extend(
         [
