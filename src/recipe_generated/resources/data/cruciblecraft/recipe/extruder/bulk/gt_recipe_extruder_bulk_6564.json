@@ -10,21 +10,15 @@
         }
       ],
       "hashes": [
-        "ca15c575ab907af29fa2656273225e8093a1be6e8a38d005dc10c990851bc985",
-        "e5ae19343eaf2340557480541a8970a5d11b2dba9b0f6c25d95a269baf6a2bd1",
-        "d7192def4b4d277e53f96f9d85555143516691c6b3ada96cc0cfaf8b2cb11c05",
-        "5d4f3c1400f542e6afa180088a8ab46c8da5652f8c518f626c5695331ad95d9f",
-        "fa098ed93d5f0405ad6bbbe2aa5b5f1bf3c7d538d1ea1c733ac04498033b83c6",
-        "9fdb69e1ba8f78aee9df8f502db6b1ee549b6c8869447b80247d89e7141dd8e6"
+        "f79e6ad3df766b094dff426bfae3e2dc6a37cafb3d12453f9e3dd82378a9e4ae",
+        "85415e488fa293794890022ef12bba6261df46d0ae89a6acd67bbb0dbaf04cca",
+        "5490f4a52f0948a2f1e5e8c0c087732ea0ac813ac8b9c9472ae68830d3e32e17",
+        "04d8758efc5e7982167eab4d91d3242e92570e54398f3aff75db69e7befeb1d0"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:iridium/huge_fluid_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_bolt"
@@ -32,7 +26,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:bedrock_hslaalloy/tiny_dust"
+            "item": "cruciblecraft:iridium/quadruple_fluid_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_bolt"
@@ -40,50 +34,46 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
-            },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:iridium/quadruple_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:iridium/huge_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/bolt"
+            "count": 64,
+            "id": "cruciblecraft:iridium/bolt"
+          },
+          {
+            "count": 32,
+            "id": "cruciblecraft:iridium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "count": 44,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -93,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1f3a856c131aaa2c",
+        "cruciblecraft:gt6/36a0307edef9e4a8",
         0,
         0
       ],
@@ -101,46 +91,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/332b5b1f676b6405",
+        "cruciblecraft:gt6/06af30da5d9e462c",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b043fc7aa99685bd",
+        "cruciblecraft:gt6/33183f6e63629c3e",
         2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/a1727dd0a795fdcc",
+        3,
         3
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/840810f2542b4787",
-        3,
-        4
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/36fc48edb5eeb430",
-        4,
-        6
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/7e41003fc1dc8258",
-        5,
-        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 780,
+      "duration": 10136,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,10 +125,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6564",

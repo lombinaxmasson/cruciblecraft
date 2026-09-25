@@ -10,19 +10,56 @@
         }
       ],
       "hashes": [
-        "39af70ca5d0ca949c86ec5359002db3ae2fe100a645506b352ce643927ec9e50",
-        "8e9fd44e2f717110624533a939877b318a92f76318f470ea32f9a5edbbecfeb1",
-        "88e40f97152c5ddbbffe62a30652cec45bbfd26d9dfd8b2096c593a4333c4809",
-        "e43086e5e29c116e8285c66472983178627bcb4593eab5f39a13f289c12da674",
-        "1ae6c11b573122cd563ce5bee3581192f92129aef26f2ed03c6182af9a3ee55a"
+        "9dac0810d9bbade6ae7dc495f307b6356cd5f441da0e02e9edce588944892493",
+        "a334efa6b4c435813da6636bc01a2311228200dd5a7abadda17839e786b7ff87",
+        "c006a756fb5ba039fddbd837b13ff00937b3e644c24ba68b59366d5a5b0c4430",
+        "d7c15e5cb0e8b756854c4f25cc52b4335ef0f8c11ec7221dfa0ae1665fdd3cbc",
+        "04b708bca8f8adc10ec9a0d118dcb6614e35dccc76915c9336b91bf938622a9d",
+        "8f508b25a038fedaef43142f516458c05780d9502c43136d5063b86895cd5f00"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:oureclase/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "desichalkos"
+              "cruciblecraft:prefix_material": "oureclase"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:oureclase/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:oureclase/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "oureclase"
+            },
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
@@ -32,34 +69,10 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "desichalkos"
+              "cruciblecraft:prefix_material": "oureclase"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desichalkos/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desichalkos/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desichalkos/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -70,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:desichalkos/gear"
+            "id": "cruciblecraft:oureclase/gear"
           }
         ]
       ]
@@ -80,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d1b0dbbfd0ffb617",
+        "cruciblecraft:gt6/75987d497cc48259",
         0,
         0
       ],
@@ -88,7 +101,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/ab7cd6eedf5fe406",
+        "cruciblecraft:gt6/37aa0f3c7b769909",
         1,
         1
       ],
@@ -96,7 +109,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/a3bcaaa4f167c3b2",
+        "cruciblecraft:gt6/568372554889bfa7",
         2,
         2
       ],
@@ -104,7 +117,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/9c5e28590db49159",
+        "cruciblecraft:gt6/001babe45709c899",
         3,
         3
       ],
@@ -112,14 +125,22 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/c2e22c701a9bf596",
+        "cruciblecraft:gt6/45b23a9e0e37a4c9",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/8bb29aecac0afa84",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1012,
+      "duration": 1374,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        36,
         0
       ],
       "output_chances": [

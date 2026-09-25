@@ -10,32 +10,58 @@
         }
       ],
       "hashes": [
-        "fde0fcd049064e6f1090293991f06704e89df943a606790a2c4131dba41b4c1c",
-        "cceddc91893478a09cb4a2d71faab2312f87fc61943ddcc4d4ca18b67716345b"
+        "7ecb6710539e2d2230f098b21f4087678d00fb6707b5579d9ec7cf68084f387a",
+        "1f2d34bb4786fc6da4cac4d3422e366eb4f1745fd2ef44be861395bdd3d4c5cb",
+        "20d50cb06c25844dc53f77a3122c0702ea4b0a4728d596b2b4e32af9eb8ae641",
+        "a5f8c4c303c91c47db425559ef6fc440fccfa61b817443fc42fd2d0dfe92f64e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "eximite"
+              "cruciblecraft:prefix_material": "stellar_alloy"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "eximite"
+              "cruciblecraft:prefix_material": "stellar_alloy"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stellar_alloy"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stellar_alloy"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ]
       ],
@@ -43,7 +69,28 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:eximite/block"
+            "id": "cruciblecraft:stellar_alloy/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:stellar_alloy/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stellar_alloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:stellar_alloy/plate"
           }
         ]
       ]
@@ -53,22 +100,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/105f2e331428d2f8",
+        "cruciblecraft:gt6/312fa8c2bfa57174",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/5db34c8f14fac5ae",
+        "cruciblecraft:gt6/ab3ed7a7120e805a",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/227414f10461769a",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/35bfd52ffb363cf3",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2548,
+      "duration": 421,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +142,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

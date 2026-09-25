@@ -10,21 +10,42 @@
         }
       ],
       "hashes": [
-        "32df9a8a9c0fd9fa13480e3292b96f88d356dfca22f9f68ecdf175aeeb51471d",
-        "a8fe64c7b1f319e1467cb5eb69a961df203c61beced9289f0280dcc6636dce2e",
-        "dc27e9c6e5e57fb827ec5f8f07f82c633e07ac9a0e5af4dc9df2e32ff61df604",
-        "bb7f848073a3e061a5e4d9570c3b1c2be743c6b51fb4866b019f3bdfacc49010",
-        "5547c59a5da77db435e84353fd0735dcb041dae4c0425dde61accfbd28a644b3",
-        "5da13cd9dc6438796fcb2221c6c27bc8a3becef477e5a47f6d2c98b5a15431ec",
-        "e0ede9c854ea7b41e613b8a48c5d385cdef99e82a68026bbe21eefcb575c169d",
-        "902a3357f82fcce48adedcae4328be7ab54907abf31207d0952a9a8e762823d2",
-        "16fa4ee69d76c99acb78bd49000b7ddd4b290cbf84b264473fd02e8bb0899d88",
-        "91db06f82b11241bd4cb0b1d97668fe46a8a19066be38c909ea1cc6e3334ef75"
+        "3ff01e94c4d2463df23e302512d37fec1e2217b469b4d48f2ea6a49a3fd60332",
+        "d3ad6efcd5b242f87eaff087887a64c4605718df3cd4eb0963327b68f42ae598",
+        "46a063b10c8af9e17d8ecdbc971a364b995267b2546222d8c0a802172688b957",
+        "f8a2ae0cdac1704c2ae8b7cfd85867dbf1473bc7fc9f57be60b64a2c086c0510",
+        "41c401010e87dee6a42a57ec06d4c35590fdfbb32dea0267ea0a4f3959b618d8",
+        "6a64e5ef022fff3c9dcc8c93ade4353a3a92d08f62394c92391a518e494e07ba",
+        "02fafaa6be85f7e6b7830e36931c4ac1d336fc03cc9737ecc9b7bac91a7e2604",
+        "742ccb7664cf7a0fba2e04ca9c3064d41be3ce6e70fd1a4f2431a9ce69ecbaa9",
+        "7615edf592cfc4583e754d2743a4c6af7968acc535aff34e4c6801bd82ad72c7",
+        "7124b14f5294c04b3008fb99d689d8ef099801d6949a88d4e94681c6a4670def",
+        "0a0fe583e7bfe016a5e19f54dfc977d6163bcdc93e7ae355e7c62e016d739013",
+        "5eb0ca36a3122ca07456dd08297582594be5adc3cbd33d715b2eb27269a72257",
+        "b24cc529b39472a462a26662a4e2764aba793dfe622a45be8c82f3301d74a704",
+        "d59ca693d6b00844889a049d549d185c72b791a2a3be2af05f44cd903692e33c",
+        "087aad9f5e38ca72762e7b8e4d9959f0190cbcc72f9445def7be28411be286ab",
+        "b7b825e0ce017a11b63a251198af3666d663e1d134e6a6ca780b6de849be0a53",
+        "e6c4f98fcd9dcbac3eea6423902a02059dad69df618b413feaf80c4a0a63e258",
+        "3fc302aee228fe7295b199de9507ca19c169f4f0d3457ee28b7b086b19f88977",
+        "01a71befad2bb03026764ea3d4176652df548bac90712042d708cda4b3ac7222",
+        "0e97c7bb0fc7db1eae7f0d5bd18e42e21fcd04092cb9ccb28161f58f909d1ad6",
+        "faade215b47ff7af5c5a1c001bafbcc86756c277574a27871d69d222a1c72451",
+        "f8c598bff841bd47993522fb74751cc9ee2a269a392601399273615aeb433183",
+        "dffd0a6a7bdbea54ca8f26d4431378b052d4e4081553ebfc24906f6ed2e68c3c"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:adamantine/machine_casing"
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
           },
           {
             "item": "cruciblecraft:extruder_shape_plate"
@@ -32,15 +53,15 @@
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/machine_casing"
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/machine_casing"
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -48,7 +69,15 @@
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/machine_casing"
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_gear"
@@ -56,31 +85,15 @@
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/machine_casing"
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_small_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/machine_casing"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:adamantine/machine_casing"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:adamantine/machine_casing"
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -88,7 +101,47 @@
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/machine_casing"
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -96,78 +149,244 @@
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/machine_casing"
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 8,
-            "id": "cruciblecraft:adamantine/plate"
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "count": 13,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:iridium/plate"
           }
         ],
         [
           {
             "count": 8,
-            "id": "cruciblecraft:adamantine/long_rod"
+            "id": "cruciblecraft:iridium/fluid_pipe"
           }
         ],
         [
           {
-            "count": 16,
-            "id": "cruciblecraft:adamantine/rod"
+            "count": 52,
+            "id": "cruciblecraft:iridium/rod"
           }
         ],
         [
           {
-            "count": 8,
-            "id": "cruciblecraft:adamantine/small_gear"
+            "count": 26,
+            "id": "cruciblecraft:iridium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:iridium/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:iridium/small_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:iridium/gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "adamantine"
+              "cruciblecraft:prefix_material": "iridium"
             },
             "count": 8,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "count": 26,
             "id": "cruciblecraft:curved_plate"
           }
         ],
         [
           {
-            "count": 32,
-            "id": "cruciblecraft:adamantine/ring"
-          }
-        ],
-        [
-          {
-            "count": 8,
-            "id": "cruciblecraft:adamantine/ingot"
-          }
-        ],
-        [
-          {
             "count": 2,
-            "id": "cruciblecraft:adamantine/gear"
+            "id": "cruciblecraft:iridium/huge_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 52,
+            "id": "cruciblecraft:iridium/wire"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "adamantine"
+              "cruciblecraft:prefix_material": "iridium"
             },
-            "count": 16,
+            "count": 52,
             "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
-            "count": 64,
-            "id": "cruciblecraft:adamantine/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "count": 13,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 52,
+            "id": "cruciblecraft:iridium/tiny_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "count": 13,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 4,
+            "id": "cruciblecraft:iridium/large_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:iridium/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "count": 26,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:iridium/ingot"
           }
         ]
       ]
@@ -177,7 +396,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/71071fe2ba8ce7a0",
+        "cruciblecraft:gt6/f03eafed29186c43",
         0,
         0
       ],
@@ -185,78 +404,182 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/62dff1159d95443b",
+        "cruciblecraft:gt6/a846a637fdd234ea",
         1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/6daa74393c36d7aa",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/93bb85fd55c6d421",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/8afde9ae27c190ca",
+        4,
         4
       ],
       [
-        2,
-        2,
+        5,
+        5,
         0,
-        "cruciblecraft:gt6/e4e82e98ac9588e2",
-        2,
+        "cruciblecraft:gt6/2fd5ce5252c36e65",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/91d598d2524b49cd",
+        6,
         6
       ],
       [
-        3,
-        3,
+        7,
+        7,
         0,
-        "cruciblecraft:gt6/97aa4b863e73af33",
-        3,
+        "cruciblecraft:gt6/fe6a42b2a934cb11",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:gt6/9b0e8b5289b54b01",
+        8,
         8
       ],
       [
-        4,
-        4,
+        9,
+        9,
         0,
-        "cruciblecraft:gt6/b6a115e0010313bf",
-        4,
+        "cruciblecraft:gt6/3e4ec5928bc4db7a",
+        9,
         9
       ],
       [
-        5,
-        5,
+        10,
+        10,
         0,
-        "cruciblecraft:gt6/a4f4e68c41bbde3e",
-        5,
+        "cruciblecraft:gt6/d8f6ba7c6ba1f379",
+        10,
+        10
+      ],
+      [
+        11,
+        11,
+        0,
+        "cruciblecraft:gt6/d93907c709f80bc4",
+        11,
         11
       ],
       [
-        6,
-        6,
+        12,
+        12,
         0,
-        "cruciblecraft:gt6/a566818844e12348",
-        6,
+        "cruciblecraft:gt6/235da663eb9a6453",
+        12,
         12
       ],
       [
-        7,
-        7,
+        13,
+        13,
         0,
-        "cruciblecraft:gt6/3ca3ff2bc3724c1b",
-        7,
+        "cruciblecraft:gt6/b486a31cd7967ac5",
+        13,
         13
       ],
       [
-        8,
-        8,
+        14,
+        14,
         0,
-        "cruciblecraft:gt6/b194c1cf5a04e75b",
-        8,
+        "cruciblecraft:gt6/8764c50610fefab6",
+        14,
         14
       ],
       [
-        9,
-        9,
+        15,
+        15,
         0,
-        "cruciblecraft:gt6/2651af36a3e5c5ef",
-        9,
+        "cruciblecraft:gt6/0754515a2e4a5235",
+        15,
         15
+      ],
+      [
+        16,
+        16,
+        0,
+        "cruciblecraft:gt6/8c19b432bf696bbb",
+        16,
+        16
+      ],
+      [
+        17,
+        17,
+        0,
+        "cruciblecraft:gt6/a4b5905de2a17aea",
+        17,
+        17
+      ],
+      [
+        18,
+        18,
+        0,
+        "cruciblecraft:gt6/5941703ae230bd01",
+        18,
+        18
+      ],
+      [
+        19,
+        19,
+        0,
+        "cruciblecraft:gt6/30716e9354808b63",
+        19,
+        19
+      ],
+      [
+        20,
+        20,
+        0,
+        "cruciblecraft:gt6/a24f5ae9d7691b0f",
+        20,
+        20
+      ],
+      [
+        21,
+        21,
+        0,
+        "cruciblecraft:gt6/5b69c2221f754400",
+        21,
+        21
+      ],
+      [
+        22,
+        22,
+        0,
+        "cruciblecraft:gt6/053c93e0cf8b952a",
+        22,
+        22
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3486,
+      "duration": 21960,
       "eut": 96,
       "item_input_actions": [
         {

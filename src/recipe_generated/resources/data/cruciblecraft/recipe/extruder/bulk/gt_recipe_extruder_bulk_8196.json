@@ -10,40 +10,71 @@
         }
       ],
       "hashes": [
-        "a5739b5fb1c9c871c0b5533e76c3a1a7e050e90d4a039c1e92595ca35401330c",
-        "5eccdfb728e9a00e41d38081c82c3afee0e340f7936bc30ad0a308de950299ae"
+        "70878a63d289643a2df54eff5394df0cf3061d431e4e0fbf4cd552c892d1c5af",
+        "b5eafd6df75116dcce931df70356181c3044db447e4d0c4befa4daade4fca23e",
+        "c54c95f24b0a4582c6472999bc6f41611a7fbf39ce0ccea0263880a7609f2036"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_steel/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_steel/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_steel/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:molybdenum/block"
+            "count": 64,
+            "id": "cruciblecraft:meteoflame_steel/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:meteoflame_steel/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:meteoflame_steel/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:meteoflame_steel/ring"
           }
         ]
       ]
@@ -53,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ca11311886a79be6",
+        "cruciblecraft:gt6/4a644c56efd24049",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/6ac87d3b4b7e353b",
+        "cruciblecraft:gt6/a9b4d199cc1511f6",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/c54d18808b65018e",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4106,
+      "duration": 8976,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8196",

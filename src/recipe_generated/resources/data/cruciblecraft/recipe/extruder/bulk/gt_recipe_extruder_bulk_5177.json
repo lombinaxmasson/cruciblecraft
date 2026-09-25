@@ -10,16 +10,72 @@
         }
       ],
       "hashes": [
-        "4e8bbbe462a50fb0bbd094f41164723da4c6c2049223a5ff3bf0881a6062b171",
-        "5c3882c069943d49e1750dab556c4796088e74abd3f9f4b7ff0983afab7ea2c4"
+        "caf9a83649af81298f61f9a47d183d816ec1852058156aec3e5ca64710df6cd7",
+        "b4973c8747f83f1ec9500f4fdafb0f9c8d9518524984fae9f61dbb635f6c8bdb",
+        "2c1f2b8ae5a924fa32458e878430e52f2f37fb611a06b2b7c8cf1bdc202a2a3c",
+        "75f3bd17775480f73c0ab5591e788582098f35ab22da7cd62e9728914056bd65",
+        "dbfd800195da2dc2d4f1634ac6efd9d2c59a2849da02825f7b149ac1ca155bfa",
+        "73611058840e3214c4faf94ffaa07fbbcf025e46b87e562056304a7c434ac948",
+        "88c434549de415f92848b5f9d2f1a1ece9efa6edd533a0b37e79a730ed43b887",
+        "ef44a02ea2b03717d16b1467e46a976ed65900aa8e8fc92fae3eadf140404a1b",
+        "07abd9babb2664bb9a87f5b2fbb7a1a4a899ae6877bd47dcb3e2500ee623179a",
+        "7eceecc69ad4f7b088ba42e248413821c9b4e994e65c0918e5d9ccd117e95206"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rubracium"
+              "cruciblecraft:prefix_material": "dark_iron"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_steel"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_iron"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -29,13 +85,61 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rubracium"
+              "cruciblecraft:prefix_material": "meteoric_steel"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_steel"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_steel"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -43,7 +147,37 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:rubracium/gear"
+            "id": "cruciblecraft:dark_iron/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_steel/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoflame_red_steel/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,22 +187,86 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/251d047c60e5edc5",
+        "cruciblecraft:gt6/467b1f0283cb3a5e",
         0,
-        2
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/2d8399bd62275584",
         1,
+        0,
+        "cruciblecraft:gt6/72ef8fa080a8963a",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/2ac2f07b484894f1",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/13a964b8e4b645cc",
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/d84084952819abfd",
+        4,
         4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/7709b72e23663ad7",
+        5,
+        5
+      ],
+      [
+        6,
+        3,
+        0,
+        "cruciblecraft:gt6/a8f3ecab1cc83bfb",
+        6,
+        6
+      ],
+      [
+        7,
+        2,
+        0,
+        "cruciblecraft:gt6/a84d3f7f9c68a3ca",
+        7,
+        7
+      ],
+      [
+        8,
+        4,
+        0,
+        "cruciblecraft:gt6/e4265b721741d0f9",
+        8,
+        8
+      ],
+      [
+        9,
+        4,
+        0,
+        "cruciblecraft:gt6/4d7062625a9af189",
+        9,
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1847,
+      "duration": 2374,
       "eut": 96,
       "item_input_actions": [
         {

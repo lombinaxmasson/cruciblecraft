@@ -10,36 +10,101 @@
         }
       ],
       "hashes": [
-        "f17076318056b73af31dcaef6b35a2c986d6965d730ed94e642f85b8985faf3c",
-        "7ca8bd5676a104f02ecfcf494b5e1748d751ec9b9abd4a20046b472d6c7cc25e"
+        "959e6ffa0db66c78e5fbba2ac63acefef13eaa643894418f1d5cf0ff135a932c",
+        "ea37984142878c95b6d02417261158f6062611f3e55ca1fbe297ca6ee43853a3",
+        "264c86da8a02306d94b9368be8824fb7ca2d84c1b0dc28ce376fe5454eb9a34d",
+        "e8eabc65d6a7dc7d57acafe6c7ca34ed3a19115e24fdfb33d80dc46a1c61aaaa",
+        "567b510447284536f14525be9d422b246a6b8cfb24afa2cae0a0fc8cfd7ac8f9",
+        "d36733dc9c155ea92002b17c7d11739c4289ee8c4d275da7d7d4dbfc683fa811"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manganese"
+              "cruciblecraft:prefix_material": "carmot"
             },
             "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:manganese/rod"
+            "item": "cruciblecraft:carmot/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
             "count": 1,
-            "id": "cruciblecraft:manganese/block"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -49,7 +114,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0e1f33ff71844fbc",
+        "cruciblecraft:gt6/d6a52f584967e360",
         0,
         0
       ],
@@ -57,14 +122,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/42ab546ecf113f0a",
+        "cruciblecraft:gt6/ebb85276a059194d",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/603941bc94212c64",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/88558ae723a16c49",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/f283d39de7ed8dd8",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/74914bbf8e04d0cf",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1267,
+      "duration": 195,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +172,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        4,
         0
       ],
       "output_chances": [

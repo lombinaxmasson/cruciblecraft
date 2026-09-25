@@ -10,36 +10,70 @@
         }
       ],
       "hashes": [
-        "e118c2b7e5f58c09be1a99917273387e076b1ed9f0825fc5b2142953cab2c18e",
-        "e8f2fc68a2b14b43d27dc47959dc6c9fd5dd4811e970e7523f8f926dfb7515d3"
+        "b2b1add92694ab52b9eb18508b3d2d2b9dfe1620a15840c9e6b9d7720d908111",
+        "5ffaab8bec45a7ecd49b0c7a826486eafe4935f62b8bbdcedd5d037182462286",
+        "d7b69edd016cfaed52e9b06a9d6a01c634276f93b4e230f86116fb23f982fef6",
+        "670fe64a46f9d9fac72b63af3310504e5ae4783a82d8db122f0e6fddc4724a31",
+        "d5b0ebe2c4ab884587fd5495c603252ee6a62ac0789a8c0b1efe6e2185dcc962"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:constantan/rod"
+            "item": "cruciblecraft:atlarus/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "atlarus"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:atlarus/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "atlarus"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:atlarus/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "atlarus"
+            },
             "count": 1,
-            "id": "cruciblecraft:constantan/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -49,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/533712c5eddf8d71",
+        "cruciblecraft:gt6/44e9168ca401c827",
         0,
         0
       ],
@@ -57,14 +91,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/87db0d658ec53dd0",
+        "cruciblecraft:gt6/7c659c66b9ee10a8",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/4b4471234c7fcf0c",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/257cfb3773f41977",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/c7997debdaed49b8",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1551,
+      "duration": 1468,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        6,
         0
       ],
       "output_chances": [

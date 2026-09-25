@@ -10,32 +10,59 @@
         }
       ],
       "hashes": [
-        "61cf4cce731e7c882d9bd2c69acb455fbdf45bb4a4c9ddafdc337744b0481bb1",
-        "636605ef341d1b933f52f55f260d5c2c3aa3fc522dbf19a7015564814d5dd382"
+        "f345bccfd3243980f16bc9f0f0df87cb95d4d6b05d564047b0ad4d0704190f91",
+        "eeef931eeaeeaf81c2872f60137c1399418c9133731428fefdb39269b8aaff1b",
+        "ec17c6f8b8aaa0b9697d8de7b1c733f6c2df86793f7153a4da2a38d9f9ab11c0",
+        "7079d3516957faa47e297afb62d1b5558617dae39d22ddcb58dbecaf7ade12e0",
+        "679d4545f59ee8cc19843157fbe41ac3f6b184bad8b1dccb74cd8a22e6b70677"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rutherfordium"
+              "cruciblecraft:prefix_material": "meteoflame_steel"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_steel/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_steel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rutherfordium"
+              "cruciblecraft:prefix_material": "meteoflame_steel"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_steel/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:rutherfordium/block"
+            "id": "cruciblecraft:meteoflame_steel/gear"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/cf08b9a9446fbdcf",
+        "cruciblecraft:gt6/1eb43dde3c67f946",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/9593a365769dacb8",
+        "cruciblecraft:gt6/9c3824a798fb9951",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/afe2b6a37967b7d7",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/1014ca17a1986f55",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/17e55f0ca48dab44",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 7544,
+      "duration": 1381,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        16,
         0
       ],
       "output_chances": [

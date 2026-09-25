@@ -10,40 +10,134 @@
         }
       ],
       "hashes": [
-        "88b12f29154cd34480e7b6fc340d50a4441fbfdb1db7111998f820f2ae8a7696",
-        "7aec015f1b5ebe642a17dc68750f103c1e3fca4f58ed3617d840d243e7e49e47"
+        "d3918b51d9f2d06af04b929a0796598397a370db9868262e6098caea11810cf6",
+        "3707c392295e2ecf439c1d81c77b9d7d0b26dcf4bec556d9a651b4d176178952",
+        "7d163bbeab556609d7a36553d9d17e93d2426fc62e2cc1911163ceac31ef8e6d",
+        "3df3236a5150d6791de7951a7605fdfb3d322e916bc1b2a9c593ff2592b645b7",
+        "cdc96d4ae0b82db2df2855ec7da3c3cc1564a333af28880914933a2a0a788689",
+        "e2a3948587e99f0e5bc2ecfb710f2e1909728b28c2fda234f86931584273ac06"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duralumin"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:titanium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duralumin"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:titanium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:duralumin/gear"
+            "count": 64,
+            "id": "cruciblecraft:titanium/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:titanium/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:titanium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:titanium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:titanium/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:titanium/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:titanium/tiny_fluid_pipe"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:titanium/tiny_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -53,22 +147,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/891c266b62d6f7e5",
+        "cruciblecraft:gt6/5ba2453a1dce09b4",
         0,
-        4
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/2ed2be26bcda7717",
         1,
+        0,
+        "cruciblecraft:gt6/d1daaa7dcb51f5b9",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/fb4582638cbb6935",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/2d33fb8cca6f45cb",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/d85a492b487036a0",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/1daa280e5c43c171",
+        5,
         5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 307,
+      "duration": 6466,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +205,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8153",

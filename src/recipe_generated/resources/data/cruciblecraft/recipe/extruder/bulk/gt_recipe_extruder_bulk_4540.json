@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "6af2b95162cdc5128e597fc1c6982bebe35046097833cd7da60a9e364a4bd106",
-        "c57cd68fa9b1c1d5c13a831ae1840e7ce0bd008f2b54f424f572ddee88da00a1"
+        "cc507e635fcf94c455aa8e07865ab3b7cb1aef6eaca9de98c38b690305bf4b65",
+        "421b5b067680582523ada5a5c63b10231feeada692883edacc814b679252b2d5",
+        "5477fd1c660927327d1c6a29b44fe907178d02b025e4ae307914eb7d778790db",
+        "6d83e308adec6559d21915da2a10b934f6e5dc18b291e6d5270ecd1ebff8f9b9",
+        "61ff7d401717e69ac8387b34a679b1a2929534369704d2a0c97a6320c76df17d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "crystal_matrix"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:ethaxium/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ethaxium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "crystal_matrix"
+              "cruciblecraft:prefix_material": "ethaxium"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ethaxium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
             "count": 1,
-            "id": "cruciblecraft:crystal_matrix/gear"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,22 +83,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9087afbd93e9898e",
+        "cruciblecraft:gt6/18c2bc8917d76ec4",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/291f5a42129221db",
+        "cruciblecraft:gt6/1711c918e1034933",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/e1b499dae311cdc2",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/17e85bee803b8a68",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/44bfd11cebcd23c3",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 16147,
+      "duration": 7520,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        24,
         0
       ],
       "output_chances": [

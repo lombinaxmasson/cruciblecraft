@@ -10,20 +10,23 @@
         }
       ],
       "hashes": [
-        "a1159e5c424b034c9c64ac51d570452ef71d27c6efbf4d5c983ff3562a309522",
-        "e21d18d7edd4bb438630e6ec8db152a8ffdb1bf5565ab1d7f318ff6f7efac50d",
-        "d9be3d60d03935407fa0d8ae6e3d23bbac1e31c70bb845f9c803f972c1655a9b",
-        "b5be72f4f5f64cabd501960d47a26c23cef4d0263805474c5af64e22d97f1bae",
-        "b9ac71ad787d3edc0a24a4e2439a7ca379405c2b3bf2b9b4d8c87bbe0451200d",
-        "0ceb441cac2f9f90afab96b76d634143c97a0de5e790b9a9d19b9faff5b9f0d2"
+        "8b0ea7993b337b20ec1d4e603a7ec9c55d2bc1da12d05a3549b444710b9191b2",
+        "39145d86b553e4d1b793d7616e927dfbd52d061349b587c4232848fbab3135ca",
+        "f0da325b5f1f231066bfac1b317ac91962edf6624fee98272de32a2a97e23646",
+        "11081f5885c66f12a928875b37cac7735b1471ed09d6ebb211f516c15b3bec11",
+        "21ade84e7ec9a3162a81ecea3f13b4374b476007b4b3f7571dddfc874055b499",
+        "23e76af8b2ffd6d23cfe34488a26439b754f038194dc6900dc21e1aa6ea48b5b",
+        "2ca697e22aade25209f3bf842a9ddceae46df1b085aecb6170c4e3cc8759d7bc",
+        "34cbab3d51635fc5e523b3f66e41ddeb43ffb5c67c727c573801654358fc5a42",
+        "2acd3ed42fd05c932bef4b5b03593fdc2c7f6fc5db50b18668fd1ff07726082e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elvorium"
+              "cruciblecraft:prefix_material": "haderoth"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:spring",
             "type": "neoforge:components"
           },
           {
@@ -32,11 +35,7 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "niflheim_power"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:haderoth/ingot"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -45,9 +44,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "muspelheim_power"
+              "cruciblecraft:prefix_material": "haderoth"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
@@ -56,11 +55,15 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "muspelheim_power"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:haderoth/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/plate"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -69,9 +72,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niflheim_power"
+              "cruciblecraft:prefix_material": "haderoth"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:chain",
             "type": "neoforge:components"
           },
           {
@@ -80,11 +83,27 @@
         ],
         [
           {
+            "item": "cruciblecraft:haderoth/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "elvorium"
+              "cruciblecraft:prefix_material": "haderoth"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:minecart_wheels",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -95,19 +114,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:elvorium/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:niflheim_power/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:muspelheim_power/gear"
+            "id": "cruciblecraft:haderoth/gear"
           }
         ]
       ]
@@ -117,54 +124,78 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b911f781fdf45865",
+        "cruciblecraft:gt6/8d9713a80e156e88",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/e851ee1115b587b9",
+        1,
         1
       ],
       [
-        1,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/f13ad8f447e9765e",
-        1,
+        0,
+        "cruciblecraft:gt6/5427dd8720590e81",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/a9946326ae10ea86",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/b8ba167145ab3077",
+        4,
         4
       ],
       [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/a21fd6f78df87cdc",
-        2,
-        9
-      ],
-      [
-        3,
-        2,
-        0,
-        "cruciblecraft:gt6/1f7cff040fba9908",
-        3,
-        10
-      ],
-      [
-        4,
-        1,
-        0,
-        "cruciblecraft:gt6/aa96d3f469d11fdc",
-        4,
-        13
-      ],
-      [
         5,
         0,
         0,
-        "cruciblecraft:gt6/648e1159c5082500",
+        "cruciblecraft:gt6/24fece6282efa9d5",
         5,
-        14
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/b06dd363245c08f9",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/1522084c3ca43db1",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/b043ba87bc823679",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1773,
+      "duration": 2075,
       "eut": 96,
       "item_input_actions": [
         {
@@ -175,7 +206,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
       ],
       "output_chances": [

@@ -1,0 +1,92 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4361",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "67641272aeb6363198a3c9d22ef64a949aef7ca2775f415d76ecffd135b12ee1",
+        "38a46e68dd0d79e0c3b2bdd45f693aafe232445ad3fcd7827a995ba9e1764ea9"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:beryllium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:beryllium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "beryllium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/49148edbfc56830d",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/31020ad816d4fb58",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 218,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        48,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4361",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

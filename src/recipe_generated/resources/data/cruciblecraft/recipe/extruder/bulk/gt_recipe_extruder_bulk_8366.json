@@ -1,0 +1,66 @@
+{
+  "family_id": "gt.recipe.extruder#bulk_8366",
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 1666,
+      "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:chromium/machine_casing"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "chromium"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "chromium"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "319ab57ad5c61e4328c336560f4cb17813c17b7628f35359bcaf351f7ea20290"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_8366",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/a3c0a61ad092910b"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

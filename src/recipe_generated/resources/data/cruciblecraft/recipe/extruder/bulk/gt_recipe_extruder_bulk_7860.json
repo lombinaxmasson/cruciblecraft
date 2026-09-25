@@ -1,0 +1,234 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_7860",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "2f256d5d15346f91d2bc8804d8fc6050768e48d7ec40d88741b4937b660f9767",
+        "f57cc582bb20436783bf4ba2eb7506789fc81e4fe2865b86c99d424aa0f434f4",
+        "7634326a5ff534e78c1942026616cb121cdbd7f57c6478a2823e573ad2661c0d",
+        "b893a8641d98f600334eba211d4376f7c202f22a5dfef9ebf2224b1847cc6c4e",
+        "7367e53fb5004e9c7cc19b20291c37538b81cd825cf787d11a92ba395329c8b8",
+        "7253a012ecaee09c892aabebd2c8caf674997d5bb905c4e08b4b874198ee4685",
+        "3a412ed28c0365443b2a45766e4b3328385e5d676f84cc56c5709b7e629e8ed3"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "obsidian_refined"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "obsidian_refined"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:obsidian_refined/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "minecraft:obsidian"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/4b2dd6b28e3d43b1",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/ccc5db4bfbcd12fa",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/77d86a043028fe40",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/da7c923bd478757f",
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/e4747f90983c3d4b",
+        4,
+        4
+      ],
+      [
+        5,
+        3,
+        0,
+        "cruciblecraft:gt6/854682f2332c1cbc",
+        5,
+        5
+      ],
+      [
+        6,
+        4,
+        0,
+        "cruciblecraft:gt6/d51a0e5c1ad8bba0",
+        6,
+        6
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 700,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_7860",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

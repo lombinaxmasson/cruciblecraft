@@ -1,187 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_6818",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "80b76843ffccba51a576646dbf1cef42710d24477e8560e1688d045e3c172f67",
-        "0d47bd8ad33c8746fa5b6f17d17f2f8bce29b2c622885d36de46dce46f99dc6d",
-        "afd2290b89037c232459a16c6e61d73f0c2f6fcf28e0e88ff8b0f211d6fa2b40",
-        "8b7f9391addba74db91ed5f09363851ce0f8c1475a066affb5100e67e3d6c446",
-        "6f714c16b0340d46ec450989b78bb608e255dad457b7d964609b9d07ee6c5a97",
-        "e815e5d7f39675c10032563bc31700d5ca83a1ee872667f602952bb58236c670",
-        "77fc2e69693972d721a120b292b47164df62b70ef20a46f4073abb62a9b6bee2",
-        "b78e7fd6170845c2f7e6759e4fedb8bd634d1a669a60782759c55563c610f161"
-      ],
-      "item_inputs": [
-        [
-          {
-            "item": "cruciblecraft:steeleaf/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:inolashite/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:inolashite/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "inolashite"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:inolashite/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "inolashite"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "inolashite"
-            },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:steeleaf/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:steeleaf/ring"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:inolashite/bolt"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/970f80eab1960803",
-        0,
-        0
-      ],
-      [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/a4d20a1a7589c782",
-        1,
-        1
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/369eb7a73c869234",
-        2,
-        2
-      ],
-      [
-        3,
-        1,
-        0,
-        "cruciblecraft:gt6/975e939aa39ba330",
-        3,
-        3
-      ],
-      [
-        4,
-        1,
-        0,
-        "cruciblecraft:gt6/964e69dbcdf445e2",
-        4,
-        4
-      ],
-      [
-        5,
-        1,
-        0,
-        "cruciblecraft:gt6/fe7051cd841d7e72",
-        5,
-        5
-      ],
-      [
-        6,
-        1,
-        0,
-        "cruciblecraft:gt6/121fc49a3fd116f1",
-        6,
-        6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/940398e58b13adc6",
-        7,
-        7
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 23,
+      "duration": 1211,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -191,18 +17,45 @@
         }
       ],
       "item_input_counts": [
-        2,
+        9,
         0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "cobalt"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_hammer_head"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "cobalt"
+          },
+          "count": 1,
+          "id": "cruciblecraft:tool_head_hammer"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_6818",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "89a9057efdad2a24de48ec29859363e2f16e3a79c1855886c70d081d8c88a435"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_6818",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/d6fc28130d0f2514"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

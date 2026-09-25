@@ -10,28 +10,72 @@
         }
       ],
       "hashes": [
-        "8b80eba547964b76b962d4f373fc77e56c02b1471f3704c95b4b8b27226c7850",
-        "3419dbdbc30e96e2e1eca928ea16b2279d9098a4caea6aef2cfd9c8ac13aa246"
+        "c1d7e9e97e9eaa178096c45620dbc34aace4dc034d8ff8f0f696377e1ea5c551",
+        "05c64dbab0bc29ce2cef1b0c511a1754476cdbfcb11991a0d7b0cd58c0da6c68",
+        "7efdbae86f7c05b619d008c34b942d715190aa43ef78e3a568acade0e592d18e",
+        "9a3c93cb72b42a542e762a20b9cc0fc14605b8029e21ad1508c0e280dd50ff28",
+        "d6dff13300720a10186aea45eb58602e17097739a546969befe887f8cca1290a",
+        "ac15e607ecfdd9f110c30d23e0ed3f94bf807d2ced0f7fb9e8ec8b51c83d0339"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:thorium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum_flux/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thorium"
+              "cruciblecraft:prefix_material": "electrum_flux"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum_flux/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum_flux/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -39,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thorium/block"
+            "id": "cruciblecraft:electrum_flux/gear"
           }
         ]
       ]
@@ -49,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/582d6ffddcbb4955",
+        "cruciblecraft:gt6/c2e90ceeaa1c945e",
         0,
         0
       ],
@@ -57,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/4c8f6f13ffa44d75",
+        "cruciblecraft:gt6/49cb955ce907ceb4",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/e739ad55ba8d2ba7",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/c52fbb23cca58613",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/e3fe4a18a973f115",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/c8af8f960bb75a2b",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2966,
+      "duration": 431,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        36,
         0
       ],
       "output_chances": [

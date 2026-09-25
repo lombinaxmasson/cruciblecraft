@@ -1,13 +1,213 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_6866",
-  "publication_group": "cruciblecraft:extruder/bulk",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "8f63c7c3066d55c9158b1fec5069562bae639e66cd70609e3171037b234cb367",
+        "e61cec81c74571442b6645a32dc149d40ff9d9ab89ef1c4c756a12efa36e9d9d",
+        "d22516079fd5f9be5c670a3eae023a51fb97ac6fdd12e615135eb7232acca51d",
+        "721228db56d1b4ec44df33a94f377eabdfddc82150887c2716f808b43679500b",
+        "f2c052f82096f603af954351b8b1fb474cbec037f98eaf36d7ca1ed7ecd38ce3",
+        "4f3ceee4b9620dfa9e16cb436094a9464e248ab588a509202695f2d9f6a70745",
+        "cb37931cae2dd080ef73333d94ab34f66a219ab162d10215f0dc5670266c973b",
+        "6db2138638983cb16ae049ced488a9c57ae29c8ca83fe603a4f4fe59302270f0"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tantalum/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tantalum/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:tantalum/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:tantalum/bolt"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/056aee4de743fb68",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/8d59e83ee9df8ea3",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/9816f9b534d09a2c",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/dab195456d6a33a9",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/d07a249416e834e3",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/58a12087bc8135d1",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/5f274569e8f61d8f",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/2c0d5c5d56e36c5e",
+        7,
+        7
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
-      "duration": 1010,
+      "duration": 6933,
       "eut": 96,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -17,42 +217,19 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
-      "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:prefix_material": "crystal_matrix"
-          },
-          "items": "cruciblecraft:dust_div72",
-          "type": "neoforge:components"
-        },
-        {
-          "item": "cruciblecraft:extruder_shape_ring"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:crystal_matrix/ring"
-        }
-      ],
       "output_chances": [
+        10000,
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "42070d6f62d9a4bade4ce275df9813416bb08343a7372674842cefd7aa549086"
-        ],
-        "selected_source_recipe": "gt.recipe.extruder#bulk_6866",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/91dffd6f82c2f657"
+      "selected_source_recipe": "gt.recipe.extruder#bulk_6866",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

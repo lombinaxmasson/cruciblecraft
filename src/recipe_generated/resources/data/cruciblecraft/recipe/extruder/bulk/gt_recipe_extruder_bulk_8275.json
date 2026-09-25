@@ -1,13 +1,129 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_8275",
-  "publication_group": "cruciblecraft:extruder/bulk",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "cfd09bbfd337ff8a3ec170951d1623f843a9c47d91eb96dd810880f5cc883eac",
+        "f93d8f54bbff26187a5b182c19fe5a113eb3223b05c67b118b1901cf6be9fdb2",
+        "709635a477ac4187dcf8ce2ee89a1a67897498912058da85d88a616574f6828c",
+        "f49af19c627c3466fcdbb70ed51aee0995f7305e3d696cb6e9c10435463b1678",
+        "ac364deb08c9d2e7ae290fee4e07f9a05c4104554245ecf13722aa38c98b8013"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:damascus_steel/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:damascus_steel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:damascus_steel/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/bad68f3be4910232",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/40123191c7f796dd",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/598d933b164921c0",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/e12db06c4cdce54d",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/093093c6b8cbcad9",
+        4,
+        4
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
-      "duration": 5202,
+      "duration": 1387,
       "eut": 96,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -17,38 +133,18 @@
         }
       ],
       "item_input_counts": [
-        2,
+        24,
         0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:celenegil/machine_casing"
-        },
-        {
-          "item": "cruciblecraft:extruder_shape_block"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:celenegil/block"
-        }
       ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "97c6e0c3b43a37cce2d51cf1e71f46f878f123d1949133b888e33a2ab69a8746"
-        ],
-        "selected_source_recipe": "gt.recipe.extruder#bulk_8275",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/57432befd8a5f5d0"
+      "selected_source_recipe": "gt.recipe.extruder#bulk_8275",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

@@ -10,19 +10,20 @@
         }
       ],
       "hashes": [
-        "21cc892f24b545e3000096c3d518f8e6b302254a082d7e9db113fec6f4a28f6e",
-        "bfffa96d2a94cb0e56c4801d0dd271c754c57d6c812b20832b2313f8a2bfdb45",
-        "a73a34c3e66b534a847b17c5305ab981f4d498ce116e1c8cd7b8e0153eaef6fb",
-        "6afd70d1a6e5b8f9632dd15b51125948bedfc9d846042cb2a1a10d1abaa06075",
-        "b856b348316c1dd604a3e3d9ebe7c24da0aeb11ecc0eadef728574d3838081d5"
+        "1ca92f673609b8108a78b16d19f92beefca2b742a4a088b3d3ce86317713a199",
+        "6bdefa0c0462d95d6b732a1b23ea47aea0096d4f90f62ae10c339999fa135d1d",
+        "a260e80a1335842a5d644c8aea9103a244330d5ee843df135ea4393826cc96cd",
+        "d4f8566a9e12aa4880976e5286574d07c829e765c6c9ed204c30c7aba14f5ca9",
+        "b681865a5410f6ef56831ed63edf18049d428913b0209919c0bd0c6fb9ee8f10",
+        "ddac4f741da05ebabcfe41844f3dc33bfaa78f3fbcd6d4545c69ebc5474aed45"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "kreknorite"
+              "cruciblecraft:prefix_material": "damascus_steel"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
@@ -31,7 +32,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:kreknorite/small_dust"
+            "item": "cruciblecraft:damascus_steel/nugget"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -39,7 +40,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:kreknorite/ring"
+            "item": "cruciblecraft:damascus_steel/screw"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -47,7 +48,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:kreknorite/foil"
+            "item": "cruciblecraft:damascus_steel/tiny_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -56,9 +57,21 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "kreknorite"
+              "cruciblecraft:prefix_material": "damascus_steel"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
@@ -70,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:kreknorite/gear"
+            "id": "cruciblecraft:damascus_steel/gear"
           }
         ]
       ]
@@ -80,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/008714bdca25c49d",
+        "cruciblecraft:gt6/2c4a083ab410a232",
         0,
         0
       ],
@@ -88,7 +101,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/10db9d93a8afebb6",
+        "cruciblecraft:gt6/3b801afffd8b3d39",
         1,
         1
       ],
@@ -96,7 +109,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/845c3582f37511d8",
+        "cruciblecraft:gt6/d722799c5495f3dd",
         2,
         2
       ],
@@ -104,7 +117,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/366c33162223e8af",
+        "cruciblecraft:gt6/43e78dcfc5a13505",
         3,
         3
       ],
@@ -112,14 +125,22 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/4490fb0a444e8e19",
+        "cruciblecraft:gt6/28bf1db0072b2f49",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/0a6a5492910433b8",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 133,
+      "duration": 925,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        36,
         0
       ],
       "output_chances": [

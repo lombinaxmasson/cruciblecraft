@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "c8241383f9062a1a5b8e8e2c78cb21533111a37c740e1f18efa06043b3a00b5d",
-        "baeae17c89e95e77f4c6ca643b49425c90ec59370c43ebeb1d78810b62a417db"
+        "f5d83fb3b449529f7a9edeb4921b8fabb3dc9000662343e788698300a8f51441",
+        "dc8559d20ea7a6af5c7d0058ca4b8830011489a20a7c714fe41bc28d5f958efe",
+        "98aa5d13ff3ff3cc6ae05105fb0135ce42ba00e7ebdfbecdc22261e968880784",
+        "e521ac861bd134aedc5164bdd38efddde5f920c72e6d43d77330b2e2d6593309"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_red_steel"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungsten/huge_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_red_steel"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungsten/quadruple_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/quadruple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/huge_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:meteoflame_red_steel/block"
+            "count": 64,
+            "id": "cruciblecraft:tungsten/bolt"
+          },
+          {
+            "count": 32,
+            "id": "cruciblecraft:tungsten/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "count": 44,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -53,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/67f8a2d7a6e92a09",
+        "cruciblecraft:gt6/454118bd6df7100e",
         0,
         0
       ],
@@ -61,14 +91,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/680872a5c8130c95",
+        "cruciblecraft:gt6/c9c87b8615a7477d",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/f34b0f9e5df9d6f7",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/2556929290076570",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3956,
+      "duration": 12128,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +125,11 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8735",

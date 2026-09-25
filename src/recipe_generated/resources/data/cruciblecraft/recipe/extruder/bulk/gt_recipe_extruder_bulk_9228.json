@@ -1,13 +1,81 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_9228",
-  "publication_group": "cruciblecraft:extruder/bulk",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "63ad961217b604a0ce6d45f7fdd772aee28cb94554fddeac3956cd387d7579d6",
+        "25a9ef350eda604ae8442dd44d895e19deebf1eabbf8b6ea967c599bd7a21de5"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vyroxeres/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:palladium/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/b835aae615e8326a",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/f9aa4786fe44cf29",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
-      "duration": 1826,
+      "duration": 72,
       "eut": 96,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -17,42 +85,18 @@
         }
       ],
       "item_input_counts": [
-        14,
+        18,
         0
-      ],
-      "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:prefix_material": "holmium"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
-        },
-        {
-          "item": "cruciblecraft:extruder_shape_block"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:holmium/block"
-        }
       ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "46c0e2f8fa795e07eeff66b979c7f327da74e0893b511b4e7507c852eb23c767"
-        ],
-        "selected_source_recipe": "gt.recipe.extruder#bulk_9228",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/b53100de91219fbb"
+      "selected_source_recipe": "gt.recipe.extruder#bulk_9228",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

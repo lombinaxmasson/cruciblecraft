@@ -1,13 +1,76 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_9246",
-  "publication_group": "cruciblecraft:extruder/bulk",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "b7b72735b947de2ca63b68c877c22bebfc30bb589cab6c963f494d08d9d3c3c9",
+        "19333caa0e1271865d3f3b05427b81f7e5dcd64cfbbfe0a4337e501867197ffb"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:tungstensteel/triple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungstensteel/triple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungstensteel/large_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungstensteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/14a5175f16dc327f",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/db30e5814a2a1572",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
-      "duration": 1491,
+      "duration": 3237,
       "eut": 96,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -17,42 +80,18 @@
         }
       ],
       "item_input_counts": [
-        6,
+        4,
         0
-      ],
-      "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:prefix_material": "naquadria"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
-        },
-        {
-          "item": "cruciblecraft:extruder_shape_gear"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:naquadria/gear"
-        }
       ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "36949c4e8d432f051c3d42957d28c831ee1cee4d3c86e33331bb34eaa822c9cc"
-        ],
-        "selected_source_recipe": "gt.recipe.extruder#bulk_9246",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/a4678da093355d53"
+      "selected_source_recipe": "gt.recipe.extruder#bulk_9246",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

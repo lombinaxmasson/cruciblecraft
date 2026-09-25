@@ -10,13 +10,44 @@
         }
       ],
       "hashes": [
-        "7d5a7ca8734aab1baa19e71ffae510eb5f40bdd9ba47c373efbf49aaffcffd61",
-        "ff3cc3ce8be7931a0e94467f05d9b130be771378659a0ffbeac2969d2de1f2aa"
+        "8e9e6fd95e9e5dd4a3ba924f276301dff4bfa8e0b7c1371f73fced86ffa7f2d7",
+        "deb5c739d3dcad30dc50586cdca5000f1f6867a1029ed7ecc444528ba9147a5f",
+        "26d6752ca0ef70d58c8dc2259c05689b9776c571bd1647b082f143c263d4b5d9",
+        "3f9ff9f3504e38c72ea5d5fe8a64c47a483d95507adf629a575dbb252b362e61",
+        "a161fbb65a8454f642364b8f977389ce1ccba0816910c12504b0e64dc08f3a6b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:eximite/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "elven_elementium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:elven_elementium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:elven_elementium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:elven_elementium/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -25,9 +56,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "eximite"
+              "cruciblecraft:prefix_material": "elven_elementium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -39,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:eximite/gear"
+            "id": "cruciblecraft:elven_elementium/gear"
           }
         ]
       ]
@@ -49,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/920109462e81e622",
+        "cruciblecraft:gt6/ff411afeb746d61d",
         0,
         0
       ],
@@ -57,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/a5bed19d0fcd6c77",
+        "cruciblecraft:gt6/e607773f0d8decdf",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/dd39554ddeadf8ad",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/0d2a0713d003a5ff",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/29d0642e387ac237",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1133,
+      "duration": 1224,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        16,
         0
       ],
       "output_chances": [

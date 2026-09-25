@@ -10,24 +10,76 @@
         }
       ],
       "hashes": [
-        "4267647dabe81285c0a67f044a8bfc0189948cf621f4c6db7b8b0ce68ac73ea9",
-        "8d5a83233e1b223c41ffc383cdb733fdea6ee30a35bb29d1d279a06b1292bd6a"
+        "18026409a1757b26c72bafba8a48680659b86761b8dc9dfdff38a31710042e77",
+        "527f33d3ef78d3c0a359f04631d7bed9f77b7db6050757208c10e47ecb4e77ce",
+        "e9d21ed81df1d89f0cf019245546c0f0c389f0535c9662682b6f48574b66ad4e",
+        "701f3fe28e00384bdce91a7924ceb47a3c05ed1b65e49311011c729115f8ab3f",
+        "7fed7366eede888cd47320c7b2b490fd710f4f212fb5f812825324c319f59c89",
+        "1e663b860b991ef13034352aa90745988195d3981ef9a4391d2d6afb474d2a20"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:meteoric_black_steel/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:meteoric_black_steel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ultimet/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ultimet/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +87,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoric_black_steel/gear"
+            "id": "cruciblecraft:ultimet/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ultimet/huge_item_pipe"
           }
         ]
       ]
@@ -45,22 +103,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ff27fb28c8936857",
+        "cruciblecraft:gt6/a5ad358e687b448f",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/8bb4f78dab341cb3",
+        "cruciblecraft:gt6/2df340aca0884481",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/c497b675d593fc99",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/b5a0ec19ae482d5f",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/056e74b056855a0e",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/cf5dd10999e65e56",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 902,
+      "duration": 2699,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +161,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        3,
         0
       ],
       "output_chances": [

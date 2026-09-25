@@ -10,58 +10,21 @@
         }
       ],
       "hashes": [
-        "84b2323826b10e46f2c2a9182c1a51d12bf7f4261c0bf68b414739ea907deab0",
-        "af5ab8b7ec873796852b8ba22523ae08995716e530c651a2005683a26a8d3193",
-        "0d7dec69d4208a1e5c235dc7ce33a18f4eae9979bddc57b8a86d25d7d3f15071",
-        "1e7073942cfb290d941557c87db1486e4c9ff89db29e6216f8dd1e68db5190c3",
-        "f42e9b671ea7548f775d27059889e036bd147959b1e3e2f364c76417f5a0d034",
-        "9a293ee4eb1971ab170cb674348ac7e4073ccc0900d8b2825087d9fcd3364770",
-        "31fb29d31f8d8cd7a95a23f08c02dfecf27da72d7dba423b0d382ca16cacca7f"
+        "5b22d41341229b60454e4594fb90e862c112701636095320ed9e4cb7b3575e95",
+        "fda5036e1bd340fc0f955b02dd31655f0be8847e2cdbf095e1cce7b84e01db07",
+        "aa458cb2f8e782a0aaa37047ca043280d626fe27bddabe7cfd9b6b7d7cdb0b2e",
+        "6beb5ac4d2553a0bbf8eb0820d1c4b441251a55e72c00606c4ebd33a42cedaca",
+        "d169201439bab67255c38a859fbfdde839310750abb22a2494232c37f376fd89",
+        "26946fe48f469fc36bd78583482a86f8f6f439dc1d7d200d9e0956ffbeff432a",
+        "2a8e63106329bde8421b96209028e8599876d3a08aef17cd676ba5ce10a82b51",
+        "c9e2a508db6b84787a01c186080093970abf3ddadcb4a426631703cea84e3212",
+        "9343de8902023cc1249cd06c77659d2f35db488c4b230133ddf87354181064b6",
+        "9a675d1fe9d8d062c949761199bd4003a562e633a4561dc95b09af2204e9d116"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ceruclase/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ceruclase/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ceruclase/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ceruclase/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ceruclase/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ceruclase/machine_casing_dense"
+            "item": "cruciblecraft:steel_galvanized/long_rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -69,57 +32,98 @@
         ],
         [
           {
-            "item": "cruciblecraft:ceruclase/machine_casing_dense"
+            "item": "cruciblecraft:steel_galvanized/plate"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel_galvanized/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel_galvanized/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel_galvanized/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel_galvanized/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ceruclase"
-            },
-            "count": 56,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:ceruclase/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:ceruclase/ingot"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:ceruclase/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 6,
-            "id": "cruciblecraft:ceruclase/block"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:ceruclase/gear"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:ceruclase/plate"
+            "count": 1,
+            "id": "cruciblecraft:steel/gear"
           }
         ]
       ]
@@ -129,62 +133,86 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e1d7f76e349129b3",
+        "cruciblecraft:gt6/673c883a7cd535cd",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/a50836cdfb495a69",
+        0,
+        "cruciblecraft:gt6/e6d7e9b2c3fb113f",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/90abe9854cbc4af1",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/cbab6662f919bb76",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/7e8d0658c758aadd",
+        4,
         4
       ],
       [
-        2,
-        2,
+        5,
         0,
-        "cruciblecraft:gt6/e256c1245966bcf5",
-        2,
+        0,
+        "cruciblecraft:gt6/a4533f62f34145e3",
+        5,
         5
       ],
       [
-        3,
-        3,
+        6,
         0,
-        "cruciblecraft:gt6/9e0e8d49cb13b2da",
-        3,
+        0,
+        "cruciblecraft:gt6/9baf747f03d4fbef",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/97fd8342ce59ae0e",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/5fd6322c509e780a",
+        8,
         8
       ],
       [
-        4,
-        4,
+        9,
         0,
-        "cruciblecraft:gt6/e2bdc2530ed26095",
-        4,
+        0,
+        "cruciblecraft:gt6/7e3fcd8aaa4c475f",
+        9,
         9
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/ef48edbde4673afa",
-        5,
-        11
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/169b7abdd00de074",
-        6,
-        12
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9094,
+      "duration": 938,
       "eut": 96,
       "item_input_actions": [
         {
@@ -195,7 +223,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        4,
         0
       ],
       "output_chances": [

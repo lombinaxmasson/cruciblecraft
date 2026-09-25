@@ -1,0 +1,197 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_3167",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "0e39399cedef5b2c085d9f59fee4fe6e58abf15406415a1057c529ef7dc85ba8",
+        "a70eefbd22aa35547598c40ac5fc7c0361c40916cc22175b0d84badbf78db63d",
+        "2c38c606956d6b4ed081cb886803a86e9da07fe7f8ef937d81b93389792c2dac",
+        "e6f43639cbe0d5627ce15464eceef8c8dc3d9f2454debac229176ac6addbca18",
+        "d8269da2f34ff25a5100bc5caef902d7d9cca8d3f3b44f35775a78e1ca607645"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:tritanium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:tritanium/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:tritanium/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:tritanium/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:tritanium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:tritanium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:tritanium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/e141f3b824746933",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/4da12b1624390301",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/8e7445373ef408cd",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/44959dfcdf4feabf",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/b5b199a35765b053",
+        4,
+        4
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 30931,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_3167",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

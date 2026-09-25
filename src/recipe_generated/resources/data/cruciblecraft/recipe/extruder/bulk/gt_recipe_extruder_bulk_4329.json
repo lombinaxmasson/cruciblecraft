@@ -10,16 +10,27 @@
         }
       ],
       "hashes": [
-        "deb1fa1d7894fbfd0a0d727a2edaeab9b21c7ac6d2a0b809a0fc54a0b11df2ff",
-        "6f6504b8b6e5f5be9aecee7225156826dae4c9b284a75e66f5b3795122f7b511"
+        "bd9c25d0d4cfaa7074a6b9ac730ea179485a559c6bca7478d6fa9dc4f163ac38",
+        "8325e6472d84de6fa479f189b2829386ebf082acc1894bf696fa7b75b4bddbca",
+        "80fd5a24123abd808560f583a1946f70922374cef8cd17798ea2416c95c9535b",
+        "17a2d6fb1ba1c9b80a2406f915f9da0a2e2f3577708dc96fc108f11f4f56a394",
+        "5e35dca25a4f530c1bd9448ad355233ac587878f26c49a27b8298072b37c98da"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:bedrock_hslaalloy/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "alduorite"
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -29,10 +40,26 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "alduorite"
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:alduorite/block"
+            "id": "cruciblecraft:bedrock_hslaalloy/block"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ce9dcc98c1166e15",
+        "cruciblecraft:gt6/5a9c24b2d7f18ada",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/1fecb83170d8c154",
+        "cruciblecraft:gt6/b9533ba575bbdc5a",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/b7ce08de86df196d",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/81303a8ebbcdc96e",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/f9ba97218c7e1119",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 478,
+      "duration": 31561,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

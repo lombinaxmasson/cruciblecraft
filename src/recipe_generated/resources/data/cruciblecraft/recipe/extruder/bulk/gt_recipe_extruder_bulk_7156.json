@@ -1,13 +1,191 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_7156",
-  "publication_group": "cruciblecraft:extruder/bulk",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "39afcf36f64b8dbd8c9bbca22c34ee9f48d5ff323b9bb7135649da1d2384d4a6",
+        "bbe72dd5c1b89fa00dc22fd30b0f0329bb036434d6648c0504abbfbfeda931c8",
+        "a2dd985bb5aa612a6e807fe97ec4303b691994339cf93a0abd6f95cfb16420e6",
+        "ed2aa406a2a132844357b2de80bb910e99cd30d7c0646ebd768d7ef85f541a06",
+        "056891e1ec8c3e48d568a6e3b768c6ec2cf8fe4e583ce473aaa1198831c0bf4a",
+        "fce6b1c21fbc2d992e7133123df9c4317324e7e420c8741fe92c0da5dcc8d83e",
+        "a3186c3d74f54a31c3ded4a13cfffa30bc4bf2bbd45ecac896cb2c5c6b97cfdb"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alumite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thulium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alumite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alumite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thulium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/670e919be10e2a39",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/bcb0a466a335fbfe",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/2b74343313a1bcf3",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/d90861c05a9a8b78",
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/901212a5f28fe78a",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/626c69b5a5663c96",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/623a702709347067",
+        6,
+        6
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
-      "duration": 1901,
+      "duration": 110,
       "eut": 96,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -17,38 +195,18 @@
         }
       ],
       "item_input_counts": [
-        18,
+        4,
         0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:erbium/rod"
-        },
-        {
-          "item": "cruciblecraft:extruder_shape_block"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:erbium/block"
-        }
       ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "5a7b3219bcb406bb0226f57a1d2b456b2cb108a9a99290d2cfec4572bc10b25c"
-        ],
-        "selected_source_recipe": "gt.recipe.extruder#bulk_7156",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/7ba8ded210b58d4f"
+      "selected_source_recipe": "gt.recipe.extruder#bulk_7156",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

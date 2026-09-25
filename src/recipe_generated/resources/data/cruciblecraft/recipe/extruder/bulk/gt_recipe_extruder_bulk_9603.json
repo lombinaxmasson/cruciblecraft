@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 413,
+      "duration": 2409,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        6,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "inolashite"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:enderium/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_gear"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:inolashite/gear"
+          "components": {
+            "cruciblecraft:prefix_material": "enderium"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "enderium"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "73cdfc3ee4b3facb3b37d313118a7cc6c0a8281edc79f1022c99f09d1d01c7cb"
+          "1bc8e282c9825dfd350c12cc6cc9323d369b82590ff25f844948cff60b35941c"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9603",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/847b80c925a51177"
+      "stable_id": "cruciblecraft:gt6/ceee31fa597dc2da"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

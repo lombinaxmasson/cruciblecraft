@@ -10,49 +10,70 @@
         }
       ],
       "hashes": [
-        "71369fd13cd470070c0c9caabd807bfb8caab49bc75450722837ea9c92e8a721",
-        "dbf69aeeff387cf85ed53ea3ebfbc5a493609a4ac436e4b30592a06b7b8c99a6",
-        "54a7b7a4dd6e1275bd029e5392a5591f0d929a1e9cfb0772c56cbe0c98943660"
+        "21e3911e19fa69ae2ad9165b50ec656fb864080e645842c6473b2ad5d24c402d",
+        "c5ff50aa68202f0b8489973483c563bed640ea01befd33616c4242fa8769c2a6",
+        "2b356d153a7b2ab33682d5732e79a032cde4a7c61742f92314e48d4b8d0047f1",
+        "b3cedb0b6a33b300416414aa698cb504716ad0a974984288f2e1442b352a12cb",
+        "98ca8dfb2e0de9ec48ee745b66ddb22ea47d95828b3f03b0c5566d22f6925fa2"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:manyullyn/gear"
+            "item": "cruciblecraft:naquadah/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadah/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manyullyn"
+              "cruciblecraft:prefix_material": "naquadah"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manyullyn"
+              "cruciblecraft:prefix_material": "naquadah"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadah/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
             "count": 1,
-            "id": "cruciblecraft:manyullyn/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -62,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c732573613714103",
+        "cruciblecraft:gt6/a63e7cebd8a389fa",
         0,
         0
       ],
@@ -70,7 +91,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/8f43614bc5c0ac33",
+        "cruciblecraft:gt6/9f84afeaec4fd519",
         1,
         1
       ],
@@ -78,14 +99,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/2f2a479e7e4034a8",
+        "cruciblecraft:gt6/8e4127e9340a6ea8",
         2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/5e6d2cf9ba87bba6",
+        3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/93db76f5fe12a64e",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 997,
+      "duration": 587,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        6,
         0
       ],
       "output_chances": [

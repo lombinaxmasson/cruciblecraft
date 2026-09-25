@@ -1,0 +1,143 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_7734",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "4601a9760f89c09dc76746cd33df6eb7fba43e3cddcc02ab934aee2f3a08e44d",
+        "7907a5c069393fb97ceeee8a8cf7c69b6485c28a4d75ac8c1d85fc41aba27925",
+        "7e7d41cf477351bd22ed18a93dad816e298b19fb2edced820ad9b816d2a29ca1",
+        "6957e649b0930107799ddd02e0efe727c00830b1395a15039da2752224ba2d50"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:flamascus_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:flamascus_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/a52878f780779c79",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/f896ec4e3e638689",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/bf4155cbfd75e40f",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/bae8d5ed96cb322e",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 1049,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        6,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_7734",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

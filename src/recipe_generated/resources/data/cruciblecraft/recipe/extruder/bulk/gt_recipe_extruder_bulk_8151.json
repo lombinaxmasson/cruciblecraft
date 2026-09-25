@@ -10,28 +10,72 @@
         }
       ],
       "hashes": [
-        "c04fe78eb1b03460ae4eefdf4b7fa2b0fa1cb05b3c0906555dd327c5e6ecfe5f",
-        "e0b83fcc6a5afe439323268d211e85f3482e756d0c3ed3d1560aac31ccb18a63"
+        "3ad9f6c267b3a02b506d2c7022ce0c7e4176e7d822ff4bac45ae36a8c3e4a025",
+        "203f1079e36010dd6247ab8364ac2300e8aa4c0dbd3c7640dfe6d5bf06eda3f7",
+        "3bb50a1c4b849a63ca6698f32423907d399fbe395f75e229f44d3f2d09de43d1",
+        "b4b966cd6b1106b448c3d224974df870d7ae907963cbb0544f1139e69a03ec23",
+        "5772399c497b7463a7fc548c536883b93d2b4ba398f01771b1f6e8bc7603b239",
+        "d85f54bd63662f9234691ec6eef77131022a6c03340dd10817e99a381ee50e2a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:manganese/rod"
+            "item": "cruciblecraft:tungstensteel/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manganese"
+              "cruciblecraft:prefix_material": "tungstensteel"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungstensteel/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungstensteel"
+            },
+            "items": "cruciblecraft:rail_gt",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungstensteel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungstensteel"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -39,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:manganese/gear"
+            "id": "cruciblecraft:tungstensteel/huge_fluid_pipe"
           }
         ]
       ]
@@ -49,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/526f0b3a4521662c",
+        "cruciblecraft:gt6/d6a56bcb8488e93a",
         0,
         0
       ],
@@ -57,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/0b90a62c5c37ea94",
+        "cruciblecraft:gt6/28d9f2bcdf285024",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/fd38ed1becaf94d8",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/da16fb9c1f21cafb",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/4af0e5c508fd663e",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/58503dcc028fc72f",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 564,
+      "duration": 6473,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        48,
         0
       ],
       "output_chances": [

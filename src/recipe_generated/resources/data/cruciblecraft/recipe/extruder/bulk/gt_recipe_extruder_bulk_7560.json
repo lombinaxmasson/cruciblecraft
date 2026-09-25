@@ -1,0 +1,224 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_7560",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "747c353c8bb1900486d2d7c3af7aca7b44aaa3e2f58257526da3884471dd9c76",
+        "bc77f636d7e5de62eef7c993b43bbd7296c89b4143fb97ef4738a1d5a0a49923",
+        "a28e0caabc45b18698b1e00330f1d91858b8ee783580bc13961b27f9e731ed53",
+        "b62d5e7de0530898ab563fc07ddce081754f1d10594a4944f3c8a8bc21d75b3d",
+        "0b2e7b77c1d9cc9b8e23c8dd7ef6a1b155a5976eeed3fcfc99601cdf45ab9b15",
+        "b36b87c1c7afadbc68dd0dec3944d7e9dc8b15132a96e0d7b0f0d37bb077ba91"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:dark_iron/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_steel/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_steel/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_steel/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_iron"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_iron"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:dark_iron/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:dark_iron/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:dark_iron/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:dark_iron/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:meteoric_steel/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:meteoric_steel/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:meteoric_steel/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:meteoric_steel/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/cfd580f9249a4ff7",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/7815589f63a60617",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/e7aa6c046d459cee",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/cd1fc9cdf9101ade",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/09d3ed2cd43624cd",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/b4db88d6167f962c",
+        5,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 6171,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_7560",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

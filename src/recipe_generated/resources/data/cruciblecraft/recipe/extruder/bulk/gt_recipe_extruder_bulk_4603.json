@@ -10,17 +10,58 @@
         }
       ],
       "hashes": [
-        "465cf9fa963bb49c6b21e923413fa47af417fb615f73e89ff9202b8106d673b6",
-        "a4c6270ffe2677697330e44fa91b5f67444289c54dd435f450bb92fc2d2f6961"
+        "cb4a292239c3f4452ad0b570634f81e321f12ce04221e687f110e56d9028eef9",
+        "e74047e21e0d445b4daa27a363a9564e89169891eca433b236890826a3b496fb",
+        "4a18ad0c3c3a6a6c1a714bd4ae0525057eeae9dc525f50e890c6b4ecd81351c8",
+        "402ffab7e62ffc58a31be21f5ee4768a99a45640786bea42a0851c2e0336bf8d",
+        "fe4b92f913cba9d3ae8dd8705ba3ec6bb432b5e55bc9909b8ae7db8dc414346a",
+        "fcfa316e2159692c156ddb759f2b1f58cf0d18849b8d7bf4b0287f07a9a9fecd",
+        "c2df00226f4a80089264f749536e953e80a6d93f05c4b83aa98d869c2f83f37a",
+        "41065c498894ee247eef272c067386094f3952373db0089a4f7ae255de3efbe7",
+        "4f89213150d9dfab7cf04ad8e8fce429d4589af64f4802ff25bf11c1bb13cf70",
+        "ece1b779b5f101bb4130c8b48916a8477c44b4f2ba68892a4337218151ebd85d",
+        "66c441f8004d6f4b3464810cf5b3cf077dc8d6fb251117c428ebba3352f3e929",
+        "4bec53476e7111beca8610f716fcb6106d5ea4849c4fddfda12385500afab654",
+        "612420204b96e67f251855a5176358390c9af0dbd0d3a14444c2758e41d1e8b5",
+        "a0f6926251e4ed7c94296deb54e084732605bd86b6db58b529dfa0b19e4a1bb7",
+        "5f569f4e94cdc29cc2ef2a1637a73df6049942c1943f3be5f3bc17ccb5e81e9a"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -28,22 +69,198 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:elven_elementium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "count": 26,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:palladium/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "count": 13,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:palladium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:palladium/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "count": 26,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:palladium/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "count": 52,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "count": 13,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "count": 52,
+            "id": "cruciblecraft:palladium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:palladium/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:palladium/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "count": 13,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -53,22 +270,126 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e7d18b6d7e169632",
+        "cruciblecraft:gt6/547433c3e91a7819",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/839d34d3324632cb",
+        "cruciblecraft:gt6/e328aca69e7896dc",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/b4534558010cdeea",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/8a98b440c26c8664",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/06969f334469ef83",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/4294dbbfd35a62e1",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/6b151ccb9eca59dc",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:gt6/b0d4a6a1e07aaa77",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:gt6/69ef935fe61eb4ef",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:gt6/d1b1e324284afb04",
+        9,
+        9
+      ],
+      [
+        10,
+        10,
+        0,
+        "cruciblecraft:gt6/ce0faea6848cd218",
+        10,
+        10
+      ],
+      [
+        11,
+        11,
+        0,
+        "cruciblecraft:gt6/9679c3e64eb7d883",
+        11,
+        11
+      ],
+      [
+        12,
+        12,
+        0,
+        "cruciblecraft:gt6/323fc8925dc533f6",
+        12,
+        12
+      ],
+      [
+        13,
+        13,
+        0,
+        "cruciblecraft:gt6/acdd30baeaa3ee36",
+        13,
+        13
+      ],
+      [
+        14,
+        14,
+        0,
+        "cruciblecraft:gt6/2fba7518edc68134",
+        14,
+        14
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2754,
+      "duration": 7404,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +400,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [

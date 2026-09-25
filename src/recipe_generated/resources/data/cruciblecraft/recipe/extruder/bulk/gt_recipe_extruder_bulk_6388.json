@@ -10,49 +10,83 @@
         }
       ],
       "hashes": [
-        "000b8ca2045955f89e5a1ad15ff001ee07338b11b8fb737eb8017ac350c19cf1",
-        "bf9212bb163205d1e285d9e15ce9f299ea0b5a318ed49f4bc16f24477f2ff9c6",
-        "6c7de1d65dd3475f7bba6eb93cdf65c338cbbf19a21397c3152f0a3721e96d0e"
+        "6ea6ec877ecd9668654e62ab9e9948f862d8ecd7c5b65c06fe6f536d3d379617",
+        "4e49ef4946613f1ca7953d13cbce4db59654e2649e717e0525de24839149808d",
+        "4b5d4a5bce53623701eb9581cb69c04a89175ff64361d3ee4fe0c6f5bc5cd04d",
+        "62951ed02160051f500adefe095b6da9b035135977ea6c931a6dbba1e88d942a",
+        "594486a31ef434ff1b7ac21d780ab0e82e231362eaf0c50773037d2e9aad124b",
+        "ef481ebfcde28d292a1e1d5ad6c613fb004abd423a3adc1cf4c4019c05f47aaa"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "iridium"
+              "cruciblecraft:prefix_material": "electrum"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:iridium/gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "iridium"
+              "cruciblecraft:prefix_material": "electrum"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
             "count": 1,
-            "id": "cruciblecraft:iridium/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -62,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c36de82448f72fbb",
+        "cruciblecraft:gt6/ee7da26a220490bd",
         0,
         0
       ],
@@ -70,7 +104,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/97b641fcc6b5575c",
+        "cruciblecraft:gt6/840873de0a436ed3",
         1,
         1
       ],
@@ -78,14 +112,38 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/ab51148346b911d5",
+        "cruciblecraft:gt6/52adc6bc31762667",
         2,
-        7
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/e141e16b966344e5",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/8ff31afbc9ba1aae",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/d27720435dd81fa4",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 10136,
+      "duration": 355,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        14,
         0
       ],
       "output_chances": [

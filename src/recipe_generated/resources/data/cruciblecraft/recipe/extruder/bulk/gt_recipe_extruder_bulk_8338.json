@@ -10,21 +10,69 @@
         }
       ],
       "hashes": [
-        "764e9d2ed7b3462afa39a067a4834cf59b8e2e9e1fa4760ecd1561114387c10c",
-        "94f160eb26c172a0e6157db86e02e0f30dab8d0760263e9bf08de8e520a3edc5"
+        "ca0289b9ed5b4de53f32b05cc79effec349ae11584719cfa6d1a0d29d12f7120",
+        "14539d47978a2b0e360435e9da066c94e12e1d362e99a125bff84b898bbaf001",
+        "730f2bccbc57f10538b6e9254d08ee027c4850392de41fc7a2ad7cc0320c0955",
+        "10b656ced11de626ccb55eb74d59e0f7ac12adc35b78f369aded74bcfb677420",
+        "aba9d9221c3305a2e32b044e6845a4b6cd1bdbadd62c75ece15044e60ac71392",
+        "1a2c3c221b84742a90e9ee804df0f0153e03dd4c760436801321a262494339ef"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:obsidian_steel/fine_wire"
+            "item": "cruciblecraft:draconium_awakened/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:obsidian_steel/bolt"
+            "item": "cruciblecraft:draconium_awakened/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium_awakened/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -34,8 +82,17 @@
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
             "count": 1,
-            "id": "cruciblecraft:obsidian_steel/gear"
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:efrine/gear"
           }
         ]
       ]
@@ -45,7 +102,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/63c8c62730ff3537",
+        "cruciblecraft:gt6/6f9b42a788868f0c",
         0,
         0
       ],
@@ -53,14 +110,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/728c92e9638ea68c",
+        "cruciblecraft:gt6/239d5daf3be6517b",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/e2a3a4132cf8e1d9",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/9b638de619c19774",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/dbfc4e83291e11ef",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/e358e285e3031fbe",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 660,
+      "duration": 121,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        6,
         0
       ],
       "output_chances": [

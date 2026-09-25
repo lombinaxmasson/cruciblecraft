@@ -10,17 +10,18 @@
         }
       ],
       "hashes": [
-        "22eaaeba6ada733cdc2e328d8decd79c1c93ed7c9b7d4a09e2d48f3d7613df17",
-        "f7ba974c17d53729a5d6360744ffbb75bb1191873c6d7418094d866f6a8ce00e",
-        "7bb73c5a90125a5bbf2bcc983564f114022cd5ff48647a25525a00f67568e4f1"
+        "077db9854d11fdc44f7116ead5cd23200613612f89c23e69cb18b0259ba93e01",
+        "90748f5a1bedeae611a83619f943e82ced0ef00ccdc13cfc3ae622992eabdeb9",
+        "d8044e8ce137d3867208eba923783818e1a278121fd56055b10aa4fb04070e1d",
+        "c3de10862831d4bc5afcb770b549e9286e7986782022282a654af514ac9467f8"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
+              "cruciblecraft:prefix_material": "dark_thaumium"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:quintuple_plate",
             "type": "neoforge:components"
           },
           {
@@ -30,9 +31,21 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
+              "cruciblecraft:prefix_material": "dark_thaumium"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_thaumium"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -41,10 +54,14 @@
         ],
         [
           {
-            "item": "cruciblecraft:titanium_iridium/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "dark_thaumium"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -52,7 +69,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:titanium_iridium/block"
+            "id": "cruciblecraft:dark_thaumium/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_thaumium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -62,15 +88,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fe8a032cf0f5b01f",
+        "cruciblecraft:gt6/5f29edab55cddb64",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/0be848523fd64367",
+        "cruciblecraft:gt6/02a0e78ac9b5155d",
         1,
         1
       ],
@@ -78,14 +104,22 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/e334d8d62525f032",
+        "cruciblecraft:gt6/4dfab9e1041fca7c",
         2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/6627e08fe5a666d2",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5112,
+      "duration": 312,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

@@ -10,40 +10,39 @@
         }
       ],
       "hashes": [
-        "8f32b77d5e4cde7409072317642017bafc09e6a412c8bd2d8370ba8e9996e7ca",
-        "522e8db51f71ea70b8386a59442cbddf91914a967172824e60e1eef5bc91ef51"
+        "1ca12cf1fe4ad381dbad76bd58284b2e31b2d0152bf3e23d47761caca8c8e70f",
+        "d798f94276c6b1942b13b10ff61801e2a1f9ad44f9b8e9e53099f215de54912d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_red_steel"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:damascus_steel/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+              "cruciblecraft:prefix_material": "damascus_steel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoflame_red_steel/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,7 +52,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a75a7f894326960a",
+        "cruciblecraft:gt6/71adf67ecb9d1511",
         0,
         0
       ],
@@ -61,14 +60,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/b8afd7b0ff3f2196",
+        "cruciblecraft:gt6/6a38ad0fb0049741",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3560,
+      "duration": 1387,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +78,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        12,
         0
       ],
       "output_chances": [

@@ -10,49 +10,58 @@
         }
       ],
       "hashes": [
-        "18026409a1757b26c72bafba8a48680659b86761b8dc9dfdff38a31710042e77",
-        "e9d21ed81df1d89f0cf019245546c0f0c389f0535c9662682b6f48574b66ad4e",
-        "1e663b860b991ef13034352aa90745988195d3981ef9a4391d2d6afb474d2a20"
+        "0ff1eed7ba830ad677ee4233b5c3025df28e8ceaf2670e65dfc5748b762e50a6",
+        "d4669ee9987bcbafc3f12b17a79f03ba3a0dc247583e6e55f5548999724fa9e4"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ultimet"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:infinity/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ultimet/gear"
+            "item": "cruciblecraft:cosmic_neutronium/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "ultimet"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:ultimet/block"
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -62,30 +71,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/15d19907d758febf",
+        "cruciblecraft:gt6/b00e4c2a9219d0c2",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/17ffc6002de8e9db",
         1,
-        2
-      ],
-      [
-        2,
         0,
-        0,
-        "cruciblecraft:gt6/66074aff09c04783",
-        2,
-        5
+        "cruciblecraft:gt6/1638a15d872892c4",
+        1,
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2699,
+      "duration": 12310,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,10 +97,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7000",

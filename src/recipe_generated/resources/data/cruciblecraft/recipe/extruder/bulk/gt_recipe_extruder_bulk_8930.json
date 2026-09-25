@@ -1,0 +1,132 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_8930",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "68fe3d795ebfe87cb2d6ae78b0b070e8b85831047d15c837e23497e1791f876f",
+        "54f1aaeb1c7128b975dc418ef72c1fbca0d2bfd93aa7114721b608ba3ce27061",
+        "de7ad30ba216b2b7f444e01d8e0f1fc4b644219980c87bd5177856604afb20e4",
+        "3c0ac78aaa9459785cd17fbdd8a994a4825ddb8a7504a24ae3d4c0d1b1732e63"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:desh/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desh"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:desh/large_fluid_pipe"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/3454ce48f9f28ec5",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/d604a087b6d46074",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/fc746ddd1e7b05a9",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/570e04b63479b1db",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 625,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        48,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_8930",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

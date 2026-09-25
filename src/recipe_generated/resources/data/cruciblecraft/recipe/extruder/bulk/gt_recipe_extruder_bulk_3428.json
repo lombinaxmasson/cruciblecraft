@@ -10,45 +10,134 @@
         }
       ],
       "hashes": [
-        "218e8b4272665a8673852c6b5fb8a194d0eea0081852021ae96d462d3bdea698",
-        "198cc59f7ebfabf9f68abe6b7d0c722b694e0dd4a29c92a4ec57605e928994bc",
-        "58aa9951d7371ac6389dec15aeb26bfff2b8de335eff53ae2c671594c63bd9f7"
+        "e1effd927d9852c45741b42eafd27708163c1e2362bcae0b0537a3001eefe085",
+        "43144d07a2de25f658be883e4df253fec0bbd9bf817f0536a7599a9aa3f3a69c",
+        "f5325cce0818e3519ff206336af669cdbeb8c1fe21da1fd945c6ea5ac45abc49",
+        "827fb4b931bd530e573c3994f968cf28fa6d1e3fdde77aab02bbc55fe5524111",
+        "f75e11fa8cd85274030970afb9382686620e09fd3c0e46b4690bbafbf3c5c8e1",
+        "1ea45cf09b84258a25c03717032dce06b2196e08b7d728fd82388f8a56cb28c4"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ferrite/foil"
+            "item": "cruciblecraft:nichrome/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ferrite/small_dust"
+            "item": "cruciblecraft:nichrome/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ferrite"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:nichrome/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:ferrite/block"
+            "count": 64,
+            "id": "cruciblecraft:nichrome/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:nichrome/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:nichrome/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:nichrome/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:nichrome/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:nichrome/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:nichrome/wire"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:nichrome/wire"
           }
         ]
       ]
@@ -58,30 +147,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c3ca83f35eda6ce6",
+        "cruciblecraft:gt6/644ac62d6808a397",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/1a20476c8f536e51",
+        "cruciblecraft:gt6/f14cc3f299308546",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/3aeacad055c1343e",
+        "cruciblecraft:gt6/31882757adc62eaa",
         2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/aa09256f96f91a50",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/4b1d184d9565267e",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/31bb965f35987c43",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 88,
+      "duration": 11281,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,10 +205,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_3428",

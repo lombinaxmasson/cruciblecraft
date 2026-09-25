@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 421,
+      "duration": 11372,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -22,16 +22,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:nikoline_alloy/rod"
+          "components": {
+            "cruciblecraft:prefix_material": "osmiridium"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_huge_pipe"
         }
       ],
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:nikoline_alloy/block"
+          "id": "cruciblecraft:osmiridium/huge_item_pipe"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "cde400deb55788b4544203630fc69ec970be362d0ee90602a7c8dbea96fdf6b1"
+          "0250e6f17fe3831532c7c37ce0920f838795f44c7f77f25752f67e276e33a4eb"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9427",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/2458eea3e0e9f3fd"
+      "stable_id": "cruciblecraft:gt6/39f7966bea47f8cb"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

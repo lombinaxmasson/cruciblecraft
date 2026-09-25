@@ -1,13 +1,87 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_9605",
-  "publication_group": "cruciblecraft:extruder/bulk",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "0338d4cc93c7680a86af8b65a1fbf3bab5dbdcff7c973a20545c1a919cf2547c",
+        "e47c1bc6019b0c2bb917acbc5977428318a223c6a4551cac0d53c8f2d686aafd"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:molybdenum/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:molybdenum/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:molybdenum/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:molybdenum/bolt"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/2cb4fbd2685549c4",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/00c8c4bd90f52570",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
-      "duration": 1031,
+      "duration": 5748,
       "eut": 96,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -17,38 +91,19 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:promethium/rod"
-        },
-        {
-          "item": "cruciblecraft:extruder_shape_block"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:promethium/block"
-        }
-      ],
       "output_chances": [
+        10000,
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "b5573a79192bc90b5dd9e0432d2e395a192b3e1b101471b934c52e9ac0850794"
-        ],
-        "selected_source_recipe": "gt.recipe.extruder#bulk_9605",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/0bd88b3c87ad7074"
+      "selected_source_recipe": "gt.recipe.extruder#bulk_9605",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

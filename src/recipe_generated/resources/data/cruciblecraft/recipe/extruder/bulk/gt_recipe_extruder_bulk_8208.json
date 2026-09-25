@@ -1,92 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_8208",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "f16892413099be39cb67aa98033927f8fbfc0621e2bd953cf0aa4ce824dfcf98",
-        "7934af5ae8ff2397f09bc430614c4b7bf9643e4ee90055b5c20f7d26c9265eb6",
-        "8303e9dab6d9ee5f4d6106fa0c4ef33314845480bc4d02e698230622e3cc32e7"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "nickel"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:nickel/gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "nickel"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:nickel/block"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/c43a16a3dc02f4d1",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/2890c935ef41ba54",
-        1,
-        1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/c391b9263e44ea1f",
-        2,
-        2
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 2369,
+      "duration": 200,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -96,18 +17,45 @@
         }
       ],
       "item_input_counts": [
-        3,
+        9,
         0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "kreknorite"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_hammer_head"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "kreknorite"
+          },
+          "count": 1,
+          "id": "cruciblecraft:tool_head_hammer"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_8208",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "b74e584bcc4b915e273125a58cc1cfbe3aeb479190238a592e64ab30ab6a20fe"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_8208",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4ad243416fb95ec1"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

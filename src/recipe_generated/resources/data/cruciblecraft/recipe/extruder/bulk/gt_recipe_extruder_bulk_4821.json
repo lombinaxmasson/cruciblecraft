@@ -10,67 +10,115 @@
         }
       ],
       "hashes": [
-        "83097d8e69d5c7de1df86711e6fdcd87a6b7f925fcdbe98d922062b7afb00d91",
-        "826bbeff7a2714f87c6bb820a581543bba6e5f8aefbba259abd57f4a8a4bd359",
-        "097bc8a95bb7e16bc84e5d042cc6df97d245c53153cd5ccd0575b9ee26bf32eb",
-        "42acd31e781652f7ef3e5b41c95874b0c518fc72e3ad62d65ac9666a556a6b15",
-        "ebdfcd0b27a78bacc30c881088d4117e3595c2c590cb1c2af78e5216425f71ba"
+        "e9d43a97d2d512353009021a3f560a6f32c2e2de2243132ff29473e048120ab8",
+        "77d84b36bf21b51c6f4e73bf2310420c2a33cb05e2e7dfc37a18484866c95ced",
+        "c89886ee359f50bf9bf4d965106c9c1fd006a53a916d4b3c140284f8a0ef78f9",
+        "39b481102abc76350014dcc64ceab925d5b60abb09bf4e9b4236fb27fb3cabca",
+        "c85d334b65d001401b0b91153c9ffedb3d3107c673966c22621e017cb8154185"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:shadow_steel/small_dust"
+            "item": "cruciblecraft:knightmetal/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:shadow_steel/foil"
+            "item": "cruciblecraft:knightmetal/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "shadow_steel"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:knightmetal/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "shadow_steel"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:knightmetal/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:shadow_steel/ring"
+            "item": "cruciblecraft:knightmetal/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:shadow_steel/block"
+            "count": 64,
+            "id": "cruciblecraft:knightmetal/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:knightmetal/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:knightmetal/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:knightmetal/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:knightmetal/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:knightmetal/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -80,46 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a786657fef7abc43",
+        "cruciblecraft:gt6/b31ee6d746d5a67d",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/d2bfb278fafd1774",
+        "cruciblecraft:gt6/e96c0b2bbabfc774",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/bec4e916bcf2406e",
+        "cruciblecraft:gt6/ba3fe8b4fb68309e",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/e84aff2d623633df",
+        "cruciblecraft:gt6/49fde996aae8a974",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/64096b7f159e9d9f",
+        "cruciblecraft:gt6/e01cd52a475f3153",
         4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 870,
+      "duration": 12610,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4821",

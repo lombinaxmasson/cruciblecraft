@@ -10,17 +10,16 @@
         }
       ],
       "hashes": [
-        "e4d994e14416af7baa9ffef2a32ec3889941356c464d4755252b34c2a8e3e6b4",
-        "d21c624e65ec9e3e0cc4575f6494ebbe8b0f76290ad4b09b7c1765304d79718a"
+        "3e5e7e946fb63bf7e20b0086a38da6ac59c49a00d7572f40130e07ac5579130a",
+        "fd9c11bdb60e8eaf45246fa4c36643450164d326484cfd5646aacd795f7731f0",
+        "862e7a753d6dbb6f05e89ab941dcd0a901a906f6040b6601cffb5d220754d8c0",
+        "950731c2dd2fbcca74426973afc7c09a16feb8dd54a664a3a9326f93db79caf3",
+        "e924ede5aa38c72f957a4154326cecee3578d740a4e82ccc62954490b7864b30"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hssg"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vanadium/long_rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -29,10 +28,34 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hssg"
+              "cruciblecraft:prefix_material": "vanadium"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium/plate"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -43,7 +66,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hssg/block"
+            "id": "cruciblecraft:vanadium/block"
           }
         ]
       ]
@@ -53,7 +76,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2cc890ff6bb697e8",
+        "cruciblecraft:gt6/b940421e66e17edd",
         0,
         0
       ],
@@ -61,14 +84,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/3127cb3dcd5afc34",
+        "cruciblecraft:gt6/591d425783e50312",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/2bd0abe3512671d4",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/ed8f9bf754f42b3b",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/b502d1768aadc19a",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4228,
+      "duration": 1604,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        9,
         0
       ],
       "output_chances": [

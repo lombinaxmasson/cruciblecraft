@@ -1,71 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_9594",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "6a0910586e4d22d4ad58f330cff02e3a384cee2898534afda77eca1543839dfd",
-        "54ac0ba74a7e02fbde4448314143d3b075b18ac5ff2f80d698b5e1bc908bf38d"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "naquadria"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:naquadria/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:naquadria/block"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/fc97dd4588b7eb67",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/31072ecb0858dadc",
-        1,
-        1
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 3353,
+      "duration": 60,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -75,18 +17,45 @@
         }
       ],
       "item_input_counts": [
-        18,
+        8,
         0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "tungstensteel"
+          },
+          "items": "cruciblecraft:dust_div72",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "tungstensteel"
+          },
+          "count": 1,
+          "id": "cruciblecraft:tiny_plate"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_9594",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "5f135ff7d80c86d4f7aac4314c9f17c8266f362522882a75e738843a4cf4fc43"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_9594",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/551756cb15707bdf"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

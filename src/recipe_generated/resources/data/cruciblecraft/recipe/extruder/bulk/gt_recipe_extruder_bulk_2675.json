@@ -10,32 +10,72 @@
         }
       ],
       "hashes": [
-        "7d803054f8b3c5f47dac0f5010d1ae0f68efad444d2d534a6aff181b4710c21d",
-        "1af2c3f15e62b65fd060e2cab9f292cc85d566fa606e3eba9cab557103c6ef27"
+        "8066db923b12804c67101bfefc8e9848da941b0146942e677f7a8d08c7badad3",
+        "4d40af43b2d33d8863263ccad03e34556299e1411b085861b1d794633d3f4723",
+        "d1395cdf2ba20284f5f4a11d7a23b57d07c893c54dd616c50e11cd1150ea38b3",
+        "2b64d4ac5cfb9b4d10f4d09012a25a608e8eeeb988cbbc73e876ca3fe69745b5",
+        "558e5f11f8341fdbe5b390b465c4548ad82bd5c77ae8d7d11abf3d5c4fe38b23",
+        "4ac03508ef92aa3e448e2bf53cb6b843bea6dd92a841d8ee13cd4bc80edaa1e0"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "clay_compound"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:enderium/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enderium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "clay_compound"
+              "cruciblecraft:prefix_material": "enderium"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enderium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:clay_compound/block"
+            "id": "cruciblecraft:enderium/gear"
           }
         ]
       ]
@@ -53,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1d252655f1fcacfa",
+        "cruciblecraft:gt6/f65837efe3983723",
         0,
         0
       ],
@@ -61,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/873923afdc897efa",
+        "cruciblecraft:gt6/3fa51a37fe5491a0",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/7f4bd30f360aa3c0",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/63d99c2c7d660324",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/8a1d5730c133a277",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/ac9a8fa91155e39b",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 406,
+      "duration": 1205,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        36,
         0
       ],
       "output_chances": [

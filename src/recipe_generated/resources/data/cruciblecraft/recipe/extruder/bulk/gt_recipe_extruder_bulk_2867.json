@@ -1,0 +1,174 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_2867",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "efc381eb7b0c9ef409105131bbb5d3d8f34f68389ff2bf2449e6d36bf95f0df4",
+        "fdb74d4b0c8d11488675b531572113053a412b9c70b3e95cee6eb02c4ae96755",
+        "207a1ccfc69fbd7badb2dec9796be115b4319a1c837e219a2473ad4cb3bc15eb",
+        "67e6b39063d99e5fd98348ca833a1d1cb922da7f0a2c647bbd1a5ab83f141bdd",
+        "2595b1f751fc29bd447f5a2fd05fce6892e6b3b24a0342c72ef7eeeb77b3e8e9",
+        "4095ba438dc2a1bd68166c280b2571551788040cd48e3c2ced52950cdf2acfa5"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:draconium/large_fluid_pipe"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/5e59d4e2e7eea18b",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/1b5f5ddf105847e7",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/6948f373de4c4d52",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/4a1477b42b1f2646",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/380de1cc31eb88f9",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/f27808f65b34c7f8",
+        5,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 390,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        12,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_2867",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

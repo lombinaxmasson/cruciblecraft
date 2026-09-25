@@ -10,42 +10,72 @@
         }
       ],
       "hashes": [
-        "5c0122f5ea7280937e00dd03ebf3d2f0c09926f28785242916fe4b0389409d38",
-        "56f5a128c15ea0212a1a42d3f764658925ed2db48c78efc94ee8b8b2e2cae556",
-        "b3ccea1d4e1a87a745de5de7a960c34289892ba0787dedb0dee7fe8ef09e3ff5",
-        "a9ec8c541a0ced8617afefc799539291b320aaaca725d396ef47e68b5976987c"
+        "9d96168d17711b0d8580842cae09c0fc4d2090f3c3b357259f1f7033863d9b07",
+        "4c46025054e64767bfff10356d7dd803489fde00f88876f3213a47f5c6d90721",
+        "241cf83ffa40c371f661e43fdb743082407b3639418d6da98e4d99c971b8983b",
+        "d63fa36bf6ce73c7a5194f4eac8c03bc7f955e6790e9b77897e9da5eedb50a45",
+        "e35030b605ff5cc51b0afb024b74581c8b64b4f697cf21293ee3d7091deb95b6",
+        "630f582d52587f3721ee7d3afd252098672f3341a660d02fc0261ca428a9717e"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:sanguinite/fine_wire"
+            "item": "cruciblecraft:electrum/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:sanguinite/bolt"
+            "item": "cruciblecraft:electrum/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:sanguinite/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:sanguinite/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -53,16 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:sanguinite/rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "sanguinite"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:electrum/gear"
           }
         ]
       ]
@@ -72,23 +93,23 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/494bf8a40386650b",
+        "cruciblecraft:gt6/edc00d0c4c29dac0",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/02fabcabc4859cd6",
+        0,
+        "cruciblecraft:gt6/3ecb80816c7416a6",
         1,
         1
       ],
       [
         2,
-        1,
         0,
-        "cruciblecraft:gt6/64cdee76c63402cd",
+        0,
+        "cruciblecraft:gt6/10e6cc3eb4aaba54",
         2,
         2
       ],
@@ -96,14 +117,30 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/1699fa18fc634531",
+        "cruciblecraft:gt6/077d5ed97e729b6f",
         3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/19033481f9ce4817",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/735bbaeefb2ba864",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 294,
+      "duration": 912,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        36,
         0
       ],
       "output_chances": [

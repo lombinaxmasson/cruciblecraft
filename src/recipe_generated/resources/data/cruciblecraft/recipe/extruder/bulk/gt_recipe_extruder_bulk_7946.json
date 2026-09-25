@@ -10,16 +10,19 @@
         }
       ],
       "hashes": [
-        "b228218b7beeb143f2328a723ccde58fb33ffa0e6a5f6d623ac880b89c0fd910",
-        "54c953fbc3d28cfbe2084afc8f76ff92b263c6fb0d803f1890e1bbf3424f0846"
+        "4c198ba5e429db87b6775930501c491a7f5605d59e6861f37d24ae2da405580a",
+        "8200512fffa1109a74df4bb9d04f070e8a6d61ddf4bc57c61377c13c341f3531",
+        "46d9ff4c8bc635c62de7dce4a94214b852103ac4f9c63a22432749c3a7c9eea8",
+        "82868bc9953589574a7bde8811fa1e0838307c3fbbaf83c85e293463c9b37bfc",
+        "3a327f0e616107815018813b7569f00052fffa32605bcc1ee2e7e24a0d80ffad"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hafnium"
+              "cruciblecraft:prefix_material": "naquadria"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -29,10 +32,34 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hafnium"
+              "cruciblecraft:prefix_material": "naquadria"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadria/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadria/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadria/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hafnium/block"
+            "id": "cruciblecraft:naquadria/block"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8bee3b43d3502db3",
+        "cruciblecraft:gt6/3d189039f29c383c",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/9b3689e1294de6f7",
+        "cruciblecraft:gt6/2bd9a664f9f48bf4",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/846a732309bf55e4",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6d4dab61194199bf",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/e8a640bcc1fd08e2",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4546,
+      "duration": 3353,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        36,
         0
       ],
       "output_chances": [

@@ -10,80 +10,71 @@
         }
       ],
       "hashes": [
-        "1abf36470acf9b36fa3c345a9be1062d3c2b4c89dd11e95edaa316a47094fb97",
-        "eac1ed6d69eb93b2a72962458886c59628b5515c7410a228f2ab5a649826eadc",
-        "0f30db3f5a15c27b2c92afa009ab089b0e12bf0c5589dff95c3b284e257f7044",
-        "c9167eca5fdf7ead44506f0c34ece097fb7b4dfc8286265e5d62e11867f1f0bf",
-        "084654564ef5da4844a554ef5c9eef1be9e22fd58bda9ff60966bac2731c121c",
-        "ea79c0e8bb06ad7d6c1f057add644a8cbe3d9aaf41c8c91560aa43b94b88783c"
+        "fb6bd79c29bff03df67a40d94cf2a379ecc9ba825af76911e052b1582aea9253",
+        "e9a15bc27e12264de598795c1e553d687aa3d1efd91c4f5f795d2f5ac1a3e98a",
+        "0a9cc1adc22da35c23b07eb6952db4f578ffd98ae71ae913e3f85ba2b40a6292"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:electrum/ring"
+            "item": "cruciblecraft:stainless_steel/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:electrum/foil"
+            "item": "cruciblecraft:stainless_steel/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "items": "cruciblecraft:rail_gt",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:stainless_steel/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:electrum/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:electrum/block"
+            "count": 64,
+            "id": "cruciblecraft:stainless_steel/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:stainless_steel/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:stainless_steel/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:stainless_steel/ring"
           }
         ]
       ]
@@ -93,54 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6f2b5c474a552960",
+        "cruciblecraft:gt6/3e7ffb1fbaefe6b3",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/da780bbf1521f717",
+        "cruciblecraft:gt6/752b33b6e3607e3e",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/347dc99bf614d74e",
+        "cruciblecraft:gt6/d2c6333232672b51",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/d2e603a0b3dc5a33",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/0d543a373710ccc3",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/e4aee4dc29e5117c",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2052,
+      "duration": 5205,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5632",

@@ -10,40 +10,71 @@
         }
       ],
       "hashes": [
-        "9e6a19d34638faf9fc110ca4bdd525f336bd5a0b5e7586725f0b66e4dc6fa149",
-        "4ed299151fa54eadfdd3ef05edd65c183adddaf76e482ead22431e57aa7fd2d7"
+        "25842fd3fe1fef9941bea26e2fc1ba2c2174e382b193370f7c688de0d979c4a7",
+        "a4c389da7989f9fafae96e9db77a6eb6a56f9af412d64cd610891989e998e6f7",
+        "7daef105394f91208e8178bccc49a8d7d3db6d385d5b5d1a5940c696d33ca4f5"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "gaia_spirit"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:alduorite/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "gaia_spirit"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:alduorite/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alduorite/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:gaia_spirit/block"
+            "count": 64,
+            "id": "cruciblecraft:alduorite/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:alduorite/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:alduorite/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:alduorite/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -53,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f1ceae599849dc4e",
+        "cruciblecraft:gt6/d5ff47be8add9179",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/90cbaaca3228b7fd",
+        "cruciblecraft:gt6/7f22c6d63ddc3d68",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/12f6871fe0fba91e",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 564,
+      "duration": 1380,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8820",

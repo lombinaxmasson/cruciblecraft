@@ -10,36 +10,130 @@
         }
       ],
       "hashes": [
-        "9db9e650e358ad07e7ce21b21dfdaa6f73e699fbeb98574f51b2940bc83cd7f7",
-        "35c07262b5550c03f8919ad027d6018cc37a2de8d027d267857d5f888e341dcd"
+        "82548704fbabec7a98454b8fee6f47ed66bcbb6b4b50c051edba75e446430b2d",
+        "e0f265f8b9c5eac5e7a6cd7faa0d2e450e9083c1bc33b64887c723a5e6e3a36a",
+        "fba934ac22a6c955cc9dfecfd13c25b2387a3d3efc182bb450a8c0d800fa9cd7",
+        "70e5b5d4c7fec178057c64e95295c8de806b75bf466767beb84970c094059691",
+        "e0be9e545928c24f7c1ceb3e51c2152dd89aefdc76882d4fd1a4d1a2bc4f4af9",
+        "a0c3a6418c1f2e80f81c5b14a0d511b11d3575cbfee5c877ef77062148028fdb",
+        "2a780246f6224a339a401cd6e598136e0293c13437ab97b62cc3e808982f4707",
+        "1cd0ca1ecd9f36f196ef384cf7b3351d6111e2715f5753aeeb8638e38f2e4c97"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:draconium_awakened/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "draconium_awakened"
+              "cruciblecraft:prefix_material": "nickel"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nickel/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nickel/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:draconium_awakened/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:nickel/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:nickel/bolt"
           }
         ]
       ]
@@ -49,22 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4182f7d7aa36082c",
+        "cruciblecraft:gt6/f0b101fc421c8ddd",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/8b2bb5ec195be8af",
+        "cruciblecraft:gt6/2523f3b4091481b9",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/946fd9b610f59df4",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/3adf3ac24febc6a8",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/b5d8436815e43aa3",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/abe30ee6aa9b3c55",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/20a094cdd2c922c0",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/6df68473177d3f0b",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 322,
+      "duration": 1777,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6669",

@@ -10,16 +10,20 @@
         }
       ],
       "hashes": [
-        "2e5a8642830bfc6b628681543e3c14cb5110f77fa644fee72d134527985799c7",
-        "824d63ac977bb3ddebab77f23f3bd5a5e1193d4e17eb87345b14822c60866341"
+        "9a51c2980bddf5c6edba69b28a48c19ac744a3a61a012d7ff91728f8af37f84c",
+        "310e239b746bdab83db2d43031f7747b29b0eb6ed8643aa6f4911c0c4f99c877",
+        "48196320ee202bc0de4d832aac3232c79376f7406e7283c0cde9ce83a0732e5b",
+        "5fd0e96166f2d0cc9d035882c79ac670b872ce171bbd6dbcd36c11a7dcb88d31",
+        "b99f6ddd8ccd35b3ff9ea95e2a1e54a0e8059923bb02800bcbcde39a638203a8",
+        "56789b4950aebb9af1a1c0b7ccfadd74896b207a7128f9922bd51807fecbd79e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "terbium"
+              "cruciblecraft:prefix_material": "steel_galvanized"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:quintuple_plate",
             "type": "neoforge:components"
           },
           {
@@ -29,13 +33,61 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "terbium"
+              "cruciblecraft:prefix_material": "steel_galvanized"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ]
       ],
@@ -43,7 +95,22 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:terbium/block"
+            "id": "cruciblecraft:steel/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steel/large_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,7 +120,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3b7b56dc5cb92827",
+        "cruciblecraft:gt6/e1c1d85bb93dd2a0",
         0,
         0
       ],
@@ -61,14 +128,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/df6984f158b1922a",
+        "cruciblecraft:gt6/4beb5ffc1e80370f",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/5c289c27f0f42d24",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/ccd42c3817eda33e",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/b6df180f690f911f",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/edb9f4d09290d864",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1527,
+      "duration": 2345,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +178,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

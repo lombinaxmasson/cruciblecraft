@@ -10,20 +10,17 @@
         }
       ],
       "hashes": [
-        "2c37ca1b942ff8a8b7d3a298c0854872faf068e4f08e0206eb40ee45e3c74d99",
-        "ab878d009413c86332e958020faa7945f680f2c5125ef2655839ca5699d5598d",
-        "3e0f06b7ce90d4e0aa0a67ba62310a551871fc662437e86427ed543bdfb24374",
-        "70276d9fbd3a7c62defaa3950ea97802d226655ed1029051cec5d9bbce42d507",
-        "51ca790af5e6d26a991f6c6dacefa65aec8b25de00f78965ae283dcccee8e494"
+        "301c56833e62dc065b00c4d59eaa8fdc4608922cea8d71d4abdd1fa88e328ae9",
+        "83dea587c2c3025e30853200d0f34be3f3009a40600ce615b5e5e6ea6f4f9821",
+        "8f407f743f0eb6904b1aba2c2c967ac8c6ddc34707e89e49f37d1b6b21e90555",
+        "4e9118193e99dea20a6b323d328f8319b1ef18500bb5d095dcf5723d76460aa3",
+        "96e5490e19df99ff8ee4c067e1f63292afb78cc2b7518c27449033e235b700bd",
+        "968db8f21b1ad8e50a6ec0cd9f2f72aae42e0b91422a87ded8fc982ef2ee51ea"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "haderoth"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hsss/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -31,7 +28,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:haderoth/small_dust"
+            "item": "cruciblecraft:hsss/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -40,7 +37,7 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "hsss"
             },
             "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
@@ -51,7 +48,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:haderoth/ring"
+            "item": "cruciblecraft:hsss/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -59,7 +56,23 @@
         ],
         [
           {
-            "item": "cruciblecraft:haderoth/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "hsss"
+            },
+            "items": "cruciblecraft:rail_gt",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsss"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -70,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:haderoth/block"
+            "id": "cruciblecraft:hsss/block"
           }
         ]
       ]
@@ -80,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fa18f99be61649be",
+        "cruciblecraft:gt6/668f16f02d898329",
         0,
         0
       ],
@@ -88,7 +101,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/eda5121d2e171284",
+        "cruciblecraft:gt6/23d5f8c7e5bb5590",
         1,
         1
       ],
@@ -96,7 +109,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/2657e3556545b5cf",
+        "cruciblecraft:gt6/1b5343e18e331b0d",
         2,
         2
       ],
@@ -104,7 +117,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/e46ce20e46eb1459",
+        "cruciblecraft:gt6/d41280483d566ed6",
         3,
         3
       ],
@@ -112,14 +125,22 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/cf6304ae2b8ea921",
+        "cruciblecraft:gt6/24fc77795f369bcb",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/08a80635f6fcf5a4",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4668,
+      "duration": 5210,
       "eut": 96,
       "item_input_actions": [
         {

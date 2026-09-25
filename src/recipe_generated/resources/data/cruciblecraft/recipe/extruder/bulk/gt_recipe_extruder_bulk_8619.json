@@ -10,37 +10,72 @@
         }
       ],
       "hashes": [
-        "78bd4e419589a49124e447daa47c5f2affeaa70ebef944a5705f20e7602e7dfa",
-        "0e4db911daf2cde2dfa8644f49a9bffef077a7bd4790ccdf5b635c1f03f97bf1",
-        "f9ef8a297ba7581b6645622eeed1353399397380f17579a60a8e3646b4b8ee03"
+        "5ef4551e6aab81f3de79c60b4a1a44abe9c4ffab98b351c20d521cc13fcf7b02",
+        "de5f4225f72546b9758ff25a54aad700f82691e936e7911b12cc274b87786a70",
+        "6f6d55c77fe9255f335d41fa5c1d8815ea137675e3185e475b3e43708d70cdf4",
+        "ff5b4d2301f55dff32e6bf5ba9a7118303db693e007a2ec68bb7eb1019f2ca89",
+        "69b740d9164d4d12f5f48d7ba0746d9a3a7796f6f922b11e1a77374c12a6193b",
+        "f4508f55f0d468a9a636dd17c00de0c5d120d213745beb5a50b5bb14ec812a74"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:clay_compound/foil"
+            "item": "cruciblecraft:naquadah_enriched/tiny_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "clay_compound"
+              "cruciblecraft:prefix_material": "naquadah_enriched"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:clay_compound/small_dust"
+            "item": "cruciblecraft:naquadah_enriched/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadah_enriched/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -48,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:clay_compound/block"
+            "id": "cruciblecraft:naquadah_enriched/gear"
           }
         ]
       ]
@@ -58,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/37c39bac284a3f61",
+        "cruciblecraft:gt6/076fce04a5719103",
         0,
         0
       ],
@@ -66,7 +101,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/85a5e146d6acb004",
+        "cruciblecraft:gt6/6cd70034cba09d95",
         1,
         1
       ],
@@ -74,14 +109,38 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/1cd530327db2816e",
+        "cruciblecraft:gt6/a77b2079b0b74ee0",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/5075540ed0386985",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/79575de305a07fc8",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/0554ddde060090bc",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 365,
+      "duration": 1640,
       "eut": 96,
       "item_input_actions": [
         {

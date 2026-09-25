@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 56108,
+      "duration": 1944,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,12 +17,16 @@
         }
       ],
       "item_input_counts": [
-        2,
+        14,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:bedrock_hslaalloy/machine_casing"
+          "components": {
+            "cruciblecraft:prefix_material": "chromium"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
         },
         {
           "item": "cruciblecraft:extruder_shape_block"
@@ -31,7 +35,7 @@
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:bedrock_hslaalloy/block"
+          "id": "cruciblecraft:chromium/block"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "43ddf4c0552978b599b4c99a075517b79734c08ac270e23c5e1380d15c496dd1"
+          "3949302373f82d94263cc34224b23652421c3b94114a777820298ff0a86dd522"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_8772",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/83bec2883446b671"
+      "stable_id": "cruciblecraft:gt6/ba717114500d2e48"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

@@ -10,13 +10,40 @@
         }
       ],
       "hashes": [
-        "2fe913b9066abb78260771f554ef79bd830854261277205862c7da875a73f4fa",
-        "1a4e5afb5d54c1bd6be0dd01890677c40b0b029289542c572fe48488174bc61d"
+        "4024064120a1bfab591ad19ec5c6e5c89235b8629d80da6926e2cd0511f68e67",
+        "c618764897780fca249e54a6461614e895860cc3c660d2a5db7fa122a0a70b39",
+        "0ace313a90c1d77410a5264e3d9514c989431a37666570b0d38179a3659e9705",
+        "ec71752d46779886b8864838597a5f1c4b57a6d259cd7dab7cc2de16ef721854",
+        "7ea34f4c0fa9bb13c72f87d80a2ee474c0e566ee5d55d3559f058f207670434b",
+        "dd2d32a31d96feeebc430ed20ace19c3330d3fa7e0975edb23cff587733e11af",
+        "5ada9992a6674ea286f91942128c5d17bd9ea5c4536856a30ce9890da059ddc2",
+        "ac7d7fed1ebe8fe135b7e94c3ba066a093e564182b81903c29d2c9675986ba57",
+        "65646554d5be2196cfaa543ff144f11f3156eb4606bf3becefbd43df9a3551e6",
+        "8ac9b5620bbf77c72d7cc80c6950a6f073ca0c96c33d6519c91e45b35967890d",
+        "539aaefac3cff2fb3c30e8982bea61952942a9bd59878e9191992e10d4b7425e",
+        "20155528ba6fa22ec248805a2b9befe0a7191a2586e67974459ee14a7bd62cd3",
+        "25095f7f974cd4608131fc5476e4b2afc4a5770ddbfea019814be6d745a0d45f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:tartarite/rod"
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -24,22 +51,183 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tartarite"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:tartarite/gear"
+            "count": 56,
+            "id": "cruciblecraft:amordrine/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 56,
+            "id": "cruciblecraft:amordrine/plate"
+          }
+        ],
+        [
+          {
+            "count": 14,
+            "id": "cruciblecraft:amordrine/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "count": 56,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 56,
+            "id": "cruciblecraft:amordrine/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "count": 28,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "count": 28,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "count": 28,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:amordrine/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "count": 18,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "count": 18,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 56,
+            "id": "cruciblecraft:amordrine/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "count": 56,
+            "id": "cruciblecraft:tool_head_raw_shovel"
           }
         ]
       ]
@@ -49,22 +237,110 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e2d3a4b1276f6308",
+        "cruciblecraft:gt6/2c78f02e6c35ce36",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/40b2568210afcd2a",
+        "cruciblecraft:gt6/a53102da05cb2850",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/0f5d7f411a863c5f",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/e41fea3998aa8a39",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/842cb51b6257e0a3",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/ce62bdfc1de86a11",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/beceee454a449967",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:gt6/2fc075c8d557b0d0",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:gt6/0f920e52da6f8838",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:gt6/304ff421e7c39d59",
+        9,
+        9
+      ],
+      [
+        10,
+        10,
+        0,
+        "cruciblecraft:gt6/7d6aa045fe30a7d4",
+        10,
+        10
+      ],
+      [
+        11,
+        11,
+        0,
+        "cruciblecraft:gt6/89ad9c934cb558b7",
+        11,
+        11
+      ],
+      [
+        12,
+        12,
+        0,
+        "cruciblecraft:gt6/01febcf3ac495bed",
+        12,
+        12
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3294,
+      "duration": 18093,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +351,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [

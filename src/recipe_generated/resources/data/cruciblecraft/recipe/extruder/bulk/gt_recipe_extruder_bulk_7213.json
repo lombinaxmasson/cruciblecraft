@@ -10,40 +10,62 @@
         }
       ],
       "hashes": [
-        "25a4a8b4083c35db2a5e2d1e2fcae224274add80a07898a60597fa463e7bdf70",
-        "ba85df29023c4fce9ec52ce78af095da80ce9e26d57c1474ba07ba0a7238809b"
+        "e77d0277478081948786228182ebdcda097ff981032668dcaa6b3a4dc77fefe2",
+        "be457223900112e2d877e6543a55ba8769ef659924732b1cf9775b02d7246517",
+        "c8d763bc0d2cccb21e457c313b319c71c5cf6d3bce02bbface31e1db78a09dee",
+        "39fc5eb36202bade85bdc9dbce0218b681aaf847b412504de33ef25645d5dcc6"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_blue_steel"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:palladium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_blue_steel"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:palladium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoric_blue_steel/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,7 +75,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7eeb5548888d2810",
+        "cruciblecraft:gt6/1919d96a8895569d",
         0,
         0
       ],
@@ -61,14 +83,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/708ebe37b67798df",
+        "cruciblecraft:gt6/b93baf2a707b50de",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/83a5d461a531de49",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/fe95f690801e5e95",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2066,
+      "duration": 855,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        24,
         0
       ],
       "output_chances": [

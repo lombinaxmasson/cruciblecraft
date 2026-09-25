@@ -10,36 +10,71 @@
         }
       ],
       "hashes": [
-        "324428fb3070e8d1cdb97a01e3ed373021ae1744d34eee56fa5030fa01807e15",
-        "23231cb7a6529cb7d7d73bbca1e2a7035575385ca19727804e95a3c3438401e8"
+        "a92f67c9c4e5f34c15900b03604b1ea56a082614c9b1ac31b1c10ef44d38f77c",
+        "6216abc75ae8f9c3060b19c17121c71b132564420603689ce05be1bf35851454",
+        "d5b8bfb75498c8aae0cd7498468bd307a83643051ad772e52d6eb4fad385743a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:draconium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "draconium"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
             "count": 1,
-            "id": "cruciblecraft:draconium/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:osmiridium/item_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -49,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d897626389b61d5d",
+        "cruciblecraft:gt6/f8b7aa854bf45503",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/344e5f2eba70f08a",
         1,
+        0,
+        "cruciblecraft:gt6/d4fab57ff2029f7c",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/79dcf28589fcae75",
+        2,
         2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 585,
+      "duration": 3159,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +118,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        5,
         0
       ],
       "output_chances": [

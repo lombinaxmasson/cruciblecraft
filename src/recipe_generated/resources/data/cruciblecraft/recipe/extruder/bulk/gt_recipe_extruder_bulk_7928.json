@@ -10,49 +10,62 @@
         }
       ],
       "hashes": [
-        "2b897beea472dd1dd27206a36e9b5d5e7092d003a34efc7d7c7ac5895358d623",
-        "5ecfb7012b2790502029cba41bcc16587a19036d5346b7896be84de1865621ee",
-        "9d30f67f3bd716e60ddbe3dcee569819f8b229344b176645b718978589e4f8c5"
+        "add22925fc9cd54f74d5c6bbb47f5ba314ecc77de8d4a986aa1ff306765d3c38",
+        "0062c2d00089b3903d91561ef58f540c86401258ddef99197ca78df6a37d3796",
+        "2b3de2afe32a2cb5a6e687edfe01e7bee701bde4069c4d0cf8bf608caa853827",
+        "08e5b9779698c079a7df3828d381903c0031469a032eeb3b2e25933c416ac1df"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ignatius/gear"
+            "item": "cruciblecraft:rubracium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ignatius"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:rubracium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ignatius"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:rubracium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rubracium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
             "count": 1,
-            "id": "cruciblecraft:ignatius/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -62,15 +75,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/635ac633324f639e",
+        "cruciblecraft:gt6/2c9f511fcacc0a8e",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/79a3392b2893215c",
+        "cruciblecraft:gt6/887ad3d5aa20a5f6",
         1,
         1
       ],
@@ -78,14 +91,22 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/eec65cd50fc40ca2",
+        "cruciblecraft:gt6/a29fd49343b914f2",
         2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/9b6d6e914c5e5870",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2274,
+      "duration": 1385,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        24,
         0
       ],
       "output_chances": [

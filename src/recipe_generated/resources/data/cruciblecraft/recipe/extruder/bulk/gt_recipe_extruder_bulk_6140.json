@@ -10,59 +10,72 @@
         }
       ],
       "hashes": [
-        "52de72770befa126d8b167bc7412f3d9d2f91d2fbe7c7bccfb9d3b8138d6a4b1",
-        "2409a27ff012a40655c4057034ca9e02a882f991f17a91e2dc50639d61e858f9",
-        "87ee15b7c076e3ded3f8d1c3bb393a1df805e24380679c0f0bc39d4676f1440a",
-        "4b53909203f3b6098d7fb5c82092a1e01f0d63e8a88859428730d29c92fe2409",
-        "20663295bb18c592fa3f9d1c77955b2d9468b2b269083cf9627cd3da585eb42e"
+        "26d637c8ecd5f0fc6bfca592a300f226c0fc42aac8ebf83dc840c15a4de9d062",
+        "1b7541600f7813698b13ff7b351a3f18182d77cdf7d8e8c7fcd54e37464bc67b",
+        "7e1a0d767c7d7863faf37c7056e31ec7a2f6166a561071e23a72c9970c638dec",
+        "36ab84a79d45a1f99b529688be0198e362d99ffd40ca6f4902a24546b14e478f",
+        "c09eeb5bc38d767ba3541fcbd3bb3d3495c2098d9ceda14eef81000e5dcbaf3f",
+        "6349daf872e00bbbef654009826ba0a532888e02824d5d549ad9b75eb4cfd8ca"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:flamascus_steel/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "curium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:flamascus_steel/ring"
+            "item": "cruciblecraft:curium/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:flamascus_steel/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
+              "cruciblecraft:prefix_material": "curium"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:curium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:curium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
+              "cruciblecraft:prefix_material": "curium"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
@@ -70,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:flamascus_steel/block"
+            "id": "cruciblecraft:curium/rod"
           }
         ]
       ]
@@ -80,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3c9559f61ba86d68",
+        "cruciblecraft:gt6/b7ecf328f5b1886e",
         0,
         0
       ],
@@ -88,7 +101,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/1744a5f5d9a5a793",
+        "cruciblecraft:gt6/df94e0c99373e028",
         1,
         1
       ],
@@ -96,7 +109,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/f5c631b5855afa0b",
+        "cruciblecraft:gt6/e8161a8bf2527e43",
         2,
         2
       ],
@@ -104,7 +117,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/b7bfae6dc852b426",
+        "cruciblecraft:gt6/17f423bb49443dcc",
         3,
         3
       ],
@@ -112,14 +125,22 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/49b1860e253c708d",
+        "cruciblecraft:gt6/8762df025393874b",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/df2ee5fc3856240d",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3147,
+      "duration": 153,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        5,
         0
       ],
       "output_chances": [

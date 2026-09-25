@@ -10,24 +10,32 @@
         }
       ],
       "hashes": [
-        "4de6c29768027911d46adc92c1249072553370545a7b6f578fb234f2d64aa599",
-        "d438df7b7f3b6168caf1c9915191630da1c38a29d26b14f77674a96e8d3e56fd"
+        "4a9176108f2858b6545f346c7a4240cf1233e4e65923f6815f9312fbd3d01af2",
+        "8f0268c86d6692741514ab47532a2185ae36b59cb6a770fe9986d75f62525702"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vibranium_steel/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_steel"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vibranium_steel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_steel"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vibranium_steel/gear"
+            "id": "cruciblecraft:vibranium_steel/block"
           }
         ]
       ]
@@ -45,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fa8ba736ebb89692",
+        "cruciblecraft:gt6/e52f1e68f1efe75c",
         0,
         0
       ],
@@ -53,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/25bcb727cb06db07",
+        "cruciblecraft:gt6/0c14f595f71157c5",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1018,
+      "duration": 2544,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        5,
         0
       ],
       "output_chances": [

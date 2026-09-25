@@ -28,7 +28,8 @@ DUMP = ROOT / "gt6_dump" / "gt6_recipe_dump" / "maps" / "gt.recipe.extruder.json
 WAVE = ROOT / "tools" / "waves" / "recipe" / "gt6-extruder-bulk"
 SLICE = WAVE / "source_pack" / "dump_slice.json"
 WORK = WAVE / "source_pack" / "work_set.json"
-HOLDER = 4096
+# 4,096 exact-remainder rows exceed the 512 KiB compact wire ceiling (~150 B/row).
+HOLDER = 2048
 
 
 def _sha256(path: Path) -> str:

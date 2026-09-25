@@ -1,123 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_4757",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "f8afffc6d1dcbce3f2f19043db9dd4d78677886c5bcb2fcebc0855b48a7175f4",
-        "35252cbf508237f4a654d6536b5732e944f6cfd2bb5bf245629d908762e59fe9",
-        "f84ec9dffe7d60fda2aac665221bac571f58ca986e0259a50f3b7cfdabd7ebad",
-        "ebda316e0d67ec7136832fab3c5324c7260125f36dcd5921755dcfb30710eadd"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tungsten"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tungsten"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tungsten_sintered"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tungsten_sintered"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:tungsten/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:tungsten_sintered/block"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/f30cc78f8a01cfdd",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/ad9c5e6c22877469",
-        1,
-        3
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/66fa4cf2828b22c1",
-        2,
-        8
-      ],
-      [
-        3,
-        1,
-        0,
-        "cruciblecraft:gt6/5df73cac484363be",
-        3,
-        11
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 10107,
+      "duration": 2480,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -127,18 +17,42 @@
         }
       ],
       "item_input_counts": [
-        2,
+        18,
         0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "vanadium_steel"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_huge_pipe"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:vanadium_steel/huge_fluid_pipe"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_4757",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "47b925de22148ccb3d488e1f76fdd059e9e127d3f12a9f2612a9d62b3a9dfe11"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_4757",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/d14d11c5753091ca"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

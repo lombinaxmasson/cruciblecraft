@@ -10,42 +10,41 @@
         }
       ],
       "hashes": [
-        "e084b8af2521422f0885622b62c0e92f11907f1a3b2c2c4d02fa9761c566d3d6",
-        "9b1c32f458237f9a1cbf48270739103a1bc24ff12b585c59fd5aa24d63668cb1",
-        "1b5908cdce0c141f864342e488ccaf8d2789f9984aedd9fb55e4b1a06a4bce5f",
-        "98c90f3c50d135c3f6e2dbd515d48bcbdec03f51ac11ade360928b4e4dada9f9"
+        "81bf6fce3d64c3f9414d7a1c434cc3bf0ab6490289cc7368a15bfdf13095db89",
+        "6feb145accd06ba341c7c3584c0c3211434365ff0f9f308babf1f5aab1fab8ff",
+        "3a3f6bcc8ad321a392b10efc5a33c387abc25f717b779245b70a432f4a527c84"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:niobium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "dark_thaumium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:niobium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "dark_thaumium"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:niobium/bolt"
+            "item": "cruciblecraft:dark_thaumium/gear"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:niobium/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -53,28 +52,10 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niobium"
+              "cruciblecraft:prefix_material": "dark_thaumium"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:niobium/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:niobium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:niobium/long_rod"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -84,38 +65,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f8008d0fa3cc75c5",
+        "cruciblecraft:gt6/887db08fd5d4ebcd",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/706920bdf48b0ae3",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/97b4f46c9e0e48a9",
+        2,
         2
-      ],
-      [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/753b2c6fa6dfc2aa",
-        1,
-        9
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/795ab4a4dd0e1103",
-        2,
-        11
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/48438db7ba4c4633",
-        3,
-        15
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 325,
+      "duration": 250,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +99,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        2,
         0
       ],
       "output_chances": [

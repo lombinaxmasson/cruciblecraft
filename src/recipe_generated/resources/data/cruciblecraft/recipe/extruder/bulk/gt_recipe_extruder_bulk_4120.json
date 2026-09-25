@@ -10,72 +10,103 @@
         }
       ],
       "hashes": [
-        "33feef4c2bf6a2ce61f3d1feb08c8944527087e82e4de285b48b777fa7138d2e",
-        "bb207f36e18cf2d70af88d20e199c8e8c797f9c7a2074d6a93eabbe5fb7d987c",
-        "1323fec7204c38ea94a81b54bc9526d6ad2cd20c1f96e0715b397f158796b0d4",
-        "2678edee9b752f5886dcf8379d7b4934b09d5f71ee5cf7cf69fadd4510a557df",
-        "bcc6a30e261122dd58cf75b262d7e07c1c7ab4bb558920a0f8d93512cdf5cfc5",
-        "9822801352573ea24e29b69026abb32464362d9cbe6b9b075f062783768aaf89"
+        "c8da28cd6e58f2acabd6d3c861bfa0b7e8df60ead15595e2eb078887faf0abfd",
+        "b96d0fdc9f5368d466a91cdbf2cecceeb32d115bbfcaa82ad4f8e5fb03c62b96",
+        "e3789155d8aba9492ec20003e5b8d0a4bb424fd3900fb9471bce398cf9569172",
+        "138494fea54dfff0cb21fa1d725751faa576f80934490b3fc0ef7c78011db6b5",
+        "b818c473ddfb29f0a6218cc707211214c779026542ef74975e0da0e6017b9f4a",
+        "1facb4a8a8a62c64adee005b343185e9f0cc6b641eae55408b0d2b3ad11be6ef",
+        "7e5344da7403931a36fabc93f9794b9fc45dd5147695e889d8dbcc072a036c39",
+        "beb4490946df8fc197073c5ae05a917f77f56f3bcf05bff9eda00d458436f8e0",
+        "90728b1d1878476155cb1a6d54d381d85bf300dc96229d3ad8f0e89445531c59"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
+              "cruciblecraft:prefix_material": "blue_steel"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:chain",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:blue_steel/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:blue_steel/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:blue_steel/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
+              "cruciblecraft:prefix_material": "blue_steel"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:minecart_wheels",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vanadium_gallium/screw"
+            "item": "cruciblecraft:blue_steel/ingot"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vanadium_gallium/tiny_dust"
+            "item": "cruciblecraft:blue_steel/long_rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vanadium_gallium/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
+              "cruciblecraft:prefix_material": "blue_steel"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "blue_steel"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -83,7 +114,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vanadium_gallium/rod"
+            "id": "cruciblecraft:blue_steel/block"
           }
         ]
       ]
@@ -93,7 +124,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/31e0ec1bf23c0614",
+        "cruciblecraft:gt6/e02d3b4f8cb96b64",
         0,
         0
       ],
@@ -101,46 +132,70 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/44a5877425105b09",
+        "cruciblecraft:gt6/96f69a2314e3b0a9",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/71fea0235d2f494d",
+        2,
         2
       ],
       [
-        2,
+        3,
         0,
         0,
-        "cruciblecraft:gt6/78038844c62b6d00",
-        2,
+        "cruciblecraft:gt6/87742d63b39f7df2",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/d936ba3b97a83f6f",
+        4,
         4
       ],
       [
-        3,
+        5,
         0,
         0,
-        "cruciblecraft:gt6/3d9666163771241f",
-        3,
+        "cruciblecraft:gt6/d8be07e7f83df67f",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/705d73f391b643e7",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/7609028c615872c2",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/4bd1ccaff48dbc89",
+        8,
         8
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/96d563cf70a8ca25",
-        4,
-        9
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/91007a7ca1c7b4db",
-        5,
-        10
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 74,
+      "duration": 1726,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +206,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        9,
         0
       ],
       "output_chances": [

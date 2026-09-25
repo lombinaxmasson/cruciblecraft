@@ -1,75 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_9276",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "fe6292bddbc9b5c48beae6d6224df53e5c586addf861f4ecabff37db9c4179b8",
-        "7e423342726d801e1de88763f647ad16d13396eaf1ec41fb8fe529e04e5fd8f6"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "amordrine"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "amordrine"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:amordrine/gear"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/28c89f3026520ccb",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/f4bfb3f28a18cedc",
-        1,
-        1
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 1939,
+      "duration": 6790,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -79,18 +17,38 @@
         }
       ],
       "item_input_counts": [
-        2,
+        18,
         0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:rutherfordium/rod"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_block"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:rutherfordium/block"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_9276",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "9963900c186114eda6a0d979402c75a40f733037aa7daa41dec67cb8c325e5a5"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_9276",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/c14eec16a4e4cc46"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

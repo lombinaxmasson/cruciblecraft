@@ -1,13 +1,147 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_6607",
-  "publication_group": "cruciblecraft:extruder/bulk",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "15b056ad628ccee65fd72a7c842e20fbc2931af87977933dd08b9562946bd65f",
+        "3536d240fad48afa578614010779ddac6074e5952ec199d2a0124a514bbb009c",
+        "dc1042fd2c6548ba8276d0d0d62511bef0c58591f35a2b066c41a45171dc3617",
+        "749185069693ecfee89adb80b95b5161a3ab80aef913e5b6931584ee424d5573"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:infinity/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cosmic_neutronium/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infinity/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cosmic_neutronium/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:infinity/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:infinity/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:cosmic_neutronium/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:cosmic_neutronium/bolt"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/ddf689a407c67ffc",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/b3e8409fd8649554",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/d11f598db5118cee",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/ba1874be28bcfdb1",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
-      "duration": 761,
+      "duration": 21542,
       "eut": 96,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -17,42 +151,19 @@
         }
       ],
       "item_input_counts": [
-        6,
+        1,
         0
       ],
-      "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:prefix_material": "titanium_gold"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
-        },
-        {
-          "item": "cruciblecraft:extruder_shape_gear"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:titanium_gold/gear"
-        }
-      ],
       "output_chances": [
+        10000,
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "3ab1be6870f803e12ebc3ca79783a88d4bc0c06d8151f49c319b757e67d7d66a"
-        ],
-        "selected_source_recipe": "gt.recipe.extruder#bulk_6607",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/c71fc52bda6048eb"
+      "selected_source_recipe": "gt.recipe.extruder#bulk_6607",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

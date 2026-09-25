@@ -10,36 +10,35 @@
         }
       ],
       "hashes": [
-        "e924e2f1ba2614b5cb144cd1f152a45b88ce530e29dda8a5190ec536d04c6a58",
-        "96d43141635940c2c6c364a85b9eb9808eecd9a178bdff038624784ad85afebf"
+        "33b588c6cf97858e2d83b2bc18a894becc4bfa37dcfb3a79e617dcd346ee6119",
+        "ecc2c406839c4e002517da9e49a2b1b3e8ebc989b89756a87f43b60001cfd91c"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dark_thaumium"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:ethaxium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:dark_thaumium/rod"
+            "item": "cruciblecraft:ethaxium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
             "count": 1,
-            "id": "cruciblecraft:dark_thaumium/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -49,7 +48,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/245b13cdb2156086",
+        "cruciblecraft:gt6/dda91484a5bb686a",
         0,
         0
       ],
@@ -57,14 +56,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/77e05867e5cb5a62",
+        "cruciblecraft:gt6/15937f3163e396f7",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 125,
+      "duration": 1880,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +74,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        12,
         0
       ],
       "output_chances": [

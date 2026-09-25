@@ -10,58 +10,59 @@
         }
       ],
       "hashes": [
-        "4a3356bcd72bec04319281910a2cdab30462f512cea822ac260d99e4d1dec659",
-        "5d83995d5b3c7887c570f96367732e833498a1c442e137d46e034d4d988aea28",
-        "85000f83e4f7bfc7c889ddb058eae8f10006e64af072d4cc5f3e75ea54c7c4c8",
-        "3093858c1a24e39c6914378eef57250c1ed5b80170ffa62cdeea9964855e3776"
+        "3ee4d0335463aa0f529b6e41cac43081581fd2dbdcceb590df3adf9c39c9884c",
+        "ad5bfa7c33955cd61dd515c3d1647836a987672a835e5f213922018110b9ca80",
+        "df30a5912f1160fde163c3920a9e620dd659b87c5bc39e30c2cc39df1966b0f1",
+        "114a3f654603eef2a799381107f626ce10a8ae4e9419077f2574d16859984db6",
+        "1a8d59b5689894366b13b813bacec784d600765f6b51c618152c4e3a5b57c1b7"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "fiery_steel"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:nickel/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nickel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "fireleaf"
+              "cruciblecraft:prefix_material": "nickel"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "fireleaf"
+              "cruciblecraft:prefix_material": "nickel"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "fiery_steel"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:nickel/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -69,31 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:fiery_steel/rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:fireleaf/rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "fireleaf"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "fiery_steel"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:nickel/block"
           }
         ]
       ]
@@ -103,38 +80,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d3e7bb0ae9e4443a",
+        "cruciblecraft:gt6/db0a569a2fcfe909",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/806a50f84d5f7603",
+        0,
+        "cruciblecraft:gt6/7bc579925ca38337",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/78978911c981128b",
+        0,
+        "cruciblecraft:gt6/aa61b7cae9515ef3",
         2,
         2
       ],
       [
         3,
-        3,
         0,
-        "cruciblecraft:gt6/e2cfdc1e80d48919",
+        0,
+        "cruciblecraft:gt6/cf49c64366c7f2d5",
         3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/e4a8a3be05941b6f",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 161,
+      "duration": 1777,
       "eut": 96,
       "item_input_actions": [
         {

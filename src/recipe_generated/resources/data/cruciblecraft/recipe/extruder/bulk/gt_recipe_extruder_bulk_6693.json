@@ -10,24 +10,72 @@
         }
       ],
       "hashes": [
-        "5e3732ed23dca440149419a45d60b0db0dd32fffffda2fc22df2744075e3fb5a",
-        "cce03c0f849286bbb2e191d381e99d190d70956430469232ead2f2cb4699b72e"
+        "85b3a082bc136ea9d7e7cdbcc1d48c85f3258ee1740e739ae8f89745f4174dd1",
+        "004f92e475e54e0f77eaf7ac20954234ecb56f62e4aaa9091585b23611ae4cfa",
+        "dc780e93f16fb96b3e2225ad7f2054e7a776f787e7838022bf200096e2dcb39f",
+        "046520259a87ed54a74dc43cc4e3df139e4ff8f18c3c7e49cd937d61bc5cc4b1",
+        "88f0e20dca08cb82f9add326ac6f93db8eba82e96d4cfef709bc325a0b890343",
+        "3d9aa7d58a45fa1c54fe2b936dc3da5f3464fcc2139fd7d6b7648a23ec89b31b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:aredrite/bolt"
+            "item": "cruciblecraft:alduorite/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:aredrite/fine_wire"
+            "item": "cruciblecraft:alduorite/tiny_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alduorite/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
@@ -35,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:aredrite/gear"
+            "id": "cruciblecraft:alduorite/ring"
           }
         ]
       ]
@@ -45,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/875398a940266656",
+        "cruciblecraft:gt6/934b7ed15d9b0ba3",
         0,
         0
       ],
@@ -53,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/eb8615ee702c4876",
+        "cruciblecraft:gt6/465b42f0d90099f3",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/2600ff28c00c3386",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/c03df9a5a8169167",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/79d6989bd546f252",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/4aea79d5e286c82b",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1364,
+      "duration": 18,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        3,
         0
       ],
       "output_chances": [

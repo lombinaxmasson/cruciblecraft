@@ -10,16 +10,26 @@
         }
       ],
       "hashes": [
-        "ba146ac93128e4078b95d4a806b683af75ffb96cebda46135be651e04e107388",
-        "9a7d3f40fefe9f04f6e7dc04f9585215712abdbb335fe4d3e93bfc77f4476fc5"
+        "83cda9d751b3c519c1cdc4aa6bccd11c9363746a0c105b39c1d58b8cb88392cd",
+        "4f7adb728772b343531190f084fcdb239a0a1da524b9df6369495710db96de39",
+        "db355573995e1c97e5717ecf3138887f29ec291bca610be2928c0c736562e4c6",
+        "ff932fd82546ac44ab2fd0d16068218cd5b33dd146093cc9d72ec8bc963f3fc8"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:void_metal/large_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "nichrome"
+              "cruciblecraft:prefix_material": "silicon"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:quintuple_plate",
             "type": "neoforge:components"
           },
           {
@@ -28,7 +38,19 @@
         ],
         [
           {
-            "item": "cruciblecraft:nichrome/rod"
+            "item": "cruciblecraft:void_metal/large_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "silicon"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -39,7 +61,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:nichrome/block"
+            "id": "cruciblecraft:void_metal/huge_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:silicon/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:void_metal/block"
           }
         ]
       ]
@@ -49,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6bdd3ca3c044f1a4",
+        "cruciblecraft:gt6/4d2601e398c056e6",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/ec5ebc4f7c0006c1",
+        "cruciblecraft:gt6/a6ab21deb6a0f288",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/720576b7dade0e5b",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/f3cbb848e049232f",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1813,
+      "duration": 502,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        2,
         0
       ],
       "output_chances": [

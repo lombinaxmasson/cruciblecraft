@@ -10,32 +10,51 @@
         }
       ],
       "hashes": [
-        "c78e43bf93653dfb962de7fb16687690a75fe26e6ca17f6b0806c5d7ba53509a",
-        "dcdc4b5eeebed357f066c05d30c1e1517b9af5f39c2930dd95f4f6548d0de3b0"
+        "f6a9179338551465210c01af037034f62f26eb4ad6aa3c9f0a42721503cd8549",
+        "0873dfaf05fb127ac3c070a6fad8baec5037d1b03b60ff6c3917f1c8b832ae88",
+        "cf9fac277e223febb9de494e19492dacaa401dc45bf6b6e1f633866e59da4a67",
+        "2dabbc031a967d6e12423764eb28c768bb51a883e62e3262fdcfa15ed8665a71",
+        "85f5154a4a839650e841cc5d795498badff6c55e7903437cea259823731615bc"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:pig_iron/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteorite/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:shadow_iron/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wrought_iron/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_iron/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,7 +62,31 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:titanium_iridium/gear"
+            "id": "cruciblecraft:pig_iron/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteorite/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:shadow_iron/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:wrought_iron/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_iron/block"
           }
         ]
       ]
@@ -53,22 +96,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/80c9fa9b88d2c023",
+        "cruciblecraft:gt6/1eeea24eb1bfda9d",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/595156d12877b50d",
+        "cruciblecraft:gt6/d9415b803daf6752",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/edb8475184a09fc6",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/5ea6c0fed058bf0d",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/2fdcd654d73e1aa6",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2556,
+      "duration": 3341,
       "eut": 96,
       "item_input_actions": [
         {

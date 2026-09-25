@@ -10,24 +10,42 @@
         }
       ],
       "hashes": [
-        "9bbbf8ff9ea9be4df1a2cfd6cbfd06b6508e695b413ddaf08fa2606ed7da60ee",
-        "a7af78d32df4642b2c1c2f3a763133a61df39db29e092271181f1cc76d7a67f3"
+        "ba2e5e71fbc9f8480993db2818f47ebd5262971d55dccb6027f276d7764c2b05",
+        "cb6d19120d3ef35a5cdeb44dee58c8d7b37681af0918a68b417f31d9eb0ac44d",
+        "265e7899c28e417bc68738ff52eb68a317570431b1ea6fd13df6c0cd1dfc3577",
+        "84be6c3961ce61c5f0d4770f9cf93325bf67b1bc3e420b938d04b6d12695744f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:damascus_steel/fine_wire"
+            "item": "cruciblecraft:hsse/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:damascus_steel/bolt"
+            "item": "cruciblecraft:hsse/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
@@ -35,7 +53,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:damascus_steel/gear"
+            "id": "cruciblecraft:hsse/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -45,22 +72,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fdd16f2b1a07027d",
+        "cruciblecraft:gt6/3f11929adc19d134",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/27f2335aa2fec8b6",
+        "cruciblecraft:gt6/f3bb4c4455c8c70c",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/253d792f829e5a98",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/47f86cd201a7ffdb",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 925,
+      "duration": 150,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +114,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        4,
         0
       ],
       "output_chances": [

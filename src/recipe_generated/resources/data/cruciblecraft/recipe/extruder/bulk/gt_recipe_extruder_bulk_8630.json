@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 7387,
+      "duration": 368,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,12 +17,16 @@
         }
       ],
       "item_input_counts": [
-        2,
+        14,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:rubracium/machine_casing"
+          "components": {
+            "cruciblecraft:prefix_material": "chromium_dioxide"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
         },
         {
           "item": "cruciblecraft:extruder_shape_block"
@@ -31,7 +35,7 @@
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:rubracium/block"
+          "id": "cruciblecraft:chromium_dioxide/block"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "4622a9eff48f48cc385b2aa82ad3516c5d2470bf6cbb55858b497ff2a7520565"
+          "8634c06f9f3a6ff8b488549cb71caaf2a335c0573cb06438b26fc17b696a723a"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_8630",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/3452dfc6c0436318"
+      "stable_id": "cruciblecraft:gt6/073cb1ebfa28ade9"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

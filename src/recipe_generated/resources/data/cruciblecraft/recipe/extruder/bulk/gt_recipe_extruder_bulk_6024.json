@@ -10,40 +10,116 @@
         }
       ],
       "hashes": [
-        "e8c6386d718557ec28542ffa13f3ac773ed7daebee853b385f1d48411b0fece1",
-        "a4cc2a5bcc3f17355c57f73605c78adda131fb07f8e5ed060062864dc78c6d43"
+        "2ee6070733b8b0a7d6d51020c41858041eecec0ebf973d6e2e9feb8449f00b93",
+        "e8b36532b4f99b99fabdf4fecc36a91ef93f1b7d8cbe1280671b02e7c6783d23",
+        "120ec2b09afacbd10a36f578db261280e024ff31ddb4b73d0afc14830d066b80",
+        "9f5b79986541f687c22eec7eedcc71000a01493d076bcce029d592299aefc321",
+        "5fe2d1dfb3d74297ae5200f2a0b4bf77b21f24e2077d7a9546eda5ce3cd332f7",
+        "1052530bba9744d48a211bdddf3ba7e1f95226202916695c70e45deac952f076",
+        "69137635ce8a8f0f4bdac7dae9cb6b8ac48c122dfef76c7417d1bafa737cbebb",
+        "18681191c690a7f0f174b405ee9e2d5023bafdcf087bb85bf7f29c22b4826aeb"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:fiery_steel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:fiery_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fiery_steel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fireleaf/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fiery_steel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fireleaf/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fireleaf/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fireleaf/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "fiery_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:enderium/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fiery_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fireleaf"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fireleaf"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -53,22 +129,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/06be23281f125365",
+        "cruciblecraft:gt6/1b33c143fd21c17a",
         0,
-        5
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/980ecdcffb3435f4",
+        "cruciblecraft:gt6/985c6c543c1af5e3",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/241b8c5e896873c0",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/4da70793a4cb754c",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/7c11e4ddc45f82d1",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/44cd3d286c6456ab",
+        5,
+        5
+      ],
+      [
+        6,
+        3,
+        0,
+        "cruciblecraft:gt6/1826f7eaad3ca2fd",
+        6,
+        6
+      ],
+      [
+        7,
+        3,
+        0,
+        "cruciblecraft:gt6/e8ad322f39cd1341",
+        7,
         7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1205,
+      "duration": 963,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +203,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        24,
         0
       ],
       "output_chances": [

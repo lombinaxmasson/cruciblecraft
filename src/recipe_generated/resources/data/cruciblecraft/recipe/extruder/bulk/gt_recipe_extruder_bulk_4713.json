@@ -10,67 +10,70 @@
         }
       ],
       "hashes": [
-        "f224666ff262b1acabb271807a6856c4c99b17df0e324b9d4986b2d48beb0137",
-        "2f362961dd2d97a110795d950a193d8d87d512ccaca7d0f4d994f70d1eaa65c5",
-        "c7eeba82adf063f7c99b30972fc9195e525917a47985a715fbd1a8207dc7a74f",
-        "b9c35e2f5a85d6b79ae3b8c6c8ea806611c2e0c1df9abf1d00ec9371785f9a2b",
-        "5c646c541cd2550015c4f6ed3106f68c1edb35d2407772e8b574fdbaab726ae4"
+        "2861b1c05f78072b1946bab45f1449d04682120acd258cb5af92ed11331d0043",
+        "42cdeb6ba8f291f9d0d046d3bddc22a1f26f24befd8f85e47db48aac456493f0",
+        "0dafd864ad157aff8e77067848ddd47ed738b71c1260fd3f32cb43864b4d3788",
+        "9c14e12fd4e4aefbefc7bc0bc9d32a8f735407d88b7b25ea31bbe28937a36fff"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "draconium_awakened"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungstensteel/huge_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:draconium_awakened/small_dust"
+            "item": "cruciblecraft:tungstensteel/huge_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "draconium_awakened"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungstensteel/quadruple_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:draconium_awakened/foil"
+            "item": "cruciblecraft:tungstensteel/quadruple_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:draconium_awakened/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:draconium_awakened/block"
+            "components": {
+              "cruciblecraft:prefix_material": "tungstensteel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungstensteel"
+            },
+            "count": 44,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:tungstensteel/bolt"
+          },
+          {
+            "count": 32,
+            "id": "cruciblecraft:tungstensteel/bolt"
           }
         ]
       ]
@@ -80,15 +83,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d0b7a4710536de0e",
+        "cruciblecraft:gt6/04cf47fb4bf3b11f",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/fa63cb2e6bf61e3f",
+        "cruciblecraft:gt6/36d7b8b601ca2053",
         1,
         1
       ],
@@ -96,30 +99,22 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/7de4c8bfb192a744",
+        "cruciblecraft:gt6/c41fd63e34aca8bb",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/95da0591585c6cff",
+        "cruciblecraft:gt6/cad475f84efd59a5",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/a99d03a2d29a93a4",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 724,
+      "duration": 6473,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,10 +125,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4713",

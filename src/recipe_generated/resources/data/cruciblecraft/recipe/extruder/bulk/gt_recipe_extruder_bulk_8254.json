@@ -1,75 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_8254",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "cbe4beff2cfb1c4a6064ddac4c05cf04d647e4d0077f038a345eb030281caee6",
-        "49af2370792dfc40b909dc2650a8e621b84a6cff76b0eb146408ce0cb4c506ff"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:elven_elementium/gear"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/5d64f1e1a1cb5d1c",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/883d12601e87c2ba",
-        1,
-        1
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 1836,
+      "duration": 11372,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -79,18 +17,38 @@
         }
       ],
       "item_input_counts": [
-        2,
+        8,
         0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:osmiridium/triple_wire"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_huge_pipe"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:osmiridium/huge_item_pipe"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_8254",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "7166de305b765cb53130d2ae5111d2c68a70c709432b27d60c787043a622ef24"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_8254",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/ae4540f1053f079d"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

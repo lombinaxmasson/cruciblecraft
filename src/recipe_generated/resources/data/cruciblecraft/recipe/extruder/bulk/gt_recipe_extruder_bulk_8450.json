@@ -10,49 +10,71 @@
         }
       ],
       "hashes": [
-        "a776aa0a0c7b9e0d8c128d0702685692224f7f3236dcc17acede6ee6a2861f96",
-        "620fdefa84b7b7a09ebca500d01f7885f0371980d860148e4e1f45c734184ff9"
+        "f600bd861b8b3d14c7dfcb28ce8932bef6f2a3c1804c37d88dc0e544d660c613",
+        "1ebb1f52e4ca27bcd5c8071ffae51086959ea1e54cedf8d2564e75ca5d308ee6",
+        "78a521613ed5c5ad23a29d5c4de91cddbe45036a1bc7865112357547ae7f8f94"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:bedrock_hslaalloy/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:bedrock_hslaalloy/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 64,
+            "id": "cruciblecraft:bedrock_hslaalloy/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:bedrock_hslaalloy/ring"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:bedrock_hslaalloy/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:bedrock_hslaalloy/bolt"
           }
         ]
       ]
@@ -62,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/583149d397595c41",
+        "cruciblecraft:gt6/aea1745bb1a66a97",
         0,
         0
       ],
@@ -70,14 +92,22 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/25464a6fc48886ec",
+        "cruciblecraft:gt6/952282d15bc1cde8",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/57d6db03a8cdf340",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1754,
+      "duration": 91175,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8450",

@@ -10,24 +10,32 @@
         }
       ],
       "hashes": [
-        "18e9604e44e3d07c01023b180e6e5bc32e039687c8a7523c76ad33091e9f7f30",
-        "6d0b3f57467172ae44e558ea271201e21184321d0b1378148a30f75603aa5697"
+        "e91cb2c6883bbc4c759d7395f3050a5e5277f596196b935a28c0360968cbc03a",
+        "ec997efc06dc0084069d2fb570bce448045c1e77947fbbeaadfc712ea59f079e"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:kreknorite/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:kreknorite/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:kreknorite/gear"
+            "id": "cruciblecraft:palladium/block"
           }
         ]
       ]
@@ -45,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2c23144a7988c679",
+        "cruciblecraft:gt6/c5c696c9bc452a9a",
         0,
         0
       ],
@@ -53,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/22a8946e3c3571ee",
+        "cruciblecraft:gt6/a57bbfbe3460d3c1",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 133,
+      "duration": 2848,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        5,
         0
       ],
       "output_chances": [

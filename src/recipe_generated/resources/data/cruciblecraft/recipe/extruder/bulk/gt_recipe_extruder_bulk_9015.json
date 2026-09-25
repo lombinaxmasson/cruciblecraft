@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 970,
+      "duration": 2236,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,25 +17,28 @@
         }
       ],
       "item_input_counts": [
-        14,
+        9,
         0
       ],
       "item_inputs": [
         {
           "components": {
-            "cruciblecraft:prefix_material": "yttrium"
+            "cruciblecraft:prefix_material": "naquadria"
           },
           "items": "cruciblecraft:billet",
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_hammer_head"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "naquadria"
+          },
           "count": 1,
-          "id": "cruciblecraft:yttrium/block"
+          "id": "cruciblecraft:tool_head_hammer"
         }
       ],
       "output_chances": [
@@ -43,14 +46,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "a667762999739b3bb6e6f79787945a0e5da21df3db0f5de4fe8182b631f6121d"
+          "e4e56eecd4e4c58077da6766a0c8895111ad5a1e5facdde2abbe2de15f84d3c9"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9015",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/2cf33f6df8b7ba2d"
+      "stable_id": "cruciblecraft:gt6/b66379c4b0f2f2eb"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

@@ -10,16 +10,19 @@
         }
       ],
       "hashes": [
-        "d59afb5e7e3cfe9a7cb58fb11619f2c488ae43cdc0b3b59d6bebc29e11e9de39",
-        "a5e77afdf657a2b17ef966415bcd588d53a19883881b254fb436988a4a70c498"
+        "016578de210045e29bfad1a2d07045e698170a4114063760529441ee5c053572",
+        "33e17a5f9f4c3d1f15759e9f64578b9e7c2bc804ff17d4139c9d9adb8467280e",
+        "667f0604ff39f3421189886fed3ca97a3389255d9344547d05324e4d6a6db5bd",
+        "e3df2539526b790363133532187736ba8f554cef84ff073680148c8d30950f98",
+        "ddf7de390cfcebc34f227f556160877b8151125b732bd9e96ba7bf31463aac94"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "gaia_spirit"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -28,7 +31,35 @@
         ],
         [
           {
-            "item": "cruciblecraft:haderoth/rod"
+            "item": "cruciblecraft:gaia_spirit/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gaia_spirit/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gaia_spirit/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gaia_spirit"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -39,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:haderoth/gear"
+            "id": "cruciblecraft:gaia_spirit/gear"
           }
         ]
       ]
@@ -49,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b7f06e0938cf5da8",
+        "cruciblecraft:gt6/5596c3ce980eb89f",
         0,
         0
       ],
@@ -57,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/83cb13c4846259c3",
+        "cruciblecraft:gt6/13448f253f6432b6",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/1acfcf2dfde451bf",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/b0564fb1d17f602f",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/e1f5a7e337f45b2b",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2075,
+      "duration": 226,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        16,
         0
       ],
       "output_chances": [

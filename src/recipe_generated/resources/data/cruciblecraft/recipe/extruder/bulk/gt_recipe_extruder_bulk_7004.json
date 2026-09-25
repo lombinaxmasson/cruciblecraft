@@ -10,32 +10,115 @@
         }
       ],
       "hashes": [
-        "7b418ee500aa09a92080bc17e2b19a23ad2b90c45dbfa88651ea8d4b848fed8a",
-        "bcf933acd30461058a7d0c68e769f0fdbb9afd96849583015e8453268e9c2050"
+        "1d002b49896890ccdde509009e01fa42df721a1cdfdabae3881119b38e1ed6ee",
+        "5f23c138d274a97c60b6e5ed4e558dadd31f4b54ac83662e8868f3ea70ee3975",
+        "b2d4686d786639013457410ec3a9842306b3823112b83ade40b0dcbc1cc987ae",
+        "0afc588ff771cd777e927a587a1e59313abaff760a22ea10a8e196a438d7657b",
+        "ec9889569b27b57d8ac868df0193587ef040033ba6c880c4424dc340d98d6beb"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:draconium_awakened/bolt"
+            "item": "cruciblecraft:haderoth/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:draconium_awakened/fine_wire"
+            "item": "cruciblecraft:haderoth/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:draconium_awakened/gear"
+            "count": 64,
+            "id": "cruciblecraft:haderoth/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:haderoth/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:haderoth/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:haderoth/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:haderoth/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:haderoth/rod"
           }
         ]
       ]
@@ -45,22 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/58ad5ef357f0e67b",
+        "cruciblecraft:gt6/b1d75fa4344e8e24",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/a00e2efedcdd9cd2",
+        "cruciblecraft:gt6/e4c6b5d72ad59402",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/42c7a736b83737b7",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/39dfb7d3c47aa1aa",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/97d7edf93eaa7ada",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 322,
+      "duration": 29043,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        32,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7004",

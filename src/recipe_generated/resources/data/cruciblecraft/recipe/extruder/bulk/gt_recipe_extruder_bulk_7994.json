@@ -1,0 +1,129 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_7994",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "dcc27c441d36441eeb4315e6ce0125ddb2d262c9bce0528c6000894a609604d9",
+        "29fad74e336bed2dcb9621e6231fa48d164047fbebdf3737633ae06d938d830b",
+        "90c605a8066fe38a55da58a5e64109fcdbf31fec03215d9c35de222bd6619384",
+        "9c5c26651f0dc01e8341cbdeacefb470f5da6314e2e4ac3d90b71789c594f0c5"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:aluminium/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aluminium/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:part/low_heat_extruder_shape_huge_pipe_extruder_shape_for_making_full_block_pipes"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:copper/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:part/low_heat_extruder_shape_huge_pipe_extruder_shape_for_making_full_block_pipes"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:copper/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:aluminium/huge_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:copper/huge_fluid_pipe"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/c94d73cb4ceda4e0",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/d1490e46c5770fb4",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/c86720a288e04e54",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/6273e2aad0582532",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 768,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        5,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_7994",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

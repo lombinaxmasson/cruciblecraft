@@ -10,24 +10,59 @@
         }
       ],
       "hashes": [
-        "f338bbb46d8537951cc5fa5ecfa7e047fa7794faa3b347e23e026b76e3acfd41",
-        "269a6cd631a2f0eadff8f0e7f6b43b635b923b94c0f204cd6aeadb77f89ed3cc"
+        "68d5282c6b66349a326487224aae7d00186d32b0c021a374f2702dcbe2c2a729",
+        "57a0db10201404e3c152647590f80c9a7fe61f3a0edc093f9f4e12373d76d303",
+        "02a822dd359b4349df0ec28ca4dd9ab71ba468da62e465ab7cb45c518e7efc6c",
+        "3cc4b39f8fef32ce3637fc20ff8992c9692c13641de06cb35123003195a1a9ec",
+        "366b24baa85d454dd11f483336cd6ad24ccd0fe18f81fbadf31874f4b814fcd3"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:nickel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:nickel/bolt"
+            "item": "cruciblecraft:steel_galvanized/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel_galvanized/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel_galvanized/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:nickel/gear"
+            "id": "cruciblecraft:steel/block"
           }
         ]
       ]
@@ -45,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0ac0f258b3c30de0",
+        "cruciblecraft:gt6/a3fef8af549344de",
         0,
         0
       ],
@@ -53,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/dac515c0c3ab26d6",
+        "cruciblecraft:gt6/d56051dc15a665c8",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/63d481f46aa461a6",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/bdb270b475c60b9c",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/102b31c297141112",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 790,
+      "duration": 2111,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        36,
         0
       ],
       "output_chances": [

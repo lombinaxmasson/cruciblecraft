@@ -10,65 +10,132 @@
         }
       ],
       "hashes": [
-        "04f77588b5618145042c33e35bd241476711b9538152abfe681f93d798062642",
-        "20f160777e88b69ffc50cda9b9c49c507b7e2cd28b343a728a9586d8a0d82661",
-        "eb89abb2765fefcc7ae0ab9837d234928bb62a33aad42bffae42b4b65c72e14e"
+        "214c764c3815be4acebad1e00c06e03def14b83d550edc71b54abe0463af7bfe",
+        "a8458043dd31499857564e447b28aff183e3b56e88a66e0bc502c2a61590571d",
+        "edeca695c622946c91a113122642713d756ae7d9e3e791a7c5f051b42f3ed77f",
+        "03a923102324220020b717e34862b614efdd298e88b5cc5be6041a4a4fbf0282",
+        "f8d792472969c032f0d592ff2eb0c77e2dd598c1db8b91dfa083cef286e397d9",
+        "cfe951bb6477555bee3e619e37fe7d3bc9488dd7734a89739b17135411968533",
+        "4fa8fb34803cc4dce5a1afd554277a3b3b3cd13065962efab13f8016d7545da9",
+        "f2c77ef22ee87df8c9c8c8b029dcdd21e7218dadfaa5bfff995298fed9125337",
+        "762aad4e4575857114322c0d487d4a4246d140f802643ea282c4f4ea96dd642f",
+        "b7658f348377dea3ce29b3151b15584193332fb70ac4aaa6bece6d8a67e300cb"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hsss"
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "mithril"
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "platinum"
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+            },
             "count": 1,
-            "id": "cruciblecraft:hsss/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+            },
             "count": 1,
-            "id": "cruciblecraft:mithril/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:platinum/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -78,7 +145,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/88af590eba4805ac",
+        "cruciblecraft:gt6/cb209ec2cfa85299",
         0,
         0
       ],
@@ -86,22 +153,78 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/fe285f6fb6ed8e10",
+        "cruciblecraft:gt6/5cae49e90c074a34",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/11ea252abe370e3f",
+        0,
+        "cruciblecraft:gt6/a714ab50277002a6",
         2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/9d7aac938c4c8cb8",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/7e5f28ec0a8436ce",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/abdc2c8100042232",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/788659be6e556217",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/524ccbbba9b65f80",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/6b9a37d90f1901a4",
+        8,
+        8
+      ],
+      [
+        9,
+        1,
+        0,
+        "cruciblecraft:gt6/3f771c02f5e2fb1e",
+        9,
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2316,
+      "duration": 10521,
       "eut": 96,
       "item_input_actions": [
         {
@@ -112,7 +235,7 @@
         }
       ],
       "item_input_counts": [
-        6,
+        12,
         0
       ],
       "output_chances": [

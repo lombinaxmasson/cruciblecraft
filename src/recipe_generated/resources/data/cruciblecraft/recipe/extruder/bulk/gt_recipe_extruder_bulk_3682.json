@@ -10,40 +10,96 @@
         }
       ],
       "hashes": [
-        "c4a16faa8286059b229c50d24c7404b7aa0429193d8f7f26b533b90e4a532c69",
-        "972700d71a9c919044ac2bd6c7af3533cfb9a82de3e00991fc86a4cc9b1696ea"
+        "bffdd97b9e88b7792dc45c6ce7954dc2b30d1fada7eb41665346788bb91fe9ac",
+        "a435ad592aa84b5f117664db53598de2d237295e5c27833df4c209d6b0ae36fd",
+        "40c7569cef36d7a680dc10e0fb46742099abfe0554e06792c230f788a5c19a2f",
+        "b4313a8d496a00ca504495ce4e9774ea0b24c48156d2b38fcff56628121423c1"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibranium_steel"
+              "cruciblecraft:prefix_material": "orichalcum"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibranium_steel"
+              "cruciblecraft:prefix_material": "orichalcum"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
             "count": 1,
-            "id": "cruciblecraft:vibranium_steel/block"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -53,22 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9dd3caa71226b6e1",
+        "cruciblecraft:gt6/88c12bbf58332ae5",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/95386c4402ec7aed",
+        "cruciblecraft:gt6/11b625894b5495ac",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/53f45929f8e370e5",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/225df952999653a2",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2289,
+      "duration": 280,
       "eut": 96,
       "item_input_actions": [
         {

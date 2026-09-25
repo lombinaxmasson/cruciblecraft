@@ -10,43 +10,16 @@
         }
       ],
       "hashes": [
-        "b964e4b53b2b06e5479109c104c135acbe5019c924731f75b6ed4a175dba4a08",
-        "e98027d7f1a6ad94a5da0bbfddaec608c854bd2b9a22d62be5e164a46df5b87f",
-        "e2946d6679f05c886bc25114cbf72f1962f74bbb0a87626ae2241f1bb3805c47",
-        "262e6e91b8f5a9043f983244ce305afa89166beb0c0a964ef6b78f8948650da6",
-        "857d4f387f639570d7a8f364cb0be3b5f9ffd2ecd409ff7a5aaff1d138d42f66"
+        "690f1d08eaffcd4d900435d0abbe852bdf387fcd49a97c0f4dc15f66bad4d4ca",
+        "8259a11233e85f6ef81b1c229b2020908d08a06bc802fe08ea09e4649602318f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:stellar_alloy/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:stellar_alloy/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:stellar_alloy/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "stellar_alloy"
+              "cruciblecraft:prefix_material": "abyssalnite"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
@@ -55,7 +28,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:stellar_alloy/ingot"
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -66,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:stellar_alloy/block"
+            "id": "cruciblecraft:abyssalnite/block"
           }
         ]
       ]
@@ -76,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/48d191ce612f71b9",
+        "cruciblecraft:gt6/3d9010683d503b4e",
         0,
         0
       ],
@@ -84,38 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/bb0db43cb0495a45",
+        "cruciblecraft:gt6/ccbcc0d0b35e3c7a",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/9db076c9aaf548f6",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/041efd5cfa6766c8",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/62e8836cf0897f67",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2836,
+      "duration": 2794,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        5,
         0
       ],
       "output_chances": [

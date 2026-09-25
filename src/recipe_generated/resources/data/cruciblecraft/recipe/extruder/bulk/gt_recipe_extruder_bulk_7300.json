@@ -10,32 +10,45 @@
         }
       ],
       "hashes": [
-        "7d392c56f372baf3dc3fc3bcc9d2aa621e672574f28154698843082cff916b81",
-        "cf0aa8bd91cce26938cf646a0a04f1bc149fe0d150f91c3aa8bf8d823ea6014e"
+        "935af8907837a248cb7f006fb8be94eb0abab77f4b836305576dc1114fbe9443",
+        "a3ff0ab20f6adb36a3fb86ff2336dd6c14cec45884d2d7f95883b46dbf92ae0b",
+        "6d77d9ab444281a16b68272239b1811593280d4910eef1b88facfc86523a9440"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "adamantium"
+              "cruciblecraft:prefix_material": "constantan"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "adamantium"
+              "cruciblecraft:prefix_material": "constantan"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
@@ -43,7 +56,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:adamantium/block"
+            "id": "cruciblecraft:constantan/item_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6c4fa762f4915790",
+        "cruciblecraft:gt6/317a4877825e00c8",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/69a87b86ac94365f",
+        "cruciblecraft:gt6/6137f8630317c0bb",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/fbd67019a31a0bcd",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 10166,
+      "duration": 575,
       "eut": 96,
       "item_input_actions": [
         {

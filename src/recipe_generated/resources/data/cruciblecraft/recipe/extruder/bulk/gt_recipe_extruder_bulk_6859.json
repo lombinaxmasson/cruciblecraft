@@ -10,111 +10,39 @@
         }
       ],
       "hashes": [
-        "d716a29d86e31b5361768c6639469a69cbdab89c1bbaeea38c2cfd8332597f6d",
-        "66c17cac1e0f143da342bca8e80923b016cdd7c110768e0e549c180d20fb0dbc",
-        "f2d6775501d204a3fe3f45c770d3bff4668f6952839e0813878d473357027169",
-        "deb53bc617b81002c8b8ba2d8158069e9ba72ac0ccea8eac31380cc175602e65",
-        "ac3ee8276a20d1e5ef434a3a3f3fc593f32a47a1c8c63516792da07c7f1dce82",
-        "de356302c8071768e0694c8600df3525625f2b606015c1cda04df589d9f6af3a",
-        "51a2b132d8b6693692eafcd191c289853fd5546fffd60229dc18eefb7f7a1f6d",
-        "55e6f858dfc40478fc320bbb041dec05bd4a631486d4e66ae84551ef3db9f0a5",
-        "75365cc4e6b5b67147f9cd5f7edcc31714a30af48f913a360a0570bc2f8003ca"
+        "bd77a88ab990f8e8fdee0a750592c8f372f70d286fd13ecb1f4c727ffd4ea43d",
+        "114f7d69d8b326a741cd8e15758ab67aeec5e5ea5fa6e8ef7db02b8e367c3ae1"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:atlarus/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "atlarus"
+              "cruciblecraft:prefix_material": "orichalcum"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "atlarus"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:orichalcum/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:atlarus/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "atlarus"
-            },
-            "items": "cruciblecraft:minecart_wheels",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "atlarus"
-            },
-            "items": "cruciblecraft:spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:atlarus/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:atlarus/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:atlarus/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
             "count": 1,
-            "id": "cruciblecraft:atlarus/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -124,7 +52,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/555576b86e8ace5a",
+        "cruciblecraft:gt6/fee480a38c1b4505",
         0,
         0
       ],
@@ -132,70 +60,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/10a8d97c07466d63",
+        "cruciblecraft:gt6/36bf82ae5d18a30a",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/737f71a43bdebb86",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/3137e584a8b9e600",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/4650cb2a8a099269",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/60974c5342e1f8ec",
-        5,
-        5
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/a35c57c08278eb21",
-        6,
-        6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/3666f7acc0a30544",
-        7,
-        7
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/3ee49473cc8ca2e9",
-        8,
-        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3913,
+      "duration": 210,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +78,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        3,
         0
       ],
       "output_chances": [

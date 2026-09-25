@@ -1,88 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_7237",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "7a3653e72bb25417bca1e4ba4be44e8db4fdb9082181dfeb0c9900763735b6e5",
-        "3546832ef15df2910118a915f893fe8a4f53d3132fa2afb5b2e02497dd148014",
-        "1a22cb2e0f118b8069c5811e8b1d50644d6458431fa9b5544a15372df3ac4226"
-      ],
-      "item_inputs": [
-        [
-          {
-            "item": "cruciblecraft:redstone_alloy/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "redstone_alloy"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:redstone_alloy/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:redstone_alloy/block"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/70d99d35b5561f4d",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/4592d531e97c6831",
-        1,
-        1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/37f16cce36fa8eab",
-        2,
-        2
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 259,
+      "duration": 11403,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -92,18 +17,38 @@
         }
       ],
       "item_input_counts": [
-        36,
+        3,
         0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:iridium/nonuple_wire"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_huge_pipe"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:iridium/huge_fluid_pipe"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_7237",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "ae082296a76667ed4f9f544669ac4246597d1505e617330b51d73455d7114715"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_7237",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/8e08bfc6c93d63be"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

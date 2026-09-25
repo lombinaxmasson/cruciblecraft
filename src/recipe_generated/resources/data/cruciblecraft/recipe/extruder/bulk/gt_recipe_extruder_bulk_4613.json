@@ -10,32 +10,42 @@
         }
       ],
       "hashes": [
-        "f5a3c1a9d21e9095b6e6982f9e27bfbb2b8ce75d6f30254a1c2d8c44423fb33d",
-        "77c6a3625e791e214877510dae9b42811785e467c38dec83585d89207b0d5ee2"
+        "4e7ec4cace5a0a06f31b659bc70d010156652ffe6cea127f973b820678b45107",
+        "0ecc3c3eaf21143e57032ba7c1a6d0d6d13a6d5513533dcf5b47f74a9e70dc53",
+        "86b71d72e2560e4c09a726164675a0749a348914298bd62f1624fc89119534cd",
+        "3cfa3393e2da20d4d0587eb5ce2bca78c92aea43b745ff85772f8f062d2febea"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "terbium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:obsidian_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "constantan"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:obsidian_steel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:obsidian_steel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:obsidian_steel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
@@ -43,13 +53,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:terbium/bolt"
+            "id": "cruciblecraft:obsidian_steel/rod"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "obsidian_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:constantan/bolt"
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -59,7 +72,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/51a973ba624b432f",
+        "cruciblecraft:gt6/0f9a621d82f6ab0e",
         0,
         0
       ],
@@ -67,14 +80,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/eda94276c261dac4",
+        "cruciblecraft:gt6/8ab574c692a70e66",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/3f82b98e44593432",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6b4d63c7a251ffb0",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 22,
+      "duration": 83,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +114,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        4,
         0
       ],
       "output_chances": [

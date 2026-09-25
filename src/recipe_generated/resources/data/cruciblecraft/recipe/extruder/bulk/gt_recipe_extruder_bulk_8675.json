@@ -10,32 +10,83 @@
         }
       ],
       "hashes": [
-        "59cfa22d2a8ba4d270fa86faa6c790672164952a064c659c3b1ff4c563029007",
-        "92aef7b866a1f08626e905637c196cdd49d3612a16eee4bfb2e9d48ed2136cf2"
+        "42c65191001d41b5a9cde33ef3f7eac1027a01ac1cbbbb15badf6eb3bb904a01",
+        "5d9066da3be56450c69097b5a71f6bc25b61701bf1bb775ef1e196444dce9075",
+        "4d383af95b2ae47273cee65af570a111968f12edc4cd2a5ddcdfa28d209a16a3",
+        "923fb446f2fd6c35513083b52b5ebe5e80385fb0f16fa0f374b26bafd2167687",
+        "cfa6d29e4107ddb679741496e6bf04aafce475a26d6e7071ba4e6780631851d2",
+        "732fac52d614f504d50f07c75bad3279392a8ca2c951f8333a01695e1fdd18c1"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:desichalkos/bolt"
+            "item": "cruciblecraft:hsse/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desichalkos/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
             "count": 1,
-            "id": "cruciblecraft:desichalkos/gear"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -45,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c1038147a4f2835a",
+        "cruciblecraft:gt6/7d9c4a460eafce92",
         0,
         0
       ],
@@ -53,14 +104,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/57e7a924521ca45d",
+        "cruciblecraft:gt6/ba125561a85ee209",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/2e9da4a416ac255c",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/1670c0444479f6ef",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/bb953fee832321af",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/fdb2d07269456463",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1012,
+      "duration": 1795,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        54,
         0
       ],
       "output_chances": [

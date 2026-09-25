@@ -10,59 +10,40 @@
         }
       ],
       "hashes": [
-        "65b5c7ba297ad009bd09864deb9f85dfc5468af51299092f6f0bb869398773d5",
-        "993eae0412d308abd5e91b8478b74a2dc032637525e2e08cb18d5704aaad36c1",
-        "faa595b0dae612c1a1f2921f4e33ef8fb5a2fbf06790f4483568e49247543913",
-        "71eba238067e71dbca896b882bf110dc67acf0470b5819d71d93d868ed543228"
+        "2b35ee7cec0865b0be958ae8bd3f73093c1abfdb77a5f3e81de16efc550b1ebc",
+        "2d628b2c38c273eb15de38651ccd87a750166a4a1316ccf20440f146603b8d80"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ethaxium/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_steel"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ethaxium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_steel"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ethaxium/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ethaxium/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ethaxium"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:ethaxium/rod"
+            "id": "cruciblecraft:vibranium_steel/block"
           }
         ]
       ]
@@ -72,38 +53,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4078b2638e56448f",
+        "cruciblecraft:gt6/0e04dfe975b73ce7",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/6ea545a82849f0fd",
+        0,
+        "cruciblecraft:gt6/ebed3602ab9f1a83",
         1,
         1
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/cf17abdb630f9486",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/6669e3a64ca5d37a",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 627,
+      "duration": 2544,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        2,
         0
       ],
       "output_chances": [

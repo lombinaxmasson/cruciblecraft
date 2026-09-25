@@ -10,40 +10,89 @@
         }
       ],
       "hashes": [
-        "d9b12be630f41669e4f9c003e707b1f13d64e7ac1ee34c36052dc375867dbab9",
-        "47d3c064818060ffedb5da5aa1316130aa45276bc64e9be7454f377d0e83f243"
+        "aeec5ae43d6d0cea8534ca35f370bda41418f4db936ac38ac064f9662fb0fde9",
+        "882063125400895f17ce21b067814e5ed59d9c5b097e3f7e477a99359b5100ac",
+        "cb07eab5cbd80febfa97a2384af9c3bba29db3dfad6c93ad615c17a9d9618b91",
+        "1748c662805247a8707667d56c0fac93c0a782e5de2dc07e0874de920c9c5da9",
+        "bf4ed4152c243a43d78772476156bc384ddd55fdd11d05c6a744f1b153a3c0e6",
+        "538a6f0f97184278f5bd6c33cb2daa4ecf51074cff896c2cce78dac31ce228a1"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "erbium"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:aluminium_alloy/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "erbium"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:aluminium_alloy/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aluminium_alloy/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aluminium_alloy/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aluminium_alloy/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aluminium_alloy/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "aluminium_alloy"
+            },
             "count": 1,
-            "id": "cruciblecraft:erbium/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aluminium_alloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aluminium_alloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -53,7 +102,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/bf4aa11fdb7860dc",
+        "cruciblecraft:gt6/8b547ff9c7be09e2",
         0,
         0
       ],
@@ -61,14 +110,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/2b2665a8d131565c",
+        "cruciblecraft:gt6/04ad28b2ac44a7c0",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/f7013bbb72dc7886",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/abb6b8375d8a919c",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/4abb54a06654c1e0",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/716c57837ace1ae6",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2112,
+      "duration": 56,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        16,
         0
       ],
       "output_chances": [

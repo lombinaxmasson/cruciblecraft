@@ -10,40 +10,59 @@
         }
       ],
       "hashes": [
-        "98994d63e6dbc28186c5b284cdf39e4a08ab362ac1cca862de809886cf39818c",
-        "b00c700b87ec758b3b89ed021c5a4c8b5147cf9c142bc70b8b90786e365ea8b8"
+        "14b012dbb528924fb1201fedcd3e19225239ba9dc0f0f48fec31244ff9382751",
+        "69de88af662729e47f976fc829a25a38e4c69bdb35ac2b5135925eb0ec4851e1",
+        "ac347088c0fbb661ff0bb0dad8e4d2bc996f536d49a31fc8fb90186afe60847e",
+        "c00e45e5eab2b1b7235de52de713017f65e7ecca1cc4db0fb650f5103d306826"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "erbium"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:black_bronze/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "erbium"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:black_bronze/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "black_bronze"
+            },
             "count": 1,
-            "id": "cruciblecraft:erbium/block"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:black_bronze/rod"
           }
         ]
       ]
@@ -53,22 +72,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/67a11e858cc177b6",
+        "cruciblecraft:gt6/123d6f6b2d905030",
         0,
-        2
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/e05e54a18e3280f7",
+        "cruciblecraft:gt6/e0ce1432895985a9",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/decc6794a4c9f88f",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/c9199534ed786772",
+        3,
         3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2112,
+      "duration": 91,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +114,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
       ],
       "output_chances": [

@@ -1,0 +1,175 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_5871",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "91b29bb5113ee96f9dc66fa0ae020cb0f40eccdfe5d2d63f36d95e9cc867d726",
+        "c4c7364ab81944b720ce77cc141c1427af32a18195ffb91a43c8148559e62bd8",
+        "92c5018cd805c8caace4ce5afd95f0c5b661bb306ad39c99469277a0767ab4f6",
+        "01b47a3b9f66260e7ea5cfdca75dd57b1703b934e83b6e5dfdac33c253080ea1",
+        "6194f5742e6bd563a84e8c9b60635a2a5c1b2d46db19433d4b4e06fca480d1d5",
+        "4612911d85b1b7e959050b4cee3924742e4a6e11ba879281d42f1b4f08ce83af"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:void_metal/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:void_metal/fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "void_metal"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "void_metal"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/ec8c9a106fd50f27",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/d037b94fa4103e87",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/9fb6e8c705160d6c",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/7f502d04755bbcab",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/5587282dce420b9d",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/e2252d678cadde24",
+        5,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 126,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        24,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_5871",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

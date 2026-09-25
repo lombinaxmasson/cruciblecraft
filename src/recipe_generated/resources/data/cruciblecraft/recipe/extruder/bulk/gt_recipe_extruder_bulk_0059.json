@@ -10,70 +10,312 @@
         }
       ],
       "hashes": [
-        "a1756880bd8e1b3f8d33e8987293c6c61f6753fa29cf8c22f9cd1b80cf7e051d",
-        "79d531ccbac0821f364f81e8980864cca4cb0bb1a954645a14e01b3d220b325c",
-        "cfabb818a1b52a95f8bea6c653913dca810c987c5bc5b3f2596f7662a5e0969f",
-        "0befd4d3f40ab541f92900bfadf0259d442ce13684368b84dc5c520fe7312b45",
-        "23a52ad9461afaa2326bdf24f8dccc83046bdecf328fd0c0999066161d008f94",
-        "f68688c6efc069f5fe713042f9dd7bf2ea40cebb40ee151152fc53f2bd4e2a9f",
-        "3f63b82dd32efc2b35342b0634904fd4f2058a8df1ddf733d1e210ee4ad46401",
-        "983ebda361aab001793379b9bbaf4c30f8ea807ff492e52f1a68758111802634",
-        "5761c1a4cac94e82ecf07665d78575c0006a64dc8c6d6c58ef8091bcd0624788",
-        "02c9d4945c83068e334798e2f327348d17ecf330a218eb9e45ceeb571cc67151",
-        "64058dd11828e7a8a85df88b8cf128d80b900703a073376b88e7bbebe33e1220",
-        "b07803b4247ade7cedc918cb95b4f19d9fc39a08445138c6520cb69a23b6327e",
-        "3e21535e788cdf536c1b3f4dd2b63082ceb9141fc6619acdd7ddf63011d55dcd",
-        "34185445e9859716d680e7b50ffa4417eeb23978fde782af5846cb8d1d27bda0",
-        "21ce68bd6bf062b76428e136c9ce016a7ea5bdfe512cb7b5a8e0d4f370375733",
-        "c54826e7c2247832cf5a246cfa6aff656af7019c5b8e473419d76bb1b87f8a05",
-        "ac524c9c497e441ea786379b05d336e7a0ea11a356d7b36b5ccaec7d3b3417cf",
-        "b4dcf17d9d04aa9defee734c0869b0c3705b4384f6e44e15cead5d323617b846",
-        "cd4b972b304759ab3acc9b3bbabd62249690302ba0e65bfbad3672f8bd4ce421",
-        "94ea060c28d985f9c6c59f497064c5ffb7369e8656b2c570ec1b6beca352728c",
-        "ccaa7ca24fa6da9c78e706ca19de997b31d9b98a9c0cfdb32172ae2c9e7353d0",
-        "262c9f80f63e3727bee268c0d7f554962099d5db1e46ff57d0380c00b00a764f",
-        "6c9ba40a5d8254892f40cf3972d1319ee4d308d785d526c54caee8b97a334278",
-        "d5a855ddb95be4821ec6cc2fe8937eba0d45105b9898e13856a90c0392b112f1",
-        "ba985989e77a1a044960ce7ef0ab1ebfbf6f535bc73a8b7e45139f7d4ab0084e",
-        "a08882f8ce4d9df6b2f4ebe12b6117d70a70ba9ddf28f18cc8c5f5fea7f1b8d1",
-        "b15676acbc23940fcea9119e4beeb72249b7da3f5f5456e4101c027afabfd46c",
-        "d17d2e94babfa4b9273be939ddf24a0f4bfdf1482a7082579cc7c4c975e47b70",
-        "3d200cfeb4b162d47d890d53b333568aacd414681914d9ae230bee1acb91b9e7",
-        "91726d935015fc73e712f457125e7dda09e91aff7e8d61d92e25a3aa1206eb4f",
-        "791c5e82eb6446ecbf3423c3412724ed4a1ac9f9dda9725d9b030e56308897d4",
-        "bc4eaf56c1978f3bbd667b4246834d66c1da63e8c34b59aa2ab7a55510212512",
-        "58968bd4e3eba8cf8cd8bdeb58fe9924358e7282d767b5b27cc646a975e8c609",
-        "8f35e236501706dc8d80c23f517b3a073cc2ba403772d841018a6779b74b5533",
-        "a45be0e98fd8337dddc6d293c0fa1104688ec084d7a8bdef60790238f63641de",
-        "8477943b68c6d448fdf597f3ba7209e111eca318edf10da73455e980f3173173",
-        "ed5abf9bf986a11db40d52d224b99f2f97cc7189cb9847d0c03f300c1f512790",
-        "e5446adad4debb97a81e0099f0cadf56c92681ad359842aec00672b20afb8d3f",
-        "4441b914aa05c066436d17f5419660fd4c3e808465f028edf6be74074e21d7f8"
+        "c1905c1c925bcf5c247daf218921b67a857c484059b6fb7fc630a13a54739633",
+        "156649bc8ab52584139a73c3d5686b1535cf16c8aa58115a4a72ea5fa927b1d3",
+        "c1aadaed599fb38625d1066ae5c5a2ae527a943d5b893fdc5838b51d2ffc60ef",
+        "678cafb41d65ecb3c24d0ebfb910a331c2ac960535e71abe771f1f3a4431f362",
+        "dbf03fdd3b7b8290f48ac44c91aa017c2e8ea7e6d76e32adb18fbbe4bb07dd87",
+        "623c3db8c1414c15dcde3623c96ea0948aa9c33277ca69404a9d0d866bb569a7",
+        "3626b5588e29439b4c34e13aaab954ef5283954962e2f3aee30e6a3d8f07be0c",
+        "c7e2a9b61f9394fd8600589344cfcfcfcf975e70e4bdd670f1b8ba3d68c8e224",
+        "1e7f3edb28922bc6c32a8d5e1b253bab58e14781cb5bc0d3ed3adf8aa05cdf43",
+        "df90488d98249478eb03b06cdfd31eeb897c6b20c1a129a353ca19f4282b4e1a",
+        "a4b6b320c76849fd8e41fd2561cb1fba175d397855bfdadab0381b469a1358ed",
+        "9fce1c1a8e01436756c2d5d4bc5b0f797f8fd65a3b6345ec8f49ebaef948f36d",
+        "5d0ba8af83f97c5b07c7dd691879bee8e666c33d7754b96101d34d73768ed3fd",
+        "32debc72ae6f7f4c3ed118c50882cf713c2e4035b83fb1d1fdea8c028a8cc5ba",
+        "b5a90d5bdaab94268979838c1097b50ca46c7f7cff918fececd52f4db61042b6",
+        "1160ce56d76becb0a42de4cd73245a3f1ec14fed6ad149106de8a4fbc84c3ebc",
+        "c94af0b92f37908d13ffaa9ac63803aaa19b13bb43f3fef05570cd350a41cfb7",
+        "7f086fc0755f300b5b8e50382ac3fbbed61082565bbd6ae61b896d78f88dab90",
+        "4c561b677a8cdb0e1c6a05bdd012793f4bae641e73bf45a601ac340af1ff5769",
+        "3c047815aa43ffe3b544c4cab836bdb55b9fb7fa6202f54b471e26b8ccdbc219",
+        "51bf35c9fb2a1240360e036d658489fde6b488ea7e6ab468c22579bce4ec3265",
+        "f5981082f9fd82ab836a6940599feb05faf5dd11eb06cb5c44cc8c34473ccdd9",
+        "f37afc05c9dd046aef98352581b1944ae1205b2be1349ff0191edb3490d76e38",
+        "e65206f8160016133cd708bd60f20789a8bc22a6f38a33f8bfc3e1a54096a518",
+        "e2718ed7dce5c4afb5dbb72a8e5b4e414b6dc7291584f28ddb92159cfe87c694",
+        "74859a5809fdcae5d699caf041b92d07964d0010c6f24afae1aa194f2c3bebf2",
+        "c831592db483dd2a0399d2851feff222548c2196f8d5cd6015421183f3c7c78b",
+        "a17df2f6227a8039d686246037b94fabab5d30e85458559e1b087a6399937485",
+        "44cb17e6852c537c431ecd5628581f19e49b4a62829d1a373f5b960cef1f7467",
+        "c911b6dd2008a31764758cd3ec90ce366001c6c33d66a262de636cdf283803cc",
+        "3b288fe7b9bdb6c78f09c6f1940f1c3179d87a6b2c72490b72ef48f7dbf5a1e0",
+        "7a85088ceb63dacefd7c395212f4ee437f49b805c53b3e4a4a40ba8b1d9338dd",
+        "4fd6fa76402ad5b349fdf50b854cfb2ebd24aecfd16171180cbb965d3165f05d",
+        "298b3953d67f0da76d271e639928af4e9888ffe16b5c81e8be1dc85fd986db57",
+        "0731f9cd30a9956b6ca964b7accef3cd546f1907ffd1320f5e410fd01da09ecd",
+        "7356909320f0c8ef0580ff4e01e3240eff753811c8847e505d5985f75ed8a6eb",
+        "eedbde1e526eea68489a2e8547ce86915bac9dadce9c0d10d79d66021850c617",
+        "4504463ff13b1e0817e46ac02daa7a8925a96c3a9c8cbe80605671041967e276",
+        "c04282576a0b9500e596e5977d57fee38dbf2a83dee4d888a9eea23a022bfa80",
+        "620d6987eaf46e3a5745aa60d0790b233f0fd9eb462b27bc84d7ecaf0f7d0abc",
+        "45f3586a9fa6e7f47dbfb700aa601a614cb8081fecc6f45f30fc3c1f577c76ef",
+        "034a2dea553a76457355ffdd262a7870ba07bf53d9190ca140bfe948bcb30a75",
+        "495fd71e5e1f880b95dc887603f0757d7572232d6f7061ceb56de5e301c2cf26",
+        "5ddfbbfc5a3ca1a914f22cf64674366df4e1dab1db2ee089243e027d60d309ea",
+        "0c03e2fc365b84ffa8fce2ad0e2dc864b4fdec46c40d66cbd9690f7f29b3a639",
+        "4a2e82a8fcecd71682df64ae6d801db1e6392e024e489deaf0c8f123dae20300",
+        "ae163b5ff808d66e8e247ae5709f0b3f2413570aac2211b23f7f84cf86fd55bc",
+        "55c7f18b34a20e247acffe53e508d5cac9e61f2e9ccfb0b3f5669b16c526dd12",
+        "709aa9a2c24c491376aa04e038db5dfd441fe0c7241b6d345f60922168f2ce73",
+        "4d0b5fb92f93e179a402c791baf00a4eb13028d4282748923c61790abbf9b6b9",
+        "1f49d37608b1351a39c23b7bd3114a01aa22ecb6bfc27a93f13fbee5b69e89d7",
+        "f1798e3c25e0a6e44888d5262136a10beb1d5ec2d7c124ee0e31b27173b8ffe1",
+        "f27c0b243d33ae218c6464e644e40832a15bce52b8b633ac17bb29c542b9e276",
+        "d6f90bb8e75140c562e409a582d3deb22ceba61c9ef995d4814535983269fe1f",
+        "2575f27000f224afc9fedffe8d82cc4afbd3602e7b32166e13396d3820e626ee",
+        "b73d9823b0868d799687717055264aed06b71e8507d17d5657241848a20ff1e9",
+        "619b98cc9531a5a22ac94a9234b3557c140aa104cdec7b2af3b7ecaf92e5b9e6",
+        "49596e4ac73b39f472f8dcfb76f6b341bf1e690ee7e417d27856f7b277fd8cb8",
+        "185684c0dc87a9eb6902eb3b59b4bc2b8b64c02e59d296b71650b011c970bf0a",
+        "fb2437635ae03355696e03643df213cddad9d9e765c0b76586acc1eda24a01d3",
+        "8a2e323d4336cfa9d27912f5d778003087db1fa2f6ebbc18b551a9be931606de",
+        "05969aaaa3357ce4fdb1508305ff69e94146c6f1d90484504696455d4e2e22fa",
+        "fa9296d7e813bb836084f31051922a636fc47cb188ddea34015b24fee20f20bc",
+        "f8319974b3bfbb95e9d9c7274c8fb7ccc2ecd031d151330f6ce15e3c5cb9741c",
+        "a9b8c8ecec497132d52d7544565051d93a01bb8b9dad6f69e3446f01c15fe7c4",
+        "f745de13b95a0ebb5765c3f3dbed061fcf828df1e8ba6c1609115179e28f2870",
+        "277b8f408dae0fcd5a9e385f0ad5f028ba95053777cf7e304e478b888814463f",
+        "b8a967a7508d121dbae8c70a6638023982fc73adb31554529da03fcf7bfe994f",
+        "5d2adabc5c572ffcbcca6e2b1015ee889cfefa8aabc84c0530b2d06fcc0ba33e",
+        "d1bc2baf47aaaab7621a326406e1deec095ee4754fd8c0a436c986ec476d911d",
+        "d7aacf9f927af551a8cac512fd5391df5712f1869087baf0ea6cc879e1ce48c1",
+        "5e04b9fb0eb72b4e66d2eb7cdc389cf267960b77b630f99d700d6b1a19d1a2da",
+        "a058ee58dba26e0ec4a91241531ec823ed895bc40a3da9b2fdd2e901ff55cfd9",
+        "3563f7b5e541885e5f2e43c603cb1b92e96e61a37c5ffbc3d37cbbb522464d99",
+        "6ac50df3666c263eb4e6d180b6f175fa37ad532be0cd20be6231dda912b0e557",
+        "c40f6f30985e7e662f68ffbaaead00bc9d65ee8816d1d63d4ea1caf934aa0a98",
+        "7781d1897ce894489d1f0ddfc2abe45740dbc1dba2565b9033b86d336483f5d7",
+        "5d83a4c98e49682aa6f571157142ad3a7b73afcfbc1b3f2e022fd70ceb01f16d",
+        "60e98e2717e14942d7d44b9635de7f106117c42886c6c611e392f708b4e662cf",
+        "fc9466e42ac25970f4447f243c7652f78ef0ec5f0a48d59a78c073b604b0f1e7",
+        "3e378ef85e4e07bffe4b95fa73e08c151981f92f2f489cfb459c2f0944da426b",
+        "2f210c64b2cf7a8405d5d1a43524fa4c7616fd9f35663533ea7ee15aae4158db",
+        "2283f158f3c45a434e35977508a5006d7470549348b9fb4c25116ed26450cd98",
+        "3482fc0d75f63d1de761a869672dcd2823fe4a6291fcb74b50b7313dedeb4ffa",
+        "d549c0dfcb6ec26b7b09e2c4f167072d66a995f20ac692bdd6ed4a324a474ca1",
+        "0a81a45c7ecb740c7e1192b4cd6144653a5701d63576436135479e7342f0d0fd",
+        "c5e08198164f5ff012cd9dff59cba5779b99d8a8d07cb226f878314b0ef718aa",
+        "24773a3838aa1f01e7f5bf229f0ff7664b5b6a18079fcb1b57c52ae2337358ea",
+        "26f1b4a4668bd234b0824bbfe6229013b51a396541f57e62f6107fc42777c328",
+        "c393084006fb21e346934061827a21f36b8eb4418f144e69b332c38b310d6ec0",
+        "b8cd95f9258da3aa02343caa2530a0f09ff633e6019c5083700a85f67e7e3a4c",
+        "ebb9628d76ebd15defbacd078ffa1aed800dbf844f752ec024855d0656636584",
+        "62685fccf2a5232ec08983782069c3dad3185e4f968cb8dc7f3c46436232ebf3",
+        "7d478bbc3b14207bc3b0221355986f1114850e175400a5f6c8118bdbb920a4a4",
+        "db44a81c0354f4cbd5bb3497ebf16f91b9f769b4fd1334142fcddbfcafc92ff4",
+        "7b95b6e9104b8f5ddff365c99cb963b887b889979db008cbb8aae41afe13fc72",
+        "54498ef2f58fc388525d49601449dafc103207f771803a5e0fe296bec0236b1f",
+        "ffc9e69779ecc231bab7f7b638a2f78b9de3fc034ed9647d67a4cb3c3d4b66d9",
+        "46203f69bd375bacbfc1950436b12811e4f2578ead312f7a79e09bb8c87a7c19",
+        "b52448b14c4a7257978670f9b264ec1698dc3971166f54f7298552380f17d4b5",
+        "38346ac5c42351267b6340ef6cda3a87bb07b917045216e320d47e609f352698",
+        "35310beaceb41d0fa66ee8306217271062ebc5ddfd294925555d88ed056ada6d",
+        "ccfc2b44be1df009d9c69089767bf318942c6c26e67bedacc38aca325750801d",
+        "614aff9b0ea28098384d0aaa71a5ddf294a2f2ffdd80670a89841c5c414b04f4",
+        "2242347b2747b7f0ea77c6ef8905d0246243f217aa9ec3361be0874dcab6643b",
+        "9b7052e178cb709dd81ef3f55c69f7a58fa61dba33c040cef1bd8885d1f869fd",
+        "33971c3664b404b2ec489ef94a3cd6df53c6e65d0f45d1752eb3b918bcb745f7",
+        "cf93ac6578d25153e64d19a76e936398c75597dd17c7a61646c62a6295785121",
+        "0fb3cbe1454b0267a8dba13a17f443d14e0de10e5f46478884316362e78adeeb",
+        "2c077f66fc3cacad6b439aaedb2d2f7f8019e610bd027835757354f39c413f99",
+        "8ade721510b6ac7e1f8d184e6a79395e0d981af981f2490876915b358dd4f13b",
+        "71715ea2026de052dad3b3099007c5d96755ec313a2ac6c97578c25c241b87ad",
+        "2c25145eacc0e927d0372e9b9a754d3686c2a249f5c5c880e19c7e5881d92517",
+        "8a4284d911eb6e020555c1c9ab52ebe34ef93dde7dfa666e92ef0656e9539ad4",
+        "12de1254199552091dd3854627364c9eef8e166fc5980db1579e244e3ea30af5",
+        "4b3b02f6c9e2b71da907fb789db80054ba8a311ad210d26624900565e5c6762b",
+        "bd470953242987bee409db39ddd18cc07811713cf1a2727734295c1d63386721",
+        "b0d928c07b235ec6ee632e583903b6f22bfdf6e51f58f9845f0add408b205202",
+        "fee408d9605e24daf9f775c1a8d33bd788eead40cce6d94b9ce4479f32c19064",
+        "c90dbc9ec5c32185cb59f402a06a315d35447d49451de1c1a2aa99238cc43501",
+        "9dfdade18247566e0cbef6c2dd903c301c82e9fc70bd696971ba1b97d0c857ad",
+        "80c36e619e4fa064666a9c06955f4f39e8f30573096bb45f920ab168686fb0cf",
+        "7c066c0f52511cf4bc90dd0dc0a1ef08783117a43e5c77141c3bee707ec3d6a5",
+        "9dfbc82085ee8a00fd64489ba8db776d78189b8ec40efd9332f3df75a88cfe0d",
+        "3fdab736c7b3d0dca3eec75a7361b7af063ac6fe660cd56c22c837909117056f",
+        "7362860f8e2eba4df515ee741292a12fa4159c960e910923908a62a0dddd5573",
+        "1e696533b129bcc512200491c069ec611972cd5696bfec5b929eea2ece7a519e",
+        "3c6852f97561bbb80fca7f0115e9a9655928e3603caf670b0aa235028b299147",
+        "15f7c0425cfe02be012ce6d8e1dbb0f7652d9ef9131d6e895df3346e7b4e0c24",
+        "acd206cbc3a958aa4cadd579a6299563b122d5ef26517b2ea141b7f4e312af64",
+        "c44ccc7841098cf31bf73b90faff108ba4062eae21db41fffc7857ff03db1b5a",
+        "348ee598146b70697c15262d843a37534293b3d2cc436642b5f0177f10530c09",
+        "4f965e6d40dabbf21dcd5a1222818e4cc7f4081f585741d7253ab004ee18d8d3",
+        "7e2827276455f63aab6f99221b9c5a2cd20d4c62e9b8285295bd4388dead5cf7",
+        "04865c3f527a349fb61a624dcd2a53a7134dc3993da2752d61618a5856e27468",
+        "b81e23a7cb8ce2bcf98aedb68c0bbd0f9b09119b0b2469f49dedd4e12552a1a4",
+        "ed47d69cab8be42e9f7ae2774be15afb28ce2054d018e6626bc009dc2a9bbda1",
+        "087677cda67ff2c6635f5f0d71b4410d665dda7282dacbac88a88901575eecb1",
+        "04294c974dbfd0d1cad475dfc99a775b8a48d67168c03923b9c6a0e1bf4348a5",
+        "c77703240f066fbbf5698266d6a0e74991e1e6598f5983d42552d2aba2231303",
+        "bd3cf22e9e156c7b8193627ac405ca74101deae71b2e24c8c11f92f7386df1cd",
+        "8fa64d04b813ce7f30cac9377366345b50ee86df4b32e5f5de04c3b570494bc9",
+        "08d7f56f3275db1c6ed1d2e065bf77d93bbf043d0042b40d722bea41f4883d71",
+        "f04b0b77669eecd4ca223de31c608407549ad05d12c8dede0e4d44e1cf57a383",
+        "9e5c05f7cddb6611b43ba778b90926262a32375b26173eff11c1af13f260c44d",
+        "edccc185d4a1ec7fbf49269760c279cf10ca642d449d8eec3817a0d211acbbd4",
+        "fcd6c868bb4bd210d8e271efe0fab9c1cc478f9c27f66fc8e1898b17368b530a",
+        "874df1a1e6b4d0315d02b640cd277dabca61eb053de51f4f45e986707e90cdc2",
+        "e2589ad0f620a003b78dc7d7a50454606e506fbe9c50ab528ea4a8969e616584",
+        "e82d4658d7a828634a185e7d56ada169d05ffe08e006df3333b05cd12b59de83",
+        "ef64cf6a307539fd0462b746578d3ebea754219001f66ee09830dfc2ab697daf",
+        "ba9619260d825ab6f89232c9754b60e04d50f793f40c4ab79711893e56ae1e7b",
+        "36e3e44e07ceec0aff62439c5af8613f3dedb6bcb3561681cdfaed17ca9eda7d",
+        "fdcc080a339620bf6833ee0c3428d8060a7d5dc7ba974b064b46ff6baac70a7f",
+        "638f40398b93c2fb2095ba0c49bd596e35a3bc06b3c9819e91e6815e969ece50",
+        "f12d1538904028ee344de31f99f58dd61a2ebad1ce9477a2219acf3c7d4cca9a",
+        "c0e572cbb9ee7004cbee04014dc765f6fad68d397f0610524e0cbc3908bfc0fc",
+        "2bd9405b3d59ba8a639a5144ef5e935ca53a3ee66da94426491ed7c2d50f1301",
+        "6ef2f2f8a0b666eeecd15fbedb03ccb426fe426ffbdf16f1f13e9d03ceebaf43",
+        "ee11d21fa01a32108f60d114569da08810e57dc0505b47be6cf64fc581422368",
+        "58c204c874707439737df937d4b1805e9c12631f2aceabf012030cd4d3c3e12f",
+        "80c42039bf9b3170c4d1f4662d72427277650d6671b13aec09b5ac5919a00e3c",
+        "b5809ee40f99f213f674db0da8e5aeeefaeee2030a78bb87441c4a017b31e922",
+        "6f05e242756c8c24c266ec2f96d296dbd8c3c305f4364e354ef301b16136bee4",
+        "ac6ec09e71e3a88c22c5687bb667a04bfaf38f2afeb2bb3f6d4002618baf5a1c",
+        "a211c36dec91c578cb32206a09e35ddd5ea4ea518a9acfd5546661e2b021cc92",
+        "73505384e91c43c17cca1c2b0528d030c4cb589cadecb148523a3fc4e176fd35",
+        "22d29aa213bb22e0b936398086cb96931abf10aea361fe776bca47fdde986955",
+        "fd38837c080c99e101fa6d95fa6b97ce729008f3086f7d5d973ac7c8b187854f",
+        "fa99de5c33ff925d90c5ebd0a4ec5b313a450fc0cef98d058a8ac49857db40dc",
+        "1c49ee04931cd910049e8bb691bedaff8e3ae4decb3a40337b513afa605254c4",
+        "7e3bfaf102c0e1c88b2c0172a5335b103f431bf9b5b73460b1d7b2b55236b0bc",
+        "d43efc653ecf123f4039d2e1e5c92f66c752f05f9d28934331ff42eca2dbec42",
+        "e521d5018c58699893758ea59cd5838a603f423335f631ace8c2591d83994843",
+        "d0064546d20d7ae0ecb9b21f57e2d3850275a90651b866eb81352f64f3c64205",
+        "6ec47692c29d113bf799c286a5e9f89b44a7cb6e02ee9e1006624d78a6333b2a",
+        "59e1555f5213a7cb9094b6c1cf54d97d5c66c8eaa2ff49935e0c400a013a24a3",
+        "3001ea05045edcfd8e87f94b6d5a9cd2d848e9da11f146bd12d8e48403fd52d3",
+        "2122344baf29b14bf61bd1ab7533df031b3c6f5f266db79f120e037c9f9424ac",
+        "d602e0acd326fa5e6a654578771c4f142c96f93d6f209590c1f5db127ffee892",
+        "612a1912598e432ba0656c4d916c5ed8540aafd908ba9da53406109e3f13d29f",
+        "7bc863ac53cd7206e1030f67473cccdcf28e7c59f224e75a91f1d002be68c50b",
+        "0d3f73325bcb9bbec76b7b3657dc11a44d9197f06d36ed88f39298453effb857",
+        "74abda29a3e66de041d427101a25054cf6d5db87ddc8ca8961edb4f4f4bde028",
+        "8db67993df1a4d41315d911c08a0b701d32315acaea99b01db7d51e19c9f7039",
+        "73ce5ba07bef520b99bc989d87deb02b31a76ff38d2c8ba63f6c8311bbc3bd4b",
+        "f594499c03293cb8d2828ad4c576eb37113333d31ed181e7575e788ac71e06c8",
+        "dcfa2fc9b8837c4a3137ee75d68f79fda5aa9f19c8592aa220f0c5fe9a9dc4df",
+        "9ca304108e5b488c0f821330df319beed4e68ee6e2794e586d8d0712dd76d4c6",
+        "8771b74aca61b81724f4d9529f1d355b0d87d5ffef28f0f432e504c36dff7c40",
+        "c1f39454cccd139b0306b86a045b13f63250c9a50f01203f3b8ff7308b9ed7d9",
+        "6c9a6ecae2c19ed1daec9a5cb674294d58b24a330484c409dd56a1a64dafb23e",
+        "4374aea3c437bb131ba7ce8af49f5a373e8dfa5390b6711373312e3709421c02",
+        "0d595b97137d49e6dcbf474dfc2157860c724686fce18623926dcda9f7ce78e6",
+        "fc467422737b86664944b00be044e504b3e404a7d761c73ce8ac399fbc8d3d44",
+        "cda9139e49e9efdaab58b0eaef40a604be03692c01062cf7848d01648f881063",
+        "add24f686ca3746a7fbec5bc347b86b34f78ee00ff9c18d0039f0e57f28c5c60",
+        "06b31f9e48a28363c6ea475b1e2f3b75b276b1796c4b8dd50dbf0ab63dcfa6df",
+        "3de366d49c9a995baef0dc2e80dc977f2feae3cf622060c4917632f98ec3beca",
+        "ea172f03725e97945103f54cf8e1da311c7ac2fb45a06af8f63f5d0e487c8776",
+        "9f2e116249e28fcf4175499ae53e00824b0c37e508c2ed36641f3d9a98fce8a1",
+        "fb8148acc623b7314282509459a4c170437257e5daf0f0896c600c6562b69162",
+        "99d1cc98f5a2207ba7dd6a93f0dfeb3dcb2ba359826d566eaa0b404b6b00e05e",
+        "9a423973e4a23c06268d53ddc2ca99c5d3a6decb59c767a428ef3ccca6d88808",
+        "d7c45c7eb4ee6f24e0a0b97949b1faf24c3ce42420af0f5e0a21308e65dc016e"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:deep_iron/block"
+            "item": "cruciblecraft:curium/tiny_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:deep_iron/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:dense_plate",
+            "items": "cruciblecraft:minecart_wheels",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manasteel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thaumium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terrasteel/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold_inductive/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rose_gold/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -82,46 +324,18 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:storage_dust",
+            "items": "cruciblecraft:minecart_wheels",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:dense_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:deep_iron/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:deep_iron/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:deep_iron/block"
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_ring"
@@ -129,30 +343,414 @@
         ],
         [
           {
-            "item": "cruciblecraft:deep_iron/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:dense_plate",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium242/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:samarium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold_inductive/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "gold_inductive"
             },
-            "items": "cruciblecraft:storage_dust",
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium241/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terrasteel/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thaumium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium241/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold_inductive/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:samarium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibranium_silver/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold_inductive"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terrasteel/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:minecart_wheels",
             "type": "neoforge:components"
           },
           {
@@ -162,10 +760,26 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:storage_dust",
+            "items": "cruciblecraft:spring",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manasteel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
           },
           {
             "item": "cruciblecraft:extruder_shape_plate"
@@ -173,31 +787,7 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:storage_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:deep_iron/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:storage_dust",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:efrine/small_gear"
           },
           {
             "item": "cruciblecraft:extruder_shape_ingot"
@@ -206,9 +796,593 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:storage_dust",
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium242/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrical_steel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:samarium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold_inductive"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold_inductive"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "curium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold_inductive/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold_inductive/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium241/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold_inductive/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:curium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rose_gold/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium242/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "samarium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "samarium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:lutetium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
@@ -217,38 +1391,102 @@
         ],
         [
           {
-            "item": "cruciblecraft:deep_iron/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:deep_iron/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:storage_plate",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibranium_silver/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:storage_plate",
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold_inductive/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
@@ -258,9 +1496,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:storage_plate",
+            "items": "cruciblecraft:chain",
             "type": "neoforge:components"
           },
           {
@@ -270,21 +1508,89 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:dense_plate",
+            "items": "cruciblecraft:spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:storage_dust",
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rose_gold/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibranium_silver/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:chain",
             "type": "neoforge:components"
           },
           {
@@ -294,10 +1600,214 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:storage_dust",
+            "items": "cruciblecraft:spring",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold_inductive"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "curium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrical_steel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -306,9 +1816,205 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "gold_inductive"
             },
-            "items": "cruciblecraft:storage_plate",
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manasteel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold_inductive/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thaumium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:curium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrical_steel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:chain",
             "type": "neoforge:components"
           },
           {
@@ -318,9 +2024,33 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:dense_plate",
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:chain",
             "type": "neoforge:components"
           },
           {
@@ -330,141 +2060,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:dense_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:dense_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:dense_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:storage_dust",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:storage_dust",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:dense_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:storage_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:storage_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:storage_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:storage_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:storage_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:storage_dust",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
@@ -474,13 +2072,65 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:dense_plate",
+            "items": "cruciblecraft:chain",
             "type": "neoforge:components"
           },
           {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
             "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:samarium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
@@ -488,67 +2138,274 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "curium"
             },
-            "count": 18,
-            "id": "cruciblecraft:small_casing"
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 9,
-            "id": "cruciblecraft:deep_iron/plate"
-          }
-        ],
-        [
-          {
-            "count": 18,
-            "id": "cruciblecraft:deep_iron/rod"
-          }
-        ],
-        [
-          {
-            "count": 2,
-            "id": "cruciblecraft:deep_iron/gear"
+            "count": 4,
+            "id": "cruciblecraft:efrine/ring"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:deep_iron/block"
+            "id": "cruciblecraft:efrine/long_rod"
           }
         ],
         [
           {
-            "count": 9,
-            "id": "cruciblecraft:deep_iron/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 9,
-            "id": "cruciblecraft:deep_iron/ingot"
-          }
-        ],
-        [
-          {
-            "count": 36,
-            "id": "cruciblecraft:deep_iron/ring"
-          }
-        ],
-        [
-          {
-            "count": 9,
-            "id": "cruciblecraft:deep_iron/long_rod"
+            "count": 1,
+            "id": "cruciblecraft:manasteel/bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold_inductive/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:efrine/wire"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:efrine/ingot"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:efrine/rod"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:efrine/tiny_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:americium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium242"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:samarium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold_inductive"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:gold_inductive/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium241"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "count": 2,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thaumium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:efrine/small_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
             },
             "count": 9,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "count": 1,
             "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:americium241/bolt"
+          }
+        ],
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:efrine/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "samarium"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:efrine/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:efrine/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vibranium_silver/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:americium242/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:electrical_steel/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lutetium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_silver"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrical_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -558,318 +2415,1646 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8dea6b0bfbbef591",
+        "cruciblecraft:gt6/2f0d94ac04255bd8",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/02914608d4ab7ee7",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/56685d5a456077d6",
+        2,
         2
       ],
       [
-        1,
-        1,
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/a372a0b6bc266241",
-        1,
+        "cruciblecraft:gt6/955525604c3052ed",
+        3,
         3
       ],
       [
-        2,
-        2,
+        4,
+        4,
         0,
-        "cruciblecraft:gt6/469002cb3e6d8366",
-        2,
+        "cruciblecraft:gt6/68a8a0e657ef6595",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/75de14d6d7982801",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/ccf7ee5ca088ebaf",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:gt6/df2a066a8c5b0bdd",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:gt6/5b9bc4cfb44379bf",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:gt6/44525017730c39ab",
+        9,
+        9
+      ],
+      [
+        10,
+        10,
+        0,
+        "cruciblecraft:gt6/0b5244bf44bae319",
+        10,
+        10
+      ],
+      [
+        11,
+        11,
+        0,
+        "cruciblecraft:gt6/811e5c9bdf848ff4",
+        11,
+        11
+      ],
+      [
+        12,
+        12,
+        0,
+        "cruciblecraft:gt6/fece834358f45545",
+        12,
+        12
+      ],
+      [
+        13,
+        1,
+        0,
+        "cruciblecraft:gt6/48393954ca8499ec",
+        13,
+        13
+      ],
+      [
+        14,
+        9,
+        0,
+        "cruciblecraft:gt6/8c77b9bb0aa8ba21",
+        14,
+        14
+      ],
+      [
+        15,
+        13,
+        0,
+        "cruciblecraft:gt6/7998c403d34da4c1",
+        15,
+        15
+      ],
+      [
+        16,
+        14,
+        0,
+        "cruciblecraft:gt6/c245d12d8be72ee3",
+        16,
+        16
+      ],
+      [
+        17,
+        15,
+        0,
+        "cruciblecraft:gt6/145399317b578d3c",
+        17,
+        17
+      ],
+      [
+        18,
+        16,
+        0,
+        "cruciblecraft:gt6/58277f329e863519",
+        18,
+        18
+      ],
+      [
+        19,
+        17,
+        0,
+        "cruciblecraft:gt6/e74dc43de3ac0417",
+        19,
+        19
+      ],
+      [
+        20,
+        12,
+        0,
+        "cruciblecraft:gt6/584c90978f0fe575",
+        20,
         20
       ],
       [
-        3,
-        3,
+        21,
+        18,
         0,
-        "cruciblecraft:gt6/527fb1b3bdb902a9",
-        3,
+        "cruciblecraft:gt6/079a3e167aa6b1b7",
+        21,
+        21
+      ],
+      [
+        22,
+        6,
+        0,
+        "cruciblecraft:gt6/ace8522dafdf1d15",
+        22,
+        22
+      ],
+      [
+        23,
+        11,
+        0,
+        "cruciblecraft:gt6/fafbad17d8b492d3",
+        23,
+        23
+      ],
+      [
+        24,
+        19,
+        0,
+        "cruciblecraft:gt6/ee749126d26738cd",
+        24,
         24
       ],
       [
-        4,
+        25,
+        20,
+        0,
+        "cruciblecraft:gt6/c857893546c25132",
+        25,
+        25
+      ],
+      [
+        26,
+        11,
+        0,
+        "cruciblecraft:gt6/3e06cdb744b79758",
+        26,
+        26
+      ],
+      [
+        27,
+        21,
+        0,
+        "cruciblecraft:gt6/54c80252dcf30ea1",
+        27,
+        27
+      ],
+      [
+        28,
+        22,
+        0,
+        "cruciblecraft:gt6/3b6f040e730739cf",
+        28,
+        28
+      ],
+      [
+        29,
         4,
         0,
-        "cruciblecraft:gt6/045f2bdef2db209e",
-        4,
+        "cruciblecraft:gt6/dd1ec1631fca73f1",
+        29,
         29
       ],
       [
-        5,
-        5,
+        30,
+        22,
         0,
-        "cruciblecraft:gt6/4744b41596f2af98",
-        5,
+        "cruciblecraft:gt6/43df1e89ecc6ba70",
+        30,
+        30
+      ],
+      [
+        31,
+        23,
+        0,
+        "cruciblecraft:gt6/5b517a8ba5fc4e95",
+        31,
+        31
+      ],
+      [
+        32,
+        11,
+        0,
+        "cruciblecraft:gt6/36b5c8e004f8444e",
+        32,
+        32
+      ],
+      [
+        33,
+        24,
+        0,
+        "cruciblecraft:gt6/5d746be8721fe6b3",
+        33,
+        33
+      ],
+      [
+        34,
+        12,
+        0,
+        "cruciblecraft:gt6/50b2b803aa2594a2",
+        34,
+        34
+      ],
+      [
+        35,
+        25,
+        0,
+        "cruciblecraft:gt6/8119a38359b60278",
+        35,
+        35
+      ],
+      [
+        36,
+        12,
+        0,
+        "cruciblecraft:gt6/5ea68dd6d8cb6a92",
+        36,
         36
       ],
       [
-        6,
-        6,
+        37,
+        4,
         0,
-        "cruciblecraft:gt6/3c770cd69027756a",
-        6,
+        "cruciblecraft:gt6/56bd67e7df70a1e8",
+        37,
+        37
+      ],
+      [
+        38,
+        21,
+        0,
+        "cruciblecraft:gt6/8f531c8cca23c3d0",
+        38,
+        38
+      ],
+      [
+        39,
+        17,
+        0,
+        "cruciblecraft:gt6/0f814b5f9df0b888",
+        39,
         39
       ],
       [
-        7,
-        7,
+        40,
+        9,
         0,
-        "cruciblecraft:gt6/a0e4fbb692eebaae",
-        7,
+        "cruciblecraft:gt6/c23b464155d6a4f7",
+        40,
+        40
+      ],
+      [
+        41,
+        1,
+        0,
+        "cruciblecraft:gt6/4f261498b1539d16",
+        41,
+        41
+      ],
+      [
+        42,
+        4,
+        0,
+        "cruciblecraft:gt6/bac44e190a0f8978",
+        42,
         42
       ],
       [
-        8,
-        8,
+        43,
+        26,
         0,
-        "cruciblecraft:gt6/bfbdaf07ffa86754",
-        8,
+        "cruciblecraft:gt6/2a43004ace5e001c",
+        43,
+        43
+      ],
+      [
+        44,
+        27,
+        0,
+        "cruciblecraft:gt6/9d0548c8c10633f4",
+        44,
+        44
+      ],
+      [
+        45,
+        22,
+        0,
+        "cruciblecraft:gt6/51bd56205e76fa0d",
+        45,
+        45
+      ],
+      [
+        46,
+        21,
+        0,
+        "cruciblecraft:gt6/deddfb0773784d54",
+        46,
+        46
+      ],
+      [
+        47,
+        28,
+        0,
+        "cruciblecraft:gt6/f1c9abd729b63ea0",
+        47,
+        47
+      ],
+      [
+        48,
+        29,
+        0,
+        "cruciblecraft:gt6/daaad38fdbfc4269",
+        48,
+        48
+      ],
+      [
+        49,
+        27,
+        0,
+        "cruciblecraft:gt6/d9391e443c3b45ee",
+        49,
+        49
+      ],
+      [
+        50,
+        21,
+        0,
+        "cruciblecraft:gt6/74792e4f26bf0aac",
+        50,
+        50
+      ],
+      [
+        51,
+        17,
+        0,
+        "cruciblecraft:gt6/d2ebbf0f4facc494",
+        51,
+        51
+      ],
+      [
+        52,
+        4,
+        0,
+        "cruciblecraft:gt6/5b59fc6e54e19e59",
+        52,
+        52
+      ],
+      [
+        53,
+        19,
+        0,
+        "cruciblecraft:gt6/f9a1954578d22a4b",
+        53,
+        53
+      ],
+      [
+        54,
+        6,
+        0,
+        "cruciblecraft:gt6/ea060724af782c1e",
+        54,
+        54
+      ],
+      [
+        55,
+        22,
+        0,
+        "cruciblecraft:gt6/c83603e15634a370",
+        55,
+        55
+      ],
+      [
+        56,
+        6,
+        0,
+        "cruciblecraft:gt6/387c6032c2f45830",
+        56,
+        56
+      ],
+      [
+        57,
+        23,
+        0,
+        "cruciblecraft:gt6/957f48304bf90353",
+        57,
+        57
+      ],
+      [
+        58,
+        1,
+        0,
+        "cruciblecraft:gt6/63b3fba77c9ebd3c",
+        58,
+        58
+      ],
+      [
+        59,
+        30,
+        0,
+        "cruciblecraft:gt6/3c7b41507c6c3a5b",
+        59,
+        59
+      ],
+      [
+        60,
+        27,
+        0,
+        "cruciblecraft:gt6/63b498fcc6d89858",
+        60,
+        60
+      ],
+      [
+        61,
+        10,
+        0,
+        "cruciblecraft:gt6/da77da3b0b9e83ab",
+        61,
+        61
+      ],
+      [
+        62,
+        23,
+        0,
+        "cruciblecraft:gt6/b911337d2158768d",
+        62,
+        62
+      ],
+      [
+        63,
+        2,
+        0,
+        "cruciblecraft:gt6/2db8c1aa18d6fd40",
+        63,
+        63
+      ],
+      [
+        64,
+        31,
+        0,
+        "cruciblecraft:gt6/101aaa2a52f94141",
+        64,
+        64
+      ],
+      [
+        65,
+        1,
+        0,
+        "cruciblecraft:gt6/7124d8f4cd7e66a6",
+        65,
+        65
+      ],
+      [
+        66,
+        21,
+        0,
+        "cruciblecraft:gt6/d79e1967810519aa",
+        66,
+        66
+      ],
+      [
+        67,
+        11,
+        0,
+        "cruciblecraft:gt6/bf229321b01de761",
+        67,
         67
       ],
       [
-        9,
+        68,
+        28,
+        0,
+        "cruciblecraft:gt6/bc47266029c0166b",
+        68,
+        68
+      ],
+      [
+        69,
+        1,
+        0,
+        "cruciblecraft:gt6/b9900710a7e8a403",
+        69,
+        69
+      ],
+      [
+        70,
+        32,
+        0,
+        "cruciblecraft:gt6/3c0bc2913658bc12",
+        70,
+        70
+      ],
+      [
+        71,
+        26,
+        0,
+        "cruciblecraft:gt6/0e09e3548111f27e",
+        71,
+        71
+      ],
+      [
+        72,
+        12,
+        0,
+        "cruciblecraft:gt6/dfc8cac319f550f0",
+        72,
+        72
+      ],
+      [
+        73,
+        10,
+        0,
+        "cruciblecraft:gt6/97b0b78a50e65b4c",
+        73,
+        73
+      ],
+      [
+        74,
+        16,
+        0,
+        "cruciblecraft:gt6/314c936707db83c1",
+        74,
+        74
+      ],
+      [
+        75,
+        12,
+        0,
+        "cruciblecraft:gt6/13581ce4561bb2c7",
+        75,
+        75
+      ],
+      [
+        76,
+        4,
+        0,
+        "cruciblecraft:gt6/a87e041bfcafeade",
+        76,
+        76
+      ],
+      [
+        77,
+        7,
+        0,
+        "cruciblecraft:gt6/ccd9ee74c407e259",
+        77,
+        77
+      ],
+      [
+        78,
+        27,
+        0,
+        "cruciblecraft:gt6/ca1e8314d96aae40",
+        78,
+        78
+      ],
+      [
+        79,
+        11,
+        0,
+        "cruciblecraft:gt6/0e740b3727f4bc03",
+        79,
+        79
+      ],
+      [
+        80,
+        2,
+        0,
+        "cruciblecraft:gt6/f0cfd7aba3128cd2",
+        80,
+        80
+      ],
+      [
+        81,
+        22,
+        0,
+        "cruciblecraft:gt6/1cda87031a5bb5ce",
+        81,
+        81
+      ],
+      [
+        82,
+        0,
+        0,
+        "cruciblecraft:gt6/9dd7aa2de1b14c96",
+        82,
+        82
+      ],
+      [
+        83,
+        16,
+        0,
+        "cruciblecraft:gt6/375b0f4e3c634893",
+        83,
+        83
+      ],
+      [
+        84,
+        12,
+        0,
+        "cruciblecraft:gt6/734947aa2c76c24c",
+        84,
+        84
+      ],
+      [
+        85,
+        17,
+        0,
+        "cruciblecraft:gt6/3139143b263d8acb",
+        85,
+        85
+      ],
+      [
+        86,
+        27,
+        0,
+        "cruciblecraft:gt6/0bdc8c28ce93ff9d",
+        86,
+        86
+      ],
+      [
+        87,
+        22,
+        0,
+        "cruciblecraft:gt6/56d0f9ac8698a9db",
+        87,
+        87
+      ],
+      [
+        88,
+        28,
+        0,
+        "cruciblecraft:gt6/fea196d270457fdf",
+        88,
+        88
+      ],
+      [
+        89,
+        25,
+        0,
+        "cruciblecraft:gt6/07d7c67622a5a3db",
+        89,
+        89
+      ],
+      [
+        90,
         8,
         0,
-        "cruciblecraft:gt6/d5629e840cc33162",
-        9,
+        "cruciblecraft:gt6/d8b32614153fa302",
+        90,
+        90
+      ],
+      [
+        91,
+        10,
+        0,
+        "cruciblecraft:gt6/df175af724381ab6",
+        91,
+        91
+      ],
+      [
+        92,
+        10,
+        0,
+        "cruciblecraft:gt6/f8e41f1d0c6dfafb",
+        92,
+        92
+      ],
+      [
+        93,
+        19,
+        0,
+        "cruciblecraft:gt6/7c77443f52b1ecdb",
+        93,
+        93
+      ],
+      [
+        94,
+        21,
+        0,
+        "cruciblecraft:gt6/8296037ed4d07490",
+        94,
+        94
+      ],
+      [
+        95,
+        18,
+        0,
+        "cruciblecraft:gt6/893c1ab4161a695f",
+        95,
+        95
+      ],
+      [
+        96,
+        7,
+        0,
+        "cruciblecraft:gt6/a29f5b8a48f460d1",
+        96,
         96
       ],
       [
-        10,
-        9,
+        97,
+        25,
         0,
-        "cruciblecraft:gt6/6757ff7e9515c94c",
-        10,
+        "cruciblecraft:gt6/495e61f2fcfb84fb",
+        97,
+        97
+      ],
+      [
+        98,
+        23,
+        0,
+        "cruciblecraft:gt6/afc42aa57170f74a",
+        98,
+        98
+      ],
+      [
+        99,
+        28,
+        0,
+        "cruciblecraft:gt6/035ff53aa2bbf2b1",
+        99,
+        99
+      ],
+      [
+        100,
+        4,
+        0,
+        "cruciblecraft:gt6/1aad9263dc498ad0",
+        100,
+        100
+      ],
+      [
+        101,
+        4,
+        0,
+        "cruciblecraft:gt6/d15e9d3e793206ef",
+        101,
+        101
+      ],
+      [
+        102,
+        0,
+        0,
+        "cruciblecraft:gt6/13d0e3f0dc4d2e60",
+        102,
+        102
+      ],
+      [
+        103,
+        8,
+        0,
+        "cruciblecraft:gt6/f457a873556921db",
+        103,
         103
       ],
       [
-        11,
+        104,
+        25,
+        0,
+        "cruciblecraft:gt6/09ee0e480e1bc0fc",
+        104,
+        104
+      ],
+      [
+        105,
+        23,
+        0,
+        "cruciblecraft:gt6/c64eee970c81fcd7",
+        105,
+        105
+      ],
+      [
+        106,
         1,
         0,
-        "cruciblecraft:gt6/ddfb427a9fd44ebb",
-        11,
+        "cruciblecraft:gt6/3b2676acf87fb005",
+        106,
+        106
+      ],
+      [
+        107,
+        14,
+        0,
+        "cruciblecraft:gt6/2f0a1273a78240bd",
+        107,
+        107
+      ],
+      [
+        108,
+        9,
+        0,
+        "cruciblecraft:gt6/5fa94cd0afeabb22",
+        108,
+        108
+      ],
+      [
+        109,
+        25,
+        0,
+        "cruciblecraft:gt6/911aa90db1695ba4",
+        109,
+        109
+      ],
+      [
+        110,
+        15,
+        0,
+        "cruciblecraft:gt6/ee2b3c7122f8f8b1",
+        110,
+        110
+      ],
+      [
+        111,
+        2,
+        0,
+        "cruciblecraft:gt6/9330ba96ac55079b",
+        111,
+        111
+      ],
+      [
+        112,
+        9,
+        0,
+        "cruciblecraft:gt6/eb40dd49c68363ef",
+        112,
+        112
+      ],
+      [
+        113,
+        12,
+        0,
+        "cruciblecraft:gt6/4c7f39065bdfc4de",
+        113,
+        113
+      ],
+      [
+        114,
+        23,
+        0,
+        "cruciblecraft:gt6/1faa610e135b2702",
+        114,
+        114
+      ],
+      [
+        115,
+        27,
+        0,
+        "cruciblecraft:gt6/f4dac3efbea5478a",
+        115,
         115
       ],
       [
+        116,
+        26,
+        0,
+        "cruciblecraft:gt6/0b912f2570f286e5",
+        116,
+        116
+      ],
+      [
+        117,
+        23,
+        0,
+        "cruciblecraft:gt6/42043c6c790eabe7",
+        117,
+        117
+      ],
+      [
+        118,
+        27,
+        0,
+        "cruciblecraft:gt6/6398a8782b498a64",
+        118,
+        118
+      ],
+      [
+        119,
+        33,
+        0,
+        "cruciblecraft:gt6/72b79735ce12fe41",
+        119,
+        119
+      ],
+      [
+        120,
+        22,
+        0,
+        "cruciblecraft:gt6/2e65b39e62d68ad9",
+        120,
+        120
+      ],
+      [
+        121,
+        23,
+        0,
+        "cruciblecraft:gt6/17ae856a188b0187",
+        121,
+        121
+      ],
+      [
+        122,
+        22,
+        0,
+        "cruciblecraft:gt6/e1626c1c1533b2c8",
+        122,
+        122
+      ],
+      [
+        123,
+        25,
+        0,
+        "cruciblecraft:gt6/ffa0fcb11b58784e",
+        123,
+        123
+      ],
+      [
+        124,
+        25,
+        0,
+        "cruciblecraft:gt6/c4136b283c572586",
+        124,
+        124
+      ],
+      [
+        125,
+        27,
+        0,
+        "cruciblecraft:gt6/32dfffa5e7c926f4",
+        125,
+        125
+      ],
+      [
+        126,
+        2,
+        0,
+        "cruciblecraft:gt6/481d9511b925f9a3",
+        126,
+        126
+      ],
+      [
+        127,
+        22,
+        0,
+        "cruciblecraft:gt6/7401aa7b388b4007",
+        127,
+        127
+      ],
+      [
+        128,
+        34,
+        0,
+        "cruciblecraft:gt6/f8f47f74c0011f7f",
+        128,
+        128
+      ],
+      [
+        129,
+        9,
+        0,
+        "cruciblecraft:gt6/df6179acefc83689",
+        129,
+        129
+      ],
+      [
+        130,
         12,
+        0,
+        "cruciblecraft:gt6/95ceae5b7e30b978",
+        130,
+        130
+      ],
+      [
+        131,
+        25,
+        0,
+        "cruciblecraft:gt6/df62e9c34fc7ce50",
+        131,
+        131
+      ],
+      [
+        132,
+        25,
+        0,
+        "cruciblecraft:gt6/be2173473ab55e6a",
+        132,
+        132
+      ],
+      [
+        133,
+        2,
+        0,
+        "cruciblecraft:gt6/1bd49aa329ad27b4",
+        133,
+        133
+      ],
+      [
+        134,
+        25,
+        0,
+        "cruciblecraft:gt6/6f86381dcaa66a11",
+        134,
+        134
+      ],
+      [
+        135,
+        17,
+        0,
+        "cruciblecraft:gt6/d41330745fe0f73e",
+        135,
+        135
+      ],
+      [
+        136,
+        28,
+        0,
+        "cruciblecraft:gt6/8220347e38773665",
+        136,
+        136
+      ],
+      [
+        137,
+        19,
+        0,
+        "cruciblecraft:gt6/a74c30b79d254eb9",
+        137,
+        137
+      ],
+      [
+        138,
+        11,
+        0,
+        "cruciblecraft:gt6/2edc32f3e990a28d",
+        138,
+        138
+      ],
+      [
+        139,
+        10,
+        0,
+        "cruciblecraft:gt6/6ec453b7cce14c3f",
+        139,
+        139
+      ],
+      [
+        140,
+        2,
+        0,
+        "cruciblecraft:gt6/bc3b918a312e646c",
+        140,
+        140
+      ],
+      [
+        141,
+        21,
+        0,
+        "cruciblecraft:gt6/2590eb669c163bf9",
+        141,
+        141
+      ],
+      [
+        142,
+        11,
+        0,
+        "cruciblecraft:gt6/fc613cce2cf48080",
+        142,
+        142
+      ],
+      [
+        143,
+        6,
+        0,
+        "cruciblecraft:gt6/dc1c710926ddf19a",
+        143,
+        143
+      ],
+      [
+        144,
+        8,
+        0,
+        "cruciblecraft:gt6/925360e3b6cd74b4",
+        144,
+        144
+      ],
+      [
+        145,
+        8,
+        0,
+        "cruciblecraft:gt6/b234bdba52597a3d",
+        145,
+        145
+      ],
+      [
+        146,
+        34,
+        0,
+        "cruciblecraft:gt6/d4d9cd6b12101153",
+        146,
+        146
+      ],
+      [
+        147,
+        28,
+        0,
+        "cruciblecraft:gt6/76a1e76f5f82013e",
+        147,
+        147
+      ],
+      [
+        148,
+        2,
+        0,
+        "cruciblecraft:gt6/54712696e98e5ce3",
+        148,
+        148
+      ],
+      [
+        149,
+        9,
+        0,
+        "cruciblecraft:gt6/79649ab306ad51c0",
+        149,
+        149
+      ],
+      [
+        150,
+        11,
+        0,
+        "cruciblecraft:gt6/2100ba7b863992a3",
+        150,
+        150
+      ],
+      [
+        151,
+        22,
+        0,
+        "cruciblecraft:gt6/c7997636fefb4e49",
+        151,
+        151
+      ],
+      [
+        152,
+        28,
+        0,
+        "cruciblecraft:gt6/ede9fba85a82b33a",
+        152,
+        152
+      ],
+      [
+        153,
+        7,
+        0,
+        "cruciblecraft:gt6/6b3466de256e3c7e",
+        153,
+        153
+      ],
+      [
+        154,
         4,
         0,
-        "cruciblecraft:gt6/85ffdbcd43722ff5",
-        12,
+        "cruciblecraft:gt6/459a4a7eb7924086",
+        154,
         154
       ],
       [
-        13,
-        2,
+        155,
         0,
-        "cruciblecraft:gt6/e24d9cb00f45a993",
-        13,
+        0,
+        "cruciblecraft:gt6/9b062936e11aa177",
+        155,
+        155
+      ],
+      [
+        156,
+        19,
+        0,
+        "cruciblecraft:gt6/d15cb656ccffba42",
+        156,
+        156
+      ],
+      [
+        157,
+        11,
+        0,
+        "cruciblecraft:gt6/db9d6c8a46581b75",
+        157,
+        157
+      ],
+      [
+        158,
+        35,
+        0,
+        "cruciblecraft:gt6/ef0fa88d6989b220",
+        158,
+        158
+      ],
+      [
+        159,
+        1,
+        0,
+        "cruciblecraft:gt6/77ff259dcc1789d9",
+        159,
+        159
+      ],
+      [
+        160,
+        28,
+        0,
+        "cruciblecraft:gt6/af3a937e25965557",
+        160,
         160
       ],
       [
-        14,
-        6,
+        161,
+        27,
         0,
-        "cruciblecraft:gt6/a69cfcfe9cdd9d81",
-        14,
+        "cruciblecraft:gt6/df85db60b7a06015",
+        161,
+        161
+      ],
+      [
+        162,
+        4,
+        0,
+        "cruciblecraft:gt6/c2b8ce4e6c740e58",
+        162,
+        162
+      ],
+      [
+        163,
+        27,
+        0,
+        "cruciblecraft:gt6/b9f55c550a744268",
+        163,
+        163
+      ],
+      [
+        164,
+        19,
+        0,
+        "cruciblecraft:gt6/47b8279aebde1646",
+        164,
         164
       ],
       [
-        15,
-        8,
+        165,
+        36,
         0,
-        "cruciblecraft:gt6/2e78218474955abb",
-        15,
+        "cruciblecraft:gt6/1e0835e23e89736c",
+        165,
+        165
+      ],
+      [
+        166,
+        10,
+        0,
+        "cruciblecraft:gt6/bdcb319c6fd4cc84",
+        166,
+        166
+      ],
+      [
+        167,
+        19,
+        0,
+        "cruciblecraft:gt6/89e2ce932067a7c6",
+        167,
+        167
+      ],
+      [
+        168,
+        9,
+        0,
+        "cruciblecraft:gt6/3bc5da5aeec952d2",
+        168,
         168
       ],
       [
-        16,
-        9,
+        169,
+        10,
         0,
-        "cruciblecraft:gt6/b29dd6954b4ce522",
+        "cruciblecraft:gt6/b3a51fc378f2f534",
+        169,
+        169
+      ],
+      [
+        170,
+        23,
+        0,
+        "cruciblecraft:gt6/790bde6dc5513961",
+        170,
+        170
+      ],
+      [
+        171,
+        19,
+        0,
+        "cruciblecraft:gt6/2a60129d78fa682d",
+        171,
+        171
+      ],
+      [
+        172,
         16,
+        0,
+        "cruciblecraft:gt6/8474f9d1e03ddeeb",
+        172,
+        172
+      ],
+      [
+        173,
+        21,
+        0,
+        "cruciblecraft:gt6/d9f141a89f3ae03e",
+        173,
+        173
+      ],
+      [
+        174,
+        28,
+        0,
+        "cruciblecraft:gt6/7c484c25337244cc",
+        174,
+        174
+      ],
+      [
+        175,
+        22,
+        0,
+        "cruciblecraft:gt6/271199bb871654d5",
+        175,
         175
       ],
       [
-        17,
-        3,
+        176,
+        36,
         0,
-        "cruciblecraft:gt6/eb12991f0ed3cf3b",
-        17,
+        "cruciblecraft:gt6/f52540e3e94b9027",
+        176,
+        176
+      ],
+      [
+        177,
+        9,
+        0,
+        "cruciblecraft:gt6/d087171da50ee1f5",
+        177,
+        177
+      ],
+      [
+        178,
+        25,
+        0,
+        "cruciblecraft:gt6/e3b67c1b6a361396",
+        178,
+        178
+      ],
+      [
+        179,
+        9,
+        0,
+        "cruciblecraft:gt6/5739fe339f253f5d",
+        179,
+        179
+      ],
+      [
+        180,
+        2,
+        0,
+        "cruciblecraft:gt6/27960daf103b67ef",
+        180,
+        180
+      ],
+      [
+        181,
+        30,
+        0,
+        "cruciblecraft:gt6/3104b926940c7c07",
+        181,
         181
       ],
       [
-        18,
-        9,
+        182,
+        4,
         0,
-        "cruciblecraft:gt6/b5e86f1b8c96772c",
-        18,
+        "cruciblecraft:gt6/e1d9c623d75504ab",
+        182,
+        182
+      ],
+      [
+        183,
+        16,
+        0,
+        "cruciblecraft:gt6/2ff82bcd6de72608",
+        183,
+        183
+      ],
+      [
+        184,
+        19,
+        0,
+        "cruciblecraft:gt6/eba6972e24dfc272",
+        184,
+        184
+      ],
+      [
+        185,
+        5,
+        0,
+        "cruciblecraft:gt6/a12d9acd792ba2ad",
+        185,
+        185
+      ],
+      [
+        186,
+        0,
+        0,
+        "cruciblecraft:gt6/e1a7ee057448bd65",
+        186,
+        186
+      ],
+      [
+        187,
+        1,
+        0,
+        "cruciblecraft:gt6/0e793732942d8adf",
+        187,
         187
       ],
       [
+        188,
+        10,
+        0,
+        "cruciblecraft:gt6/2fa4ba22a52ef342",
+        188,
+        188
+      ],
+      [
+        189,
+        35,
+        0,
+        "cruciblecraft:gt6/128b327494aa2423",
+        189,
+        189
+      ],
+      [
+        190,
+        12,
+        0,
+        "cruciblecraft:gt6/f05be921ec860a8f",
+        190,
+        190
+      ],
+      [
+        191,
+        1,
+        0,
+        "cruciblecraft:gt6/bf1fa96bfc23ceef",
+        191,
+        191
+      ],
+      [
+        192,
+        9,
+        0,
+        "cruciblecraft:gt6/6e26e20754b98aaf",
+        192,
+        192
+      ],
+      [
+        193,
+        2,
+        0,
+        "cruciblecraft:gt6/835a710e9c68a9ac",
+        193,
+        193
+      ],
+      [
+        194,
+        21,
+        0,
+        "cruciblecraft:gt6/81407c9dbdbedeae",
+        194,
+        194
+      ],
+      [
+        195,
+        1,
+        0,
+        "cruciblecraft:gt6/1b332700668590f5",
+        195,
+        195
+      ],
+      [
+        196,
+        10,
+        0,
+        "cruciblecraft:gt6/30a06b6fef941b2b",
+        196,
+        196
+      ],
+      [
+        197,
+        11,
+        0,
+        "cruciblecraft:gt6/46987df2d9e334a9",
+        197,
+        197
+      ],
+      [
+        198,
         19,
         0,
+        "cruciblecraft:gt6/db162e7d681da803",
+        198,
+        198
+      ],
+      [
+        199,
+        12,
         0,
-        "cruciblecraft:gt6/2249069ad1675113",
-        19,
+        "cruciblecraft:gt6/61280f52a1470eba",
+        199,
         199
       ],
       [
-        20,
-        2,
+        200,
+        28,
         0,
-        "cruciblecraft:gt6/e1221fabc7c78afb",
-        20,
-        208
+        "cruciblecraft:gt6/6df2aa4113134bad",
+        200,
+        200
       ],
       [
-        21,
-        0,
-        0,
-        "cruciblecraft:gt6/c76f68aaad247114",
-        21,
-        229
-      ],
-      [
-        22,
-        5,
-        0,
-        "cruciblecraft:gt6/a36e91bbaf5d1314",
-        22,
-        246
-      ],
-      [
+        201,
         23,
         0,
-        0,
-        "cruciblecraft:gt6/c382bdd4bcb2b545",
-        23,
-        251
+        "cruciblecraft:gt6/5f22a4eaecc2d5f9",
+        201,
+        201
       ],
       [
-        24,
-        8,
+        202,
+        15,
         0,
-        "cruciblecraft:gt6/0d9c0f2932fc7f8f",
-        24,
-        281
+        "cruciblecraft:gt6/3b6e5c1af7b7b921",
+        202,
+        202
       ],
       [
-        25,
-        6,
+        203,
+        21,
         0,
-        "cruciblecraft:gt6/7ff4453980176f3c",
-        25,
-        297
+        "cruciblecraft:gt6/26fb9bcb9ad55064",
+        203,
+        203
       ],
       [
-        26,
-        7,
+        204,
+        19,
         0,
-        "cruciblecraft:gt6/12dcd46fe89010ce",
-        26,
-        310
-      ],
-      [
-        27,
-        3,
-        0,
-        "cruciblecraft:gt6/1c0f81dcca781f90",
-        27,
-        313
-      ],
-      [
-        28,
-        5,
-        0,
-        "cruciblecraft:gt6/4e7bd82a2ee714c0",
-        28,
-        329
-      ],
-      [
-        29,
-        4,
-        0,
-        "cruciblecraft:gt6/6105a5c9f33ecb8b",
-        29,
-        393
-      ],
-      [
-        30,
-        7,
-        0,
-        "cruciblecraft:gt6/1cf236db8ae387f8",
-        30,
-        407
-      ],
-      [
-        31,
-        1,
-        0,
-        "cruciblecraft:gt6/31bb72f545deef10",
-        31,
-        408
-      ],
-      [
-        32,
-        3,
-        0,
-        "cruciblecraft:gt6/b1dd18e7b65a77f9",
-        32,
-        410
-      ],
-      [
-        33,
-        6,
-        0,
-        "cruciblecraft:gt6/0c6d2c8dcd2ebf26",
-        33,
-        434
-      ],
-      [
-        34,
-        7,
-        0,
-        "cruciblecraft:gt6/2804127b46e1d2b7",
-        34,
-        438
-      ],
-      [
-        35,
-        1,
-        0,
-        "cruciblecraft:gt6/9a5b751268ac49db",
-        35,
-        442
-      ],
-      [
-        36,
-        5,
-        0,
-        "cruciblecraft:gt6/bf514806f693ad59",
-        36,
-        464
-      ],
-      [
-        37,
-        2,
-        0,
-        "cruciblecraft:gt6/dfe7eb333c1af724",
-        37,
-        465
-      ],
-      [
-        38,
-        9,
-        0,
-        "cruciblecraft:gt6/506b963d632821d5",
-        38,
-        470
+        "cruciblecraft:gt6/acd1d2b076f43f48",
+        204,
+        204
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1661,
+      "duration": 31,
       "eut": 96,
       "item_input_actions": [
         {

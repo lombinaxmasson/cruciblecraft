@@ -10,28 +10,72 @@
         }
       ],
       "hashes": [
-        "7f35374fcac83fb5fec15d2e22e4b56c8434314c4e7ab597fd51c5a565767b49",
-        "4e07ee0217b4139d2715b4ef89ada1aba5b66f920fb26f713e1553318c84f358"
+        "625c43b5f63a06b58626791d275434478e1c7d1753a72fe54efeee279f3db770",
+        "5df5e65e27949198b4564f307a3e7a7871f5147ddf2aa8d512531b7529d5a4c0",
+        "019575f42c25eaee497305770afc148e638a9dffe4dfa095cecf2ba20183cc3f",
+        "c2d0dc4d3662fac95aa5e467d8109c396807926ded71cd876ced36b95489f9b3",
+        "9bd2c152d7cf9edeecbc2796fd5f1f85f82770c028c4613589b3b06b1b447461",
+        "ff07c37f9582227ed70fb9119266e424cc2cd1fbdcdc6df289adac2766282336"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium_gold"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:niobium_nitride/tiny_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:titanium_gold/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "niobium_nitride"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "niobium_nitride"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:niobium_nitride/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "niobium_nitride"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:niobium_nitride/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
@@ -39,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:titanium_gold/gear"
+            "id": "cruciblecraft:niobium_nitride/rod"
           }
         ]
       ]
@@ -49,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ef77016ef7f3b45a",
+        "cruciblecraft:gt6/036c9662d35b4a48",
         0,
         0
       ],
@@ -57,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/12c96cf572e58286",
+        "cruciblecraft:gt6/166a92921d6f5609",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/99233cad517f5d17",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/3af1b67dd75b0ea2",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/9532fb7292da0f46",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/80b50772595cdd02",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 761,
+      "duration": 84,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        5,
         0
       ],
       "output_chances": [

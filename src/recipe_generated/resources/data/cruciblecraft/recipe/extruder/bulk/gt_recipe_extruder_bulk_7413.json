@@ -10,40 +10,101 @@
         }
       ],
       "hashes": [
-        "da2761aaa86439be3e42021f1ca89f11c1672c6e155b5f5b4c3667112acca815",
-        "9d1ddf03957b64e88e2bfc75097889e76c0985c1f0b8f93af6b2d5bde29c1743"
+        "95a39bf9b5e632a422149c8a52316593c4ef31aad912018b08861e019c175f76",
+        "eaf724d37761e538d9f5bba91e598c583cb558e1487db6287580c71a4b0b2a73",
+        "fb02d8926ca10d1bf926e396c4aa4c5035d1c032b6ee74a91ec5f419f9d5a84e",
+        "285201a47d4e8f0363b0dd07c0d412dc422ae45bff39bd7396d0b0bdc5d4b462",
+        "4a65c3d959c6aafd00572564d0a2b8d4c745fb80b347818b5e306109218ba03d",
+        "455fc4044085993149a2e6ac7f80f1366835659dcb50fe100b568476e609e0b2"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ethaxium"
+              "cruciblecraft:prefix_material": "aredrite"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ethaxium"
+              "cruciblecraft:prefix_material": "aredrite"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
             "count": 1,
-            "id": "cruciblecraft:ethaxium/gear"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -53,22 +114,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4aa2612be5dae6f9",
+        "cruciblecraft:gt6/951778f94a3c93b4",
         0,
-        2
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/75e024fc4c5200c5",
         1,
-        7
+        0,
+        "cruciblecraft:gt6/50087e32cc6738b0",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/9ba5c5a40fa349ab",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/2526c9ba83fdf240",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/57388df5dcf39a0c",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/229096b49e1f526d",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5013,
+      "duration": 682,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +172,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
       ],
       "output_chances": [

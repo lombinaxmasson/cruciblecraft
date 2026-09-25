@@ -10,41 +10,42 @@
         }
       ],
       "hashes": [
-        "169a82a6d01e7f4f465371e7d2d2733cc2c0a5eb22d4448edefe5038f11625e9",
-        "090821ecb08aadb6efd951ace6307e01010ac0e6f9ea0bd565a636fa98a818be",
-        "d8b50ceccdd8d5f1aaf039af679c217b8aeab99f87b537d8caa2fbf7a0ba7836"
+        "fb07b89b330fc344c082e0084f56624781863807d57f6671dbb75364939e0b70",
+        "8f76b8558450f705815662c294bb3870b660dc5d9bf13ef7a5fe5e2f1f929e83",
+        "4f460a14b1882c3ad7febd089187bfa20dcb29ee55c1b1152b366625668d01db",
+        "672e7816f21b28c2f0ca59c82004b88cf2bef7b8b8a24e2a555323bee3e57cb6"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "blue_steel"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:osmiridium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "blue_steel"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:osmiridium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:blue_steel/gear"
+            "item": "cruciblecraft:osmiridium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -52,7 +53,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:blue_steel/block"
+            "id": "cruciblecraft:osmiridium/large_item_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -62,7 +72,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/41fcadf9606f76de",
+        "cruciblecraft:gt6/9fa28e4c36907e32",
         0,
         0
       ],
@@ -70,22 +80,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/a1f3cdb3a01ecd2e",
+        "cruciblecraft:gt6/dd56361bdb6d0617",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/91112436f3cec85e",
+        "cruciblecraft:gt6/dc9f5acf810f523b",
         2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/718972e39e49aa82",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2301,
+      "duration": 5686,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +114,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        48,
         0
       ],
       "output_chances": [

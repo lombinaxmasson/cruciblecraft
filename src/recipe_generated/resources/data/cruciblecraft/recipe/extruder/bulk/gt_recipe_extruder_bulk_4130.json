@@ -10,32 +10,130 @@
         }
       ],
       "hashes": [
-        "34584d96dc7f3f37e5ae9d213de51ec4dd0722515961774b7586ab21a04e4304",
-        "16cd19a24ae874f0ebfe74d2f85feabed2a770518a06922573d407db81c167b0"
+        "e84a10e09872f0d9e1954701e195ce7b417f22ac2f27ee02723d042b405b9842",
+        "5802b3526e27487812445c60c8dc8cd43aa8cd31b73e9a5ddcf321947fabd246",
+        "f49cad706ee3827d68c689e71b211505655d64f1b746e8e5314bda9194a2ca63",
+        "98f9a35a5b32b6817efdc8a4f73a11fc2486640e7b7f5669a2adad48a9b4e46f",
+        "5df050a9296ef3b76d8354b0865832dc027adaeebbff53a0bf1abdd09afeae08",
+        "8871472a33d18ef5323c9732439e7d414125535650c520b88dbf9b406683a804",
+        "acbc67769299ad257a6e3324e632d9e0c3a1a6b8c5493bad23c832a42d898775",
+        "9cbe841b5fb4f2879d64f038c53dab9779f103d0f631dc92c33a8aa83b49e134"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:netherite/fine_wire"
+            "item": "cruciblecraft:vanadium/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:netherite/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:netherite/ring"
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:vanadium/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:vanadium/bolt"
           }
         ]
       ]
@@ -45,22 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/35c08f9710ee0a54",
+        "cruciblecraft:gt6/f1750ded1d29986e",
         0,
-        2
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/f3fe82df86122eb2",
+        "cruciblecraft:gt6/ca2a65adadb325b4",
         1,
-        27
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/9be9066ab1e737ca",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/e3c49eccbc7ceb6b",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/4c0a60d4d46f14ea",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/d60ea697e566f33b",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/3b2a4969c22afda0",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/de00cf2879109a71",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 612,
+      "duration": 1604,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4130",

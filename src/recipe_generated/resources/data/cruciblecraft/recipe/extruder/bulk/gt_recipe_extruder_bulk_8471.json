@@ -1,165 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_8471",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "c383884dd12a997d1171ad493db858746763a6b58549a89859e5fa51664203c4",
-        "1d04e7413f84e8eb1060ea34c585ce8298477ac4dd1c827ba72293d55a68fc3c",
-        "fea3bd938d881a744f6b32f358c784126512f4fd1580247d2b02d8dc553c1d60",
-        "70f4b57572990567edde96c6eadce38865865886c89500bd9abacb65d6cbe209",
-        "85d3c28db003b0321aa6af296b640ac082fdaf6ac468db497c6a094308b1418d"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:duranium/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:duranium/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:duranium/long_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:duranium/ingot"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/caf12a70fd9ddd66",
-        0,
-        0
-      ],
-      [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/a03130bc788544a5",
-        1,
-        1
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/017c7d97403d3606",
-        2,
-        2
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/10e13f693bb6a9c8",
-        3,
-        4
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/8848392eb4134495",
-        4,
-        5
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 318,
+      "duration": 8430,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -172,15 +20,35 @@
         2,
         0
       ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:coralium/machine_casing"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_block"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:coralium/block"
+        }
+      ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_8471",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "49bb2ab8953e394c94848d63568a45ee168eca1afe137f3b3faf23983db9e9c0"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_8471",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/5495c7de05d59a82"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

@@ -10,59 +10,52 @@
         }
       ],
       "hashes": [
-        "3528b258c9ff570de28f4c8639a6c4b489f40e43455396c2a466120a8726f7ea",
-        "175d3084e43971331bc868302324e7b852d43c4a112e1bea98b10bf61736aeae",
-        "77991322e5d1b7bf009bad1dd3c2acc8c0e4a9bfce77165c37eed1101db6db69",
-        "e3210e20db3d8e2a6da562316c34434de22dd64db2e0a4308b4b7899d3d357c5"
+        "e373e10105b880dc2b8821ee6203d59ed473579d20f989f7514e14e87a87808c",
+        "1de932a47b5bb1a216749280a7dcef960280ca84046fd767d75fa2adaebadca6"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:amordrine/fine_wire"
+            "item": "cruciblecraft:titanium_aluminide/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:amordrine/bolt"
+            "item": "cruciblecraft:titanium_aluminide/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:amordrine/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:amordrine/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:amordrine/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "amordrine"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 64,
+            "id": "cruciblecraft:titanium_aluminide/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:titanium_aluminide/bolt"
           }
         ]
       ]
@@ -72,7 +65,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f900109152f03e61",
+        "cruciblecraft:gt6/8c318e9125435272",
         0,
         0
       ],
@@ -80,30 +73,14 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/4bc6529804cba953",
+        "cruciblecraft:gt6/8125a08211cb90d5",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/14a5145b432632e2",
-        2,
-        2
-      ],
-      [
-        3,
-        1,
-        0,
-        "cruciblecraft:gt6/23cb7674fe4c70ee",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 162,
+      "duration": 2206,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        4,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6567",

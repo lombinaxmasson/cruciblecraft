@@ -10,32 +10,192 @@
         }
       ],
       "hashes": [
-        "6a7fac0067ba288653971a195c92b1b6be8bc7872eb5502aff858fa85e99999d",
-        "922a284aac002e83bc715ca9c7f962291ba2f5b6ec16449f756d6f5cbc7041df"
+        "8ba2d86a753d878647b6c6912a769b92ac506e3d7b6c8ded3ae3a89a297079e6",
+        "76c2c835a16985dc30d33807fe5259e58a0ceec9011adefa8eaa0fc0ef2c867d",
+        "080af6a611ad5bfa44539420e87651efbf9cc5bae560d7d20632d7bb2ffa1f2d",
+        "369daa35b2159c420e3a706f04b74039dd253676eadb20a06330334be46cf425",
+        "164374235202bbc40e6d42800bc70e57972558eaa7f4635b41dd9502a4008454",
+        "48ebb34ab51f2a4176f146b46a761aea04d990b95fd70e47764664f197f8dac2",
+        "ecb88ff2440a1ea3c6698f20487bb596919dc01f554b21f77ab2229b24fb9ff6",
+        "76095fd5b85bb8eb39ccaf293a68f5608f79bec6dead0bbdc40db2ff9a8327ea",
+        "a30f0f5a69e3801c1c6c2f0df8da91fd3a8fdd884ad0bc48ee8edbeaaf68f999",
+        "93819903c8c3eee3bf4ff3a160b9ed83d35218f6a2a970d599418e1381ac8a85",
+        "7305557e572967fb08d470c7061a49d52246ff168a34de7dd85bb50086a8a464",
+        "f937f5a27ca3d192f4d916352c2bd1051aae078aa328cfeef20d5c542d1345b6"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:prometheum/fine_wire"
+            "item": "cruciblecraft:draconium/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:prometheum/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:prometheum/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:draconium/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:draconium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "void_metal"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "void_metal"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:void_metal/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:void_metal/bolt"
           }
         ]
       ]
@@ -45,22 +205,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/144d88c7404b9e9e",
+        "cruciblecraft:gt6/8535776480900753",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/0ac7e70fc56be909",
+        "cruciblecraft:gt6/a7d6d210a50218fe",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/acc8314d8299b17c",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/05416d46c6413cde",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/c152eb50407bee01",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/9b795430e1d3fe8e",
+        5,
+        5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/9a557bf489c99b29",
+        6,
+        6
+      ],
+      [
+        7,
+        3,
+        0,
+        "cruciblecraft:gt6/350dd775e7bd375b",
+        7,
+        7
+      ],
+      [
+        8,
+        1,
+        0,
+        "cruciblecraft:gt6/cbbf5f6fb851194d",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:gt6/c9c687078bad0236",
+        9,
+        9
+      ],
+      [
+        10,
+        0,
+        0,
+        "cruciblecraft:gt6/1b1f6ff408bb2f34",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:gt6/d14af441891fa778",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 197,
+      "duration": 585,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,10 +311,11 @@
         }
       ],
       "item_input_counts": [
-        32,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_2873",

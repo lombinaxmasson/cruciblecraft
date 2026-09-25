@@ -10,32 +10,59 @@
         }
       ],
       "hashes": [
-        "a8bf7db7cb8f2bcf3ea0f5ee1ff99acfe18be4d805a7d072dcfb5b1056b65250",
-        "e347ddbfa0e6241f4bebe09c7e0f7f038bb5b40a48fb6c96e39271223ca5ca48"
+        "39af70ca5d0ca949c86ec5359002db3ae2fe100a645506b352ce643927ec9e50",
+        "8e9fd44e2f717110624533a939877b318a92f76318f470ea32f9a5edbbecfeb1",
+        "88e40f97152c5ddbbffe62a30652cec45bbfd26d9dfd8b2096c593a4333c4809",
+        "e43086e5e29c116e8285c66472983178627bcb4593eab5f39a13f289c12da674",
+        "1ae6c11b573122cd563ce5bee3581192f92129aef26f2ed03c6182af9a3ee55a"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thulium"
+              "cruciblecraft:prefix_material": "desichalkos"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thulium"
+              "cruciblecraft:prefix_material": "desichalkos"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desichalkos/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desichalkos/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desichalkos/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thulium/block"
+            "id": "cruciblecraft:desichalkos/gear"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a44e7dc0b929cea2",
+        "cruciblecraft:gt6/da4efa876e989777",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/a9be258d181d9a8b",
+        "cruciblecraft:gt6/f3d5031e531098cb",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/9e05668d0609e1f6",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/ca2ce452fff454ce",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/cc8f04f2fb31ec49",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2194,
+      "duration": 1012,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        16,
         0
       ],
       "output_chances": [

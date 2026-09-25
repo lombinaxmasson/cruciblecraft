@@ -10,40 +10,110 @@
         }
       ],
       "hashes": [
-        "68e0773897088f5cb5d481fc1c1692e749757902a0c137db686e00e5a3a4d1e6",
-        "e3a53cd2a6d49781e430d21520fd63f355162008a830027c89c113bcdc30e6ed"
+        "acdacdc6875a2526c6036ccc3dcc261cb77f9b9f77ec44acded95249b3f7298a",
+        "09f0dce21f67d5befc414801d38cb0e304986c934ee4a3ed74751abac5173f9d",
+        "e0200b68f9a7bb6b50b474842a9cd44c1bbc1a0ccc7c59035aa463a4a8b5a92f",
+        "5700bc370a54b513b0c2582a1ccc5bc5c226ea07f76fbc4e86c802884bfa683d",
+        "790252261c501abed77ca168a4b74847220d47eab37f7a9506c8f138bba83b53",
+        "68ce158a5cdaa15a5f7a43ff860e5aad28af9839f736ec33d0c16b5ac068a72d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niobium"
+              "cruciblecraft:prefix_material": "coralium"
             },
             "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niobium"
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
             },
             "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
             "count": 1,
-            "id": "cruciblecraft:niobium/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:coralium/gear"
           }
         ]
       ]
@@ -53,22 +123,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a8227bd8e9fbec28",
+        "cruciblecraft:gt6/9d038d172b208ac4",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/cd5bd3e8fb13dc2d",
+        "cruciblecraft:gt6/ab843d520a113bcf",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/9929a0cc8adbc52a",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/cc3c29ab921a4bd6",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/b1934c9bee130881",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/8c039633825892a2",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3250,
+      "duration": 2108,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +181,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        2,
         0
       ],
       "output_chances": [

@@ -10,17 +10,31 @@
         }
       ],
       "hashes": [
-        "fce15d2ad1e0e6c1451f63af99b5367afbf755aa20e206582c30076af0fd3bc9",
-        "5e73880a3026f1e585e77b0ec12d1f3f58c70278a98127c73ed61662259c29ce",
-        "ae3e6626b8d6bbc949feb102f1d91858b1ea74dc6e1f2b31cac859ab530b08f9",
-        "8f1fd2781ce9a6ba9bd4bee184d52d52f07a8a778145566bf981d730e4eaa030",
-        "fcc447d03bb99a33c6757bebfed42c9e1ff4f4b301e185ff9040b23781c87d7e",
-        "dc4c1bdcec823c680b318440810ffbc8d87cd6cee5f497d62d7e0681e091dd97"
+        "0ce8a32be282d35d6eed79d66bd933637f00e69f30426c3a575d3f769305a284",
+        "f4ec89576f046db6b4360ffb2ba6bd27b1781f73de7e67805b8be488893d1ef8",
+        "5de5010ca41529bf56eff1f2b148957cdf9d4ea2042404648a485cf11962352d",
+        "092072be7629d50081c71a40a8064cdac94766df42ceca37c5453e505fac95a1"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:zirconium/foil"
+            "item": "cruciblecraft:constantan/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:constantan/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:constantan/quintuple_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -28,54 +42,10 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "zirconium"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:constantan/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:zirconium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:zirconium/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "zirconium"
-            },
-            "items": "cruciblecraft:gem_chipped",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "zirconium"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
@@ -83,7 +53,31 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:zirconium/gear"
+            "id": "cruciblecraft:constantan/item_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:constantan/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -93,54 +87,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8ba51683eba55663",
+        "cruciblecraft:gt6/ebbb05993602a55f",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/3b4ea816dc451fab",
+        "cruciblecraft:gt6/35cf21d8f2fd56d1",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/600c2c64de64383b",
+        "cruciblecraft:gt6/e53860a3b6e0c9b8",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/2604f6060a1875ea",
+        "cruciblecraft:gt6/96b799f84df988b9",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/7a075bac37ecfa10",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/826060a1031845d6",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 737,
+      "duration": 862,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +129,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        2,
         0
       ],
       "output_chances": [

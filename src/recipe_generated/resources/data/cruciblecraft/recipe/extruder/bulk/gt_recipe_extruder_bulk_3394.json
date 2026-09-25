@@ -10,32 +10,83 @@
         }
       ],
       "hashes": [
-        "6379d2a97bcd69541ad6003d2718ff5406502fcfc8eccbd7075e182726c49a08",
-        "29ad715015e8e84f5e8c104b15cd0e7337bab690fc5c4edf643ef35f19d63bf2"
+        "cfb277604622487ad3fdb6e2e9f500e0c146dd26924f195c5b4b632aafe43ce5",
+        "a27e67014870dd27371f4d93c968de49c95ac41594cdfc333cd665a5a67769fe",
+        "5edf93237fb9d08373c979e964c55af52fb6253a8ef72e58fa18129aa0d4a08e",
+        "012ea583592ed3372d91093b0cfb5d5ec6652b8f608a1f6800457a48c2a6d634",
+        "830faacd427f689347b330ec73d5c9117849b87c3d7b5107f84c0d25edd2cdca",
+        "a06df143b7e62d95e2f04de38632acab6486c4f06e1db830d367b5452d7ee8e6"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:enderium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:enderium/fine_wire"
+            "item": "cruciblecraft:meteoric_black_steel/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_black_steel/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_black_steel/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:enderium/gear"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -45,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ba5b2facf11115cc",
+        "cruciblecraft:gt6/f67d3f376e0e630c",
         0,
         0
       ],
@@ -53,14 +104,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/8b97b16a872aa4b7",
+        "cruciblecraft:gt6/5fff1de1d48fbb17",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/8258bd1fb816e216",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/00a4494e85ae4b0c",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/87076d2a481bc1a4",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/7d5b5d6e4d52f34f",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1205,
+      "duration": 1353,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        54,
         0
       ],
       "output_chances": [

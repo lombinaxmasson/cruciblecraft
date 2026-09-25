@@ -10,32 +10,42 @@
         }
       ],
       "hashes": [
-        "61eace1199e491285dadca8133dc24baef6f463e948f454bb39a1c2b9c3fb3de",
-        "f7dc8ffc3ca03976ddd1d9a42ac7e63c0d8d7ebd5b564bb159a62238e33c4c0e"
+        "dad0bc0f23b84fc6b7ce5b9d77a101bf535f4f2e68823363208cad137814d168",
+        "45bd0894b5f0b85e9c44e07cce79b22e7c780a38b05b0789b58ec3b1290e7761",
+        "e6d06a52127829454f6aca4e8c2f97d067ada3a39cd5bc4716a1da23eaea4f77",
+        "0ba0f044622617815c3af73df7064cf4d272c7b5405ee32f49c7dbbb489e0398"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "thulium"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:obsidian_refined/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "thulium"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:obsidian_refined/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:obsidian_refined/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:obsidian_refined/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
@@ -43,7 +53,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thulium/block"
+            "id": "cruciblecraft:obsidian/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "obsidian"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -53,22 +72,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fff676552cf5afb8",
+        "cruciblecraft:gt6/ed760df09c5827e5",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/edc0636c007e9f94",
+        "cruciblecraft:gt6/d61a657abe0c82f1",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/e96edbb5ace96729",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/5efd3592a5070e2d",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2194,
+      "duration": 30,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +114,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
       ],
       "output_chances": [

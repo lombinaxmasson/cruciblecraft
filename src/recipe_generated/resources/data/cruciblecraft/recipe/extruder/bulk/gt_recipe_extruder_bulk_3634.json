@@ -10,16 +10,48 @@
         }
       ],
       "hashes": [
-        "9ebeecc9202e1938fc6e0d7a9c8cebc5f306d46370655de3cf736a85856b983c",
-        "84cb32db19da2bded8dbd922ddb3e3a30ca631e867520dec02eb095261a39fde"
+        "07af62fc8c63efb07aa098a4b3f04b92c6485a5ff1f2df31cd7aca83e695ec72",
+        "e6796efdc36e853b3e665590d1f3d224ee08ec74a95ac49271158dbec87f8494",
+        "e5f286738d90bf943f0b02ea1a0064cde44442feed4306c0470d2cd89bb77494",
+        "ad7ad9777eb6c1838726f6365c99b5aba375845fb88d0d54f8d964cff0edcd9c",
+        "c0faba614918e73601945aa957812a81d292e720124b959c858a980fa144e715",
+        "c424ee81015f9e4e4c2f63f207f9b388310eaa3d3358a86c9b39a961b0f877fd"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "iridium"
+              "cruciblecraft:prefix_material": "adamantium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -29,10 +61,18 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "iridium"
+              "cruciblecraft:prefix_material": "adamantium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:rail_gt",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -43,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:iridium/block"
+            "id": "cruciblecraft:adamantium/block"
           }
         ]
       ]
@@ -53,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6de7354ba0343778",
+        "cruciblecraft:gt6/f7c5713d902eadd7",
         0,
         0
       ],
@@ -61,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/094c05601031f38a",
+        "cruciblecraft:gt6/105b14005d192ebd",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/e1fa1d6e19159e2a",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/ff7e1320d5c7d02b",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/3ee63cb779c29334",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/f48ca5b0278fc825",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 7602,
+      "duration": 9150,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

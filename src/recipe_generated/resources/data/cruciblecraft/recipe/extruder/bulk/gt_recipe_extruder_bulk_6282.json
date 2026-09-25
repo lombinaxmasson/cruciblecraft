@@ -10,16 +10,27 @@
         }
       ],
       "hashes": [
-        "b0dd81c5184592025e897c85c873358a6cb6361b449008c46685244dca400eeb",
-        "308cd0fe6babad9f27d70ce1d59d933fc46cecbb9264714a9d4e1840bcf08c76"
+        "d1c66c3e37ccc3ceb91f6c7ef7f1344cb2895b86f3e1b4e540fb5ec759b5c66d",
+        "85c574de2eaad7c69ce06fadb3efb77251ff02b1d0da5018ec5de5c867e97b20",
+        "35c87424c7eaef045b1a31a534673de2268f1ecb84cb14faa18c6d521bedd3e8",
+        "2f2e9943514ca061933a4d527a474f4810bb487f707f52d7fd05dfb2cf5c47f4",
+        "601e587cb6afd2b2b9f4d69b714fdee575b4feb0ca7142fa1587dbcddf550b65",
+        "b52dc42b39395b561e1c5166ea8980d4944c4634a01288bee3dd62674cc5473b",
+        "defa712d476a8bdc6faf4b91e0ec8436a0aa44f0db34807e26a799652cc8654c",
+        "405d982980b35739a2067d63bb9ecda2fbd7f68485c1192e1435ef76b3509bcc",
+        "62cc62982a7fb18d3038a9578b88694a4242184cad59d02b3b4b19465b2de018",
+        "bb3a412948984469f849aa5af70abff230784a64a5c78122098871eff0ed9a2e",
+        "8d52a7205ae4b57efa7c1141a6e17ec449c7e3d8296369b59f69d6d10a3980f0",
+        "0ce060b934162cfe64d4190c22c436712123d38dc373efa87ffc46cd9a0b3933",
+        "267d2f620c1844142234d4206c23fd9dd4471d54f138ae07900c0362161fd58a"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "stellar_alloy"
+              "cruciblecraft:prefix_material": "mauftrium"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
@@ -28,14 +39,122 @@
         ],
         [
           {
+            "item": "cruciblecraft:manganese/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "stellar_alloy"
+              "cruciblecraft:prefix_material": "workers_alloy"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
@@ -43,7 +162,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:stellar_alloy/block"
+            "id": "cruciblecraft:mauftrium/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,22 +190,110 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d98c5b81116191ae",
+        "cruciblecraft:gt6/67dbd8de464dfd9d",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/2097db1e22852941",
+        "cruciblecraft:gt6/00bef9720cd0a9e6",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/7cc62efb62e61c53",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/4a606f4e325dcad0",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/131092c89d3d7107",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/d5f87d6508e4bd72",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/db285826f0c3e0bb",
+        6,
+        6
+      ],
+      [
+        7,
+        2,
+        0,
+        "cruciblecraft:gt6/551ac46de5ffa196",
+        7,
+        7
+      ],
+      [
+        8,
+        2,
+        0,
+        "cruciblecraft:gt6/208d5c56b96db690",
+        8,
+        8
+      ],
+      [
+        9,
+        1,
+        0,
+        "cruciblecraft:gt6/99e254e7dbd0f69c",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/d6855fcc43f93f01",
+        10,
+        10
+      ],
+      [
+        11,
+        1,
+        0,
+        "cruciblecraft:gt6/73f2d9ba53eb1381",
+        11,
+        11
+      ],
+      [
+        12,
+        1,
+        0,
+        "cruciblecraft:gt6/ffd8ee4bf5f9b857",
+        12,
+        12
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3151,
+      "duration": 219,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +304,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        14,
         0
       ],
       "output_chances": [

@@ -10,28 +10,84 @@
         }
       ],
       "hashes": [
-        "2bc3f6e701b46025879ee0488cd0b105b983cfecb9684c7b0d82dfccaca13933",
-        "bbfdd827d898f25d6215ede85b0c97bd6ba3fed956fade2906717cd6f9f8e00b"
+        "c383884dd12a997d1171ad493db858746763a6b58549a89859e5fa51664203c4",
+        "1d04e7413f84e8eb1060ea34c585ce8298477ac4dd1c827ba72293d55a68fc3c",
+        "fea3bd938d881a744f6b32f358c784126512f4fd1580247d2b02d8dc553c1d60",
+        "473d8bab02b991b2eed8ac46e3e714fb04eeedbfc66383506c2781d9c7623dce",
+        "70f4b57572990567edde96c6eadce38865865886c89500bd9abacb65d6cbe209",
+        "85d3c28db003b0321aa6af296b640ac082fdaf6ac468db497c6a094308b1418d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "desh"
+              "cruciblecraft:prefix_material": "duranium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desh/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "duranium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "duranium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "duranium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "duranium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "duranium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ]
       ],
@@ -39,7 +95,43 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:desh/block"
+            "id": "cruciblecraft:duranium/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:duranium/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:duranium/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "duranium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "duranium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:duranium/ingot"
           }
         ]
       ]
@@ -49,22 +141,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/35b2a654f565a8c3",
+        "cruciblecraft:gt6/3dd21fa6140e03ea",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/3c392e8242eec580",
         1,
+        0,
+        "cruciblecraft:gt6/ab61c2cb641731ef",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/e30888a892015511",
+        2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/c200dc7c6fd07846",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/9b89bbcf6f55273f",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/95e4e32a20a7a9d8",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 938,
+      "duration": 318,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +199,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        2,
         0
       ],
       "output_chances": [

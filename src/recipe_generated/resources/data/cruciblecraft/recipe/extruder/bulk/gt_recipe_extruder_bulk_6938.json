@@ -10,17 +10,16 @@
         }
       ],
       "hashes": [
-        "4908cfbb58b1fe97853b74905a47ac7cebc9600d53e800c78a77e065021068d9",
-        "56f9df07cd05e18a53de31a36bfcb820c895e451e80e5ed6987770217cf11b60"
+        "3ea3ddde89fcff4783bab5cd465a6d891077f32b5aa0f602a0fdb68ce97bd109",
+        "4d78883418bd8bbd1e1381f618a4f4dcc8b55e99b8c2b4f90311134562b260ee",
+        "a32385a2e112b440d06aeefe64f4300a2860c6c7df54cce6fad1609406c28e31",
+        "1ef8dacc1722cbebf0a7e81a6bd03637f9cfc2005fc1303548f9e8d1af9eaf2f",
+        "b64f0164e094f5b8cfb9a4813a8a98f3f3d22ff66ed1909e03170610bcda4301"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "amordrine"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:titanium_iridium/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -28,31 +27,98 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "amordrine"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:titanium_iridium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_iridium/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_iridium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_iridium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:amordrine/rod"
+            "count": 64,
+            "id": "cruciblecraft:titanium_iridium/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:titanium_iridium/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:titanium_iridium/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:titanium_iridium/ring"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "amordrine"
+              "cruciblecraft:prefix_material": "titanium_iridium"
             },
-            "count": 1,
+            "count": 64,
             "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_iridium"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:titanium_iridium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:titanium_iridium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_iridium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_iridium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -62,7 +128,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ce468e91f326784c",
+        "cruciblecraft:gt6/3d6cc84de07ef229",
         0,
         0
       ],
@@ -70,14 +136,38 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/3cbd1b501ae532d4",
+        "cruciblecraft:gt6/30637c93837d9798",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/8d2af6914665fdd7",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/f1068ae064a7a077",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/5002cd36d45caffe",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 162,
+      "duration": 23854,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6938",

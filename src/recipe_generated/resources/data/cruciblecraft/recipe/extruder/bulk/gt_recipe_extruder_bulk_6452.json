@@ -10,80 +10,88 @@
         }
       ],
       "hashes": [
-        "5cdc2afb9cfe83c55dc1f3a1334aff82b30577b482aeb8d3f6ce4086b055a10d",
-        "7f355152af0a6cce7e739161c03ad2e6dec0e6937760e7351d527bff89af4cd9",
-        "5c3957b9dde44fdb9683a8c0826af5b5215edd3d188665af5fb5f277f0d9235d",
-        "b8ca9bc6088ebce2156788d21721ff1d0ed1dad40362a55205e84e8d129c72f4",
-        "234a9c329d5d3e4eac7e27905f2b8114221f39afded8d31ee573c4ebbcad2e8d",
-        "76bacff5fcb33579df07aa8639e4b4b8352be3477e718edd5cddc73d12778528"
+        "2d86fae855b320c69aa1d5e1535152869bd34f1dad28a9c570aed4773d283fa5",
+        "0bfb9b9581088b16657bdd3eadcbe44ca54d3f73e0d442a6701395a22ac2ffde",
+        "e8801493a0fb9c4c699699dd34e1d46aface5d0dee3de51200f289cf5636bcd3",
+        "be3ca15ec5629ee3461e8dc96bb396e5c324c88fc15fbd1d60d1ea8fe3b96180",
+        "a55f6cc55e0cff9b4d1c1a9947995dc3dd47dc49737826f3bc0bb6fb960b0e6c",
+        "0d46badd1034e8832f3e8179a84398281f4d5a3306f97552a775e983b6f4749d"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vibramantium/tiny_dust"
+            "item": "cruciblecraft:tungsten/wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vibramantium/screw"
+            "item": "cruciblecraft:tungsten_sintered/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibramantium/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
-            },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
             "count": 1,
-            "id": "cruciblecraft:vibramantium/gear"
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -93,7 +101,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f4558c308fef7eec",
+        "cruciblecraft:gt6/11dfceef22a83bf3",
         0,
         0
       ],
@@ -101,7 +109,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/3c016f1b1a058724",
+        "cruciblecraft:gt6/2f4396166215b19b",
         1,
         1
       ],
@@ -109,15 +117,15 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/3700a1362e1ac17c",
+        "cruciblecraft:gt6/38ceb448c2954fa7",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/4bc78aae877fc673",
+        "cruciblecraft:gt6/7914cf913dc24714",
         3,
         3
       ],
@@ -125,22 +133,22 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/f0e4a4e22c1cbdef",
+        "cruciblecraft:gt6/689a15293583cfc0",
         4,
         4
       ],
       [
         5,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/8f401000dca413e7",
+        "cruciblecraft:gt6/1e9ed4ec393ce40b",
         5,
         5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3234,
+      "duration": 1516,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +159,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        3,
         0
       ],
       "output_chances": [

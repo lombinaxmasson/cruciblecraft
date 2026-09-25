@@ -10,36 +10,52 @@
         }
       ],
       "hashes": [
-        "299f9498d3ef6d7dee4a1878b184381c2f30f51847c8fa5821088a9be77b14ce",
-        "01d117247cec28ac624fd70796f3a5c4640210f79944e8536273924d125ce2b0"
+        "b78149feb0e29f7616ffc3280bacc9744534ae3c8e7e384c822f44452b8bfb35",
+        "0d1f8f0e1ada3a1b355f367f01873dc5b061c25aab952e4543d497f58ef8b782"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrum_flux"
+              "cruciblecraft:prefix_material": "alumite"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:electrum_flux/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
             "count": 1,
-            "id": "cruciblecraft:electrum_flux/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -49,22 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/71c695d6d945225b",
+        "cruciblecraft:gt6/93d8e3a65a0e715a",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/5b6c21f83bcfc31a",
+        "cruciblecraft:gt6/f6ad43a43bfdd398",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 431,
+      "duration": 183,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        5,
         0
       ],
       "output_chances": [

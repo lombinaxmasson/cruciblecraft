@@ -10,58 +10,138 @@
         }
       ],
       "hashes": [
-        "ecb1acd8576557d7f0f17a42ef4ff77b9a2cf163cd1f684c124b95d0a5daea15",
-        "8b53b1d78ddd4bc120d843e69dbde493798b074365b2a83db06babecde0eea6b",
-        "0912229e38681ade2ae576c9767e185fcc1784b90a61184f5842c07b4de73277",
-        "fc9d9377a63d4ea21ecbcc44d6bf47fca32d68989d796240a443a0ff58b6eb7e"
+        "2d48e81636c0b90acc188caa4009548be4363d02fd45cc7f15e40e5197512ea0",
+        "493c748d2f66b9ffebffd88631a3364be8212182ec6692dfdb60bc46f8813180",
+        "fd98aac8dd1c2626c571d1eb1cec0d68eda57c0b0c3d3e90b91532c333fc2a56",
+        "0b1af110ab3f8165c9bcb5752578f26f932af8a17bedd546ae316215bf9954db",
+        "28d3c06fd6bd7398b7ef551d25e16af34557a7515028577c8914286c70054d78",
+        "ba8ea25ba4a757850a073e18d59ebe459799597db7a07c90ddced2f9f9c0648b",
+        "ce587f630f3202a75f870b898d4b06e99a889c6257d10ab7a0887eca4f86920c",
+        "3fa922fdb7cd773a21c71f3a59f074e6045fd1a455364d59a7861cf6e3897a5c",
+        "267a5ab3d3c4ad9d559597d735e7f94c4e9299c776c20c407a3f430c254f600e",
+        "c59b89647608f3275e32d037bd32909079f8a30274c53316d67b72d5d1149573",
+        "5f9e8c42ecc141812ab9f6a79297f9b46babb2bfaf47dda174690aa1919119cd",
+        "822334d85a986f42b200ea080cf92d8f8e20220fb733d95dac45af7754b628d6"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "soularium"
+              "cruciblecraft:prefix_material": "tritanium"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "stainless_steel"
+              "cruciblecraft:prefix_material": "tritanium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "soularium"
+              "cruciblecraft:prefix_material": "tritanium"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "stainless_steel"
+              "cruciblecraft:prefix_material": "tritanium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ]
       ],
@@ -69,13 +149,43 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:soularium/gear"
+            "id": "cruciblecraft:tritanium/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:stainless_steel/gear"
+            "id": "cruciblecraft:tritanium/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tritanium/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tritanium/long_rod"
           }
         ]
       ]
@@ -85,38 +195,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b3f309daeb65abff",
+        "cruciblecraft:gt6/b00ac338b982e54c",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/cf9f5edee076bc62",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/f0cfedaeeae978ed",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/20d70f15b931cc42",
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/0528bc84d3aaa1a5",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/b01cff651fc2755d",
+        5,
         5
       ],
       [
-        1,
-        1,
+        6,
+        3,
         0,
-        "cruciblecraft:gt6/d5a73d96193cbb19",
-        1,
+        "cruciblecraft:gt6/f1e7e23575e4d0c3",
+        6,
         6
       ],
       [
+        7,
         2,
         0,
-        0,
-        "cruciblecraft:gt6/2d2291248129ab9f",
-        2,
-        12
+        "cruciblecraft:gt6/78e7508aef60a43c",
+        7,
+        7
       ],
       [
-        3,
-        1,
+        8,
+        4,
         0,
-        "cruciblecraft:gt6/b8fc937a19b08759",
-        3,
-        14
+        "cruciblecraft:gt6/6f26f6d9d85fe4cf",
+        8,
+        8
+      ],
+      [
+        9,
+        4,
+        0,
+        "cruciblecraft:gt6/5e0d542ccd2eae5b",
+        9,
+        9
+      ],
+      [
+        10,
+        5,
+        0,
+        "cruciblecraft:gt6/3bd3ffc9723f08f0",
+        10,
+        10
+      ],
+      [
+        11,
+        5,
+        0,
+        "cruciblecraft:gt6/c269957f5d32c842",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1201,
+      "duration": 553,
       "eut": 96,
       "item_input_actions": [
         {

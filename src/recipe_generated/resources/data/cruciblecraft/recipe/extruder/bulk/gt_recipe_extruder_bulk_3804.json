@@ -10,40 +10,147 @@
         }
       ],
       "hashes": [
-        "254b2c66e148779f7bcc5327f6fcc4502644a86667100e2a3d983a33955cd4fa",
-        "0c64693823edf1925c9b363e65c346d15366bc919d83ce60b74da7a1ad904e6d"
+        "7713bcce12ec74d8bb164aaff207539f0b1125a19aa81fcfd84080c33375c988",
+        "f7e95b4514717852538d464bbc33e7c116e1d2992dd176afbebad83599e6d9eb",
+        "52ea28521656fc2ce99a3b7dce1a76567c1104533057e298012a17f53a17c227",
+        "0db8388f9f84a935d3c157c591a070aeb99a457816309d62bd880ae4f432b846",
+        "28d55b3cd3423452ffee499753cd07cd3d6c377559a04550d45ffb4025e9a657",
+        "11c72cb5fbaa0d62344fbcbdff302d03828e7203fad235e063214cb412c7b24d",
+        "58f84a016477ed06de5f66fb6a40f56a6d9687e80a9414236a574beed9c3f22f"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niobium_titanium"
+              "cruciblecraft:prefix_material": "adamantium"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niobium_titanium"
+              "cruciblecraft:prefix_material": "adamantium"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
             "count": 1,
-            "id": "cruciblecraft:niobium_titanium/block"
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantium/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantium/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantium/small_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantium/plate"
           }
         ]
       ]
@@ -53,22 +160,62 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ab86d1feda45036f",
+        "cruciblecraft:gt6/df3393dd197b137c",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/e47c5ad66e55a4b6",
         1,
+        0,
+        "cruciblecraft:gt6/043260440cdf6e43",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/8231fc5947834c08",
+        2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/dd7cb998d9dc1679",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/e1e2899811c0f4ea",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/c4754f3409de2d9c",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/921524e9629be398",
+        6,
+        6
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2076,
+      "duration": 1356,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +226,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        2,
         0
       ],
       "output_chances": [

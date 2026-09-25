@@ -5,13 +5,19 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineIoFaces;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
+import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
@@ -28,7 +34,8 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 public final class Gt6ExtruderBulkGameTests {
     public static final String NAMESPACE = "cruciblecraft_wave_recipe_gt6_extruder_bulk";
     private static final String TEMPLATE = "empty";
-    private static final int LIVE_ROWS = 127_449;
+    private static final int LIVE_ROWS = 299_143;
+    private static final long MAX_SAMPLE_EUT = 32L;
     private static final ResourceLocation PUBLICATION_GROUP =
             ResourceLocation.fromNamespaceAndPath("cruciblecraft", "extruder/bulk");
 
@@ -78,6 +85,96 @@ public final class Gt6ExtruderBulkGameTests {
                 ModRecipeMaps.EXTRUDER.findMatch(unrelated).isEmpty(),
                 "Dirt inputs matched an extruder recipe");
         helper.succeed();
+    }
+
+    /** A non-template tool-head row and a GT6 stack-split row both finish on a real extruder. */
+    @GameTest(template = TEMPLATE, timeoutTicks = 2_400)
+    public static void remainderAndTwoOutputRowsRunOnMachine(GameTestHelper helper) {
+        RecipeMap.RecipeFamily family = family();
+        helper.assertTrue(family != null, "Extruder bulk family missing");
+        GTRecipe remainder = null;
+        GTRecipe twoOutputs = null;
+        for (int index = 0;
+                index < family.logicalRecipeCount() && (remainder == null || twoOutputs == null);
+                index++) {
+            GTRecipe recipe = family.enumerationEntry(index).recipe();
+            if (recipe.eut() > MAX_SAMPLE_EUT) {
+                continue;
+            }
+            if (twoOutputs == null && recipe.itemOutputs().size() == 2) {
+                twoOutputs = recipe;
+            } else if (remainder == null
+                    && recipe.itemOutputs().size() == 1
+                    && BuiltInRegistries.ITEM.getKey(recipe.itemOutputs().getFirst().getItem())
+                            .getPath().contains("tool_head_raw")) {
+                remainder = recipe;
+            }
+        }
+        helper.assertTrue(remainder != null, "No live non-template tool-head extruder row");
+        helper.assertTrue(twoOutputs != null, "No live two-output extruder row");
+        ConfiguredProcessingMachineBlockEntity first = load(
+                helper, new BlockPos(1, 2, 1), remainder);
+        ConfiguredProcessingMachineBlockEntity second = load(
+                helper, new BlockPos(4, 2, 1), twoOutputs);
+        GTRecipe remainderRecipe = remainder;
+        GTRecipe twoOutputRecipe = twoOutputs;
+        helper.onEachTick(() -> {
+            power(first);
+            power(second);
+        });
+        helper.succeedWhen(() -> {
+            assertProduced(helper, first, remainderRecipe);
+            assertProduced(helper, second, twoOutputRecipe);
+            helper.assertTrue(
+                    ExtruderShapeCatalog.isShape(first.inventory().getStackInSlot(1))
+                            && ExtruderShapeCatalog.isShape(second.inventory().getStackInSlot(1)),
+                    "Extruder consumed its mold");
+        });
+    }
+
+    private static ConfiguredProcessingMachineBlockEntity load(
+            GameTestHelper helper, BlockPos pos, GTRecipe recipe) {
+        helper.setBlock(pos, ModBlocks.EXTRUDER.get());
+        ConfiguredProcessingMachineBlockEntity machine = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                machine.spec() == ModProcessingMachines.EXTRUDER
+                        || machine.variant().kind().behavior() == ModProcessingMachines.EXTRUDER,
+                "Placed block resolved wrong machine kind");
+        List<ItemStack> inputs = queryFor(recipe).itemInputs();
+        for (int slot = 0; slot < inputs.size(); slot++) {
+            ItemStack left = machine.inventory().insertItem(slot, inputs.get(slot), false);
+            helper.assertTrue(left.isEmpty(), "Extruder slot " + slot + " rejected " + inputs.get(slot));
+        }
+        return machine;
+    }
+
+    private static void power(ConfiguredProcessingMachineBlockEntity machine) {
+        machine.insert(
+                machine.spec().energy().type(),
+                32L,
+                16L,
+                ProcessingMachineIoFaces.energy(machine.spec(), machine.facing()),
+                false);
+    }
+
+    private static void assertProduced(
+            GameTestHelper helper, ConfiguredProcessingMachineBlockEntity machine, GTRecipe recipe) {
+        for (ItemStack target : recipe.itemOutputs()) {
+            int expected = recipe.itemOutputs().stream()
+                    .filter(stack -> ItemStack.isSameItemSameComponents(stack, target))
+                    .mapToInt(ItemStack::getCount)
+                    .sum();
+            int produced = 0;
+            for (int slot : machine.spec().items().outputs()) {
+                ItemStack stack = machine.inventory().getStackInSlot(slot);
+                if (ItemStack.isSameItemSameComponents(stack, target)) {
+                    produced += stack.getCount();
+                }
+            }
+            helper.assertTrue(
+                    produced == expected,
+                    "Extruder produced " + produced + " of " + expected + " " + target);
+        }
     }
 
     private static RecipeMap.RecipeFamily family() {

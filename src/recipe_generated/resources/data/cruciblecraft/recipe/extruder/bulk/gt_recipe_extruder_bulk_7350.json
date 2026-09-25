@@ -10,36 +10,130 @@
         }
       ],
       "hashes": [
-        "a83e66db7819afea8c678661847bd8e423d8acf93df5a801122a34cdaf6da18b",
-        "41ca23fd0d5df11e51d4172a6b469f992074b9b1533b51bf632bbf20ad375dc2"
+        "a0c1e5bf222483be01adebb4d6731b8a0879b44a02a0922620a282e86341150a",
+        "cb2857505e8e6148d5aa6bb767dd7df839df4e93d5cc3c88fb607080a7930cef",
+        "0549628b004beb0a03551ffbf11ca174be9e10828e290105ac9874fa9d2259f0",
+        "2b61764fbd4df1480a8e2ff82a5f3e91d9e3ec5d95ccc3b0b29a0a589875d74f",
+        "ea464f36fa31dd55d411c777953adea21b25965143901beb55fb0fdcf2aaea59",
+        "bd741c9af97d0ececca92521de461901afa1aa77c63eb4753aa0a3ad3d4733cd",
+        "cc6512df839ef19e1a4b990c7a07ae065bdd5d017702070d6239e5c334c4ec1c",
+        "8625a48f01fd794521470121a5b4a7b71506b870189f42aa4ffc61c639784be5"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "gaia_spirit"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:sterling_silver/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:gaia_spirit/rod"
+            "item": "cruciblecraft:sterling_silver/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:gaia_spirit/block"
+            "count": 64,
+            "id": "cruciblecraft:sterling_silver/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:sterling_silver/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -49,22 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e11c4a22b0ea1a67",
+        "cruciblecraft:gt6/3808eb9c0f633589",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/e4882293928fc8c5",
+        "cruciblecraft:gt6/4d1ac4d4691969c0",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/e7c8a64303f592c1",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/368c8d129538d091",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/1418678def99f463",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/28fbf55ae53929b4",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/5720e9517664c844",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/38ab095b066e8fba",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 508,
+      "duration": 1367,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7350",

@@ -10,28 +10,50 @@
         }
       ],
       "hashes": [
-        "33b869e3a2078143e8e9d0fd76e7d694d6a314774d0838a1268fa1c2c492cce2",
-        "8d886fd7db403489e15d7593f38106b2cea823e774436aafb7b47ee13a3ccdcf"
+        "aedcbec4ffa66ad7156c1d33edf9fb2804e8d5c297318f13362f786674e891d8",
+        "9bc15160f6d09edc881a53f2c0e5d2125523f24bb06f58c6037175f9b4573ce9",
+        "3911836c8e18edbff2223fb2262a53587777d2016cc6c31b1dfe80abbd04a49d",
+        "ae55a20cc377a951c19f42d02905e5387f29471dafec47327129a85ac163583a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:soularium/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "soularium"
+              "cruciblecraft:prefix_material": "dark_iron"
             },
             "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -39,7 +61,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:soularium/gear"
+            "id": "cruciblecraft:dark_iron/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_steel/block"
           }
         ]
       ]
@@ -49,7 +77,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0ede549ab886cbae",
+        "cruciblecraft:gt6/f037b53c58423ba3",
         0,
         0
       ],
@@ -57,14 +85,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/0d4fd5414091a0a1",
+        "cruciblecraft:gt6/4b26625a0e27857e",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/7721ba0be3fd00d7",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/88f81a76615aa50f",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1201,
+      "duration": 2136,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +119,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        18,
         0
       ],
       "output_chances": [

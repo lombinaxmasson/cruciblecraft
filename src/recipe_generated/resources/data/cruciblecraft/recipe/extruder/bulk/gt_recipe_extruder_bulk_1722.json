@@ -10,40 +10,114 @@
         }
       ],
       "hashes": [
-        "f38de0fd34580decda64efe119e66d86d546839d1413eec8d9816bc465a8d2bc",
-        "08a1e7784182bdd46016333543a256cc079f6f15759a45160b9cd2e415b6e168"
+        "623082a492c745aab019cb34f9e03973fe785f9b3e9d6cf05d0ebdfdef2f73cb",
+        "e8ae1394c4f67d26be95efdb04a0866f1c0a08e9049f6ace9b6348f0d0dd4bcb",
+        "a9c7d4ccfc8752c3def1ddc6ad65bc30ad15d34ec817a6e52a3ca395645534e5",
+        "a4c5bee24374e0906ee18315ed5982778b0ab40c491e2eaff90b61122100166f",
+        "c0c23958c18224cdeabf9d20b1306623648e6cb9a49f14637af29987b09b95b2",
+        "7e590ea515de40f6687a7a814a893befabac60fc99fa76f5fb17ae8892c68e1f",
+        "721611f89be2d13877674724b2ca529ff3e76dea8668001a9fc867c8a85e802c",
+        "9facbb7758a1e2a9e5676445e99817437fa2dab56fc189937749612117734bb5",
+        "e6c7062616e91a87161fc057f627d8b476cb63769f887c62ebb977a07e86e3e2"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "palladium"
+              "cruciblecraft:prefix_material": "abyssalnite"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:minecart_wheels",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "palladium"
+              "cruciblecraft:prefix_material": "abyssalnite"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
             "count": 1,
-            "id": "cruciblecraft:palladium/gear"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,7 +127,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5e49f404ac008241",
+        "cruciblecraft:gt6/304db94f1a3cf1a4",
         0,
         0
       ],
@@ -61,14 +135,70 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/15eccfbac652d9ee",
+        "cruciblecraft:gt6/5ad20d4ba83b2bd5",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/140e91c41fb8f146",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/ae3e68b822a6f3ed",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/5bddfc69e6e547cd",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/258a9610d94a8d25",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/31a1f614b10d3a7d",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/9a80a3d59f60bdbc",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/fd9c1c7948b448c9",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1709,
+      "duration": 1677,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +209,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        6,
         0
       ],
       "output_chances": [

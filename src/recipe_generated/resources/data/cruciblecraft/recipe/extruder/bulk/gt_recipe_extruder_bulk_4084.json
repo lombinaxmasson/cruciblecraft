@@ -10,40 +10,57 @@
         }
       ],
       "hashes": [
-        "a9b6ddfa6b213977262619a79686c0241fcd1708f6d5bea9baf31aae4bead794",
-        "41aaec77356dcc7d53f69ee96a42f68ad5659ab1ba57294d985eb1a33c0d35ba"
+        "26f0bfc61881aaa95d62df9f273c2903bb404d7f24d0981fed072f132ade4ecd",
+        "9aad9dd049d9fb87613945dda07fca47e980155d8b72a4d54e96343e8a9b9dc8",
+        "74fd8c88e364ff3d8b38ba8259692f2f38d07c9b12e88ede74b0bd808b8040ec",
+        "4607bda1c66992586806d5320ef76a8c0c7e289067b3579b46b3320ca5ef080e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "osmium_elemental"
+              "cruciblecraft:prefix_material": "netherite"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "osmium_elemental"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherite/tiny_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherite/wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
             "count": 1,
-            "id": "cruciblecraft:osmium_elemental/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,22 +70,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0941d3887a10ff61",
+        "cruciblecraft:gt6/91fc0f36cc35520d",
         0,
-        5
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/7951106be08fc73f",
+        "cruciblecraft:gt6/89f1ca56ad676a6a",
         1,
-        6
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/a65ff0bdf3b58cc8",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/679871ea46125e07",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 6308,
+      "duration": 3668,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +112,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

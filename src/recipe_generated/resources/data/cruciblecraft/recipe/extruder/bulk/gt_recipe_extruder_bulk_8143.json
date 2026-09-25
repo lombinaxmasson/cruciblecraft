@@ -10,36 +10,89 @@
         }
       ],
       "hashes": [
-        "3e6154937dc34aeadff9863ec27c058cef6387d844b3a895c737d5cbca2318d9",
-        "c27e0258d08d1eedc78ddcfadd366debd04c7545e4b3ec66e102b54c49571cf1"
+        "8d704d0ae94985ee48d5db12603330f13db6f5b6f9ec9595a774e9a6c6ffdeb0",
+        "8cf40f9e013b351ca58d28d8ac12c99d40637a66b08174da0c386bd6b480fef2",
+        "1144aeba344fe32b4d5bb59891d7c0261ca89df77c98f2cc7516bb547addb23f",
+        "c8b5c1f37a2348d49bbcb235b6d1f66ff4714b02edbe0e70d7c946a9e4b69819",
+        "d5f9fb0325d58c0abc102518a733fc24bf3b34f8d1542511bb384cc9a47afcc3",
+        "51a020f4cf7f7cad1deef41c4d5affd00d21ac9e591a6679f93da683a72bc021"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "oureclase"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:black_bronze/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:oureclase/rod"
+            "item": "cruciblecraft:black_bronze/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "black_bronze"
+            },
             "count": 1,
-            "id": "cruciblecraft:oureclase/gear"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_bronze"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_bronze"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -49,22 +102,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/747e88cf70f93385",
+        "cruciblecraft:gt6/489256210e50e3a0",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/88418de95e16e755",
+        "cruciblecraft:gt6/516e31e466abb9b9",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/865969b285765e53",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/f178d7aa059c704d",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/747da8c02a7f3bec",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/a4f93111d131f6fa",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1374,
+      "duration": 363,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        16,
         0
       ],
       "output_chances": [

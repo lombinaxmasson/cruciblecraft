@@ -10,32 +10,36 @@
         }
       ],
       "hashes": [
-        "983eaa06ea67e5d25bd4317d3ddca5e201b8f481e9c64156cffe4ed640d0711f",
-        "d2082b57b350a43b994e2b2a959120125eb8f3cf4f3b460a4db9bbfb42be6284",
-        "624d83f4fa1260aef651204436405f47904555cf5472999468c92b3ae4e25a03",
-        "683b1542b90e54b121f596263e2ded6ee3b968e8d4259559c9f963b163569f4a",
-        "2af6dd7caa3ecb71e3825e6b2264a9e7075749849cbd4cff340f6d54fffd8205",
-        "ea37482230e7b97370711244d2fd75071d7a4d539300154aa7b820a787db09ba",
-        "024f7c3613497f16252ecb0c1a4edc75a728a7fbe053df6fe403e3fb0ba5d7ce",
-        "4f459ed31c5121afc984733554b2cfe05d76ed9f8f2af42e7e9c6b36028e5437",
-        "22add0d16944cafa20ef1603b8099c14ef4b8d9a0e8e635fca290bff0d59d703",
-        "b1ac121a9bdfa701aaa40232e797ed7e95b16dbdb2a78d731b3e716e53af06d7"
+        "61157ded21949d118c89074daefab5d218ee0d59fc1351bea668a43257ffabf1",
+        "adf12d41f6ed3c1f6d7bff10dc9061fdd58a987b8861667d8a5d987bd930df43",
+        "6438f92dd0b199e4679f8ed65c55a18bb7df12264b2216ed7f11faa2fba1ff33",
+        "76867bad4efa18088355db466e39a0a066fc99701c46cfc62a0210447f9d65f3",
+        "b13c7137fddefed1b2f93d7dd2e59b81825c92fa9ae95c61f9959769f65429b0",
+        "46c1335fba9c31155cbad3b822d41c095ae699e8cc8312ff3f5439cab3e9aef2",
+        "f4d57f0a619b58dd0c7f69186b64aac018e240bd3a835120968004bba8cb331f",
+        "93a9218d65073881b366e22ff6d4272a3be94e5fa8acec0d1918a8496dab618a",
+        "4d957e7fe144a2c58b530cb5047a6225c8869b7563dbc16ba7df6f60ec430060",
+        "027183b6df6dda54774d9f3106c169c52949203b24d557580b25bf70a08f28b6"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:molybdenum/nugget"
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
+              "cruciblecraft:prefix_material": "naquadah_enriched"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
@@ -45,9 +49,21 @@
         [
           {
             "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
               "cruciblecraft:prefix_material": "molybdenum"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
@@ -59,7 +75,43 @@
             "components": {
               "cruciblecraft:prefix_material": "molybdenum"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
@@ -68,10 +120,14 @@
         ],
         [
           {
-            "item": "cruciblecraft:molybdenum/screw"
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
@@ -79,55 +135,66 @@
             "components": {
               "cruciblecraft:prefix_material": "molybdenum"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:molybdenum/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:molybdenum/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:naquadah_enriched/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:molybdenum/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:naquadah_enriched/bolt"
+          }
+        ],
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:molybdenum/bolt"
+          }
+        ],
         [
           {
             "components": {
@@ -139,8 +206,14 @@
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:molybdenum/rod"
+            "count": 2,
+            "id": "cruciblecraft:naquadah_enriched/ring"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:molybdenum/ring"
           }
         ]
       ]
@@ -150,86 +223,86 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/186cb78de9da4933",
+        "cruciblecraft:gt6/a58406cca51d0633",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/8bfb9a5f7111f072",
+        1,
         1
       ],
       [
-        1,
+        2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/839542da67f75097",
-        1,
+        "cruciblecraft:gt6/c73686b5ca4925c7",
+        2,
         2
       ],
       [
-        2,
-        1,
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/d1199f0b1c419906",
-        2,
+        "cruciblecraft:gt6/679c2ba25c99419c",
+        3,
         3
       ],
       [
-        3,
+        4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/a50c3e9ad37fd421",
-        3,
+        "cruciblecraft:gt6/b6b73f80e37dbed5",
+        4,
         4
       ],
       [
-        4,
-        1,
+        5,
+        5,
         0,
-        "cruciblecraft:gt6/fb181509fd6bbe75",
-        4,
+        "cruciblecraft:gt6/945c7179b581b29a",
+        5,
         5
       ],
       [
-        5,
-        1,
+        6,
+        6,
         0,
-        "cruciblecraft:gt6/6eeb16278c945ed3",
-        5,
+        "cruciblecraft:gt6/8a387b6ef9eb104b",
+        6,
         6
       ],
       [
-        6,
+        7,
+        7,
         0,
-        0,
-        "cruciblecraft:gt6/5a8c1a410baa21d8",
-        6,
+        "cruciblecraft:gt6/e6952afa9a1fb39d",
+        7,
         7
       ],
       [
-        7,
-        1,
+        8,
+        8,
         0,
-        "cruciblecraft:gt6/44f3dc9c2e1f25c4",
-        7,
+        "cruciblecraft:gt6/49421a3f93acba14",
+        8,
         8
       ],
       [
-        8,
-        1,
-        0,
-        "cruciblecraft:gt6/9596a74c5ea43040",
-        8,
-        10
-      ],
-      [
+        9,
         9,
         0,
-        0,
-        "cruciblecraft:gt6/736c78b7256739e5",
+        "cruciblecraft:gt6/f494d1d83929dd7b",
         9,
-        11
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 229,
+      "duration": 274,
       "eut": 96,
       "item_input_actions": [
         {
@@ -240,7 +313,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [

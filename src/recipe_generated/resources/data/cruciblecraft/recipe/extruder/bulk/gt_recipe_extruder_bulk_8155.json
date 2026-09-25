@@ -10,24 +10,32 @@
         }
       ],
       "hashes": [
-        "bd42bee2ec30dfb0706c7c93cc0a24f65635ead0051dd200b782bd61d0a60ec1",
-        "2117f18d1938bfed605b3cb52e20d6cfc16fd3c80830669f0cbaa3c75be2f422"
+        "ebcaaaf652b37b49fa91490dace4cc494aa7074eab8ef138c2a7432038c32cf2",
+        "778bb57f42da6dfdafcd0c755680c8040c5062c82e34bc214b97bb2567031fb4"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:flamascus_steel/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:flamascus_steel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:flamascus_steel/gear"
+            "id": "cruciblecraft:meutoite/block"
           }
         ]
       ]
@@ -45,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a066e05a5e7ace86",
+        "cruciblecraft:gt6/da490721a812957c",
         0,
         0
       ],
@@ -53,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/bfc07d57eba54a08",
+        "cruciblecraft:gt6/7c99e98af59c9a41",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1399,
+      "duration": 1912,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        3,
         0
       ],
       "output_chances": [

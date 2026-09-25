@@ -10,36 +10,62 @@
         }
       ],
       "hashes": [
-        "d1b8147d27953f5190ed353c8809398e0f5b7424a90a8ff36cc8c832d027457d",
-        "692e394c3eca8f3a025560b49f0cbdc8f9fe1843716d5be72bbd380c5690955c"
+        "34d6267b338fce7da1282d473ba635b807f39f237a25234174d535691f3221e4",
+        "8e89ea84573e636d3526e4a9a7b6cfc21a3190ef711805e61dd865abbc388d09",
+        "5a5b9a0f68650da23c2f571135a1052cf9240b150820a4a98638df5360ec15a4",
+        "1e6c521f7e0aa39b6de5a9c156f5bac75ec8ef81b9119e832a68f72ce9c9671d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "trinaquadalloy"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:manganese/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:trinaquadalloy/rod"
+            "item": "cruciblecraft:manganese/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
             "count": 1,
-            "id": "cruciblecraft:trinaquadalloy/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -49,22 +75,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5c57cdd974e9a1a6",
+        "cruciblecraft:gt6/076221300609df72",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/2cc797403f1c0dc5",
+        "cruciblecraft:gt6/73dbee1f0c8f2a89",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/0ec54e45ccf4dea6",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/0e43693306bc64a1",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 774,
+      "duration": 423,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        24,
         0
       ],
       "output_chances": [

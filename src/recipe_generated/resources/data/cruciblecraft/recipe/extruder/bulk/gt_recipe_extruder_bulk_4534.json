@@ -10,14 +10,40 @@
         }
       ],
       "hashes": [
-        "60057379b61ada17ca1dfc99b5b64621aef88abf9119d9ad6e8fa32a5524b4fb",
-        "75380714fabce3a7c4ab6b8fef87f4c77e69c157348371d12ae482f26ebc2a05"
+        "db8fcafc4596edb8a156bd5aa456d91f0c3b9495093b03dd9334c294c39dd567",
+        "46f9c572b58ca9549a0a7fd126f5330b35eaba481670894665dd503a2339e96e",
+        "853d63ea7107d6d91edcab89ac88203747b92fdfb66bcd33337bdb7b7bbd578f",
+        "c3dbe8ee62374967bab27529d197f2950b8e16a3101cb9f443612c94d0e0a235"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
             },
             "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
@@ -29,13 +55,13 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+              "cruciblecraft:prefix_material": "iridium"
             },
             "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
           }
         ]
       ],
@@ -43,16 +69,28 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoflame_red_steel/rod"
+            "id": "cruciblecraft:iridium/wire"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+              "cruciblecraft:prefix_material": "iridium"
             },
             "count": 1,
             "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:iridium/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:iridium/tiny_fluid_pipe"
           }
         ]
       ]
@@ -62,7 +100,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2d6d5a640bab2afe",
+        "cruciblecraft:gt6/48be9a399d973f28",
         0,
         0
       ],
@@ -70,14 +108,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/e269f9924d22682a",
+        "cruciblecraft:gt6/80586ee7b81d56f1",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/fc30338d1eebc616",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/b09f4e5dbaec9568",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 198,
+      "duration": 423,
       "eut": 96,
       "item_input_actions": [
         {

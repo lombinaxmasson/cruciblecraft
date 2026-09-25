@@ -10,36 +10,70 @@
         }
       ],
       "hashes": [
-        "1a29aa0f80c8a98a7ac4a29e73c0dc8ecf67a9f8f7c27137513f6481c0d2b3ef",
-        "2906722ef3e025e7b4df362c3e24076bee0778b7cc4bb64baa84d8dee1bcdad3"
+        "cb873e0f95fc44718e6480042ec504277ec7faca2d95158938f802f2cef58b04",
+        "3f6a5a7ba76033e81bf24d0fe076158417acb85ec83c475bcd5de14920bfd24f",
+        "e7ace91ddc28f1646929e15a30ad2e65d96157351483b876e5028bea0b71d596",
+        "c604d52b437fecb4e4bd8e0f5ea917794dbc44964e4c2f1ee6c496df4d283a14"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ethaxium"
+              "cruciblecraft:prefix_material": "electrum_flux"
             },
             "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ethaxium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum_flux/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum_flux/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
             "count": 1,
-            "id": "cruciblecraft:ethaxium/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -49,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/645bea8c53b33be3",
+        "cruciblecraft:gt6/e2330607c47404f3",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/4ee2db8f7de780f6",
+        "cruciblecraft:gt6/5a666026f70ce904",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/651cd715774e2c55",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/1b1eb1f79b513c09",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5013,
+      "duration": 323,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        6,
         0
       ],
       "output_chances": [

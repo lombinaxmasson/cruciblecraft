@@ -1,13 +1,147 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_6616",
-  "publication_group": "cruciblecraft:extruder/bulk",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "fce15d2ad1e0e6c1451f63af99b5367afbf755aa20e206582c30076af0fd3bc9",
+        "5e73880a3026f1e585e77b0ec12d1f3f58c70278a98127c73ed61662259c29ce",
+        "ae3e6626b8d6bbc949feb102f1d91858b1ea74dc6e1f2b31cac859ab530b08f9",
+        "8f1fd2781ce9a6ba9bd4bee184d52d52f07a8a778145566bf981d730e4eaa030",
+        "fcc447d03bb99a33c6757bebfed42c9e1ff4f4b301e185ff9040b23781c87d7e",
+        "dc4c1bdcec823c680b318440810ffbc8d87cd6cee5f497d62d7e0681e091dd97"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:zirconium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zirconium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:zirconium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:zirconium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zirconium"
+            },
+            "items": "cruciblecraft:gem_chipped",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zirconium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:zirconium/gear"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/802d00e32452a566",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/d298718f57545380",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/4eb4a0a272ba5687",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/9518a1eb923d3fe1",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/dd7ea606dfff5411",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/1979ef4917730412",
+        5,
+        5
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
-      "duration": 15163,
+      "duration": 737,
       "eut": 96,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -17,38 +151,18 @@
         }
       ],
       "item_input_counts": [
-        2,
+        16,
         0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:osmiridium/machine_casing"
-        },
-        {
-          "item": "cruciblecraft:extruder_shape_block"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:osmiridium/block"
-        }
       ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "d9a45e391c8f77879252d75569651caa08a2c1ec5fe8e388e7a9feea78bee35a"
-        ],
-        "selected_source_recipe": "gt.recipe.extruder#bulk_6616",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/9db243dcd3159db8"
+      "selected_source_recipe": "gt.recipe.extruder#bulk_6616",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

@@ -10,67 +10,184 @@
         }
       ],
       "hashes": [
-        "3bfeca4e0c58221c33dfab4258c8082f8aecab911e1caf0ee909a1534a944012",
-        "d81b2f2443f2a5864a569db2127034d82165b37737d8cef56929192078d81e21",
-        "59cf92eb94285d0468e076ca65e6472e96f3bed16ea189994f9b480d58ce4a64",
-        "e8db70d46734f7c25c90e02a57311e78019a89438a36a2886e9ffab548afd8d0",
-        "3d0394853dace6a90d8586bc67c9a8cb2c0066ebeeb1b82e82a744802eac784f"
+        "faa1b7ca6838aea7c759a8969127004c6d8ea5844f88ca91bc02d34b4323e9c6",
+        "fe9db4d5a963ee751801e8908e0c0173d749db9129848bf540eda3ee2d53fe58",
+        "2dd4f8b44300c634170944e8d8e72c82dad1d1207e63fae7c31cd2a1692b75d8",
+        "5a50cf0f4eb7bf61050df79164e5c0400278fb9257987df39bcadaa2b1900f43",
+        "06133d884ef464371273bb2bd0e8d83ffac789b52dbfc35175fc73ba8f823366",
+        "354616695731c2f2bac142d399ec91ff65b17e5048cfebe6b404e4bd0c6004a0",
+        "69972b4ed3c56750b30c114a61a408e8c6a6518bd550131fc7fab5298cfc9aed",
+        "f450450e71d938b80e13c0ffaca46102c39c902ad2b9bad05c04426f6ad39732"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "kreknorite"
+              "cruciblecraft:prefix_material": "vanadium_steel"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "kreknorite"
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:kreknorite/ring"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:kreknorite/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:kreknorite/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:kreknorite/block"
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -80,46 +197,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c26e23818262295c",
+        "cruciblecraft:gt6/f5dc691b193054c3",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/02a1f3d6d96f6b37",
+        "cruciblecraft:gt6/3f4ddeec6620671c",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/d79c4a0b948a8227",
+        "cruciblecraft:gt6/a0f0b2b1051124fa",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/0328bed0991a4080",
+        "cruciblecraft:gt6/a0bac6067911cfb1",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/9a53615d3b028cb0",
+        "cruciblecraft:gt6/e3f09e5e51177dd0",
         4,
         4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/c620b0b7db21de30",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/a2c639dffa1b0104",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:gt6/997be60596b7cef2",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 300,
+      "duration": 414,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +271,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        3,
         0
       ],
       "output_chances": [

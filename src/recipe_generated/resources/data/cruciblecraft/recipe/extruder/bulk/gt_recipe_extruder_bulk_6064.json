@@ -10,80 +10,52 @@
         }
       ],
       "hashes": [
-        "45376accefaa579b610aff789914037b00edd9bc1a5a54371cf29a24a31f1f71",
-        "21e4d8f526d1cfaa0d813c0a63e98cbc315a0b67e0fcd81ea56593ea85168d07",
-        "79e3e83c00dd85dab1e2d4633613cbdbffee55fe5a90d10ac7c5eba57fe85b1a",
-        "88d3a2787291a9ea397b65f4b470df34d647682afd64d497642f60ef153930c8",
-        "923af94276ff00c475b7bb6c32c27adbd0263f069a4a67bf5f0f6c1f1e88e6e2",
-        "349a03cde4c87499e0e48d78e1fef2bd3214eeaf93e2133701539659ffcd0110"
+        "c71460c7d558e069571bb634913f08aa9210a7822f7491b008cc837796b7466a",
+        "a5b1e8923ffdef1193ff262c8f661c3b8779797992f2728704b23d80aca47954"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ethaxium/screw"
+            "components": {
+              "cruciblecraft:prefix_material": "electrical_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ethaxium"
+              "cruciblecraft:prefix_material": "electrical_steel"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "ethaxium"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "ethaxium"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ethaxium/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ethaxium/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "electrical_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:ethaxium/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrical_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -93,54 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3c91de53cb6ec009",
+        "cruciblecraft:gt6/0b81e371fddbe826",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/18c1fe2edd67d71e",
+        "cruciblecraft:gt6/796dc9b57c366d59",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/5f43868ca2cea81e",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/58a79a9ca158da82",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/d883315e53ab1dc0",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/f7cb490655b7c631",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5013,
+      "duration": 826,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        5,
         0
       ],
       "output_chances": [

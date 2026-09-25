@@ -10,28 +10,18 @@
         }
       ],
       "hashes": [
-        "938ef10e2099e625dd2e68b99332fa0664ad01d714a9994605852692bbb48589",
-        "07c4c463a5cac246595f3135a5f605e7ed95c009570536c5b3b434c100042878",
-        "57dc215d53b1fd802828f8c41825ad25256a2c2753ee9422a7da0174fb03cf52",
-        "069912b6605071670fb1550ddb586afe58406b45bec63d2c8497a78f44f8b516",
-        "151e275f2759c1ea55747ec50ab62772860567b96c77e2e8908b794f61603ca0",
-        "b87e8897cba530a99da7ae6328b6590f50888a50ef94718ab9325a91caf55697"
+        "ac9e6986b835ec2c0d4e9eb40e45bd8b906dbcac12000c137175dd5dfe7c2a4b",
+        "d6b2465254c21fadf865489e65f9a38a51fc4dcd5e8ea20ff84a7353e77a215c",
+        "ac41cb2370adef8ef0faae47d97a73112681ea79c8a36ffad70eb67fa6a7f257",
+        "5bab5c27bd2f4411934d267bb0aef82fd1990f6d9d1f564cd52fa25e3215cdec"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:titanium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "neodymium_magnetic"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
@@ -41,18 +31,10 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "neodymium_magnetic"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:titanium/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -61,9 +43,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "neodymium"
             },
-            "items": "cruciblecraft:rail_gt",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
@@ -72,7 +54,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:titanium/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "neodymium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -83,7 +69,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:titanium/block"
+            "id": "cruciblecraft:neodymium/block"
           }
         ]
       ]
@@ -93,7 +79,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2c063528bd317751",
+        "cruciblecraft:gt6/f2f4126eab0dc836",
         0,
         0
       ],
@@ -101,7 +87,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/ebd4218226bb19af",
+        "cruciblecraft:gt6/736ce00d122c95f7",
         1,
         1
       ],
@@ -109,7 +95,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/15a2b9bc2c47943f",
+        "cruciblecraft:gt6/e457764541ca3729",
         2,
         2
       ],
@@ -117,30 +103,14 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/22a7c2555c3714d9",
+        "cruciblecraft:gt6/d775a808d0d77816",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/4fc20ddac607b940",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/61cc127d30812a72",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1040,
+      "duration": 1086,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +121,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        5,
         0
       ],
       "output_chances": [

@@ -10,40 +10,83 @@
         }
       ],
       "hashes": [
-        "c174baf721e7c994b2181f1cec8d1d25b18a4deafabbfeb9a5a98024a78125a9",
-        "388dc666560fa2a1039434f6f70560f8643701eee5cdff64edac2bf8a05d2af5"
+        "8d5a49981b27cb959621743a64be08c40f0656518afd37681f88dd8357ba321b",
+        "612dcbda16a523dd47eeb82e7a76ec3e7208c3665f67098839d92c21238dbf29",
+        "e813476d1b080061c2e66465561ae9be15217dba38e5ded61c0528eb9f3d264f",
+        "490ad3b4fb68be566a205f862a03e7ac9e5626ae0fcd5ae28f5abec9df2b79b0",
+        "3f96ca6923e65a838a9a91724946a0938240bc1db55edf3750358c2d5af1f924",
+        "3293e3018f667adacf56533f34a17c2ff9a8574694823eeb2f715ca21c8b7049"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "invar"
+              "cruciblecraft:prefix_material": "trinium"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "invar"
+              "cruciblecraft:prefix_material": "trinium"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "trinium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "trinium"
+            },
             "count": 1,
-            "id": "cruciblecraft:invar/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,22 +96,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/dda8c2550e7232cf",
+        "cruciblecraft:gt6/2979870fa9b45eec",
         0,
-        3
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/ffaee786a70c3ebb",
+        "cruciblecraft:gt6/b20df28aec43a63d",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/02feccb75c654282",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/f7461ec89ab6be9f",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/62d7aff0760c4174",
+        4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/ef9f655c4f9bd383",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2059,
+      "duration": 61,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        14,
         0
       ],
       "output_chances": [

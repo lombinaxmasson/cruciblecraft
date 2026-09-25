@@ -10,67 +10,74 @@
         }
       ],
       "hashes": [
-        "8155dd0d3044da409bdab0027b0306aea179f02e07e8396401b036747024e037",
-        "91aef6b8fddd0019bee21eceff1c1ae15a7de117e282fb05c0dedeae51f8914b",
-        "74418a17f5000300d58660f7dde9e7082e653be508c21416a0300a1d577fd867",
-        "6e26fd31dfdecf7af1b76a5f476a49ad6b29fcc5e9ce49b857cb52478ff2d205",
-        "0d2ea1e89c36c08b67af62c5cfbe209a52410a11e1ee7c41cb1abbe60cd01bf8"
+        "0967505da3a5d2a0ba8593b51db75bb5f76043931b38f74baaf6cdd18a811b17",
+        "9b8ee45b4824a4f2065e8a3e8752c4e0cd4903491841d0fff71a00f43c7d41c1",
+        "a6e80cd0d235930ca555d21c61df5977584d646c988df7b7ceac235d0a51ef96",
+        "d3e019cb8644f4ab85e6f388f49d6da6bf4544b95f60588e403c159dbdf6eff8",
+        "0fe0bd4afc5fec5a455e2e1c7bbbb0e36fb7ec2a1f1e980889dbed587346d88c"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:dreadium/ring"
+            "item": "cruciblecraft:naquadria/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "item": "cruciblecraft:dreadium/foil"
+            "item": "cruciblecraft:naquadria/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dreadium"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:rhodium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:dreadium/small_dust"
+            "item": "cruciblecraft:naquadria/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dreadium"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:naquadria/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
             "count": 1,
-            "id": "cruciblecraft:dreadium/gear"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:naquadria/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:rhodium/rod"
           }
         ]
       ]
@@ -80,23 +87,23 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1a2517979e6384a1",
+        "cruciblecraft:gt6/a07197e66e1c97bb",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/88e277a6247daf6d",
+        "cruciblecraft:gt6/13f6cb762ff7630b",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/e57737c6f2f57a8d",
+        "cruciblecraft:gt6/00b63c5bb108b90f",
         2,
         2
       ],
@@ -104,22 +111,22 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/2ae4a39bdfdf7026",
+        "cruciblecraft:gt6/7b5c0b7346f2baac",
         3,
         3
       ],
       [
         4,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b5aca6e48d0855e5",
+        "cruciblecraft:gt6/d722e49159e7362d",
         4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3406,
+      "duration": 187,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +137,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        4,
         0
       ],
       "output_chances": [

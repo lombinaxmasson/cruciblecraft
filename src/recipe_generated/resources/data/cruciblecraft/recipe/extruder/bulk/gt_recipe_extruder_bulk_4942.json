@@ -10,52 +10,43 @@
         }
       ],
       "hashes": [
-        "ce184550e2fd23d26ccbd8e444f7ffae293613dc8614aaa745df496043cd1fa1",
-        "09a88258bde9a804d819bb1510d25e2a1e73e6e8e3d2ce98a65a5b38083060d4",
-        "07b516f0cb8cead5aa2f34cbe40f2869b78c66187b353989083599e397fa0ac2",
-        "d3da50262ec45d4b79ab32b51b15f2982173f88f88f27f4f2ca420df720cab41",
-        "bb14cba7669d92f3992638001f6cf1af0dc415dbe78bdd6ac0146fb060d82a9e",
-        "9b437d8f99ea879e9e444e984715f1832ffba8decbd73cb076ea31b41475147a",
-        "1eb4dd94356c01740dde7a5cb05ff3f839a66b87a3077c42891dde2e4340412a",
-        "605dc5815fbab6f6fee7f3ad504f831659fea5ec9d82722f0794384ee78c904d",
-        "8b39f8d5ad640f75cd1b0db0de02edbf4d722355972ed85c30edb05c513b8e91"
+        "7f36992b0a5c55ed8c02d6627acb996689ff25da860237458fa95ab7e6bb0d72",
+        "d54f089d82db6fa13fae3eecaba4ddf1e4a97ada2763f84c428ae7f173d28f4e",
+        "97574d803e78fb17b70a5af3e2004a3467177d8a700830065bd23a79897230be",
+        "dff75dd2da6edc1155ae27415ffcbad00f49c0b0598e4bf691548cbc2ef0128c",
+        "f46d36d3d434eb4364c73a747f0953217bfe68c14a72fa77e3bbe2c2bb3596a2",
+        "fced22ab3efb2d0a9bfe2763bd97c972195859175e3d2401beb29c3d1949862b",
+        "e2802845801f053742f6dc0c8263fa00e7a0876a6034b8cdea89c834cd7db052",
+        "98ec88578e4ac5cc861ae8a135dc5ceab526797f6b4c42e0337a97d9eb386a4f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:tritanium/machine_casing_quadruple"
+            "item": "minecraft:gold_block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tritanium/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "gold"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tritanium/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:tritanium/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:tritanium/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -63,96 +54,68 @@
         ],
         [
           {
-            "item": "cruciblecraft:tritanium/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "gold"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tritanium/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "gold"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tritanium/machine_casing_quadruple"
+            "item": "cruciblecraft:gold/nonuple_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tritanium/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 26,
-            "id": "cruciblecraft:tritanium/plate"
+            "count": 1,
+            "id": "cruciblecraft:gold/huge_fluid_pipe"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tritanium"
-            },
-            "count": 52,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:tritanium/long_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tritanium"
-            },
-            "count": 26,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 2,
-            "id": "cruciblecraft:tritanium/block"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:tritanium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:tritanium/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 6,
-            "id": "cruciblecraft:tritanium/gear"
-          }
-        ],
-        [
-          {
-            "count": 52,
-            "id": "cruciblecraft:tritanium/rod"
+            "count": 1,
+            "id": "cruciblecraft:tantalum_hafnium_carbide/block"
           }
         ]
       ]
@@ -162,78 +125,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ee4d966f11695cf4",
+        "cruciblecraft:gt6/51fceaf6b9d001d1",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/dcec5dbe5a35da30",
+        0,
+        "cruciblecraft:gt6/88612a856d5cb601",
         1,
         1
       ],
       [
         2,
-        2,
+        1,
         0,
-        "cruciblecraft:gt6/b083a92f3681892b",
+        "cruciblecraft:gt6/4523096e71c2ce8a",
         2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/7a6686e68d3eab4a",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/4d742870bf8b7ee5",
+        4,
         4
       ],
       [
-        3,
-        3,
+        5,
         0,
-        "cruciblecraft:gt6/9a7b0c145aa1a921",
-        3,
+        0,
+        "cruciblecraft:gt6/00b2325dba278db5",
+        5,
         5
       ],
       [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/ff3a918c15d97873",
-        4,
-        8
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/53a11d0d7a121311",
-        5,
-        10
-      ],
-      [
         6,
-        6,
+        1,
         0,
-        "cruciblecraft:gt6/a3a5e2d9c5c0967b",
+        "cruciblecraft:gt6/b2abf9bcb12fe0a8",
         6,
-        11
+        6
       ],
       [
         7,
-        7,
         0,
-        "cruciblecraft:gt6/5ac805c9c4be4055",
-        7,
-        12
-      ],
-      [
-        8,
-        8,
         0,
-        "cruciblecraft:gt6/8ebba3b391c52e24",
-        8,
-        14
+        "cruciblecraft:gt6/f407144914c2a504",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 14361,
+      "duration": 5592,
       "eut": 96,
       "item_input_actions": [
         {
@@ -244,7 +199,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        2,
         0
       ],
       "output_chances": [

@@ -10,46 +10,52 @@
         }
       ],
       "hashes": [
-        "455e0ed08071fe5cdd66b608801a6690c35c5e3aa08864075bf5034ff37cb938",
-        "c1842f82ba37a89687a71504cfedcdd182a2365f1d179b37842dd84e4a3e9f1b"
+        "a18322eaf23121f9e9958c587469e0cad9d92f6f4da11b85e81100d07c788616",
+        "6768c9d383ca65fb428b36b28a06d5bc593b14714621ec7175efd93a7aa906db"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:sanguinite/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dark_iron"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:sanguinite/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:duranium/ring"
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:dark_iron/ring"
+            "count": 64,
+            "id": "cruciblecraft:sanguinite/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:sanguinite/bolt"
           }
         ]
       ]
@@ -59,22 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8359ab62a3e1631a",
+        "cruciblecraft:gt6/de6764a2f5268bbe",
         0,
-        1
+        0
       ],
       [
         1,
         1,
         0,
-        "cruciblecraft:gt6/e4a058fca317b1e2",
+        "cruciblecraft:gt6/4995cf4c2fcc06d2",
         1,
-        2
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 60,
+      "duration": 8220,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7211",

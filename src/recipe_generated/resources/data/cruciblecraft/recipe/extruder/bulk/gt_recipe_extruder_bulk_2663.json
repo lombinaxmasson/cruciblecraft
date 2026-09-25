@@ -10,155 +10,374 @@
         }
       ],
       "hashes": [
-        "fe5d756a6adf168175df2fa160b8a6c458260b6b0a5fa38f41ee21c5db540a44",
-        "92f5169c699e9b3ee958c9521e517ef1316c5ae3c09b86e99f031020284952ff",
-        "4c2751dbb8670652d9d6b17b7e1d91db3f8badc5ad55a4ccd2285809d262495e",
-        "d039fc6d279cc24df981ecd8531ceeb30e4dd32804daf9c0225daeb8d41d2144",
-        "1d2f86a08e389437939b98f0784fd2396d5840716808e8d71cba2df93bb15085",
-        "16c44364483c0c592892c277e7cf0ecbbb8d0e30732a43fe725c2954ea18da70",
-        "a2b1f43aef09a35b67bcf2dc17469de20df25d36fb9cabad08f9b3582848b5c5",
-        "47f56381715b0300aece2191a1489b1f853e2b17838a41eff19e1b614981f9bd",
-        "943f245ab9e0fc3970e8d24d81424ecfc590f67d64f67026426c54748d8d147b",
-        "7cf59fdc16a9df43d8be73b6f97d2be60bf06bf408196f4d58212ecf0dee605b",
-        "b57387cb24e1512e9443cd7060c92ef011d1fe30091867bbf37c2cb68787d217",
-        "8209c5b0a0339f2fa42edd02cb7003d2cfdc2a0b03e121b763e11ca232a105eb"
+        "8641fdf2ccd7a3849a08f9650a5f6a9ef6ba6e9e42773763561af92673d34675",
+        "63ff532879986f2ae25ea63aad3277188367fda2cd40bf6c255d678d07016620",
+        "ea1fc3b369f0699e1e6a2994d796753536960bd3ea95ea3dbabbb5a9b2e0397c",
+        "2c683b93ba9c358193de5c8c1df141cd361a8e02a73ddc87758a08439b5d581c",
+        "b0094e4b4e425fdb871a8482d8d791454c4a8fb0093391b0fd83c4edb2a97180",
+        "c1e91e67fa59d138695e01a20033dfcc3c6db65c62a974f389895cfabf7b9212",
+        "b77e2b566227964865889b9361b0c30a668ace8c8eea9431cf594c89d0e9f0c7",
+        "d5bd9a403998c4b78f164e7d541b068371777c5156f0e367c7a536015fe25993",
+        "e0bde09880fb5a53dc2a21c68abe2d9260f4ceb97d5bd41c06fac2ce85e70672",
+        "70545f93ba0f6bdf455204c30640991d6cc647d5337f0aef41268f2ea0da2510",
+        "90d4d72241e5a054cd6fd414783f33b39a6aafe68f1e25abaa3fb32d78b4250b",
+        "d6fff00bc7a029b91a484cdeab701d78f2b1f36ccd3124db93ab6999286eac0c",
+        "ac2b7eb9c9c79d91eb47c47618ed96af2ba40948660edfc39e91b4c0af019367",
+        "2bbc62b1384a981f87e01ea3923f562d77971886bbe2f9d1d52d4120745738d4",
+        "a88e2f48cad4ad6d12403418ea7f4d46f956c2b3867ab8d7342f6cf3ead362a8",
+        "df469afa9306aeb1e84873ff789a991b19a8696b8824bafb7089caec22349da5",
+        "8eeef6472229f881be6a5a1ab81cf64ba712718936c0c426871c59112ba9d90d",
+        "34d72a33c9be83f9a1abff18dc7ef8e4bad7a0dc87778155a8d6ef0853f35198",
+        "7967fc2d231de84642d97202903a32d35ef7a3163da289630a0d899a27fbe789",
+        "834511626f0c2ae73ebec9c4f3490aa63c6af58c144cd898c923b0f474d4c8ae",
+        "31c1e33289021af052e311d4601dc0181380a34dc9da7f837521b3e7bd575087",
+        "2c191946ca79ae928a82248b1f98ae214eb8418dc7b9f9fdd69c5e9b2548a73e",
+        "c58c308340f28d804a4f67789258f18ca9ad5c247b5154ee2c32193ea2150685",
+        "5160efed62b4cc4686928c2cc1466efc355309f6018976a73b5d21b5ac901b2a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vibrant_alloy/screw"
+            "components": {
+              "cruciblecraft:prefix_material": "uranium235"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
+              "cruciblecraft:prefix_material": "uranium233"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:uranium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:uranium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:uranium233/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
+              "cruciblecraft:prefix_material": "uranium235"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
+              "cruciblecraft:prefix_material": "uranium"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibrant_alloy/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibrant_alloy/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
+              "cruciblecraft:prefix_material": "uranium"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibrant_alloy/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
+              "cruciblecraft:prefix_material": "uranium233"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibrant_alloy/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
+              "cruciblecraft:prefix_material": "uranium"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vibrant_alloy/screw"
+            "components": {
+              "cruciblecraft:prefix_material": "uranium233"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:uranium233/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium233"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium233"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium235"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:uranium235/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium235"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:uranium235/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium235"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium235"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium233"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vibrant_alloy/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "uranium235"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium235"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:uranium233/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:uranium233/bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
+              "cruciblecraft:prefix_material": "uranium"
             },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:uranium/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:uranium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:uranium235/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:uranium235/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium233"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium233"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -168,7 +387,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c7c0067dc5dc567c",
+        "cruciblecraft:gt6/aa7c2cd133fe282c",
         0,
         0
       ],
@@ -176,94 +395,190 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/b0fab5df554d4588",
+        "cruciblecraft:gt6/934c9ec731ebe5a0",
         1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/2e147f1785140f26",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/6c4ca17c9a38e191",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/b2c09ca03d0e225b",
+        4,
         4
       ],
       [
-        2,
+        5,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/de19ef17797b988e",
-        2,
+        "cruciblecraft:gt6/aa28b65c69db548b",
+        5,
         5
       ],
       [
+        6,
         3,
         0,
-        0,
-        "cruciblecraft:gt6/8ee6cd0e7bc43f7d",
-        3,
+        "cruciblecraft:gt6/c1fc3ee3107f5342",
+        6,
         6
       ],
       [
-        4,
+        7,
+        2,
         0,
+        "cruciblecraft:gt6/9f3cae3f46d6d123",
+        7,
+        7
+      ],
+      [
+        8,
+        1,
         0,
-        "cruciblecraft:gt6/4454546441bf5a15",
-        4,
+        "cruciblecraft:gt6/95f85944dd8ca187",
+        8,
+        8
+      ],
+      [
+        9,
+        2,
+        0,
+        "cruciblecraft:gt6/f50b4e5526c4034d",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/570923f3c292511a",
+        10,
         10
       ],
       [
-        5,
-        1,
+        11,
+        3,
         0,
-        "cruciblecraft:gt6/073ce47c4cb59446",
+        "cruciblecraft:gt6/a4e376e42468fb12",
+        11,
+        11
+      ],
+      [
+        12,
         5,
+        0,
+        "cruciblecraft:gt6/29a8a96e8fc5279d",
+        12,
+        12
+      ],
+      [
+        13,
+        5,
+        0,
+        "cruciblecraft:gt6/d736580309087555",
+        13,
+        13
+      ],
+      [
+        14,
+        5,
+        0,
+        "cruciblecraft:gt6/bf5d3f4c42b05683",
+        14,
         14
       ],
       [
-        6,
-        1,
+        15,
+        3,
         0,
-        "cruciblecraft:gt6/e4ebe58e85bf4717",
-        6,
+        "cruciblecraft:gt6/ffb2a20e3b32fd68",
+        15,
         15
       ],
       [
-        7,
+        16,
         0,
         0,
-        "cruciblecraft:gt6/a1001f32cc2e7001",
-        7,
+        "cruciblecraft:gt6/35ceeeae10967b11",
+        16,
+        16
+      ],
+      [
+        17,
+        4,
+        0,
+        "cruciblecraft:gt6/50f38e77af8e6b98",
+        17,
+        17
+      ],
+      [
+        18,
+        4,
+        0,
+        "cruciblecraft:gt6/ac455b726749fe20",
+        18,
         18
       ],
       [
-        8,
-        1,
+        19,
         0,
-        "cruciblecraft:gt6/9c6568157323aafc",
-        8,
+        0,
+        "cruciblecraft:gt6/62742e6492315c76",
+        19,
         19
       ],
       [
-        9,
-        1,
+        20,
+        4,
         0,
-        "cruciblecraft:gt6/d82d065bc891a999",
-        9,
+        "cruciblecraft:gt6/b97f6997149a84c2",
+        20,
+        20
+      ],
+      [
+        21,
+        0,
+        0,
+        "cruciblecraft:gt6/2dda5d684b1007a1",
+        21,
         21
       ],
       [
-        10,
+        22,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/7e2b25df4b749f5f",
-        10,
-        24
+        "cruciblecraft:gt6/2ed629acc67a0fa2",
+        22,
+        22
       ],
       [
-        11,
-        1,
+        23,
+        5,
         0,
-        "cruciblecraft:gt6/4d2b26dd7c6f8191",
-        11,
-        25
+        "cruciblecraft:gt6/9ca7643d2845e9aa",
+        23,
+        23
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 399,
+      "duration": 2927,
       "eut": 96,
       "item_input_actions": [
         {
@@ -274,10 +589,11 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_2663",

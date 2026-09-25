@@ -10,41 +10,41 @@
         }
       ],
       "hashes": [
-        "0fdd471ee83ba3a4a3b8441b8dd909db726421b69fd151b5304ea2b38cd8d86f",
-        "5bca0b97f8061604636041d218a18bd1aef15e670863214bf7cf6011fa2986d5",
-        "00a9a665933a0f1d45f5b23a1c83b83b73cfab3731d2a8409a13a52168a49694"
+        "b3c59e3b533543e94c9675bf041f760f7d6f7106ddeff70281052cd22f2611c5",
+        "c73024052eabe43443d5a630cef2fde4e1f9ebaa8c459cc8cfdf65bf6bd09121",
+        "b826f55ca0e270501b10e32b668b679669dcb2c79d797140ddfba3100cbfd003"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:dark_thaumium/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "dark_thaumium"
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "dark_thaumium"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
@@ -52,7 +52,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:dark_thaumium/block"
+            "id": "cruciblecraft:carmot/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -62,7 +71,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e5d455a92d8df05c",
+        "cruciblecraft:gt6/2259303920e9b908",
         0,
         0
       ],
@@ -70,22 +79,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/34ab19df59f7ac2f",
+        "cruciblecraft:gt6/578efd4b5d344b3c",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f258e7bf3d247b57",
+        "cruciblecraft:gt6/d2bcc37cabad5b92",
         2,
         2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 374,
+      "duration": 390,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +105,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        8,
         0
       ],
       "output_chances": [

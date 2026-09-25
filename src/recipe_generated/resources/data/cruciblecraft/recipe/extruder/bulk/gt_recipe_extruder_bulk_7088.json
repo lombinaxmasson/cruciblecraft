@@ -10,40 +10,89 @@
         }
       ],
       "hashes": [
-        "7e56055e00889c63cbcf61a9d188d966ee7a3cec310100b83aa56afef1e5430a",
-        "a52eb7475ba0b09b088fb5fa4a76992b2373bdf377766527a755d6777ddf8664"
+        "7a8c05f936625a7ab97e61424291d95aeed9919f18f313dc64398b5dc9629bfd",
+        "e7f4c7e1542739c42b8ad6467c2e436b71f171b21b375422026cb0978184421b",
+        "4784e8d4409cb8b33f92253c2fea41883d88afac573580c273d3da796b96d65c",
+        "32ba9e9b1ae9ff6724cf2e628684136168159a343cbf56a97984176a1d970937",
+        "e30e0670f2f564592ffd075374abad83f8cd79cb7c99a6f519eb920177245dd5",
+        "4210ce3f84f6b30a2e7317001d51cf99122d48d1ecc0d9af8fedf9c452df1777"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_black_steel"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungsten_carbide/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_black_steel"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungsten_carbide/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoric_black_steel/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -53,7 +102,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/16d477624877c1a7",
+        "cruciblecraft:gt6/03c91f5e542eeae2",
         0,
         0
       ],
@@ -61,14 +110,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/f50fa26048d53ab2",
+        "cruciblecraft:gt6/0df19a811db5ec5a",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/ffd1d70ed711e37e",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/820e629337f10d30",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/57d91ac721b28203",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/e30d6e467607c81c",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2029,
+      "duration": 1338,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

@@ -10,40 +10,83 @@
         }
       ],
       "hashes": [
-        "cb13e5181b091339fd0eb4feb57ba14077c166c6a4c046e808175eb93e1baf3a",
-        "2d5dbd497a62b26411465281781bc3f79572b0eb5fa7b6c2d9dad322705f7f17"
+        "f4f7acef3a8c8b4e8ce7a2b9c958458656d99c9f4b9aa891a2fb2cc91aeedb57",
+        "5b7f55c80922ed0b83c223cca5b890699f3e4181173e7500c0ed2f3338798b60",
+        "64377c2673ebe634f4b5ce38d8a14eac0944cf36fa520ba534e6e6f51ce85ae0",
+        "d97632348638b6f42e14ee4019ff1e49def20cc4d88ce792c0b9454cf823512d",
+        "5eb118fefb7fca05b2387eaa1e1475c3bfe337b3a09635a79e8fd9d38337a69d",
+        "069fadcf2da6ae28501aaec685a5f6cb095b1324981b8eeb292ebea8102ea0fc"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "yttrium"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:desh/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "yttrium"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:desh/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "desh"
+            },
             "count": 1,
-            "id": "cruciblecraft:yttrium/block"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:desh/tiny_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:desh/rod"
           }
         ]
       ]
@@ -53,22 +96,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/746ae0f186c0455d",
+        "cruciblecraft:gt6/3439b16e716a8297",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/5736abd4696feea8",
+        "cruciblecraft:gt6/350d80a36dda0d61",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/3cd023d7480b426d",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/81c958d435daa1bc",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/5ce83b6790567005",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/64c6d96b76cda379",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1039,
+      "duration": 53,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        4,
         0
       ],
       "output_chances": [

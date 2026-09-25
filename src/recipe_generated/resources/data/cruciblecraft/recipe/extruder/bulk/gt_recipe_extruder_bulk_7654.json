@@ -10,13 +10,17 @@
         }
       ],
       "hashes": [
-        "aa20c7d0af0e4f4c3193b475e0d5eb87ae2f183f4b9c8834e2ad1840b0e5fd69",
-        "4a1df355411b9673e32a9af6c9de226b59b36c5b7d450fa7b2b7bed1e92a9d30"
+        "b70ff7ffbf045b207f61f34413cf5ac0bd1909ad97fca170cba85084e7bb2b2e",
+        "66ad9a23aea4aa9a04f264c7f28da82daf7363a50da3f1ca69bc8831cd407c67",
+        "5110adb1fc9d7af505b756b72eba540b3464bb9ef2e9dffb51205ea4f286c0b8",
+        "03bc467d2e9090939d66f1598ca9fa7c0b83992c46822281dba0f33327bd3bd4",
+        "e8aec7dd014add599fa920a848bcb0c7a60fd80bab62700d40c6921017a4e199",
+        "11b419fde98453749fb5b477cb1f70fdcedf43c54079d09d1c7758c42ba36ac2"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:cd_in_ag_alloy/fine_wire"
+            "item": "cruciblecraft:adamantium/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -24,7 +28,51 @@
         ],
         [
           {
-            "item": "cruciblecraft:cd_in_ag_alloy/bolt"
+            "item": "cruciblecraft:adamantium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:rail_gt",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -35,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:cd_in_ag_alloy/gear"
+            "id": "cruciblecraft:adamantium/gear"
           }
         ]
       ]
@@ -45,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e71c841733c3e38b",
+        "cruciblecraft:gt6/d801cff88c09aedc",
         0,
         0
       ],
@@ -53,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/6627e067923383ce",
+        "cruciblecraft:gt6/46cbe1f3bb046e39",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/308cacb73e510882",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/1f57c6833f1b0761",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ce8660af94af258e",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/e6f25dfd36926761",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 251,
+      "duration": 4067,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        16,
         0
       ],
       "output_chances": [

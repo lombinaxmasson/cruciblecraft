@@ -10,106 +10,70 @@
         }
       ],
       "hashes": [
-        "0cb1ee5ca6061cb22845697f109498871ebad7c3f3303175d5576f778795f2f5",
-        "162585f375e5dfe391e5449818cba3cf6484aa6e80974ec33b40ddb4410533af",
-        "8867e1eee3f43f7e6c3728eb30fafc576c5b60f0ca1839d3242300a6aa65177d",
-        "92d8339428bae5f61b10b6bbe645a98c294f14a421ade4106173847b85e0331a",
-        "648e1f3340582575e5692183e478908e74f3c76292580c9f54adc91cf04e2699"
+        "6cd7541dd2e31f7d09b48580125e855e89cf3cb567015c7d7ab39c4b4ac4a5fd",
+        "7227af14e07e1fe3d2a7a1f9dfc4ab267b3fd628f89374cad06eb3469fa3d5ac",
+        "e6e90ee9b9261196fd233e9ecea1533ce85cd09086f571de2940e230cd0c8bde",
+        "e0cc402b8eff39bbaf48ffe1c2b2d7d34432a1fc2b791b8efe80505fae264e15"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tungsten_carbide"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_red_steel/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungsten_carbide"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_red_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungsten_carbide"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tungsten_carbide"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tungsten_carbide"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:tungsten_carbide/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:tungsten_carbide/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:tungsten_carbide/small_gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungsten_carbide"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:tungsten_carbide/plate"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -119,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e9dedb342820eeed",
+        "cruciblecraft:gt6/2e57c822578ec166",
         0,
         0
       ],
@@ -127,38 +91,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/7c4fedbc7c299036",
+        "cruciblecraft:gt6/809f175a20aa134a",
         1,
         1
       ],
       [
         2,
-        2,
+        1,
         0,
-        "cruciblecraft:gt6/7809172323f881c5",
+        "cruciblecraft:gt6/add52f1a2eab1028",
         2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/69e040dabc97c627",
+        3,
         3
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/fd98a33e84f1b330",
-        3,
-        4
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/ce0c322cc71741d5",
-        4,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 892,
+      "duration": 1187,
       "eut": 96,
       "item_input_actions": [
         {
@@ -169,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        6,
         0
       ],
       "output_chances": [

@@ -10,40 +10,86 @@
         }
       ],
       "hashes": [
-        "2cf45221d61e71bd298257530ec8b460f5c04e8a9a27c57845eeefa1909e1697",
-        "7c14960190234e7b9f92a5f9b9b11addff394bd708286c9df3ea306edbd8be66"
+        "32cde88e1b329ae5e0ca5cbe772b6760255cee2ad4b33075ec844233e53834b3",
+        "9d47a6ef5582e98b471382ac91841c2f3241bb8daf2469ef08c221abd66fc401",
+        "268f259d96f8f8f871c55ef4a4bee9be2f1370d759913f0ee29058c4b4cb47f4",
+        "fbc8607dd38b7bfb6a9b2aeb77234d70c74286fbe9dd54c5bb36d428b93cebf4",
+        "0f8f4e9be1aeca606d72f556f0570c8c7dbabf5915fdc6e42db2e685bf6f1e88",
+        "a5f1de5c4c4f77b56d1f02ed66671f8e61021c6e3fc65c12a158c9e03d4b310b"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dark_iron"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:desh/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dark_iron"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:desh/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "desh"
+            },
             "count": 1,
-            "id": "cruciblecraft:dark_iron/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:desh/fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desh"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -53,22 +99,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/93e3bd0e258f0a82",
+        "cruciblecraft:gt6/fae80fe758a1b8f0",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/2c0d89f75024bfab",
         1,
+        0,
+        "cruciblecraft:gt6/377a82eac52aca5e",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/15773af9bc102a47",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/8df4ba78ae415b53",
+        3,
         3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/29e827c033f0ef3c",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/2f739534559db33a",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1424,
+      "duration": 313,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +157,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        24,
         0
       ],
       "output_chances": [

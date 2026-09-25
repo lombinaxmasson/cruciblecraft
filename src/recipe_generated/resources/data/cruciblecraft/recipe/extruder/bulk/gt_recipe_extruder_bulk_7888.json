@@ -10,24 +10,32 @@
         }
       ],
       "hashes": [
-        "ee88f18e8668dca758707f1c5a75d2e59ca05232309e3cd71291bbe77b11c047",
-        "764d538226d5c58c3b5fc57950a2723496e9238316e7d8b41ca55f9a598bcb19"
+        "616b7ff163c0f45e024e5eacc74efb0fd3094dee1b98890e3573d9cb80d92b77",
+        "cc4a63a14f7d0588b520a90c1426b209221bdc6e775a680f84a24431cdd61dd9"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ethaxium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "protactinium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ethaxium/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "protactinium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:ethaxium/gear"
+            "id": "cruciblecraft:protactinium/block"
           }
         ]
       ]
@@ -45,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/84c71c03e126b0f1",
+        "cruciblecraft:gt6/1ee23a2e684584bd",
         0,
         0
       ],
@@ -53,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/250eea519199afdf",
+        "cruciblecraft:gt6/05204c4e11395725",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5013,
+      "duration": 3672,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        5,
         0
       ],
       "output_chances": [

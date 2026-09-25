@@ -10,67 +10,70 @@
         }
       ],
       "hashes": [
-        "1ad93fe24ed244c2315b6fdb87e9ae465f3c0908fa025369c745020ee0fa55dd",
-        "c8ba942ee9f769820a5f1e92a211ac146424eafc96067f6e10ba191822224c6a",
-        "e6906861e562e32c3cea68bf7dc5c1b6e2b4b9c49b930f9b4a474a17100f9e8e",
-        "985bc2e18152da92398a5e7b51ccd5d8f587a7c8550a58e80eafb24681df0a49",
-        "c6f0652988d8f8a45433a5544de28db143741875299c9b9de8d2735d3127f4f6"
+        "a3b5393a6568247806db531978ad11c004999e9f310ef31cf13b1a3695ccad14",
+        "daed9839abfaf9fceccb3a0df87a81d7a8d4fe7dfee5baa4f4b149aa840fb46a",
+        "c0578fce42d31ee4d9341f63e70b061181c06aaa049b95c6d2ec69943d7e3cdd",
+        "f93917cc798f4e3e5adef36d9a67759779176e949f98b05bf0f15cb93efc76cf",
+        "354cf2524e0e796884a1156f119fe0ce287c9fff2254b5caa1beea01b96830b7"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:iridium/ring"
+            "item": "cruciblecraft:netherized_diamond/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "iridium"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "iridium"
+              "cruciblecraft:prefix_material": "netherized_diamond"
             },
             "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:iridium/foil"
+            "item": "cruciblecraft:netherized_diamond/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:iridium/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
             "count": 1,
-            "id": "cruciblecraft:iridium/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -80,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/259914c889c395aa",
+        "cruciblecraft:gt6/48413d45968a0733",
         0,
         0
       ],
@@ -88,7 +91,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/0289ffb8bdca01f9",
+        "cruciblecraft:gt6/2faa59ebdd4dcf59",
         1,
         1
       ],
@@ -96,7 +99,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/42e9c5ead695b705",
+        "cruciblecraft:gt6/61b1774452f78ccb",
         2,
         2
       ],
@@ -104,7 +107,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/e59c5d812684a63c",
+        "cruciblecraft:gt6/293a56945a0ed8b1",
         3,
         3
       ],
@@ -112,14 +115,14 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/7606293ef031e449",
+        "cruciblecraft:gt6/6bbec1b8cf9a3c79",
         4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 7602,
+      "duration": 1077,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        6,
         0
       ],
       "output_chances": [

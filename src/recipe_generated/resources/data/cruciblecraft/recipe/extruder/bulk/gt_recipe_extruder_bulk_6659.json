@@ -10,24 +10,76 @@
         }
       ],
       "hashes": [
-        "918670c337c6d5e1143f4e021658ee0d8cf9d3ccb34a60961f2d67292d0e1fa0",
-        "a76f8dab9d8e6e3e9e9c219b8a537cecd3092b98715ba277899305118af6a23b"
+        "71369fd13cd470070c0c9caabd807bfb8caab49bc75450722837ea9c92e8a721",
+        "dbf69aeeff387cf85ed53ea3ebfbc5a493609a4ac436e4b30592a06b7b8c99a6",
+        "eb7bd27670aa38e493a4c6304f857db4d96f05c87e2d47361f34463e8f600521",
+        "54a7b7a4dd6e1275bd029e5392a5591f0d929a1e9cfb0772c56cbe0c98943660",
+        "80b8841889978583312f50bb73f5eb894b9c284e580983ea82b4f5fe8adbef2b",
+        "76c7580371af952d4ac43e9002aeb1957346a6b51d21df8ff3580dc10450b7fe"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:conductive_iron/bolt"
+            "item": "cruciblecraft:manyullyn/gear"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manyullyn/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -35,7 +87,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:conductive_iron/gear"
+            "id": "cruciblecraft:manyullyn/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:manyullyn/huge_item_pipe"
           }
         ]
       ]
@@ -45,7 +103,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/22b42ca4cc4b726c",
+        "cruciblecraft:gt6/5495554f8d357557",
         0,
         0
       ],
@@ -53,14 +111,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/437b98e0d3029744",
+        "cruciblecraft:gt6/981ff057c9a4360a",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/73e105b3d2f16526",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/fe9245da9078a3c3",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/bc73a5fcb53efd22",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/371d3ea1af09a489",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 468,
+      "duration": 997,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +161,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        3,
         0
       ],
       "output_chances": [

@@ -10,59 +10,58 @@
         }
       ],
       "hashes": [
-        "54243346e98f4f4e42d5ada66fda925894319fc8376b4bccee16668bda8a430d",
-        "2dcabea73ad81a4a6198eec435a0e5f02037d1975d03651a13c538c320c9f549",
-        "2dd4415cc40de09732f0be1583b0c4b56e4e64c89e07e3601fc7734a61b6b679",
-        "fad94544dfa058f7b2585c3c4ac4efa4f55d2a7430e2cbd2204dcd26099a0f48",
-        "092545e94a3d84a8590eb8237231828e6b897cc49262fe9d75dd7b32b7b4a00c"
+        "7566907cef5a3c4b2d9fad3070b2416223212c84043ee141dd1bfac207a2a9fa",
+        "93b84b496eb206edc92c44e27f508f3a0c905e8bb48314d91c335f9e4217315e",
+        "44ee3100f25f2f7bbbce9fe10f8e0c5af34ee5bacc17d886017f0a55223d6349",
+        "2fbfc6b91f7469647fcf5ee3f6a3f7fbfd3fe299c5339b2e8291da8b4252d7ae"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:prometheum/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "celenegil"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:prometheum/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "prometheum"
+              "cruciblecraft:prefix_material": "celenegil"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "prometheum"
+              "cruciblecraft:prefix_material": "celenegil"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:prometheum/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "celenegil"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -70,7 +69,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:prometheum/block"
+            "id": "cruciblecraft:celenegil/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "celenegil"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -80,7 +88,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ddf105716cd132d8",
+        "cruciblecraft:gt6/17d93373cce0d963",
         0,
         0
       ],
@@ -88,38 +96,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/59c32188e97244d1",
+        "cruciblecraft:gt6/2951d856a1f5e586",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/1de5aa2c5692ef25",
+        "cruciblecraft:gt6/a3a369279fdf2e66",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/bb709307e580cf15",
+        "cruciblecraft:gt6/2d7f7170680c8768",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/8ff8655e85e5b100",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 442,
+      "duration": 1951,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

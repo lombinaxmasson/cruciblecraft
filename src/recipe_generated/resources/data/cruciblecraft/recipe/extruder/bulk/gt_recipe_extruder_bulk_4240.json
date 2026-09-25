@@ -10,28 +10,59 @@
         }
       ],
       "hashes": [
-        "5e5836f63e84d828c603e4a9bd27c22fb4931101a69dd447968e0f1a08bbc731",
-        "7cfee0007f5c1a0917cf955f496989d863db2dc7bb30491a779797aefebcf025",
-        "576119c53edd6cab627d91be1a1364e20002de52b02245a0d15004eb0a415179",
-        "f7a60c511bf175cf7caf62fd0723316c9469c02e0bd8311229ce1b120c3a9838",
-        "f5ae895b9f003dc07d0f34fe5514667440fe9f05a4ca64101a8e5b23d51d996b"
+        "c71ecc54d59ce6c802a82cac0e2013c2a8facdffc7c57dab643c72d02d1d840e",
+        "c58ead99746e9747131a11866777d4a4e447d6b1f724352a2997d7685c880999",
+        "a1fbdc70b5db727c4a8964b63e05d30e7c9e492cdf294475224d13033d33977b",
+        "a5d2f896d23d5b8ab77e70b922bb183f111f13576ca1286881531f201fc7b769",
+        "b70de8363f9f10d59e61ac1db4c666873e1e759e2d9e5bcf62c5550c6d0a9aa5",
+        "67f02fbe328b61112f0be2595e79be7e90742f4112f87f7dd067985e02272278",
+        "2684519761daf4e8aca8bfe6d23e327e9d7c5bec84e9a84a55f47c2ae305da14",
+        "518c8629320fd96ab60ec41e7ba8638ae4a0f10b37f370a1c5c63a4c2eed3b2c",
+        "9716d234131d67672415cc66e63b76f0330033353457f48f93643be179393c1f",
+        "5c89046b628a10b654e6a1c1efbbae8f0441f96b2ea2d7fd74074a2543ec5fd7",
+        "afad00c55c504bf90eafe0339d9cefdc2029a4b66c3384dba1e3577fcdbb9577",
+        "d395cebab9f3cc8c3e8ab45e522adf9e693b8a08e6961f6ff2736e60d570f638",
+        "223485fe114b6fb9ce2f1c4ba82e8bf1036841227670f5612590cd6b48942caa",
+        "099c4c75ad4c993906162cb31eb3b53d2951a883b6db0140933b01170d6bb652",
+        "14e31678cad483acd26b23912b217f2629b8dffea4004a59d7b26ccc7df78d3d",
+        "ce82bbcbe9eee3e33d496422a2c457ff88e59a944d41f541c546e20a16ca97a4",
+        "ef5f6252f48a12624171cf196e9fe9f030f0f657c0d661bbb8a3de6ee90539a6",
+        "2b0fe7b0764d4ff58e0d10df4c713542925f79aea0325e3ffe0dd00186f59304",
+        "dc17c519fea5edd524610600b7002db502e845ccdb48ddb5d2cb81d3ad116714",
+        "8c3940ffbded195259255ea8678ec472a4d4073f6dea9de64b3b3bcab3e0e7fc"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_aluminide"
+              "cruciblecraft:prefix_material": "steel_magnetic"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:titanium_aluminide/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -40,9 +71,69 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_aluminide"
+              "cruciblecraft:prefix_material": "steel"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
@@ -51,7 +142,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:titanium_aluminide/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "steel_magnetic"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -59,18 +154,138 @@
         ],
         [
           {
-            "item": "cruciblecraft:titanium_aluminide/ring"
+            "item": "cruciblecraft:steel/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_magnetic"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_magnetic"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_magnetic"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_magnetic"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_magnetic"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_magnetic"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:titanium_aluminide/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steel/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steel/fluid_pipe"
           }
         ]
       ]
@@ -80,46 +295,166 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0287004e986a7724",
+        "cruciblecraft:gt6/a680864dc610676b",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/78dc1cb6769be89e",
+        "cruciblecraft:gt6/2e70c97729a747e3",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/1e2a6785cb2fd4c8",
+        "cruciblecraft:gt6/960f3ebabe3b76f7",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/91048d24acec8551",
+        "cruciblecraft:gt6/db855f02f8860a67",
         3,
         3
       ],
       [
         4,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/60dc57db9353308f",
+        "cruciblecraft:gt6/417ce9a3024bfdf0",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/9b988e582d0e1521",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/7e417ed47d32f820",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/c21fa205099143a8",
+        7,
+        7
+      ],
+      [
+        8,
+        3,
+        0,
+        "cruciblecraft:gt6/64ee18ffbaf600b3",
+        8,
+        8
+      ],
+      [
+        9,
+        2,
+        0,
+        "cruciblecraft:gt6/305ab32fa7aee281",
+        9,
+        9
+      ],
+      [
+        10,
+        2,
+        0,
+        "cruciblecraft:gt6/18ff81ad30fa199e",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:gt6/8ba01c017f263fe1",
+        11,
+        11
+      ],
+      [
+        12,
+        2,
+        0,
+        "cruciblecraft:gt6/f9afa78888b4fdc8",
+        12,
+        12
+      ],
+      [
+        13,
+        3,
+        0,
+        "cruciblecraft:gt6/ae97fe36377d6cf0",
+        13,
+        13
+      ],
+      [
+        14,
+        3,
+        0,
+        "cruciblecraft:gt6/ac15f3e8991734a6",
+        14,
+        14
+      ],
+      [
+        15,
+        1,
+        0,
+        "cruciblecraft:gt6/22975ba7a97623d7",
+        15,
+        15
+      ],
+      [
+        16,
+        0,
+        0,
+        "cruciblecraft:gt6/cd64835ff885c443",
+        16,
+        16
+      ],
+      [
+        17,
+        0,
+        0,
+        "cruciblecraft:gt6/d357e90725d4157d",
+        17,
+        17
+      ],
+      [
+        18,
+        3,
+        0,
+        "cruciblecraft:gt6/e602ecec313d4ebb",
+        18,
+        18
+      ],
+      [
+        19,
+        1,
+        0,
+        "cruciblecraft:gt6/837ef73fe849af7a",
+        19,
+        19
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 631,
+      "duration": 853,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +465,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        2,
         0
       ],
       "output_chances": [

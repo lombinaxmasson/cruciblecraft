@@ -10,59 +10,68 @@
         }
       ],
       "hashes": [
-        "dc8ad4be4ca35191d556118b13bd725af5ce241ffdcb3eb7ec0b81a9b6d1f674",
-        "9eece57e5587706da1a128ce6f13a3655772beaf02c00c653a8d837cf0cd8ed4",
-        "fcfd3e3f65392f10fa18666f17d380af2d739c2766479c3201420af08a495225",
-        "3f5ca7a336017c92fceadb8ca82fb61b982e57eb700f95fc7e699c3f1f292f1f",
-        "e9274b9b5e02ca1217b683f3ca73543dd42b1407ebb55be0a4c543d8f37b0af5"
+        "c357d553ea5fc54995d02ba47eb9c5ddfd0147832d35c50af832df38d43f1ffe",
+        "e2fb852d057f71f7a9e75b4042d2ed75d594a7deb023600e1ba01c8ce3f26531",
+        "af0733cdbfef28dd7b265027dbf6b070207e62cbcbf7a9802623277aa50ee908",
+        "1d940cf361addf2f0ba7c349f45fc680b8f8ac1207438b201013090ad7c2129d",
+        "120cf1943ab9d8afc5a06e9f68e80a5e46b25d9e5931e7c6783831e74b797e73",
+        "5514f77c721f3cb830c6e86f00054ea696a1305b1bb903c0b7bdf87277fdea62"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:thorium/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "void_metal"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thorium"
+              "cruciblecraft:prefix_material": "void_metal"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:thorium/foil"
+            "item": "cruciblecraft:void_metal/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:thorium/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "thorium"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -70,7 +79,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thorium/gear"
+            "id": "cruciblecraft:void_metal/large_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "void_metal"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -80,7 +98,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/bf4e233d81533002",
+        "cruciblecraft:gt6/6d6ce00bd55dae8a",
         0,
         0
       ],
@@ -88,15 +106,15 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/e05b5df22a805c88",
+        "cruciblecraft:gt6/397ea8a494e09393",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/df636b9e291fa6f2",
+        "cruciblecraft:gt6/6661e51a876717b0",
         2,
         2
       ],
@@ -104,22 +122,30 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/728c610c36775331",
+        "cruciblecraft:gt6/5b3abf58567ad655",
         3,
         3
       ],
       [
         4,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/1c0ea1719141a3c9",
+        "cruciblecraft:gt6/8f0fcd8cc0e210f5",
         4,
         4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/d8f572d0c9897bd3",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1319,
+      "duration": 251,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +156,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        12,
         0
       ],
       "output_chances": [

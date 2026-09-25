@@ -10,63 +10,115 @@
         }
       ],
       "hashes": [
-        "ed3d06bd5ab8d149d33c2845882d5b6bcc1323a97b9939db1423e533c8ef6f01",
-        "c596518b3ff05b9447b4894862f5de4c878664e6e686121ad98642f07a9b47f3",
-        "a5caeb87a5ceb9fef5c8b30747756b7c1f6c079857d28814758a4985e7a2bae9",
-        "45ec752a5fc0b8428d06017ead795ff02db0e9056801cd65de254f60573fa4df",
-        "749e04d71ceda1afebb1f043b3c77157867f512bfdad6e3a616b68fd46a0ec6b"
+        "c10972b7794788a7d758ced9b969a8a7c247bfe5f7931b5f866f246a74efdfe9",
+        "4c0175b1d4dd4fd208363ec0efe9b2953c820d924b9204f1109abc5a8648f8a8",
+        "495f5eae4c486c5d94fbdd7c4f1c2c9730ca981a0b075e14e7056e0627924edd",
+        "2811ac213860f1cf39bebb590f309d897ee0257dd98dd6ea6cd0a13125b14419",
+        "4a691d9ef260235770a56e36ebb31f5ba42cca80e58eefa1b8398ec458870aaf"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:energetic_silver/ingot"
+            "item": "cruciblecraft:inolashite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:energetic_silver/long_rod"
+            "item": "cruciblecraft:inolashite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:energetic_silver/dust"
+            "item": "cruciblecraft:inolashite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "energetic_silver"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:inolashite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "item": "cruciblecraft:energetic_silver/plate"
+            "item": "cruciblecraft:inolashite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:energetic_silver/block"
+            "count": 64,
+            "id": "cruciblecraft:inolashite/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:inolashite/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "inolashite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "inolashite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:inolashite/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:inolashite/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "inolashite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "inolashite"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:inolashite/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:inolashite/ring"
           }
         ]
       ]
@@ -76,46 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2c03f3af9a395780",
+        "cruciblecraft:gt6/54ebb204f453a61a",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/2aa31e38961923ee",
+        "cruciblecraft:gt6/d7180fef17832d55",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/cc185d49457a1b3a",
+        "cruciblecraft:gt6/7378a0e62820f824",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/b8b55b1ad52169a4",
+        "cruciblecraft:gt6/08d775e6c1c202bd",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/2bdf754d4606180e",
+        "cruciblecraft:gt6/195ef92232cd81cf",
         4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 419,
+      "duration": 5774,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        9,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8380",

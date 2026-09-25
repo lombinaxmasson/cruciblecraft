@@ -10,56 +10,158 @@
         }
       ],
       "hashes": [
-        "41a4b6607b388cb241be1fdbd8fd804c445a7c2f969b5d0fcf4f02ba6a49a202",
-        "9bbdd0203142eb12ac64a3d86fe70b693e4c03ad88bf46d050f65ccb62d13c82",
-        "5bb61b297311f01cf720b15734184ed083dfac965753b0369cc2613546a7dd19"
+        "24f8323af9c570e8044e6932e33a3516d33078439b1ef68bf90074616d4b763d",
+        "4876feabce7ae09bb1c0bf7452b8eed94cea9ca10d1e223cb14e2e05bc9f1ce5",
+        "c5bc9df62e96dffdd9882ff38040ad83e5f0d6367a436b90552ac2753b3358d1",
+        "4b5da63ccbaa479390708ad1c66012775a86565bb7efbb7842872cfec089cd61",
+        "b3c7de809d7bbcb46e926a3219d47ae6e0af119b6395c3118da267cd3506813a",
+        "f50a2224ad61a01f84294ce529644e13b0e7bbdb545a9227d17fe75d777b062a",
+        "7f0eda916d45082a550366fb9bdbf3a6ab7827c371bde5a706c70cd3595ea368",
+        "6e02a41b5c159af9dff325286312dcd4151b18656c1b6bd3f73d7cf81602e278",
+        "0646aaf76922c3f0411bf937be61a191774f7529380d5218e0ad9307cb61c98d",
+        "17257400230433179cc0bf094710ff65085d8277020ec66729a25d863c9391e7",
+        "4234c239abc2fba4a95ac5a79c508d312e024395dee4d86f32077ee2d680e971",
+        "e621106a3164c5c5a6b5a065474017cfad49646dde3ed03f6211ccce259af2dc"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:netherized_diamond/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:netherized_diamond/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:netherized_diamond/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cobalt/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cobalt/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cobalt/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
+            },
             "count": 1,
-            "id": "cruciblecraft:netherized_diamond/ingot"
+            "id": "cruciblecraft:tool_head_file"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "nichrome"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:netherized_diamond/plate"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -69,30 +171,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a51378d407603266",
+        "cruciblecraft:gt6/25f9a867bc28c08a",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/d39fd7b563ddfff3",
+        1,
         1
       ],
       [
-        1,
+        2,
         1,
         0,
-        "cruciblecraft:gt6/1a50461ddf48f986",
+        "cruciblecraft:gt6/cb039d3cb5d79609",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/bed705fece44206a",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/933780960208d2f8",
+        4,
+        4
+      ],
+      [
+        5,
         1,
+        0,
+        "cruciblecraft:gt6/5e4a2febb0b24388",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/3999abab0e424228",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/51092d0c5ad06f0c",
+        7,
         7
       ],
       [
-        2,
-        2,
+        8,
         0,
-        "cruciblecraft:gt6/c708db974bde7935",
-        2,
+        0,
+        "cruciblecraft:gt6/8978b2d10d68b3eb",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:gt6/6f496e89002ae2af",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/f412af4fc8900e06",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:gt6/4219e38bd8d49061",
+        11,
         11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 718,
+      "duration": 314,
       "eut": 96,
       "item_input_actions": [
         {
@@ -103,7 +277,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        14,
         0
       ],
       "output_chances": [

@@ -10,36 +10,62 @@
         }
       ],
       "hashes": [
-        "e2c6b5a2066c481b3e0c40d43c867d28573e01146c556f61b0de675e32bfb1d2",
-        "78fe484158e32969fe6eac62651f4e27e916c53305de82e0a63533d74126c250"
+        "bd2fe86802909692e31b2b0aa06440719dc2476464599b7216b07de1db2584b3",
+        "e546900b44e07f370e2e055e297fb136da08fd8c9ee5e2f3891a8442e54fdbc7",
+        "469df9e7d91861758d609486abf9590ad7b524aea4119a4e3c5bac63f4ebd1bc",
+        "031aeddd9b4627489a0557cb762f52261b038a577f1343bdbddad8d2db8fad2f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:meteoflame_steel/rod"
+            "item": "cruciblecraft:vyroxeres/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_steel"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vyroxeres/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vyroxeres/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vyroxeres/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoflame_steel/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -49,22 +75,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/07eea32d4a26b00d",
+        "cruciblecraft:gt6/33155c326fd3bc46",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/feaf5934a7d21e12",
+        "cruciblecraft:gt6/2fdab76fef58a252",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/e6f13e32f1892364",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/55496cf0ae977a99",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1381,
+      "duration": 853,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        24,
         0
       ],
       "output_chances": [

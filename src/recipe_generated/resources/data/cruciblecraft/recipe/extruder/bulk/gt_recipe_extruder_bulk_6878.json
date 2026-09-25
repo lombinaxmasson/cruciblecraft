@@ -10,36 +10,67 @@
         }
       ],
       "hashes": [
-        "dab7825108cc08e78513bd1d366fd969979dda4c1d9df115c91870dc5d97c2fa",
-        "91b2050f8a0589412130f011550ee0e0cbb7b6b8dc301065d35ded30b9613d58"
+        "741910d2d31a1466c63cd4567e9d11dd05c3a94a63c00b4308da0c8c3fef75e6",
+        "c70e40174320e27aeb9679fe2e55b8f90ca7d603e21e78628c43b9d38ee38fcf",
+        "e113c45b3b01ac0fe0b00351e8f3e491c99a396601f511da45d5a8a3d1bfe2c7"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:infuscolium/rod"
+            "item": "cruciblecraft:mithril/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "infuscolium"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:platinum/hexadecuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:platinum/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:infuscolium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "mithril"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "mithril"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "platinum"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "platinum"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -49,22 +80,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/656335e13e20851f",
+        "cruciblecraft:gt6/73075de9d53d4b58",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/526a7000485e392c",
+        "cruciblecraft:gt6/7a899d4f19d6e2f2",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/0249a179810a750f",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1911,
+      "duration": 4632,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +114,11 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6878",

@@ -10,24 +10,67 @@
         }
       ],
       "hashes": [
-        "9233d823217943f41d4c334b7a7f01eceded2c4e11296d0429dd4b4fc910af2e",
-        "8198add9dacae182458a99f965acc91c51d4c2de6cdd7ec3c57a30da99aa3f0d"
+        "eb048bb112830995d3c2bb2ccac5cbbfb189715318053d1f92a0a94f57bdfb54",
+        "31342bebf9bf369cf15b6bfcf2069708d471df3267f1817a0eaccad751235558",
+        "5f5f0e396e8e8604f825d986a38ea4f6d0e551ed05b6ae920b756f175347a573",
+        "e97c67c46d764193d7a040e238ed7eb6336f127c1eb2e883e4c72a18b3da3b26",
+        "7303e73a8b104ef6fe103c40b78bd1725b550cd27539fbec228da824c7dc5402"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:meteoflame_steel/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "mithril"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:meteoflame_steel/fine_wire"
+            "item": "cruciblecraft:syrmorite/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsss"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "platinum"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
@@ -35,7 +78,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoflame_steel/gear"
+            "id": "cruciblecraft:mithril/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:syrmorite/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hsss/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:platinum/ring"
           }
         ]
       ]
@@ -45,22 +106,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/02e82b59f0449f1e",
+        "cruciblecraft:gt6/8c2e5eb0ff136477",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/6a1f84c381c9f02f",
+        "cruciblecraft:gt6/ceb8f85d060d4c0a",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/a51ef4850d66c24d",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/a7c2f51bf3e977d2",
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/e2643853cd4c86a2",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1381,
+      "duration": 145,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +156,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        18,
         0
       ],
       "output_chances": [

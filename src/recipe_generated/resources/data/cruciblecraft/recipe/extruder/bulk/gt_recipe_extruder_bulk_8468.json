@@ -10,40 +10,83 @@
         }
       ],
       "hashes": [
-        "e9cdb2d668a1fad54258b12dffeaf742cc4325dbe0dcff808a245519ce7e75a2",
-        "f97dc1a37cea19ee443cd1308ed4d3a10365ef33a513fec59860d91d88735cb9"
+        "6e62aa33ed9b3e5fddf594b1634999e96b43e1bc65770581df0d259ca8e890a4",
+        "9aed4b93f947f6ce021a9c0b46172f15bc0f09ba29fa2377ce1ce5b0f5f7140a",
+        "97cd9482027c911f5c09c84d337dbece648b6cf43cddaf1dd81a283a841c9c79",
+        "580cd4ed6c5f21af9fb6832c16583af31cc8d2a6b11ef3b838e219bc22e4c610",
+        "80071fe053827746fea72848706b5173efdf73c19a102c6ef00e611935f0c091",
+        "2699a7b656e6388773714beaa7d2a28fab62e2ffc3716b0ef58a1e5c7bd4bc89"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_steel/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_steel/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_steel/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "duranium"
+              "cruciblecraft:prefix_material": "meteoflame_steel"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_steel"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_steel"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:duranium/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/eb70323ce7a95322",
+        "cruciblecraft:gt6/033e94d00177db1a",
         0,
         0
       ],
@@ -61,14 +104,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/f34009b4db25c89f",
+        "cruciblecraft:gt6/e0a91ff833f5e7d0",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/4869f6a70357b29d",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/3bf187cd3760d8db",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/7903c1d6497a626e",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/0d3560c25d19ca6f",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2385,
+      "duration": 538,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        14,
         0
       ],
       "output_chances": [

@@ -10,36 +10,70 @@
         }
       ],
       "hashes": [
-        "c3b8da689a2f27b3ea037703b06d7303673028a141ac31a7b9f9323c7a522526",
-        "312c557d6eed5310de43262e86bf10f34c134dc9d51f90196945e4d779a9f0e9"
+        "bc313c85d1abb93383029949ef46a5d3c093e22cc7b56cfa80cc12053ed214d1",
+        "6d921ddae1107db94412de5fdb6eac6aa10a5fe9caa4b7c38fd028c5c7325b2c",
+        "f8a8a97b3b49968098e38aa12810e60127f38796f58caa316456d6b07f9b181c",
+        "6cf861bd7325f0b7e7835052385c4efab641ab6305c3e8e02289ad8e2d6af792"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:black_bronze/rod"
+            "item": "cruciblecraft:beryllium/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "black_bronze"
+              "cruciblecraft:prefix_material": "beryllium"
             },
             "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "beryllium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:beryllium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "beryllium"
+            },
             "count": 1,
-            "id": "cruciblecraft:black_bronze/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "beryllium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -49,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9a7bdf826950018a",
+        "cruciblecraft:gt6/86a8b0b821a9e78e",
         0,
         0
       ],
@@ -57,14 +91,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/466f8546a6dc5f10",
+        "cruciblecraft:gt6/564b6cafcb707efc",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/645d6bea0acceb38",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/6e60f0b0dfdeabff",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 725,
+      "duration": 109,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        6,
         0
       ],
       "output_chances": [

@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 4410,
+      "duration": 2228,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,36 +17,47 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:terrasteel/machine_casing"
+          "item": "cruciblecraft:rose_gold/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:terrasteel/block"
+          "components": {
+            "cruciblecraft:prefix_material": "rose_gold"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "rose_gold"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "6cf37c68fb208913a975de6790465fad01f6abc33c91754003db9fe588b39b88"
+          "ceb3b93a1f40504b38e20429914563327f0700742a55e05fef5b4cb328634c80"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9627",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/bc235841273563e7"
+      "stable_id": "cruciblecraft:gt6/907db1368ebb0a27"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

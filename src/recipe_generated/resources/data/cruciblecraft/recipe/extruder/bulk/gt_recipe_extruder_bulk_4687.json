@@ -10,37 +10,50 @@
         }
       ],
       "hashes": [
-        "82625d4ccfbd32377f35887746b3f84d693ba447df03b67df11cd964bbdd8dd5",
-        "729d43c3b13981c2240d087b8b4dc00b4a25892387bc02e4a176c9856afa07ab",
-        "f323b2d9b1582e38fe452a4d06d8e950381c6c896ba5c7d2e3ab285226d8de05"
+        "c67da6ab1ee4365f15d48a8df045436441473ee46d68ff7ab692ab5e0a01a649",
+        "4f268a3c1449b33679a69232167cc0ce20d5e094d0fd325552a6299429879b68",
+        "fa503b9a9680dab5513926c6e4b7dd8049966574360094a04d17d0c0a033c0a8",
+        "46c5676dfb872aedf6627b89b562565b218268988abfac24d13052e880486bcb"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:lutetium/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "platinum"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:platinum/item_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "lutetium"
+              "cruciblecraft:prefix_material": "platinum"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:lutetium/foil"
+            "item": "cruciblecraft:platinum/sextuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -48,7 +61,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:lutetium/block"
+            "id": "cruciblecraft:platinum/huge_item_pipe"
           }
         ]
       ]
@@ -58,7 +71,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e822af72d6c32c8f",
+        "cruciblecraft:gt6/ccb0267c5b0e8923",
         0,
         0
       ],
@@ -66,7 +79,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/f59ad7249e8c23b3",
+        "cruciblecraft:gt6/ec43c4be6b9b0016",
         1,
         1
       ],
@@ -74,14 +87,22 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/435b258d3e521c74",
+        "cruciblecraft:gt6/379eeb51df5e4d6d",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/a938229ee9739a01",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2231,
+      "duration": 6947,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,7 +113,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        4,
         0
       ],
       "output_chances": [

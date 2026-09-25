@@ -10,19 +10,56 @@
         }
       ],
       "hashes": [
-        "dd722a87ee5d6cee11e441bbaaa6147c3b7791a8e94f8403fa5c6d8336da601b",
-        "be399dcc3029a7309fbeafb11578e5ac590b176c8e2ac1d923e2148c2fe9ee65",
-        "d1dcc64c806c41872ada9494a9fdcda68159418d04b1c1f4126a18d5043b0e1c",
-        "0708ad870e85085c42008ddd24658bc7bd922d4edbc93a91ccd08c122debb5c9",
-        "8aeb169277c0fe40db82c910d39b265e887d6559454c147ac906fe0d17aa8e8e"
+        "bbbe921259ba83d12baf0060e5533c81ac52ee3550134f97a7f19302dc13d129",
+        "74861c4c5b7b5c9f09652155297b89385725cb2b5e042f1744b017afe8ae8eca",
+        "8dc0e7c07ba460e7e19849bd9d9255228d18735d9db7c7d6ced188c2a319b0dd",
+        "39a65869b09e2335e6e912e3799eeeec8e8d0d26caf18884a59a3db4d519af33",
+        "226ef362a2916d7c9f0ad51408d87bbe40e96daab9fac4244df1cd85e3589e4c",
+        "b5b0df3349f5e53a2a5f5f3c338dc4dc6f671429324f139275a9743bcf9dd2cd"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:vibranium_silver/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
+              "cruciblecraft:prefix_material": "vibranium_silver"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibranium_silver/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibranium_silver/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_silver"
+            },
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
@@ -32,34 +69,10 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
+              "cruciblecraft:prefix_material": "vibranium_silver"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:osmiridium/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:osmiridium/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:osmiridium/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -70,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:osmiridium/gear"
+            "id": "cruciblecraft:vibranium_silver/gear"
           }
         ]
       ]
@@ -80,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9cfef9ad5fdcd2a6",
+        "cruciblecraft:gt6/63299cc5dee97a55",
         0,
         0
       ],
@@ -88,7 +101,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/c9b89a46efcadc74",
+        "cruciblecraft:gt6/3258d6d7ff86e43b",
         1,
         1
       ],
@@ -96,7 +109,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/797e3758b618eb8e",
+        "cruciblecraft:gt6/bbc8d613709fa4e2",
         2,
         2
       ],
@@ -104,7 +117,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/9bf7185ddb57cf69",
+        "cruciblecraft:gt6/2af78a6213eff281",
         3,
         3
       ],
@@ -112,14 +125,22 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/b4e972138bae0b28",
+        "cruciblecraft:gt6/a48c709303a9b194",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/05fc1dcf7ea535c7",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3791,
+      "duration": 990,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        36,
         0
       ],
       "output_chances": [

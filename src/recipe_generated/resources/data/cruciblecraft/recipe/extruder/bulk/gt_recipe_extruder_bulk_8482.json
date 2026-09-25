@@ -10,36 +10,115 @@
         }
       ],
       "hashes": [
-        "9a9570cf0f959c14bf292fb245265288a172c880fd4ce9b296ef18f32dc68d39",
-        "42493aad3455a18644cdf01c109a89d9da3f576f0dcacbd3fbf7582bb75377d4"
+        "3139ba91daaae2e480ca06e70bc60dc15e9521e475a07997e7f5b0a382812c0e",
+        "fe91640a51878afcae2063432925234bd5640cba177621414af31bdae112d88d",
+        "84b927882d8f95e3aabdcf42d26303c5c4ef68051d4da50f10d000a7f127a7d1",
+        "87afd5c497526f7f2951843d6e0a7b50fb23ed04bd9683bf695655483cde1e64",
+        "87e93244f183ffa312a5b7a586ea3e411be77a67c0845d34cb98a11ca371ba8d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "mauftrium"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:coralium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:mauftrium/rod"
+            "item": "cruciblecraft:coralium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:mauftrium/block"
+            "count": 64,
+            "id": "cruciblecraft:coralium/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:coralium/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:coralium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:coralium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:coralium/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:coralium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -49,22 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6e5b7377c5f641f5",
+        "cruciblecraft:gt6/55cd80787c4e981c",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/97036b7fdd2802da",
+        "cruciblecraft:gt6/33ab1be30255ce6f",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/be380b722e871446",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/5ed0dfcb1ee993a1",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/4c66acdcadd1abdb",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 211,
+      "duration": 29504,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8482",

@@ -10,40 +10,101 @@
         }
       ],
       "hashes": [
-        "094f62ca2e20495934e6d9734fa59f3c42d88b4290794661ceb3362888320cdb",
-        "825d15a8b16032cb407e45fcacf4f3f955f7ef4703f6bdce448bbd8856284279"
+        "0c24990301153d70aff77fa4a146d565df14d6ed5c8549f8700bbbd972da734b",
+        "6d73d96cbe0ca87e724902141da18b5aee8db7bf8c74fefc2270e6ca70fccd1f",
+        "b5148272e1fcf02df293b8dd69a85976c2354253e097d5faad6df3ca88d9398e",
+        "c884622237f291db5fbe13f06ed8f922c2866cdda810de08362d9dca9da2a315",
+        "e4396b4777fde91be243168f922b6299493451ab4cca1735f127fa42283ba0e6",
+        "eb8c1e2f4887a6e72b81fab72d959b46d3289ecea52a9de72a841a9bad6005ab"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vulcanite"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:damascus_steel/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:damascus_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vulcanite"
+              "cruciblecraft:prefix_material": "damascus_steel"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:damascus_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:vulcanite/block"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -53,22 +114,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1fda74fc80ac51a5",
+        "cruciblecraft:gt6/9eee2b397a738391",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/9a7bcb721570ab1f",
+        "cruciblecraft:gt6/b745356aecae262b",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/0c8da21a4025e52d",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/3b3c0f62f86dab69",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/c5528b9e3d1f1451",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/3db3697a16d2c2ae",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 788,
+      "duration": 463,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +172,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        4,
         0
       ],
       "output_chances": [

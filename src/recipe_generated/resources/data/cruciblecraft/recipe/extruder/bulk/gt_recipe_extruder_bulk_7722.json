@@ -1,108 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_7722",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "f3eea25d3fca748459320d9553eb6aea4ea1071b3c8ab1bc30604f653c27ca15",
-        "b6c7e94e47058e09c873677f52dd061cae3cf753cc56ca11c8fd880e798bfe0d",
-        "5f80814c157a19576f9c19f1628db54dbba14cb61bd1d04d9d1a55d6c2bed445"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "chromium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "shadow_iron"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "black_steel"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:chromium/ring"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:shadow_iron/ring"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:black_steel/ring"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/adc9a6a46ae440cf",
-        0,
-        2
-      ],
-      [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/b8a7ace50b126853",
-        1,
-        3
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/ac67e99ac6d2491f",
-        2,
-        4
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 53,
+      "duration": 1769,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -112,18 +17,42 @@
         }
       ],
       "item_input_counts": [
-        18,
+        14,
         0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "ignatius"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_block"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:ignatius/block"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_7722",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "ab448c726cc4d3d5efad9082df8fe1ec8f8477b941b4d761918f11e45e03265e"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_7722",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/5a7489856892b563"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

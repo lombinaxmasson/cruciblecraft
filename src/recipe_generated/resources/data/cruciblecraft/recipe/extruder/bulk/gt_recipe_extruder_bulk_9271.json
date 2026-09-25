@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 4529,
+      "duration": 1491,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,21 +17,25 @@
         }
       ],
       "item_input_counts": [
-        2,
+        6,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:eximite/machine_casing"
+          "components": {
+            "cruciblecraft:prefix_material": "naquadria"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_gear"
         }
       ],
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:eximite/block"
+          "id": "cruciblecraft:naquadria/gear"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "c45598f8fdd00a19df822efea476be9e7d98dafe8bbc3ab8b91258f580b63eb9"
+          "36949c4e8d432f051c3d42957d28c831ee1cee4d3c86e33331bb34eaa822c9cc"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9271",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/2c31ce77fef2891f"
+      "stable_id": "cruciblecraft:gt6/6fed271e5a03942f"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 2925,
+      "duration": 3033,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,12 +17,16 @@
         }
       ],
       "item_input_counts": [
-        18,
+        14,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:niobium/rod"
+          "components": {
+            "cruciblecraft:prefix_material": "niobium"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
         },
         {
           "item": "cruciblecraft:extruder_shape_block"
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "caff32402abb8361fc2bb6a3bbb0e4d21650aa990556145c3ef52ccb59d8d82f"
+          "43baa257c95137e5a39abaf32f005e9687d6b634f7fe8bf4e16fe66cda8655e2"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_8028",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/e365fee49c068487"
+      "stable_id": "cruciblecraft:gt6/35574f8831d528d3"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

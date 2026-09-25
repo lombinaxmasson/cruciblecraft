@@ -10,32 +10,33 @@
         }
       ],
       "hashes": [
-        "9799038796dc2c5f980807c6ccc3dbea737b7750059081c05f3f1853550d9f49",
-        "cccb20cb7425d4ced084bb9954c67fc2d27886c739539f0f6eaf31da8fd6fa28"
+        "5719682a0f18a044ced2100440854e67c96f6b1d5cc0e5af20d56f6db273ed77",
+        "8117128c45aad7b8e3f05e5c733db7a07089158239af773e97f4c4217dd3f491",
+        "07841a48a596ebfc9aff738c48cb13ebafd235f67616627340c9678147cdac50"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hslasteel/septuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "melodic_alloy"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hslasteel/septuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslasteel/septuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,19 +44,22 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
+              "cruciblecraft:prefix_material": "hslasteel"
             },
             "count": 1,
-            "id": "cruciblecraft:tiny_plate"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "melodic_alloy"
-            },
             "count": 1,
-            "id": "cruciblecraft:tiny_plate"
+            "id": "cruciblecraft:hslasteel/large_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hslasteel/gear"
           }
         ]
       ]
@@ -65,7 +69,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/45b52ba7b2f80630",
+        "cruciblecraft:gt6/7a52cfc30f81696a",
         0,
         0
       ],
@@ -73,14 +77,22 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/98fa8152e27c777f",
+        "cruciblecraft:gt6/86001c039187cacc",
         1,
-        9
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/72fa1c61c3d8d386",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 48,
+      "duration": 1344,
       "eut": 96,
       "item_input_actions": [
         {
@@ -91,7 +103,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        2,
         0
       ],
       "output_chances": [

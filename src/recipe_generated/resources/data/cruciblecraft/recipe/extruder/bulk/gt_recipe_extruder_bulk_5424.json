@@ -10,16 +10,34 @@
         }
       ],
       "hashes": [
-        "551709c11204cd6c313c892c78c84bf96d68ce7f2f5a79d6d49a1bae28765be2",
-        "1f6aff2ab1b461d6bfd0f39cef60ee5a08136cb5b83b6f6a567f777a1d698215"
+        "b6af59a24f9f06ea52bed0e38b74fd5ff7bf6e314e5f7b30830b446101598dfe",
+        "508b37fbab15c93f7c0e78eba44b75a827b05871f3b719a1606a8c1c098285d6",
+        "e16c6fdc7f804b083a0e7bdf8bfa00bc6b6b711363f051c92c76ec62791d6546",
+        "ad892d29926330b81c362a5bdb7632227ef5298052329f36b1fa63ea0820f0e0",
+        "9a133c4a7528d19a36489edd44f3c6a903f64485fc32696fc5c73d5c391aba13",
+        "d09300859fdc0968323de0e06cb0f7326cb7e12c234431ac943809e9db1d2d22",
+        "1ae6f7868055d9d77d8b453df7250c228ff6cdf01dbdb9da7901e986dab722ac",
+        "8a61a641a31fc1c7aefdbfd8d42bf7d6a1e2487ed947fe334f28a15681a4f646"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "promethium"
+              "cruciblecraft:prefix_material": "manganese"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -29,9 +47,69 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "promethium"
+              "cruciblecraft:prefix_material": "gilded_iron"
             },
             "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gilded_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gilded_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gilded_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "items": "cruciblecraft:quintuple_plate",
             "type": "neoforge:components"
           },
           {
@@ -42,8 +120,32 @@
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
             "count": 1,
-            "id": "cruciblecraft:promethium/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:manganese/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:iron/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,22 +155,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d821082f576b75d6",
+        "cruciblecraft:gt6/0efb5e3c8ea125b0",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/37b312b41f6088f7",
+        "cruciblecraft:gt6/1be110f9c553f843",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/39dfd530ac9792af",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/8176febb6527784a",
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/72311af31088785f",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/99f19c4bc5f7c7dd",
+        5,
+        5
+      ],
+      [
+        6,
+        3,
+        0,
+        "cruciblecraft:gt6/540a6ad4d8f5d362",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/1534aa0ff8bd7d4c",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1031,
+      "duration": 1408,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +229,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

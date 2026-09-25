@@ -10,58 +10,103 @@
         }
       ],
       "hashes": [
-        "a6cbae1cf78d826ca7aa65c9b3bd6e2d94eab6a80aa05bdca15f57017c7c977d",
-        "32525724e5d50a7b2ba062cb982b3f572727e0a61246e5fc655ce6e63a2c899d",
-        "c06c21d5634ba7122bdf6d6ce8db288943d87bcc491e09f39df456c1d0f20c11",
-        "891cc2a17330097e88f1324601b1f4c1dd1476112503775877029ac5e3e4d0c4"
+        "8ff25808adbeff00681bd3475c0eecdab071992130e4349b57a4ffc25e8aa83a",
+        "c9e98afe7f6d36d90c269ad20fb2f6dadb037496f4b927c95a27f42484220686",
+        "8ffe9f9dee8dc71e14b525a3e539070392da2823d51b2b4dc832cf863d65f01e",
+        "ee44f8187e688d95ab47955c3b45089bdaddcc60de38c2716ebe8d6776716736",
+        "1469efbf29c984492c08593d9977915c34a17211ddb54c771304ce5fa234a874",
+        "653c7bc5c58da52f489d3b79d4a043d1c3951dacb1085bcf61ff50a5e417cb86",
+        "fa62c4e59919660d5e5b2a0716cfe02e6fbd615f4bf58b30f49cac2096e9a338",
+        "304a0eb1797a7d50f85bcef7f2edf08bf578de0c50de1bcef01c19f03425e5b3",
+        "e81acebd83f79b4e2ac114029e705bb8d116e37d48ea7ff863172170970f0abc"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "silver"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steeleaf/ingot"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "astral_silver"
+              "cruciblecraft:prefix_material": "steeleaf"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:chain",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "silver"
+              "cruciblecraft:prefix_material": "steeleaf"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "astral_silver"
+              "cruciblecraft:prefix_material": "steeleaf"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steeleaf"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -69,13 +114,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:silver/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:astral_silver/gear"
+            "id": "cruciblecraft:steeleaf/block"
           }
         ]
       ]
@@ -85,38 +124,78 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b3d1b426f6fb124f",
+        "cruciblecraft:gt6/20df770be48b84c6",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/668f556b6572133e",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/a70a1fbfb62515cb",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/3dd2b26d1832d9ef",
+        3,
         3
       ],
       [
-        1,
-        1,
+        4,
         0,
-        "cruciblecraft:gt6/86eba51ae79b8f2e",
-        1,
+        0,
+        "cruciblecraft:gt6/35bccafb701bfda3",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/25ed20e2c5de4604",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/2c69f662a3101001",
+        6,
         6
       ],
       [
-        2,
+        7,
         0,
         0,
-        "cruciblecraft:gt6/7d160e6cbd97f260",
-        2,
-        10
+        "cruciblecraft:gt6/dec2a6e0fbd4e23f",
+        7,
+        7
       ],
       [
-        3,
-        1,
+        8,
         0,
-        "cruciblecraft:gt6/586476e9edb3c24e",
-        3,
-        11
+        0,
+        "cruciblecraft:gt6/a4640ff6b8a53c98",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 610,
+      "duration": 799,
       "eut": 96,
       "item_input_actions": [
         {
@@ -127,7 +206,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        9,
         0
       ],
       "output_chances": [

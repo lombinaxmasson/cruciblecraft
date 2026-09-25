@@ -10,36 +10,145 @@
         }
       ],
       "hashes": [
-        "cd6e2360c7dc1d13d1d9735d8933852f8e2757c7f6d4987b357685862845662a",
-        "514d75f9dd653379ae80f7f69f1bfb5449856b531c7f49d44f1bf9318a804a58"
+        "58777262006b9a6b3598ca7b3340fe9d34068d9b8139048c5c09d93bdc14657d",
+        "86ad8c95659fd090966e3dc8949a7df1dc3260c23ab4a2767a20d640cfc44377",
+        "dd9f7ae40735c016668fee51bca40ed742e580772293245c5f6f98059105fe71",
+        "df3d57197635210c8981c50568ca535612a2fe1ec75738b0b964ff902f5bd59b",
+        "183516da5e474535b976177369a04f5499718afd4ed75251d6036b48bbce8bae",
+        "b0eb9d27e06b4fbe50b828853a6500b164a29e27c62bd634c7a1d600ffb5c823",
+        "4c9312a908cd2f8d5aca190910ced38873b1d05b3b5540426a2a00453e7c9467",
+        "f7b87e6a5ba96b756035c81c3aa469fd6ec919f6270246517c0284535766bf88",
+        "7c8e4e488d72e3a70b6b5d487c93994adb81123f121dd1a0a88272e7e8654d70",
+        "fadadec71d39572890d9b1b01d7a46b08b2277bb9f411f6c8572920962c413e1"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "angmallen"
+              "cruciblecraft:prefix_material": "iron_magnetic"
             },
             "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:angmallen/rod"
+            "item": "cruciblecraft:cast_iron/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron_compressed/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cast_iron"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron_magnetic/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iron"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iron_compressed"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "frozen_iron"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:frozen_iron/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "iron"
+            },
             "count": 1,
-            "id": "cruciblecraft:angmallen/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cast_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iron_compressed"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -49,22 +158,86 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/89c9e5214746158f",
+        "cruciblecraft:gt6/7c3db5614987d04f",
         0,
-        3
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/0171d648572bc739",
         1,
-        32
+        0,
+        "cruciblecraft:gt6/f0a1b7a8b8db6fb6",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/b6a33ba96db050e9",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/8da189c440edbf64",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/cedbb52659d909f8",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/0854859ebed0b1c1",
+        5,
+        5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/0136023d89206fe3",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/c7d53136dbbbf89f",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/2eb40f3615857da0",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:gt6/4feba6df0ef2867b",
+        9,
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1158,
+      "duration": 1107,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +248,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        12,
         0
       ],
       "output_chances": [

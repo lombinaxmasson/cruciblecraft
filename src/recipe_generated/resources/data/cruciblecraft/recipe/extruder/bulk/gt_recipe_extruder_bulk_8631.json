@@ -10,67 +10,130 @@
         }
       ],
       "hashes": [
-        "3826dea48412eaff5b3e92ee87477e974d3dc40d44a541636e7ed8326016ab1b",
-        "8bee015f8abe8daf53c6fb58e8f72b7c2f3ef5d9a29f81a262c3a80fb0d41fa5",
-        "500f4b2f7182c983c5d78b0fb4adcf14b11ee8165d7fe4125178915f041c85cf",
-        "13e5a092cab2c832ded1841920b5eed44562356ab50b54c3765e80d313d5e59d",
-        "dc0b2122ed295f65c6c4c79e6070e57fedbe1252cbd68108b59caf3a217d5afd"
+        "46e5984279dd53019fe2fc1471bdab1119f4c619498ab3191c3dc4ff4dbb2130",
+        "7fd054112b4a06a0add0bb2ba2e824c09d2d46123736e9ae0453456af04d6358",
+        "7e56b8845d3801cb9e1e67c2bb32086882a068adecb6a1006c214f62052d8ec5",
+        "45151f69bc3b443e0f0d0938b61c9630e4637f36c25203fe76450e2a2a88ac97",
+        "c57bc9a5cfa7ae515fadd9b6da59dd1e02841c71a880642d07f69d29d085eedb",
+        "ceaca8602b065e68a35b653ecab428b3eaf2efa39a346fbbddf658aecf21febb",
+        "4e111a34c871b3a81c0965bdea9a762d42d8f2d680d76c068af78f2288c831b4",
+        "8e1123125fb8c1dc0978a3c69146e936ad3cb7a83ee3a6891b9646ed45249f11"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:conductive_iron/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
+              "cruciblecraft:prefix_material": "prometheum"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
+              "cruciblecraft:prefix_material": "prometheum"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/foil"
+            "item": "cruciblecraft:prometheum/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:prometheum/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:conductive_iron/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:prometheum/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:prometheum/bolt"
           }
         ]
       ]
@@ -80,7 +143,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7414a8622c01fa03",
+        "cruciblecraft:gt6/ad4b95cc3d107cf6",
         0,
         0
       ],
@@ -88,23 +151,23 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/ed3e57fc2fcd194a",
+        "cruciblecraft:gt6/f52ceba28c4cf5f3",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/158612414e51b09b",
+        "cruciblecraft:gt6/e2c1f67a3eec8741",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/a0c5908e2524329c",
+        "cruciblecraft:gt6/8a7f9a0a4dabe8e0",
         3,
         3
       ],
@@ -112,14 +175,38 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/0b1021ffda9ccf98",
+        "cruciblecraft:gt6/445df4a2b874986c",
         4,
         4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/38b89b02d3c18eb9",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/5a100593083ad798",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/39635e9da7040d8f",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 468,
+      "duration": 442,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        16,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8631",

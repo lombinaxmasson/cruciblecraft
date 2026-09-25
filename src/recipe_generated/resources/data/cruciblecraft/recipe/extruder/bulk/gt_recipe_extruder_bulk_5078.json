@@ -10,46 +10,52 @@
         }
       ],
       "hashes": [
-        "cd78e13473195ae94f19d42eacee96f2e8e8d7f8e6fad221936d3a3f1d4acf95",
-        "877d28a4db913269f4e2378a7091bfc1dc98ed70780861c9a2a62507e9d5960a"
+        "7b89dfa79eac07a8959330bbe6963610dcd8e64741603d14a4da1b0869716956",
+        "dca376333286e97f6133065d0a88b022a2aff31987b738d0247dd69312220226",
+        "bff7bf4c9e7e0dafa9934127290e305cd1ea3fd02ecd0d18b4cd733f4db0c62c"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "boron11"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:naquadria/gear"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "boron"
+              "cruciblecraft:prefix_material": "naquadria"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
             "count": 1,
-            "id": "cruciblecraft:boron11/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:boron/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -59,22 +65,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0fc4d3120f139bdf",
+        "cruciblecraft:gt6/0723e7ce0b5c0673",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/1a49ff2c5f5c3e1e",
+        0,
+        "cruciblecraft:gt6/3ec1b3210028ef88",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/a797c5dae3120c95",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 693,
+      "duration": 2981,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +99,7 @@
         }
       ],
       "item_input_counts": [
-        14,
+        2,
         0
       ],
       "output_chances": [

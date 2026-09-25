@@ -10,24 +10,67 @@
         }
       ],
       "hashes": [
-        "0ada0f20d193bd989a4e0b62512b0cc917aafb94df92a98d0cd156ded18220ae",
-        "049855674f24888aebbd92a5ce9694d13764f325bda882de67cfb0ae49d03a4f"
+        "b8bc73ec638ddb51f11065baf6618f423302215814aef987958d526df2e1845b",
+        "d72ea5e9db61c966f4bd2a5bc4bb878239e9f5dc37697ae12ca44d6a0e39757a",
+        "9144da9843e3ab047cae068786ee5618bc26202f06510619c272ebef50f83a10",
+        "fa7badfb87c248fdb642d2e43088e0521958576689659cdee2266cceeed4322d",
+        "5b9d2e672d6bb266417836c23f2e98b1521a275654fe90fae4e8373ace0cb49e"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:titanium_iridium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "redstone_alloy"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:titanium_iridium/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_red_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "redstone_alloy"
+            },
+            "items": "cruciblecraft:boule",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "redstone_alloy"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_red_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
@@ -35,7 +78,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:titanium_iridium/gear"
+            "id": "cruciblecraft:redstone_alloy/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_red_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -45,22 +97,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2580123729992901",
+        "cruciblecraft:gt6/19095aa9a68a08d1",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c1f41454a62b80d7",
+        "cruciblecraft:gt6/b83efb857eed1ed9",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/0832c18f408ef19e",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/d21e54848020d4f9",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/b9d94a3dd27eb316",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1704,
+      "duration": 346,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +147,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        3,
         0
       ],
       "output_chances": [

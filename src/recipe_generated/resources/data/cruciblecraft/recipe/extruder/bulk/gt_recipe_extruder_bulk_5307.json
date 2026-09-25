@@ -10,49 +10,72 @@
         }
       ],
       "hashes": [
-        "71d66a4be5e0d65010a575a48d84804e95712b325fb77730d7bfbf103519e813",
-        "74cae2e081a046fb13871be6a80e3499a70299c6cfe7ac42e7b77dcafc074ff4"
+        "b77120a79c342e257b86a8a180b20659b2da5570642e9567e96d4be7916b9e4f",
+        "a3b9fd56ba47a2c76d0f9b7e00e16723e8e041279fcdcbbd938bafec845ca367",
+        "0dbf5f5363817558498ebd9a571399f0751a884db83f5925bfcb47855e0b3bf6",
+        "ba6549744ebeb1319b6d7d01dbc083d01ad48d27769f516b3bc7bddaed23d5f9"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "sanguinite"
+              "cruciblecraft:prefix_material": "ceruclase"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "sanguinite"
+              "cruciblecraft:prefix_material": "carmot"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:quintuple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "sanguinite"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:ceruclase/gear"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:sanguinite/rod"
+            "id": "cruciblecraft:carmot/block"
           }
         ]
       ]
@@ -62,7 +85,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/558bf8ca2b68b45d",
+        "cruciblecraft:gt6/bf1f4e3862f132d4",
         0,
         0
       ],
@@ -70,14 +93,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/0038e0d7d1a55148",
+        "cruciblecraft:gt6/f13e3705492396ed",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/a032eacb74e5b66c",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/2b24b9c1a186baf1",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 294,
+      "duration": 975,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +127,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

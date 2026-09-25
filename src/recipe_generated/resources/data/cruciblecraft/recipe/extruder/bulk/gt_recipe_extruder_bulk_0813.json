@@ -10,59 +10,45 @@
         }
       ],
       "hashes": [
-        "aea6a9c30ccd8e6e975b9c58b2e32f0ac07ddfea224b208c0db77afd4fd3c7ce",
-        "cbda3bc3aaa6135327bbe965daa715febca3caae72163f7bdbeebb094532d1c3",
-        "867e2f8a19d0bec8003865d4a3075bc9e88a2c922aba43367a82098bb857e807",
-        "d632280001da69bc18064c2bc7ced4c15c718e859720a4ca43f7b6090c454a9c",
-        "5082bf842b10f29ba85470cde22b6b6f8e321c792e49afbf093cfec9e1cdc819"
+        "dcad47c7189e2dd1ad03b549285dc077264d66009f8d6ddfd08f29d3199905ce",
+        "91bdd41107a80254fa99bb4428919f07b8654a882b02a6625f8a43a3b4847b55",
+        "ddc57afd91980eb2c2d33c9c63d337b19cd0ec94274a3c617898a511c3cdbe98"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:aredrite/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "curium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "aredrite"
+              "cruciblecraft:prefix_material": "terrasteel"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:aredrite/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "aredrite"
+              "cruciblecraft:prefix_material": "terrasteel"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:aredrite/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
@@ -70,7 +56,22 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:aredrite/gear"
+            "id": "cruciblecraft:curium/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:terrasteel/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -80,46 +81,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4fd75fd696492bf5",
+        "cruciblecraft:gt6/41427875f4ce893e",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/ab95859ecefc1713",
+        "cruciblecraft:gt6/6e1d808655ad1641",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/617ac82c012ef1a4",
+        "cruciblecraft:gt6/166756873040221c",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/fcd630b7ddf0622f",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/aee45833ec07a5cb",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1364,
+      "duration": 138,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +115,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        36,
         0
       ],
       "output_chances": [

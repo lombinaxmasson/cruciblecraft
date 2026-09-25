@@ -10,32 +10,84 @@
         }
       ],
       "hashes": [
-        "9d6a62f1824fa577a3865afb5d0234a61a5a087a1399de99e5f06dc2c7d92f5d",
-        "4b2bbd3252251ab73bfde576398ebfc10643fc07b106573ab9524c1fdd5cbbc4"
+        "3281e7b521a96ea51d38aa69e6300f92302441c9d5c2254f42c78104cf50194f",
+        "e87f3edb602a89cd8ed03e284477c5531cfbece9831a2693dd42a0b770a89cd1",
+        "e44329dc51341e273d999fe4d261e7276baaf076e4be81ea9b2ded2139615522",
+        "3ef311b52db82ea56f9fb7fc0b833159bd679c0c474a0ca81b2b7f48a3c7876f",
+        "847256ddb3bca1230c5cc064103d34057a3fe23ac68a4a478b453ea75490ae1e",
+        "7f05ffc6dad1a45e4de342f8433aa3ea91ef13ed4b9d4900c6682ecd1cbf1ccd"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "nickel"
+              "cruciblecraft:prefix_material": "constantan"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "nickel"
+              "cruciblecraft:prefix_material": "constantan"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ]
       ],
@@ -43,7 +95,43 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:nickel/block"
+            "id": "cruciblecraft:constantan/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:constantan/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:constantan/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:constantan/plate"
           }
         ]
       ]
@@ -53,22 +141,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/dbc8bde67310d849",
+        "cruciblecraft:gt6/165b712f50df0281",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/9d24103a579407ee",
+        "cruciblecraft:gt6/89ffa79bb6465ac4",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/2b4f5ade1a992901",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/d34f926a23db5b6e",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/d6be489e985ede9b",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/f74e0206e0ec3780",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1974,
+      "duration": 230,
       "eut": 96,
       "item_input_actions": [
         {

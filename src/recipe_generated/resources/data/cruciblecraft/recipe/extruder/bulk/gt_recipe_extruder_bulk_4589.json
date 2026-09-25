@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "964c585b49154d6c2a0857f557eca782b6f5924ee40104b128c739e86fe1ddeb",
-        "f529b92ab9ef3be33d2c3c7a05dabec0f6a26457029d9a47ab01b7a472a962dc"
+        "e87931f9a3f2566ec0cecc14e46633b96e697f5e9e6a7f938aa196743a8afaa0",
+        "d1c39a18ce3e914247c1935be490a3e95bb6fe53cabcd2094120b135154fb90f",
+        "e6487f8fe8f9c5a18ea9d4830348a4bba90ae4377e19bd8236e6672a4e8b0dd7",
+        "27b82509e17995d2864174015b73b1fed58a66765e0c97f185285a1733ac8f82"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah"
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_black_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah"
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_black_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:naquadah/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ac3e3f640b675c6f",
+        "cruciblecraft:gt6/50cd648930274943",
         0,
-        6
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/aa79246e06d0f3cd",
         1,
-        8
+        0,
+        "cruciblecraft:gt6/ff619e3ca6a36486",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/2674b83044b26ad4",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6d3fdfdedce7ca30",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2347,
+      "duration": 1100,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        6,
         0
       ],
       "output_chances": [

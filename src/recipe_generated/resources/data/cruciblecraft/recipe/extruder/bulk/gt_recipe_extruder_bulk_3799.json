@@ -10,20 +10,32 @@
         }
       ],
       "hashes": [
-        "81efb9e50b6f25d012ddea0d5930157c9377a6ea415f70bf77c63de1f1650a11",
-        "037f5a3286d25aff41b9d94b2fac66e13ac7cae6f965d5f9129cc0524b10b22b",
-        "3de5e5a49d31a2e6d37bea555755829ad8bbd39805e3c70fcbe2b3875bd84cad",
-        "bb740de1c6db14d45ab8f52fc8a1536e8c0725cecf853a8299ab8a55389c4b01",
-        "cf63e09663b206df6785e5022a33fdfd697fde63a004029f24d5353a8e719bfd"
+        "3d8d28d6a315b0ed207d717391b6757145a46b486ca96ba03ecbb09c31f6afaf",
+        "2befdef546ce102fc48ad658236acba82a215098e31fce64e3af0670fe63dd41",
+        "844f61873dd85d8c20fdf3d711bb435af12ca80c46c437161512bf5af0403b83",
+        "a3d8ead2c720609316f42debf568125928f463a5770d8c678635c5dbb7734dc4",
+        "0a3e5a5c6b402f5686b6dad09bc76c5838535ed14d49f682044c74d69f558227",
+        "ed388113b7ebe375887a958bb673060806e56b6011a1d448213c8283c0fa01a6",
+        "24df53585352376d8e1ea26d01b8094fba3cfc84b6126ff2aabedcba8ec8bfc0",
+        "c7c4006da68c22cafba2b0a27c10420e008ccbd152841e673beec11aa4190e4d",
+        "bb5aa9f95478c072597c91c743d8a449e2932365b01afac0671415956eff8ee1",
+        "dc118eff884ce7d2c8f0b89aef5cf42c42c5aa19e14c7b2c0489ac480993fc2b",
+        "13956d262ef93fc1bb3740835ce94925937c05a8552994d5a45d33e43eb46c27",
+        "baeb71f9a16b19c78301fc94fcea05f4864b7d7c931a288d7c33ed13ba7596a5",
+        "5eec05bca2458922ecaabdf9fdbebc29bb0d44a9b973ab0cb1e870de1d770769"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:carmot/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_ingot"
@@ -31,23 +43,31 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:carmot/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:carmot/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_plate"
@@ -55,11 +75,15 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:carmot/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_curved_plate"
@@ -67,49 +91,143 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:carmot/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:flamascus_steel/ingot"
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "count": 18,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:flamascus_steel/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:flamascus_steel/plate"
+            "count": 56,
+            "id": "cruciblecraft:carmot/ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
+              "cruciblecraft:prefix_material": "carmot"
             },
-            "count": 1,
+            "count": 56,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 56,
+            "id": "cruciblecraft:carmot/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "count": 28,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "count": 56,
+            "id": "cruciblecraft:carmot/plate"
+          }
+        ],
+        [
+          {
+            "count": 14,
+            "id": "cruciblecraft:carmot/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "count": 56,
             "id": "cruciblecraft:curved_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:flamascus_steel/long_rod"
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "count": 28,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "count": 56,
+            "id": "cruciblecraft:carmot/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "count": 18,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "count": 28,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:carmot/block"
           }
         ]
       ]
@@ -119,46 +237,110 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f1d8dc9542bcdf41",
+        "cruciblecraft:gt6/e8d0b40f3058fb75",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/75effa96b185601a",
+        1,
         1
       ],
       [
-        1,
-        1,
+        2,
+        2,
         0,
-        "cruciblecraft:gt6/c812e599a35783e0",
-        1,
+        "cruciblecraft:gt6/94ae3008ab65876a",
+        2,
         2
       ],
       [
-        2,
-        2,
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/bb088c2b8dc533a1",
-        2,
+        "cruciblecraft:gt6/ff4229669599e0af",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/89bc0ca511a03314",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/07ffe37cf0820308",
+        5,
         5
       ],
       [
-        3,
-        3,
+        6,
+        6,
         0,
-        "cruciblecraft:gt6/68142c9b86828c11",
-        3,
+        "cruciblecraft:gt6/4424479d2b7cdc30",
+        6,
         6
       ],
       [
-        4,
-        4,
+        7,
+        7,
         0,
-        "cruciblecraft:gt6/5685f935daa78a69",
-        4,
+        "cruciblecraft:gt6/1af0bb42d6b29283",
+        7,
         7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:gt6/ae8e3e52de10245a",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:gt6/85d2a87fc0a10445",
+        9,
+        9
+      ],
+      [
+        10,
+        10,
+        0,
+        "cruciblecraft:gt6/c91f79bab48e6a79",
+        10,
+        10
+      ],
+      [
+        11,
+        11,
+        0,
+        "cruciblecraft:gt6/a7b5e56d2b524ea6",
+        11,
+        11
+      ],
+      [
+        12,
+        12,
+        0,
+        "cruciblecraft:gt6/7a763edb4357abca",
+        12,
+        12
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 467,
+      "duration": 5457,
       "eut": 96,
       "item_input_actions": [
         {
@@ -169,7 +351,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [

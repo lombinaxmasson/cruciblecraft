@@ -10,50 +10,55 @@
         }
       ],
       "hashes": [
-        "efa2eb4c971f3ddb8c1e1adea021acf3602aadc15ec21bc88e64c59921db8c2b",
-        "d5cd841ec02109ee4df3b10db960ec151522c54c4c7804933477a4f8bd189e0b",
-        "3dbcf1b4558ba0d14558910c880129bd260c75247ceb9724409b18493afc7498",
-        "c84d3fc86ab9f288eb67321755b09c2dab3a72eb37a63d54e41bf2fcf13c2794"
+        "20d8456e309a5f0b6e9280e468e6f5d092b6f1ab80482360ef800a6888db16cb",
+        "49a6187644af22c1a3a29d410c0053372282dd33747040c220a04a9ac62aa2ca",
+        "2e6adce55477e2b7e39a538a27a7457b736064466b8e49dd2d53cbe99964b911",
+        "9795aa62eade98f1ee33431c1815a57a8f04da34c54f32e7f497855832105b2a",
+        "0efb10aa255feb9c1c21108acfc45964fa2809c03990cc57192a2f316d87781e"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_blue_steel"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:erbium/dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vanadium_steel/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:meteoric_blue_steel/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
+              "cruciblecraft:prefix_material": "erbium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:erbium/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:erbium/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:erbium/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -61,13 +66,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoric_blue_steel/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:vanadium_steel/gear"
+            "id": "cruciblecraft:erbium/block"
           }
         ]
       ]
@@ -77,15 +76,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/21ab12948293e87e",
+        "cruciblecraft:gt6/db07d849f5abc3d0",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/8d091ffdf280f290",
+        0,
+        "cruciblecraft:gt6/a9f2f1f311f66313",
         1,
         1
       ],
@@ -93,22 +92,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/ea55d890cdf4f21e",
+        "cruciblecraft:gt6/9a7f86a7f7fd77ff",
         2,
         2
       ],
       [
         3,
-        1,
         0,
-        "cruciblecraft:gt6/c40e6e7648ddc34d",
+        0,
+        "cruciblecraft:gt6/bfb3751d6f515178",
         3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/2356d095f607c83c",
+        4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 827,
+      "duration": 1901,
       "eut": 96,
       "item_input_actions": [
         {
@@ -119,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        9,
         0
       ],
       "output_chances": [

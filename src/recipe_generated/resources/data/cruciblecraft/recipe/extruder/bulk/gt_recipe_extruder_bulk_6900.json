@@ -10,28 +10,103 @@
         }
       ],
       "hashes": [
-        "003a1f11d4406da5bced2626e5e773484f1753538fa55c0a1a0058320b56afb5",
-        "b10a380f0cc8f0669b1ff24e8c1666e0c506275bcef2a6b98929546ac8579e0b"
+        "b21f4239da5bcd2cbcfb6d86505c6cb91a911a55963ba1fd41195bb3e5a72a57",
+        "75eb99273d3a74d497cb205c96fad63700f9353ce5dd1576cf18daa740b8a7ae",
+        "75a6fb1260558a9366279a0f13971a56124a9e504d930814c68e105352b7714a",
+        "33186d2d0b4d59ebb850c67f6f64e6c0075bc22123a9f23b25fda404448f8d8d",
+        "6a0b8afa4ec1b171aa11c484f652e6bb9c344d480a30884eef96861a71529383",
+        "23e3a0da80c079cc6fa9985ef7d49bc075fbef3279db580323eada5f3ed64d8e",
+        "b18c4a60006000ca103561636fad62af89d8de292d14cf82b11424ad098cf9b8",
+        "84888b98d64d682f4533acd6d759dce3c1af6388478ccaf4f62960a2b227dc86",
+        "057969cc923c24fa2aaacc4e13ec0f31d66575f486f4cccf7c4210555f13ce0c"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "stainless_steel"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tartarite/ingot"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:stainless_steel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tartarite/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tartarite/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tartarite/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tartarite/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -39,7 +114,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:stainless_steel/block"
+            "id": "cruciblecraft:tartarite/gear"
           }
         ]
       ]
@@ -49,7 +124,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/faf18174233131e3",
+        "cruciblecraft:gt6/baf543e4343dfb2b",
         0,
         0
       ],
@@ -57,14 +132,70 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/fd729c7e66587f77",
+        "cruciblecraft:gt6/4ade8120219f738c",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/5e0f83ff2b5650df",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/53fb610d3a0bec0e",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ac3a441c429f7bc7",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/af7f2784cb5d4e46",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/654df2880fb9798c",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/5706869873783dea",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/6681ec22a07f6655",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1802,
+      "duration": 3294,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +206,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        4,
         0
       ],
       "output_chances": [

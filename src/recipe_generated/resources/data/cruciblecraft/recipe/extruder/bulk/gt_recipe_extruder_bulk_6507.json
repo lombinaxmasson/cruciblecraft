@@ -10,32 +10,58 @@
         }
       ],
       "hashes": [
-        "378b11708b27d173169d254658edf1dff9fee34b61d2f4c03af2132a46080d45",
-        "fc546915f8dc2dbb93215584a5e32358da1de715306ec9ae98ec96556fbf3967"
+        "8e617f6c0b9eaa07757b2e10b1c3f6aab9f3b71efb5a48b01d29222f31e0755d",
+        "3d65c3edda9ab75295a3a0da80e952455272937bfac6bf0cf2767b41fa62ad2e",
+        "82152578a75333358d68deeda78ac2398ddee429f76103f45909842ae5ef8fd3",
+        "287d69a233e4115d7838585107ccbe96f92db2c4aa67a44459a15cb0aba8fc0b"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niobium"
+              "cruciblecraft:prefix_material": "infinity"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niobium"
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +69,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:niobium/block"
+            "id": "cruciblecraft:infinity/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cosmic_neutronium/gear"
           }
         ]
       ]
@@ -53,22 +85,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e7ad3fb4dd83ee24",
+        "cruciblecraft:gt6/abcd52066d2f933b",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/4dd57760c982a064",
+        "cruciblecraft:gt6/dbf79933ff0e58f1",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/7ae1cb93b1014795",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/8a9d49856f56269c",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3900,
+      "duration": 9233,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +127,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

@@ -10,43 +10,16 @@
         }
       ],
       "hashes": [
-        "d0dd615ffd5037249acebb1c4b4f882af05422200f182d57ff3a8f5c3461e14c",
-        "8c2132424ddbdd4339e09d31582a9a37160bb3ae2b583d5439be6cc8cad67b61",
-        "985a8b7c757848e7ab98705ee39cc0d26daa984d0085050a3a132df2fe8f0430",
-        "82e4b898f7353e50c67ef20a598ddcad018a4c9b61a29887490afc18f5ad6581",
-        "db317993775a71f473fe0ce6753c32d1440519fd03d29e144eb6849221a62bcd"
+        "9e9591cd5dd4c7801fa11f46545b03bb4fb9bedf0d0374a007d7ecd20a1c112a",
+        "9baacd5f98ddfeff00a28b774d1e7cd729d118270e6bc3561350a0b44df65073"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:niobium_nitride/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:niobium_nitride/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:niobium_nitride/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "niobium_nitride"
+              "cruciblecraft:prefix_material": "vanadium_gallium"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
@@ -55,7 +28,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:niobium_nitride/long_rod"
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_gallium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -66,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:niobium_nitride/block"
+            "id": "cruciblecraft:vanadium_gallium/block"
           }
         ]
       ]
@@ -76,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7d4963ba787c856b",
+        "cruciblecraft:gt6/fb3a7e1e19e03363",
         0,
         0
       ],
@@ -84,38 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/ae4f5b14ba9a5085",
+        "cruciblecraft:gt6/86c991ba623ef658",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/2408d9d3a0d08b57",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/029e558ff30513b3",
-        3,
-        4
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/b9b3e2617d00c537",
-        4,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1358,
+      "duration": 1195,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        3,
         0
       ],
       "output_chances": [

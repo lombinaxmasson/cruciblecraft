@@ -10,27 +10,17 @@
         }
       ],
       "hashes": [
-        "f4e7db6682922da1fdceea2eefb5bc3fa913f9e96c6ab352665ce3fd0048779e",
-        "96320d2dce0721b0074a54d21b0d7535cafc75b42cd7a511a46c7617543b7a3f",
-        "957e5eda4f1813431d410eef189682b0f42fdd98dd119ae96c3a8abe212c6473",
-        "93756937ee2941b7175604f2425f3c3d71fcc51ee0f685733d0ce504b4093b40",
-        "8a94d09a4a8724b97ffdaca6c5031f0d30f150389cf0a5d9a5fa7749773628e7"
+        "573a07d0ab9af101a1cfba1668d0b0f2d41a29d67b0c39509ad9b0a419771190",
+        "6e5b16d76ba62438d2a8a239bff2996457686e7244144d4479e43ce46e057c64",
+        "c9f470786a6342dd61a702f336259b06c284100f2b021ca19889c07ff61703d4"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:yttrium/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "yttrium"
+              "cruciblecraft:prefix_material": "invar"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
@@ -39,7 +29,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:yttrium/dust"
+            "item": "cruciblecraft:invar/fluid_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -47,15 +37,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:yttrium/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:yttrium/long_rod"
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -66,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:yttrium/block"
+            "id": "cruciblecraft:invar/block"
           }
         ]
       ]
@@ -76,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8854c3c7dcd31e5c",
+        "cruciblecraft:gt6/8f623bf870f9afe4",
         0,
         0
       ],
@@ -84,7 +70,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/3bf13349b8ce2f76",
+        "cruciblecraft:gt6/f89135e2d5d93103",
         1,
         1
       ],
@@ -92,30 +78,14 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/1322bbd3525d141b",
+        "cruciblecraft:gt6/c0ba0389e810f5a6",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/084b1517bd879fa3",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/2c1ada123b26061f",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 935,
+      "duration": 1853,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        3,
         0
       ],
       "output_chances": [

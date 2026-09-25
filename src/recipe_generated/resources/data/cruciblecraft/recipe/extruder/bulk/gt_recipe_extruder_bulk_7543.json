@@ -10,32 +10,46 @@
         }
       ],
       "hashes": [
-        "6986df4b4e3b0bdb20813eeb6545811f454f9de7805b7e61094574d88c4e754c",
-        "98ae29b6ee8241661bc861bc6baf80d7babacfa170dd53ea91c117096c664127"
+        "7f7d1b5bb64a4655f7e2a69d26724eba83664d200fbbf7a75c9894c76e378a1c",
+        "57d924da23c7e6d39e58064bc196d053d579fbe7ede48d473baa99d3b05b1dea",
+        "b6238c8c583a6dcda00a98a63520f731377885d6a6c245de03b469558c64324c",
+        "6fd4e291cb5a803bdf6d50ab5c80cc2e1bb37a4ba2d0af8fad115572d253c37d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "niobium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungsten/tiny_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niobium"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -43,7 +57,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:niobium/block"
+            "id": "cruciblecraft:tungsten/huge_fluid_pipe"
           }
         ]
       ]
@@ -53,7 +67,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/666639b7fccdb4f8",
+        "cruciblecraft:gt6/f68324da6767398e",
         0,
         0
       ],
@@ -61,14 +75,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/98aae39d0e8bc729",
+        "cruciblecraft:gt6/401b0b70d7fc5fe0",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/3bdb4ad56e4be5a7",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/d6889222431400ba",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2925,
+      "duration": 12128,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +109,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        24,
         0
       ],
       "output_chances": [

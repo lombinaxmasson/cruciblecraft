@@ -10,59 +10,42 @@
         }
       ],
       "hashes": [
-        "c401d33fd5d55eabf83e18309f722f377289b5574f3d266229c775cbda989b24",
-        "cebfe5d732744b61c89223aa02407a068ddccecb7aa4969358b0483a2d7604d7",
-        "759fdc668519b1f047bacaa75a5c380e73c6ca3cf5f0111a58fa5c9e35b842ed",
-        "1450123eef29d028aa7fe27fbcb28993fcb0d007ea2e1196c358593e2f13d992",
-        "10b6dd9cbb1f4f1364883808f2d72523925c8e2d49f39cfcddb0549e2a417313"
+        "c6dbd9ce8f82b2c6f5f39a6824305d14e63c5ea24350e81421c2c132d095107f",
+        "2771bb8d2c4782f88200ac2cc302154a91e19659ee70a2ea497af0152c2096bd",
+        "86a733f7a8739cd1b805069298f67099fb3ade6ecc2605d85ef0dadad7fa9d31",
+        "f604b1499d9dd67bfe5fd5ab914a051e975e37e492d3beb04a814e7249490d9b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:neodymium/small_dust"
+            "item": "cruciblecraft:vivid_alloy/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "neodymium"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vivid_alloy/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:neodymium/ring"
+            "item": "cruciblecraft:vivid_alloy/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:neodymium/foil"
+            "item": "cruciblecraft:vivid_alloy/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "neodymium"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ]
       ],
@@ -70,7 +53,28 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:neodymium/gear"
+            "id": "cruciblecraft:vivid_alloy/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vivid_alloy/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vivid_alloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vivid_alloy/long_rod"
           }
         ]
       ]
@@ -80,46 +84,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c045186d0eae3a00",
+        "cruciblecraft:gt6/0812afb5185a1fba",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b37a41d5adff4bbb",
+        "cruciblecraft:gt6/802dba944173be62",
         1,
         1
       ],
       [
         2,
-        0,
-        0,
-        "cruciblecraft:gt6/991a99c84796c66b",
         2,
+        0,
+        "cruciblecraft:gt6/ca04a681eb5b7610",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/5b5c25fa35c6a0a3",
+        3,
         3
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/b3bfca540c669dd3",
-        3,
-        4
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/ee8457e3c854be5b",
-        4,
-        6
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 435,
+      "duration": 204,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        8,
         0
       ],
       "output_chances": [

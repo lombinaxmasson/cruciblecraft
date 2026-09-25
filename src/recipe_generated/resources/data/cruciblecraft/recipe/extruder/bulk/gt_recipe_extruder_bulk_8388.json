@@ -10,49 +10,58 @@
         }
       ],
       "hashes": [
-        "97a85a74895f59d61eb3307ffaa1c8c5066e4c3c61b3dad389c5a2e9622f8095",
-        "93f7b631e9852dc206161e525051a676cf65d52f2a9533e9bec8090d7d76198c"
+        "3ff468d2fdefd827bf99bd8d239d49f4d91f4a1961171cb1a8b3e4a47c84acc4",
+        "6276a1f696aca4177e4904cd600ecc5b6eeda0efceae1eecd8aa9c8d35e4d3bc",
+        "313b182f2d160c69db351e6d0b310b671b7885cf008f84e6d26856c83a15bc94",
+        "dd1b8ef6dad7ca45f1711ef58fbbff7e48b3a9cb140698e1f312647984f04dbf"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
+              "cruciblecraft:prefix_material": "electrum"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/sextuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/item_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
+              "cruciblecraft:prefix_material": "electrum"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:vibramantium/rod"
+            "id": "cruciblecraft:electrum/huge_item_pipe"
           }
         ]
       ]
@@ -62,22 +71,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/16fd98f2b74f6acf",
+        "cruciblecraft:gt6/8c4659f894fb4802",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/bebe72bbccaa523a",
+        0,
+        "cruciblecraft:gt6/1f5a3876b7fc95af",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/94b0e22a62b38ee1",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/4411acebf8d00ab6",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 405,
+      "duration": 2736,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +113,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        4,
         0
       ],
       "output_chances": [

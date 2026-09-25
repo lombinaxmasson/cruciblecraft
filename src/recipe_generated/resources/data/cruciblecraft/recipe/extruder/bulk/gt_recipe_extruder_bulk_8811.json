@@ -1,75 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_8811",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "81339bcbb72029a38dd8e7adde1938394e8dfc958fd769e80bedaef229aaa889",
-        "365621c93c3f5ab1b1b328dcece803a2c9d94671eb714ccde14128c245075f2a"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "hepatizon"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "hepatizon"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:hepatizon/block"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/ab7be423e351cc96",
-        0,
-        1
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/bdcf6f3f0f5e96f6",
-        1,
-        3
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 2263,
+      "duration": 5594,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -82,15 +20,35 @@
         2,
         0
       ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:flamascus_steel/machine_casing"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_block"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:flamascus_steel/block"
+        }
+      ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_8811",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "74abf1df81ceea634717a4ace471c943f70fe15ce4b9b4b9993f896438138942"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_8811",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/3e3e38a7559c8f85"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

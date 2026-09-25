@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "slug": "recipe/gt6-extruder-remainder",
+  "title": "GT6 Extruder Recipe Remainder",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6挤压机配方补发详细计划.md",
+    "tools/waves/recipe/gt6-extruder-bulk/**",
+    "tools/capabilities/recipe/gt6-extruder-remainder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/extruder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/extruder_bulk.json",
+    "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/Gt6ExtruderBulkGameTests.java"
+  ],
+  "depends_on": [
+    "recipe/gt6-extruder-bulk"
+  ],
+  "profiles": [
+    "recipes"
+  ],
+  "wave_slug": "recipe/gt6-extruder-bulk",
+  "required_test_ids": [
+    "bulkMapPublishesTranslatedRows",
+    "remainderAndTwoOutputRowsRunOnMachine"
+  ],
+  "note": "Publishes Java-legal non-template gt.recipe.extruder rows as exact_remainder and opens the GT6 panel's second extruder output slot. Missing forms and objects stay blocked. Does not stand in ingredients."
+}

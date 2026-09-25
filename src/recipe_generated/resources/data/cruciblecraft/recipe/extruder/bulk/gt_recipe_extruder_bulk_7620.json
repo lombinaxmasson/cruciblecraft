@@ -10,71 +10,52 @@
         }
       ],
       "hashes": [
-        "4e4be038cf4d12871e7cccf82278e6f1f813acecb8341cbaa822d8c507aac7c2",
-        "52e400f4526982b3e63afd66fd8be3a1d4b566e6ec30f56dbe6b75b4b065e817",
-        "6ecc6ef6dd3c16d3b89bde4b87fee3cf612c6e5a7f608a0266b81b1ffa5e6379",
-        "94b41eec18d32357671e81759adb05e4f83b8f4ad4b10e61439c99519db849d5"
+        "4b94feeee7dc9d84b9b5bf8dd7b4d9df4330e4372ecce6a48201b50ef74256bf",
+        "0d7c435d03ce24d269b23003a6638b8e2398bb605af962258845b2f8c3062800"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:dysprosium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:dysprosium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:dysprosium/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:dysprosium/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
             "count": 1,
-            "id": "cruciblecraft:dysprosium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:dysprosium/plate"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "dysprosium"
+              "cruciblecraft:prefix_material": "hepatizon"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:dysprosium/ingot"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -84,7 +65,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/67042ff9cb68a821",
+        "cruciblecraft:gt6/d541bb5f93f28286",
         0,
         0
       ],
@@ -92,30 +73,14 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/751bda37055c2a98",
+        "cruciblecraft:gt6/bf9f2033b919523d",
         1,
         1
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/1e213b5ea54c4512",
-        2,
-        2
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/0b32016851891c63",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 184,
+      "duration": 755,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        5,
         0
       ],
       "output_chances": [

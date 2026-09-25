@@ -10,32 +10,71 @@
         }
       ],
       "hashes": [
-        "09304611b7d14d27c4d3cf682e24549eb57a287a54763fb78f4ad6201c2b5792",
-        "b2d22ec952aa91d5005fc0ef43794343c5f2a0e9f9d279fb108b7eaa281ecb84"
+        "9a5c926c6d3d0f41f5562c729be420cdaa588fe7831b361e2810faae9abde3ac",
+        "f518f5111d7d3f1688be852e72dce981a0802cbde84252cc13d1029019665117",
+        "c7ccacf3e91010f87ec2b05e7302f77f2600b70791dc482867c429f9bf68bf3f",
+        "8ad655c1555af44e5faf95bd8f05a2f4172ae5d3a02935a39e338b589905b6ae",
+        "1e63af1cfee360f6f0001f70c011b33a10a65f8fd2ccd66d0c2aef4104c2e4bb"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinitanium"
+              "cruciblecraft:prefix_material": "rubracium"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinitanium"
+              "cruciblecraft:prefix_material": "rubracium"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
@@ -43,7 +82,37 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:trinitanium/block"
+            "id": "cruciblecraft:rubracium/rod"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:rubracium/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:rubracium/bolt"
           }
         ]
       ]
@@ -53,22 +122,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1325146f791511cf",
+        "cruciblecraft:gt6/0ffeb365836637ed",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/da93409a6ce19c74",
+        "cruciblecraft:gt6/01df949da633f006",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/3c9c132ba882d225",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/48768e5bb5d1de2c",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/707dcaa3a7ca561b",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 728,
+      "duration": 308,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +172,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [

@@ -10,67 +10,52 @@
         }
       ],
       "hashes": [
-        "5b2e82b8cbf161cfb6e840e568ae0e2e6979fa216a1391ed44dacb79882ac9e3",
-        "454c955313debbe550effaf448d8732a8e893573b92c9cf811916a5713ef9f25",
-        "307e40923e55bf6de67d8b4e485c9ad037c61b6cd0c10e04c18fdca617a25486",
-        "85f7e4751dbd9771c095da085d55a40ca74ee9ffe5a626012b358a9087a99554",
-        "bf3858958a7d0c979a648b8bd5c6a24d5c2ac5eaf0bb23a7fc3d6ceb68deaa99"
+        "c95523b3bb068ffce375319a308c62da68f1ed66596576f16b8b755495f9fdc2",
+        "050802bffc2ce48313afafcd97a8ead44f5e68d0ec69ddcf0baf8015ce0e5ddd"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:oureclase/ring"
+            "item": "cruciblecraft:manyullyn/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "oureclase"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:manyullyn/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "oureclase"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:oureclase/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:oureclase/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:oureclase/block"
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:manyullyn/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:manyullyn/bolt"
           }
         ]
       ]
@@ -80,46 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/43d94bf19a4c52d7",
+        "cruciblecraft:gt6/f4b03c6a162ec472",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c9df8b55598799c6",
+        "cruciblecraft:gt6/d504b3c6b27f6b96",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/8c7a34c2317e889a",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/1a85d577672c7725",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/e70fd4aff835a025",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3090,
+      "duration": 1163,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7037",

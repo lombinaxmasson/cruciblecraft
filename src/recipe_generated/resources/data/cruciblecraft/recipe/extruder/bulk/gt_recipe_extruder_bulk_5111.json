@@ -10,32 +10,59 @@
         }
       ],
       "hashes": [
-        "7d583d8a50f2164e3cbf49f6dd2490fcca1514c7c02356b2e9f885c4e13e8bcc",
-        "75aba7edf0ca3a456df10ee20859a3cd96ba29baeb691f535affd9bf87f1d6d4"
+        "8adcd34e0eb710ed57d9d444ba5ef1e3f2636d2d39b4138ed8e00f847976b920",
+        "338319e409d168c0ccf56b9fc87e5607bcac6852894c353895d0eba5d106a71d",
+        "e58bf3202cc9fe89e57cb948054f974d3d8905c6d3525482292094bf1c9f277c",
+        "826eee3b98bd95b97a8498e55ec9561bcbad7dfae152422ecaa58e30c3259fc7",
+        "573c5e41493743ad34ce2bc9269bd7837040e5a751b6bae6cf0f2e0efbdfc6a5"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "kanthal"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherite/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherite/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "kanthal"
+              "cruciblecraft:prefix_material": "netherite"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherite/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:kanthal/block"
+            "id": "cruciblecraft:netherite/gear"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b4875fc9cc86efb6",
+        "cruciblecraft:gt6/5b273b3c7a980444",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/2cf56ae73575e3a1",
+        "cruciblecraft:gt6/245512037d4c27c1",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/53a105c2fcef21d2",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/c687d2f82fde989c",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/3334ccda1ca7c93c",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1290,
+      "duration": 9781,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        16,
         0
       ],
       "output_chances": [

@@ -10,61 +10,66 @@
         }
       ],
       "hashes": [
-        "836081f5b276b63f8a6eca0c01d4a17fbf12f542059e1756a7c6d805ee447a63",
-        "e774eb6cfb5ef78d00d7c9294ea45be827d197b9346a12dd84589dd5fe08c3ae",
-        "dc60524343375d85d698f410154e4a17bece5a001c5673d0ffa5e1c3dc9730ff",
-        "4a8697672dd9df86a944ed77cd95935723a2681d1b5d97702eb8ece026a78cd2",
-        "7dd507b824bd1e082be3edf27c295fede8d89eeba1074ab2a593c87795efe15c",
-        "b4d89473043f5fc2c4e7ab462cd8016d25db0fc95eda5bdf7c86ab667c26043f",
-        "9bd57ea5a47d8b02213db98a78e25e887e2b203f5b5fde8a314c424edd417a67",
-        "5ee202263e0432effcc8b999d3fb54e5d20c76c72291683821302fa957328805",
-        "01a21cdb29298e2110adc7c322280f7d3eef6904d9fec9252a51f8095fa5dea2",
-        "c2dffd894dc4562105181521a124717f0ba42220c94c89f4c9e1c30d2320446b"
+        "3283d8cec9361c4fc94a0626607501a4ea1869f1efc419f7afa7b1f99bb10859",
+        "434cc3fe751a3afbd75a764f1c7bdfa39a976e69821e9a4a1a806ed807c896de",
+        "78ec3f8acecf69bfeb105785ed7a2b1f9634230c679f775a31fe2b548e2b803b",
+        "25808f09d28cdf5920482d9c57ac0885c89a2e96e5b1d558ceaa9ea14952ef1d",
+        "3cdbe2fa0c45c0653ba963b80e516dc8ff6142a4095c83bf2035a4f5ca24d21b",
+        "1337c684b69ced6e89d9643c8a4bb4bb22486c53f21f3b1ccdaf76e781d89477",
+        "88ffeeb06ee441f3573e9a5d6a5a3e88d2cb07bc5559d570cd31d8f93f83fcbd"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vibramantium/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vibramantium/machine_casing"
+            "item": "cruciblecraft:alduorite/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vibramantium/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vibramantium/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vibramantium/machine_casing"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibramantium/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -72,102 +77,58 @@
         ],
         [
           {
-            "item": "cruciblecraft:vibramantium/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vibramantium/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibramantium/machine_casing"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibramantium/machine_casing"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 8,
-            "id": "cruciblecraft:vibramantium/long_rod"
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:alduorite/block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
+              "cruciblecraft:prefix_material": "infuscolium"
             },
-            "count": 8,
-            "id": "cruciblecraft:curved_plate"
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
-            },
-            "count": 16,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 64,
-            "id": "cruciblecraft:vibramantium/bolt"
-          }
-        ],
-        [
-          {
-            "count": 16,
-            "id": "cruciblecraft:vibramantium/rod"
-          }
-        ],
-        [
-          {
-            "count": 2,
-            "id": "cruciblecraft:vibramantium/gear"
-          }
-        ],
-        [
-          {
-            "count": 8,
-            "id": "cruciblecraft:vibramantium/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 8,
-            "id": "cruciblecraft:vibramantium/plate"
-          }
-        ],
-        [
-          {
-            "count": 8,
-            "id": "cruciblecraft:vibramantium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 32,
-            "id": "cruciblecraft:vibramantium/ring"
+            "count": 1,
+            "id": "cruciblecraft:infuscolium/gear"
           }
         ]
       ]
@@ -177,86 +138,62 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0ec067d8d9ebdc53",
+        "cruciblecraft:gt6/f1cee3acbce19aaa",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/f7aa1b27e664c9f6",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/ab1365fe5209ddb3",
+        2,
         2
       ],
       [
-        1,
-        1,
+        3,
+        2,
         0,
-        "cruciblecraft:gt6/05b7b3191f69e06f",
-        1,
+        "cruciblecraft:gt6/0a4149cbb9072307",
+        3,
         3
       ],
       [
-        2,
-        2,
+        4,
+        3,
         0,
-        "cruciblecraft:gt6/ce71b1488301e930",
-        2,
+        "cruciblecraft:gt6/81443d7eea2c5adb",
+        4,
         4
       ],
       [
-        3,
+        5,
         3,
         0,
-        "cruciblecraft:gt6/8d05915def6de01c",
-        3,
+        "cruciblecraft:gt6/937d25c8e9b189ed",
+        5,
         5
       ],
       [
-        4,
-        4,
+        6,
+        2,
         0,
-        "cruciblecraft:gt6/710eb42882e76767",
-        4,
+        "cruciblecraft:gt6/c12a2c8ce14439b8",
+        6,
         6
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/e121ee0bab2c766d",
-        5,
-        10
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/eb8d70175178b8bb",
-        6,
-        11
-      ],
-      [
-        7,
-        7,
-        0,
-        "cruciblecraft:gt6/4b5aaaa661b97bbe",
-        7,
-        12
-      ],
-      [
-        8,
-        8,
-        0,
-        "cruciblecraft:gt6/fcb1fa0f2f65ec8e",
-        8,
-        13
-      ],
-      [
-        9,
-        9,
-        0,
-        "cruciblecraft:gt6/59c15a1713cbf908",
-        9,
-        14
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 6467,
+      "duration": 849,
       "eut": 96,
       "item_input_actions": [
         {
@@ -267,7 +204,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        2,
         0
       ],
       "output_chances": [

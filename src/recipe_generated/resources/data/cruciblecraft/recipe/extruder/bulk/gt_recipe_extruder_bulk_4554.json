@@ -10,67 +10,89 @@
         }
       ],
       "hashes": [
-        "309289d029033b4818ba5eb169e5bc1adc6480291bd9e008856a447143e55565",
-        "40a0aed2c391b9fdac9cec634dd2b21279788651c4ae9794939bf254722e0b32",
-        "345ed3953b07172353149556ea3a6d87f913e2ad84b188d691480114b451a701",
-        "16d55a76a73a478c9d4a49afe4bc8c3ca1493c8bf9ca78126e2aaf48f1b5b953",
-        "4aa9f8a6a643067a406ae0c53e16561085f386c1cff268ec4cede1ce4e21f4ae"
+        "ac141caf6c13943a6609edb58aaf18252a1c739ea3c25edc8626b35657dddce0",
+        "b211401a64525fdc51fa4e8b1cf5bec77f7c95bcb9b47268a47c3169a5ed9e4e",
+        "9692a912291779d40bdde1a21470c98e49e99ba03137fa35dff879f6e78240f7",
+        "85f84f0c089096f02e7487d4440f1b2ea03c096a7612f015e23a9f200fd53c2a",
+        "20768e43ece7348bbff5c7d6792cd3c64a29c970a82a48cd2ec9a1fc526f477e",
+        "210b46bca85e3151faf2a66bc042aae94530363d0a87cbe357e6bf2b80431b79"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "pulsating_iron"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:osmiridium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:pulsating_iron/foil"
+            "item": "cruciblecraft:osmiridium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:pulsating_iron/ring"
+            "item": "cruciblecraft:osmiridium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "pulsating_iron"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:osmiridium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:pulsating_iron/small_dust"
+            "item": "cruciblecraft:osmiridium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
             "count": 1,
-            "id": "cruciblecraft:pulsating_iron/gear"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -80,15 +102,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/113f293d9e79eccc",
+        "cruciblecraft:gt6/39cd57288564c151",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/9209cb9d98b2104a",
+        "cruciblecraft:gt6/56073ab34ce734cd",
         1,
         1
       ],
@@ -96,30 +118,38 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/dc4548c5896a3b86",
+        "cruciblecraft:gt6/8fa285044c02633e",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/1953324a09713460",
+        "cruciblecraft:gt6/01c81289b3f6f12c",
         3,
         3
       ],
       [
         4,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/fee71927230c6bd4",
+        "cruciblecraft:gt6/adf7aeab9a041191",
         4,
         4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/61ec582004655d9c",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1076,
+      "duration": 1896,
       "eut": 96,
       "item_input_actions": [
         {

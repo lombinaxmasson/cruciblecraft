@@ -10,33 +10,84 @@
         }
       ],
       "hashes": [
-        "a98dda1223c62a494bdd686d21d127bce00999dd0f1b7b1e2f2ff1369586d130",
-        "f3a037a80f316849b369bdf89b4d2c4cdc41eb31d20f4f10314cba5312803bf2",
-        "3990486345f3cc09fa57daf3f8efbc78ccf021a306eeb36aa25cddf4b9f5982e"
+        "eb71267c68158bc3deede6481a245d9283f90224716f5f90fcbfcfb06a42c03d",
+        "453d2864e88bc80989223a4e40d31e7c531de1ae16e758eafd6f3283bcf5d584",
+        "d576066e1b6c56a065bc850b3a2cdba554167194a0eff469f5bfff3bf2a679ac",
+        "09da264ec96fc5d3be214f6d44162d9122bfae3be6ca7c3804f7466b23d141a3",
+        "2b4e99e7535d959c334bb123b94f980ef66aa99776368fc16f9500ae40187ab7",
+        "59e0e502c89c5330abcf29c339ff5b0d4903815317c8366f991fc8c754cd2180"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:hslatungsten_alloy/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hslasteel/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hslaspring_steel/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ]
       ],
@@ -44,19 +95,43 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hslatungsten_alloy/block"
+            "id": "cruciblecraft:osmium_elemental/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hslasteel/block"
+            "id": "cruciblecraft:osmium_elemental/small_gear"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hslaspring_steel/block"
+            "id": "cruciblecraft:osmium_elemental/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:osmium_elemental/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
           }
         ]
       ]
@@ -66,30 +141,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b862eca62d5b5fdd",
+        "cruciblecraft:gt6/b22333c3ad61ae6e",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/535fa5dd0477674b",
+        1,
         1
       ],
       [
-        1,
-        1,
+        2,
+        2,
         0,
-        "cruciblecraft:gt6/62b36331be9707c5",
-        1,
+        "cruciblecraft:gt6/4d45bd6e4308573a",
+        2,
         2
       ],
       [
-        2,
-        2,
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/262abdb417e8f2e9",
-        2,
+        "cruciblecraft:gt6/ad2b19deb0b16c70",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/9bc6b371bd4acdce",
+        4,
         4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/bbff2d803a773226",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3072,
+      "duration": 1402,
       "eut": 96,
       "item_input_actions": [
         {

@@ -10,28 +10,50 @@
         }
       ],
       "hashes": [
-        "4f8e449e3bcafcb74197b7e9b53cb4ef3e0e357e538b25aab5dd2f39212d021a",
-        "ae38910e5b0528d8d1c9ae5f8d1e48c28d51ee42c4ffe11ac50920035b24c175"
+        "bd436d02b66c1c28a56448d483399cb0856c2dd74078db622fa4692492becc26",
+        "c96718650d31b96ce39a7ad710f35903c0df757b0533f9e178f2746a59f3ec3b",
+        "3bf42ec89c3ea481f404f9153ac17fdc1e06b395727d75edfd941460ee994766",
+        "1d60c513ba76c2f98df8d16045dba5680252854f9e241e59f3891322c02935e7"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "gold_inductive"
+              "cruciblecraft:prefix_material": "osmium_elemental"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:gold_inductive/rod"
+            "item": "cruciblecraft:osmium_elemental/item_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmium_elemental/sextuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -39,7 +61,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:gold_inductive/gear"
+            "id": "cruciblecraft:osmium_elemental/block"
           }
         ]
       ]
@@ -49,22 +71,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7d118d7db3e0fe6c",
+        "cruciblecraft:gt6/e532cabb37b07c47",
         0,
-        9
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/8b95de210d26272f",
+        "cruciblecraft:gt6/6ba0f50b41619304",
         1,
-        13
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/8111896c6a3a606a",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/b4ca5df71bce4474",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 495,
+      "duration": 9462,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +113,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        3,
         0
       ],
       "output_chances": [

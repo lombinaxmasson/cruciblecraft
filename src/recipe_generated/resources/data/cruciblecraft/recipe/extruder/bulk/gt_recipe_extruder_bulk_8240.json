@@ -10,42 +10,32 @@
         }
       ],
       "hashes": [
-        "f93208e90c5650e9bbee501483550102f1b60bc29241e77869d0881418f748e0",
-        "4f0be2953df3f32d787cf67532d4f7ee6e799eff24b4ccc371a9ce34ee49b954",
-        "f9c94169c8309b1d389c62054c8b4d0c9e02afff67009e252dcd31520064668a",
-        "4c471d5fd913ec6e6c366fe4039c76175a2772ae2771c8b537caa24b67c1ca55"
+        "3ff2152b171df03729d3e40ffaffccd6a1782b547d43a6109d63954bc92c498e",
+        "30306749c6baa0a4af5aeedc82b459560b8dcb624928ecdc6fcfded832dacaee"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:duranium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_steel"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:duranium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_steel"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:duranium/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:duranium/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -53,16 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:duranium/rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:vibranium_steel/gear"
           }
         ]
       ]
@@ -72,38 +53,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ef2dffaca78c47fd",
+        "cruciblecraft:gt6/b36bca4fa413fa0a",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/4e9b1c268f84aea7",
+        0,
+        "cruciblecraft:gt6/98d35abc9afe6ce8",
         1,
         1
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/0d117e4a21d7efb0",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/78fca0cc1d011cf5",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 120,
+      "duration": 1526,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        2,
         0
       ],
       "output_chances": [

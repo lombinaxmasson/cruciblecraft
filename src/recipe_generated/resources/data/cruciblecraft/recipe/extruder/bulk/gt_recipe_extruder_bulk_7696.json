@@ -1,110 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_7696",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "249cf69612de6ea0743ab4db156bb66115161f445082e690c67fdf4665fede7d",
-        "5217f33b348cdf21ec6a1ae68035ea4c4e208e488b3a59676fe544a9745b2bde",
-        "4c2c89f3f65577a2922f6141a898edbc3d0985922b27e9cfdd44c24bae4040fc",
-        "8435274b026a8dd5ea62e4b1b4f08d69d6941deb88464ba6b37e74d30a6346ed"
-      ],
-      "item_inputs": [
-        [
-          {
-            "item": "cruciblecraft:naquadah_enriched/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:naquadah_enriched/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:naquadah_enriched/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:naquadah_enriched/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "naquadah_enriched"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:naquadah_enriched/rod"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/f1e426269963124a",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/c49395b468892052",
-        1,
-        1
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/0b06d444887d6903",
-        2,
-        2
-      ],
-      [
-        3,
-        1,
-        0,
-        "cruciblecraft:gt6/850d9d998ae47411",
-        3,
-        3
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 205,
+      "duration": 8838,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -114,18 +17,38 @@
         }
       ],
       "item_input_counts": [
-        4,
+        2,
         0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:tritanium/machine_casing"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_block"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:tritanium/block"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_7696",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "134388223c707329f9e7afd53fe9fc8b5d55ce4739227c578a75f96ca05941e6"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_7696",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/302cd68a883aa6f6"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

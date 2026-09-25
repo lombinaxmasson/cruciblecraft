@@ -10,80 +10,96 @@
         }
       ],
       "hashes": [
-        "26d637c8ecd5f0fc6bfca592a300f226c0fc42aac8ebf83dc840c15a4de9d062",
-        "1b7541600f7813698b13ff7b351a3f18182d77cdf7d8e8c7fcd54e37464bc67b",
-        "7e1a0d767c7d7863faf37c7056e31ec7a2f6166a561071e23a72c9970c638dec",
-        "36ab84a79d45a1f99b529688be0198e362d99ffd40ca6f4902a24546b14e478f",
-        "c09eeb5bc38d767ba3541fcbd3bb3d3495c2098d9ceda14eef81000e5dcbaf3f",
-        "6349daf872e00bbbef654009826ba0a532888e02824d5d549ad9b75eb4cfd8ca"
+        "d647be3d0d0b56d2c240bbdc1ffecff3289cad9d21164dcdd335c6fea9d5bec2",
+        "169e9d810257e2c25fe59ff7fe0f1b44c745975b1adfa8d5fd328f90f79c505c",
+        "819e6076eb555debafac906d1bd2bd7ffc6b66e564bec2802370e10926ec3bcc",
+        "36231ad17a605e1facc380c59d647c2e7005282cb4c783ac8e27f7d7dc88f92e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "curium"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:curium/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "curium"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:curium/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:curium/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "curium"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:curium/rod"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -93,54 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/63b64b51e7abef6a",
+        "cruciblecraft:gt6/4640185cf49ef280",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/d4ea0948b23f9773",
+        "cruciblecraft:gt6/2963e7837984dc25",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/cd1ac04114c920b1",
+        "cruciblecraft:gt6/aef18e6cd0d1cf42",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/d6c5035a8c0566d3",
+        "cruciblecraft:gt6/cbb1d917f18284d7",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/29ac698f7f3530d8",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/40cd2040dd91f127",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 153,
+      "duration": 792,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        3,
         0
       ],
       "output_chances": [

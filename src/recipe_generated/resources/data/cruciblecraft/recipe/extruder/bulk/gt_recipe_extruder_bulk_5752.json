@@ -10,40 +10,89 @@
         }
       ],
       "hashes": [
-        "cc106a0c153c079cd4db28aefe2a0a8c2c026fce2cceae163ce8cdc21421cb29",
-        "7b4c68eb287c210ad04a76488a19b092a1534b0034897d68ff0d9d74af46a4f2"
+        "33aeed33cbfd8a397f34a99ecece45712e6c079d5041a431137b513e06a41139",
+        "75507395f5b0478184c725e1d5393a888330bbeffdf58d502d9948256f8b3942",
+        "a28ed02fa269695b16042f7fab094b1d1aaa2d7f7b42812ac2fefc9ad3fc0d3b",
+        "7c54b0a837a2325d49506277f3fe9c9be7bd693aa73b78a7e88779578d668518",
+        "6066c2cbf437ddfcaa4457219d5cdd82632f562dac65d9de3c549f1d0074ca8a",
+        "33b6013d27cc897525c59fb6bb83fddad8e046560ea74cfe8ee4eacff98b1ab6"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "yttrium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:rubracium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "yttrium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:rubracium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rubracium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rubracium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rubracium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rubracium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
             "count": 1,
-            "id": "cruciblecraft:yttrium/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -53,7 +102,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/90020eca0eef1c3e",
+        "cruciblecraft:gt6/a977a8ceeeaf1826",
         0,
         0
       ],
@@ -61,14 +110,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/c0a34ce2b63b57a2",
+        "cruciblecraft:gt6/3fb337004d8e421f",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/b1048fb962be827b",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/ac1fbd4ab697b5c2",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/aaba33d55b0a641c",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/4cfe2492fcffcd7f",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 935,
+      "duration": 924,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

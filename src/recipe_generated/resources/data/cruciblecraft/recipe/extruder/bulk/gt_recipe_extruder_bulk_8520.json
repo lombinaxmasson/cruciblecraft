@@ -1,71 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_8520",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "73a211a74cafefae36c770b8dbfd8c3e4caa1f46d4ba19f5a34e4b685b6aac02",
-        "37525265813d602f339a3675f139b8725556aeb9464f888628680a81d83e88d0"
-      ],
-      "item_inputs": [
-        [
-          {
-            "item": "cruciblecraft:trinitanium/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "trinitanium"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:trinitanium/block"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/f8e2696a9d887292",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/0ee64e2c42decd5d",
-        1,
-        1
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 655,
+      "duration": 710,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -75,18 +17,49 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:steeleaf/machine_casing"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "steeleaf"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "steeleaf"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
+        }
+      ],
       "output_chances": [
+        10000,
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_8520",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "69d59df20b64030c8d8c51faa7f84728deca01c9e9685eea804006869b9c4a64"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_8520",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/2b083aeef09d5757"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

@@ -10,32 +10,59 @@
         }
       ],
       "hashes": [
-        "62f066b0e4a685d775de79f94d9d8bf0ed22b4d3573fe7921b68e9baaa5b7948",
-        "02150f5b028e4cec7760642c4e8902f4a9bd2a41863304dccacf2119e302ba5e"
+        "698a063426376a18582ae2b986dd380945cf29df1e50c41a4c71877f54e00eed",
+        "36e900c9b7f8748e1ccdb8fddcb78d02921baac069bad8f47d6429a08165a1fc",
+        "7b02be4a8b2716ae3837d72e8f341a9326e5635e4f9f1f5e3204f8f916d147a4",
+        "6a9acada4fe70909401765dd004efa386a4de3e3e50da1cfc5b507d4d5ea9d37",
+        "7363d8916898cad3018ca068365d057ae3349e891869830057e3a99509b74b0a"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ferrite"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tantalum_hafnium_carbide/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ferrite"
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tantalum_hafnium_carbide/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tantalum_hafnium_carbide/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:ferrite/block"
+            "id": "cruciblecraft:tantalum_hafnium_carbide/gear"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c8b0a96aea00cf03",
+        "cruciblecraft:gt6/fa373829accdc587",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/32822e46a0135bd1",
+        "cruciblecraft:gt6/a2ba6d5c91dade17",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/5194183792db9f79",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/7f576f582db1cc7b",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/daf0cb1938ec40c0",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 98,
+      "duration": 2237,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        16,
         0
       ],
       "output_chances": [

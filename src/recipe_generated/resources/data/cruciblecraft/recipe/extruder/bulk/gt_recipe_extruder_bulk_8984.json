@@ -10,36 +10,83 @@
         }
       ],
       "hashes": [
-        "bb8ed9e2557ec971c90897278d3a8aeeef8a292411327149fd2783d9d3445a8f",
-        "c7ea2e715bd9073433a79cf51ad9683c8aa4182e6ed0016dbd8a09eefd0ea524"
+        "bae03606f88f20b6edb465c06df8cb19085b82c6d88339ff0a31d495ff08eaca",
+        "6e0dafdf8e4d5450631325603037b06e97fd1d1994cbc8e3a8ad4afb286120fd",
+        "707497a653773c8c3e6ad6185857c119abc88e1f8b02656128c8839d12e94cd0"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "adamantium"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:americium/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:adamantium/rod"
+            "item": "cruciblecraft:americium241/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium242/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:adamantium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "americium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium241"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium241"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium242"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium242"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -49,22 +96,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/381f127627e649be",
+        "cruciblecraft:gt6/30ab93fe43ed0922",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/2ad3b688eedc30ba",
         1,
+        0,
+        "cruciblecraft:gt6/f699b726136e8e04",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/d91c8c2b21956ab1",
+        2,
         2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9150,
+      "duration": 1954,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +130,11 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8984",

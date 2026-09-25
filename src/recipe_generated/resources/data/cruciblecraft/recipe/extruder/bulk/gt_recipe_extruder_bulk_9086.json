@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 11483,
+      "duration": 3204,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,12 +17,16 @@
         }
       ],
       "item_input_counts": [
-        2,
+        14,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:netherized_diamond/machine_casing"
+          "components": {
+            "cruciblecraft:prefix_material": "oureclase"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
         },
         {
           "item": "cruciblecraft:extruder_shape_block"
@@ -31,7 +35,7 @@
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:netherized_diamond/block"
+          "id": "cruciblecraft:oureclase/block"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "677b61aa5a6293ec3de31e9cdbab1c05c0b183a0c8f8097f0e1487491c49924a"
+          "531d5548cab50d0cdecdd88d483005d256e77d216b09b9e599bdb66242173102"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9086",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/95e1e4fd619d26c6"
+      "stable_id": "cruciblecraft:gt6/3ccfacdb19fa4804"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

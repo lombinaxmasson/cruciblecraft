@@ -10,17 +10,16 @@
         }
       ],
       "hashes": [
-        "98115f05c44e7766ab749c7e6e535bd7b4ed856c67ca82decb94726e8ccf1325",
-        "8c3708cdeadae031371809acbd1550635de94dfd9be0278316ce728fda65c2d2"
+        "530da269fb521447ba3364d7c1b2dd4f25f1b6cdd6c677f792bdc0ea2a825882",
+        "d5ae1b510ae6057a017f2c14715811bffa4c840591fea9c2ead9f58d45367d8f",
+        "4b32e5ff7a9eb52cd19522505fe3b359e81a5b12fb8b15b23a22fdd8f5521e0e",
+        "c4cc95c29ff9ade855bfe94e5e096fe4910792b891fb3c052d287a7dd7f9b022",
+        "1e132cb108d5bf8298e249accba9da8a7bd5e3ec32a76219a65d74ea6d1d6d76"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "manyullyn"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:knightmetal/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -29,9 +28,37 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manyullyn"
+              "cruciblecraft:prefix_material": "knightmetal"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:knightmetal/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:knightmetal/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:manyullyn/block"
+            "id": "cruciblecraft:knightmetal/block"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e6527655142f773c",
+        "cruciblecraft:gt6/8e9961c661c9dd0a",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/b645378bba3162e0",
+        "cruciblecraft:gt6/f03ab1f452e618f2",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/9588d2b5885c02dc",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/230bd396b1b96200",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/3fcd007dc01cc00b",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 831,
+      "duration": 2027,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        36,
         0
       ],
       "output_chances": [

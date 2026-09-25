@@ -10,80 +10,52 @@
         }
       ],
       "hashes": [
-        "fd4c0ec3b92db8dfd5eb329f664680b15377581a417cf75ed18963aa6065ee14",
-        "dbccf0607eb25217c3ee4c86b75c33f8e5a78676d5613cb875330fe17805c41f",
-        "17cc100c5049b3b38a49102a0620dc1d48cf41ca7d06e2cd7d648c178979ce40",
-        "62fe95067ff717af7bc8739a19ebd4b1a0ae8edb67d179fa5b6681f6f1380fc4",
-        "ee384ce650e4f1c0d2ba48f8dac65962ead1abe1e0e2f0818466ee5ff61d1cab",
-        "946511e34aad414530ae49f9169d44992173550c8377646a2d3a31692fbc1d8c"
+        "52f71cc9f4fcd99d75fb3757c0f0598719bfc16775d45fd033bc9323735f43e8",
+        "69aa28c752d48c22600db497e8edba5b9c9da45647fe77f65e44409e68ed0bbc"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:abyssalnite/nugget"
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "abyssalnite"
+              "cruciblecraft:prefix_material": "coralium"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "abyssalnite"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:abyssalnite/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "abyssalnite"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:abyssalnite/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
             "count": 1,
-            "id": "cruciblecraft:abyssalnite/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -93,54 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e891b07e05fa006b",
+        "cruciblecraft:gt6/0302f6af7b5e6570",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/372fa0f0d1306820",
+        "cruciblecraft:gt6/0285ae6a81095c33",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/c030476d8ea26dfd",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/edecba4c58f47593",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/bce955e919ba051b",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/687643fc6fea4636",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1118,
+      "duration": 1757,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        5,
         0
       ],
       "output_chances": [

@@ -10,36 +10,48 @@
         }
       ],
       "hashes": [
-        "82b3c6d62a9161a39d3947f70c543bdc7c20f6b049a529a2280add9cc48a08e4",
-        "e03ef22059476da92f6d13406eaa140fdb7371f302fa06e06838824c1607cd43"
+        "ee76d8219eba4a96d402f83db4893798277b248b00cd4c34473be91a9e525626",
+        "d30c9ef1d4e01d731bcd2193e52a73bb91ad92809d13a168af0a8d2f01af2c48",
+        "3ebd98f111a818a87aabaff9e968b55a7ac102b9ecd1d868707f2dd20953e50d"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:naquadah_enriched/rod"
+            "item": "cruciblecraft:osmium_elemental/wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah_enriched"
+              "cruciblecraft:prefix_material": "osmium_elemental"
             },
             "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmium_elemental/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
             "count": 1,
-            "id": "cruciblecraft:naquadah_enriched/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -49,7 +61,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e6352457a5ea2c04",
+        "cruciblecraft:gt6/cc3f9b2e7a029bb8",
         0,
         0
       ],
@@ -57,14 +69,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/d3e6296edcf421f1",
+        "cruciblecraft:gt6/97b9d0add8e560b3",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/5d0c89a63d0e6bd5",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1640,
+      "duration": 1577,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +95,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        3,
         0
       ],
       "output_chances": [

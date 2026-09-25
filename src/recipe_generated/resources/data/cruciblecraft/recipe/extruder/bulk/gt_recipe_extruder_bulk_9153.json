@@ -10,32 +10,72 @@
         }
       ],
       "hashes": [
-        "9e2cfcc67455066e6090596bcc5bcf82355219897c6f55aa2d105a6713ee13d5",
-        "6755043b97a0d7a76233ab0f81ef2d368ddca8d6ffc62d07bbb4a9b2c2870385"
+        "097262937d4fe8b49ea6d275791ab2e5e317810a63b88782a768c583c64b789f",
+        "328e76ae4fc194a654085bc711b47f5408cf3bd6d22becb21b66cf00d851788f",
+        "20181a233a05d9a0e0891aa1ac4b503fc026f21945cc87b9fd4fd0b4c4c34afa",
+        "22edb2cd7599999dc6ce1f63d4870d417ffaec6b7d39335a0b83fada8d687486",
+        "fb832f350cbfe338ffdd20e4284014da6ab52d7bec3e8536c297fb3a9ff2e019",
+        "0bd15a68ed00c57235b3d8a6d621223b717ab794e2d4c68f59f025a7fc01b957"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "nickel"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrum/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "nickel"
+              "cruciblecraft:prefix_material": "electrum"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:rail_gt",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -43,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:nickel/block"
+            "id": "cruciblecraft:electrum/huge_item_pipe"
           }
         ]
       ]
@@ -53,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d65f0b0e9263eba8",
+        "cruciblecraft:gt6/baa5ca47f045a71f",
         0,
         0
       ],
@@ -61,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/c314a01ce2ee08a5",
+        "cruciblecraft:gt6/2ed7f4400f7d74ba",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/599a4db2bb4552f5",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/48ac53b9ee02f9fb",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/1234bcbe717295ba",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/1f3094cab5384afd",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1777,
+      "duration": 2736,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        48,
         0
       ],
       "output_chances": [

@@ -10,32 +10,52 @@
         }
       ],
       "hashes": [
-        "e7b1a2d2354a91dcac08d69c07e59a6e9a1705d4d5bc5becfb996f498d0b3339",
-        "1e70f53081e3c59d5626253543f17a2b424a59f6fd2d6e1e2485e40ba246debc"
+        "136deb98d9945564149b9a040036f14812dea69c425324cf3fc1e526037417be",
+        "8e211a32d39edbb56c73005571d748ce2d99e4ec4a5cb50e4f95784445dc1264"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:tungstensteel/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tungstensteel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
             "count": 1,
-            "id": "cruciblecraft:tungstensteel/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -45,22 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/46a130613d686fea",
+        "cruciblecraft:gt6/55ce807860ccef6c",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b71e154bf7bfa553",
+        "cruciblecraft:gt6/fe70c8fd00f46d72",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2158,
+      "duration": 948,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        5,
         0
       ],
       "output_chances": [

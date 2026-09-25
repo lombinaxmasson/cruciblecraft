@@ -10,74 +10,71 @@
         }
       ],
       "hashes": [
-        "b90c4b4724bcd7c58bf670974735d6928b430d92f0ff2cfa2b7e84e4c5b5bd18",
-        "7e7124f3c54335f922f6053adeeb7108d9e54e2bbb554405b1630215b3bbd62f",
-        "4708be53ef955373520b029874fe23279f42b65d1ac09b1eb4a95f9e26c0b8be"
+        "f3b67e3c49b4c28d47159e1cefed2e3aacbbe737ef95fa58ac0b34f6d183ebe5",
+        "9d374dca9ffa20e03dc4add9830694cbc5d9a481a022b28c4a03b9761885761f",
+        "d55eec1ce18385c88cb36186fcb788841531824f92169cea1e91fc62f203f17b",
+        "7d1d3d1e4fe384b52611e52762d38d49ced3578a6a8f8b2ee4b54e9fffef25e9"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "gadolinium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tantalum/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium_aluminide"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tantalum/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "actinium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tantalum/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tantalum/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "gadolinium"
-            },
             "count": 1,
-            "id": "cruciblecraft:tiny_plate"
+            "id": "cruciblecraft:tantalum/long_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_aluminide"
+              "cruciblecraft:prefix_material": "tantalum"
             },
             "count": 1,
-            "id": "cruciblecraft:tiny_plate"
+            "id": "cruciblecraft:curved_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "actinium"
-            },
             "count": 1,
-            "id": "cruciblecraft:tiny_plate"
+            "id": "cruciblecraft:tantalum/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tantalum/ingot"
           }
         ]
       ]
@@ -87,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4807170b349ee033",
+        "cruciblecraft:gt6/0bf95423532445e6",
         0,
         0
       ],
@@ -95,7 +92,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/1149e4df815234e3",
+        "cruciblecraft:gt6/b048dd8478e08ce4",
         1,
         1
       ],
@@ -103,14 +100,22 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/f7375494fef9d0c5",
+        "cruciblecraft:gt6/cd8da0e9c16fe1f5",
         2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/88b59dbb0afd7bc5",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 18,
+      "duration": 771,
       "eut": 96,
       "item_input_actions": [
         {

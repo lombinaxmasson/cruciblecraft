@@ -10,32 +10,67 @@
         }
       ],
       "hashes": [
-        "7afe00629153332e2a85954aeccbe9c9c877a285f53d41fb1754e9a65ba4097c",
-        "7db9d29c25c0387a983acfe87449b557f10a25edb156187c61b827667c300bd8"
+        "c26ccd39da92995e7a37b83f983b4bb3c999aa6024b46a6c59bbc316e3cfa95d",
+        "2450356c5b38a3bb73e44231426be075aff6cb1d522082b0fe3fc98d418fd28c",
+        "f64d55b795459e3d79fa9f0966856b64f8525b853765006d1954f0b41fad68ec",
+        "01892bb71dcb35599798765021e82bc5914a240a9cd59231639636395203bcea",
+        "16a3e396b5cd1d79aad0697c2bf2d7c37e316931cc98e5ac1252c733dcf4f10c"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "eximite"
+              "cruciblecraft:prefix_material": "enderium_base"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "eximite"
+              "cruciblecraft:prefix_material": "abyssalnite"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enderium_base/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium_base"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -43,7 +78,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:eximite/gear"
+            "id": "cruciblecraft:enderium_base/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,22 +97,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d0a322e259133a11",
+        "cruciblecraft:gt6/7645c998e0c30f94",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f9b6989bba8390bd",
+        "cruciblecraft:gt6/793dfc8fb9add819",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/c485edddc4b7d04c",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/5063303ee5f88108",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/e5ce0f1d6e4fa56f",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1699,
+      "duration": 1677,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +147,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

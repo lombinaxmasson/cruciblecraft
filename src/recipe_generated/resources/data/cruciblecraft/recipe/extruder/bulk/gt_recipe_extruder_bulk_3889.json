@@ -10,50 +10,96 @@
         }
       ],
       "hashes": [
-        "7da7d50097d99153e828ee9f9bdaf8c0ea9a32a8df87b8e474692f53760666a2",
-        "06a9d4b1d97640c71f6f5623c1460cce6eb6dd407033710e849a3fd767ded198",
-        "531694ce0f8c9a1608adc4708f860a2e33627a9d15fd083f2cbf13b2c8fed19f"
+        "06a24d8148251cfba062ec7e7ae5f669abadc7b65e7381142724bc2d149acfcc",
+        "28cf1c1f9f5e9c06b199c44035e3bc925f6cbdfa38f87d48b29c5d189a1c7826",
+        "bcce953f4d453bbe83da95f57cd98d822bcca707a210c283a50eec031df84cd5",
+        "dab4b4f9f6b4576c891b6492df2c6da27347580e880c3dad26f0ecf9dd0ed0bf"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:crystal_matrix/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:crystal_matrix/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:crystal_matrix/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
             "count": 1,
-            "id": "cruciblecraft:crystal_matrix/bolt"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "crystal_matrix"
+              "cruciblecraft:prefix_material": "infuscolium"
             },
             "count": 1,
-            "id": "cruciblecraft:tiny_plate"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -63,7 +109,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0943526677e12d31",
+        "cruciblecraft:gt6/434240887e953bb8",
         0,
         0
       ],
@@ -71,22 +117,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/13146b4599888b29",
+        "cruciblecraft:gt6/b4eeaf560f358d25",
         1,
         1
       ],
       [
         2,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/646b9434da8e8bd5",
+        "cruciblecraft:gt6/fe37f0c2c8ca485f",
         2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/0219bd48cfd96faa",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 505,
+      "duration": 708,
       "eut": 96,
       "item_input_actions": [
         {
@@ -97,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        5,
         0
       ],
       "output_chances": [

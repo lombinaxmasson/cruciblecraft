@@ -10,32 +10,71 @@
         }
       ],
       "hashes": [
-        "53adfb2ed4f2cf18a6a6c598b7d8b25a90e2fee8f5857c35c24188335a5b40cd",
-        "75a648d789bafaa72e84f8a2dec5023ecfb75f65c7ea932fcbbd30f50660714b"
+        "75fcfadda2c43d9fe2e9d02788843ffd7c995a0e2c2409646baf3982167fd1f9",
+        "e0619ec7ee5262860178f1c3abfc2712d94316eb9a15592c02780aff2590e381",
+        "9dabea08e553f57d5bedd8cdf2e6f5876facc69b15ba9a1083a13eaa84eb9880",
+        "6810d4f95647e6aaf5b7e090ac30af8fde61a236239d0432aaa7d5e1be080d53",
+        "e9ba91a3a86fc97610eacb870379aa77c08b78d3ce953d633a46c34df32fbefe"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
+              "cruciblecraft:prefix_material": "shadow_iron"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
+              "cruciblecraft:prefix_material": "pig_iron"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,7 +82,31 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vibramantium/gear"
+            "id": "cruciblecraft:shadow_iron/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:pig_iron/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteorite/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:wrought_iron/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_iron/block"
           }
         ]
       ]
@@ -53,22 +116,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5d8907ce9d28bb4b",
+        "cruciblecraft:gt6/0d17a405c019d326",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c89271bf999dcf5d",
+        "cruciblecraft:gt6/6b8406f55f198547",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ad2c3833623a9401",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/9631a788289d275e",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/45445674e9d6eb96",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4851,
+      "duration": 1949,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +166,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        14,
         0
       ],
       "output_chances": [

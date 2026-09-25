@@ -10,40 +10,96 @@
         }
       ],
       "hashes": [
-        "eefc0d61eb94890ebae188f734fa8841be9977c3377483ab77b403a02947cb41",
-        "417d877be4f5747a8408be6da9d819a2f13c5334d34b810ff0b613f8d8b72929"
+        "2ea5bdd6c0d40d47bb9da25f85c489538c108f8d769983983097b303e722c887",
+        "50e0b49951bf9852455895cd1e8a80e1d2cadd9a648cc4ac16cb0f7174a2b78e",
+        "b7bea9e4315f72028edc7ce9a33a4d96171beca4ad68772dbdf1d2ca759415f7",
+        "0e2d5483229c5007970b51267f997c41087563d0b763a6b88a8e2a856a4680fb"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
+              "cruciblecraft:prefix_material": "invar"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
+              "cruciblecraft:prefix_material": "invar"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
             "count": 1,
-            "id": "cruciblecraft:tungstensteel/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -53,22 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/dfab6928ac5714cd",
+        "cruciblecraft:gt6/050ce5a8b9fa2e9a",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/eca85fbfa7a09616",
         1,
+        0,
+        "cruciblecraft:gt6/0d7a0e5f3fc0fc01",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/0779071093b60e31",
+        2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/eb3ed85093083a0a",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5394,
+      "duration": 412,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        3,
         0
       ],
       "output_chances": [

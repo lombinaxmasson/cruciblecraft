@@ -10,16 +10,25 @@
         }
       ],
       "hashes": [
-        "8f9fb46d192aa26fccf728cc44bacce96aa6731d0889c4071b81f12b4fb6570a",
-        "9fd5bfd6bce81433fcea88880b29ec9451dedd6b643d22fb8eb66c72a1fc8858"
+        "203591642b3076ac32bbbfc5e0367047db059b52aa767c505809282c2bf35a70",
+        "cd44eab54ab61954d845cfadcde7f2806f9c6191c5089275a7cec7c3d76a9e0a",
+        "8a3218a65b35eb90a73db47d489d9c494a39e1d9576de17888cc2f1abc63643d"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:carborundum/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "vibranium_silver"
+              "cruciblecraft:prefix_material": "carborundum"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
@@ -29,9 +38,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibranium_silver"
+              "cruciblecraft:prefix_material": "carborundum"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
@@ -43,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vibranium_silver/block"
+            "id": "cruciblecraft:carborundum/block"
           }
         ]
       ]
@@ -53,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3241e6bb2760eb60",
+        "cruciblecraft:gt6/52e399b3bb877da0",
         0,
         0
       ],
@@ -61,14 +70,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/702ccb3a2da2c874",
+        "cruciblecraft:gt6/195212ba321a29dc",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/16a1854ba04a9889",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2474,
+      "duration": 961,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        5,
         0
       ],
       "output_chances": [

@@ -10,71 +10,138 @@
         }
       ],
       "hashes": [
-        "fd90bf68cdf5576bd61b27098330663b18763f84561c36ebe3863ecd7b895c49",
-        "69eabc751b65e5b9af6769ab044361f9a6298a6bbc896924dcd929a4c4481e02",
-        "8ae945ec4cef4373191c4b15323a8e32d669b09d913f59af7e9a0c70dfcb98a9",
-        "29e2f795b4a581cf1e8aeb6ad930e63a4acf494424dbd369ccd33edcb39190f6",
-        "0c0a39b31639fd459eccb54d80fc9f1ebcbff0b8d6256341f8e1eec2ef35add9"
+        "f39850430752fc76e26babb1766e30267dc736ba73545d9c33824df169c7bae6",
+        "809bde90bb34bcff6375914fcfbe9fda86b2a8be01770829d26ab703f7482aef",
+        "ca3d6248270f9d3cf5f2f645369abb229e30be9f5e3dd20756fa745163654a4e",
+        "b15473c6de31a6531cd7c8acd77fe7e4f9d25dc4e2cc259d521144705197eab1",
+        "4311c2405bed038f364147bcaebbfb4963200ca52dc84202462e251e02c86f9c",
+        "92ad30cdea02558904386521319eeca96635c81444d863dc8e1d63516b371ef1",
+        "bfcba0308af03afe20ba0f3d28246346175b0841ad8705614f7a96178c7c5862",
+        "1dd88be3bd2c581769c9df302eff61f1ac6f2c4f11c544d7647e1c0567c67946",
+        "ffeff75ac622c8bae8deeea34521c0c6c2cacb3699e74d18f096f8e85aaf2a46",
+        "0d8427a49cdf0d459839f376cbc2af2d355998b21e5b118bc6da058c8acdebf6",
+        "61c92b0fdc629cf4f95712ce4d344653734ffb8f8f7b96e75893da47466b67d3",
+        "d172cf35c9b04531ff7ab6c68dc4266443148cba3292b96a0c13642fe9f0610b"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ]
       ],
@@ -82,34 +149,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:haderoth/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:haderoth/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:haderoth/long_rod"
+            "id": "cruciblecraft:osmiridium/large_item_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:haderoth/ingot"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -119,46 +168,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4b9ce19ab8e15b9b",
+        "cruciblecraft:gt6/551fbe65bbc77ad9",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/4f15ec58909fe6bd",
+        1,
         1
       ],
       [
-        1,
+        2,
         1,
         0,
-        "cruciblecraft:gt6/94e8574f0b2313ae",
-        1,
+        "cruciblecraft:gt6/fbe6a335acb51736",
+        2,
         2
       ],
       [
-        2,
-        2,
+        3,
         0,
-        "cruciblecraft:gt6/be0e1898a11903f2",
-        2,
+        0,
+        "cruciblecraft:gt6/6a23d9c212a94d5d",
+        3,
         3
       ],
       [
-        3,
-        3,
+        4,
         0,
-        "cruciblecraft:gt6/ded5b662bc7930ef",
-        3,
+        0,
+        "cruciblecraft:gt6/5d86a31b59ae8d3e",
+        4,
         4
       ],
       [
-        4,
-        4,
+        5,
+        1,
         0,
-        "cruciblecraft:gt6/32d66fb7d685d530",
-        4,
+        "cruciblecraft:gt6/c00441683661094d",
+        5,
         5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/f6d47e542473c0f4",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/2230b562e16dae30",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/937e8fe7cba1f9a2",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:gt6/98e07260e7331a74",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/88a2b3212f236746",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:gt6/c6bfb60a9efc0c49",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 692,
+      "duration": 5686,
       "eut": 96,
       "item_input_actions": [
         {
@@ -169,7 +274,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        54,
         0
       ],
       "output_chances": [

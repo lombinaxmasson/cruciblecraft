@@ -10,40 +10,93 @@
         }
       ],
       "hashes": [
-        "51762d2d1f3e9eaec8a220cad6b79c68b4cc98202077e5389ffccdf556f7035f",
-        "95c32065b0129cb266a4b6d03967282943c5c487d9b604cd8916e7249ca2bd7f"
+        "98448204b276615bcb7c4fa4ee249992fdb5b37eb2fabc946413d3d017639d80",
+        "d83febc07f39b1cf95f2ec70e4960dd2ac4f184d15c84de3f05dc654d494bfa0",
+        "464be989190c90b50ec7c00d1fb50190d1af6475d01eb4f2a8f632ce61779654",
+        "1549fe71953eda2df501215c7ffb9620f36c29c5dd852e5e0a5bca60d52eed9e",
+        "4596f4381d150528750d064226ae3c6594574814ef2624b4e7460b03a35324ca",
+        "e7d481b6b770d11287ab94cb419f5d8f8ca5d5c30f140fe56172a4452a3ff8b5"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vulcanite"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:nichrome/decuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vulcanite"
+              "cruciblecraft:prefix_material": "nichrome"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:quintuple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/decuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
             "count": 1,
-            "id": "cruciblecraft:vulcanite/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nichrome/block"
           }
         ]
       ]
@@ -53,22 +106,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d4f5eb0c0a19c002",
+        "cruciblecraft:gt6/d28791fe86a871bd",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/629ee831ee101ba0",
+        "cruciblecraft:gt6/aaee3a400c3be6f4",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/48e6f99d0014fd07",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/e8dde85b6b3f7184",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ffeeab3cf492240b",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/052934c9a7bd0353",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 525,
+      "duration": 2015,
       "eut": 96,
       "item_input_actions": [
         {

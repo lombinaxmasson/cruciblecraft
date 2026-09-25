@@ -10,28 +10,58 @@
         }
       ],
       "hashes": [
-        "adeac5e41209a03b23d8619d4b3b2b5d533baa53327f0acaee5f39e1e70780aa",
-        "a9a88efe19d7bb79ef89152626dba8934f9500571240d37f7bc08df869643adb"
+        "f76317f21fd54ddbd0c80391fd081f3292b30dc609e068483449cbb342990b8f",
+        "dffaa61970a4726d10d4e29cc0874da9a7a7ab236eca890a2b55d3071690ed28",
+        "9b23c553451e8ab99cb92879e156ce7a83cc0b0053698ad6a82995b27a8abfb5",
+        "0eb3ae8a9d0bc46851ce3e5d2395090be28d5fd3033246f029eea59ac1ac99b9"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:shadow_iron/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "spectre_iron"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "shadow_iron"
+              "cruciblecraft:prefix_material": "vanadium_steel"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
@@ -39,7 +69,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:shadow_iron/gear"
+            "id": "cruciblecraft:spectre_iron/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vanadium_steel/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_blue_steel/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:invar/ring"
           }
         ]
       ]
@@ -49,22 +97,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c07be3659cebe618",
+        "cruciblecraft:gt6/988b08aea391008e",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/cb1b5114ee56d82b",
         1,
-        6
+        0,
+        "cruciblecraft:gt6/2a97c3d9ff6dffa9",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/183ca749dffd7188",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/661cc255779b3d0a",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 836,
+      "duration": 52,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +139,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        18,
         0
       ],
       "output_chances": [

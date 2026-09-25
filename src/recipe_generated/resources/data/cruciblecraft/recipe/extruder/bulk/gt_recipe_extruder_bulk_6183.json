@@ -1,13 +1,182 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_6183",
-  "publication_group": "cruciblecraft:extruder/bulk",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "24ac2f86d2ef02d036f5f251b41dc6626da081b9a9ea2ad5a95b103f00b6e8b2",
+        "33d008a5ac18ec15354b2628b26f03c951833d12634cd1fe24cc5f847b770d58",
+        "daacf39faef6218c94029876d237c0193ab0e97148bafabecd2ead0f6bc7fece",
+        "240bbe8ac8c717afb392c025836ef2817e128653d3da4cd05bd896fa2446ac27",
+        "da1348ab086ebeef8c885e4102c08bb14293be5a4ceb14523d6090330d7eee7a",
+        "864ab4be36ae4e0d5ec8a67536392a16ddc86585a3fafaabda7b488f22c2ae0c",
+        "05e294a7ffe801618cf630213e1bc597783c622b45fa297c18d70f2e8bfb3de5"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:kanthal/wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kanthal/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kanthal/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kanthal/wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:shadow_steel/gear"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/65583c4f13576d22",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/ebcde6ff07f040dd",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/6e463d264e1d4aaa",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/9b653b916d6e397d",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/0d8cd1bbd0682133",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/e3a3bc62facb3ea0",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/06bf115bf35a1b3d",
+        6,
+        6
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
-      "duration": 59,
+      "duration": 387,
       "eut": 96,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -17,45 +186,18 @@
         }
       ],
       "item_input_counts": [
-        8,
+        6,
         0
-      ],
-      "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:prefix_material": "coralium"
-          },
-          "items": "cruciblecraft:dust_div72",
-          "type": "neoforge:components"
-        },
-        {
-          "item": "cruciblecraft:extruder_shape_tiny_plate"
-        }
-      ],
-      "item_outputs": [
-        {
-          "components": {
-            "cruciblecraft:prefix_material": "coralium"
-          },
-          "count": 1,
-          "id": "cruciblecraft:tiny_plate"
-        }
       ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "c3de657a7e83a33fd3064d9a58339793bc6d8602ac0b9d3c32366ad4c7d57e55"
-        ],
-        "selected_source_recipe": "gt.recipe.extruder#bulk_6183",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/bced05f7ccba0195"
+      "selected_source_recipe": "gt.recipe.extruder#bulk_6183",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

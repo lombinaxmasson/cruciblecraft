@@ -10,81 +10,91 @@
         }
       ],
       "hashes": [
-        "bf717ecc28b64534730488e76ce24dbeb435dad491e448b18e783fbfb26f89cc",
-        "eaa02399acecdcbdc038f4c2d0396bb3912d78934ac5d84028be9fbb921cb529",
-        "efacae1d34abfb498c782f2112458554d3aa76aed712a5c7fe4ca533b1a69c98",
-        "bbf1055aa398f7af9772f5643b01f6e7593842b71fe468815c352b264161a371",
-        "56c7f6b657025ee6af4cffeceabc2c445ca4c61076394ac0378df847ed0da438",
-        "dbe889c2f5216eb1e74005ccf6469ce72ad95bf2df17594f79853e59ae0110fb",
-        "2fb91daf51a55ef22770b7d2b4710d453b1954d7f5e806303e3894814e0530bf",
-        "339f67659f2b6821858eac96a7a2bbf6805118ad1e47c588e1ca1c1ac4dc4fb3",
-        "2e716153b589382b9200f744b7b67ebfce29d10f14164646d5a881e916d2e6a8",
-        "21e10541bef50809124db74ef81893296994a99a639c53dd62a5dfa46a163a92"
+        "f3796f9a0105d0619316473863f9c6a7af395c609e6e63ac82e4b7020b61c872",
+        "7df2f682bd9d2a37df708ec60b9fb9174a73111f6c87d34250b8033747af61fe",
+        "3276f502608e077a6dd8df77067289eb23313d0ad05aa4a22bee83051678343a",
+        "ff12c5ffb3092158f9367096952f36e8ee1499c4fffad892012b77258d7d36c7",
+        "d67d7b4c2cdb5048d03e6f7d35caf0e2d5901b9d84da2ebcd42edb176731abe8",
+        "75d6ff67a544bb67a51efe092744a2f875a8ce0774d3f68a419279eaf85932b2",
+        "0a0ea7e4eabacc640c958946c10bdf791880af6d4603a7f189e3df45384bf2bc",
+        "7b6be6617a7731850f7a05885fd9375354eb176783e6e37b3328067930ff3438",
+        "9232ea6def63e67590bb409118dfff8c719fad3f80d714d05663a1b1bb1014ae",
+        "a4e41d8a8b30cc4658d5b0b3dbb34a9d4cf0c5c1c6555bdf36c86b5b0dea0751",
+        "c2c48a6ed6e65a01b415605ef9f11dc5604bce795fcc5f069d2cc21801c2f490",
+        "b29b3371c12136d7e2dbaa24989fb996d0107bf0c8ca78339b2271403b598b1a"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrockium"
+              "cruciblecraft:prefix_material": "trinitanium"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinitanium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinitanium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrockium"
+              "cruciblecraft:prefix_material": "trinitanium"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinitanium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinitanium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrockium"
+              "cruciblecraft:prefix_material": "trinitanium"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "item": "cruciblecraft:bedrockium/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrockium/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrockium/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:erbium/bolt"
+            "item": "cruciblecraft:trinitanium/tiny_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -93,43 +103,62 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrockium"
+              "cruciblecraft:prefix_material": "trinitanium"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:bedrockium/plate"
+            "components": {
+              "cruciblecraft:prefix_material": "trinitanium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:bedrockium/ingot"
+            "components": {
+              "cruciblecraft:prefix_material": "trinitanium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinitanium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "trinitanium"
+            },
             "count": 1,
-            "id": "cruciblecraft:bedrockium/gear"
+            "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:erbium/rod"
+            "id": "cruciblecraft:trinitanium/rod"
           }
         ]
       ]
@@ -139,15 +168,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5fd60bb23c5df9e5",
+        "cruciblecraft:gt6/337a3d8804029de9",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/e7e9a09823daafb3",
+        "cruciblecraft:gt6/7faad9268da801e4",
         1,
         1
       ],
@@ -155,7 +184,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/812b53fd799c0dd5",
+        "cruciblecraft:gt6/8cd0f6353b1a9bca",
         2,
         2
       ],
@@ -163,7 +192,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/c1c64084ee449044",
+        "cruciblecraft:gt6/3f2e1518b6e8b7d1",
         3,
         3
       ],
@@ -171,7 +200,7 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/abd4b8416ae8af91",
+        "cruciblecraft:gt6/72a831db41ee3a64",
         4,
         4
       ],
@@ -179,46 +208,62 @@
         5,
         0,
         0,
-        "cruciblecraft:gt6/218da49750955791",
+        "cruciblecraft:gt6/06b7b4fc687edb6e",
         5,
         5
       ],
       [
         6,
-        1,
         0,
-        "cruciblecraft:gt6/252afecba893f361",
+        0,
+        "cruciblecraft:gt6/b43d1d30092eabe7",
         6,
         6
       ],
       [
         7,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/287281565ecc412a",
+        "cruciblecraft:gt6/83908d1dda549ba5",
         7,
         7
       ],
       [
         8,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/485485221393a172",
+        "cruciblecraft:gt6/a5b3f48168b96198",
         8,
         8
       ],
       [
         9,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/4305e2bfe421776e",
+        "cruciblecraft:gt6/88a6b532dbd241b1",
         9,
         9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/2399ca2d17816c24",
+        10,
+        10
+      ],
+      [
+        11,
+        1,
+        0,
+        "cruciblecraft:gt6/731926654ea57961",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 106,
+      "duration": 41,
       "eut": 96,
       "item_input_actions": [
         {
@@ -229,7 +274,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        5,
         0
       ],
       "output_chances": [

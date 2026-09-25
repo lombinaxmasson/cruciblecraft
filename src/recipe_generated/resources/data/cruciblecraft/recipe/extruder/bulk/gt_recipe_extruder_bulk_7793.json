@@ -10,40 +10,52 @@
         }
       ],
       "hashes": [
-        "13adf8e162ea60cd5fdb64353281c41301dcb25075217d62640d58ff600183dd",
-        "c18d07ed81aae25f00fcd79b07c8ff657211b1a5f0898ebe58fd6b83ea418c11"
+        "cb97754c7c63823cabebccf940a84774f745ef3060327567f06e2e11f01b051c",
+        "4b0578afeb590d8aa8f85f9236593752fb91a6c7fd694e1f4690041d99c77227"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "lemurite"
+              "cruciblecraft:prefix_material": "knightmetal"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "lemurite"
+              "cruciblecraft:prefix_material": "knightmetal"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
             "count": 1,
-            "id": "cruciblecraft:lemurite/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,22 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/43da2e4688eb9ebc",
+        "cruciblecraft:gt6/cfa665f1495b7f58",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/2946cb742ab423f2",
+        "cruciblecraft:gt6/7fca35149fd2d6a8",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 214,
+      "duration": 751,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        5,
         0
       ],
       "output_chances": [

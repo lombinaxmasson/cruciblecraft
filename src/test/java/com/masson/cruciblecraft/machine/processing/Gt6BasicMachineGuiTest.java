@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
+
 class Gt6BasicMachineGuiTest {
     @Test
     void oneInOneOutUsesGt6DefaultRow() {
@@ -51,9 +53,12 @@ class Gt6BasicMachineGuiTest {
     @Test
     void extruderInsertsSpecialSlotBetweenMaterialAndOutput() {
         assertEquals(
-                List.of(slot(35, 25), slot(80, 43), slot(107, 25)),
-                Gt6BasicMachineGui.layout(2, 2, 0, 0, 1, 1, 0, 0, 1)
+                List.of(slot(35, 25), slot(80, 43), slot(107, 25), slot(125, 25)),
+                Gt6BasicMachineGui.layout(2, 2, 0, 0, 1, 2, 0, 0, 1)
                         .itemSlots());
+        assertEquals(
+                Gt6BasicMachineGui.layout(2, 2, 0, 0, 1, 2, 0, 0, 1).itemSlots(),
+                ModProcessingMachines.EXTRUDER.ui().machineSlots());
     }
 
     @Test

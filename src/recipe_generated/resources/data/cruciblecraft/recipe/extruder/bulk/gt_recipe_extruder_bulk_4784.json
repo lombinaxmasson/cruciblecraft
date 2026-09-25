@@ -10,32 +10,59 @@
         }
       ],
       "hashes": [
-        "65bcb57a7d0ee04ab4edeca2dfc8d7d93eafa121688df0671b9ac993eff252ec",
-        "cb1f4266ff5ac9e1c00b0e41bf91569274167cd3dead7c171d21ab688780d252"
+        "8df6133293adb5d1f308137d79cc8c2bcc4d2efa7d2203784f7e42d693f6e709",
+        "dbf74c8a6c7f256eaeafa6f4f2a095b4e0ad31f66cbd77ad4fbe3b1d7fe4fd87",
+        "c33adb367b3e3b2317575a1519a2099469ff318441b864584a2347b5059593b7",
+        "aa3fb834b96eb3d0453148e312ad9704037e1e8bd4a4fdec42dfa19f6e846bb1",
+        "396b6b6e0625e8f830e23416d153d0c984ed307b91156876b1f3cb2fd9b74d4e"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "obsidian_steel"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:manganese/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "obsidian_steel"
+              "cruciblecraft:prefix_material": "manganese"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:obsidian_steel/gear"
+            "id": "cruciblecraft:manganese/block"
           }
         ]
       ]
@@ -53,22 +80,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/de3d041bcc9c02a9",
+        "cruciblecraft:gt6/9d9bd733175dd4f6",
         0,
-        16
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/b5e7ac919ab344c2",
+        "cruciblecraft:gt6/75a0334c4b871cdc",
         1,
-        29
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/f0012a76e51a8da2",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/1a2771b402a7f95b",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/18789cd3c81642cb",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 660,
+      "duration": 1267,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        36,
         0
       ],
       "output_chances": [

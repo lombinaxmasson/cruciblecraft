@@ -10,40 +10,155 @@
         }
       ],
       "hashes": [
-        "a0d98a59be47fa11de1a23164b336b02c66cd8d2cd7a854479b94f243a1a5d3a",
-        "02afa0dce07455915f7ff54f18b650da1ffa576678b2e1e41977aa45da170f40"
+        "434c8010a304277bd099289f9c8f115c966c453f37e5755a017b04b1aa42f7a1",
+        "5fb3544498a2817e088bcd93111be9445dcea16ba1f436fda0fdbb4944ab9441",
+        "46946808d44064769e1674ef0b82383bfc2a4f25d7d2af61586b69606cda2f6a",
+        "a7ea622656e92cd1f5d9be3865a70398b3c6367849e422460da565ff14828082",
+        "d1b8e4f2909d440b3593f800ccdd8a4d1036920594d8a673ce63570e2a3d25c3",
+        "1bde809a51dc8487721ce91c9701ddc391fe3f10b96fff7c5c8dbb17544ebb7b",
+        "9770c62df949560088dc16f4f2eef35d856226dc7be75548fd1ab2e25e45a354",
+        "5ea0cef46cccd4d4d15a6c663d80b2a229c76606522a2539328eabac2e5e99d1",
+        "f7e2a9051460b5872a2fe8478b58684708ff4e221a99e26ea4df6037489dfda1",
+        "d77e113320c9497e0d80d8fe826e1ce656c4b2e79e69fa7e9ee1c3ef4e586d51",
+        "4d16d85c344b949fc6a9d3c60f44d1aa9962344bb39d1644c9b36efebf386dc7",
+        "47f45466667a23bcf1858afbcce4271a2c4025ee65f6549766a14e676b2eae6e"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "coralium"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:efrine/wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "coralium"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
             "count": 1,
-            "id": "cruciblecraft:coralium/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -53,22 +168,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5a68b20ff022304f",
+        "cruciblecraft:gt6/9ff78fec426e8361",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/eb4b2035afdc689d",
         1,
+        0,
+        "cruciblecraft:gt6/f166459e3650f275",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/0e252ce60e71baed",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/4eac4768ed1a9e62",
+        3,
         3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/aa2ed2e09672ad20",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/db31e542f2860566",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/271559cb00f0ff88",
+        6,
+        6
+      ],
+      [
+        7,
+        2,
+        0,
+        "cruciblecraft:gt6/a32f2e4a9289a16a",
+        7,
+        7
+      ],
+      [
+        8,
+        1,
+        0,
+        "cruciblecraft:gt6/bfe4016f6192f167",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:gt6/e9d973ba1f939197",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/b08798f1897d278d",
+        10,
+        10
+      ],
+      [
+        11,
+        2,
+        0,
+        "cruciblecraft:gt6/37f8b7586c742b2b",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5269,
+      "duration": 61,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +274,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
       ],
       "output_chances": [

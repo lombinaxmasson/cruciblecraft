@@ -10,36 +10,52 @@
         }
       ],
       "hashes": [
-        "15547babbb38fe2f85b91d160e83d1b844bfa083964c1842d9dbb4a9ee94160d",
-        "7a2f73622c882fd61277aaa9acc29c64e1513ceffcff3f4a78c5e2ad43541fb0"
+        "ba638173fb34dab7c0af95e89e6276be4853a768747d30dd99969df7a48ab2c2",
+        "10d9d0a8e5cdbad9c8d7a07dfdefb91f1098f5dcafd1dbc0fc95ed021634ca26"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:meutoite/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_iridium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meutoite"
+              "cruciblecraft:prefix_material": "titanium_iridium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_iridium"
+            },
             "count": 1,
-            "id": "cruciblecraft:meutoite/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_iridium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -49,22 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/80d7531684bee5fe",
+        "cruciblecraft:gt6/38e07fef8d1e44ab",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/d1333f3d4c5d8620",
+        "cruciblecraft:gt6/158ca0f5a27e1372",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1912,
+      "duration": 1420,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        5,
         0
       ],
       "output_chances": [

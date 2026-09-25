@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 562,
+      "duration": 5742,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        6,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "workers_alloy"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:netherized_diamond/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_gear"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:workers_alloy/gear"
+          "components": {
+            "cruciblecraft:prefix_material": "netherized_diamond"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "netherized_diamond"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "67771d61a95a94d0fcaa55536384c7bed4746efe9497468d6deb912d229f7176"
+          "042f4705ad53fa96d52866bc285ba50f697b8cf5d5396a8d7df0761c868ca98b"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9579",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/767a0bd530b935a4"
+      "stable_id": "cruciblecraft:gt6/4ae36921b52c5a7b"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

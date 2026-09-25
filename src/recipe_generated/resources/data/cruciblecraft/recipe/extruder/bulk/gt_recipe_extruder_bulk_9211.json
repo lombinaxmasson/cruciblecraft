@@ -10,46 +10,62 @@
         }
       ],
       "hashes": [
-        "45621edb34f357f7afba0ff2ab0e32b6b18f0a278e7a8dc0e5e786d0720a8532",
-        "17cee07bc7659cd3cf31f83a854f1146502d9edb455fd89602b89015a1a35a80"
+        "4735b2c847ae9fbda72ba6c3f58170e986c3fcefa2357a7df895bdae64d21f09",
+        "7e8f7f2301baa5b6e69446ac1102019695b94dbe81fc956fe956657580ada1ea",
+        "bbe23424f899041ba20657a6196905cbd827df8f27d354041b3aa9b501482547",
+        "685e5a49753717a225fb9e3fb02018e0b3a34f6f5b5cff9d5c1083b4ea91771f"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "naquadah_enriched"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:thorium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:thorium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
             "count": 1,
-            "id": "cruciblecraft:naquadah_enriched/bolt"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
             "count": 1,
-            "id": "cruciblecraft:molybdenum/bolt"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -59,7 +75,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6cf378f4ea74f759",
+        "cruciblecraft:gt6/3fdd016e8938abf6",
         0,
         0
       ],
@@ -67,14 +83,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/9e6ae7668e4867a1",
+        "cruciblecraft:gt6/f1e9b78f01ed814b",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/438fad57ab0e9ad9",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/1ad81577a3c5af92",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 52,
+      "duration": 989,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        24,
         0
       ],
       "output_chances": [

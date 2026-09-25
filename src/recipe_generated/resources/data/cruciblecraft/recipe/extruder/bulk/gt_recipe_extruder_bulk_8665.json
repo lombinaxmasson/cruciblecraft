@@ -10,38 +10,83 @@
         }
       ],
       "hashes": [
-        "594c46390855dcb69550b86dec7dd5b6b815aa07e8aaa31388abe8da74780dcb",
-        "46902ab7867283a411b9d4deaa76fc0d7309c8b901487e26123dc6217d0c4aaa"
+        "410bf511b5f1982bcc183d231256dda6499570aef6ee73acc661a1280c8de5e8",
+        "966f523c76a967ee03c170d5b2ddef9ce7063ff693db73c2ed17419ee4353958",
+        "50a34cd38add82ae7f6ed3fe7a02857db69e09a19942a31e15391f66fba3f6d8"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:cobalt60/machine_casing"
+            "item": "cruciblecraft:niflheim_power/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:cobalt/machine_casing"
+            "item": "cruciblecraft:muspelheim_power/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:elvorium/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:cobalt60/block"
+            "components": {
+              "cruciblecraft:prefix_material": "niflheim_power"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "niflheim_power"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:cobalt/block"
+            "components": {
+              "cruciblecraft:prefix_material": "muspelheim_power"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "muspelheim_power"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "elvorium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "elvorium"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -51,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9d5ecd930fa76789",
+        "cruciblecraft:gt6/d9a04e4cedf3c51a",
         0,
         0
       ],
@@ -59,14 +104,22 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/f930581f21570df5",
+        "cruciblecraft:gt6/193f4212703e6510",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/f690d0555a1e08df",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3227,
+      "duration": 3546,
       "eut": 96,
       "item_input_actions": [
         {
@@ -77,10 +130,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8665",

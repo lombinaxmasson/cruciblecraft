@@ -10,32 +10,71 @@
         }
       ],
       "hashes": [
-        "6aef3a1b9caee53e1302ae164d8dd0769a52aab81e2a0814bbef84f86c1822cd",
-        "8edf5276875fc6b71d37db60f5d993dd85c58585f4a59c4fdba9c5488113f7ae"
+        "13e75a3ca2ef4e4609b9c172c07bf67e474eb78e2287bcc32a69c6f5c55c2855",
+        "3f722f018859d13a6a32745424a28f26c818d3dea4666e6de1ac712eae7bf749",
+        "4118cc68664c56c482138b60fd69b577915ae2d6d75628e6f91ca848db1e9d10"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:black_steel/bolt"
+            "item": "cruciblecraft:adamantium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:black_steel/fine_wire"
+            "item": "cruciblecraft:adamantium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:black_steel/gear"
+            "count": 64,
+            "id": "cruciblecraft:adamantium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:adamantium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:adamantium/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:adamantium/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -45,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/35a48e0d0ea814e6",
+        "cruciblecraft:gt6/1756168235ef86ff",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/5959dd0c7beac29f",
+        "cruciblecraft:gt6/cb2b45a1d37ee0b9",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/531584c30826653b",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 837,
+      "duration": 26431,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        32,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4000",

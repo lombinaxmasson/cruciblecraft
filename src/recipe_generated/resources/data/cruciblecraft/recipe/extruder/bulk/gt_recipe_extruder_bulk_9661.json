@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 1982,
+      "duration": 1124,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        14,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "meutoite"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:workers_alloy/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:meutoite/block"
+          "components": {
+            "cruciblecraft:prefix_material": "workers_alloy"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "workers_alloy"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "96c6cea732e03f265a7079cdaee5068f9d8cd60bd06bbbac3785731038372d76"
+          "89197b6877a5f304dda206a0a79f7a7be1752c72532132b27bb280feed5c0a86"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9661",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/0475723bba278537"
+      "stable_id": "cruciblecraft:gt6/b78d850041f143ba"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

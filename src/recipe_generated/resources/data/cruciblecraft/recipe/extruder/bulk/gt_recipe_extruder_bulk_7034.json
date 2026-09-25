@@ -10,71 +10,72 @@
         }
       ],
       "hashes": [
-        "2afec159e3322cfdb62391adfa0643e813f45cace08b3d561c8762cf956cbd6d",
-        "634165d4b8f4b8f0efd6bc5aa3ab91a8b3bee3955b98c8383d2d6eac68e41f0c",
-        "290090c44243cf67bd8e502b64e80d04fd466b25344a2d93cac1db1363260f91",
-        "d91895ab01d0949f1ee17fb3d0816091b0af94a9d401a907206e527374d40e23",
-        "381b4f163995a11791beaeda3c868aec9293d37e37ed1ebd8c4c8eb2f7ea1d64"
+        "05eaaa422702a838993be975b61e4a74ac220dcc4d70ef61215d93c3e14c69d6",
+        "ea384e4f368404d8b7aef7a9fa7a3578067f4b8d2cca1a6148c5046a2f91e043",
+        "e792519e9224a196c983dbcf9fac3f8f0b7cd43645fb8615f41ab675728d655f",
+        "f4362101c5f0608e003ea9934767cd407e3972c372a647db104c72c26eede633",
+        "06829c5b502ade80542c196a221052c05008814970454a0dea799b2cdc2ad114",
+        "7439c1cef8574924396d437b70976c5b616b593457761edb62f50f243491e62d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "thorium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:duralumin/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thorium"
+              "cruciblecraft:prefix_material": "duralumin"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thorium"
+              "cruciblecraft:prefix_material": "duralumin"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:duralumin/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thorium"
+              "cruciblecraft:prefix_material": "duralumin"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "thorium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:duralumin/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -82,34 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thorium/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:thorium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:thorium/ingot"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "thorium"
-            },
-            "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:thorium/small_gear"
+            "id": "cruciblecraft:duralumin/gear"
           }
         ]
       ]
@@ -119,46 +93,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d5afa7398bc00aed",
+        "cruciblecraft:gt6/d7f1960a36abe585",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/1fb322f1f7304898",
+        1,
         1
       ],
       [
-        1,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/d0aec49c90f88a06",
-        1,
+        0,
+        "cruciblecraft:gt6/29fb386841e52cf3",
+        2,
         2
       ],
       [
-        2,
-        2,
+        3,
         0,
-        "cruciblecraft:gt6/e4c74b0545d1cd60",
-        2,
+        0,
+        "cruciblecraft:gt6/55043015c794e055",
+        3,
         3
       ],
       [
-        3,
-        3,
+        4,
         0,
-        "cruciblecraft:gt6/b19d6dc8a6b301e8",
-        3,
+        0,
+        "cruciblecraft:gt6/975a01dc572e89d1",
+        4,
         4
       ],
       [
-        4,
-        4,
+        5,
         0,
-        "cruciblecraft:gt6/1c7559dd48fb0a8e",
-        4,
-        8
+        0,
+        "cruciblecraft:gt6/f1768964410cd7e5",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 440,
+      "duration": 307,
       "eut": 96,
       "item_input_actions": [
         {
@@ -169,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        36,
         0
       ],
       "output_chances": [

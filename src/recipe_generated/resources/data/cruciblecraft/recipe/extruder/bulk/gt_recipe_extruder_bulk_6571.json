@@ -10,40 +10,96 @@
         }
       ],
       "hashes": [
-        "1a19947d53bc128c9a24eab1c27d9aeb857163294861bb8b97d5451b52b0f6df",
-        "f92298759054118a581ff024d01b95c1cf87006bf94c95e5d58e68240312f36e"
+        "ae8a316ceb02af54f1807ebbbbe17f01e95d11c19828de79e14d1517c1e65f63",
+        "fd8b52053a6ef1c1a31193684902a4fe986a533d2b6efa966a230a395e3c32ec",
+        "6b626015de0037584d257666b6b99845e54e841a588918bbd2d26f2c1b87d611",
+        "01610d55c566197c71e93b5e6e4217ff56d9696f31218857c8965e6843227ec8"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hsss"
+              "cruciblecraft:prefix_material": "enderium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hsss"
+              "cruciblecraft:prefix_material": "enderium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
             "count": 1,
-            "id": "cruciblecraft:hsss/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -53,22 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f93a96ef6dc4ac5a",
+        "cruciblecraft:gt6/904b07ff05bbbd61",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/d110e976717d1c8b",
+        "cruciblecraft:gt6/fc0c0c95742d121c",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/f774197525705469",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/3f7c4a63eeca501b",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5210,
+      "duration": 603,
       "eut": 96,
       "item_input_actions": [
         {

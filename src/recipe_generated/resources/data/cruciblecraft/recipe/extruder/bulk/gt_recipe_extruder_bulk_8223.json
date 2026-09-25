@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "718ff03a0aff5b2680241014cf0311a2118488bfc783d98e75f5495b6f49f068",
-        "09af686779f8f4f7bea5341fab15448c6afe1a50df2955d81c0bb507348b2b32"
+        "d70a1d45f152c8da52e0d1994594cc687ae43dbed66090200d8341c9b0d59610",
+        "0b9befc74dfece262c5b8a3cecb8329e5a632f800dccc4f143be8845518a2ef2",
+        "b564dee1651686eefb88ec41859c0f32b21073c213ea214aab2d20b54c2ded91",
+        "80d624a0777b4732fe3ae3e98828f37486740d9c0af230fa747d315ee1b1a725"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "gold_inductive"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:shadow_steel/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "gold_inductive"
+              "cruciblecraft:prefix_material": "shadow_steel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:shadow_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:gold_inductive/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7ed2408cc4c50d44",
+        "cruciblecraft:gt6/259f173947797190",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b13600bb187d8f78",
+        "cruciblecraft:gt6/3aae5fa13e2060eb",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/94a60df370893939",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/0fd01f30b236a8cc",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1113,
+      "duration": 290,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        6,
         0
       ],
       "output_chances": [

@@ -10,72 +10,155 @@
         }
       ],
       "hashes": [
-        "c67c19bcda3d7d7c8d373e041dfb99eae862605036c7a58fdcdcc36b562618e0",
-        "4e6e07e13883ea5f63409b7c1261156972d86cb944a1a1632353cb016316f4f1",
-        "78739f523637a521af5ec78bd85b36a12c12b126818f6af3758d83ff937a3360",
-        "3896c395dd809ad50acba715f2c06084789e6c33e7c52279dac269d2da0d3960"
+        "d3f2aa0f12a94743839b89012b28671ef40565588a5fc966e7be9b72d30bd90d",
+        "87445ccbbd6cc72162c4c136367919022a482394e236ad266cd519a888c9291e",
+        "d2c2cc53b85f8289e80f8571eb38623ba322d7e6ea5a3825533ba244b35c9f82",
+        "99c61108ee2b28cceaf3dd75042e177a588d6033797a45ddce26927767ed3ddf",
+        "8c205ff26f0bea5eacac5aa315f5958732a808444870208987c294b4dd9fc8f7",
+        "7e4ab5098f7e806b2bdb04711c14b69612ddf5eaa8b3cc24d4b209b264cdae0f",
+        "2a15508023547c58ca6103991d3ac78e5c0035062715edc065a2976e03d3ede5",
+        "da8f60ef9952fd5d1b3e92159ad3b4166cdf7f60642fc8283af4386b0ba55a9b",
+        "ee8400281b5b1019d632e3c01f721aba3efeb6218c706606dba163d6897216fd",
+        "ab409c0050ebc444d6378f49e79096f0382a4caf226974bbbd706e4b17222e5d",
+        "e8c74e359ad51f947fad53271fbc748af70f7d2490aa0f68b63bc74c2cc0900e",
+        "b2a1d95734fda2fd962d86a1da7bcb2c8bcb89b3d9a7d2436f695bc0a5fdce80"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "fireleaf"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:atlarus/tiny_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:atlarus/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "fiery_steel"
+              "cruciblecraft:prefix_material": "atlarus"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:atlarus/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "fiery_steel"
+              "cruciblecraft:prefix_material": "atlarus"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "fireleaf"
+              "cruciblecraft:prefix_material": "atlarus"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:atlarus/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:atlarus/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "atlarus"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "atlarus"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:atlarus/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "atlarus"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "atlarus"
+            },
             "count": 1,
-            "id": "cruciblecraft:fireleaf/gear"
+            "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:fiery_steel/gear"
+            "id": "cruciblecraft:atlarus/rod"
           }
         ]
       ]
@@ -85,38 +168,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/585180a208848564",
+        "cruciblecraft:gt6/2fa6a670c8338023",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/287bd027486743ed",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/51582064ed19eb15",
+        2,
         2
       ],
       [
-        1,
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/09e33b4b83df6b19",
+        3,
+        3
+      ],
+      [
+        4,
         1,
         0,
-        "cruciblecraft:gt6/7a5fafc626db1a65",
+        "cruciblecraft:gt6/4ef7b28c2c52c68b",
+        4,
+        4
+      ],
+      [
+        5,
         1,
+        0,
+        "cruciblecraft:gt6/1a91ca0828cf6bac",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/f8892638ca59fc8a",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/f0b0a96bc6153bd3",
+        7,
         7
       ],
       [
-        2,
-        1,
+        8,
         0,
-        "cruciblecraft:gt6/24c2cc0269d0e7ac",
-        2,
+        0,
+        "cruciblecraft:gt6/68a5c5a17b0c2073",
+        8,
         8
       ],
       [
-        3,
+        9,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b5ef9412ddf244a9",
-        3,
+        "cruciblecraft:gt6/a253fe3fcdda4d85",
+        9,
         9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/467cf490349e57fe",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:gt6/9ad0f245f6db92a7",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1284,
+      "duration": 544,
       "eut": 96,
       "item_input_actions": [
         {
@@ -127,7 +274,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        5,
         0
       ],
       "output_chances": [

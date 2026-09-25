@@ -10,71 +10,59 @@
         }
       ],
       "hashes": [
-        "308b4988fde2a35ea8e3aa59a62d36e03be9017bdb7d4d3c2376d4085f684b89",
-        "75f202cec182efcb206177a5301a4fc959d21657f10e3c37a8e9e45264c4d428",
-        "b5ed5fa82439a3baaf94163af356f200028183bdb290c373d9acc5cb5190781e",
-        "a8c4d4ba384adfe33bde1818bf7f96ee05ce62b25f84d0c693a1027c109eef97",
-        "7ec2abd4bb81559d3be31175b62426584179318c636d13917b92f7ebb1e9e157"
+        "0df9544ee4198133fdf75bdecb0b481007bcad153d679d14ab4e21dd4424d35a",
+        "b4e3c042e804dff95dd5f4ed444b552e5263269a2b3f2572b525208b34380a63",
+        "8b929dedf60fef1b793ac1a7ec3f195a33a2a63c0dbcfab2bde802214cc573ed",
+        "9f62561ee7e3885f84cb729c8a0b292f6eea9cb3ab3f94a57071927961ab9bf3",
+        "a287398823da97520aa6c4ef76f97785ca631991a16bc340f3cb04aad3762a35"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrum"
+              "cruciblecraft:prefix_material": "soularium"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrum"
+              "cruciblecraft:prefix_material": "soularium"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:soularium/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -82,34 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:electrum/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:electrum/small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:electrum/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:electrum/long_rod"
+            "id": "cruciblecraft:soularium/block"
           }
         ]
       ]
@@ -119,46 +80,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/44c668f8253852ef",
+        "cruciblecraft:gt6/25734aa8d966e582",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/80f72f74ceea2dee",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/bbdce6d65884e864",
+        2,
         2
       ],
       [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/6ae408e26a428b06",
-        1,
-        14
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/bd6c055a694b9941",
-        2,
-        19
-      ],
-      [
-        3,
         3,
         0,
-        "cruciblecraft:gt6/3216dbd363c30383",
+        0,
+        "cruciblecraft:gt6/41be396c04e0768e",
         3,
-        26
+        3
       ],
       [
         4,
-        4,
         0,
-        "cruciblecraft:gt6/1eb57b210a6732c8",
+        0,
+        "cruciblecraft:gt6/c0fa56dfbe76faed",
         4,
-        36
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 304,
+      "duration": 2701,
       "eut": 96,
       "item_input_actions": [
         {
@@ -169,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        36,
         0
       ],
       "output_chances": [

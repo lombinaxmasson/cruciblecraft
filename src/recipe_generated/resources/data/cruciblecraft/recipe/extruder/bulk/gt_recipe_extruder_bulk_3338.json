@@ -10,84 +10,59 @@
         }
       ],
       "hashes": [
-        "dce8fc52d2993c0eb6e58b6d5d73025e8697307ea20cc2a98919d14b0579d1b0",
-        "31600bcf1a4eb4f7982ac92e783edc2e98fbee4a55566ff77eaf5a3e66ca9c26",
-        "4b6bbdb4e158c11f07588a521ec5daf5650c793daa20e9715ce2c762bbb2d023",
-        "805dd0fa0b611a324ebd912158298d8f3301880deda1931f8c5b8c4146f7b6bf",
-        "20ead388d4f6309c7e867271570fa33c8a852a9eb22b932b5b0193a75dde19eb",
-        "8aade9050c8d58402206d5cce027c25357ebdaa28c23f76b972162f66d7eb5ac"
+        "72c7bae26e5b73bb627f5e74f4c2a444393f04bfeb4cdd57fd330287093c1d22",
+        "5b4b9522d850d34a58f7512c5ab65eed874ff92c03249e35136d1f48cbbaaee5",
+        "d16e6c499b0ed485dea7f666be979f35b53e23febe516393c290aee1a208b8d4",
+        "3a975fabdae1fb74c5ee8d15bb4140f6156f179ccca5ff3c77f513377cbe7c70",
+        "615000e81b8e10381de665995b5b920da4afb1de0a76e974ced5e409d2496efc"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium7"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vibrant_alloy/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "beryllium7"
+              "cruciblecraft:prefix_material": "vibrant_alloy"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibrant_alloy/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "beryllium"
+              "cruciblecraft:prefix_material": "vibrant_alloy"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium8"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vibrant_alloy/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium8"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -95,19 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:beryllium7/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:beryllium/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:beryllium8/block"
+            "id": "cruciblecraft:vibrant_alloy/gear"
           }
         ]
       ]
@@ -117,54 +80,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b62f89b9f5cd71f1",
+        "cruciblecraft:gt6/c75edddbdfc203a0",
         0,
-        10
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/79cdce89cf16d561",
+        "cruciblecraft:gt6/73aceb8a17a14722",
         1,
-        11
+        1
       ],
       [
         2,
-        1,
         0,
-        "cruciblecraft:gt6/a60444b0187ed68d",
+        0,
+        "cruciblecraft:gt6/a79ce001f5a173fb",
         2,
-        13
+        2
       ],
       [
         3,
-        2,
         0,
-        "cruciblecraft:gt6/5ab0339277b7af11",
+        0,
+        "cruciblecraft:gt6/0642a698c1c02abb",
         3,
-        23
+        3
       ],
       [
         4,
-        1,
         0,
-        "cruciblecraft:gt6/8936201a44adc97f",
+        0,
+        "cruciblecraft:gt6/d9ca24baf5490f0b",
         4,
-        30
-      ],
-      [
-        5,
-        2,
-        0,
-        "cruciblecraft:gt6/80a67324a970b436",
-        5,
-        37
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 326,
+      "duration": 2868,
       "eut": 96,
       "item_input_actions": [
         {
@@ -175,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

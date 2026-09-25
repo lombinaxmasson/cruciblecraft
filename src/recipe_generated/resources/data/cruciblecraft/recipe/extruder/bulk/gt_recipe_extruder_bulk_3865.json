@@ -10,17 +10,20 @@
         }
       ],
       "hashes": [
-        "68585a9ec63add2bcbaa113953f13da376c41401949d918710fafa5de57a1b2e",
-        "6a674d58f3588aa73637ad06863fa08405bcae919b04e6f65f62f301bd7c7a48",
-        "a99160494dfaedeeaccafd5835e4c36607f15cdba08162bada54434daabd6bff"
+        "566baea55f97102eb4209bc400a7455172d6cf9343ee3e06ba9d403fd15b64fa",
+        "fb0e5f6a2e4ce541a9f93fb0d9f298e33ce2d9e6d79f0d6354a13ccea5613701",
+        "5c3460ddc36c96db5f9b5f8aae43eeb14c9675d1181def8dac42fde16619c65f",
+        "ff36f2634ed80ffcb2cb4f64c932c3755027253c8db95bd2103a5b660ec92f93",
+        "7491a6e043b0487aded5a6c611c484ff6c475a07b74a62e0e709d5c69e88c00c",
+        "1c2a78feabd2d3810838b8f735da464005aa94f231c87f523df7897034628d90"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thorium"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
@@ -29,19 +32,47 @@
         ],
         [
           {
-            "item": "cruciblecraft:gold_inductive/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thorium"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_red_steel/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_red_steel/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_red_steel/screw"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -52,13 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thorium/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:gold_inductive/block"
+            "id": "cruciblecraft:meteoflame_red_steel/gear"
           }
         ]
       ]
@@ -68,15 +93,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/76fd8b30e3bc1cde",
+        "cruciblecraft:gt6/d54d7bda7c0c64b9",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/8195dece26636b31",
+        0,
+        "cruciblecraft:gt6/7018397db7f0206d",
         1,
         1
       ],
@@ -84,14 +109,38 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/26b213694ae73f2a",
+        "cruciblecraft:gt6/6fc716a7a584a2cf",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/cf6b4b954ac2419e",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/fb251aee1454bdf3",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/afbe66eebdb58737",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1978,
+      "duration": 1583,
       "eut": 96,
       "item_input_actions": [
         {
@@ -102,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        36,
         0
       ],
       "output_chances": [

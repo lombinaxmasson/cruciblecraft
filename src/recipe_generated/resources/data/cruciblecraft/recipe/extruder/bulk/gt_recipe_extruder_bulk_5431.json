@@ -10,28 +10,20 @@
         }
       ],
       "hashes": [
-        "4e7fbc6fa817e65252d8083552c52c7f14c5a0afcd0fe36fbb7f74670799ea33",
-        "059b6aea8fbd14c8ac657eec473d1f7f1c7e9061086c30084c2f89d213749215",
-        "3d73fd6f0b0e777e84a03c01c900e951d498f333598591740dc7a25299f82653",
-        "792b1a24bdedf719e63299d96b767458ff3588da67842df56926e502a4fb5344",
-        "71a4a45c324c54bed5005ffca290a8de1b86fee7143b2b1ad6200d12ff1f5f1a",
-        "d453382d7c8ec76ba01d6a944d257e553b2eb9d0ffd0b167345728750c0e48a5",
-        "3ec74643d4b79aa9b48d9e90e91ca9107ab22f5a9bbbb1a1ed0173c8ed330fb0",
-        "cf7f3ca4c2da848f413dfede6e70a6766ea243b8a45a9f7471c459ee556d0758",
-        "0ab4f4efbebf59bae318b97c3f457453686044c53a1614e9d0a1ec754e7bc82b"
+        "999c9f7ada86d4edd78138718dba768a650cca0fcad8522f34e3427147175c98",
+        "7ebd092e1828bcdad4db5ffec2f0da63b06dc0c9033268db299c76c5c66ae77e",
+        "e14b608d39a041abb31a8257769370095834629e12726523ab7f5e362c631ebb",
+        "36c73660578dc1c479cffda408c75726330b876941bfbe3385f2a5f6d803bfaf",
+        "37e349b95c12172854746538ef4fb2e5a363c4629665d6463168eba0fd47556a",
+        "27bed7f077314fd4bfe0f0bd522debd7925da8a4152ad26bdf50e5695ea3c348",
+        "8b4435f08736bdd6b94c87f2b2500d1c3c1a495942e82c2c5b3da77f6c09f7d5",
+        "833fd15c6b7d44b94fc765d8e6cb32f50166b65d1cadf0ddd669716fc7e9a423",
+        "51e06e448d4a1e9af9edcfea9b9a64c93df8e97c056a360771cda18b7488be30"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:constantan/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/small_gear"
+            "item": "cruciblecraft:spectre_iron/small_gear"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -40,7 +32,27 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "spectre_iron"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:spectre_iron/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "spectre_iron"
             },
             "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
@@ -51,23 +63,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:constantan/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/dust"
+            "item": "cruciblecraft:spectre_iron/dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -76,7 +72,7 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "spectre_iron"
             },
             "items": "cruciblecraft:spring",
             "type": "neoforge:components"
@@ -87,11 +83,15 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "constantan"
-            },
-            "items": "cruciblecraft:minecart_wheels",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:spectre_iron/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:spectre_iron/plate"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -100,9 +100,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "spectre_iron"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:minecart_wheels",
             "type": "neoforge:components"
           },
           {
@@ -114,7 +114,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:constantan/block"
+            "id": "cruciblecraft:spectre_iron/block"
           }
         ]
       ]
@@ -124,7 +124,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6a334ff336a52b56",
+        "cruciblecraft:gt6/ae709eca5261e25e",
         0,
         0
       ],
@@ -132,7 +132,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/845b15018e61b965",
+        "cruciblecraft:gt6/d851c576fc545817",
         1,
         1
       ],
@@ -140,7 +140,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/c91a4b809a1ed25f",
+        "cruciblecraft:gt6/f3f44b20b657cef9",
         2,
         2
       ],
@@ -148,7 +148,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/8f0534d0bd5e8473",
+        "cruciblecraft:gt6/caf4dc1796227727",
         3,
         3
       ],
@@ -156,46 +156,46 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/405da96e9134af66",
+        "cruciblecraft:gt6/33c1599511f0f1c1",
         4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/87606981b74b2dac",
+        5,
         5
       ],
       [
-        5,
+        6,
         0,
         0,
-        "cruciblecraft:gt6/7651828350f8f045",
-        5,
+        "cruciblecraft:gt6/317baf5867331aed",
+        6,
         6
       ],
       [
-        6,
+        7,
         0,
         0,
-        "cruciblecraft:gt6/1391b209224403c1",
-        6,
+        "cruciblecraft:gt6/6e73160337e01a04",
+        7,
         7
       ],
       [
-        7,
+        8,
         0,
         0,
-        "cruciblecraft:gt6/8af62e14be9c7dab",
-        7,
+        "cruciblecraft:gt6/c7837df0dde56852",
+        8,
         8
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/16942953b3128778",
-        8,
-        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1551,
+      "duration": 1871,
       "eut": 96,
       "item_input_actions": [
         {

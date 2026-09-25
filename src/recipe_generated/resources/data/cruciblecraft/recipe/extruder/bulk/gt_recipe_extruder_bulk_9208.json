@@ -10,49 +10,71 @@
         }
       ],
       "hashes": [
-        "0c7ab5d056b53b3b4f11a530725cd0b74af25340a3d7c795679ce03c3cca8319",
-        "0640ccb5b9bc70c2342da38036f243e4ecb5f128c8192d5e054f1af9ca058bae"
+        "d410d17ef1bdc19764cebc699d16705793c49c063bc166eca726e850d15226ef",
+        "8fd3e09bbb9c4a78bfc856de80f8841e8c3f2d2e5c53e0da8ea3e29ab2902688",
+        "bbe4ff06c86e53a7a5112d7462b0d5b9ce9c81c20fd7a67f49f5a7cfe22fd39e"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "oureclase"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:amordrine/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "oureclase"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:amordrine/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:oureclase/rod"
+            "count": 64,
+            "id": "cruciblecraft:amordrine/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:amordrine/bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "oureclase"
+              "cruciblecraft:prefix_material": "amordrine"
             },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:amordrine/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:amordrine/ring"
           }
         ]
       ]
@@ -62,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/38554c75f4396646",
+        "cruciblecraft:gt6/8876b00589e4ca3a",
         0,
         0
       ],
@@ -70,14 +92,22 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/e386955e12664137",
+        "cruciblecraft:gt6/1c83e0f71525a19c",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/9683a0a6aca50857",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 172,
+      "duration": 8401,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_9208",

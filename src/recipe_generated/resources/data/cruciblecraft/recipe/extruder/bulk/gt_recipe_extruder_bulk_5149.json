@@ -10,71 +10,52 @@
         }
       ],
       "hashes": [
-        "0f85ce5ed7c7d0985089173bc8ff8ab1f2641a0b94437f91c9b825b62739b499",
-        "fab7d8a052c0d49e32d6fe5c30c663694a75302af5e6da8c3988f8d7c07666cf",
-        "14dfc78d04c00c534d354486a1eb5f64e4f91c3e42a7d622c3d611251dcd513a",
-        "6fbb48bcd1e8863b538a8cf93f4bf557a037f0ccb11f03f0ac937b36394a8bb4"
+        "adb23d470980326dcd5431150d5298e42bb833d11f9717405cd53891d570e373",
+        "da7414bfca00658f4e19f544a2ecc6a7589bf598de903713c95e8dafa0c492ff"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:actinium/bolt"
+            "item": "cruciblecraft:manganese/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:actinium/bolt"
+            "item": "cruciblecraft:manganese/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:actinium/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:actinium/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:actinium/ingot"
+            "count": 64,
+            "id": "cruciblecraft:manganese/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:manganese/bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "actinium"
+              "cruciblecraft:prefix_material": "manganese"
             },
-            "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
           {
-            "count": 1,
-            "id": "cruciblecraft:actinium/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:actinium/long_rod"
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -84,7 +65,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5eac26dc71ba7ca7",
+        "cruciblecraft:gt6/f77679b98a0d8e43",
         0,
         0
       ],
@@ -92,30 +73,14 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/18ae3534067a9eab",
+        "cruciblecraft:gt6/ed2c56ce72ac4d25",
         1,
-        5
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/7e00bb72c4e67910",
-        2,
-        11
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/e601c5b0b1a325da",
-        3,
-        15
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 161,
+      "duration": 1971,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5149",

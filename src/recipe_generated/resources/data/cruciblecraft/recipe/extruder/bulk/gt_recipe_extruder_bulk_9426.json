@@ -10,16 +10,16 @@
         }
       ],
       "hashes": [
-        "9e32d07c49c8b0be587934b5f6544b96e7d2a10eac143fc082adac6b040f3017",
-        "c8d549df597893f2d0f2e4087a714e47deb433bb4de98a21340601021be1f802"
+        "fd0fde735b2b49260aff9ae6d7bea1da0573de77c78bb6fc7390ff4e94dd8000",
+        "df40f25bec119670463745238b672eba32f1019318c2fcb4955f619297589a1d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "carborundum"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
@@ -28,7 +28,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:carborundum/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -39,7 +43,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:carborundum/gear"
+            "id": "cruciblecraft:tungsten/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungsten_sintered/gear"
           }
         ]
       ]
@@ -49,22 +59,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8449f88e2d65ad33",
+        "cruciblecraft:gt6/f98c07e3de0ba1c3",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/843b774e19b3fd4e",
         1,
-        2
+        0,
+        "cruciblecraft:gt6/eb6e3acaac554a1a",
+        1,
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 385,
+      "duration": 4043,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +85,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        6,
         0
       ],
       "output_chances": [

@@ -10,40 +10,134 @@
         }
       ],
       "hashes": [
-        "2476efd0fdcef4a72c966ab828ae3bef85bd30b620002c22bd0afab3313ff6c7",
-        "a3382a3e083d75ee0354315064895cb60b3e685e3079848136a84ccc2589a04a"
+        "5a25467ee50d935d4e99c954c9548f9c180c39a44bdaaa30e5a6dc25d3946cb2",
+        "e546e410274b4188dc5d022b5c819b8be406af192bdd8ad98514f661578ba310",
+        "e5d9d9b2cf962a200671434955a83abdcfbe399343c4e9379668d01287339e6f",
+        "659b697632f8c3447038cfd574e2ed6f29e4aacf16cb21e184eaec5fa9e9e498",
+        "7c8e544310017d5976644252edfb8f0364a5cef7697c533b340585d0f1ad2aef",
+        "d17c969311a0bc3e7ae7161723ac6a2b15d994267832f969855c8cfa698cb7bb"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vivid_alloy"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:workers_alloy/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vivid_alloy"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:workers_alloy/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vivid_alloy/block"
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:workers_alloy/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:workers_alloy/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:workers_alloy/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:workers_alloy/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:workers_alloy/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:workers_alloy/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:workers_alloy/tiny_fluid_pipe"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:workers_alloy/tiny_fluid_pipe"
           }
         ]
       ]
@@ -53,22 +147,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/382ca3a6deb7d6e8",
+        "cruciblecraft:gt6/15760e8356733518",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/10a629cd82151ea4",
+        "cruciblecraft:gt6/14d950e3948c3f79",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/9b2d1b186390f05e",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/8a2d9cc34af8e4c9",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/68fcf16f4ff93897",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/0ffaf048eaec15e9",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2448,
+      "duration": 7868,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +205,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7606",

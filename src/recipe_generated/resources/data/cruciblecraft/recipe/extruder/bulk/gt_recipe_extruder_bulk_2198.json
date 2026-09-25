@@ -10,80 +10,128 @@
         }
       ],
       "hashes": [
-        "2dbe8590852661c8c5fefd4ccc9ff6276ba8a4c366c54870733025da75b17cee",
-        "78e886583b92300f9a04c40b6f57aa1b95f63942c9d4f79af017ba1fb4793e4e",
-        "545549a6393b370354299cc681f8693b8949d213564244090975ba119068b3fd",
-        "7e5284a40bdab5b4909b34c5f308612e5848bf36778679dcf97ae66443b9d61a",
-        "9481dd91281a36014203c13b59c2e9662ea09894ba1eec11579424d81822e7c0",
-        "09d098e0263906f658ddcdd95ef7c659a181000d6f541324d465d0a988aa3674"
+        "958d70c5096702601107cacaf56165c1e6d7f5ef42b1cdae530b6cb41496764c",
+        "2e665620b0df60938e522dea91ae63ca38decfd10f60c2b7614369428b26b819",
+        "3d527778294fd29a0cd3e9e98d46c8f3594e61dbe92525599b3bff130acf7e5e",
+        "b19fe69862fd14e60ef3ad33102c5f9cf0e401ede1526c0160856cb15a695005",
+        "be8d34425b4809b15c705dc677e25297dedc4f0c2148064e683e9b8d4473bb55",
+        "28994036de56cfdd856d3bc10c2073b7b26f069a820ff4a21a2533b2c841be67",
+        "03a91fcb37784dcb7d591e1250a9d77caff827f0d952229002e36ea92b784b6d",
+        "47045caae427365aa84f7d14fc156be014c4950af20fb4d38a6c497dc130d98b",
+        "f24f6f211e764974e685790898bb70ce50ef1a45b7a9a840571cf1a19cc40109"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "constantan"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:stainless_steel/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:constantan/screw"
+            "item": "cruciblecraft:stainless_steel/tiny_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:constantan/tiny_dust"
+            "item": "cruciblecraft:stainless_steel/tiny_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:constantan/ring"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -93,7 +141,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/91fe00f6943be4ed",
+        "cruciblecraft:gt6/24d564b7bf5ce752",
         0,
         0
       ],
@@ -101,23 +149,23 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/d1d240e9b70a5d24",
+        "cruciblecraft:gt6/b167f36fc6ca8c9a",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/4a9446bba50a9984",
+        "cruciblecraft:gt6/902de66581c42e7f",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/170439b9bbca796e",
+        "cruciblecraft:gt6/13a8f7ddc8ed3fac",
         3,
         3
       ],
@@ -125,22 +173,46 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/6de486a1a3d12a63",
+        "cruciblecraft:gt6/cfd623aa6b2a637c",
         4,
         4
       ],
       [
         5,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f535f606cb39ab4e",
+        "cruciblecraft:gt6/420c3a63608715d4",
         5,
         5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/4f21d670e1afb8d0",
+        6,
+        6
+      ],
+      [
+        7,
+        2,
+        0,
+        "cruciblecraft:gt6/261d8fd84a950ef0",
+        7,
+        7
+      ],
+      [
+        8,
+        2,
+        0,
+        "cruciblecraft:gt6/baec86d1ca58fc19",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 58,
+      "duration": 401,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +223,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        4,
         0
       ],
       "output_chances": [

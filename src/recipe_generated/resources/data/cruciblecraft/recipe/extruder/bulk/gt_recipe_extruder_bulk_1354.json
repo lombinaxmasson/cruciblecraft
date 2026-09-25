@@ -10,80 +10,109 @@
         }
       ],
       "hashes": [
-        "187e365a57fa077868be986eef80a00066336709012203e4b72e2956b07ddd2f",
-        "dcd1a98a844dc44a7cca4ff759cb81d580c86f8697cb3d8f75275bc12041d359",
-        "e2d164006cfb96a53b6dcd174b575f06a53df6686c43fb61f4015489395a8549",
-        "4986822359f29eaad60d7bc1d9750d90107dead9ff6eb92536fbc2b93e67894b",
-        "e87c4aff231fe8d2261b93d8acc4f34019f40cc267c8701b5d6e9b8189e032bf",
-        "78965a90d81e78b535b4c772bd718ea94190aa84de3f4aaf8050dbb44463ba96"
+        "4b76ed85813c7110a7efa561c4268115d1f7acbd0080f2b70c323507ae29a30d",
+        "830cfdf2513d2b640c04a206e9b31699307baea1212886d3d8fbc742efdd56e1",
+        "c70a7a3ebc34a5bafcb5b3654a7f334768a601bb5106e0b24a936eaa7990e9a0",
+        "6b3a17899ca246f53dbfd62299317b60f73a8e101cf35737e945b32852ecf4d5",
+        "5320ec914341a382e8fc08ee13cd2850608b169b059cf108262c6ddb771d82b0"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "zirconium"
+              "cruciblecraft:prefix_material": "coralium"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:zirconium/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:zirconium/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "zirconium"
+              "cruciblecraft:prefix_material": "coralium"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:zirconium/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "zirconium"
+              "cruciblecraft:prefix_material": "coralium"
             },
-            "items": "cruciblecraft:tiny_plate_gem",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "count": 5,
+            "id": "cruciblecraft:coralium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:coralium/ring"
+          }
+        ],
+        [
+          {
             "count": 1,
-            "id": "cruciblecraft:zirconium/gear"
+            "id": "cruciblecraft:coralium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -93,54 +122,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4319c59fa85b3015",
+        "cruciblecraft:gt6/8b3c2854b06dd4d6",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b79d523e176d4eb0",
+        "cruciblecraft:gt6/10da82d095f24785",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/90da42aca16011ce",
+        "cruciblecraft:gt6/c615127b926679b7",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/89a3268bc387e329",
+        "cruciblecraft:gt6/188a589b2f5722b5",
         3,
         3
       ],
       [
         4,
-        0,
-        0,
-        "cruciblecraft:gt6/e3afe5e7f644846a",
         4,
-        5
-      ],
-      [
-        5,
         0,
-        0,
-        "cruciblecraft:gt6/a09d9fd0c9f79ef3",
-        5,
-        6
+        "cruciblecraft:gt6/a182f660ef93880d",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 737,
+      "duration": 352,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +172,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [

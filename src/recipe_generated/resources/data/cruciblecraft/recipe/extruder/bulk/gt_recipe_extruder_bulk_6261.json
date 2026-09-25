@@ -10,80 +10,62 @@
         }
       ],
       "hashes": [
-        "92b20325a50c26e9555989eabcc591b13f1562d32b2e9f3fed2469fcfda3db48",
-        "4d8800e8374028c3b58876403c1faaaf0ffd0c654f610099e2b6e8aa22477598",
-        "281276486fa25ae597d6fb9c9605404b2da35d460ae7afe1af54f5529761fcf0",
-        "6c7555e7f9e1c8d8876f05b39b69b9fc95b01e543f78860173ab02d7de67d076",
-        "9759db79b41be084aa3890ef757898b4d792fd1ea5a406781284181ceeeb08f5",
-        "ee98ca8f99f849b2c895f3b4e5a5432a8ab7a6b9d4a18d923bf486ad224b5d1d"
+        "5ed412604d5aac9f0be7116efb29b8096db2ce4d121e254ed2f6b81a92119ef7",
+        "e773a6f7ba9942bdce1b41790af368fba6de55c7b4fd7e9f317609ee0013b417",
+        "17074d3b258beb7599b2012df6a29aee6ffecb719d1573c08a9dd4bfddf54db3",
+        "3691f48f9eebca31d5aa21fecf440a288f1b2470982d58d6e81480e2fc0cd96a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:meteoflame_black_steel/screw"
+            "item": "cruciblecraft:electrical_steel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:meteoflame_black_steel/tiny_dust"
+            "item": "cruciblecraft:electrical_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_black_steel"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrical_steel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:meteoflame_black_steel/nugget"
+            "item": "cruciblecraft:electrical_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_black_steel"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_black_steel"
-            },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "electrical_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoflame_black_steel/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrical_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -93,7 +75,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6d93088da06c1662",
+        "cruciblecraft:gt6/9302abcb1ad798d3",
         0,
         0
       ],
@@ -101,46 +83,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/9abc00ec24545755",
+        "cruciblecraft:gt6/8409727664d497ad",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/9418c2e779a446de",
+        "cruciblecraft:gt6/7198d079d4fe64d9",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/e830bb2cc002c9cf",
+        "cruciblecraft:gt6/c7eae3e05d240811",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/24afa083de611834",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/29d1ac1b3be66c2b",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1467,
+      "duration": 744,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        24,
         0
       ],
       "output_chances": [

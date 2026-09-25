@@ -10,40 +10,83 @@
         }
       ],
       "hashes": [
-        "d10629809ec23894417d5349f48bf4236020642fde49d8c28af6b15ced0da21a",
-        "7a8e0648c67cd562fded8d0d7f3b6ab8c8b3fed600faab9f9fcf47acaab18aed"
+        "e1aa7a340a243fc7f40c961c4752b1d0a063bd28d8bb6a967509fc01c96d10d3",
+        "4a2f187ad184c82fbb2adfa1e90e492bb9f1c5ef7a90f433ef8c8e2053616a17",
+        "08f15e928c731c1336bb20106005c29d6fdd38985030fb6a5307231965e35bfa",
+        "e643452132d5b6cd8781d17105d310483a717e8743d04b583aa42dbcdb0c386a",
+        "01fb93ec5fc4218e3d2b24b5235ca3d978efa8248e4bf029ca3ca899b3e89874",
+        "c1722295c3510a0cb7a6a88316f39d7420a5653f32646fa3dec8e96dbd8510b2"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "naquadah_enriched"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:celenegil/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:celenegil/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah_enriched"
+              "cruciblecraft:prefix_material": "celenegil"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "celenegil"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "celenegil"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:celenegil/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "celenegil"
+            },
             "count": 1,
-            "id": "cruciblecraft:naquadah_enriched/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/01ac4d13f6d57578",
+        "cruciblecraft:gt6/348dc5286dc63475",
         0,
         0
       ],
@@ -61,14 +104,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/206dee00543a28b2",
+        "cruciblecraft:gt6/b5208648c579cd75",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/60d16485cc5f965c",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/76db042fbd49dfcf",
+        3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/777fd1cdcc5bd547",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/02250102dc4a7470",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4098,
+      "duration": 1951,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        54,
         0
       ],
       "output_chances": [

@@ -10,23 +10,27 @@
         }
       ],
       "hashes": [
-        "0c18c9a96c1e4c00c6f24ea171ca21e70bd91d2aab04618da099eeab2a34cbf2",
-        "c30ae4fc468f7b48d8ff331dba45cd4aad77d351b739b221fba960b04f419a2c",
-        "eed9f1d285dbc730a6f4256392c30d743fd52db52665ee937f984af18fdfc072",
-        "37020c417ba94fec1dbc33a5ef04e0f950f9ebdedcfef3ceb7126f0bd7bfd677",
-        "1b4699fedf356533b366c3869cbd61a8c28b5031a77060a09f9d0bc01fe20659",
-        "be763fad018af656b3a093f6222004d68c103d3ab4810eb6d8f70add0a7025b4",
-        "9289495078a304b94df900b86f7be9201e8f7f6ee12fbb070401685ad716ae5b",
-        "27ff9092400e6a3048bf28279ef954d8a3c5ddb9001256c3eceba02d123b9643",
-        "ce790bbbbfbdda27f649acf723267735b68ba088d00bfbdfcf43392a1de9663a",
-        "49a99a0e118b6931a2cb79852293a5d83972538bf969d3afd1a349e9eb5ec6a6",
-        "8fb50f61a514c2172fa44378f980a177079b2320dbe35bca75c1b5c6f08091b4",
-        "515e2844af334f5975d486f0014b598cb78cb5b5082bf145cf975fdbcb4caa62"
+        "f7a730e324bb61e8d5daa3ca0d7c95c23b719eebf321acc073e37afbde0d58eb",
+        "a1562cb2effc47a89538d532118366ed414d636c9f08740c65abcb6991762b70",
+        "4c9e1895fb05244af2ecbf60363192561b21ba64a58c5dbb4ef156955ef85ebc",
+        "0f67dd10375b94e36fc01a00de3f817f2aec916ecf03f5e2d369030b425b3257",
+        "eb578efd23449108f8cad29f0a54223005d31c58d1a473693f3dcf73689ae555",
+        "217f5aadbbbadab13e1bb0be960b7cea28454f517dcdf9387949bea139983e8e",
+        "4c0b00118a041696657ae0310f1ad882621a102061f7faeef99669b62c6a3d93",
+        "5c961a07354403ddc7a852a346c0d750586658f34c65d96b2b31925e359d291f",
+        "d60b432c816baea66ecbdab96f85ae4a78b6ab415fb57b28cbdb4980c6dbd35b",
+        "468c2f40c9cdc7301455fb1490b41b8fb058b6c9240a614e53102dd17f61f440",
+        "e2cfbb8158fb77a18ba5fe7535fc0b12363357c11ff8d517f70a57acebcedcdb",
+        "d4ccbcf03ce43b6c207b987c1ae3b7ec1102c88046baf3ab8018f16b3d3a7f18"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:flamascus_steel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_plate"
@@ -34,26 +38,10 @@
         ],
         [
           {
-            "item": "cruciblecraft:flamascus_steel/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:flamascus_steel/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "vulcanite"
+              "cruciblecraft:prefix_material": "electrum_flux"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
@@ -62,15 +50,23 @@
         ],
         [
           {
-            "item": "cruciblecraft:flamascus_steel/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:flamascus_steel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_ingot"
@@ -78,31 +74,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:vulcanite/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:flamascus_steel/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:flamascus_steel/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:flamascus_steel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_curved_plate"
@@ -110,7 +86,71 @@
         ],
         [
           {
-            "item": "cruciblecraft:flamascus_steel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_gear"
@@ -118,10 +158,14 @@
         ],
         [
           {
-            "item": "cruciblecraft:flamascus_steel/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ]
       ],
@@ -129,19 +173,34 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:flamascus_steel/plate"
+            "id": "cruciblecraft:amordrine/plate"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:flamascus_steel/ingot"
+            "id": "cruciblecraft:electrum_flux/gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:amordrine/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
             },
             "count": 1,
             "id": "cruciblecraft:curved_plate"
@@ -150,19 +209,31 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vulcanite/gear"
+            "id": "cruciblecraft:amordrine/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:flamascus_steel/small_gear"
+            "id": "cruciblecraft:amordrine/small_gear"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
             "count": 1,
-            "id": "cruciblecraft:flamascus_steel/long_rod"
+            "id": "cruciblecraft:tool_head_raw_shovel"
           }
         ]
       ]
@@ -172,7 +243,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1e758844e10b6ca9",
+        "cruciblecraft:gt6/fd966f4cac0d5733",
         0,
         0
       ],
@@ -180,7 +251,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/5992f9675a1b3d3e",
+        "cruciblecraft:gt6/266f1bad4462f283",
         1,
         1
       ],
@@ -188,7 +259,7 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/8270b1b114f2af46",
+        "cruciblecraft:gt6/925efda5cb6eed96",
         2,
         2
       ],
@@ -196,7 +267,7 @@
         3,
         3,
         0,
-        "cruciblecraft:gt6/31a7862c7edcf37b",
+        "cruciblecraft:gt6/729400ce9b47fdd7",
         3,
         3
       ],
@@ -204,70 +275,70 @@
         4,
         4,
         0,
-        "cruciblecraft:gt6/65e7d216839a23c4",
+        "cruciblecraft:gt6/262fb18db39fdcbb",
         4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/b9b8512a48bdd232",
+        5,
         5
       ],
       [
-        5,
-        1,
+        6,
+        2,
         0,
-        "cruciblecraft:gt6/aeab996a050c933b",
-        5,
+        "cruciblecraft:gt6/9f68fb01538f9176",
+        6,
         6
       ],
       [
+        7,
         6,
-        3,
         0,
-        "cruciblecraft:gt6/9c31618df313142b",
-        6,
+        "cruciblecraft:gt6/868acdbb9446bcc7",
+        7,
         7
       ],
       [
-        7,
-        5,
+        8,
+        6,
         0,
-        "cruciblecraft:gt6/117bc3685e77f571",
-        7,
+        "cruciblecraft:gt6/821a73a27ca2c0d9",
+        8,
         8
       ],
       [
-        8,
-        5,
+        9,
+        1,
         0,
-        "cruciblecraft:gt6/ea9f2280156a0d83",
-        8,
+        "cruciblecraft:gt6/610aea8d8329ea83",
+        9,
         9
       ],
       [
-        9,
-        2,
+        10,
+        7,
         0,
-        "cruciblecraft:gt6/3c6d23ada3d493f9",
-        9,
+        "cruciblecraft:gt6/5c65507639abf6a1",
+        10,
+        10
+      ],
+      [
+        11,
+        8,
+        0,
+        "cruciblecraft:gt6/a566baf414a95813",
+        11,
         11
-      ],
-      [
-        10,
-        4,
-        0,
-        "cruciblecraft:gt6/144148bd2f6a9217",
-        10,
-        12
-      ],
-      [
-        11,
-        0,
-        0,
-        "cruciblecraft:gt6/67a93f45875b41fb",
-        11,
-        13
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 350,
+      "duration": 431,
       "eut": 96,
       "item_input_actions": [
         {
@@ -278,7 +349,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        2,
         0
       ],
       "output_chances": [

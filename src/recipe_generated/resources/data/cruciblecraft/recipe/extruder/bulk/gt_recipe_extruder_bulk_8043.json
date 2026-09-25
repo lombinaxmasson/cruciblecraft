@@ -10,28 +10,32 @@
         }
       ],
       "hashes": [
-        "d76afa23a11fd5f83c3e0b4ef8c0afbc4ed4a720c6381f07fed124edeb225e7d",
-        "dc3161808caa59e815f29689254b7fb457e78952c95a6f89cdb63de038974d24"
+        "a4384447862f149a25745a3d218a9a168946d246bf7de4599e9edc9bdc52d57d",
+        "8b84644bd03a03b76f2bee22cc59971e3bbc8592023babefce0de05898eaa9c7"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "nickel"
+              "cruciblecraft:prefix_material": "cd_in_ag_alloy"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:nickel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "cd_in_ag_alloy"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:nickel/block"
+            "id": "cruciblecraft:cd_in_ag_alloy/gear"
           }
         ]
       ]
@@ -49,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/cdb180329efe6a73",
+        "cruciblecraft:gt6/516b0dd02993161f",
         0,
         0
       ],
@@ -57,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/6edb5f4a9950f358",
+        "cruciblecraft:gt6/a631014be61c060c",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1777,
+      "duration": 376,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        2,
         0
       ],
       "output_chances": [

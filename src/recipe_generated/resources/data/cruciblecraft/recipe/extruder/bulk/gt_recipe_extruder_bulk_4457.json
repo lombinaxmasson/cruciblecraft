@@ -10,24 +10,20 @@
         }
       ],
       "hashes": [
-        "b0c84c28bce8e1743f5a6c93682eb421093a92f2f10d2179f14fd467f09e7f9b",
-        "9bcf70118358e42ceba3d5a8a5f60167587d9dd1af4fb2b86060aaa17e8b3891",
-        "7edef96d3facc7484463a7fa50c2c1c34c9b5cf784b2eecd56f612902fc4cade",
-        "2495fce615ebb2410f57d22076e24c8f4c4b721e9121f38f8e6e94b7f3b47bc0",
-        "72be9fa68e7733cc487562b9b6e501ad46594b499375fc492f06ab02dec1c868"
+        "31e90cb1388ee968e44e63f06f41a06fe35c42da18a90f660d63b418069b5201",
+        "fa201f7323934be7547a6b1e3276249bf66c4f62c103722883f2f538ba91793f",
+        "f8d91c0f429396430be41c01681fe50825e60c5d9ec4303f3c9451927449cf24",
+        "e4d8dbe3c717c39ab0dc02001f76fd6dfee6a75edb74a7b5fde422a9196f5214",
+        "9f4c9870d7cd5a60b03579208e74e15d88de70afad891779fa0e9d6212cb8408",
+        "e0f899fe5d42c1846ce4f0f6ac5a7c3b832cbe17b1281d50291e79f04df17c6b",
+        "e4e28f010bb5b71ce892fbad6433755ee15530bbfba30dd7a85070c65f0bb803",
+        "cb5a676d37e30e51d1a5ddf92a83a8f9594abcef9a5a3abe1df1177c5a1eb4cc",
+        "214ddfba46d70307535b2eb5b1dcff6cd1c943ec7df9e8d23c783a714959fe83"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:steeleaf/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:steeleaf/foil"
+            "item": "cruciblecraft:electrum/decuple_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -36,18 +32,10 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "steeleaf"
+              "cruciblecraft:prefix_material": "electrum"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:quintuple_plate",
             "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:steeleaf/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -56,13 +44,77 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "steeleaf"
+              "cruciblecraft:prefix_material": "electrum"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/decuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/decuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ]
       ],
@@ -70,7 +122,22 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:steeleaf/block"
+            "id": "cruciblecraft:electrum/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:electrum/large_item_pipe"
           }
         ]
       ]
@@ -80,7 +147,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b20a15d7809f0df9",
+        "cruciblecraft:gt6/20429e86d3dfceca",
         0,
         0
       ],
@@ -88,15 +155,15 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/3734db5b82639311",
+        "cruciblecraft:gt6/ea4682f9361b3c9e",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/344f4c0b4edd8854",
+        "cruciblecraft:gt6/184ec2cb768b6f58",
         2,
         2
       ],
@@ -104,22 +171,54 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/eb05d5e308ba8105",
+        "cruciblecraft:gt6/28fdc6339bdf17ee",
         3,
         3
       ],
       [
         4,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/ee5a7806a6148e39",
+        "cruciblecraft:gt6/adda2450b98d1211",
         4,
         4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/f65c3d173b539ee9",
+        5,
+        5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/c67893918743a703",
+        6,
+        6
+      ],
+      [
+        7,
+        2,
+        0,
+        "cruciblecraft:gt6/e32b92d261fa170d",
+        7,
+        7
+      ],
+      [
+        8,
+        2,
+        0,
+        "cruciblecraft:gt6/9561ccdfb10e0820",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 799,
+      "duration": 2280,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +229,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

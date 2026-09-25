@@ -10,28 +10,72 @@
         }
       ],
       "hashes": [
-        "cf5e0900d972caeaff3e2535484c9c525fb268f8cc84325f6d6c1fe3a20847d8",
-        "832f67a09eea49f12ec10ac8f9f9133003ba4b7f4728d9789cbf6333ff870339"
+        "c06072206c29182232422e2477fe580e4e60bdce90acf70a90db09ef508addd7",
+        "6dfb9d557122c97def93bbded47de453d34fb5f82b8bbd11d1ceb28ce57b62d2",
+        "b79991462e29244addfc7cdf6141e443b52a163edd9f459e30fc46a19f05b7fe",
+        "a23f3863cb4df1963edda630b0b2c812e2f4cb10e684ea950c274c2aeb31fe1d",
+        "854bc87904eeb0408a7c27139be6eb008dba9550e09122d9759707f9f7f52ef8",
+        "6332e92f884c39c28fd3a44eeed4787eb83b37af57281d4d1c028e9a34be8654"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:meteoflame_blue_steel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "berkelium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:berkelium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+              "cruciblecraft:prefix_material": "berkelium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:berkelium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:berkelium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "berkelium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
@@ -39,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoflame_blue_steel/block"
+            "id": "cruciblecraft:berkelium/rod"
           }
         ]
       ]
@@ -49,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/880786484ed5298f",
+        "cruciblecraft:gt6/616475710d0ddf36",
         0,
         0
       ],
@@ -57,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/1bcb4ddddd4897b1",
+        "cruciblecraft:gt6/d591f7d6c8eec69f",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/12a61576e79f4040",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/32fd3f7f05bb910c",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/da2c8771abd07d17",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/afb5126af2060ea2",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3132,
+      "duration": 123,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        5,
         0
       ],
       "output_chances": [

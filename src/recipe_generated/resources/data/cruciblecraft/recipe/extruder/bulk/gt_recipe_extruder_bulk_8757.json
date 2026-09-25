@@ -10,65 +10,52 @@
         }
       ],
       "hashes": [
-        "a359a3c7ae9b456f241bdbbd295f0528be40a9acbe134d73edc0a97ef9d51ae0",
-        "9a8ef0c519efa2faf7c2496164cbc760bda241f2fa21d9ab7a66034e3a879899",
-        "fce94e48b0411209b8fe69b23a642cec4ecead2984b6f413e0181ed97f42908b"
+        "425b7e86f93ab2b8de082033cb2e0deb449b575ad9a6c2752cf5499fc1f9cec5",
+        "b59146a81605fda1b461303ad29c38087c886fc75a3bf327bef07fbfb1adbff7"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steel_galvanized/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium8"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steel_galvanized/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium7"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:beryllium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:beryllium8/block"
-          }
-        ],
-        [
+            "count": 64,
+            "id": "cruciblecraft:steel/bolt"
+          },
           {
-            "count": 1,
-            "id": "cruciblecraft:beryllium7/block"
+            "count": 48,
+            "id": "cruciblecraft:steel/bolt"
           }
         ]
       ]
@@ -78,7 +65,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f30cb2100a470743",
+        "cruciblecraft:gt6/437cb81526882faa",
         0,
         0
       ],
@@ -86,22 +73,14 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/318c83ac4af46acb",
+        "cruciblecraft:gt6/c9308c440ce418c7",
         1,
         1
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/8503cd4a92de5923",
-        2,
-        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 338,
+      "duration": 3283,
       "eut": 96,
       "item_input_actions": [
         {
@@ -112,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        14,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8757",

@@ -10,14 +10,70 @@
         }
       ],
       "hashes": [
-        "cb31a16c57930f6c1ffdaf49eed109b4417a9937d1f800b7bf7a26232bd8cfcb",
-        "2320022ed2b81c1fa667724844b35305b04aadbcd0c9637a8b2e9e9f3a9e0af8"
+        "2fce5d5496ea77cd9188f67e3352b31fdbe5e3657569394a3ba437e7b2fc5b70",
+        "8447e40728c6bed1e0766314d0d18523fb5372d98ea64884392141e13a7e9849",
+        "08b35ece261dae3c4ea64f23e6a22bad413c7891013d73c60f2bfe3a6b20ecc4",
+        "38bf12c432d7516aae8d8833f0b7a470769b2fd362a8cd113f7d262aca2388ab",
+        "772174cd604f1c8515d9cc5ab204952f4b2825370cf7652bc1da555e43dbe1b3",
+        "4dd1bede301de698f85b03c197902847a69a331506d54887d67cfe92928d5768",
+        "0c4d132e7653fa27e3e66778facff61a320266994948ad9fe2876e53f1ef2ae8",
+        "e229794b836b2025097de2337e7f8e67125b10997aa384d2203f67585c10f5d9",
+        "56b1c93793800f4944170958ab75463f00fa39d4f0bdcc3d07469fc815961339",
+        "ea3e5d820a65ebf2f3e3bbfd8e0294bfca4ce519dc9f3da3a9105d17686ea02e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tartarite"
+              "cruciblecraft:prefix_material": "cobalt60"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
             },
             "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
@@ -29,7 +85,55 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tartarite"
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt60"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
             },
             "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
@@ -42,8 +146,50 @@
       "item_outputs": [
         [
           {
+            "count": 1,
+            "id": "cruciblecraft:cobalt60/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nichrome/wire"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:stainless_steel/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nichrome/rod"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "tartarite"
+              "cruciblecraft:prefix_material": "cobalt"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
             "count": 1,
             "id": "cruciblecraft:small_casing"
@@ -52,7 +198,22 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:tartarite/rod"
+            "id": "cruciblecraft:stainless_steel/tiny_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt60"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cobalt/rod"
           }
         ]
       ]
@@ -62,7 +223,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/60560c0726446796",
+        "cruciblecraft:gt6/44e07273e9ce6c25",
         0,
         0
       ],
@@ -70,14 +231,78 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/70fe7d99662a3465",
+        "cruciblecraft:gt6/2cdfb3af5c0e97a4",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/0439a77fea07c27c",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/666c5af6df3cc67d",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/4803301e940e4d68",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/9ba962a33fae0a58",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/8ee9db85158e5ec9",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:gt6/96cae7c668543117",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:gt6/f03aa5d832606805",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:gt6/2891e91c5ed8b315",
+        9,
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 412,
+      "duration": 101,
       "eut": 96,
       "item_input_actions": [
         {

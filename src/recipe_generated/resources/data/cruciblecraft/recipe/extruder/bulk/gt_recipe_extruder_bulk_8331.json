@@ -10,13 +10,44 @@
         }
       ],
       "hashes": [
-        "76195647efa67a1e84db0d78970b67f91bcef02c88f912dbe18628e1bc1629ab",
-        "b64a49c43bf883d43bcfc1ddb6a95dfbf3ab59cfbc5366319b86611e87b63185"
+        "5734e7982684d8bba76dd4d270a67cd3e5109c6db9b6739658b2b78129dccdee",
+        "88db447e33732652cf9404c47a3055f79cc0195e5f69f3ca2e546a3a2e8f4528",
+        "fd2a52fa8fe6b31ce82a86a24bded255f2e28a176d1e0602ce6be9b35122d79e",
+        "1e4e9a6d8bdf8d2332532a82e88f48e5e84709725761cbd240b0624f5b9acadf",
+        "37e22f196387afd2157bdad8a73604a6656ffb2c08c6f706020f7f95eb548329"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:flamascus_steel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "mauftrium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:mauftrium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:mauftrium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:mauftrium/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -25,9 +56,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
+              "cruciblecraft:prefix_material": "mauftrium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -39,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:flamascus_steel/gear"
+            "id": "cruciblecraft:mauftrium/gear"
           }
         ]
       ]
@@ -49,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1f8d41a257c10545",
+        "cruciblecraft:gt6/44598e59f6d9323a",
         0,
         0
       ],
@@ -57,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/29bac48f52e0f1e7",
+        "cruciblecraft:gt6/f03cce4bdb036b0d",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/765236dd658267ce",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/4a9469408e90ac24",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/d5623b2f0f707e69",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1399,
+      "duration": 94,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        16,
         0
       ],
       "output_chances": [

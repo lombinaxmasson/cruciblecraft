@@ -10,32 +10,72 @@
         }
       ],
       "hashes": [
-        "0bfbb260232020aa08073a47aa3c258cad91c956a5882c48038022d5b3aa3618",
-        "2ef93b46eb0f63987932336273b7add9971c157baf872e2769cfa808930f4480"
+        "3e9cba1b712d659f8955777cd6188ebaab9a06b4f0896385bf3ea81615dd24dd",
+        "4b75c5528fa7b2b9f64f32edd4881ecaf3285d991c28de2b24b656ec7818ba0d",
+        "46a0a1c95d48eb2cb1284c8cf5087d05e8341ff885943f93741940260a6d4725",
+        "cbbb5948f91141f4aa748b9d86acb54e11193042d55ae67fdb79dfb3aa43bb48",
+        "20f2dd1c44b6eae9fffb088100920ba3d2056b9dfb4a09654fb4aa34694c5056",
+        "9ca31f77d7105209bb678fcab9c4e6964a896f39f358657254817e495696ec37"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_red_steel"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:americium241/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+              "cruciblecraft:prefix_material": "americium241"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium242"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:americium242/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +83,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoflame_red_steel/block"
+            "id": "cruciblecraft:americium241/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:americium/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:americium242/gear"
           }
         ]
       ]
@@ -53,7 +105,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/daa50388088c80ee",
+        "cruciblecraft:gt6/5e58e00908724430",
         0,
         0
       ],
@@ -61,14 +113,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/cfe90bc09889d2f6",
+        "cruciblecraft:gt6/779021049b47ba3b",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/71f81291fad28ff4",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/533cc7363beab5a3",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/56404cdb8c8183ee",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/250946a46254ffd5",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3956,
+      "duration": 977,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +163,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        8,
         0
       ],
       "output_chances": [

@@ -10,31 +10,35 @@
         }
       ],
       "hashes": [
-        "93c08153cfe2dc980a8b5ae17cc118a245a01cd650e156aa69648581e24be9ee",
-        "013f0277b275fa167e880061ad629d3800e3a0b5a84adb6d47ae080975690182",
-        "4e72c3a7012b0e076e807cff88c9dfd142afb6cdc08786dd80f16f05f6f68fdd",
-        "8d2669d8952d2ba9e7b3a280b258eee162f87648a70ee2a815ae721ae79a72e9",
-        "e4ec4451f496770674b65f0d54a31d5fef5ac740154f2fa470eb292f0adffe2e",
-        "9ee131367bfec2f49997a00dc10e598275e0b471f553416a0f2c9df706ee03c7",
-        "45ef9175fe71078382ae4b0d6ecbe74aabd76168916622291005f097f224c815",
-        "bece05f30823d2a4fe010d3419bcb688be949f4f6744ff2f1d7a825478f6d4b8",
-        "0d56973094fc64c0e1ccdf5dc42565c545d936d63824c151c07fd478fbc2e1c7"
+        "ff68a88e5fb6443b691940b3685f4ddc551c1178692dc463d2d6c6fa7f0c9f80",
+        "824a2f0246a61a147af4e8057bf7e0799180e05748a0688a985db8b5c4c7a3b1",
+        "da061d286a1721e117aa27f305194217ed388557b3d72e09bad5537209762ba2",
+        "0a2b1bbca7d5e5eb880407853b38884ddb9a71273fbe42131907dc96ee54ec07",
+        "19e5e9983cc640b56d1e1e1df053dbaacefb5634b1fde4b0e09dbfb41da100b1",
+        "e480243275d1268ac41c57bddc9e5bc6c56eac12b53b641d3193299a20c58ba2",
+        "e0493aef1ce2134e1b51b09da20ad9dfc06c5c1b2fb05f537865200a754fda87",
+        "4f61393b60f9447ebe137da43bbc3f968eb6bcabea1c748d588764a7265ba474",
+        "c48d0ff73cb93faa5297ff8c99c840be3f4151c6616e6275c851d4bbb9742f0a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ignatius/plate"
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "sterling_silver"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -43,7 +47,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:ignatius/dust"
+            "item": "cruciblecraft:sterling_silver/item_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -51,10 +55,50 @@
         ],
         [
           {
+            "item": "cruciblecraft:sterling_silver/item_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "sterling_silver"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sterling_silver/item_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
@@ -64,57 +108,36 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "sterling_silver"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ignatius/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "ignatius"
-            },
-            "items": "cruciblecraft:spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ignatius/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ignatius/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
             "count": 1,
-            "id": "cruciblecraft:ignatius/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:sterling_silver/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:sterling_silver/large_item_pipe"
           }
         ]
       ]
@@ -124,47 +147,47 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e15bfba4187c0923",
+        "cruciblecraft:gt6/341be7761729db03",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/637a299a94da3a8d",
+        "cruciblecraft:gt6/e9d82820f218c1c7",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/1b351875624a353c",
+        "cruciblecraft:gt6/768e88e2f5c3eb28",
         2,
         2
       ],
       [
         3,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/a0a45cc18cd719c8",
+        "cruciblecraft:gt6/7ccae38b1861dd35",
         3,
         3
       ],
       [
         4,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/8bd22732639ca209",
+        "cruciblecraft:gt6/6a416195fbfd6b7d",
         4,
         4
       ],
       [
         5,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/8635d3797daac22f",
+        "cruciblecraft:gt6/17284dbe1622acb6",
         5,
         5
       ],
@@ -172,15 +195,15 @@
         6,
         0,
         0,
-        "cruciblecraft:gt6/9641a93cb27c72a7",
+        "cruciblecraft:gt6/2534a87ad73393eb",
         6,
         6
       ],
       [
         7,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/80ab0f66c7d63411",
+        "cruciblecraft:gt6/b37df6ba6962c987",
         7,
         7
       ],
@@ -188,14 +211,14 @@
         8,
         0,
         0,
-        "cruciblecraft:gt6/ff16516a161edbbe",
+        "cruciblecraft:gt6/ac2bb52b9e0f7e87",
         8,
         8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 758,
+      "duration": 911,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +229,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        2,
         0
       ],
       "output_chances": [

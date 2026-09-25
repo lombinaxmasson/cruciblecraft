@@ -10,103 +10,378 @@
         }
       ],
       "hashes": [
-        "31ef9c022af4f213d25c2526fb7cb5463949da8530501022f340cd318a4bdf9e",
-        "7a0fb418e65fff4022ba60961c00a11cdec5066c9d9aa644f223a31509b53282",
-        "11f594170fabb6e83910b1f3bc1459e64d77423ac49cc557029f3ff0dcfa1655",
-        "9e5e632bb487e984cd351dab8a42e05992ad0e42e70436a19788af60e28f26df",
-        "71bbe2eb94695cb10604756f6d586402918ed3829f7fd139aa9b35fa80ca2889",
-        "9ceaf93fafad8cd85034f7c23a3598a212a81c80a2a6d583ceaeeda92c43bc69",
-        "882ab84fa8a976097e4d5e02786539eda908578b5f86a999dc0002833610c753",
-        "1ccf0e28ec30b9820a0eba53f9c4a4ceae96705273713ea5411bf511b55c32e7",
-        "af09fd9847fa1c6e1fac34553d32e71ea38f835f0a5126efcc3f1579766567f9"
+        "db7208f74119e16b63f99440a6585d345108830340f2b5403dc26e75645d8530",
+        "8f501c2bdf2fd14d89fcb78b15a20503fd20824d7c24fb1c3985ed775989e25d",
+        "cec5f3df8077d454aae578ba964122a971c649d530a056cd6ec56081082a845b",
+        "d5aa6083f3dd9091e68abe74aa9d4003454e43c7ca519775c234c9086ae0228f",
+        "299469c4d99cef9c7f3b81860906af9d8cb7616d3bf99231bd86cbf10b864ca0",
+        "02acb17ea57f35ecc5423a919cdf0db8f9faea65ab90b03375e002fe5380280d",
+        "6ced8891af4f396a44f8349ed956e354f8ed44a1898d77af2a247893c8f76c2e",
+        "8a3247121b1b8ff3f235a37ed4704ebdd80b295826fd5779d5dc79a9d765f6c0",
+        "d86559ccf4241a7abfbafcabac6181d3f79ea804c3bacc65c0d748e8b7350885",
+        "64da3ab76eb55d48e3bdcad9f6c9de5cc0797a7418321b722ef50b2b3e6d486c",
+        "96c26e17a6613e56f7e232b4bdd4bc5e9c7dc754a7d64648fb5f1a7f225e4043",
+        "97a6dbd9f4f9bd15213c14f0aa05ad37b29cb1501a866aff4a2e873b5bf0c7b0",
+        "bc5ec1fd79ebfc38d4986b34fa7e5dad95b48150a982d523da4c54b1f355667a",
+        "fd225e25ef3d88c4ac900fe4383cd6e9772f700de27e4934f271c3fe40a19e30",
+        "6c450c8c4a52bf1de2b65782e8c2f05b143796752d157bc54a3246b2b32eb2dd",
+        "2e437cd4b4594d3301f1077001745b3a5b826656bec76510bbdc623da46d7283",
+        "1da6a259c38d2002026eda836ccf3cd531a42a272d6882736cc815a020273a62",
+        "59226b922bdf59c66618421e87f1091d72fca59c7dccbd3da7893e6fd1c4e465",
+        "f8aae1b6a7ebee98843e605fb26d5ca027aa11814f8d94abf94e985fb2ab2996",
+        "84de180cdbe54768b155d2f9babe221cfa1c0c1f4105667b5b1fbcdaebf306be",
+        "3d60a93b91a33c2b4d6bf45adb2795b7a70d8a49a4b1a9f2e0bdb3f9e4db4690",
+        "e9ca993013e12af781cc10a6ef3516c4c7ef0e3cbb4b56e6ed7be5c2f93dce55",
+        "d2373cb3b94b9c68b7afeb8f6893239b11ce0382058bdfadbdc8c7a0053a7b48",
+        "8fbe0b2468eeb357f4fefdd9075419cd55e4e4de5d22362030805c100e05a742",
+        "871e6c77330524bbe938c931c748beec0955fe46705f06909ad69de6a4730f90",
+        "e5cbda365b95af84dcacaddaee1ec8948a549007cb1bc8d7b73fa02796ea241b",
+        "b4c34cd64562d7808d3497c6f6a8acc33c0dc5a75cbe2e2f4d6b7905bef6d6a4",
+        "1fe0266381bdf6e3c677b8d22679c2111e5d3012b78caaff0505e4ab93695d56",
+        "6446f1d696f68dfbe9b1ed379232f07304752b4bde508e628640cdfd557657f5",
+        "2edef6ae4d0899eec9b121e94b8ec7ed37f80f8479847a9e6d26d31d625f894b",
+        "ac462f4f40d846e63e33ee7daf8e18b9ede6c22203d5f4a725c4bd863c23c7b9",
+        "17e0c96bba503743af16a6fb469c36feb4822b5bffefe5b08d6dd81f245d6da0",
+        "15bec71c5f8807f9a58e042003e3d43424e507cbb93c2abfe2b2e7000d739f1c",
+        "972bbd69487fb1e23ae1361951bf508ce8a3a831687e926a56b3dccb1f607c76",
+        "f6439862e19f84faea96b30ed122a7341c9d3dfa1d95ec144d8ced08bf374a89",
+        "48ea2fce824abf005b7b381b13773cb3ef69df0aab7ba69de4c2230a90750540"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "electrical_steel"
-            },
-            "items": "cruciblecraft:chain",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:stainless_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_black_steel/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrical_steel"
+              "cruciblecraft:prefix_material": "knightmetal"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:silicon/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cobalt60/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:knightmetal/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:knightmetal/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrical_steel"
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:electrical_steel/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:electrical_steel/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrical_steel"
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:electrical_steel/dust"
+            "item": "cruciblecraft:cobalt60/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:electrical_steel/small_gear"
+            "item": "cruciblecraft:silicon/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:electrical_steel/plate"
+            "item": "cruciblecraft:electrum/tiny_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_black_steel/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:silicon/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:knightmetal/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hepatizon/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hepatizon/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cobalt/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hepatizon/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cobalt/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:silicon/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_black_steel/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
@@ -114,7 +389,76 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:electrical_steel/gear"
+            "id": "cruciblecraft:stainless_steel/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_black_steel/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:knightmetal/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:silicon/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cobalt60/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:silicon/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:electrum/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hepatizon/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:silicon/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cobalt/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nichrome/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "silicon"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
           }
         ]
       ]
@@ -124,78 +468,294 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7a9b4c9e592c674f",
+        "cruciblecraft:gt6/271166b3b1973827",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/987171d1b2711980",
+        "cruciblecraft:gt6/bb26c9ae3f04c78a",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/245db4f3827df715",
+        "cruciblecraft:gt6/7c5a2e184bc9ab0f",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/3a15526418712e36",
+        "cruciblecraft:gt6/1bb6719ca96e49fc",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/5441b6fdf4b7109e",
+        "cruciblecraft:gt6/f71c129e65e107e6",
         4,
         4
       ],
       [
         5,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/dc78bd93b42b00af",
+        "cruciblecraft:gt6/4d013dd693349ce8",
         5,
         5
       ],
       [
         6,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/376eb96f528139bc",
+        "cruciblecraft:gt6/6bc94c4af1e4c6f1",
         6,
         6
       ],
       [
         7,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/2ec7d3ed1edf6048",
+        "cruciblecraft:gt6/e91c168111e9e487",
         7,
         7
       ],
       [
         8,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/928ab8540ea41407",
+        "cruciblecraft:gt6/6551ea7d429c8423",
         8,
         8
+      ],
+      [
+        9,
+        4,
+        0,
+        "cruciblecraft:gt6/c426a197f7b7044b",
+        9,
+        9
+      ],
+      [
+        10,
+        5,
+        0,
+        "cruciblecraft:gt6/f574f23fb73552e3",
+        10,
+        10
+      ],
+      [
+        11,
+        6,
+        0,
+        "cruciblecraft:gt6/0607dc2856b8c32d",
+        11,
+        11
+      ],
+      [
+        12,
+        1,
+        0,
+        "cruciblecraft:gt6/fd53987a3701dd7f",
+        12,
+        12
+      ],
+      [
+        13,
+        7,
+        0,
+        "cruciblecraft:gt6/07c3d3ee1f2ae0b3",
+        13,
+        13
+      ],
+      [
+        14,
+        2,
+        0,
+        "cruciblecraft:gt6/4294060d3ec496da",
+        14,
+        14
+      ],
+      [
+        15,
+        8,
+        0,
+        "cruciblecraft:gt6/d614353bb5872a55",
+        15,
+        15
+      ],
+      [
+        16,
+        2,
+        0,
+        "cruciblecraft:gt6/f1d142661de3636b",
+        16,
+        16
+      ],
+      [
+        17,
+        6,
+        0,
+        "cruciblecraft:gt6/92b0fcf467da3faa",
+        17,
+        17
+      ],
+      [
+        18,
+        6,
+        0,
+        "cruciblecraft:gt6/80fec95ed1739ded",
+        18,
+        18
+      ],
+      [
+        19,
+        7,
+        0,
+        "cruciblecraft:gt6/987af6ab449def7d",
+        19,
+        19
+      ],
+      [
+        20,
+        0,
+        0,
+        "cruciblecraft:gt6/4330769040dbadaa",
+        20,
+        20
+      ],
+      [
+        21,
+        7,
+        0,
+        "cruciblecraft:gt6/cc78376532f6ab84",
+        21,
+        21
+      ],
+      [
+        22,
+        1,
+        0,
+        "cruciblecraft:gt6/683fe91810295a0d",
+        22,
+        22
+      ],
+      [
+        23,
+        2,
+        0,
+        "cruciblecraft:gt6/19b33327daf20221",
+        23,
+        23
+      ],
+      [
+        24,
+        6,
+        0,
+        "cruciblecraft:gt6/234d5915ee373bfd",
+        24,
+        24
+      ],
+      [
+        25,
+        9,
+        0,
+        "cruciblecraft:gt6/c4c3b08708bd1dfd",
+        25,
+        25
+      ],
+      [
+        26,
+        6,
+        0,
+        "cruciblecraft:gt6/b0c94c4f78ea2330",
+        26,
+        26
+      ],
+      [
+        27,
+        7,
+        0,
+        "cruciblecraft:gt6/db5af302a155e7b6",
+        27,
+        27
+      ],
+      [
+        28,
+        10,
+        0,
+        "cruciblecraft:gt6/f3187ac7459d5cbd",
+        28,
+        28
+      ],
+      [
+        29,
+        9,
+        0,
+        "cruciblecraft:gt6/98a1a58f7c36b09e",
+        29,
+        29
+      ],
+      [
+        30,
+        7,
+        0,
+        "cruciblecraft:gt6/30611617aeb9f9db",
+        30,
+        30
+      ],
+      [
+        31,
+        11,
+        0,
+        "cruciblecraft:gt6/50b8ad5b2711761f",
+        31,
+        31
+      ],
+      [
+        32,
+        10,
+        0,
+        "cruciblecraft:gt6/0bac62fb69279d3b",
+        32,
+        32
+      ],
+      [
+        33,
+        6,
+        0,
+        "cruciblecraft:gt6/f507e7b24334d6e8",
+        33,
+        33
+      ],
+      [
+        34,
+        7,
+        0,
+        "cruciblecraft:gt6/801f171043d87903",
+        34,
+        34
+      ],
+      [
+        35,
+        1,
+        0,
+        "cruciblecraft:gt6/efd6bdbe1b10414b",
+        35,
+        35
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 991,
+      "duration": 51,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +766,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        2,
         0
       ],
       "output_chances": [

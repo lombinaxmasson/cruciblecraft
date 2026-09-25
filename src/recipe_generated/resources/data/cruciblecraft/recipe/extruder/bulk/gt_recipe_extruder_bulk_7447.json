@@ -10,16 +10,47 @@
         }
       ],
       "hashes": [
-        "7407e76257ef299d9043855e31cc19efb9073f75feef44d66abecc87c5e16f48",
-        "66b33cebf425b45a1e5b47752272749ae5513e8c6c4ca0d72567a011714a7b35"
+        "4ad373dcf65f735d0b27e7aefd95829252802598367294f06b6805886bdb235a",
+        "2eeb8cb2bd43299ef8def609024addbb32b5e0bc44eb5e739162d0ae805f4fe8",
+        "002682e983f0e012507996a528cf6278579a8251eb300acd691b84ab2bc6ecdd",
+        "1e7568398e3a6ba913c89da469f16d50b026fe6afeb6a8de2cf0d952c21fa8b2",
+        "ace7caa187501359e95ad5c0e241cbdd662fca22acfb052f1439fdb692b7a680",
+        "8343058cac92af3e9883e91cacca1a5c155b870ea1be4bd3292ccdf84f836288",
+        "27ba61b28837ebca8d88faace9c5fef5fa2a9a6eb39a21e279003d99dd45bc06",
+        "a696e3ef9fce11515860b558284655320773126623aff032ab3b54da48e7b357",
+        "ad178484849d1b10c3a44f0f0b95f6c426ed25c45e38b80090c3ef9cc5a2e573"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "workers_alloy"
+              "cruciblecraft:prefix_material": "nichrome"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
@@ -29,21 +60,87 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "workers_alloy"
+              "cruciblecraft:prefix_material": "nichrome"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
             "count": 1,
-            "id": "cruciblecraft:workers_alloy/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nichrome/gear"
           }
         ]
       ]
@@ -53,22 +150,78 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6bcecff1dea34f54",
+        "cruciblecraft:gt6/af18592c331ed0ca",
         0,
-        2
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/c78283bd7b1da992",
         1,
+        0,
+        "cruciblecraft:gt6/4c0de9c23602c121",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/f44b1e1d323c9e7b",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/f7e5c8287a1cdcf7",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/bf487f00d003e56d",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/3ea7605bb7f40e3d",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/0d9792f68b74c358",
+        6,
+        6
+      ],
+      [
+        7,
+        2,
+        0,
+        "cruciblecraft:gt6/9db1df0871ee68a5",
+        7,
+        7
+      ],
+      [
+        8,
+        1,
+        0,
+        "cruciblecraft:gt6/0773a8adc87702dd",
+        8,
         8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 843,
+      "duration": 806,
       "eut": 96,
       "item_input_actions": [
         {

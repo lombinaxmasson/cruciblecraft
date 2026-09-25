@@ -91,3 +91,8 @@ GameTest：每个模具抽一个材料跑一次；router 对无关输入返回�
 - [x] 被覆盖的 material_rule 已删，差集为空。只删了差集为空的 3 个文件，其余 17 个文件仍有未覆盖行，保留
 - [x] 容量在预算内。GameTest server 加载 on-demand 家族并通过 `bulkMapPublishesTranslatedRows`
 - [ ] 人工 `runClient` 签收
+
+> 更正（[GT6 挤压机配方补发](GT6挤压机配方补发详细计划.md)）：上面「主机拒收」的
+> 171,713 行几乎都不是主机真拒。Python 过滤多要求了「同材料换形态」模板，并且不认低温模具标签；
+> EU/t 超过 256 的只有 2 行。约 6,800 行是 GT6 面板第二个输出格，CC 主机当时少开了一格。
+> 这些行由补发卡以 `exact_remainder` 发布。

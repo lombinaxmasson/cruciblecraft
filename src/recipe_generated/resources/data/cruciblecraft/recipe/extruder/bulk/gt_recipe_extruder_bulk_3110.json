@@ -10,64 +10,89 @@
         }
       ],
       "hashes": [
-        "e52a1cfb501eac8adf8bf2f8f2e81645e644e90922bbb1018587ff45fac55299",
-        "ef81b6d5438d8358486887aaeb4772a6a8faf6330e6ebc6975272706c64204cc",
-        "cf0ca19482bbd9f22f96f35f2e9703822492c2ec884801bbe54e939bd0539836",
-        "bab15e5d27894f9abf38ef5d523063148228ae9c22512b0b768fa555c505fa63"
+        "58816b0de674c4f07a9a1ab79955b1bc297568aa321c28980556f85e683eb466",
+        "ac2af99d1bb9eb6f1b93f033ea56a0abedee1c3189cf6ad6655d55e56fbca2f9",
+        "50e0ddf5cde57149c1bc2fe969fa58dd6797a2ba85e592e1e6c744b0c948698b",
+        "2cb35d1a7c2c1e0adb75798d0b407638e1a3267254176bd10653720af5d4ab11",
+        "c9bfd13677e38b633c90fd5f1c5966333ec7a6bb70aa5666a3298c1fb242f91e",
+        "cc30889369a6167946f6925cb324bb743c7541d249dd0550b52d9fc34956dae4"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "cobalt"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:ceruclase/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:cobalt/rod"
+            "item": "cruciblecraft:ceruclase/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "cobalt60"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:ceruclase/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:cobalt60/rod"
+            "item": "cruciblecraft:ceruclase/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ceruclase/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ceruclase/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
             "count": 1,
-            "id": "cruciblecraft:cobalt/gear"
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
             "count": 1,
-            "id": "cruciblecraft:cobalt60/gear"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -77,7 +102,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9a7d7b0187b12350",
+        "cruciblecraft:gt6/0c1997861e1042e6",
         0,
         0
       ],
@@ -85,7 +110,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/e5fa9f90f59b397b",
+        "cruciblecraft:gt6/2b6acfc8492e4950",
         1,
         1
       ],
@@ -93,22 +118,38 @@
         2,
         1,
         0,
-        "cruciblecraft:gt6/e1d06bf718d47e70",
+        "cruciblecraft:gt6/4e6cb29f60379517",
         2,
         2
       ],
       [
         3,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/8697dea2cc9be1b7",
+        "cruciblecraft:gt6/aeed3a1af660808f",
         3,
         3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/ebf7b0b16a761685",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/fa9ccdd5eab5b8a6",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 807,
+      "duration": 325,
       "eut": 96,
       "item_input_actions": [
         {
@@ -119,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        16,
         0
       ],
       "output_chances": [

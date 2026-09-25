@@ -1,92 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_5244",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "da4e261028fb9f830ca31a712dfdb74bbe2f849ee5c053fc98202a505e2f86ce",
-        "1972f2e72555d6bce6abdf468efcb5409e6c35e6d39ea663ad7e3fac0ecd5b21",
-        "43e5cde2b8e78445c8d827cf7e5bdb9161310edd48aa2fa1de05cd74d4ca5f6c"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "syrmorite"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:syrmorite/gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "syrmorite"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:syrmorite/block"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/7e5baa222db5b306",
-        0,
-        3
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/b68b5b9a30857ea1",
-        1,
-        5
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/5131ed0adeccef87",
-        2,
-        8
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 194,
+      "duration": 3755,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -96,18 +17,38 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:gilded_iron/machine_casing"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_block"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:iron/block"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_5244",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "166001cc8f8b28d3b68f31789f29cdd83f4acb9982f9e4e60db33cd0f9f8d17e"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_5244",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/7cf8f1b6f526db7b"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

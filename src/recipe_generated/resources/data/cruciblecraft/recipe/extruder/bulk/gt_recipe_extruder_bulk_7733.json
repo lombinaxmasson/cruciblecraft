@@ -10,87 +10,44 @@
         }
       ],
       "hashes": [
-        "3889b06ac99f5f9dc3110fa4e17b854cfbf28c73fbdb03b5bffdb86dcaf14438",
-        "b837aff1b6184dece6b22e47fa5ec6535eb2db64c7d39d3c8e510714920094e6",
-        "c8fab8ffce26d86acfb086b4fd9682f470b92ab12e4d397c187910bb897d5a94",
-        "fb154969ef8e007db97f6375a1d96f8c6f6e765d7fcbb270e32ce1eba2cc4760",
-        "3873b655138b18ae4e717665366a84c1de04a938c3be54b2c4823475280df3bd",
-        "5102fb4c5c078f19d6e3d0f71ff03c26f5637e9aa360fb1d3360d3e92a4a67c2",
-        "2f53b6c5edffffcb542e8fe033f0ce70c1d7603bfa72fcf6057d499d240b9d39",
-        "74c04ebd1f0fa39d4a85c5541e5a5e0b712f76e9cd530b89a1c8579cd0fa539d",
-        "a59a5e883982f8a8487ca2b17d2bf68a15c3c46826d89081e7685446f56bccf4"
+        "f48145384ea77aa4c2037a950569394c0b085768b7c350d89144c75a81e5eae2",
+        "4aaba27be3dbce1b438e76185e0b918c0591da2b084a16d1dd80412f9f17f71d",
+        "b3b39b1ac7d8699d652dc899fe4fbb2f746c177811099e554c705b44295e7ad6",
+        "409e90a06b5828dc8ae14a14f3ad2ba53c3c7ff3e6999cd95e35c7187c60d61d",
+        "58e8190228b9170ed2725912f6702506fb7c82297c9a0078f9a6a9e558878529",
+        "92586bf3137744ef7e4784aa849ae41b96a0571e998ada5944fdc05481616abd"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:stainless_steel/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "stainless_steel"
+              "cruciblecraft:prefix_material": "workers_alloy"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:stainless_steel/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:stainless_steel/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:stainless_steel/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "stainless_steel"
+              "cruciblecraft:prefix_material": "workers_alloy"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:stainless_steel/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "stainless_steel"
+              "cruciblecraft:prefix_material": "dark_thaumium"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -100,21 +57,81 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "stainless_steel"
+              "cruciblecraft:prefix_material": "workers_alloy"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_thaumium"
+            },
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
             "count": 1,
-            "id": "cruciblecraft:stainless_steel/block"
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:dark_thaumium/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -124,78 +141,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/aa7e70e6f824cde2",
+        "cruciblecraft:gt6/1695b56243049068",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/88a9c4f5f08a012a",
+        1,
         1
       ],
       [
-        1,
+        2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/287bd9785b083a0c",
-        1,
+        "cruciblecraft:gt6/28e1e481baeb70f7",
+        2,
         2
       ],
       [
-        2,
+        3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/1f8a8979a8621427",
-        2,
+        "cruciblecraft:gt6/c396c878080d238d",
+        3,
         3
       ],
       [
-        3,
+        4,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/85696d70f502ac0f",
-        3,
+        "cruciblecraft:gt6/d6dadd72b56044fb",
+        4,
         4
       ],
       [
+        5,
         4,
         0,
-        0,
-        "cruciblecraft:gt6/38556ebdee3f4010",
-        4,
+        "cruciblecraft:gt6/aceb5b509a0a6040",
+        5,
         5
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/7e7a4eef6a44a8de",
-        5,
-        6
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/8f175ce445ab64f4",
-        6,
-        7
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/f60fb5ca8aa60239",
-        7,
-        8
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/ef558c9b3bf3f600",
-        8,
-        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1802,
+      "duration": 281,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +199,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        3,
         0
       ],
       "output_chances": [

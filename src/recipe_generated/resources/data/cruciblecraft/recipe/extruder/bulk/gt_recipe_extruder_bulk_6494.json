@@ -10,32 +10,70 @@
         }
       ],
       "hashes": [
-        "fae93401e65b425f4befa59b3fa2ae3f9a0257d9555a2e801469bce4c1f49088",
-        "515b0a42ee811ac25f0521688af938384acd8e4096259d10eeef12daa1295c83"
+        "77601ed98d8d550506667971287ced733518a705927f171394bd3f09506db304",
+        "afe80e062849e2a726a2eb8d7b2c4ba4ec1a09569cbf3922c53b76badf4c642a",
+        "fdf6106fc0d44816791dfe499fc54795726f116e8370b39be515fe81e736f86c",
+        "6c918b104e8d14350fac9cc5d5efd44bac76020db5a7f73efa285d8b53df0936"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:nichrome/fine_wire"
+            "item": "cruciblecraft:crystal_matrix/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:nichrome/bolt"
+            "item": "cruciblecraft:crystal_matrix/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "crystal_matrix"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "crystal_matrix"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "crystal_matrix"
+            },
             "count": 1,
-            "id": "cruciblecraft:nichrome/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "crystal_matrix"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -45,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/40877b035eb91ab7",
+        "cruciblecraft:gt6/6697614834421420",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/cdd3f27a303169b7",
+        "cruciblecraft:gt6/2c444aa7b259218d",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/d21f132e2ed12fbd",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/5220ce4f11078e58",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 806,
+      "duration": 12111,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        6,
         0
       ],
       "output_chances": [

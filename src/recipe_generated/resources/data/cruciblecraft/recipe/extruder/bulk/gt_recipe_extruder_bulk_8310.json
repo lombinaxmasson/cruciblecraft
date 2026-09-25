@@ -1,84 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_8310",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "3c12f081f5b66874745730a28c0549d8e17801360f80d8c5400fe21c2825ed53",
-        "5ace659a0188660b88a3ed7bace4ce3a104087da9670c1cfdb57a1595deff0c3"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "kalendrite"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "kalendrite"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "kalendrite"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:kalendrite/rod"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/cb420647db5f26d9",
-        0,
-        0
-      ],
-      [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/9455c57d5b55b1b8",
-        1,
-        1
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 396,
+      "duration": 2278,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -88,18 +17,49 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:palladium/machine_casing"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "palladium"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "palladium"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
+        }
+      ],
       "output_chances": [
+        10000,
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_8310",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "f0db828dea217dd60cad78ecf9a36072c6a46f5bd5c65351a58a742aff79fc20"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_8310",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/6c278259de3201bd"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

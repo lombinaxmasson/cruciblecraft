@@ -10,72 +10,52 @@
         }
       ],
       "hashes": [
-        "d0e911f87b1f4e588ebe4c01d3f4d18ea685f111deea75fed4aa5d79cb024f77",
-        "7a53fa8c4a0632e056566ffcb6d93d487a6252f3dce60ede744b572ef390a85b",
-        "49f4aa763828b646b0d194f4b5011c1a33ff78231bdde79ba621d7daac649ef4",
-        "af331db77d6dbefe7c46e0661b306acff51e5362b2d4f3767aecf10df9b35cee"
+        "8e8cdf59a2f36c25cf93464f503fece5386cebd1a9820370923aef202f616ada",
+        "b240efdbcc36c106979264e3922e08c3ec2e5f8ff5ee3d0245bca1252d0609ca"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "boron"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoric_black_steel/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "boron"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoric_black_steel/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "boron11"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "boron11"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:boron/block"
+            "count": 64,
+            "id": "cruciblecraft:meteoric_black_steel/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:meteoric_black_steel/bolt"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:boron11/block"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -85,38 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a23d3a86c2e223ed",
+        "cruciblecraft:gt6/489cc24126dee616",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/790dd5fd990b591f",
+        "cruciblecraft:gt6/fa80368c9aef3d3d",
         1,
         1
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/0a15ed15fcd1ed0a",
-        2,
-        2
-      ],
-      [
-        3,
-        1,
-        0,
-        "cruciblecraft:gt6/af644aee48adfaea",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 743,
+      "duration": 3156,
       "eut": 96,
       "item_input_actions": [
         {
@@ -127,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8055",

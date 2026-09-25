@@ -1,81 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_9517",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "48317fe017e91bf9c157ad87abca42eef44e5f0a2e645148ecb434a6f09418da",
-        "fc77669189648472944b6ecc5772543a93fb7dff3221ef634b8c11766b8f5a97"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tritanium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:tritanium/bolt"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:tantalum_hafnium_carbide/bolt"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/0ea9c5e551f85993",
-        0,
-        0
-      ],
-      [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/7d0176c27da59c1c",
-        1,
-        1
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 70,
+      "duration": 907,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -85,18 +17,38 @@
         }
       ],
       "item_input_counts": [
-        9,
+        3,
         0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:nichrome/triple_wire"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_gear"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:nichrome/gear"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_9517",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "2054b954b33922dac41f49079e56338f0b90009e295c481b3ed1e1f939176437"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_9517",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/1fa440a9d214427d"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

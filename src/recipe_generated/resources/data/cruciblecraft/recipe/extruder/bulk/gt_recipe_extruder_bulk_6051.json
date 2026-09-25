@@ -10,42 +10,60 @@
         }
       ],
       "hashes": [
-        "5adf3bc5362956df331dfe5f41fb68c8c10cee56e1a5176af6c0c43ca51ff214",
-        "c9edf1c9d273f76da04f2c60325e4e4a5b25870ac7a7efd309b9c510abdd6b07",
-        "e13705f04dbb44b0790f2aa4df0907769e69b5d0be7bd8682e10039554f3f88d",
-        "b80f65bd5f7d39c432a1e7bdb80a853559b9ec1f7aff9b753fd97e6883d10788"
+        "c77c41fa5748cfbd1a466a67614091ac584173088bcdd9a003b62c08d6816213",
+        "a58d36f1047f16575708457b35b180ea4695920eff674c2832c43fbb58da17a1",
+        "601117a76ae24087087d569c1a5c766c329e42bd1680daff839065147790fb8f",
+        "43d995a29f161fbfc65ba8bdc8eb73df917c6937a8a4520fea2b8cd833692fe9",
+        "62db4acb921c6eee32cd75b0d22260fed2209ab3e76c3d191e14871c333279d9",
+        "5460b229484a0261b1fabe862eaff71258fa79129c0014c00caca3dc34e65f48"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:rhenium/bolt"
+            "item": "cruciblecraft:adamantium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rhenium/bolt"
+            "item": "cruciblecraft:adamantium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rhenium/bolt"
+            "item": "cruciblecraft:adamantium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rhenium/bolt"
+            "item": "cruciblecraft:adamantium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
@@ -53,28 +71,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:rhenium/ingot"
+            "id": "cruciblecraft:adamantium/fluid_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rhenium"
+              "cruciblecraft:prefix_material": "adamantium"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
             "count": 1,
-            "id": "cruciblecraft:rhenium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:rhenium/plate"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -84,7 +99,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/de12d3b904ef4513",
+        "cruciblecraft:gt6/1c03c2b0b477ab9f",
         0,
         0
       ],
@@ -92,7 +107,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/f4fb9fbf1394ca39",
+        "cruciblecraft:gt6/16ad400634e15665",
         1,
         1
       ],
@@ -100,22 +115,38 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/387686b2bd0ba267",
+        "cruciblecraft:gt6/00750ba50c577830",
         2,
         2
       ],
       [
         3,
-        3,
         0,
-        "cruciblecraft:gt6/08dc7bee6783c110",
+        0,
+        "cruciblecraft:gt6/cb25bb75e8b5b57d",
         3,
         3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/426acbc8edc2885e",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/52f81f8336364108",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1027,
+      "duration": 3050,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +157,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        24,
         0
       ],
       "output_chances": [

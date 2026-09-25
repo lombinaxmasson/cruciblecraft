@@ -10,40 +10,96 @@
         }
       ],
       "hashes": [
-        "3178c070f58971e393cb1aa69d4dc5657e870ebf760bb253a8631ff43b13c85d",
-        "694a7691f47be3f3d4bfbfcd7b602a150ea8567a6a6693fcf897ec7f431c09d0"
+        "06ddebe0059d95ad5f5096900e0ad7abeccb60ca56cfab2c9a54d92ed5415098",
+        "b46e03de0be2e2f1064c470d6e5c777c6081771e15de68329ef481cce58cccc7",
+        "3f146d9566b289007f353de3c63813287eca9d73ab245266b1d4413685e22e42",
+        "37b1a182286d30a7488226cf61ddf35ee6f9d875ce7c3ae4ffe6691a26d1be5f"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "nickel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "nickel"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
             "count": 1,
-            "id": "cruciblecraft:haderoth/gear"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,22 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/24afc27081cb5d73",
+        "cruciblecraft:gt6/429f99892bc39ddd",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/e9437134cbb33b49",
+        "cruciblecraft:gt6/01018ff33f04bb5f",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/debc0b484ccc7a13",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/4b9c4320a63b938f",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3112,
+      "duration": 395,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

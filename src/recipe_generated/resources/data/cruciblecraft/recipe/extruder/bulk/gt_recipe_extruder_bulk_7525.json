@@ -10,13 +10,17 @@
         }
       ],
       "hashes": [
-        "e925090fedf735035e0f7a985f9512cf00c73c9967068814cb29c4424b041453",
-        "4cb349a4a78060bff0b5c1d33a43a4ee23238225d6184d1d829614b8f064de81"
+        "52014165095bae23203674550bda74eb12345c5d967f9d4a6382b383956566a3",
+        "217e612e3fb812e23e97eee12f09df5e0538e85691f02e6a4c3c7c8d6f307da9",
+        "c21e35cb933fb5d37b617d7f44389214833ef4d54836605b4b078ebc231c308d",
+        "36d7c2790467089ebda3080f2c75c72e8c750034f8525563d67d2794128085ed",
+        "d56c38d121ba1506db1cfcc9fa77fcf4ae42fef498942be04d436e74f9bc31d4",
+        "a37375db4f8972ea2e7661e2b2ea071225cc2c335053703cb5600ccfcd867abd"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:manyullyn/fine_wire"
+            "item": "cruciblecraft:tartarite/screw"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -24,7 +28,51 @@
         ],
         [
           {
-            "item": "cruciblecraft:manyullyn/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tartarite/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tartarite/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -35,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:manyullyn/gear"
+            "id": "cruciblecraft:tartarite/gear"
           }
         ]
       ]
@@ -45,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/557da3f32939adaa",
+        "cruciblecraft:gt6/ab78e7d3d6b98f4d",
         0,
         0
       ],
@@ -53,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/8a7635226e0fbffc",
+        "cruciblecraft:gt6/9d144f27b92c1338",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/a0dc91d9e6de9985",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/96d0cfa11ef636cb",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/32b916535566bbe6",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/07bec728672d3a23",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 333,
+      "duration": 3294,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        36,
         0
       ],
       "output_chances": [

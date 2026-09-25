@@ -10,13 +10,17 @@
         }
       ],
       "hashes": [
-        "47db725e35cc3a7e6d7c8dd381a51a0f09b994f34194c9c7919f99cc8f5d4055",
-        "e0b57cbae6d535500f7fabaa6c13f87c022c528c6e9ee6ca178e609bc3d2c12a"
+        "551709c11204cd6c313c892c78c84bf96d68ce7f2f5a79d6d49a1bae28765be2",
+        "1f6aff2ab1b461d6bfd0f39cef60ee5a08136cb5b83b6f6a567f777a1d698215"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:deep_iron/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "promethium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -25,9 +29,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "promethium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:deep_iron/block"
+            "id": "cruciblecraft:promethium/block"
           }
         ]
       ]
@@ -49,22 +53,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d2857f76a1d034d7",
+        "cruciblecraft:gt6/f460afd4b85a4f15",
         0,
-        2
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/ef54c39f52be0342",
+        "cruciblecraft:gt6/157224563fbbf8db",
         1,
-        4
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1661,
+      "duration": 1031,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        3,
         0
       ],
       "output_chances": [

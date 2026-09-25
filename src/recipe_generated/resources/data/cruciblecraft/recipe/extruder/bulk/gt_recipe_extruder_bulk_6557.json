@@ -10,28 +10,27 @@
         }
       ],
       "hashes": [
-        "65ca4218a7fb016bc944292f112bf671087ade8042b1cd33e9cd97d421fcd872",
-        "7c540203003eaa9b76a498b12047c29b758af46bda7c8c995d8e5624fda8a895",
-        "d19560ab2fdec6773fa187422404843236b1a003c63cd212c0b95cc8671ab2a1",
-        "9952f8e55dc4e86643f28189656c30abdcd98929480fed581df92cad38323375",
-        "1347f3f4a4bbf40a841b262fc169857f2c5a3feae26c55dc4dcd5e727ce9fb92",
-        "c238a83dc1beb36a54c3aed39bcfdf5281c0a95b44cccf485af7324aa4a97b68",
-        "3159ffc7407ffc915019411b4f6246f1312f8b1eedf1893e7a518627da5855a3",
-        "aa80313eea394942119252d1531eb75d8311e2af1a6a1acf5901620f4dd61117",
-        "8683ee8296fe7fc07100f11af3810562939109e233e93a579e9bda9f78d0576e"
+        "21ae042ebde68c98f3bb56454f9607e748461d4ba078df7d823bb3bf376d7137",
+        "287af361edbe61bcaa431ab76f4530dabb3e6e41d1500bc5a911fa79e29f2ab5",
+        "2305a2231b0964ae0259c4b106eecda4516cbc7e91afaaf706f93738c8e83e7c",
+        "f90cbe1437a1fb88e31485cc304b5b1d3c7ce6cb958f7cee7b9efed9522ca238",
+        "95da1c460cf36145ee87ad7ee85b90e706636c42ed72647d067a9ba5e4bbd1a9",
+        "5af806c636fbf52c89aed66f554f56b27763ce2157ec2a0557d470883c7d9a37",
+        "626bfda59da88cdefc0fcdbfcf456536d49bd1644efd36b4ad0be846133acb47",
+        "bf051ab1411ea3964b5a0cf61da612e321a4db0e1a00dc9f83181ca203dc8673",
+        "ec3ad46f598c74e51b925c1ce5dec12528a74e2f2f262beda44674d4199cf37e",
+        "24cdf8e03d0d09fb4099ea0610f4f2639d499c5e4299adb295ecb671f179632f",
+        "dbf48ab054140d11ebac51769bb158ed12f4816b4c068b61e17562cf18047043",
+        "74c7f90aec05a66d3ca7b3692dda0aaf816a5fdc78436e9ea42af737331b7fc6",
+        "e63cfc139164a6f67ffd7ee09481b76c6877bef39184755abfd9587e4fc78c28",
+        "82f1dd0a28f0c438fe12f983c30f04e6b8fa0b5eee502698b8fb589bb6101e07",
+        "69303fd443bd22e2e6ed83cb7fa0cebc2974e74a9e0911156a96e887629f48fd",
+        "e63959298ac0269a01354e1de58b00cb8126a4ea7cf2b3865b874c0e38431283"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:damascus_steel/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:damascus_steel/long_rod"
+            "item": "cruciblecraft:hslaspring_steel/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -40,9 +39,37 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "damascus_steel"
+              "cruciblecraft:prefix_material": "hslasteel"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslatungsten_alloy/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslatungsten_alloy/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslatungsten_alloy"
+            },
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -52,45 +79,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "damascus_steel"
+              "cruciblecraft:prefix_material": "hslasteel"
             },
-            "items": "cruciblecraft:minecart_wheels",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:damascus_steel/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:damascus_steel/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:damascus_steel/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "damascus_steel"
-            },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -100,10 +91,94 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "damascus_steel"
+              "cruciblecraft:prefix_material": "hslasteel"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:rail_gt",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslaspring_steel"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslasteel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslatungsten_alloy/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslasteel/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslaspring_steel/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslasteel/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslatungsten_alloy"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslaspring_steel"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslaspring_steel/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -114,7 +189,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:damascus_steel/gear"
+            "id": "cruciblecraft:hslaspring_steel/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hslasteel/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hslatungsten_alloy/gear"
           }
         ]
       ]
@@ -124,55 +211,55 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d14fed49a580d9fa",
+        "cruciblecraft:gt6/0c1bc4ccbaedb3ae",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/6591c41d75b882ba",
+        "cruciblecraft:gt6/4cd68153ba8c9742",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/46261c361553ba5f",
+        "cruciblecraft:gt6/80c20de683953114",
         2,
         2
       ],
       [
         3,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/962e3077a34c7c14",
+        "cruciblecraft:gt6/036092faf8427864",
         3,
         3
       ],
       [
         4,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/b5a6e0ee557d6b23",
+        "cruciblecraft:gt6/ac3f6fa06e1c3c3f",
         4,
         4
       ],
       [
         5,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/ff85d2068dc0aa1f",
+        "cruciblecraft:gt6/dcfdb9f669367d98",
         5,
         5
       ],
       [
         6,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/a8ae1d3848c600df",
+        "cruciblecraft:gt6/3ca2c7e40f0f4faa",
         6,
         6
       ],
@@ -180,22 +267,78 @@
         7,
         0,
         0,
-        "cruciblecraft:gt6/35534021f4d99d58",
+        "cruciblecraft:gt6/8e5b2f42952ff29b",
         7,
         7
       ],
       [
         8,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/2e5f986be3282da8",
+        "cruciblecraft:gt6/4d81d9be4f8cad91",
         8,
         8
+      ],
+      [
+        9,
+        2,
+        0,
+        "cruciblecraft:gt6/08cd451128dcfe81",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/3676494e3f1209f9",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:gt6/0aeaa6a5686608fe",
+        11,
+        11
+      ],
+      [
+        12,
+        1,
+        0,
+        "cruciblecraft:gt6/cf836812c0ee9909",
+        12,
+        12
+      ],
+      [
+        13,
+        2,
+        0,
+        "cruciblecraft:gt6/a1651f81eb873a58",
+        13,
+        13
+      ],
+      [
+        14,
+        0,
+        0,
+        "cruciblecraft:gt6/da6ce116095efd96",
+        14,
+        14
+      ],
+      [
+        15,
+        0,
+        0,
+        "cruciblecraft:gt6/f5cdc66fd2cf91db",
+        15,
+        15
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 925,
+      "duration": 768,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +349,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        16,
         0
       ],
       "output_chances": [

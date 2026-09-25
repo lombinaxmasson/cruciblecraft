@@ -10,23 +10,15 @@
         }
       ],
       "hashes": [
-        "c5855d00616b1940b0d7b1e0dc1b792aa6a24e7c7e3ed4b53227a93358ce2449",
-        "dee975b88fcc7ea9c9540d9e97fd7724155b1e31f494a5c1c865df469557a8dd",
-        "793f3ca8cdc48ddf734cfc0f43187a0fae57002f88b461d75d6bfb1e58549923",
-        "d3ca103abe6a27854741f2998777e23776d3f16c2c6db2c7a4ddb10a46477e03",
-        "b0608758840bac3a0e51de29eb140e76df3825e84bb4774582cefb2e2cc7d566",
-        "5b82105555d6b87040d8f122bb6c7dc38536b583550acdf76b405a3bc6305e8d",
-        "2f053d9d62f440441a12416bf49ef74e51a05520d9eeed5a7e99814b9f5f0a0f",
-        "8cb065a697cafbe3acc0b20760ea17a4aeff13d2b5c7f70f097fc59531685571"
+        "fca8bb0d41e4e7530a6f3413fb1d6c589c9393d3892626d255d91348d9136dd4",
+        "66a9fde680a3232c72ef2ef77492f00134a68ad920995daa1f82fc441023a093",
+        "85c00222200f455fe282e096b16058bd08518df1c68a2049ec435062c478862b",
+        "860e408ebbcf453df3d27626f9d7250821c70309f2417c33accb6ab03bccd088"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "neodymium"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:beryllium8/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -34,23 +26,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:neodymium/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:neodymium/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:neodymium/ingot"
+            "item": "cruciblecraft:beryllium/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -59,9 +35,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "neodymium"
+              "cruciblecraft:prefix_material": "beryllium"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
@@ -70,31 +46,7 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "neodymium"
-            },
-            "items": "cruciblecraft:spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "neodymium"
-            },
-            "items": "cruciblecraft:minecart_wheels",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:neodymium/small_gear"
+            "item": "cruciblecraft:beryllium7/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -105,7 +57,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:neodymium/block"
+            "id": "cruciblecraft:beryllium8/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:beryllium/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:beryllium7/block"
           }
         ]
       ]
@@ -115,70 +79,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/cd05f61e8157fd11",
+        "cruciblecraft:gt6/567f6e51f723a1b5",
         0,
-        4
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/81dfb15c9962edf2",
         1,
-        5
+        0,
+        "cruciblecraft:gt6/0957e715defcbae8",
+        1,
+        1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/4514d4e008c791ec",
+        "cruciblecraft:gt6/add89badb2255f26",
         2,
-        8
+        2
       ],
       [
         3,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/3814382b0138fde7",
+        "cruciblecraft:gt6/e8174fa0f41b09ee",
         3,
-        9
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/84d3bfa863e77f66",
-        4,
-        10
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/512b4628bb0788dd",
-        5,
-        11
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/2e3f0072f697708b",
-        6,
-        12
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/c30bce0d2199f3d2",
-        7,
-        15
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 978,
+      "duration": 326,
       "eut": 96,
       "item_input_actions": [
         {
@@ -189,7 +121,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        18,
         0
       ],
       "output_chances": [

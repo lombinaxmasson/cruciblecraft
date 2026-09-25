@@ -10,40 +10,79 @@
         }
       ],
       "hashes": [
-        "9a09b3ceda44ae2b7826533a9f4a98e37d50fa9f25c64e190c40c597094ec306",
-        "61374b6804aa00851e51421088a95948e008ed94abd1fa0f3fd74ae3e42c81e9"
+        "13d72b53d0aab5ee4d7d9734150599a65bafe7847a1e47d1d1fb039b7d7f1f7a",
+        "ef1a3ab47f2df9ab471af367c7a537c2119567161402db0a00c3dfe1cb9a46de",
+        "93cf71dc125e3555f9c42dd3700259daea52e11574c16c4d3e4057cf86abc715",
+        "5d968633d6f06cf9fd7187877fb9fbe01de00151b9bcc48f13b5eb2046bc0fd0",
+        "47de7a25bfc4bc1b72357412a029f41186f91537d1239fa3fa4aef3d9874394f",
+        "5ee2f15ef2a38b33e32555330b2b0f3c38017aedde1a16494de966eab4c8ca23"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "netherite"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steel_magnetic/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel/wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherite"
+              "cruciblecraft:prefix_material": "steel_magnetic"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:netherite/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,22 +92,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ef9394bb9c0bf8f6",
+        "cruciblecraft:gt6/945b0726e9c836d4",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/4722b82fd979aa01",
+        "cruciblecraft:gt6/7f44eb812570ae77",
         1,
-        6
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/551636a7ae6db0e3",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/81fdac834dea166e",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/9d0b7d69e9ba0ac0",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/90b5189898958a9d",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 24452,
+      "duration": 320,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +150,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

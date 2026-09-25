@@ -10,32 +10,89 @@
         }
       ],
       "hashes": [
-        "d37d705dbc0379766f6dd683623b40da3899857c4167abbbe4e3fbcb4f4024fd",
-        "0ef8442acd7d48e2b69f8f60fb84599ef563cd0e7c8832495672b2b6c087c6cd"
+        "73c3a4b4ef770ca19faf7d0ae4258fd830100bf9665099da1974eebf31eb95f0",
+        "b2e78b58f6589845401f490fc65384039682da217882c34ab7d274c696247aaa",
+        "41b23a4d62f5d5e95bac4a652e48866aea91b241e7f48c073ad715c4693ec4a3",
+        "e253d27dc45bb5561d2c630eaec95c1419d594a7a999fd9100996601380aa142",
+        "529ee0044a27a481db12caa2746596d7f8a5823ddb691dd0bb143ac77caa4efd",
+        "f4e13302dc1c99407cbb9ed23cf10fe316c0906879f8512c7a32220a0b04f980"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:beryllium/fine_wire"
+            "item": "cruciblecraft:gilded_iron/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:beryllium/bolt"
+            "item": "cruciblecraft:gilded_iron/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gilded_iron/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gilded_iron/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gilded_iron/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gilded_iron/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "iron"
+            },
             "count": 1,
-            "id": "cruciblecraft:beryllium/gear"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -45,22 +102,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a0b334ab71689705",
+        "cruciblecraft:gt6/5ef718889e4ff106",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/1dccc273b69ab3ad",
+        "cruciblecraft:gt6/02bf8939bcc26af5",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/37dfce7cf0e76dc6",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/6026ada4cd64449b",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/13e7f6018bd652e8",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/764bc3b9bd142339",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 145,
+      "duration": 470,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        16,
         0
       ],
       "output_chances": [

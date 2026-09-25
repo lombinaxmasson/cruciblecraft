@@ -10,32 +10,62 @@
         }
       ],
       "hashes": [
-        "7cf713d89cccd65b454400d4f809842ed1c5d3921071a8492c5e7db4b644dd01",
-        "811e8c33e7ca2ef9f32cf3c79d4c4311d57858722d1d553bbb8d512ae8f2c57a"
+        "f178a0e7aee21e8e69efb7f4fcc9926866b7f07cb2a721952e7a8b03083bb328",
+        "f1e6957500e27399803ebc9a1f89a57bf5bc3e5fb5b06a18dd6aecbc743c78e5",
+        "8fb0a79298c83b8bca177517ba5ea9551c033c8cea089f66c607e8317f8e568e",
+        "7c59dad94448b929efe6d07c09a37c8c6ee4373cf888d54c8800a92ee53417d5"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:oureclase/bolt"
+            "item": "cruciblecraft:beryllium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:oureclase/fine_wire"
+            "item": "cruciblecraft:beryllium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:beryllium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:beryllium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "beryllium"
+            },
             "count": 1,
-            "id": "cruciblecraft:oureclase/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "beryllium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -45,22 +75,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/32bee866cd915676",
+        "cruciblecraft:gt6/335832aeef0cf13b",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/eddc901396f6187d",
+        "cruciblecraft:gt6/1fe8e869f5922f57",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/8d2f087d618421a6",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/5f1ed8e1844fe80b",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1374,
+      "duration": 109,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        24,
         0
       ],
       "output_chances": [

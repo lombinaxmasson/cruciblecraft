@@ -10,20 +10,20 @@
         }
       ],
       "hashes": [
-        "22e4cdb34d77e1defc96414ded055d6afc14ae4c8272714b2083926f33458fc3",
-        "8fe23f4976638e242fbffb4f2b5cea034746f75fb9332427c83959655cb05d8f",
-        "0496604dcbd682be70e2218718c89af0ce1daa999d08806b06eda8da64473765",
-        "5ac8735d11cb2c082fe012a38f8ec190b527d0dc95fe720ad677a41868d3881c",
-        "dcca193f2c0163434cfff6cada6687f4b653736446fe3c37fd0317495f687310",
-        "4cb3825c7a7ac10db8b83482202e6fd5b3387f230b0628067f30405254cde5d2",
-        "26945a4c402cdef593f6b62acb1baa45945ffdfce808b0c828af6ac240b8ef1a",
-        "dac014374fa2192d0163549a3ff11e74963d8094cffad4582df2fbe68b52aae3",
-        "16980937e6e536dcdaf2f6f513df6f70aaf0414b00e91deb54ad1da69e7fb3d9"
+        "5ae994a02ca8e2b22a6aa4367d6331623dc1296b4b2b10412294c6b020aefe8a",
+        "57467998fa684f74f7d578ceb418968c549868186fd519e1829eb0e7ec5c5064",
+        "1a5bbafa5f297e46e6506e0c9c7e55807137be79d88549e2c8d215c2232833e6",
+        "6d936f3e6574eda2fe5a41e066d25c7422545d72664b33e98b6bfcef82600af9",
+        "db86a9a81a0d555bed9e1c9b7fa65473c9801631629d669ec70f391bc032f92c"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ultimet/long_rod"
+            "components": {
+              "cruciblecraft:prefix_material": "ancient_debris"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -31,18 +31,30 @@
         ],
         [
           {
-            "item": "cruciblecraft:ultimet/small_gear"
+            "item": "cruciblecraft:kreknorite/gear"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ultimet"
+              "cruciblecraft:prefix_material": "kreknorite"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ancient_debris"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -52,61 +64,13 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ultimet"
+              "cruciblecraft:prefix_material": "kreknorite"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ultimet/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "ultimet"
-            },
-            "items": "cruciblecraft:chain",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ultimet/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ultimet/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "ultimet"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -114,7 +78,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:ultimet/block"
+            "id": "cruciblecraft:ancient_debris/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kreknorite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -124,23 +97,23 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/14e2ac3845ba55ab",
+        "cruciblecraft:gt6/292a01edd635d714",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/e52d5b3ed1110cbb",
+        "cruciblecraft:gt6/22c92a61b2972193",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/5a007130fe9c3607",
+        "cruciblecraft:gt6/38bc4001701db788",
         2,
         2
       ],
@@ -148,54 +121,22 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/0a762d035f20b9d1",
+        "cruciblecraft:gt6/11f9921b2edc36a4",
         3,
         3
       ],
       [
         4,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/6c5dbf45b5d6ff0a",
+        "cruciblecraft:gt6/b48da0606e413f32",
         4,
         4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/a3a21c56257c397b",
-        5,
-        5
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/f1e0f7deb61704ac",
-        6,
-        6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/ab23e59b09fcb3c7",
-        7,
-        7
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/839af669e5ad4efb",
-        8,
-        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2024,
+      "duration": 266,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +147,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        2,
         0
       ],
       "output_chances": [

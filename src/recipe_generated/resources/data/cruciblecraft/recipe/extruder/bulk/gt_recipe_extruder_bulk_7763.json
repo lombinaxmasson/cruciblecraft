@@ -10,49 +10,39 @@
         }
       ],
       "hashes": [
-        "925799c95204a26469f9daff684f624585536e8fea3827da0a5c4babbcdd295b",
-        "28eb0463c75e7e1d20f3cf1eece20c93a2744cd27c8e4ddd179371f70650fd10",
-        "99477ef8e7862d17ade36693864e1b984f0f210d704e426492398b00e5f35b52"
+        "97c1b49ce82e0e1c7f8931eca762a8483b44ac1225d2ee5c8938551363509cff",
+        "8d38526c28dc7f7ed7be9d805c0135e4c515b55c2efac9783c85b91be68b6e22"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:terrasteel/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_blue_steel/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:terrasteel/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -62,7 +52,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/23d559e6d7bcaa34",
+        "cruciblecraft:gt6/d5d77c31676c4946",
         0,
         0
       ],
@@ -70,22 +60,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/9ad014f34aeac3e7",
+        "cruciblecraft:gt6/1c36e3b96413f206",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/c974d56e05256240",
-        2,
-        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3308,
+      "duration": 522,
       "eut": 96,
       "item_input_actions": [
         {

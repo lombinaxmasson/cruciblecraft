@@ -10,80 +10,52 @@
         }
       ],
       "hashes": [
-        "05eaaa422702a838993be975b61e4a74ac220dcc4d70ef61215d93c3e14c69d6",
-        "ea384e4f368404d8b7aef7a9fa7a3578067f4b8d2cca1a6148c5046a2f91e043",
-        "e792519e9224a196c983dbcf9fac3f8f0b7cd43645fb8615f41ab675728d655f",
-        "f4362101c5f0608e003ea9934767cd407e3972c372a647db104c72c26eede633",
-        "06829c5b502ade80542c196a221052c05008814970454a0dea799b2cdc2ad114",
-        "7439c1cef8574924396d437b70976c5b616b593457761edb62f50f243491e62d"
+        "96d109093b9c476b1e19c29734ff67bf17de678e4398227a736c02dfafbfa524",
+        "5f52fc9dfb75632e4f12affa0d2aa7bdde7b0bf17219437d4fd56b88296751f3"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:duralumin/nugget"
+            "item": "cruciblecraft:tantalum_hafnium_carbide/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duralumin"
-            },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tantalum_hafnium_carbide/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "duralumin"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:duralumin/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "duralumin"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:duralumin/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:duralumin/gear"
+            "count": 64,
+            "id": "cruciblecraft:tantalum_hafnium_carbide/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:tantalum_hafnium_carbide/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -93,54 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c1fed55ea204283f",
+        "cruciblecraft:gt6/3df284c3e2ea8165",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/e823366f4bc256d0",
+        "cruciblecraft:gt6/56cf049d8e957cc0",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/6564bb3cc0f98585",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/e9b1b238956f509f",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/85fa352e1f3e5974",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/8daca23f7cb01331",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 307,
+      "duration": 7828,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7009",

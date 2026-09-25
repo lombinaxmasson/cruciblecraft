@@ -10,71 +10,71 @@
         }
       ],
       "hashes": [
-        "9945482b3d1c950570cd22d1b58b7ad1a64173667187f082b1ae2ecdb46d05e6",
-        "c94b168e9e788bf50f566c4338d2999798af147b3069c69bc3163a4752211a40",
-        "5657e204ced771b6ca222b63e285cbe7600a8e401f411f265f7f51a82663582b",
-        "b9adfb1094934441efddf9c32b54f23b0f942561d29a9481d7209e63dc32bfc8"
+        "df057ce15bd485940bfe1fd2a4ff035872ddeb7117fc6342cdf49e14b754c363",
+        "a2c7d093f63df957f0867d23b2458662bf3c460685afb7d0d7427301828190d7",
+        "ec6e9fd6372a5db1894623fc29b671a3751b1c16704715b76199fd86bba4f59f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vanadium/rod"
+            "item": "cruciblecraft:steel_galvanized/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vanadium/rod"
+            "item": "cruciblecraft:steel_galvanized/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vanadium/rod"
+            "item": "cruciblecraft:steel_galvanized/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vanadium/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "count": 64,
+            "id": "cruciblecraft:steel/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:steel/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:steel/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:steel/bolt"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium"
+              "cruciblecraft:prefix_material": "steel"
             },
-            "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
           {
-            "count": 1,
-            "id": "cruciblecraft:vanadium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:vanadium/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:vanadium/ingot"
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -84,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fb4423ce77d24f09",
+        "cruciblecraft:gt6/2ea2752d2f10b461",
         0,
         0
       ],
@@ -92,7 +92,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/1d496f86562231b3",
+        "cruciblecraft:gt6/f93ef0a9987b0524",
         1,
         1
       ],
@@ -100,22 +100,14 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/301b051ce6b53c8e",
+        "cruciblecraft:gt6/883f09b6b931d7e3",
         2,
         2
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/9a8c7ee03fda9da5",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 179,
+      "duration": 6096,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7964",

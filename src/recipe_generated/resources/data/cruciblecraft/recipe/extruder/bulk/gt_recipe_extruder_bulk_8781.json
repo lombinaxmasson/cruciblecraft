@@ -10,28 +10,32 @@
         }
       ],
       "hashes": [
-        "3f7f30ebd746da9e4e9873f5f62a923d44b0975c0ca7bec63725b4192094872b",
-        "81295b478b6cee354965826eaeee0a29e6fa869a34ebaf0209707908f320d265"
+        "83ac42de21038a4ea41702058a346d73eb1126723bcd1a10f83afe7d56d3517b",
+        "937c01f236b64240e75335b33d3e6349ef4d680ff4af55141b9b497e6569fb23"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
+              "cruciblecraft:prefix_material": "hafnium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:terrasteel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:terrasteel/gear"
+            "id": "cruciblecraft:hafnium/block"
           }
         ]
       ]
@@ -49,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0bc7a39f1df43e9b",
+        "cruciblecraft:gt6/b8ccc6319cbd6cec",
         0,
         0
       ],
@@ -57,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/427477f5b8b9ce5e",
+        "cruciblecraft:gt6/de888758de72a408",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1103,
+      "duration": 5455,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        3,
         0
       ],
       "output_chances": [

@@ -10,67 +10,96 @@
         }
       ],
       "hashes": [
-        "73d7c5e8fd02821906823695d9d7584bba78deea029078d8b0b74d08b060fa39",
-        "a5377597bcf1a052bda2749860715c7fa78f920800e97c226ff9d46e0615d9b7",
-        "c6e65a94fe1ef9646dd2adf2501fd2940c7083f4878f1800feecd2cc05f405f6",
-        "5556559e3b224082edcba877e67f1822ca398993f6f13d1fdc3cf2c6c186fdde",
-        "2e6f3a79bd46b39819687881dae943175e537405337523ad6e90664356a10012"
+        "93b2ee51bfe69515f94317e06422479958fea932fa9c4c490d9ab64ffdd20cd5",
+        "99f5a1cd9004248520d26513d9f3baeb283fcf51fb6d09a736132342be4b7ab0",
+        "842ac4c2a8fc48fdaa5b5388a017818fdf9d6ed45a800ec669c30024612e3008",
+        "75bc690d0070a1227f47c08e2c3dab3d752d79737b895e40aac8035a3c37a05c"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
+              "cruciblecraft:prefix_material": "naquadah"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:molybdenum/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
+              "cruciblecraft:prefix_material": "naquadah"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:molybdenum/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:molybdenum/ring"
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
             "count": 1,
-            "id": "cruciblecraft:molybdenum/block"
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -80,46 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/008f398db22d827d",
+        "cruciblecraft:gt6/51a4d09d12f11064",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/5ef3650aec0c43e8",
+        "cruciblecraft:gt6/d762ee132dd5d3a2",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/daef2227951efa11",
+        "cruciblecraft:gt6/1099a169bb63c81c",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/3024e8d9500f8178",
+        "cruciblecraft:gt6/eef2b720bdb6514d",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/0f3dce8165b46aaf",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3695,
+      "duration": 783,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        3,
         0
       ],
       "output_chances": [

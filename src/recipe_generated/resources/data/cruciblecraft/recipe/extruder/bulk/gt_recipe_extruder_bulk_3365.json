@@ -10,32 +10,18 @@
         }
       ],
       "hashes": [
-        "616b86c07f71608dddb786520f938a6dec44535ae83af024b24a4579b57971e1",
-        "1b104b58c34a9272dcebd6b98c6e863924570abe73a4a2b8f5e89638c81ed999",
-        "63c483264bd47bf861ef8162bb3eeb90472c33cb5f2fc4854e17f67112705635",
-        "eca6faba905ad5d3f0c35452ff0f85eb8ed1f5dac8590d9a9b5ccb4e031fe19b",
-        "25477c974e9a8a860ffa5964ed1e9a6306e69b37103c7708de319ece6a1f472c",
-        "054c513d6c701edc63041bb9e8e91b901767a777497edf6231c80eb427e78654",
-        "411d72700fa66fdd4c9e9be42987e07457178717c9edb7483e19971002c60bf8",
-        "18f00e1fd204c0750fd8c0ca4472d1cf77bac71c9bef0739be563df4ffe8ae45",
-        "1c5e25e1c740b752992f7af9a45d01d3297bb66ae9c59a07df9ee42a8a9a4548"
+        "48e7eff1117632af42f0697510fcd9abcc5ad011df910668548cedc9145f9854",
+        "242d45132cd2576040838cd8fa5f238410b20345dd701c84c541af95aa6481d2",
+        "62631eb28afbabd686192de91d595ca2f2dabe5f44cb8a925e021dbfdf2fb253",
+        "a962c190f7872156587af4b163dd28692479701f978d4ca4e245959439043100",
+        "86a3c927f32fc7cce6e00f622990390982137d5d7cd0607d4f1e4ac73d1d3b98",
+        "697b51b0f1c82742799ed5ef1234cc7ed24f505432330118b14a13bf5da1b87f",
+        "194f0a0e434425bbcd1b59534b4a1a7b1d5ec9a8b676706c0dd0ceaa5695108c"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibranium_steel"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibranium_steel/ingot"
+            "item": "cruciblecraft:hslasteel/quadruple_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -44,9 +30,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibranium_steel"
+              "cruciblecraft:prefix_material": "hslaspring_steel"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
@@ -56,9 +42,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibranium_steel"
+              "cruciblecraft:prefix_material": "hslasteel"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
@@ -68,9 +54,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibranium_steel"
+              "cruciblecraft:prefix_material": "hslatungsten_alloy"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
@@ -79,7 +65,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:vibranium_steel/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "hslatungsten_alloy"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -87,7 +77,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:vibranium_steel/plate"
+            "components": {
+              "cruciblecraft:prefix_material": "hslaspring_steel"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -95,15 +89,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:vibranium_steel/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibranium_steel/small_gear"
+            "components": {
+              "cruciblecraft:prefix_material": "hslasteel"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -114,7 +104,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vibranium_steel/block"
+            "id": "cruciblecraft:hslasteel/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hslaspring_steel/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hslatungsten_alloy/block"
           }
         ]
       ]
@@ -124,15 +126,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/68f88ca5075dd47b",
+        "cruciblecraft:gt6/df2f5fa27834ec35",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/24f24ff4a9f6742e",
+        "cruciblecraft:gt6/8f82a7b50d7a4164",
         1,
         1
       ],
@@ -140,31 +142,31 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/c817f579ce69c51d",
+        "cruciblecraft:gt6/555ccbd030b5f449",
         2,
         2
       ],
       [
         3,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/143f502f0cacb749",
+        "cruciblecraft:gt6/7712c09d342650c6",
         3,
         3
       ],
       [
         4,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/900461bce3d375af",
+        "cruciblecraft:gt6/86dbef6e63333fe5",
         4,
         4
       ],
       [
         5,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/d2e5c0513f5359d2",
+        "cruciblecraft:gt6/8ba45a17db993511",
         5,
         5
       ],
@@ -172,30 +174,14 @@
         6,
         0,
         0,
-        "cruciblecraft:gt6/5d5dd0a6ded84035",
+        "cruciblecraft:gt6/44b825fdb1d24c38",
         6,
         6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/865937bdd0076e9b",
-        7,
-        7
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/02950d1d43779d97",
-        8,
-        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2289,
+      "duration": 1920,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +192,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        5,
         0
       ],
       "output_chances": [

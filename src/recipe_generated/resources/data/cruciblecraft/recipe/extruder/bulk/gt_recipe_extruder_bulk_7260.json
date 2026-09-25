@@ -10,67 +10,48 @@
         }
       ],
       "hashes": [
-        "4595317d5a71e91374acb2eb9ed46f714256ba6e17e32150ad31a200bd74b47c",
-        "54f33629c9e01423d0709f6582914dcb39bbe8479f50a05c7f4de851e9afd1fa",
-        "306e8e8790603a477fdc56eadef7629462adf6f92921e585bf2f1768d8755c08",
-        "7d8a088b17563b322b407436b543bbb70f91b44414d8bb4636a9372b2f04668e",
-        "1dee34972dfe204f4cc46b4c760bcb09b5920121890cf54267805808dca44c91"
+        "3290dd012ee33d3af395ccae8ca76dc4bd566d26d1ef368e9d03d700f180aba2",
+        "9f4bfb2b4623f4cc6f2354b7c8c5effda5ec9a1f2326fbb6421a1da54cb47869",
+        "8af4fa73eb8e0ed31ce05f34b74c58a65f262a47550b11235a2c92b4bb4c0f53"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:syrmorite/ring"
+            "item": "cruciblecraft:stainless_steel/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "syrmorite"
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "syrmorite"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:syrmorite/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:syrmorite/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:syrmorite/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -80,7 +61,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b8abe2d4fa5401a8",
+        "cruciblecraft:gt6/a6a799f2bc90df6b",
         0,
         0
       ],
@@ -88,7 +69,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/302114e556626382",
+        "cruciblecraft:gt6/9a972399ac73fd07",
         1,
         1
       ],
@@ -96,30 +77,14 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/6060c630a716feb8",
+        "cruciblecraft:gt6/97a868cce763fab0",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/090b42674f310817",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/52beb391c1d8eec0",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 65,
+      "duration": 301,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +95,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        3,
         0
       ],
       "output_chances": [

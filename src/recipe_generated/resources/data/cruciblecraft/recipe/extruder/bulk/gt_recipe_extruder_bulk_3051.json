@@ -10,111 +10,134 @@
         }
       ],
       "hashes": [
-        "b66a542e95832573cc1b0242b843a7b0451afb9ac886cd9a989bf77a696ab086",
-        "b32b7011fc7162e4d11599c14dde4e9811f8e158d78d88d0d1c1249cfbd55640",
-        "77c33275566bcbe9f52fc80e6d246890f5c58ec614d05060201f1ff8924103cb",
-        "13e372127db45a19d3278605841012d9df22bc2094aee004095748a391a99372",
-        "9e877295bfe856279ebb063cd526d23382e29c2230d916d96cba81b11f95ffd2",
-        "d3fec22bf3c2e54d2c532698b3a8b20954874d66ba9fe3fbf8635b8f9abd7bd1",
-        "eff0b83397340ba629323972c50ab5ffb1b50432f93406bcb4c569348e548c7e",
-        "212aa786f7ebc55e0c6b8d976f54c0eb8ed2ade6d3fbade0a6c6a0138ac01274",
-        "73d0f908c5cb065289cb97f35e5f85a67b3e426e997c25de552c05c3b91c6ffd"
+        "b19e5f822a85bac2b2067c4c22886e983c15e2a416e890c4c7475c1993abf382",
+        "72c22e6b2b0d38257a2f7c5fd45e516655db3c806209a04090306e2257413ed2",
+        "1fb423f76180361d79d656a4e5d94d9710f2ef122bc7adafe8523a843cb2650e",
+        "e30d64bbee5f68f377e2a48215f11bbce44aa512eec759fcf679d874fba60f60",
+        "69493dbc17299daf22def4bd9c46f3c3811cf5d38dddfa5b2ad688fa6429f2cf",
+        "c638f7532f3a888ca768651e0c3906fbe19ab075e38278657c41f3f8eed3255c"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:hsse/small_gear"
+            "item": "cruciblecraft:vanadium_steel/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hsse/long_rod"
+            "item": "cruciblecraft:vanadium_steel/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hsse/ingot"
+            "item": "cruciblecraft:vanadium_steel/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hsse"
-            },
-            "items": "cruciblecraft:minecart_wheels",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vanadium_steel/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hsse"
-            },
-            "items": "cruciblecraft:spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vanadium_steel/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hsse"
-            },
-            "items": "cruciblecraft:chain",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vanadium_steel/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:hsse/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "hsse"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:hsse/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:hsse/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:vanadium_steel/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:vanadium_steel/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:vanadium_steel/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:vanadium_steel/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:vanadium_steel/tiny_fluid_pipe"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:vanadium_steel/tiny_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:vanadium_steel/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:vanadium_steel/rod"
           }
         ]
       ]
@@ -124,78 +147,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4cd8468fb622f4fa",
+        "cruciblecraft:gt6/e66047a8f50bedb8",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/5f6338d489376007",
+        "cruciblecraft:gt6/10787d8e43b2c85f",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/8c70293399c2e9b0",
+        "cruciblecraft:gt6/0c130e8be66642e7",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/1bd74f4127c9fe6c",
+        "cruciblecraft:gt6/143d55954c689e92",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/c4132e1741e2b7f4",
+        "cruciblecraft:gt6/7eb7437da3743500",
         4,
         4
       ],
       [
         5,
+        5,
         0,
-        0,
-        "cruciblecraft:gt6/bfde9382ebb81d00",
+        "cruciblecraft:gt6/d28c29b66dac1cfd",
         5,
         5
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/6b3c70628ed7c663",
-        6,
-        6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/a77aef568668943e",
-        7,
-        7
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/0d3fd8e4d179f22d",
-        8,
-        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1197,
+      "duration": 11570,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,10 +205,11 @@
         }
       ],
       "item_input_counts": [
-        4,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_3051",

@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 4556,
+      "duration": 191,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,36 +17,47 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:palladium/machine_casing"
+          "item": "cruciblecraft:lemurite/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:palladium/block"
+          "components": {
+            "cruciblecraft:prefix_material": "lemurite"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "lemurite"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "abd382add0b936e99f1d2a684b2810c81054c0558ed022b28456c8a2c9669312"
+          "861f315411b5713060573313992b32f38353c3518cc85ea3ce2209c1e1922b0a"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9248",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/aea83ccabf5a34ea"
+      "stable_id": "cruciblecraft:gt6/af9ffb9861bc90dd"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

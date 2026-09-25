@@ -10,32 +10,68 @@
         }
       ],
       "hashes": [
-        "f0d8b5e77b1ada4e0d1b4b9bf7c513e0523c9c7524fb68c66c17ed2e90527df6",
-        "55c2bb15f033bc6cddecc773664b983c52b3f5eb7f7f1889a235df308af2f3ec"
+        "1107adb6ca1e196dd3048782ea3ce1813cdbd34752a733711ffb6a0970998307",
+        "13037525f5319bf68fe2803d14fecac9db99cd39a270f846d0d075afbabfcace",
+        "017450b70e7b1062587b5ee9bcaea783dbb69e655d47539ebbdc15d659b19e99",
+        "5e5753ac950f7ed69da21f4014869cca4c3217323143b28d759cbf6f4962d057",
+        "f6a54d896226f1e7d08926c040352f6d460959727828fb2d264609be4bdc57ca",
+        "8ac4b1bea6ae5f337b14036b3557d64429aeaf1a75a815a9bd2ac59d4859c24f"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "aredrite"
+              "cruciblecraft:prefix_material": "boron"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:boron11/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "aredrite"
+              "cruciblecraft:prefix_material": "boron11"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:boron11/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:boron/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:boron/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,7 +79,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:aredrite/gear"
+            "id": "cruciblecraft:boron/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:boron11/block"
           }
         ]
       ]
@@ -53,22 +95,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/65decf8e82e9b233",
+        "cruciblecraft:gt6/54196e1d673e90ed",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/7d1c7dcdae8337c9",
+        "cruciblecraft:gt6/bdf6dd916786638a",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/edc97f6fb92eebf4",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/6373181e76f50f75",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/f9cffc3671100011",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/fe497abc4754e253",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2045,
+      "duration": 669,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +153,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        36,
         0
       ],
       "output_chances": [

@@ -10,32 +10,24 @@
         }
       ],
       "hashes": [
-        "bc025b3ed687ef25166fffbc1f7c076f6093868d07ace3ab25d6583f8d32c35c",
-        "449e5a15e314ec51a3a694cdbc5ee4c3aaeefaa99bf0943e8e21e052782d515c"
+        "835b6e98a907cc3c962c273d1b3c0c03e2195fd3b76f2868f243db931d414468",
+        "d72d717baf00a03b31a533fc91456874bd8ac9d7128e954e3a121dec8b5543e3"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "alduorite"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:constantan/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "alduorite"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:constantan/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
@@ -43,16 +35,27 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "alduorite"
+              "cruciblecraft:prefix_material": "constantan"
             },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:alduorite/rod"
+            "count": 64,
+            "id": "cruciblecraft:constantan/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:constantan/bolt"
           }
         ]
       ]
@@ -62,7 +65,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/acad28d7c4a2fcef",
+        "cruciblecraft:gt6/bd84ce73223962fb",
         0,
         0
       ],
@@ -70,14 +73,14 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/8c34b5c1ecacd82a",
+        "cruciblecraft:gt6/28e6f6b2f995ee74",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 27,
+      "duration": 2412,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6084",

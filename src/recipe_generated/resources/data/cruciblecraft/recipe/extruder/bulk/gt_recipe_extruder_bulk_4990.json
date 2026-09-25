@@ -10,46 +10,83 @@
         }
       ],
       "hashes": [
-        "6e68237bdf20b9970336a3301aefe32015d207f1794e886ba9176f2bf0ce4df1",
-        "521acae3b7b70897c5827e6166b5bf251b6d59995439caae84808bca74c9f164"
+        "be5039e50e3959dc080dd5b3e94726ae057b8c4eb0fde3605eeb9a790f7a7ae6",
+        "9427bd0dc9cb129276618dfa208082cfa6d95e28128feb0cd10e0d129bae22a8",
+        "a46c241fc90604405845207aa94953fb92fae113c672d7b3c0c5ab6a563669f9",
+        "be05868ae6c0b3c861dc058b8e63380f33368a57fb5be14a42f27677d8c9b9a1",
+        "dceaa5822e0f75c1350ad797833c02e69b4d76bda13f938a3c29f0ea315bbee2",
+        "6989035d7685ca07ba95be008dffd33c97221b1fb44a25564ae320b3bd5f424c"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "fiery_steel"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:trinium/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "fireleaf"
+              "cruciblecraft:prefix_material": "trinium"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "trinium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "trinium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "trinium"
+            },
             "count": 1,
-            "id": "cruciblecraft:fiery_steel/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:fireleaf/gear"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -59,22 +96,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b6fe8f8f1a445a09",
+        "cruciblecraft:gt6/34ad73dd16d1dc04",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/773b47d7a3e26200",
+        0,
+        "cruciblecraft:gt6/7441443a00c5282a",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/25a08fbddd8e63c4",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/48d7209a58781be2",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/74492f695159168e",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/94716d3860d9cdd0",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1284,
+      "duration": 233,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        6,
+        54,
         0
       ],
       "output_chances": [

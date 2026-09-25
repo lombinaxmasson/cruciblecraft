@@ -10,56 +10,52 @@
         }
       ],
       "hashes": [
-        "0e84044747ddd8db3a062a7b1ef26e6f3f314d01757fcf135c9d5ea618f39a35",
-        "c09ff86fddbb6fed64ee6fa3339fba32588ad20f56951f39371ada7a4db61ddc",
-        "931f12ffd04841d2f6c65df404928f1d431c9f1ec14e9e350f400eac1097801c",
-        "24bd25858a7b9d2d8842932bbf26632665cbf0ea718c8bd016f6a417fe56eb9f"
+        "7e0b207e3309b057bd5dd2ba2fd81c7fe94cc87a9eccd2430e5e02a56cbb2087",
+        "de5b9d0f89e286e026f4953161f5aeb3f3e29c36540b1ae5a48c7d519b328078"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:cobalt60/bolt"
+            "item": "cruciblecraft:abyssalnite/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:cobalt/bolt"
+            "item": "cruciblecraft:abyssalnite/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:cobalt/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:cobalt60/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:cobalt60/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:cobalt/gear"
+            "count": 64,
+            "id": "cruciblecraft:abyssalnite/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:abyssalnite/bolt"
           }
         ]
       ]
@@ -69,7 +65,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/555d98cd5e2246fe",
+        "cruciblecraft:gt6/2f81f28f8ef0b2d0",
         0,
         0
       ],
@@ -77,30 +73,14 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/f11eb509f4c86f4a",
+        "cruciblecraft:gt6/fdd94c077fca2097",
         1,
         1
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/fc99eff7191605c6",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/fae8dce27b14f61a",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 807,
+      "duration": 3912,
       "eut": 96,
       "item_input_actions": [
         {
@@ -111,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        32,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4929",

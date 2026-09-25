@@ -10,16 +10,25 @@
         }
       ],
       "hashes": [
-        "2c4bbceae40aa6bcbbea427d28e3343fc5490ad97d83177c0d0a55add0e4ff8e",
-        "f79021d38144c1936df08090619113ba9b229031bc0afd97e42ac4a17e6707fd"
+        "3823ca4690239bef3d38dbb800fe262d3ac9950e3b1cb6ab38fbf4a1f0e926e1",
+        "d3331f493799f30b9acf02e4267a4aa7fb64ceb484250d85aae31e12bc21dec7",
+        "abca517d61ab426fc70ba3525301154a2f5bb9deddf286e625ed003cf4ae14c7"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:iridium/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "dreadium"
+              "cruciblecraft:prefix_material": "iridium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
@@ -29,9 +38,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "dreadium"
+              "cruciblecraft:prefix_material": "iridium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
@@ -43,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:dreadium/block"
+            "id": "cruciblecraft:iridium/block"
           }
         ]
       ]
@@ -53,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8813c3263d2273f2",
+        "cruciblecraft:gt6/7f2fa5621c54aee4",
         0,
         0
       ],
@@ -61,14 +70,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/c10c452775189f41",
+        "cruciblecraft:gt6/70d213c3a10ab75e",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/cc6542157257f63a",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 7664,
+      "duration": 8447,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        5,
         0
       ],
       "output_chances": [

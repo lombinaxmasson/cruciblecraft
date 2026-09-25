@@ -10,59 +10,42 @@
         }
       ],
       "hashes": [
-        "619b172e649ee7dcf8914b89845cd6ba1e210d962321b4424642e2ceadc2787f",
-        "ea491f002748b81a70ffaf74f27b2ec43bab7bc6e72f3f52d13e96883cfc8e9f",
-        "4040d513281200617fe6b6d6272c7dc41fae063f44e7cef2723e8efe14194f44",
-        "b67c559cee1e260562d24f31d671db7511f90747c4eddbe80c3fad111ed15856",
-        "10b30ff46d8cbc18d7152df2b0fd8ec7136226e22ff5f361ee2295b0926b8542"
+        "08ed88c03fdcaacbb8daffe71fecf07a0d014e00866908d69a6ccc3dd8cfd90f",
+        "30b68d7390f44a3ca4579a9c44fccb498207c09dc92dc4e4e4d90e83e6d1386d",
+        "ed8f9e792fa136fdd514ac9476c00e822b2c0e137509e8819ad21d51ad0ecd56",
+        "0e64b53f9f4f650ee0b1ef42222fd11dfac2aa18877749fa4e267780554ebf16"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:rutherfordium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vanadium_steel/foil"
+            "item": "cruciblecraft:rutherfordium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vanadium_steel/ring"
+            "item": "cruciblecraft:rutherfordium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:rutherfordium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vanadium_steel/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ]
       ],
@@ -70,7 +53,28 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vanadium_steel/block"
+            "id": "cruciblecraft:rutherfordium/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rutherfordium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:rutherfordium/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:rutherfordium/long_rod"
           }
         ]
       ]
@@ -80,46 +84,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/dfc66193ba95ac4a",
+        "cruciblecraft:gt6/d42bd0af261f1c7f",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/073daa08be9544ff",
+        "cruciblecraft:gt6/c2e97215dca482d8",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/92dd79cdf45abd9a",
+        "cruciblecraft:gt6/b54e54303b289d5c",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/bd4737256fe1c9d9",
+        "cruciblecraft:gt6/c3aa75ba3619e624",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/0f073450b77ca5ef",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1860,
+      "duration": 755,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        8,
         0
       ],
       "output_chances": [

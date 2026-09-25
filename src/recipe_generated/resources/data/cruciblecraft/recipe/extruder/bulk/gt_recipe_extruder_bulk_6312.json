@@ -10,16 +10,18 @@
         }
       ],
       "hashes": [
-        "b48a7fd3955f1a400385bf97f95c2f4e8d9db33fb6a596efb1e2ad72d68bc63b",
-        "1d43521e77f4b5c6bcd158d6f8d54837140626e5c69aeeba5e9cf22e2b40dc2f"
+        "d4c98e34d25e33011d7b0e3d2d3a0802316d3ad74d5a722aa07245b7c2f86ed6",
+        "61f6a004c1bf97ebfa380523934f52e265e18fd9b028810e0cd217ae3ae62089",
+        "9b4f336050002433183ca39ee88313fa1c3788401f369c8e8b4155195c929990",
+        "8551c3097c7bfa152519a3133ab0550d4944c47b0f249f4d605747fd30e29b90"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "kanthal"
+              "cruciblecraft:prefix_material": "hepatizon"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
@@ -29,13 +31,37 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "kanthal"
+              "cruciblecraft:prefix_material": "hepatizon"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -43,7 +69,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:kanthal/gear"
+            "id": "cruciblecraft:hepatizon/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,22 +88,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2f770080cb395ac9",
+        "cruciblecraft:gt6/3ee4159ed824233b",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/9f7d016f9d5f24a9",
         1,
+        0,
+        "cruciblecraft:gt6/1a842a529bb9daf5",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/10c0bc5caa64fef4",
+        2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/9147e73e995d78fd",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 516,
+      "duration": 1358,
       "eut": 96,
       "item_input_actions": [
         {

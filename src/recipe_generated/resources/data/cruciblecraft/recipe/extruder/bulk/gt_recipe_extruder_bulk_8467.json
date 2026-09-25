@@ -10,40 +10,71 @@
         }
       ],
       "hashes": [
-        "c0badb638af8f93fe8b08403d3157eee6250869c84794a7c263ba7def73e39b8",
-        "52d823a01decab5253493efc0c4595e3b2f2ef5b35c2cb487847cbe63a36dc2e"
+        "2483146d091f8c9470824a90de4982ad43265279be4f0016729bdb9a01b8bdbe",
+        "62f36f70bdd27971927083878c1129f50dd6dcfa2c993f884f25f92f9537d8db",
+        "45b7e73358b58cfe748f8eccd1ce3138fe647971e582c5520bdd655250f026ff"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "lutetium"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:red_steel/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "lutetium"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:red_steel/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:red_steel/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:lutetium/block"
+            "count": 64,
+            "id": "cruciblecraft:red_steel/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:red_steel/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:red_steel/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:red_steel/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "red_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "red_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -53,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a560c63651a65df4",
+        "cruciblecraft:gt6/4560510bf71dc546",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/aedece7d70fef5d2",
+        "cruciblecraft:gt6/5403a3f61c97c7b0",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/024e8d4658eff12b",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2479,
+      "duration": 5568,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8467",

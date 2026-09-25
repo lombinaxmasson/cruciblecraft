@@ -10,36 +10,70 @@
         }
       ],
       "hashes": [
-        "fa18133231468e78a520c6ce162a6b6deb6373b3150f715f298babea62ab78c1",
-        "7179190aaff15ac5a5a7af50af8f63c1f6167391af6125f954b337924f4c97a6"
+        "5084964b2b6171c3cd49ea049d6e771ec258f99ed31ad9f50110f1db66960907",
+        "4b1bb8e92e158dd05772401d455f7b455d904022a5a87329ddb250dcdd13431f",
+        "b5e90d8bbe388faddc44260a3c2f41d03409b6ef98e6d29273bcd14389826732",
+        "ff6d01821bc66de95d1998039588fa0e3ff9a9122e600e7cda9a33e72e41225b",
+        "423e9f7b754017b9ab7cb6b56ea3cfb8ef4ade8540a45b7773b758b35874ccb5"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:carborundum/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:syrmorite/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "carborundum"
+              "cruciblecraft:prefix_material": "syrmorite"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:syrmorite/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:syrmorite/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
             "count": 1,
-            "id": "cruciblecraft:carborundum/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -49,22 +83,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7c366364d529be23",
+        "cruciblecraft:gt6/c6edf9fff4fc2a11",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/74b912e1d1281dbb",
+        "cruciblecraft:gt6/647db7ed2cdd7aa6",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/21068459f3cb32fd",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/d31d34cd8b5a3829",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/0018a51c2a8c765a",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 865,
+      "duration": 97,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        24,
         0
       ],
       "output_chances": [

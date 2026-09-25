@@ -10,80 +10,52 @@
         }
       ],
       "hashes": [
-        "bdbe5fdaecf9e3b223113682a00a0ba9018ca2a6fcbedf0eb2ce7e8a47dde916",
-        "0ccec60ed190ddcb5f16985806654a55342a19ba94b364cb62d36c31c72b5bf3",
-        "7f185eda09e374281120f15c4a8842ea63e8f00595a7c1bd7b81e33d0536e03b",
-        "a42ad64c0ac74c0fc96fcf8dcbe85065c30697249049d4aecaa7899e7159d661",
-        "7c697ec2f0700ec0ee2e8e57d9899db586e659e93634d2356dd18ad98324e8c7",
-        "c49611ff129ba87b3adf64f1c159b9875a18c563ccb7a6335f2bc3baae7349ee"
+        "3025754af51a6fb701f0aecfb5ea7448e98d45f4e57341c160694a7ef02ac698",
+        "37550e2f789a179cb7d65e5d17c028fc3f59f4188b4e9e202e6c1669207a5d65"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:desichalkos/tiny_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "desichalkos"
+              "cruciblecraft:prefix_material": "infinity"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desichalkos/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desichalkos/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "desichalkos"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "desichalkos"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
             "count": 1,
-            "id": "cruciblecraft:desichalkos/gear"
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -93,54 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e891f61892f816e7",
+        "cruciblecraft:gt6/a3a1b8250d5c3c99",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/ab670501bc16d884",
+        "cruciblecraft:gt6/e8cf8cd60e991f82",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/159edb57da3489bd",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/b89d3a2a2a8e05a7",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/9a46c9d7ff6e8787",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/31583fabc90cde5a",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1012,
+      "duration": 171,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        8,
         0
       ],
       "output_chances": [

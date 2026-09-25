@@ -10,23 +10,22 @@
         }
       ],
       "hashes": [
-        "12ef5f09b2b12987149e96e285709dad459a01963158ec595aba2a73870d6bc4",
-        "e1e0a00596c59bbb7165418e099c7b6f4c9e5b2831c77feb30c0ac6be0d519f7",
-        "7e14d27a95a3a1fea7582644656df369e1d738eb5bb00b5ee9b8ebf8280c7eb3"
+        "bbe73e40b10ea8f8f1c195d1663b6cf3b3a8952e70faa91d8d5e8b893d4b278c",
+        "ce70cbb8f8c973b495c615cc900133b4c10b817767e74df40e2e95c02dadcc16",
+        "6b430e5a32e09535ab21ae253e371fd3ff16be90b8f1f90eb51087dd5997a2d9",
+        "323642118dfaa409230eeb52308ab731ff791ed8d676642c7597e9605e405afe",
+        "a14f0886eadb93356686376650bf4f791557a4070a35978bd49a522a79b8acbf",
+        "65fa938c8352098677954da24a684b783b13b4a52f7866705f7f5bcb83d2a41e",
+        "490338a4fb785f804464fa5cf47bbf32aa489c24bf9c5587dc3245c39ee918b8",
+        "0e9fafe1862dc39827d042172dbd6b967d91b9638597fb1caa5b6c9d14df60be",
+        "c01fcf4f9217011ffa31fb4f7ec91b1a0d0a6da9b53b475a2b957d4294aa9a93",
+        "ba9371521df84b8ffe348d342431967084e94b04180d8de5ca3460d8e389c3fc"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:netherite/gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "netherite"
+              "cruciblecraft:prefix_material": "desh"
             },
             "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
@@ -38,7 +37,19 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherite"
+              "cruciblecraft:prefix_material": "chromium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desh"
             },
             "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
@@ -46,13 +57,110 @@
           {
             "item": "cruciblecraft:extruder_shape_block"
           }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desh"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desh"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
         ]
       ],
       "item_outputs": [
         [
           {
             "count": 1,
-            "id": "cruciblecraft:netherite/block"
+            "id": "cruciblecraft:desh/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:chromium/large_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:desh/huge_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -62,30 +170,86 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8d1e66f9408b2ec5",
+        "cruciblecraft:gt6/6eb9a9fed55d7735",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/acdda04e3e80f4bf",
         1,
-        6
+        0,
+        "cruciblecraft:gt6/43c238d0a9fab4d4",
+        1,
+        1
       ],
       [
         2,
         0,
         0,
-        "cruciblecraft:gt6/306e423b9453c63a",
+        "cruciblecraft:gt6/21e11dd6b42cffe9",
         2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/7efbddc381c99ae2",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/21e4c7a21b36395e",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/f87eb5254525c7f4",
+        5,
+        5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/f4c0841f2ae75ea4",
+        6,
+        6
+      ],
+      [
+        7,
+        3,
+        0,
+        "cruciblecraft:gt6/71fce4c18c6a491d",
+        7,
         7
+      ],
+      [
+        8,
+        2,
+        0,
+        "cruciblecraft:gt6/d3a5dbcc68fb3c92",
+        8,
+        8
+      ],
+      [
+        9,
+        3,
+        0,
+        "cruciblecraft:gt6/a977fda05c70cc78",
+        9,
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 29342,
+      "duration": 1250,
       "eut": 96,
       "item_input_actions": [
         {

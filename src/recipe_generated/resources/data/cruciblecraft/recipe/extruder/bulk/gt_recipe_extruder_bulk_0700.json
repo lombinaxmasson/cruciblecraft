@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "5df9feb7411fa9f6a02de8515d47c6af6cdee95fb7667c1cee10dc466313fb3b",
-        "0acc142b70455693275062b049ae06a9abe6a0305f24403d82eb48705fd4c09d"
+        "06cfaf99aecbdba9df48f7c595d038cd7b4d868f80b3195c2c1414a1528f101b",
+        "c1063e5a0b2d07345fa8b90b0ee03361adbf732cfe6b0ead33b52b9249a2b12d",
+        "2a0543d3a0ed66a4a1e6c2e10d20c9a05acf43206619b31beaadf7b6edbcd10d",
+        "d87a1c898c64722d9aabd50b4a1c000c136ce0463c663968799573d697439aa1",
+        "b84162edfd158eaff057f9550f777971575b6534adeb41e3f4f6a062d030c55a"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_black_steel/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_black_steel/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_black_steel/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:enderium/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,22 +83,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fd933a3974379689",
+        "cruciblecraft:gt6/41541c3644078b60",
         0,
-        5
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/ac5e20e5d389c0b6",
+        "cruciblecraft:gt6/2d7ae02e25b08809",
         1,
-        8
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/6695c15ec3b8839a",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/d5ab3d7f61f1aed7",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/3f814c11ee02caee",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1807,
+      "duration": 550,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        6,
         0
       ],
       "output_chances": [

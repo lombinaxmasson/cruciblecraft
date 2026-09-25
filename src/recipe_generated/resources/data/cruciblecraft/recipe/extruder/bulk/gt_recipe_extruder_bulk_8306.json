@@ -10,67 +10,39 @@
         }
       ],
       "hashes": [
-        "5734e7982684d8bba76dd4d270a67cd3e5109c6db9b6739658b2b78129dccdee",
-        "88db447e33732652cf9404c47a3055f79cc0195e5f69f3ca2e546a3a2e8f4528",
-        "fd2a52fa8fe6b31ce82a86a24bded255f2e28a176d1e0602ce6be9b35122d79e",
-        "1e4e9a6d8bdf8d2332532a82e88f48e5e84709725761cbd240b0624f5b9acadf",
-        "37e22f196387afd2157bdad8a73604a6656ffb2c08c6f706020f7f95eb548329"
+        "ab34473be7f275e1f8576c1a70584d30778fd888bec61561b81e09f0295597fc",
+        "c62351c05b846041a2144e0a847717c37b9571b5f0a14585cf2df05fe4b30ff7"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "mauftrium"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:manganese/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:mauftrium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:mauftrium/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:mauftrium/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "mauftrium"
+              "cruciblecraft:prefix_material": "manganese"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
             "count": 1,
-            "id": "cruciblecraft:mauftrium/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -80,7 +52,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c5973635959bd6e9",
+        "cruciblecraft:gt6/d841be815dc5c32e",
         0,
         0
       ],
@@ -88,38 +60,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/b578d50e7f1105a4",
+        "cruciblecraft:gt6/4cc6959a84230014",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/cffb7bc19fd66577",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/8dbdc40d30bd69a4",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/1a5e3990878d4082",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 94,
+      "duration": 212,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +78,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        3,
         0
       ],
       "output_chances": [

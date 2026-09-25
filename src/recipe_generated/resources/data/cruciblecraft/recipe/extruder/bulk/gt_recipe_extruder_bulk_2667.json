@@ -10,28 +10,32 @@
         }
       ],
       "hashes": [
-        "3e2c671fff133acacce0156ba7d6f7eb1154d60bfebe35a4d1cee66db0e401fd",
-        "8b24422425877d01473832173e9f2de554347a0f3e7c4021955f4b40296a1a79"
+        "7dbfa754c006ecd3746b29f1baf6b53f7330ec6698eba681f4c9a44fa2c0c204",
+        "67940b70bad7b0231b3dc7bbf389ced54bdbc512d49689bb01281f5ff91bb9fc"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:pulsating_iron/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "gold_inductive"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "pulsating_iron"
+              "cruciblecraft:prefix_material": "gold_inductive"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:quintuple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:pulsating_iron/gear"
+            "id": "cruciblecraft:gold_inductive/block"
           }
         ]
       ]
@@ -49,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1d0f19ce9d6fcba0",
+        "cruciblecraft:gt6/23cae0f49828a495",
         0,
         0
       ],
@@ -57,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/6ae91919f4a34324",
+        "cruciblecraft:gt6/c4c4b1c52f31ba83",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1076,
+      "duration": 1237,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        2,
         0
       ],
       "output_chances": [

@@ -10,28 +10,32 @@
         }
       ],
       "hashes": [
-        "91c282e61a9cc13a564cc156104fce5a5842a646475b1f96ef2ad9c03e5ab4b7",
-        "6d4ab0fbd161073cc9433b00dccd0595d9bf114a68a38fcf745ab48c107aa357"
+        "f14dcc69e44cb4de993054062da8d2379964d0bad93088c528b654a62d3ce23a",
+        "359e4a4b1fd35ef994519a28a666cd6de4e11460f27f23852028f4e559e071dd"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ceruclase/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ceruclase"
+              "cruciblecraft:prefix_material": "meutoite"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:ceruclase/gear"
+            "id": "cruciblecraft:meutoite/block"
           }
         ]
       ]
@@ -49,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/96632bbc789c8216",
+        "cruciblecraft:gt6/cf49a4654d13879a",
         0,
         0
       ],
@@ -57,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/6c8e98c816ce8171",
+        "cruciblecraft:gt6/e216fa46e4eae17c",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 650,
+      "duration": 2124,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        5,
         0
       ],
       "output_chances": [

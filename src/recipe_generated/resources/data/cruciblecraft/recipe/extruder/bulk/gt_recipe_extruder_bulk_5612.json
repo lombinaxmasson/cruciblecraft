@@ -10,49 +10,89 @@
         }
       ],
       "hashes": [
-        "08fd8c6e22ea096ddb247d31450f9995a2ecf057b46c420e3fca4e8464d585f5",
-        "3275b12d1d8adbc47a572ea74f03a483844dddda48d5f92c0856003d7ed5cde9",
-        "1cc8af9b09c44f75d2b8d615c4d79612bd4c9c0d46c1252a5d660b1f07974ad6"
+        "1d8c9d2d4dffdd396e2902411635e779ecb5986c166da5f209b1d990789f76b7",
+        "d3d5e65e96881f3c0090b11670cf68edb9df34f897cec88a101e9245296f52a9",
+        "da4d74ed7818f17a38f002729a1afab326baab57b5a58616149ae3dbe7acfc05",
+        "1ae6a44e54824105194b47be88c224c12d6aaa645a98c86fc41724645a30f7d6",
+        "2c4fff05f83e1368e05abf1dfb218e0aea0321a7adc6c563e31508394ea91a77",
+        "cb9ee21510878d8f05ad7593060b1a3b54564914c5377a73800cfbfc485e0001"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:desichalkos/gear"
+            "item": "cruciblecraft:amordrine/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "desichalkos"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:amordrine/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "desichalkos"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:amordrine/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:amordrine/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
             "count": 1,
-            "id": "cruciblecraft:desichalkos/block"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -62,30 +102,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7a5ed4c49a75e835",
+        "cruciblecraft:gt6/f444f5d5534424a9",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/43feff6293e5d623",
+        "cruciblecraft:gt6/a3d54f4a8b106166",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f150c3594635805d",
+        "cruciblecraft:gt6/bbbe108bb24fe80e",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/c662571265d936bb",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/84725fdbd8105f25",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/70387d8d0ce98e9d",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3035,
+      "duration": 647,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

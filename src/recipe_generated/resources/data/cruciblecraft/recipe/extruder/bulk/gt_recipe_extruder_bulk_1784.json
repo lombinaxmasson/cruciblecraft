@@ -10,16 +10,43 @@
         }
       ],
       "hashes": [
-        "64fa63a05e17c65e7f169cc8c0bd3b2668933c88f07398f665d48a8e0969d53f",
-        "9dab6ac27d03684c00d959fa400168c3f6ca44db0ab946168be928360d263ad4"
+        "3cd5b69b1863da20c07ca781c15c209505bc2bceed8a4e8923efa8231a3fed0c",
+        "66a825aaf0151e1c7682b626cadb0e684e7e512ae0bca72360e2c3eab684acd3",
+        "2e99586a012fb8fa9a36e1c2baf33654ed3fae49f477a0238f1a8c0de1e052d2",
+        "ad5339eed05178b9796ce2d630906d30dc5c551c18d28e1a3e4f028eb005744f",
+        "4c96193d0bb4d1816ac4f2e55e94d4e94f063dae24e7d9e89d933aef251b6cfe"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:desichalkos/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desichalkos/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desichalkos/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
+              "cruciblecraft:prefix_material": "desichalkos"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -28,7 +55,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:molybdenum/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -39,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:molybdenum/block"
+            "id": "cruciblecraft:desichalkos/block"
           }
         ]
       ]
@@ -49,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4b7c6bfc3b0706aa",
+        "cruciblecraft:gt6/ccd0d972d75f77ab",
         0,
         0
       ],
@@ -57,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/f8ab24a2291446a3",
+        "cruciblecraft:gt6/73b7ccd3f7b7389d",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/54d4c0cae2065e76",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/27a69aa11c53c3e8",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/cbeecb02acb3b3fc",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3695,
+      "duration": 2276,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        36,
         0
       ],
       "output_chances": [

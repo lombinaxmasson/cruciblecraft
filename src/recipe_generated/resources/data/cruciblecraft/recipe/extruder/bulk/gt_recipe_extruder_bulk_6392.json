@@ -10,19 +10,23 @@
         }
       ],
       "hashes": [
-        "81868adb5c1a0ad11acd8df39327c9036a404406beea46415dac35cfbf130221",
-        "4ec2db9a69b805581389090b21b4f1f3b959c32496482d80d9faafb996fa8717",
-        "80def8b499bd4258a77cc5e614755b33782c1fb4152676d958c9b491d7b68c7b",
-        "24ad5058c7d6f37fe4a9c769bdc20dfb0070d1e03d156374a84c5e071a6dfc50",
-        "950dd746f81249fc47e5dedc16240b09b87f5cf3a839522a800880ae2fb9a237"
+        "62d40f5b852786fc8a6c2474193f4893e07110ca4230b07df7dffceb022b4c56",
+        "5b266c6fc1c9d8104a1d10782b5af687503c6274bfe12eb8be2e567b87082cb5",
+        "2b11d6be4f74df31b6a6834330bfd01e73a835baa2b1ba092a99c9577db66275",
+        "115e1201f0579d277855f83bc3cb4e848e8596afbc677c238553f2f862ca5ab7",
+        "547eeba7e6e2e6f5b171cfe875b012618b0535cc8338aeb601d7bf47415f03a6",
+        "1ba520048ca17a758c7536d8f36318fdcfe95e4835f0b301b798c426728a6d2d",
+        "a3503395482322a0935b6b0ea370c56ee8ecb29bd29229b8452f0edb565b09bd",
+        "ea2a9aedab78522bef75d09707babb379a18ebf2b4a6fd6242ab9884dbb04f3b",
+        "721bf84d7b5869fdce441e6e1e9b3a42c5ee2924483c09b9a7776aae8645e534"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "draconium"
+              "cruciblecraft:prefix_material": "titanium"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
@@ -32,18 +36,54 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "draconium"
+              "cruciblecraft:prefix_material": "titanium"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:draconium/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "titanium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium/fluid_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -51,15 +91,27 @@
         ],
         [
           {
-            "item": "cruciblecraft:draconium/ring"
+            "item": "cruciblecraft:titanium/fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:draconium/small_dust"
+            "item": "cruciblecraft:titanium/fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -70,7 +122,22 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:draconium/gear"
+            "id": "cruciblecraft:titanium/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:titanium/large_fluid_pipe"
           }
         ]
       ]
@@ -80,46 +147,78 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4f73b642a6eff045",
+        "cruciblecraft:gt6/dbc4550fb3408b8b",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/7eacecf42739084f",
+        "cruciblecraft:gt6/86cd529379be9568",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/64e81b987f9603a3",
+        "cruciblecraft:gt6/5c9e46cf4f223f94",
         2,
         2
       ],
       [
         3,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/fb5b3f4425a87965",
+        "cruciblecraft:gt6/5d6a08e5703fa2e9",
         3,
         3
       ],
       [
         4,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/a8f37046b9526265",
+        "cruciblecraft:gt6/1f397fe2e2aaa3d8",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/adeeae1402b1ff70",
+        5,
+        5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/185492199659e7d7",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/ed1838c4b88aef65",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/f391c0134316d6d9",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 260,
+      "duration": 693,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +229,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        2,
         0
       ],
       "output_chances": [

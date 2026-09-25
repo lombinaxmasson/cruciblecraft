@@ -10,32 +10,103 @@
         }
       ],
       "hashes": [
-        "e05d309b8884bd0e280152cd0e9ed1c896321fb8e57c27876d181cacde8066ae",
-        "d4af220f1d15eac0184fc4a12f1d92b7ebda4ea303595d501a20cf2b11776b2c"
+        "37b7f37d888985e04e8ea9c86faf9b99259745cc4afd4c36e7988766b0d98788",
+        "9def566225604c123731d9836e65a145be6b71bfa454591b98db245bb61c17a6",
+        "93d6e76a06097e78bb3f6345dd62c7fb915d1d3c4251ccb7fbfe3844d18614c0",
+        "45307937d534e1a495a4f6dff6ab651386cdb5d39a11459ca453ccbdafbf2949",
+        "61b2744207dde46afad65d6fcc5037f39e38ebbb7ecf3d3623be359909cb7191",
+        "7d57dea2b56f7975aaa34073aa8141eb1fb8c3578487868ae5c7a7ab155a96cb",
+        "27d348f0c6a7dfae20ad82a91d854c7e8a418e67e874da623bf7f659a91b4de7",
+        "4ccd6dcfd80abd8937647819f0ae319345435a9312662ad36e1810ec7e14d919",
+        "2805da93b37ad9a801b028cb560283dd7d3ecb33d05808379690b985ed376fb2"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "oureclase"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:gilded_iron/ingot"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "aredrite"
+              "cruciblecraft:prefix_material": "gilded_iron"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:chain",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gilded_iron"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gilded_iron/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gilded_iron/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gilded_iron"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gilded_iron/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gilded_iron"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gilded_iron/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,13 +114,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:oureclase/ring"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:aredrite/ring"
+            "id": "cruciblecraft:iron/gear"
           }
         ]
       ]
@@ -59,22 +124,78 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f2ef6ba351632c34",
+        "cruciblecraft:gt6/bde2015df11ed08c",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/2f3682b5a9de0a44",
+        0,
+        "cruciblecraft:gt6/474bdfa85215c281",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/e1d1e36c5c52fbc4",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/ae5d713fef7edced",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/a3c9a0b8d830c8d3",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/6cad85da76e5b397",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/40c00740d9684b32",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/051be87981379bbf",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/71ed2fd0add826aa",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 86,
+      "duration": 939,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +206,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        4,
         0
       ],
       "output_chances": [

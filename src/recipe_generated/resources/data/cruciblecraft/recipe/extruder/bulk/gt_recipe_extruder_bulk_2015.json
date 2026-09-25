@@ -10,24 +10,41 @@
         }
       ],
       "hashes": [
-        "bd0fa27edaf39b875411b47d30ffee894759472e1cb21c22b25125c68063487a",
-        "46a8fa50ff97fb740e0c36afa4f05d9223ba748a6ae5afa6317e4991b9093a73",
-        "9e6db436c77fd3556c5e251e1abb84f5d43c9ba4f821be9b92c8e0848507f851",
-        "ebe47c5b113111af477a139cd8cdd6b6204d2787667382bd3d3f1a7bef1908e0",
-        "ba57ada0663698e288dab93a131441ade7297fbf9075ba7731bc5211d5c7f504"
+        "cbd9b7ea48075051d7f2dec3a80807cd0b9992e6bdf18b1db23dbab33b96da5d",
+        "f16a44c6d581fb36e021ad44ba5b60b52105281bb5a4b0309f22ee5c09a43c21",
+        "71e74eac777f4f5033c888b48432b7c74d79ea3c4f8bb2c7eb075374ebcac233",
+        "f86c0ce74724ba87080a5fb022f7bd4cb3e849ca861940143376ecbe9e48bdfc",
+        "2ac88c2d309c93d5a04d0860eb5d44e51e9b8f867ce09a80d6d769c5d806dbd9",
+        "d353a7112e7c08a712cf8c05582766d45b97b45e5845978fdecaecfabbae701d",
+        "c0ca8142d3ff0817ec020d36b2b548b7e2fd033746b77f33adc4874a2ae22110",
+        "f7cc72bf2ccade668f2d6e5e7498cd75972606844fdd722872c08f56bec4db60",
+        "afd7a9c20c9d3a1a430808d0614846fad01c2d15c150e6082f22655e956281eb",
+        "715f07faf0a9ef56ebd6630b2f2317d1351937ddc653aa7e299ffc4019e1eca9",
+        "3a388e2b2ce2a8a194e635a750d4b6e04fb0e5d6777b23df32da2cf38e81067e",
+        "35bedc4f1e9efc556568091f90582b8467abcf9c01592908e3a81f0235ef9270",
+        "a7e1d5d00b5ede1f9423044ae588874fdb6effc86ffb842e1a519a6bcc8c0f82",
+        "2e20165a1a5e01b12ee8885d30f6cee236bd881daa4972b5f8ca99abb8d4617f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:titanium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:titanium/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -35,15 +52,47 @@
         ],
         [
           {
-            "item": "cruciblecraft:titanium/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:titanium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -51,33 +100,148 @@
         ],
         [
           {
-            "item": "cruciblecraft:promethium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "count": 4,
+            "id": "cruciblecraft:hafnium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:hafnium/rod"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "hafnium"
             },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 36,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:titanium/rod"
+            "count": 4,
+            "id": "cruciblecraft:hafnium/plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:promethium/rod"
+            "count": 4,
+            "id": "cruciblecraft:hafnium/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "count": 4,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 32,
+            "id": "cruciblecraft:hafnium/bolt"
           }
         ]
       ]
@@ -87,7 +251,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4eec383250864332",
+        "cruciblecraft:gt6/faf81e2b03d24a7c",
         0,
         0
       ],
@@ -95,38 +259,110 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/bd376de65ef1d7a3",
+        "cruciblecraft:gt6/447697a2d1aaa313",
         1,
         1
       ],
       [
         2,
-        0,
-        0,
-        "cruciblecraft:gt6/9c98344728b6cca1",
         2,
+        0,
+        "cruciblecraft:gt6/7a0d592cc3cbbad5",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/61e0e774d2a63705",
+        3,
         3
       ],
       [
-        3,
-        1,
+        4,
+        4,
         0,
-        "cruciblecraft:gt6/da5572779a87096c",
-        3,
+        "cruciblecraft:gt6/576043efa09d29f3",
+        4,
         4
       ],
       [
-        4,
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/6710a09d7ea2b34f",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/cd484901a31c4ec8",
+        6,
+        6
+      ],
+      [
+        7,
+        5,
+        0,
+        "cruciblecraft:gt6/fd3508ff5e0ce626",
+        7,
+        7
+      ],
+      [
+        8,
         2,
         0,
-        "cruciblecraft:gt6/09163579dd52b3a4",
+        "cruciblecraft:gt6/ee1cc3a1f219f56f",
+        8,
+        8
+      ],
+      [
+        9,
+        6,
+        0,
+        "cruciblecraft:gt6/a6eb41f29fc11cb9",
+        9,
+        9
+      ],
+      [
+        10,
+        3,
+        0,
+        "cruciblecraft:gt6/f6419260fac7edd0",
+        10,
+        10
+      ],
+      [
+        11,
+        5,
+        0,
+        "cruciblecraft:gt6/a7cb0480639fb68d",
+        11,
+        11
+      ],
+      [
+        12,
         4,
-        6
+        0,
+        "cruciblecraft:gt6/e90d49db3aceb7e9",
+        12,
+        12
+      ],
+      [
+        13,
+        6,
+        0,
+        "cruciblecraft:gt6/37dd33088c52a4a8",
+        13,
+        13
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 58,
+      "duration": 1819,
       "eut": 96,
       "item_input_actions": [
         {
@@ -137,7 +373,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        1,
         0
       ],
       "output_chances": [

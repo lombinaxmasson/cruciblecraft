@@ -10,13 +10,16 @@
         }
       ],
       "hashes": [
-        "523ddfe5a514f03b24e6cea38141bd9d259db767ce7f6a5d230dcd96f380b508",
-        "ef29133f1f6ae226fe508cc90f472157702ab54ea9c419f0cc95a4e9b107bead"
+        "14760aad31771c7be8e3c5e354a357c9d8c20636bc7cc0238414f4eb1f1fa61c",
+        "5b79c929bd6037cfc2f6b16d5752ba5eb3b802e3c63b67fd75ffb8d6eadc70e6",
+        "a3a2dcd32c82ac5d4c4e422b99c4b0157b8170fdaec644d824843e69c05d4524",
+        "db300034d4c5101866bfbf028ffb5e77c164a783b4bdfffa386ef7cc5b65eb74",
+        "63dbb7a68521dcb95bd565630068b0c7d732ebb8c3b97f990486084f4770fa48"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:naquadah/rod"
+            "item": "cruciblecraft:ultimet/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -25,9 +28,37 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah"
+              "cruciblecraft:prefix_material": "ultimet"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ultimet/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ultimet/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -39,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:naquadah/block"
+            "id": "cruciblecraft:ultimet/block"
           }
         ]
       ]
@@ -49,22 +80,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f2d5eb82cfb2bb0a",
+        "cruciblecraft:gt6/43545071757e3793",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/b20d06722abbd31c",
+        "cruciblecraft:gt6/7584ed277725c53b",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/0361c8b4a65fa041",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/8aca396e21a55e6a",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/00bfb9363ee625e3",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3521,
+      "duration": 2024,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        36,
         0
       ],
       "output_chances": [

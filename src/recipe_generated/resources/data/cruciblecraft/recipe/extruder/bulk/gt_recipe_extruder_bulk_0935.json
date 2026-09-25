@@ -10,63 +10,274 @@
         }
       ],
       "hashes": [
-        "1cd8287b09b2c48f45b7fda4f05faf9a7a593e99beb5f0e5b6f799df3d952a80",
-        "b801d7cc4eae7ad6cf80e2359318251289f71217fd027bc3975e94ce85cea81c",
-        "4f86962924c88b5c53e91af4c54921be64c2be5c0f26fd964f298b7aef55a39e",
-        "e59428625752c5c5d995999ff4e49618f46779258f285de0a95ee25d4ffb19f9",
-        "012ccb637590242a3230f48408a3840ce655586840038aeb0b58288102902ef3",
-        "8934aef751f4e2631172aab0217a796a06875ea227a92220a053d11a7a2909b9",
-        "cec57112e70f9d9796caaf28638a7a0971cf6a40a99c03d55a905bbe3f8b7668",
-        "341cde820135da49336eef445e31594e73522e9598e6d6195a8689e75e378998",
-        "87adf66c78951dfa6530490a6491427eff03d382f706bd96fa0cd6c179f75424",
-        "f8ed187e3112cc131437f2b069b8b24ffa314b683fb0902e100e63eccd0c6b21",
-        "ad829e7adbff655dd31dadb65ed7aed8e0ec9153c8d8f19426e9b050e73d6e19",
-        "7d832d0facc47866e825844cda2fadb33a9c52795291f7dec64aa19e51fcb2e4",
-        "a4be7d21eedd2a0b91fa5394cf89bd864d4669d9c07d469f90ab5dd3e39bd87f",
-        "34e39e52bdd10489ca00e9acd6a49ba103567c23c8b0c5f7f58c2e300a30ad94",
-        "5160e990969a74aab1e157797fcebe6de85b602e930d9e77fc70812303f07024",
-        "dbbe5e0d90823b46027948be46625592b75d45ff6442c0f7cfc4c1bd6c4f25eb",
-        "88335a139768b8ae61428c73283fb2ed3f89a134b75b1117999012ad3b835bb3",
-        "8c4de36e853568b6c8abd1de65a0ad0c91a38e681d2f3fa1ba6d837211d08aac",
-        "a66513d83cffa023b059cf91f3e11c12c90f8508734d2c50a23b4a72324807e7",
-        "44e7fd4212c046b722e780a0c6b44b5370702a0c13a94f53f56b09c79c7f658d",
-        "09fc7d2250a15aaa7f88fcbfbd8febcaeb43808abf63ca784d34b10aada748bb",
-        "a6dcec63b998756b301009ce6e13abb2ba2d7d80d4b2573a8811adcc65085a5a",
-        "fba95260f026038f484e4e58e27cb713711b4c40e042666430e589fed1d6dc25",
-        "d6f77f78fb868b9d8f2daa503cc1a6002b111e356eafa5d044e4c0271093bc68",
-        "cfc0c542f17ef21cfcd7f863f6d250780b5da85b28e153334044b49075186788"
+        "2bcecef2169cdc89de5de25d2142bf74ae57916e373102acc4642e728edb5e7d",
+        "90743c2a7701b423a4a81ee21e756722be20f56b75ab32165ee9f94178e3a9a1",
+        "aab77a912738b3f4aad9e3741694cad766b4e4e944afe4263d14b49a752bc801",
+        "e4627c0acef089b2bc86dabbc083a3628caf15c59613e6d94d7c7235d5a133b4",
+        "7b6be167678f22c4e4c5ab0421772c4024d55991128f4e8ade2f5d6679a19f9f",
+        "32979dd007ce5d5520e65aae5256f21f85833f543c576d37338d6aebc5159992",
+        "951785a7fb62de6a6fc94866a08fd88cdb523c5388e583ffa435449b09ce4cca",
+        "fcc034a8b65c6d47f9963d7cb6478bd68bc8608d3a929468c6a92d586db31e0c",
+        "085ccd799fdc6bc04c9c2e4cd7a3c95dc5c6e02bc843912fee7faacec6b86d60",
+        "122cd249933d87d95120144704c96e8c4de7f47d93ba0969d21e848e224d1d82",
+        "e2946e0eaa5665ae569f9a2068e74deddfd7a35da8595ba36e93ed0aa16ed737",
+        "079090f940a70fbec46f1a0a329a1404e470c8f8e6424e92a4ac0420821b2780",
+        "fbedd1d2ea3384114d2458bfd4b80d31915e9cef47300821db999099ac54e84d",
+        "ff28eb426a222d7ea70d6ccc1bf6a52e24250fd5fa08f3a599d4f595155e9b89",
+        "fd00217a88137364e4bea0f4281dcfac4a9f12ef7454f7606dcf65b574fa0116",
+        "109d0a6d9c6e6b002a8b6ec06b08b515ed90959c82c6fb1e3a19b17e72ba63d1",
+        "f18e98813643a9c8b2753c952871590e8eb52b3759df34fddf01d97001947d20",
+        "10a07ec230a387a23ae29ddedfcf6b86c19b9a02103a24d6500653f3586dcc5a",
+        "45ffbd9f7663c364da4d181cd53460e690ee544c6bce39b6d4d92b1923e28107",
+        "5e35a018b20cc2baa57ae05b54608476b8b0a27dcf737044f215daebae7fc683",
+        "8f8f2ae97982b9eca9ff44cb5e82339020314041a9089ba91b1cb8751c17b3d7",
+        "95c256724aa9e248aee2c33f25701933922fe33a55c028384e514fc5b64bbe9f",
+        "389f8cd43cbfec41cc2e2fc104b653653274ecedadc99bee983f00bc41bbba32",
+        "23fb8b1af6ccc34f81958c6c7e435eb1553394c9886894832f51dd94c1bc8f8d",
+        "5c46bcd92663abd1925d3aa95d9c8e30d44b7035cb3e70488436bab57950da40",
+        "443ddae96f168ebe8ec04e045b7136829ed9d2e7b2470e0fea72f567008af767",
+        "024a58ca2d352abb3e05956c7e592af64305aa70521057eeb9e5def362acf141",
+        "f7a5503a4eca25990dc65f5fddc698da856cf22d27e47d83bdaf96265af197fa",
+        "965a7a375a4da13a621f6b04f717561ca2e430c19e1ce8c94d4e9f6484564770",
+        "c8d4e31e40887afe36aa64ea6c767cb780929650df71b01dc639de535d214aa4",
+        "3f5665e994f7e76a9d1857783bd443f9482d711c398200a2685596b17f2e2b3e",
+        "29bbbd23d90b011b1c5f69423963a361debe3e24d998e4af9d4381245e0b2672",
+        "c07b22531d7007948fab5aaaba37df4b8d41369f8a15773dc59893f19a309aae",
+        "7a4840747354b774863f2527d12f3208eeb0b530b25e1cbb9c6581eb5d5a75ed",
+        "0e2465f85274e87cbebb54388a9e00ad4e670f5eecb890cbdb9ddb707144f9d0",
+        "4abc3ac8d81f1fd5177b2ffb0eac38fd20ddc3f3a99c04a34d55ff71337dc5ad",
+        "3db0a8cc745e9990a5e007a5863b4c052dd427d35f87b4888e954f573d0df3d5",
+        "5efd6c459eb130aeb8c231462c5d812454c533d3c5a2a841bc64d30f1a07e9c3",
+        "1a356100ca090363d3d61641e1060adb6a7bc8ab53527c2916dde0f017837512",
+        "04e6a3c63ab98ad8cf52330d512427064fca6d1ec5e41513fbec42e0f35331b1",
+        "c326f4f6cd952f46b4fdf7a3b41e7a709882b9f5fadb2366637908f840b2fd8b",
+        "9b9cb84ebb13862576884899e0cf0428659c57863a72fe4d3d5f25ba515687e1",
+        "1a4203806c8c11e6d08c7eefaaf9cf6cdd63c24db361a98b98fee1b5d57058ae",
+        "1ae5af516d0a3f47ee4447effa6837e4cf87efeb5d08b74098ab85f7f833f083",
+        "641a9ba154532d0da82ef533e343254021cffd46d57dce33f9190834c1baec4e",
+        "fa7361a2c14abbaf67ecb7bde42b07237d7f138a12b2fc837bbb969d845d0ca5",
+        "f44b01ae4e7bd8b3f878f5abe8785048a31483dd9a592da704f01822eab2626e",
+        "1e5fbffae10ea3e69c561b1faaa83dc3f48689253bb18cd0d9dbc73529c5c869",
+        "e195cf4458d5fc00f97bf8cdbefb39ef24b941b0eb83fd672b642c3d2395f20a",
+        "dcf3ef19f94b9765f5c920198919ff7f7c0a407b44a367c054a80473d69e7a2a",
+        "fba1610f70db0761b933d94f332093dacbc7e91293a09d570cb5c12c45569fad",
+        "99c63428aa18a1e37c464493ea5135700fee47b10ef5cd883abe4bd04f01a9cd",
+        "6005fc8e5fc6660c8ad7fa67d3674063b865bb10274c8a4468174b3ce780fe30",
+        "5d6447173f083616302450960aeb877bdc760c40152fb4e0daa212a2a1c36a9b",
+        "7c5aa1aacbdb11758251194ab43267882fe6f22fc004e45723d4115ba6e98c8e",
+        "2fb51efbec033edc2677a293ee01f5e3a3d4b81269639164a943744f310cb42e",
+        "cc6447f08a1d4ce4f22cd3c543db82c369470a3b006f98d396ac52194d69c75f",
+        "1dd165a7d8a3abd375236a857d62896236b84224d3693145fb5059cbd071b32e",
+        "b4777e5fd0a180f4d63bb1e4cb85c517e1b06d2ada01ab4422c21e39a866dbcf",
+        "dc900cd78adec26d8468948b8b86aaa5e8209cea41deb993fc0712aba907e4ac",
+        "564d7edffcedae42512bedb72d6690dd33d006ed0375c4055df94ee4d4cfe252",
+        "470fb30e01bdc8aad11f964a7d0bbc07e25835f27874df8dd28c49d9e9c4ba04",
+        "26597b135b5b859f7c107c1f46533a056fe805e1100a524b1a31e087cb698fea",
+        "0b48515b99ac96647c7da20a29861157c0fe29941c5ef30907ea7d680661c0fc",
+        "ef49c8126d3db89dc2fde18df0e56b335d9f6c8a615d6f08ff5c05cb52aa0405",
+        "f6ce819a8c63425d0b9fc1813e91cfc11434e8d4d62c4bcad4c83e5f91f6786a",
+        "9e0e850105cda31157354cdd492f949166645652c1289611dc7080d0e99a248d",
+        "fad77ef2563913f09ef9b988f8aa2cb73e00e6cb8e49c23bda0774deb1540b12",
+        "1e90e84acb654a2315bf811ac0d88f4a7ac818d915d0cd5afec70706bebe9c1b",
+        "40dc964a09e437576d37c2c4cd3f40a8e2da60c5f31d499006cd9b0b0b1962bd",
+        "b9ea26bb4d803973a87c0e4de8135cc2c674f49d560c5c8d6300e5d1c786c50a",
+        "8e6ac8ca80f549df12d78143fc168d5d582f289d6a8a797ad958120ad0bb8347",
+        "f5efe45a61ec013cf6bc7daffa9166c236230898c9642989bae169eb76717603",
+        "0f32878b4d14ebcd7ef63f8ba64f999a57752fe52feca32cc00ff64d6bf7d313",
+        "4f9c6963e0862b7ae549bf8b58f46635f5bdc3c883d8d55f133685ac8a459a04",
+        "d7c60d9e55293545b4b273fc26b38323726d84be2fd78dc729c810d25d0facb2",
+        "c50304afdb11dca5a2ab6a80e5440071457eeb9895f38323d0d3948f148566e8",
+        "91de7791656a391cf936dfe2e6b7f05a8f669d091e88aefce2f9d11e309981c4",
+        "6b88b13257fed01bb18707662f2d314ed8c1ef4fb96947f51364ed8d95c85a83",
+        "31bf92adedbb92b123d7585dacf9ad0d5697dca3bb5cd1e296673e0e898072ac",
+        "a5f8230421b80a54c3344e2926761edf3e93ccb91de2991878159d700c23abf5",
+        "6128c404a8947afdc5ff355892011f2baf39ddf244a7859162060e3fc64078fb",
+        "7d7e0c2c48d54ccea2400bacb2a4db635e6f772c94903ea3691b7d8584b051cb",
+        "c80ac702e3776f03a52878cd6df5ed6ec0417959d31ff070f36e8731951577c0",
+        "ddd19ef27ff58cf8323d256985f72313dc52fc4ad66829c8e389261c1e285b7a",
+        "8e14f17d9fe1ae26c4b0e4b0eb89ded99ce75ab463236644a6cae2f8fefed65f",
+        "a457a7357c389c6b63a613e96d23608d2cfb73dacfaf43decfd48b38066f3658",
+        "5d3896e2797542ba95c8acb48dcdb4c9d34a6fc97f8c2dfe7c6a1561761e1fd2",
+        "93efb503b4ded6ab0b2592cf4acf3b0ecc89a131618a95c2b0f4fc4bd262206d",
+        "44fa42b0542611431a9b88b95d6ddbcdfdba09e46fbdaeb172e9d6cc69777e75",
+        "44c008435735f3758a698ba36be93b908f6ce0c727d25a0096a27070f7ac4498",
+        "596eaaade69d9716b2ee0101afbb78dddb537c44013cf5aecb051ffa370f6e9b",
+        "beef2ae95ee5ba273fab349c552db28057bff649bbca3c84fe5eba04983e5a4c",
+        "9c635f94005bf1758cdcb6a25d12151cdcbcba83d0b3feb861e6d2bdb199a164",
+        "fcae7064abd78dd50b83244d12b7b8c25aeb6d416b0c84f8bbd515eb96232bcf",
+        "6150b71da124779582a9b720b5587bad0922e4c3137a8fc2b1ab39e766ce3d45",
+        "703f30c74810b294f5b69d88c4f692eb217c68d855fa11678543b72a3e098ed7",
+        "dd204458fc3b35a4bd7c7e13f4869a5bbff825b5e0443c4bc666af87e789e0eb",
+        "9aff6249868ec7778c9b901a2e1f4e137ba4a3621bc479c18538ca5e04179e2d",
+        "a0553ffa23c61a2db090e6709f5e5d8eb5eccf613824c26da16fc65141bda69a",
+        "4fb643d1ca81b8af5a372f86a2125567ee3816f54a1d8e716fac029be110e232",
+        "641f4252b4efab608bbc064536c16052ebef2801d660c801b8f442af85f6416c",
+        "42b8d4ace545686294cf99d4cc13722c5ba52f2ba1994257b5929a0421199104",
+        "88cf21694ff2ec6c47f17f04ca539abb5d706758eb828a6e0303a1cdc737ef19",
+        "7e415ea1b1b53e0a49f55ccdf603ab34fc7ef42c936221ad672887c06c5fb4fe",
+        "35d8ecfa73db44522bff8eebe0e51fd9456eada1fe51d5f31cf957ae47453bd8",
+        "d7f2a8a0622f8a5cab42f25c27cf49bc14052ada6e547af0584f31f8b69cf44a",
+        "aeafdd986786ad95ae2b5d4541046bd6f1b9e6037f2958f63bf9931eb818e134",
+        "00f63140f7650ed646beef32384e1ebd6f666484df204eff5a98b9db05880d0f",
+        "0fbdd9cca1baf30d67bd9bdeaf4d13f57fa769af7fae9f856ce927a26478abe9",
+        "9da1110c343026509c5bcdfc02fb7d629d54068042851a63c4fcf53c4d24ab2e",
+        "448a3e4952100d38f4a9f0299febd2516b3bb8d3a7ab20159f9dc188cbe73cf2",
+        "7ee01a580459ced63d39acbd2a261e3d864da5e28e70beb33e1372686c660ef1",
+        "07dfc313d571bf31544e51f1e6453e34a3076caf5a6159398fb5e013ef8ff96c",
+        "6242a2661f3dbade07ec6de6e96b2509122c18c6ba047d13ab5fb3f9af6f71a7",
+        "e13b8503c85f8f53129c8e7d78de666fe9492a611f1960f69d67d8c2aa291e83",
+        "96cca5d2e6ebb6e5290b89640fcd171ff2457a0d02dc6fe501dc50223ee4df87",
+        "1278d47e3b590edf4c479eece91b7e916e275fb635d3ade77b50885d479ec4ef",
+        "01caf056c43fbdde83a24184af0d4d7b7d4ccd9522d260a66d63e5e0d30f7d93",
+        "e169ebf2cd3cfb078b966422b0cf3c00e4463782fa57dc1139e71803b95d2a8c",
+        "3bf4f242730601d2a8e7e541402c53552bea1964286a4359664abab0917985f2",
+        "dc917d358dcb6de86b588fbb825111ba8853f292e4a924f463d1c1d3dc499663",
+        "c46195dc5f689fc3bbc81406958a9e14dee68981b966237d3e233a3447eceee0",
+        "558ec6c061a7921f83cf250dfe372a4a5cbd994052d465f4a49a1c393d3a9292",
+        "94e5c63e35c15d74c2b8d9fd374a179948fde4a9a0b4ff17565ffada4c5448a6",
+        "9c83e7a93d3dee4f2f82f14fd59ad60e21abf5a9e6ac69e47b29bc9bc86d17ca",
+        "230c55d73ffdde9b1b8428774b583c38cc6a41075238d3c1af69d34e8514b4eb",
+        "76de381b52163b5bc8894606cd6753286047c9b6dcd4a0434db2e455597283b3",
+        "d60e3f90ab033c50f833e089f50b716bd7bd13171f42658c5715537eb87aad8e",
+        "1b9154ac580aa20800fbbd3ad6b6b14644cc2418c8330e27870a1fb47f5b1adf",
+        "d3d62abdfabc18b43a28a539d95fa3e8430b5b002d6c924ad1df115bfbb63e35",
+        "1ebddb980a12f22e8194f766b65570fb3328e0e33ffd6efb786fa03367023496",
+        "a436e866cd3bd8e6e857a09307b0f94a6ceac8bb09d5ff014ffa8fe02ac0728b",
+        "72fdf80d80d4989b43b7322ce6a12b65e70a9eb61f88508287bab53716f7381c",
+        "51c5b55a770ddcec7c2a45ad6e0f1cb344710706ed3e66ecae5f3a7942d143bd",
+        "821457f17d3b60faac34c76e1f72bcfd2214e03a91e31c9a6d089047bc854803",
+        "08548b02e7d8769c0e220aa5ae669e366ae998284b6bf9778fa846da801124c0",
+        "a1b74b3d7c20a79b396bb4d0bf9d53660df7c6d10b0d11eae8ec15dba1d94c48",
+        "3e001e3eb4a24b56ae598bb883b98bb378716090c18a7ba9db2c41333866c8aa",
+        "73b5e476ee4e156d8ea1ecfb69827ad687e6afabc2c1a8879416ea63414a8a01",
+        "beb9e26f1416cebbf2e0c021e834b19b8a62cbe1abfbb0de79a5740fef0c4153",
+        "ba3515b357a631c42c58b89459dabaf6ac4ce0fa20c27f276d7edfe0b70e9104",
+        "68620acb3a859b397f668987e95e3ef06feaf68aac8aa6c3cb971691e71783c8",
+        "219dae98fccded8fb4df0e5bf2bcf4d5faa4f29cb21c23bcffec6e802f990469",
+        "76bb8da08351a23823aa34453c5a9244a49cda68a5091cfff7ab601d83676b41",
+        "797bb7dc4454fa00add4637fbbc20cc8e5c7a141767f3d4a404310e9ecc7ff8a",
+        "278b5c60c71ee629f946e819b93818fbbc786fb22bf962fc8f9dee81e07b232f",
+        "30ac531c8640022484beb9844ff80b438170c483f427ca434e2b978562b40f68",
+        "db516923127c03add87ad5cf70d0627742c3022a32c1ebbab77a44e3080b2219",
+        "15cec7476855da300e7e342b39ee3ef34c4d1708947d77ce44dce141053a9994",
+        "d018e7bbf18547e6411df80463626e818ec4408f490844d2a9733d0982e5f1f0",
+        "830bc1c9ca6e1d01d45db4433e8b74224f2814e96d4cae6208b07da249a0b4d0",
+        "b161d1e116da40d0e945327f4b8cbb12cd4a79751621c5498a7f938081be191b",
+        "a2ad900820687e08ca32f3b6b17067ecf06c1d1432bdb7e6faf8f4a703ccd612",
+        "47c0257a83754e5b5d51efe609e313cc103d62bb602dfc6772faa15c228b439b",
+        "2318a6c54320c5d5f29189a1487c4b3d1bfa09c4dc4c47ee336d594cd5baadf3",
+        "340e0a2208770704c63f29f0fb51e74aa3db80f4dbaf4cf4cecd653ed209a03a",
+        "7c8f81434863deaded0304dec14c1a71d5ac7db1984d459a4b68686954890a1b",
+        "dbf654a252668c03bc9d7edda2b731775cf1f3180eec100ea44808e581207372",
+        "ab60ebc6eadf50dfd5192d26f32d6a8880dc64ca77281c15ca4c1f58c1e1efc7",
+        "527b255e17b93493909916f7aed9844031104e1015d5088fd2234ca9cab44082",
+        "e6aaf6c0815c4c411aeb5ff1521803a460928ab62a0c842d0476c511f3463f64",
+        "eb3a7b0d90a66a608be2972edb33adfbb3e60f62daa4b3889c904b183c373dd7",
+        "6931e2abede2e7027db7d9cb6b9102aec1c8f9776cb6b0d7fd6c8349fca2391d",
+        "eb4f53fb24439b4b56066d97a96b53a3e9315b36841063a026c62f93be438116",
+        "988acc2bb38578873b430f73a63a07a9261bd6efbe775756acac57c0812664a5",
+        "5d9d5ac01f22395517da700a1f8467f6ab4552b92fae9919dc02aac0c4f6d435",
+        "8378620aa18169215e53274a794256b933cbb47e78531aaca7cae087defb42f9",
+        "c61e65c610a35712fb9d3b1ea2a1531dec0b3669592d6ffd76ca3787756dd16c",
+        "6c9110d39f8a675a1af4bef232a9c909f7c34ce2478cdde02186505609b9cfcc",
+        "8925dd1e0f542f1a3905f581188fb036e6bf874e7918b6cf2c24ac4da1553c8f",
+        "b808df2fbf1481c1f95a9a37be61fcff41674aba8ed3cda1233012b0177f6485",
+        "60c57d9c415e5548f2cc28ab93a74b3d5d265819bbf3a9c1f7128e3391ede733",
+        "8bb64871c5607c8103c821d2b08ddb116849fdd675ffc9f5911ad97a0ea59acc",
+        "a39e04d0dc50d41acf58acaebf67622be7240deeb1e8008a4b4a48f750cd4d99",
+        "2a80a5f17a9c7101774fd7f859ca29421718e1126ce1d552c2ae32179aec4591"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:enderium/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:enderium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:enderium/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "shadow_iron"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -76,9 +287,181 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "pig_iron"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ethaxium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ethaxium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -87,38 +470,130 @@
         ],
         [
           {
-            "item": "cruciblecraft:enderium/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "wrought_iron"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:enderium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "wrought_iron"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
@@ -127,91 +602,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:enderium/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "wrought_iron"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:enderium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:enderium/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:enderium/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:enderium/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:enderium/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:enderium/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_long_rod"
@@ -219,18 +614,58 @@
         ],
         [
           {
-            "item": "cruciblecraft:enderium/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "shadow_iron"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -239,7 +674,451 @@
         ],
         [
           {
-            "item": "cruciblecraft:enderium/ring"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ethaxium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_curved_plate"
@@ -247,18 +1126,10 @@
         ],
         [
           {
-            "item": "cruciblecraft:enderium/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "pig_iron"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
@@ -268,48 +1139,1838 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "shadow_iron"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ethaxium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:enderium/plate"
+            "count": 6,
+            "id": "cruciblecraft:meteoric_iron/rod"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:enderium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:enderium/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:enderium/ingot"
+            "count": 12,
+            "id": "cruciblecraft:shadow_iron/ring"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "count": 3,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "count": 6,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "count": 3,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:shadow_iron/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
             },
             "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:shadow_iron/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 24,
+            "id": "cruciblecraft:pig_iron/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 4,
+            "id": "cruciblecraft:ethaxium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "count": 3,
             "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:ethaxium/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "count": 3,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "count": 27,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:wrought_iron/plate"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:meteorite/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "count": 3,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 12,
+            "id": "cruciblecraft:pig_iron/ring"
+          }
+        ],
+        [
+          {
+            "count": 24,
+            "id": "cruciblecraft:shadow_iron/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 24,
+            "id": "cruciblecraft:meteorite/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "count": 12,
+            "id": "cruciblecraft:meteorite/ring"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:pig_iron/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:wrought_iron/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:meteorite/rod"
+          }
+        ],
+        [
+          {
+            "count": 12,
+            "id": "cruciblecraft:wrought_iron/ring"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:meteoric_iron/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:meteoric_iron/plate"
+          }
+        ],
+        [
+          {
+            "count": 12,
+            "id": "cruciblecraft:meteoric_iron/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "count": 27,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 24,
+            "id": "cruciblecraft:meteoric_iron/bolt"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:meteorite/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "count": 27,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:meteoric_iron/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "count": 6,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:meteorite/plate"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:wrought_iron/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:pig_iron/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "count": 27,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:meteorite/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "count": 6,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 24,
+            "id": "cruciblecraft:wrought_iron/bolt"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:meteoric_iron/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:pig_iron/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "count": 3,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:shadow_iron/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "count": 3,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:shadow_iron/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "count": 3,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ethaxium/rod"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:shadow_iron/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "count": 27,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "count": 3,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:wrought_iron/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:wrought_iron/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:pig_iron/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "count": 3,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_iron"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "count": 6,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteorite"
+            },
+            "count": 6,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:pig_iron/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pig_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wrought_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -319,7 +2980,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7591d240746b2ca4",
+        "cruciblecraft:gt6/fc653c62599fb0a8",
         0,
         0
       ],
@@ -327,198 +2988,1406 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/ae64b4629d8d8865",
+        "cruciblecraft:gt6/214da1e639f370d0",
         1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/d0db2a6a1e8e6493",
+        2,
         2
       ],
       [
-        2,
-        1,
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/324b0f35389a897c",
-        2,
+        "cruciblecraft:gt6/c1d215decf724105",
+        3,
         3
       ],
       [
-        3,
-        2,
+        4,
+        4,
         0,
-        "cruciblecraft:gt6/fb5351c41d01a72a",
-        3,
+        "cruciblecraft:gt6/f36871b9f8cdd3cf",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/982ccc729f489bd4",
+        5,
         5
       ],
       [
-        4,
-        1,
+        6,
+        6,
         0,
-        "cruciblecraft:gt6/1967abee9fa31c87",
-        4,
+        "cruciblecraft:gt6/b0b404d053c484a2",
+        6,
         6
       ],
       [
-        5,
+        7,
+        7,
         0,
-        0,
-        "cruciblecraft:gt6/aa1425c21ea20081",
-        5,
+        "cruciblecraft:gt6/c0fbf8b5fa373d30",
+        7,
         7
       ],
       [
-        6,
-        3,
+        8,
+        8,
         0,
-        "cruciblecraft:gt6/d6e35c5d9b85ed01",
-        6,
+        "cruciblecraft:gt6/6565bb25026c307d",
+        8,
         8
       ],
       [
-        7,
-        3,
+        9,
+        9,
         0,
-        "cruciblecraft:gt6/023fbda58b3595c8",
-        7,
+        "cruciblecraft:gt6/ae707b436fb34449",
+        9,
         9
       ],
       [
-        8,
-        1,
+        10,
+        10,
         0,
-        "cruciblecraft:gt6/b872bfb0e74d26eb",
-        8,
+        "cruciblecraft:gt6/8dc349d6386a4ca6",
+        10,
         10
       ],
       [
-        9,
-        3,
+        11,
+        11,
         0,
-        "cruciblecraft:gt6/0eb5bd0bde434335",
-        9,
+        "cruciblecraft:gt6/5cf8226908d6f77f",
+        11,
+        11
+      ],
+      [
+        12,
+        12,
+        0,
+        "cruciblecraft:gt6/a8b07db22c03b813",
+        12,
         12
       ],
       [
-        10,
-        2,
+        13,
+        5,
         0,
-        "cruciblecraft:gt6/9172947271f13439",
-        10,
+        "cruciblecraft:gt6/cd8cc9fca4cbc2c2",
+        13,
+        13
+      ],
+      [
+        14,
+        13,
+        0,
+        "cruciblecraft:gt6/38d33b5046b287ff",
+        14,
         14
       ],
       [
-        11,
-        2,
+        15,
+        14,
         0,
-        "cruciblecraft:gt6/389f026f3419ed60",
-        11,
+        "cruciblecraft:gt6/c8ea72cf27a8eca8",
+        15,
         15
       ],
       [
-        12,
-        2,
+        16,
+        15,
         0,
-        "cruciblecraft:gt6/3536178d267fbd4e",
-        12,
+        "cruciblecraft:gt6/927b42af5788ddc8",
+        16,
+        16
+      ],
+      [
+        17,
+        1,
+        0,
+        "cruciblecraft:gt6/4f8b82b69bcbb98a",
+        17,
         17
       ],
       [
-        13,
-        4,
+        18,
+        16,
         0,
-        "cruciblecraft:gt6/2150cfadcccdaf1e",
-        13,
+        "cruciblecraft:gt6/f011a4bb7bc8bc34",
+        18,
         18
       ],
       [
-        14,
+        19,
+        17,
         0,
-        0,
-        "cruciblecraft:gt6/4fa468c4e342f297",
-        14,
+        "cruciblecraft:gt6/2534d72f46ce16b3",
+        19,
         19
       ],
       [
-        15,
-        4,
+        20,
+        18,
         0,
-        "cruciblecraft:gt6/8c02a68f21b61b3e",
-        15,
+        "cruciblecraft:gt6/8fdf64f4bdcc0fc0",
+        20,
         20
       ],
       [
-        16,
-        4,
+        21,
+        19,
         0,
-        "cruciblecraft:gt6/a9fdf02cdea19232",
-        16,
+        "cruciblecraft:gt6/d3ee1a02d5b1d077",
+        21,
         21
       ],
       [
-        17,
-        2,
+        22,
+        20,
         0,
-        "cruciblecraft:gt6/05e1a4914d774238",
-        17,
+        "cruciblecraft:gt6/1615d90c6cf22161",
+        22,
         22
       ],
       [
-        18,
-        1,
+        23,
+        21,
         0,
-        "cruciblecraft:gt6/e1082e36b1f03b8c",
-        18,
+        "cruciblecraft:gt6/69e404cf80974ef5",
+        23,
         23
       ],
       [
-        19,
-        4,
+        24,
+        22,
         0,
-        "cruciblecraft:gt6/a1ade2807bf9114a",
-        19,
+        "cruciblecraft:gt6/360f1a068f5a478a",
+        24,
         24
       ],
       [
-        20,
+        25,
+        19,
         0,
-        0,
-        "cruciblecraft:gt6/69c01aaa741dbaef",
-        20,
+        "cruciblecraft:gt6/3b3189c29d93da2a",
+        25,
         25
       ],
       [
-        21,
-        4,
+        26,
+        23,
         0,
-        "cruciblecraft:gt6/6c30dbd733eb1670",
-        21,
+        "cruciblecraft:gt6/e3074a968171ddf6",
+        26,
         26
       ],
       [
-        22,
-        3,
+        27,
+        24,
         0,
-        "cruciblecraft:gt6/c74fc09757b4dcd6",
-        22,
+        "cruciblecraft:gt6/7faa8d987946217a",
+        27,
+        27
+      ],
+      [
+        28,
+        25,
+        0,
+        "cruciblecraft:gt6/4c7f9b9ad3b6d308",
+        28,
         28
       ],
       [
-        23,
-        3,
+        29,
+        26,
         0,
-        "cruciblecraft:gt6/d8eeb2e3be83a3f2",
-        23,
+        "cruciblecraft:gt6/61e7bacec21ceefd",
+        29,
         29
       ],
       [
-        24,
+        30,
+        27,
         0,
-        0,
-        "cruciblecraft:gt6/f3ae29bb50f0bf85",
-        24,
+        "cruciblecraft:gt6/948fe2abb2d9b2fa",
+        30,
         30
+      ],
+      [
+        31,
+        28,
+        0,
+        "cruciblecraft:gt6/672cc21bf068eeec",
+        31,
+        31
+      ],
+      [
+        32,
+        29,
+        0,
+        "cruciblecraft:gt6/bb74ce5f6d29ebce",
+        32,
+        32
+      ],
+      [
+        33,
+        30,
+        0,
+        "cruciblecraft:gt6/90cbe65439516e32",
+        33,
+        33
+      ],
+      [
+        34,
+        31,
+        0,
+        "cruciblecraft:gt6/565a83d9ca250d09",
+        34,
+        34
+      ],
+      [
+        35,
+        32,
+        0,
+        "cruciblecraft:gt6/4d6cf16574caff66",
+        35,
+        35
+      ],
+      [
+        36,
+        33,
+        0,
+        "cruciblecraft:gt6/6bb9fb1a18102ee3",
+        36,
+        36
+      ],
+      [
+        37,
+        25,
+        0,
+        "cruciblecraft:gt6/cc627e2908b17714",
+        37,
+        37
+      ],
+      [
+        38,
+        34,
+        0,
+        "cruciblecraft:gt6/b1d0a6fd94a3a580",
+        38,
+        38
+      ],
+      [
+        39,
+        35,
+        0,
+        "cruciblecraft:gt6/aaf3dc788203891c",
+        39,
+        39
+      ],
+      [
+        40,
+        36,
+        0,
+        "cruciblecraft:gt6/a10e36374c05a022",
+        40,
+        40
+      ],
+      [
+        41,
+        37,
+        0,
+        "cruciblecraft:gt6/672dbf0c5f83ab04",
+        41,
+        41
+      ],
+      [
+        42,
+        38,
+        0,
+        "cruciblecraft:gt6/3fa9d42effb0e3ab",
+        42,
+        42
+      ],
+      [
+        43,
+        7,
+        0,
+        "cruciblecraft:gt6/bcc78f1eccbc8f03",
+        43,
+        43
+      ],
+      [
+        44,
+        39,
+        0,
+        "cruciblecraft:gt6/5e41017aa2023920",
+        44,
+        44
+      ],
+      [
+        45,
+        40,
+        0,
+        "cruciblecraft:gt6/d67f4ae5a8d1b2f5",
+        45,
+        45
+      ],
+      [
+        46,
+        41,
+        0,
+        "cruciblecraft:gt6/6b4dd800d3b7fa0c",
+        46,
+        46
+      ],
+      [
+        47,
+        10,
+        0,
+        "cruciblecraft:gt6/0c1db219a29c2bac",
+        47,
+        47
+      ],
+      [
+        48,
+        42,
+        0,
+        "cruciblecraft:gt6/0863bb990b0c4062",
+        48,
+        48
+      ],
+      [
+        49,
+        43,
+        0,
+        "cruciblecraft:gt6/662afc494cf1cc30",
+        49,
+        49
+      ],
+      [
+        50,
+        44,
+        0,
+        "cruciblecraft:gt6/788786c7c8e2ec1f",
+        50,
+        50
+      ],
+      [
+        51,
+        45,
+        0,
+        "cruciblecraft:gt6/02ccb07e7d5610f2",
+        51,
+        51
+      ],
+      [
+        52,
+        41,
+        0,
+        "cruciblecraft:gt6/6b9965aa28d62f3b",
+        52,
+        52
+      ],
+      [
+        53,
+        46,
+        0,
+        "cruciblecraft:gt6/6f2a47005c8ecd73",
+        53,
+        53
+      ],
+      [
+        54,
+        47,
+        0,
+        "cruciblecraft:gt6/259269a0f371a3fd",
+        54,
+        54
+      ],
+      [
+        55,
+        48,
+        0,
+        "cruciblecraft:gt6/1c61d970cd2a7adf",
+        55,
+        55
+      ],
+      [
+        56,
+        49,
+        0,
+        "cruciblecraft:gt6/4e7be9616ee8c339",
+        56,
+        56
+      ],
+      [
+        57,
+        50,
+        0,
+        "cruciblecraft:gt6/6d973265a1a4c4e8",
+        57,
+        57
+      ],
+      [
+        58,
+        51,
+        0,
+        "cruciblecraft:gt6/746c192e941aff24",
+        58,
+        58
+      ],
+      [
+        59,
+        21,
+        0,
+        "cruciblecraft:gt6/576354bb4be4ead4",
+        59,
+        59
+      ],
+      [
+        60,
+        52,
+        0,
+        "cruciblecraft:gt6/d64a43990b3ee195",
+        60,
+        60
+      ],
+      [
+        61,
+        53,
+        0,
+        "cruciblecraft:gt6/1a51ed2bd302fb7b",
+        61,
+        61
+      ],
+      [
+        62,
+        54,
+        0,
+        "cruciblecraft:gt6/7b9ba66620aab5e1",
+        62,
+        62
+      ],
+      [
+        63,
+        14,
+        0,
+        "cruciblecraft:gt6/30854f80c0fcf307",
+        63,
+        63
+      ],
+      [
+        64,
+        55,
+        0,
+        "cruciblecraft:gt6/5cdf17519a9a5c4d",
+        64,
+        64
+      ],
+      [
+        65,
+        27,
+        0,
+        "cruciblecraft:gt6/83e15f6a9aec8687",
+        65,
+        65
+      ],
+      [
+        66,
+        56,
+        0,
+        "cruciblecraft:gt6/aa23dd6885e73ee5",
+        66,
+        66
+      ],
+      [
+        67,
+        57,
+        0,
+        "cruciblecraft:gt6/c1e513a9ac5584b4",
+        67,
+        67
+      ],
+      [
+        68,
+        58,
+        0,
+        "cruciblecraft:gt6/926feb4473831bd6",
+        68,
+        68
+      ],
+      [
+        69,
+        59,
+        0,
+        "cruciblecraft:gt6/d2325dd1b16f53da",
+        69,
+        69
+      ],
+      [
+        70,
+        60,
+        0,
+        "cruciblecraft:gt6/9fd4e970f567df14",
+        70,
+        70
+      ],
+      [
+        71,
+        61,
+        0,
+        "cruciblecraft:gt6/6634dff8c05dacdf",
+        71,
+        71
+      ],
+      [
+        72,
+        33,
+        0,
+        "cruciblecraft:gt6/b310fe6ea67872ab",
+        72,
+        72
+      ],
+      [
+        73,
+        53,
+        0,
+        "cruciblecraft:gt6/64a7887afb2f18fb",
+        73,
+        73
+      ],
+      [
+        74,
+        62,
+        0,
+        "cruciblecraft:gt6/e74520788e44084c",
+        74,
+        74
+      ],
+      [
+        75,
+        9,
+        0,
+        "cruciblecraft:gt6/27546c977e27f88e",
+        75,
+        75
+      ],
+      [
+        76,
+        52,
+        0,
+        "cruciblecraft:gt6/d0416cfc5ad32e68",
+        76,
+        76
+      ],
+      [
+        77,
+        63,
+        0,
+        "cruciblecraft:gt6/bc19b11d31eb3580",
+        77,
+        77
+      ],
+      [
+        78,
+        64,
+        0,
+        "cruciblecraft:gt6/42b7d07a36e7b004",
+        78,
+        78
+      ],
+      [
+        79,
+        63,
+        0,
+        "cruciblecraft:gt6/595b483f10c9823c",
+        79,
+        79
+      ],
+      [
+        80,
+        65,
+        0,
+        "cruciblecraft:gt6/3cb4aeb7e2f338ef",
+        80,
+        80
+      ],
+      [
+        81,
+        66,
+        0,
+        "cruciblecraft:gt6/ac1d027b100b71c9",
+        81,
+        81
+      ],
+      [
+        82,
+        67,
+        0,
+        "cruciblecraft:gt6/880f1472f1733439",
+        82,
+        82
+      ],
+      [
+        83,
+        15,
+        0,
+        "cruciblecraft:gt6/53a06f4568aeee54",
+        83,
+        83
+      ],
+      [
+        84,
+        34,
+        0,
+        "cruciblecraft:gt6/7c6274843ed03257",
+        84,
+        84
+      ],
+      [
+        85,
+        68,
+        0,
+        "cruciblecraft:gt6/61957ee2cca6d8bd",
+        85,
+        85
+      ],
+      [
+        86,
+        69,
+        0,
+        "cruciblecraft:gt6/7d1ac0c07bc4aada",
+        86,
+        86
+      ],
+      [
+        87,
+        70,
+        0,
+        "cruciblecraft:gt6/c10c58b5f1a7a090",
+        87,
+        87
+      ],
+      [
+        88,
+        51,
+        0,
+        "cruciblecraft:gt6/6ea2182734dc0834",
+        88,
+        88
+      ],
+      [
+        89,
+        71,
+        0,
+        "cruciblecraft:gt6/0e7d22ee6b04b938",
+        89,
+        89
+      ],
+      [
+        90,
+        72,
+        0,
+        "cruciblecraft:gt6/4fe7b613781cf6d7",
+        90,
+        90
+      ],
+      [
+        91,
+        73,
+        0,
+        "cruciblecraft:gt6/c09128555f9818a3",
+        91,
+        91
+      ],
+      [
+        92,
+        74,
+        0,
+        "cruciblecraft:gt6/a22cec743b708e9e",
+        92,
+        92
+      ],
+      [
+        93,
+        67,
+        0,
+        "cruciblecraft:gt6/bb6618dcbbbfb48e",
+        93,
+        93
+      ],
+      [
+        94,
+        75,
+        0,
+        "cruciblecraft:gt6/1b349fef82d14159",
+        94,
+        94
+      ],
+      [
+        95,
+        76,
+        0,
+        "cruciblecraft:gt6/933784c02a9b7db3",
+        95,
+        95
+      ],
+      [
+        96,
+        2,
+        0,
+        "cruciblecraft:gt6/43ee9cd91cc44449",
+        96,
+        96
+      ],
+      [
+        97,
+        3,
+        0,
+        "cruciblecraft:gt6/308d245d712c5841",
+        97,
+        97
+      ],
+      [
+        98,
+        77,
+        0,
+        "cruciblecraft:gt6/949b145dbcbc5f88",
+        98,
+        98
+      ],
+      [
+        99,
+        59,
+        0,
+        "cruciblecraft:gt6/3f14b34b4b3b6992",
+        99,
+        99
+      ],
+      [
+        100,
+        48,
+        0,
+        "cruciblecraft:gt6/61eb546453ea46ba",
+        100,
+        100
+      ],
+      [
+        101,
+        30,
+        0,
+        "cruciblecraft:gt6/bda25c6fc31ea1d3",
+        101,
+        101
+      ],
+      [
+        102,
+        68,
+        0,
+        "cruciblecraft:gt6/dc3390ff54b8ed7b",
+        102,
+        102
+      ],
+      [
+        103,
+        8,
+        0,
+        "cruciblecraft:gt6/121dddd19d1dbf76",
+        103,
+        103
+      ],
+      [
+        104,
+        54,
+        0,
+        "cruciblecraft:gt6/c2102eb8f5637b13",
+        104,
+        104
+      ],
+      [
+        105,
+        31,
+        0,
+        "cruciblecraft:gt6/8aa5fb74cadf6bce",
+        105,
+        105
+      ],
+      [
+        106,
+        32,
+        0,
+        "cruciblecraft:gt6/a282bfb17c418766",
+        106,
+        106
+      ],
+      [
+        107,
+        39,
+        0,
+        "cruciblecraft:gt6/2fa40af459ebb692",
+        107,
+        107
+      ],
+      [
+        108,
+        6,
+        0,
+        "cruciblecraft:gt6/4f781be0b675f63a",
+        108,
+        108
+      ],
+      [
+        109,
+        45,
+        0,
+        "cruciblecraft:gt6/ae9002a0b2d3d5cc",
+        109,
+        109
+      ],
+      [
+        110,
+        78,
+        0,
+        "cruciblecraft:gt6/68b84f4da71f97f2",
+        110,
+        110
+      ],
+      [
+        111,
+        26,
+        0,
+        "cruciblecraft:gt6/f4e2ba4766dfcedc",
+        111,
+        111
+      ],
+      [
+        112,
+        79,
+        0,
+        "cruciblecraft:gt6/fd751b38b26f4fd2",
+        112,
+        112
+      ],
+      [
+        113,
+        79,
+        0,
+        "cruciblecraft:gt6/ad42c038286f1b6e",
+        113,
+        113
+      ],
+      [
+        114,
+        70,
+        0,
+        "cruciblecraft:gt6/9b730679148b97db",
+        114,
+        114
+      ],
+      [
+        115,
+        23,
+        0,
+        "cruciblecraft:gt6/439f772619d2b68f",
+        115,
+        115
+      ],
+      [
+        116,
+        18,
+        0,
+        "cruciblecraft:gt6/65219ef69c22ace1",
+        116,
+        116
+      ],
+      [
+        117,
+        80,
+        0,
+        "cruciblecraft:gt6/11673e2426cd6dec",
+        117,
+        117
+      ],
+      [
+        118,
+        66,
+        0,
+        "cruciblecraft:gt6/97265243a7745118",
+        118,
+        118
+      ],
+      [
+        119,
+        38,
+        0,
+        "cruciblecraft:gt6/7d7470d94a0a8076",
+        119,
+        119
+      ],
+      [
+        120,
+        50,
+        0,
+        "cruciblecraft:gt6/8765ff644a124cd6",
+        120,
+        120
+      ],
+      [
+        121,
+        55,
+        0,
+        "cruciblecraft:gt6/7c23098f2d5133cb",
+        121,
+        121
+      ],
+      [
+        122,
+        16,
+        0,
+        "cruciblecraft:gt6/bfdc3dcdec9f597a",
+        122,
+        122
+      ],
+      [
+        123,
+        20,
+        0,
+        "cruciblecraft:gt6/f86a01e210b66a62",
+        123,
+        123
+      ],
+      [
+        124,
+        81,
+        0,
+        "cruciblecraft:gt6/1540ef5020676578",
+        124,
+        124
+      ],
+      [
+        125,
+        82,
+        0,
+        "cruciblecraft:gt6/59670ce554464d73",
+        125,
+        125
+      ],
+      [
+        126,
+        37,
+        0,
+        "cruciblecraft:gt6/2c58d52eb2d77995",
+        126,
+        126
+      ],
+      [
+        127,
+        29,
+        0,
+        "cruciblecraft:gt6/5b90784a4285689b",
+        127,
+        127
+      ],
+      [
+        128,
+        83,
+        0,
+        "cruciblecraft:gt6/dddd9fd2e89b0e62",
+        128,
+        128
+      ],
+      [
+        129,
+        4,
+        0,
+        "cruciblecraft:gt6/595e98eb26cf3f40",
+        129,
+        129
+      ],
+      [
+        130,
+        40,
+        0,
+        "cruciblecraft:gt6/bfc8b64d230242ce",
+        130,
+        130
+      ],
+      [
+        131,
+        58,
+        0,
+        "cruciblecraft:gt6/4f330c6e61f51e5c",
+        131,
+        131
+      ],
+      [
+        132,
+        62,
+        0,
+        "cruciblecraft:gt6/fe1c768bdc237f8c",
+        132,
+        132
+      ],
+      [
+        133,
+        78,
+        0,
+        "cruciblecraft:gt6/57b0a499976540a0",
+        133,
+        133
+      ],
+      [
+        134,
+        28,
+        0,
+        "cruciblecraft:gt6/11805ec0fdc6739c",
+        134,
+        134
+      ],
+      [
+        135,
+        84,
+        0,
+        "cruciblecraft:gt6/f95a09aa77d050b2",
+        135,
+        135
+      ],
+      [
+        136,
+        57,
+        0,
+        "cruciblecraft:gt6/3404154f14ce8e03",
+        136,
+        136
+      ],
+      [
+        137,
+        65,
+        0,
+        "cruciblecraft:gt6/976449414ceaac7c",
+        137,
+        137
+      ],
+      [
+        138,
+        22,
+        0,
+        "cruciblecraft:gt6/591b1200bc8faa4c",
+        138,
+        138
+      ],
+      [
+        139,
+        83,
+        0,
+        "cruciblecraft:gt6/f691747e846634a2",
+        139,
+        139
+      ],
+      [
+        140,
+        73,
+        0,
+        "cruciblecraft:gt6/0c93b2f4ac4f2971",
+        140,
+        140
+      ],
+      [
+        141,
+        12,
+        0,
+        "cruciblecraft:gt6/5da406bb03a601fb",
+        141,
+        141
+      ],
+      [
+        142,
+        81,
+        0,
+        "cruciblecraft:gt6/74f67b5bf3a756cf",
+        142,
+        142
+      ],
+      [
+        143,
+        42,
+        0,
+        "cruciblecraft:gt6/7033a20a7912b3aa",
+        143,
+        143
+      ],
+      [
+        144,
+        85,
+        0,
+        "cruciblecraft:gt6/3a4e14bcba53b80a",
+        144,
+        144
+      ],
+      [
+        145,
+        72,
+        0,
+        "cruciblecraft:gt6/c157c19dbad62d31",
+        145,
+        145
+      ],
+      [
+        146,
+        0,
+        0,
+        "cruciblecraft:gt6/c19680aee28d571f",
+        146,
+        146
+      ],
+      [
+        147,
+        13,
+        0,
+        "cruciblecraft:gt6/0f45016d9963c4c4",
+        147,
+        147
+      ],
+      [
+        148,
+        35,
+        0,
+        "cruciblecraft:gt6/fbef385008db96ad",
+        148,
+        148
+      ],
+      [
+        149,
+        43,
+        0,
+        "cruciblecraft:gt6/9096bbb3d0f1cd9d",
+        149,
+        149
+      ],
+      [
+        150,
+        61,
+        0,
+        "cruciblecraft:gt6/338246b8d3ae2bca",
+        150,
+        150
+      ],
+      [
+        151,
+        49,
+        0,
+        "cruciblecraft:gt6/61509a9fa50b6948",
+        151,
+        151
+      ],
+      [
+        152,
+        86,
+        0,
+        "cruciblecraft:gt6/4e6c9e7e574fb2b3",
+        152,
+        152
+      ],
+      [
+        153,
+        84,
+        0,
+        "cruciblecraft:gt6/161d3dde1bd8309d",
+        153,
+        153
+      ],
+      [
+        154,
+        86,
+        0,
+        "cruciblecraft:gt6/375b0ee9e642790b",
+        154,
+        154
+      ],
+      [
+        155,
+        87,
+        0,
+        "cruciblecraft:gt6/2b3c0716b8ddb6b9",
+        155,
+        155
+      ],
+      [
+        156,
+        47,
+        0,
+        "cruciblecraft:gt6/ebfb716bdb16181f",
+        156,
+        156
+      ],
+      [
+        157,
+        76,
+        0,
+        "cruciblecraft:gt6/147607316ddff227",
+        157,
+        157
+      ],
+      [
+        158,
+        88,
+        0,
+        "cruciblecraft:gt6/c40c54e93d182638",
+        158,
+        158
+      ],
+      [
+        159,
+        46,
+        0,
+        "cruciblecraft:gt6/6c8432772614e26b",
+        159,
+        159
+      ],
+      [
+        160,
+        36,
+        0,
+        "cruciblecraft:gt6/6bff9e9fcbc5442d",
+        160,
+        160
+      ],
+      [
+        161,
+        75,
+        0,
+        "cruciblecraft:gt6/f904d9fb9bfbd9fe",
+        161,
+        161
+      ],
+      [
+        162,
+        44,
+        0,
+        "cruciblecraft:gt6/1e5cd567dc4283e2",
+        162,
+        162
+      ],
+      [
+        163,
+        87,
+        0,
+        "cruciblecraft:gt6/ee579584df79814c",
+        163,
+        163
+      ],
+      [
+        164,
+        80,
+        0,
+        "cruciblecraft:gt6/2f1b87d08a3f6556",
+        164,
+        164
+      ],
+      [
+        165,
+        74,
+        0,
+        "cruciblecraft:gt6/b6a44b1a9b60d51a",
+        165,
+        165
+      ],
+      [
+        166,
+        69,
+        0,
+        "cruciblecraft:gt6/e47de645b6aea848",
+        166,
+        166
+      ],
+      [
+        167,
+        77,
+        0,
+        "cruciblecraft:gt6/0379565ce7273af2",
+        167,
+        167
+      ],
+      [
+        168,
+        82,
+        0,
+        "cruciblecraft:gt6/4d31d5304e7e0976",
+        168,
+        168
+      ],
+      [
+        169,
+        64,
+        0,
+        "cruciblecraft:gt6/d944379b54869245",
+        169,
+        169
+      ],
+      [
+        170,
+        56,
+        0,
+        "cruciblecraft:gt6/a90411e4919b2431",
+        170,
+        170
+      ],
+      [
+        171,
+        60,
+        0,
+        "cruciblecraft:gt6/0a5d01bd7401ab1d",
+        171,
+        171
+      ],
+      [
+        172,
+        17,
+        0,
+        "cruciblecraft:gt6/dc80e0d4436b31ed",
+        172,
+        172
+      ],
+      [
+        173,
+        85,
+        0,
+        "cruciblecraft:gt6/c0604d7e8b496aaf",
+        173,
+        173
+      ],
+      [
+        174,
+        24,
+        0,
+        "cruciblecraft:gt6/b264c9a6e50b1561",
+        174,
+        174
+      ],
+      [
+        175,
+        88,
+        0,
+        "cruciblecraft:gt6/4570fe40bc3775b4",
+        175,
+        175
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 302,
+      "duration": 627,
       "eut": 96,
       "item_input_actions": [
         {
@@ -529,7 +4398,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        1,
         0
       ],
       "output_chances": [

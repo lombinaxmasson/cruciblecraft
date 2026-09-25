@@ -10,17 +10,16 @@
         }
       ],
       "hashes": [
-        "0e95bf62343d7e5957d8d59b697fccbfd249b2e236e279329ecd886da955bf66",
-        "e210e95c1878fde52db904bb92dbb593a4b4b0a89d72db3c492ae87dadb884a3"
+        "ac8f92af86de77a5f57d0a5ef6acb677e291f3ad541269f311865719b2c388c8",
+        "bd32adb6463e12aeb34ee6acdf812fde4b69dab168e8fc0e831651a6be240caf",
+        "67f1d97023e46c91b25b15cbbd10741bacfe5123d41654220f7e3916e262901b",
+        "73f0bedf89f9206270b8e3537ee12accba9df5a5f1f22d1a0f764218321458ae",
+        "d0a7a1ee55eb6d291170b86ecfb31a9c5b583fa7505764f0b2ebb600b03b0529"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "energetic_alloy"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:platinum/wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -29,10 +28,38 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "energetic_alloy"
+              "cruciblecraft:prefix_material": "platinum"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:mithril/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "mithril"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:platinum/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -43,7 +70,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:energetic_alloy/block"
+            "id": "cruciblecraft:platinum/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:mithril/block"
           }
         ]
       ]
@@ -53,7 +86,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/dcaa8b5f646c7c56",
+        "cruciblecraft:gt6/48cd7155b8676b34",
         0,
         0
       ],
@@ -61,14 +94,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/6366137a8fd3ad6f",
+        "cruciblecraft:gt6/64f136dd8fef0204",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/591d8c755992f071",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/efbe1f9cd2691ae8",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/a20eec898bb300ba",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1417,
+      "duration": 5211,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +136,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        18,
         0
       ],
       "output_chances": [

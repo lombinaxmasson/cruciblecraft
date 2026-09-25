@@ -10,32 +10,72 @@
         }
       ],
       "hashes": [
-        "fd860d4478e1f927ef229238f6f097376822ede04e39162daf030a8078c42039",
-        "f94dd220d3ab62edde0ab631ab05921185b8371cd459d36644e1b9c19db032b0"
+        "1568a263cdeb21c17627c1c683be61016ff5a2d80989069b98bad6e546b2f7f0",
+        "9761e29babe328472d5f0357b445658c3a13bbfaee7fecec95616c9d91535a0c",
+        "3c4161d18b644c2d167707bbd26546022752e09da78c32021aab1dfffee813d6",
+        "d745b4a8d8d1bcb59263e5716ab768119ccd4ba3af9b9b627ccc295714826f2c",
+        "493d21ec699205dcd4d6f340b5a7523e310af4a8516c6ac895dbcfcddb3096d6",
+        "ded9ba840380c9f5f0506e74185c08e94f3f4722eebd5e82c0e9673852272004"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
+              "cruciblecraft:prefix_material": "dreadium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dreadium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dreadium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
+              "cruciblecraft:prefix_material": "dreadium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dreadium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:tungstensteel/block"
+            "id": "cruciblecraft:dreadium/gear"
           }
         ]
       ]
@@ -53,22 +93,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/14cee376ad620d50",
+        "cruciblecraft:gt6/7a8624012f4ce33a",
         0,
-        2
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/03584944656c2ffa",
+        "cruciblecraft:gt6/6582441929d74f02",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/dac17e21a750aa3f",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/77dbae3f1661011c",
+        3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/243818ff55674f6c",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/012a5b85d46d0ed6",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4855,
+      "duration": 3406,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

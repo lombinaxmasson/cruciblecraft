@@ -10,13 +10,17 @@
         }
       ],
       "hashes": [
-        "60e54c6c542f4d0eca9db2b7dd4969882769b7bcc487bafa8bc186d25b8befd7",
-        "9e375592c628c417254cfc705f4bca46df99e7d2f8acba5c72dd1b288e04b9cd"
+        "312b9b7ca07de00973947a2f31b6a76b6e862779f5e80ac1f73fbe384c1a6943",
+        "2a4de2afdade847878fc9be62099cbf245f2a38fb2e004a327d910a7076b8f09"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:thorium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -24,11 +28,7 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "thorium"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_blue_steel/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -39,7 +39,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thorium/gear"
+            "id": "cruciblecraft:meteoflame_blue_steel/gear"
           }
         ]
       ]
@@ -49,7 +49,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/60fadf64c9a1fbb8",
+        "cruciblecraft:gt6/37fc789c638671d6",
         0,
         0
       ],
@@ -57,14 +57,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/7b2e19a922896156",
+        "cruciblecraft:gt6/a8d0e716f4836cfa",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1319,
+      "duration": 1392,
       "eut": 96,
       "item_input_actions": [
         {

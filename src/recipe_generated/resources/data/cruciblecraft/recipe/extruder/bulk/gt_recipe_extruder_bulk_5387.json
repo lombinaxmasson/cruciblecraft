@@ -10,14 +10,16 @@
         }
       ],
       "hashes": [
-        "9fa38737bd12cbd3f4c886d4288f5c636f0e81f3af52cc02b85fc792788addd5",
-        "089cff2d0107b0b767780c1561e623bf0ea042151ef55754688e9e7d60f0fe1b",
-        "de33d4057e79a8deaaddd3def2d55aaf092354aad739fc57b8807c1c25c39d1e"
+        "724e7137e82385a96a1532e1a221e024be4ad5dd3189a63171efc22f2a1ffa89",
+        "66c37d69730d4d30df0500b3c9b36628e8b23ae276e8bc5715e413dcb7904c06",
+        "a2a58963ea9de6e50399227ab6ca476e1fd787eb5fc5326e2a257cd053cb8696",
+        "bc860d9d010947b4487e2be5e2648ad61e8a34fe661740692ea5646aa1e687cf",
+        "1051c062cef15fe14f14077cd577ebcdd8bb2b62e350aeb00e4c4928d4cfac3f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:uranium233/machine_casing"
+            "item": "cruciblecraft:samarium/ingot"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -25,7 +27,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:uranium235/machine_casing"
+            "item": "cruciblecraft:samarium/dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -33,7 +35,27 @@
         ],
         [
           {
-            "item": "cruciblecraft:uranium/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "samarium"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:samarium/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:samarium/long_rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -44,19 +66,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:uranium233/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:uranium235/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:uranium/block"
+            "id": "cruciblecraft:samarium/block"
           }
         ]
       ]
@@ -66,30 +76,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4faa587f177689fb",
+        "cruciblecraft:gt6/79017540735c54c7",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/8c3406a9c2f6568e",
+        0,
+        "cruciblecraft:gt6/bcee174a8aca9a5b",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/1ca90a2fca5534d5",
+        0,
+        "cruciblecraft:gt6/391ec5fba32e5721",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/9af4f82daa273db0",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/789aaf28c60eb1ff",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5204,
+      "duration": 1099,
       "eut": 96,
       "item_input_actions": [
         {
@@ -100,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        9,
         0
       ],
       "output_chances": [

@@ -1,195 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_5568",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "ca9bfb78cb78f391fbb7d20fbe8f04ee350f8355d91c081e7dbae03da8e5f398",
-        "a59a080ba7ee0d73c93da30ea4f751fde165b337bc5fa4af7c51c0e142750591",
-        "0a1a4db1dc2b9b399afa8cbb4b2e7e31da01c37818f77b54fc1cbc68c3c8973c",
-        "5c577aaa80e18c3a3e0260ec4622c93c1241fbe5d71896f3b2f5c22348095e3a",
-        "f08cd0087007494a8317cfa00dd86998c8a8eb715a01e777a0ecfd43d36394ef",
-        "c23a3d4b97fa53690abaeeb13a2871fe2190d44163dfdd75db9292438ce07bac",
-        "2c44dbb6fabc6dd45b24fe5eb26a9fc3eca250c52896aa72a83f6b2d9a93a4fa",
-        "18d491d5aeb08c486e5428d94f581aba776e6f5dd096c0ad57355fd8a44e4364"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
-            },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibrant_alloy/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "ancient_debris"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibrant_alloy/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vibrant_alloy/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "ancient_debris"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:vibrant_alloy/ring"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:ancient_debris/block"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/d2e57e180eb46f6b",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/d19ad89a238be2f4",
-        1,
-        1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/ebb3a915e33a1872",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/37e1177f653a7f4c",
-        3,
-        3
-      ],
-      [
-        4,
-        1,
-        0,
-        "cruciblecraft:gt6/3ad745bd22e036ba",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/82873709f853e058",
-        5,
-        5
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/6070a9057cbeedfc",
-        6,
-        6
-      ],
-      [
-        7,
-        1,
-        0,
-        "cruciblecraft:gt6/ecba90ee0c486e88",
-        7,
-        7
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 239,
+      "duration": 102,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -199,18 +17,42 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "vivid_alloy"
+          },
+          "items": "cruciblecraft:dust_div72",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_rod"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:vivid_alloy/rod"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_5568",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "65f71321ef30df0bcf349a22f9424164e022b618267c2fe8914dba73dee4b05f"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_5568",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/25903df094c23f54"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

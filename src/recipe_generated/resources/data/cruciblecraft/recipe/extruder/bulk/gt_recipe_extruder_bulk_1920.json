@@ -10,26 +10,447 @@
         }
       ],
       "hashes": [
-        "4fb1b178b284a26b68dac7e33518bf171fa7eb063b8bb9ac869b246e88bb4477",
-        "7601ab94a63a20365faca010abcc7c3ee0018eb8aa5d87f5afca1349ce8a7806",
-        "38de38e611af98e4cf4a1d89488de0c2d80eb8b2b520bd1de91755715bf65dd9",
-        "1e1638d6cc4afcbcbbf5da0e69807f7ca43f303b6046fe7e3e8bb4da02e02d33",
-        "3038af97026994a63a565f242f18da423b41de8704f8b7aa54fad19fbc265e87",
-        "f2683e3aff4d90ca66cf341e54fd71a03960292abace655453406a30f24cbe4e",
-        "1591c8070323af5e732aaa88f5ce4af61301c633e4c92f1e2be624f535b22bf6",
-        "185f449445db14609203a7c32daaf0edc1bf824696d5f9a2346e5e2b0b79282a",
-        "7b9774e8718d8c5f05cebc43d379955a6954d05564518d7bf730bcc54963b561",
-        "1e5a4d211a7229061eab583a4c86a3fc6caf4d4d74ae836de4999a2e22e8f474",
-        "1ad245eb8e36939d295e587ca99d2237ad80e9a55bd4ccef6b3b6b580eb5ac57",
-        "fa70a7afacc5b0f51c9c219bd3752406fa94ad5a680ab5a1251ee23fa7ccae6e",
-        "2151b6cef3271dd5b81384732b35cbdd70d78b74ca73827963933ea7ec7b9be7",
-        "8deb9df5b99fd37508b3c5c551d8fd24f435361e93548e08489f4d4e87bb08c1",
-        "817fd06fdfd2b1a227e7b76a90ac430a241d5de6815072a13cf42bfc5cc597f5"
+        "a681794bbeb086d32b770eeb105cfff4d29acdd8e288392ef47320491b029367",
+        "538edec205ee8edba256084fdb3174f1007f935e7d4ede9eab90c74b3a9d5c6a",
+        "4989efa55ed703d16edd16451798c4133a2126a35c6c9d2cd21d6312f7e540f7",
+        "bc897d5c325fdff97103f009ec616dc55d155d1ced5e93cb32c24da8ae201673",
+        "24dba2fc818d9940532c84ff49a67812c0370977b8db9840bb1fe40e503b1907",
+        "84900860172e451f407de106541523f93b1c76cbfc390d29ab3814213a3e58aa",
+        "8eed734a8752164f788c73987e081374507b7ed328e5e45f77840e35e14bfe0a",
+        "df920550b51ded9760561b086d1424a4f0a3572addec0b2422adcffc3fe5e04c",
+        "7a8a931b7a09321d5f65787d1bd434270d862696cdf463c1eaf16bcf0658c5d1",
+        "d3368b050394008ddf62d2650831266ef9e10cf3c4e8fb2ee08ed1a4eb958d2c",
+        "a40b6f5f956ce0aa35e345dd1523f42e878bc664dcea7e507521827f9c461581",
+        "d939aa10834035c2b37a4eebe2458548e7fb358c084a847350bc97f43862a2bd",
+        "4d2eadfb33925450aacad3ff72f562dd88fff3f5bc20030ae517650688b49a30",
+        "a9972dfbf5a3a2bcbd426b7349e4711aee3079e4e348f2842b5e6369a7ae7331",
+        "e587b1e1272a53568fa5d3684bb5923ffc0c7eeb9592bb474aef6b5188642a2f",
+        "4a8da6b85d5415a623d7cf06030cf33f233cbebd2ebbad2c2f0355c7e99b345e",
+        "123cf558700d7c8909c14d459014ca48fe37a3d32785d3374822d8cc4bdfb05b",
+        "8114c2e40549cc3af329325f0b10514a715a11703d2701789f9fb9635d2f4ccf",
+        "fcd29a1419a23ffa979ff757b1dd56691ad1a173103d2f8cad3e80bd299c8e39",
+        "1d29790e8c735831ab2125c6b7e064a26902477b2a3bf94b1c38a67dc6adef65",
+        "589dd23a6a30035b60c96dd70c41e9a57829cc67fd28c6971f7d2370fd77137b",
+        "b067194dd0f2167b2875a67c03f550c316344d357e05de87bafe8d868f49c14a",
+        "67fec150d0e0e2d2f9ea3e0616ed0d668d26a8a06bc880dec1144b3a50504fb4",
+        "b2fea6df238a8a74a26bd7f743b40e967ef41f4cd743ed652d163f34babc74da",
+        "ffd5cd3900a61334015726c47549e95f0127a053ad850615b41cae8f4f332ec9",
+        "9eb5fce97af6625fcb2ff15d6554a81802848f5102284de31b501784957c15fd",
+        "d8b68e0f442f3239d442b5656a3fa1ee62c1cab6503df1056789f5560dd69dd0",
+        "d27c6c1b8fbb9b73353069ec83daf68eff990d1a3ab48a1e51ead6e49354d65c",
+        "514397d27ffd0fb38d3d449c9dc1dab64499077dbfd99ea580ca18af8b3e8019",
+        "2117b4ad9f22fb226eded76d834d62a7a9af6d51aa9d9bcc36a5d24e217b1eba",
+        "aa8c5966afaf5d5f4f59ee5becc1b3782f64a562cd9af79db8c2bb2febf44d1f",
+        "4fb10ac5756beff992cf02960e6ef72552298d3d81088d4be6c51c4da7d7ecf7",
+        "3b293dbd1a0a72d66dc49ceb830e0c1713eb9f004fb2830d96c12b3d5e96e364",
+        "8ca4ad469dbbdcdf7d68fadd86383f1052df19dbc97517b249cd840269bd40b0",
+        "12f1624afc4a73bb89f285061df3e91a829c5cfad74a2f0d7fe7555da642162d",
+        "3e36138472c37181208d3a5ff425bb9ffb92e2c817fc9a2713a8cf27d57d2ad3",
+        "e1f5cff3a1f88fc096b034dcfc663e2e96e8aeb05b226b5ed7741639cc279126",
+        "f9be5aeefd6a51c507672c82f1997b07ab0fd12289b097ab2bf0a45f4398cd90",
+        "de4afc4d1fca2b358cf3f3a9d4e9adaaa143712604b0bfadb530f2eda0007843",
+        "84c3bd03a11b13b34a47963abc781465a60f2b50e0edc0379a30217c7694ce10",
+        "9599be9ddbebfd3d6b55b5345748be6c9669fe57478aa502601ecc6491b957c3",
+        "3fded964af4ffb285ad1569775d5b5aac333bfca49a45d5b852047ebca35f05a",
+        "a596875a94377ad7790610a94e16450dcaeb4b21dfd482dfb331a67bfef2dbf3",
+        "ffd18801f683143166c753b55a6b87dd61a9ed04489afe4006e0d996ab0cf8bf",
+        "f363cb802b0acd3936c6e991c9d18a00ccfaea18eb32d9b3fcec6303a5b225b3",
+        "3d65e6573ccd232eecfe48325bf10d0b4d636723e09715975b68bbcbc9e45c13",
+        "3bd082bd040fc1e8575baf6d09407a72e235080a7a1e60df08a3bea1623ba0b1",
+        "8e084adbec8d103dd73f5d746a784d3924bed7725db68a535074a2400a210484",
+        "bec0079c92d6ac93308c6d8919d41cacf7889ba57d0535a5cf9ceda386362aa7",
+        "05a080870905c82334e5a9c167ca7722e7882e723adb534670d2a248a5038dc8",
+        "dd9a750e13e64b6e4bf4c8e34b998e0e23855f25a58581f3e1114aee8e5ce819",
+        "0a464182186f15fd71a77a03b0279de309c4c14b83253b056ff2c1a85185d300",
+        "57387f51eb0dd7dc0a5afe8773f838bf200283b138cfc4f7e5d14770ee720b0f",
+        "fb7e00a9c62a299b870fd6f1e5b4aaf63ba088aa5d895188e024417001b785a6",
+        "c2edc373a88720764e7a74095109de654a27d27349a4ce8275736707be6476af",
+        "7b922d1a4ef829770f9cf623b606e70dbfbc9ebe8d8c324d22464b10c6ce5bd1",
+        "e14ea845bf289672df528f716865715c82d706902fe414fa711f4bbe18fd542c",
+        "880dfd9a46839b72bd26e22cfb43946d130140bd354a9fef8d875685d076343a",
+        "e1c0fbd720394ffe7331a651ad7e57c6e8e326332c151019a5392d9bf2495da3",
+        "e5f56f299a5050eba3c72d6487d3d9494e13052231f2fc5e600e1b7d03240d36",
+        "511c28e6ffbf92bec9c76a084e640d9a570ac06d67e563bc40edfbc25d553354",
+        "eabbd629cf6149dbd3f824e21670c6be9978ac840df17abd47c5fc986e6794a3",
+        "b4e64361819d57ffed66f0ad5a6a5013177114ba6ec20bbec1b6fef90f431ab2",
+        "6d0b5026c8bedafaa689831c072ae745144364641eb23e90f2eacca3569b811b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:netherized_diamond/block"
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_ingot"
@@ -38,34 +459,30 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
-            },
-            "items": "cruciblecraft:storage_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
             },
             "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
             },
-            "items": "cruciblecraft:storage_plate",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
           },
           {
             "item": "cruciblecraft:extruder_shape_plate"
@@ -74,19 +491,63 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
             },
-            "items": "cruciblecraft:dense_plate",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
             },
             "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
@@ -97,30 +558,102 @@
         ],
         [
           {
-            "item": "cruciblecraft:netherized_diamond/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
             },
             "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
             },
             "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
@@ -130,39 +663,31 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
             },
-            "items": "cruciblecraft:storage_dust",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
             },
-            "items": "cruciblecraft:storage_dust",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:netherized_diamond/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
             },
             "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
@@ -174,7 +699,7 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
             },
             "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
@@ -186,27 +711,96 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
             },
             "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
             "count": 9,
-            "id": "cruciblecraft:netherized_diamond/ingot"
+            "id": "cruciblecraft:aredrite/ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
             },
             "count": 9,
             "id": "cruciblecraft:curved_plate"
@@ -214,14 +808,98 @@
         ],
         [
           {
+            "count": 2,
+            "id": "cruciblecraft:aredrite/gear"
+          }
+        ],
+        [
+          {
             "count": 9,
-            "id": "cruciblecraft:netherized_diamond/plate"
+            "id": "cruciblecraft:aredrite/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 18,
+            "id": "cruciblecraft:aredrite/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 9,
+            "id": "cruciblecraft:tool_head_raw_shovel"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:netherized_diamond/block"
+            "id": "cruciblecraft:aredrite/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 3,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 3,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 18,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:aredrite/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 36,
+            "id": "cruciblecraft:aredrite/ring"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:aredrite/plate"
           }
         ]
       ]
@@ -231,126 +909,518 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2620830d4f6e4ded",
+        "cruciblecraft:gt6/9d96ad5ff4f01a8c",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/3dd42aacc8648e8f",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ac924e630a7e914c",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/ceb684ccaf0bb78f",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/381ea4451e912609",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/e33f202708eeba53",
+        5,
+        5
+      ],
+      [
+        6,
+        3,
+        0,
+        "cruciblecraft:gt6/51e55527167ab6f6",
+        6,
+        6
+      ],
+      [
+        7,
+        3,
+        0,
+        "cruciblecraft:gt6/18a72c45aff77019",
+        7,
+        7
+      ],
+      [
+        8,
+        4,
+        0,
+        "cruciblecraft:gt6/d2ae3655fe8c3b18",
+        8,
+        8
+      ],
+      [
+        9,
+        6,
+        0,
+        "cruciblecraft:gt6/97e56eb7d375ddff",
+        9,
+        9
+      ],
+      [
+        10,
+        7,
+        0,
+        "cruciblecraft:gt6/70ad6f28f1525b47",
+        10,
+        10
+      ],
+      [
+        11,
+        8,
+        0,
+        "cruciblecraft:gt6/09108dc88fae8e64",
+        11,
+        11
+      ],
+      [
+        12,
+        0,
+        0,
+        "cruciblecraft:gt6/07d2f5a67728010e",
+        12,
+        12
+      ],
+      [
+        13,
+        9,
+        0,
+        "cruciblecraft:gt6/2c7c6fb980cae12d",
+        13,
         13
       ],
       [
-        1,
-        1,
+        14,
+        2,
         0,
-        "cruciblecraft:gt6/98e9947b5bda26d1",
-        1,
+        "cruciblecraft:gt6/9c784baf532401a5",
+        14,
+        14
+      ],
+      [
+        15,
+        10,
+        0,
+        "cruciblecraft:gt6/fd719c44f008d677",
+        15,
+        15
+      ],
+      [
+        16,
+        11,
+        0,
+        "cruciblecraft:gt6/a04ff32493c2c11b",
+        16,
         16
       ],
       [
-        2,
-        1,
+        17,
+        12,
         0,
-        "cruciblecraft:gt6/cb9ea384db8d4d19",
+        "cruciblecraft:gt6/2afe5f41955cf3c6",
+        17,
+        17
+      ],
+      [
+        18,
+        3,
+        0,
+        "cruciblecraft:gt6/15fec080932601f3",
+        18,
+        18
+      ],
+      [
+        19,
         2,
+        0,
+        "cruciblecraft:gt6/0f6ef6313f2a1ddd",
+        19,
+        19
+      ],
+      [
+        20,
+        0,
+        0,
+        "cruciblecraft:gt6/e2e9e8ef85d197f0",
+        20,
+        20
+      ],
+      [
+        21,
+        7,
+        0,
+        "cruciblecraft:gt6/c15c1e403f84dd50",
+        21,
+        21
+      ],
+      [
+        22,
+        13,
+        0,
+        "cruciblecraft:gt6/004c976d0591f234",
+        22,
         22
       ],
       [
-        3,
-        2,
+        23,
+        12,
         0,
-        "cruciblecraft:gt6/2522f0e3a6303f33",
-        3,
+        "cruciblecraft:gt6/aee6e6a535b29698",
+        23,
         23
       ],
       [
-        4,
-        2,
+        24,
+        12,
         0,
-        "cruciblecraft:gt6/ab6d2d2f40188b58",
-        4,
+        "cruciblecraft:gt6/165e4100c56fefd9",
+        24,
+        24
+      ],
+      [
+        25,
+        11,
+        0,
+        "cruciblecraft:gt6/4c28c7609eeb40d2",
+        25,
+        25
+      ],
+      [
+        26,
+        1,
+        0,
+        "cruciblecraft:gt6/4c625c6dc1eb7e4e",
+        26,
+        26
+      ],
+      [
+        27,
+        10,
+        0,
+        "cruciblecraft:gt6/4baa336c095b1bb6",
+        27,
+        27
+      ],
+      [
+        28,
+        8,
+        0,
+        "cruciblecraft:gt6/6c5ee076d67c93a3",
+        28,
+        28
+      ],
+      [
+        29,
+        5,
+        0,
+        "cruciblecraft:gt6/9119ee07cbb04edb",
+        29,
+        29
+      ],
+      [
+        30,
+        9,
+        0,
+        "cruciblecraft:gt6/287d5911500a6fe4",
+        30,
+        30
+      ],
+      [
+        31,
+        14,
+        0,
+        "cruciblecraft:gt6/b7c8aabb3ed8d95e",
+        31,
         31
       ],
       [
-        5,
-        3,
+        32,
+        9,
         0,
-        "cruciblecraft:gt6/574748b7873f0367",
-        5,
+        "cruciblecraft:gt6/f0a0c4ac4d600dd1",
+        32,
+        32
+      ],
+      [
+        33,
+        2,
+        0,
+        "cruciblecraft:gt6/7c051853c0ea200c",
+        33,
         33
       ],
       [
-        6,
-        1,
+        34,
+        14,
         0,
-        "cruciblecraft:gt6/ea38021fc19503f1",
-        6,
+        "cruciblecraft:gt6/b8c48f3c660eaacb",
+        34,
         34
       ],
       [
-        7,
+        35,
+        1,
         0,
+        "cruciblecraft:gt6/0dbd61385a78a841",
+        35,
+        35
+      ],
+      [
+        36,
+        6,
         0,
-        "cruciblecraft:gt6/5dae57300a5ada77",
-        7,
+        "cruciblecraft:gt6/2e2574a6a4918175",
+        36,
+        36
+      ],
+      [
+        37,
+        13,
+        0,
+        "cruciblecraft:gt6/511c6da159526854",
+        37,
+        37
+      ],
+      [
+        38,
+        15,
+        0,
+        "cruciblecraft:gt6/36a1db6d1e009db1",
+        38,
         38
       ],
       [
-        8,
-        2,
+        39,
+        9,
         0,
-        "cruciblecraft:gt6/ad9815c9e0766854",
+        "cruciblecraft:gt6/d9821d00cda22a55",
+        39,
+        39
+      ],
+      [
+        40,
         8,
+        0,
+        "cruciblecraft:gt6/caff18b5656aa81b",
+        40,
+        40
+      ],
+      [
+        41,
+        5,
+        0,
+        "cruciblecraft:gt6/e5c877fd4ad289bf",
+        41,
+        41
+      ],
+      [
+        42,
+        5,
+        0,
+        "cruciblecraft:gt6/b924d959fc845940",
+        42,
+        42
+      ],
+      [
+        43,
+        14,
+        0,
+        "cruciblecraft:gt6/ecf43f037be71b41",
+        43,
+        43
+      ],
+      [
+        44,
+        7,
+        0,
+        "cruciblecraft:gt6/be89b50ca22ec344",
+        44,
+        44
+      ],
+      [
+        45,
+        0,
+        0,
+        "cruciblecraft:gt6/d48d51094b92805e",
+        45,
+        45
+      ],
+      [
+        46,
+        13,
+        0,
+        "cruciblecraft:gt6/4847e42b6f83d91d",
+        46,
+        46
+      ],
+      [
+        47,
+        11,
+        0,
+        "cruciblecraft:gt6/b1fce04d991b149b",
+        47,
+        47
+      ],
+      [
+        48,
+        13,
+        0,
+        "cruciblecraft:gt6/f822cbf76c80d19c",
+        48,
+        48
+      ],
+      [
+        49,
+        14,
+        0,
+        "cruciblecraft:gt6/ff65e8b0a1974690",
+        49,
         49
       ],
       [
-        9,
+        50,
+        6,
         0,
+        "cruciblecraft:gt6/6d6f83ec07d0e871",
+        50,
+        50
+      ],
+      [
+        51,
+        11,
         0,
-        "cruciblecraft:gt6/452eea4771d54dac",
-        9,
+        "cruciblecraft:gt6/41521ff94b84d051",
+        51,
         51
       ],
       [
+        52,
         10,
-        1,
         0,
-        "cruciblecraft:gt6/7732b1a1f80a1901",
+        "cruciblecraft:gt6/d70ace6980808feb",
+        52,
+        52
+      ],
+      [
+        53,
+        15,
+        0,
+        "cruciblecraft:gt6/dec579d5149bcf31",
+        53,
+        53
+      ],
+      [
+        54,
+        4,
+        0,
+        "cruciblecraft:gt6/835e4e11a72ee5d7",
+        54,
+        54
+      ],
+      [
+        55,
         10,
+        0,
+        "cruciblecraft:gt6/fa3b46dd3150eb3f",
+        55,
         55
       ],
       [
-        11,
-        2,
+        56,
+        1,
         0,
-        "cruciblecraft:gt6/d57f925175e79a25",
-        11,
+        "cruciblecraft:gt6/57e3c5a5200ede1e",
+        56,
+        56
+      ],
+      [
+        57,
+        7,
+        0,
+        "cruciblecraft:gt6/7e1d6c9e65b494f3",
+        57,
+        57
+      ],
+      [
+        58,
+        12,
+        0,
+        "cruciblecraft:gt6/947d57638f45d82a",
+        58,
+        58
+      ],
+      [
+        59,
+        15,
+        0,
+        "cruciblecraft:gt6/c7e0f9c2fee5e2ba",
+        59,
         59
       ],
       [
-        12,
+        60,
+        8,
         0,
-        0,
-        "cruciblecraft:gt6/e9135caa90e38435",
-        12,
-        71
+        "cruciblecraft:gt6/bb28c0bc18325686",
+        60,
+        60
       ],
       [
-        13,
-        3,
+        61,
+        15,
         0,
-        "cruciblecraft:gt6/68ebf75d37ee0e5c",
-        13,
-        79
+        "cruciblecraft:gt6/5fcad0629adb64df",
+        61,
+        61
       ],
       [
-        14,
-        3,
+        62,
+        6,
         0,
-        "cruciblecraft:gt6/4303c01c2dd9149c",
-        14,
-        81
+        "cruciblecraft:gt6/531bd4381b67b5ee",
+        62,
+        62
+      ],
+      [
+        63,
+        4,
+        0,
+        "cruciblecraft:gt6/e78565cb6bb9ef7e",
+        63,
+        63
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 6460,
+      "duration": 3068,
       "eut": 96,
       "item_input_actions": [
         {

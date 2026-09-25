@@ -10,36 +10,71 @@
         }
       ],
       "hashes": [
-        "0f9f7324da73971f7b6bf0c15645b0aa55eb91d53a84a113a49fbd8a8c344fe8",
-        "e3bd4fed9bc6d844dea4491dcef31ef7f7fcd3f4b6913ee776a345d62b8e54cf"
+        "bbcc01e532af912361e1ff04d9f21a3415a29cd33b9dd34a486041f17f38fd44",
+        "d35b23768a828b29aa97d5c9cb3c5150263a279af95c2ba2b44310ab3c325f3b",
+        "dbb10c3a3dad93f2e6cec3a32071bf787b26952ba2063bc0f1ac1e381669ab1d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "naquadah"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:desh/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:naquadah/rod"
+            "item": "cruciblecraft:desh/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:naquadah/gear"
+            "count": 64,
+            "id": "cruciblecraft:desh/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:desh/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:desh/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:desh/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desh"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desh"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -49,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9f1d55b888737564",
+        "cruciblecraft:gt6/900bcade356e1764",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/140a0136242b710e",
+        "cruciblecraft:gt6/b7d59ad1a7bfd6bd",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/4541670f668efc5b",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1565,
+      "duration": 2709,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6980",

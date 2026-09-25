@@ -10,17 +10,24 @@
         }
       ],
       "hashes": [
-        "8376643f96759f60ea166d38b1df41a141e761efedf8ab4c42191946263d95e6",
-        "27e946ca841d3761b2ab8920bab987fecf83613460da870c80721e22136360f4",
-        "d982dd31108b6fdc7a254ba3aef1f8ed763f82d86c1a2fc13e2853e5470dc698",
-        "094adac0ad49e8a457a1e2057c4d508a87d8386597261169115997936438211c",
-        "17abe4d443e6731151fde4b203fc7abcb7e5b1d88a58e5165f9f77962a7ea20d",
-        "042504c20672df63a46459f63318257f72d8c4bc940e2d51427640837929460b"
+        "07d1fc7a5af7a4bb14cb82dd283b29f3694da289e058f68e8940badbf09ecbe9",
+        "a56591c7a12d9f6f972f462bb33f185ed79bd359d94188cc79b4419309c06f04",
+        "88688f4cdccceb83a40ac7ad6efb00ab73c8d0b1715b57b48883ec0932b72331",
+        "b4bd49ede25c6c304fa6fe3f15a20e616e0df4efc072b5d809716d9cca6cb20f",
+        "8c469ea20a5ce70dc3bbdfdd73029fad28f426394fc53f4b07913dcc8df727e7"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:dark_thaumium/tiny_dust"
+            "item": "cruciblecraft:iridium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -29,9 +36,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "dark_thaumium"
+              "cruciblecraft:prefix_material": "iridium"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -40,15 +47,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:dark_thaumium/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:dark_thaumium/nugget"
+            "item": "cruciblecraft:iridium/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -57,21 +56,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "dark_thaumium"
+              "cruciblecraft:prefix_material": "iridium"
             },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "dark_thaumium"
-            },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -83,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:dark_thaumium/gear"
+            "id": "cruciblecraft:iridium/gear"
           }
         ]
       ]
@@ -93,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2e8d79747e7de934",
+        "cruciblecraft:gt6/889097c0fef2ebe2",
         0,
         0
       ],
@@ -101,7 +88,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/1080ae6d33257408",
+        "cruciblecraft:gt6/fc5cf86bd7d8be03",
         1,
         1
       ],
@@ -109,7 +96,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/301be6d228e1c0c6",
+        "cruciblecraft:gt6/3ac632e8e403c1e5",
         2,
         2
       ],
@@ -117,7 +104,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/89e6f984f61ae1d8",
+        "cruciblecraft:gt6/4ced950644e40c23",
         3,
         3
       ],
@@ -125,22 +112,14 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/d99fcec2968c143e",
+        "cruciblecraft:gt6/b58b43ccf4682c23",
         4,
         4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/58e7a2526beb9425",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 125,
+      "duration": 3379,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        16,
         0
       ],
       "output_chances": [

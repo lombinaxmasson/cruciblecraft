@@ -10,18 +10,15 @@
         }
       ],
       "hashes": [
-        "5e1934e752f10a94a6efeb3b520d26398e78ad95bc774597a8663df1f11c6101",
-        "5cd7ce8630eceb8ec58c318f319cfd57c982d90b6d4548415add4de3cf561a21",
-        "e38267c0ed85c6284cb483580c303b679b6103b5e3e0a51abd5c3fbcac1d05c9"
+        "a4c73e1a3ef72d0c9a1566681f0e0b116f0b71f02ec63f89a5b6aa33cade99b5",
+        "f645c8ad1d1726cab225d1d3c7fead3db6caac92086ce6dbeb7588bf8c66526e",
+        "860707d73a6b098467f909965123ff46f8b395e0f6afd93f78227cebfeced73d",
+        "bcd45ada46da5c1fa946aa900a4ee3b8f0d208149edfae8ea60d5733c9fe1507"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrum/large_item_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -29,19 +26,23 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrum/dodecuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:duranium/gear"
+            "item": "cruciblecraft:electrum/large_item_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/dodecuple_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -52,7 +53,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:duranium/block"
+            "id": "cruciblecraft:electrum/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:electrum/huge_item_pipe"
           }
         ]
       ]
@@ -62,30 +69,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ace53a69abccd4de",
+        "cruciblecraft:gt6/b93ac64e93326d72",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/571a97fe3611ec3e",
+        "cruciblecraft:gt6/9a6080c568c18d65",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/2afef94ef985c6c0",
+        "cruciblecraft:gt6/501cadac8ad25c69",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/f6c4d4870963461f",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2862,
+      "duration": 2736,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +111,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

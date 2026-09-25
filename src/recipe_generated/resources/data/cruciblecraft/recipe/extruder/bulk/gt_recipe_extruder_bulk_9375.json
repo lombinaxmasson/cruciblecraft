@@ -10,16 +10,42 @@
         }
       ],
       "hashes": [
-        "e89c6b579e870c4676b65e011efef77346db73c0f41469832880bdfd218521ba",
-        "4bc09ea0a18896dbadf740b62f88b29898742113aa1429028c729552cbba8e52"
+        "9646a28fefb219fc05fe0aecff5f9e32a8d1038b89efed1d4a435866b05be016",
+        "7af37cdf0e27e3fc41faa5d5184f820e9b29a4b90b22ee3cbc123895ccf92d05",
+        "49d53205385ecf2b2852fc004abbdc4bc0593b58c1f67b0f94305b137174de8c",
+        "c125a171afc462770354fa11c478bdcb42a8f37cb2b7c58efaa6eb2d4fb432a6"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rubracium"
+              "cruciblecraft:prefix_material": "abyssalnite"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -28,7 +54,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:rubracium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -38,8 +68,17 @@
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
             "count": 1,
-            "id": "cruciblecraft:rubracium/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:abyssalnite/block"
           }
         ]
       ]
@@ -49,7 +88,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a130d48aa10c7719",
+        "cruciblecraft:gt6/f2ad25bb01fadd9b",
         0,
         0
       ],
@@ -57,14 +96,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/223dc9494009e070",
+        "cruciblecraft:gt6/95de6f484fed6289",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/63816962bb0bf943",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/42d5b668c72460d2",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4155,
+      "duration": 2794,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        2,
         0
       ],
       "output_chances": [

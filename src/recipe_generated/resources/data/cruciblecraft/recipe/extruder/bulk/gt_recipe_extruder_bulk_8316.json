@@ -10,49 +10,52 @@
         }
       ],
       "hashes": [
-        "7b1be89a0c026eaf3c2aefd6385306f9c31fd0c067b1ed8444a778795914300f",
-        "d5199ca332e6dc795d76a9a41373a632d121ad1c21f54de4a62eb5200b749f47",
-        "1893ae861cf2e6e7db7390dbc4d5b17b8233624982e869244d9380893ca37cb7"
+        "2298b1f7ccfca0887ea3d4aaf10a569ebd1cacad241418ccb9c90b1a07c5ddd2",
+        "0fb86b133012fb78967fed85cb7986fc33f4f561657a19684cdbe0d67825b130"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "zirconium"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:lemurite/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "zirconium"
-            },
-            "items": "cruciblecraft:gem_flawed",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:lemurite/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:zirconium/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:zirconium/gear"
+            "count": 64,
+            "id": "cruciblecraft:lemurite/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:lemurite/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -62,30 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/99287cd4e3beb966",
+        "cruciblecraft:gt6/6e9e7c7877335985",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/8cbd03609dfa077c",
+        "cruciblecraft:gt6/85aad171f1eaac10",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/7e5b1b0432f42be8",
-        2,
-        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 737,
+      "duration": 333,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8316",

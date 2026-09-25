@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ExtruderCompactRuleTest {
     private static final Path COMPACT_ROOT = Path.of(
-            "src/component_rule_generated/resources/data/cruciblecraft/"
+            "src/test/resources/extruder_compact_rule_fixture/"
                     + "recipe/extruder/compact");
     private static final Path EXPECTED =
             Path.of("tools/extruder_expected.json");

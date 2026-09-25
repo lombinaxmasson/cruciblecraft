@@ -10,42 +10,60 @@
         }
       ],
       "hashes": [
-        "4e7ec4cace5a0a06f31b659bc70d010156652ffe6cea127f973b820678b45107",
-        "0ecc3c3eaf21143e57032ba7c1a6d0d6d13a6d5513533dcf5b47f74a9e70dc53",
-        "86b71d72e2560e4c09a726164675a0749a348914298bd62f1624fc89119534cd",
-        "3cfa3393e2da20d4d0587eb5ce2bca78c92aea43b745ff85772f8f062d2febea"
+        "d390cf1eef58b88ac2411c597021732739dc6344e6f33641e723991e42dd57d4",
+        "5d6f1ec30d59ab82df998752590ff028652122f47d508cbe812cd674a56221c8",
+        "6d00e7b4135c5efda63633407b7da39695e51723ad7595450ae98dbdfa85be56",
+        "a9818674bb6ef4f1bf9b1666d3a5ae228be272dbb2995842b720db07c88c249c",
+        "76561fe511e39f2f611aaa3272901dbccdbb63414e7de8debb7b99d255b15170",
+        "a12e90d7fc1d744dbdef04202489a15f7d6294b584b664e213edf0ad7cac6360"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:obsidian_steel/fine_wire"
+            "item": "cruciblecraft:hslasteel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:obsidian_steel/bolt"
+            "item": "cruciblecraft:hslatungsten_alloy/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:obsidian_steel/fine_wire"
+            "item": "cruciblecraft:hslatungsten_alloy/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:obsidian_steel/bolt"
+            "item": "cruciblecraft:hslaspring_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslasteel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslaspring_steel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -53,16 +71,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:obsidian_steel/rod"
+            "id": "cruciblecraft:hslasteel/gear"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "obsidian_steel"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:hslatungsten_alloy/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hslaspring_steel/gear"
           }
         ]
       ]
@@ -72,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b4470408739820bd",
+        "cruciblecraft:gt6/01abfedecffc40c1",
         0,
         0
       ],
@@ -80,7 +101,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/5d8bdc6c9178f4cf",
+        "cruciblecraft:gt6/74634368c37e0dc6",
         1,
         1
       ],
@@ -88,22 +109,38 @@
         2,
         1,
         0,
-        "cruciblecraft:gt6/0d8135723c66c32e",
+        "cruciblecraft:gt6/1e16000ec1c5c06c",
         2,
         2
       ],
       [
         3,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/d8f312b086a8b13c",
+        "cruciblecraft:gt6/73ff9b19af38cbec",
         3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/150724f51f4e09b7",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/32a6cbe34bc9e3cc",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 83,
+      "duration": 768,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        32,
         0
       ],
       "output_chances": [

@@ -10,29 +10,16 @@
         }
       ],
       "hashes": [
-        "a680f1a8e16774f1088a6ffa5ec0e314d180732c75a0954d3649d3e61fd78a56",
-        "5c9dfbec3399eb8e455bb288a12799daf1f5832d79a4a0aab1dc1b47aefb4728",
-        "219cdd2b18988ea190942dc76e83538c42086646097e57cf38e5a4a151c0a0a7",
-        "6eeb0315a5ecbe39dca42f7429016b569610d5734b88ef577175cd620a809b92",
-        "0d17791c7bdff3bc676f6b8872003e9bc6911d3742d1b1fc080870efde610224",
-        "f71b01a7e56a77a415f6f065fe11a9437af77dc1d76bc3ffade46ce6301b4f85",
-        "aa4701879f60ae64db87e66f0448209a59a9a7cbdcfff46495e67fa460a1cec6",
-        "8bf98900b193285b15dc770ba7baa0ce17d37377e3c1da74591439072302b4e1",
-        "7f10c88d2304dbe5f9fde493e7cebfd0a27e1276bba9595f9967a5c4d4333c1a",
-        "393d09314258bf08307b51dc0b503564ece1b97f4c9418911dec4c51714fcd16"
+        "9b9c5a9072afa295dd0be09d43c0f84c9988d8efd4e3daeb7599fbe40060b0aa",
+        "c937c7ba666b1ed70e5487383b9acf72fbdda69a18f4022495a006e38d3a73a8",
+        "be634170ac4d2ceec1ee7ebe683177ac0ae70da0c80ad5c1f9fc78a3a5a02b66",
+        "d4c23921b28d5ae8f07262011e8f2bbf3a8199bdb1a3b9c5c6d70044a99931bb",
+        "1439cd200ac46035bb9f80229c38a335103ec9210150a2fc8885f4aa7dc480a6"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:draconium/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:draconium/machine_casing_double"
+            "item": "cruciblecraft:conductive_iron/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -40,55 +27,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:draconium/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:draconium/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:draconium/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:draconium/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:draconium/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:draconium/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:draconium/machine_casing_double"
+            "item": "cruciblecraft:conductive_iron/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -96,78 +35,90 @@
         ],
         [
           {
-            "item": "cruciblecraft:draconium/machine_casing_double"
+            "item": "cruciblecraft:conductive_iron/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:conductive_iron/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:conductive_iron/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 14,
-            "id": "cruciblecraft:draconium/plate"
-          }
-        ],
-        [
+            "components": {
+              "cruciblecraft:prefix_material": "conductive_iron"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
           {
             "components": {
-              "cruciblecraft:prefix_material": "draconium"
+              "cruciblecraft:prefix_material": "conductive_iron"
             },
-            "count": 28,
+            "count": 48,
             "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
-            "count": 3,
-            "id": "cruciblecraft:draconium/gear"
+            "count": 64,
+            "id": "cruciblecraft:conductive_iron/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:conductive_iron/rod"
           }
         ],
         [
           {
-            "count": 56,
-            "id": "cruciblecraft:draconium/ring"
+            "count": 64,
+            "id": "cruciblecraft:conductive_iron/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:conductive_iron/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:conductive_iron/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:conductive_iron/ring"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "draconium"
+              "cruciblecraft:prefix_material": "conductive_iron"
             },
-            "count": 14,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
           {
-            "count": 14,
-            "id": "cruciblecraft:draconium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:draconium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:draconium/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 28,
-            "id": "cruciblecraft:draconium/rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:draconium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "conductive_iron"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -177,7 +128,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6e0538cbead48d1a",
+        "cruciblecraft:gt6/2c17b15e2229c046",
         0,
         0
       ],
@@ -185,7 +136,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/23d7d7a167bfaf77",
+        "cruciblecraft:gt6/64641c4735ef469b",
         1,
         1
       ],
@@ -193,7 +144,7 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/c0b56b0942d089c5",
+        "cruciblecraft:gt6/2800331d0a4ef2dc",
         2,
         2
       ],
@@ -201,7 +152,7 @@
         3,
         3,
         0,
-        "cruciblecraft:gt6/70fff1abebdb1b49",
+        "cruciblecraft:gt6/9160dfbc43735d65",
         3,
         3
       ],
@@ -209,54 +160,14 @@
         4,
         4,
         0,
-        "cruciblecraft:gt6/e3b6553a1fdc644c",
+        "cruciblecraft:gt6/e6155f8ba413c7be",
         4,
-        7
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/8d1a817cef875208",
-        5,
-        8
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/fbfff22c2c0fbd36",
-        6,
-        9
-      ],
-      [
-        7,
-        7,
-        0,
-        "cruciblecraft:gt6/7b4720d09ef8cb42",
-        7,
-        16
-      ],
-      [
-        8,
-        8,
-        0,
-        "cruciblecraft:gt6/ce77c5e0defa13ac",
-        8,
-        19
-      ],
-      [
-        9,
-        9,
-        0,
-        "cruciblecraft:gt6/58d22d1babaa6e43",
-        9,
-        20
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 909,
+      "duration": 6547,
       "eut": 96,
       "item_input_actions": [
         {
@@ -271,6 +182,7 @@
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4785",

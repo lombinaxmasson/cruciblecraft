@@ -10,32 +10,138 @@
         }
       ],
       "hashes": [
-        "6ea9914b7a49c47d61ba214404a584ae810d89d60d64a4f0ebda83547457c552",
-        "cf763013ba974345413ac983b0f8da697ab1129edb3836cad301ed9db88d458f"
+        "1d4cb59e07cbe45fd7c78b7d0f14166c6191ee24839450aef44e9f681a31c3c1",
+        "411a798059a98ce3a0c37f88a464184d947da8b4ae48964e1cabfc37f5ad559c",
+        "59a618a49ed67af18aeee2b7b56e601963d4ef2ec4e66fb6d724fb806a52145d",
+        "70db61730e8a2749279a1ad6d7ed78b0bbb21309b6002f7d74e9ad9380054d87",
+        "a4c8f2606fc75e7a8bd98e6df3b41c5dd3a3ada4d778f71c972404e96b611f8a",
+        "30e9b6db99a72479f124e2fdeef73ddadfab11b70f6df138971c79a1169f4646",
+        "fe6cff42cfef6847a68a5e5eeda3c80629409aa1471f71b20d2b4bdcc39e99b9",
+        "127398845c59bcb3b312e1b0ca9a332268573e2327bcbbf0723e9689617541fe",
+        "80f4bf868e3ccef698fb0c44972c9826ac25e1cf3341f8ed57406e496318da3a",
+        "22b68eb78549e7eb83d9b32b68436fa7bf3cfb7bae6442c5dff786a66f6f9f61",
+        "4e786f84880994492297d3029f4ff241f156894866a0c1968f803252b1661a0f",
+        "54efdcacdee1546986b86ea0d720d2703cab1ff8a471f480fccb9c5263cff707"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "cd_in_ag_alloy"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:ceruclase/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ceruclase/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "cd_in_ag_alloy"
+              "cruciblecraft:prefix_material": "ceruclase"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ceruclase/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ceruclase/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ceruclase/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ceruclase/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
@@ -43,7 +149,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:cd_in_ag_alloy/block"
+            "id": "cruciblecraft:ceruclase/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -53,22 +168,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5a0cf34a89488bad",
+        "cruciblecraft:gt6/f559e3debb10bdce",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/db251a88d01e1181",
+        "cruciblecraft:gt6/8a18b605a661b2b7",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/3949b7cc5dc4579c",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/20120cd3b56e0226",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/35ee6c01a84a1759",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/34f0309e78c234f5",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/140b201398e8dfd3",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/ff5cc2adc01dc24c",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/bf89e569dce56f0f",
+        8,
+        8
+      ],
+      [
+        9,
+        1,
+        0,
+        "cruciblecraft:gt6/37622aa7fc7a50bb",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/dbe21bc191185f1d",
+        10,
+        10
+      ],
+      [
+        11,
+        1,
+        0,
+        "cruciblecraft:gt6/f76db7c8f011adf0",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 626,
+      "duration": 91,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +274,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        5,
         0
       ],
       "output_chances": [

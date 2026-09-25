@@ -10,28 +10,19 @@
         }
       ],
       "hashes": [
-        "2eb63567c2b894d2e66e24d667716327d8a328e5086be848fdc1b6aac832347d",
-        "1cc38073b85298a80d4cf7b458f11973d8a064f20faddf7ee268a8c76f618597",
-        "86b363367108be630303e09733eeee8370dd518858242d103c810c9ff51e7dae",
-        "eff83bd863293b1a7efa8870430371a36f2e5f79e274fd7119bca6aa7afd6a3d",
-        "2f2ff4b178ea3504382ee91d547067d54062e6002bb756023a8ed31d20fb0516",
-        "158d8f94c1aff0aa449b3003676e10bb665da6bb6d0e1a1148cca9eedb7701e1",
-        "23bfd01eb1839f6a3f25d4c3ec5c72640aa66167004574197a7ada179c0d63f1",
-        "da39862d135f505b3d2dfa30f65624afcb19c145ba042339c3ffcbe7d42aea4f",
-        "68fe9c2237bfcca1b911fd684c9381d091014fb8d145550f837b2cf42db37c6c"
+        "9ebeecc9202e1938fc6e0d7a9c8cebc5f306d46370655de3cf736a85856b983c",
+        "84cb32db19da2bded8dbd922ddb3e3a30ca631e867520dec02eb095261a39fde",
+        "ff1adc94abe5f23e7202dc29514564545823a2ed9fb1bafcff5d55b56451fca5",
+        "2f450c21292dd235fd27a595e264fdc8fa117e6faba99402caca9400b465411a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -39,120 +30,38 @@
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
+            "item": "cruciblecraft:iridium/sextuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
+            "item": "cruciblecraft:iridium/fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 26,
-            "id": "cruciblecraft:steeleaf/ingot"
-          }
-        ],
-        [
-          {
-            "count": 2,
-            "id": "cruciblecraft:steeleaf/block"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:steeleaf/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 6,
-            "id": "cruciblecraft:steeleaf/gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "steeleaf"
-            },
-            "count": 26,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 52,
-            "id": "cruciblecraft:steeleaf/rod"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:steeleaf/long_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "steeleaf"
-            },
-            "count": 52,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:steeleaf/plate"
+            "count": 1,
+            "id": "cruciblecraft:iridium/block"
           }
         ]
       ]
@@ -162,78 +71,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/24b1a3bc58bfa33e",
+        "cruciblecraft:gt6/ad31346d3dbca093",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/cc784384b07f1f0d",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/33dba258257bec8c",
+        2,
         2
       ],
       [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/561f5a4c5f5b60c1",
-        1,
-        4
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/ba1dec8c210e2687",
-        2,
-        5
-      ],
-      [
-        3,
         3,
         0,
-        "cruciblecraft:gt6/0e04579c04de6772",
+        0,
+        "cruciblecraft:gt6/98885d038f953852",
         3,
-        9
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/a72b205d5253cb67",
-        4,
-        11
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/94065963e48269a9",
-        5,
-        12
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/132b65a71a9b386b",
-        6,
-        13
-      ],
-      [
-        7,
-        7,
-        0,
-        "cruciblecraft:gt6/182c775cca3a7c1d",
-        7,
-        14
-      ],
-      [
-        8,
-        8,
-        0,
-        "cruciblecraft:gt6/7dbb82761b603164",
-        8,
-        16
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2307,
+      "duration": 7602,
       "eut": 96,
       "item_input_actions": [
         {
@@ -244,7 +113,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        3,
         0
       ],
       "output_chances": [

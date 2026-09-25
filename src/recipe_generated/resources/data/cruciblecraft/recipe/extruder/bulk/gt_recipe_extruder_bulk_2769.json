@@ -10,42 +10,112 @@
         }
       ],
       "hashes": [
-        "c5e2ab552e8ccb3ab8285a9096ba4e3a0cf1fbbadc09ed8c0c5fd570ea80f8fa",
-        "b26078403d9975d28c944650398942a30a63b983db55ac7291bf7d4b273de0f2",
-        "6a6ad9e57e3d1056522b0c7788221b7894f725dddaf1427c8aaf9c5df6feb4d7",
-        "68606ce6b225bd23b4fb54937ae5666cd7f25b5fc04aa736ee89c1bb30406645"
+        "a14aa0710ae450ce290fd69e5bbad2387593d07407964ebf13247ec2a47a17ee",
+        "53ac809e30dba14b31aacaa8c4419cb6ea513503a986fe72aa69eb6da0cc02ef",
+        "247094409340fafe76390d3d20ceab243c3bffb0cfe02549f665df177fce066e",
+        "962d352c4074bc4bfb937f6f4b36d5e766f607e0ccb9a88da1e85143219a2bae",
+        "3b43d1bb4479ddf52fcf137e8746907d8d132cd2cbf276d5f0ab302bff759c75",
+        "cea87bc4a7508a6e1219258bb494c3031d9afb7887e4e96b5aef4ac2ce372750",
+        "bcda594d0f781bd5b1628853b5326b1a560d0ec83350bf19b4d8f1f156e21035",
+        "a94a9ca4cafc723122277a80dc37a6d9f12827bfb8340d59097d08af59ea9e42",
+        "9d14223c3c62fd1bf4a44be03a626c87c17a7bfe02df9ab447c38cc3975b0dc9",
+        "14082db652c259ecfbb9095db8f4b9469e0f980500148249abce04f5d83296d9"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:flamascus_steel/bolt"
+            "item": "cruciblecraft:meteoflame_blue_steel/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:flamascus_steel/bolt"
+            "item": "cruciblecraft:meteoflame_blue_steel/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:flamascus_steel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:flamascus_steel/fine_wire"
+            "item": "cruciblecraft:meteoflame_blue_steel/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_blue_steel/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_blue_steel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_blue_steel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
@@ -53,16 +123,19 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:flamascus_steel/rod"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -72,38 +145,86 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/761bcd4abd3bf408",
+        "cruciblecraft:gt6/ac904b10ddbc038d",
         0,
         0
       ],
       [
         1,
+        0,
+        0,
+        "cruciblecraft:gt6/ec7b7c426e24a44d",
+        1,
+        1
+      ],
+      [
+        2,
         1,
         0,
-        "cruciblecraft:gt6/29616d027784003a",
+        "cruciblecraft:gt6/4596f820e7abdf8c",
+        2,
+        2
+      ],
+      [
+        3,
         1,
+        0,
+        "cruciblecraft:gt6/69c3c3e1495485fc",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/db08bd8ce7a526bf",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/733de9eaf061059a",
+        5,
         5
       ],
       [
-        2,
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/00e4dafdcc634fed",
+        6,
+        6
+      ],
+      [
+        7,
         1,
         0,
-        "cruciblecraft:gt6/e3afd1e62ff81ccb",
-        2,
+        "cruciblecraft:gt6/48aac40fe403aadb",
+        7,
         7
       ],
       [
-        3,
+        8,
         0,
         0,
-        "cruciblecraft:gt6/7a3a82c8647be083",
-        3,
+        "cruciblecraft:gt6/f1147fdbf19aa4ce",
+        8,
+        8
+      ],
+      [
+        9,
+        1,
+        0,
+        "cruciblecraft:gt6/631b8b47f8aac941",
+        9,
         9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 175,
+      "duration": 1044,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +235,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        12,
         0
       ],
       "output_chances": [

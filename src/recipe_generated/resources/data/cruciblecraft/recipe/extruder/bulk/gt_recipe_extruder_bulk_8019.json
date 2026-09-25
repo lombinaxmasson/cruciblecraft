@@ -10,40 +10,96 @@
         }
       ],
       "hashes": [
-        "3d04d30fac2905be547f68f617090a8668b291504d98f4b5cb8a2a9b23bd094c",
-        "f3ea063e2aea5ceae105ff0a013a743faa8a1398035985217cafcf64d9cb5cbe"
+        "d62e1208d6567f179b1715d01688b01772129de7dfb76c94d98dca7ff238d4ba",
+        "5ed317f461c923f2cd68f079685c2bb6604da47fd2c02ebf3a0b5827a1be3f38",
+        "ce1e293ff54be6d3c1ced107e1d4561eb076110557d71d0294e8a6907375bbe7",
+        "2fce8333833da0af743b7226522c1abcbbb814d0a0c06dfc6ebb13cdbd3d0da5"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "actinium"
+              "cruciblecraft:prefix_material": "draconium_awakened"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "actinium"
+              "cruciblecraft:prefix_material": "draconium_awakened"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
             "count": 1,
-            "id": "cruciblecraft:actinium/block"
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,22 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e2f9ae8c9e559491",
+        "cruciblecraft:gt6/e10760a62529df20",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/a1dbda7c5e4ee7dc",
+        "cruciblecraft:gt6/c99dccb15d8354fa",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/c3872da7261f1664",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/9a0b8a0583702661",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1921,
+      "duration": 161,
       "eut": 96,
       "item_input_actions": [
         {

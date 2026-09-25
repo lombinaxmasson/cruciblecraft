@@ -10,49 +10,96 @@
         }
       ],
       "hashes": [
-        "6342a9dab303f83e2e2862d3478dbb7ea1e69e5c3ca47f1fba38219e41d4b515",
-        "a788a68bf3c46477db25730a9e70743070cdb7e15e8a4cb857d83a044b637b32",
-        "1af361cdfe9a0d449617d9b0f711ffb7b6ed0fc46b2a5f81d37cb4f74598be7f"
+        "1d69105d693185e90fe8a1671acc2310d393b970d5fa208616e3ceeeccbacc9d",
+        "f06549b065f437124395aea9931ad480093640370b6df33cf2761365e987d9c1",
+        "cad3557f796a7a08fb550a00a6aefc7b9e56f5502aa93e5f5dfa0dfbad44d03d",
+        "94804baf2abafc3ce74b80523a551d8bc964eff4832a49bbd6cc43cf29091312"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:shadow_steel/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "shadow_steel"
+              "cruciblecraft:prefix_material": "hsse"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "shadow_steel"
+              "cruciblecraft:prefix_material": "hsse"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
             "count": 1,
-            "id": "cruciblecraft:shadow_steel/block"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -62,30 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f5208b85f2723eb0",
+        "cruciblecraft:gt6/9d9227eaabc670da",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/8fee324448cf7770",
+        "cruciblecraft:gt6/56307c16f9eef4d7",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/4db89b21409535c6",
+        "cruciblecraft:gt6/7983021b44fb4c0b",
         2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/c3b696b331e8bf81",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1159,
+      "duration": 599,
       "eut": 96,
       "item_input_actions": [
         {

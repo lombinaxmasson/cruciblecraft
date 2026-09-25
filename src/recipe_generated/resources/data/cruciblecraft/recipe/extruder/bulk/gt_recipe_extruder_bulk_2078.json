@@ -10,58 +10,72 @@
         }
       ],
       "hashes": [
-        "c8e39c3013cb3c8d8c44c79810bd2ff519cbeca61c74262404de8138571aec6e",
-        "de4bfbbe9beb57e6e116992aab5083fcec0f98da8ae7d0e753c87ada5852dbd2",
-        "be66f0b42882d507ae9b093a766cf8e596a60af617f3225c6cbe21aaa7431e13",
-        "28c4998a65328d2d2b81a93563d25741342337edc6c2a6dca73dcabc1e8a480c"
+        "bcff7d4d67e37fe96ebfd48a3b90fbaf73bc5c1c739ce60c20a8fa2f22607b44",
+        "da11548e0435e8fabc9aff47516b707a4f9f65fda6773c5951fe6822f4c6b3fb",
+        "a1bbe19026e8ec5e5df6c2bd26cb4fa31c58487399272a80058d5ea3a6a8576a",
+        "fb89c16a724992a4abebc615094255356f9b0426bf1ee1f593c808696b6c2c5a",
+        "fb18a8ad2fa8e2784fe16bb04bbd8d187addbb32798d438f565705f2fdb270d4",
+        "21cbc85bb861aa24992bf2e30e3bc396a06b8bc7c3ec471fe8684f22432583c8"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "end_steel"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_red_steel/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_red_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_red_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "end_steel"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "end_steel"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "end_steel"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
@@ -69,28 +83,28 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "end_steel"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:end_steel/long_rod"
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:end_steel/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:end_steel/plate"
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -100,7 +114,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c09e8d7ba96ca786",
+        "cruciblecraft:gt6/cd220862a09aea0d",
         0,
         0
       ],
@@ -108,7 +122,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/54058ee562a96f6d",
+        "cruciblecraft:gt6/100fcc325d0c6f36",
         1,
         1
       ],
@@ -116,22 +130,38 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/5115078b942544ff",
+        "cruciblecraft:gt6/a2b2592640328a79",
         2,
         2
       ],
       [
         3,
-        3,
         0,
-        "cruciblecraft:gt6/95aea3f819e8547f",
+        0,
+        "cruciblecraft:gt6/4494cb5337518fd7",
         3,
         3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/ac0641948ee5f8b9",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/fa5acf2dc0018d75",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 262,
+      "duration": 792,
       "eut": 96,
       "item_input_actions": [
         {
@@ -142,7 +172,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
       ],
       "output_chances": [

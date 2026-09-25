@@ -10,37 +10,59 @@
         }
       ],
       "hashes": [
-        "a1e91b0d76f3bbec137f0343bf2bfbd5e798420f7234ca5aa4d552bae2e45906",
-        "83626438ccfc9be80a800a32670f9d52fe0e8739c0b0d02d7856da62ba00d26c",
-        "92027d0aaef2a52a129e737f5b2b67830ce79c7529d4417fd2148a5602a66c6b"
+        "3d0af7939403a3b65da3e6f88a48e2d0eb3147e6148efcc3abf5e3160770a6f2",
+        "f7d9da51dda70ac2237f9cd51a778f03dc3b7cf595c79105573cbe3bf8cdebbc",
+        "073b493bf93577c3577ddb2031459291c862f603229a57d9f3c6dadc59140d57",
+        "a4c6dd315cc6a25813a68c199ad5e18a1390ae29d0a9a4fe51156248871fdf8f",
+        "04666d7ffb0f18b51eecfd95ab387ca3fdabb482d673acfce4fde6775d0a0d77"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:silver/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "nikoline_alloy"
+              "cruciblecraft:prefix_material": "silver"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:nikoline_alloy/foil"
+            "item": "cruciblecraft:silver/wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:nikoline_alloy/small_dust"
+            "item": "cruciblecraft:astral_silver/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "astral_silver"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -48,7 +70,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:nikoline_alloy/block"
+            "id": "cruciblecraft:silver/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:astral_silver/gear"
           }
         ]
       ]
@@ -58,7 +86,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/18d4df6867c56ae7",
+        "cruciblecraft:gt6/5eb8cc3879a6c84f",
         0,
         0
       ],
@@ -66,7 +94,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/9c5f87ff3bd95647",
+        "cruciblecraft:gt6/008befb5b0d76f70",
         1,
         1
       ],
@@ -74,14 +102,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/0efd2b8e4bca6674",
+        "cruciblecraft:gt6/e7ffac74ff0ef238",
         2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/1dd511c9b48ae880",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/c85a98ebb0baf3ed",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 421,
+      "duration": 610,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,7 +136,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        8,
         0
       ],
       "output_chances": [

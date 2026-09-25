@@ -10,24 +10,32 @@
         }
       ],
       "hashes": [
-        "188201921914f8aa9ab0afaf66fdc6200e0be64835c1921a311a26cf2feecc51",
-        "46ea38992dfa107e1e376f896db6e42112485a02a138fcddf0f76fdfb96d8df2"
+        "51b73c13254efd78e8a2cb52b5ae9055e0bc3b3ad9ec16631c1d06cfbc7bca97",
+        "8bf9d1d46ed9e694e8e6bb6bab636fd0f954690a917b06b39ab2a4120195ca6f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:hssg/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "fireleaf"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hssg/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "fiery_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +43,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hssg/gear"
+            "id": "cruciblecraft:fireleaf/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:fiery_steel/block"
           }
         ]
       ]
@@ -45,22 +59,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/118eafeeaab1c4c4",
+        "cruciblecraft:gt6/e885bdf530943242",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/24f53248ab0982f4",
+        "cruciblecraft:gt6/7ffab64581eab7df",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1692,
+      "duration": 2996,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +85,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        14,
         0
       ],
       "output_chances": [

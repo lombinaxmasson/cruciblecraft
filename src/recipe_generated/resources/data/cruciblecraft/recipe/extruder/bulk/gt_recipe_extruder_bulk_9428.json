@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 2231,
+      "duration": 922,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,21 +17,25 @@
         }
       ],
       "item_input_counts": [
-        18,
+        6,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:lutetium/rod"
+          "components": {
+            "cruciblecraft:prefix_material": "meteoric_red_steel"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_gear"
         }
       ],
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:lutetium/block"
+          "id": "cruciblecraft:meteoric_red_steel/gear"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "d1cec3dde24d89d246766e26e7348f95b366567a79a17f03a15e953674674b69"
+          "f20f527a006f25d4d10ed88fd38e4834b06ff0c6df3b952c653d9e914c4c6db8"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9428",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/0724ee2ed2a738f4"
+      "stable_id": "cruciblecraft:gt6/964720b75ad5b75d"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

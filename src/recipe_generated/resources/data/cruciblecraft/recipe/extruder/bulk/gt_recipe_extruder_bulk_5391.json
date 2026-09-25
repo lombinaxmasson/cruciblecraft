@@ -10,80 +10,96 @@
         }
       ],
       "hashes": [
-        "a39fdf75f7182d302da5a75ba6391fdfd57ae252c4b18e2909c108ba2c3983ea",
-        "9826f799768c3647852dd220ec82e5858f2a7092302cfbf02a64d05636af7a88",
-        "56f1a2c7c6cb21c256087ba4f7f43175ba06baba263e99c46398a991a50bde0d",
-        "9724185d3d4669d2d8c95125989601cad20893cbf427af5dc2fc4484c85d60cd",
-        "fa53851cdda32129c8da8caa925028730aac0b12eb04b3073031e052db373113",
-        "08f4599338fea253f906bd7c7afcf43c034484caa8c9e1ed95fb84af15587200"
+        "d55fb03707d93ddfb9d4bfc86a7d25da7d165fa9bc0491b2c8585dd8f15f4769",
+        "e102e2c1f2b6ac478465480cf42a9723f43dad5b7725a436f984312adf0ef0d8",
+        "752ccaf9e913ab8c8d4653cd40373a30a720e882bf080cebaffd912c04425e73",
+        "c8d51d861f4e236cf4ad3bcad2d12e8de1d3f4430a65cea34527ef5626e355cd"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "black_bronze"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:black_bronze/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:black_bronze/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "black_bronze"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "black_bronze"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:black_bronze/tiny_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
             "count": 1,
-            "id": "cruciblecraft:black_bronze/gear"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -93,54 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/357323edd9ca3a4e",
+        "cruciblecraft:gt6/294730b985ac321a",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/9e93f99b4cc8654a",
+        "cruciblecraft:gt6/6505724376de4eb2",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/189d4b8c6f5cc683",
+        "cruciblecraft:gt6/8b73174396a0152a",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/5223bc96da088f35",
+        "cruciblecraft:gt6/7e3ff6c0ffa365de",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/1b13280d47033bf9",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/34b0a723ca82b188",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 725,
+      "duration": 557,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        3,
         0
       ],
       "output_chances": [

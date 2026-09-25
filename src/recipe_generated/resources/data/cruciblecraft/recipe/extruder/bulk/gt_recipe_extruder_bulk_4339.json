@@ -10,58 +10,60 @@
         }
       ],
       "hashes": [
-        "eb4918aab3f2b6b8f08d3d06ed7c3ea7902751504a57f97a606dfb18299f7fbc",
-        "fab3444cd98ffa680218db33228a233a7e9beba72d63a7f749cd4b0848af11da",
-        "baa33a6834657eb3552d2464eab3d2661831004b9fbb3426fb73b7fdff48b48e",
-        "608b63172da665798b5286c03dafef34678486b74f976ccefbf2cbac56cd30a3"
+        "fa331cc003603ae42448296dbf52c3258cc604075529057d7e5c0985c2d21502",
+        "81ade44223ca8815b8b3e2d9b1c902c147a2c777b4e3795fb67866c0d3e8dc87",
+        "aea3b0417e41341350709abc0d63e2872f41fbddc3d03e0e7a50f22725c5342b",
+        "d4832b6356c6ef987b28c538a80707d40e8a343baba70e7c1300f3f51d3a60c3",
+        "472473debdce0d413b616a9309fd62673147ecaf883df5da71270e636da7a9d8",
+        "abde8073f133e5990650f697a9c19614cc5bb2a4cc190ac419c6bb7720dabdf8"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "platinum"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:constantan/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_wire"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "mithril"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:constantan/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_wire"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "platinum"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:constantan/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "mithril"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:constantan/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:constantan/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:constantan/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
@@ -69,13 +71,22 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:platinum/gear"
+            "id": "cruciblecraft:constantan/wire"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:mithril/gear"
+            "id": "cruciblecraft:constantan/rod"
           }
         ]
       ]
@@ -85,38 +96,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/31048fa2eae19daa",
+        "cruciblecraft:gt6/9fb6ce1c8eccc0b1",
         0,
-        9
+        0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/566436f785f3374e",
+        0,
+        "cruciblecraft:gt6/b023cdd36758448b",
         1,
-        10
+        1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/1ba7f6ea4b3dcff4",
+        "cruciblecraft:gt6/92e89840dd000ae4",
         2,
-        11
+        2
       ],
       [
         3,
+        2,
+        0,
+        "cruciblecraft:gt6/2708c0c25dc45011",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/0892d171c7e54bb0",
+        4,
+        4
+      ],
+      [
+        5,
         1,
         0,
-        "cruciblecraft:gt6/a930bad32a5269ce",
-        3,
-        15
+        "cruciblecraft:gt6/aba6b71d8eb6f1b1",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3474,
+      "duration": 87,
       "eut": 96,
       "item_input_actions": [
         {
@@ -127,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
       ],
       "output_chances": [

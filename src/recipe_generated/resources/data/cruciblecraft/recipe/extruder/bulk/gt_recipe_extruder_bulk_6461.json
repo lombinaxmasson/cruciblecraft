@@ -10,37 +10,63 @@
         }
       ],
       "hashes": [
-        "9d12e3e6c0ba837bc9647f83171f2f3f82a6651653eec00017379f6f20d57def",
-        "53c0c1ce4bc5ebf15e642f9e1e2b2e889ab127b642a0f2640cb38394930cd364",
-        "6cd9c322561e223c279d9f3b30e4496551758f8f33674064460459fb3c87e663"
+        "3c6776531ea5e0a42e0ff952ad49e2c294704d14b36079ce2d215008a70713ea",
+        "8abed4f0fa59da2b7264acd9f44652ad3b703e7e8ed4568cecb1306eb75b4dc3",
+        "7beda6cf1a0f3223ab6689d6a6aaa56953a0b752c6ce70a7e45ea311d3eafcfb",
+        "60da2c524fa8932b3cf9f9296f0a39ab418e99ecb07a89b4c195052d73ebb8fa",
+        "05796281bab639451868fdc41cce3c7b9f2163a9eaadb46bf7b32ad4efbe3f72"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:thulium/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "void_metal"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:thulium/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thulium"
+              "cruciblecraft:prefix_material": "void_metal"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:void_metal/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "void_metal"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -48,7 +74,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thulium/block"
+            "id": "cruciblecraft:void_metal/huge_fluid_pipe"
           }
         ]
       ]
@@ -58,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/66f1ee5514920203",
+        "cruciblecraft:gt6/6eb9fdf87103fa82",
         0,
         0
       ],
@@ -66,7 +92,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/5aca5bcdb9de7de0",
+        "cruciblecraft:gt6/8e36295f256ebff4",
         1,
         1
       ],
@@ -74,14 +100,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/04a3f522926420c0",
+        "cruciblecraft:gt6/be2243065d1cde5a",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/790c8b094af060fb",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/42e13bb261709d1b",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1975,
+      "duration": 752,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,7 +134,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

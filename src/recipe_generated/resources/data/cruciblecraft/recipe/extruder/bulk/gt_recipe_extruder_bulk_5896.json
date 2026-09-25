@@ -10,36 +10,130 @@
         }
       ],
       "hashes": [
-        "01abf9214e5b14b4aac6419740b9343d51ee17046fd01657493b62d9701a5fab",
-        "133772eb2b7d92cc654873a6b676076602db7debaeb4c4804c8fac2c397c23db"
+        "b9f9d16984849069c2452eba3ad23232256cbfc04f3822764400c3ba49601a41",
+        "e442c7a94f160617fc1f22da7c84743910a6bea341b1b509098f890af30e5395",
+        "0e93253eb5bf2e1cbeddca7786148d76c6905b88f56f86d6379a46d176e0a84c",
+        "9f285b9f8b793d52a7a92ed62c21e2e5a321b840f89d2970f9cbf5cd340a2298",
+        "c739436984a493b8075161adf2a7a95d1bb86f04380d26bcf9bd337d83e6901e",
+        "f424c63f37f56a14e3da02d7eefb442142a5ddf80cbc3b2c264a1d6063d4daa6",
+        "93798ecea7cbd5b72c1586729d9c67c8b17e6c93c65129a2d69bebd8c3153798",
+        "59b614ee786ad615bca4c7969332ee2f0cd3aa52ca845d1d8889dc89168d1d10"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "redstone_alloy"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ignatius/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "redstone_alloy"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "redstone_alloy"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "redstone_alloy"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:redstone_alloy/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "redstone_alloy"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "redstone_alloy"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:redstone_alloy/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:ignatius/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "redstone_alloy"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "redstone_alloy"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:redstone_alloy/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:redstone_alloy/bolt"
           }
         ]
       ]
@@ -49,22 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3876eebdd3ee8114",
+        "cruciblecraft:gt6/896b60a42354576b",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/3b86d4373bbcf444",
+        "cruciblecraft:gt6/ab02c7b3389b34e8",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/a44bbe177555ccd9",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/8a2bac621f5e54ce",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/caad1d9c24bcbfb9",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/7cf1916ad537db4e",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/592b9077292ee60a",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/5339d3de27a52e4f",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 758,
+      "duration": 259,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5896",

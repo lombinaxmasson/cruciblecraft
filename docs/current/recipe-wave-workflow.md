@@ -134,6 +134,14 @@ sanding 是首个 dump-backed pilot（tool-head cycle、nugget→round prefix
 transform、其余 exact remainder）。之后只迁移 press/lathe/bender/wiremill/cutter
 等 prefix-regular family；化学、MTE identity 和一次性 DESIGN_POLICY 继续 exact。
 
+不符合模板不是主机拒收。翻译成功的行只按主机 Java 验证器（槽数、action、数量、
+EU/t、模具标签等）过滤；验证器接受但模板不匹配的行进 exact remainder 逐行发布。
+Python 过滤必须复刻 Java 验证器，不得更严。主机槽数少于 GT6 面板
+（`machine_delivery.json` 的 `gt6_panel`）时，先补槽，不要把行记成 blocked。
+blocked 必须写具体原因（例如 `extruder host rejected energy`），不要只写
+「host rejected recipe shape」。`centrifuge_common.FIXTURE_ONLY_LOSSY_ITEM_ALIASES`
+是夹具用的有损别名，命中它的行不得发布。
+
 ## 4. Fresh 验证
 
 active `recipes` profile 每次 fresh 执行：

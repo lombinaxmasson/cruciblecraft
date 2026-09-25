@@ -10,50 +10,71 @@
         }
       ],
       "hashes": [
-        "aa8e64584668c0dd91423903ec20c6b02bf3a20ffb3fcff33a0c3a9c51001c97",
-        "4f0f35efabec19fc4399d58285c3c763f96577b77a498d5e1ab00721daeb87e0",
-        "6c91f5e880897248ef413f4aa3207b76f11f40c200330529321046ff701171c1"
+        "b8d43807440d73bdd490dd9633bfaf0a5b180bdbd76c9614a85c81695ea68b51",
+        "5810967c0ac1c1f6337d596d9a174ea6fc4465229b8318412ab3829d14b349e6",
+        "436e064242cda667d397f77bbad8814ba91f64b51a0fbb25abc20a3c8e6f8296"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ethaxium/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ethaxium/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ethaxium/fine_wire"
+            "item": "cruciblecraft:kalendrite/machine_casing_quadruple"
           },
           {
             "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kalendrite/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kalendrite/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "count": 64,
+            "id": "cruciblecraft:kalendrite/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:kalendrite/bolt"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "ethaxium"
+              "cruciblecraft:prefix_material": "kalendrite"
             },
-            "count": 1,
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kalendrite"
+            },
+            "count": 64,
             "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:ethaxium/bolt"
+            "count": 64,
+            "id": "cruciblecraft:kalendrite/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:kalendrite/ring"
           }
         ]
       ]
@@ -63,30 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0c9592829fb2b250",
+        "cruciblecraft:gt6/221767f560cd9af5",
         0,
-        9
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/e4afb10f7217f9e7",
         1,
-        11
+        0,
+        "cruciblecraft:gt6/8438e1785878949d",
+        1,
+        1
       ],
       [
         2,
-        1,
-        0,
-        "cruciblecraft:gt6/aee6cfa60da19953",
         2,
-        13
+        0,
+        "cruciblecraft:gt6/e7f376eacbefa51b",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 157,
+      "duration": 20545,
       "eut": 96,
       "item_input_actions": [
         {
@@ -101,6 +122,7 @@
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5571",

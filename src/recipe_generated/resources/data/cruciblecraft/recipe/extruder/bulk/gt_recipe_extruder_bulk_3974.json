@@ -10,49 +10,70 @@
         }
       ],
       "hashes": [
-        "477d76843d9566c3c371296e7bcfdfbe3f6c2fcd6069d86aa2c8f7b7ccc682a0",
-        "2ab0664d31f2fa2de9576399495aed1d4c38e314c4037aac12b18c07c8317214",
-        "92708c7d9ba118a411c8b808b8dff9f63a6d49cd21945c28ec9b36718ad6cefe"
+        "84c8582f925cb806e6554b6fa35363059d3d84525ac49cfd08df87ccf87a6084",
+        "e11eff502a4cdf37a1ddf39c7712643dba49666daa0630f6dfa1be4f13b05052",
+        "c85be29aa6f00db35542a3883414d440daa3d0313d1db6ad7938d091776f489c",
+        "662e37a456b5ff35051d27df84fa7b56ae367fac5d6291e73ec9fb665fc2cbd6",
+        "b4542b947184ea0f9dee644a7ed1b0aee1e53ef31795a341b1eaa0853c45dbb4"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:flamascus_steel/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_blue_steel/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_blue_steel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_blue_steel/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:flamascus_steel/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -62,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1629c3fb03ac4d4a",
+        "cruciblecraft:gt6/8fab151039027eb2",
         0,
         0
       ],
@@ -70,7 +91,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/eba57c42c87bef17",
+        "cruciblecraft:gt6/00e271e5d08c357f",
         1,
         1
       ],
@@ -78,14 +99,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/42e75a721081740d",
+        "cruciblecraft:gt6/e9b4f9fa93fdef21",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/d2cb4bef0c8d4988",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/b9855f42fecbc408",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4196,
+      "duration": 522,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        6,
         0
       ],
       "output_chances": [

@@ -10,88 +10,268 @@
         }
       ],
       "hashes": [
-        "10cfc6551a08b228d1f1a957e96f057197dbf006e436a92b9db3223f7eb03b4c",
-        "468064791ac35598fdb22291aa82f36da116b2862e49a7dd68d2c12be1146883",
-        "1f4aa2e73e4de66bb593f4e949d3914b27352d929aa5389f7e199f883a6d1f35",
-        "e46700a22aa111f4fcbbefbb8247dcc6afca3379702b00c602ed8438e93468cd",
-        "18329be1fa691e1e44fa31145a2205e78e5e20025983ef2befd43ff7542f2f79",
-        "1d686f4d148eb27ead865c2565a9fb436b15d602799ad8112929e716b7318bd7",
-        "f7a7b15d1e65b1397f091d6799893cb9fd291b5d54c3a12172b2db06462a6b52",
-        "5a22ca8fcb3b825d944c17b800af807d803282cbf9667fd3b92aeaf73dc7d65f",
-        "273bf9a08b376309c1d53b84c84e4197413379a77124bd21fca45c6a4bf654d4",
-        "0ded66e0d771a72f692f4fa964f416fb2b3917bf4184ed09ee1f6a1c617becac",
-        "b4c4d7a1c1804674c5eed6045b325126141e72999e21d23ca3491d24a60cce15",
-        "4a7e34ec257befb58b95391b4f94d7531b99e448d399fc3d14d2f87046152cf0",
-        "15f5a7e60485f2bff89bb22f17a8e70d159314b3e2146059f2b12830d09b4beb",
-        "afe4436ac24db6241b41277213ca36ed1dce6639d2e527426d6918f713b94e2c",
-        "97324fe3c36f4ef70afcebf31840fa3c5fcc0dc5de840dc13b70e17a7d69d78d",
-        "15651191ebaae8e217d13ae1bf4f583b2a018c719348641ce4f3f4ae09d67b9a",
-        "1f489e1584c84f2f8a167063134d43e1ae20b0a099a3b9f93777e7d06a6611c5",
-        "ca677fdf35a6cff10f081ae6b47dc4acd5c220686f008cfdd34e6861f34ca423"
+        "175c75135ed2fcfc2896b696bfd0491a4ef8335b9c02036104bcf0a4b7afd8a4",
+        "c7816440972f8775102514df61cd2c0024b4bf25325c8192f09c16e2ca1d8d5c",
+        "027d1c1392fc1f326a3d6991c1cb6fd654d2749e24287aae3022e0ec8838194a",
+        "76ccea4102df0da143ed1a837573799f45b40894989b9cb29f06bdc45bd93db4",
+        "aea0cef8fa35b322c7d875f4933b448964b6e427c462819912f6b125e8039259",
+        "be6123bc1606bdbd11d9da2244741629ec17a2e32df36718eb47f31706c4f115",
+        "bb02f4200907cfa31fa93047991bd65f60bb310b94abe67c5615bbdaa52f13fd",
+        "944026609426cad01127cb6162bedcf487574095e9af0910c696a02649b905e8",
+        "ed13989c6a829fc3d58f4aa7f52865b3173e4a6b8580eecc9715ca61be2c0bbd",
+        "0ec43815ca4e6d4844c0751e82c5c0550691218e29b50bcdfec122657295ab31",
+        "468345d95995830901df662f4328479a8853b9d28b3f1267c2412ec2ca4dfbf5",
+        "a96ae3ea9edc566cc2ad2c77af4169415d1a5a7ff029da8c8c47fd30241c618b",
+        "778eaf61d8037979569272049f93f85813cb052bfac5869f0352b85330a88be6",
+        "509abd41b2aca5ed8d3876855e14c31143e9d9cd0245b9f11b56c1ea10b7a4ce",
+        "04cfdbacf180d88c0dfad3f66a1ef7658ff6a84b579cf64547317b1f85ea8a3e",
+        "c36e09ae523584486b9a43fe08fc0b46cfc8dd312e35dd7853a6906cdfce4ba8",
+        "2f9fd142fb3744df84ab69207cc076626222fa5961128db35b9bb0c2dbe63ddd",
+        "3d27792edf327ef2719fe6df3daf99285b5627a25ca8b3519a26b2cf8f9d4ba1",
+        "dfcf5c4f4ec76619919a75ec68e1da8ec29b80e95cc7c6f7dedd2deaf710d6b6",
+        "aaa2d5cb61d1a4aec16306892c5b0643d5bf6a94f2080d2f6c966afa447283c6",
+        "e4bf71e065b87691a10cd136df80df848f6a606db9d2db124f14b7ade381ab05",
+        "0593c630917e571b64f84530af032e42acd7f29493749b634a3ebe8f06d7ef9c",
+        "2a22ba3b96d9538e70dc564d547ee648b016910b9c02af8e39daeac147830957",
+        "b6cc2a154b7cd02a2e91cbb97b063762d0fb05578c586883dfc408263f9ac0b2",
+        "8064088e80b458424d19e98480378f9663ee21e0521e3d665985899801bd53b9",
+        "481560a6a384e27934f91556423eee6c6a5b151c1342818b5f00a0e84d50b689",
+        "f024be7b075367b20f6b318167119b08a744ccaee9f044eeedee80c58cf4bd82",
+        "a01705021f4761e24fca152fca357737d88023f4510ab88edd3b1defff0bcf1f",
+        "1603d6770e173c9637f93a3ab0bd203f89dcd4c36f582e816b2399adfd8e06d0",
+        "03d8336aa47903949e75ee0cc2e56d8661db46178868cea017ff946336cfdc89",
+        "fe83227195ef1d88d4a2874435b5a2b27a53c1295e1dcba0b18907d3be43147c",
+        "4e69fee9704aefb23faf3e93569afccea6dcf8de1715e24a85b71670aaa98091",
+        "de4d5d0de4342a9e99bbbf8b750b0872ba5974b2ad10a6e2c813ea198f1252fb",
+        "ff1bf2f5c41831fa3cb8f09c9fbc4f2db4b328d5880f032ebd0e4a5f16051b6e",
+        "58be21abaf2eb77d2ca6b756256044ee2782c0a28b0b1824bde52c0c9fce115a",
+        "e9d9ac58549d3443a7cedddfb7fc9493906d84ddff359c35ac9f3574ea04e9cb",
+        "82543ff0f1b699a14168dae1545ba3c1c269b9d824b62b902ea7aa2258772423",
+        "a1dba0a115ff681880b33cb82b843d5e225135876cbfc3a7cbcfd05fa4e1c04b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:manasteel/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:thaumium/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:thaumium/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:thaumium/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:manasteel/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:manasteel/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:thaumium/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thaumium"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -101,9 +281,117 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manasteel"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
             "type": "neoforge:components"
           },
           {
@@ -113,111 +401,255 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thaumium"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:quintuple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:manasteel/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thaumium"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thaumium"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manasteel"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:thaumium/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:manasteel/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manasteel"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manasteel"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:quintuple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "count": 5,
+            "id": "cruciblecraft:rose_gold/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
             "count": 1,
-            "id": "cruciblecraft:manasteel/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:rose_gold/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 5,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 20,
+            "id": "cruciblecraft:rose_gold/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 5,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:rose_gold/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 45,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 40,
+            "id": "cruciblecraft:rose_gold/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 10,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 10,
+            "id": "cruciblecraft:rose_gold/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thaumium/gear"
+            "id": "cruciblecraft:rose_gold/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 3,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:rose_gold/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:rose_gold/item_pipe"
           }
         ]
       ]
@@ -227,7 +659,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3e8a4daa07b3d657",
+        "cruciblecraft:gt6/a3c6e95f2b264514",
         0,
         0
       ],
@@ -235,142 +667,302 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/0d27fa55742049ea",
+        "cruciblecraft:gt6/afc0ac5c86afcd75",
         1,
         1
       ],
       [
         2,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/c4ae165df92bb694",
+        "cruciblecraft:gt6/73b9bb492c0f0290",
         2,
         2
       ],
       [
         3,
-        1,
+        3,
         0,
-        "cruciblecraft:gt6/c4a29fe3390ea0ce",
+        "cruciblecraft:gt6/6f9b7f5c5570954e",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/93e0634c7c29b1ac",
+        "cruciblecraft:gt6/e97dc5f874d689a3",
         4,
         4
       ],
       [
         5,
+        5,
         0,
-        0,
-        "cruciblecraft:gt6/d4f376b468c6c969",
+        "cruciblecraft:gt6/2c44b87ec48bdf74",
         5,
         5
       ],
       [
         6,
-        1,
+        6,
         0,
-        "cruciblecraft:gt6/c6bd85ec73708317",
+        "cruciblecraft:gt6/e9351043778391c5",
         6,
         6
       ],
       [
         7,
-        1,
+        7,
         0,
-        "cruciblecraft:gt6/2fb77bc16782f33e",
+        "cruciblecraft:gt6/bfb1edf48b72614d",
         7,
         7
       ],
       [
         8,
+        8,
         0,
-        0,
-        "cruciblecraft:gt6/dca52600c107b94e",
+        "cruciblecraft:gt6/c30974f5494612ba",
         8,
         8
       ],
       [
         9,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/63d88294b3b465a2",
+        "cruciblecraft:gt6/b4637c7d6e0e36ef",
         9,
         9
       ],
       [
         10,
+        9,
         0,
-        0,
-        "cruciblecraft:gt6/a46b520ee7324698",
+        "cruciblecraft:gt6/0cdf3d8d690634c7",
         10,
         10
       ],
       [
         11,
-        1,
+        5,
         0,
-        "cruciblecraft:gt6/e6d06c881780e23c",
+        "cruciblecraft:gt6/5422299eb5ae2dc7",
         11,
         11
       ],
       [
         12,
-        1,
+        10,
         0,
-        "cruciblecraft:gt6/e3373d408f6a955a",
+        "cruciblecraft:gt6/4ee5e3f55d5e2243",
         12,
         12
       ],
       [
         13,
+        11,
         0,
-        0,
-        "cruciblecraft:gt6/1edb3c888c325be3",
+        "cruciblecraft:gt6/324cc278c73c1396",
         13,
+        13
+      ],
+      [
+        14,
+        3,
+        0,
+        "cruciblecraft:gt6/aaeda2b15a34fd51",
+        14,
         14
       ],
       [
-        14,
-        1,
+        15,
+        12,
         0,
-        "cruciblecraft:gt6/d6311d4176eca5a1",
-        14,
+        "cruciblecraft:gt6/cf455b6586e618ee",
+        15,
         15
       ],
       [
-        15,
+        16,
         0,
         0,
-        "cruciblecraft:gt6/c173768375c99ea4",
-        15,
+        "cruciblecraft:gt6/a670b85f3708dea9",
+        16,
         16
       ],
       [
-        16,
+        17,
+        13,
         0,
-        0,
-        "cruciblecraft:gt6/61012a5c5981eae0",
-        16,
+        "cruciblecraft:gt6/6d4b766930a81cb1",
+        17,
         17
       ],
       [
-        17,
+        18,
+        14,
         0,
-        0,
-        "cruciblecraft:gt6/3b02197f2dde73ba",
-        17,
+        "cruciblecraft:gt6/23eb9eedcc4b5dbb",
+        18,
         18
+      ],
+      [
+        19,
+        9,
+        0,
+        "cruciblecraft:gt6/76a96acbc4960d92",
+        19,
+        19
+      ],
+      [
+        20,
+        6,
+        0,
+        "cruciblecraft:gt6/d27aa263e0d31cdc",
+        20,
+        20
+      ],
+      [
+        21,
+        10,
+        0,
+        "cruciblecraft:gt6/8372592b8ccd3f1b",
+        21,
+        21
+      ],
+      [
+        22,
+        15,
+        0,
+        "cruciblecraft:gt6/b365443ae8a41a60",
+        22,
+        22
+      ],
+      [
+        23,
+        8,
+        0,
+        "cruciblecraft:gt6/176c2bf2042d32fa",
+        23,
+        23
+      ],
+      [
+        24,
+        15,
+        0,
+        "cruciblecraft:gt6/bb09964cfda82324",
+        24,
+        24
+      ],
+      [
+        25,
+        16,
+        0,
+        "cruciblecraft:gt6/b0515acca4b70ed1",
+        25,
+        25
+      ],
+      [
+        26,
+        17,
+        0,
+        "cruciblecraft:gt6/2147204d4931180d",
+        26,
+        26
+      ],
+      [
+        27,
+        18,
+        0,
+        "cruciblecraft:gt6/256324ebbe284f36",
+        27,
+        27
+      ],
+      [
+        28,
+        14,
+        0,
+        "cruciblecraft:gt6/99d996dd4ace3ec9",
+        28,
+        28
+      ],
+      [
+        29,
+        4,
+        0,
+        "cruciblecraft:gt6/2a271afe205f3343",
+        29,
+        29
+      ],
+      [
+        30,
+        7,
+        0,
+        "cruciblecraft:gt6/8ce185ab6b91971f",
+        30,
+        30
+      ],
+      [
+        31,
+        12,
+        0,
+        "cruciblecraft:gt6/6696cb5337aeb0a3",
+        31,
+        31
+      ],
+      [
+        32,
+        18,
+        0,
+        "cruciblecraft:gt6/b85aacaa31b22bf0",
+        32,
+        32
+      ],
+      [
+        33,
+        17,
+        0,
+        "cruciblecraft:gt6/5b5c828800361d0b",
+        33,
+        33
+      ],
+      [
+        34,
+        13,
+        0,
+        "cruciblecraft:gt6/1debbea376edfe9e",
+        34,
+        34
+      ],
+      [
+        35,
+        1,
+        0,
+        "cruciblecraft:gt6/c7de021df153264e",
+        35,
+        35
+      ],
+      [
+        36,
+        16,
+        0,
+        "cruciblecraft:gt6/c4efa82ec64d451d",
+        36,
+        36
+      ],
+      [
+        37,
+        11,
+        0,
+        "cruciblecraft:gt6/4816d95f4eba88f3",
+        37,
+        37
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 981,
+      "duration": 1393,
       "eut": 96,
       "item_input_actions": [
         {
@@ -381,7 +973,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        1,
         0
       ],
       "output_chances": [

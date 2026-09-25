@@ -10,40 +10,52 @@
         }
       ],
       "hashes": [
-        "9b750654b730273cb49e3e6227f6dd73152bb26b6e2d752237f44ca4625b7094",
-        "fce04f463045abbb37e3872b3c2b4d3cc95336c86d86188a0951ea4992f5aa19"
+        "8f558485cfe86c1f63a80a8bd7f24370d68c36dd7e05345349d81fcde9d7d9a5",
+        "70159abda60376a16c594dc79cfba8306fca6d7b980e1e623919a58715860f4c"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "draconium"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vanadium_steel/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "draconium"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vanadium_steel/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:draconium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:vanadium_steel/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:vanadium_steel/bolt"
           }
         ]
       ]
@@ -53,22 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fa42868a893033dc",
+        "cruciblecraft:gt6/387983653fe04fd3",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c86c83c74a685e6e",
+        "cruciblecraft:gt6/91d53bb7a482df62",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 650,
+      "duration": 2893,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5280",

@@ -10,34 +10,45 @@
         }
       ],
       "hashes": [
-        "7d30e2b145c12ff5b2852167aea07d64eb7d18dbf5be6c8eece2bab83a9bcb68",
-        "4726d8fd97e186267ea659974ef841c36794842dc9b5d47fdf88c227a575fa79",
-        "88b639d888f8a75806d41d2bf0c64c0772d88c05da84087190ed51151cb69c32",
-        "d58ecd765127006bea1bf7f0bc70a78e7eec6e6a79b0b2014e53056fb3371b7c",
-        "d6c3ada3cc0fac70806c798cf04c50018c0e07b6ef6332895febef1654302c0f",
-        "fccd0381f2e494d943c8156c11e293a0111b0136897af13b9b0538a00ae9465a",
-        "840afedbae417f0bf432bf6b2d8b89666be3827b8acfd819099db6c67c92852f"
+        "7c4c3a54f09375ccd96c6a1757a96daec98505d896aea5bd1e56c66c5725a745",
+        "920b93b6908064fff7f2b55ecb2597f675831aa13df86ea7b1dc088dc279e720",
+        "bf971f652a9647ad104060d7fe6de24925c49b6b1d655c802538cf9abc9605d1",
+        "9eab62066050141f7c2b0d5114879739ff9a1b069658722744b601b4519f85c2",
+        "60a3b713e527a6864b3261180416fab11899a21734740012ee6c5560ccea0576",
+        "3fcaa55472f037e6cc1d8e026c0b12c6e27d874a3cd48aa27999dbc36751a1a2",
+        "b64c4489bdd5c6d06d6315b315de06ef29f079d743bf88c0a67b8c4c9dace7b6",
+        "aa55b3bdbe98921508d3e853c96306e7bd7be3ab1afbf91e68f482b14bb3a77b",
+        "a2750eca63b7f8fa6a0b44959a2bab8468ad7c51c7ee63a75b5207b2383f01ba",
+        "53bac7140b7173fb968d8cf57296f1ba6ffcd47d2831fc2475d78b02352213fd",
+        "40f11ad92348719bb58d0a55a8e4f62f7af53b3ce0b7949eff5d1702d2f78533",
+        "35e1e24e3443da94a3d52ecfbe4ba3ec48911b29bf60073ac0ecad818e826f13",
+        "2c660f70218d45cc931f1a2409efdf95b71b4cc37826f1b8c693477f36c63589",
+        "0e1a1a58dcd08cf5a3e1cf5501e5b39780fb9670a757e60b12275e59244476eb",
+        "9239c601df00c549db533847fa1713789dab11e9acf80e3c3c1cf66055691a1c",
+        "fbc8db1441306431270735b16dabedc55a82f7fd89822463c765c2833fd26bae",
+        "5a659268b58e1503cfcf783ea9f33239155d349bcd0279987fd8546a6d9e0b23",
+        "32b8ec75fbbbb28790b6af69bd7559a9bb60754db3a2b601b0d485dd0deb94c4",
+        "fddd360ce4c7c5b73ee7b7608470d78df037cad7fdc2f5f6ca3c8882e4999c1d",
+        "16bbd6ed7c502755b71e3c922be5cb345f18f6dfa2b3045e2a4c46fcf7a015cd",
+        "58e3b8dc07526dcc74da7ebab683aafa837b81ce98af75ceb2d5b3b90b922762",
+        "3dae4836843e1080cf5f848d53555be66c0e64419daafa0d1bb569bccf30ea7b",
+        "7cedfed710be3dc1397be249b9945a1a2cda5cedf0fea255c26fda17a528411c",
+        "98ec998132cb5833fc5cf3b9fcdead1062edf7fdef6b75bf7753a0aad3a320d1",
+        "89632415452edc9d85b0033d702b96f45d8518814b18555d10566bb59a1003cc",
+        "6fa0f814c340365c5be59a1ea85edfc3a9844c6b37fe60e21000fbc4ff3ef124",
+        "95df29ccefddd644c30a6d7cbb17724fd7ad0465469f752c768df4094fda7c55",
+        "c2d1be61bc318e0957640807399e3b1c57034577c063d430fe6794511b94130f",
+        "36e1280b56be139a25fb62f6d67d229b22738bb97b738108a902312f26ec10ff",
+        "b4c79fb2ce413ab32de9481f4fe1c84cdbfea31ed5d2996d4e9819779a33027b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:chromium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:chromium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:chromium/machine_casing_dense"
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_ingot"
@@ -45,7 +56,31 @@
         ],
         [
           {
-            "item": "cruciblecraft:chromium/machine_casing_dense"
+            "item": "cruciblecraft:soularium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_long_rod"
@@ -53,73 +88,290 @@
         ],
         [
           {
-            "item": "cruciblecraft:chromium/machine_casing_dense"
+            "item": "cruciblecraft:soularium/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:chromium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:chromium/machine_casing_dense"
+            "item": "cruciblecraft:soularium/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 56,
-            "id": "cruciblecraft:chromium/small_gear"
+            "count": 1,
+            "id": "cruciblecraft:soularium/ingot"
           }
         ],
         [
           {
-            "count": 56,
-            "id": "cruciblecraft:chromium/plate"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:chromium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:chromium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:chromium/gear"
-          }
-        ],
-        [
-          {
-            "count": 6,
-            "id": "cruciblecraft:chromium/block"
+            "count": 1,
+            "id": "cruciblecraft:soularium/small_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "chromium"
+              "cruciblecraft:prefix_material": "soularium"
             },
-            "count": 56,
+            "count": 1,
             "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:soularium/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:soularium/plate"
           }
         ]
       ]
@@ -129,62 +381,246 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c1df306b21485f4c",
+        "cruciblecraft:gt6/f2d13db02ed8c060",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/cd9f1d3803c0ecf9",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/bf87dfc2ad024488",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/a6a0ed4d6c3207ec",
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/9233d6a5570c5adb",
+        4,
+        4
+      ],
+      [
+        5,
+        4,
+        0,
+        "cruciblecraft:gt6/85834519492b82e5",
+        5,
+        5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/b419ad8b6b54251a",
+        6,
         6
       ],
       [
-        1,
-        1,
+        7,
+        3,
         0,
-        "cruciblecraft:gt6/f306026e89bba9b5",
-        1,
+        "cruciblecraft:gt6/c3e53b0858d98c51",
+        7,
+        7
+      ],
+      [
+        8,
+        3,
+        0,
+        "cruciblecraft:gt6/48bd59b7567661aa",
+        8,
+        8
+      ],
+      [
+        9,
+        5,
+        0,
+        "cruciblecraft:gt6/acb93833ba524db5",
+        9,
+        9
+      ],
+      [
+        10,
+        4,
+        0,
+        "cruciblecraft:gt6/1f1d0fe534ab3b1f",
+        10,
         10
       ],
       [
-        2,
-        2,
+        11,
         0,
-        "cruciblecraft:gt6/5122da1045c537bd",
-        2,
+        0,
+        "cruciblecraft:gt6/355030925f9bc58d",
+        11,
         11
       ],
       [
-        3,
-        3,
+        12,
+        5,
         0,
-        "cruciblecraft:gt6/b77678c54594470a",
-        3,
+        "cruciblecraft:gt6/f7b198de14a152ea",
+        12,
         12
       ],
       [
-        4,
-        4,
+        13,
+        2,
         0,
-        "cruciblecraft:gt6/3efd946f08415387",
-        4,
+        "cruciblecraft:gt6/7a609401439760b8",
+        13,
+        13
+      ],
+      [
+        14,
+        0,
+        0,
+        "cruciblecraft:gt6/e412885bbbeb6177",
+        14,
         14
       ],
       [
-        5,
+        15,
         5,
         0,
-        "cruciblecraft:gt6/d981d627763c81e6",
-        5,
+        "cruciblecraft:gt6/7b4888c1f89dc5f4",
+        15,
         15
       ],
       [
-        6,
-        6,
+        16,
+        3,
         0,
-        "cruciblecraft:gt6/cbc4ccd7303392c8",
-        6,
+        "cruciblecraft:gt6/5b8f715f602e3142",
+        16,
+        16
+      ],
+      [
+        17,
+        0,
+        0,
+        "cruciblecraft:gt6/9f8336be9181282b",
+        17,
         17
+      ],
+      [
+        18,
+        4,
+        0,
+        "cruciblecraft:gt6/f901325a19b5cae7",
+        18,
+        18
+      ],
+      [
+        19,
+        4,
+        0,
+        "cruciblecraft:gt6/d0ed300321f2e6f5",
+        19,
+        19
+      ],
+      [
+        20,
+        5,
+        0,
+        "cruciblecraft:gt6/ef9ed7b7aff5f3dc",
+        20,
+        20
+      ],
+      [
+        21,
+        3,
+        0,
+        "cruciblecraft:gt6/6806240251343ffd",
+        21,
+        21
+      ],
+      [
+        22,
+        0,
+        0,
+        "cruciblecraft:gt6/ef7d8f6585d5e992",
+        22,
+        22
+      ],
+      [
+        23,
+        4,
+        0,
+        "cruciblecraft:gt6/d048e798e8aca8e6",
+        23,
+        23
+      ],
+      [
+        24,
+        1,
+        0,
+        "cruciblecraft:gt6/e5e426ef19b102da",
+        24,
+        24
+      ],
+      [
+        25,
+        1,
+        0,
+        "cruciblecraft:gt6/f3f6edf92dea5d4e",
+        25,
+        25
+      ],
+      [
+        26,
+        2,
+        0,
+        "cruciblecraft:gt6/8c7520b4907a8f6a",
+        26,
+        26
+      ],
+      [
+        27,
+        5,
+        0,
+        "cruciblecraft:gt6/783e0f0f22f975d2",
+        27,
+        27
+      ],
+      [
+        28,
+        1,
+        0,
+        "cruciblecraft:gt6/583775dd2e0b5179",
+        28,
+        28
+      ],
+      [
+        29,
+        1,
+        0,
+        "cruciblecraft:gt6/388fc10b40e9e5d1",
+        29,
+        29
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 11660,
+      "duration": 301,
       "eut": 96,
       "item_input_actions": [
         {
@@ -195,7 +631,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        4,
         0
       ],
       "output_chances": [

@@ -10,67 +10,52 @@
         }
       ],
       "hashes": [
-        "c4a32aae929ac35bebe1f450046def6de73bfc7ee0ea93e48cb2eecc3dbb02a0",
-        "259b396409de0ef1e51aa6f23be28d7a7274f3dee04491aa20bc138eeb371c65",
-        "c797dac0bd49e5255b7150e47c4cdeef95155261bffeff5eb748b5d1a8dec3d8",
-        "c79ed99a3858801a7074d76e24b8564caf1012a45cc5cfc282018639d8f59489",
-        "9d35ec0c523eaae1ecbe5282758c21d9efd3e4af15178fbd609373f52e336bec"
+        "9cadb296059bd08b1e53b256b2d6ec1d6e76960dfbedbd78e26c6506cf8e7995",
+        "e79d9f9544ec0bc21a213ac61c4420db9613dc7b80a778ce05169845d9a52fe0"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:workers_alloy/ring"
+            "item": "cruciblecraft:zirconium/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:workers_alloy/foil"
+            "item": "cruciblecraft:zirconium/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "workers_alloy"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "workers_alloy"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:workers_alloy/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:workers_alloy/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "zirconium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zirconium"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:zirconium/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:zirconium/bolt"
           }
         ]
       ]
@@ -80,46 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b835362fc5f98c22",
+        "cruciblecraft:gt6/97d6a0460747c369",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c53c1621dc55075d",
+        "cruciblecraft:gt6/a44df3d842e014e5",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/25199a53a3172016",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/c6a9981c41a66adf",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/08250e9d9df896a8",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 562,
+      "duration": 2580,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        16,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6524",

@@ -10,80 +10,62 @@
         }
       ],
       "hashes": [
-        "2fce5fea92176c93b0417197d8032a300915db8e218583fa68b79430c00ce9e8",
-        "05d94c81341b3a589b168ab97afa59baa875561c163174d56fe417b96713496a",
-        "199e0ddb49e46dc20613fca9bc37b00b0f456292038f055b91a1294a74b3d5ee",
-        "add56d5e4126f153eee38a760e674af39ce1ee132e97e6bc7ed56aaefb6f67a8",
-        "159ca1ac04a7ec03742adafc029fc873da6775294e054087ea36cd31603cb0ff",
-        "942342d1cde244b67dc0e7f0ba64cc966536abaded211ff38e91df62a2a9bfe0"
+        "871ecc6b3a9ed50c0e236c2132cf67f2a6886e36c829d7be3c82fc90e99cd1e1",
+        "6ef4442d57e5724c35396d48ee9b9efafceaf7e5af09068d33a74f9a31824b08",
+        "539af4fffb49943ac6a977c76c78a1e0e2716e856f3f8f2c799c4a6381832453",
+        "574cbc25398194b02947b6a1b76e6ac7479b130c490da67da9f646999c5c36ad"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "nickel"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:dark_thaumium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "nickel"
-            },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:dark_thaumium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:nickel/screw"
+            "item": "cruciblecraft:dark_thaumium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:nickel/tiny_dust"
+            "item": "cruciblecraft:dark_thaumium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "nickel"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:nickel/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_thaumium"
+            },
             "count": 1,
-            "id": "cruciblecraft:nickel/ring"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_thaumium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -93,54 +75,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/70bdea2bcf486bd2",
+        "cruciblecraft:gt6/cd5c819b029a6407",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/6bddf1f5418c192d",
+        1,
         1
       ],
       [
+        2,
         1,
         0,
-        0,
-        "cruciblecraft:gt6/18bd6de9dc779c95",
-        1,
+        "cruciblecraft:gt6/d8595b27ce891603",
+        2,
         2
       ],
       [
-        2,
+        3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/0f32ef1bbb22be66",
-        2,
+        "cruciblecraft:gt6/007687dd608e7e1c",
+        3,
         3
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/12489ceba835803e",
-        3,
-        4
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/d484670c2f2ed68a",
-        4,
-        6
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/77e12b163732e245",
-        5,
-        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 66,
+      "duration": 94,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        24,
         0
       ],
       "output_chances": [

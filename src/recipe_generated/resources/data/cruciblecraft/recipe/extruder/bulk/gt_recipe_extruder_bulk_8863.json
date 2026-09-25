@@ -10,28 +10,72 @@
         }
       ],
       "hashes": [
-        "f0a08a909c7cc8d40e2e2f0481b858334ae85ac9ce553b6aeaff3e6b6ae8ad72",
-        "edb92c0106659a84ae69f643e670ebf3fc4aba2bbe1b8756f055047c9f07379e"
+        "1e63b21dd150bb35c12035d154581477ae963342577169da8dca6eeef112eae4",
+        "53e1f7d86efb17661c4f0191cb3b259469c371aab2e6d9de53f91709f285cd28",
+        "80f0d83097f8341ef6c8a7cdaececb15ac774f309c4cf4da8a672ce2e5a319fb",
+        "74396b0b7a6cd4c992ade9ee4142399eeea6584320b5775136e94c1e7a4b873c",
+        "d417f90f5aa107ef96161ce459d49d7bfb233ca3dce6707625dc273af421aa4f",
+        "d38067202c0a61efb19bc549686afdebedfc2f80381a505cf9efe9964ff2e434"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "adamantine"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hsse/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:rail_gt",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -39,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:adamantine/block"
+            "id": "cruciblecraft:hsse/gear"
           }
         ]
       ]
@@ -49,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e839bfbefe562185",
+        "cruciblecraft:gt6/dae93d2a4df1d26f",
         0,
         0
       ],
@@ -57,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/14c2520a34190431",
+        "cruciblecraft:gt6/ab192b8c195d05a3",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/4c12e123b7fb8840",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6024963326689b86",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/7e39384784f989dc",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/908a70859194c1db",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3922,
+      "duration": 1197,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        16,
         0
       ],
       "output_chances": [

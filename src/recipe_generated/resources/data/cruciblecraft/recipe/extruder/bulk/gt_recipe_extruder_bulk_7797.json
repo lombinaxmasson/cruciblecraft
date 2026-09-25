@@ -10,36 +10,71 @@
         }
       ],
       "hashes": [
-        "4410687b5d1a1dc3b101d4c239c6d458e4d9ab50c29fa6b10c7723d42dbc9936",
-        "d5739a28c3e8817115fca01dbcd25242513a3fbe883049cd2c97b6634aa47c13"
+        "d2d9842ce561836963b6581256c8890a08b795798486c918bd71357d8379579c",
+        "656ef6c37ab7540b3c2c0c7699df073065a5f45222fa51dc0cbac30db26ced70",
+        "8ac920213cceb81400e22182fd3883b8d2ef1118459c1a4bf655cdcf4b8e2b23"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "trinitanium"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:infuscolium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:trinitanium/rod"
+            "item": "cruciblecraft:infuscolium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infuscolium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:trinitanium/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:infuscolium/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:infuscolium/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:infuscolium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:infuscolium/bolt"
           }
         ]
       ]
@@ -49,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/39137d792b1cff86",
+        "cruciblecraft:gt6/989e39a1a0014670",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/bff23491c80a7d4b",
+        "cruciblecraft:gt6/d221d2c9e5a2761d",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ea28d7a20fc29c65",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 291,
+      "duration": 5519,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7797",

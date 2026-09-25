@@ -10,49 +10,52 @@
         }
       ],
       "hashes": [
-        "4c04c13ab05a15725b4f50c05402eb71855ffb499bdeebf7c313cdee5212483d",
-        "4dda2c3c7f036a976941d27feeb75078df2a8fcc7a63cf1aadef3958633ef0b3",
-        "1675972fa4ec1bb7ec3dfe86d8f1bc763c80332af1e8fd68da3f541b74b409c2"
+        "2e6f72f1fb7e1ab92ba314814afbcbc969ef33fa0762a60c52ffc5a248d24390",
+        "dcfbe108c14687f353b94cc91d2be1125649cf7878a929b41c87713ec14e6ded"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:electrical_steel/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrical_steel"
+              "cruciblecraft:prefix_material": "kanthal"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "electrical_steel"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
             "count": 1,
-            "id": "cruciblecraft:electrical_steel/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -62,30 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/197789319dd4fc08",
+        "cruciblecraft:gt6/acade3a1ca383106",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/75b07aa94d986d42",
+        "cruciblecraft:gt6/db34f385601432df",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/f9ff2b3c347b8137",
-        2,
-        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2973,
+      "duration": 430,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        5,
         0
       ],
       "output_chances": [

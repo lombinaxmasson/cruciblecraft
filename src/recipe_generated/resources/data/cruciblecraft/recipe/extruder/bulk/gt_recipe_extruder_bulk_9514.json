@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 103,
+      "duration": 1876,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        9,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "tartarite"
-          },
-          "items": "cruciblecraft:dust_div72",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:steel_galvanized/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_bolt"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:tartarite/bolt"
+          "components": {
+            "cruciblecraft:prefix_material": "steel"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "steel"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "244f5532bbc4a73a9c50d721b8341b259ba788c1dd242864d08a5d6c11773172"
+          "aab8f815711e06840b119ce3eefc460750863c5923a396c2401889bb46096f27"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9514",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/16434fead2f11707"
+      "stable_id": "cruciblecraft:gt6/c7a955225f8de1eb"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

@@ -10,20 +10,86 @@
         }
       ],
       "hashes": [
-        "38f91909941e32077156c5065548899f281410e9f254bc686f649f04fe2c774a",
-        "90bf278d7f6b73a7d7a0743e579193de4422445f77fb03ebd67449f24612d447",
-        "e41f784bdfdd40644daf607a7f071a81c52525d7d6fdd5b91c0db076217e090c",
-        "13e57e2db4b473627236d313819f5ebf5bb4722badce039352260aeba1671c40",
-        "60e39dd756312b5545e668c9b173a5a1f185fd2c80c4fa514f98d6c7961ce103",
-        "9d41e85e5f2658d6687fcc8a2f7e4a3d877b361c91fab5e86b1fc2338833cb18"
+        "e75898956d0483ed527c5fdb48b49acf633ce8756610f8257dc74601d0c310b9",
+        "d78b3ddeb8a5e33e33a4d1ff463ff233cd9f8e63ea9802e63a12ed0960523d4c",
+        "f827675c54b1734d1df42fb90191b3140379587852470fb5bb69407afc4dbbef",
+        "75eb30ff209088178e954d29e0860ca2dbc2e66b9109c66416d52b5f7c84fc26",
+        "d06cd58948a519fe334e7e6e2688e25af6a47a2edef10fd6e21fa06fa70d7e19",
+        "0f75a059fbb8a82adb3a0a0bef00223e56038e13f45df616af387b6fc8cb21ea",
+        "fd5cfe241b72062481cff4152dd4f8d002cf46df454ddc0fc63a645742ba5e97",
+        "495e4c0578cce80386ce0360d70d7b7d5c1c61ea5a266ec4ca9ed5bc84350b8c",
+        "abc8580c7bb670b99c9ce95c1145521fbec94f81cb5052628fa27486c4dd3ea2",
+        "cb232a753455dfdee3fe4d2cdc0e0c85cd97e9b4e29ad7ed3880fd7d8cf41e64",
+        "53d29e4b9b47bb1b35662f930c171dfe3741205732598ad19669976f43d2d551",
+        "77b2f93b7a99e0276534a78f72adba365008e6bccd60176d5c785b07c0cd3715",
+        "76bf3e030ed98bd0632400362cccf8630cc0d8db63ffa2e4f158b81f2d5d1dc9",
+        "a09e96c76b7f726a48a4a7517e7f3b18e46085e07cf61a3fa65da523fcec2fd4",
+        "1234d7ddfc0919e5163186665c193c5cbe5aef8c8732bc3d686b80290b355ab1",
+        "7e229abf8dca66a928a5c1327ed1b817396cd82f0a110aa3c2a7b9611c8d6825",
+        "905d563b6709bea79ea21a1fc38efbcf69e1f41b8a30469e3cbce2252c09504b",
+        "344ec2fffffd1a2f48743b945fc29dd70b032c795400f61705540929f1f227aa",
+        "dfacc4eca36783f1b0633d78aa00a221e775cec7b1664cb890e0c28762f568cf",
+        "9efa98d3d37bc60c02ccba48b1578637b133dd8e1add2cf10a0660c7e62855a3",
+        "d927cda9d5f5351b0bd0ef466d9f3ab5833897cd060ab6b915a61bcf25bd7163",
+        "f880af080cf3ee198d5a20a991bccb7208ac53f173458afea6f4067f6cd9b19c",
+        "1315130d5f7b52a466d2daf84854a3b35296abcc153314e11f4219f6b4d90bcd",
+        "648ba7ab6d41aedb411d65902ff689c2f7523231ab425c6d2f1346f19be3c1a8"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:yttrium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yttrium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yttrium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "niflheim_power"
+              "cruciblecraft:prefix_material": "yttrium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
@@ -33,9 +99,21 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "muspelheim_power"
+              "cruciblecraft:prefix_material": "yttrium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
@@ -44,10 +122,26 @@
         ],
         [
           {
+            "item": "cruciblecraft:yttrium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yttrium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "niflheim_power"
+              "cruciblecraft:prefix_material": "yttrium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
@@ -56,11 +150,7 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "elvorium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:yttrium/block"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -69,45 +159,186 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "muspelheim_power"
+              "cruciblecraft:prefix_material": "yttrium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elvorium"
+              "cruciblecraft:prefix_material": "yttrium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:niflheim_power/block"
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "count": 9,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:yttrium/ingot"
+          }
+        ],
+        [
+          {
+            "count": 18,
+            "id": "cruciblecraft:yttrium/rod"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:yttrium/plate"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:muspelheim_power/block"
+            "id": "cruciblecraft:yttrium/block"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:elvorium/block"
+            "count": 9,
+            "id": "cruciblecraft:yttrium/long_rod"
           }
         ]
       ]
@@ -117,7 +348,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/628492a051eb39c5",
+        "cruciblecraft:gt6/6af8ec73cca95cb2",
         0,
         0
       ],
@@ -125,46 +356,190 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/72cf6e118215be3b",
+        "cruciblecraft:gt6/73c9560ee9203b00",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/ae6ac9e75c0cdde5",
+        "cruciblecraft:gt6/8113829742ac56fb",
         2,
         2
       ],
       [
         3,
-        2,
         0,
-        "cruciblecraft:gt6/f2ea1e32d998b681",
+        0,
+        "cruciblecraft:gt6/1b3a65a3ee31ec0e",
         3,
         3
       ],
       [
         4,
-        1,
+        3,
         0,
-        "cruciblecraft:gt6/e4d6ca8aa52b437e",
+        "cruciblecraft:gt6/dcb5504100ea5e92",
         4,
         4
       ],
       [
         5,
-        2,
+        4,
         0,
-        "cruciblecraft:gt6/556d4aae6bee970b",
+        "cruciblecraft:gt6/863ae0d8b48cf9fd",
         5,
         5
+      ],
+      [
+        6,
+        5,
+        0,
+        "cruciblecraft:gt6/9e7f406ad394bcf2",
+        6,
+        6
+      ],
+      [
+        7,
+        4,
+        0,
+        "cruciblecraft:gt6/b953bee8909e7d91",
+        7,
+        7
+      ],
+      [
+        8,
+        5,
+        0,
+        "cruciblecraft:gt6/81d48a0c9e4f819c",
+        8,
+        8
+      ],
+      [
+        9,
+        3,
+        0,
+        "cruciblecraft:gt6/00ab0ca43a79e9da",
+        9,
+        9
+      ],
+      [
+        10,
+        4,
+        0,
+        "cruciblecraft:gt6/fe6e1663fd64d356",
+        10,
+        10
+      ],
+      [
+        11,
+        4,
+        0,
+        "cruciblecraft:gt6/b77aad8e3b1a5ef5",
+        11,
+        11
+      ],
+      [
+        12,
+        5,
+        0,
+        "cruciblecraft:gt6/3db375e2a9c3559a",
+        12,
+        12
+      ],
+      [
+        13,
+        1,
+        0,
+        "cruciblecraft:gt6/8f6b8f6c7bd0a755",
+        13,
+        13
+      ],
+      [
+        14,
+        2,
+        0,
+        "cruciblecraft:gt6/4182e36653810314",
+        14,
+        14
+      ],
+      [
+        15,
+        2,
+        0,
+        "cruciblecraft:gt6/2474aed1850616b2",
+        15,
+        15
+      ],
+      [
+        16,
+        2,
+        0,
+        "cruciblecraft:gt6/8667a14898bababc",
+        16,
+        16
+      ],
+      [
+        17,
+        1,
+        0,
+        "cruciblecraft:gt6/b13a6d6b8a688223",
+        17,
+        17
+      ],
+      [
+        18,
+        3,
+        0,
+        "cruciblecraft:gt6/aa7a23eee6e377e0",
+        18,
+        18
+      ],
+      [
+        19,
+        3,
+        0,
+        "cruciblecraft:gt6/e829c2e6b9bb1798",
+        19,
+        19
+      ],
+      [
+        20,
+        0,
+        0,
+        "cruciblecraft:gt6/1de5952ca537a4c2",
+        20,
+        20
+      ],
+      [
+        21,
+        5,
+        0,
+        "cruciblecraft:gt6/cc5949e8534175c5",
+        21,
+        21
+      ],
+      [
+        22,
+        1,
+        0,
+        "cruciblecraft:gt6/eb992f138ff4a10e",
+        22,
+        22
+      ],
+      [
+        23,
+        0,
+        0,
+        "cruciblecraft:gt6/75895d61008b248d",
+        23,
+        23
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3989,
+      "duration": 935,
       "eut": 96,
       "item_input_actions": [
         {
@@ -175,7 +550,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [

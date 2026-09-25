@@ -10,32 +10,59 @@
         }
       ],
       "hashes": [
-        "fe153497b4d0344a93b122395a700d7765c66225e248bf36cbff7415be8f0f0e",
-        "6b8dc7f98749146a0a7704832c54324d8b529429c108c7f548900fb0bbd9fe8a"
+        "d22f7b602d359e6b3106c6ba27883f74d2bc4489c725b5bdc5294e8f64830e4f",
+        "bd28d562c024d806e9fd00d096aeb9e4c2b1db556d46eab55a378516a8934d4e",
+        "1884cf6c74c4e93f7ba99dc3bbcca3f4c324af3c8240af0f4a38c75c1857a5cd",
+        "b8119f16d03c91d0a00a36aa4c5cdbdbd5e0b21579459da0501d1701922974f0",
+        "e489c90d2e143bb1da705d44e302629d99160c1cf6507ef70dc604644a72bef4"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "adamantium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:black_bronze/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "adamantium"
+              "cruciblecraft:prefix_material": "black_bronze"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_bronze"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:adamantium/block"
+            "id": "cruciblecraft:black_bronze/gear"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3517a534ae83ce7f",
+        "cruciblecraft:gt6/e1ecc2a094ac2095",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/51fe451540b94991",
+        "cruciblecraft:gt6/9b7ec13ffb88141a",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/35035eeb658bfeb5",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/38541f55049fbdb6",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/44e853a901742e9c",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9150,
+      "duration": 725,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

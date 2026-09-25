@@ -10,36 +10,71 @@
         }
       ],
       "hashes": [
-        "e743aad0069265836d24bdd00ba3d8b8862f5054c7008e934d0afd2ddf860602",
-        "53eb3c71a551400295ef3915631df93d8c76060d92b6127962ad281d94485fe7"
+        "71e2dd916f49cb654ac5151664ac737702029b7287ad02f1a55deb8dc778b49b",
+        "45c5297d21dbf68a82dfbd99dcb2c6e6fee861a11da81ce19dce34678a09a739",
+        "d81fdd3cd7ad8925dcd11fac50c8d8dd10abd2c41c65346ba791a411d1ce6810"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "manyullyn"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:draconium_awakened/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:manyullyn/rod"
+            "item": "cruciblecraft:draconium_awakened/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium_awakened/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:manyullyn/block"
+            "count": 64,
+            "id": "cruciblecraft:draconium_awakened/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:draconium_awakened/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:draconium_awakened/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:draconium_awakened/bolt"
           }
         ]
       ]
@@ -49,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3eedc660cc4107f2",
+        "cruciblecraft:gt6/0ca4cc316ef8001d",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/fc0af1f511781129",
+        "cruciblecraft:gt6/84fbbc3fbf51c7ef",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ebf40e20ed375895",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 748,
+      "duration": 2090,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8779",

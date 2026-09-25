@@ -10,67 +10,79 @@
         }
       ],
       "hashes": [
-        "9182c1a52e804d875474d3e5e5c03540a830e6681ddab285328f99eed60dde61",
-        "4005a5cb6a5177f7ae36db84683079fff6f371a8682a2e10a06da117df6ec81d",
-        "960d0c229a6d3821b519c1a8d18f31162cbce3fa0c22dff71c984425072a4b76",
-        "032a45e2ec9927866e70117a2dc7855d40006b9a10e29bf079d6751170b57ed7",
-        "aebc193cf5600d8df1e31a6238a4897ed65bb55438a2f4deb8dbd609b4d7a8d7"
+        "b9e8926c4d60157b64ca13a2ee7f8ddebef9b7f89a06dccffaab3bd9ef402d90",
+        "47f8c1ad8ff89380846d64a67d3f56575fa0d3a659bb8a427f31e6577c6a0678",
+        "f75a2554c26f7e950133debe18dab011617b69765f92b029e7777f2e7f9fa8f9",
+        "3b1d7d7054d2ec57af3a0af43c85c69cf00bb1ad73b9ad1d8111f3da06e1c8a6",
+        "9b113a009f9f0b2b7d11686bff998a4e04e07ebcb87e4248b6970575f446c52b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:terrasteel/foil"
+            "item": "cruciblecraft:steel_galvanized/tiny_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:terrasteel/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
+              "cruciblecraft:prefix_material": "gilded_iron"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel_galvanized/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gilded_iron/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
+              "cruciblecraft:prefix_material": "steel_galvanized"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:terrasteel/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:terrasteel/block"
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -80,15 +92,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/cb570c6145a12139",
+        "cruciblecraft:gt6/4e2c9b0bfbbcb4b5",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/fb76063c81dc368b",
+        "cruciblecraft:gt6/482883c54e5648c7",
         1,
         1
       ],
@@ -96,15 +108,15 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/632374725f457e1b",
+        "cruciblecraft:gt6/e5a30d13ce471fb0",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/cdf65d72bcc19ec9",
+        "cruciblecraft:gt6/6df628fb72105dd4",
         3,
         3
       ],
@@ -112,14 +124,14 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/e1cb45ca7652ee46",
+        "cruciblecraft:gt6/e101de0522a3f507",
         4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2481,
+      "duration": 352,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +142,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        3,
         0
       ],
       "output_chances": [

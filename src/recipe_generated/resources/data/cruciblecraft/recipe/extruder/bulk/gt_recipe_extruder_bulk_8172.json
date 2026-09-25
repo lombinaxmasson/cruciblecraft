@@ -10,16 +10,34 @@
         }
       ],
       "hashes": [
-        "d8a946efc0e19f7ae593177aa254fa7716fada2532f2b3756b600f5fdee445a8",
-        "11b793c616804cb92d928de9c46f5137fce0b8a57dbc09887d66f1116801b093"
+        "95db1c7f2a9b76145a4adf00a70d7c6a870a8de4d936b61fd9f84cddf3d7c483",
+        "98949abb25041e54d39b0fe9dced54c5fcb338e9c59e8790a3612f2af59ff2af",
+        "bc88ac3458e695d7d63f9edc98fa8037e49e9818037d9618e788d4dfdf5bdb57",
+        "f366aec1b97f3747f1fd71180be16001651c5fd7b80e14ae7b4cd559c5ea1a7e",
+        "5e9eb8ac6c9d350d88722da189897305bd3abc39f2dd40c4df299880bc8d5ca1",
+        "80f41d9b2e59d70c8cafe66e690363769ebb82a3191c4fd654ccd1cdf87e60fd",
+        "9cfe00bf805976995a7b039fdf3b01ab9574fcfc65cb4380cc6098a84bf47fc3",
+        "abfe891b96124915b26b496244bb93d8bbe64db16b4705fa7c8486b5ea8f43f0"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+              "cruciblecraft:prefix_material": "steel_galvanized"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
@@ -29,27 +47,105 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
+              "cruciblecraft:prefix_material": "steel_galvanized"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoric_blue_steel/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vanadium_steel/gear"
+            "id": "cruciblecraft:steel/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steel/fluid_pipe"
           }
         ]
       ]
@@ -59,7 +155,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/297fc301785309a1",
+        "cruciblecraft:gt6/237eb89cdf9abaef",
         0,
         0
       ],
@@ -67,14 +163,62 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/8a81fda01c83dfeb",
+        "cruciblecraft:gt6/37621c2bbbd225bd",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/cc893d90bbf0b7b7",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/463f8d88bd519fc9",
+        3,
         3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/36a5cb579876c22b",
+        4,
+        4
+      ],
+      [
+        5,
+        3,
+        0,
+        "cruciblecraft:gt6/1379228c21d506f1",
+        5,
+        5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/26fec59db987a94b",
+        6,
+        6
+      ],
+      [
+        7,
+        3,
+        0,
+        "cruciblecraft:gt6/639fcb4402fc17ca",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 827,
+      "duration": 938,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +229,7 @@
         }
       ],
       "item_input_counts": [
-        6,
+        2,
         0
       ],
       "output_chances": [

@@ -10,32 +10,172 @@
         }
       ],
       "hashes": [
-        "f768b71160a7fd1f57f4461e81b301aa1446bc3616a43a869919b6eba30916a8",
-        "2b54d83561caff54cf0fe3ba4a0551ee926ae18b3691cc8510b19da0a9d959aa"
+        "bc4f3580eef6186154c45008df2bcfe99bbbf3e952357cb3f0a43cb5c30ab2bb",
+        "2afec159e3322cfdb62391adfa0643e813f45cace08b3d561c8762cf956cbd6d",
+        "634165d4b8f4b8f0efd6bc5aa3ab91a8b3bee3955b98c8383d2d6eac68e41f0c",
+        "290090c44243cf67bd8e502b64e80d04fd466b25344a2d93cac1db1363260f91",
+        "d91895ab01d0949f1ee17fb3d0816091b0af94a9d401a907206e527374d40e23",
+        "edbdd84610ff25ec2b2d43e4e9df7c7a91bf023f8708880516539aacd704aa9a",
+        "9176530a197bf8afe66fa901a13c2217def375fc86256096ccf21080ffcf7dc3",
+        "e9f788749c6cbe4e8c4e86ae405b86b81f989f880faa8bc42801fc0ff91309af",
+        "381b4f163995a11791beaeda3c868aec9293d37e37ed1ebd8c4c8eb2f7ea1d64"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:trinium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:trinium/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alumite/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
             "count": 1,
-            "id": "cruciblecraft:trinium/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thorium/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thorium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thorium/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thorium/small_gear"
           }
         ]
       ]
@@ -45,22 +185,78 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8c2b0417db53ec88",
+        "cruciblecraft:gt6/dee75e61a64fe273",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/5da753ddce598cca",
+        "cruciblecraft:gt6/22065c68eb379756",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/78d0da55d27784e2",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/4b8a07ac97430a6b",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/70eb73ae1e017a77",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/0f5a0a6d45f0b76f",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/92bb0d3b4b09a3a9",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/18fb40a4ac6a4e58",
+        7,
+        7
+      ],
+      [
+        8,
+        6,
+        0,
+        "cruciblecraft:gt6/656db4b28c21d18f",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 156,
+      "duration": 440,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +267,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        2,
         0
       ],
       "output_chances": [

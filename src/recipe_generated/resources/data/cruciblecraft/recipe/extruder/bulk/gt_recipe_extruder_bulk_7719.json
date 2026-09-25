@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "995aff7b40dc0cb65c80182c17d51f139a968fa7e936f2a9cae1605cfd2e7741",
-        "dfa3cbf8e419f9eab6ca4c4c4703665c19d211971a2dd7365716d69e6f9458fa"
+        "814660330596072d7b4daabf2047ad186137df460557957916142e64042b9c35",
+        "1ea1c6393f1100519dc0348350e2f6eb255b94226c1be3d8dfaee135f6c075ee",
+        "7be721fc75e7ad46010457285d31d3ad1914495e04f9cf6ef52249a7a57457a6",
+        "a6f92b64213e5225724b30e0a50e51d291f372ffb238ca2e08c39993375bb405",
+        "7ceab5f541ed3f43a40719fbcea9342957faf4e631cb138915f5345d24f17f3f"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "neodymium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:naquadah_enriched/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "neodymium"
+              "cruciblecraft:prefix_material": "naquadah_enriched"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadah_enriched/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadah_enriched/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
             "count": 1,
-            "id": "cruciblecraft:neodymium/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,22 +83,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/150ac125aae7ab4e",
+        "cruciblecraft:gt6/8d835962bff69bc4",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/8b2b6a7472218cb6",
+        "cruciblecraft:gt6/345126026c149292",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/c662f061acf47aef",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/7b07d81cb8c64775",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/fa2b4fddbc266be9",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 978,
+      "duration": 2459,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        24,
         0
       ],
       "output_chances": [

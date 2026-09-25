@@ -10,45 +10,70 @@
         }
       ],
       "hashes": [
-        "e14dc6140bb239aad0e7ffee6f1f8e4f2fa5409180cca26e06417e352e0b84eb",
-        "81700ff05338392c09e193cf51345c59dd68d79b3903164d1df08059e9a1c952",
-        "395512eb191d01fa71a9c5f3a03d0fe8c1255679f38ac4df6afce24b60177c65"
+        "87c19d6fdda42f6b66aac421c66d46a496ec5c96c670ba10f3e1a9af9794f4d4",
+        "d52b9306226ef7909d39c58622c646431e3f5e018cd027cf4d05eb75fe750b7c",
+        "d5d84e52f6ef39968bb14acc61dd89dea5c7ec88c2832649e66168069e8a6e54",
+        "8dfbc569fa2d1879963bfffe9eeeee9091d5440f3b2d0aa1fe3d4b7a75251a70",
+        "f1a1acd03f5d60886919d7df436c73c7180b75b6e117163149df3b578fa2c9e0"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:niobium_titanium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:niobium_titanium/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "niobium_titanium"
+              "cruciblecraft:prefix_material": "hepatizon"
             },
             "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hepatizon/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hepatizon/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hepatizon/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
             "count": 1,
-            "id": "cruciblecraft:niobium_titanium/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -58,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e289c1a35fc90fd3",
+        "cruciblecraft:gt6/64cb061cb1685a49",
         0,
         0
       ],
@@ -66,7 +91,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/937e8ce7d17b239d",
+        "cruciblecraft:gt6/33e8b9794b4dac55",
         1,
         1
       ],
@@ -74,14 +99,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/a7e224b5a3cb1c48",
+        "cruciblecraft:gt6/d17db5ea42993d6a",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/2b8ad2a39ccd8982",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/1a409d99cda22ec0",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1869,
+      "duration": 1358,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        24,
         0
       ],
       "output_chances": [

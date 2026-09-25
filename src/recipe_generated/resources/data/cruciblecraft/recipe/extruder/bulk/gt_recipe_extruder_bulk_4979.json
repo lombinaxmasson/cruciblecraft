@@ -10,15 +10,92 @@
         }
       ],
       "hashes": [
-        "b7acac980cd4844f5122ce0a967b87b9173f500f57cf6ad0fde0306cb9508ef8",
-        "0ebec46bb50ab5622659fc27fd824e51c9dc21e8354cf89d58dbf847d77b0090",
-        "304eb758a0450a5daaad0ee4fd1ca3245942be4ed0df734eadebcd5bfddc05ab",
-        "c0d5569f526250790afe685f7b12ac91ae0937d977bc90259018350676ac6364"
+        "d7f323f1b3189df0882f47d89739b88a1e81e38e7763eedc48c6917124d6fb98",
+        "781963e00910066074f032f16ea143de57c2ab35d5bfbee53fcadb3a76e2431a",
+        "b0305b581c457ab93f4f9b284958fbea086228d8104ceb5c50bbcc990d8e9ef7",
+        "80a96b1c7a15d43ed4dbc64dfc54e9d5a55c34d06b82d5f91cea1b74268f226b",
+        "62a10ac00bb56eeb14877e8fa194cc217c6e579b22c91fc326e4759e102f16cc",
+        "ab4c0fa039e6651ddac45298202d3ae12ff10005a08b0bf3f5105144f9590b80",
+        "c0f4357f3607c52dbfeadf3feb0803e57e81e72b542d2e942eeaf48f9466bb80",
+        "c47b8bd2bc5986b94a644f445b94f5ca5782ba6bc69284f2b3d2202eb9d41d5a",
+        "a20e8e0569c504556932e57cc91ff50e79648bc21ffe821bbe6d92f3f78e881b",
+        "6f845a248656d6a42297b1eec1cb0780bf0aa2245bd95007ef969f833285d1d8",
+        "b42e1a65f5a64c385ae7f27e0545ed2fbe5c3c4ff14c161d11495c9e32d9132e",
+        "71090808715bf1edc43ec65d4e8cac2caacc87d02d10c18c6b6f608177857ceb",
+        "631ac5bd816054391dfa54cf704b50679ea11c92b4b7d62742cbbab25acc9118"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:invar/fine_wire"
+            "item": "cruciblecraft:invar/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tartarite/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:invar/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:invar/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tartarite/fine_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -26,7 +103,23 @@
         ],
         [
           {
-            "item": "cruciblecraft:invar/fine_wire"
+            "item": "cruciblecraft:invar/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:invar/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tartarite/bolt"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -34,15 +127,15 @@
         ],
         [
           {
-            "item": "cruciblecraft:invar/bolt"
+            "item": "cruciblecraft:invar/tiny_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:invar/bolt"
+            "item": "cruciblecraft:tartarite/bolt"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -56,13 +149,40 @@
               "cruciblecraft:prefix_material": "invar"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:invar/rod"
+            "id": "cruciblecraft:tartarite/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -72,7 +192,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d09a40ccdc5896c7",
+        "cruciblecraft:gt6/18f3e56269e6a596",
         0,
         0
       ],
@@ -80,30 +200,102 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/31c739af1fe4dba3",
+        "cruciblecraft:gt6/c2a8e2369cc8f262",
         1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/66db37ed4b4c4a78",
+        2,
         2
       ],
       [
-        2,
-        1,
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/a6fb14eef1999d29",
-        2,
+        "cruciblecraft:gt6/a1cd0efbab2b1124",
+        3,
         3
       ],
       [
+        4,
         3,
         0,
-        0,
-        "cruciblecraft:gt6/9fb3078703e06ba7",
-        3,
+        "cruciblecraft:gt6/9388caca06733bfd",
+        4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/93f476f514b3b241",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/a138602662698ed7",
+        6,
+        6
+      ],
+      [
+        7,
+        4,
+        0,
+        "cruciblecraft:gt6/3cb719348f122955",
+        7,
+        7
+      ],
+      [
+        8,
+        1,
+        0,
+        "cruciblecraft:gt6/3a29fb6cc2bc2514",
+        8,
+        8
+      ],
+      [
+        9,
+        3,
+        0,
+        "cruciblecraft:gt6/376f0832ee7828f5",
+        9,
+        9
+      ],
+      [
+        10,
+        2,
+        0,
+        "cruciblecraft:gt6/a2947ae01659fb39",
+        10,
+        10
+      ],
+      [
+        11,
+        1,
+        0,
+        "cruciblecraft:gt6/9276dadbf52c295c",
+        11,
+        11
+      ],
+      [
+        12,
+        4,
+        0,
+        "cruciblecraft:gt6/b1d4da266cd06d15",
+        12,
+        12
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 103,
+      "duration": 412,
       "eut": 96,
       "item_input_actions": [
         {

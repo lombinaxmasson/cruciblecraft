@@ -10,28 +10,72 @@
         }
       ],
       "hashes": [
-        "aeedc4eb748bc1742a20999226fd66e1bcdc4e35561575aa175557aebb35eac0",
-        "002a29654658841e0f236d4bfe26043c0d7f3453b8038afd6a3746a40b1a194b"
+        "eecbb92d2544b45b179d92d44de71ea3f823e019124e2df260312f085ff98b53",
+        "f18ac3575adc6a50234c244324cf37006b24e4c72c42bfef9dca62db893e34df",
+        "110448323e31ab7b4c2eb3814a7e6e94f8ee239d229d4404788b9c47d2a68627",
+        "6bad55e714061c3894241d2c04a45af90ff8354efdccf7b2efc11efa7e5f1dbf",
+        "dcffde8cc4857f7f3cd79cb3c0282a9c231b8d79380435680425cff75b511fda",
+        "99601c2036a7d509b59df84e70bb9d882634d940c2a90589c5f4d384a31030ea"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:palladium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "palladium"
+              "cruciblecraft:prefix_material": "tritanium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
@@ -39,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:palladium/gear"
+            "id": "cruciblecraft:tritanium/ring"
           }
         ]
       ]
@@ -49,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/04f86ae05f39d903",
+        "cruciblecraft:gt6/a1e4a7a861e9b4a1",
         0,
         0
       ],
@@ -57,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/69687ea3fd3ab310",
+        "cruciblecraft:gt6/9ccf2070baef0c59",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/8de1bf54d4a3dce8",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/89fedfd11f0d2794",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/91fdf9de14721924",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/6be99b216950321e",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1139,
+      "duration": 185,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        3,
         0
       ],
       "output_chances": [

@@ -10,40 +10,62 @@
         }
       ],
       "hashes": [
-        "169271458131ecc9bbd855f3bc59a89ec222727bc574eb31b2da2d8816c9deff",
-        "566d2c1c1d921179ac54229ffca663901d565ef55170de95503cbbc5140444be"
+        "00c389c1a5d0ed72adf0a97eaabc81e22504394ec03057f56d8d3fee71de8f64",
+        "27602f917fd8a4beb204945e8e957e6fc120a8e750b51ab34cb22382616a85e5",
+        "88ca5f723a8c68ab8ec9c9c31d5cb18fa6659f11a8f25b6364893bed5f9729b2",
+        "de412687209544c86b0bc2cb4fdd9ce9435762b3c8f804bc7cdc6cc6b57a9858"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "silicon"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:obsidian_steel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "silicon"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:obsidian_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:obsidian_steel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:obsidian_steel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "obsidian_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:silicon/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "obsidian_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -53,22 +75,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8f3e3f9933d967f2",
+        "cruciblecraft:gt6/f13686466e5f9496",
         0,
-        2
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/452bd0523f574101",
         1,
+        0,
+        "cruciblecraft:gt6/3595bbdc3d9956a9",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/b91ccdba71cfae86",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/39cbdf076a4e9076",
+        3,
         3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 452,
+      "duration": 495,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        24,
         0
       ],
       "output_chances": [

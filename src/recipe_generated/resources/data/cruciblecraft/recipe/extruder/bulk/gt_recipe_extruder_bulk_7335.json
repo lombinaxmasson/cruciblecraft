@@ -10,13 +10,16 @@
         }
       ],
       "hashes": [
-        "3845d0d75541aec0920b95f67049444fb55e171c256e4bf8e37d678eead6670f",
-        "603f90398465b4a48fb34bf4e21c6d48f6f4ff53e76cdf123f1ec09f41581436"
+        "47c6a63342fb9b332d4c5e5072a2c787fa30d524297ad7333f64720e8a718a2f",
+        "ad537baef64da3dc72a54ce985326d03e4a0252558e099aa8cba2d97ff6f996b",
+        "a147ce7cbcf6fffd57be804d4f5ebb0b0925d891b1ca08e02b8ce528540e6998",
+        "861409205839f90612d82a85706a634a1fde3323080801343a3ec69021ee54e7",
+        "9fff956e12c08e48f2c9b0a3fa4442d924df7de02fdeae3003741fa0d5f0537f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:pulsating_iron/fine_wire"
+            "item": "cruciblecraft:vibranium_silver/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -24,7 +27,39 @@
         ],
         [
           {
-            "item": "cruciblecraft:pulsating_iron/bolt"
+            "item": "cruciblecraft:vibranium_silver/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_silver"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibranium_silver/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_silver"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -35,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:pulsating_iron/gear"
+            "id": "cruciblecraft:vibranium_silver/gear"
           }
         ]
       ]
@@ -45,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/48db7943f14ffb2d",
+        "cruciblecraft:gt6/9489da3a82b91cd9",
         0,
         0
       ],
@@ -53,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/881695cf9c0b2ad1",
+        "cruciblecraft:gt6/70197155d366dd67",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/35c595b66035430b",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/04df17432e6c1752",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/7202830862296f08",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1076,
+      "duration": 990,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        16,
         0
       ],
       "output_chances": [

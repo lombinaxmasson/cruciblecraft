@@ -10,20 +10,21 @@
         }
       ],
       "hashes": [
-        "105739f4b6a3ec6bf6134afea4f0f854e1da9ab23bc6831e84a19055c74e62a0",
-        "51d310ab21ac7ede23ca9d7e4483b7fecc4139b82ef8dda23134c69cb65a9788",
-        "1f8cade5bd7da82023589f07b027f490846696a55a7904e82021aaafa01e0b57",
-        "856c8785949c56e6ebc2e7bf46362e6da14e884dca47918b149b8fc16fe6fa52",
-        "cd40fab44f29ec187c78ab8f6bb3fe84161c2da24a93ffb3a87fd42728b7c670"
+        "c90c557896bab46880d46f2c93b0c37bd3e70abbe28419eefbde92cbeec8811d",
+        "bd661739cb606a1259e6c5d7df6292d698974af909472ccc6a0395e6e83c8dd2",
+        "e0c8949ded6993704a5b21c968ebb18f2186475e016104f483a0d4a87593d573",
+        "ab526f7ec888f4fdb6d1466c4427d2f9736525ee0b3cf42654395a645f717f29",
+        "15ca89e5f26407ab2ee61adab77fd1e42a535b9cdf3553acf744205e5c0ddbf8",
+        "347417bb4991f0ab2c05d85199f0e6d9e78127a3baffde9e7a93e0225cfdba1c",
+        "55620d2f0e3060d8690815f8273ddebc8bf6a989ae5b47997854954e627d08da",
+        "ae35b5fe189f7b33a01b4cf898e22f3b1b1f46f1e0a30e4a3e574a7339f9eb15",
+        "1e10adafd5071273240aba68ecfca20e3c9f100970bc8761a3ccb77dc518442a",
+        "0f3618dd26aa97296c768e5391aec375bccfd514cd41d54f8f150ad554518a39"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tartarite"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:naquadah/plate"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -31,7 +32,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:tartarite/ring"
+            "item": "cruciblecraft:naquadah/small_gear"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -39,15 +40,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:tartarite/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:tartarite/small_dust"
+            "item": "cruciblecraft:naquadah/double_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -56,10 +49,70 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tartarite"
+              "cruciblecraft:prefix_material": "naquadah"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:spring",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadah/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadah/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadah/ingot"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -70,7 +123,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:tartarite/gear"
+            "id": "cruciblecraft:naquadah/gear"
           }
         ]
       ]
@@ -80,7 +133,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d592a1f526de5da8",
+        "cruciblecraft:gt6/7af8b3d503343659",
         0,
         0
       ],
@@ -88,7 +141,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/29a20b18abe3d491",
+        "cruciblecraft:gt6/39a04ecb75fd0b37",
         1,
         1
       ],
@@ -96,7 +149,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/ed1d1ac4767d0887",
+        "cruciblecraft:gt6/0aae877aaf69115b",
         2,
         2
       ],
@@ -104,7 +157,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/9730c3c43d52756f",
+        "cruciblecraft:gt6/49279f82d9a1580c",
         3,
         3
       ],
@@ -112,14 +165,54 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/a5af223d63db64db",
+        "cruciblecraft:gt6/cd6e58e363d72526",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/d2a6f63be1545350",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/dacf6b5ad794a961",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/d1f68c3987ee738b",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/ce8bfa7522512898",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:gt6/2180b25e75876527",
+        9,
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3294,
+      "duration": 1565,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +223,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        4,
         0
       ],
       "output_chances": [

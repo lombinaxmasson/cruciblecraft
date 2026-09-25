@@ -10,67 +10,52 @@
         }
       ],
       "hashes": [
-        "ccaebaca912108fca8d9f139f694d0fb6f9719ca88dda131d786cd9bae57384b",
-        "9ecf5f256fa377c9a3f765a68ee22c779721185d328a89e305df3ef520bfe51f",
-        "d5ed22b61536bc04959dead31e99b91e797b4f16db45c54cac2b2de801f1b4c7",
-        "e53b2dcd0477be950184b0f567e868b88d3c27a81defe431aa98df305e8884d4",
-        "75d3bcfb7a68b44626b9fc78cc213781809bcfb089cc838f73ccefda0ceeaf39"
+        "177de88d0326eb78c3c8cadcde7d022674b857d6b2fd853b1301c248334a605a",
+        "b5eef307f295080f67cd496974e18bdcbd711981f0f63a52c0f9a85e2509c68e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "celenegil"
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "celenegil"
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:celenegil/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:celenegil/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:celenegil/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+            },
             "count": 1,
-            "id": "cruciblecraft:celenegil/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -80,46 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ae18a764e83a9923",
+        "cruciblecraft:gt6/497ad725f91909b5",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/71886abb87a15fec",
+        "cruciblecraft:gt6/a3db92bc2e66ff38",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/8e079050c338334c",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/b773304d9b156fcb",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/10cc92f2104e9bbf",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2926,
+      "duration": 11690,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        5,
         0
       ],
       "output_chances": [

@@ -10,49 +10,70 @@
         }
       ],
       "hashes": [
-        "fafbb4bd2051a2c3998348aec970717d548325698ac13490af2991b5ef344ebd",
-        "c078c4f5519ec48384522af9bec93bd4a62f4e984d2573155ad5a3585bc35b14",
-        "ca043c734ecf028fb2f1c0b7aa1edf5dcf6a8b105364c8e63749e84e588963dc"
+        "821c27edbd52c4be81274ffac071ef041470f800185cd895288778550a9f20b8",
+        "29d04655c6ec7da7a20f4c92b7917182371e0f841b5e99429b9cf23171fa665a",
+        "d5e4a2a4a2b03dc427d24d6aa6e6811fe1f7a285fc0d45e060c09eac98cb3385",
+        "e5a7001f5adb3e4deaae1dac5c4d873104b235bffafb90db16198263307bb7d2",
+        "4367c828b1323a80272ab752f0679ba56e782da35e9eddf77a530813dcb88d09"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:osmiridium/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_black_steel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_black_steel/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_black_steel/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:osmiridium/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -62,30 +83,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c92b09c2521f13da",
+        "cruciblecraft:gt6/8412546800164e5a",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/449ffc67833a2cca",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/23d6e5fbc5f6c627",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/280d99f5074b95b9",
+        3,
         3
       ],
       [
-        1,
+        4,
         0,
         0,
-        "cruciblecraft:gt6/4855c2cb1097cf2b",
-        1,
-        5
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/199b2ce56ee0b492",
-        2,
-        7
+        "cruciblecraft:gt6/5d15d87f2e1e372a",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 11372,
+      "duration": 2200,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        24,
         0
       ],
       "output_chances": [

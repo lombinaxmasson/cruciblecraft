@@ -10,40 +10,83 @@
         }
       ],
       "hashes": [
-        "439bfcf1157070a5b55421e7ca6d048586b3b416566dc3fe4fc571f7d1ebb192",
-        "dc0ca53668f8b3c9086effd4e9826c744ecbc7a2163622791320ccb393ae1b6a"
+        "a43c804f9e7c366f1b8295ad2f15d3ea977da5cd57d890bb8c290fc80ee7d9db",
+        "f83d24194792b08580beb181a8b1c223349eed81ec2d9e5a6c9ac260178babf9",
+        "f0b95acaaf5484cd9d0d5b661dcc1597372f13507dd66e4860749df1502bb109",
+        "36928a132c1de07bce6b69468f90b87de98c612be75b94ef310d716ce6e41d60",
+        "9571ff192cdbed07035e0aedfb3e9f24028fbebed40cfd04fef351f714985990",
+        "ec8a977f2a09f7c302806ef4ca6aa8f15d0c16c21886af14c9bca17420aa279f"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "netherite"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:ardite/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ardite/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ardite/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherite"
+              "cruciblecraft:prefix_material": "ardite"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ardite"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ardite"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "ardite"
+            },
             "count": 1,
-            "id": "cruciblecraft:netherite/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,22 +96,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9303a8663586a999",
+        "cruciblecraft:gt6/53b92a8a831af16f",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/ffc67c822ec5f182",
+        "cruciblecraft:gt6/ff94dfd694eb53f1",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/ffe9298c3e63ede0",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/e587a5562551612c",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/51e09d2a888707ef",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/9b256e9ae516e269",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 24452,
+      "duration": 66,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        54,
         0
       ],
       "output_chances": [

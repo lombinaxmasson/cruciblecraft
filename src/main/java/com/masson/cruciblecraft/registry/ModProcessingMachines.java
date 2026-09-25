@@ -21,6 +21,8 @@ import net.minecraft.resources.ResourceLocation;
 
 /** Registry-safe processing specifications for currently implemented machines. */
 public final class ModProcessingMachines {
+    /** GT6 extruder panel: 2 in, 2 out (Loader_MultiTileEntities.java:1406). */
+    public static final int EXTRUDER_ITEM_OUTPUTS = 2;
     private static final List<String> PROCESSING_STATUSES = List.of(
             "idle",
             "running",
@@ -854,13 +856,14 @@ public final class ModProcessingMachines {
                 : new ProcessingMachineSpec.TankLayout(List.of(), List.of());
         ProcessingMachineSpec.SlotLayout itemLayout = extruderTool
                 ? new ProcessingMachineSpec.SlotLayout(
-                        3,
+                        2 + EXTRUDER_ITEM_OUTPUTS,
                         List.of(0, 1),
-                        List.of(2),
+                        List.of(2, 3),
                         Map.of(
                                 0, ProcessingMachineSpec.SlotRole.MATERIAL,
                                 1, ProcessingMachineSpec.SlotRole.TOOL,
-                                2, ProcessingMachineSpec.SlotRole.OUTPUT),
+                                2, ProcessingMachineSpec.SlotRole.OUTPUT,
+                                3, ProcessingMachineSpec.SlotRole.OUTPUT),
                         (slot, stack) -> slot == 1
                                 ? ExtruderShapeCatalog.isShape(stack)
                                 : !ExtruderShapeCatalog.isShape(stack))
@@ -908,7 +911,7 @@ public final class ModProcessingMachines {
                         gt6InFluids,
                         gt6OutFluids,
                         extruderTool ? 1 : itemInputs,
-                        1,
+                        extruderTool ? EXTRUDER_ITEM_OUTPUTS : 1,
                         futureFluidInput ? 1 : 0,
                         0,
                         extruderTool ? 1 : -1,
@@ -924,7 +927,7 @@ public final class ModProcessingMachines {
             boolean assemblerCatalysts,
             boolean pressPreserve) {
         if (recipe.itemInputs().size() > itemInputs
-                || recipe.itemOutputs().size() > 1
+                || recipe.itemOutputs().size() > (extruderTool ? EXTRUDER_ITEM_OUTPUTS : 1)
                 || recipe.fluidInputs().size() > (fluidInput ? 1 : 0)
                 || !recipe.fluidOutputs().isEmpty()) {
             return Optional.of("component_recipe_shape");

@@ -10,32 +10,32 @@
         }
       ],
       "hashes": [
-        "acb849aca3b659be727dd7372a2443455b8ed8dfd15abde648c9bd27e2a52128",
-        "55f9d5e1f525bea63bc7ca0de1ef41c683fd31ff571f1477fe342c8315e8924b"
+        "d5066f071e9cd2bca6dbf499c1050c47ebd1ac90023b6b6b1c2bffaed647307d",
+        "279fcee678483e1ed0d6cb11d5bdf9157fcd1c85aacc60019bfbe8126d6c6b6c"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ruthenium"
+              "cruciblecraft:prefix_material": "draconium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ruthenium"
+              "cruciblecraft:prefix_material": "draconium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -43,7 +43,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:ruthenium/block"
+            "id": "cruciblecraft:draconium/large_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,22 +62,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/25ddbedd48b98a68",
+        "cruciblecraft:gt6/bf5f58b2b506f1a5",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/98b701213698181f",
+        "cruciblecraft:gt6/f4a1acfdbf68e26b",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3976,
+      "duration": 390,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +88,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        9,
         0
       ],
       "output_chances": [

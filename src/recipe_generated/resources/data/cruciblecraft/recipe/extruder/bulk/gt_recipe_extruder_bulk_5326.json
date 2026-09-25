@@ -10,17 +10,17 @@
         }
       ],
       "hashes": [
-        "558177baf4a0bccea1571b4148cc40114bea7f8b57351063ba7e6e7e9b650c69",
-        "9c965db33514c2151a2354363ba3033397ff3bd168e3679d0116a8a6ddb53f49",
-        "edb73af9ec56a4a81951f48174744ad077c5504aaad93d04900b616e9728e092"
+        "4282e56bd48a795395278632438ffe03406845394b4dfd917e95f197c9d44b2d",
+        "5697decf26837550cdbd80fe08dbda1cc9ef4dae785c4fb5a376d1d500f3c12b",
+        "fcd8bf7a6e03b5fd15c0904727ce36b4627b88072cd2def51ddd54c2f16fb8ca"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "terbium"
+              "cruciblecraft:prefix_material": "enderium"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -29,7 +29,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:terbium/foil"
+            "item": "cruciblecraft:enderium/item_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -37,7 +37,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:terbium/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -48,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:terbium/block"
+            "id": "cruciblecraft:enderium/block"
           }
         ]
       ]
@@ -58,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c80b6022858905b3",
+        "cruciblecraft:gt6/d95b0711089d8be5",
         0,
         0
       ],
@@ -66,7 +70,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/24b7dfd233bc4d99",
+        "cruciblecraft:gt6/70edc7ef479bf142",
         1,
         1
       ],
@@ -74,14 +78,14 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/8a5b62bcd0547116",
+        "cruciblecraft:gt6/97836498d533263c",
         2,
         2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1527,
+      "duration": 2710,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        3,
         0
       ],
       "output_chances": [

@@ -10,32 +10,84 @@
         }
       ],
       "hashes": [
-        "e0853491f5119323ad267c27150d480d5df6645cace7fff959cb5c1979cf5a65",
-        "4fd5613702a6648d8b2e2c778e9c137b962ae53b356c558a842522c93f8a2f45"
+        "f7a129186805bbc48fa55d4a7eaf025eea8141a45914eac67f3b184f9d3cbe20",
+        "f24655ebe412c2e3d8bfa625807f8a8338c0098c7e66995c68f85bedc62d0c36",
+        "78360df3c5c1cdd67ae0edc391e99699d9d67a1859babc904904c3df5035fb3d",
+        "7daffcad080705fdb457f23377b6ba89456422637265d455982502536747095d",
+        "46f7c0035c5c86a808899b378dd31414ccb1f4d9cf63574fd36c38aabbf5344b",
+        "47064875670054a315f461f21861365e1565a93a010e02d5d2730a6ac5d1158a"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "angmallen"
+              "cruciblecraft:prefix_material": "uranium235"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "angmallen"
+              "cruciblecraft:prefix_material": "uranium235"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium233"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium233"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +95,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:angmallen/block"
+            "id": "cruciblecraft:uranium235/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:uranium233/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:uranium/gear"
           }
         ]
       ]
@@ -53,22 +117,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/68089f1060d609d0",
+        "cruciblecraft:gt6/123869657f949a55",
         0,
-        3
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/bcceca117b2e2301",
+        "cruciblecraft:gt6/036d094972f383cf",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/0f043378c00d525e",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/48f05b59c1a02e56",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/0cb1df4149227689",
+        4,
         4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/9dc26bcae616b5f8",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2894,
+      "duration": 1952,
       "eut": 96,
       "item_input_actions": [
         {

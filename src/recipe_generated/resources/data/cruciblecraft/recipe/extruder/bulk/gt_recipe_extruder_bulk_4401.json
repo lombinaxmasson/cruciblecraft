@@ -10,72 +10,115 @@
         }
       ],
       "hashes": [
-        "204e9b29a76faecd120e30c9226096b2b9a4a1451d77d89962cf0cab257e6ad4",
-        "008f84893a2f030432971ff145bb6648fbc721d87368b25805797f4e3500b98f",
-        "62167514e35518a5698c2a22084428643ad581c23020b403eb76aecfa923e47e",
-        "e21c384f539ffa40a0f17a95a04d7fb03018f3c5b2f4a5d07c036e8a7c21c726"
+        "2175ef6af827bb377f63b12f8856b1211bf870c75974dd69b48858a89cf50968",
+        "866cdce5d77e982eebca9f116f6d62f274e02c4ed6958b7429ff3d20da905b86",
+        "71f458e22efe8886d1266c03615382dcf07aa28c6ac45df62463ff253878bce2",
+        "1e76f36f20ee770d31c66d7798c0cb50ba9010eaea43fd3fb0e05ffd7a95aa13",
+        "8974d15efdc6515036042e5ecf5aeef6df41546b6eeda76d06fff3bb8732a114"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "cobalt"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:trinitanium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "cobalt60"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:trinitanium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "cobalt"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:trinitanium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "cobalt60"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:trinitanium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinitanium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:cobalt/block"
+            "components": {
+              "cruciblecraft:prefix_material": "trinitanium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "trinitanium"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:cobalt60/block"
+            "count": 64,
+            "id": "cruciblecraft:trinitanium/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:trinitanium/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:trinitanium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:trinitanium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:trinitanium/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:trinitanium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "trinitanium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "trinitanium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -85,7 +128,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3000969800a8d14d",
+        "cruciblecraft:gt6/fab6e41bd89c698c",
         0,
         0
       ],
@@ -93,30 +136,38 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/dd56a667b0af0f33",
+        "cruciblecraft:gt6/c9fc4f5f6b2360fc",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/0ac44bb27d85ab99",
+        "cruciblecraft:gt6/991f20501d48b2d1",
         2,
         2
       ],
       [
         3,
-        1,
+        3,
         0,
-        "cruciblecraft:gt6/71d3c9214cd84d33",
+        "cruciblecraft:gt6/13f83105a8a54987",
         3,
         3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/8a17a353f6d8373c",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1816,
+      "duration": 4073,
       "eut": 96,
       "item_input_actions": [
         {
@@ -127,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4401",

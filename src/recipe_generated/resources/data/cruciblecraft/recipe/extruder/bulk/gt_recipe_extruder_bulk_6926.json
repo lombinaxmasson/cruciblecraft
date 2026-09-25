@@ -10,32 +10,58 @@
         }
       ],
       "hashes": [
-        "840ed04c8feafaa8f32eefacf713633747c8c1225a612a3a530c475f49662573",
-        "2c3c0403af137c6b1ec694839ee138dfd3765048dcfc76281a47af5f5cbe57f8"
+        "7a30b648fa1822f4fe7b52644bc661685bdd1565e2e6a4c4ec80ebba22a4ef27",
+        "b1b87522132d25a9f5510fff0a0226435f1b6ade80798f83890fef0eaf7a73e4",
+        "951db4b1141b2977a6c8027baffbe0d88df1f689cb834d1c23ba0115b2a01ac0",
+        "b039067555f6f939fe61a9e3582a6cf3dc85cf77c2e24b3ac4bbdf431ccff522"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hsse"
+              "cruciblecraft:prefix_material": "trinium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hsse"
+              "cruciblecraft:prefix_material": "trinium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "trinium"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "trinium"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -43,7 +69,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hsse/gear"
+            "id": "cruciblecraft:trinium/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "trinium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,22 +88,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/97985c6fabfbc41f",
+        "cruciblecraft:gt6/b1d59461e7ff05ef",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/96b6c2fa556844a6",
         1,
+        0,
+        "cruciblecraft:gt6/db6feceb3edab1a7",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/50e8f176a6a7625e",
+        2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/73bc41f7644dba2a",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1795,
+      "duration": 388,
       "eut": 96,
       "item_input_actions": [
         {

@@ -10,32 +10,55 @@
         }
       ],
       "hashes": [
-        "fa69a0eecaa0c4cc4d2602aa0e7b5a1b87996521caac592bba574b330e13447a",
-        "cd31a948f9685cc0c517b063d842b09e7e65545867b4a3759f02c4677549d57d"
+        "c8514a43a3823fde65078fdbbcd833352521c775e1f315a8510ec3b5f3a37cca",
+        "542c876c3ddf5972db0eefc4408d7a90a70ba4f06902dae0a17d5ae0e66f2d28",
+        "66ab38d080330fa73c079e0ad8ba70d8e38fc854e029e566e89b0842d43737c1",
+        "6ad94393ecc5fdf1f22ca5719598ffd785d57b75059b6ca1d5110350746e91b3",
+        "1c9358a0cc61a45d10e6c9b20dfffb6fb8e92384cafc9c2c42c5f32806012d73"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "adamantine"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:rhenium/ingot"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "adamantine"
+              "cruciblecraft:prefix_material": "rhenium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rhenium/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rhenium/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rhenium/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,7 +66,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:adamantine/gear"
+            "id": "cruciblecraft:rhenium/block"
           }
         ]
       ]
@@ -53,7 +76,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/617d993389698c47",
+        "cruciblecraft:gt6/85d060aa6363afd0",
         0,
         0
       ],
@@ -61,14 +84,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/e2b6e87b7d93c536",
+        "cruciblecraft:gt6/92e3038a5a3c8106",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/661153c2740d58a7",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/1e733586938b7a06",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/c2f91db44ffa9e85",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2615,
+      "duration": 9243,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        9,
         0
       ],
       "output_chances": [

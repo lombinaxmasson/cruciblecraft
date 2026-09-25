@@ -10,71 +10,96 @@
         }
       ],
       "hashes": [
-        "ae48a368bef476efe8ed451b8d61fb198bbc0266f10fc8b81dfdca17213ec6a3",
-        "664d5b5485203e782caa98e2f71d0e78d595c49721e0ec713c1b9dcba62af28a",
-        "9bcaa49fcb379d7625df55f1a74936f5c399d6a2e8e12a737bf76d245c05c416",
-        "7cf582f971ae5d18dfc938431f16e485483a41ca8ba679bdcc201b48491eb43d"
+        "357f4ced95fb483924d771c07f09a94d4751d3380d6e12ed6757864e474df447",
+        "82569f424146aaad9511c839462b0df4b0dbb72430d1defa29308785c3ceb7f4",
+        "a1cce642b37f4a95ed7d703962872aacec569d4d2e265fc3eca8c1c20ced8a3f",
+        "cc75281cbd5b1ed1e325113e559a3968846758ed63860c68088dc836add76b89"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:protactinium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:protactinium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:protactinium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:protactinium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
             "count": 1,
-            "id": "cruciblecraft:protactinium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:protactinium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:protactinium/plate"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "protactinium"
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -84,7 +109,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fd32e055e5db8bd1",
+        "cruciblecraft:gt6/8edd67cbdb2974ab",
         0,
         0
       ],
@@ -92,7 +117,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/a88c6a446a26025b",
+        "cruciblecraft:gt6/176b475ead327fe6",
         1,
         1
       ],
@@ -100,7 +125,7 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/0284599a83b624ae",
+        "cruciblecraft:gt6/7a2c1c4976d8c6ea",
         2,
         2
       ],
@@ -108,14 +133,14 @@
         3,
         3,
         0,
-        "cruciblecraft:gt6/010dc9bf139e0f57",
+        "cruciblecraft:gt6/9f4de4aad56be2e0",
         3,
         3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 368,
+      "duration": 5129,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        5,
         0
       ],
       "output_chances": [

@@ -10,32 +10,50 @@
         }
       ],
       "hashes": [
-        "826c77462f1c3aad7bb87f8b9180512804e42c2f6d04103be610500975549f78",
-        "62d4d5b173d7015dcd77e73a651e2d6230fddb359d7115e406f7f7869d102a8e"
+        "59ac68a680330e575589f4978d7f6a4ae1d8485519182f1cffa267d06dadbbd4",
+        "47ac05348975d37690ffc531adf7eaf7bce9fc171edeb0ca1fe023476ab682e0",
+        "a3dd762b114d473e3fd1729d32002eaae3862990e59bf1603d94d81bac4fb103",
+        "b834aba46a6a32573e4c71ff10a2ee312681ea7de2efbaaac8796c3e73eeb9aa"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "netherite"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:obsidian_refined/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherite"
+              "cruciblecraft:prefix_material": "obsidian_refined"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "obsidian_refined"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:obsidian_refined/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
@@ -43,16 +61,19 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherite"
+              "cruciblecraft:prefix_material": "obsidian"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "obsidian"
+            },
             "count": 1,
-            "id": "cruciblecraft:netherite/rod"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -62,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2c4e7f3e88297241",
+        "cruciblecraft:gt6/dcfd9a00f616e1d4",
         0,
-        1
+        0
       ],
       [
         1,
+        0,
+        0,
+        "cruciblecraft:gt6/3f3f46bc2ce7bdea",
+        1,
+        1
+      ],
+      [
+        2,
         1,
         0,
-        "cruciblecraft:gt6/0f6af04e38da7580",
+        "cruciblecraft:gt6/511bafadb465ac66",
+        2,
+        2
+      ],
+      [
+        3,
         1,
+        0,
+        "cruciblecraft:gt6/ec373f99ad396c68",
+        3,
         3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1223,
+      "duration": 175,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        6,
         0
       ],
       "output_chances": [

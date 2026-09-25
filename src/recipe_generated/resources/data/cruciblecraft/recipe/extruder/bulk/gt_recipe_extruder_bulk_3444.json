@@ -10,13 +10,43 @@
         }
       ],
       "hashes": [
-        "dec729b4b2407a88530398128e3d10695e119401d91f2690fb972283d36a6ec1",
-        "b530de37e1391008de40ea206c0ee686e25074d3a20ca039c08a3eb83ad5f9c9"
+        "aa877c58831edcf93f849ffbee0dbe94b4f0daa078e1ecb0a550a5a8a1ee3e62",
+        "8ab864f64112be8a30704097af3ccc4d825c35e061912f6a6197f3e44e84037b",
+        "fc41436ee0a07763c80ada34b8adba53a2cbd00693ac1348e6c8fee58d6e7b96",
+        "a75589b04bd6ce7faf3dd39d33e435187ee48262606e8a32828936cc76f46677",
+        "b9acd5d396534ef1d5cedf49138c349525aeda1f9fc4bf1dc43fa110d9c50c2a",
+        "c754a07e3ed7f32ae2d4075ab76b707762c750dc03b83ed51a1d849d8a373b37",
+        "433c6d51964daa19dd5e1e18366fb45153d3bce28c981f92e6afacdd5ab81e29",
+        "774e7b2788ee584829489980d543536c078601b45e0e58097d2dd0a6b672d916",
+        "93eeedc874b257f85bc7b70bcb23a4e649779e66651b9d6a5c31eee32ba1895b",
+        "4f5f7ec18d5d87cb32bbf2967d5b1b8b727be90a91b4d1a80dc06682cef64f6f",
+        "e83d9a3278a996d17a7fee60ac9a0adc3aaeb33882227c56cdc9ec518d8c51f8",
+        "dfce32f91d2bd069ddcd072f445066c2103407c8ba60789aca9f256565d4d908",
+        "4c6bf9f53260c643b0390332e591cf49f77ee976d9a9401b06ed0419d6f8c52f",
+        "6ce415a388aa019b710a582b766d8bf141ab0e3937d1fbcfafa76a326b70b8bc",
+        "4240782f907dde7a5b5b0a801486476a10a32c0df387f0299b71bc5f9d51a4d1",
+        "705e0cf440116192d5c5926e8a0a7c08ae09ce7bffa8def7602a1e102679333d"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:atlarus/bolt"
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -24,18 +54,228 @@
         ],
         [
           {
-            "item": "cruciblecraft:atlarus/fine_wire"
+            "item": "cruciblecraft:haderoth/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 14,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:haderoth/gear"
+          }
+        ],
+        [
+          {
+            "count": 14,
+            "id": "cruciblecraft:haderoth/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 28,
+            "id": "cruciblecraft:haderoth/rod"
+          }
+        ],
+        [
+          {
+            "count": 14,
+            "id": "cruciblecraft:haderoth/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 28,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 7,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 14,
+            "id": "cruciblecraft:haderoth/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 7,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
             "count": 1,
-            "id": "cruciblecraft:atlarus/gear"
+            "id": "cruciblecraft:haderoth/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 14,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 56,
+            "id": "cruciblecraft:haderoth/ring"
+          }
+        ],
+        [
+          {
+            "count": 14,
+            "id": "cruciblecraft:haderoth/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 7,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -45,22 +285,134 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b0594b1a34aaeee2",
+        "cruciblecraft:gt6/2d23effd030e6646",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/10c98bf59feb1e9a",
+        "cruciblecraft:gt6/e96740864fe0f3a9",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/6d30e4100fc63f26",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/f0cd93fd95c07652",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/9c5d5a30e0a247bd",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/55407f037077dd84",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/6752f7e4d7cf0bc9",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:gt6/7e6dc1a46a6a033e",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:gt6/4fba7aca64c4e8b9",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:gt6/98204817d6009117",
+        9,
+        9
+      ],
+      [
+        10,
+        10,
+        0,
+        "cruciblecraft:gt6/d3c7b3cf2d7e4044",
+        10,
+        10
+      ],
+      [
+        11,
+        11,
+        0,
+        "cruciblecraft:gt6/dafdee0c19cbc0a0",
+        11,
+        11
+      ],
+      [
+        12,
+        12,
+        0,
+        "cruciblecraft:gt6/09b5fd7f6cd0ca7e",
+        12,
+        12
+      ],
+      [
+        13,
+        13,
+        0,
+        "cruciblecraft:gt6/a9cb21343b8fd20e",
+        13,
+        13
+      ],
+      [
+        14,
+        14,
+        0,
+        "cruciblecraft:gt6/11f25313a5885bd3",
+        14,
+        14
+      ],
+      [
+        15,
+        15,
+        0,
+        "cruciblecraft:gt6/d27ce9700b5a95d8",
+        15,
+        15
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3913,
+      "duration": 7261,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +423,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        1,
         0
       ],
       "output_chances": [

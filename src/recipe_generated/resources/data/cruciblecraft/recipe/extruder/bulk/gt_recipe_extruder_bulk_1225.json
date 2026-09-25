@@ -10,67 +10,62 @@
         }
       ],
       "hashes": [
-        "61b2f269be075a628c2729da7df3a1369ad9d2bdb0d5f4363e0b0a0b423de203",
-        "c467d37e09aa263cfa20be4bc1d707bca3d0774f156fa724e96bde578da949d4",
-        "70b3232ba6ada752a45462d2bcea559d138d865c3eb0407014fb3b07f76ced2c",
-        "e476ae8c78dd84512a57a35b5f1ccf74e6e39c687d4aad64a0537e05b6bb42b6",
-        "a370c4fb17c2e10657316a3411ea40998084e628132224395e1de5699f2571d8"
+        "ecbcc90016e1df5ade7ce1e62ca8d7c6dfb6bc5befa3c0a1690e2567999379cd",
+        "806b5d3273421efb93b981b92cc40b3932b9b5267f03c540fb84cfb7beb0b27c",
+        "d6a34c10e82c8aa36f9d9ae3efc60284d044b62dd66ad0dd4ff7c62b27bef657",
+        "c590104a409bce3f73f66bb9e59c08754a8ba650193596a9e145a9cdc5cc39e5"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "thorium"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:red_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:thorium/foil"
+            "item": "cruciblecraft:red_steel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "thorium"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:red_steel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:thorium/small_dust"
+            "item": "cruciblecraft:red_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:thorium/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "red_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:thorium/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "red_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -80,7 +75,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7dfa95a678e8ba1e",
+        "cruciblecraft:gt6/eb3df62bcde528d1",
         0,
         0
       ],
@@ -88,38 +83,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/f02d472b3043f82c",
+        "cruciblecraft:gt6/f54c573fab0cc74e",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/2e458910cc6bdbe5",
+        "cruciblecraft:gt6/5216885deb062a17",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/e96ca44effd4d3ab",
+        "cruciblecraft:gt6/0721da62e8402d4b",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/435b1b0618abf5f4",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2966,
+      "duration": 643,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        24,
         0
       ],
       "output_chances": [

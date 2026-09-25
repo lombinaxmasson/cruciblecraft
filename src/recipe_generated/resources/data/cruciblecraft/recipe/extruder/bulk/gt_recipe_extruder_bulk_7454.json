@@ -10,87 +10,86 @@
         }
       ],
       "hashes": [
-        "0b88f601241c65dc10639b61044e02ace9a0f37bcda189b63f6dbb73ecbd17a0",
-        "b099814dbb8df3bc7dddbc2248307c8414583ca5d78521ba60cdac3834f97e82",
-        "315c404fda18d1a285269cb3d10cced8bcca3528e2850fb8beefdae607c22a09",
-        "76100b17a0e61e0741ac6226489f1939ee2f095593ceb7decbb6dd4d7df5157c"
+        "376be4ad89e8efc12eeec5b15416f65be5aad663c9332588176a7f403f304e68",
+        "53f3768c8b03415415ce4b4de1edcc30217f24c99e235e215721032938dccaa7",
+        "dbc317fad6035d4f2e6bdbdf798704c55036e131041748c9dfa51570b3ec71ee",
+        "3529102b918aee515f030e097d79298e61b0d3cbd02a2ea89d8c21f66eb3c8b0",
+        "ea8073d1d56e44789110d495622a126c6eb826714543d2e71c09b224d27255d9",
+        "bef53ea70245225b24c6dd760ee343b16d00223c05cee36ed5f55259836b10a2"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "rhenium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrum/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "rhenium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrum/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "rhenium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrum/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "rhenium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrum/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
             "count": 1,
-            "id": "cruciblecraft:rhenium/long_rod"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:electrum/item_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rhenium"
+              "cruciblecraft:prefix_material": "electrum"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:rhenium/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:rhenium/ingot"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -100,7 +99,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b27e121a412dd82d",
+        "cruciblecraft:gt6/f626c33e01a83241",
         0,
         0
       ],
@@ -108,7 +107,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/fbfe3f66b2483f66",
+        "cruciblecraft:gt6/35d693f92760b37d",
         1,
         1
       ],
@@ -116,22 +115,38 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/bd3662f90a0e4d3e",
+        "cruciblecraft:gt6/843dfcff26c544c0",
         2,
         2
       ],
       [
         3,
-        3,
+        1,
         0,
-        "cruciblecraft:gt6/558a3c45064f2dd7",
+        "cruciblecraft:gt6/3340d95fd7a63e5d",
         3,
         3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/6ddc0a453204f948",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/da40cce315816f23",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1370,
+      "duration": 684,
       "eut": 96,
       "item_input_actions": [
         {
@@ -142,7 +157,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        24,
         0
       ],
       "output_chances": [

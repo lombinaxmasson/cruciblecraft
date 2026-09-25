@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 5567,
+      "duration": 1511,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,36 +17,47 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:meteoflame_blue_steel/machine_casing"
+          "item": "cruciblecraft:nichrome/pentadecuple_wire"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:meteoflame_blue_steel/block"
+          "components": {
+            "cruciblecraft:prefix_material": "nichrome"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "nichrome"
+          },
+          "count": 3,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "317b991bc6193e726333361530e958a3f8d0fb50814abb7470cb7a269b01b5ed"
+          "4ba81a8a681b3595df0326ed3027465ae39be457f5e0f7aa1098b9a8844bf571"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9006",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/bff07fefe4820d59"
+      "stable_id": "cruciblecraft:gt6/eec37d0e421cfac9"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

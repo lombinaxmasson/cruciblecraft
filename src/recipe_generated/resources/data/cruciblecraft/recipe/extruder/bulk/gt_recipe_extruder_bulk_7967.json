@@ -10,40 +10,134 @@
         }
       ],
       "hashes": [
-        "426158bc6385128c79b3badd1626a0b422dc71c651a63bbadf464f12c59ccdef",
-        "8626e667ddba2b3a7c6a04c82cec854cd94bdec7d890aa883188e9341f1c9c94"
+        "ccf3943a78a3d515e349b7773eebaa0f0757e4e7baea4ee10b27f41501d500f5",
+        "c24d4f52ddf5eb403b5ff2595c8b309e999157afe746defc92dedb6333ecb069",
+        "530c361ef06dfc25d583d36cd1f6f6cfe0fe6967826332c9d493e82a9358a974",
+        "29ee952008932a0dfdfab9b69fd125b634ab55f843d7ed18c04f3d5c45b66951",
+        "75d541cd2b33871fbc59fd33b20275d0a4317c562ab4690302d9517aab3dd301",
+        "0830586838dc04f3fd49491562f0679820288b4e3d9d8c0f55721cc1845d7733"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:stainless_steel/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:stainless_steel/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:molybdenum/gear"
+            "count": 64,
+            "id": "cruciblecraft:stainless_steel/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:stainless_steel/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:stainless_steel/tiny_fluid_pipe"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:stainless_steel/tiny_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:stainless_steel/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:stainless_steel/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:stainless_steel/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:stainless_steel/bolt"
           }
         ]
       ]
@@ -53,22 +147,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3edc86233fd85ee5",
+        "cruciblecraft:gt6/a0c972836b1515a4",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/58223ed4257cb718",
+        "cruciblecraft:gt6/83a509d202f0012b",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/8d74c4f02318f46e",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/a5b5f60d9c61975d",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/61f4e795084cdbb1",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/030c2ef5cbf05f59",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2464,
+      "duration": 11209,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +205,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7967",

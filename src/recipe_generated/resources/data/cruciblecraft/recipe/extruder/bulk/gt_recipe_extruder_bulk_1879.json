@@ -10,40 +10,83 @@
         }
       ],
       "hashes": [
-        "f945581e78841c26f4fa6a9e09f6c8d5bd84c59c4fa38b4c36242b5c306999a1",
-        "211d8bcb297b3a8a35e241ca35c1161f14c09e517be34934d60791073a38815a"
+        "5515fd69fb6e63cad79bc35ad12b9103bc72f96157b34a248a63b96cb3f3f598",
+        "1ca30b1242fb7a300b325406366ef8a3590396f96a75e9bc657613fdb90d21fc",
+        "493127934cbb565ad31ceb355a478bfcc046c2d0dfd8c450411faa2bdf92113b",
+        "2b6174e5e164f3aa3ea1d214498068680a272953e3a02bbf481491e866cd0e38",
+        "af48a687356ad23470ab7eab0579e1bd9106f5dde50dc773a71cb0cf8998ff57",
+        "138106e432bc3631aacfbc3eaff4d27c576dce1e43fc80b4e94bdf9b95a1cbf5"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:damascus_steel/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:damascus_steel/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
+              "cruciblecraft:prefix_material": "damascus_steel"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:damascus_steel/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:osmiridium/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f5687c754a998ab7",
+        "cruciblecraft:gt6/e27594bd368a33d3",
         0,
         0
       ],
@@ -61,14 +104,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/cc0e6369d5938120",
+        "cruciblecraft:gt6/1c5df91c7cce05bb",
         1,
-        10
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/2f65291aa637db16",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/f65209880aabc25f",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/e1977a7fe312f0fb",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/358903fe0dc45492",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3791,
+      "duration": 360,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        14,
         0
       ],
       "output_chances": [

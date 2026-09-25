@@ -10,14 +10,15 @@
         }
       ],
       "hashes": [
-        "cc12e2da9172e66f8e814003d9fa9ca5e56904804f70b12c293301a6e24a31b6",
-        "4c5fd384975f93a8125f7c79db75d00f25f0a9fa691e90519d9fc5a21e6a3c1b"
+        "0ff1423c037555e6b313b21692f494b0841c4d713a1471c9a2c1bf0e6e2a1d47",
+        "e2bb45a522d0e856afddda089b389e668825e10fc8771809b8e419e5cf0d6400",
+        "a751b078c5b74af9b15338fad0ff90e9cc9d2d2c6de4fa357d6ba42c127a41f7"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_steel"
+              "cruciblecraft:prefix_material": "naquadah"
             },
             "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
@@ -29,10 +30,18 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_steel"
+              "cruciblecraft:prefix_material": "naquadah"
             },
             "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadah/quadruple_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -43,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoflame_steel/block"
+            "id": "cruciblecraft:naquadah/block"
           }
         ]
       ]
@@ -53,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7584f337dcfaa3ad",
+        "cruciblecraft:gt6/3e03743c651a1e05",
         0,
         0
       ],
@@ -61,14 +70,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/ef829a222e95d1f7",
+        "cruciblecraft:gt6/50ea23346dcefe44",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/c020a19a8facc1f2",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3453,
+      "duration": 3912,
       "eut": 96,
       "item_input_actions": [
         {

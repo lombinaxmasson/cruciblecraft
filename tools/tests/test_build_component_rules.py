@@ -20,16 +20,21 @@ class ComponentRuleBuilderTest(unittest.TestCase):
         bundle = self.bundle
         manifest = self.manifest
 
-        self.assertEqual(51, manifest["source_rules"])
-        self.assertEqual(51, manifest["authored_datapack_entries"])
+        self.assertEqual(31, manifest["source_rules"])
+        self.assertEqual(31, manifest["authored_datapack_entries"])
         self.assertEqual(
             manifest["expanded_recipes"],
             manifest["authored_projected_recipes"],
         )
         self.assertTrue(manifest["expansion_is_authored_projection"])
-        self.assertEqual(20, manifest["extruder_authored_entries"])
+        self.assertEqual(0, manifest["extruder_authored_entries"])
         self.assertEqual(2782, manifest["extruder_logical_relations"])
-        self.assertEqual(2782, manifest["extruder_runtime_publication"])
+        self.assertEqual(0, manifest["extruder_runtime_publication"])
+        self.assertNotIn("extruder", manifest["per_map"])
+        self.assertEqual(
+            "retired_to_test_fixture", manifest["extruder_templates"]["status"]
+        )
+        self.assertEqual(20, manifest["extruder_templates"]["fixture_files"])
         self.assertEqual(10000, manifest["expansion_budget"])
         self.assertLessEqual(
             manifest["expanded_recipes"],
@@ -100,9 +105,10 @@ class ComponentRuleBuilderTest(unittest.TestCase):
     def test_generated_rules_are_runtime_material_rule_json(self) -> None:
         bundle = self.bundle
 
-        self.assertEqual(51, len(bundle.generated))
+        self.assertEqual(31, len(bundle.generated))
+        self.assertFalse(any(key.startswith("extruder/") for key in bundle.generated))
         self.assertEqual(sorted(bundle.generated), list(bundle.generated))
-        for relative, content in bundle.generated.items():
+        for relative, content in {**bundle.generated, **bundle.extruder_fixtures}.items():
             document = json.loads(content)
             self.assertEqual("cruciblecraft:material_rule", document["type"], relative)
             self.assertEqual(
@@ -120,7 +126,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
                 self.assertGreater(int(document["eut"]), 0, relative)
         extruder = [
             json.loads(content)
-            for relative, content in bundle.generated.items()
+            for relative, content in bundle.extruder_fixtures.items()
             if relative.startswith("extruder/")
         ]
         self.assertEqual(20, len(extruder))
@@ -160,7 +166,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
     def test_acceptance_materials_have_explicit_rod_routes(self) -> None:
         bundle = self.bundle
         routes = []
-        for relative, content in bundle.generated.items():
+        for relative, content in bundle.extruder_fixtures.items():
             if not relative.startswith("extruder/"):
                 continue
             document = json.loads(content)

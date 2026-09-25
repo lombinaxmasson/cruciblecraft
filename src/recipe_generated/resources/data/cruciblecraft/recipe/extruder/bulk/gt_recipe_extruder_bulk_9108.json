@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 689,
+      "duration": 1185,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,25 +17,28 @@
         }
       ],
       "item_input_counts": [
-        6,
+        9,
         0
       ],
       "item_inputs": [
         {
           "components": {
-            "cruciblecraft:prefix_material": "constantan"
+            "cruciblecraft:prefix_material": "nickel"
           },
           "items": "cruciblecraft:billet",
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:extruder_shape_gear"
+          "item": "cruciblecraft:extruder_shape_hammer_head"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "nickel"
+          },
           "count": 1,
-          "id": "cruciblecraft:constantan/gear"
+          "id": "cruciblecraft:tool_head_hammer"
         }
       ],
       "output_chances": [
@@ -43,14 +46,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "72ff783230b4c675f89bb81da0877872328479c5cb64b368a12373cffa03da16"
+          "15596691647741fae1bf32b32c2bce75e5205f278ab78f0c7a16081c3a9bf459"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9108",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/ac76c1bdab5de780"
+      "stable_id": "cruciblecraft:gt6/6ffbc0c20e71b4b3"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

@@ -10,32 +10,42 @@
         }
       ],
       "hashes": [
-        "326e80fdb2169fc5987863d539d47a2637cffea9d6d51cb7724ce762192cf46a",
-        "195274211bb0ed417d70ccdebdf24cbd4e3539bed05ae59dae38b1b300776d5a"
+        "162c9b9a07f00bc1da32139ee6a966e9bcfa0e015a8273f3f4bba52de66b1734",
+        "72eb3c13e48363e6c4f5eb4045700e2c7b714ce25c17d05e026763f744bb5dd0",
+        "2e080f1ea268ec01047a70f5064afcfffe0524c22d65724c034e0a6e4409e2bc",
+        "ee499368e6a37d443067a2f163af2815973b0c80ae13a0878f7ea63cf5791dc6"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "haderoth"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tritanium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "haderoth"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tritanium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tritanium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
@@ -43,7 +53,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:haderoth/block"
+            "id": "cruciblecraft:tritanium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -53,7 +72,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fe2ae73558c3ac6e",
+        "cruciblecraft:gt6/8e8bfbabb88cc6f3",
         0,
         0
       ],
@@ -61,14 +80,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/41c33c6c4cdc8a9d",
+        "cruciblecraft:gt6/956c48f0c7f81dd9",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/25fc265041a2d147",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/f6699b54ea32a7b6",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5187,
+      "duration": 277,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +114,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
       ],
       "output_chances": [

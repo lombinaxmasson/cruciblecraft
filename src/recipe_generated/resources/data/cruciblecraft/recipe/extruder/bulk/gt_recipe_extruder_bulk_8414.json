@@ -10,49 +10,52 @@
         }
       ],
       "hashes": [
-        "263d715a0d7a88d26bf05e059599be5532147173af0843a9200c87af828e3120",
-        "4bca3488b1fa70d5f0355e46bd21a3d1c2775db2f1d7c8fcfe3e2e03912a67ba",
-        "e8b35dfeaa35533e62366d1ed5355f1ead42c3844dfa48e0c23b4c3f213997d1"
+        "ceff2843b59a24a729c519f8e95f45c0223ae575c3160ac5593de2b3535be141",
+        "1e6f26d93c3e4b13fb1c27c806ad638d0a61ae0af030df26a744a74d568f662c"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vibranium_steel/gear"
+            "item": "cruciblecraft:vyroxeres/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibranium_steel"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vyroxeres/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "vibranium_steel"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vibranium_steel/block"
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:vyroxeres/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:vyroxeres/bolt"
           }
         ]
       ]
@@ -62,30 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/69b1c0997ea7528c",
+        "cruciblecraft:gt6/f694a603b8af9e2b",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/1ba51aabef62ce11",
+        "cruciblecraft:gt6/2a04aaee1e132b52",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/67e34f530d99f4c9",
-        2,
-        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3052,
+      "duration": 3979,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8414",

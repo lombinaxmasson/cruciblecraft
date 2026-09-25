@@ -10,42 +10,84 @@
         }
       ],
       "hashes": [
-        "fb7b74c8a474ba846df71e9d03224761fbfadca8d95de3d0979dd60d4626dc8b",
-        "1c853561358cae3fef19762898a177475c7dc17728f42ccd42aa14579bd205fb",
-        "09effd3597c03a25eb1fa8a894e1723e92d5d612d7d31d0192532b1d6a876d28",
-        "fc24c250f4d451ef997540de54ba1c52311389b3f0b5d027a0b3e6203a654b05"
+        "f43e07f7c530040b455459b7fe5660171a1202d0d2759408f2bd0b8428444c3c",
+        "e216404d5f8668cc1418c7f4e41c7621b2be30325cc153caa2a611d789324663",
+        "cbfc2248cbde4087622ae4b7d88624a3f2f11b23bde697c5a2824625effd018b",
+        "2b2322896b7f1e170116059565c962d29630d06e7b74e63f2e0498b8c4c897ae",
+        "8faf578c8eef3b1547d0c995914a49fdbde61d15c4e6e16ff31dc121e97ba360",
+        "d6551c0d7f01c556b07c7eeb05024d89aa011720d5dedc2bbee6698f48111e85"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:niobium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:niobium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:niobium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:niobium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -53,28 +95,22 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:niobium/long_rod"
+            "id": "cruciblecraft:ultimet/large_item_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ultimet/block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niobium"
+              "cruciblecraft:prefix_material": "ultimet"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:niobium/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:niobium/ingot"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -84,38 +120,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/503dd619b53c2b41",
+        "cruciblecraft:gt6/14c7cd164acb5b91",
         0,
-        7
+        0
       ],
       [
         1,
         1,
         0,
-        "cruciblecraft:gt6/b175984ca3e181d0",
+        "cruciblecraft:gt6/9613904b3075308f",
         1,
-        8
+        1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/b2c37bdddd35145e",
+        0,
+        "cruciblecraft:gt6/9e2e570ab8828f1d",
         2,
-        11
+        2
       ],
       [
         3,
-        3,
+        2,
         0,
-        "cruciblecraft:gt6/a7c56f919094b009",
+        "cruciblecraft:gt6/23515f9b70ecc680",
         3,
-        30
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/4e6908d3e5229015",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/0f5060070163db89",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 325,
+      "duration": 2249,
       "eut": 96,
       "item_input_actions": [
         {

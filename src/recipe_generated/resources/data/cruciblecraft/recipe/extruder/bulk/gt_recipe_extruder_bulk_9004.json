@@ -10,13 +10,31 @@
         }
       ],
       "hashes": [
-        "08f6a992fe91bbb674c47046f0023851d3c55ea774d21a5b4564d572f2d28ba1",
-        "c03d6fbbb09a7dec4834550c51b338b8f0755d6bf075904bdf242db9f6dfc4cf"
+        "20c5187130adb27ff7ce7db03f98e2c5654cff304183e9fa4734a4fd38e63515",
+        "817c4a4ea0f4dff2e93ed029f036ffac9799c801ff4ae5d7f76679269311ac89",
+        "46a60dba1ae5d7a37310e34ca7f29500821d53f39c8b454db0bab044de66d14b",
+        "1e6dd3cee996117a80899992729579feabcd19c22f60f8d6d5398a27dd0da28c"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:tartarite/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -24,7 +42,23 @@
         ],
         [
           {
-            "item": "cruciblecraft:tartarite/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -34,8 +68,17 @@
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
             "count": 1,
-            "id": "cruciblecraft:tartarite/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:coralium/gear"
           }
         ]
       ]
@@ -45,22 +88,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/66a0f075d3ea2d93",
+        "cruciblecraft:gt6/5d19b5c41343e814",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/3a7b65f8146b29aa",
+        "cruciblecraft:gt6/dbaa45c2bc73f45e",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/fd59ce6504734ee6",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/afea0d1bc4679f68",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3294,
+      "duration": 3162,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        2,
         0
       ],
       "output_chances": [

@@ -10,40 +10,101 @@
         }
       ],
       "hashes": [
-        "9d8d033b7aed2c0bda8112cb94438645735a3f44058a383a92f1020e8fce4792",
-        "02294fe89d30bac2bdd336769a5c3382aab6f98743972909d906ddcad49733a1"
+        "91e0e729ef691e83a982f98993ffd2c66aa033afaab27b88b91bcade81de8fa3",
+        "1de14b95df7cff3f747138ba0ec5708388a08d835ea320f6b4b840250667f661",
+        "b3ecaf88b6d69180b03b7e8fcda2fc9fcdc3461d7ced1791284379782d87a90e",
+        "c1b0c85305e500154ec7a16e3ec97dd04dfd636871ab705746794169e3aa65dc",
+        "cd61d5d2a89500fc8d3bd1ee1b462fa1aaac3c6f8eabb0ebdb75453d3f580484",
+        "8f79c9f7bf3bf83aa7265221cbc2a9b7732b7878370889a5a72a552874f460a4"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_black_steel"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:haderoth/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoric_black_steel"
+              "cruciblecraft:prefix_material": "haderoth"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoric_black_steel/block"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -53,22 +114,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5dbfcb376614e6f6",
+        "cruciblecraft:gt6/88b433a47d9dae14",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/f373b88e9a9e8c50",
         1,
+        0,
+        "cruciblecraft:gt6/70d0beaf49d5348e",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/018232f5d0f2f80f",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/8fb63e7ea94f62b4",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/ec10a1992415d4ab",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/24a982f8d981ac5a",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2255,
+      "duration": 1038,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +172,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
       ],
       "output_chances": [

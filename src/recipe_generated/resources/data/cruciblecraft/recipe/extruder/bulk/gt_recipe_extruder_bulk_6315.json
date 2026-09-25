@@ -10,25 +10,18 @@
         }
       ],
       "hashes": [
-        "c28fbd36af2081afa95aad699346552d004e65319209c5aea72be5564829b104",
-        "8cb87db62e99bcaf6d859d9ebb26f5f821474e2d94ae53fd87b309e206464950",
-        "52233e1b42fe1852887b8acd52478c525403b1ab703793e7e5992f317813b9c3"
+        "429a62ba7178953e82281dda73c57a44948e21b2579c6b205b8c82dad98bc208",
+        "8b46b8994d9d17bbadd3879d7408bacd2a1b3abb38aba1ad28d0658cbb0f85e5",
+        "fb5a51321eece3d75fbe2f2db3a1155257eaaacc287f234f7efdb2f23e3f9586",
+        "19dbf6006307d8aa0c3137d78bbb4ef06569ccada671dfe8c2f9ddd27357329e"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:bedrockium/gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "bedrockium"
+              "cruciblecraft:prefix_material": "infinity"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -38,9 +31,33 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrockium"
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -52,7 +69,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:bedrockium/block"
+            "id": "cruciblecraft:infinity/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cosmic_neutronium/block"
           }
         ]
       ]
@@ -62,30 +85,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/804c357def512e29",
+        "cruciblecraft:gt6/08436edcee664ec8",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/f9e5012a473128df",
+        1,
         1
       ],
       [
-        1,
+        2,
         0,
         0,
-        "cruciblecraft:gt6/a530ad86f674007b",
-        1,
+        "cruciblecraft:gt6/a9736274d0034b6f",
+        2,
         2
       ],
       [
-        2,
+        3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/efeb83747e3c43d3",
-        2,
+        "cruciblecraft:gt6/50e85659f7e75d72",
+        3,
         3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 317,
+      "duration": 15387,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +127,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

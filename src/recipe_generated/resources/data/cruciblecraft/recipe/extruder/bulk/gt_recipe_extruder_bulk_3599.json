@@ -10,26 +10,17 @@
         }
       ],
       "hashes": [
-        "3f09538e84e00eaadc83c13149c988f2b382dee636ec810dd7566c3c334f03d8",
-        "39496f5ee4cbaa0d87039840cc50ae86ec99f7c9ef3e3f1aa2f0290ae1f75cb3",
-        "e0a61bf81cc296625d5160c96f592c81596536f802b3f3be5b88474822084206",
-        "9bb4fd560dd5e2997e834de3ad40d155c4c4a4e9fe53c315c599fc45da0637d4",
-        "cdc34e1a078e1768e3ad4c9910e0b34fc3fd86d20b1ed377173503f458fb956c",
-        "306e8658fbc2b0b8da27a3cbd472c00ec5d71c5f274bf265a9b372aa1e8d6042",
-        "0af9267224f1e947750d2fa6dd1c6a3fad4d22d85b5c66c568800de02d68b03e"
+        "b8dd070445950067cb0b876586a992d51615538416b068facd5d7544b41e3737",
+        "b675ab086e9f039c9d854a3af55e822f0feaedbffff02defe4a06e97dce80a02"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:mauftrium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:mauftrium/machine_casing_dense"
+            "components": {
+              "cruciblecraft:prefix_material": "cd_in_ag_alloy"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -37,89 +28,18 @@
         ],
         [
           {
-            "item": "cruciblecraft:mauftrium/machine_casing_dense"
+            "item": "cruciblecraft:cd_in_ag_alloy/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:mauftrium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:mauftrium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:mauftrium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:mauftrium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 56,
-            "id": "cruciblecraft:mauftrium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:mauftrium/gear"
-          }
-        ],
-        [
-          {
-            "count": 6,
-            "id": "cruciblecraft:mauftrium/block"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:mauftrium/plate"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:mauftrium/ingot"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "mauftrium"
-            },
-            "count": 56,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:mauftrium/small_gear"
+            "count": 1,
+            "id": "cruciblecraft:cd_in_ag_alloy/gear"
           }
         ]
       ]
@@ -129,62 +49,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/dffa983d4053f477",
+        "cruciblecraft:gt6/29095fc5e9237b19",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/d926c663536016db",
+        0,
+        "cruciblecraft:gt6/7b4c58790056457c",
         1,
         1
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/d022fc6bd926b8ef",
-        2,
-        3
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/1065f825fa09145f",
-        3,
-        4
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/302c54e0f8857869",
-        4,
-        6
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/b469be54cc0cab33",
-        5,
-        10
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/a31114371b9ba85e",
-        6,
-        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1312,
+      "duration": 251,
       "eut": 96,
       "item_input_actions": [
         {
@@ -195,7 +75,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        8,
         0
       ],
       "output_chances": [

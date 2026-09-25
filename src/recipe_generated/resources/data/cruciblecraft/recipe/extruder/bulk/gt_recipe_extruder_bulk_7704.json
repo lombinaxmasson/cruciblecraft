@@ -10,14 +10,20 @@
         }
       ],
       "hashes": [
-        "0ad219b4c72fc13b2b9e5ad24445ac87f831550c9ba890fb2e109e094831a377",
-        "35696f344ac35771011d3f3f4ad6b3b08ce7010c1d55e5d5133df3dd9ff6d98b"
+        "0e6585510cd376c38cd5aac2bfa02e9c4b1c9cc43de0c297236cb8d25b977cd4",
+        "1560813e1ea297ef7d70ce8994ef9dce4c92d3ae295c678788babd4f5a774fbd",
+        "c0b95f01a5321e10893e7b4c26adf3ed8548a7723a238e526a30d85d8107ad1b",
+        "aa52f9b3bbb710d625b8495bd9ee3ed8fce87564a4b076f9ebeb053761d4da81",
+        "6fd4826cb50e1a9fcf817b96591802d8c3a7a9d5358f5c7afc184d6e1baf7d67",
+        "99a17ce60ff5da78d3a1746b55a002e15a3deefa408414b63cbeb7d7e8321af9",
+        "1149f251deca97c65a06e276387dae072de5b66d92eb024db51ca6722b066371",
+        "c3a4fa692dced0dafdbabf9026789511c9b98e74cde66bbf68c5c15e678afa01"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "sterling_silver"
+              "cruciblecraft:prefix_material": "uranium233"
             },
             "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
@@ -28,7 +34,67 @@
         ],
         [
           {
-            "item": "cruciblecraft:sterling_silver/rod"
+            "item": "cruciblecraft:uranium233/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:celenegil/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium235"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:uranium235/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:uranium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "celenegil"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -39,7 +105,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:sterling_silver/gear"
+            "id": "cruciblecraft:uranium233/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:celenegil/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:uranium235/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:uranium/gear"
           }
         ]
       ]
@@ -49,7 +133,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/613acfa055384e70",
+        "cruciblecraft:gt6/ef922178c34f106d",
         0,
         0
       ],
@@ -57,14 +141,62 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/5594ad192b8caeca",
+        "cruciblecraft:gt6/1edfddb1515fb68e",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/39ea5651f276769c",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/ca6ed90f750b7971",
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/5e523a98265dcfd3",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/53974952bc21c3ee",
+        5,
+        5
+      ],
+      [
+        6,
+        3,
+        0,
+        "cruciblecraft:gt6/132be835c2b3e75a",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/64923fdb503d8c10",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 608,
+      "duration": 1301,
       "eut": 96,
       "item_input_actions": [
         {

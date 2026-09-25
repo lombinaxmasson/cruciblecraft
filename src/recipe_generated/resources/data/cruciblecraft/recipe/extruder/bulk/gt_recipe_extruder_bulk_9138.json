@@ -10,28 +10,45 @@
         }
       ],
       "hashes": [
-        "5413bb7fb6036ed08ae183597c3162796bc8cf663ddbf17a05a284fc84b5e091",
-        "eb8f52a3894aab73ae5efa8a8577c90ab5dcbb23461e01b951f24d6235569184"
+        "2706707df866f02910a6676e67d086af1983e9bcd7e790fb32b7778f3a0c7115",
+        "2bc94970a0d69f75687d20e8269380682f635f7c5f2680813eefa422022d9900",
+        "e70de7752f9562405d5eac19c4077dc5cae52823b4eb824c307d8e714e98f167"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "technetium"
+              "cruciblecraft:prefix_material": "gold_inductive"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:technetium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "gold_inductive"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "samarium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
@@ -39,7 +56,22 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:technetium/block"
+            "id": "cruciblecraft:gold_inductive/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold_inductive"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:samarium/rod"
           }
         ]
       ]
@@ -49,22 +81,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/367e723373059138",
+        "cruciblecraft:gt6/1f595c00eaef5ad5",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/8fa5cd12063d80dc",
+        "cruciblecraft:gt6/47b29c524ee848a1",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/0ce600d75ce703fd",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3414,
+      "duration": 62,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +115,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        36,
         0
       ],
       "output_chances": [

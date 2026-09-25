@@ -10,58 +10,150 @@
         }
       ],
       "hashes": [
-        "2fc7e4458073ef20a7e78b70801c8b444851e57bd6a9db4fd1bbea6efaa52356",
-        "21c0304ac7e1533e0e327448eb723942aaf0f66d0ffcf0a90eaf1d4f18fd9c57",
-        "50837abf597d92b3630f208cf9709fc32985ee4efbb6431a8b7f10e4614fb01a",
-        "ab285d83dc30c68f67e9e7f4d6ccba102c948ffc5a96168ecea67cc594b4cfac"
+        "6371b21ea90d43a2e65b1bf24145b6a8b40937b424179ff6908c9158750027cf",
+        "9c3f6e5f68d33485dea73010d41168e7ab626732548e0713b69fcbdea9485d44",
+        "c4c102d58d2dd5ee045a4074eff089bde6f119b4369c2c1dd878750afffa32eb",
+        "5cea33741a6e12e38d01b48b6da64bb634c8ac78fa7acec7533dab1fe6ee23a8",
+        "3b7e33c7311c3a953d102ab7716809046f30c0877dd01ce5bb24b66a2cf2026d",
+        "4b2d93504c8868402220397a95db2c3a94fef9edf75f34d23fbff447917e06b8",
+        "f174a6e6b80fb1928282201f7683bf0ff4b3a74a04e55a932fc9bf19aa6b31c6",
+        "314f909b4ff6e0d2febfac32cc6b693f44fac66acf3114b6551e35c41022d20e",
+        "d5f0dacbd231767303c5d2a25ba87cfd1165ce580b2f497519aae7bb0f5f5fa3",
+        "e250453ca01bdeea84261540c5ea844140ec67812fc871197cdf31c085c2dce5",
+        "ef98499d29f35aa0863b8842ee6f171515f9a8ee3f164b8f5eeff244e8af89a6",
+        "571fd07a5c0347cf57718f125d3a459c28b82f070fd7af9e21adbceb65bfbb5a"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thaumium"
+              "cruciblecraft:prefix_material": "alumite"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manasteel"
+              "cruciblecraft:prefix_material": "alumite"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thaumium"
+              "cruciblecraft:prefix_material": "thorium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manasteel"
+              "cruciblecraft:prefix_material": "thorium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
@@ -69,13 +161,49 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thaumium/gear"
+            "id": "cruciblecraft:alumite/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:manasteel/gear"
+            "id": "cruciblecraft:thorium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:alumite/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:alumite/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:alumite/plate"
           }
         ]
       ]
@@ -85,38 +213,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/32c63757dc36add6",
+        "cruciblecraft:gt6/030d5c578cbe12d7",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/38296802176b35f6",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/6710dd6474d64195",
+        2,
         2
       ],
       [
-        1,
-        1,
+        3,
+        2,
         0,
-        "cruciblecraft:gt6/5c3449e340a462d5",
-        1,
+        "cruciblecraft:gt6/feb5952202e810ab",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/d421f2b53a905cc6",
+        4,
         4
       ],
       [
-        2,
+        5,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/cc9c3015cd439a54",
-        2,
+        "cruciblecraft:gt6/f8f65a749e5a78f4",
+        5,
         5
       ],
       [
-        3,
-        1,
+        6,
+        4,
         0,
-        "cruciblecraft:gt6/c4e29a09290e01d2",
-        3,
+        "cruciblecraft:gt6/1afb30234b62dc96",
+        6,
+        6
+      ],
+      [
+        7,
+        2,
+        0,
+        "cruciblecraft:gt6/1f5d2ee718e70f4c",
+        7,
         7
+      ],
+      [
+        8,
+        5,
+        0,
+        "cruciblecraft:gt6/f5f3a0beefea2306",
+        8,
+        8
+      ],
+      [
+        9,
+        6,
+        0,
+        "cruciblecraft:gt6/a13da888c025d833",
+        9,
+        9
+      ],
+      [
+        10,
+        2,
+        0,
+        "cruciblecraft:gt6/cee8bbbc99c52fc7",
+        10,
+        10
+      ],
+      [
+        11,
+        2,
+        0,
+        "cruciblecraft:gt6/ca6a5a43f49a710d",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1472,
+      "duration": 74,
       "eut": 96,
       "item_input_actions": [
         {

@@ -10,87 +10,158 @@
         }
       ],
       "hashes": [
-        "7f13639520b7cdaa287b61315558a7f1b71f60d70e77d1853a5bb6f4e4dadffe",
-        "732b7949694a1c9480de046d38251bfd6e60546b050896c498092986037c8f34",
-        "0bb61417d76a8a97c80b2efd66db1bf4cfdeab846a02c270a2f2e15af677b249",
-        "3cec836216806964f05717a748a409d368500784908c2c97345f838e06c7a8ef"
+        "2ea173a7ab9a7df1b1783252661faa93f95ec21ad338ecc13060192647055679",
+        "d94eb2792288afa92ec586eb5c2d33d041f9ca3fa63c3ad690e0747419b465e6",
+        "9b8ed51b2d2ba1e47bf2be0ca1e705bb4c8b32fe1591c090aea6a2f5b6f01b3b",
+        "dcf3203bf1b83344008eec1b5d454ee12bf0630c45b6402a1614ef4ff2271a28",
+        "987a14476a164a9fc923bbcf4b55b20405b2cfc19d228f0c0474d26ad1f75e42",
+        "4a7fbe6482110f46389c0164a6437a6772377cf4cdec789116d9b4b6c49bcc32",
+        "5319c92a13fb3be292cd1f2e9b3c33f2b378a9205ce7d3771fe29d9cf0280809",
+        "e743b43fb41a7c4beba20d1ff591a7f28701f008a0258f5767727461096711ee",
+        "7b151b1d8aba87bf17c94ca25c70483c513c9de3bc68ad239ab15b48d2e30ebc",
+        "dfa8f11e88a44d554f7735d6181220978b91f39131b4872eab4ab5ae79b5aa34",
+        "17ecc52c290f3fdbaebf584e73e265cc05fb6c6164523e065dc4ce9043cf8585",
+        "6d28acec93a6b959a49f8680632f39ae8a8cff9985db05675b885a4b631e90af"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vyroxeres/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vyroxeres/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vyroxeres/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
+              "cruciblecraft:prefix_material": "vyroxeres"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vyroxeres/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
+              "cruciblecraft:prefix_material": "vyroxeres"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
+              "cruciblecraft:prefix_material": "vyroxeres"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vyroxeres/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vyroxeres/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
             "count": 1,
-            "id": "cruciblecraft:vanadium_gallium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:vanadium_gallium/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:vanadium_gallium/long_rod"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
+              "cruciblecraft:prefix_material": "vyroxeres"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -100,7 +171,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7f7c1fb3ab6eece1",
+        "cruciblecraft:gt6/7be0809ea1f0449b",
         0,
         0
       ],
@@ -108,30 +179,94 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/f325575d7d51a3d4",
+        "cruciblecraft:gt6/2c99b6df150db0f4",
         1,
         1
       ],
       [
         2,
-        2,
+        1,
         0,
-        "cruciblecraft:gt6/df05cad020744126",
+        "cruciblecraft:gt6/d82ae08e19f58513",
         2,
         2
       ],
       [
         3,
-        3,
+        1,
         0,
-        "cruciblecraft:gt6/173184c71ba22e24",
+        "cruciblecraft:gt6/26cb004a08e863b9",
         3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/a80b372029963f9d",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/241b5914fe78d6a2",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/9c75531a13377b2e",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/a3c7a1c9c264804c",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/2bceae4f17c366ef",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:gt6/679d37794c7f3d0b",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/ef5c3267f61d5a3d",
+        10,
+        10
+      ],
+      [
+        11,
+        1,
+        0,
+        "cruciblecraft:gt6/873efbf1448395db",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 177,
+      "duration": 853,
       "eut": 96,
       "item_input_actions": [
         {
@@ -142,7 +277,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        27,
         0
       ],
       "output_chances": [

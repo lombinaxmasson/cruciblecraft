@@ -10,41 +10,72 @@
         }
       ],
       "hashes": [
-        "2d2b1b84873d18bb6444bc3ff2b471c14520b1ff708fe1c909c1151b7efba713",
-        "3ecc67e9a80f0288a4597130f5d06951b21e0cbe40b4863a6f9376a6d8401899",
-        "b531006d62c471a875bd3581ae765469d91ca8b3083b5c4e408edc95767db2f3"
+        "d5f1aecc11d9433acd52fbb93ffb57fc1d22c4fec5d929ed889b7f36ffe077bc",
+        "ddb0e39d140f716dbe2c7effc0c265fd66ed3ccbb261a1a8c0755e2bcdd8a24e",
+        "5c432f071242b5e9501f5ae2e9d40af8a8a4f35fc2ff0120b81561e3ec5b387b",
+        "1f3346b25b9d985d746960f0c5f4492c6c88377edef891f2de19cbedc64416e1",
+        "355c2c73b69d35f5b7306ddc7fc6d8963949747aea110b930c3dcef6acecd16b",
+        "c80ae69ed5098a8d6406bd06e5c99d62c11b481824cd21c9509bb18532b20dd4"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tritanium"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:meteoflame_steel/machine_casing"
+            "item": "cruciblecraft:osmiridium/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tritanium"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -52,13 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:tritanium/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:meteoflame_steel/block"
+            "id": "cruciblecraft:osmiridium/gear"
           }
         ]
       ]
@@ -68,15 +93,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f9fc87193609de54",
+        "cruciblecraft:gt6/cf16a42b9f9b91c2",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/86cefcdb170c1649",
+        0,
+        "cruciblecraft:gt6/2e3d0a16ea0b0d1c",
         1,
         1
       ],
@@ -84,14 +109,38 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/a816e21dfe8e4bd1",
+        "cruciblecraft:gt6/536e91cd580d5980",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/bcb96e5627a325b7",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/f91fd8b043d3b0f9",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/dd23e698ef0c2279",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5524,
+      "duration": 3791,
       "eut": 96,
       "item_input_actions": [
         {
@@ -102,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        36,
         0
       ],
       "output_chances": [

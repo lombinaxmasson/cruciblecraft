@@ -10,21 +10,21 @@
         }
       ],
       "hashes": [
-        "e8d69c3d5e39012044a75c8fc5e977113af23e3ebb23f7ee611d889515223e3e",
-        "2ed594df3c0c8fc213c6e82f51183eb0fdeb93abfa097d0b096d6f6e314ab83e",
-        "9b36ff636f8ff62a5ec12f2812f450cdf2c191d5fbbe9e492b1d8372215b14f0",
-        "dd4def1b7d3321bc248c64172d2cad18fc0f42e39eff75c3370b3337af181fbe",
-        "4bcee7aac1f822c3a2d4efd666a80593cf986b8e7c4a64ec5868ad79cb1f72e2",
-        "ddf6c2e3a9425b95d277a3a9ccd9e7d125568cabbda060d11df112a8ce905b86",
-        "b79f646a0f83a8a6fb1851ca9b0d7cc45560aba3964db444ec6761030bd8beda",
-        "0b8f8ecc4f4429852de61ac2adff8c602e1d823a8cb3f2dbf16ef6c5721c139e",
-        "6bd529fa29cd27b2268a1240349bc80271ed19cb5fdcb213e06ab6e95d64e41e",
-        "7c45b6e19cff65f92f4237be4e243c758b1e1e800cffc9abfaa427b92d5e2419"
+        "5a40fe6673651ce0591ad175907c1bcc3eb2c82647bab60c616ce26964553773",
+        "561188285be58a6b2c2175b09f1c18afa721f21992ed9c626e1fb6e19497a4f9",
+        "7e756a5a5814f042bfc5b886b600295c0a1fe56b23871a73db4ba5281b0cc79d",
+        "ef9ee5e754613c44294b916768a18004bab1ea133d290f533afd72bfc21f294f",
+        "4ec192cf1f3b0f17bf77acc67be91e3c7328919040610d267995d6de48b4f831",
+        "cbb8c2506c71dc9486e81c393cbbce0f2133ffdd9872eb1dba4fe5fbfc54d258"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:rose_gold/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -32,15 +32,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:rose_gold/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -48,58 +44,50 @@
         ],
         [
           {
-            "item": "cruciblecraft:rose_gold/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_wire"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rose_gold/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "gilded_iron"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rose_gold/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "gilded_iron"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rose_gold/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
           }
         ]
       ],
@@ -107,67 +95,43 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rose_gold"
+              "cruciblecraft:prefix_material": "steel"
             },
-            "count": 28,
+            "count": 1,
             "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
-            "count": 3,
-            "id": "cruciblecraft:rose_gold/gear"
-          }
-        ],
-        [
-          {
-            "count": 28,
-            "id": "cruciblecraft:rose_gold/rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "rose_gold"
-            },
-            "count": 14,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:rose_gold/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:rose_gold/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:rose_gold/plate"
+            "count": 1,
+            "id": "cruciblecraft:steel/rod"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:rose_gold/block"
+            "id": "cruciblecraft:steel/wire"
           }
         ],
         [
           {
-            "count": 56,
-            "id": "cruciblecraft:rose_gold/ring"
+            "components": {
+              "cruciblecraft:prefix_material": "iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
-            "count": 14,
-            "id": "cruciblecraft:rose_gold/ingot"
+            "count": 1,
+            "id": "cruciblecraft:iron/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steel/tiny_fluid_pipe"
           }
         ]
       ]
@@ -177,86 +141,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5c8b6d1ac953d3c1",
+        "cruciblecraft:gt6/b25c9beb8af4c27c",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/cf7270681b21f41b",
+        1,
         1
       ],
       [
-        1,
-        1,
+        2,
+        2,
         0,
-        "cruciblecraft:gt6/ec6236d685e8c614",
-        1,
+        "cruciblecraft:gt6/538e88a0eb37f32d",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/37ef088876d3e09d",
+        3,
         3
       ],
       [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/f22fcf3d5798c2f6",
-        2,
-        7
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/ac830f01667360a5",
-        3,
-        8
-      ],
-      [
         4,
         4,
         0,
-        "cruciblecraft:gt6/dab9aea4a7fd1dbe",
+        "cruciblecraft:gt6/a31e0c7eb3315d5f",
         4,
-        9
+        4
       ],
       [
         5,
         5,
         0,
-        "cruciblecraft:gt6/4b81a1028daed0e9",
+        "cruciblecraft:gt6/7ffb8017304259c1",
         5,
-        10
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/fe5b39c787ca5714",
-        6,
-        13
-      ],
-      [
-        7,
-        7,
-        0,
-        "cruciblecraft:gt6/2edae2a327df9596",
-        7,
-        14
-      ],
-      [
-        8,
-        8,
-        0,
-        "cruciblecraft:gt6/ba7b0599d99fbb7c",
-        8,
-        16
-      ],
-      [
-        9,
-        9,
-        0,
-        "cruciblecraft:gt6/acc080f9589d60c5",
-        9,
-        20
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3899,
+      "duration": 118,
       "eut": 96,
       "item_input_actions": [
         {
@@ -267,7 +199,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        36,
         0
       ],
       "output_chances": [

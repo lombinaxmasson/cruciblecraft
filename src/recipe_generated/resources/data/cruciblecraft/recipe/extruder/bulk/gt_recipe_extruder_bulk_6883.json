@@ -10,32 +10,72 @@
         }
       ],
       "hashes": [
-        "fc2f7b199f6756cb199c06330609548a6c2c02bc75e8255e97e8866ce81b29f7",
-        "9605692b36337c9494a01849db8e0e3cf8dceded156178a7a896135f70ff764d"
+        "594b97c7e648ff9f8d00241b8de5b4bc533ecb33cb6a6c9eaeb3062e700abbf3",
+        "eec7bb4d78fe515356f3303e8e0435bc625fe7345eb839f465de1de360879a26",
+        "9980540ca962191eca311bb21dc269dd4ae12ed1a5f2039e9600c2788b3f6c27",
+        "fc0450e7a0746bbb6f230ec2836619a08b3205321f3c1d03e83604d8baec024d",
+        "a291484e809601ccc327a68a7955ea2f2b6d4953fce652b6824a9bd3215e7b14",
+        "382797fa83380c0a7439751aa451d5eeb77f5b24f7a0c10cb8dcc2f6ac47a696"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "draconium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:infuscolium/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infuscolium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "draconium"
+              "cruciblecraft:prefix_material": "infuscolium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infuscolium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:draconium/block"
+            "id": "cruciblecraft:infuscolium/gear"
           }
         ]
       ]
@@ -53,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/94a4df36b1bc896c",
+        "cruciblecraft:gt6/1986ad4b38d5594f",
         0,
         0
       ],
@@ -61,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/679b585343c6305c",
+        "cruciblecraft:gt6/c137d1bd7507f8b1",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/ff486841aaa3917a",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/da95085c6dd05776",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/191cf69691ee6686",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/1368b952d6897982",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 585,
+      "duration": 849,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

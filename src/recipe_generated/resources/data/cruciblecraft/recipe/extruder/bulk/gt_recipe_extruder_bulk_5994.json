@@ -10,99 +10,40 @@
         }
       ],
       "hashes": [
-        "b003a7c94cb40ff541fba86aaebcf85bb7b20210efc4c6ac1da151850b339533",
-        "99a783eee141e82ee27cdc87cec6221fb4bf4fa986d91a3e821c796465575efe",
-        "8424aa1c39430f697dc9f7e99a48d761f3607b5f057701aae0cde03e6149cc14",
-        "ff50b5ed42cec68e5daceabc45d5076ac7864b6d3237e550ed47e5892afb7d67",
-        "5698a58950482316d482bb1e297126b6a66775dbb39be98381b92185f06fbb1d",
-        "bc78599bc4a69ff64e94f8c0a3b2e8822d707d293530aa5e16a8f2c740a136b2"
+        "9ab0f78b17c30484d83d926606c565c7c85b04792b4455b56113e065c9aa2b6d",
+        "967af25d2572dd5c2a2dae22372f72d78d3920849bd34427da2bee9eac72755c"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:end_steel/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:end_steel/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "prometheum"
+              "cruciblecraft:prefix_material": "enderium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:end_steel/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:prometheum/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:end_steel/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "end_steel"
-            },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:end_steel/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:prometheum/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:end_steel/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:end_steel/long_rod"
+            "id": "cruciblecraft:enderium/block"
           }
         ]
       ]
@@ -112,54 +53,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/cbe94e7ca264aadc",
+        "cruciblecraft:gt6/8457cfc3be8e5011",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/f6a1e0ed81f46b97",
+        0,
+        "cruciblecraft:gt6/7ed680f9033cdb9d",
         1,
         1
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/6c0a7276715e6bb8",
-        2,
-        2
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/45d878bfb3d703d1",
-        3,
-        3
-      ],
-      [
-        4,
-        2,
-        0,
-        "cruciblecraft:gt6/017efbb3a23ec717",
-        4,
-        4
-      ],
-      [
-        5,
-        4,
-        0,
-        "cruciblecraft:gt6/01059538744e7eab",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 197,
+      "duration": 3012,
       "eut": 96,
       "item_input_actions": [
         {
@@ -170,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        5,
         0
       ],
       "output_chances": [

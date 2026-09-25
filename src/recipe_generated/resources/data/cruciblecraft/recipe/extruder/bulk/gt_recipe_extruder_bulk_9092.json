@@ -10,45 +10,49 @@
         }
       ],
       "hashes": [
-        "ef3597535e264a73228703634e4e8c92cb25a59d8e8e52d143bb9ddfdf83b6f2",
-        "1e455308f877164b2652b8830392c6413457bc18c91798da639942a2194277a8",
-        "865daefbe70c45ae3504d1dcdba33932211769e20a74ca96f2f9d53c92e65442"
+        "75c1a6b24790166fd1a8b83c0bc60f317bded8582eaea5d73dfc1ec30b1d0f4b",
+        "5698f2506913f8b4786e8bfde02e63978060a8e4939eeff688aad417416cb380"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:rhodium/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rhodium"
+              "cruciblecraft:prefix_material": "ethaxium"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rhodium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
             "count": 1,
-            "id": "cruciblecraft:rhodium/block"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ethaxium/rod"
           }
         ]
       ]
@@ -58,30 +62,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/36084ad343817a42",
+        "cruciblecraft:gt6/fd239cadcda5ae7b",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/994aef81d844a17f",
+        "cruciblecraft:gt6/4065bf306c233188",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/c86fc015266f24e2",
-        2,
-        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3351,
+      "duration": 627,
       "eut": 96,
       "item_input_actions": [
         {

@@ -10,80 +10,79 @@
         }
       ],
       "hashes": [
-        "85b3a082bc136ea9d7e7cdbcc1d48c85f3258ee1740e739ae8f89745f4174dd1",
-        "004f92e475e54e0f77eaf7ac20954234ecb56f62e4aaa9091585b23611ae4cfa",
-        "dc780e93f16fb96b3e2225ad7f2054e7a776f787e7838022bf200096e2dcb39f",
-        "046520259a87ed54a74dc43cc4e3df139e4ff8f18c3c7e49cd937d61bc5cc4b1",
-        "88f0e20dca08cb82f9add326ac6f93db8eba82e96d4cfef709bc325a0b890343",
-        "3d9aa7d58a45fa1c54fe2b936dc3da5f3464fcc2139fd7d6b7648a23ec89b31b"
+        "ba6134f22fe96882c1a1684546595b0348812674db6aa6c2a72da5ec666c9fa8",
+        "5899ae069c7786bb33fe2249b3833eb4a38c7ffb225ca7a74f06b3db19604c9d",
+        "f90e10f85b80acd9262762a9aadcfe522e4cc53adbf437c1c2684179f5fe8957",
+        "bd81a3a3f5c1d463644de9bed29bc3dd1c493e9bdfd66414f323c1efba5d5b6a",
+        "c2216620803164ba0482c2e7cfab830c07b975b81cec4284de25b6e5641d366d"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:alduorite/nugget"
+            "components": {
+              "cruciblecraft:prefix_material": "silver"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:alduorite/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "alduorite"
+              "cruciblecraft:prefix_material": "astral_silver"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "alduorite"
-            },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:silver/wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:alduorite/screw"
+            "item": "cruciblecraft:astral_silver/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "alduorite"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:silver/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "silver"
+            },
             "count": 1,
-            "id": "cruciblecraft:alduorite/ring"
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "astral_silver"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -93,15 +92,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/60af55708bf7989a",
+        "cruciblecraft:gt6/7fb033e24c843073",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/1483ea8cb368065f",
+        "cruciblecraft:gt6/a3e60ef038a66679",
         1,
         1
       ],
@@ -109,15 +108,15 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/c57a77af5da071c6",
+        "cruciblecraft:gt6/3e0d7d69b36a3954",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/dbbffcb2aed6f364",
+        "cruciblecraft:gt6/5715cdebfbd7308c",
         3,
         3
       ],
@@ -125,22 +124,14 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/0b39c512cd6d053e",
+        "cruciblecraft:gt6/62dfde0c7e418215",
         4,
         4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/69a78ce9cd606ac9",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 18,
+      "duration": 229,
       "eut": 96,
       "item_input_actions": [
         {

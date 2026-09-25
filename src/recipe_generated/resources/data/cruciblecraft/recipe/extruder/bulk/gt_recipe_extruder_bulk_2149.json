@@ -10,36 +10,115 @@
         }
       ],
       "hashes": [
-        "a8342241959e5de95b23d5805addf1bd7d6238ea19f5ad9239dbb28ef11d8365",
-        "366927a22f868e177f4741d9fbc73d6c5bd4a950e73bb95cd7efdc854b1842f6"
+        "3179300bb6a58c3c9bc9552ae1f5b88420e5c9b5402687177881277412884813",
+        "f713c74cec380dbfecf52e552c5da079c48c21a6096ce065a8d6ff727acb2390",
+        "c292eba025b6d8388bc29e4b0bd2554003873071903991ba505db26162470e20",
+        "248bd71791fa5970e1f9546494fd09aabc53a04b4a0b8fca31975ce1bc627f74",
+        "1603c8e98c6ccde6a3c226022f7cb45ae38f69b630424c9a7b743cb48d92997d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dark_iron"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:elven_elementium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:dark_iron/rod"
+            "item": "cruciblecraft:elven_elementium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:elven_elementium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:elven_elementium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:elven_elementium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:dark_iron/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "elven_elementium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "elven_elementium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:elven_elementium/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:elven_elementium/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:elven_elementium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:elven_elementium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "elven_elementium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "elven_elementium"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:elven_elementium/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:elven_elementium/ring"
           }
         ]
       ]
@@ -49,22 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9ebd312a8d754094",
+        "cruciblecraft:gt6/a1aac9f265d3fd4a",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/c3d542ad470e76f3",
         1,
+        0,
+        "cruciblecraft:gt6/762245d8efdf2920",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/46434f7b98fb95d3",
+        2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/c822c73de4a5cf7e",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/52fd6767d0ef410c",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 950,
+      "duration": 17135,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_2149",

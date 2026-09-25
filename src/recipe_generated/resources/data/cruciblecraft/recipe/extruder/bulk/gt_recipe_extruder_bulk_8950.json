@@ -10,67 +10,52 @@
         }
       ],
       "hashes": [
-        "227e5e0dd0e39676d987b81d6c7f503c91232ba8395ab3cad956f132d7c1762b",
-        "cd16de9fc8e4bf8c09fcb259b0211801f3d8f7e96a198bbfef50c83cf5cca7ec",
-        "9b3397dd0466ce083868274cccdbb7c7eb2e08cf6c2e9f787c20e171cfa345f5",
-        "4e449c492bedac20fb45c381554c80d65f8e69672ba07e8d801449c51050eeb8",
-        "a5356ec1e96ffc706b44e356e090d88aff68b1d231f66cb7ae083b904ae8dc11"
+        "0dec85b7f7500550ed6e0a2f59efba2fb245e46437dd5361d7384b6e8fccd122",
+        "56b9ad257561fd3f92fb0808460caaca237c16eaddd36c1b52d41a877838002c"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:trinitanium/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "spectre_iron"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinitanium"
+              "cruciblecraft:prefix_material": "spectre_iron"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:trinitanium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:trinitanium/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "trinitanium"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "spectre_iron"
+            },
             "count": 1,
-            "id": "cruciblecraft:trinitanium/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "spectre_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -80,46 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ca734ca015c0e8d2",
+        "cruciblecraft:gt6/682b3a7e32a70060",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f8ddb5af9e0e8c5d",
+        "cruciblecraft:gt6/517c1c2804d98e00",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/fb26cb872ee12385",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/17bf09d113655ac9",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/4b215a278a461299",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 291,
+      "duration": 693,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        5,
         0
       ],
       "output_chances": [

@@ -10,24 +10,72 @@
         }
       ],
       "hashes": [
-        "ad72f668013e162f587d3b25f01a329b2b71065eca7b25033abbb0ea27e89400",
-        "c2236bda64f7616508ab3d487e32f5f59cbe04bac82a3df617d106d6a8f60f5b"
+        "b475b00b6dcbdaac4c676fe2847381ee33f34447fa9c41cfeb11513fa239a075",
+        "df7289db524ce9b136f01f775afec9af84b3fd1edd6ac3dc85540ade06b65644",
+        "b956e110a3470ad27b611ed957a0716e30fb89daefe4483aa6ed3e8ebf3d3344",
+        "4eb8e4156d70cb81ba897fb20b39411f8224ebc377414ff1e82800c80b5efa8e",
+        "6c58eac196769db9fba2841377347cd854530965766dca9e9c1ae5a46fdfc5d9",
+        "90b90cadfdadc63c3e7d38239a416068f9a5e4abcdbe76ddb7914d5e66a70495"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:naquadah/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "rhenium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:naquadah/bolt"
+            "item": "cruciblecraft:rhenium/tiny_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rhenium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rhenium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rhenium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rhenium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
@@ -35,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:naquadah/gear"
+            "id": "cruciblecraft:rhenium/bolt"
           }
         ]
       ]
@@ -45,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ebb2c1d7f4813c4d",
+        "cruciblecraft:gt6/d3e5b85ed670791a",
         0,
         0
       ],
@@ -53,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/966002451888510c",
+        "cruciblecraft:gt6/69f6fd8313bbe097",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/d2e99c7271ad97f7",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/dd628588f0c24306",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/f10734d6f7b7fbb9",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/4b2bb0f5ee32e9b7",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1565,
+      "duration": 229,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        2,
         0
       ],
       "output_chances": [

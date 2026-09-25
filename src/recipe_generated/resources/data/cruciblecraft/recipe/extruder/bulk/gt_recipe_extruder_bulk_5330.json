@@ -10,32 +10,72 @@
         }
       ],
       "hashes": [
-        "a43acfbd9a02a7d7e8b981ba52f007bd15be2a8a0605bce0df7ce235d741983b",
-        "b21b9ac97a71e9fc8486e8ba3fb03563a4f56453bcb060f6b9d78b0772e226c8"
+        "2d27fc6ff955c2d7c4486f535851ada53978de8f05f999047dc4e843151d27d8",
+        "1705c9e8d6bee548cedf50eeb8b6edb9d5f17a0360b72b0b1d71b4e171be50e6",
+        "ca5fc95e9328127a094770163fda173b481f0ad7619d45effe420760990fe219",
+        "7ad22f76bdc74d606a46b7d9351708e69c9e99ccf3d26363b546512363b08a76",
+        "5de7ee94e191a20d3d1f08f9c029605f71471f63e3e7492d13565a1ca6795099",
+        "80b6cc4c7ef858aa15792637562ff3ac1ef0c8204ec6af48560adbedd7b9da80"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tantalum_hafnium_carbide/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tantalum_hafnium_carbide/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tantalum_hafnium_carbide/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vanadium_steel/block"
+            "id": "cruciblecraft:tantalum_hafnium_carbide/gear"
           }
         ]
       ]
@@ -53,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4632df7b0503720e",
+        "cruciblecraft:gt6/2191a47a5913bdde",
         0,
         0
       ],
@@ -61,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/76b7c79c50fcbebf",
+        "cruciblecraft:gt6/69224d1f45cf0fa5",
         1,
-        7
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/8ea319ed5ee9a402",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/c3c19187c1928aa6",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/65c16c9e2746f0d7",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/30a6ae0592f9be2a",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2067,
+      "duration": 2237,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        36,
         0
       ],
       "output_chances": [

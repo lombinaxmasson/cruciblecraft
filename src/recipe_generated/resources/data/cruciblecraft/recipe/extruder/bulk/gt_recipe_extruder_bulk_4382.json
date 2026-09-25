@@ -10,36 +10,62 @@
         }
       ],
       "hashes": [
-        "0fdb9d37f10594ab4bbccc2be824b4c658179832dd9a1e990495c6972b411d28",
-        "39dd67141d49e4f1649604654d5b7816d4e91539971e9d0a300227d4ec61f6c0"
+        "6ea0e636883b0c565efb6f192950a019432036eea1e4e93eb00c9549db190c61",
+        "c8b2a5ed59095c12b02475b179cb64af71b3354ecfca46920b38c2c6639cb01d",
+        "0cf57f5cac1e409c1865bc6014d26128c6c2bba796d69cf2df141efe36c26639",
+        "edab9f641744ea45d6e04ee7d42261065e5b46d77c40444807a63dd70ceb4688"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "kanthal"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:chromium_dioxide/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:kanthal/rod"
+            "item": "cruciblecraft:chromium_dioxide/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:chromium_dioxide/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:chromium_dioxide/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium_dioxide"
+            },
             "count": 1,
-            "id": "cruciblecraft:kanthal/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium_dioxide"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -49,7 +75,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7385a08a4b5c85d6",
+        "cruciblecraft:gt6/b25cc78ab4b8c650",
         0,
         0
       ],
@@ -57,14 +83,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/1f62a5abc2e62161",
+        "cruciblecraft:gt6/62bf215af93173de",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/416f3c4d9f755848",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/f0c9a40d026d0995",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1161,
+      "duration": 119,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        24,
         0
       ],
       "output_chances": [

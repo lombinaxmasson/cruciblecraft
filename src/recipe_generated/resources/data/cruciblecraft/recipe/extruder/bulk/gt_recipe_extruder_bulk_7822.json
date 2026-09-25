@@ -10,13 +10,17 @@
         }
       ],
       "hashes": [
-        "938f4dec95a2247cfd5979dcf542faa7800b08202eeb96c99c04281b89518b60",
-        "182ca618051ac6d082f1c8f9ca08e14bf615223ba21b26798427125c69018e01"
+        "4410687b5d1a1dc3b101d4c239c6d458e4d9ab50c29fa6b10c7723d42dbc9936",
+        "d5739a28c3e8817115fca01dbcd25242513a3fbe883049cd2c97b6634aa47c13"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:adamantium/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "trinitanium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -24,7 +28,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:adamantium/bolt"
+            "item": "cruciblecraft:trinitanium/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -35,7 +39,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:adamantium/gear"
+            "id": "cruciblecraft:trinitanium/gear"
           }
         ]
       ]
@@ -45,7 +49,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ef4212f8aa61f583",
+        "cruciblecraft:gt6/b2a47f5226b04758",
         0,
         0
       ],
@@ -53,14 +57,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/4c46442a70cd4751",
+        "cruciblecraft:gt6/cebcd0e44a895c74",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4067,
+      "duration": 291,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +75,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        8,
         0
       ],
       "output_chances": [

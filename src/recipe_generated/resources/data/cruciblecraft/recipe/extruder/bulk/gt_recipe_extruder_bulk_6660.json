@@ -10,32 +10,114 @@
         }
       ],
       "hashes": [
-        "8abc989896df44164dbfc791237fc78a5795ad07d479be8742ae280502b4adca",
-        "e38cd33c63d9e75365172605f7bc97508d9ae630d9198e3b4b3c6975a8579fab"
+        "6a32b0e1220ec3ff5863a83e37e15d8acaa7d3dbd342111f76254e8f3e1362b7",
+        "fedd44ca86fcc0b3558d47cbbb5e9d9efef0f95ba4ead38b64dbacd670b7f2a0",
+        "6b987c2ce7c7dd547dc8c9ffd91e1c43ada7eb5d374f989527cd65f23bca19a7",
+        "3629a5695451baca43953b86fac5b64e1557f80245aeaa75c797689f40c7e07f",
+        "e7b2b78048ebbffab64a176c18ee52db915be0a6b03440043e6e84f57683a321",
+        "e290970c18d997b07e3e660af72e6ca9f948a0c3dd2c60405598ce5ac7d6f189",
+        "79ac17a21872d5399aef9acc111a5e6fee5b049a3f2fb26d7291a5f0cba36333",
+        "a6f36ed9e87476d1fb3e018ea3f9c14b59bf1cc99dc1af35ce86a35320275961",
+        "fd591511043b8e35169671196288be89c87b24d6abf08f4404748607a28838b7",
+        "6b3e2edb15e27cd4d735fe10ba44bcac7bda394a87adc4af2d6af806dc21b217",
+        "5dc4fff519dc92b9d0b1ae183e1a3121c72c4ba4bdf4efe6349b50a1cf75c348",
+        "e65451d483c66bbeb7e2c1def5b55167f2eafa7973b04a46f19eeb736d62cba3"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "niobium_nitride"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steeleaf/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "niobium_nitride"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steeleaf/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ]
       ],
@@ -43,7 +125,43 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:niobium_nitride/block"
+            "id": "cruciblecraft:steeleaf/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steeleaf"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steeleaf"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steeleaf/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steeleaf/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steeleaf/ingot"
           }
         ]
       ]
@@ -53,22 +171,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6805a2530a36f8aa",
+        "cruciblecraft:gt6/a5bc129126f859ac",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/fda0035fef4a8d62",
         1,
+        0,
+        "cruciblecraft:gt6/b2f315aa77ba4efa",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/dab998b94a03d38a",
+        2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/d2b1385bec9eddea",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/1d24007027f2d41a",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/d41144b2c7ec1bf6",
+        5,
+        5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/6c949a628e24532a",
+        6,
+        6
+      ],
+      [
+        7,
+        5,
+        0,
+        "cruciblecraft:gt6/c008fa590c9cec39",
+        7,
+        7
+      ],
+      [
+        8,
+        3,
+        0,
+        "cruciblecraft:gt6/399e25df605b08c5",
+        8,
+        8
+      ],
+      [
+        9,
+        5,
+        0,
+        "cruciblecraft:gt6/ed942f4a73ee1796",
+        9,
+        9
+      ],
+      [
+        10,
+        0,
+        0,
+        "cruciblecraft:gt6/c7a00851bcce0b81",
+        10,
+        10
+      ],
+      [
+        11,
+        4,
+        0,
+        "cruciblecraft:gt6/a587d384c7d1972b",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1358,
+      "duration": 89,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +277,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        8,
         0
       ],
       "output_chances": [

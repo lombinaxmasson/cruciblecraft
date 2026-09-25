@@ -10,27 +10,20 @@
         }
       ],
       "hashes": [
-        "93b322f9c7724d2cd012b8cee20cd1bd4267a9063e1acdee47aac35e198a0c2f",
-        "44c9ea19d68dee5c4b494429db8b4e213368642637747a6df9bb259243bc707e",
-        "0e901d4f592f9d26a2b269a64b83898a122732a874317b22d1d7f5ccc3122f6b",
-        "f9366dc0ec91a8e143c76c55df382e2449d8ad8af1b764e80b9f310d7c1749e8",
-        "37e55772c4d29d7d45c157ca547ae56553531e2a1a71b44c85a4df96362524a2"
+        "38bf644c2f7a35bef36b5339a1e621d694074326bf146f854c4873ed9dc19a89",
+        "e9f7c7b7e037302b979ea1ee054db6dec7502ec39980f10166116d791e5f9b58",
+        "e10fee6e31ebee6dc1bee8f3576cba7305684091f12b1518c6fe1647446bd0b2",
+        "bc22e92a678f3136c25f7082cbb80b45c06f0b35c274a656a07f71d9bf73f4f2",
+        "8eef67ece03fd4615021fd1b5ccd077bd0dada950fd60cff17050912ddd6e317",
+        "e176768d2c0b2c21566ea7d2f6e105f53134ec85745d6542350e8cc406094926"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:gold_inductive/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "gold_inductive"
+              "cruciblecraft:prefix_material": "conductive_iron"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
@@ -39,7 +32,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:gold_inductive/ring"
+            "components": {
+              "cruciblecraft:prefix_material": "conductive_iron"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -47,7 +44,15 @@
         ],
         [
           {
-            "item": "cruciblecraft:gold_inductive/small_dust"
+            "item": "cruciblecraft:conductive_iron/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:conductive_iron/screw"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -56,10 +61,18 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "gold_inductive"
+              "cruciblecraft:prefix_material": "conductive_iron"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:conductive_iron/tiny_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -70,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:gold_inductive/gear"
+            "id": "cruciblecraft:conductive_iron/gear"
           }
         ]
       ]
@@ -80,46 +93,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/aa5fb1320ef6f8d1",
+        "cruciblecraft:gt6/8c67904e6a0acb66",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/388db3a7421477ef",
+        1,
         1
       ],
       [
-        1,
+        2,
         0,
         0,
-        "cruciblecraft:gt6/c7de0204e54fd9a3",
-        1,
+        "cruciblecraft:gt6/c6e2604f43dcf72b",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/dd23dfd94dea7149",
+        3,
         3
       ],
       [
-        2,
+        4,
         0,
         0,
-        "cruciblecraft:gt6/a03529850b45cb8c",
-        2,
+        "cruciblecraft:gt6/a3e1a79470ac2748",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/138aba20178ee994",
+        5,
         5
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/b3f971a8b84c557f",
-        3,
-        6
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/3dab23ee55c16d28",
-        4,
-        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 495,
+      "duration": 468,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        36,
         0
       ],
       "output_chances": [

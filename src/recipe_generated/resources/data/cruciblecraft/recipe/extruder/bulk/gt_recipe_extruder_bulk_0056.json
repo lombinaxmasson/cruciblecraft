@@ -10,64 +10,62 @@
         }
       ],
       "hashes": [
-        "923c1df511189691e0c80daad220bd77f17e834d4f57898e2480f6e6440961ee",
-        "3f463d50e1abb7c7b2f977ab01dcfbf188624cdda8b0be880cd129e9ef866b00",
-        "42fb198257512e59eb6dcad6247f807cb063e65b0e391be4603a314f36199b21",
-        "32db2bedf912fb59e189733c6d1d33df625a2089fbf99351e290875916ea6622"
+        "eeb50959e6daed5b27be43004447fccc820f8fad76e385d19391933189b22846",
+        "e9cd4aeca3f7eed3795e5a1174a50615ee75d776f442493a1ce2a840cd162e33",
+        "37ac62730c3811f1c96e0a202687341d2dcc51316c106debd2906d9061546f22",
+        "e98a0b7548e806369ae5ccd63a0408d7726770041dcb1446cfa3c7e48176e3b2"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:orichalcum/rod"
+            "item": "cruciblecraft:prometheum/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:enderium_base/rod"
+            "item": "cruciblecraft:prometheum/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium_base"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:prometheum/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "orichalcum"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:prometheum/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
             "count": 1,
-            "id": "cruciblecraft:orichalcum/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
             "count": 1,
-            "id": "cruciblecraft:enderium_base/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -77,38 +75,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2402dc5d89dab72f",
+        "cruciblecraft:gt6/c04843a31eabeaff",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/7e62e5ce5dabfd0c",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/bc77b296afbb2aaf",
+        2,
         2
       ],
       [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/dea39ecb0d1bd980",
-        1,
-        9
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/08ddf543e76ab2c8",
-        2,
-        14
-      ],
-      [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/02907ecfc0ed7c55",
+        "cruciblecraft:gt6/6dd53a0008d84683",
         3,
-        18
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 559,
+      "duration": 148,
       "eut": 96,
       "item_input_actions": [
         {
@@ -119,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        24,
         0
       ],
       "output_chances": [

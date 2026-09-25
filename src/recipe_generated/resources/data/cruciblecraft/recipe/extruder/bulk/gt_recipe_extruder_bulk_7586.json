@@ -10,32 +10,84 @@
         }
       ],
       "hashes": [
-        "b69f60b691a4e62aa4aeac9bea4ea7e96e8a596c61ecf264c6bb65b0f2e47c1d",
-        "b8f06812ac83f8761fe3943d755b0efc4aff6d0dcd0f6ae9033048412a3984f3"
+        "65a23323a95325f7a0a2540445ee9f9f3c58d4a30e53c8bea9958e3c99f8c1de",
+        "66f4de39cdb0c2dc1c14f1242f9b419fac52680a3e1625d7aa11f17b4e1d34d0",
+        "e1b1c9137eec0fd9d1ae55fd6f4316e407c8beccb5cbc3d9f80a9b2d023efff1",
+        "32a30eea8f7ac1f2ad4201dfccffbb492fc7a9275d94635899d893b9a95e0b59",
+        "ab012b1ef0da3b602e2eba62f0e38af0ef027e27e7de634d9bd71c9670a3765f",
+        "d9efe5f4e0e2c4f64035110ed1ccc6d3d5989c53ec1e766fbe923d865086be0e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,16 +95,25 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoflame_blue_steel/rod"
+            "id": "cruciblecraft:meteoflame_black_steel/gear"
           }
         ]
       ]
@@ -62,7 +123,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c313d0a3c7af2374",
+        "cruciblecraft:gt6/cde087397262b0c5",
         0,
         0
       ],
@@ -70,14 +131,46 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/9a2b49d73ca1a52c",
+        "cruciblecraft:gt6/e768a3dc4db1a903",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/cc078185f67f1e5d",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/c857aac6493e3414",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/8c92e5d109bbfa6b",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/84a4ed6e421fa228",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 174,
+      "duration": 1467,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +181,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

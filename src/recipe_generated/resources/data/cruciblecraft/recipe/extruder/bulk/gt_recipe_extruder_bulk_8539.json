@@ -10,36 +10,42 @@
         }
       ],
       "hashes": [
-        "257e05abd7375b735449df2ce1b809e2117e80ce6448b72484c964824204505c",
-        "24734692507ec74beefa91d4d289600f3994d6af52e78911107e994f6c9d93c5"
+        "8beb4801b17944f2570a44d46530bcfc3e52bc9714b8d1dc36e4a687409d3526",
+        "c8ab172469c3119265760a3ce3202ac6d02d66b386ea387f3fd083482ad2c2b0"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "rose_gold"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:osmium_elemental/hexadecuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rose_gold/rod"
+            "item": "cruciblecraft:osmium_elemental/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:rose_gold/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -49,7 +55,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a3ff34f5feb3ff49",
+        "cruciblecraft:gt6/2eea9c618bce57ea",
         0,
         0
       ],
@@ -57,14 +63,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/8de0ce340b9db9ea",
+        "cruciblecraft:gt6/1f7ea8347b90ef12",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1114,
+      "duration": 8411,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +81,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8539",

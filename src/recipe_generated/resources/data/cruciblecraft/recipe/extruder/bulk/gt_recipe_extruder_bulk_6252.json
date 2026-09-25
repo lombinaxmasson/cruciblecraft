@@ -1,0 +1,60 @@
+{
+  "family_id": "gt.recipe.extruder#bulk_6252",
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 523,
+      "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:glowstone_refined/machine_casing_double"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_bolt"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 64,
+          "id": "cruciblecraft:glowstone/bolt"
+        },
+        {
+          "count": 48,
+          "id": "cruciblecraft:glowstone/bolt"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "b4673ecc3ead4fa2081407de7158ac1bff0c8d8b8204b25a04fd7b675a7a98c5"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_6252",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/741e8c3666b0306d"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

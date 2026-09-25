@@ -1,191 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_1817",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "b60ca27d2cd9b680f8adc91d42c6880329a392f18a09a55a66ec058d4f6da406",
-        "e5da7ab2b49ec00e34ff8b0af58777f65f1cbf0e08f8ec1f89bcc2aeb61d0e73",
-        "f27fdb18f2577c22512e034262a47e5af665daa1d6963e2ff8b085c4bf88ac75",
-        "6b2a4266098e8f649688bf9898505c00c330d4ee5f26c772f03131199b5c2c02",
-        "c49e6df607ada51393a24316b86e4256ea9ad77b7a52c4079678b8fa4c73a1b8",
-        "8c9d1a9adf34557fe007ea6a5d61e74f3fda9072f4c35963f8127616c54e31f2",
-        "a623ef214ae997a42a13580c1cf443269d127e4776bcbffee62fa9e2229ae7de"
-      ],
-      "item_inputs": [
-        [
-          {
-            "item": "cruciblecraft:rose_gold/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:rose_gold/gear"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:rose_gold/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 6,
-            "id": "cruciblecraft:rose_gold/block"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:rose_gold/ingot"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "rose_gold"
-            },
-            "count": 56,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:rose_gold/plate"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:rose_gold/long_rod"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/ee8c334682de6131",
-        0,
-        8
-      ],
-      [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/c0179f905662557e",
-        1,
-        11
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/c079be1016b443d6",
-        2,
-        12
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/b0814fea0cae471a",
-        3,
-        14
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/bdb0c4bdc76ed85e",
-        4,
-        15
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/d9f0a67624a57865",
-        5,
-        16
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/913f309e4dc91c23",
-        6,
-        17
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 15594,
+      "duration": 1293,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -195,18 +17,42 @@
         }
       ],
       "item_input_counts": [
-        1,
+        6,
         0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "amordrine"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_gear"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:amordrine/gear"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_1817",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "ce48f905b139c06906b31b45126395f73a37fea949b365df9153f799e79e548a"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_1817",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/2facfe809e0ed8ee"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

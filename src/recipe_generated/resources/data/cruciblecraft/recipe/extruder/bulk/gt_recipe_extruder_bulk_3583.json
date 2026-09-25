@@ -10,28 +10,63 @@
         }
       ],
       "hashes": [
-        "c541a96d2b06654516a6b5c3cb91d27fbd24bc577b66297a4de436836ee133c3",
-        "1e64f8377c73c8246179a1bc461b9d72244153cd0afa01caa97d91c6488082e8"
+        "0ea46ff8e6bd66da3c4bfa49be3ea03fa441c1f2cd203fd05cabfcbfbe27779c",
+        "e37b39f6f52b5123f881a1beac9607c7bdd308efb4303f4e4d23c7637aef7405",
+        "7f7a79981b59e40c50a0d4a8908585bbfd04bc4c54d0beacaf01f339775bca1a",
+        "fe5e80886bb7edbad47f3d69522b44f0881cf9af32d98dbf143e559c8c013a6f",
+        "051dd14eacf6e2a198db25ae3b39fbfef8bc5aa969262b72b47004f263aabeb2"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:black_steel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "mauftrium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "black_steel"
+              "cruciblecraft:prefix_material": "workers_alloy"
             },
             "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "mauftrium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -39,7 +74,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:black_steel/gear"
+            "id": "cruciblecraft:mauftrium/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -49,22 +93,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5001823f65103673",
+        "cruciblecraft:gt6/adf0df6f4bbace99",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/e8112f473f7025cf",
+        "cruciblecraft:gt6/f91636df61397a46",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/2aca8a4d50aac17d",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/ca1f32b2f55160d4",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/fc959f9ec113a5c7",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 837,
+      "duration": 211,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +143,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        3,
         0
       ],
       "output_chances": [

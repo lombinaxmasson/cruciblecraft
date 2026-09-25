@@ -10,49 +10,62 @@
         }
       ],
       "hashes": [
-        "d27c0de66f0b518181910ce67c1235d9e5cdd3631c386233a4f3ae24a5ccb112",
-        "3b6c9c167318c8bd49a5d9cbee3153291f0b803ea524e6ad54790149317925d8"
+        "7410b34c341959cb0737ec81049a0f0de04d2508fdd1223210dde7e24f193005",
+        "a7c123c87592923c36182e651a6cb4b12a417ef18e45b3d5e65ee2897ec19738",
+        "f76a98ef39122d37d80467436caf97d9b97e88d4363adf2576f5dfe1da8025a2",
+        "616de766cc239b9fc8dac14d6bba21e5082a8edb2a052217a83c48ff6423c7e3"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dark_iron"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:titanium_iridium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dark_iron"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:titanium_iridium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_iridium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_iridium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_iridium"
+            },
             "count": 1,
-            "id": "cruciblecraft:dark_iron/rod"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "dark_iron"
+              "cruciblecraft:prefix_material": "titanium_iridium"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -62,22 +75,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c7b503f4e9a5c1ed",
+        "cruciblecraft:gt6/c66a04c2a4f595b1",
         0,
-        1
+        0
       ],
       [
         1,
+        0,
+        0,
+        "cruciblecraft:gt6/243ee3b32eb76f17",
+        1,
+        1
+      ],
+      [
+        2,
         1,
         0,
-        "cruciblecraft:gt6/4f8dbdb9da50f154",
-        1,
+        "cruciblecraft:gt6/cd1186b85645ace0",
+        2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/dbed4de3d6a02f6c",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 119,
+      "duration": 1278,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        24,
         0
       ],
       "output_chances": [

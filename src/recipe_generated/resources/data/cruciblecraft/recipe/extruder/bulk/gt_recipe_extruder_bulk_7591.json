@@ -10,67 +10,83 @@
         }
       ],
       "hashes": [
-        "d39a95e6df0637d7788e50c93ba7c6fbb4efe6a417a57692260d1b4feb1d1287",
-        "a9457518fa660427a2d14adb4dda6b7e992d21e015ea1ca130f3c3cda5729dab",
-        "13584135ce60f5cc0ba44843182dcfefa27f3353bfc504a5319b3617d50cd22e",
-        "2b2112b940fb4c3794c51be19f6abe8e42e54edbd198a98bae4ac868a0aa0d5d",
-        "b590659eb3041b666de2b9435c022ea35e44074019b59b7b332bb72dbb4cec99"
+        "b6f9e58c1601a9a0711e8c9e54efaac1670d9f5ffddaf749036a931ab057b113",
+        "6084e1b501466ad87dc8344786be9f57dd9e7b8a33c09eb8186a84e8a1cdbd8c",
+        "25a43c3e7419460c3f2c4b7e96ed63a7544e16e9fbfa19a41827f8aecd8d82ef",
+        "709b1d7c2e73e9f72861653161d222a5eea7355041968bf1f4b921896b3aaa7a",
+        "8e4cf3b800d1de8fa3d9dce9574930f773690d2d94777674bb9d23d5f32ac805",
+        "fe57cacc8c7bea8a4d1d8df298a6786415484fa568fe5b27bb0bb9d7421dad06"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "dreadium"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ignatius/small_dust"
+            "item": "cruciblecraft:dreadium/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ignatius/ring"
+            "item": "cruciblecraft:dreadium/tiny_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dreadium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "dreadium"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ignatius/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
             "count": 1,
-            "id": "cruciblecraft:ignatius/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -80,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1b74e44e86e61b98",
+        "cruciblecraft:gt6/cd5beb28be12ad70",
         0,
         0
       ],
@@ -88,7 +104,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/fe4b7bfe3967a4ae",
+        "cruciblecraft:gt6/398340bc0064d5f7",
         1,
         1
       ],
@@ -96,7 +112,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/53e14a37b2f024f0",
+        "cruciblecraft:gt6/695eb582fe273816",
         2,
         2
       ],
@@ -104,7 +120,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/1bf7e9fa5a86a06c",
+        "cruciblecraft:gt6/361a908f3af900da",
         3,
         3
       ],
@@ -112,14 +128,22 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/8e08a9ad9458656f",
+        "cruciblecraft:gt6/4de9f812c2ff1a00",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/963c82f4bfa59b45",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 758,
+      "duration": 1325,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        14,
         0
       ],
       "output_chances": [

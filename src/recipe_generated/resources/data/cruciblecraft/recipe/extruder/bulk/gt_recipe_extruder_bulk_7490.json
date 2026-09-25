@@ -10,67 +10,52 @@
         }
       ],
       "hashes": [
-        "e5c48f80547c4c61e99fa03f98770dd34712811ea13a348aab3ae5d108858376",
-        "5283a5e1f8565aad9fb3388ba6ee33c160815e2b3bdad5087ba8650c9f0e4ad9",
-        "df03bdd18390b227aaf8798c0da85a41ee03e389550e16b90d0d4f12a41767bb",
-        "dba5f2fe1da8036e252c8d2514efde232eeff423993195fa6e364e0cdbb3ea3a",
-        "96f7a8ffe9d29364e22faf7017b84d3314daafd82315d05cfa176e5aa45547c4"
+        "fe578f935e4b336749d98d899da32a9441e22fb82da35dc232dcf07d6849cec3",
+        "fff63704a9221ec496bc0c3bfbf54a0f4d98ec9e2dc5d8ebac56d8965bbacd52"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:rose_gold/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "adamantine"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rose_gold"
+              "cruciblecraft:prefix_material": "adamantine"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "rose_gold"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rose_gold/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantine"
+            },
             "count": 1,
-            "id": "cruciblecraft:rose_gold/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantine"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -80,46 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6f3e66bac0b86c53",
+        "cruciblecraft:gt6/84df8da88b0457fa",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/62056580f44aa0b8",
+        "cruciblecraft:gt6/719ca94144844de9",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/0b0fecb7c243f3bc",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/33e5aef5c05f492d",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/a6463a13b8eb431b",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1114,
+      "duration": 1453,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        5,
         0
       ],
       "output_chances": [

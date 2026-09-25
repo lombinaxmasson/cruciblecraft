@@ -10,36 +10,62 @@
         }
       ],
       "hashes": [
-        "4540c1291c390552ac83348613534cb81e669825da532972a0a1d430efe8d1ff",
-        "5dac4c670dfaaf8ec091475448084b77b11ebf0bbeae37ceaaf07a77ae4e3e45"
+        "0d7f12a40dd958f110aa921901b2160f97724dffd2b722a89a896fd8b83761a7",
+        "434d47cb6aa2b9c6482f160f4fe67a32803b887ced0ea2391dfd6356b954993a",
+        "bd7158856c6f049102fb28f64328ecffc0b19394d108e66bf7a3249261652c7e",
+        "b4d030a3ccd18e2b5364bb0cab1c74a27d8cf45080f6edf3a31674a623f02182"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium_aluminide"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:infuscolium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:titanium_aluminide/rod"
+            "item": "cruciblecraft:infuscolium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infuscolium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infuscolium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
             "count": 1,
-            "id": "cruciblecraft:titanium_aluminide/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -49,22 +75,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ed60d37c93920a06",
+        "cruciblecraft:gt6/9e643c0049342a20",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/3e9e47ffef92db7b",
+        "cruciblecraft:gt6/47d0100b4055f07d",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/eaa52ff1f81472e1",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/ef611634bb393e13",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 631,
+      "duration": 637,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        24,
         0
       ],
       "output_chances": [

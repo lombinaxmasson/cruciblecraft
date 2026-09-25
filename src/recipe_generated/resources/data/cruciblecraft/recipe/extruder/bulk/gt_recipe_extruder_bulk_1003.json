@@ -1,67 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_1003",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "f6b4656cbe89d1960542b9f9105989a256e0b56407834e57c7f30988eabf4482",
-        "983cc7b6cef822055967af8fcab30eb0fbd73c32a6ae1704e82e356197801ec2"
-      ],
-      "item_inputs": [
-        [
-          {
-            "item": "cruciblecraft:sanguinite/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:sanguinite/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:sanguinite/ring"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/48c1492aaf8fb49b",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/8827cf29fe65d4c8",
-        1,
-        1
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 147,
+      "duration": 720,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -71,18 +17,49 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:yttrium_barium_cuprate/hexadecuple_wire"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "yttrium_barium_cuprate"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "yttrium_barium_cuprate"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
+        }
+      ],
       "output_chances": [
+        10000,
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_1003",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "dbb693ebb266eebb1f885f51300ab54635baa48190b45b1ac7de778a4ed8464b"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_1003",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/d0b57b005b08d4e4"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

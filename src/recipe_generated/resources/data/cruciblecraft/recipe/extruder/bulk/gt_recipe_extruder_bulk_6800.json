@@ -10,111 +10,39 @@
         }
       ],
       "hashes": [
-        "8ebe35c9dbe25bf7178e0daee970590c9da75135d5c0c405b9fad5466a8d8f9b",
-        "8f4053f86fa6c54e137deb72eb1fa8f0870c76aac36c6400fe178f8ab7bc215f",
-        "5bd0ed29860f1d0f99cf9fde179bcfee570158014bc851deea78932bad9d81a7",
-        "7205ff1285d42f6096df09a638ef9266f48347dc22861d2479d9772c492421d1",
-        "b5045ddc34435dbefb17333c467b41f5bce3464138aa17a47fc6752506065c43",
-        "cfcd200e569b19371efc04d473c028e72a47a0c1df741cdee2bb379d20df9741",
-        "95dc80b71eaac36662af14fb1d0d5ffa1942549ac7c21d1c50b0a4dd83b5f4fa",
-        "27474587fc08a54f9e488a1f85b36205e3c61248bf5adf80c7ad976551fa46c4",
-        "dcdc2c1da2089623ac2d5be104beb96d9ec434fda9a4209042a6999ce0541f25"
+        "c544ae6de47ae4a4b7678d83f61276c56bf1882176936b3c044c54fae33c7d91",
+        "d38fb0f90480f72ae2eda943ad3a5f4e3d9210832977902914db05447146689d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "dark_thaumium"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:elven_elementium/ingot"
+            "item": "cruciblecraft:dark_thaumium/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:elven_elementium/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:chain",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:elven_elementium/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:elven_elementium/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:elven_elementium/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_thaumium"
+            },
             "count": 1,
-            "id": "cruciblecraft:elven_elementium/gear"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -124,7 +52,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c79dd0eac223007f",
+        "cruciblecraft:gt6/1414e9645987c3f6",
         0,
         0
       ],
@@ -132,70 +60,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/432a9adc58cffd72",
+        "cruciblecraft:gt6/360fece407e04d9e",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/099f3a2045cf649a",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/f59df60365d19547",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/cf64bfe6e715781d",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/a988c46a1063f7aa",
-        5,
-        5
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/3d39803ba3499fad",
-        6,
-        6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/f7012be733995bb0",
-        7,
-        7
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/78ef60e2bd08be91",
-        8,
-        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1224,
+      "duration": 187,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +78,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        12,
         0
       ],
       "output_chances": [

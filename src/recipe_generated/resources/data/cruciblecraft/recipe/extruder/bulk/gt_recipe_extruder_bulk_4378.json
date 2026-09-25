@@ -10,36 +10,33 @@
         }
       ],
       "hashes": [
-        "625f0907e892659ec03f88165a2e69959656fdd6d9096993daed10155de9f55e",
-        "4485f5e0859c9761e992de85daa9c0114ccaab6a879447e9e9727ab5e6c94bab",
-        "40ebe666fe093575d524bcf56dfc81ad94d18189708ec755ebe8c69c939803d1",
-        "868958982480ed199cf7cab72ed3b2b9752554cf4adc4937294fe3bf92dddb39",
-        "7de1163f140495812d0f1700bdf5511333c89389e60a0abcc2aa506cf4b1ab41",
-        "025574be5b765a898fb50bdbbe64f085496aba2b03243279b4c48275f829303f",
-        "f8de63f1b3bd9a63637ee88211edd14171cde43d64205c8eb80c291fea7c4e92",
-        "8cbbfae536e035bb7231efa9402f603ae09dc03abbf633a7dc4c07f27e063220",
-        "1a9bf4527257facb8190d11e851a51181c9902348cd6cdbb9818f7efc14e7491"
+        "76a9809ed992afbf4023138909e592d37e4dba367bcc61ed3cdf7436b0ceb782",
+        "f8aa4466dcddde637d8377552e7aed042e6396abe8c007767e6e5d7cb53b453e",
+        "c066976701a348498adc42904dfc5ae0461e69c56354d0aa38ec88d6f5a5594c",
+        "0737d666afbae51f1a526998befd8c1066813dcc6be220bd8a91125062cc359e",
+        "bf941bf1e443d80faf71faff9aa6170fdbf59017af1d638e50325751120138a8",
+        "e88162918abce6fe9d3432ccc0a2416bd9149e0179ba2241ab23ef38618a0fa7",
+        "2fc7ea139cc37a759c8060488522fefd7a319ec3834a40873f8c20d6d7e856bc",
+        "30aeead33e74bf6b7e146784cc38e9f235765ec13aedd09f120caf784f0f3d71",
+        "72a53acded0e0ab1b2207cae356ab5db718ad3009a75f87060498b818f5aeae8",
+        "1b18e075f0a869fb15fc22159d8470353e9fcb568ad43f21e899e8e2edf01008"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ignatius/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ignatius/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ignatius/machine_casing_quadruple"
+            "item": "cruciblecraft:end_steel/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_long_rod"
@@ -47,23 +44,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:ignatius/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ignatius/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:ignatius/machine_casing_quadruple"
+            "item": "cruciblecraft:end_steel/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_plate"
@@ -71,15 +52,19 @@
         ],
         [
           {
-            "item": "cruciblecraft:ignatius/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ignatius/machine_casing_quadruple"
+            "item": "cruciblecraft:end_steel/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_ingot"
@@ -87,72 +72,111 @@
         ],
         [
           {
-            "item": "cruciblecraft:ignatius/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:end_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 2,
-            "id": "cruciblecraft:ignatius/block"
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ],
         [
           {
-            "count": 52,
-            "id": "cruciblecraft:ignatius/rod"
+            "count": 1,
+            "id": "cruciblecraft:end_steel/long_rod"
           }
         ],
         [
           {
-            "count": 26,
-            "id": "cruciblecraft:ignatius/long_rod"
+            "count": 1,
+            "id": "cruciblecraft:end_steel/plate"
           }
         ],
         [
           {
-            "count": 26,
-            "id": "cruciblecraft:ignatius/small_gear"
+            "count": 1,
+            "id": "cruciblecraft:prometheum/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:end_steel/ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "prometheum"
             },
-            "count": 52,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:ignatius/plate"
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "end_steel"
             },
-            "count": 26,
+            "count": 1,
             "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:ignatius/ingot"
-          }
-        ],
-        [
-          {
-            "count": 6,
-            "id": "cruciblecraft:ignatius/gear"
           }
         ]
       ]
@@ -162,78 +186,86 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9d8f111d12bc6ed9",
+        "cruciblecraft:gt6/12c6f50d3aa09042",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/a4eb39d6ff26c004",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/da6d79342b8369bf",
+        2,
         2
       ],
       [
-        1,
-        1,
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/77450ccc26d5a12d",
-        1,
+        "cruciblecraft:gt6/5efaf2259eb27e98",
+        3,
         3
       ],
       [
-        2,
-        2,
+        4,
+        4,
         0,
-        "cruciblecraft:gt6/d22aceba7639950a",
-        2,
+        "cruciblecraft:gt6/a615846ffe0a8b47",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/84f4548cd2937d00",
+        5,
         5
       ],
       [
-        3,
-        3,
+        6,
         0,
-        "cruciblecraft:gt6/6e12247d6cd1c585",
-        3,
+        0,
+        "cruciblecraft:gt6/da30994607d49c74",
+        6,
         6
       ],
       [
-        4,
-        4,
+        7,
+        3,
         0,
-        "cruciblecraft:gt6/887368b2ffc082ef",
-        4,
+        "cruciblecraft:gt6/d4db53220005dfb9",
+        7,
         7
       ],
       [
-        5,
-        5,
+        8,
+        6,
         0,
-        "cruciblecraft:gt6/55d18137288f114f",
-        5,
+        "cruciblecraft:gt6/b7430d111ff04d7f",
+        8,
         8
       ],
       [
-        6,
-        6,
+        9,
+        5,
         0,
-        "cruciblecraft:gt6/35521e7c5a2e694d",
-        6,
-        12
-      ],
-      [
-        7,
-        7,
-        0,
-        "cruciblecraft:gt6/8b15d1f5641f6048",
-        7,
-        13
-      ],
-      [
-        8,
-        8,
-        0,
-        "cruciblecraft:gt6/b5341128c602d1ee",
-        8,
-        14
+        "cruciblecraft:gt6/54ad8b81af8ecce1",
+        9,
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4927,
+      "duration": 197,
       "eut": 96,
       "item_input_actions": [
         {
@@ -244,7 +276,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        2,
         0
       ],
       "output_chances": [

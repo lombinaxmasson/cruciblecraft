@@ -10,49 +10,70 @@
         }
       ],
       "hashes": [
-        "47df075b2a2b8e808d850694788b6e40b1693d745f31ee6183d000c184fa1ce5",
-        "efd703c690dbde4e7d47ff66b5fbda28b4d8c4fc6992826d4b1ed646d23b764c",
-        "57135eee8076bbe1217664c1edfbd2554342735b0d68d1d653449cc06af68e49"
+        "891fac45227ab0896dcbcb3039e5919067b7c2a3cb844eda9d19e252ac0d42e3",
+        "5f3c21954e756673429dcf5f7733ee8dc4dae9a27cd50bda036f9e23f54ecab1",
+        "751699baa8f8d19c9c8a5761a163769ac4c2b45e439b2a447a055e0a51e01742",
+        "0c0d73f84e850c667790916c5bd69ab3ed79e600bac37e76079e5436079f28d5",
+        "f0d3555b25846976e79fdfb29891fb34508e30a51371f62a6afff9af9857e712"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vanadium_steel/gear"
+            "item": "cruciblecraft:orichalcum/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:orichalcum/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
+              "cruciblecraft:prefix_material": "orichalcum"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
+              "cruciblecraft:prefix_material": "orichalcum"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:orichalcum/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
             "count": 1,
-            "id": "cruciblecraft:vanadium_steel/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -62,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/549aad8a3a6f528a",
+        "cruciblecraft:gt6/45a489ca98ab9af7",
         0,
         0
       ],
@@ -70,7 +91,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/2c3acb7109fd0483",
+        "cruciblecraft:gt6/e49346cd353c855a",
         1,
         1
       ],
@@ -78,14 +99,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/f72ec13eeda811b0",
+        "cruciblecraft:gt6/f3518c9bb51a9c57",
         2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6bfe81db2a62e196",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/7e9873d7e2f7c847",
+        4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2480,
+      "duration": 838,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        24,
         0
       ],
       "output_chances": [

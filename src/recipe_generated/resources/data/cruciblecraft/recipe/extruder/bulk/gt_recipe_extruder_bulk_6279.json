@@ -10,32 +10,70 @@
         }
       ],
       "hashes": [
-        "70b1e6fd2a6ef775d54efc088a96571af5033d3c53b786922ff4043c66fd1451",
-        "00ba9eed3620012d5b9b8dd55bae4674dabeff177184db85637d7a8c8e6fca30"
+        "e9a25814e50e1aea43ce8bf123915dd28c787fcbbb78c7b09675cb38628eab36",
+        "bac15d5807200f619b59e859fe12cc50af0fd872ed9478f382591bb0789f5956",
+        "18f36aee801a9b8f524dca28b9628079213ee359fa1987eab720b99ca43b8ffd",
+        "50379208cb068d899f07c9d7b2fefcf3a514b785a9ca7d5b54257a147a2da3c4",
+        "c3bcd7b8936c5917d368efb93d428dd001bc2a4638ea7e396366a88cad32487e"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:black_bronze/fine_wire"
+            "item": "cruciblecraft:ethaxium/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:black_bronze/bolt"
+            "item": "cruciblecraft:ethaxium/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ethaxium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
             "count": 1,
-            "id": "cruciblecraft:black_bronze/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -45,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7c0cfe6aeba2dcbe",
+        "cruciblecraft:gt6/dc8574dc5d08c7f6",
         0,
         0
       ],
@@ -53,14 +91,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/069c0b3bf6cb8a49",
+        "cruciblecraft:gt6/2fc43ac103b3e261",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/f1ad3d789594fcc7",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/9d12a462f5c6d805",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/65bf367d4e209dc2",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 725,
+      "duration": 1880,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        6,
         0
       ],
       "output_chances": [

@@ -10,36 +10,130 @@
         }
       ],
       "hashes": [
-        "490154653dcce50248adc332eaa4433f99a54b8fa65c54fc985463dc4a020dba",
-        "f4806c57b7adc3493feebddde65e361fbc11c71467e41db999eb18480d43518d"
+        "2e5f2e9f2458c91361238676fbf3a8ed70b9956e72cbca7e2c47094e53707de7",
+        "f7f2056e7818942d84d84f193ffcce007d0b563f1cac34cc6022591839ac458c",
+        "fa334c8220f9483c08cdad28bba9285dd90dea3e7a9c3ade91590a6bda1d21ed",
+        "ff472f4a766d9c92a25f387791515179bda2badc5c9cf4eff8177b074ea569a5",
+        "1ae2e4cf8d03d9980ae0c81f648d97bbd96d0a042722849e73be42e7707bf4ec",
+        "53e9a0892b7b7f230046998d6cea8c6154b5a0eb7a30326e38a295e14dc55e63",
+        "efedfebc22c94520dffaf3fb5af4a2d573732709cd9f13132e605bed6d56e508",
+        "6c2f107ebf885ab9861fcac247183cf02d3e4cab0f344ef1596c4902a2c1e519"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibranium_steel"
+              "cruciblecraft:prefix_material": "alduorite"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vibranium_steel/rod"
+            "item": "cruciblecraft:alduorite/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alduorite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vibranium_steel/gear"
+            "count": 64,
+            "id": "cruciblecraft:alduorite/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:alduorite/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -49,7 +143,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4b947f169b7f18c9",
+        "cruciblecraft:gt6/1383514335d50cdb",
         0,
         0
       ],
@@ -57,14 +151,62 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/1a0e6c7b06b8f341",
+        "cruciblecraft:gt6/2913da9e7fb3a9ed",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/3c8a51c0332aa2c5",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/6fc32b9218ce0347",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/f61097972149266f",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/9e133b3ef21b6f1c",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/1dbc8e8a1bea9938",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/67001bf50583badb",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1018,
+      "duration": 478,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4210",

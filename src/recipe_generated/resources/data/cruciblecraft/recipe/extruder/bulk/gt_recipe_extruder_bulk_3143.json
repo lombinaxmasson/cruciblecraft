@@ -10,59 +10,32 @@
         }
       ],
       "hashes": [
-        "989c2ea73d81434f84ac6e2030906fb7c8d2590fc4d1600ac527cd5da4b8e18a",
-        "551a4093533c1aa91560a26f41c21a35d9afdd7e123b24faa2664e672c5dcc5b",
-        "a14b639bc37a778a4298f42ff1c197b1b68836e2c0518df55c2a31d3e16807a2",
-        "ffeb222d7915f258f528ae2316a2d699ddcaa0d4e910abd72519159750e7ba3c",
-        "1b709baf93182805a3f93b9088066863517e18eec704fedacaf1fc364c7d90e8"
+        "4b4c502abf9a647adf6eb07767c165a080ea40d3e2cc37b4b1d2d9687dd37c27",
+        "4ee10c500849a8f7a0615642c5d28e836b728c86300ee1343b7015d4f7a73d7b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:meutoite/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_gallium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meutoite"
+              "cruciblecraft:prefix_material": "vanadium_gallium"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:meutoite/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "meutoite"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:meutoite/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_wire"
           }
         ]
       ],
@@ -70,7 +43,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meutoite/gear"
+            "id": "cruciblecraft:vanadium_gallium/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vanadium_gallium/wire"
           }
         ]
       ]
@@ -80,46 +59,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5274e79121d389fc",
+        "cruciblecraft:gt6/d09906719a304346",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/a2b64ea1f09be37d",
+        "cruciblecraft:gt6/121d1db2698cb7cf",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/5248dd2c4885d0c9",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/e7d56a91806e5b59",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/4432effbcd160d48",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 850,
+      "duration": 67,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +85,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        36,
         0
       ],
       "output_chances": [

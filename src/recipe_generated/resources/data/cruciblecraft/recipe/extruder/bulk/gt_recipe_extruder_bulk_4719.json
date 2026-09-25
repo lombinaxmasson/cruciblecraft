@@ -1,0 +1,901 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4719",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "d392c2341d0ff591e5b9638b2b341ebc61635870cf7c8e9fb68da3336e5bf6fc",
+        "d0bcf487fe328c49cf60aae005493521cce287ddd1b6310c23067c5baa536f25",
+        "e86a5d33ef06b2602b20149050f5a75d2bfd9341f191823185ea2fdbff274231",
+        "6806cbd5b4c26522cc47128cb9ab3067163944dd05c6d7c46f0e21d2a7eb2bde",
+        "c49c9f5b872aeee726b18be3694a9d37cc6de98ca2333de462775b04150b0e74",
+        "411ad786a4a65177faa42aebcc843cb3fb802a9beed9f2528a90398c7fff6ac0",
+        "55a8daf1f38a5c7815fb3befa80ffbaa630f7138a8f0e9aee92cce735de453a8",
+        "fcb2fa409a4a7057182064367d0bc952a846702dd925daa5f947be3ebf58fa3c",
+        "66a4f7a70e079c999d6afedf878e669a3a26d7500f26d634c9a93d4a2a6f7732",
+        "a62bac4ade79e7e8d2efcb221572054b80d498db72f6f0093968637b46e2a72e",
+        "0f9e41041f4373d1a34d0b9dd4ca101d4c096862cf70eb5763dd3681b488d237",
+        "a861750ed15c5962829c4e4ef1fead8a23cc4529f66e17b0363d5440662cc723",
+        "c76be0aaa5b9a12778df22a187f89c1a74aa6b6c5459b36642ed12292f6bb921",
+        "dd897d02e13d8fb09f9b3cd324a095e4bd67d2d3bcb1fc9e7f65b2034adfd4e3",
+        "aba2f0f089f8d588b8bf0e8b9b0f5b972dde49cd17703b26a758dfe2fb132a87",
+        "e061e3207cabf0c80d7b21b10232d32c7088e41059ea33a3ed50bb4aa688b301",
+        "102669d295e9e7ff291b31456fcffad65cd1d26b35e923af01d0fd807a7bc4cb",
+        "e6f667c592b09cfee8c483bf7cb8c40cd40c476b8748cf13de8465d36575448e",
+        "1cb72ecbbb92194fd1030020e351f5be77b8a4dca3d6c06bf2dfe94eed2eb01b",
+        "e003d7c07fceecffdf26a319685a9121458df233c793dc82ef40d1909e451e68",
+        "7a19f1156a9dea73de5e251afc187f19964519122feb37940e9cd787ebd06604",
+        "fb8bb5700ea70415d4e387cfee384c90de37bbb57db20b9f8daef9413631438b",
+        "3ce44ec68a6dd2c9cfe64fd8597af60d56ea0875e2325210b21a1a65a8016611",
+        "48a396b92ed9593e6c891ce149d03fd11dda727c8d2a5537611be0ad28a25f28",
+        "060c16aa9593e5bea20cd0b64f197d2a02d80f6890f0e0f3e2cd80458793491a",
+        "efb9c3252f0635678f4c857af21324676b8c9ea0519299444825e06474176a5a",
+        "53c376d31416b0a07d358d7ba2525559cb846d3217030e97ffde74b2bf6ea1cd",
+        "1bd59a24bd4530446b9f6b72875628216a2d7a314f8449e9b86b49591f0c7ea4",
+        "1b3b4dcb0ac5d32eb6b55f3a3ffb7f76c2f8a5b1842125b852b89acadf044e4e",
+        "2fb27cacd2e7426055e91c902f408a1a3847d8608812cb4edd2e8ccf1aa06c4a",
+        "63d17cc10179dfb2bdaf951ef5c746031f1c159fbfd3594319d3e4f8abb0c571",
+        "5ac3e08d10a75fca4fe5dd39f517651840b5d931ff4c9b4898afc1ac978af054",
+        "ab777125f3a29a844e4f8f4bc9ec5614e3da8eb0c70f9412b136e301b602ab2f",
+        "68fdbccd473fdc1770450a44dd37eec2107d5a597e5560783cd07e6c97bb3cbb",
+        "8014ea54b27b8187e7468b9de4cc4b3a1d8f8def21ae6afb1b86a7c568d0a1bf",
+        "5cc34727f6105c3ed61ed38ecd75aeeebfd2d8e4b2859ec7cb044f7ed0bd5873",
+        "e0f203f1fa858787cf170c6aef17fdec593f146b6ff36807a623b8c85028743f",
+        "3d11a242042ae9e2abe8f3fb8aa7c293e912c281021f9ced6a4098cc754d68e2",
+        "5e97764778c23ff737d5eca672d0861468cfc92ad9a0232dbf191aa9ca78bb3f",
+        "6dcfb6a45a8744e86100e8f290990c529a14113300fec22290af72e39844126f",
+        "8aafd10e8758542a5527c69d31b5b66c6a2981e2bf7189edc2a4959858317dbe",
+        "ae7d4162150611dfddf42542661ebab40c79d7493c406e2cc74e1ce8552c72a3"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:coralium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate_gem",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate_gem",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate_gem",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate_gem",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate_gem",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate_gem",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:coralium/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:coralium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:coralium/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:coralium/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/021cce64c6e57d83",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/b9c6a05126cfb757",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/3b43054f50c5b62a",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/4cb06951df9e9f2f",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/52b420500fa1c6e5",
+        4,
+        4
+      ],
+      [
+        5,
+        4,
+        0,
+        "cruciblecraft:gt6/f9af3baf6cd8de90",
+        5,
+        5
+      ],
+      [
+        6,
+        4,
+        0,
+        "cruciblecraft:gt6/4a5efba171aac558",
+        6,
+        6
+      ],
+      [
+        7,
+        4,
+        0,
+        "cruciblecraft:gt6/8a5ddbb6e3cfedf9",
+        7,
+        7
+      ],
+      [
+        8,
+        3,
+        0,
+        "cruciblecraft:gt6/7f7af01e36940a97",
+        8,
+        8
+      ],
+      [
+        9,
+        3,
+        0,
+        "cruciblecraft:gt6/34edbc34c2e56c72",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/156b4b0ed274ac17",
+        10,
+        10
+      ],
+      [
+        11,
+        3,
+        0,
+        "cruciblecraft:gt6/0d96dd3afeef1dce",
+        11,
+        11
+      ],
+      [
+        12,
+        1,
+        0,
+        "cruciblecraft:gt6/6e4c7b1055e26f96",
+        12,
+        12
+      ],
+      [
+        13,
+        2,
+        0,
+        "cruciblecraft:gt6/d81ea04335da7476",
+        13,
+        13
+      ],
+      [
+        14,
+        5,
+        0,
+        "cruciblecraft:gt6/7a6ae8d254371cfb",
+        14,
+        14
+      ],
+      [
+        15,
+        5,
+        0,
+        "cruciblecraft:gt6/8b6b7d8b58c7c0f2",
+        15,
+        15
+      ],
+      [
+        16,
+        0,
+        0,
+        "cruciblecraft:gt6/d12ce05d63b638b0",
+        16,
+        16
+      ],
+      [
+        17,
+        4,
+        0,
+        "cruciblecraft:gt6/e7d344c9548ec6e1",
+        17,
+        17
+      ],
+      [
+        18,
+        1,
+        0,
+        "cruciblecraft:gt6/7fee672bc2a188e5",
+        18,
+        18
+      ],
+      [
+        19,
+        2,
+        0,
+        "cruciblecraft:gt6/a04d7dae19a04e3c",
+        19,
+        19
+      ],
+      [
+        20,
+        5,
+        0,
+        "cruciblecraft:gt6/f280f84ac956af92",
+        20,
+        20
+      ],
+      [
+        21,
+        4,
+        0,
+        "cruciblecraft:gt6/c0381704c31a319e",
+        21,
+        21
+      ],
+      [
+        22,
+        5,
+        0,
+        "cruciblecraft:gt6/db148adf44a72b1d",
+        22,
+        22
+      ],
+      [
+        23,
+        2,
+        0,
+        "cruciblecraft:gt6/bf217ee4a29eaae8",
+        23,
+        23
+      ],
+      [
+        24,
+        0,
+        0,
+        "cruciblecraft:gt6/90e647d335ac09e7",
+        24,
+        24
+      ],
+      [
+        25,
+        0,
+        0,
+        "cruciblecraft:gt6/bb9fa8a506a1ca19",
+        25,
+        25
+      ],
+      [
+        26,
+        0,
+        0,
+        "cruciblecraft:gt6/9546605bd4c49278",
+        26,
+        26
+      ],
+      [
+        27,
+        2,
+        0,
+        "cruciblecraft:gt6/02e85d523377ac06",
+        27,
+        27
+      ],
+      [
+        28,
+        0,
+        0,
+        "cruciblecraft:gt6/d1c11fc8ef09e8aa",
+        28,
+        28
+      ],
+      [
+        29,
+        0,
+        0,
+        "cruciblecraft:gt6/0563faa259c65555",
+        29,
+        29
+      ],
+      [
+        30,
+        2,
+        0,
+        "cruciblecraft:gt6/ac7640e138bbd620",
+        30,
+        30
+      ],
+      [
+        31,
+        3,
+        0,
+        "cruciblecraft:gt6/7f7bcb8e63ee7efb",
+        31,
+        31
+      ],
+      [
+        32,
+        1,
+        0,
+        "cruciblecraft:gt6/df0a9e6aab43d2c6",
+        32,
+        32
+      ],
+      [
+        33,
+        3,
+        0,
+        "cruciblecraft:gt6/4890ca7bc6716ace",
+        33,
+        33
+      ],
+      [
+        34,
+        5,
+        0,
+        "cruciblecraft:gt6/d96b5c51a8d9da90",
+        34,
+        34
+      ],
+      [
+        35,
+        3,
+        0,
+        "cruciblecraft:gt6/8585280b0da0371e",
+        35,
+        35
+      ],
+      [
+        36,
+        4,
+        0,
+        "cruciblecraft:gt6/625348caffab3257",
+        36,
+        36
+      ],
+      [
+        37,
+        1,
+        0,
+        "cruciblecraft:gt6/2ce8ebac019c722f",
+        37,
+        37
+      ],
+      [
+        38,
+        5,
+        0,
+        "cruciblecraft:gt6/36cbe75cf14f2c8d",
+        38,
+        38
+      ],
+      [
+        39,
+        4,
+        0,
+        "cruciblecraft:gt6/74f2c5bcf4c891ae",
+        39,
+        39
+      ],
+      [
+        40,
+        2,
+        0,
+        "cruciblecraft:gt6/0ccefe8e950c9557",
+        40,
+        40
+      ],
+      [
+        41,
+        5,
+        0,
+        "cruciblecraft:gt6/ecb3ff5e31c600ee",
+        41,
+        41
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 527,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        9,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4719",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

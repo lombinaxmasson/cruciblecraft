@@ -1,202 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_4804",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "f19db1b52e86748ea526dce67ec99af0f7d59f5b9399e08909a4a6c9b20c1433",
-        "a38ba8701e254345ed26d8973c0656636d57985763f4580816337f359b0aa69e",
-        "67df3556ca542adaab14df6b568d1c1966a7ac5144d1b250de5355325032ddb0",
-        "5fdd142fc640d168b45484fd222f33ca0b4dee0c65685272710a0a2a69cd262d",
-        "98564ee7bde82749b6eed283e9a8a5e8815f72a8af5340c01bcbe500c338a037",
-        "4e620b9a3f5ccdc71e06490ff55c15d0a4973ff502115d65c519ed815c6afb7d",
-        "0674f3652a88a457e74b26d72078bfa3e3fa4a01708eee0481cbf14347c43c39",
-        "c129a734a5b00a487bea3e33f1a28272a821b9a7b6128327f24b4e683b807103",
-        "116569494e3894021e1e1a433e7807a84d489d6ff52bba807f8dab1dec2e8f6c"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "desh"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desh/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desh/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "desh"
-            },
-            "items": "cruciblecraft:spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desh/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "desh"
-            },
-            "items": "cruciblecraft:minecart_wheels",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "desh"
-            },
-            "items": "cruciblecraft:chain",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desh/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desh/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:desh/gear"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/6b4dc9cc4f8d79fb",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/904414294cc80b65",
-        1,
-        2
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/7dd49b4cb669aa0f",
-        2,
-        4
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/1a18e666f244052a",
-        3,
-        5
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/633c70d498dd0e2a",
-        4,
-        7
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/698d254f1282b7e2",
-        5,
-        10
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/286f2593d36a3a9c",
-        6,
-        15
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/5deb5a85e914c819",
-        7,
-        16
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/98893326784eb9a5",
-        8,
-        17
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 417,
+      "duration": 64588,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -206,18 +17,38 @@
         }
       ],
       "item_input_counts": [
-        4,
+        2,
         0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:crystal_matrix/machine_casing"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_block"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:crystal_matrix/block"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_4804",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "956283fb998b336ac3e03e8bb95bc25aaedc6690f650345f9431199b16396ecb"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_4804",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/ae0cb39dc9a97205"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

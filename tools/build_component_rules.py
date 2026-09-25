@@ -80,6 +80,12 @@ ANY_RUBBER_TAG_OUTPUT = (
     / "src/component_rule_generated/resources/data/cruciblecraft/tags/item"
     / "any_rubber_plates.json"
 )
+# T14 extruder sparse tables left the live datapack when recipe/gt6-extruder-bulk
+# published every GT6 extruder row; they stay as codec/expansion test fixtures.
+EXTRUDER_FIXTURE_ROOT = (
+    ROOT / "src/test/resources/extruder_compact_rule_fixture/recipe"
+)
+EXTRUDER_RETIRED_BY = "recipe/gt6-extruder-remainder"
 RULE_ID = re.compile(r"^[a-z0-9_]+(?:/[a-z0-9_]+)+$")
 TOKEN = re.compile(r"^[a-z0-9_]+$")
 RESOURCE = re.compile(r"^[a-z0-9_.-]+:[a-z0-9_./-]+$")
@@ -94,6 +100,7 @@ class BuildBundle:
     generated: dict[str, bytes]
     any_rubber_tag: bytes
     manifest: bytes
+    extruder_fixtures: dict[str, bytes]
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -1168,7 +1175,7 @@ def build_bundle(
         + correction_delta
         + t6_overlay_delta
     )
-    total_expanded = non_extruder_expanded + len(extruder_recipes)
+    total_expanded = non_extruder_expanded
     if total_expanded > baseline["expansion_budget"]:
         raise SourceError(
             f"projected expansion count {total_expanded} exceeds "
@@ -1180,17 +1187,18 @@ def build_bundle(
         )
         for rule in rules
     }
+    extruder_fixtures: dict[str, bytes] = {}
     for template in compact_templates:
         authored_path = template["authored_id"].removeprefix("cruciblecraft:")
         relative = f"{authored_path}.json"
-        if relative in generated:
+        if relative in generated or relative in extruder_fixtures:
             raise SourceError(f"duplicate generated recipe path: {relative}")
-        generated[relative] = _stable_bytes(
+        extruder_fixtures[relative] = _stable_bytes(
             _compile_sparse_extruder(template)
         )
     generated = dict(sorted(generated.items()))
+    extruder_fixtures = dict(sorted(extruder_fixtures.items()))
     map_source_counts = Counter(_map_for(rule) for rule in rules)
-    map_source_counts["extruder"] = len(compact_templates)
     per_map_expanded = dict(baseline["per_map_expanded"])
     rules_by_id = {rule["id"]: rule for rule in rules}
     for correction in corrections:
@@ -1204,7 +1212,7 @@ def build_bundle(
         for rule_id in affected_rules:
             per_map_expanded[_map_for(rules_by_id[rule_id])] += per_rule_delta
     per_map_expanded["wiremill"] += t6_overlay_delta
-    per_map_expanded["extruder"] = len(extruder_recipes)
+    per_map_expanded.pop("extruder", None)
     per_rule_expanded = dict(baseline["per_rule_expanded"])
     for correction in corrections:
         delta = correction["expected_expansion_delta"]
@@ -1213,11 +1221,6 @@ def build_bundle(
         for rule_id in affected_rules:
             per_rule_expanded[rule_id] += per_rule_delta
     per_rule_expanded["wiremill/ingot_to_wire"] += t6_overlay_delta
-    per_rule_expanded.update({
-        template["authored_id"].removeprefix("cruciblecraft:"):
-                template["relation_count"]
-        for template in compact_templates
-    })
     extruder_signatures = [
         (
             recipe["material"],
@@ -1264,16 +1267,16 @@ def build_bundle(
             ),
         },
         "runtime_codec": "cruciblecraft:material_rule/MaterialRule.CODEC",
-        "source_rules": len(rules) + len(compact_templates),
-        "authored_datapack_entries": len(rules) + len(compact_templates),
+        "source_rules": len(rules),
+        "authored_datapack_entries": len(rules),
         "authored_projected_recipes": authored_projected,
         "expanded_recipes": authored_projected,
         "expansion_is_authored_projection": True,
         "non_extruder_expanded_recipes": non_extruder_expanded,
-        "extruder_expanded_recipes": len(extruder_recipes),
-        "extruder_authored_entries": len(compact_templates),
+        "extruder_expanded_recipes": 0,
+        "extruder_authored_entries": 0,
         "extruder_logical_relations": len(extruder_recipes),
-        "extruder_runtime_publication": len(extruder_recipes),
+        "extruder_runtime_publication": 0,
         "extruder_expansion_budget": 4_648,
         "expansion_budget": baseline["expansion_budget"],
         "within_budget": authored_projected <= baseline["expansion_budget"],
@@ -1300,7 +1303,7 @@ def build_bundle(
         "per_rule_expanded": dict(sorted(per_rule_expanded.items())),
         "unit_conservation": {
             "status": "verified",
-            "conserving_rules": len(rules) - 1 + len(extruder_recipes),
+            "conserving_rules": len(rules) - 1,
             "documented_compatibility_bridges": 1,
             "unit_scale": rules_document["unit_scale"],
         },
@@ -1324,15 +1327,17 @@ def build_bundle(
             "duplicates": 0,
         },
         "extruder_templates": {
-            "status": "playable_compact_exact_sparse_projection",
+            "status": "retired_to_test_fixture",
+            "retired_by": EXTRUDER_RETIRED_BY,
+            "fixture_root": EXTRUDER_FIXTURE_ROOT.relative_to(ROOT).as_posix(),
+            "fixture_files": len(extruder_fixtures),
             "source": "tools/gt6_extruder_templates_index_v5.json",
             "compact_source": "tools/extruder_compact.json",
             "expected_source": "tools/extruder_expected.json",
             "legacy_replay": "tools/extruder_legacy_replay.json",
             "authored_entries": len(compact_templates),
             "logical_relations": len(extruder_recipes),
-            "runtime_publication": len(extruder_recipes),
-            "datapack_entry_delta": len(compact_templates) - len(extruder_recipes),
+            "runtime_publication": 0,
             "family_compression_ratio": (
                 len(extruder_recipes) / len(compact_templates)
             ),
@@ -1375,6 +1380,15 @@ def build_bundle(
         generated,
         any_rubber_tag,
         _stable_bytes(manifest),
+        extruder_fixtures,
+    )
+
+
+def _fixture_root(output_root: Path) -> Path:
+    return (
+        EXTRUDER_FIXTURE_ROOT
+        if output_root == OUTPUT_ROOT
+        else output_root.parent / "extruder_compact_rule_fixture"
     )
 
 
@@ -1388,12 +1402,17 @@ def write_bundle(
         if output_root == OUTPUT_ROOT
         else output_root.parent / "any_rubber_plates.json"
     )
-    if output_root.exists():
-        shutil.rmtree(output_root)
-    for relative, content in bundle.generated.items():
-        path = output_root / relative
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_bytes(content)
+    fixture_root = _fixture_root(output_root)
+    for root, files in (
+        (output_root, bundle.generated),
+        (fixture_root, bundle.extruder_fixtures),
+    ):
+        if root.exists():
+            shutil.rmtree(root)
+        for relative, content in files.items():
+            path = root / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(content)
     tag_output.parent.mkdir(parents=True, exist_ok=True)
     tag_output.write_bytes(bundle.any_rubber_tag)
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1411,26 +1430,27 @@ def check_bundle(
         if output_root == OUTPUT_ROOT
         else output_root.parent / "any_rubber_plates.json"
     )
-    expected = set(bundle.generated)
-    actual = (
-        {
-            path.relative_to(output_root).as_posix()
-            for path in output_root.rglob("*.json")
-            if path.is_file()
-        }
-        if output_root.is_dir()
-        else set()
-    )
-    for missing in sorted(expected - actual):
-        errors.append(f"missing generated recipe: {missing}")
-    for extra in sorted(actual - expected):
-        errors.append(f"unexpected generated recipe: {extra}")
-    for relative in sorted(expected & actual):
-        if not _json_equal(
-            (output_root / relative).read_bytes(),
-            bundle.generated[relative],
-        ):
-            errors.append(f"generated recipe content drift: {relative}")
+    for root, files, label in (
+        (output_root, bundle.generated, "generated recipe"),
+        (_fixture_root(output_root), bundle.extruder_fixtures, "extruder fixture"),
+    ):
+        expected = set(files)
+        actual = (
+            {
+                path.relative_to(root).as_posix()
+                for path in root.rglob("*.json")
+                if path.is_file()
+            }
+            if root.is_dir()
+            else set()
+        )
+        for missing in sorted(expected - actual):
+            errors.append(f"missing {label}: {missing}")
+        for extra in sorted(actual - expected):
+            errors.append(f"unexpected {label}: {extra}")
+        for relative in sorted(expected & actual):
+            if not _json_equal((root / relative).read_bytes(), files[relative]):
+                errors.append(f"{label} content drift: {relative}")
     if not manifest_path.is_file():
         errors.append(f"missing manifest: {manifest_path}")
     elif not _json_equal(manifest_path.read_bytes(), bundle.manifest):

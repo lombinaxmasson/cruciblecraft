@@ -10,40 +10,71 @@
         }
       ],
       "hashes": [
-        "85dd30805b4d6c80d5e506dd4745d5b088d7a3448aeff81a9f4b1bf4ac034a68",
-        "9cb117be24e885b371a58b326107adb4cb10df7c59946799a2b1f2483672d593"
+        "7141ef160ab343fea98b4aa2e4f815749c9d2c158093cc67fcfb6247de861c2b",
+        "8bf2e78679cc93fa88dc039c6fb1b3eba03d7893607afe867009d8d19e7c5322",
+        "06305efd7c44799a22feca95d3f23ddcdbd157f0ed4063b86f11b773e7994a12"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "thorium"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "thorium"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:thorium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "steeleaf"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steeleaf"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:steeleaf/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:steeleaf/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:steeleaf/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:steeleaf/bolt"
           }
         ]
       ]
@@ -53,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9ec1cec9659cc5a1",
+        "cruciblecraft:gt6/786b5bd3d7b6ef9c",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/3e21c011b14b6b9f",
+        "cruciblecraft:gt6/b65470b88c256c80",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/46355eefc35dbfe4",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3296,
+      "duration": 2307,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_9448",

@@ -10,40 +10,115 @@
         }
       ],
       "hashes": [
-        "cfd69fd22c23e618434ca70420e4ecdc6e706f897307a4145e71646263129556",
-        "4690158d6d7b2b857c421fc9ac094ad1e2d8fd65831f83b534035f65754d31a1"
+        "f7cc35fcf781a47cecd52a0b691978f8ca800977340d1f4818b08043b9d96f0d",
+        "d01d29860e7fa5c96608e6c0050106f1e6125c697ebcf1a034f616c8b0daec56",
+        "584e923cb2d04ab3b4c4ba4b945197bef8851fd6f2a55a467021c3967a8cc860",
+        "cc53e1f3e39da219b640600f1e210a1618d010220ffd895d6e2de927b428972d",
+        "0d1672dc6591b84b62a1e6b07a05378811d8229f867b4a15e19b280b74dabc0f"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "kalendrite"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:oureclase/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "kalendrite"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:oureclase/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:oureclase/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:oureclase/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:oureclase/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:kalendrite/gear"
+            "count": 64,
+            "id": "cruciblecraft:oureclase/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:oureclase/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:oureclase/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:oureclase/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "oureclase"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "oureclase"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "oureclase"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "oureclase"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:oureclase/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:oureclase/bolt"
           }
         ]
       ]
@@ -53,22 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1c36bd809e1214bb",
+        "cruciblecraft:gt6/fde0b5dd17629598",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/ad9886bccef37f77",
+        "cruciblecraft:gt6/a3ef3ba7983b29a8",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/c5f2be017be99584",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/0629bce0a376c458",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/9d6790cb4fe1824b",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4742,
+      "duration": 19224,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6749",

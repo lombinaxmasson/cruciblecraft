@@ -10,40 +10,48 @@
         }
       ],
       "hashes": [
-        "55f93dff5ca18492f314ee844450efac61aca547ad3d8067122011ede2cd7c44",
-        "fce4c9161bffd26a646a2238dfd88286f753c0dbaa539d32869d6bf24948adc7"
+        "445254db02d690d8d789c49bdefc48e115add37f5a4f74eed9357baa47095131",
+        "abc1bbccbbea88ad63fb5cf85d130c2741c92aec18fabdbd4f8b55078e7a2842",
+        "9633680065da44c6c2958f38074b8a50ebc6d727c7e4a27e9a4398d076d2de28"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "gaia_spirit"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:adamantium/tiny_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "gaia_spirit"
+              "cruciblecraft:prefix_material": "adamantium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
             "count": 1,
-            "id": "cruciblecraft:gaia_spirit/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,7 +61,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f220c30803df9886",
+        "cruciblecraft:gt6/e63ed937ab3424eb",
         0,
         0
       ],
@@ -61,14 +69,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/b4cf0e01911a0fd4",
+        "cruciblecraft:gt6/38b0d2c0c17ae319",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/3eb54c2c20b98cd4",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 339,
+      "duration": 1525,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +95,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

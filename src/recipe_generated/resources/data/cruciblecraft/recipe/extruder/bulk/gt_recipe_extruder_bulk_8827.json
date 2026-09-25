@@ -10,36 +10,68 @@
         }
       ],
       "hashes": [
-        "015a3747b185d8086dd414d1196e57840f730ed987b74f4b9d816554bff30cb6",
-        "e655bf1f29c962fa4073735a793a64581a674c7c86344e0ea28f55558dea18de"
+        "6ba5bc31f139c1b9ef17d960a55a6eed268b2c7e2047d14d7ae842873564920e",
+        "1d8d6ccd9b8e7b593f7f381fb8055e89e742622df271f3639605cb2f0905a1ca",
+        "3687a0486d94dd46a6944265e10ed9dfad06612363d0be520faef47d46c4df1c"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "octine"
+              "cruciblecraft:prefix_material": "invar"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "item": "cruciblecraft:octine/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
             "count": 1,
-            "id": "cruciblecraft:octine/gear"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:invar/tiny_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:invar/rod"
           }
         ]
       ]
@@ -49,22 +81,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1c8458f82136f66f",
+        "cruciblecraft:gt6/0c274243b3125c21",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/7df8ec09e1f9d919",
+        "cruciblecraft:gt6/66aa8dacab73a4d9",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/104251c2f7af81df",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 164,
+      "duration": 103,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +115,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        36,
         0
       ],
       "output_chances": [

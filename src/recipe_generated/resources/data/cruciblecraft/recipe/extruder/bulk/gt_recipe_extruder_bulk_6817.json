@@ -10,71 +10,68 @@
         }
       ],
       "hashes": [
-        "a7714cbf4e1ed1cd61ff7489d7cd0ff32c08f822743c6d9d5f1582f6fc006db7",
-        "9def711a5123c9c298083e8823e52f58f28a3f14abda99cf9af31c1b21fc0e75",
-        "dd8ef975efe6edb55b86cc149acf1643ce3e7a3f9fccbaaa028a032ed7a57b1a",
-        "710b6ea6b31f73e19fdb18235fec39bd5c3a23eeaccc9614a1f5c4d3f7e0f7db",
-        "fd7470189a6281a82d9c37eeec36915ce799b4afa11062ab6e2119e0e606f719"
+        "0e8987566e88b7c7516b60f351362c0712b27d437272a645bc2c207dd6d260a3",
+        "bc55376d93909fd8a11e1fe1d697eec26c339ee7439bf902bfb86af46eb4a6ad",
+        "73df677cd7f534ebe5d4251a7cad63ec265c34419f95cd9071e8e962fc53e5ef",
+        "0384c2721ad58808307d63a196d9f213318732e150bae1160448f42c5d5df341",
+        "10c99c32b9440dfd93bc26e1f0dee0d3a25770f7d985bf33c52f1e4e53ad24d7",
+        "b74d1fa6a2ad3073acd0907c959eba767f510e567936500e524ca07a76301951"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "coralium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "coralium"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "coralium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungsten/tiny_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "coralium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungsten_sintered/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "coralium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -82,34 +79,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:coralium/small_gear"
+            "id": "cruciblecraft:tungsten_sintered/block"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:coralium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:coralium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:coralium/plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "coralium"
-            },
-            "count": 1,
-            "id": "cruciblecraft:curved_plate"
+            "id": "cruciblecraft:tungsten/block"
           }
         ]
       ]
@@ -119,7 +95,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6062f9f782b86796",
+        "cruciblecraft:gt6/a1263e14f1d6f41f",
         0,
         0
       ],
@@ -127,38 +103,46 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/30e379abdcb50533",
+        "cruciblecraft:gt6/454f839599fa880f",
         1,
         1
       ],
       [
         2,
-        2,
+        1,
         0,
-        "cruciblecraft:gt6/da8afd1def5cb9ca",
+        "cruciblecraft:gt6/82a5d6c53488558f",
         2,
         2
       ],
       [
         3,
-        3,
+        1,
         0,
-        "cruciblecraft:gt6/9a346b74a7d454f7",
+        "cruciblecraft:gt6/1fc40e281d167c45",
         3,
         3
       ],
       [
         4,
-        4,
+        1,
         0,
-        "cruciblecraft:gt6/53343ff4e71d715f",
+        "cruciblecraft:gt6/9c64a5492ef269e0",
         4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/ec936c9fba9055ac",
+        5,
         5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 703,
+      "duration": 9096,
       "eut": 96,
       "item_input_actions": [
         {
@@ -169,7 +153,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        18,
         0
       ],
       "output_chances": [

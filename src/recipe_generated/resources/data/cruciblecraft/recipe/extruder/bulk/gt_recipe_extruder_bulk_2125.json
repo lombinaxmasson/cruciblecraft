@@ -10,37 +10,35 @@
         }
       ],
       "hashes": [
-        "947b5a58c12e73cfa58e6f79728ff101a7507aa2c18833945cfffec7233bba23",
-        "3bb8bf131a23e0e6d1d05fbfb49680c4c5463abcc5cd56e6209a6714a3214472",
-        "db99e0a50e62d79d564f69b2f4770fdd66dd5ede00a7581b9898707595d10ce7",
-        "10f4859b423f70bca2c3b356fd19b3755ad5d0200a7e50fedf969eb3bbc2f865",
-        "22a00a98dc2b97bd397e39b1304e27f3270653060d0d0ec512ffd01a638866cd",
-        "d99230743725e5950c859b05739c13cfd13158c6bb44761a5a0c498a0633ca9d",
-        "dbc78736b92904e330970224de0b9f2e289a3e367d6249aa03c0e5071a35a7b8",
-        "637dae57c064a44f371b28f651d38d667028ba1ae88c662e8f9c306e0e3900fb",
-        "dd964345310b0866eb8e694a4c8e761a5477854970317b5997081c172ded43a0",
-        "008d2ae29708be0f8c5c04fe0958612eea337c6a9aff85beb379a5271cbe03c9"
+        "2db674350bd05b2c997125ac18e6caa5e859ce3d97046db8a8bf86809cd04bb3",
+        "70e08ed0bea6202fd6925770e7d365a4156109444dcdb7a7828f99a6bbd0ba26",
+        "c8966fc904770965da7cb9bac9aa7a818fb48dabe5181944f34eeb3272239466",
+        "781f38cc1715fbe7257f0be084c4832081fc21dd6c826a7c36fe6e1dba46e39d",
+        "b435ae02bd71933fe17c4b95f3ce147a71aa95bc8921251a5c547c07b8789c71",
+        "36f818e65496d7ceb668ae011943c5df256edf7529847e518c9ad69452f2df87",
+        "c7b67dd45dc03df5b4f8f1bc74def4c710d54782177188b02e2908bdd2922a7b",
+        "2c55ef248c0a16aaf16e285a667926a1e5057ce8df75ae5f70e52211ca96ffe1"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "carborundum"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:steeleaf/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "carborundum"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_bolt"
@@ -48,126 +46,94 @@
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing"
+            "item": "cruciblecraft:carborundum/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing"
+            "item": "cruciblecraft:carborundum/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "carborundum"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "carborundum"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "carborundum"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "carborundum"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:steeleaf/machine_casing"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 32,
-            "id": "cruciblecraft:steeleaf/ring"
-          }
-        ],
-        [
+            "components": {
+              "cruciblecraft:prefix_material": "carborundum"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
           {
-            "count": 8,
-            "id": "cruciblecraft:steeleaf/ingot"
+            "components": {
+              "cruciblecraft:prefix_material": "carborundum"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
             "count": 64,
-            "id": "cruciblecraft:steeleaf/bolt"
-          }
-        ],
-        [
-          {
-            "count": 16,
-            "id": "cruciblecraft:steeleaf/rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "steeleaf"
-            },
-            "count": 16,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
+            "id": "cruciblecraft:carborundum/bolt"
+          },
           {
             "count": 8,
-            "id": "cruciblecraft:steeleaf/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 8,
-            "id": "cruciblecraft:steeleaf/small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "steeleaf"
-            },
-            "count": 8,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 2,
-            "id": "cruciblecraft:steeleaf/gear"
-          }
-        ],
-        [
-          {
-            "count": 8,
-            "id": "cruciblecraft:steeleaf/plate"
+            "id": "cruciblecraft:carborundum/bolt"
           }
         ]
       ]
@@ -177,86 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2b9c5d85f4dcbc8b",
+        "cruciblecraft:gt6/c2c9e30c57056eb0",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/597ae1e5de322a7c",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/907a3cbd96de55f2",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6c485803dfb50b17",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/72a4df2c309a8263",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/f4f1c2e0aec6dbcb",
+        5,
         5
       ],
       [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/f4ea54446205da9b",
-        1,
-        16
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/8072157d4debf821",
-        2,
-        20
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/27562f9deed5c8b6",
-        3,
-        25
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/936bfaf9e8fa3a14",
-        4,
-        27
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/3daacb27527adaf3",
-        5,
-        29
-      ],
-      [
-        6,
         6,
         0,
-        "cruciblecraft:gt6/34a4a1408ec5ba5f",
+        0,
+        "cruciblecraft:gt6/bebaf632973d6b33",
         6,
-        31
+        6
       ],
       [
         7,
+        0,
+        0,
+        "cruciblecraft:gt6/65e9725f80d09cad",
         7,
-        0,
-        "cruciblecraft:gt6/44953d7e12fe8efc",
-        7,
-        32
-      ],
-      [
-        8,
-        8,
-        0,
-        "cruciblecraft:gt6/6ce67ccaf8abf768",
-        8,
-        33
-      ],
-      [
-        9,
-        9,
-        0,
-        "cruciblecraft:gt6/c834b5c0ffee70c8",
-        9,
-        36
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 710,
+      "duration": 865,
       "eut": 96,
       "item_input_actions": [
         {
@@ -271,6 +221,7 @@
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_2125",

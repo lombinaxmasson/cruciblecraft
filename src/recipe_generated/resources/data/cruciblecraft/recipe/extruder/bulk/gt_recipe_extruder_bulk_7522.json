@@ -10,40 +10,75 @@
         }
       ],
       "hashes": [
-        "31803edda0550a14fc88f96d6d02b870736752d05d7f5cb570d8e2ead2746aa1",
-        "0ce18f87c5489821af8f423598e818ac54cca3c5140905e2fce5a0f24a9e8916"
+        "1dc7fc821092da7fb1a26be8830570b508b6ed1314ce4ccf0b69e340bc917f10",
+        "db78efbdbc08e6d1b47204500a8e50c8a960ab541ca5a182df7c15061cd59730",
+        "38daab82b5c924d97c7078a03bda99ea038a9ec59a1e7e7c81f536ad621a30d3",
+        "8954decfc34808358ef7448b9b0979485513a064554db885ba6c6cf3ff08b680"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "sterling_silver"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "sterling_silver"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
             "count": 1,
-            "id": "cruciblecraft:haderoth/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:sterling_silver/large_item_pipe"
           }
         ]
       ]
@@ -53,22 +88,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1e1f094e50bd8c3e",
+        "cruciblecraft:gt6/5b76f8448927a804",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c7c86bca49b7ab0f",
+        "cruciblecraft:gt6/8e89296b3478387b",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/7d7d63016368346b",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/99432a752572a8f1",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4668,
+      "duration": 911,
       "eut": 96,
       "item_input_actions": [
         {

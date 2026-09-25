@@ -10,59 +10,129 @@
         }
       ],
       "hashes": [
-        "f4f7acef3a8c8b4e8ce7a2b9c958458656d99c9f4b9aa891a2fb2cc91aeedb57",
-        "64377c2673ebe634f4b5ce38d8a14eac0944cf36fa520ba534e6e6f51ce85ae0",
-        "d97632348638b6f42e14ee4019ff1e49def20cc4d88ce792c0b9454cf823512d",
-        "5eb118fefb7fca05b2387eaa1e1475c3bfe337b3a09635a79e8fd9d38337a69d"
+        "e6be7d44ca431e33fce63896867ec82cb983d5b0c4696ba8003ab739e4b854c1",
+        "ba71ff819d31479b12732ca5a61cbaab638bd44095d5d25644a44026a43c9729",
+        "98d6f484a210c43e96f0fd93ca554c65f6baf8322c20f308eac33485095bda58",
+        "d9d489aab64242d3a4e7e803e65cab68ce302567d8e8fdcb254e30d4db7d3e66",
+        "c3e7b2ac28907ad95d321089e2dbdae30872086681ef8541d8cb366294125559",
+        "d1bf71f4973578106fb3d70673c36596f727563c28c4885cf11cff824484f64f",
+        "c401acbaa21573a3776db1aa9c5d248c9946dbc1a7025aa2b58d78c97835afe2",
+        "ef1b21dc96758803afe2e2732b7c54161a1f42d412bb2a7fb8bc9030c459db35",
+        "98fdad09add555317b35132b0c1b3a804d13c655991001c23927ad0381073639",
+        "d8aa5d595981f0574aa683ed918622c6c636d72d78fb1000adc59c309f6badde"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:desh/bolt"
+            "item": "cruciblecraft:thaumium/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desh/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desh/fine_wire"
+            "item": "cruciblecraft:thaumium/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desh/fine_wire"
+            "item": "cruciblecraft:thaumium/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thaumium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thaumium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thaumium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "desh"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:thaumium/large_fluid_pipe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
             "count": 1,
-            "id": "cruciblecraft:desh/rod"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -72,7 +142,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0e8758623ed8a828",
+        "cruciblecraft:gt6/a2f4e3ece9a7a62b",
         0,
         0
       ],
@@ -80,30 +150,78 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/04a386afdb111eac",
+        "cruciblecraft:gt6/9d8040cc31ba5cc5",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/7f9c08e0053c6089",
+        2,
         2
       ],
       [
-        2,
+        3,
         0,
         0,
-        "cruciblecraft:gt6/25242f625d1f8b74",
-        2,
+        "cruciblecraft:gt6/83ee810e2585f7f8",
+        3,
         3
       ],
       [
-        3,
+        4,
         1,
         0,
-        "cruciblecraft:gt6/7b366b7c410bb82e",
-        3,
+        "cruciblecraft:gt6/83be758431af24a3",
+        4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/308d52e4dbf4bcba",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/79b87f815a004354",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/3e65b3fd4885bca3",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/07e466773d168479",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:gt6/c6119a996f6e081e",
+        9,
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 53,
+      "duration": 1472,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +232,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        24,
         0
       ],
       "output_chances": [

@@ -1,22 +1,32 @@
 {
   "accounted_rows": 325593,
-  "blocked_rows": 198144,
-  "duplicate_runtime_rows": 0,
-  "host_rejected_rows": 171713,
+  "blocked_rows": 26450,
+  "duplicate_runtime_rows": 5798,
+  "host_rejected_rows": 19,
+  "host_rejection_reasons": {
+    "extruder host rejected energy": 2,
+    "lossy fixture alias is not a GT6 operand": 17
+  },
   "input_pair_max": 1,
-  "miss_reasons": {},
+  "miss_reasons": {
+    "consume_not_form": 31335,
+    "output_not_same_form": 76564,
+    "output_same_form": 310,
+    "shape": 58723
+  },
   "proof": {
     "blocked": 0,
-    "covered": 127449,
-    "dump_row_count": 127449,
+    "covered": 299143,
+    "dump_row_count": 299143,
     "handlers": {
-      "extruder_exact_remainder": 0,
-      "extruder_shape_transform": 127449
+      "extruder_exact_remainder": 166932,
+      "extruder_shape_transform": 132211
     },
     "ok": true
   },
-  "published_rows": 127449,
+  "published_rows": 299143,
   "schema_version": 1,
-  "shape_transform_rows": 127449,
-  "source_rows": 325595
+  "shape_transform_rows": 132211,
+  "source_rows": 325595,
+  "unaccounted_rows": 0
 }

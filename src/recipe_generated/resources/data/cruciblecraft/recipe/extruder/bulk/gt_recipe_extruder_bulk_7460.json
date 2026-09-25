@@ -10,32 +10,58 @@
         }
       ],
       "hashes": [
-        "8a61a9e9041f5517b5129790677400371fc83ca26e219c99c1c9362840147ad9",
-        "d53d8d41565c4e939a7cb3ba50896a7d0d7070a4651dd1e2a7728b22baf8800c"
+        "f5090de812bea9f32cb321e84de452371efb3429cad658ff375afb95058bed8a",
+        "da4d079703377045d103cd528bf8722fd44f786f9547fb121b473d6233dd433e",
+        "a4e236a189e7b076ac479cf050833aebce6df03a343d30b2113cb1aadba21531",
+        "dd906ed5edc6e6d1916c9d8049552af6722d70e5fde31847e26cc864859ca08a"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrockium"
+              "cruciblecraft:prefix_material": "uranium233"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrockium"
+              "cruciblecraft:prefix_material": "celenegil"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "uranium235"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +69,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:bedrockium/block"
+            "id": "cruciblecraft:uranium233/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:celenegil/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:uranium/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:uranium235/gear"
           }
         ]
       ]
@@ -53,22 +97,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c2d2dc53e015104d",
+        "cruciblecraft:gt6/f76454d000dfa69d",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/6035dcabc9fd1e5b",
+        "cruciblecraft:gt6/3733dbd758a07eb8",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/2cd3aee46c2eb2c1",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/6d9990324d90560d",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 238,
+      "duration": 1301,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +139,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        6,
         0
       ],
       "output_chances": [

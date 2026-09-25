@@ -10,32 +10,74 @@
         }
       ],
       "hashes": [
-        "533e9f761a66b73ad0c06dc3d2962b209e49598a582eaa1d6cfdae5ce7b89985",
-        "27cfcf2b8049a381c87facfe18a9484337d93734067e40353ede48bab133de0b"
+        "a802a64dc925a41ab2c9b474aeea84297493d6564d3913ee12bdaefec623b0a3",
+        "ccf282bc1d5ffbe14464c3c53d161ed9160509df41a17f46e20f3599dbcadd80",
+        "5f622219101ea844aa029c45ebfc05f84447842d3eaeff4bce12bd131eaabfc6"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:carborundum/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:carborundum/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
             "count": 1,
-            "id": "cruciblecraft:carborundum/gear"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -45,22 +87,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8635680b605b05f3",
+        "cruciblecraft:gt6/8db9911d4432dcb2",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/7b720e12a941ac8c",
+        "cruciblecraft:gt6/f185857069b43e66",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/a85b954d5846118b",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 385,
+      "duration": 506,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +121,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        3,
         0
       ],
       "output_chances": [

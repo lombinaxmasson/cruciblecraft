@@ -10,32 +10,68 @@
         }
       ],
       "hashes": [
-        "601ce5773af1dd33c33d6305b6485f2e691dc09772017e04adc103069aa4fc30",
-        "c8b73ef632145d74bac8e714e566d397252b1568f8d16bd7295799c40e271106"
+        "4f94681d4c2e80b5136fbff38c7c942bc65adaddcbc2f33fb6c3fe69f5d6c0de",
+        "17a87faa6e5e1b5affaa04537f33efdb064816865d8272a6dc8dd0d731e32b9f",
+        "1b4af6b01702ffd0092c7c2d0629f2a34112849dfb45aedbfc90aff11d16c894",
+        "cda1b96d3c554a83d0b249ce8efe658f1c6990a0f128d8829c6f7b3a7e283c5f",
+        "fa3057992fff2a16b1ff05667be4bae447e5574411dc14112878be837fc7f5fb",
+        "24d9e7c032c81ed4e5f03818d3d6d8cb3856dfeb940d878c158b235fc30c35c3"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:constantan/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "duranium"
+              "cruciblecraft:prefix_material": "terrasteel"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:constantan/hexadecuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:constantan/hexadecuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:constantan/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,7 +79,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:duranium/gear"
+            "id": "cruciblecraft:constantan/huge_item_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:terrasteel/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:constantan/block"
           }
         ]
       ]
@@ -53,22 +101,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f6ca3a3390c8736a",
+        "cruciblecraft:gt6/1b5e55edde74ca20",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/716640f0199776b5",
         1,
+        0,
+        "cruciblecraft:gt6/7f2e058e3309362e",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/4611b3bfc46f4659",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/f9b786c71646667f",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/34f8bc8c520de475",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/8f8fb0649ab4d5be",
+        5,
         5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 954,
+      "duration": 2756,
       "eut": 96,
       "item_input_actions": [
         {

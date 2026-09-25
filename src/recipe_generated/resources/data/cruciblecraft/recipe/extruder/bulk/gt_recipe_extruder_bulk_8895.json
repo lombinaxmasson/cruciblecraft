@@ -10,32 +10,72 @@
         }
       ],
       "hashes": [
-        "0ee2cff89a7e94e44a8796686f1ee014e51b901decd7e6b1d5f0ff40a866fe33",
-        "4c439d0d57896c13054e949f2ed8d6b95c4619732ccb975b25248360ab3e14a7"
+        "eaa60b11bc6a9eefb7da85b6889d791292269f7bc40db358f8d71bde25fb10df",
+        "3e95dab29026215b8237c0f8ec6470ffefb2ad480459914494b856784c28a195",
+        "5b966d8b1a70a247f32ec5596a983cb6cd8e850b91583410114bf7eb19ce1519",
+        "445e7ab3e9cdfb3cdf619d215b71275939a341bc58b35667e67d1e92bb321558",
+        "f786486049485f985a5a31648ee2261724f936e33b57e936f9b3c7790e467882",
+        "42265ed4a8d849419ef124c1590605b17fb0464f82431d49f3c92cf4f7f7ea36"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "trinitanium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungsten_carbide/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinitanium"
+              "cruciblecraft:prefix_material": "tungsten_carbide"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:rail_gt",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:trinitanium/block"
+            "id": "cruciblecraft:tungsten_carbide/gear"
           }
         ]
       ]
@@ -53,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5f7d568bd2ecdf1d",
+        "cruciblecraft:gt6/031c3e59a15bdfdf",
         0,
         0
       ],
@@ -61,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/01563b7ccd1f6e19",
+        "cruciblecraft:gt6/31d43276394c1ba1",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/c38c5f2c40887324",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/fa83ba6bcb629e95",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/cfde5792baf7eedb",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/b55edf7378730c26",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 655,
+      "duration": 2675,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

@@ -10,49 +10,58 @@
         }
       ],
       "hashes": [
-        "02e1bc4518a0b76fca67a577dfdc37c26fa4abfa1ad785c0501d1b5b6aac4c60",
-        "ccc832b93f53cb74c2a31bd1abc5b5374894ce2be4af2042dbfd769ae7425819"
+        "a42b03bfa40558f2f8785ad9b88b295317bb57ad42936f7ed5d78a0729ac7dbe",
+        "a0c0b1e96f8b1f49da40ff174155d48c1a75b21d04d9e6b95182b91e78d332aa",
+        "ddc616124b1fa1646d4cc8614058d264805fd0f23fccdf1597970f667ea21046",
+        "24c2870635c0256d8e605d5121229e5cbe5fbee4b3e3c4a4aabfc3b4588a0c82"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:naquadah/octuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadah/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "naquadah"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:elven_elementium/rod"
+            "id": "cruciblecraft:naquadah/block"
           }
         ]
       ]
@@ -62,22 +71,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0a552cd1eba1718f",
+        "cruciblecraft:gt6/b622b9f0dfc98250",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/2ebb1a55a45cf1dc",
+        0,
+        "cruciblecraft:gt6/3c5eaafba55a91f2",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/c84e7351818dc964",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/32c13e511e07fe24",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 153,
+      "duration": 4694,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +113,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        3,
         0
       ],
       "output_chances": [

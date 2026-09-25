@@ -10,40 +10,75 @@
         }
       ],
       "hashes": [
-        "515aacae156f3bc10b5a7d4e4defaa9289c0f71d6d5f3c3d09c37033cf156cd2",
-        "d2521a789e62722b6149407601b590921b49e2f14c95ff51b0fb9bc94358ecc1"
+        "97bffc0259b9b49bbb30026740f25115d19e91011bf6e2c8f402cf4d4ce7c543",
+        "e3c2533f8b76bf6136acb47e458e4c6fde785c3282f579cb883126127cff4c0d",
+        "19faaaf17283f2b860dda9d44b492e82788bbff3c0ea9682cf2f576ffb384369",
+        "4700c2d513f2cf5f093d79cb58263d6c3cb79649b9126afa2584eac46a2cc475"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrum"
+              "cruciblecraft:prefix_material": "adamantium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrum"
+              "cruciblecraft:prefix_material": "adamantium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
             "count": 1,
-            "id": "cruciblecraft:electrum/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantium/large_fluid_pipe"
           }
         ]
       ]
@@ -53,22 +88,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9a5a407e44bca5bc",
+        "cruciblecraft:gt6/38468b462b13f1f9",
         0,
-        8
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/671d7bf0e236adfc",
         1,
-        11
+        0,
+        "cruciblecraft:gt6/7b5db44af85b1428",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/1e9a5a07b7d96384",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/bf3100f643d5ec6c",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1368,
+      "duration": 6100,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

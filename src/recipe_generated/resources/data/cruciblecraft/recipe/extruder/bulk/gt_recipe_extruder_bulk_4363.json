@@ -10,28 +10,59 @@
         }
       ],
       "hashes": [
-        "e9e816e25fe1c1b8794ac2713a0b560949969157757f2c2582f26f927d4638ba",
-        "3036c63422bddb628af2efd23189f11fac0b31dd4ef6b149da580e3dfae60344"
+        "68e48c38c6c586b03eb773bbc047b529e697b2d973b9461ea097e1d64abd7c73",
+        "bc6901472adfe965d18c2a092fb5e86bf5a63b2b3c6eb14ddd8d48a8b2711263",
+        "045442d8028017f8da7cdbb4ee72b0d26a108249718160c00541b9a66083fdaf",
+        "5e362e9d1e45d70410d519eff877ccbfebedfe51c0d614ecc36fb8c7d2130f8b",
+        "039e1d522a531909e4a01a19c32efcec904c4dec8833e8799a1c345b0dcab8f5"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:alumite/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:electrum/rod"
+            "item": "cruciblecraft:alumite/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alumite/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -39,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:electrum/gear"
+            "id": "cruciblecraft:alumite/block"
           }
         ]
       ]
@@ -49,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/72ebea55ea47c0ae",
+        "cruciblecraft:gt6/114eaea9d5537e67",
         0,
         0
       ],
@@ -57,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/a53e8e708db0a03d",
+        "cruciblecraft:gt6/22bf4f52511126f8",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/231768355e60ea82",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/ada5bf9de93c2b9c",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/d42ea590f2525c44",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 912,
+      "duration": 494,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        36,
         0
       ],
       "output_chances": [

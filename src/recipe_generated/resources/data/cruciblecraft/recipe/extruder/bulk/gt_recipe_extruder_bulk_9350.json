@@ -10,29 +10,21 @@
         }
       ],
       "hashes": [
-        "49d53205385ecf2b2852fc004abbdc4bc0593b58c1f67b0f94305b137174de8c",
-        "c125a171afc462770354fa11c478bdcb42a8f37cb2b7c58efaa6eb2d4fb432a6"
+        "ae36368d62417a6f1132f1420836184918f478c5618dd35df6b5584fbf47507e",
+        "a446192fdca6f5985eede1092ea6cbcdd9a3e7d2eee926c1638ecb2faf3c7997"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "abyssalnite"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:nichrome/nonuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "abyssalnite"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:nichrome/nonuple_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -42,8 +34,17 @@
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
             "count": 1,
-            "id": "cruciblecraft:abyssalnite/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nichrome/block"
           }
         ]
       ]
@@ -53,22 +54,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9ee5a830fbda9cf1",
+        "cruciblecraft:gt6/8f9486c202d7b876",
         0,
-        2
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/3c1ff1b53be06581",
         1,
-        3
+        0,
+        "cruciblecraft:gt6/d3ef4bf3e228cfe2",
+        1,
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2794,
+      "duration": 1813,
       "eut": 96,
       "item_input_actions": [
         {

@@ -10,32 +10,55 @@
         }
       ],
       "hashes": [
-        "e3e3b7a1b4a4039ae63c8ebe0f1f6714ac2d3c822de7acd9b34154bf166ef56d",
-        "00dd7e251325b40f8e5e29eca8e46f7e7a0d4eba717138a4bf4a70b0a8fef2db"
+        "776889acd696bf9bea5ffcb3c8727c9ea207981b47068c2cf0ac9c829095c3cb",
+        "46b5d70d1b125c85e0b0788ea51b8ecebf944399b1a88bcec49ee52687619870",
+        "d7228e41a42ac20dc71ce515dbcc591903f861108925275182c8f8fc5ce1eea2",
+        "b927b8f2185db7f6f591c69c1bdb0f11d6244f1c4e74475c2ce5a5c68e82aa78",
+        "95f57e0cd229572091f7a4835a909671a8ffeee5804199800fa6de3c56b037f6"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherite"
+              "cruciblecraft:prefix_material": "curium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "netherite"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:curium/plate"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:curium/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:curium/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:curium/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,7 +66,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:netherite/gear"
+            "id": "cruciblecraft:curium/block"
           }
         ]
       ]
@@ -53,22 +76,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e98b2df79bcdaea6",
+        "cruciblecraft:gt6/d8dd1c3015f29cb4",
         0,
-        3
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/9361066e9c7ea7d7",
+        "cruciblecraft:gt6/2590f1f5adb947d3",
         1,
-        5
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/dce9f3a13906c433",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/3e2fe15ad3efffc7",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/36ac58d4b9c52382",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 14671,
+      "duration": 2477,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        9,
         0
       ],
       "output_chances": [

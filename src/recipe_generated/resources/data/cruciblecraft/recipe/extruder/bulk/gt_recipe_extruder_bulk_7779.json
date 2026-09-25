@@ -10,32 +10,42 @@
         }
       ],
       "hashes": [
-        "51b73c13254efd78e8a2cb52b5ae9055e0bc3b3ad9ec16631c1d06cfbc7bca97",
-        "8bf9d1d46ed9e694e8e6bb6bab636fd0f954690a917b06b39ab2a4120195ca6f"
+        "5c0122f5ea7280937e00dd03ebf3d2f0c09926f28785242916fe4b0389409d38",
+        "56f5a128c15ea0212a1a42d3f764658925ed2db48c78efc94ee8b8b2e2cae556",
+        "b3ccea1d4e1a87a745de5de7a960c34289892ba0787dedb0dee7fe8ef09e3ff5",
+        "a9ec8c541a0ced8617afefc799539291b320aaaca725d396ef47e68b5976987c"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "fireleaf"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:sanguinite/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "fiery_steel"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:sanguinite/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sanguinite/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sanguinite/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
@@ -43,13 +53,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:fireleaf/block"
+            "id": "cruciblecraft:sanguinite/rod"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
             "count": 1,
-            "id": "cruciblecraft:fiery_steel/block"
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -59,7 +72,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2bf4aaeb9101372a",
+        "cruciblecraft:gt6/29acf816f72226ef",
         0,
         0
       ],
@@ -67,14 +80,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/d3982d6eba473ee8",
+        "cruciblecraft:gt6/4f6ff841820730e8",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/0898645b06ce428a",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/80b0a218fd23d22e",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2996,
+      "duration": 294,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +114,7 @@
         }
       ],
       "item_input_counts": [
-        14,
+        4,
         0
       ],
       "output_chances": [

@@ -10,33 +10,59 @@
         }
       ],
       "hashes": [
-        "debd7649667a80b0b8e3884da21cff56ff9975bed1cc2ed81b41196954cdc83d",
-        "2ab0a2a2ba9cdafd2d4b18a0f0b7d8aabc02fedb3eb4acc2f96d82972d6bdf6c",
-        "236f0ddcc2b07d7e3bea02167e21a19806f01942d9e4243fe7935e949353b56c"
+        "d8e998a4b8296064fc014e82e2acaeec5db11a747e025723d01c1df443fa1103",
+        "b9a86801a2c7c6b8cb10e482728758c4b1f3545bb91b4b5628f4055b88dfcf24",
+        "8d15e337976ad1e0183a61f8c04b553d9f51e3ed414ceeca0b61d0b97d16d20d",
+        "f20a51346081712675abadfc1f8e43427ccfb60d8fae321949421e6b0f447ac6",
+        "0e2241cb70aabf5b48a54b4d11ab01e83b99716453aa1754f0a00053c673a481"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:americium/machine_casing"
+            "item": "cruciblecraft:adamantine/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:americium242/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "adamantine"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:americium241/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "adamantine"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantine/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantine/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -44,19 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:americium/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:americium242/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:americium241/block"
+            "id": "cruciblecraft:adamantine/gear"
           }
         ]
       ]
@@ -66,30 +80,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b9439b44b335830e",
+        "cruciblecraft:gt6/6d9a87e874cfe8f4",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/c8db2e55ca938952",
+        0,
+        "cruciblecraft:gt6/46d72b0fa9f20fd6",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/f3477f74e3303899",
+        0,
+        "cruciblecraft:gt6/1a9e81f9d020d23d",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/9114ac0ab3d6f86c",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/a6af195d7c0a56d2",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3908,
+      "duration": 1743,
       "eut": 96,
       "item_input_actions": [
         {
@@ -100,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        16,
         0
       ],
       "output_chances": [

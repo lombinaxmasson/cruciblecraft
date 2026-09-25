@@ -10,14 +10,30 @@
         }
       ],
       "hashes": [
-        "8e0be3051f3375e0caba542645649f27347f6dc291377a4087b6ef8ce522064d",
-        "538afbbd27cebbbbbf674817cb288c464a284db9053973c31f78675702a89ed8"
+        "eb40ab3980c7209a87ae806afa36e8728d45ba440f0dc990440025334d6f9e27",
+        "2a2381f44cec401ccab7ffd57b98a7a8a6c7613ecd0e09606b2df61c0ce2044b",
+        "a9e2518adccc2ba65e31ef912b0aa4ad4df7840c75605a2fc8c829b8db6ec704",
+        "8afb191f012e3d94a73b08cae44eea2b8bf4eb23d18ce957ba82ae8aa702e953",
+        "17f57d373929a7d548df9e222e40c20a866d07452612bd664caea453923c15e2",
+        "99f9c228d66bbbecbdc3c244af452f5c4884723d45d1c76e9d89838d1e901893"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "damascus_steel"
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
             },
             "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
@@ -29,13 +45,49 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "damascus_steel"
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
             },
             "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
@@ -43,7 +95,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:damascus_steel/gear"
+            "id": "cruciblecraft:tritanium/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tritanium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,22 +123,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/150a7d894f65340f",
+        "cruciblecraft:gt6/696921fd061194e3",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/a729fbba14dbc30f",
+        "cruciblecraft:gt6/d73038b757ba2630",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/50f147dcaae86432",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/159558b52ee66099",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/ab23c5aac01df2f1",
+        4,
         4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/5bd4b9baa3ab0d94",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 925,
+      "duration": 2210,
       "eut": 96,
       "item_input_actions": [
         {

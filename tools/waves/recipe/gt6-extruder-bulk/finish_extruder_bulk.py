@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(1, str(TOOLS))
 
 from tools import census_common as census
+from tools import centrifuge_common as centrifuge
 from tools.recipe_bulk.compile import _consume_identity
 from tools.recipe_bulk.emit import emit_action, emit_item, emit_item_output
 from tools.recipe_bulk.handlers import shape_transform
@@ -33,27 +34,60 @@ def _runtime(operand: dict[str, Any]) -> str:
     return str(operand.get("runtime_id") or operand.get("value") or "")
 
 
-def _host_legal(relation: dict[str, Any]) -> bool:
-    if not shape_transform.matches(relation, {}):
-        return False
+HOST_ITEM_OUTPUTS = 2
+HOST_MAX_EUT = 256
+SHAPE_TAG = (
+    ROOT / "src/generated/resources/data/cruciblecraft/tags/item/extruder_shapes.json"
+)
+HOST_SHAPES = frozenset(
+    str(value) for value in json.loads(SHAPE_TAG.read_text(encoding="utf-8"))["values"]
+)
+
+
+def _uses_lossy_alias(relation: dict[str, Any]) -> bool:
+    for operand in list(relation.get("item_inputs") or []) + list(
+        relation.get("item_outputs") or []
+    ):
+        if not operand.get("alias"):
+            continue
+        source = operand.get("source") or {}
+        meta = str(source.get("meta") or 0)
+        if not meta.isdigit():
+            continue
+        key = (str(source.get("item") or ""), int(meta))
+        if key in centrifuge.FIXTURE_ONLY_LOSSY_ITEM_ALIASES:
+            return True
+    return False
+
+
+def _host_rejection(relation: dict[str, Any]) -> str | None:
+    """Mirror ModProcessingMachines.validateComponentRecipe for the extruder host."""
+    inputs = list(relation.get("item_inputs") or [])
     outputs = list(relation.get("item_outputs") or [])
     actions = list(relation.get("item_input_actions") or [])
     counts = list(relation.get("item_input_counts") or [])
-    if len(outputs) != 1 or len(actions) != 2 or len(counts) != 2:
-        return False
     if relation.get("fluid_inputs") or relation.get("fluid_outputs"):
-        return False
-    eut = int(relation.get("eut") or 0)
-    if eut <= 0 or eut > 256:
-        return False
+        return "extruder host rejected fluid"
+    if not outputs or len(outputs) > HOST_ITEM_OUTPUTS:
+        return "extruder host rejected output count"
+    if len(inputs) != 2 or len(actions) != 2 or len(counts) != 2:
+        return "extruder host rejected input count"
     if str(actions[0].get("kind") or "") != "CONSUME":
-        return False
-    if str(actions[1].get("kind") or "") != "PRESERVE":
-        return False
-    if int(counts[0]) <= 0 or int(counts[0]) > 64 or int(counts[1]) != 0:
-        return False
-    out_count = int((outputs[0].get("source") or {}).get("count") or 1)
-    return out_count > 0
+        return "extruder host rejected material slot"
+    if str(actions[1].get("kind") or "") != "PRESERVE" or int(counts[1]) != 0:
+        return "extruder host rejected mold slot"
+    if _runtime(inputs[1]) not in HOST_SHAPES:
+        return "extruder host rejected mold slot"
+    if int(counts[0]) <= 0 or int(counts[0]) > 64:
+        return "extruder host rejected input amount"
+    eut = int(relation.get("eut") or 0)
+    if eut <= 0 or eut > HOST_MAX_EUT:
+        return "extruder host rejected energy"
+    for output in outputs:
+        count = int((output.get("source") or {}).get("count") or 1)
+        if count <= 0 or count > 64:
+            return "extruder host rejected output amount"
+    return None
 
 
 def _miss_reason(relation: dict[str, Any]) -> str:
@@ -112,6 +146,32 @@ def _io_key(relation: dict[str, Any]) -> str:
     )
 
 
+def _prune_work_set(kept: set[str]) -> None:
+    """Keep work_set membership equal to the published rows so import-source --check replays."""
+    work_path = WAVE / "source_pack" / "work_set.json"
+    work = json.loads(work_path.read_text(encoding="utf-8"))
+    families = []
+    seen: set[str] = set()
+    for family in work["families"]:
+        members = []
+        for member in family["relations"]:
+            digest = str(member["source_row_sha256"])
+            if digest in kept and digest not in seen:
+                seen.add(digest)
+                members.append(dict(member, shadow_order=len(members)))
+        if members:
+            families.append(dict(family, relations=members))
+    work["families"] = families
+    work["accounting"]["published_rows"] = len(seen)
+    work_path.write_text(json.dumps(work, separators=(",", ":")), encoding="utf-8")
+    manifest_path = WAVE / "source_pack_manifest.json"
+    manifest = census.load_json(manifest_path)
+    for entry in manifest["files"]:
+        if entry["role"] == "work_set":
+            entry["sha256"] = census.sha256_file(work_path)
+    census.write_stable(manifest_path, manifest)
+
+
 def main() -> None:
     source = json.loads((WAVE / "source.json").read_text(encoding="utf-8"))
     raw = list(source["relations"])
@@ -160,13 +220,20 @@ def main() -> None:
     relations = kept
     host_kept: list[dict[str, Any]] = []
     host_dropped: list[dict[str, str]] = []
+    host_reasons: Counter[str] = Counter()
     for relation in relations:
-        if _host_legal(relation):
+        rejection = (
+            "lossy fixture alias is not a GT6 operand"
+            if _uses_lossy_alias(relation)
+            else _host_rejection(relation)
+        )
+        if rejection is None:
             host_kept.append(relation)
             continue
+        host_reasons[rejection] += 1
         host_dropped.append(
             {
-                "reason": "extruder host rejected recipe shape",
+                "reason": rejection,
                 "source_recipe_index": str(relation.get("source_recipe_index") or ""),
                 "source_row_sha256": str(relation.get("source_row_sha256") or ""),
             }
@@ -178,6 +245,7 @@ def main() -> None:
             json.dumps(source, separators=(",", ":")),
             encoding="utf-8",
         )
+    _prune_work_set({str(row["source_row_sha256"]) for row in relations})
     reasons: Counter[str] = Counter()
     remainder: list[str] = []
     shaped = 0
@@ -255,7 +323,12 @@ def main() -> None:
     lock["production"]["relation_count"] = sum(int(row["relation_count"]) for row in families)
     census.write_stable(WAVE / "production_lock.json", lock)
     blocked = census.load_json(WAVE / "blocked.json")
-    rows = list(blocked.get("rows") or [])
+    published_hashes = {str(row.get("source_row_sha256") or "") for row in relations}
+    rows = [
+        row
+        for row in blocked.get("rows") or []
+        if str(row.get("source_row_sha256") or "") not in published_hashes
+    ]
     known = {str(row.get("source_row_sha256") or "") for row in rows}
     for item in emitted_dropped + host_dropped:
         if item["source_row_sha256"] not in known:
@@ -263,13 +336,23 @@ def main() -> None:
             known.add(item["source_row_sha256"])
     blocked["rows"] = rows
     census.write_stable(WAVE / "blocked.json", blocked)
+    ledger_reasons = Counter(str(row.get("reason") or "") for row in rows)
+    host_reasons = Counter(
+        {
+            reason: count
+            for reason, count in ledger_reasons.items()
+            if reason.startswith("extruder host rejected")
+            or reason == "lossy fixture alias is not a GT6 operand"
+        }
+    )
     census.write_stable(
         WAVE / "coverage_proof.json",
         {
             "blocked_rows": len(blocked.get("rows") or []),
             "input_pair_max": max(input_pairs.values()),
-            "duplicate_runtime_rows": len(emitted_dropped),
-            "host_rejected_rows": len(host_dropped),
+            "duplicate_runtime_rows": ledger_reasons["duplicate runtime identity"],
+            "host_rejected_rows": sum(host_reasons.values()),
+            "host_rejection_reasons": dict(sorted(host_reasons.items())),
             "miss_reasons": dict(sorted(reasons.items())),
             "proof": {key: value for key, value in proof.items() if key != "row_fingerprints"},
             "published_rows": len(relations),
@@ -282,7 +365,7 @@ def main() -> None:
         f"shaped {shaped} remainder {len(remainder)} dropped {dropped} "
         f"duplicate_runtime {len(emitted_dropped)} host_rejected {len(host_dropped)} "
         f"collisions {collisions} pair_max {max(input_pairs.values())} "
-        f"reasons {dict(reasons)}"
+        f"reasons {dict(reasons)} host_reasons {dict(host_reasons)}"
     )
 
 

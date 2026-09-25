@@ -10,80 +10,49 @@
         }
       ],
       "hashes": [
-        "b22ea9928c41ea1e19166fc7ea2b23932b7e704c61ce98546673aa9735fd9dfb",
-        "6e1ff3b2969393f5cde684bad2d5d619d3e96f187b6074f369c50d14b9a29a3f",
-        "c907637406e8de9623345732dae2803df321546e869ddb46f377648fad154090",
-        "f7970aca1ad4524854d14ce568bb66f3ab64bf9de1043774b88226496b62fd35",
-        "a50cec887afa38c179c0541b4307828a228999e007d96ddda6f44690fe85de85",
-        "0239d94bd73e1ecefbcfd6eb872878585424c288af526be380a2ccaeefc30146"
+        "a9edeff73a2030e7231515a3a6722b75132d6ac38217aaa9f1fa23ffaf454698",
+        "a831a629c05a3a3705e2885c0d483e02d1673b8ced0ddbd28cc6809c782fdc14"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:alumite/nugget"
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "alumite"
+              "cruciblecraft:prefix_material": "tungsten_carbide"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:alumite/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "alumite"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:alumite/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "alumite"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
             "count": 1,
-            "id": "cruciblecraft:alumite/gear"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungsten_carbide/rod"
           }
         ]
       ]
@@ -93,54 +62,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/84e0b583ba566d8f",
+        "cruciblecraft:gt6/939b959c27e730ac",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/4703ea5b74e26d75",
+        "cruciblecraft:gt6/9a09c63f996a3037",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/1a24b8bc47e5f80e",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/ec02491f608165a7",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/c5d29d5fa4584f18",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/71c32f2980e54825",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 220,
+      "duration": 335,
       "eut": 96,
       "item_input_actions": [
         {

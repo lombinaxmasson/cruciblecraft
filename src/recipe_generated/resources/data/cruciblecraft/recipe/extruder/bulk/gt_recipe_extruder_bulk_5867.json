@@ -10,32 +10,72 @@
         }
       ],
       "hashes": [
-        "98304a07da7ad18613f1c8104e6e968afffa30c86543d4f8e81199a567fcdfc2",
-        "5c93ffda0dcc3b17f52443d2fa7af6e11c1aaee90286532791843ba3c4209043"
+        "f0c30efc10b586b6f4ff771962c76668cf3afb5d42111f084a09151d09cbec55",
+        "ac2d5fca11fd426b64eaf9e4de7f986a0cbac7f31701f26661ed813d96526da4",
+        "9ddd271829b0a6108c5e8c87a92b96b3afccc70483978363569169651a0c7b88",
+        "75e502f5a2d8484170627a513545a773e5bcbed01319c5891dc0836615b516ea",
+        "11e0f83852f522faec8ade735b819ad0dcad3e11f0cc0ef489d56c17a15198b7",
+        "16bc29e0b51bc8b98a7c53cfc6013e04e5e1a1fea712fdb0a357bbb93406fe86"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niobium_titanium"
+              "cruciblecraft:prefix_material": "manyullyn"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "niobium_titanium"
+              "cruciblecraft:prefix_material": "manyullyn"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manyullyn/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manyullyn/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manyullyn/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:niobium_titanium/block"
+            "id": "cruciblecraft:manyullyn/gear"
           }
         ]
       ]
@@ -53,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a770253997cd3063",
+        "cruciblecraft:gt6/caa497715cd510a8",
         0,
         0
       ],
@@ -61,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/8383d2f60d9455b8",
+        "cruciblecraft:gt6/e3c0d3f07d7dfa26",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/645ea279f99b861d",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/bc9c784bced3d0f5",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/5c94038b53153c34",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/a06a3bf79f58ccf6",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2491,
+      "duration": 333,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

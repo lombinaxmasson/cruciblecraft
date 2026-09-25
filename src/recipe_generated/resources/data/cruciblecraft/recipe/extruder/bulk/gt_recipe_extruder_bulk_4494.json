@@ -10,40 +10,74 @@
         }
       ],
       "hashes": [
-        "827e1a5b4d2c8e05b0602c0116e2a56e0c4c7969a9de0952f25a717089b49fe4",
-        "1d42058f24dd20daa04e8212f529e25d1f0bf2f53ca1c6078d82e0fae8d64a57"
+        "3b602ee1b14a223cd73cc8bf8376a011e5b2a5b2e0d71183329579f5d5bfe8d8",
+        "1ea9ed206897d5a8496081671876bf5b0db64188d2fe83b59ba24d3572d0847c",
+        "6b139388c83aa30ea313f507be4e9679d6104bd86428d22b5722140fb28dce76"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "eximite"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "eximite"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "eximite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "eximite"
+            },
             "count": 1,
-            "id": "cruciblecraft:titanium/block"
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "eximite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "eximite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -53,22 +87,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4377712d257a3d75",
+        "cruciblecraft:gt6/111fcd96c2940f50",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/7ebf73d9da704188",
         1,
+        0,
+        "cruciblecraft:gt6/9f617432655a4565",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/e405582519901e4a",
+        2,
         2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1040,
+      "duration": 567,
       "eut": 96,
       "item_input_actions": [
         {

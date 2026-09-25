@@ -10,40 +10,110 @@
         }
       ],
       "hashes": [
-        "c8709681cdcb76e94c68dfabcfc94ddb44e35427a312c253aefbffcc2dba4472",
-        "07861588c454891943ec671130ded1496d07b482e780d5a98dad8568b7920371"
+        "2b6709622b91c538d4b73217f5a449da441dd251013d44c06acb9cc97b07b8cc",
+        "b65d6b5950c38999a2b1c0c0759b81e21fa8ad786078cee44785df03e9686b00",
+        "02005b100fb487521af9e44b2149b5bb1c97364ff1ec5f81c70d4c0e0242808f",
+        "f7b751a1680de0218c1436de3c52cbc5207abc2c51df303af69ec905265c6936",
+        "df66151206f8bd36094e02adb5774fbaf978560f6d1200e9ee3be36a258ad56a",
+        "6d07cb322bb2fb1e947ee06cfa558b8d8f28963462124ab587879b669227aedc"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah"
+              "cruciblecraft:prefix_material": "hepatizon"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah"
+              "cruciblecraft:prefix_material": "hepatizon"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
             "count": 1,
-            "id": "cruciblecraft:naquadah/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hepatizon/gear"
           }
         ]
       ]
@@ -53,22 +123,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b31c3b8bf723fc88",
+        "cruciblecraft:gt6/1acae5f941f03cc2",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/076e1c0bc970b903",
         1,
+        0,
+        "cruciblecraft:gt6/14f625834131fea0",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/5c63f0617a373fb1",
+        2,
         2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/f51ded75196048a2",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/cbd1018a2e2f9db9",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/43ad271c6b88d593",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3521,
+      "duration": 906,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +181,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

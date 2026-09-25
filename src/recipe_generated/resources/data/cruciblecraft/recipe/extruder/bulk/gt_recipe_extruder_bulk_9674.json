@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 333,
+      "duration": 1850,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        6,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "manyullyn"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:damascus_steel/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_gear"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:manyullyn/gear"
+          "components": {
+            "cruciblecraft:prefix_material": "damascus_steel"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "damascus_steel"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "4fb1ec849294ab49603c03d142df72bd8beda183caba6d52cbf63a73c2daf566"
+          "cfa0266ad6e8a276dd9e1b6559e10797b1c1afc59cff24edaf25bbe1fd9714b1"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9674",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/34ce63a56201ede3"
+      "stable_id": "cruciblecraft:gt6/80faedf4556a8000"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

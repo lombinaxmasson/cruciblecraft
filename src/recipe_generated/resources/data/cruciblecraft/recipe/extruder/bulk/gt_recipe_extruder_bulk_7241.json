@@ -10,45 +10,50 @@
         }
       ],
       "hashes": [
-        "cd0df3f43fb3983152d772c7a527801209bbcd3e1e2b5728a16301d6c2241cea",
-        "6bcdb6bd72b3c0b0ed340dd51a2b3a6e4909d0e00dddfd46f25b50020b6f2064",
-        "2016bf29c1fda1b299f0c0e64e85fd43bfb3c6e5bbd7bf5db90f8fbe83ab254b"
+        "cef2adde45924d1023dbac343f03903d242713aab631ec331c6de7a5c6aead2e",
+        "c1aedd98c570fe1e39d9ca780f36cc98fb51be555561afc91d4c3363833c8ebe",
+        "ebf19080a8dfa40f6e5028e99b7bdd058881e5df29a445a628601c9d37ac451e",
+        "fc48076605d74fdec7cb51695a26b5860d0d9312266af4276b4517bf5c67e347"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hsss"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hslasteel/fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslasteel/sextuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "mithril"
+              "cruciblecraft:prefix_material": "hslasteel"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "platinum"
+              "cruciblecraft:prefix_material": "hslasteel"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -56,19 +61,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hsss/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:mithril/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:platinum/block"
+            "id": "cruciblecraft:hslasteel/huge_fluid_pipe"
           }
         ]
       ]
@@ -78,30 +71,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e067b9ca0b4caea0",
+        "cruciblecraft:gt6/571a82ed0462de2e",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/24f0a57e28188ca8",
+        0,
+        "cruciblecraft:gt6/b71fba3e546019a2",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/02964f44017d5efa",
+        0,
+        "cruciblecraft:gt6/dfcae9bcaedd3ae3",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/91768fc694d16404",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5403,
+      "duration": 2304,
       "eut": 96,
       "item_input_actions": [
         {
@@ -112,7 +113,7 @@
         }
       ],
       "item_input_counts": [
-        14,
+        4,
         0
       ],
       "output_chances": [

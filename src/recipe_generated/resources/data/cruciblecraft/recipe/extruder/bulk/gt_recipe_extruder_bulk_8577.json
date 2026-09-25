@@ -10,32 +10,45 @@
         }
       ],
       "hashes": [
-        "38a6d44ae8e374ff1a854a12df9b3e2343b6925669a5e009b31266810b116de2",
-        "cc10f1b2a76af4aed1fcb4c3c71d84d93e1c721a53551ce639d2c2bcf1a9d10a"
+        "b768b8807f2d8799d2608c73bd57d4c2cacb14d3e7d95d30f72079f37417ceeb",
+        "24539039beac05ba5514c777932d0f17f0a8b8785660c6396441f104ec9a1229",
+        "3a9674697dd9f770781e5c880b3ffb6e2216daea2ca15be75f4d422faa92c9bb"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
+              "cruciblecraft:prefix_material": "ceruclase"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
+              "cruciblecraft:prefix_material": "obsidian_steel"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "actinium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
@@ -43,7 +56,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:osmiridium/block"
+            "id": "cruciblecraft:ceruclase/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:obsidian_steel/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:actinium/bolt"
           }
         ]
       ]
@@ -53,22 +78,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b027e240d46d5a16",
+        "cruciblecraft:gt6/acf1288b4668c8b5",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/119ce773e5e07704",
+        "cruciblecraft:gt6/a0ac7020553a8672",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/a253a793ee11f0ed",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9477,
+      "duration": 21,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +112,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        9,
         0
       ],
       "output_chances": [

@@ -10,17 +10,24 @@
         }
       ],
       "hashes": [
-        "c8a0b1b48456614d0cbe8f2954a731b646e26467cb889f63a94ebfc1a37a4ead",
-        "db7adaaa2e2303d9a94cd8780eb42eed1fc87133304913c66b4a772098e1c819"
+        "f3055a42a4e59133547c452a945eec7aae6a0e1a15d730ddac3f392f66daf911",
+        "24e0c622eb08c410d451fe0b3f907b01fc82ef24d6bf31807eba16907e670540",
+        "5d1699934066fe3fb95de249a6afc0d9a3c8e4e3b048156e530dd899cd63e576",
+        "6975ce039fcba487f6a318b2aba36cc3e8c8db51f27dbe2866a4e0b42187e172",
+        "506186dfaac81491131e0763f2f0bdc594b364ed69bd4d9ad8ee95c8ecaea7e1"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "rutherfordium"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:scandium/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:scandium/plate"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -29,10 +36,26 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rutherfordium"
+              "cruciblecraft:prefix_material": "scandium"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:scandium/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:scandium/long_rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -43,7 +66,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:rutherfordium/block"
+            "id": "cruciblecraft:scandium/block"
           }
         ]
       ]
@@ -53,7 +76,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/46501e86368228f5",
+        "cruciblecraft:gt6/d4dceffaf2791f71",
         0,
         0
       ],
@@ -61,14 +84,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/a36ee8eaf94d62bc",
+        "cruciblecraft:gt6/64ddc9b344281244",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/272041d10b3b4282",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/746f368830c1da98",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/2a33dd1392ff6eb5",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9053,
+      "duration": 632,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        9,
         0
       ],
       "output_chances": [

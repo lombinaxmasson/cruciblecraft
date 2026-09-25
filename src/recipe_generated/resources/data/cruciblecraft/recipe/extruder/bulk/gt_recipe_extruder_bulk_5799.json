@@ -10,96 +10,102 @@
         }
       ],
       "hashes": [
-        "de7f069ae78013a5bf520add558b70b8bc29daab1f149815579dda249994dea8",
-        "d304a76bf9a1aeed5793acca9e0ed196c0b761f952e23023a6681dda1eb3afc1",
-        "3666f1cb44c36d27c0df8845c484a7e51af6d2b3b2b142cad310655ef42ae55c",
-        "c7ef043fe676c114a94c077b8b668e73f589e903b362e701963d82e0070a062e",
-        "cbe0864411d156b3a448e433992ee43a8272f63147aad203a73eb9f05080ec8f",
-        "f830a4416e3f2268835fa4c30c70ee1dc1cf3adf20a8085f9551ee640c3bf6a7",
-        "cc789ef3fd7e93df3d0fce9bc982b3ae710e0efec1764f89fcd48eb2a8e1747d",
-        "f32c5bc72a316aae397ccbda69e3385564f8b9845f168e63dec41eb3db7c69f6",
-        "97e07cc186e3b91a5b412865db5d70d1899e216080553d500ee15e2fc7a99165",
-        "61be114e29b84b25f96098b1f610f87d7c3257fa284f656e6fc1502b384a87d3"
+        "3e4a8323bdc4a6b88d3a752092f23a219acba55eea26990c744661ad25811d3c",
+        "5941aefd3c46ffc5e28af57613ee3970bee601656c927abdd4b49de4524bb40f",
+        "c95b888450b8d4ee47d97f66665eb6c9769ee89dc636faadb2b900d7714372e2",
+        "396f5111aeed992bc48e6553897b12febb06fd7450d60083ed3908e8fc1e0c44",
+        "042c2980bf9ea2b1e2486c0dda454c4b5b9cbfeeea035c2b8cf440211e6a20bf",
+        "9b88d1df40b86bd9b04c9c216c983bfffe0ca208e208cc7286b0247f2e767ca1",
+        "7aec642bdfee71635ac78965b45b30bf6d3b9191a9690109c2065d82036afacd",
+        "9131518fb5e94ea3507bd34477d36c135cbcef3cb5708db86715d050603f53f4"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:desh/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desh/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desh/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desh/fine_wire"
+            "item": "cruciblecraft:coralium/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desh/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desh/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desh/bolt"
+            "item": "cruciblecraft:coralium/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desh/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desh/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desh/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
@@ -107,34 +113,27 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "desh"
+              "cruciblecraft:prefix_material": "coralium"
             },
-            "count": 1,
-            "id": "cruciblecraft:curved_plate"
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:desh/ingot"
-          }
-        ],
-        [
+            "count": 64,
+            "id": "cruciblecraft:coralium/bolt"
+          },
           {
-            "count": 1,
-            "id": "cruciblecraft:desh/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:desh/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:desh/long_rod"
+            "count": 8,
+            "id": "cruciblecraft:coralium/bolt"
           }
         ]
       ]
@@ -144,7 +143,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ccb2f976287bceda",
+        "cruciblecraft:gt6/ed6bedfa021115e9",
         0,
         0
       ],
@@ -152,78 +151,62 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/dfa0d2b49014ca71",
+        "cruciblecraft:gt6/d46cbe9121899177",
         1,
         1
       ],
       [
         2,
-        2,
+        1,
         0,
-        "cruciblecraft:gt6/b1d5e60cab75ca05",
+        "cruciblecraft:gt6/413dc6566a0b5b51",
         2,
         2
       ],
       [
         3,
-        3,
         0,
-        "cruciblecraft:gt6/83b9a50c2e737da2",
+        0,
+        "cruciblecraft:gt6/8c094caa5b9abb16",
         3,
         3
       ],
       [
         4,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/0a0ccc1dd9694ccc",
+        "cruciblecraft:gt6/face93384b9a8079",
         4,
         4
       ],
       [
         5,
-        2,
         0,
-        "cruciblecraft:gt6/7ef9e62010098561",
+        0,
+        "cruciblecraft:gt6/6bfd9db6f1936103",
         5,
-        6
+        5
       ],
       [
         6,
         1,
         0,
-        "cruciblecraft:gt6/249a8d7e1b72d545",
+        "cruciblecraft:gt6/eef24d0c8362e18b",
         6,
-        8
+        6
       ],
       [
         7,
-        3,
         0,
-        "cruciblecraft:gt6/09aab9cd0adf1353",
+        0,
+        "cruciblecraft:gt6/bacee533ff1b5770",
         7,
-        9
-      ],
-      [
-        8,
-        4,
-        0,
-        "cruciblecraft:gt6/53308c1e8ea8340d",
-        8,
-        10
-      ],
-      [
-        9,
-        4,
-        0,
-        "cruciblecraft:gt6/a5ef92449ac37ed4",
-        9,
-        13
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 105,
+      "duration": 4742,
       "eut": 96,
       "item_input_actions": [
         {
@@ -234,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5799",

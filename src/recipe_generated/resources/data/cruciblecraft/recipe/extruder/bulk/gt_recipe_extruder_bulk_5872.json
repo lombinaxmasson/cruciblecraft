@@ -10,17 +10,15 @@
         }
       ],
       "hashes": [
-        "514300266b7e6e3fbd06bf950d34817d991fa283d279d0a306e1f9dc7b1ff4b0",
-        "b029cd75b6b48f003db4266bf7cfdba800ffbd537e9aa7bce9e3f710568f4fbc"
+        "e41e171a85a5db0f0bf8d1b426df81fa41ff8e00bf564e1b8d02ead5a9bd4446",
+        "5bc7c3558eaf28ac182337d3834b8e2cce9d9e05e6800f028c0c5a74186adbcb",
+        "af3c20f0cd420b21e0c7ceebf5f4cae28fc9d1f5f868c35ac0ac96426cba5221",
+        "8f2632788077d6fc40e0854471bdd8688c6ce933892fdf6e9e22730117e6e179"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "gadolinium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:cosmic_neutronium/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -29,9 +27,29 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "gadolinium"
+              "cruciblecraft:prefix_material": "infinity"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infinity/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
@@ -43,7 +61,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:gadolinium/block"
+            "id": "cruciblecraft:cosmic_neutronium/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:infinity/block"
           }
         ]
       ]
@@ -53,22 +77,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/201bf65d38407203",
+        "cruciblecraft:gt6/0ff6917197f3a575",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/63e85d6e72628cd8",
+        "cruciblecraft:gt6/f234ed4642c42d96",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/b0b7269135f4d8b6",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/c7671f72d0f5ff64",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1417,
+      "duration": 13849,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +119,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        18,
         0
       ],
       "output_chances": [

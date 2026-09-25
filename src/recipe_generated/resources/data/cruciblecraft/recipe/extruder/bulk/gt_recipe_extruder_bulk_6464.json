@@ -10,14 +10,15 @@
         }
       ],
       "hashes": [
-        "4df7406c2491f7ea471153cb9fd354c00cc53a87a957c841d6bae7acac5e5985",
-        "41c498267566c3f3b729507fbd629f2f3ab499ea3592cacbffb4827fdf592a9f"
+        "b4da12564c7e2ecc845c8a0dccf7ed2c679c960d63ac2fd97a62ca96a35c6f3c",
+        "dbfd0d1ca3022c9777366ce66a0fc0c15bef5711c2eb371264df2bdd83d9d5cc",
+        "b123fa3c2c88abd09ca68de2893656b913700dca69e942967cacd7ac0b1f1b99"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
+              "cruciblecraft:prefix_material": "void_metal"
             },
             "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
@@ -28,8 +29,16 @@
         ],
         [
           {
+            "item": "cruciblecraft:void_metal/fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
+              "cruciblecraft:prefix_material": "void_metal"
             },
             "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
@@ -43,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:titanium_iridium/block"
+            "id": "cruciblecraft:void_metal/block"
           }
         ]
       ]
@@ -53,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/013b36fb897e5768",
+        "cruciblecraft:gt6/4d44c1cd71bcb77f",
         0,
         0
       ],
@@ -61,14 +70,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/effd58bc55b3da52",
+        "cruciblecraft:gt6/f6e6507e3ce82c21",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/c01c1df387366510",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3834,
+      "duration": 376,
       "eut": 96,
       "item_input_actions": [
         {

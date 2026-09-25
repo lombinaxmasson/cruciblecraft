@@ -10,16 +10,19 @@
         }
       ],
       "hashes": [
-        "9fa1b527fc4479be0dea209b17fa335d128ba903c5f90fe0f45587aa707bc2ba",
-        "a3b0b74597c640550197de86dee0c9f7a00d1569848b9ebd37b0af5d97043343"
+        "71a6aebe53d5831c5b5136ef24d46e65d6ab6aa663fe257443b2be9fe8279b5c",
+        "cc0dd621efc06574eab9e0612452edb76c8e0ad6225048309b999680e353fcf3",
+        "4dde839e117c6d2c2d3b45c5e2a5e4576d67b69292c849b8b65413eb8c8fe78a",
+        "e23b5c8908023ce82d22afd17bb40b2ea75b9a5395f7d936e4a0e43a2c27e361",
+        "c41f25516d32f4d4c66cbea5e7c31dde4b688c209b8b48742660832d9afb9257"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
+              "cruciblecraft:prefix_material": "gold_inductive"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -28,10 +31,34 @@
         ],
         [
           {
+            "item": "cruciblecraft:gold_inductive/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold_inductive/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold_inductive/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
+              "cruciblecraft:prefix_material": "gold_inductive"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vanadium_steel/block"
+            "id": "cruciblecraft:gold_inductive/block"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e8133eaa9b45e12a",
+        "cruciblecraft:gt6/48de2b71ce4bfe92",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/f9a72a637278d699",
+        "cruciblecraft:gt6/5a6987014f377b8b",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/da835edc40b8ce4e",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/4f7041aed8a4b734",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/42753ca0c8b16816",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2067,
+      "duration": 1113,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        36,
         0
       ],
       "output_chances": [

@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 96,
+      "duration": 386,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,25 +17,21 @@
         }
       ],
       "item_input_counts": [
-        6,
+        4,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "lemurite"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:tantalum/bolt"
         },
         {
-          "item": "cruciblecraft:extruder_shape_gear"
+          "item": "cruciblecraft:extruder_shape_rod"
         }
       ],
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:lemurite/gear"
+          "id": "cruciblecraft:tantalum/rod"
         }
       ],
       "output_chances": [
@@ -43,14 +39,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "fcacfdf198a98d65b78179e956e91525ca99eefb05bd57287cc1ddb1255ba8a6"
+          "0ed9fd6293f318acdfb505531515977d0ad9ea8efd52a9a6fe517906e713be48"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9665",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/53494bad3a80f4d2"
+      "stable_id": "cruciblecraft:gt6/d8fe85877ac144c5"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

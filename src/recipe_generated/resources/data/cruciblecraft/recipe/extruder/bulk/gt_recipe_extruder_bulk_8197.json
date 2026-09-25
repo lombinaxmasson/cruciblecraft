@@ -10,32 +10,76 @@
         }
       ],
       "hashes": [
-        "3ce4a859ab4ed69308176c05c8ae50fa8b726eaead89832046984071fb3dea44",
-        "038a07a45038553d2b9126e8659e231f2f61d7b63b17f4f53d075f00411a9811"
+        "d8a946efc0e19f7ae593177aa254fa7716fada2532f2b3756b600f5fdee445a8",
+        "d1d803214ba6283ccc241aae1046bb075931b9c37b603b3f01258cfc846456d4",
+        "214ce7e121ea160fdfa250d192d4191d94832e8130e63ff83eddcff050493864",
+        "11b793c616804cb92d928de9c46f5137fce0b8a57dbc09887d66f1116801b093",
+        "01eef75d7e56bd5661d7c4fd4f5d04ba2cbb7c4f9987e83a9f574c0915da6aa3",
+        "22925e9f1e585a533c81e571633e95a8243cf27d6378e366145a5005036cd675"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "technetium"
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terrasteel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "technetium"
+              "cruciblecraft:prefix_material": "terrasteel"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terrasteel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
@@ -43,7 +87,31 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:technetium/block"
+            "id": "cruciblecraft:meteoric_blue_steel/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vanadium_steel/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,22 +121,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a89768dba50123bb",
+        "cruciblecraft:gt6/dbed07ceea4e664a",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/244f8856ef0ed7e7",
+        "cruciblecraft:gt6/8011aca4a74b5620",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/480c355b866783c0",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/07c944799a849495",
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/9b08115de1fbd95a",
+        4,
+        4
+      ],
+      [
+        5,
+        3,
+        0,
+        "cruciblecraft:gt6/b281c49b86523415",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3414,
+      "duration": 827,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +179,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        6,
         0
       ],
       "output_chances": [

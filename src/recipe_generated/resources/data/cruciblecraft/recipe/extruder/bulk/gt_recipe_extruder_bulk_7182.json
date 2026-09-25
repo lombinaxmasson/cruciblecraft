@@ -10,32 +10,72 @@
         }
       ],
       "hashes": [
-        "f57ad2eb76e032414ed570ad4585b436c147945a2c89fef6bbea64148ac72879",
-        "7c04de5a5668cf37f3cf0096aab92e2c9c59b3e2a14b16cacbfbc01bb9426d80"
+        "bd37ebeacd045d2dfa5bfa9b0664222b0485319be81e1e10c4bc9fcdf29dfc7f",
+        "73aaad1147958fd3a0044376c7fcd3f062b4b619efd91a77594e498b5b686727",
+        "5b76c9e424544ec7eae5daa3f47d1be380ecc85606fd279f8bea8ff4ff8bcfc3",
+        "f294d04403478f424c7e661ab40dc85e12b1b89f039010634a9536e7133d0cce",
+        "2f33c04b0dde783657b5d286f39a6c7992c96093e3b43ad50181891e5d2633a9",
+        "9b56c7ff618d543fa35af2a400399c1d32594ea07738046f081da5288fe4964d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ceruclase"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:stainless_steel/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ceruclase"
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:knightmetal/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,16 +83,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:ceruclase/rod"
+            "id": "cruciblecraft:stainless_steel/huge_fluid_pipe"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ceruclase"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:knightmetal/block"
           }
         ]
       ]
@@ -62,22 +99,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/931f4c6c8a4468d4",
+        "cruciblecraft:gt6/847cadbed951e185",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/3e239a0496e123a4",
+        0,
+        "cruciblecraft:gt6/c58e7e8e3f4cb2c4",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/542f52416a68bf95",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/e92f8df0ff78b129",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ecc9d85991f4241c",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/2ee5b3e7da62eabd",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 82,
+      "duration": 3603,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +157,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

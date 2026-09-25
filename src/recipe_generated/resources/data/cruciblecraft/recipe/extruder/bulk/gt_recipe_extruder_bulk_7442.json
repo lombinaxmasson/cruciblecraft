@@ -10,20 +10,15 @@
         }
       ],
       "hashes": [
-        "6b4266920278b189b8a24177890ac5c18fb7e423678a482cfb691fb05720ac55",
-        "025be26a7782c997e0b0a2dbb2ecd2ab8d657f970fefe5482d428ca6c4f52f3f",
-        "6605f699bad81e03e582e845c7a5008bdeda8a2fb8b4ad64a997db7be8f6d281",
-        "bf4c661881aa59c5e7ce08761190dfaafd553729a82120f03a1ecd139364e7d5",
-        "224dd11aa1db84652c6967358bb072c8120e04e8da8fe2922fab504d62e0990f"
+        "d88b8a12d6c16621c0611179070fdf61391f67fcb1c7eb832bfbea990e532943",
+        "7723bd77ddc737728150d44db9f94c0b62635c235fefb097efb2993a90716527",
+        "ce866ee3fcf25d3ce47d5c41fb870587736bc5870ef55d2e89a9fe832d44960b",
+        "efa83e7a7f0617787bbfe55d50f88d45e2dd1183748c1954d7e057e3d68652ec"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:erbium/bolt"
           },
           {
             "item": "cruciblecraft:extruder_shape_long_rod"
@@ -31,11 +26,15 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:erbium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:erbium/bolt"
           },
           {
             "item": "cruciblecraft:extruder_shape_ingot"
@@ -43,38 +42,10 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:erbium/bolt"
           },
           {
             "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
           }
         ]
       ],
@@ -82,34 +53,28 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:osmiridium/long_rod"
+            "id": "cruciblecraft:erbium/long_rod"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:osmiridium/ingot"
+            "id": "cruciblecraft:erbium/plate"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:osmiridium/small_gear"
+            "id": "cruciblecraft:erbium/ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
+              "cruciblecraft:prefix_material": "erbium"
             },
             "count": 1,
             "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:osmiridium/plate"
           }
         ]
       ]
@@ -119,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/09a79903153793c1",
+        "cruciblecraft:gt6/1d9e2ca9a9b5f3aa",
         0,
         0
       ],
@@ -127,38 +92,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/07124f62e6c2ef79",
+        "cruciblecraft:gt6/594ef39046e953a8",
         1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/a9992f9a746af5db",
+        2,
         2
       ],
       [
-        2,
-        2,
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/6d3e316c9956f437",
-        2,
+        "cruciblecraft:gt6/b089b3062e0aaf21",
+        3,
         3
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/c8e898a9c4e41bd1",
-        3,
-        4
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/093c338d3a534b17",
-        4,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1264,
+      "duration": 212,
       "eut": 96,
       "item_input_actions": [
         {
@@ -169,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        8,
         0
       ],
       "output_chances": [

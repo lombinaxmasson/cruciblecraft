@@ -10,32 +10,24 @@
         }
       ],
       "hashes": [
-        "be8308d3e4afec94176dc3b650e09055b6973b58bb2be9d5175447b5f99af9c6",
-        "728917ea9e9f992f37a2441252b24622f3d99235338ba8a6c596c0ec81d50aa9"
+        "abf23e83d6a7a34161ec9ed2b8a1d12730b1acf54f0dd094619331334c2f4fc4",
+        "dcc997abf115999531237c93ef9e80223761aba51b03822d4c92e247ba19faf0"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "draconium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:gaia_spirit/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "draconium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:gaia_spirit/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
@@ -43,16 +35,27 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "draconium"
+              "cruciblecraft:prefix_material": "gaia_spirit"
             },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gaia_spirit"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:draconium/rod"
+            "count": 64,
+            "id": "cruciblecraft:gaia_spirit/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:gaia_spirit/bolt"
           }
         ]
       ]
@@ -62,22 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2aa1681fbd40ad31",
+        "cruciblecraft:gt6/162841e20a419b35",
         0,
-        1
+        0
       ],
       [
         1,
         1,
         0,
-        "cruciblecraft:gt6/dd1331600b5562fe",
+        "cruciblecraft:gt6/d7ecda3339db6990",
         1,
-        2
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 33,
+      "duration": 790,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8167",

@@ -10,37 +10,58 @@
         }
       ],
       "hashes": [
-        "619e2e2c5cc90cdd05b2a50b9f15f415065db1f2b7c0e6cfc5dbb9dc3562ab66",
-        "66c667b480919ef7d1104a93430eaf756238e31b33fb2120f21f6c8266880a45",
-        "39a9618b069e10cf7f0821c72c3e93dc97091aacf699ec6f2db26501c1f5768f"
+        "6f89a9464be7cf81144b022eba1c347ae19c3c048e203fd4508b11246096fe01",
+        "08a35dc898158333f58bf903bd6c670801b01a7f131ce44bc86a6a7b1bf8fb05",
+        "1e1b0820286efdf82ea331c1465efd72c3e25cf74e686a2996a71708d1d3614c",
+        "26a98ffb10be16da7587c4eedbbb02e983ee8eb886c576ef1bc7d6f20a27e246"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "yttrium"
+              "cruciblecraft:prefix_material": "holmium"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:yttrium/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "holmium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:yttrium/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "holmium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "holmium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ]
       ],
@@ -48,7 +69,28 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:yttrium/block"
+            "id": "cruciblecraft:holmium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:holmium/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "holmium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:holmium/ingot"
           }
         ]
       ]
@@ -58,30 +100,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b8f056f7add324e1",
+        "cruciblecraft:gt6/0c9d339ca000959e",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/539792f1efb77387",
+        "cruciblecraft:gt6/becb4123fe69130c",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/5d6779fab0b66519",
+        "cruciblecraft:gt6/bf851de34fd484dc",
         2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/8d904b96ed2a8fbc",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 935,
+      "duration": 261,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,7 +142,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

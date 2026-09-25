@@ -10,32 +10,32 @@
         }
       ],
       "hashes": [
-        "279ac0db3b24c2b1c489af2e2cb75315711ccc735ac4a17e5235c5e3fcf7d1ff",
-        "02cd05016e774c60e38a99771e473747887955c8d40a6d09fbe9a85099e19659"
+        "ad2066ac6efc2e217b0206204d9eabd2ce86350abf2b9297451419b334baed3c",
+        "04a1b91d2eda7b093fa79d92c7745bc1095cd2faf296d79ddb8b4ae2dfac73c2"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
+              "cruciblecraft:prefix_material": "rubracium"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
+              "cruciblecraft:prefix_material": "rubracium"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
@@ -43,7 +43,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vanadium_gallium/block"
+            "id": "cruciblecraft:rubracium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -53,22 +62,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8b2f934c48ea4c64",
+        "cruciblecraft:gt6/25384db4ec2b9ba0",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/9ef3f7ddffd59237",
         1,
-        2
+        0,
+        "cruciblecraft:gt6/2f5bff421be7bbc1",
+        1,
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1327,
+      "duration": 231,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +88,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        36,
         0
       ],
       "output_chances": [

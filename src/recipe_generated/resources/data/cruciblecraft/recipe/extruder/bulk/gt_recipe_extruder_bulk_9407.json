@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 1392,
+      "duration": 4473,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        6,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "meteoflame_blue_steel"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:tantalum_hafnium_carbide/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_gear"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:meteoflame_blue_steel/gear"
+          "components": {
+            "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "71ebdbfad95017bd0a96f12cb1afc21701218c094964e0e0a10cda55cad598f0"
+          "583c7176b8687602b631f845216d76d09d434918b08a8c08e2a11304f602a50d"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9407",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/8208fc8fdf93953e"
+      "stable_id": "cruciblecraft:gt6/5218e668d5e1867e"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

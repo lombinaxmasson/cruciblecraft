@@ -10,17 +10,13 @@
         }
       ],
       "hashes": [
-        "56b3f989dd240667ab8b550fcde80a80e7c73f42eddaf2b28d39a846912074ae",
-        "e34b0b89abb19d3c95495dda390181c4506e04b1f4f1b142f29e686a21b57ba8"
+        "921fa6cf2ae93d519617b69a24169c6da71c9ace926caa7bdcddbeb43fc6ba06",
+        "0c5168caea8830ad6e5c527fcfcc2cba92a1a08c79ac97dc05fbb27172d7ceb6"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "osmium_elemental"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:naquadah/nonuple_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -28,10 +24,10 @@
         ],
         [
           {
-            "item": "cruciblecraft:osmium_elemental/rod"
+            "item": "cruciblecraft:naquadah/nonuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -39,7 +35,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:osmium_elemental/block"
+            "id": "cruciblecraft:naquadah/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -49,22 +54,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/abde6ef155240641",
+        "cruciblecraft:gt6/65241a7b26b30f6d",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/4c2a0a3b7a70072b",
+        "cruciblecraft:gt6/c09a7db303ae30e2",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9462,
+      "duration": 3521,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +80,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        2,
         0
       ],
       "output_chances": [

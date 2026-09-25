@@ -10,40 +10,75 @@
         }
       ],
       "hashes": [
-        "fd514ebc32aa4d987ea8bbe8dfc6de139b1dcbb083301ad45de84edf3246d8e3",
-        "304872016f2706e6d2283cd6cdf3d6aaee1d18e06c9a10ffd325b2571077bc11"
+        "1f9e6bdb7a446aaa107926c41be11412c24b518b91d341d5822be79193e21e6f",
+        "e6f4acb05b8aa9b59aea5cf5d106dfc0fb1d322263b4d0c75919f531eeab01ab",
+        "760cae2cd5736a242c6528ecada9057640985b0a8582b2168c882370ea30e47a",
+        "c0f636a5f9871a269c508ce5490d9ee2c41c86d3a0ddf4f3f70e3bbfb55e842f"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah_enriched"
+              "cruciblecraft:prefix_material": "alumite"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah_enriched"
+              "cruciblecraft:prefix_material": "alumite"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
             "count": 1,
-            "id": "cruciblecraft:naquadah_enriched/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:alumite/block"
           }
         ]
       ]
@@ -53,22 +88,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/233bf2e319d474fe",
+        "cruciblecraft:gt6/c530798d13a68699",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/44c489e30106b021",
+        "cruciblecraft:gt6/1cee12746226bbe6",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/699da2651664bef4",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/dd9257a891e5a69d",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2459,
+      "duration": 549,
       "eut": 96,
       "item_input_actions": [
         {

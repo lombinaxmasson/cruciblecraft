@@ -10,24 +10,58 @@
         }
       ],
       "hashes": [
-        "241b8a8aff67abb120dce870aad932a884f373c7926fe7bc0d9db0a431078431",
-        "a2782078bd7adc570a498211cdeaa028632733deee15ade85e267dd86191de1f"
+        "50a8c625a8b08b5461106fac6d1b45c65c43ac184e7b4e1f1c10c88b3211a680",
+        "1e0f0ad4932ca426a51a987151e748326081cdea89926afa16a114d92b500aa1",
+        "8b886acf62f71200274b8e5cb4d6991512a3f695e96d57f20b2dfc1ff813aa8b",
+        "45c08d7725224c57d7dfb17123633a438b07f8a56bb9ab33c411af7c259b1f21"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:syrmorite/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:syrmorite/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -35,7 +69,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:syrmorite/gear"
+            "id": "cruciblecraft:knightmetal/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -45,22 +88,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/634350fff2d8ea37",
+        "cruciblecraft:gt6/10203c9d6b349573",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c2144445321baa93",
+        "cruciblecraft:gt6/3f25e3b9af8b763c",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/8180e15b5fcc1779",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/2b1a851d1c8cda05",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 65,
+      "duration": 2252,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        2,
         0
       ],
       "output_chances": [

@@ -10,32 +10,59 @@
         }
       ],
       "hashes": [
-        "f33d1336371a792c34c8bdf09f90f4b99e6774154520b8faa32f148bde209685",
-        "3d64932285ded34443e18bf417ebd75690bdb0de27c9b78df5248c7579e31da9"
+        "b739ae19149c37e7a36b1cb8190a07a582c0f26977f87e2cd3448a02cd5d5394",
+        "ef41e4f4aaf428cd9edb7b6374d82da4590eef243dc3133aa23972578441c6ba",
+        "ba5bc594b3e4073c53029074506f8fa82b30ade01d39be319aecab800b57d618",
+        "1c33f34ccf3daff1b5d926f4185713c8a525fffbfa6bd045453e3188f27a0ba8",
+        "0621fe2c232830e7f4aaf763ca7d235d6f6be452c851c8648675e94be414e80d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "abyssalnite"
+              "cruciblecraft:prefix_material": "orichalcum"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:orichalcum/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:orichalcum/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:orichalcum/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rose_gold"
+              "cruciblecraft:prefix_material": "orichalcum"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,13 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:abyssalnite/ring"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:rose_gold/ring"
+            "id": "cruciblecraft:orichalcum/block"
           }
         ]
       ]
@@ -59,22 +80,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/47c176b8638e0198",
+        "cruciblecraft:gt6/1021c511cef288d6",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/bbbbfec06e7fcec1",
+        0,
+        "cruciblecraft:gt6/41b3ef183461c865",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/3489e7f6b387979b",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/8c29f1c00eb77fbd",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/9e296e3884d232df",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 70,
+      "duration": 1257,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        36,
         0
       ],
       "output_chances": [

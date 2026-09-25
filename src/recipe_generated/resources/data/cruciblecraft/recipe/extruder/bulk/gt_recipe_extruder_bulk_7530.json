@@ -10,32 +10,72 @@
         }
       ],
       "hashes": [
-        "8a192be30170066027651a45f875dd925660dab1126f6aa9995985b45bef3aff",
-        "ce1ca53a806dec058836e8d5a93448d44ef6d95aac3c3c9a91437c4620ea4c9a"
+        "2b989ea03f174f8926c110e78dae4c5701dd57b932cce6dd4bfd8cdef458b9e3",
+        "1f7918b6537e5aac60230c3c42b8620a47770fec48c4ea0818cefe6d61daa7bd",
+        "fd32d80608c358baf05f6691fcea65629229a64628455612a311dbc7ba57f50e",
+        "5b1a7dea19c493c978f8a446686aff278603446e01b4d6f6219016faba214799",
+        "4a07b0e4128c5ed0569a67180ea187fc96f7d4f3541aa41d135503dafa7b781d",
+        "1a57255f4c39c9c135666e8c755d6a802c5fdc485776d8e98eaf07a8406a708e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "red_steel"
+              "cruciblecraft:prefix_material": "nickel"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nickel/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nickel/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "red_steel"
+              "cruciblecraft:prefix_material": "nickel"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nickel/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
@@ -43,16 +83,10 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "red_steel"
+              "cruciblecraft:prefix_material": "nickel"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:red_steel/rod"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -62,22 +96,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0cb29c701a65ca1d",
+        "cruciblecraft:gt6/99e20ab65a6697b1",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/9bf2240ce8d9029c",
+        0,
+        "cruciblecraft:gt6/617b61c47f788115",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/e5663748eb3a4502",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/9411329d0bb18576",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/875b50e2c0d53a00",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/17be576f014d9319",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 108,
+      "duration": 307,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        14,
         0
       ],
       "output_chances": [

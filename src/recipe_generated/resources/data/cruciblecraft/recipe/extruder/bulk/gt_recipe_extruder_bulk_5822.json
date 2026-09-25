@@ -10,16 +10,23 @@
         }
       ],
       "hashes": [
-        "8a28e464c67d1f08d6a38de0cfa3f0cd320745277ec28656ce1a7a0aae662e09",
-        "e00418893d0831779486013c401aea434dae7e510089b2b380f15d98f9ad56d2"
+        "a3d63b00155b5606b0e5ce4e5e2ef3a4039f720314fa7acb5d1b165f8106a926",
+        "d3b1d600c09f13bc2e3788b8d5db7b2bde958033173921b66f4d30dcb238ff3b",
+        "63ac709889818e4feeddf94619141ee138c0c3887c4f3c4c1da61e1b4074be06",
+        "0303a70c7e1cc5cb955f937f97bb580705d1b11ea4da9e6bf5b108ca385fc050",
+        "c86be99766317f762fbf5cb7df4ad25bff1f0a0a40f0fde221ba74607232395a",
+        "4f4068b49065b291c2baedcfa643de8c7a3043c086d04655a7986cdba1eab11d",
+        "fc50c32a2ff2813ae6236dfaafef00b176ad442539da11a890e2696d45191fff",
+        "908e82ef20fb2f1a830c7a2a23215b6e29a0605e6bda86a32eae418bc011259e",
+        "2dc53062de221c77ba4e23f91eff6b27afa97e9b6e68be8402db612852a6629d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "spectre_iron"
+              "cruciblecraft:prefix_material": "thorium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
@@ -28,7 +35,75 @@
         ],
         [
           {
-            "item": "cruciblecraft:spectre_iron/rod"
+            "item": "cruciblecraft:thorium/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/ingot"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -39,7 +114,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:spectre_iron/block"
+            "id": "cruciblecraft:thorium/block"
           }
         ]
       ]
@@ -49,7 +124,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/acc7f3a91b47b1ed",
+        "cruciblecraft:gt6/dbbd00f773cdf8a3",
         0,
         0
       ],
@@ -57,14 +132,70 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/2e0fd134b40f1f01",
+        "cruciblecraft:gt6/e16ea1fb355341aa",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/236af6492bcc9406",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/a9cd532c3872505f",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/b0a92c5f06cacb8f",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/3a9c537067f69dbc",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/49cb8827daf3aaf8",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/81a7d78b5c7851a1",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/82c42741f5cc2397",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1871,
+      "duration": 2966,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +206,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        9,
         0
       ],
       "output_chances": [

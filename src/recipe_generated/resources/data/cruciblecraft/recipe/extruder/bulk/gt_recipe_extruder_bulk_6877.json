@@ -10,42 +10,41 @@
         }
       ],
       "hashes": [
-        "9ed65f6a27b2b55d60023a69bcaa1c46fd6205a6a5492f3110a9b9c5b0c677ae",
-        "df5b98f7610b780e8ec4d6bcd42cd6686f99d1aee8bde480ed21d2c240e5ce4e",
-        "916ade5c1eba6b30b2d48b6eca8f680760eb74c3a9ffb1d33e5a654d28918f6b",
-        "2b0e06ca6db6a10d225c4cb81cdaa80b78b3eb2310fc0e4ccd70ded1d58a254d"
+        "98dbe253508ae9840909f7b787472cc1d58ab13411fc12fa97fc6b58962ad14d",
+        "94c4a7cd28c4bcf9efbfe1173040b7e6880eaac3b1cc192bb2dfaca7f57d1bcc",
+        "b9bb52a6d0d4e315eab6fa062829ee6122d9c9e2474905a51ed51706c9e41f01"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:osmiridium/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:osmiridium/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:osmiridium/bolt"
+            "item": "cruciblecraft:invar/fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:osmiridium/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -53,16 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:osmiridium/rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "osmiridium"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:invar/huge_fluid_pipe"
           }
         ]
       ]
@@ -72,38 +62,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7f6742c3fcf3e5ed",
+        "cruciblecraft:gt6/32349cfe38a258a3",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/9d43039a894d106a",
+        0,
+        "cruciblecraft:gt6/451c60a4f6cfbd25",
         1,
         1
       ],
       [
         2,
-        1,
         0,
-        "cruciblecraft:gt6/805d200a805b8c06",
+        0,
+        "cruciblecraft:gt6/28278af4dce2d2ed",
         2,
-        3
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/285083d135f2ab61",
-        3,
-        5
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 474,
+      "duration": 2471,
       "eut": 96,
       "item_input_actions": [
         {

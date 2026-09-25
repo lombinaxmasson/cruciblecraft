@@ -10,36 +10,83 @@
         }
       ],
       "hashes": [
-        "a0fe8cc454efe38e4228da65f392859f7367c2a22a28f7a841009ac5d0c34505",
-        "793239208b0a5a0df2445e616d8d31c2a6907b0cb99fe325b4de49f6ee429cae"
+        "6b80480da419d61ec784f05428d897911e3e31dbfeb6dbf152a926aed7173791",
+        "67a1213264ef55a1ea77deecf74287825f9dc46ee98b96b5637ba8bd16d476df",
+        "402334a500ec0c5b0898e9c3b4aaff2938cbfdaaeb683647626bd01963118e00",
+        "9403ac218aadd02719c29e55a83247dbfe01e19b753c06f33ea19fd28e806f06",
+        "fe55c1f500dcfeb6d55d90103bd3699f14327e12c23f2d4e27de9e3ad3586d11",
+        "1ba8d7ba01f75a7645b7e3b663f389a46ef04771745a1880d8f984264a89dffa"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "stainless_steel"
+              "cruciblecraft:prefix_material": "invar"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:stainless_steel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:invar/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:invar/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:invar/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
             "count": 1,
-            "id": "cruciblecraft:stainless_steel/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -49,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c4324f6c19aac59b",
+        "cruciblecraft:gt6/3548034319bdaf11",
         0,
         0
       ],
@@ -57,14 +104,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/b874da4b60061e3f",
+        "cruciblecraft:gt6/65524de7d4750e16",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/51de3ee0fdf8d612",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/eb4c5b547075f847",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/999603b5f06f6cba",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/e72cabe7f0363f30",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 801,
+      "duration": 321,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        14,
         0
       ],
       "output_chances": [

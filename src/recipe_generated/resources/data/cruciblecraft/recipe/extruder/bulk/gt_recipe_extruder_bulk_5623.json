@@ -10,40 +10,96 @@
         }
       ],
       "hashes": [
-        "aeaebf8dda07831059ac50db0fd30ef516de6b027b127bbcf98281cdf6a32411",
-        "1e07afbf6f779f6f3e03bc8387d97a9c9408d507e09e238d1faaef50cf4a518a"
+        "c31ddf88d9b33da0786ca7588389fa6e7b61b4b03932641a25c1c5a57277a94d",
+        "7e9e81b5e8b71a28bfb3552ecffa9d70084425a6eae96b47a96abb4e0c0fed02",
+        "238fc6bac266009697e92273295d06f6f960b2821c8e508b879222a69f2709df",
+        "e3d0bd887c5149983873d5581d1b8e70080ce2edcee4a292e6f62bdfdb441b30"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "dark_iron"
+              "cruciblecraft:prefix_material": "netherized_diamond"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "dark_iron"
+              "cruciblecraft:prefix_material": "netherized_diamond"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
             "count": 1,
-            "id": "cruciblecraft:dark_iron/gear"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -53,22 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5a295644c3cb4d4c",
+        "cruciblecraft:gt6/1b9f5ed464f8833e",
         0,
-        9
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/3dad4bdc5c95bd93",
         1,
-        10
+        0,
+        "cruciblecraft:gt6/e51876f446096a1a",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/011321b1e171b235",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/325c28536d5e6d91",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 950,
+      "duration": 1436,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

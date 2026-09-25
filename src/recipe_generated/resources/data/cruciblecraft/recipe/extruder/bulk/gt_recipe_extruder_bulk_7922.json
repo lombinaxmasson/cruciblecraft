@@ -10,36 +10,39 @@
         }
       ],
       "hashes": [
-        "fca1a0f3efc72730e1e9e91579bcd8f23d87fd7d88f72368a3d00147e2774dc6",
-        "f306c7a455529b19d1152f5930d8c8d783e702d74d632c423c89fef689275c9c"
+        "c8495268e6220a7b3fcedde886acd9eaf19faa6f2070009da2bcc63fa812c748",
+        "d4a562b01ac31b0088a069f146aa47daa2528bd5b14c2b028bf9517a27cf1ba3"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "nickel"
+              "cruciblecraft:prefix_material": "hsse"
             },
             "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:nickel/rod"
+            "item": "cruciblecraft:hsse/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
             "count": 1,
-            "id": "cruciblecraft:nickel/gear"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -49,7 +52,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4f76f70331cc8384",
+        "cruciblecraft:gt6/0c4d6fe982d32917",
         0,
         0
       ],
@@ -57,14 +60,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/6671a777971e83eb",
+        "cruciblecraft:gt6/2f6aabe92fcfcf25",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 790,
+      "duration": 1795,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +78,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        12,
         0
       ],
       "output_chances": [

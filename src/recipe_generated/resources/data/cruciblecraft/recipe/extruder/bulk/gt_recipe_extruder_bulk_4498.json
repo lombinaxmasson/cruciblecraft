@@ -10,16 +10,57 @@
         }
       ],
       "hashes": [
-        "3781c539b5117d0940e69ceff9c040a4a6a5e63233e310cd1d1d5a21f51bfcf1",
-        "0ad2b5b43a073101f0d886b3406b6fb6abf1bedaf2e41bf859c6dc61e11ed838"
+        "2f03847f1b66939f0d729c7d9132f4a12ca5fc4356cd9635e58b00b8e52bd4a6",
+        "3a84ed36c4ee0c8aafac928e7b531b31779375996c76c392bb8237764da01d39",
+        "cfdaed65cdc191746664146c4da055be7a28c280abc538452b999d9abca9e893",
+        "d63ec1b76319bb943bec8250f622d3e4609f109c9aed5b7e4837105a3194368a",
+        "02628ce4b75f0013e53446cf05941138ad64cc3880acec562d0dfebaffef2124",
+        "84d6722444e69eb1589f22edd7b4c3356b946f0678ecc2a58d7bc4010c1d36f1",
+        "bbfbbe74756922d7b2f0c0346bd69aed665446600f187fffe98968e8aeecd261"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "crystal_matrix"
+              "cruciblecraft:prefix_material": "abyssalnite"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "energetic_silver"
+            },
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
@@ -28,18 +69,43 @@
         ],
         [
           {
-            "item": "cruciblecraft:crystal_matrix/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
             "count": 1,
-            "id": "cruciblecraft:crystal_matrix/block"
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:energetic_silver/block"
           }
         ]
       ]
@@ -49,7 +115,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2e6fd64cc00fdd9c",
+        "cruciblecraft:gt6/c61da8524b6c7996",
         0,
         0
       ],
@@ -57,14 +123,54 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/c64e7139c534251b",
+        "cruciblecraft:gt6/364ee008013d0d4c",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/aca11fb901d0067e",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/824cc1edf47ce002",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/fada3cc5af537c73",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/e7dff1fad7c2d14f",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/3440313c564575cb",
+        6,
+        6
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 36331,
+      "duration": 435,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +181,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        14,
         0
       ],
       "output_chances": [

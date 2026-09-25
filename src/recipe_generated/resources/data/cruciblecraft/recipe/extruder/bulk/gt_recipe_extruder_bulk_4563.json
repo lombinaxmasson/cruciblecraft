@@ -10,60 +10,138 @@
         }
       ],
       "hashes": [
-        "d390cf1eef58b88ac2411c597021732739dc6344e6f33641e723991e42dd57d4",
-        "5d6f1ec30d59ab82df998752590ff028652122f47d508cbe812cd674a56221c8",
-        "6d00e7b4135c5efda63633407b7da39695e51723ad7595450ae98dbdfa85be56",
-        "a9818674bb6ef4f1bf9b1666d3a5ae228be272dbb2995842b720db07c88c249c",
-        "76561fe511e39f2f611aaa3272901dbccdbb63414e7de8debb7b99d255b15170",
-        "a12e90d7fc1d744dbdef04202489a15f7d6294b584b664e213edf0ad7cac6360"
+        "d92933448da9c3a324b8f7bf3772c361a96bd82c7c5fba77257f3193c05c118b",
+        "51f51d3171bd70fac939e184ccaf8ae6e6e4e930203375dc9d0856905092b3eb",
+        "8bbda4eb1eb57556cd544a4681909d132f67a2a740477d2b0e271722ba65b390",
+        "55ab9e93bbd8700dbda280e5ef54a339596a323fc7ee0c4841a54ecdd4ee4df5",
+        "89d936388c8016025e6d4bd968a47aa69e4867b1f29df3ecb8d61fcf9fac6295",
+        "52f4c3b90e6791f0fe249818848ea3d00d67c89642f5cbb60e7443a64334f06b",
+        "4bd439facea8f5301dc9af424b1604344a40b83858bef5d894dc0345b82da560",
+        "11b826d9b4d5f15f21afee525942c51a7801d6d10919690001387a314a061198",
+        "c0f0623dc0d9b8fdcc18ab318c8547f4139d0e7c28ff09e68c1b3d349538f2b8",
+        "7ef7d19080c39b6803788f8863fabc8435317adfaf00d6695f02224d41bfb5a8",
+        "14f2dd8fa78d58ad19385c7c5a8f6416c8528bc25e46ae5028460b8c2f7f577f",
+        "a88c7d4f954acc8a77f7d4d9a4eacdb09c3a6be63d7926d82eb061f6d4a9fc76"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:hslasteel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hslatungsten_alloy/fine_wire"
+            "item": "cruciblecraft:molybdenum/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hslatungsten_alloy/bolt"
+            "item": "cruciblecraft:molybdenum/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hslaspring_steel/fine_wire"
+            "item": "cruciblecraft:molybdenum/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hslasteel/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hslaspring_steel/bolt"
+            "item": "cruciblecraft:molybdenum/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:molybdenum/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:molybdenum/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ]
       ],
@@ -71,19 +149,43 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hslasteel/gear"
+            "id": "cruciblecraft:molybdenum/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hslatungsten_alloy/gear"
+            "id": "cruciblecraft:molybdenum/long_rod"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hslaspring_steel/gear"
+            "id": "cruciblecraft:molybdenum/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:molybdenum/plate"
           }
         ]
       ]
@@ -93,7 +195,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/db5617cac6717462",
+        "cruciblecraft:gt6/60a1b12ec46d87f1",
         0,
         0
       ],
@@ -101,15 +203,15 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/e033343a3f59e1ea",
+        "cruciblecraft:gt6/1a333d3ac4707688",
         1,
         1
       ],
       [
         2,
-        1,
         0,
-        "cruciblecraft:gt6/82f71ee75e555c4f",
+        0,
+        "cruciblecraft:gt6/430f8edd70e0eecd",
         2,
         2
       ],
@@ -117,30 +219,78 @@
         3,
         2,
         0,
-        "cruciblecraft:gt6/c182831314294fe8",
+        "cruciblecraft:gt6/3e37f8eb051011b1",
         3,
         3
       ],
       [
         4,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/880bb1f76dae9b88",
+        "cruciblecraft:gt6/f533bfd4666b05d9",
         4,
         4
       ],
       [
         5,
-        2,
+        3,
         0,
-        "cruciblecraft:gt6/fd7b49ebad7f0f8e",
+        "cruciblecraft:gt6/c45be0c547f72aff",
         5,
         5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/3000d79dde31d2a7",
+        6,
+        6
+      ],
+      [
+        7,
+        4,
+        0,
+        "cruciblecraft:gt6/6af3a92effbbe506",
+        7,
+        7
+      ],
+      [
+        8,
+        5,
+        0,
+        "cruciblecraft:gt6/cc376e403827fd56",
+        8,
+        8
+      ],
+      [
+        9,
+        5,
+        0,
+        "cruciblecraft:gt6/180c15edf196c2fb",
+        9,
+        9
+      ],
+      [
+        10,
+        4,
+        0,
+        "cruciblecraft:gt6/2ef00923954278e4",
+        10,
+        10
+      ],
+      [
+        11,
+        3,
+        0,
+        "cruciblecraft:gt6/6867ed2912401031",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 768,
+      "duration": 411,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +301,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        2,
         0
       ],
       "output_chances": [

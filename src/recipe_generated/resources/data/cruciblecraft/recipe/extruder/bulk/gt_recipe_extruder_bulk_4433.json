@@ -10,104 +10,71 @@
         }
       ],
       "hashes": [
-        "10cd13077155731c55e7fe1827d0708d7c17f15e16d71014b2321db37e57d210",
-        "3eeed938975eaa104be3c67c38d074dcdd51f3ab1276031f588c08885fdfe48d",
-        "e878efe8bcd68ffe09352c0bfaf5d7f52212960be0556d4704b7e1ef3dc4b8bb",
-        "21205d31f873e02321f553217943560c3b3f89138c601b5d1e99727e3f73eb51",
-        "142d0244f183bf0a86765f64f06d796e8cec215a88e9c029474fd592c870a6f2",
-        "d16e020808b629ac57e69fb0dca50de8dcaf5a76780fa299fb252683a53f5673"
+        "77cd615628d6c6d8f7ec61549829067fa7a3bec041324354eb59d007879488b8",
+        "2d88b1d01accfacfa27a2dc7ef160813c213f8abd0d21be0b3e6fcab68852a58",
+        "60dc20323b1573495c68d5e28097f1af230ed7bec03559afa471f67e22ca6f37"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium7"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:soularium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:soularium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:soularium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium8"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium7"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "beryllium8"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:beryllium7/block"
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:beryllium/block"
+            "count": 64,
+            "id": "cruciblecraft:soularium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:soularium/bolt"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:beryllium8/block"
+            "count": 64,
+            "id": "cruciblecraft:soularium/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:soularium/ring"
           }
         ]
       ]
@@ -117,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/42d6c198b13ae51e",
+        "cruciblecraft:gt6/69fb2564d1ab4872",
         0,
         0
       ],
@@ -125,46 +92,22 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/abb2cfcca99bf267",
+        "cruciblecraft:gt6/9497e994ebb4c449",
         1,
         1
       ],
       [
         2,
-        1,
-        0,
-        "cruciblecraft:gt6/469fb021e8fe93d6",
-        2,
-        6
-      ],
-      [
-        3,
         2,
         0,
-        "cruciblecraft:gt6/697b39a284554d2b",
-        3,
-        7
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/ebff628adb2b8ab2",
-        4,
-        9
-      ],
-      [
-        5,
+        "cruciblecraft:gt6/11f089d04d5e4b68",
         2,
-        0,
-        "cruciblecraft:gt6/a86fb11065070939",
-        5,
-        10
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 362,
+      "duration": 7803,
       "eut": 96,
       "item_input_actions": [
         {
@@ -175,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4433",

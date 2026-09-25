@@ -10,67 +10,68 @@
         }
       ],
       "hashes": [
-        "989968b366061c12b1ea3c07b6a55f6b6f3f739df92a4fbf5fe6d71d01e0506e",
-        "e3f1f9aef2ee6a3c86638d2ab227b0ea36b95903aa457fa598891c0ef89a7300",
-        "6e6db90dc4c945c2a3aa98839c8fbce398c2245c1f4ce7c61654459dbce97ee6",
-        "3cb960d6578425ef755fe9104e8944e79ec30c9dcc0a267788107a4da13a512c",
-        "86daaa9f638d1b64e4f8231dce2a8077a11fe884fee90044400d4a16de1f9cdb"
+        "2d569d6b785035d85479c0662ea93cf5c47c8a5371862033c7db04df285fccba",
+        "a699be365b85b338098da63a5187eb29e0ac1670e5f541401d42441f4c8c7f5c",
+        "8e3d5544659b64df1cfc709ff932abed5882da5f1c755519a89903c2bd311a34"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:invar/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:invar/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "invar"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:invar/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_wire"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "invar"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
             "count": 1,
-            "id": "cruciblecraft:invar/block"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:osmiridium/wire"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:osmiridium/rod"
           }
         ]
       ]
@@ -80,46 +81,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/da3b466a33f6835d",
+        "cruciblecraft:gt6/33d4f0278cecd83b",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/37bd4a0af4c67914",
+        "cruciblecraft:gt6/0274d7592532f044",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/0a127f5e90d7fdbd",
+        "cruciblecraft:gt6/c9c3cc4a0dc89765",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/ae5868711dac4f05",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/a213419f64c773c7",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1853,
+      "duration": 474,
       "eut": 96,
       "item_input_actions": [
         {

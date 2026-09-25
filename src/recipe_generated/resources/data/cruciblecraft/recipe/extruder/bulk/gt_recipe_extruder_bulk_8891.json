@@ -10,36 +10,83 @@
         }
       ],
       "hashes": [
-        "7d59d86404bb2a3a9cc97aa8662f9ba9ef5da125fa69279c102b1c3d377272fd",
-        "3e23cf80dbbf5b98707ee367f3f832cbdf626e795b69194c1e6f808155aec48b"
+        "9667386c43412ee1b76c53f9e34978f25472416b55c15547893dba4f9865e79e",
+        "43e60ecd8204c7062f845e99c13e8a580fe6a29b877d38326338876b2affebb3",
+        "287f65b00bc88ecc2cbcf079d4d1ab67c7bdbfac062875be43987475322e00b0",
+        "25e523ef2953f9445ea0bc5b4f1e2ff270bad32d61cce94461a1937745b7f1ee",
+        "70c2cebf6f99ec57525a2fff4723bd1cf99108fb50173c2e14d5acbd443660fc",
+        "dd9e76aaedd3f0102c02409b6b768e89b9471cab4f9e31389c01323d6346c0b8"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_red_steel"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steel_galvanized/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:meteoflame_red_steel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel_galvanized/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel_galvanized/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoflame_red_steel/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -49,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/62e52f9424904e6c",
+        "cruciblecraft:gt6/e1f40ea733d5184a",
         0,
         0
       ],
@@ -57,14 +104,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/b42c3f9a2d61c8e5",
+        "cruciblecraft:gt6/766ac2d4f197f5b5",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/57e23d9620e020bd",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/8d8f456395cb3c7d",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ec9a337789765614",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/04213552bbd8966f",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3560,
+      "duration": 365,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        14,
         0
       ],
       "output_chances": [

@@ -10,13 +10,18 @@
         }
       ],
       "hashes": [
-        "87ef76da9957c914da520950adbad27b814c0f15cafb1f083d97cd78837ad1cc",
-        "e95898bfba4ad748fd0104d2c0d1f95f1d65434be0adb7b6d9f23d4567e210e1"
+        "254b2c66e148779f7bcc5327f6fcc4502644a86667100e2a3d983a33955cd4fa",
+        "2057ab665a14714a8893354a43b40470ac576c11f99bf6ddc5812c1dfeae5b87",
+        "0c64693823edf1925c9b363e65c346d15366bc919d83ce60b74da7a1ad904e6d"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:platinum/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "niobium_titanium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -24,7 +29,19 @@
         ],
         [
           {
-            "item": "cruciblecraft:mithril/machine_casing"
+            "item": "cruciblecraft:niobium_titanium/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "niobium_titanium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -35,13 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:platinum/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:mithril/block"
+            "id": "cruciblecraft:niobium_titanium/block"
           }
         ]
       ]
@@ -51,22 +62,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c9bb7bd80257291d",
+        "cruciblecraft:gt6/8cd491ea63dfa332",
         0,
-        2
+        0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/1bcfea9273e3a380",
+        0,
+        "cruciblecraft:gt6/0ded877da48d98d1",
         1,
-        4
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/7b6cf90d77beb900",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9263,
+      "duration": 2076,
       "eut": 96,
       "item_input_actions": [
         {
@@ -77,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        5,
         0
       ],
       "output_chances": [

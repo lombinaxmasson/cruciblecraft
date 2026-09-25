@@ -10,36 +10,70 @@
         }
       ],
       "hashes": [
-        "19733ddf5f43b53322f4b03466fcc7b65e51e486e42d2fc2255d5447c0cabd1b",
-        "4803f6e5861787edc7c420877c032c64b174a49177346a01eccae3fc6575498e"
+        "da095a806317b23af5985ee60cf48727a2ed4818e2b8a68794ac624224461501",
+        "545ff5fc2ed6edcb4c65411aaf1a911933c0b3be7a603752e1746651abaa7b9c",
+        "b9c677375ca53a5bf2fe05de1f148fa2ccd0e363d5247e446c71ec138b01a532",
+        "e87ea8d5004864d472fa1b9ba74b816f8098ca6bcf5b43c1925a21b51a7f49f2",
+        "1ed7882b6c0cb76e99bc988e820a5d90a6416ac1e01f627924023ac911e61af8"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:tartarite/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_gold"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tartarite"
+              "cruciblecraft:prefix_material": "titanium_gold"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_gold/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_gold/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_gold/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_gold"
+            },
             "count": 1,
-            "id": "cruciblecraft:tartarite/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -49,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/24124e932f404d1a",
+        "cruciblecraft:gt6/850a0822efe940ed",
         0,
         0
       ],
@@ -57,14 +91,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/c449e307584cdd24",
+        "cruciblecraft:gt6/32d299c306eb0122",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/adce0f35d5955dd5",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/246b8712c2b56384",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/d32e3644383631c3",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 7412,
+      "duration": 1141,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        24,
         0
       ],
       "output_chances": [

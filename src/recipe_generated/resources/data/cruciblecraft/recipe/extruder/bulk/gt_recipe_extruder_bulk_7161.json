@@ -10,40 +10,113 @@
         }
       ],
       "hashes": [
-        "d1504f2035d923f339d6eb5062f067683f592716aa69a1fcad81ec4446f2ab0e",
-        "a5c078fa2acd3c79317a1f6fcad4ec89023ebe33e15f0794598fe71c50e3c1c6"
+        "96500d1f9e4facf92456d2d811d11a362aad5e99611b55d3be4bdb7a925dd573",
+        "647c7e3a5a13c7971f6db45ef2e07e810055cec111e6284278a50e50afc420b3",
+        "0900e53a615807a33e44d3cbbc047d99ff5b66bf7edae3f21c836de8e1a345c0",
+        "0b56ef0ce097af599cdbf6c32634aa0e9853dfd62a82da3a3a6c50f43986e146",
+        "392b3d4c474c67771a25697116effa4b8ad695f2dcaa267d5decc189e404d4db",
+        "c056713c05845885caa35bceef10140c2c944430cd776e2172e8cf5910212732"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "lutetium"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hslasteel/triple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "lutetium"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hslasteel/triple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslasteel/triple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslasteel/triple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslasteel/triple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hslasteel/triple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hslasteel"
+            },
             "count": 1,
-            "id": "cruciblecraft:lutetium/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hslasteel/fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -53,22 +126,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/758c53c9311ebc58",
+        "cruciblecraft:gt6/2d8e2eae53952c17",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/caf4758083d18fa0",
+        "cruciblecraft:gt6/8728dcc3a13c92f9",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/aae7967a42318e40",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/75f0e827dda27e13",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/a75ceb2e0adb5e23",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/65b5af9f90047aeb",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2974,
+      "duration": 576,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +184,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

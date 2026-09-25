@@ -10,326 +10,201 @@
         }
       ],
       "hashes": [
-        "b6e8b4783d938e798a0a817b0f3cebf051a72777e0d7e12ed3e8ef48ee3bc664",
-        "2e377637e99b055d6dc917d56e8edcf7aa8265d54848f870488d3ea49c1087cd",
-        "672fb76a641b829afae93c03fa38b1654f0f59879b6a6088d6110fdf6c4f661c",
-        "a3b9c7adc42a196e89c9bfdc7ab3fb831b133227548db8414e765ce04c6391de",
-        "806ae55b710d05d949ea2a9fb0d6c95796f12ea0c1f7211084aa164df1f8bc48",
-        "1814ba5c61452cce823625fb2f5bd7d8dc38e00ce215e78cf15d5061ff3e5f04",
-        "3d8a6a16d1ed55f64cb767ab9a97cdcbed241325a3e85ad222e19c4af675f7dc",
-        "6703305e79a6be79ee31f52b76e50e204b638058415d889c58a365d470428b90",
-        "734ff79b226670da27a94149683adcc3b5b6264c5029ea5cda48297351c3b6a9",
-        "67aee801512b14a809469c49debac91b4cc16e19a8cea1fbc678c90875834bd5",
-        "07031058f9b8e7204fd0b8ee885bcbc953fd0160a53aad26f08ec3ad3781db53",
-        "f28c9a8a02ef6256ad45154138703434d6916324e455d1d2671e8271785e0117",
-        "ed41d3dbca74502d24df567b5210a8cdcf5d87c5420121a7d5875313a969fe25",
-        "326f29c820e2adc3599bfa77311770eedddf1d81a83d3ffd61288d908644da54",
-        "a947806ea3425008ca6563b6b42c2ab9efce37bfc846c8093939a6244ad3520e",
-        "6655c1a69d655c46370e8cd638e0a0538352cbd81701d660a5e8abf6752bc0f9",
-        "c11784dda1cc93c4a5170a45fed7187331a8d3d13eec30a3957cee2e09079726",
-        "9befdb828a33bbc5ec85c753e7fa3f98ac4a7c32ca65d52e94fbc9db269d60af",
-        "4a08349b5238aa6984b2630ace38a7caf3fca40b0a07e671fb2556790cae6405",
-        "4b8254a717321bc14a330c68035e60b41244fef1bca1f41dce3d16969af81d34",
-        "e853b915e61f1230a9c87354c99fa8d01fd5461333d79b821232935686093242",
-        "e98d6bf7670c76be8b302ae42223b98ba852e127d62056511c8174b434e35d19",
-        "693d4380b75d013b4d5dac5e3d973a5ba2d515de5deea8fac276581c0ce1bdde"
+        "ad1e2de98dd394ccdaa9582071bfab6b1a122136558070403f060f5708547506",
+        "b78661835da5cc5e71bf8d34b4e242c8d4ac9fec2e05c7ee990f908bb6841385",
+        "4c415c855d0128c514c3ada6b7500056c44f4c67fba34972d976d84d81f9ec70",
+        "e43e08252882324934093e4928aee062e11ae9ce8e6a8a17a7957417a562519e",
+        "d6bbdd38440412fad8a632eed904838053a1e298ee6be86131cc9cecd0e43eca",
+        "a6a081e42fca466e23a32a9efb01c51eace34a3e1c75651c2bd1a6d323ef9674",
+        "9f5041349a1cec925128120dcfba0342406a77abf629ad8b19cf7473a289db4c",
+        "db0d21b0c837899849da059090d679cd1c9907a204328edf8e8794d48cd39789",
+        "fa449d572f6eec5e6cc06dc1fcb2b56eb525ae5cf8a2af6a17196c122162c417",
+        "a346ec42969e031cc33c4bd5b4e20460c5e754fa694893257548e7468a9ba18e",
+        "343d9cd88ff558def92c331ca15eced0bfe37104ac6b3bef5b587f6f92dedc81",
+        "88ba137312b44fb59373f28c62a872740b532029a45fcf793ce0a2a5d889a607",
+        "65df797f419bc0dd57bcda435c66747b802f82ca48f359a9c03f1f1ca2a22304"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:berkelium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "berkelium"
+              "cruciblecraft:prefix_material": "vanadium_steel"
             },
-            "items": "cruciblecraft:storage_plate",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "berkelium"
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
             },
-            "items": "cruciblecraft:dense_plate",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium_steel/fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium_steel/fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "berkelium"
+              "cruciblecraft:prefix_material": "vanadium_steel"
             },
-            "items": "cruciblecraft:storage_dust",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:berkelium/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:berkelium/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:berkelium/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "berkelium"
+              "cruciblecraft:prefix_material": "vanadium_steel"
             },
-            "items": "cruciblecraft:storage_plate",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:berkelium/block"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "berkelium"
+              "cruciblecraft:prefix_material": "vanadium_steel"
             },
-            "items": "cruciblecraft:dense_plate",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "berkelium"
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
             },
-            "items": "cruciblecraft:storage_dust",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "berkelium"
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
             },
-            "items": "cruciblecraft:dense_plate",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium_steel/fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "berkelium"
+              "cruciblecraft:prefix_material": "vanadium_steel"
             },
-            "items": "cruciblecraft:storage_plate",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "berkelium"
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
             },
-            "items": "cruciblecraft:storage_plate",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "berkelium"
-            },
-            "items": "cruciblecraft:dense_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "berkelium"
-            },
-            "items": "cruciblecraft:dense_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "berkelium"
-            },
-            "items": "cruciblecraft:storage_dust",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "berkelium"
-            },
-            "items": "cruciblecraft:storage_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "berkelium"
-            },
-            "items": "cruciblecraft:storage_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "berkelium"
-            },
-            "items": "cruciblecraft:storage_dust",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "berkelium"
-            },
-            "items": "cruciblecraft:storage_dust",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "berkelium"
-            },
-            "items": "cruciblecraft:dense_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "berkelium"
-            },
-            "items": "cruciblecraft:storage_dust",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 9,
-            "id": "cruciblecraft:berkelium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 18,
-            "id": "cruciblecraft:berkelium/rod"
-          }
-        ],
-        [
-          {
-            "count": 9,
-            "id": "cruciblecraft:berkelium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 9,
-            "id": "cruciblecraft:berkelium/plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "berkelium"
-            },
-            "count": 9,
-            "id": "cruciblecraft:curved_plate"
+            "count": 1,
+            "id": "cruciblecraft:vanadium_steel/large_fluid_pipe"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:berkelium/block"
+            "id": "cruciblecraft:vanadium_steel/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_blue_steel/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -339,7 +214,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4101963ed686e5c7",
+        "cruciblecraft:gt6/eaebdc830a8569a6",
         0,
         0
       ],
@@ -347,23 +222,23 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/510fafb9b85200ac",
+        "cruciblecraft:gt6/e992aee55186f687",
         1,
         1
       ],
       [
         2,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/f0c174b17d848583",
+        "cruciblecraft:gt6/9aaa7bd2d3aef75f",
         2,
         2
       ],
       [
         3,
-        2,
         0,
-        "cruciblecraft:gt6/da0cda9f87ffb0a3",
+        0,
+        "cruciblecraft:gt6/f0f1d6934a198ac2",
         3,
         3
       ],
@@ -371,158 +246,78 @@
         4,
         3,
         0,
-        "cruciblecraft:gt6/6dc1468c273c1a6f",
+        "cruciblecraft:gt6/bfa2708a82bd7245",
         4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/fed7280a8678ab51",
+        5,
         5
       ],
       [
-        5,
-        1,
+        6,
+        3,
         0,
-        "cruciblecraft:gt6/7ebf8850a99fef8d",
-        5,
+        "cruciblecraft:gt6/0d0f9fbdbb58ee9b",
+        6,
         6
       ],
       [
-        6,
-        4,
+        7,
+        3,
         0,
-        "cruciblecraft:gt6/4f4e2edbbdc82804",
-        6,
+        "cruciblecraft:gt6/fa8ac43212ce71c4",
+        7,
         7
       ],
       [
-        7,
-        3,
+        8,
+        2,
         0,
-        "cruciblecraft:gt6/5c3c3dead808a648",
-        7,
+        "cruciblecraft:gt6/a300d32f45fab028",
+        8,
         8
       ],
       [
-        8,
-        2,
+        9,
+        4,
         0,
-        "cruciblecraft:gt6/1aed3663fde4eb4d",
-        8,
+        "cruciblecraft:gt6/86e0e660b46cc766",
+        9,
         9
       ],
       [
-        9,
-        5,
+        10,
+        1,
         0,
-        "cruciblecraft:gt6/fae1e02a97e98cd2",
-        9,
+        "cruciblecraft:gt6/91b3f079713d1ab8",
+        10,
         10
       ],
       [
-        10,
-        3,
+        11,
         0,
-        "cruciblecraft:gt6/867b485d83b64ee6",
-        10,
+        0,
+        "cruciblecraft:gt6/fbc3e6693c977b7f",
+        11,
         11
       ],
       [
-        11,
-        3,
+        12,
+        4,
         0,
-        "cruciblecraft:gt6/49ca8be65217a28b",
-        11,
+        "cruciblecraft:gt6/9fe0251338a4a667",
+        12,
         12
-      ],
-      [
-        12,
-        4,
-        0,
-        "cruciblecraft:gt6/275e21a736396451",
-        12,
-        13
-      ],
-      [
-        13,
-        0,
-        0,
-        "cruciblecraft:gt6/9774fc377a5c7583",
-        13,
-        14
-      ],
-      [
-        14,
-        2,
-        0,
-        "cruciblecraft:gt6/6b5633ffdaef1198",
-        14,
-        16
-      ],
-      [
-        15,
-        0,
-        0,
-        "cruciblecraft:gt6/55567557d257403c",
-        15,
-        17
-      ],
-      [
-        16,
-        4,
-        0,
-        "cruciblecraft:gt6/e6de527c898106b4",
-        16,
-        18
-      ],
-      [
-        17,
-        2,
-        0,
-        "cruciblecraft:gt6/68ffee5218117f43",
-        17,
-        19
-      ],
-      [
-        18,
-        5,
-        0,
-        "cruciblecraft:gt6/53136e6ffcb4c81f",
-        18,
-        21
-      ],
-      [
-        19,
-        0,
-        0,
-        "cruciblecraft:gt6/4ac411969e2ecf2d",
-        19,
-        22
-      ],
-      [
-        20,
-        1,
-        0,
-        "cruciblecraft:gt6/55e36db340641a6c",
-        20,
-        25
-      ],
-      [
-        21,
-        4,
-        0,
-        "cruciblecraft:gt6/a775df2931e30cdc",
-        21,
-        26
-      ],
-      [
-        22,
-        5,
-        0,
-        "cruciblecraft:gt6/1220637ae48265bb",
-        22,
-        27
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1985,
+      "duration": 1240,
       "eut": 96,
       "item_input_actions": [
         {
@@ -533,7 +328,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        2,
         0
       ],
       "output_chances": [

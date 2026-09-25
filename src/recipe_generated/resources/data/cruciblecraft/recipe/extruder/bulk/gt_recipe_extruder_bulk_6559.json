@@ -10,102 +10,142 @@
         }
       ],
       "hashes": [
-        "886acf0923dd35a4d89edb900b4f09e082e45c9f7f997918955b69a098b077d7",
-        "d68358ddb41478d301321452711611d7eb85264a702f48748f9ff3f146c3dd7f",
-        "a975d52e83d1afaacc06343d02b77d5d7ad472a878ad3a06d2a5b778e97a155b",
-        "b7db9e7b374c5b42824b0a4ba8d833f4d81084d05adcc922a129e1e62e19f2f0",
-        "6f24ec56e428f40a9f2b55804cf837f71434433808fdfdc781c5cb8a5b9d7587",
-        "d542ca5f63bd5d51a102220c62197806885f19a1a14a12df1cf13612f06c30b4",
-        "e90b18be8ac89fb94d9b760be6bc0876c03fb85a87bb2b44a88756c7320fe26c",
-        "2cb6656c5c32642f1ccde62b0b1acfa9fe1ceb1ac12d9cdac351537f066b361e"
+        "2400137736d32a3172401664f74e1e742870ccf26362ec8bc1cec08c2098df51",
+        "698090506a165ebfdafbee4a040ab282064fe50606416b164b583af1b344a570",
+        "9b379594b34917f48a427c508e2d4c6bc69037a9c0bfea1997a1edc14d095661",
+        "2eae183c4352a67df0c33e6129af7f2886daff4af2c0a595c02bc595ba7c738e",
+        "3b36167a3529eed2659efb42765517c315987720c60454d0b3db4707dcc89394",
+        "05989451443900cb241a0af3ce0b06a62469ade4e53d8a5b4662b6240166ac01",
+        "6678117ed1c1dca0eea828347999e55e0877b5db2435955d731fa6821b87e37a",
+        "995cc64a833a176199ceeb80c3d65ff0312d2dd98a996c1d5fa676cd40cf5544"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:chromium/ingot"
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "chromium"
+              "cruciblecraft:prefix_material": "vyroxeres"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "chromium"
+              "cruciblecraft:prefix_material": "ignatius"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:chromium/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "chromium"
+              "cruciblecraft:prefix_material": "vyroxeres"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "chromium"
+              "cruciblecraft:prefix_material": "ignatius"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:chromium/small_gear"
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:chromium/long_rod"
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
             "count": 1,
-            "id": "cruciblecraft:chromium/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ignatius/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vyroxeres"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vyroxeres/gear"
           }
         ]
       ]
@@ -115,7 +155,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2f732e423563d0de",
+        "cruciblecraft:gt6/ebf81cad3cd02d54",
         0,
         0
       ],
@@ -123,62 +163,62 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/2cf4a3db661f28a6",
+        "cruciblecraft:gt6/e14c980e864a4e7e",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/8f946ffb4d4d9e5d",
+        "cruciblecraft:gt6/aa060eefc4928aaf",
         2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/e580e687a833c760",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/92d27b96d7894894",
+        4,
         4
       ],
       [
-        3,
+        5,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/378208f7ae679265",
-        3,
+        "cruciblecraft:gt6/ac4e4daf09b13b2f",
+        5,
         5
       ],
       [
-        4,
+        6,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/38a138af0089392b",
-        4,
+        "cruciblecraft:gt6/6241a058fc7a3a5f",
+        6,
         6
       ],
       [
-        5,
+        7,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/a76fb079f8a7aca1",
-        5,
+        "cruciblecraft:gt6/879af1e37ca11018",
+        7,
         7
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/1970d5a7869c029b",
-        6,
-        8
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/a3542a2518c7d511",
-        7,
-        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1874,
+      "duration": 1137,
       "eut": 96,
       "item_input_actions": [
         {
@@ -189,7 +229,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        2,
         0
       ],
       "output_chances": [

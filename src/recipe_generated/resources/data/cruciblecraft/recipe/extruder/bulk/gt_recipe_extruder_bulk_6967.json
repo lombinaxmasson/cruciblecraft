@@ -10,42 +10,32 @@
         }
       ],
       "hashes": [
-        "1d0713edd4c9b40d101e40f3c0a4cdc8b805276c16e96008f54fbd1e91c7ecec",
-        "4fc0e4f9d8081b207ea8f803a20821f7205f1848c82a9361fab24729ff9191c0",
-        "7cb2faf5f5bed2ba2952d1e6e0c8c5eba3ae25db453082f782ff7bdd3e08be88",
-        "c20cad676bb5560a84c3b8228d062a77e459ab2bb92da091bc3dd480b8df5f6e"
+        "399ed95b5b72654c62e85c043e9ffdbff1fbcc6b73403c426f4bf395ce8bce4e",
+        "755ff2135c36d2e6fd10c3b41898ea58fed44907c93c1641519e48c09fc08c3b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:promethium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:promethium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:promethium/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:promethium/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
@@ -53,28 +43,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:promethium/long_rod"
+            "id": "cruciblecraft:tantalum_hafnium_carbide/rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "promethium"
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:promethium/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:promethium/ingot"
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -84,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d81985809978df44",
+        "cruciblecraft:gt6/033355371a3599dd",
         0,
         0
       ],
@@ -92,30 +70,14 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/ec67376be97ac6e2",
+        "cruciblecraft:gt6/0ec44011d483b72b",
         1,
         1
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/5dc2e85238483d66",
-        2,
-        2
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/d810c0c2c0d4e9c3",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 115,
+      "duration": 280,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +88,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        36,
         0
       ],
       "output_chances": [

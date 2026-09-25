@@ -10,47 +10,22 @@
         }
       ],
       "hashes": [
-        "86bef0da728b840d5dcf1da07d58b5117f3d9d1fe016c1af66d5c03adaa2e0d7",
-        "2404a45a2a7685b41088b20b26489a662ff8e58b1f0f456ed3949e7f40b18625",
-        "bac94a6d36b31af8c4918a5a44e1c79347e540e2bf813bc6557478d55225907d",
-        "a62a11bbf882cef983329b967340fb51fc1d3c44605880abc4d86695995b5db0",
-        "948771a2032e0f1c68ffaf3ceada725230a8458d7ae7957f89eabd5a9cacf703",
-        "fa3104bf50037aa27a1b72ca1cd59e0eeb600faff567415c3fa90f8d826dfbd4",
-        "08b98c0759aba8bc68deb6f7bc5ff7ea2fc7546979dab4b196d7739d93befea9",
-        "0be2dc5aceb23d8044a889bdf58202563348e0646aa5a25ce9d6b61affef066f",
-        "daa816d5077d95f2d34c388ae17758618dabddd22475c2436fe60faa4545c0df",
-        "e9888a6aa27ddef00f16b29bd50343da779190fee1f7865a39c1a8002e6ddef7",
-        "59aaf88c39e7572ac54057c0f6d2ef46545406cd7da1970fc3b1611ab9e2e837",
-        "60a852ac96e6c147099e323b287e60fcb9842c5e9426b39b88d4e90c27d6a6a7",
-        "6d6307a051875f46c8a73b29ea7d02eb448b31e9ab85458bb3c679804afbd23e",
-        "fa9be73d731841b1094f926cd4db583e992b6ff30e2f5e39d38093a25d513b95",
-        "e6865dffd832ef223164886e80e461368c2c054c914228bd8e2f8c02397cfeda",
-        "422b3ae73261a2da69a84e9e885405e4624ba40eccad04a096d09305393a04e8",
-        "71fbeaebe07597512a4bef4a00ed8066944e29e65bfe33cbed2660384a565384",
-        "2433bec907d1f74e8388d97e864789bb189b710da0e97f6219a85a57344e47d6",
-        "30f67a9fd8220389e187debd2b9269032728dfbeea55a4f772653907f5a794bb",
-        "8f0656b1b756b33ef34b40888976b47f1dee3c8df479366507eb744a54e23403",
-        "fbb1e4ba648e224037330d8ded5b2e6cfb5de591005013ec45251ac4da5208e1",
-        "566c16f152e4d4a73bcb70676dbf55f94fbfdcffafb9d4bf7e609a657f27a883",
-        "6a2e2758d1818922eff90e41fb10af3ee3a6317641be3cb5d34a9f4f1633a59f",
-        "bcc07de0c3681030664b057ed0c6cecedb5623bf7fe0b660e0c09208142cd053",
-        "a7df0fabcbd2fbcefe6056725ab5f87ab9b2a49899da260efbe419fd365f9bd7"
+        "f7cf127b1252e37ff92514b19ae1961772f203c6d90d2fd5a7913c3e0da27057",
+        "8ded606b57108accbab25b860fa799c34b7e041814cb6e034aa838cf4a1179b1",
+        "3c42ebe972294fccdc7b812bd9a546ea3dfc6bf1e94c15a1913e9becdf71b5f9",
+        "c6ba1be23e3d8f156cfc16e10d0fc9415ac1b3525a198f3969dd8d57be32eb0e",
+        "5c753a90d4b8ac93e284804b3ccaa4c793ce8b26e35e500f4b1989b942fb905d",
+        "9c652710112a869392971ee63cb90e20ab2855439e249d8fe82eca610fe0e871",
+        "fd55cffeb80cdac2a7eb46b6d1ca9deb8e4b96231e0a4a052b2b445fa46e5bd0",
+        "4c4b8b8398e042776c8024e8e19690f99b4027cd0c11e69b3858ff87065bb828"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:hepatizon/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "hafnium"
+              "cruciblecraft:prefix_material": "damascus_steel"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
@@ -59,26 +34,10 @@
         ],
         [
           {
-            "item": "cruciblecraft:hepatizon/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:electrum/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "electrum"
+              "cruciblecraft:prefix_material": "damascus_steel"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
@@ -87,7 +46,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:electrum/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_tiny_plate"
@@ -96,21 +59,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hepatizon"
+              "cruciblecraft:prefix_material": "damascus_steel"
             },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "terbium"
-            },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
@@ -119,63 +70,7 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hepatizon"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:hafnium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "hepatizon"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:electrum/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "terbium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:damascus_steel/block"
           },
           {
             "item": "cruciblecraft:extruder_shape_tiny_plate"
@@ -184,21 +79,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hepatizon"
+              "cruciblecraft:prefix_material": "damascus_steel"
             },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
@@ -207,15 +90,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:hepatizon/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:hafnium/foil"
+            "item": "cruciblecraft:damascus_steel/block"
           },
           {
             "item": "cruciblecraft:extruder_shape_bolt"
@@ -223,66 +98,10 @@
         ],
         [
           {
-            "item": "cruciblecraft:electrum/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:hepatizon/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "electrum"
+              "cruciblecraft:prefix_material": "damascus_steel"
             },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:hafnium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "terbium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:hafnium/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "hafnium"
-            },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
@@ -293,110 +112,28 @@
       "item_outputs": [
         [
           {
-            "count": 4,
-            "id": "cruciblecraft:hepatizon/bolt"
-          }
-        ],
-        [
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
           {
             "components": {
-              "cruciblecraft:prefix_material": "hafnium"
+              "cruciblecraft:prefix_material": "damascus_steel"
             },
-            "count": 2,
+            "count": 17,
             "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hepatizon"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
+            "count": 64,
+            "id": "cruciblecraft:damascus_steel/bolt"
+          },
           {
-            "count": 2,
-            "id": "cruciblecraft:electrum/ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "count": 4,
-            "id": "cruciblecraft:tiny_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:hepatizon/rod"
-          }
-        ],
-        [
-          {
-            "count": 5,
-            "id": "cruciblecraft:terbium/bolt"
-          }
-        ],
-        [
-          {
-            "count": 2,
-            "id": "cruciblecraft:hafnium/bolt"
-          }
-        ],
-        [
-          {
-            "count": 2,
-            "id": "cruciblecraft:hepatizon/ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "electrum"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "terbium"
-            },
-            "count": 6,
-            "id": "cruciblecraft:tiny_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "hepatizon"
-            },
-            "count": 4,
-            "id": "cruciblecraft:tiny_plate"
-          }
-        ],
-        [
-          {
-            "count": 4,
-            "id": "cruciblecraft:electrum/bolt"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:electrum/rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:terbium/rod"
+            "count": 8,
+            "id": "cruciblecraft:damascus_steel/bolt"
           }
         ]
       ]
@@ -406,206 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/09644e57611bb70e",
+        "cruciblecraft:gt6/8ff87d8e7f9be872",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/7ada34ad729a2469",
+        1,
         1
       ],
       [
-        1,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/1f3e4a6de13f37e6",
-        1,
+        0,
+        "cruciblecraft:gt6/16916cecac526d69",
+        2,
         2
       ],
       [
-        2,
-        2,
+        3,
+        1,
         0,
-        "cruciblecraft:gt6/d4d28a2ea69667f5",
-        2,
+        "cruciblecraft:gt6/7391cc73d70f480c",
+        3,
         3
       ],
       [
-        3,
-        3,
+        4,
         0,
-        "cruciblecraft:gt6/33572908c4bc618e",
-        3,
+        0,
+        "cruciblecraft:gt6/2f535ca76aef9c9c",
+        4,
         4
       ],
       [
-        4,
-        4,
+        5,
+        1,
         0,
-        "cruciblecraft:gt6/d1041e06f260f6d4",
-        4,
+        "cruciblecraft:gt6/cedb8d8100e6c2e1",
+        5,
         5
       ],
       [
-        5,
-        4,
+        6,
+        1,
         0,
-        "cruciblecraft:gt6/6236c4e8f3c4dc9e",
-        5,
+        "cruciblecraft:gt6/dc87cec990b4b417",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/03f2744be01df055",
+        7,
         7
-      ],
-      [
-        6,
-        5,
-        0,
-        "cruciblecraft:gt6/cd7793571a6e9339",
-        6,
-        8
-      ],
-      [
-        7,
-        6,
-        0,
-        "cruciblecraft:gt6/ef3eacc46a3bd2bd",
-        7,
-        9
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/cf1ac3c25ed72ec5",
-        8,
-        10
-      ],
-      [
-        9,
-        3,
-        0,
-        "cruciblecraft:gt6/032be2ecb4bec812",
-        9,
-        11
-      ],
-      [
-        10,
-        7,
-        0,
-        "cruciblecraft:gt6/52d175eefa3798f4",
-        10,
-        13
-      ],
-      [
-        11,
-        8,
-        0,
-        "cruciblecraft:gt6/2c0586467a585d07",
-        11,
-        14
-      ],
-      [
-        12,
-        9,
-        0,
-        "cruciblecraft:gt6/76707b09c7e26a79",
-        12,
-        15
-      ],
-      [
-        13,
-        10,
-        0,
-        "cruciblecraft:gt6/3f02813b8740a635",
-        13,
-        16
-      ],
-      [
-        14,
-        11,
-        0,
-        "cruciblecraft:gt6/872fbaf3ceff145b",
-        14,
-        17
-      ],
-      [
-        15,
-        12,
-        0,
-        "cruciblecraft:gt6/9f3c8c9b6bfc09ce",
-        15,
-        18
-      ],
-      [
-        16,
-        11,
-        0,
-        "cruciblecraft:gt6/5e246d9f7b5ccc4c",
-        16,
-        19
-      ],
-      [
-        17,
-        7,
-        0,
-        "cruciblecraft:gt6/c6598292ed37559f",
-        17,
-        21
-      ],
-      [
-        18,
-        12,
-        0,
-        "cruciblecraft:gt6/f23e0fd6c87f8ad7",
-        18,
-        22
-      ],
-      [
-        19,
-        8,
-        0,
-        "cruciblecraft:gt6/2b820d989c48099b",
-        19,
-        23
-      ],
-      [
-        20,
-        13,
-        0,
-        "cruciblecraft:gt6/9ae11947830c8661",
-        20,
-        25
-      ],
-      [
-        21,
-        1,
-        0,
-        "cruciblecraft:gt6/92b47cf79503fbc6",
-        21,
-        26
-      ],
-      [
-        22,
-        14,
-        0,
-        "cruciblecraft:gt6/37adb7b41fbf5c32",
-        22,
-        28
-      ],
-      [
-        23,
-        1,
-        0,
-        "cruciblecraft:gt6/54fd4cefe5aacae9",
-        23,
-        30
-      ],
-      [
-        24,
-        7,
-        0,
-        "cruciblecraft:gt6/b50cad0ed14d1d49",
-        24,
-        31
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 114,
+      "duration": 2081,
       "eut": 96,
       "item_input_actions": [
         {
@@ -620,6 +221,7 @@
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4196",

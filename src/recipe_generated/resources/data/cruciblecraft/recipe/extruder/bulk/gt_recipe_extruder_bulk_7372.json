@@ -10,67 +10,115 @@
         }
       ],
       "hashes": [
-        "cd7dce7283bbdb93c609e15844c305fb53b916d4a192641e8a29c1366d91c7e0",
-        "ad08801cef4536371767be9ad7aaaccd90a29b41e45a9c4beac6ebc9ab8f7333",
-        "f1ec85b188977710295a6fcf30a584685b45f8a2f8b2ea7eb82a1b5d7453425a",
-        "8a4d2fe11f2f3cecad5bd2ab62f7817fdc9f20e366629c47b117f27d9f6d02f0",
-        "1eeedb3c280d4dc1781856ad4230bab647004559e6565f099e30129bb3373d2f"
+        "1e49dc847e9e444670e3c41dffd9dfb07fdf562010419280fdaa0f68701aacf6",
+        "5facffd0c75dfbe5de8030530b8492589d90ffb91be848b818964b488570056b",
+        "99a996f069288bde4aa98eb2680a8e57d4972c5230db7e3b9905172488e6f7d8",
+        "a9118bbf9e58d11516a25bdc1ce5c67e9725d187fd7176f0dd69f9004a5c561a",
+        "05bc8e75a5de40ed2325126a14e70e4e6b132281c1f74f6b354638a91015aba0"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:hepatizon/foil"
+            "item": "cruciblecraft:tartarite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hepatizon/ring"
+            "item": "cruciblecraft:tartarite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hepatizon/small_dust"
+            "item": "cruciblecraft:tartarite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hepatizon"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tartarite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hepatizon"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tartarite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:hepatizon/block"
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:tartarite/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:tartarite/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:tartarite/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:tartarite/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:tartarite/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:tartarite/ring"
           }
         ]
       ]
@@ -80,46 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/747f9126767a0d8d",
+        "cruciblecraft:gt6/2d87a10159063347",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f7ed0d5dc5e10d3a",
+        "cruciblecraft:gt6/90ed8b924fdd80d2",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/37517817494e8b86",
+        "cruciblecraft:gt6/efd6b30aa5240949",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/b65d648114d7f3a8",
+        "cruciblecraft:gt6/f0fadd29e0c168af",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/26f2271aea20f19e",
+        "cruciblecraft:gt6/27af7f42803fc447",
         4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2037,
+      "duration": 46116,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7372",

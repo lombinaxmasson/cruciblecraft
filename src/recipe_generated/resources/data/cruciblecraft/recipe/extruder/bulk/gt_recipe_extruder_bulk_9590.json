@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 6933,
+      "duration": 135,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -22,16 +22,20 @@
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:tantalum/rod"
+          "components": {
+            "cruciblecraft:prefix_material": "tungstensteel"
+          },
+          "items": "cruciblecraft:dust_div72",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_ring"
         }
       ],
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:tantalum/block"
+          "id": "cruciblecraft:tungstensteel/ring"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "0acc0fd651752d80b074465903dec01eca49d2f2468bfe475c8b603f1eb7183c"
+          "a9810218f3a5d3b60bd7f65134e39876e018cdf7afa860238eb8f3e98ec7ce43"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9590",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/56b3c11a4638d336"
+      "stable_id": "cruciblecraft:gt6/670848b8a8bab249"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

@@ -10,13 +10,17 @@
         }
       ],
       "hashes": [
-        "f5896a735ba2e7790fcccdba9c7d6c04d9688d42b1a6582d22289f16a10519aa",
-        "7932780b2614cadfd864761683ae604858c0d2025e4934e700a7adac4f9fdb7c"
+        "1b68135aab936e73eab57846cc8b956677286b636917fa153bbaafd9838a39f7",
+        "08bed28f76bff300c00a04504719c8ded53cb5ab209ee02bee2e7aca6d69602a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ultimet/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -25,9 +29,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ultimet"
+              "cruciblecraft:prefix_material": "yttrium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:ultimet/block"
+            "id": "cruciblecraft:yttrium/block"
           }
         ]
       ]
@@ -49,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d89374f7467237be",
+        "cruciblecraft:gt6/a534f6fb8972f69e",
         0,
         0
       ],
@@ -57,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/5bff3d9be4275cf9",
+        "cruciblecraft:gt6/9b1377be30fa5b16",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2024,
+      "duration": 1247,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        3,
         0
       ],
       "output_chances": [

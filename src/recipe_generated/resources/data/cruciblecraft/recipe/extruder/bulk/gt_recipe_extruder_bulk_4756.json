@@ -10,72 +10,84 @@
         }
       ],
       "hashes": [
-        "3468ca33c7a1c7e97d18dedfdfcd5ac84dfd68c49437c9563eb4be98022dd625",
-        "a7115375d44bbf99328638a589449031171ace3479706e1bdd4c976773613b0a",
-        "bfc134ee867d727de6e886bbe04bfbd84f609db1ff16ee907f4b2cc82f36498e",
-        "56610d6354b39776bff23934e5c0e29b2107c5c8f0d292047f50515eb6b87844",
-        "beb1917725e96b11b1bada3bf8220f6c3156050a295edcbcaf89b755e558150f",
-        "b01a87a99568d551642818a60f6bda2613502be4a92f9b37e1277fcf8f8ddf13"
+        "7af6f76884e6ca443ed33044dc9407e5862aa8b82bbfbaadebc693ac9de3ccc2",
+        "83d90cd5fe2181f5ced03055938c789ca46478d15e37ce165d89c03c4552d232",
+        "b6f7e8f76eefb7919f7288030c6204d32e25839d3e9f665687fa1e1106df26d9",
+        "8e44ba2d4e001478f830c22a67586dd09cf312b26495aadd3b9eb2b65577c305",
+        "783b5758180f2de37243c1dbb0b175cb2405965f94e4e743e9f8ad2d56d15d32",
+        "edd5b2fceb413e51aff6aabdffcd16046ca356412cc462b9190395c9f1b25091"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:shadow_iron/nugget"
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "shadow_iron"
+              "cruciblecraft:prefix_material": "naquadah_enriched"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "shadow_iron"
+              "cruciblecraft:prefix_material": "naquadah_enriched"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:shadow_iron/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:shadow_iron/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "shadow_iron"
+              "cruciblecraft:prefix_material": "naquadah_enriched"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ]
       ],
@@ -83,7 +95,43 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:shadow_iron/gear"
+            "id": "cruciblecraft:naquadah_enriched/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:naquadah_enriched/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:naquadah_enriched/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:naquadah_enriched/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah_enriched"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
           }
         ]
       ]
@@ -93,54 +141,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b4fd0de11910ad2f",
+        "cruciblecraft:gt6/74556c4514b62b78",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/c9be5b5d70402786",
+        1,
         1
       ],
       [
-        1,
+        2,
+        2,
         0,
+        "cruciblecraft:gt6/068ca0578922e807",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/9078f02a3ef9681b",
-        1,
+        "cruciblecraft:gt6/f4d3b80286f0618e",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/fe062eff62fe4f01",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/08ad5570f174ed51",
+        5,
         5
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/63708300c26aedff",
-        2,
-        7
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/637526db4aab2d4d",
-        3,
-        14
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/4d21921407cee50d",
-        4,
-        16
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/75289ab421578946",
-        5,
-        26
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 836,
+      "duration": 547,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +199,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

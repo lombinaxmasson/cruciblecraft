@@ -10,17 +10,37 @@
         }
       ],
       "hashes": [
-        "3492dd6caf9057d61e85936cedcb188537eaeaa9320672663e1e64d794906c35",
-        "fee5cd12e408a6ef93574587088155d7f6e9b6e78c2ea6beab8ad1f7d2ac8fcb",
-        "7a0bf85f22c05ddbac7abd7d444fd788c61c91992eb9aacfdcbcd2e612db9dd3",
-        "22a5b34baa832972f7207e88bb5240127596f355defd9c54651a244176bf79e4",
-        "7d0ef5eed9237293f593a14d7dbbd36b19cf54e4cf488612438534bf5f311467"
+        "b53252452d2afba8a14d8e346751bcce4e094cd60d802ddf3328c0706b8d4adc",
+        "7accd6f2c46cdaf775a2cc13760953664ce93f78c8e9bcb9a66c16c6e1a7b6b3",
+        "1169eafdf76ed037c76bd871d948d858cc2d25781e2d757a67ffb0950cc3b365",
+        "884707b1c9c84ebb654d8a7cbb10d21374e6f0472984124b12b5243dbae090ed",
+        "3595649ec7d6eec3507d8b7d2534d73f2b47e0dd8e3e873af70807f0c66565e8"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:nickel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "manganese"
+              "cruciblecraft:prefix_material": "nickel"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
             },
             "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
@@ -31,7 +51,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:manganese/foil"
+            "item": "cruciblecraft:nickel/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -39,27 +59,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:manganese/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:manganese/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "manganese"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:nickel/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -70,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:manganese/gear"
+            "id": "cruciblecraft:nickel/gear"
           }
         ]
       ]
@@ -80,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ebc26bf83846804b",
+        "cruciblecraft:gt6/5fb66cfef5ce594c",
         0,
         0
       ],
@@ -88,7 +88,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/658ff2bfc852820f",
+        "cruciblecraft:gt6/f4d7b5a50813cdce",
         1,
         1
       ],
@@ -96,7 +96,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/a9eae9d783ab3847",
+        "cruciblecraft:gt6/1116509fc24c31bd",
         2,
         2
       ],
@@ -104,7 +104,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/9566b60d22e89db5",
+        "cruciblecraft:gt6/f51f0fce6b3e431c",
         3,
         3
       ],
@@ -112,14 +112,14 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/ab92ca778ce3fe5b",
+        "cruciblecraft:gt6/fab6479a9c25baea",
         4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 564,
+      "duration": 790,
       "eut": 96,
       "item_input_actions": [
         {

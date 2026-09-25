@@ -10,32 +10,59 @@
         }
       ],
       "hashes": [
-        "bf2c602058016ad457f1ba60f874db980d3e4332d174c4184462a183efe86879",
-        "624bd99964a383d670d9589358c14d6b39773e79d826d714c7c20f94ae559ac9"
+        "3fd0ea5d5fd1af97baf799bf8ebe283cb0668efbe0ba613335d0c9945dc2ff00",
+        "63276e0c25c761ab6c666f4519828fc721491bd2e087003cbd9540d8f28c51fd",
+        "10a4e7fa62140c32339e835d1966612203c1af604bf87d68b9231c98877d74ff",
+        "e5322e89b6c0447482542a30cd0203feca9e08fbe9686f5b3c807cceb0522bf9",
+        "940d16799e8cf192569689549a1e20f228673e463ce636665e66885d01d1eaa3"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "kalendrite"
+              "cruciblecraft:prefix_material": "pulsating_iron"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pulsating_iron/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "kalendrite"
+              "cruciblecraft:prefix_material": "pulsating_iron"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pulsating_iron/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pulsating_iron/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:kalendrite/gear"
+            "id": "cruciblecraft:pulsating_iron/block"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/bcb05f6c9afa5025",
+        "cruciblecraft:gt6/0b379f5a6c4b7e90",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/2df6efb99365019c",
+        "cruciblecraft:gt6/ddf74e3e6686b4b0",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/22fd2e50f7c33047",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/725bd1e5953a08b8",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/341be56b8af6381d",
+        4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3161,
+      "duration": 2421,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        36,
         0
       ],
       "output_chances": [

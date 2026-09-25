@@ -10,36 +10,154 @@
         }
       ],
       "hashes": [
-        "1b24545e7b59904523ed504b59e3793bbde9fd209175fd6813368e1e873fd360",
-        "e1e8928a3ef37b7681012689ec99e75835517d18d81cccf475c96f6fd8194dd3"
+        "013ddd81c56404773f99f59c456470b0dc8bc571b7b04ec728336b04460d4896",
+        "0c4500061c4a3cf1313b749bc4705b591b1f5243dd77d8eb4fcf4e8832570209",
+        "203921e8223c558bb191cadd5aab93bcc807a6c6982118ce1e54e52b1fec877f",
+        "f4ade6840358f62a0ead725d49018ee431982b569c500ffe397fa99b0b611bf4",
+        "2c581ab6959af8a4b8301418d1c43d4c650c823def284cf31c8060a33f8e5490",
+        "7b41f7298ac6717a2d0c8410280370387d8684479689c2b884844aff40989c17",
+        "e6783eef6b5a87d037b96eccee0f1e57f9ca64437bf24d1f53e77691373758db",
+        "d265bab73e76032e9c4f61e03b739cf303e007c9ba911c516e60983b85ac497a",
+        "77414fd9ae0935c6749c920c7f1089cbffc5e6912c545d853b2baaf1e05d8383"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:energetic_alloy/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "energetic_alloy"
+              "cruciblecraft:prefix_material": "orichalcum"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:orichalcum/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
             "count": 1,
-            "id": "cruciblecraft:energetic_alloy/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:abyssalnite/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -49,22 +167,78 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/48e2a18a95c92329",
+        "cruciblecraft:gt6/d1c84c7c7e87f0b8",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f42b9dad7c56e089",
+        "cruciblecraft:gt6/defc9b20d526c4e9",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/1e3aa7bc533d085d",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/6244e2a8b3769c12",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/4074969d759a7262",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/6721789458f02ff5",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/0f6fde1b270e6fdd",
+        6,
+        6
+      ],
+      [
+        7,
+        3,
+        0,
+        "cruciblecraft:gt6/1a1cd257ec37b646",
+        7,
+        7
+      ],
+      [
+        8,
+        3,
+        0,
+        "cruciblecraft:gt6/a2c49df9d854dca2",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1275,
+      "duration": 1118,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +249,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        2,
         0
       ],
       "output_chances": [

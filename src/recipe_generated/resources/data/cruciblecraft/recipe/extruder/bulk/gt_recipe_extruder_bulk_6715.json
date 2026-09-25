@@ -10,71 +10,36 @@
         }
       ],
       "hashes": [
-        "ff43efc6ee6f8612cf836ed31cd2cda576f2d547b38d5964f3f1a1a4d62e43e4",
-        "53eeb90f175d3dcfc81941c664b4deffc4cf0ebc25d7b7db247caea626214560",
-        "8081e2b2480b58389d14e44dc7106ad12fcc456fcfec94779c1be56706f3d77e",
-        "159d6792ec14e2786152cc69edacec54b4b8f7bf89bb5f89d421ca723e01265a"
+        "0948cdd2bf8f2af2c511cb2e1ab623f1aabf0a2a22fc481aed52d38d3753e57a",
+        "4009acd0021a7ee22046645672e7bcb76332585de8ae5502d3e0b4e800598ae4"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:terbium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "palladium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:terbium/bolt"
+            "item": "cruciblecraft:palladium/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:terbium/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:terbium/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "terbium"
-            },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:terbium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:terbium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:terbium/plate"
+            "id": "cruciblecraft:palladium/block"
           }
         ]
       ]
@@ -84,38 +49,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0ae361f7470b09c7",
+        "cruciblecraft:gt6/e6de2cb0fcdf50f7",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/f6d051c9d354989c",
+        0,
+        "cruciblecraft:gt6/a2514fd21172fdf4",
         1,
         1
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/f00516217a2ed3ec",
-        2,
-        2
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/35a6d80d2ac1dcf0",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 170,
+      "duration": 2563,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +75,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        18,
         0
       ],
       "output_chances": [

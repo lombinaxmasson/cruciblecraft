@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 213,
+      "duration": 1598,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        6,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "alduorite"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:steel/pentadecuple_wire"
         },
         {
-          "item": "cruciblecraft:extruder_shape_gear"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:alduorite/gear"
+          "components": {
+            "cruciblecraft:prefix_material": "steel"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "steel"
+          },
+          "count": 3,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "60f522f225ad923d52ff31dabb91f2494704d0da3df2ad6651df5c61493375a6"
+          "4c0820beb8c7a89b98b62ad94c73ef65a471cd02e89638d246021bbc17cee842"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_7777",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/b794b1ca16725206"
+      "stable_id": "cruciblecraft:gt6/28429a15a31dab6f"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

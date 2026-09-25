@@ -10,45 +10,83 @@
         }
       ],
       "hashes": [
-        "8a714aa2444f6023e6065ab64463127c25a64962fe776aaca79b31f834324948",
-        "31ee6252668739c8873a06fc97a0e5dc78090e29f3d470aeb62c913121692c83",
-        "ad8df696d4e7b24035f995d4e7bf91dcb92dddb5199a363357d847d95f509282"
+        "28620aee6e25b1f04d72667ce4a82fd5bb3be0f209cd8dbd7e3c145d2f9924df",
+        "e9bb0102bdeb807fd9e1d6c90563ffb63bf2a83362a95d39256a8b66a90e5a34",
+        "ad10390170917daf171d58988c094563e82a0e43306d277da3aa1d5211cc429d",
+        "e4981084a1b7b8bb1fbdda53ee5d45e085e934ea1a4c73c13ca7e49b5f588176",
+        "8a4aabc4ad6a9d83186abc2421c678ff8253f526a415788bb5719e7a872f8743",
+        "87f6047f5a3842a19ba010522dade5c20c3044ef5f0e094ab9f0a43b4a101dec"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "samarium"
+              "cruciblecraft:prefix_material": "kanthal"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:samarium/foil"
+            "item": "cruciblecraft:kanthal/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:samarium/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kanthal/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kanthal/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
             "count": 1,
-            "id": "cruciblecraft:samarium/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -58,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5f4195cca0dd2ac5",
+        "cruciblecraft:gt6/1868b043e6b9f736",
         0,
         0
       ],
@@ -66,7 +104,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/5a0b1a7ff0e0a4bf",
+        "cruciblecraft:gt6/34444e07c5abf185",
         1,
         1
       ],
@@ -74,14 +112,38 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/0ef986d052ac802b",
+        "cruciblecraft:gt6/5bd41d96fbdc4e61",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/fd297f354b3e8ce6",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/69694fb417f5ab03",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/c44133ed560baee5",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1099,
+      "duration": 774,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        54,
         0
       ],
       "output_chances": [

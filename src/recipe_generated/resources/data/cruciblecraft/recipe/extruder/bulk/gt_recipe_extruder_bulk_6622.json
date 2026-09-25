@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 3203,
+      "duration": 30,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,21 +17,28 @@
         }
       ],
       "item_input_counts": [
-        2,
+        8,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:stainless_steel/machine_casing"
+          "components": {
+            "cruciblecraft:prefix_material": "pulsating_iron"
+          },
+          "items": "cruciblecraft:dust_div72",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "pulsating_iron"
+          },
           "count": 1,
-          "id": "cruciblecraft:stainless_steel/block"
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
@@ -39,14 +46,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "105635b9b5b4da5012e3a00989267808d414ad2b194a83dc4fa539d577845f48"
+          "aef576223d776b015a1ebbf0dc496557fa8629c2cc30e02525aa5d41ac320e99"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_6622",
         "source_kind": "SOURCE_DERIVED"
       },
-      "shadow_order": 1,
+      "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/46950a66d8fd8877"
+      "stable_id": "cruciblecraft:gt6/4de684e47b35d7aa"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

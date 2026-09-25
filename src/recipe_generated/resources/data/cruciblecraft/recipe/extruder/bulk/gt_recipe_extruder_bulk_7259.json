@@ -10,32 +10,55 @@
         }
       ],
       "hashes": [
-        "942314cb4757d5b906518c6774a406a6b262fa2ac6f83f53a2c50684681a8b51",
-        "56068aee3e5c34509b3f044d7755408c4b32023d3927ee4feabcf5d0dda2721f"
+        "a8d67fd9e08ffa13fd5d5b12f007f5c1a744759c3ae1c179644ae38569071b5f",
+        "da95dfab0260cd5685774b9190ef59907e65dc0164892b00a2ce5d970dbdcd38",
+        "9d570591d26aeb9e46365617d2ae933037572c69819d6469ad0c46d5d37b882d",
+        "a7400b9483c31960aea1be48bd2ba84969a98d1af41cc7edecfc3b4bad81e36c",
+        "67b0b608b846a269a70476a0f11bd6a07ae1696b39294482134b9930c0078fbb"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tungsten_carbide"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:actinium/dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:actinium/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:actinium/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungsten_carbide"
+              "cruciblecraft:prefix_material": "actinium"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:actinium/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,7 +66,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:tungsten_carbide/gear"
+            "id": "cruciblecraft:actinium/block"
           }
         ]
       ]
@@ -53,22 +76,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d31a4d5767aa3afd",
+        "cruciblecraft:gt6/153dd310c3795915",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/a371e1a028e931d0",
+        "cruciblecraft:gt6/df3fa8a6cfed369e",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/b4ac92e740cc4982",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6147b7d9c0588ab9",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/934c91829ae209e8",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2675,
+      "duration": 1441,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        9,
         0
       ],
       "output_chances": [

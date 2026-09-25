@@ -10,40 +10,59 @@
         }
       ],
       "hashes": [
-        "5ca6891ccb106da9b178b3c415a4249e7ba339345a562cf4b0eda76e8248e288",
-        "b444d2eb5215a5fcc896c31ccffe3a4415bf4b6e7a6413e23bf5cea48cbc6a87"
+        "02c819e5ee18a99c712cfa0c003cfedcdfb8ff9658c93273c5f41d2c3d1c09a8",
+        "cfae89bb58d487f0c4df1677f3d8ca2770c2443a729d6eeaf644f3c3795ca681",
+        "b048c4d88a500be9efb32b418ed1d8a8be839fb5045007c8067efa49cac1d606",
+        "e5fa46b24b6a42cf00ea6cb327387b8c174acea0af41a7f2ec92779057354cce"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tartarite"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:stainless_steel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tartarite"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:stainless_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:tartarite/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:stainless_steel/large_fluid_pipe"
           }
         ]
       ]
@@ -53,22 +72,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9b560ebe616001f5",
+        "cruciblecraft:gt6/993b7d928e2b223c",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/3d0b9dd970350200",
+        "cruciblecraft:gt6/a5e0466fc99a04bd",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/bc7404e7eb6951f2",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/9bfd815260b17e16",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 7412,
+      "duration": 1201,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +114,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        48,
         0
       ],
       "output_chances": [

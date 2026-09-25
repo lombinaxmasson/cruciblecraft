@@ -670,16 +670,16 @@
   "summary": {
     "recipe_map_count": 95,
     "recipe_source_rows": 720841,
-    "traced_source_rows": 246390,
+    "traced_source_rows": 418084,
     "reference_traced_rows": 22886,
     "recipe_evidence_grades": {
       "source_rows": 720841,
       "classes": {
-        "source_exact": 246390,
-        "translated_exact": 3498,
+        "source_exact": 418086,
+        "translated_exact": 6837,
         "translated_io_only": 1778,
         "translated_item_io": 7691,
-        "translatable_missing": 330730,
+        "translatable_missing": 155695,
         "missing_material_form": 79103,
         "missing_material": 0,
         "missing_fluid": 7935,
@@ -688,9 +688,9 @@
         "legacy_exclusion_pending": 9642
       },
       "groups": {
-        "proven": 249888,
+        "proven": 424923,
         "partial_match": 9469,
-        "recipe_gap": 330730,
+        "recipe_gap": 155695,
         "identity_gap": 107536,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
@@ -704,26 +704,26 @@
         "source_rows": 720841,
         "excluded_rows": 13883,
         "target_rows": 706958,
-        "proven_rows": 249888,
+        "proven_rows": 424923,
         "identity_blocked_rows": 107229,
         "undecided_rows": 9642,
-        "recipe_progress": 0.3535,
+        "recipe_progress": 0.6011,
         "identity_ready": 0.8347
       },
       "machine_progress": {
         "maps": 73,
-        "mean_recipe_progress": 0.2776,
+        "mean_recipe_progress": 0.285,
         "maps_complete": 7,
         "maps_untouched": 33
       }
     },
-    "cc_recipe_rows": 248869,
-    "cc_material_rule_files": 115,
-    "capability_count": 115,
+    "cc_recipe_rows": 420563,
+    "cc_material_rule_files": 98,
+    "capability_count": 116,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 12,
-      "runtime_ready:accepted": 98,
+      "runtime_ready:accepted": 99,
       "runtime_ready:paused": 3
     },
     "blocker_count": 62,
@@ -767,7 +767,7 @@
       "cruciblecraft:material_rule"
     ],
     "attribution": "tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json",
-    "attribution_digest": "d9e84cb5a20960e9f2c587f9e9ed6594cd7627d72e2fa5e3ae8cb2f827f46dd8",
+    "attribution_digest": "a71e61df403cb25464ef391fa01e4161be4aafb97c61fa99d4d9d9622a32ede3",
     "attribution_overrides": 0,
     "unverified_hashes": 0,
     "ambiguous_hashes": 0
@@ -1708,6 +1708,15 @@
       "survival_access": "unreviewed",
       "wave_slug": "recipe/gt6-extruder-bulk",
       "path": "tools/capabilities/recipe/gt6-extruder-bulk/capability.json"
+    },
+    {
+      "slug": "recipe/gt6-extruder-remainder",
+      "title": "GT6 Extruder Recipe Remainder",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "unreviewed",
+      "wave_slug": "recipe/gt6-extruder-bulk",
+      "path": "tools/capabilities/recipe/gt6-extruder-remainder/capability.json"
     },
     {
       "slug": "registry/catalog-modern-ids",
@@ -9311,10 +9320,10 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.extruder.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 127449,
+      "traced_source_rows": 299143,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "extruder": 127449
+        "extruder": 299143
       },
       "owned_cc_maps": [
         "extruder"
@@ -9323,8 +9332,8 @@
       "untraced_cc_row_kinds": {
         "gt6_source": 2
       },
-      "rule_files": 25,
-      "rule_expanded_recipes": 2782,
+      "rule_files": 8,
+      "rule_expanded_recipes": 0,
       "overflow_rows": 0,
       "overflow_evidence": [],
       "overflow_selection_policy": "only waves whose directory names this map; shared multi-map waves are listed as evidence but not counted; never summed",
@@ -9340,9 +9349,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 127449,
-        "translated_exact": 2459,
-        "translatable_missing": 175054,
+        "source_exact": 299145,
+        "translated_exact": 5798,
+        "translatable_missing": 19,
         "missing_material_form": 11096,
         "missing_object": 9537
       },
@@ -9353,10 +9362,10 @@
         "source_rows": 325595,
         "excluded_rows": 76,
         "target_rows": 325519,
-        "proven_rows": 129908,
+        "proven_rows": 304943,
         "identity_blocked_rows": 20557,
         "undecided_rows": 0,
-        "recipe_progress": 0.3991,
+        "recipe_progress": 0.9368,
         "identity_ready": 0.9368
       }
     },
@@ -10448,11 +10457,11 @@
   "recipe_evidence_grades": {
     "source_rows": 720841,
     "classes": {
-      "source_exact": 246390,
-      "translated_exact": 3498,
+      "source_exact": 418086,
+      "translated_exact": 6837,
       "translated_io_only": 1778,
       "translated_item_io": 7691,
-      "translatable_missing": 330730,
+      "translatable_missing": 155695,
       "missing_material_form": 79103,
       "missing_material": 0,
       "missing_fluid": 7935,
@@ -10461,9 +10470,9 @@
       "legacy_exclusion_pending": 9642
     },
     "groups": {
-      "proven": 249888,
+      "proven": 424923,
       "partial_match": 9469,
-      "recipe_gap": 330730,
+      "recipe_gap": 155695,
       "identity_gap": 107536,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
@@ -10477,15 +10486,15 @@
       "source_rows": 720841,
       "excluded_rows": 13883,
       "target_rows": 706958,
-      "proven_rows": 249888,
+      "proven_rows": 424923,
       "identity_blocked_rows": 107229,
       "undecided_rows": 9642,
-      "recipe_progress": 0.3535,
+      "recipe_progress": 0.6011,
       "identity_ready": 0.8347
     },
     "machine_progress": {
       "maps": 73,
-      "mean_recipe_progress": 0.2776,
+      "mean_recipe_progress": 0.285,
       "maps_complete": 7,
       "maps_untouched": 33
     }
@@ -10523,18 +10532,18 @@
       "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "594a79e57f79a92b6d13cd9b1e08aa72ab1b837e3c7a3d15f21e7735de1067b3"
     },
     "cc_projection": {
-      "runtime_rows": 248869,
+      "runtime_rows": 420563,
       "rule_rows": 19893,
-      "digest": "9224477fe74f35d07d0b519f84b8999defd6a5127c82ff70329a4b9c6c6e3d8f"
+      "digest": "09a1fcd1948a2d775833707ec85e9dfe09dc1e31966e11d5c0bc5dd49b5a432f"
     },
     "summary": {
       "legacy_exclusion_pending": 9642,
-      "source_exact": 246390,
+      "source_exact": 418086,
       "display_only": 13576,
-      "translated_exact": 3498,
+      "translated_exact": 6837,
       "translated_io_only": 1778,
       "translated_item_io": 7691,
-      "translatable_missing": 330730,
+      "translatable_missing": 155695,
       "missing_material_form": 79103,
       "missing_material": 0,
       "missing_fluid": 7935,
@@ -10689,9 +10698,9 @@
         "translatable_missing": 94
       },
       "gt.recipe.extruder": {
-        "source_exact": 127449,
-        "translated_exact": 2459,
-        "translatable_missing": 175054,
+        "source_exact": 299145,
+        "translated_exact": 5798,
+        "translatable_missing": 19,
         "missing_material_form": 11096,
         "missing_object": 9537
       },
@@ -13125,11 +13134,11 @@
       }
     ],
     "calibration": {
-      "pairs": 246183,
-      "equal": 245633,
+      "pairs": 417879,
+      "equal": 417329,
       "differs": 524,
       "untranslatable": 26,
-      "agreement": 0.9978,
+      "agreement": 0.9987,
       "by_map": {
         "gt.recipe.assembler": {
           "differs": 288,
@@ -23489,7 +23498,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -23511,7 +23520,8 @@
       "capability close machines/implosion-compressor (major)",
       "capability close fluid/gt6-missing-fluids (major)",
       "capability close recipe/gt6-bulk-capacity (major)",
-      "capability close recipe/gt6-extruder-bulk (major)"
+      "capability close recipe/gt6-extruder-bulk (major)",
+      "capability close recipe/gt6-extruder-remainder (major)"
     ],
     "accepted": null
   }

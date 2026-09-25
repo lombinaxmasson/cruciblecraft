@@ -10,36 +10,134 @@
         }
       ],
       "hashes": [
-        "565fe50c25449d9c8a7bb356badc2183566fdc8d5fe13d93efea9925e1684c58",
-        "0cfc07f98791f598fd6c00ad0591bf3609b1ab17da76dc240213e0fcc1df2425"
+        "8d94c9dda0cd9c582783f91e39dc97a1ebdba6f3fb439a31fa7eb4c3b1c3c7e7",
+        "0f64add5a7f1044d8d90fd7268666194f6d501fd0a1cec3f11450c9566b92937",
+        "a9849520af1da74ce47c24a3c203c50b86a0266411c8c3a42c151c984216ee6e",
+        "90c07c3598b2832fc50510bee92cb984a99381499bd84e229e0b06c3a927901b",
+        "cb9d9a9ff3cce3a82ab86ca066e810faa9cb6282a68295d171322e0ea90d0daf",
+        "51f449b7813fc98fd3719492b7febf4b9dae2b0047ed23407046678c53a6ff81"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "kreknorite"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:draconium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:kreknorite/rod"
+            "item": "cruciblecraft:draconium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:kreknorite/block"
+            "count": 64,
+            "id": "cruciblecraft:draconium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:draconium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:draconium/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:draconium/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:draconium/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:draconium/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:draconium/tiny_fluid_pipe"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:draconium/tiny_fluid_pipe"
           }
         ]
       ]
@@ -49,22 +147,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/52bb808feb3dbf09",
+        "cruciblecraft:gt6/688469db3e127cd5",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/34f778820bcaaf4e",
+        "cruciblecraft:gt6/f4ac7ee9bf331118",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/f34f42aad2e89d53",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/b77d8d4aeb72a3d9",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/d47302f684433434",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/605da3200be14682",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 300,
+      "duration": 3636,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +205,11 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_9134",

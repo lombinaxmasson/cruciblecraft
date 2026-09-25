@@ -10,41 +10,59 @@
         }
       ],
       "hashes": [
-        "fadc510d54af7faf3f8addd9cd6d6042b35a084b29d6d14ab688a870789c0409",
-        "d27e80262ade16c0c7a25f278cf3f899b49e7fcda8fd8907864ef265ee7bdb47",
-        "a39001d4183019eae35bb4d65c9ec8733fc9311a381985ad00ad88093f20cff1"
+        "238f4250280ab12fdac0a4da949358bad7d0372bab735f699f90f466a1eee51e",
+        "748fa2403352c2ed0a13f567ba938417112ac4f38cda990a0f07fe98144a51b9",
+        "c6de0900fb6de5829d1c0f40bb10cb6178ae0a90d88ddb5bf4c6f75fdc96ec88",
+        "079ecbda2e3d5b6d7c1963fd2a48ec4e43a2f3bddd46ae82631a1e5e341b8429",
+        "3834458fac7e619e81a40e41cb335370b8527d0e796d9fb4af133336533afc57"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vulcanite/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
+              "cruciblecraft:prefix_material": "vulcanite"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:molybdenum/gear"
+            "item": "cruciblecraft:vulcanite/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vulcanite"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vulcanite/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -52,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:molybdenum/block"
+            "id": "cruciblecraft:vulcanite/gear"
           }
         ]
       ]
@@ -62,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/108f8d933339239e",
+        "cruciblecraft:gt6/a42fae6020e141ba",
         0,
         0
       ],
@@ -70,7 +88,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/e72dbf01363bc5a7",
+        "cruciblecraft:gt6/2389cf8ea2d3eed6",
         1,
         1
       ],
@@ -78,14 +96,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/b7062a6f6355dd20",
+        "cruciblecraft:gt6/b4d38b4b5e554298",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/f00ccfea751ec970",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/463c7367e236b64c",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4927,
+      "duration": 350,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

@@ -10,40 +10,83 @@
         }
       ],
       "hashes": [
-        "ca77014fbe67b619efbba6eeb30fa27807d189c5511f779735e62f9c9307d4ca",
-        "b89963ed85ce732f032b12a7d9a89a8d6b3634b716985983b5252809ad2a18be"
+        "62b45a2943d2f47deb66083c24daba12551ec9f9a8776d7ede0f86c6ce84847a",
+        "2a2001fcca629a8045d7cfcfe1294eaf1f4e42cc209589cfbb389fc93a2558d2",
+        "8b45323e3bb6c898a301e7b9dec6b5bd1426f86669756b2c0173b7ca651026f4",
+        "dfd9ab53f6c1f7035cf0a75ec709e36594b96c0df0551053598f79391e14d1e0",
+        "c37c247135bc3c48a3fc0293b798a677ec08782bdcfb7e65166ed35f057aca7f",
+        "4531e0ced3a831ddf8d9ad0958ef9c7cd00c43c015151b4f431c6df23a2e04be"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_aluminide"
+              "cruciblecraft:prefix_material": "octine"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:octine/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:octine/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_aluminide"
+              "cruciblecraft:prefix_material": "octine"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "octine"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:octine/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "octine"
+            },
             "count": 1,
-            "id": "cruciblecraft:titanium_aluminide/gear"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,7 +96,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1e5917a2d61865df",
+        "cruciblecraft:gt6/83b35a35aa13ecf6",
         0,
         0
       ],
@@ -61,14 +104,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/d27f7e2afe52277b",
+        "cruciblecraft:gt6/9958ad4115216047",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/5733b6d1b0f38511",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/55305236480a2881",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ecb7b73196058821",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/af58d310934d7311",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 946,
+      "duration": 245,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        54,
         0
       ],
       "output_chances": [

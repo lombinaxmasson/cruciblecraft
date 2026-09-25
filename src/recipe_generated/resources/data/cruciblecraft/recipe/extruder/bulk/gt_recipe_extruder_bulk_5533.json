@@ -10,59 +10,49 @@
         }
       ],
       "hashes": [
-        "58954b184b9dcb6894335b1647938698dcc6a73037dfe45d254212f34ba6031e",
-        "d38132b7f6904c3dfadaff8fe2a8cf081506a5ed64f92c0bbe23a3ebf08ebfa6",
-        "c7101c6865c363ddb6130c7a041a078c39262c205c53f44cf096a15c3e776c3e",
-        "bc559703f70a3b37439e7aaadf243aa46d1bba87324af07d4489542a8fd4cbba"
+        "910294545e73433d506ea721cf2fac85e76ae4c6160ee7f263ec8f08ae84208a",
+        "dddb7ccd3b17d3c3d0cfd263eba3e993e32283ad5c9aa9b2be629408041022a2",
+        "68dcec70933f713a3d26a54d168175401cdbb37b306b7c489bc25ee2e1f3b1cb"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:oureclase/bolt"
+            "item": "cruciblecraft:efrine/quadruple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:oureclase/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:oureclase/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:oureclase/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "oureclase"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:oureclase/rod"
+            "id": "cruciblecraft:efrine/block"
           }
         ]
       ]
@@ -72,38 +62,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2f0de29c744528dc",
+        "cruciblecraft:gt6/1ef8825afd616162",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/1602d94a83dea8d0",
+        0,
+        "cruciblecraft:gt6/40204ec32e9539ff",
         1,
         1
       ],
       [
         2,
-        1,
         0,
-        "cruciblecraft:gt6/1a7675e44a226e77",
+        0,
+        "cruciblecraft:gt6/57a1e0557654a721",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/573f357ba3f54164",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 172,
+      "duration": 302,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        5,
         0
       ],
       "output_chances": [

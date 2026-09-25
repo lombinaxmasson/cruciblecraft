@@ -1,115 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_7690",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "53297ce68275142a108ccede8dfac2354ff1e32a9d4752b247ce3443162d85fc",
-        "00b23dcb581c4d6edfa42a6468aa551979727b36e1dccb426073f283576244a4",
-        "15b95490a1bfcf47d55dc74b50bdfb219c24466a0e6d90b173f62c2c00f50836",
-        "6dccf9435cad44566f7bf9abed9729ace154565a6d1de6c2246119cdd576a13c"
-      ],
-      "item_inputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "fiery_steel"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:fiery_steel/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "fireleaf"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:fireleaf/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:fiery_steel/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:fireleaf/gear"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/f0c7b8f4f97eee5f",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/b6443132c35792b9",
-        1,
-        1
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/e7944eeeb2ea6a0c",
-        2,
-        2
-      ],
-      [
-        3,
-        1,
-        0,
-        "cruciblecraft:gt6/be21c7d5c437315c",
-        3,
-        3
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 1284,
+      "duration": 1209,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -119,18 +17,41 @@
         }
       ],
       "item_input_counts": [
-        8,
+        4,
         0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:nichrome/triple_wire"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_hammer_head"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "nichrome"
+          },
+          "count": 1,
+          "id": "cruciblecraft:tool_head_hammer"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_7690",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "e20505bbd35c472e008944bba44d86ad6d5d52215600591c9b93c4177d464947"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_7690",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/0664bafa4cab060c"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

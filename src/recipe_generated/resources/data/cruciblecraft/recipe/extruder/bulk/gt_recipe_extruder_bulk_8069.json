@@ -10,67 +10,115 @@
         }
       ],
       "hashes": [
-        "40d9357b2334e8f4cd85b6e3cfa189d9bf324495a81dbf36821da59766f777f7",
-        "09bb6490167d47d7ca63674fcee7f2349a95f058db5b777fd2d42500fb5633fb",
-        "42a862c00e23a79a8d595331e77ed0d5ab0f9f243ffa2e7921724f5846ebf657",
-        "a1db5a77acb007d01c5a78861b12bcdfb5bb5206da4c79ed113f0fb65e2a6c44",
-        "590897479a9b2e64d7ddb94e17a4828957a937846f5e944609ad726b40643f70"
+        "92e3fc245324d8f1eb2805265c531b39fe8140eb27f723c39dee6961dee33751",
+        "1f55e008d496af9f995c7983b2bcfd8053df09c930ab9eeaff1d042e575419c3",
+        "33872b1c2a1327bcac6be8606a1eb9613408962978a85a6da92af82e01763e85",
+        "332352bc6f59b5dc236bf193eedc54c375e858653141faca0b5c0298df9539ff",
+        "a0b1883217401633223343857791b624ba9839357a6168aa72d204df86783be0"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "adamantine"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:zirconium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/small_dust"
+            "item": "cruciblecraft:zirconium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/foil"
+            "item": "cruciblecraft:zirconium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "adamantine"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:zirconium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/ring"
+            "item": "cruciblecraft:zirconium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:adamantine/block"
+            "count": 64,
+            "id": "cruciblecraft:zirconium/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:zirconium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zirconium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zirconium"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:zirconium/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:zirconium/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:zirconium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:zirconium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zirconium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "zirconium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -80,46 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4bee30ba05fa39b3",
+        "cruciblecraft:gt6/561dd831b443aff3",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/bc79bc25b1c8806f",
+        "cruciblecraft:gt6/f9814eb3c9966c5f",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/1f09faf8048ef913",
+        "cruciblecraft:gt6/9981bd5c9f1320a2",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/5fa9eaab7c437dbc",
+        "cruciblecraft:gt6/d62c3ea75d15739b",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/951f881e685f60f6",
+        "cruciblecraft:gt6/2c3c0cf41d2b7810",
         4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3922,
+      "duration": 10318,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8069",

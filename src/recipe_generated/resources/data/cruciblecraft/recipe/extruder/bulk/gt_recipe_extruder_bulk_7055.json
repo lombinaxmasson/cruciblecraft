@@ -10,45 +10,130 @@
         }
       ],
       "hashes": [
-        "c419fd54d968253762e20fbc656c320e11d9bbfaee927dc40b40b3deee561761",
-        "8e88ecc3fa2e9ccafcaf9c2db2a5b60d1111b603ada56084e0d51efa78ee8d5e",
-        "131165c6208d4f8be4935c9d16348c2597c58da075b935472e3a17a3bc4a6fc7"
+        "8d6cb87626978b806b5dbacbbe5213a26d1c0080c0b8ab2d7b84bff1a32a5d1c",
+        "7004932b3c6964a845826c62751bdc5c7d9facf2773b75b6cf4297fb0549444e",
+        "c441352f00441a15fa3793edd0e8897d682354e384b79be6e54ab75067b9004f",
+        "fae37b80db9d0b5c03771975afecb7c44d5ab3882bbe2ba409bee7ecd9d7a708",
+        "38710a177500594dc40dbc3f5299af7c6afca385307ca80699a7fca113c5845f",
+        "1d7d516c190e3ab8af9a943d836b46009eca8b9d1d9a1aed0b91b3497e2bc8d2",
+        "8db6a90b5e2719bce72be32175ebac4b7e51f49c716e7525bee400f76d130239",
+        "3e158acdb5514d67827f505c31d3fd1d6684a64456573ac4d33a74b994cbb45a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ruthenium/foil"
+            "item": "cruciblecraft:eximite/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ruthenium/small_dust"
+            "item": "cruciblecraft:eximite/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ruthenium"
+              "cruciblecraft:prefix_material": "eximite"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "eximite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "eximite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "eximite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "eximite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "eximite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:ruthenium/block"
+            "count": 64,
+            "id": "cruciblecraft:eximite/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:eximite/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "eximite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "eximite"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -58,30 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/883157e034ac88d5",
+        "cruciblecraft:gt6/159d9b05d8ccea52",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/a16ab020f4f2ffac",
+        "cruciblecraft:gt6/96df02fee12250c5",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b94b87347d7ce56f",
+        "cruciblecraft:gt6/ad91ac4d2d9942bd",
         2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/4ddbe3008845f490",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/a899a2fdc21b6951",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/27b574896921bb58",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/125a2dfe19aec335",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/7f000a73c34fbda8",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3976,
+      "duration": 2548,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7055",

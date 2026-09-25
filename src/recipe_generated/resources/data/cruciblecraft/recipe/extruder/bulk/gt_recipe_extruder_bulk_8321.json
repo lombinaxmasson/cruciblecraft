@@ -10,32 +10,54 @@
         }
       ],
       "hashes": [
-        "96870904996d9b46a24697c35abe401a14584543e6a086c417a20de2509f13f9",
-        "37e661227fb00b7856392d1e6c9f06a5b414437021fb13b70220028ff4332a37"
+        "edf6e206e3ba41aea22fbbabdbfce70d454808b3b17f684c9b0ceaaabc1fb25d",
+        "efee81dc81e2824837375f13a6949fbd2a3d42b9de715710761cc86deb692fc7",
+        "76b202df282bb2a154a027533cef11a2ddb1eb978713231fff8f2e8441d89675",
+        "19cd118350e49ab9e5bfa3b34d2ca43d968fc14089b7a3eaa7cdae4a06ea19bf"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "terbium"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:osmiridium/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "terbium"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -43,7 +65,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:terbium/block"
+            "id": "cruciblecraft:osmiridium/huge_item_pipe"
           }
         ]
       ]
@@ -53,7 +75,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8e56775293a28557",
+        "cruciblecraft:gt6/70914a43565a6d14",
         0,
         0
       ],
@@ -61,14 +83,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/39489c87e494b534",
+        "cruciblecraft:gt6/a6323c2e064e3ef4",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/3aed1e8a150f14a7",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/45ab6430f2923d98",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2036,
+      "duration": 17058,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

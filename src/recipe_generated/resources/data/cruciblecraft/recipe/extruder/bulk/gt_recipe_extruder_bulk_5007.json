@@ -10,20 +10,58 @@
         }
       ],
       "hashes": [
-        "3cbe34debb3e62f076e2fb003094428e68c41e9b22de2a1d56d6817dad6c0947",
-        "5c25a1bf630d301766e5f6aa7bfbd551258ccc4b1c1fbb26be6b061ce0acdf57",
-        "7619c344ae7372a9b8f8f856dd47f9b797ed52c3e64b920718dd1d3cd677359a",
-        "d9c539752dd43eeca95993e3e44045c9f22ac5cb24758d96237cd169c279e1df",
-        "8b36b3653ffcc3d92fdb1731fe99edfe0670e70a634e2ff72b270c5534137191"
+        "61cab106660a7d04f0949fffd1193cbd941a20333f0cf679ab7fae9daa7562a6",
+        "9611df991da51b8b5757b50565c6a9141b23f8855aa33056bda44fc9fd7fe566",
+        "641a2b4500971da841d7d4c71f6a15903ee431e96995f174ddb066fabeddfc18",
+        "8edfdee42f6f382582c05a680d70aca1716efe3da75844bac0d5f107f80b4bad",
+        "113b3c7a6b7649b70fa14c92c3dec6440112f0b62f7663f58f68db314936a78e",
+        "3cb5c0e85f630f7cb7d8ed7dcc8374c20135302cfcd10112f7897f598f26ef2d",
+        "68e5ca39c132e029092068965ea5fc7ed4743b73afa2ec11d4abb6cc15846843"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "void_metal"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:yttrium_barium_cuprate/hexadecuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yttrium_barium_cuprate/hexadecuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yttrium_barium_cuprate/hexadecuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yttrium_barium_cuprate/hexadecuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yttrium_barium_cuprate/hexadecuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yttrium_barium_cuprate/hexadecuple_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -31,88 +69,57 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "octine"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:yttrium_barium_cuprate/hexadecuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "clay_compound"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "octine"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "void_metal"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_wire"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:void_metal/rod"
+            "count": 8,
+            "id": "cruciblecraft:yttrium_barium_cuprate/ingot"
+          }
+        ],
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:yttrium_barium_cuprate/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:yttrium_barium_cuprate/bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "octine"
+              "cruciblecraft:prefix_material": "yttrium_barium_cuprate"
             },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 8,
+            "id": "cruciblecraft:curved_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:clay_compound/rod"
+            "count": 8,
+            "id": "cruciblecraft:yttrium_barium_cuprate/plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:octine/rod"
+            "count": 16,
+            "id": "cruciblecraft:yttrium_barium_cuprate/rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "void_metal"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 16,
+            "id": "cruciblecraft:yttrium_barium_cuprate/wire"
           }
         ]
       ]
@@ -122,7 +129,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c6be66184cd2dd68",
+        "cruciblecraft:gt6/b919dad0fc167e0e",
         0,
         0
       ],
@@ -130,38 +137,54 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/0d4b15a7f46f30a3",
+        "cruciblecraft:gt6/4d3089033dddf1f5",
         1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/e66710c0bf83105c",
+        2,
         2
       ],
       [
-        2,
-        2,
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/87f8411e0397f3f5",
-        2,
+        "cruciblecraft:gt6/2ed263aceb807973",
+        3,
         3
       ],
       [
-        3,
-        3,
+        4,
+        4,
         0,
-        "cruciblecraft:gt6/a072612bd83a85fe",
-        3,
+        "cruciblecraft:gt6/b17bb7ab0e33a8f4",
+        4,
         4
       ],
       [
-        4,
-        4,
+        5,
+        5,
         0,
-        "cruciblecraft:gt6/3d5de4418bd7471f",
-        4,
+        "cruciblecraft:gt6/b6ebee65767012dd",
+        5,
         5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/0a8ac07682b7fb4a",
+        6,
+        6
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 21,
+      "duration": 720,
       "eut": 96,
       "item_input_actions": [
         {
@@ -172,7 +195,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [

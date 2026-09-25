@@ -10,59 +10,32 @@
         }
       ],
       "hashes": [
-        "c592eae2fcf6acb3f4c5b2d9cba17d79724f8c64332f4cdeb6e7714a7dc2736e",
-        "9b2e1ff2a8f322d8a5bb703ec4e69b637ddf2144fdd5bc92475a13d8ed01fdff",
-        "bdd32d76dc911bab2dea218ee0836d07bb64b69f008af48e53a4082f11c3424a",
-        "ebb4623e59162d0be693b98f2f0baa7b95ce842260fd69ebd475895b0e087bde",
-        "435c5ed0d4b7d1440f658972891004127ee3b60976c9148138d0f68684d75e2a"
+        "4908cfbb58b1fe97853b74905a47ac7cebc9600d53e800c78a77e065021068d9",
+        "56f9df07cd05e18a53de31a36bfcb820c895e451e80e5ed6987770217cf11b60"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:sanguinite/ring"
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "sanguinite"
+              "cruciblecraft:prefix_material": "amordrine"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "sanguinite"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:sanguinite/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:sanguinite/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
@@ -70,7 +43,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:sanguinite/gear"
+            "id": "cruciblecraft:amordrine/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -80,46 +62,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fdd6a4d971e46bbe",
+        "cruciblecraft:gt6/0dd3ae7b8aa7db45",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f24d822fdab3e6c7",
+        "cruciblecraft:gt6/0668949c643d4d03",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/91c175fe7a379663",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/f09342c529d4ee3b",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/0368adf7aa69694c",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2349,
+      "duration": 162,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +88,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        36,
         0
       ],
       "output_chances": [

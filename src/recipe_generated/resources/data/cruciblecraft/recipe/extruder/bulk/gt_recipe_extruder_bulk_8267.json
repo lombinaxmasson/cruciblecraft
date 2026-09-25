@@ -10,17 +10,16 @@
         }
       ],
       "hashes": [
-        "a852c30e06d8d0f900a2c8900f60be7a523595667ae88cc1b674a35fdaeae484",
-        "ffa531915c915197240f7212c64c3fee4e35111f1106a10b8e0600fe20013979",
-        "7b8102bc0f4d19cef2f4983d3d2caa2d14459bf2f4aa1dddc86fb91a88bd1e11"
+        "6128cf735e102169908185a07a571201b2215f299c8de8949b856ba54960c1fe",
+        "72d2922f5a23d86ca061258331c3fa135be162162f3877f593ea56c8ed068bc5"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "scandium"
+              "cruciblecraft:prefix_material": "void_metal"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
@@ -29,15 +28,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:scandium/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:scandium/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "void_metal"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -48,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:scandium/block"
+            "id": "cruciblecraft:void_metal/block"
           }
         ]
       ]
@@ -58,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/048b508502944a68",
+        "cruciblecraft:gt6/fbfc33e531245df5",
         0,
         0
       ],
@@ -66,22 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/26db40ec1069c83f",
+        "cruciblecraft:gt6/e557e684b97aa211",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/8513b67484959c29",
-        2,
-        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 632,
+      "duration": 418,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        5,
         0
       ],
       "output_chances": [

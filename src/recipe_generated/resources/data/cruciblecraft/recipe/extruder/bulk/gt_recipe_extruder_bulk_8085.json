@@ -10,28 +10,32 @@
         }
       ],
       "hashes": [
-        "42618b0bb1f3d7c28044de627dcf4c925532fff38a4b11452c8fa89f0542b6ee",
-        "19b78c6f854a7c2f5f033e3d26cc7498a05bd619e996c80664ace316e3b1c4bf"
+        "d75dc1852cdd78f838573c4f44cd2021e0b89808c9857adf847e3229bd5a60e9",
+        "dc6d24ae8eb62559b697665a46eaf9cdc99c21cb849ead4a2f546a4b3776a480"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:meteoflame_black_steel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_black_steel"
+              "cruciblecraft:prefix_material": "steel_galvanized"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoflame_black_steel/block"
+            "id": "cruciblecraft:steel/huge_fluid_pipe"
           }
         ]
       ]
@@ -49,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/84e3b85ed7735e71",
+        "cruciblecraft:gt6/d952a66279eeb673",
         0,
         0
       ],
@@ -57,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/a328e6c2baf2f236",
+        "cruciblecraft:gt6/a9e8b355459e30d4",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3299,
+      "duration": 2814,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        6,
         0
       ],
       "output_chances": [

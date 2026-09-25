@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "0a4deeeae640339002bec262d388acac5a21a57202ce056f843fd00da9d90ef1",
-        "67b73340d56aca7c5d03d30328509a865805dcbadeb249cd3baeeb8cafee9bab"
+        "7cb902f3574d75db906f337e9d4e7640192873c80c13a2cc0c92a7646e02f417",
+        "19f5f05c86a27f6ba5fde101d62aaf23e26659efb55494ec273da1a23202d089",
+        "e2a35c2bf6a479bfe39ee3469845fc5fc814dcc637371256696c07871379868b",
+        "a9d01fe0cf3d2735687e2671e96ce7eae9ea47c523efb10d9e717da55291b882",
+        "8005a60408dc40de6f980b70ead9faa59f014048061802aaa9b39a2394a03214"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vanadium"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_steel/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_steel/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium"
+              "cruciblecraft:prefix_material": "meteoflame_steel"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_steel"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_steel/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:vanadium/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5d300c4700af9021",
+        "cruciblecraft:gt6/9153a6bd2313ba23",
         0,
         0
       ],
@@ -61,14 +91,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/1ca9b5f2b8249237",
+        "cruciblecraft:gt6/fa9a03974d7066d8",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/4a90266e458fcb0c",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/481cd30b70fc2f47",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ea18db5d837fbb85",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1783,
+      "duration": 2072,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        24,
         0
       ],
       "output_chances": [

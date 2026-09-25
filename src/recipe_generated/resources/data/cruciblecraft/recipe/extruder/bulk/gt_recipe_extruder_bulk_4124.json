@@ -10,80 +10,49 @@
         }
       ],
       "hashes": [
-        "3a62c04bacaa446a29ab17a82cc4a0f8d1ffc59f32b03a553b6dd8e7e8da3a5f",
-        "6f52234d31cc981a00cbe03b12b059398a2b8df8882b26d1217de01fe0f8f5c9",
-        "e45a28f45b63a3fba484d01bfd479f0fe51914790513f44e6ca4ed9527fa17cc",
-        "37b5e7005b119232746e743f8a080981c610cbd26e3d8a3768558c27caac4188",
-        "d54dbae3b1f0c81037fd77a0ed5360287b7b4eebcd8bc2e8a836a183f0e85f26",
-        "e5e137f5609be9c5342cd2a2898972ed90f36bdf59302a96d60522e209f80f42"
+        "1c02081ecded11d603ffd0357950cca6b51bba4532f878d015720f18d21eaceb",
+        "15af387c9d58819b8faa15f5ccd564d15e5c7de250ba02a6ac32490ffad9953d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_gold"
+              "cruciblecraft:prefix_material": "black_bronze"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:titanium_gold/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:titanium_gold/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_gold"
+              "cruciblecraft:prefix_material": "black_bronze"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium_gold"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:titanium_gold/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "black_bronze"
+            },
             "count": 1,
-            "id": "cruciblecraft:titanium_gold/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:black_bronze/large_item_pipe"
           }
         ]
       ]
@@ -93,54 +62,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ed438113d7a7f74d",
+        "cruciblecraft:gt6/62e5883f1106330f",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/8c89b6c544f1a5f4",
+        "cruciblecraft:gt6/ba86830d5e80c507",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/5bd4f15428515a99",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/d93781870c57c636",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/23ddcacd072bb02e",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/d89805bc603e40ef",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 761,
+      "duration": 1087,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +88,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        9,
         0
       ],
       "output_chances": [

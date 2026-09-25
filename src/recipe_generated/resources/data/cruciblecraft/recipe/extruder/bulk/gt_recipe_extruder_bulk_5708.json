@@ -10,16 +10,22 @@
         }
       ],
       "hashes": [
-        "3305d5cf6c9557b400e85ab75e16c5a4e612b3b9cada9978449d44ded8084673",
-        "2ae9f5f712e6a670ec8df8e178c3b509b66458d55d31430095fafa7cdcd5f3a7",
-        "e3e6a803f07c4ee9dfaf9d4bd5ec9d6b02f7ec423c66cc4167ada1787c7477cd",
-        "524f13f97441179c705db1c256c33935364bab066fc9604a2e2aba8ad26b2baf",
-        "d78a08e57bbfdb8199b91bfeee1a30d995203f2e0464463281b472be909c1ebe"
+        "d57d442ab39b9cfa10b57c814afb4d10e6a6ae73bab45ae53bd73dead8aaba4a",
+        "3b8836cd823d006f5e557eacba0a4783fba3d980870591e263c9b2f3536bcc9a",
+        "3b0a3683916e80605b4ae97fb0b627acfd1a3ca5ae5b15ad6834b185bc33848a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vyroxeres/foil"
+            "item": "cruciblecraft:thaumium/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thaumium/machine_casing"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -27,39 +33,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:vyroxeres/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "vyroxeres"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vyroxeres/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "vyroxeres"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:manasteel/machine_casing"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -70,7 +44,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vyroxeres/block"
+            "id": "cruciblecraft:thaumium/huge_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thaumium/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:manasteel/block"
           }
         ]
       ]
@@ -80,46 +66,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f7085e21132a87bf",
+        "cruciblecraft:gt6/8aab4e04199a01d7",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/77e072e0e5174b26",
+        "cruciblecraft:gt6/947c084a67e3397a",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/e632062eb1d3e21b",
+        "cruciblecraft:gt6/696bdeba469c5dfa",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/3dedd738f8626500",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/0b7a327137b54f7c",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2558,
+      "duration": 3924,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +100,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

@@ -10,20 +10,30 @@
         }
       ],
       "hashes": [
-        "28548e6ed82c0eeccdf02ba5960db29986f56beed1b7d8426b15c24d51a47340",
-        "94e7b7ababa8b3d0cf7f880b1642a6700fdb2a9c336819d900c91345f68bc84b",
-        "9cfc973701dd527bdbaee3a487e6826ed41b79218add9f2d95c596a4af44670b",
-        "4a7368f9d8271ab3695baa09155693bfc00db72a6e640059e5d1cf196dc9e63d",
-        "b64277bfb78b178998211371de441db1ce6972c8a7090285a39e8712bfdd7d6e",
-        "89de36dab5d9264c790ae6e4470e2b9222aeabb26bb4ea30f80282c1d5cba85b",
-        "f67381be3315067d384b43efe6813f29ea9d8f4e5fed1a6814ad7947251e9d33",
-        "a61d0f1c763c23b4d68df695799cac786c79fb9d27c2bab32ad6f0acaeb93a3f",
-        "3cc3b3ebcb165e25c6ed21f7022966e3f8aba1475fc95de4badbf1d7aaa7b118"
+        "471ab89fd93b50cba8a4b4d4780031bc9e3ec22737ea4e4fb6ecec0eddbfb1bd",
+        "bccd80498f3f9cb0babf584bbcdc43db364f1af649a909a51436fea2c3d2d5d1",
+        "2eb6c424f86deca8abcd53bebb295a5eea3c90bf51a123d617f9729080684c1d",
+        "40ab942ba62b8a373cffd5ccc031c8ad70ef9955c255b014ee7bbef4b0cc1b5f",
+        "3d2205ee8090a0f30aded313fc67d86ddc2f2ee1fcc75b6cb3316c0b974e1766",
+        "c14e37fdb57105842eccccde7ef3fbd19de64be04b8dd6e9856afdbd873c1942",
+        "3ad21565867dd48611267f6cf2ddf319c011717d29c15d99302962ff443bcdc1",
+        "1d837d3df7f4435d06a16e35c8da971877e778a9690a12cb41509bd89c311206",
+        "caafa7e47f119dcfe19b067377c47c64aabf09662767953e24e535cbdea9ca13",
+        "26bd935bc15920518e55e82cb1e7848f273faa9fb9076fb842554d5479525bd1",
+        "c558ab5df4ec2a30759eed5e19e6b5e8033ea419f3fcfe88ac3d5b9513c54e65"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:carmot/ingot"
+            "item": "cruciblecraft:iridium/double_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/ingot"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -32,35 +42,7 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "carmot"
-            },
-            "items": "cruciblecraft:minecart_wheels",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:carmot/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:carmot/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "carmot"
+              "cruciblecraft:prefix_material": "iridium"
             },
             "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
@@ -72,7 +54,35 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "carmot"
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
             },
             "items": "cruciblecraft:chain",
             "type": "neoforge:components"
@@ -83,27 +93,35 @@
         ],
         [
           {
-            "item": "cruciblecraft:carmot/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:carmot/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "carmot"
+              "cruciblecraft:prefix_material": "iridium"
             },
             "items": "cruciblecraft:spring",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/small_fluid_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -114,7 +132,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:carmot/block"
+            "id": "cruciblecraft:iridium/block"
           }
         ]
       ]
@@ -124,7 +142,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/aa597c24af71aec7",
+        "cruciblecraft:gt6/6da4d41de68ee53d",
         0,
         0
       ],
@@ -132,7 +150,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/cdcca02016af8b35",
+        "cruciblecraft:gt6/a0edd1c22d08523a",
         1,
         1
       ],
@@ -140,7 +158,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/d9babd4224341093",
+        "cruciblecraft:gt6/d69187223e20e5fa",
         2,
         2
       ],
@@ -148,7 +166,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/ae8f2cd21a721003",
+        "cruciblecraft:gt6/795a23370ee7c621",
         3,
         3
       ],
@@ -156,7 +174,7 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/28a4085015741a91",
+        "cruciblecraft:gt6/62a9e859d095160a",
         4,
         4
       ],
@@ -164,7 +182,7 @@
         5,
         0,
         0,
-        "cruciblecraft:gt6/03e3b67d6a750977",
+        "cruciblecraft:gt6/97f22690cde894db",
         5,
         5
       ],
@@ -172,7 +190,7 @@
         6,
         0,
         0,
-        "cruciblecraft:gt6/bffb12988f6a02de",
+        "cruciblecraft:gt6/474466176ed79549",
         6,
         6
       ],
@@ -180,7 +198,7 @@
         7,
         0,
         0,
-        "cruciblecraft:gt6/0c1e9133e0198df4",
+        "cruciblecraft:gt6/a14bb1d9e4e43d8f",
         7,
         7
       ],
@@ -188,14 +206,30 @@
         8,
         0,
         0,
-        "cruciblecraft:gt6/50ed235799b74cbf",
+        "cruciblecraft:gt6/d121c55ef5ae17e6",
         8,
         8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:gt6/b4baefd72a2df30b",
+        9,
+        9
+      ],
+      [
+        10,
+        0,
+        0,
+        "cruciblecraft:gt6/c8fdfbd3f1cb1f4b",
+        10,
+        10
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 877,
+      "duration": 7602,
       "eut": 96,
       "item_input_actions": [
         {

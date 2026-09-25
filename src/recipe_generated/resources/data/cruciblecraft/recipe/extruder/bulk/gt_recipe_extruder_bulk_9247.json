@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 9243,
+      "duration": 132,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,21 +17,25 @@
         }
       ],
       "item_input_counts": [
-        18,
+        9,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:rhenium/rod"
+          "components": {
+            "cruciblecraft:prefix_material": "osmium_elemental"
+          },
+          "items": "cruciblecraft:dust_div72",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_bolt"
         }
       ],
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:rhenium/block"
+          "id": "cruciblecraft:osmium_elemental/bolt"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "54907320dc443944c8b29aa4098169d8ac92c233f4f556d9681ede6b40959c5c"
+          "bd56e861345b5e66c0d084d07845218491766b6dd6f0a2b19c6ed2fadcd508cc"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9247",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/dff758f0d445fb87"
+      "stable_id": "cruciblecraft:gt6/beb70350004387eb"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

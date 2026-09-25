@@ -10,28 +10,32 @@
         }
       ],
       "hashes": [
-        "e5f70e08a989d7b0022f30971178c865795fbcb0735750d7c47b9746527f02b2",
-        "6b0bc00d9d16349d3611aeef904516a0922db03370140d2b424494afa9ae7988"
+        "b9bbf00a55dbb92d7aaea27eb52ba4b2efd16f1f0fec2272cb10c4956c968d8a",
+        "b219801caafcba8dd95643c94366bed50f5a725c839c6519fc3387a4c5763ab8"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:technetium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "niobium_titanium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "technetium"
+              "cruciblecraft:prefix_material": "niobium_titanium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:technetium/gear"
+            "id": "cruciblecraft:niobium_titanium/block"
           }
         ]
       ]
@@ -49,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c0d7f94eae1afebe",
+        "cruciblecraft:gt6/1cdb78da1e7cf28c",
         0,
         0
       ],
@@ -57,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/9a53de3bd9851239",
+        "cruciblecraft:gt6/db164555433ee839",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1518,
+      "duration": 1869,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        3,
         0
       ],
       "output_chances": [

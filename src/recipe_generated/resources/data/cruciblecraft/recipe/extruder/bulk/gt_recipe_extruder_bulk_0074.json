@@ -10,20 +10,50 @@
         }
       ],
       "hashes": [
-        "14f8cbf596fefd771adad4e21ce503d402a10d2574e3eb77f3bd1e1615392b99",
-        "884ce2ebf0346c582641a6ba02f9f1730237b53637f8b795ae27ae4f38112fb2",
-        "828f742a5bfff7b7c13eb26414aabdf9f2741cd420c72421c955ac99afd90056",
-        "e349d6d338b6d84ebb6286ab6c40674f50c1b0331e8092f9de1b5493064667d6",
-        "fb18782e38a34bb2a148dc820fb24bef3652e637035a287a35b4b7b7c09f4cb0",
-        "02081c7c4cf6802b8d5f6bcdc4a2477d2ef101e458974bbec0a3375b232e5797",
-        "4a573ed97ff4455b4cc3652df1690d9328179a19a48b4f0eeb119094fcd7d9bc",
-        "95a20c609c5a9df2e6933511d138c903d57961da3fe4e13785860e1866db2ae0",
-        "baaf7b06599f0bb142a445235504cd51666483202ee4bd042135f4257e167821"
+        "89b599999e6d2cf3d268ffd9d35ed122f8dc613af569a5ea01981b92a0a2e2b6",
+        "1989549c9b912d52acc0b97a9e127f4ad33c2543b927a08abad4c90a8c5303ab",
+        "923c1df511189691e0c80daad220bd77f17e834d4f57898e2480f6e6440961ee",
+        "4ba91907a99695a3efd123bf84fefa760fe7a1988166a87aa7fe15cd6d19fa5c",
+        "8345206d239dc73fbaaebd29b8ab08d18852a8707a7357105e565a8adb6b90a8",
+        "959087443a38deaffd040ec3a5ac7ffe0e5fb16c74c2497fdb7a671b0147f0ec",
+        "69fbcf57f6ce91237f88a4cf3d0951999a86b3d3581303d5a190e5542ee2681e",
+        "a4d5495194c4bdfcd5c57eec573234c0de353d059315d04336216b9dbd6e5d35",
+        "9c3a7199bd5f6bfcee02e68d7b5d5dda2428f9c63be53cc1ec64272d620a06fc",
+        "3f463d50e1abb7c7b2f977ab01dcfbf188624cdda8b0be880cd129e9ef866b00",
+        "1ecd705cd3d0192e5d70bb7b2e112d5c367423a2fdfb09dc50fef0b68d13c19d",
+        "ac2edef309bfea45f3862be239ef72e46cdc4955ba792dc5e283d662f1d14d44",
+        "7ee6f66a64b18b0e2febf5f12c30eba6baf331d40dec63e20d834ab94f52497a",
+        "92764efdae2c07a99e0ce5af3fbd89deebfefb8e8135e73e2e1849b48b32cbc2",
+        "42fb198257512e59eb6dcad6247f807cb063e65b0e391be4603a314f36199b21",
+        "b04b673916c0f832e12b5b0a9488a4faed1319d0b73208b6775bae4a45ecd775",
+        "e06f6665fa780d9cc605de3c58766bccad92072b71c762fc1a70a56b8f3ee36d",
+        "732b21158b9160bfbfb82ec23e3e38534df116c3d7c37e7526c1c091d079595b",
+        "32db2bedf912fb59e189733c6d1d33df625a2089fbf99351e290875916ea6622"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:trinaquadalloy/small_gear"
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:orichalcum/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -31,7 +61,63 @@
         ],
         [
           {
-            "item": "cruciblecraft:trinaquadalloy/long_rod"
+            "item": "cruciblecraft:abyssalnite/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enderium_base/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -40,9 +126,45 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinaquadalloy"
+              "cruciblecraft:prefix_material": "abyssalnite"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium_base"
+            },
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
@@ -52,58 +174,42 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinaquadalloy"
+              "cruciblecraft:prefix_material": "abyssalnite"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinaquadalloy"
+              "cruciblecraft:prefix_material": "abyssalnite"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:trinaquadalloy/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinaquadalloy"
+              "cruciblecraft:prefix_material": "orichalcum"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:trinaquadalloy/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:trinaquadalloy/dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -113,8 +219,41 @@
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
             "count": 1,
-            "id": "cruciblecraft:trinaquadalloy/gear"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:orichalcum/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "abyssalnite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:enderium_base/gear"
           }
         ]
       ]
@@ -124,7 +263,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fd1a81f9c45294d9",
+        "cruciblecraft:gt6/36d33e1e61f71f68",
         0,
         0
       ],
@@ -132,70 +271,150 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/b725eacc669f2039",
+        "cruciblecraft:gt6/4647a9cfa200db1c",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/e15eb05f120e4162",
+        "cruciblecraft:gt6/1ea750a03f3e3bed",
         2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/58b739a8c2f38352",
+        3,
         3
       ],
       [
-        3,
+        4,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/bc09032f9e710407",
-        3,
+        "cruciblecraft:gt6/dea6ce34d411a421",
+        4,
         4
       ],
       [
-        4,
+        5,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/74dd46afa4a4c005",
-        4,
+        "cruciblecraft:gt6/8883c1278065daec",
+        5,
         5
       ],
       [
-        5,
+        6,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/ffbe6ae903c79848",
-        5,
+        "cruciblecraft:gt6/c7f9acfd9adb87c7",
+        6,
         6
       ],
       [
-        6,
+        7,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/c39152621b143e10",
-        6,
+        "cruciblecraft:gt6/6a09928d0f7775b4",
+        7,
         7
       ],
       [
-        7,
+        8,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/c1b8d5985592281d",
-        7,
+        "cruciblecraft:gt6/74aa05b5fef9e977",
+        8,
         8
       ],
       [
-        8,
+        9,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/c3414febfd3a2b7e",
-        8,
+        "cruciblecraft:gt6/314c7384fc9fda7f",
+        9,
         9
+      ],
+      [
+        10,
+        0,
+        0,
+        "cruciblecraft:gt6/215c1ccc14c4f91d",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:gt6/9ebcbb17b317bcd2",
+        11,
+        11
+      ],
+      [
+        12,
+        2,
+        0,
+        "cruciblecraft:gt6/af12baaae831542a",
+        12,
+        12
+      ],
+      [
+        13,
+        0,
+        0,
+        "cruciblecraft:gt6/1c2340706e48b2fb",
+        13,
+        13
+      ],
+      [
+        14,
+        4,
+        0,
+        "cruciblecraft:gt6/ec5bde0fd7d2e23d",
+        14,
+        14
+      ],
+      [
+        15,
+        3,
+        0,
+        "cruciblecraft:gt6/46a49c8a28b66279",
+        15,
+        15
+      ],
+      [
+        16,
+        2,
+        0,
+        "cruciblecraft:gt6/421553365ac72a30",
+        16,
+        16
+      ],
+      [
+        17,
+        2,
+        0,
+        "cruciblecraft:gt6/67853029fcd2ce92",
+        17,
+        17
+      ],
+      [
+        18,
+        1,
+        0,
+        "cruciblecraft:gt6/2dee15b623d9e148",
+        18,
+        18
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 774,
+      "duration": 559,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +425,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        8,
         0
       ],
       "output_chances": [

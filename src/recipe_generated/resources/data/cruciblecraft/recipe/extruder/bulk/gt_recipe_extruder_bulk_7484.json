@@ -10,49 +10,103 @@
         }
       ],
       "hashes": [
-        "67b9097fc0644caa922f34cd665a6f5b5e74cf5c385cff3a16ef31b1933a2287",
-        "392d40cca7b45701db7061e6e8d5a4aec0c060253586e6d9378d168ca2c7890f",
-        "816e0b26de3ba4840893abf84b9673f9e685f8bf84675428fa3b51a20aede3a6"
+        "ea086da7c1762156c1439b38ada7a174daad68556954315fa51489e3fe519657",
+        "cde30e28db7fbb23f1a12f1e708ab1b356747668470f4539b8c2b3452e04b46e",
+        "de34e2cafe407ad231aeb7a0adf5b8d2d385d5a1bbf53d5d2aab00f242d461ad",
+        "848879664bf840c65e72bbce210ceab2c9bb7986e3e7f629e238690fbab85db5",
+        "99e57ff120d95c2e6b2b27e8ad947569fce38aaaf0426d9b0cbad678faa2f57a",
+        "351b6e1648101a7e7472dccc09a8259f21d360604c7cf55f96f1367798544447",
+        "5246b77602bdaa392edd74797bac12ded4aada011b4caf01266b6ccecc24cef8",
+        "a8c5964d9e1aa066a0f87f094c314b1fe5a5b1ff8c986765dcfeb73234e19e5d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "celenegil"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:efrine/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "celenegil"
+              "cruciblecraft:prefix_material": "efrine"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:celenegil/gear"
+            "item": "cruciblecraft:efrine/wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
             "count": 1,
-            "id": "cruciblecraft:celenegil/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:efrine/large_fluid_pipe"
           }
         ]
       ]
@@ -62,7 +116,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5122f3d4c3156e75",
+        "cruciblecraft:gt6/59e8eeb94e636d8a",
         0,
         0
       ],
@@ -70,22 +124,62 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/40a4e4a4c389c2bd",
+        "cruciblecraft:gt6/bfd1dde9d51b8b82",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/0765b11195ac7200",
+        "cruciblecraft:gt6/fb72de50e65f17c3",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/d132cac01e612b93",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/509a684aae772bf3",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/30c6d825ea286d90",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/faef99dbda506071",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/5e78946367bd9bcf",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3901,
+      "duration": 181,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +190,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        12,
         0
       ],
       "output_chances": [

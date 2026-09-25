@@ -10,54 +10,115 @@
         }
       ],
       "hashes": [
-        "3e5e7e946fb63bf7e20b0086a38da6ac59c49a00d7572f40130e07ac5579130a",
-        "fd9c11bdb60e8eaf45246fa4c36643450164d326484cfd5646aacd795f7731f0",
-        "862e7a753d6dbb6f05e89ab941dcd0a901a906f6040b6601cffb5d220754d8c0",
-        "e924ede5aa38c72f957a4154326cecee3578d740a4e82ccc62954490b7864b30"
+        "124fe9e28c9260b39ecf1a35c31970113a1f7890aa51688086ae7f394e677d3c",
+        "804b2cf5642d4829764ff3a51f5e52e0fa4e1dc0e11f459e42c4dc329cda75c3",
+        "e14c168a216656a2d4dd4480f1fec253e387c5e72ed2871e3a3986971721401b",
+        "7b039fa49527972a843c93f0a274952a5c7f88137cbcc66070d8890cf4f35157",
+        "ba412ece4c76ef28678aa72f9e77999119b03d3910871b7750d21a446c6dfae5"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vanadium/long_rod"
+            "item": "cruciblecraft:meutoite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vanadium"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meutoite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vanadium/ingot"
+            "item": "cruciblecraft:meutoite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vanadium/plate"
+            "item": "cruciblecraft:meutoite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meutoite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vanadium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:meutoite/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:meutoite/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:meutoite/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:meutoite/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:meutoite/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:meutoite/ring"
           }
         ]
       ]
@@ -67,38 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/590d668bb3537a75",
+        "cruciblecraft:gt6/a18d8ec71246ff8f",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/9faa30f8fb11187e",
+        "cruciblecraft:gt6/18eb0eaf024695d7",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/8bea73b4ef579653",
+        "cruciblecraft:gt6/99b25f29d29e6d22",
         2,
         2
       ],
       [
         3,
-        0,
-        0,
-        "cruciblecraft:gt6/1ef4a01dfa724f30",
         3,
+        0,
+        "cruciblecraft:gt6/a1b8e6a521ad61a8",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/08fbc720a8457bb6",
+        4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1604,
+      "duration": 11892,
       "eut": 96,
       "item_input_actions": [
         {
@@ -109,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        9,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6415",

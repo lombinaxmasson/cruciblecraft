@@ -10,20 +10,26 @@
         }
       ],
       "hashes": [
-        "b2823f555fd7cb90cd00fba86fdaf18fecabec0ac622c8eba67e16c9cc765ada",
-        "ebd59657c3a686430f1e237e639d37bb50c15464c3eca14d5c229b20a9ca4ecd",
-        "ea3a45c7d02c715538a88be3ce122669fd57ebb0b51352483908ef5b7dc1fb64",
-        "06fb918420c69b0c57ba8fddf00c0395d8fc18acf4b9d2fbd0060ead92713f3a",
-        "641dc31f494b4ad4597eed1bc473f94e53cb2a15ae3a38732242882aa5ed2118"
+        "68585a9ec63add2bcbaa113953f13da376c41401949d918710fafa5de57a1b2e",
+        "6a674d58f3588aa73637ad06863fa08405bcae919b04e6f65f62f301bd7c7a48",
+        "a99160494dfaedeeaccafd5835e4c36607f15cdba08162bada54434daabd6bff"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "red_steel"
+              "cruciblecraft:prefix_material": "thorium"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold_inductive/machine_casing"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -32,37 +38,13 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "red_steel"
+              "cruciblecraft:prefix_material": "thorium"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:red_steel/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:red_steel/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:red_steel/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -70,7 +52,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:red_steel/block"
+            "id": "cruciblecraft:thorium/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold_inductive/block"
           }
         ]
       ]
@@ -80,15 +68,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4d2c3aa337263177",
+        "cruciblecraft:gt6/2d7f14612d3bf2b0",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/d536b8821fb34ad5",
+        "cruciblecraft:gt6/23ccded392fade51",
         1,
         1
       ],
@@ -96,30 +84,14 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/603c505487d39909",
+        "cruciblecraft:gt6/af465b8e1319ed45",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/dfd74e4d392cb976",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/67880e28663de932",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1928,
+      "duration": 1978,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +102,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

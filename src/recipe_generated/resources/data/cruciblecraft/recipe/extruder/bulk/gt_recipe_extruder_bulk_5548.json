@@ -10,28 +10,39 @@
         }
       ],
       "hashes": [
-        "2249b68e4f95cc7b430d0fca86a1babe03a5d751bd5cc515fba43ebb1abc2f82",
-        "306488b1c3a6b89e81a87c030085f6f54d49c666aaafbda869ae7354685e8ad9",
-        "5a97c0e272fa23d8a57ee705e1ed5adf064f88924d773148ca0676b1aacb7058",
-        "701b864042864183622a21a20e09b418b45f70bc475e8bd5afce5a9f7c565f57",
-        "184f2d8e277307167fcee0459cb2ae5f2c319ab85dc8dbd021ea9e4e322a0dd9",
-        "47296167000ff742a9eff08c5cc1fe3cd7d1e89c63c69c848348eed965290a5e",
-        "3722d4959d48a3e357c050ac2538a669dac9ea39ba44bd50924c459547e32cca",
-        "c7cf3ce20d000ff15098260f3fc75fbba66a79a8bffed3fa7ea0cf4cb286bf1a",
-        "ff21df48896fde8944bc9064245996e3bcaf06322e98580fe27c9b7c32c2e792"
+        "53c33f0ac27940251ef3c2cce1d90e6fbed0a57d6f3dd2cbceb2e70734f677b7",
+        "200efc01cf577462cba0582e41d733e3eb51373e946d1d4401fd16588bd213fa",
+        "1cc3dd00304e27cf17fa5bdf9624feee2ad174c203fb1ad36360652257ff91c9",
+        "11624c332904a2c42a8cfb92fffb84ec4972f561357b0e844de87089a8e733d1"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vanadium_steel/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "oureclase"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vanadium_steel/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "oureclase"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:silver/triple_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -39,120 +50,49 @@
         ],
         [
           {
-            "item": "cruciblecraft:vanadium_steel/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "oureclase"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vanadium_steel/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vanadium_steel/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vanadium_steel/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vanadium_steel/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vanadium_steel/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vanadium_steel/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 2,
-            "id": "cruciblecraft:vanadium_steel/block"
-          }
-        ],
-        [
-          {
-            "count": 6,
-            "id": "cruciblecraft:vanadium_steel/gear"
-          }
-        ],
-        [
-          {
-            "count": 52,
-            "id": "cruciblecraft:vanadium_steel/rod"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:vanadium_steel/ingot"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:vanadium_steel/plate"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:vanadium_steel/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:vanadium_steel/small_gear"
+            "components": {
+              "cruciblecraft:prefix_material": "oureclase"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
+              "cruciblecraft:prefix_material": "oureclase"
             },
-            "count": 52,
-            "id": "cruciblecraft:small_casing"
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:silver/gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium_steel"
+              "cruciblecraft:prefix_material": "oureclase"
             },
-            "count": 26,
-            "id": "cruciblecraft:curved_plate"
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -162,7 +102,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0677f8ed956a0a70",
+        "cruciblecraft:gt6/60e4e8da07711494",
         0,
         0
       ],
@@ -170,7 +110,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/54495a7cb79aced2",
+        "cruciblecraft:gt6/904fb7787efcc3e0",
         1,
         1
       ],
@@ -178,62 +118,22 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/7c1d2fd36c9d4fd6",
+        "cruciblecraft:gt6/ce7ea61c90ae75bc",
         2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/29c9f277d3e6e9d1",
+        3,
         3
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/83d7047744257591",
-        3,
-        4
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/e0ec3bee443ac393",
-        4,
-        5
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/7e48d46f51066a26",
-        5,
-        7
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/6fcbcd093565b6f6",
-        6,
-        14
-      ],
-      [
-        7,
-        7,
-        0,
-        "cruciblecraft:gt6/fa46db0903ae46aa",
-        7,
-        16
-      ],
-      [
-        8,
-        8,
-        0,
-        "cruciblecraft:gt6/5de54d8a5add83d4",
-        8,
-        21
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5372,
+      "duration": 687,
       "eut": 96,
       "item_input_actions": [
         {
@@ -244,7 +144,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        3,
         0
       ],
       "output_chances": [

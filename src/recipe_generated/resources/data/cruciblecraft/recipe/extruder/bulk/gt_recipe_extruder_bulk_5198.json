@@ -10,28 +10,63 @@
         }
       ],
       "hashes": [
-        "312b9b7ca07de00973947a2f31b6a76b6e862779f5e80ac1f73fbe384c1a6943",
-        "2a4de2afdade847878fc9be62099cbf245f2a38fb2e004a327d910a7076b8f09"
+        "b0d05f06df959e6b1c4a48f5b62283bfd2c229a8b2cc8e8b77c68d0279599769",
+        "d9da1df6516198c4f5dce21f1f2d2dee4e31a4c8b1b3b9fd39da36848694cd60",
+        "1125a5ccac64fbcfdab18909307b450912545bb1f20ac573b808e579c1b91f3f",
+        "cff9caa783368c0f7460cda977cbf13506af980c8b0d2de34cf5213bcf7cf8ca",
+        "a7ab50960fa9da002a841b24235b6bfb1299ecf3d426c8137da9f2589f414989"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:thaumium/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:meteoflame_blue_steel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thaumium/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -39,7 +74,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoflame_blue_steel/gear"
+            "id": "cruciblecraft:thaumium/huge_fluid_pipe"
           }
         ]
       ]
@@ -49,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/65230fa3c5a96544",
+        "cruciblecraft:gt6/ab337ec3a23bc8ba",
         0,
         0
       ],
@@ -57,14 +92,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/51e30b3bed18f5ee",
+        "cruciblecraft:gt6/cd270f576c907a7e",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/f39181bb9446b38b",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/93f702b23f4980a9",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/8e70e8b57934c191",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1392,
+      "duration": 4414,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +134,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        2,
         0
       ],
       "output_chances": [

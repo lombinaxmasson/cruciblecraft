@@ -10,139 +10,582 @@
         }
       ],
       "hashes": [
-        "cc395e9b329646693e82c4be2a0671c33a310869a801426f136f3c3df023b40b",
-        "06dd625915b2cd1c453fa63134d7663f4425a4a5f41b4abd315474154ff0b917",
-        "3b268d27fd2b6a2148af89116d6a96d2ccfeabd0eedf8b4967495323f6768c9c",
-        "882ac025be275fe3e344dd7be463eb389678ab76526e47203c23c02fc1b39350",
-        "49f6d28d4cda226c33545485399671b6c0d08cdeb9cb212224aef91cf13b2b52",
-        "0e164a3425a638d83993757b7c58802399ac70ebe22435aaf2f0fb6670d6b359",
-        "30faddfd3de775bc6c7940e0daa7b9b0976e2b0ddaef904de33b29cd80ef2513",
-        "627ea0e336c798ee6e0ea55fb2872535b4ae5e80b378822c92507e01cd9babbb",
-        "80fd2b2faac425ad22b6f9884a0b604a4dc9a91364373f0e697ba13fd2a3dddb",
-        "ba5f2cf20e81ee0eac32d9241e8a1b54155142c97dc84aba96c2336038dcdcaf",
-        "4659362e46bce62046614e6114a93e83e91257b3a9e63e7011279be58998afcb"
+        "d6625d10bd0e1de8005fc01261be0598b20c34b9191059b7f72674cad37025a5",
+        "941775eef127db8b33213e4561daa042e526f1fd8cd44767883642c3d9a8f25f",
+        "097cd14997068913a5345bd23f08b85f20488788247861e94f374f5b5072be11",
+        "4f4d06d6346350e36e3b90455bf80d5d0dc370e8948af7e25563d7de0d6553a4",
+        "50d85dddc0eebe3682fcaad1e4f9647e86924e46d73162159a3e68808455ba24",
+        "ba81cbdad328d96db55fb3b243109089db7c7ce4ee0e3bf0dbebf21ae6689482",
+        "ebe57ed638b52cf0b5b9281a4ef9bc7de221023240734b5712aeb4a020e111d6",
+        "3c293a3c54380869164d69ecec0e5cb0bb106195c13f0fe2a5f9fdfaa1bc305b",
+        "24dd8c5f15f91756715a5f935b7f2e9b9481128b01e6140267babd22f887182a",
+        "e8f36fc7d4c18030195b63a198af77583866c9d9d68b9ee8989201340976e805",
+        "10bfef7e62c41cf32c1eb35c7f17856b48421c6fa641f29fbb1d3ef1279ae760",
+        "d6015078daa72592d2537fe8b047cee1e964136e5f31f3fa53e481151f1985a1",
+        "952dc37cbca96d291e60051337aac397a345107f8c807d3affc6d4b69aed9f8f",
+        "0d78ba234feab033d13e2ec652a6ea593e0c9c520de0d78ac7ba06be0ce27345",
+        "15af104ddb9326ac4c7cdf1a2fccdee2f106137bb9a0840562962469eb1f4891",
+        "a17202badd2a10c5ac7fb33dd72511ac95b059761ef091d707385ae63dbc749c",
+        "f75d6cab4b81979a9276e77a5b7cf51a335b129ae4131a84196f08d1560e1dfd",
+        "21d4ddd62f5a9fa431f86913261e3e85a435cb97b9730400a3ee3ea3b32baf87",
+        "8b60b42799464a9002010d5d27ba7b275d520f16b95c625449e18ea32df5564f",
+        "0db861b8ae8c4979ce1f20dc44aad7261c7e88928634eea26de80f8e1c1d3573",
+        "c4975c573bf3e743163d76d7c207b3f4bbe2124072d443560411ad1d3e6d5698",
+        "39888ca531d1ac775a67d1a014e3a246ec8bb4fd1f9de7bee176249034425e56",
+        "15ee4eff2628339ae1d184b8936127ed319dabd1baf9f6d2db31ad4cdf01ce0f",
+        "a3ca87ea85f3bc6cac3eeefc0363313823952e38f5f958721b4a118ae906bd57",
+        "baae8d4d8bc1ede73611c38cb364bd71828cf43aed59ca1452224d95a5d838c4",
+        "0be01de26bc9b20369532bfa75e7e0c430bdded265c0930860e5e1605a1f24b9",
+        "75001914da76843103cee93b81cd7badc055200e80972427aedebfae0791e266",
+        "9d94875bc847d5fbc6a8dbd15c62e29416f0a7ab026b32ff7d7e6f10be7f1477",
+        "d52df44ff9ede6670ba3f9a2b493782997db309a9ba7d48ffbfbae0b037ef104",
+        "25e9d1ee3470ee1f95b22280b9388428daf41722b8a05ac79a49ee75560b8a26",
+        "5d00bb229a8af4909d8a41033b3545682fb7e1d5c5e496fecf96d6b46762c0b3",
+        "f5d982b2e815523a82ac0533bf3c4fd36701af9c6508ace2264d06c81048e153",
+        "6b25bf719d68dc381592d6f4f37e377e72016632beb66fed53fd9ab2465027c9",
+        "7f80613685b9d52c34f29c311a5e014a9bc1d7a778635eb951e1c238683907db"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:silver/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "silver"
+              "cruciblecraft:prefix_material": "netherized_diamond"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:silver/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:astral_silver/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "silver"
+              "cruciblecraft:prefix_material": "netherized_diamond"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:astral_silver/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:silver/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "astral_silver"
+              "cruciblecraft:prefix_material": "netherized_diamond"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:astral_silver/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "astral_silver"
+              "cruciblecraft:prefix_material": "netherized_diamond"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "silver"
+              "cruciblecraft:prefix_material": "netherized_diamond"
             },
-            "items": "cruciblecraft:rail_gt",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:silver/block"
+            "count": 3,
+            "id": "cruciblecraft:netherized_diamond/ingot"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 6,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:netherized_diamond/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 24,
+            "id": "cruciblecraft:netherized_diamond/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
             "count": 1,
-            "id": "cruciblecraft:astral_silver/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:netherized_diamond/plate"
+          }
+        ],
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:netherized_diamond/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 12,
+            "id": "cruciblecraft:netherized_diamond/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 3,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 27,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:netherized_diamond/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 3,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -152,71 +595,71 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/56dd589d0d3a83d3",
+        "cruciblecraft:gt6/1c93be8327ae95af",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b1036b4de7dbb011",
+        "cruciblecraft:gt6/6a2768a6794a81d3",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/90ee72aa30e34fc4",
+        "cruciblecraft:gt6/447472b83db19738",
         2,
         2
       ],
       [
         3,
-        1,
+        3,
         0,
-        "cruciblecraft:gt6/8587941f8d68d097",
+        "cruciblecraft:gt6/69cc776ecc879eb7",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/2113698e669ccd28",
+        "cruciblecraft:gt6/7b3a602a042f253c",
         4,
         4
       ],
       [
         5,
-        1,
+        5,
         0,
-        "cruciblecraft:gt6/12b9be8fed7ddc5e",
+        "cruciblecraft:gt6/a69525b4ce284e67",
         5,
         5
       ],
       [
         6,
+        6,
         0,
-        0,
-        "cruciblecraft:gt6/b5adf97eb639656f",
+        "cruciblecraft:gt6/ac8674b13b21fe98",
         6,
         6
       ],
       [
         7,
-        1,
+        7,
         0,
-        "cruciblecraft:gt6/9d12b14f63c634a1",
+        "cruciblecraft:gt6/4cb3bbe154bf81b1",
         7,
         7
       ],
       [
         8,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/f0791b9371a99fff",
+        "cruciblecraft:gt6/a2868e17fcb81ec7",
         8,
         8
       ],
@@ -224,7 +667,7 @@
         9,
         1,
         0,
-        "cruciblecraft:gt6/49d32c2ad216e801",
+        "cruciblecraft:gt6/5949adbf48fc8319",
         9,
         9
       ],
@@ -232,14 +675,198 @@
         10,
         0,
         0,
-        "cruciblecraft:gt6/bf725558b9792c16",
+        "cruciblecraft:gt6/af1d566a44d039ce",
         10,
         10
+      ],
+      [
+        11,
+        8,
+        0,
+        "cruciblecraft:gt6/b62709a0ca1c0f55",
+        11,
+        11
+      ],
+      [
+        12,
+        9,
+        0,
+        "cruciblecraft:gt6/c5c441423510ce9d",
+        12,
+        12
+      ],
+      [
+        13,
+        8,
+        0,
+        "cruciblecraft:gt6/7fc0412ec7031958",
+        13,
+        13
+      ],
+      [
+        14,
+        10,
+        0,
+        "cruciblecraft:gt6/846c382e7c84792c",
+        14,
+        14
+      ],
+      [
+        15,
+        11,
+        0,
+        "cruciblecraft:gt6/052639d565eeb722",
+        15,
+        15
+      ],
+      [
+        16,
+        12,
+        0,
+        "cruciblecraft:gt6/9827428c48214886",
+        16,
+        16
+      ],
+      [
+        17,
+        5,
+        0,
+        "cruciblecraft:gt6/f4b133dd391f928e",
+        17,
+        17
+      ],
+      [
+        18,
+        13,
+        0,
+        "cruciblecraft:gt6/859b653bc8a50955",
+        18,
+        18
+      ],
+      [
+        19,
+        14,
+        0,
+        "cruciblecraft:gt6/2fd9e088f0bedb3c",
+        19,
+        19
+      ],
+      [
+        20,
+        7,
+        0,
+        "cruciblecraft:gt6/d1de9a478142dfac",
+        20,
+        20
+      ],
+      [
+        21,
+        6,
+        0,
+        "cruciblecraft:gt6/fa785e9520acf109",
+        21,
+        21
+      ],
+      [
+        22,
+        15,
+        0,
+        "cruciblecraft:gt6/1297caff65317cf8",
+        22,
+        22
+      ],
+      [
+        23,
+        14,
+        0,
+        "cruciblecraft:gt6/c90ecc94d6162288",
+        23,
+        23
+      ],
+      [
+        24,
+        16,
+        0,
+        "cruciblecraft:gt6/a387fe6c6474100e",
+        24,
+        24
+      ],
+      [
+        25,
+        3,
+        0,
+        "cruciblecraft:gt6/e7334d245dc79217",
+        25,
+        25
+      ],
+      [
+        26,
+        9,
+        0,
+        "cruciblecraft:gt6/c672ec358c5615e0",
+        26,
+        26
+      ],
+      [
+        27,
+        4,
+        0,
+        "cruciblecraft:gt6/6300ce7a04b141c5",
+        27,
+        27
+      ],
+      [
+        28,
+        11,
+        0,
+        "cruciblecraft:gt6/0cbb128fe3520b94",
+        28,
+        28
+      ],
+      [
+        29,
+        13,
+        0,
+        "cruciblecraft:gt6/b95557b34cc5a3e6",
+        29,
+        29
+      ],
+      [
+        30,
+        12,
+        0,
+        "cruciblecraft:gt6/85668a0b36df354f",
+        30,
+        30
+      ],
+      [
+        31,
+        10,
+        0,
+        "cruciblecraft:gt6/1a19fee778f8dd47",
+        31,
+        31
+      ],
+      [
+        32,
+        15,
+        0,
+        "cruciblecraft:gt6/167abdc90510f62f",
+        32,
+        32
+      ],
+      [
+        33,
+        16,
+        0,
+        "cruciblecraft:gt6/2f58f25a821c65c8",
+        33,
+        33
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1373,
+      "duration": 2154,
       "eut": 96,
       "item_input_actions": [
         {
@@ -250,7 +877,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [

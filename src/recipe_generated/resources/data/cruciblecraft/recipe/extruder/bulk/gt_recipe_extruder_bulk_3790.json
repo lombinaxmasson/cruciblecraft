@@ -10,16 +10,19 @@
         }
       ],
       "hashes": [
-        "38f1038428237ff3142e8488ad10791f88637f637c12f82b5a262c21d0c70d24",
-        "d86bd00870e4fbb1018b535a3abee2408e77f0fb199d84fb82ee98980d34be98"
+        "5aeb100536ecc49a8a1513df1dad0545cab6f7a42e82905e2edea1b7e76312e1",
+        "a44887089bc5e8c8b9957d8894a206e6268c587e7e32b2eba7a4bab9e7b0061f",
+        "62298e699a3e3ff80159fae6ab134e4250f7a9c9dd2b43fd7e041471546308dc",
+        "54b925dce89327bd5ccdd02ede4088b6acf752a51d0faac1d97898b4104db9df",
+        "30c258f5f128e2bed0d2124ee5c8e99734b2caec49c58a47f3e3eefb1331584f"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah"
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -29,10 +32,34 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah"
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrock_hslaalloy/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:naquadah/gear"
+            "id": "cruciblecraft:bedrock_hslaalloy/gear"
           }
         ]
       ]
@@ -53,22 +80,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/446dac1618bb8743",
+        "cruciblecraft:gt6/fdc3f5015739c896",
         0,
-        2
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/fd3a18783afde1a6",
+        "cruciblecraft:gt6/ffa231a59cdba347",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/fddcf5e8bf266e47",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/70b481fdc08a27bd",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/078093d501395867",
+        4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1565,
+      "duration": 14027,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        16,
         0
       ],
       "output_chances": [

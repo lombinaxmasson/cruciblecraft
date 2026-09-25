@@ -10,36 +10,130 @@
         }
       ],
       "hashes": [
-        "a2e7d29667ab0a0663baadd12bf160c89448b205e9de150a340acacadf108f4a",
-        "5e0c12bb8ac1d091a704557b9dc015dca12f4505de3e5cb3987dabb8fae50650"
+        "f62d7dfb99fd9e18af9a11cdfd931c30d2a01e5c4bafd33c16dd2690786d4a89",
+        "e73534da36880e15652d1c31b0fb7a00b483a0eddfc3084c807bc20bd6ff490e",
+        "d2b4c8cb38c84dfc1cba77bff00e92ee597020f2fa756bc8ca802057c6a831b3",
+        "0b5a14b7a9ffa2d0d6dae6d06f782cef02fe2678446fbffd82f4b1f85b3068ef",
+        "ee3d5d192523a2cc071750b520d6a4241d37b97c71150e2128cafc742ad2c2d7",
+        "2ec9f9b09fd37f2dfc2d6ee26f92466962a9ac3073459ad50fa75d804941068c",
+        "fd8ac5e7ecf08bb877962e1c5c416339aef141a373a8687d0ee399c59744ce29",
+        "702b02a8ef46c94d5651dd0bbb4e55c2d85010811cdad03de20c66960f68606b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:titanium_iridium/rod"
+            "item": "cruciblecraft:naquadria/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
+              "cruciblecraft:prefix_material": "naquadria"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadria/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:titanium_iridium/gear"
+            "count": 64,
+            "id": "cruciblecraft:naquadria/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:naquadria/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -49,22 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/275cc7e9d825018e",
+        "cruciblecraft:gt6/85d3c503e7e3d8d1",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b58e6894d6162352",
+        "cruciblecraft:gt6/731b50cdc1fcd4da",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/9f5ef7e2e5b0ef6c",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6c1fab6733903c8f",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/950eddd91412fb39",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/a0038fb43d5ddc80",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/94bb8c26135f4ae0",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/ad96bc6e99219472",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1704,
+      "duration": 3353,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7480",

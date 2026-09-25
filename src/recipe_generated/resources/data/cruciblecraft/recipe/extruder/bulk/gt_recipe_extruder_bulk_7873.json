@@ -10,32 +10,59 @@
         }
       ],
       "hashes": [
-        "9b66f15d3c99727af015ea62384841a4ed6dffbea6619227f93509e6a18551d5",
-        "4fd50a451b6035421039fa8fe218604cfdffc4a09d7aaf98f651711719fb3929"
+        "3492dd6caf9057d61e85936cedcb188537eaeaa9320672663e1e64d794906c35",
+        "fee5cd12e408a6ef93574587088155d7f6e9b6e78c2ea6beab8ad1f7d2ac8fcb",
+        "7a0bf85f22c05ddbac7abd7d444fd788c61c91992eb9aacfdcbcd2e612db9dd3",
+        "22a5b34baa832972f7207e88bb5240127596f355defd9c54651a244176bf79e4",
+        "7d0ef5eed9237293f593a14d7dbbd36b19cf54e4cf488612438534bf5f311467"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "praseodymium"
+              "cruciblecraft:prefix_material": "manganese"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "praseodymium"
+              "cruciblecraft:prefix_material": "manganese"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:praseodymium/block"
+            "id": "cruciblecraft:manganese/gear"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d1a4c5c62aa4d7a8",
+        "cruciblecraft:gt6/08a4765bdf3bc1aa",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/04313507bc67462b",
+        "cruciblecraft:gt6/164e9eaf89d6e97d",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/3d0ab7a1c36da621",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/bdd54d16cd5077e8",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/653443b6e8f6a66a",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1148,
+      "duration": 564,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

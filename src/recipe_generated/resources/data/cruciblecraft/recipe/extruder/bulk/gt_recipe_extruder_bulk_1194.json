@@ -10,27 +10,43 @@
         }
       ],
       "hashes": [
-        "4e6ef395a735d0f888a1e0259ee3f4d0934b09102b75e622f9c00e6cd950ba82",
-        "507ba9cd2cc9df82eb64eef49d953318fe076e0441e29ee6f14dcb2f06279985",
-        "50f21576a0692669225fa4b8ce85eb4cda4790379c8c2344c585a3f28db0e8a3",
-        "0a033964c88fb1fcf08cde7728dd8c70d7601ef42ba8dfd30f19b70508acd5c5",
-        "6b312cdf65e53a5b12c2bee9e319e110bf5677d380ceb2076612be50ab1651c0",
-        "e483c840a27c9e19a985c115e93bd68b5c19153c9e6015e564aa56616121d9f0",
-        "69cb13db0bbeb6e723b6dc417e14f12d0d7f99b5013715c0affefd12b9abe97d",
-        "085aaaf40292c37666a51dc5708dfecc5ae8383d3ecff02c34440b1c14c84903",
-        "549149928e9bdddb0642b251336cdb84bf93111989effc29502daa1a85a004ed",
-        "94fe00c3ab18d6e2ee896b328e8c31f0a3b77c2dee006e644b6a3c5732788e0b",
-        "f96cc65452cbbe45c4bd3b1389f8753bde2e17102b9f0ecc4a578302c3aa5910",
-        "d27fe118a3224eef762bcac9b517ad7d4059ffc723d289f6a35e45e0acf9222f"
+        "f48a71cc7563afb6997697acc4011f4575b7e954e64f4728150d64a249c1019c",
+        "6cea456b1ac627f928315e8d966a52767f0f53ef3aa6cd75799c58dac6e84807",
+        "7cdd1f73cfff22ff5e45338234279c5308c0fe5933c32c7fdf5af475c59ac291",
+        "0f82dcae9e269537b4f6861168dffc8519345143e868e753bd7e951ca3faf9c2",
+        "67a152e2b92d09afeda898043dd52991e1056412eb91d28fd16979c54b53568c",
+        "c0ed41a7cc07e91fd9df6c8dd93b67f04dcbece000b3033e161d506517b87866",
+        "0d48ebf3854b757ea5f7be7c2591f62fe3385e5a79f942d3960a963558a32063",
+        "ea3b8c84dcdab36eeffbeaeb9c74d7469696332d99e7ef7cc022cafe89329abb",
+        "3febb8a0fa4a6bdc221551d35d762ca0ce69b6376b53f4cb11192766fc442ac1",
+        "247b7f3973f82d9f47b596c117c8f0d02ee1a34d9b80521759fece3c70e40032",
+        "90f95a8c6c13cf9d23adce98defe6184eea28f9ad3c4cb15540557947cce7d05",
+        "7251dd2df90abf19abb6d24f79cbb986e4a4aec4f2b7c947ad6fd6ae5adca599",
+        "838389e2cf06e87c7359fff6996069252781ea12cb14277db252f55a53f02968",
+        "8f235ee07b370dfcbbbfdced174e1a047aa6fd5c7339a81e8ce5f7edea8800f9",
+        "2e663ec1a08c8265d1ce4403394fa48cf4016f039d2e5a34b7225b8985e251ed",
+        "0f35ec2370cd592732c955bf890a0d78cb093a26397bcb95283189fe2847d1f2"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
-            },
-            "items": "cruciblecraft:rail_gt",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -38,11 +54,39 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -50,115 +94,188 @@
         ],
         [
           {
-            "item": "cruciblecraft:tungstensteel/foil"
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tungstensteel/ring"
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tungstensteel/small_dust"
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tungstensteel/small_dust"
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tungstensteel/foil"
+            "item": "cruciblecraft:energetic_alloy/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
-            },
-            "items": "cruciblecraft:rail_gt",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:tungstensteel/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:tungstensteel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "energetic_alloy"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:energetic_alloy/plate"
+          }
+        ],
+        [
+          {
+            "count": 16,
+            "id": "cruciblecraft:energetic_alloy/rod"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:energetic_alloy/gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
+              "cruciblecraft:prefix_material": "energetic_alloy"
             },
-            "count": 1,
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "energetic_alloy"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "energetic_alloy"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "energetic_alloy"
+            },
+            "count": 16,
             "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "energetic_alloy"
+            },
+            "count": 8,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "energetic_alloy"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:energetic_alloy/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:energetic_alloy/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "energetic_alloy"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:energetic_alloy/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:energetic_alloy/ingot"
+          }
+        ],
+        [
+          {
+            "count": 32,
+            "id": "cruciblecraft:energetic_alloy/ring"
           }
         ]
       ]
@@ -168,102 +285,134 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/60211b77298fe4aa",
+        "cruciblecraft:gt6/d84891e506620175",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/a33b39e7487c3261",
+        1,
         1
       ],
       [
-        1,
-        1,
+        2,
+        2,
         0,
-        "cruciblecraft:gt6/49f449946b498bcf",
-        1,
+        "cruciblecraft:gt6/08b3c3572b18f2e9",
+        2,
         2
       ],
       [
-        2,
+        3,
+        3,
         0,
+        "cruciblecraft:gt6/83bd9785cca586a0",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
         0,
-        "cruciblecraft:gt6/ac56647b4d4787e4",
-        2,
+        "cruciblecraft:gt6/33ea07fbbde8e679",
+        4,
         4
       ],
       [
-        3,
-        1,
+        5,
+        5,
         0,
-        "cruciblecraft:gt6/7d4fadcf7c79d8f9",
-        3,
+        "cruciblecraft:gt6/8c9d26be9beaff49",
+        5,
         5
       ],
       [
-        4,
+        6,
+        6,
         0,
-        0,
-        "cruciblecraft:gt6/fe907b61237985a8",
-        4,
+        "cruciblecraft:gt6/deab852e26bc24fb",
+        6,
         6
       ],
       [
-        5,
-        1,
+        7,
+        7,
         0,
-        "cruciblecraft:gt6/f600aa295480ee64",
-        5,
+        "cruciblecraft:gt6/fb1cba6fbcbf3208",
+        7,
         7
       ],
       [
-        6,
-        1,
+        8,
+        8,
         0,
-        "cruciblecraft:gt6/aa10bc36939bb033",
-        6,
+        "cruciblecraft:gt6/e4da68e79d7784b8",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:gt6/95d397fae02e4dfb",
+        9,
         9
       ],
       [
-        7,
+        10,
+        10,
         0,
-        0,
-        "cruciblecraft:gt6/ee1e258d697b4de8",
-        7,
+        "cruciblecraft:gt6/f6f1f43984b1f93e",
+        10,
         10
       ],
       [
-        8,
+        11,
+        11,
         0,
+        "cruciblecraft:gt6/a33f8be42fb80828",
+        11,
+        11
+      ],
+      [
+        12,
+        12,
         0,
-        "cruciblecraft:gt6/ec6e18b2b68af833",
-        8,
+        "cruciblecraft:gt6/c04f0cbf87499c29",
+        12,
         12
       ],
       [
-        9,
-        1,
+        13,
+        13,
         0,
-        "cruciblecraft:gt6/c0e678f8255f2ed3",
-        9,
+        "cruciblecraft:gt6/9ebff824c38f605c",
+        13,
+        13
+      ],
+      [
+        14,
+        14,
+        0,
+        "cruciblecraft:gt6/1649c3f20a923f19",
+        14,
         14
       ],
       [
-        10,
-        1,
+        15,
+        15,
         0,
-        "cruciblecraft:gt6/c1aefd898afd792d",
-        10,
-        17
-      ],
-      [
-        11,
-        0,
-        0,
-        "cruciblecraft:gt6/6fad4dbec0caca94",
-        11,
-        18
+        "cruciblecraft:gt6/06692f25829cadde",
+        15,
+        15
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 270,
+      "duration": 1134,
       "eut": 96,
       "item_input_actions": [
         {
@@ -274,7 +423,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [

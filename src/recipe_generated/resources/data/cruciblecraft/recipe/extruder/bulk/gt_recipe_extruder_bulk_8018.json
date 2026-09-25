@@ -10,32 +10,41 @@
         }
       ],
       "hashes": [
-        "a4384447862f149a25745a3d218a9a168946d246bf7de4599e9edc9bdc52d57d",
-        "8b84644bd03a03b76f2bee22cc59971e3bbc8592023babefce0de05898eaa9c7"
+        "be43796ffff6a3e78b87bc2112410062669338cc5d9731611ad724d39d54429f",
+        "5a56e2bf6a98ec7718d73a81cb0b650a4c5d12c0d149217c7eb3968ba5d45538",
+        "132bb3017bb5e23146596b5c32f04e59b39b5e4faea6ebaa58c170bddbf1b362"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "cd_in_ag_alloy"
+              "cruciblecraft:prefix_material": "titanium_aluminide"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "cd_in_ag_alloy"
+              "cruciblecraft:prefix_material": "titanium_aluminide"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_aluminide/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:cd_in_ag_alloy/gear"
+            "id": "cruciblecraft:titanium_aluminide/block"
           }
         ]
       ]
@@ -53,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/87106ac1d92a39d0",
+        "cruciblecraft:gt6/4545580fa8ca58b3",
         0,
         0
       ],
@@ -61,14 +70,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/adcbb589a8a59c18",
+        "cruciblecraft:gt6/442f8080138d148a",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/cf562018cb8165a7",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 376,
+      "duration": 1891,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

@@ -1,230 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_7755",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "2f4d92b2bf770e4251b40c68122ed287861e2e33a8d74817c7b9325218b9efd8",
-        "2dc02444824bddaf6d82b06606cbb5c339505dfd79c628c336cceae99c1ce877",
-        "b17f253eb957a4983fa7c5b3a7d7fe0d224edb19bb884548abee9c0e5cb02e9f",
-        "7eb1167170b1301432d84a591c8bc5cd43f341365a6db8830850ff0d2702cc25",
-        "04bbda0d03d262ad4a826cf249ebf7ab61f78d99119436ffca9e563a88dda0e6",
-        "c2d07567feab3d186f42863b57fbdb193255999e7487133eca071660a54e853b",
-        "1ed486a46237a9bb4ae74ad282c16a152eaeccd00d2984be1b4ef2cfef14bb24",
-        "8dd4e46d4345e938c652f8a17d2709dd8a4a523844b816ab8e60f4e8e8871315",
-        "9be79e1358bdb6708de35c0dc28be4da4312c7d7313c38da300121ba8df8349f",
-        "28e7e92f3a45c8d20c1a0e0001d479d84c55c4dc15e38c07a1eeb9986a72c953"
-      ],
-      "item_inputs": [
-        [
-          {
-            "item": "cruciblecraft:constantan/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:constantan/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "constantan"
-            },
-            "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:constantan/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:constantan/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:constantan/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:constantan/small_gear"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/17bb94945eeb6b2a",
-        0,
-        0
-      ],
-      [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/47042953ec5c24f8",
-        1,
-        1
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/ac43df771860922f",
-        2,
-        2
-      ],
-      [
-        3,
-        2,
-        0,
-        "cruciblecraft:gt6/9bdde80bc8965868",
-        3,
-        3
-      ],
-      [
-        4,
-        3,
-        0,
-        "cruciblecraft:gt6/1843925a50bd5932",
-        4,
-        4
-      ],
-      [
-        5,
-        3,
-        0,
-        "cruciblecraft:gt6/f29841e4d82d29d7",
-        5,
-        5
-      ],
-      [
-        6,
-        1,
-        0,
-        "cruciblecraft:gt6/20d4d9d8f67692f5",
-        6,
-        8
-      ],
-      [
-        7,
-        4,
-        0,
-        "cruciblecraft:gt6/f2e32c1a7d4491d1",
-        7,
-        9
-      ],
-      [
-        8,
-        4,
-        0,
-        "cruciblecraft:gt6/2f1ca43f90a259f6",
-        8,
-        10
-      ],
-      [
-        9,
-        0,
-        0,
-        "cruciblecraft:gt6/32a67eabcf4926cb",
-        9,
-        11
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 173,
+      "duration": 132,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -234,18 +17,42 @@
         }
       ],
       "item_input_counts": [
-        8,
+        18,
         0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "coralium"
+          },
+          "items": "cruciblecraft:dust_div72",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_ring"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:coralium/ring"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_7755",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "c43db455a118ae0136eb7043a1e21b86f12ffcc677b82a03e04cacb13659eaef"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_7755",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/ceed5a57d1b205a1"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

@@ -10,40 +10,59 @@
         }
       ],
       "hashes": [
-        "cc00c6ef9629b209849b2f657fbc809d3c168764dd4098b96584f7b54ad5eb3e",
-        "3ca5e188c0d0b4784e5d1c256d89ecf098d63c1ccccbbcefe79451aa02f9da76"
+        "79e15f1eb9c6249c8a90dd2279a38e8c4493b41bdd7171f65fa90846c5c9df53",
+        "3cc0280043c1af6aaf97a85a53a93ea244f512cfc80210bb09b37667ba0caf78",
+        "9432e148f3bcc1bbb87e796ce5ef4a117ca82abfed92f0f9411e3bedd1f8d992",
+        "3f2b83e730e9ec58e5e217fb94b2f293bd0e12a7a0987529e8de7f35f84595af"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:draconium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:draconium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
             "count": 1,
-            "id": "cruciblecraft:titanium_iridium/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:draconium/large_fluid_pipe"
           }
         ]
       ]
@@ -53,22 +72,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/84e52b7a53126f93",
+        "cruciblecraft:gt6/40705101f91a045d",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/a4388a61112e37f9",
+        "cruciblecraft:gt6/e88df4ef5d48ae2e",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/aa9173c5f2fb99bc",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/4a73db2b535e531d",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4260,
+      "duration": 390,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +114,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        48,
         0
       ],
       "output_chances": [

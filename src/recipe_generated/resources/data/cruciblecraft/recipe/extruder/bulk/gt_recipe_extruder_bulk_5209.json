@@ -10,32 +10,42 @@
         }
       ],
       "hashes": [
-        "53052f5737daed6469d0fc752a49931f2cf516b4f27b3c30f54002ee8f5c5c40",
-        "f5bb3574a4927f022bc394de10fbbd68f398820dfce1a0e9c2ff529797d44ccd"
+        "990c2ecb8e4b2782cce559852b1ec90c4e706c1b910193aa2ed7771d2fc0c2fb",
+        "87f554984aa56530c3e3aa7e6959bfe80bff69aa6a57bbcece18d45f0609bca5",
+        "65aabf56d7836cb189157d412f9e7b333200ba58404e107661e7b3a2ed0c43a6",
+        "3c1ce16267f03a88b6a2f188b4199781b6d925fbc4ae27541f7a10c4ce0613f4"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vyroxeres"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:conductive_iron/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vyroxeres"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:conductive_iron/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:conductive_iron/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:conductive_iron/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
@@ -43,16 +53,19 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vyroxeres"
+              "cruciblecraft:prefix_material": "conductive_iron"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "conductive_iron"
+            },
             "count": 1,
-            "id": "cruciblecraft:vyroxeres/rod"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -62,22 +75,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/35d9c665b5bc04e5",
+        "cruciblecraft:gt6/9183cf3166d3f504",
         0,
-        1
+        0
       ],
       [
         1,
         1,
         0,
-        "cruciblecraft:gt6/c96ad5d3eb00cdea",
+        "cruciblecraft:gt6/433caf942e39a9f4",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/ac74201b18f39ba3",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/a7ec85d743e4f4e6",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 143,
+      "duration": 351,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        24,
         0
       ],
       "output_chances": [

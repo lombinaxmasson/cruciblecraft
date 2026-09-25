@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 139,
+      "duration": 2236,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "tritanium"
-          },
-          "items": "cruciblecraft:dust_div72",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:abyssalnite/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_ring"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:tritanium/ring"
+          "components": {
+            "cruciblecraft:prefix_material": "abyssalnite"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "abyssalnite"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "8b1b65dbce0c8443e7566911fdb1b8d7f591c2301d343cfaae1f7afd64954e63"
+          "68a9283f0069c35cb9967129b148379f07375884e869de42fbb1fbb44a8e497c"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9614",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/f79a73a6e2b8f15b"
+      "stable_id": "cruciblecraft:gt6/7eef8f8b49eda2e1"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

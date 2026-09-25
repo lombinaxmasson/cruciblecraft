@@ -10,49 +10,70 @@
         }
       ],
       "hashes": [
-        "98f0b2f1ed821f5fe25cd3338a721d17b918549453f03adb235755ba97c4bf49",
-        "3402dd5ffe13924a085684ce85df4ca67e75da7e25109738d609fae2962b3466",
-        "a380de3ecdb4212ff18312ad777ca798b8e1d2c6e06a603e72244d361bbcb388"
+        "2ce24ef1b33d5eb1bae9f31404a6e6bb9fe3dde5717010643951469d9f66f423",
+        "a8b00f2405738d063979fc40a43b62a2ebad918a172b6711694c1349d6200b90",
+        "414cf504a6b0c13fd47ce267d02d9cf2f27fe64b87d288d5205b00ec6131f969",
+        "f9b5df328a418dce6dfec6dc5b2881a131a943dfd2a8bdaf68763be0056dd150",
+        "4dd89894d088807339807dd61d13e5712e81fe69f2d4b850ae5d01445c3f5aa2"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinitanium"
+              "cruciblecraft:prefix_material": "sterling_silver"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sterling_silver/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sterling_silver/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinitanium"
+              "cruciblecraft:prefix_material": "sterling_silver"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:trinitanium/gear"
+            "item": "cruciblecraft:sterling_silver/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
             "count": 1,
-            "id": "cruciblecraft:trinitanium/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -62,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ada474ba3d6e9862",
+        "cruciblecraft:gt6/5e4cb96d29f670cc",
         0,
         0
       ],
@@ -70,7 +91,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/7c7eca83c31fa4ad",
+        "cruciblecraft:gt6/7216c86a9d6844c2",
         1,
         1
       ],
@@ -78,14 +99,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/ee85f7e6882c0f51",
+        "cruciblecraft:gt6/84c45fab00dfc070",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6e187d635d1f99c4",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/b7f34783f5062068",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 873,
+      "duration": 228,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        6,
         0
       ],
       "output_chances": [

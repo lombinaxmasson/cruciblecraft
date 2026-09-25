@@ -10,125 +10,84 @@
         }
       ],
       "hashes": [
-        "adf29e12b7502beed34bf5c139a17d05a7c7e4245dd456fad410e66f303d592a",
-        "4f9db754ce7fa9814b649e63c9a9c849c4c2a63511dc53ee959798904325d546",
-        "6a8d6fecf792e28f0804ec5a41d9de2abd64640596c38b39fd8a5e989ad98a20",
-        "8c80f00611d42949da335ad5754f0274b91ed7bfa9648218bf61e80e46799cab",
-        "1b94dd4f093bab236d64f800cdcbb94a973d0ac7ebf236725e7e8c4ec17962b2",
-        "cfeb54d00ce6c2b72a3cef89c08107cb97ee802f0ffafb8f47e02ed58be17963",
-        "65c24987710096661332aaa76259434a93737af82d7df6da50b7f2f76ecfcd11",
-        "9a2a49ebe0be1b54680d7094b46350d9fc6d4c7299a2ccc85230e4901de5ab6b",
-        "b3ccc2d61e7a5fa6af14f4bab0a2fbcbfbd09bca475feb3c5fcce90a8a4780a8",
-        "c596a301553926f7969caddf804e0c4f450fa22befc21377c12baff7fd56cb63",
-        "06115e11135af02e81637274d7dae213e043a1e54faa996fffbe92ea984e356c"
+        "c098cb3ceb4c9deb3e4da2187036b910f8f7debf3b95eb28c1168542118a6406",
+        "777edca3f9b81eab29d0472d0d46f305e72aeb157486dadede333cb38b80cd2a",
+        "6ee58506885e61982485ef474aeaeb0045e11562a94503da7bf0e840c573be34",
+        "e649a9a656e6744fce58f63e3eefa17d8acced7ebb941131b407eec7f6806ba1",
+        "3c4623756102ae8af127bfa1fa3c30a4f12ee567480a3fd59f4f4cb7b9fa2d9c",
+        "af31ac9c0041f513600afec1b94672e7c0661a08b5fda21ab1a9d14490f865a3"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:coralium/dust"
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:coralium/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "coralium"
+              "cruciblecraft:prefix_material": "hsse"
             },
-            "items": "cruciblecraft:plate_gem",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:coralium/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "coralium"
+              "cruciblecraft:prefix_material": "hsse"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "coralium"
+              "cruciblecraft:prefix_material": "hsse"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "coralium"
+              "cruciblecraft:prefix_material": "hsse"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:coralium/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:coralium/gem"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:coralium/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "coralium"
+              "cruciblecraft:prefix_material": "hsse"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ]
       ],
@@ -136,7 +95,43 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:coralium/gear"
+            "id": "cruciblecraft:hsse/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hsse/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hsse/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hsse/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
           }
         ]
       ]
@@ -146,94 +141,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/42957d0d0355dcfc",
+        "cruciblecraft:gt6/2798f97347ba7528",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/bcd7e040d366df53",
+        "cruciblecraft:gt6/ca17addfab278ec7",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/b84490be6d8de6a2",
+        "cruciblecraft:gt6/e523b5a603d8478b",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/cb57e0b3d57d49cc",
+        "cruciblecraft:gt6/197617cbb40734a0",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/dc3911e1d3088055",
+        "cruciblecraft:gt6/45d5616fd9722fd6",
         4,
         4
       ],
       [
         5,
+        5,
         0,
-        0,
-        "cruciblecraft:gt6/5eddd238b63ee7b2",
+        "cruciblecraft:gt6/daf42297086ee055",
         5,
         5
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/8af79644da660a50",
-        6,
-        6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/acd259b4095e3911",
-        7,
-        7
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/19a1540e49b517c4",
-        8,
-        8
-      ],
-      [
-        9,
-        0,
-        0,
-        "cruciblecraft:gt6/4b791f1f3e701b2d",
-        9,
-        9
-      ],
-      [
-        10,
-        0,
-        0,
-        "cruciblecraft:gt6/8e22074e0382a468",
-        10,
-        10
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2108,
+      "duration": 399,
       "eut": 96,
       "item_input_actions": [
         {
@@ -244,7 +199,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        2,
         0
       ],
       "output_chances": [

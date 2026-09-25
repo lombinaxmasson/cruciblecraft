@@ -10,41 +10,59 @@
         }
       ],
       "hashes": [
-        "211dc5af942d6c461ec5d7d36ca3a1d4509e8c7e35569ca8223dbb7eed6cf66d",
-        "2dc966f8d330107593cb3f266705144a04fc40120d2ecbbb27e7b66ac30bacf9",
-        "ec20dcb7e31cbecbcf15b3380883cd41459a374300669a040c23930238891bc6"
+        "c592eae2fcf6acb3f4c5b2d9cba17d79724f8c64332f4cdeb6e7714a7dc2736e",
+        "9b2e1ff2a8f322d8a5bb703ec4e69b637ddf2144fdd5bc92475a13d8ed01fdff",
+        "bdd32d76dc911bab2dea218ee0836d07bb64b69f008af48e53a4082f11c3424a",
+        "ebb4623e59162d0be693b98f2f0baa7b95ce842260fd69ebd475895b0e087bde",
+        "435c5ed0d4b7d1440f658972891004127ee3b60976c9148138d0f68684d75e2a"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "prometheum"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:sanguinite/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "prometheum"
+              "cruciblecraft:prefix_material": "sanguinite"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:prometheum/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sanguinite/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sanguinite/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -52,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:prometheum/block"
+            "id": "cruciblecraft:sanguinite/gear"
           }
         ]
       ]
@@ -62,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/87051f329ff4f6fd",
+        "cruciblecraft:gt6/9f077ad2cd52dff4",
         0,
         0
       ],
@@ -70,7 +88,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/6c53053a7498af30",
+        "cruciblecraft:gt6/0760d8d99a3d9033",
         1,
         1
       ],
@@ -78,14 +96,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/4e84fc515e0a55a7",
+        "cruciblecraft:gt6/b81487f0e7d61be2",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/3c307e6a3c1f8b7d",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/d71774480f2b0bc3",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 590,
+      "duration": 2349,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

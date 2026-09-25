@@ -8393,39 +8393,11 @@ public final class CrucibleCraftGameTests {
                         && onlineGate.allPass(),
                 "Recipe publication performance budget drifted: "
                         + metrics + ", " + lookup + ", " + onlineGate);
-        RecipeMap.RecipeFamily extruderFamily = ModRecipeMaps.EXTRUDER
-                .family(ExtruderRecipeFamilyProvider.FAMILY_ID)
-                .orElseThrow();
         helper.assertTrue(
-                extruderFamily.epoch() == ModRecipeMaps.EXTRUDER.runtimeEpoch()
-                        && extruderFamily.logicalRecipeCount() == 2_691
-                        && extruderFamily.eagerRecipeCount() == 539
-                        && extruderFamily.lazyRecipeCount() == 2_152
-                        && extruderFamily.cacheCeiling() == 512,
-                "Extruder family snapshot shape drifted");
-        for (int index = 0; index < extruderFamily.logicalRecipeCount(); index++) {
-            RecipeMap.Entry entry = extruderFamily.enumerationEntry(index);
-            GTRecipe recipe = entry.recipe();
-            helper.assertTrue(
-                    recipe.itemInputs().size() == 2
-                            && recipe.itemInputCounts().equals(List.of(
-                                    recipe.itemInputCounts().getFirst(), 0))
-                            && recipe.itemInputCounts().getFirst() > 0,
-                    "Extruder recipe is not material + exact presence-only shape: "
-                            + entry.id());
-            helper.assertTrue(
-                    java.util.Arrays.stream(recipe.itemInputs().get(1).getItems())
-                            .allMatch(ExtruderShapeCatalog::isShape),
-                    "Extruder recipe retains a no-shape bypass: " + entry.id());
-            GTRecipeQuery query = queryFor(recipe);
-            helper.assertTrue(
-                    recipe.matches(query),
-                    "Extruder material-rule row does not match its own input: "
-                            + entry.id());
-        }
-        helper.assertTrue(
-                extruderFamily.cacheSize() <= extruderFamily.cacheCeiling(),
-                "Extruder long-tail cache exceeded its epoch ceiling");
+                ModRecipeMaps.EXTRUDER.family(ExtruderRecipeFamilyProvider.FAMILY_ID)
+                        .map(family -> family.logicalRecipeCount() == 0)
+                        .orElse(true),
+                "Retired extruder material_rule family still publishes rows");
         Map<String, Integer> toolCounts = Map.ofEntries(
                 Map.entry("pickaxe", 330),
                 Map.entry("shovel", 412),
@@ -9721,12 +9693,13 @@ public final class CrucibleCraftGameTests {
                 "lathe/ingot_to_rods/",
                 MaterialPrefixes.ROD,
                 GTRecipeQuery.items(ingot));
-        RecipeMap.Match extruderRecipe = requireComponentRecipeByPath(
+        RecipeMap.Match extruderRecipe = requireComponentRecipe(
                 helper,
                 ModRecipeMaps.EXTRUDER,
                 materialId,
-                "extruder/long_rod/" + materialId + "/",
-                MaterialPrefixes.LONG_ROD);
+                "gt6/",
+                MaterialPrefixes.LONG_ROD,
+                GTRecipeQuery.items(ingot, shape));
         RecipeMap.Match wireRecipe = requireComponentRecipe(
                 helper,
                 ModRecipeMaps.WIREMILL,

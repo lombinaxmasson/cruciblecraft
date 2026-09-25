@@ -10,32 +10,46 @@
         }
       ],
       "hashes": [
-        "b21d06fa56ce763e1401c0193fd92cfee0194db54c1b16710d10de9629c6d669",
-        "348c2a07b9e2506ef31c3f5051fadb5203b7edae8d552e21c4c5b588cc08f55d"
+        "3dc3643ba3b6cb5fc5428fa989e6fe62ce166421bbac128c75bb9fe627aae074",
+        "ac216af4ebec8b136cad1448ba4e056f8ad952ce311a22a0c7fda7ec2d007066",
+        "248e67de8b909d572aaecd42ca85935ae19984ab4cf4509b26c7b5d2ed720dc8",
+        "b91a55a7e86fc8624be3a53603d1ae844be4923f6369fb734900968c7d1420eb"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "thorium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherite/tiny_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherite/wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thorium"
+              "cruciblecraft:prefix_material": "netherite"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,16 +57,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thorium/rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "thorium"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:netherite/gear"
           }
         ]
       ]
@@ -62,22 +67,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/98bb2d459de0513a",
+        "cruciblecraft:gt6/72ea2ffed6178e85",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/0cb6820b82628436",
+        0,
+        "cruciblecraft:gt6/72d57bdb0b880170",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/a1b77e61197f087a",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/fa911f2ae25de8f3",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 165,
+      "duration": 9781,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +109,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        8,
         0
       ],
       "output_chances": [

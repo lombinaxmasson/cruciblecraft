@@ -10,67 +10,52 @@
         }
       ],
       "hashes": [
-        "9ae07615ef6906caf22657eb96452f054c776aca063ebd250e7b8b09cacafe59",
-        "a9f69397019e1cb768f684d025cd7a9daf9ce3324fa9a0d13339aa1f25fa5cb8",
-        "29850f29ea05f109cc7a2b73b594a921b0cd03336ceeb833c3e3b23a53effd66",
-        "25c64f32084786fa46690dea27e0417436cf7fd70cc203007a1685b8e4366984",
-        "afbf4051a54e3c26666dc2c115ab22e33beff3b6a2e71e80de8d507bec5e5576"
+        "1de4e2305556c4a84561032bf45ee073d643d44a8d9b878761c72536fffe96f3",
+        "e224eaf48df942c8c9009d71a18cc9ad68fdd544ab62eb65c2eaf23b9bcb9609"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:prometheum/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "prometheum"
+              "cruciblecraft:prefix_material": "netherized_diamond"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:prometheum/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:prometheum/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "prometheum"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
             "count": 1,
-            "id": "cruciblecraft:prometheum/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -80,46 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/67b81f942a87825d",
+        "cruciblecraft:gt6/aabaac01b5e48216",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/fae3fe14c845ab51",
+        "cruciblecraft:gt6/01b63e347de7e61e",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/f7544560d3a9c372",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/4c003b1f7c633747",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/49e62125e5cca6f0",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 197,
+      "duration": 2393,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        5,
         0
       ],
       "output_chances": [

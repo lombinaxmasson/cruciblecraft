@@ -13,8 +13,8 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 轴 | 分母 | 当前状态分布 |
 | --- | --- | --- |
 | 配方图 | 95 maps / 720841 源行 | `denominator_only` 17，`runtime_only` 4，`bounded_subset` 52，`full_replay` 6，`empty_source` 14，`legacy_exclusion_pending` 2 |
-| **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 35.4%**（249888）；身份就绪 83.5%；按机器平均 27.8%（73 台，完成 7，未开始 33） |
-| 配方源行逐行分类 | 720841 源行 | 已证明 249888（34.7%）；部分一致 9469（1.3%）；缺配方 330730（45.9%）；缺身份 107536（14.9%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
+| **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 60.1%**（424923）；身份就绪 83.5%；按机器平均 28.5%（73 台，完成 7，未开始 33） |
+| 配方源行逐行分类 | 720841 源行 | 已证明 424923（58.9%）；部分一致 9469（1.3%）；缺配方 155695（21.6%）；缺身份 107536（14.9%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
 | 机器 kind | 96 canonical kinds | `denominator_only` 16，`identity_only` 1，`runtime_code_uncarded` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 43，`runtime_accepted` 21，`full_replay` 4 |
 | 多方块控制器 | 30 canonical kinds | `identity_only` 2，`runtime_code_uncarded` 2，`runtime_paused` 6，`runtime_accepted` 20 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
@@ -23,26 +23,26 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 1652 demand pairs | openable 96，gated_unresolved 1207，ungated 规模 3298（规模，非待办） |
-| Capability | 115 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 98，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 3，`partial` 23，`unreviewed` 22，`unset` 64 |
+| Capability | 116 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 99，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 3，`partial` 23，`unreviewed` 23，`unset` 64 |
 | Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
 配方源行逐行分类（每一条 GT6 源行只落一类，合计等于分母；口径见工作流文档第 3.3 节）：
 
-- **已证明** 249888（34.7%）：`source_exact` 246390，`translated_exact` 3498
+- **已证明** 424923（58.9%）：`source_exact` 418086，`translated_exact` 6837
 - **部分一致** 9469（1.3%）：`translated_io_only` 1778，`translated_item_io` 7691
-- **缺配方** 330730（45.9%）：`translatable_missing` 330730
+- **缺配方** 155695（21.6%）：`translatable_missing` 155695
 - **缺身份** 107536（14.9%）：`missing_material_form` 79103，`missing_material` 0，`missing_fluid` 7935，`missing_object` 20498
 - **展示用** 13576（1.9%）：`display_only` 13576
 - **旧排除待决策** 9642（1.3%）：`legacy_exclusion_pending` 9642
 
-翻译链校准：在 246183 对 hash 已证明的“CC 行 ↔ GT6 源行”上，翻译后完全一致 245633（99.8%），不一致 524，不可翻译 26。不一致的是真实移植差异（例如缺电路编号、有意替换），样例见 `semantic_coverage.json`。
+翻译链校准：在 417879 对 hash 已证明的“CC 行 ↔ GT6 源行”上，翻译后完全一致 417329（99.9%），不一致 524，不可翻译 26。不一致的是真实移植差异（例如缺电路编号、有意替换），样例见 `semantic_coverage.json`。
 
 按交付深度的源行数：
 
 - `denominator_only`：37386 源行，已追溯 0
 - `runtime_only`：29648 源行，已追溯 0
-- `bounded_subset`：635812 源行，已追溯 238037
+- `bounded_subset`：635812 源行，已追溯 409731
 - `full_replay`：8353 源行，已追溯 8353
 - `empty_source`：0 源行，已追溯 0
 - `legacy_exclusion_pending`：9642 源行，已追溯 0
@@ -57,7 +57,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - **CC 未追溯行**：落在本图对应 CC 图上、但没有行级 GT6 evidence 的配方行（datagen 手写、`gt6_java_source`、bootstrap、design policy 等），只证明有内容，不算源行。
 - **材料规则**：`material_rule` 文件数 → `component_rule_manifest.json` 记录的离线展开数；没有展开数的规则由运行时按材料展开。
 
-扫描范围：12 个运行时资源根（含 `src/generated/resources`），按 `source-sets.gradle` 排除 5 个 pattern；CC 配方行 248869，材料规则文件 115。源行归属钉在 `tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json`（覆盖 0，未能在 dump 中找到 0，多图歧义 0）。
+扫描范围：12 个运行时资源根（含 `src/generated/resources`），按 `source-sets.gradle` 排除 5 个 pattern；CC 配方行 420563，材料规则文件 98。源行归属钉在 `tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json`（覆盖 0，未能在 dump 中找到 0，多图歧义 0）。
 
 | GT6 map | 源行 | 历史源分母分类 | 当前交付深度 | 逐行已证明 | reference 追溯 | CC 承载图（CC 行） | CC 未追溯行 | 材料规则 | overflow | capability | blocker |
 | --- | ---: | --- | --- | ---: | ---: | --- | ---: | ---: | ---: | --- | --- |
@@ -100,7 +100,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.distillery` | 1517 | in_scope | `bounded_subset` | 6（0.4%） | 0 | distillery 7 | 0 | — | 0 | — | — |
 | `gt.recipe.drying` | 217 | in_scope | `bounded_subset` | 198（91.2%） | 0 | drying 198 | 0 | — | 0 | — | — |
 | `gt.recipe.electrolyzer` | 290 | in_scope | `bounded_subset` | 178（61.4%） | 0 | electrolyzer 178 | 0 | — | 0 | machines/large-electrolyzer | architecture/combinatorial-leftover |
-| `gt.recipe.extruder` | 325595 | in_scope | `bounded_subset` | 127449（39.1%） | 0 | extruder 127449 | 2 | 25 条 → 2782 | 0 | — | — |
+| `gt.recipe.extruder` | 325595 | in_scope | `bounded_subset` | 299143（91.9%） | 0 | extruder 299143 | 2 | 8 条 | 0 | — | — |
 | `gt.recipe.fermenter` | 6435 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 1 | — | 0 | machines/large-fermenter | worldgen/food |
 | `gt.recipe.freezer` | 957 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 4 | — | 0 | — | — |
 | `gt.recipe.fuels.burn` | 49 | in_scope | `bounded_subset` | 23（46.9%） | 0 | fuels_gas 23 | 0 | — | 0 | — | — |
@@ -185,7 +185,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 | GT6 map | 源行 | 目标 | 进度 | 就绪 | `source_exact` | `translated_exact` | `translated_io_only` | `translated_item_io` | `translatable_missing` | `missing_material_form` | `missing_material` | `missing_fluid` | `missing_object` | `display_only` | `legacy_exclusion_pending` |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `gt.recipe.extruder` | 325595 | 325519 | 39.9% | 93.7% | 127449 | 2459 | 0 | 0 | 175054 | 11096 | 0 | 0 | 9537 | 0 | 0 |
+| `gt.recipe.extruder` | 325595 | 325519 | 93.7% | 93.7% | 299145 | 5798 | 0 | 0 | 19 | 11096 | 0 | 0 | 9537 | 0 | 0 |
 | `gt.recipe.mixer` | 64245 | 64238 | 11.2% | 99.0% | 7198 | 30 | 0 | 4556 | 51804 | 0 | 0 | 570 | 87 | 0 | 0 |
 | `gt.recipe.bath` | 59855 | 59791 | 82.7% | 91.8% | 49407 | 9 | 0 | 2981 | 2505 | 3568 | 0 | 1382 | 1 | 2 | 0 |
 | `gt.recipe.shredder` | 41246 | 41245 | 71.6% | 86.2% | 29180 | 363 | 0 | 0 | 6025 | 5359 | 0 | 0 | 319 | 0 | 0 |
@@ -572,7 +572,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - `skipped`：0
 - `ungated_generated_flag_pairs`：3298
 
-## 12. Capability（115）
+## 12. Capability（116）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -680,6 +680,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `machines/slicer` | runtime_ready | accepted | — |
 | `recipe/gt6-bulk-capacity` | runtime_ready | accepted | not_applicable |
 | `recipe/gt6-extruder-bulk` | runtime_ready | accepted | unreviewed |
+| `recipe/gt6-extruder-remainder` | runtime_ready | accepted | unreviewed |
 | `registry/catalog-modern-ids` | runtime_ready | accepted | — |
 | `registry/hybrid-material-identity` | runtime_ready | accepted | not_applicable |
 | `registry/prefix-material-component` | runtime_ready | accepted | not_applicable |
@@ -829,7 +830,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 | GT6 map | 缺配方行 | 部分一致 | 已证明 | 交付深度 | 提示 |
 | --- | ---: | ---: | ---: | --- | --- |
-| `gt.recipe.extruder` | 175054 | 0 | 129908 | `bounded_subset` | 补材料规则模板 |
 | `gt.recipe.mixer` | 51804 | 4556 | 7228 | `bounded_subset` | 扩展已有 wave |
 | `gt.recipe.cutter` | 25206 | 0 | 0 | `bounded_subset` | 补材料规则模板 |
 | `gt.recipe.boxinator` | 11439 | 0 | 0 | `runtime_only` | 新开 dump wave |
@@ -849,6 +849,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.centrifuge` | 1000 | 7 | 252 | `bounded_subset` | 扩展已有 wave |
 | `gt.recipe.fermenter` | 919 | 44 | 2 | `bounded_subset` | 新开 dump wave |
 | `gt.recipe.freezer` | 901 | 6 | 2 | `bounded_subset` | 新开 dump wave |
+| `gt.recipe.distillery` | 888 | 0 | 6 | `bounded_subset` | 扩展已有 wave |
 
 ### 17.3 排除候选（待决策，不会自动生效）
 

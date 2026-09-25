@@ -10,46 +10,70 @@
         }
       ],
       "hashes": [
-        "e5932bc3e7822a0df0ab24956821a779b9efbd58e7dcc54a73a8d5cd0e26879b",
-        "1019de7bf0be8161d13552b97c348c0ca3f36b8c7ac7b74fbb3e37309bbcc0d1"
+        "fbb50f05d0479b784e7d96a317824489ecc793e5d022715b7d2588b1308d3720",
+        "a062e368d4f92c92915b7d234c8ecd609107f4daeece400c32d191cb9e5e4b69",
+        "7213bfb37d95cc87e531900f6eab10d7746f096d429b2ef94432496da7063561",
+        "310e4bd522229a82e7542645edb931e01acc35f0ab5535c7f2dc48a3432e5748"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "cosmic_neutronium"
+              "cruciblecraft:prefix_material": "trinium"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:trinium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "infinity"
+              "cruciblecraft:prefix_material": "trinium"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "trinium"
+            },
             "count": 1,
-            "id": "cruciblecraft:cosmic_neutronium/ring"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "trinium"
+            },
             "count": 1,
-            "id": "cruciblecraft:infinity/ring"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -59,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/91c5b5dbc4a56ea6",
+        "cruciblecraft:gt6/baa9198752279bcd",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/10c9ccbfee121dc8",
+        0,
+        "cruciblecraft:gt6/119da04d44c536c0",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/d6626846f4bfb86a",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/b1066ccf3e18a0b5",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 385,
+      "duration": 117,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        6,
         0
       ],
       "output_chances": [

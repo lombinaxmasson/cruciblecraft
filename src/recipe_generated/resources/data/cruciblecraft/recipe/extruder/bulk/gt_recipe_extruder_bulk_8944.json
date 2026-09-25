@@ -10,49 +10,49 @@
         }
       ],
       "hashes": [
-        "eadebfde00d82578f0745038b1d6f6101bd11f21c0bfbc4fc2d2a9888e6c13e3",
-        "f10b7a67022a72838bf8d5b5e0d49bfcd62659491bc03ef7f64b943c00e4d14c"
+        "fbce63a6a25c33bfa2f2bb91225bce4c7590792e03aac3218dbfe03f2fc7190b",
+        "d24a05b97ee01762b342fa7d94de7d217fc9231a3d000631094231edc368ae4f",
+        "b1cfdffff30f5f1b09781cd35831b2cd5d31641d5b2890d2a7d05564ae73428d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinaquadalloy"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinaquadalloy"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "trinaquadalloy"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:trinaquadalloy/rod"
+            "id": "cruciblecraft:osmiridium/huge_item_pipe"
           }
         ]
       ]
@@ -62,22 +62,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/23a4165b2cc28182",
+        "cruciblecraft:gt6/b99378c732c2ea50",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/a3216cf2135cc8ba",
+        0,
+        "cruciblecraft:gt6/c885995688a9cb81",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/6aab3bd1052c45af",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 97,
+      "duration": 11372,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        6,
         0
       ],
       "output_chances": [

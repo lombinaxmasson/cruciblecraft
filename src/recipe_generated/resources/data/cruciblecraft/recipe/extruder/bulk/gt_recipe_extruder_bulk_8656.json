@@ -10,32 +10,59 @@
         }
       ],
       "hashes": [
-        "100b86e1dea6327fcb62a70e649d1a409f05cf243e9667d682c04c012078c190",
-        "f40d8aeed76eb5a58e54d8f168b5a04e0f131e02e515b1b1ed2b2c45b32371fc"
+        "3826dea48412eaff5b3e92ee87477e974d3dc40d44a541636e7ed8326016ab1b",
+        "8bee015f8abe8daf53c6fb58e8f72b7c2f3ef5d9a29f81a262c3a80fb0d41fa5",
+        "500f4b2f7182c983c5d78b0fb4adcf14b11ee8165d7fe4125178915f041c85cf",
+        "13e5a092cab2c832ded1841920b5eed44562356ab50b54c3765e80d313d5e59d",
+        "dc0b2122ed295f65c6c4c79e6070e57fedbe1252cbd68108b59caf3a217d5afd"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "rutherfordium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:conductive_iron/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rutherfordium"
+              "cruciblecraft:prefix_material": "conductive_iron"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:conductive_iron/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "conductive_iron"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:conductive_iron/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:rutherfordium/block"
+            "id": "cruciblecraft:conductive_iron/gear"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e6bb6d37c7bb787d",
+        "cruciblecraft:gt6/417db7dcdb715020",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/0ff138e9bea58734",
+        "cruciblecraft:gt6/fd9cb653cc12e1b7",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/7c78c8fbec87a677",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/0ac4c53a0c36ff29",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ba0afd1f78d18a2b",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 6790,
+      "duration": 468,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

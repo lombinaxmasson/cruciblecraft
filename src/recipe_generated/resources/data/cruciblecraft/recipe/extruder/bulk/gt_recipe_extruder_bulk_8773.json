@@ -10,72 +10,71 @@
         }
       ],
       "hashes": [
-        "eef5c1655a218d8cc1f5ae90208814b3cd5e4f3dbcb4b13ba149f586606ecaac",
-        "113b2a97a8654ba00f3b1d53735261eafa3be790213a9cb5f8db7e96e7cee517",
-        "cd183e3a162760c58171a9bff7d3f6a6ba8a6d37c2d6b9c14b6168d0589b60ff",
-        "f7d30937c6d7eeac782d0af973c8cf943f7c02f945fa3d1871c82da5424b9e9d"
+        "dbef924cd4cc7ed0c6c4c6db45af703c141298d8143acf86b373d95bcbe54868",
+        "cf1e90e5b3b767b88bde9a4b4597cbbe6deab8fc00754e8ac79b54defd7063f9",
+        "d5c63ca02856a99bbfecf1ed9345333ccec9dc9221c8bc656185ea1f3a66faed"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibranium_silver"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vibramantium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "obsidian_steel"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vibramantium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibranium_silver"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:vibramantium/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "obsidian_steel"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vibranium_silver/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:obsidian_steel/gear"
+            "count": 64,
+            "id": "cruciblecraft:vibramantium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:vibramantium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:vibramantium/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:vibramantium/ring"
           }
         ]
       ]
@@ -85,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/92b98c8801c7c7b9",
+        "cruciblecraft:gt6/aabd1f593be5ddde",
         0,
         0
       ],
@@ -93,30 +92,22 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/ef755182494dbf1d",
+        "cruciblecraft:gt6/d8a708065d58092f",
         1,
         1
       ],
       [
         2,
-        0,
-        0,
-        "cruciblecraft:gt6/3ca1b7514e26f734",
         2,
-        5
-      ],
-      [
-        3,
-        1,
         0,
-        "cruciblecraft:gt6/c9e1ceca4964cb25",
-        3,
-        7
+        "cruciblecraft:gt6/6ebdda5fc592935e",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 990,
+      "duration": 21018,
       "eut": 96,
       "item_input_actions": [
         {
@@ -127,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8773",

@@ -10,49 +10,52 @@
         }
       ],
       "hashes": [
-        "d0e53962df4491febd0d5342e2ab4f340b0e9bf61e1d01fc86d30531ee067d0f",
-        "6b8b45999044545872f049e08b75d4ebb1ee5d686b6842dfea9a7aa4b110b524"
+        "1a0cbd5779f8779c5f01c0e8bfbdac846d8453164e6b7c69b129a65791961cd7",
+        "067c11a9c6db6f5b2279cc9af4fed5a4a4970d1de786028bc22cf749ece2db4c",
+        "ffae38935ccd7306ab334f115ee6f61ed8b1ac06d30fc5f35eb1e18b183c963f"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
+              "cruciblecraft:prefix_material": "ethaxium"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
+              "cruciblecraft:prefix_material": "ethaxium"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ethaxium/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vibrant_alloy/rod"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
+              "cruciblecraft:prefix_material": "ethaxium"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -62,22 +65,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/aa7feed5cd911c64",
+        "cruciblecraft:gt6/28fbb3f834ed7e5c",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/36bffff93e9dd2f1",
+        0,
+        "cruciblecraft:gt6/5c070ac142ad8d09",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/4612f7831966a48f",
+        2,
         2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 359,
+      "duration": 10026,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +99,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

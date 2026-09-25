@@ -10,41 +10,45 @@
         }
       ],
       "hashes": [
-        "6efde30476c71aac0a567029e636a34f52988a51c33e52027f989eddfb584009",
-        "24e38d396d0218ec12bafb0c5838939f92ffc413dbde80d831be95d1d7c2fc69",
-        "c3aa36e79e3c905616678b23cd93b166b438d2cb39924b894d610f7c6dbcb99a"
+        "f1ba9dcc9ff4df78f96b4d2f624d78276b924022ab05cc1396a1760a63e05f0b",
+        "051ef86a819282bfa4c90f1bd13e6305766c4242c1aeace464d0f8afd5da622e",
+        "a06e53222f7987324d9ead4a8be3b002abec90ae23b4eaa8a0fd7ebebca46038"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rubracium"
+              "cruciblecraft:prefix_material": "workers_alloy"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rubracium"
+              "cruciblecraft:prefix_material": "energetic_alloy"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rubracium/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
@@ -52,7 +56,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:rubracium/block"
+            "id": "cruciblecraft:workers_alloy/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:energetic_alloy/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:manganese/ring"
           }
         ]
       ]
@@ -62,30 +78,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/87da312a6c088338",
+        "cruciblecraft:gt6/f3590437dc50a0e1",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c4fa78d5016e0792",
+        "cruciblecraft:gt6/870f99493bd33952",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/39aef183041af7b5",
+        "cruciblecraft:gt6/d4bc70e4e4da3d9b",
         2,
         2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5540,
+      "duration": 36,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +112,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        18,
         0
       ],
       "output_chances": [

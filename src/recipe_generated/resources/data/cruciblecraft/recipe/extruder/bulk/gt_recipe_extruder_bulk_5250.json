@@ -10,71 +10,83 @@
         }
       ],
       "hashes": [
-        "7aeeb8789c41ef5a7c0463092c797df2744fc666430a66e9f7eaeea0bd4a0521",
-        "025a1167760345891e4639e11453c703fbb83ff0a002a2fb7a0b4116a887e19b",
-        "dbabfb56d8fbc74f81bf78a284cab3ea18e6cfa8e245b465bc40097781bde7f0",
-        "8826febc78d541f7cd615482f8ce105f3798447d12e9881de712be5af29c7ef9"
+        "533c01721552fab57909a89d9bbb592548c352e2f866f5fe53645b74111c2184",
+        "793b35181cf7321007540b71dcd615368e7670719405822f39f450eecdf52cc7",
+        "2f9c958ada65b43f35302efa0dbd55dc61dc3d953fd3266ef0bd15415e678d82",
+        "e574fc374bb87c84cc70e0adeb7b03da4fa7e28c2f9b4578b897cfbc89bdd09a",
+        "b21bdf9ad9fcbd7bb9b9d84dd8df272559c38cd81427928f3eb5fb7f8183ba0e",
+        "5757dd50bb2250aed4c67e06ccbc24f95419ff8557ab1ab578b9ff342a277f09"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ruthenium/bolt"
+            "item": "cruciblecraft:draconium_awakened/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ruthenium/bolt"
+            "item": "cruciblecraft:draconium_awakened/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ruthenium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:ruthenium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium_awakened/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:ruthenium/plate"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "ruthenium"
+              "cruciblecraft:prefix_material": "draconium_awakened"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:ruthenium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:ruthenium/long_rod"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -84,38 +96,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/281b751cf7f6bf6e",
+        "cruciblecraft:gt6/44beabcdad0424ee",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/37ff6f9d62436de5",
+        0,
+        "cruciblecraft:gt6/e795bc8c4df708d0",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/cc9ff53cb99516e2",
+        0,
+        "cruciblecraft:gt6/a5ef95c295b9ec2e",
         2,
         2
       ],
       [
         3,
-        3,
         0,
-        "cruciblecraft:gt6/25d1e8e1a96d4d94",
+        0,
+        "cruciblecraft:gt6/519cd4b0b6bcda98",
         3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/a69b4ad1ff01f12c",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/4036aced0921a1b0",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 442,
+      "duration": 125,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        14,
         0
       ],
       "output_chances": [

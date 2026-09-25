@@ -10,20 +10,61 @@
         }
       ],
       "hashes": [
-        "423b814e1c4a29742c550ea93ef87e42392da118127a289003c083fbc48582b2",
-        "78fe37d1bf847d4073888fa66aa705835123d49e7fcf7c8a7170c886f6132055",
-        "7ce8850373370b49e21db4211ef4006ec9f41b81fbb91a1c1f9f1ecc33bd2d57",
-        "8b9129f94a52ac9031cb74d4110cf49261184f4490f6c5312463d78330e4d716",
-        "bcfdd3ffe7004cd0cb38056f2707c6e07f25244148449cee6e40c659a9934abe",
-        "d2fa2aef49cf8be7915772d67c602fdc86de62b564762b5b0f0317d92ba8d2ea",
-        "e044e6c566a1322e17e73680445b2903b19cbf816e2cac85024c2db848ef7d58",
-        "063a439131c35a8b05616760186ff68edaf58877e89df882ab4b6f2de2057ff5",
-        "8d39d12d7bff4c3f6739ea65496a3ed524a356b4b64519e7efdbf95275b895f8"
+        "0305eba3c7cbbf7d85ef641dab4830c4f64a5321761964426a357d6e78f0c69d",
+        "ac7cb6d26082c485098c8f3ac024abd97ebb0d40661b36b7b8ad05be3d1ecc19",
+        "bc96d6a8d6c359dbb65796978314a80cde50d08c36b369a16d413d3aa1a8d67d",
+        "c5c9e4b12265f54d9dae330076e5522def73e4f4ea9cc82679d5ca10edf235fa",
+        "26f8b4115c9ceaac86889096d520cb1da7d87b622424f142fe08f13daee28061",
+        "ad736eb1d77f5f45ac11742cca368bb719fcee1245ef07f7c77e5d778782f88c"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:conductive_iron/ingot"
+            "components": {
+              "cruciblecraft:prefix_material": "hsss"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsss"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsss"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:angmallen/large_item_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:angmallen/large_item_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -32,89 +73,42 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
+              "cruciblecraft:prefix_material": "hsss"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
-            },
-            "items": "cruciblecraft:spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
-            },
-            "items": "cruciblecraft:chain",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
-            },
-            "items": "cruciblecraft:minecart_wheels",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hsss"
+            },
             "count": 1,
-            "id": "cruciblecraft:conductive_iron/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hsss/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:angmallen/huge_item_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:angmallen/block"
           }
         ]
       ]
@@ -124,7 +118,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/661f8593f3446fbf",
+        "cruciblecraft:gt6/00bf94c21f409959",
         0,
         0
       ],
@@ -132,70 +126,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/df12269d8bdb063c",
+        "cruciblecraft:gt6/d9f3457f89c398d8",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/901f9da0d0fed19e",
+        "cruciblecraft:gt6/f37bbb858f7172e8",
         2,
         2
       ],
       [
         3,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/e18719a9f9355a6a",
+        "cruciblecraft:gt6/ecc1ee8e0107dd51",
         3,
         3
       ],
       [
         4,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/233d37a253559425",
+        "cruciblecraft:gt6/cdcabc47969d86fd",
         4,
         4
       ],
       [
         5,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/345d5dcbcb168441",
+        "cruciblecraft:gt6/a2fdefbae8724649",
         5,
         5
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/f77a858d367e14da",
-        6,
-        6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/6184b78843da6c78",
-        7,
-        7
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/96d6d879e45a1bbc",
-        8,
-        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1053,
+      "duration": 3473,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +176,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        2,
         0
       ],
       "output_chances": [

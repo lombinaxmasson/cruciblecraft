@@ -10,32 +10,103 @@
         }
       ],
       "hashes": [
-        "379004f56114a45bb570426fd343c92c3fc0de9f3d3d19844b3545aba1505080",
-        "42e8dc1d4321790274206c1ab445146d550761aa8d8704bc0b91c4348910ecde"
+        "24682fbd694a25b0a02bcc1dfec6e3d3f6520746113a070bd56972582a7cb4de",
+        "7ff71bdff455b5e9e37b6f51f265c9426f456a1bee07053e4284e5c734f9cc09",
+        "a66c0354dfecb75e1213b6acb9fb70c0f0c4a4ac0cd357bd1f3660491436765e",
+        "40861a87e29f407aa9c2672fb1819662f95f9a69084193b05d88da873f43f02c",
+        "1a16470c90b379fb3c64308e27546dccbd4c1df02282ef8527ab3a4f16bc15ef",
+        "063b01b86287eb5a7d4969f74025ab71640b4f08c70970f58ed9655254e6d1d0",
+        "f7cdb5b683aed7380f6c2ed634cdbfd302bdc5b48c827a0e7aa7ecffcd3dc1bb",
+        "3d0222d12656a06fe22a84c4d3ce243214cb9cabc798be27cc033b9c7a463804",
+        "279b76d7fa18616284753f447277deb148492053558178acb5f88cc5b27913f8"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:black_bronze/plate"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+              "cruciblecraft:prefix_material": "black_bronze"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:chain",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_bronze"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_bronze"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_bronze"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -43,7 +114,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:tantalum_hafnium_carbide/block"
+            "id": "cruciblecraft:black_bronze/gear"
           }
         ]
       ]
@@ -53,7 +124,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/eadf873a3c85f5f7",
+        "cruciblecraft:gt6/ee99787736ebe830",
         0,
         0
       ],
@@ -61,14 +132,70 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/83692362f112e890",
+        "cruciblecraft:gt6/1daed82743f50680",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/6bfe7bf3fc73435e",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/376d5caf4a31e1bc",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/67551b73bd59d75c",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/ccaba3f9767d62ef",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/366138a82a9edfa6",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/3788febc7610420e",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/aafc418f1f9820a9",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5033,
+      "duration": 725,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +206,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        4,
         0
       ],
       "output_chances": [

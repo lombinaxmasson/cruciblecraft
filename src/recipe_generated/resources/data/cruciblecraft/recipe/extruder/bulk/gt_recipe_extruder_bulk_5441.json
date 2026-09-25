@@ -10,55 +10,138 @@
         }
       ],
       "hashes": [
-        "4dc332b14421b12886c15805053e3e13bb046bc1a8d5060b1ad2b9d874419cb9",
-        "8cedb2f3628ff94d9c5415f519c3fc68526c8c0e5e4bc7f41aeedc263b248a43",
-        "130487f73613b0b463da3f11621a7d214f1632e551345aecfd6ca699b32855b6",
-        "ddeb8c62fd3a93ea5ccc810ece5e70293efdc4f6e0ea7e7566fcbc0548d6495d",
-        "c31470596cde4676b21762993f5aaaea3e8c120ef9dd5e37cc53b6c4aa5f9df2"
+        "9304fefec0f1a98fa8738e4ec8739c5cf7e7b83320fb619b596821cb5801bf7d",
+        "5898db917dc76bde34388d23a6da40180ff296dde70ab73e758618f734f7e8ba",
+        "c16e9cd984ab724eb37cc960227d3eea209ee54d44414309c091d31776ee20c2",
+        "dbdfd782e1532f0cf732cb3cc47f609df723e27515557fd980d75500fa237b38",
+        "1a77dd888007551b1e0117b3edaf53236037ae27b1d0607158a12ecf8a104686",
+        "85a7e74db5dd58d7d00882ef96725420237af670658a16fb9b6f29c54cea23e8",
+        "11082b6b3e884801674528a5fe388de82c88d67c41d9212e8ab319afd6442241",
+        "bdd0b6d7a920106784f2f21c3d07e5c8adb4f7efb1940f1d338ae2bd94266704",
+        "c7f05432cc45cdb3f7ec10c0b768881cda6a362e0e754be5067e920208fbbc45",
+        "a03d2a27e9f16ac9080e3458312b267e4e83709c2cdd031aff166f6446da6a45",
+        "28ce4c53260ef43d3ce260f399c41dc2a5943ea654301f782c71d0b68bfdd720",
+        "29ee7a708d68aa518e090ea0ed03898478e1d7eccf0b68712ddeb84307021958"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:praseodymium/long_rod"
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "praseodymium"
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:praseodymium/ingot"
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:praseodymium/dust"
+            "item": "cruciblecraft:infinity/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:praseodymium/plate"
+            "item": "cruciblecraft:cosmic_neutronium/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infinity/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cosmic_neutronium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infinity/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cosmic_neutronium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -66,7 +149,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:praseodymium/block"
+            "id": "cruciblecraft:infinity/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cosmic_neutronium/gear"
           }
         ]
       ]
@@ -76,15 +165,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5c85f9a2e7c01583",
+        "cruciblecraft:gt6/8dd16cae94d0ecd9",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/2d84a046f4bd41a5",
+        "cruciblecraft:gt6/e965546531fe2ce9",
         1,
         1
       ],
@@ -92,7 +181,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/3eff5ac019c72cba",
+        "cruciblecraft:gt6/8bdcf63b33a46517",
         2,
         2
       ],
@@ -100,22 +189,78 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/f41b97361bf64813",
+        "cruciblecraft:gt6/3cd79d46288754d1",
         3,
         3
       ],
       [
         4,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c8327b0221cbbb8f",
+        "cruciblecraft:gt6/39a1042395395ab8",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/6648ce58ffb33ca9",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/c98efc31b52842c0",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/ff581f00f6af3bf2",
+        7,
+        7
+      ],
+      [
+        8,
+        1,
+        0,
+        "cruciblecraft:gt6/b1cbbea20e301ec3",
+        8,
+        8
+      ],
+      [
+        9,
+        1,
+        0,
+        "cruciblecraft:gt6/904c2a2d09dff668",
+        9,
+        9
+      ],
+      [
+        10,
+        0,
+        0,
+        "cruciblecraft:gt6/435007a1ef9163a1",
+        10,
+        10
+      ],
+      [
+        11,
+        1,
+        0,
+        "cruciblecraft:gt6/ffbb9554898dcd61",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 861,
+      "duration": 6155,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +271,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        36,
         0
       ],
       "output_chances": [

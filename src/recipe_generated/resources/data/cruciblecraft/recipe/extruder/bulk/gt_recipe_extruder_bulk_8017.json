@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 48,
+      "duration": 110,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,12 +17,16 @@
         }
       ],
       "item_input_counts": [
-        4,
+        36,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:praseodymium/bolt"
+          "components": {
+            "cruciblecraft:prefix_material": "thulium"
+          },
+          "items": "cruciblecraft:dust_div72",
+          "type": "neoforge:components"
         },
         {
           "item": "cruciblecraft:extruder_shape_rod"
@@ -31,7 +35,7 @@
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:praseodymium/rod"
+          "id": "cruciblecraft:thulium/rod"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "f5fcc4e774ee117bbea11f8e939df710e2db2962238be95ecfec5eb69fc8b2dc"
+          "1e72c2565819e7d0d77b5bc06f95bc5c0061f97c2ed7e3edf64624ca6be65c26"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_8017",
         "source_kind": "SOURCE_DERIVED"
       },
-      "shadow_order": 2,
+      "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/38f6be019f864a20"
+      "stable_id": "cruciblecraft:gt6/521abbaf5728da6b"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

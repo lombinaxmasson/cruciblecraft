@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 375,
+      "duration": 7884,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,12 +17,16 @@
         }
       ],
       "item_input_counts": [
-        2,
+        14,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:mauftrium/machine_casing"
+          "components": {
+            "cruciblecraft:prefix_material": "iridium"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
         },
         {
           "item": "cruciblecraft:extruder_shape_block"
@@ -31,7 +35,7 @@
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:mauftrium/block"
+          "id": "cruciblecraft:iridium/block"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "7aeea8a769d96abf66744d8a247ddc83db212c5c5aa5618e55c3cc33dbec8b5d"
+          "1ee5302df56c203218c6fc0bdad3f9e608823619b1884465d3dfa96393b00e4c"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9634",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/0787ed7b02154d06"
+      "stable_id": "cruciblecraft:gt6/ed0a1afbe13b1660"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

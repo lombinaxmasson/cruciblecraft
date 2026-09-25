@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "540847d813cf7952b507a30a64e816ea2aef679b7fccbe96685e64460e6779c4",
-        "d4a5106cbe64049ac954a13d2bcbd4bde3b6a0bb951ad77616ef123fb7923ec9"
+        "ee988ad582f600b3dc6f4044d904148beb118191aaf514e133bed0c836138c5c",
+        "c2116af4250b6465a3c841e885210888547886e2c9fcca5ede86499c3fb9e670",
+        "90329982c1898dd68bd3a7d459a3a207fe8cc60eeeede3fd4ea8c91b44f5f0da",
+        "47d19ac3775b330d8dc0b130094b8d8e0d5747e47e3e478640b2c31912dfcaeb",
+        "623a7167d0e03791093636f8d84834dce457047c4b0941f38e28e2ad48731745"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:titanium_gold/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "titanium_gold"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_gold/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_gold/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_gold"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_gold"
+            },
             "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/60e42ec8a6227382",
+        "cruciblecraft:gt6/dec9d5f04c4ede37",
         0,
         0
       ],
@@ -61,14 +91,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/70312ef00f5f7362",
+        "cruciblecraft:gt6/1439a28ea6325c5a",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/dcf168dea08adc7b",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/c08017620942f00a",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/67f82ed2f949895e",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 35068,
+      "duration": 286,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        6,
         0
       ],
       "output_chances": [

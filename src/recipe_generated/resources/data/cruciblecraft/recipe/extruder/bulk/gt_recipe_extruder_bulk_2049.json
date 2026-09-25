@@ -10,40 +10,83 @@
         }
       ],
       "hashes": [
-        "137156368bb9a999c88034cdaf449347e6488d7e69c0f0b0a18f229da566c0c0",
-        "909652454228b0c435d1c0f428057ef1f30471793643f2dc3b9c95c6e70395cd"
+        "565da132354422d284ba29899ad3e1ad36e0c5d3fd7c8f059b553cc27b669249",
+        "f1b598d448cde1a23b6a60d2b4dfb7e4a5bccfb7aebe6cbfc364e46dc2864146",
+        "ab4a08786713222691f1b06388843d9b2ca79b64e71177dfef580128087d5d2c",
+        "3ded039479c9f06dbd914a2a7dc17e1ed019058475757e925f342ec513e47e92",
+        "b7cfa2cd168ea81c47586c471cb29c891cf5a93b53abd1f40167cc4a962f6fcf",
+        "dd47ae5ff3066551a67dcd1cc2e540fee64e306530023a8e7350e1b235499614"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "spectre_iron"
+              "cruciblecraft:prefix_material": "obsidian_refined"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "spectre_iron"
+              "cruciblecraft:prefix_material": "obsidian_refined"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:obsidian_refined/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:obsidian_refined/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:obsidian_refined/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "obsidian_refined"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "obsidian"
+            },
             "count": 1,
-            "id": "cruciblecraft:spectre_iron/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,22 +96,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7d32801854a2ac94",
+        "cruciblecraft:gt6/7942542335bc0e89",
         0,
-        5
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/c1ea0e97773ce35a",
+        "cruciblecraft:gt6/6847498561602947",
         1,
-        9
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/f57d0085967f3b65",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/e79570579bd9cbf9",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/7bbcf165d2c0a984",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/9efd41db9e330e30",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2079,
+      "duration": 350,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        54,
         0
       ],
       "output_chances": [

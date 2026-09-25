@@ -10,40 +10,96 @@
         }
       ],
       "hashes": [
-        "3093d5f89825220eb8937b4aedd24b2d69e726f13b0f610186a489427b61f167",
-        "05f160b6d428d16c0c963815b629eca8e1294b6207684e925ba5d0b06eba951d"
+        "b56ea8f86e5ae281fc69cbdf8943d0383c1d7727fd0a7781c6f8d8a76dfc1c46",
+        "92d4e0e317be5152bdcbc24b2b994a25eaccf198f371f1a2a55d9a916f95d346",
+        "3fce70e5633ed606d0831148c2f888267016022d0971b327b7ae4e3dd8bf8d1c",
+        "a9546a7da12a8700515a910aa76478a1b5d3b5af441263dc53866de5f3956f31"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "obsidian_steel"
+              "cruciblecraft:prefix_material": "draconium"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "obsidian_steel"
+              "cruciblecraft:prefix_material": "draconium"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
             "count": 1,
-            "id": "cruciblecraft:obsidian_steel/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,22 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d29e6bd9577e7920",
+        "cruciblecraft:gt6/78406deda7001754",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/45159d7f15e77641",
+        "cruciblecraft:gt6/3cc97947a99a8237",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ef8be5f64203cfeb",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/10d3159124eb0ba1",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1649,
+      "duration": 130,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        3,
         0
       ],
       "output_chances": [

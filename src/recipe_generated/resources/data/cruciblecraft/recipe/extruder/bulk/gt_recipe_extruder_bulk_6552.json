@@ -10,49 +10,96 @@
         }
       ],
       "hashes": [
-        "221e6ebecb2bdf985c43007743b43450e8c166f92cc66c6fcae1789e0edea08f",
-        "4052ed814dd6134da34c3462f9fbedb13f17809b46c14ba9431c71844983a0fc",
-        "82a110a974385fe018ce8d4ee31a5ae1b59ea8c2920470b0a2d2ca6f0ea57bed"
+        "57be510ad1f6cb585cfdb49da9b83556c93626d8e4a918bb40a9d7d37f1fa8b9",
+        "f647785ae5112866cf21787c1f1a1310a6fec1933a1206fa64c01a044301b2ea",
+        "18feceb5028d0564d8fdad77fae1a5b820eb08305373b746291a2d089b18d187",
+        "3847b8f848d924a15ddfb1f310486f1e00990aa20be62930ef5f953548bba719"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:fiery_steel/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vibrant_alloy/gear"
+            "item": "cruciblecraft:fireleaf/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibrant_alloy"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:fiery_steel/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fireleaf/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vibrant_alloy/block"
+            "count": 64,
+            "id": "cruciblecraft:fiery_steel/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:fiery_steel/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:fireleaf/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:fireleaf/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fiery_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fiery_steel"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fireleaf"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fireleaf"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -62,30 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b19544e54da0da44",
+        "cruciblecraft:gt6/ab30561b88ccaa67",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/4a3d50eab33b3a7c",
+        "cruciblecraft:gt6/7ccdf33d63b85ec0",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/716912a9825653ec",
+        "cruciblecraft:gt6/be0ac5f6a896edea",
         2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/92badb666e7ce896",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 8604,
+      "duration": 4493,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,10 +151,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6552",

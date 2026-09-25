@@ -10,36 +10,155 @@
         }
       ],
       "hashes": [
-        "f193d8ec1a9ea33ea26a364a43796f349876429aca7f4e9ce172674308fd1878",
-        "8e105d6050ea56225ee65f1ab0db7e75bda832f7c52f299aac8ea1d40f714743"
+        "90fe093ad99560634ee1c3348a76617a8bf39c3b2957131f09c917e52c0fb35c",
+        "1f6ab012f4fb25bd864f73e416643753ef754434e5831476cc09814a3ca95f8a",
+        "284047bf5e31ebe82bcfa8c68fa68c2f646a5cd816fae9ce3c15338eca74ff9e",
+        "73a8982e310e777bfffd2f5520b4b0667726a430131ae745f8dd7897267eb635",
+        "0fca5c20c8ea467de5f6a64799a6eef77edd278a0c5c3369e8372ad38388895a",
+        "9a2a520c00c1ce338f5044cffa86ddd83b32b6b1e53c7d7fea122cc57ba2aef3",
+        "b3b6444c5155705317f5294c0fa8e45f19d679ae769146e66df70887a3e17580",
+        "235b6eef262249efb7b61e7a6b7b4d5cb13e16029b47e6e87bfef737748b158b",
+        "0e67b14328365b4a50086b2dc3b444704d22c9449a13325a1f48af0a11a4077b",
+        "7ee7e61744dba2c30f85e8d5ddd02eebcaf4411024b9ec20c6d82685e409a751",
+        "958a3a399777f5b1a00a13b1ff8ed13b8784376f49db497166546967da310171"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:chromium_dioxide/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "gold"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold/octuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:midasium/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "chromium_dioxide"
+              "cruciblecraft:prefix_material": "gold"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "midasium"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold/octuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "midasium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "gold"
+            },
             "count": 1,
-            "id": "cruciblecraft:chromium_dioxide/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "midasium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold/large_fluid_pipe"
           }
         ]
       ]
@@ -49,7 +168,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d180dc085b0cf2f3",
+        "cruciblecraft:gt6/7f9fed772e0b2b8d",
         0,
         0
       ],
@@ -57,14 +176,86 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/c85c3cbfa555cbeb",
+        "cruciblecraft:gt6/b46604a45e960a27",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/55255fee8eefb78f",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/59a2f08d6c34a2cf",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/1548b3c1d634b7c5",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/2b12f306bb503d09",
+        5,
+        5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/54a1424138e653ce",
+        6,
+        6
+      ],
+      [
+        7,
+        2,
+        0,
+        "cruciblecraft:gt6/fa6d0d87e8b60636",
+        7,
+        7
+      ],
+      [
+        8,
+        2,
+        0,
+        "cruciblecraft:gt6/56737b023f3d7c71",
+        8,
+        8
+      ],
+      [
+        9,
+        2,
+        0,
+        "cruciblecraft:gt6/346d07cfc65da2b3",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/fa769f2346d98342",
+        10,
+        10
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 355,
+      "duration": 2486,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +266,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        2,
         0
       ],
       "output_chances": [

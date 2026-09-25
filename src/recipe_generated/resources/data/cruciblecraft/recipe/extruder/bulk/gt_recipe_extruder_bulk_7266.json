@@ -10,49 +10,65 @@
         }
       ],
       "hashes": [
-        "7755f4038be1d46cca6a0f32eeb922f28e17462b0b240d20dc6097acd4576e68",
-        "a21de6636da0b4b18c8248ec0c3079e8d80f19e5c4da4afeb0e4b8ff35ea6f34"
+        "cd0df3f43fb3983152d772c7a527801209bbcd3e1e2b5728a16301d6c2241cea",
+        "6bcdb6bd72b3c0b0ed340dd51a2b3a6e4909d0e00dddfd46f25b50020b6f2064",
+        "2016bf29c1fda1b299f0c0e64e85fd43bfb3c6e5bbd7bf5db90f8fbe83ab254b"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "hsss"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "mithril"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "platinum"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "constantan"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:hsss/block"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:constantan/rod"
+            "id": "cruciblecraft:mithril/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:platinum/block"
           }
         ]
       ]
@@ -62,7 +78,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e5a04a9a116326e9",
+        "cruciblecraft:gt6/e63311cc2e5665db",
         0,
         0
       ],
@@ -70,14 +86,22 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/8b011b2b1fc293ec",
+        "cruciblecraft:gt6/63b3220aee4939bc",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/a1feef7a26e6c450",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 87,
+      "duration": 5403,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +112,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        14,
         0
       ],
       "output_chances": [

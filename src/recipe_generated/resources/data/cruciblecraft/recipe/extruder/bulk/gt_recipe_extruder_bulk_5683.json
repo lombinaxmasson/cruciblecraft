@@ -10,24 +10,68 @@
         }
       ],
       "hashes": [
-        "3b8836cd823d006f5e557eacba0a4783fba3d980870591e263c9b2f3536bcc9a",
-        "3b0a3683916e80605b4ae97fb0b627acfd1a3ca5ae5b15ad6834b185bc33848a"
+        "bb50fbbbcc9fd57e01974a5c909e40eb71a215211e0f996e40e7b48b97622f44",
+        "595228c1103a78642a6c06fab32e4d8643e3c6fc3d54116c0ebfda0334da9113",
+        "bf74b1c765cb4f532ec098e7295acaa980992c36d2dcb7895e12737e0283e2a6",
+        "a27833cc3b4b345d01441017a205c1ac5b952d93ed11d0f43d50b8c5d2576cae",
+        "6ebc966bbbd2ee3a8827a6071d2ef59c3047cb6a041c8ffa93c0ef1fc5415d9f",
+        "421892297e1c97010413147939828feddcb5dbf28aff5e00fe32485d26acce8e"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:thaumium/machine_casing"
+            "item": "cruciblecraft:adamantium/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:manasteel/machine_casing"
+            "item": "cruciblecraft:adamantium/tiny_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -35,13 +79,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:thaumium/block"
+            "id": "cruciblecraft:adamantium/large_fluid_pipe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
             "count": 1,
-            "id": "cruciblecraft:manasteel/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -51,22 +98,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6289d7ab607aab0b",
+        "cruciblecraft:gt6/76c6407c5e025819",
         0,
-        1
+        0
       ],
       [
         1,
+        0,
+        0,
+        "cruciblecraft:gt6/428a6f5bd2893522",
+        1,
+        1
+      ],
+      [
+        2,
         1,
         0,
-        "cruciblecraft:gt6/e0425c3477ab8d5d",
-        1,
+        "cruciblecraft:gt6/b91ed96a44d636d0",
+        2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/4e29f43dc4c7cd2d",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/0d32287d6a23387f",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/97c05b08dd805601",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3924,
+      "duration": 6100,
       "eut": 96,
       "item_input_actions": [
         {
@@ -77,7 +156,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        12,
         0
       ],
       "output_chances": [

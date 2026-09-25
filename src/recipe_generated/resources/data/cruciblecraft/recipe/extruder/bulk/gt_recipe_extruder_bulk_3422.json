@@ -10,32 +10,71 @@
         }
       ],
       "hashes": [
-        "ac28490ad8768b965a6b1be36f0041bbc17ce86dd91f32d1367684cf08376364",
-        "f411a8181f64e862bf9581e4adeae7bcb79d0279d9a7e7477d2616c39a0dbfea"
+        "b717676e9a73e5dbc14907207f4cc7fb686aae357cdd2858b3a02ecfb4c150c4",
+        "b6d53d3cc26f9deb0c839536c5d1e6683e956b920727a2a08b650c57ee5d0b89",
+        "3a26db579f9a83fd405f1e2f48ebb8f51a539e547c9f8ff12009357d8fd60b54",
+        "3d283409e20368c7bf068fc3af6b55736245c9a41bc89ea18ca83eb6db066147",
+        "7c7eb7fce0bb581e5e8fc0b44180844ad5a6fb05519c6fd3df97b910c748490a"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "hsse"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
+              "cruciblecraft:prefix_material": "hsse"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
@@ -43,7 +82,37 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:deep_iron/block"
+            "id": "cruciblecraft:hsse/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:hsse/ring"
+          }
+        ],
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:hsse/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -53,22 +122,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7c943d4ed37ef185",
+        "cruciblecraft:gt6/2bf76fbf7087cc64",
         0,
-        12
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/01c97c25bb3d6b97",
         1,
-        19
+        0,
+        "cruciblecraft:gt6/a00350cba800f146",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/93c40570ceb8f457",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/998aa4cf7c616ac2",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/bfae5d15a0d4945e",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1845,
+      "duration": 200,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +172,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [

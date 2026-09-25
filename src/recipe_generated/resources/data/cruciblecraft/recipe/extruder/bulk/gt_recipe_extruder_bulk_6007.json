@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "975bb9e2ab4f9e03852031ed93ebe93852bcdc6346a3fa0291a0935b24d48c52",
-        "2e43074c048c3f6a1e3a679649e30ddd802f88b920fdbc07c6175300b462d909"
+        "e2750093bc74568c31b503538fb6f08946a06b3beb47e960904f84d02a9e13cc",
+        "87fac10dff7f3895d26b93a52b3556cf50ccb292332f6077495d85b8575222e7",
+        "0e7efe1bc267a34fe71692dcd6dad8e028947b1167a209861447e87dac6670c6",
+        "2f32af81ac6f61e2aa6c77b02a9cdd3dc4e6c44f7061095983a2d0342c0ad3bc",
+        "7d34f8d9c48df3de47d99cbedc9ef19b51828c796a04cca232bbe54c3f47df39"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tantalum"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:workers_alloy/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tantalum"
+              "cruciblecraft:prefix_material": "workers_alloy"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
             "count": 1,
-            "id": "cruciblecraft:tantalum/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e58ab889f0b4a1d4",
+        "cruciblecraft:gt6/5d8f9b557e5c4f5f",
         0,
         0
       ],
@@ -61,14 +91,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/3756b974166f5ed0",
+        "cruciblecraft:gt6/354b5b264e86dbb4",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/6c7fea38e24b94cd",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/25383cc122adbf09",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/20435c4dfa646c01",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 7703,
+      "duration": 211,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        6,
         0
       ],
       "output_chances": [

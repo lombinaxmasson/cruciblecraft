@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 307,
+      "duration": 2933,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        6,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "duralumin"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:meteoflame_black_steel/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_gear"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:duralumin/gear"
+          "components": {
+            "cruciblecraft:prefix_material": "meteoflame_black_steel"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "meteoflame_black_steel"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "e78cc169575d5e947ec2e57eea77a61ff099f2eb5738d27750f86edf0e0a67f3"
+          "c5d1bca5fdeea5981b6fd0720402ba6e3e6cdc4964d4137a820732d8e25cab41"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_8932",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/584c8f890bead82d"
+      "stable_id": "cruciblecraft:gt6/57c3d70d871fee43"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

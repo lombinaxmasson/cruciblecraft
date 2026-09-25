@@ -10,58 +10,70 @@
         }
       ],
       "hashes": [
-        "58aa75f2e975ba2f65f4d3056519f3676a762603d64f5217fbc7623072b51a05",
-        "72864dbd2030c3320e542578ba0fb292c204b0a7638b33a55f48279578d1a6ad",
-        "06f30146ee382f1483d401045376b3910070cc0794ec09f7adfa9fea25bc059c"
+        "57abafced16995a33380cc2f5b02ace38a5d257afd6cff69271acec662414dc3",
+        "8fc240ce56743535f348921a3816b6829bc6987a1e01b009f011cb5c3dcb837c",
+        "52965d08f84a33a356719383c10a1f4e76332aaafeb361a6068b48892c3347e0",
+        "ecb8d6d9cb0a18f22414b878bc8d9ae9d77472fddf8a9090d1122b179c3898d2",
+        "2a8479106ffd00770ea1d8e90e47871b93c096f2c7acda5bbffd60c115e15877"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:mauftrium/rod"
+            "item": "cruciblecraft:flamascus_steel/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:flamascus_steel/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "iridium"
+              "cruciblecraft:prefix_material": "flamascus_steel"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "mauftrium"
+              "cruciblecraft:prefix_material": "flamascus_steel"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:flamascus_steel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:mauftrium/gear"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "iridium"
+              "cruciblecraft:prefix_material": "flamascus_steel"
             },
             "count": 1,
-            "id": "cruciblecraft:tiny_plate"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -71,15 +83,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e4290e6ddbecdcf4",
+        "cruciblecraft:gt6/2b64e221dd98bdaa",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/ffc2a5ea9daa47d3",
+        0,
+        "cruciblecraft:gt6/64b2305d7e5bd116",
         1,
         1
       ],
@@ -87,14 +99,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/4cf6d0b5fc751000",
+        "cruciblecraft:gt6/94ef364820937b59",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/09961a5a9bf44398",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/bfb545dfca423e85",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 94,
+      "duration": 525,
       "eut": 96,
       "item_input_actions": [
         {
@@ -105,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        6,
         0
       ],
       "output_chances": [

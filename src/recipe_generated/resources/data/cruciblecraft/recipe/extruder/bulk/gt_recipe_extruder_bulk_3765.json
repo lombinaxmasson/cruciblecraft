@@ -10,67 +10,49 @@
         }
       ],
       "hashes": [
-        "5aeb100536ecc49a8a1513df1dad0545cab6f7a42e82905e2edea1b7e76312e1",
-        "a44887089bc5e8c8b9957d8894a206e6268c587e7e32b2eba7a4bab9e7b0061f",
-        "62298e699a3e3ff80159fae6ab134e4250f7a9c9dd2b43fd7e041471546308dc",
-        "54b925dce89327bd5ccdd02ede4088b6acf752a51d0faac1d97898b4104db9df",
-        "30c258f5f128e2bed0d2124ee5c8e99734b2caec49c58a47f3e3eefb1331584f"
+        "b58bc60e3c7bb461d540fa928d2ebce6ba2f71877537164cb35c36ce2dd08192",
+        "58f2acbc3acb51a0e6e2e134796da158038412ae51666f8fb0200ca7e4650c6a"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "workers_alloy"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "workers_alloy"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
             "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:workers_alloy/large_fluid_pipe"
           }
         ]
       ]
@@ -80,46 +62,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8f494a27e48f308e",
+        "cruciblecraft:gt6/3f0dbfc4f9d33289",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/86c07eafd8bebf4a",
+        "cruciblecraft:gt6/7bc6f7b2f3dae8ed",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/b00de31651710051",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/d47878beee2a5c68",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/a7e10ec15da2a992",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 14027,
+      "duration": 843,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +88,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        9,
         0
       ],
       "output_chances": [

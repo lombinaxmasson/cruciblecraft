@@ -10,102 +10,125 @@
         }
       ],
       "hashes": [
-        "790085d531642f801e228c2dcfcd27bb73193f80212a6f69953f3278fe5d2257",
-        "3ff6b7ae866b9e6dc59b7ef27974f1281501919df2f0263a29bb6366b426780e",
-        "1ddcbe563a2e872df9aa610f7f1f13d08231b4ff277b3348a34054e8ebf2b9da",
-        "eccdf5e96379178f58da343036559cd014992b925083484ec332eaa5ab5ecbf3",
-        "330e58560c53963e212decf1102addf80538d95c163bde9498fdbc7ed0326a91",
-        "172e23b6067a97bd2e6f613e4682c053ebb7202d9deaff760665d74bc9424557",
-        "6aae129fc6c968066593f0585c8c2be4fa2bac2b44ad5636305a78cc96f59b9e",
-        "212791db5f1ce2ba068b885b7cf93b9ffe06da68d9f7a828404c13400485d08f"
+        "4213048cd330d246bdec4cafae49f6fbff2477cd03c4b83037c313cf05f61df7",
+        "d201c05cae4897c9cea0354868cd6a9b69cfe2adb6acc1041512c911380a958c",
+        "49e4c73eceae94aee74e1359829a8e689961b1ec62b12a6cb0b77177afcbe250",
+        "c3abf30158cf2d759442c902584ea39027a0a3bf30e4e289cb1280f2122f2c14",
+        "8a16e67212fb61da9f0700b0108a75eff7518f5a684f9ea9d5e07e62c2390729",
+        "e2a41086150d0d9bd27a0e6452acd4cde2f0b7333cfcfba55d01766586348755",
+        "ab8f7c20fbc25570b2402fbe2abb6ad7ab387d6da447c88ec173bb4ed4ef9c3d",
+        "db3314f5fd5c23b38f4395e67000f68092add7a5d53378a67d911955483efbce",
+        "aac63a548f3a048cd9b02f7c510e0f8fa7279f74aaaf77c1668f4dfeea330400"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:titanium/ingot"
+            "item": "cruciblecraft:stainless_steel/tiny_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:titanium/long_rod"
+            "item": "cruciblecraft:stainless_steel/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium"
-            },
-            "items": "cruciblecraft:chain",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:titanium/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:titanium/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:titanium/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:stainless_steel/fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -115,70 +138,78 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e127bf78fc513839",
+        "cruciblecraft:gt6/0c5766b51d7bc955",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/065171f4cab3cfa6",
         1,
+        0,
+        "cruciblecraft:gt6/5ee08bddfdaa842e",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/968ce99570327c28",
+        2,
         2
       ],
       [
-        2,
+        3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/413a948839756198",
-        2,
+        "cruciblecraft:gt6/c034dba31da08259",
+        3,
         3
       ],
       [
-        3,
+        4,
         0,
         0,
-        "cruciblecraft:gt6/2efa20d0220d85c7",
-        3,
+        "cruciblecraft:gt6/df257cc3bbae2cb9",
+        4,
         4
       ],
       [
-        4,
+        5,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/b0d37394da47fe94",
-        4,
+        "cruciblecraft:gt6/f00c8bbe1d2df59d",
+        5,
         5
       ],
       [
-        5,
+        6,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/d341c595cb253db1",
-        5,
+        "cruciblecraft:gt6/bc0e77f57242447f",
+        6,
         6
       ],
       [
-        6,
+        7,
         0,
         0,
-        "cruciblecraft:gt6/8271455c5fdc561a",
-        6,
+        "cruciblecraft:gt6/501100d18981b7c3",
+        7,
         7
       ],
       [
-        7,
+        8,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/603ce075c4e475d8",
-        7,
-        9
+        "cruciblecraft:gt6/41bd8a099232c583",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1040,
+      "duration": 601,
       "eut": 96,
       "item_input_actions": [
         {
@@ -189,7 +220,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        6,
         0
       ],
       "output_chances": [

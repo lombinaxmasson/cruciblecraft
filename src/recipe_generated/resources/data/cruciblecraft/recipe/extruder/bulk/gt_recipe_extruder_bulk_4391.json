@@ -10,80 +10,41 @@
         }
       ],
       "hashes": [
-        "d6617a163361157219b3c5b1cdd82470655725aea100bfaf650cf479c0136d24",
-        "bc420dd65ed107fcfa47b2ef802483d7667f6bb3e70576715f43403e6ee0c032",
-        "2800cbf60f154fb2af86c3ae641c1ec91147de86637d42877324d94ad72bae5b",
-        "b54ff37f167d10cf84eefe3af5906151db426e2fec57cbf50f0f69dbf7030887",
-        "0480f463131b7d6ffae6c232915e618388ac68ec3dd312176f0df725c6166dbc",
-        "cbb158a3fb576d1acec50afdc5e03e23a0eb813c3013ff35867d93d9d8f4d079"
+        "b0b5ef266cbceb028078b54456d5a3952750dcd0be6f81ce35e3484fb1d3c658",
+        "26a9c3a12ebf21bbe68683d08ce6bfab617158264accf27ef55645c86f33eaa2"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "mauftrium"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hslasteel/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:mauftrium/nugget"
+            "item": "cruciblecraft:hslasteel/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "mauftrium"
-            },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "mauftrium"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:mauftrium/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:mauftrium/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hslasteel"
+            },
             "count": 1,
-            "id": "cruciblecraft:mauftrium/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hslasteel/large_fluid_pipe"
           }
         ]
       ]
@@ -93,54 +54,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/56851ae5e404586d",
+        "cruciblecraft:gt6/989e728ac2d97518",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/79275c53332d023b",
+        "cruciblecraft:gt6/15c769f72e18535b",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/e36322bbd55cd4dc",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/dedc2f3163d61394",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/86a98241b66f5df0",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/a5e834c24f1b386c",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 94,
+      "duration": 1440,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +80,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        3,
         0
       ],
       "output_chances": [

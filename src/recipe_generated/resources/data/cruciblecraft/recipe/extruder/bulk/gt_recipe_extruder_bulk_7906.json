@@ -10,18 +10,27 @@
         }
       ],
       "hashes": [
-        "6a12d0767f6150fe5b9c6af0c3b555b604314163e07e64bd201ed43ab6e04b37",
-        "aba364cd15b8ca493330a2174be161d2c46cbdcf6d9c62fe04c795405fe1c220",
-        "a3b712fcece4cd78d9f7bfc335167ae0de3e041069ab95fd592a70cf1db76ff0",
-        "e4f0c6179de98e463427167637bd5ac71bb2f46ca1ca8bfa566cc1b83ae8f5f5"
+        "9ae07615ef6906caf22657eb96452f054c776aca063ebd250e7b8b09cacafe59",
+        "a9f69397019e1cb768f684d025cd7a9daf9ce3324fa9a0d13339aa1f25fa5cb8",
+        "29850f29ea05f109cc7a2b73b594a921b0cd03336ceeb833c3e3b23a53effd66",
+        "25c64f32084786fa46690dea27e0417436cf7fd70cc203007a1685b8e4366984",
+        "afbf4051a54e3c26666dc2c115ab22e33beff3b6a2e71e80de8d507bec5e5576"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:prometheum/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "infinity"
+              "cruciblecraft:prefix_material": "prometheum"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -30,7 +39,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:infinity/rod"
+            "item": "cruciblecraft:prometheum/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -38,7 +47,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:cosmic_neutronium/rod"
+            "item": "cruciblecraft:prometheum/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -47,9 +56,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "cosmic_neutronium"
+              "cruciblecraft:prefix_material": "prometheum"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -61,13 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:infinity/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:cosmic_neutronium/gear"
+            "id": "cruciblecraft:prometheum/gear"
           }
         ]
       ]
@@ -77,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/23bb8a5d264943b7",
+        "cruciblecraft:gt6/fa43b0bfa5a43b65",
         0,
         0
       ],
@@ -85,30 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/858b69c8529aa45d",
+        "cruciblecraft:gt6/2beea162cc78a926",
         1,
         1
       ],
       [
         2,
-        1,
         0,
-        "cruciblecraft:gt6/1074fe8158f1f6fd",
+        0,
+        "cruciblecraft:gt6/df3600272ace415f",
         2,
         2
       ],
       [
         3,
-        1,
         0,
-        "cruciblecraft:gt6/43e0076056bcbba8",
+        0,
+        "cruciblecraft:gt6/24dab252771034bb",
         3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/c00964907f9daa47",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 6155,
+      "duration": 197,
       "eut": 96,
       "item_input_actions": [
         {
@@ -119,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        16,
         0
       ],
       "output_chances": [

@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "cb877c208863234b79d9f57725f7b348322649139aec7458ea9acffb191f2eb4",
-        "252064793a37598710716b125d62043815165cfcc3dab478e88c341a9d0732c3"
+        "b1fdf009f51f053bd8fd648c529d561a2fd555a1dbe23d2e3201b9b3040190a9",
+        "71070e6f36eb0d142aff51c2169e2b2c70378665b61608bb9bbe6304064991e3",
+        "12ab532620e41fa2724083d6efbbffea987ac32c7f73fe28046c0a349268c02b",
+        "e16185efd5f72673ab6af30afd6971c7646e10c4d9b4e86d552ceec4f6706971",
+        "48d2e80c77451a80d6e475266ec148cb2f83af4295f28c54dfc48587fb287214"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "abyssalnite"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:invar/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:invar/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:invar/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "abyssalnite"
+              "cruciblecraft:prefix_material": "invar"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
             "count": 1,
-            "id": "cruciblecraft:abyssalnite/gear"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,22 +83,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d3224e03e281f661",
+        "cruciblecraft:gt6/4a5123f3f8f69a86",
         0,
-        3
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/355574157267a05f",
+        "cruciblecraft:gt6/280a76407bdc47fe",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/9899dd9271f53fc1",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/4d1c4546de3b09eb",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/694a19f6b53545e5",
+        4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1677,
+      "duration": 309,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        6,
         0
       ],
       "output_chances": [

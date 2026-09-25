@@ -10,23 +10,16 @@
         }
       ],
       "hashes": [
-        "34647e516bf04e9c271764acf0b6e75010cf29f5a901759de4b5260525818d41",
-        "63df6a0e0790c1cfe77b10da274145a375beb472585bd79c1391449d42362e2d",
-        "b4f8238041818334d9a20aeae38ecf2cb6860169e8864f6466248cf8e26e8dc7",
-        "a32426f199b20fbb681f0f1396c12b7f6462c86526652e3204a2caa9a171eeb1"
+        "1f89072402dbca20575c4102320e391f91f0d0fabf868b8d2888abea5c60370a",
+        "c76151cc992a19c5579ce5dfb3dff7c76f6a2656de0c7ac91c54ee5fd26b63bc",
+        "1bd2d833209aa3b07db5cfe171179f8fcd7fa8e7fab4be8ec263ca42e2a7e2f1",
+        "e22405faa376011b351cd97b9ea3cde1ce58a9065ae78bd5b1c1737b420fa475",
+        "dd60b0bb8b89ae366b4e9e2ccf76f367a5e5c64ae303f2c40c1e8efcf444ca1c"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:conductive_iron/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/bolt"
+            "item": "cruciblecraft:desichalkos/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -34,7 +27,23 @@
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/bolt"
+            "item": "cruciblecraft:desichalkos/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desichalkos/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desichalkos/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -42,27 +51,74 @@
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/fine_wire"
+            "item": "cruciblecraft:desichalkos/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:conductive_iron/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
+              "cruciblecraft:prefix_material": "desichalkos"
             },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:desichalkos/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:desichalkos/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:desichalkos/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:desichalkos/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:desichalkos/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:desichalkos/bolt"
           }
         ]
       ]
@@ -72,38 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/dc0b7165eef01c97",
+        "cruciblecraft:gt6/ab4a017f5e033c4c",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/ff6189f244b0517d",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/5904df25c6bb910e",
+        2,
         2
       ],
       [
-        1,
-        1,
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/aea0f6eabd9f4453",
-        1,
+        "cruciblecraft:gt6/f00e580d9970bb42",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/b816d28ff17bdec4",
+        4,
         4
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/71eb10e92dbedb61",
-        2,
-        5
-      ],
-      [
-        3,
-        1,
-        0,
-        "cruciblecraft:gt6/6287dedc8d128226",
-        3,
-        12
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 59,
+      "duration": 14160,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        4,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_1768",

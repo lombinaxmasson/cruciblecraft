@@ -10,40 +10,101 @@
         }
       ],
       "hashes": [
-        "14b639dd2d4a2e607cfa3fad2c015746d85f6fcc4599cbc72492a48575958b42",
-        "2c86772dce5a6b01066d99ffbb65d05329db254fc9e03cabfa665e613ede26cc"
+        "5227be78440e7740506278f352c4d1612986ab8336c20eaae6e153ecd72ed2fc",
+        "ee0458b5d6958ac9fd9b6183d2632cd1a41dbe6dbb588e6c1ad35d24e5f76201",
+        "2fea342b826d6116928aefc9ceaf9ef9e2b12f5c4b6a8a7efbdd51f272c5a7ec",
+        "5ecaadf2bedae20eb64080301e2c6bf6133615152d0b56c49111543992cc6b87",
+        "9ff1ee270211529e860925a3a884e20758419641da25152831eea8f616ff20f9",
+        "fbdccaac2d691e9add1059e3cdd6f2bb37d0b51cfd904abe99fae676844ec683"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "carborundum"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:pulsating_iron/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pulsating_iron/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "carborundum"
+              "cruciblecraft:prefix_material": "pulsating_iron"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pulsating_iron"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pulsating_iron"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pulsating_iron/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "pulsating_iron"
+            },
             "count": 1,
-            "id": "cruciblecraft:carborundum/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pulsating_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "pulsating_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -53,22 +114,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/568c8a1ed87eb347",
+        "cruciblecraft:gt6/d86ff41e1e6ec1f1",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b1f50f6ba55ee855",
+        "cruciblecraft:gt6/ec88e386d03cc475",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/1a801083b1902bb0",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/13b68bfa75c28e92",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/370406ee7ac0faec",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/f66e80fc87a14c49",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 961,
+      "duration": 538,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +172,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
       ],
       "output_chances": [

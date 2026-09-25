@@ -10,16 +10,21 @@
         }
       ],
       "hashes": [
-        "5958a1f9b366e9cb8e2979329bf866478829f2ffffd3f73a19b188a3d6571242",
-        "0ee7dc9df18f0542533d8799472f71f6e3191db029535c07f35bb20b45d9d1e3",
-        "a87475487977ad00801d90a163f0be8117b5d93e5de76d5ca5fb6178d383ffdc",
-        "a2bf5bc48861829e4caf8bfac01a17daa1c82e8a51891709afb4d0a301a8ec0c",
-        "356618c50b77820f7988c5b7ddf112e16da96b3797987ecee93e9d7b0d1a37d4"
+        "c6a778fbe912c2d7a7034e2557ac8bb0f77ebaccf416f1d6e3eab865ce4fad87",
+        "3889b06ac99f5f9dc3110fa4e17b854cfbf28c73fbdb03b5bffdb86dcaf14438",
+        "b837aff1b6184dece6b22e47fa5ec6535eb2db64c7d39d3c8e510714920094e6",
+        "c8fab8ffce26d86acfb086b4fd9682f470b92ab12e4d397c187910bb897d5a94",
+        "fb154969ef8e007db97f6375a1d96f8c6f6e765d7fcbb270e32ce1eba2cc4760",
+        "3873b655138b18ae4e717665366a84c1de04a938c3be54b2c4823475280df3bd",
+        "5102fb4c5c078f19d6e3d0f71ff03c26f5637e9aa360fb1d3360d3e92a4a67c2",
+        "2f53b6c5edffffcb542e8fe033f0ce70c1d7603bfa72fcf6057d499d240b9d39",
+        "74c04ebd1f0fa39d4a85c5541e5a5e0b712f76e9cd530b89a1c8579cd0fa539d",
+        "a59a5e883982f8a8487ca2b17d2bf68a15c3c46826d89081e7685446f56bccf4"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:amordrine/small_dust"
+            "item": "cruciblecraft:stainless_steel/small_fluid_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -27,15 +32,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:amordrine/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:amordrine/ring"
+            "item": "cruciblecraft:stainless_steel/small_gear"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -44,9 +41,65 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "amordrine"
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stainless_steel/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "items": "cruciblecraft:minecart_wheels",
             "type": "neoforge:components"
           },
           {
@@ -56,9 +109,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "amordrine"
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:spring",
             "type": "neoforge:components"
           },
           {
@@ -70,7 +123,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:amordrine/block"
+            "id": "cruciblecraft:stainless_steel/block"
           }
         ]
       ]
@@ -80,7 +133,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a3e59f3818e8ee90",
+        "cruciblecraft:gt6/cbaa82e9f1903684",
         0,
         0
       ],
@@ -88,7 +141,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/5f23412341a195ca",
+        "cruciblecraft:gt6/bf26fd22d6314d5f",
         1,
         1
       ],
@@ -96,7 +149,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/3502b7f5bac5dd0e",
+        "cruciblecraft:gt6/143bb21132afde0d",
         2,
         2
       ],
@@ -104,7 +157,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/4ebfcbe78e3ff5f9",
+        "cruciblecraft:gt6/7226678c465e66f8",
         3,
         3
       ],
@@ -112,14 +165,54 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/3517e00bd21e795c",
+        "cruciblecraft:gt6/80038eb9e76e0a1e",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/59adcc8b6ecf1a17",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/80c13b4153e5372c",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/aba3effc2a5c35a5",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/988d15eec4b372cb",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:gt6/09be87b97f68fc8f",
+        9,
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2908,
+      "duration": 1802,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +223,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        9,
         0
       ],
       "output_chances": [

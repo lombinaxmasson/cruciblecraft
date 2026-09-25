@@ -1,191 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_6066",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "d182af77aac09b6cbad09f8c41e01797cdd874eb0baeef8a6063a9bce06c36f5",
-        "0f891576db98ffe4c2ac538f81d3aa13ee884d3764baa375499e0a3bfe1442c9",
-        "706ade1aa4f11ce32f44fdc89e0ae027c2fb762d36835220f44de4de6936186c",
-        "d2f70218767b61fef0a01f34689cdc1d10b44852578fe78d3acc2d7eb3fbaa2d",
-        "d1c967b2b8647a315165259079a471dd1cf76aa343548b5d37a7251bff19fe2b",
-        "2c54b4045a6aa1bcc59851eb639f8d3d057823506217d54738d5af785db8cf02",
-        "6ca277843a941f7c1dc02e9980403b306bf28110c6fc49c17863f7fa084c77a7"
-      ],
-      "item_inputs": [
-        [
-          {
-            "item": "cruciblecraft:rubracium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rubracium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rubracium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rubracium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rubracium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rubracium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rubracium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:rubracium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:rubracium/gear"
-          }
-        ],
-        [
-          {
-            "count": 6,
-            "id": "cruciblecraft:rubracium/block"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:rubracium/small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "rubracium"
-            },
-            "count": 56,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:rubracium/plate"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:rubracium/ingot"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/ec1e43140f9f60f4",
-        0,
-        0
-      ],
-      [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/2da6c0ef8f2f5175",
-        1,
-        2
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/f5736d4458a9c6fe",
-        2,
-        3
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/d193436e08499a59",
-        3,
-        6
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/4e7e320e0e0a4a7c",
-        4,
-        8
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/cad080f68f721ee1",
-        5,
-        9
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/1965df480ae4e941",
-        6,
-        10
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 25853,
+      "duration": 226,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -195,18 +17,42 @@
         }
       ],
       "item_input_counts": [
-        1,
+        6,
         0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "gaia_spirit"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_gear"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:gaia_spirit/gear"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_6066",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "4f1327fa16ec77d67ec22707b7e389f9b15210c53787d13f61cc97d095f8cd2a"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_6066",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/192c6d71b2487a3b"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

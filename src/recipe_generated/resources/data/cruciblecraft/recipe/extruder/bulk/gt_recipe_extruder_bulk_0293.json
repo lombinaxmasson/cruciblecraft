@@ -10,14 +10,56 @@
         }
       ],
       "hashes": [
-        "232c609a0602af58b719d45121bc775118cbbaccf00dbc28be3c8d2fb9235096",
-        "0dbe4b81c7cf93e68ba6af5bf9ce62f5ada39fac93a3626cdc552804f03a9108",
-        "5d8e7fe7d2064aee10b852be03c6fb20a340c8c187edd99c1d7d4a1078e64fdd"
+        "f6bc897109cc97ca88c938a197dd42e8e9c95cc603c2aa34a76b4f1d2d6b05ad",
+        "6f67754cda1348107ea662a1489b20c9d3b01e38e0cda6b99154797cb425d4f2",
+        "df45646012f537b20525c69b8a9c357e7a6026eae7bc7b4e73171562b1762ba6",
+        "dc8f584b28cca115ff28e215a97a0dd626b3ed56a9b70a5f94518be029e0a4b8",
+        "c1bba899a874209881a5d14340e5569f35419aaff2274532ba34ff295d6a3011",
+        "8c22275217d67a3cb73175bfdfc597441296b34243215feee72071778fe79da9",
+        "8b4e7caa5d59a1f795ded4c0630161fa5e9661f90e719156ccd4b20ec6a13ba2",
+        "2264e04c36985c643797b35845dd590ee3f3a6e53fd5628cf24b652702c77dcc",
+        "80d69d471d2570db34695b0739390672f42328e2b46b9022905326b55df10b83",
+        "94220ba61d7cf7bca51ef004a2cba77897a5a7081e495fb4d551b0837340e7b6",
+        "304a859b9b7180a041f9f75935ebd996267543b26558775254194b6fbf488afe",
+        "1d9518d06a4661963334903e6194e59982dd7c415cb87dc96de07716a49a28a5",
+        "2b58c8c505d875f24f07d9456003d46e59e37e32380f9d578ac7acca0eb554ee"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:netherized_diamond/machine_casing"
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_curved_plate"
@@ -25,7 +67,47 @@
         ],
         [
           {
-            "item": "cruciblecraft:netherized_diamond/machine_casing"
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_plate"
@@ -33,10 +115,18 @@
         ],
         [
           {
-            "item": "cruciblecraft:netherized_diamond/machine_casing"
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -44,22 +134,100 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherized_diamond"
+              "cruciblecraft:prefix_material": "aredrite"
             },
-            "count": 8,
+            "count": 28,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "count": 14,
+            "id": "cruciblecraft:aredrite/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 18,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 28,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 56,
             "id": "cruciblecraft:curved_plate"
           }
         ],
         [
           {
-            "count": 8,
-            "id": "cruciblecraft:netherized_diamond/plate"
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 18,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ],
         [
           {
-            "count": 8,
-            "id": "cruciblecraft:netherized_diamond/ingot"
+            "count": 56,
+            "id": "cruciblecraft:aredrite/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 56,
+            "id": "cruciblecraft:aredrite/ingot"
+          }
+        ],
+        [
+          {
+            "count": 56,
+            "id": "cruciblecraft:aredrite/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 56,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 56,
+            "id": "cruciblecraft:aredrite/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "count": 28,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:aredrite/block"
           }
         ]
       ]
@@ -69,30 +237,110 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e88df933c85d9598",
+        "cruciblecraft:gt6/c4d730188d0c0f55",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/b970edb431b14a52",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/f776b40e05785829",
+        2,
         2
       ],
       [
-        1,
-        1,
+        3,
+        3,
         0,
-        "cruciblecraft:gt6/c7b01e1e9ec6f0d9",
-        1,
+        "cruciblecraft:gt6/a2a1fa27b748b9d6",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/a2a369e2adcf3998",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/fda8b6b6be9ef017",
+        5,
         5
       ],
       [
-        2,
-        2,
+        6,
+        6,
         0,
-        "cruciblecraft:gt6/a5454a5fffda7b43",
-        2,
-        13
+        "cruciblecraft:gt6/73ed48ac57b1aefc",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:gt6/7ba9fc5ec5ec1655",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:gt6/596b891858174b5c",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:gt6/b7de0d259809f4e3",
+        9,
+        9
+      ],
+      [
+        10,
+        10,
+        0,
+        "cruciblecraft:gt6/9e1c373e7cf302eb",
+        10,
+        10
+      ],
+      [
+        11,
+        11,
+        0,
+        "cruciblecraft:gt6/89fd67507c58e524",
+        11,
+        11
+      ],
+      [
+        12,
+        12,
+        0,
+        "cruciblecraft:gt6/2ae79c3c43e0688c",
+        12,
+        12
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5742,
+      "duration": 19084,
       "eut": 96,
       "item_input_actions": [
         {

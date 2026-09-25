@@ -10,67 +10,74 @@
         }
       ],
       "hashes": [
-        "3df002d0a84742e5eefb8754b4d64ac8217f8accc4759b2c95dd55132e37498b",
-        "9aa2f942fb4e4bcff1b30841761713ee3d456e893affd83988514b560d8a32e1",
-        "4a8026b3df787fa25c824c15d93a763e6f4615b88767a365ed205e4df4626333",
-        "89522f03078e7771a76b06b81d49eb25fdc076fa1f310cea607d1dc005618c64",
-        "0f2f51200dae60b5122d9ce6a8b6e816b18a82db901d399c3f721eb72c2460b9"
+        "01755b057744b391ef519104b9b251ecbcda45988123425cd46d75214dcbb12a",
+        "e73347ccc9da5a3acd822ab30d2619245200d61b30f078dc2c048232cf12bc34",
+        "9f1ec2d64f42a8ac21e2252ed20f057fbeff504f32c21b075ec8616ea2178cb7",
+        "13d880d6fa4b2b38323351a42e3bb9a633b9cc7a31bab2a40024ae5cbcd91769",
+        "603d6a09f71286da034f85adced86d51119c5c9c43356778d25f7d2c948829ee"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "oureclase"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:terrasteel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "oureclase"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:terrasteel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:oureclase/ring"
+            "item": "cruciblecraft:curium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:oureclase/small_dust"
+            "item": "cruciblecraft:terrasteel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "item": "cruciblecraft:oureclase/foil"
+            "item": "cruciblecraft:terrasteel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
             "count": 1,
-            "id": "cruciblecraft:oureclase/gear"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:terrasteel/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:curium/rod"
           }
         ]
       ]
@@ -80,23 +87,23 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c409395cc29ceb4f",
+        "cruciblecraft:gt6/b043e22d5955c8bd",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/41bd9cefeb35ce2a",
+        "cruciblecraft:gt6/60aef2ed464dba07",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/56ac9c5fa5ad9dc5",
+        "cruciblecraft:gt6/cd2098510f0e1c23",
         2,
         2
       ],
@@ -104,22 +111,22 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/9447cf5246f62c68",
+        "cruciblecraft:gt6/f6f117aa2f9a0f1e",
         3,
         3
       ],
       [
         4,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/de80cdb652da6c06",
+        "cruciblecraft:gt6/9e303a825ade7f90",
         4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1374,
+      "duration": 138,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +137,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        4,
         0
       ],
       "output_chances": [

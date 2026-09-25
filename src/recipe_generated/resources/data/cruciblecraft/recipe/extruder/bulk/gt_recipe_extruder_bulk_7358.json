@@ -10,24 +10,32 @@
         }
       ],
       "hashes": [
-        "bff08ce8cd3212c1be046b932c890e7efdf1a5c1031a4a9f930fbf3a0e406cc4",
-        "b7856c80c3d617b8050fe09b32b2e43abbfe9280f677a7e89a6b6322567d97c2"
+        "e5932bc3e7822a0df0ab24956821a779b9efbd58e7dcc54a73a8d5cd0e26879b",
+        "1019de7bf0be8161d13552b97c348c0ca3f36b8c7ac7b74fbb3e37309bbcc0d1"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:blue_steel/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:blue_steel/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
@@ -35,7 +43,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:blue_steel/gear"
+            "id": "cruciblecraft:cosmic_neutronium/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:infinity/ring"
           }
         ]
       ]
@@ -45,22 +59,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/bad4a3a002821763",
+        "cruciblecraft:gt6/c5457d075fdb0084",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/0a1601b5b967fe40",
+        "cruciblecraft:gt6/567b8522aab85196",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 767,
+      "duration": 385,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +85,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        18,
         0
       ],
       "output_chances": [

@@ -10,13 +10,16 @@
         }
       ],
       "hashes": [
-        "72f96c453f55ad559b869c5023a1b1df6c12be963226fde8b726399f0f8dd156",
-        "ef21941300c30940be779e531516c6cf4e8a7b430600092462e47c459cf5f5f1"
+        "ec97e8034d0e017eb242192341c30e0f54cbe6189062ac89ca29f42246b1466a",
+        "5a3fa3852e620032d94b19dc1715f2a953815c34a28a71fcc97842c0bc2903ee",
+        "5aa8f0d37393401152851f5c41ea1518a262833da0e48b01c98a0be266b8ad60",
+        "329a9ec7935f961b28da06b59a0dc31ba31316fa9e35f5224dfd82a00bd8679b",
+        "17b99223cabe262440aafb5414eb1bc5883e64859faa7c7e0a250f3ae5a0910d"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:deep_iron/fine_wire"
+            "item": "cruciblecraft:vibramantium/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -24,7 +27,39 @@
         ],
         [
           {
-            "item": "cruciblecraft:deep_iron/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibramantium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibramantium/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -35,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:deep_iron/gear"
+            "id": "cruciblecraft:vibramantium/gear"
           }
         ]
       ]
@@ -45,22 +80,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e7c842e0ebc1184c",
+        "cruciblecraft:gt6/589bb5f9dc1ddd98",
         0,
-        4
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/62a16157d8ab0f5d",
+        "cruciblecraft:gt6/927715de69b39b32",
         1,
-        8
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/8327cb4e317bfd96",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/7264e0c4e19daf69",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/b76a5c1a0cdddee0",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 738,
+      "duration": 3234,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        16,
         0
       ],
       "output_chances": [

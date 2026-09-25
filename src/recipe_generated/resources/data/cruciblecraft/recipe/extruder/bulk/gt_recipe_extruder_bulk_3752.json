@@ -10,16 +10,59 @@
         }
       ],
       "hashes": [
-        "bd436d02b66c1c28a56448d483399cb0856c2dd74078db622fa4692492becc26",
-        "1d60c513ba76c2f98df8d16045dba5680252854f9e241e59f3891322c02935e7"
+        "81d62d507a11d7ab0b0edabb3cca05b9255ba0ce78c1ad9ff579af0683284ea1",
+        "cd799c21778cb37e5d1ef84ac60b6c71ed99cc16a811a39e80cba17976527831",
+        "3ce1cddfcaadc32db7bdc554d8a8aab9f732512d16ac67050b31a3c78f98ae54",
+        "b4cc96261a23b2e3da18ff3283f30d05bd181ed4a97f9e9e701f2b16efdf0c50",
+        "eb83f0980efbeab760b14eb901ef47b30b42a9af087d17884c993ed5ee5b6730",
+        "f765b6a1292940b585a43882fa276bf0f585f2bc8d9c7fc4bc285715dac4f9df",
+        "893935adae5d668d0b4fd7a353aa8f9bfef5cde10360d35c79720c0b70022b56",
+        "ab3a5fe5e95d7bd8c6742686146118b1a882ec67084c434ae3c7bc76d9843560",
+        "70d3804782caca097d3502f4ff80e155f6d02874260d86130e509b889d930e7d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "osmium_elemental"
+              "cruciblecraft:prefix_material": "manyullyn"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manyullyn/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manyullyn/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manyullyn/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "items": "cruciblecraft:minecart_wheels",
             "type": "neoforge:components"
           },
           {
@@ -29,9 +72,37 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "osmium_elemental"
+              "cruciblecraft:prefix_material": "manyullyn"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manyullyn/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manyullyn/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
@@ -43,7 +114,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:osmium_elemental/block"
+            "id": "cruciblecraft:manyullyn/block"
           }
         ]
       ]
@@ -53,7 +124,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/77e43f77a79c4e3b",
+        "cruciblecraft:gt6/7364f983ec269858",
         0,
         0
       ],
@@ -61,14 +132,70 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/767b8c5e9cf76aeb",
+        "cruciblecraft:gt6/1f691974f2b33a05",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/3221d474b67bde49",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/10894850bdfa9b84",
+        3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/45f5cd35a9e9fa83",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/dd57b72e9f931779",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/7098b68b0c1af5fd",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/56bd7403e03583f5",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/9cb7950f4f05c250",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9462,
+      "duration": 748,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +206,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        9,
         0
       ],
       "output_chances": [

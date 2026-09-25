@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "9fa2d5bc6820798d74864efa8e126ee15059a0f8642d0690915cd5c13b3f78ef",
-        "431fca8a786c998a578e320cdea8ebb430b8f3f91ff7f1131f46898d80c35baf"
+        "f5ba7d0481b77767f672e1a25296e04173bf9a7a0319ec84a6e1173d902c7bda",
+        "23ab0211eeb212c32ab9e1f985f7e318e5d95e90830377a34639a4dcf28503d9",
+        "41730f4531a7f30f79b5c471afc3ff06858c0c853ff152dfc9ac393c5abb8952",
+        "8dee73d8ff4a2a80aae28188f09967636db89ae195d6c1d826e93d0ff2c4961d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoric_red_steel"
+              "cruciblecraft:prefix_material": "thorium"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoric_red_steel"
+              "cruciblecraft:prefix_material": "thorium"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoric_red_steel/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/192e2bac6ea78cd2",
+        "cruciblecraft:gt6/5ca3dc25210ef52d",
         0,
         0
       ],
@@ -61,14 +91,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/5ce2dca42e0575b4",
+        "cruciblecraft:gt6/299934289f9c0779",
         1,
-        4
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/e60e59f5a2136ef4",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/ee8d6fbcb107da99",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 922,
+      "duration": 989,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        6,
         0
       ],
       "output_chances": [

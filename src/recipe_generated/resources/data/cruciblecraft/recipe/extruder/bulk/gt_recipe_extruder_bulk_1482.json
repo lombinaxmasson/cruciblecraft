@@ -10,36 +10,130 @@
         }
       ],
       "hashes": [
-        "3fe813344ba75069cc8b968ddbdc7e72c5244320f24bd61dc86924c4e850e355",
-        "376e64fa07b0c18fb7fdac7f6dbe576a7b70d90f31500487881d3ce00960ee42"
+        "1fa79257e2edd58a87e2c9bf2de4365258ca850ad8a27e6daf2280b7218fa549",
+        "92fc2c90d24a07aee0d8b90cc37631ccdf47963f7012ea6350610e8bdeecc730",
+        "c38f48670a4b669312be4ce8d0f980bfa3449a0080ea39d440e64e35a9f9d57d",
+        "a98378178754c30bf105c4b109d06e599acb15d6ce48059b623568bc857196ba",
+        "13986e9dc566de6d359b3a3b00d1550523bc8a2680e60d7689d8deedb1cb955d",
+        "f39534c56550b4b1ec53016a3bfd40fa7a72533c108da969ac61620d9fd09cc9",
+        "01018df549a174cfd7ce3917a35fd6cb3530b25a9596979612354b54240f0b9b",
+        "5e4cf5e1e0d2b12c9c8da758d442a8bddcebb333f18284f1700756baf17f9c30"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:bedrock_hslaalloy/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "lemurite"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:lemurite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:lemurite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:lemurite/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:lemurite/bolt"
           }
         ]
       ]
@@ -49,7 +143,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/61aafd8cf38f73da",
+        "cruciblecraft:gt6/12e9268f34579ea6",
         0,
         0
       ],
@@ -57,14 +151,62 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/a9867bdbf9494321",
+        "cruciblecraft:gt6/d15e3a512fa275cc",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/b9722284be1b97c0",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/3b1a5176d1f8d348",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/72cc08ff809a186e",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/9354fdf607f2f6ec",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/bef7dea84cc3fbd9",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/1f2127c38e257f3f",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 14027,
+      "duration": 214,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_1482",

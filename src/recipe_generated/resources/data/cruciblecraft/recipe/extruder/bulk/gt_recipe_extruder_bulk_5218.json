@@ -10,40 +10,98 @@
         }
       ],
       "hashes": [
-        "824a2f0246a61a147af4e8057bf7e0799180e05748a0688a985db8b5c4c7a3b1",
-        "4f61393b60f9447ebe137da43bbc3f968eb6bcabea1c748d588764a7265ba474"
+        "4051935d734789c6b9aeb50e348f6f374ca623e3739dfd88e877b1dc52d01e05",
+        "902bec2d0ec993b8a6c8652cc267fbf61cc21e1e9fb7efb4a92b773f49621bef",
+        "c5dd354f06833dc078aa65e5a3e6ebe0b1f3c9c383676ea6ba82672ba7c8b133",
+        "b46bbf550e312ce1d551bf06ddcba7a4238a6fcaa4cd9fa393fa6bbcaaa03f34",
+        "2780ec734f6573693cb0a554f020d557aa8277c85b0d0c2ee9b6e5daa3d9d742",
+        "fe387cb0ee54a5f7c24d4b56a326a85457318cbf0ee249466b731fb51fbfe2f3"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "sterling_silver"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:manyullyn/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "sterling_silver"
+              "cruciblecraft:prefix_material": "manyullyn"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manyullyn/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manyullyn/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
             "count": 1,
-            "id": "cruciblecraft:sterling_silver/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manyullyn"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:manyullyn/item_pipe"
           }
         ]
       ]
@@ -53,22 +111,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1a55e55fd6366c62",
+        "cruciblecraft:gt6/648b84de3fd79ce6",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/b28703badd52ae33",
         1,
-        7
+        0,
+        "cruciblecraft:gt6/73a9d659c41706b2",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/a626ef32087e1bce",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/28b00048847eada2",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/269331cf475ff53e",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/c3dee9496a326ff3",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 911,
+      "duration": 250,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +169,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        6,
         0
       ],
       "output_chances": [

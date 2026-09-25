@@ -10,32 +10,49 @@
         }
       ],
       "hashes": [
-        "38c2042205f3e92be8142b844fe5fc4e54b6b6aac384191c8f932e26fed9f624",
-        "a5cfd95d0bc7bf70eb2400bc6560f394a18ec93e0b673677fb47883a992f1047"
+        "6d9fcadc797f53571bda86397d5f63c86e1f999a6841da3cdf15b0cf0c9ec496",
+        "b4f3acf594b66b0c5f15e614703e93d5021060fd6e66ecd2cb5bfcde430f27ea"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:steeleaf/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "angmallen"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "angmallen"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "angmallen"
+            },
             "count": 1,
-            "id": "cruciblecraft:steeleaf/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:angmallen/large_item_pipe"
           }
         ]
       ]
@@ -45,22 +62,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a6625d2edd45b6fa",
+        "cruciblecraft:gt6/9ecddaaee6046052",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/bb4b507303ae6cab",
+        "cruciblecraft:gt6/c32b9bb77c4f8c00",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 355,
+      "duration": 1737,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +88,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        9,
         0
       ],
       "output_chances": [

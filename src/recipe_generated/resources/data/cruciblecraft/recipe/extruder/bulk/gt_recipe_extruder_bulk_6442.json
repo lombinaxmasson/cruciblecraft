@@ -10,40 +10,96 @@
         }
       ],
       "hashes": [
-        "9109fcbee41dd9e4d0f4631a3de779f6b6eda078b3fcf94aba6c9f8763589fb4",
-        "97ba8f0775514f1af0c40db6227bc6b4d9259b78bec8f3c774a9737425a99908"
+        "fb85d204e52fd190745ea5e860797da85eb0fdcf72cb7e992260946c0dcd5e8b",
+        "179e519a29892ef1727e085020e18ccc6bb4344bfe8436b20d909b447161a57a",
+        "d948f4956deb787bda01ab1b1f0170fe0fee7fd4b0590a87a706589577970463",
+        "bd37a11a4e3cf0b53bb44140528ffd75fbc8f49ae743e8b1b90ea3f3de229161"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:manasteel/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "deep_iron"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:thaumium/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manasteel/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thaumium/machine_casing_double"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:deep_iron/block"
+            "components": {
+              "cruciblecraft:prefix_material": "manasteel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manasteel"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:thaumium/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:thaumium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:manasteel/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:manasteel/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -53,22 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4be40bf69e2b3e55",
+        "cruciblecraft:gt6/9d51bdb2d4904e9c",
         0,
-        2
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/a20435d53167af6b",
         1,
-        7
+        0,
+        "cruciblecraft:gt6/870ccca54be2d05d",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/48d6d76350d8d7fb",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/1e7232282c23e5fd",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1845,
+      "duration": 3433,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +151,11 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_6442",

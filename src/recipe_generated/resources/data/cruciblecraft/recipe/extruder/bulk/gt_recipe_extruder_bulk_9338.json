@@ -10,24 +10,45 @@
         }
       ],
       "hashes": [
-        "a98eafaee1e1d2651737a62ef1b00ef78d84e0b1bc3aca06b151ed75ba6c71b4",
-        "1b488df918dbc88e6cb05923eb118bd29c327cf4cb89c88166d8967dd70377c0"
+        "c06ff63a822984f99fe565a736b236f830ea0e1cefb01515017fa227892b656a",
+        "cee5cac8e63e358d8fd9a402db115bb1bb3e7df1f02da62b4af3cd2f16366d79",
+        "08524801ac50c22186404171c1339c435e772cb2c3c03a21f84527e641732141"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:tantalum_hafnium_carbide/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:tantalum_hafnium_carbide/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -35,7 +56,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:tantalum_hafnium_carbide/gear"
+            "id": "cruciblecraft:vanadium_steel/large_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -45,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/704799ed72702245",
+        "cruciblecraft:gt6/a270e4cd4f2964df",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/7fcd9e1c06040a94",
+        "cruciblecraft:gt6/e7e0c5871d1c69a4",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ba367b6b1d0cb1e5",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2237,
+      "duration": 1240,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +118,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        9,
         0
       ],
       "output_chances": [

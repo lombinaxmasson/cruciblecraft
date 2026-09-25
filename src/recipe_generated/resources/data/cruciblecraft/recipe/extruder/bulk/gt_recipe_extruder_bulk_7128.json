@@ -10,28 +10,84 @@
         }
       ],
       "hashes": [
-        "39e2e457ab0553ce2b20e7b74fa6812f19e591c0d03d14dbf61b80123d154efd",
-        "d5f18505bf101661f2e546c5d3dc9e565f06c40111da9fc5f2bb740533580e16"
+        "51338e014d1d5e76c3437d457788fc65b91f2bc9c890fbaaf3ce8ce2e0d404c5",
+        "b0f1644a8fdbe3e2ddbe5abc6a8955a96c9b17252fef901e1a5cebb108def5a6",
+        "510bf613810d17990ef7cc398a9ba23b12114b30e845c3655c0c4426c0a31f25",
+        "7f5baffa749658ea8d880d81b116b3cee72e6fde2b7143546de077cdeab660a2",
+        "2463281fe6dbd3ac1e6de2564ec458a459f9182ad33d27c3845a259e4394d5ea",
+        "d33c081f5aa93cd813d6b28dbc5bca53051c187d1fcbcc3103b764c6fd73facb"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "chromium"
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:chromium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
@@ -39,7 +95,46 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:chromium/block"
+            "id": "cruciblecraft:meteoric_black_steel/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:knightmetal/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "knightmetal"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ultimet/rod"
           }
         ]
       ]
@@ -49,22 +144,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/62d3589c2cec9296",
+        "cruciblecraft:gt6/2b24d622203130b7",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/d2a290ad19e4bfe8",
         1,
+        0,
+        "cruciblecraft:gt6/1708d24d8219493b",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/d0edb0cad6023a22",
+        2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/3caa7dfae5ba9b37",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/9717d66485f9fd70",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/44cdc9622a3cdefe",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1874,
+      "duration": 113,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +202,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        36,
         0
       ],
       "output_chances": [

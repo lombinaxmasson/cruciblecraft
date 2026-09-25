@@ -10,72 +10,45 @@
         }
       ],
       "hashes": [
-        "d40233c265ab01cb343affe24abd9a0b3eb7f28a5cb9dc4e7a28ebd74a4bb81b",
-        "a95fe89dd98d05cea3730faf52c37daad868af6684a64e381fc270ec99041ee3",
-        "c4a651df6c9b5db6e133c87aedaa380c0e70f5341f74507051bd034eda518aae",
-        "e2a7d15834d646016a21ee0494d44b9b8bd66318d560978765ebc8dd517fcd54",
-        "2aab9bc21485959114f2e3726aeefd5f9b1de01fba7ee19cbe585b6a79c5cefd",
-        "a939129d05cd39fd0565b951634f72ecb5f80d7c3105f7108e17c569452b22c8"
+        "69728ddbcc80538dfedc5eee459aee488c5969cda17f79e4d48e86881ab69bca",
+        "f48193b7e978883836b9c65fec1273b45e344ee8d6e13d9d89820d89af326a97",
+        "b826e86138c6a48c4d5fbb38e82254fda30df65763395873da6714220c4be30c"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "soularium"
+              "cruciblecraft:prefix_material": "uranium233"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:soularium/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "soularium"
+              "cruciblecraft:prefix_material": "uranium235"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:soularium/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "soularium"
+              "cruciblecraft:prefix_material": "uranium"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:soularium/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -83,7 +56,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:soularium/gear"
+            "id": "cruciblecraft:uranium233/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:uranium235/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:uranium/block"
           }
         ]
       ]
@@ -93,54 +78,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b359bed6c30c1543",
+        "cruciblecraft:gt6/238dfbe8e71f7a2f",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/27dc8983b7c9bd2e",
+        "cruciblecraft:gt6/3a23f6f5ddc81071",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/05fb9486e7f501f8",
+        "cruciblecraft:gt6/adac7dcd4f02363f",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/84677612640ad110",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/9cbea5ab7d788fea",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/8aae7d8e85915fcd",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1201,
+      "duration": 3036,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +112,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        14,
         0
       ],
       "output_chances": [

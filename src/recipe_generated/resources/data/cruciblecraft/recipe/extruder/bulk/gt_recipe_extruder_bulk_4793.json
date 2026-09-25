@@ -10,13 +10,17 @@
         }
       ],
       "hashes": [
-        "217cb265b060b48803623b707146f71bf45b764de609d6b938fdf01ed226b847",
-        "c3ee262a0decc81cdcae4369b640b69203dc7ce1eccb7fd38e398097e93cacee"
+        "8fb5fb35e5176a8f6ae9b1cf90d9081c9837639a45e4f582d51f6e7dc33b20b8",
+        "9bbd6c728531fd5a6f993ca3e253965c1b1315da30a5448552d7a5d2279c845f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:invar/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "celenegil"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -25,9 +29,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "invar"
+              "cruciblecraft:prefix_material": "celenegil"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:invar/block"
+            "id": "cruciblecraft:celenegil/block"
           }
         ]
       ]
@@ -49,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fe7af30a2f7282b0",
+        "cruciblecraft:gt6/d6889f56955bf97d",
         0,
         0
       ],
@@ -57,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/e7828e77d50e1801",
+        "cruciblecraft:gt6/eafe0697321ce541",
         1,
-        2
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1853,
+      "duration": 2926,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        3,
         0
       ],
       "output_chances": [

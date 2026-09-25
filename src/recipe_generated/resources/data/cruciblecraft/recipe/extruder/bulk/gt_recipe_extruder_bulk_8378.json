@@ -10,24 +10,32 @@
         }
       ],
       "hashes": [
-        "125381dcd5efc0ec52e74c4e42e4ce1cb7055d0da722bd737ae726effbbc029a",
-        "f5c9704b903a1cd2ef147f4c3be2323041d72482f0e5381b485015d42b8dd5a6"
+        "f09fa4d27f7c7c55017ab20382cac4c7ecafb3b5b6f457181672054df60f87ff",
+        "b0632ef5161df6a4514c3cc4ce9bcd30c4d4cdb94743013f9dbbf1b8e725deb8"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:osmium_elemental/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:osmium_elemental/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:osmium_elemental/ring"
+            "id": "cruciblecraft:tungsten_carbide/block"
           }
         ]
       ]
@@ -45,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/379740f6cbc4bdd2",
+        "cruciblecraft:gt6/be93a2ef33950376",
         0,
         0
       ],
@@ -53,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/c522831631615baf",
+        "cruciblecraft:gt6/3271b9283b26aad3",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 263,
+      "duration": 6686,
       "eut": 96,
       "item_input_actions": [
         {

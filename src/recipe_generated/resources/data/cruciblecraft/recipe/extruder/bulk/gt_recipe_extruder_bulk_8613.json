@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "7d72728492893566835afb0605ff3011f0d5eaa835cccf4865a0901b30b51c71",
-        "989edf881d6f11f98b1a901de8d5d2721f154478f17dc04e3e6fb4a8f843b177"
+        "7915c5711e377936ec65f64835633f4c0ec661820612bf04fe3b08b94a6cc832",
+        "ad463da53513d4037480ea3399e039e7d967c3fa39baef015624d7831d98367e",
+        "a637c6297578fd6d46e0df2a9a200c8537b173f78c134a56efc23399368c5ec2",
+        "010e02f3095528c0515291ecf1876dd1fa94158f6b148fa4756f5bb3150bb573",
+        "759d5c626cb21d94cc144a9a5eb46dce0c2ac0ce0db7606f03621be561d2ef8b"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "crystal_matrix"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hepatizon/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hepatizon/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hepatizon/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "crystal_matrix"
+              "cruciblecraft:prefix_material": "hepatizon"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
             "count": 1,
-            "id": "cruciblecraft:crystal_matrix/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/66c676ee89cf9aa6",
+        "cruciblecraft:gt6/e4232915ef1a40e3",
         0,
         0
       ],
@@ -61,14 +91,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/929c23c974412d99",
+        "cruciblecraft:gt6/6a3f1cf719a26644",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/da32e4f9b44effce",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/7b5fdfb9360b8381",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/6ddecca39ac16e47",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 36331,
+      "duration": 340,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        6,
         0
       ],
       "output_chances": [

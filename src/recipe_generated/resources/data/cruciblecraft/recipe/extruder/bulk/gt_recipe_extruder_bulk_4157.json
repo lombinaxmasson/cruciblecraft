@@ -10,72 +10,130 @@
         }
       ],
       "hashes": [
-        "3ef332e7c28ce65816eda2c1c388ae56b5f3a632738a8f93a9128ad848b12231",
-        "c62068f869cb64f1cee6896b28f02be02c626ffd90450eb8003e55d3454ecb56",
-        "b215774466154d22e819b4e42ae1223f5f430458a2a1e34609254f80ef87b8ab",
-        "168aa7b0f8b82b29ebd8d9a02fa642278b641d3af7f955b0226386085dd354a7"
+        "488ae70c89a91407c65912855252cb5fcf4edda288e26b835a745363089e0883",
+        "43c5a45b967f54d67e5488a6d021fab0a3011a9aa2d1cf49e7caf441762b9506",
+        "fedfea50010c0e23410099d0f84b39abf54700631d9a070332bbb66aefffa19f",
+        "cb01ba374bf93915298a37ada0b70ae40ea76f9960e7566b985ee8ee51b89340",
+        "14edcfd3de1a3272d0b353b8b6cede06ea86a80424a564836647088776369393",
+        "5eb96ee9ceae058e1082d1b56890cc4cc38189a30c0e845a34029848e86d9e80",
+        "49051729e87b0b340e626770fef64e689eb45993b7769fc9ac305000d577164f",
+        "6519609683e644c96a3f89fd6a270e6ab89ba8c663e91955fdea57cf151fa68d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "cobalt60"
+              "cruciblecraft:prefix_material": "erbium"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "cobalt60"
+              "cruciblecraft:prefix_material": "erbium"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:erbium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:erbium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "cobalt"
+              "cruciblecraft:prefix_material": "erbium"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "cobalt"
+              "cruciblecraft:prefix_material": "erbium"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "erbium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "erbium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:cobalt60/block"
+            "components": {
+              "cruciblecraft:prefix_material": "erbium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "erbium"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:cobalt/block"
+            "count": 64,
+            "id": "cruciblecraft:erbium/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:erbium/bolt"
           }
         ]
       ]
@@ -85,38 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5595fc4bc63f433d",
+        "cruciblecraft:gt6/6e33d507b54d6a97",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/d64ae3e35e2dd9eb",
         1,
+        0,
+        "cruciblecraft:gt6/ebab74a1c0460c2b",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/85f968e13dabade8",
+        2,
         2
       ],
       [
-        2,
-        1,
+        3,
         0,
-        "cruciblecraft:gt6/ebf05fec3b8c1966",
-        2,
+        0,
+        "cruciblecraft:gt6/e76f4b5975d3f162",
+        3,
         3
       ],
       [
-        3,
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/c0669c1b1b10c80c",
+        4,
+        4
+      ],
+      [
+        5,
         1,
         0,
-        "cruciblecraft:gt6/450ffdf797b20f15",
-        3,
-        4
+        "cruciblecraft:gt6/d846862dbcd882e9",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/32f0b6dd642635b5",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/71c57b527d5462fa",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2017,
+      "duration": 1901,
       "eut": 96,
       "item_input_actions": [
         {
@@ -127,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4157",

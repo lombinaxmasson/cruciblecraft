@@ -10,40 +10,107 @@
         }
       ],
       "hashes": [
-        "d37508804a4c57bd52d2b189fc5b4a4bc37073feef35ddecd8a4672ebd0e81ea",
-        "1de9e3543a43b44afba44811f9530f0617645a048ceedb7094a70209261efa03"
+        "fbc61ae374c26a82d013ddf75242cbfea2cc29bba4b99df1cd7c80eecd491f1f",
+        "bb2c71f73ea2cf70ecc6bbfab9e3db2556ad0caf6be3f996b3e90b7a5c63ea88",
+        "e5d6916937a41841c5f9fc001237115da0c343995580e40f9873a349bd0fbc7f",
+        "0176b78d7dbda3899f50b47c10f141ce24d268bad5ed59d0d1d9ea86b6d3e87b",
+        "c801c847f585fa5c44d07487601794fd71f659557c6850a073de060dd7fddcac",
+        "1f52e6a7cecb5a55465ae8b05a33bb9e78b352ebff4921fdbeb1a0ea6d21fd37"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "nichrome"
+              "cruciblecraft:prefix_material": "chromium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "nichrome"
+              "cruciblecraft:prefix_material": "chromium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
             "count": 1,
-            "id": "cruciblecraft:nichrome/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:chromium/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:chromium/large_fluid_pipe"
           }
         ]
       ]
@@ -53,22 +120,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/06c0cf9c827ab57c",
+        "cruciblecraft:gt6/8f1af11b31d1c110",
         0,
-        2
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/5ba57d291d8aa13f",
         1,
+        0,
+        "cruciblecraft:gt6/11a119111e1b08d5",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/7b53c42dbb22e9e6",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/1c77d2f2bf66a87f",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/cea39f29ef30c016",
+        4,
         4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/dc0dd4e582bf9a88",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1209,
+      "duration": 2083,
       "eut": 96,
       "item_input_actions": [
         {

@@ -10,36 +10,115 @@
         }
       ],
       "hashes": [
-        "1f78c405769ce7c5b571fa69d036aaa0936f07b846b3434b7de32a0e20afd1b8",
-        "12dcb8aa01af0a206dc9902ac5c17ed3be293968a3d7771ec0a05b651a1db0f8"
+        "e18cd651df69301cd4772936f61f4d710c847fbcf379f35504b44f5b47a48895",
+        "266d2bd57bf5315e1f61d13219896660e54a33f5a2d83156e43e43acfb555040",
+        "f6e997f975a8f21930e31fe1a90378b7d7a07ac61d1ead5bc311e53c3262d717",
+        "ee220d5d805eee5dfb51ee3381a4117e9f04d47bb80e95a62b3e6e6885e195ee",
+        "56b1037de1ff4c54c730b3f98ce84127dda056a54942b42ba6e438fac9eebe35"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vulcanite"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:lemurite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vulcanite/rod"
+            "item": "cruciblecraft:lemurite/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:lemurite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:lemurite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:lemurite/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vulcanite/block"
+            "count": 64,
+            "id": "cruciblecraft:lemurite/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:lemurite/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "lemurite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:lemurite/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:lemurite/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:lemurite/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:lemurite/bolt"
           }
         ]
       ]
@@ -49,22 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3a2091aa1c6db81a",
+        "cruciblecraft:gt6/796387f1327beb09",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/ac40877b3726c348",
+        "cruciblecraft:gt6/85c59c7feb467bb1",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/5fd64c3b0ad6d886",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/504209f87aecdf29",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/50776129cbd57932",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 788,
+      "duration": 1331,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5759",

@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 3986,
+      "duration": 643,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        14,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "melodic_alloy"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:draconium_awakened/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:melodic_alloy/block"
+          "components": {
+            "cruciblecraft:prefix_material": "draconium_awakened"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "draconium_awakened"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "e1027a8d9f2c20a93f73601bb19159a942206e3910915ecfe2024b97bc69ca13"
+          "033bc41c2036d17427639c2154236c7ce56b8692c35f0bd4d110f2e6068be7b1"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9530",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/5dbce80236a83c80"
+      "stable_id": "cruciblecraft:gt6/0d853dc9ae85effa"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

@@ -10,49 +10,74 @@
         }
       ],
       "hashes": [
-        "5e08456c3057df7da6c2a93223f7f5f34f85d1f555c14a8f7f8bf90a50bdf092",
-        "f52fee47cbde076d615d3bae86d7b663861e48cdc1054ca64bf023dbcaaf1b0e"
+        "7137e09c79f77ac22fce8474934f63717301d4d8aa5edb19e570909ec3115d99",
+        "944f8164daed1bb4e894932ce33eef78b62c56fdeb5e8e4e03c3122456c80cd3",
+        "b71f3a68a8870b65eaf53b928c2ffef988a48855ec2b4c1874a598fdb8a055f5",
+        "9cb2755920f42ab042d26af344c01e25b1f2432fa9670fd1d9e2307e1fbb5848"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "adamantine"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherite/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "adamantine"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherite/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherite/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherite/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "count": 1,
+            "id": "cruciblecraft:netherite/gear"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "adamantine"
+              "cruciblecraft:prefix_material": "netherite"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:adamantine/rod"
+            "id": "cruciblecraft:netherite/fluid_pipe"
           }
         ]
       ]
@@ -62,7 +87,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7a54f49e231178bc",
+        "cruciblecraft:gt6/a8160457c42e3459",
         0,
         0
       ],
@@ -70,14 +95,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/5666f235806cca58",
+        "cruciblecraft:gt6/4fb69f195a79ac72",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/95474595afdbb64d",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/1facdd9d5adb98d6",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 218,
+      "duration": 12226,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +129,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

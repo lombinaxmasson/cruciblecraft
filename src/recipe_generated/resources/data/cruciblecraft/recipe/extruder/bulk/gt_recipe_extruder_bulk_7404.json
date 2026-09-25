@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 38,
+      "duration": 2035,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "sterling_silver"
-          },
-          "items": "cruciblecraft:dust_div72",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:vibranium_steel/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_ring"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:sterling_silver/ring"
+          "components": {
+            "cruciblecraft:prefix_material": "vibranium_steel"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "vibranium_steel"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "ee763b4c5d0f467d84557f03204839248a85d521ab99ef8bc09f47e5fdff669b"
+          "49e39782c2d51340475e0007a5e61f7a39b2bd1b17dce6a8a6320d236b28873a"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_7404",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/b9decb2e16c0f4d1"
+      "stable_id": "cruciblecraft:gt6/db220f09f941c347"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

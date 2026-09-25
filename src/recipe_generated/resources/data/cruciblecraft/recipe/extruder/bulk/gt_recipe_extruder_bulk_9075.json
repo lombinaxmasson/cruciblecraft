@@ -1,67 +1,13 @@
 {
-  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_9075",
-  "matrix": {
-    "dicts": {
-      "fluids": [
-        {
-          "fluid_inputs": [],
-          "fluid_outputs": []
-        }
-      ],
-      "hashes": [
-        "c67400c799941e745cc6bb2ce86a203bcb33eeb993b3e8a13299e6bf90cbda6c",
-        "fd6192906c59f70b3e8c995560064546e1f5372380f924c4d49b590d8b0ab818"
-      ],
-      "item_inputs": [
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ]
-      ],
-      "item_outputs": [
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/ring"
-          }
-        ]
-      ]
-    },
-    "rows": [
-      [
-        0,
-        0,
-        0,
-        "cruciblecraft:gt6/fcb110dc07c2acca",
-        0,
-        0
-      ],
-      [
-        1,
-        0,
-        0,
-        "cruciblecraft:gt6/80b90a4848f1a35a",
-        1,
-        1
-      ]
-    ],
-    "shared": {
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
       "can_be_buffered": true,
-      "duration": 877,
+      "duration": 1358,
       "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -71,18 +17,38 @@
         }
       ],
       "item_input_counts": [
-        2,
+        18,
         0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:niobium_nitride/rod"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_block"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:niobium_nitride/block"
+        }
       ],
       "output_chances": [
         10000
       ],
-      "selected_source_recipe": "gt.recipe.extruder#bulk_9075",
-      "source_kind": "SOURCE_DERIVED",
-      "special_value": 0
+      "provenance": {
+        "evidence_hashes": [
+          "c25233798f3d6dbfe6d5b457f0961b8a463ab182684f59695f3e34be12ee3135"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_9075",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/a8547a622e49a954"
     }
-  },
-  "publication_group": "cruciblecraft:extruder/bulk",
+  ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

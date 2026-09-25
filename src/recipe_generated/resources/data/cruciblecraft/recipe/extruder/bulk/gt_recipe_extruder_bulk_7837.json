@@ -10,40 +10,39 @@
         }
       ],
       "hashes": [
-        "839e02e9cb62e6d39721bcfdce36e52533cf7409b28c2caf5217e66746901346",
-        "89a65b00c0ee156191ae5d1239e28340c2d7f70dd9f2909c679af0f5bccf0a62"
+        "46b80060b2157c8e22fd49feff43ecf33a0df7a6030fd778355caad58bdb986f",
+        "a6ffe24afb566460c3b585e25b5d7f5cfa08f201af1fa184ef7affbf15ff11eb"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
+              "cruciblecraft:prefix_material": "steeleaf"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "tungstensteel"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steeleaf/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "steeleaf"
+            },
             "count": 1,
-            "id": "cruciblecraft:tungstensteel/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,22 +52,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d5e56123f381faaa",
+        "cruciblecraft:gt6/723173249d2f6049",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/9a895cd5af08a532",
+        "cruciblecraft:gt6/df8b0b748ee3b3ed",
         1,
-        7
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5394,
+      "duration": 134,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +78,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

@@ -35,7 +35,7 @@ blocked["rows"] = rows
 census.write_stable(WAVE / "blocked.json", blocked)
 proof = census.load_json(WAVE / "coverage_proof.json")
 proof["blocked_rows"] = len(rows)
-proof["host_rejected_rows"] = added
+proof["unaccounted_rows"] = added
 proof["accounted_rows"] = proof["published_rows"] + len(rows)
 census.write_stable(WAVE / "coverage_proof.json", proof)
 print(f"added {added} blocked {len(rows)} published {proof['published_rows']} source {len(dump['recipes'])}")

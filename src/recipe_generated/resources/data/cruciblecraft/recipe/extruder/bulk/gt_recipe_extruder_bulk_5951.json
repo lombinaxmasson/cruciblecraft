@@ -10,16 +10,22 @@
         }
       ],
       "hashes": [
-        "51bfd0221395663f76c3ac178a56d961ce00a68aaff59946750750d64633c9a7",
-        "7317dd84e199a5d311bfe06aec7a7119d961dd65eac3a7b66c5ce2e0beaa15d9",
-        "6166ef16e56cf41af35210adf2679e4965c539e9e9189b9ba1adde2912f777b8",
-        "c513e44d509e8c35509722edbf9aa248167a37c97fe974e8dd77dcd0659f5f03",
-        "aea76eebbbf4a29845fda91ceab2138a1bc0f3941e839fc4dec74edb0713581a"
+        "c1fd590788139e770a7545d9eb2022a6ff43495086a1b662b40ee0506347f6e8",
+        "285b4bb792e75f12d7ef0a97846c8ccbf15f7ec3ad9960305f7543dd67ffef2b",
+        "406ff55f96db4523d990af639caed808e628132e992bb32a3cffadd61c60d510"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:midasium/gear"
+            "item": "cruciblecraft:protactinium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:protactinium/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -28,45 +34,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "gold198"
+              "cruciblecraft:prefix_material": "protactinium"
             },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "gold198"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "midasium"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "midasium"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -78,13 +48,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:midasium/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:gold198/block"
+            "id": "cruciblecraft:protactinium/block"
           }
         ]
       ]
@@ -94,46 +58,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8a39cdebc8dae314",
+        "cruciblecraft:gt6/5fdc1829c5f838c5",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/a5c0419afb58bcfd",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/c4eadb509c150c3a",
+        2,
         2
-      ],
-      [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/c5eef8fe3d2f9045",
-        1,
-        6
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/ecbd1ef3f6ef6256",
-        2,
-        7
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/04ea0d52f14589eb",
-        3,
-        8
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/137667969ea52594",
-        4,
-        12
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3728,
+      "duration": 3305,
       "eut": 96,
       "item_input_actions": [
         {
@@ -144,7 +92,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

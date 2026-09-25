@@ -10,40 +10,58 @@
         }
       ],
       "hashes": [
-        "74ab7dbfde8d5f2fbd2da16856f85702dea45268ba5740691563aca443554840",
-        "1e26f25c09d195239f3c99830d7d940bbfc32e107cd2b799d17ad4dcb08e498a"
+        "2f3b0c04c1c8f880c07c71cf9ef0541fd290ab0abddbe1529551bdd013735a15",
+        "fe5743448fc613d3002dee0e270e06eee45da14c867d639e50f6618821ca6d94"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "eximite"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:fiery_steel/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "eximite"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:fireleaf/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:eximite/block"
+            "components": {
+              "cruciblecraft:prefix_material": "fiery_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fiery_steel"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fireleaf"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fireleaf"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -53,22 +71,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7fc1fc8fbf006c2e",
+        "cruciblecraft:gt6/016b2c5e3b1f8a77",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/136036a0108a7e13",
+        "cruciblecraft:gt6/47cac7cada1a1e5e",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2831,
+      "duration": 2568,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +97,11 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7601",

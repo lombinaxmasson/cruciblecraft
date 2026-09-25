@@ -10,40 +10,59 @@
         }
       ],
       "hashes": [
-        "238ec689880b12e6b76cbd28972319f191384036935848860712fee819f30d13",
-        "f3300e48d50d9877798556052faad3cc64396544ebfbfd8c090db61ed92ad1ea"
+        "acca2843e406d3be21e387d433d8664d04a00b1dc47cba22e34034c77d7ac9e2",
+        "ce6fd949a99ba6492bab7be806caf8f3439bd394ee91c743b3ca4a1bf3a51980",
+        "aa63ea6b776930bbe01cf4720f36a0e23246091a09ea8fe85595664c7ec9c542",
+        "0400aa4e8df48f249a6e249931db849dfce999c6383b6327683dd618a884f88f"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dreadium"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:black_bronze/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dreadium"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:black_bronze/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_bronze/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "black_bronze"
+            },
             "count": 1,
-            "id": "cruciblecraft:dreadium/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:black_bronze/large_item_pipe"
           }
         ]
       ]
@@ -53,22 +72,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a96e7519e379cd20",
+        "cruciblecraft:gt6/59f016cdef23b996",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f9b504ebe2c6d675",
+        "cruciblecraft:gt6/2339e201f4e38ca8",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/db31e6df8d9d5472",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/ef75dab5ce55fff8",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 8515,
+      "duration": 1087,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +114,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        48,
         0
       ],
       "output_chances": [

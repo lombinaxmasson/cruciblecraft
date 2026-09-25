@@ -10,24 +10,67 @@
         }
       ],
       "hashes": [
-        "60d87d7786021978069f49d077b8fb599339c637b6efe28eeeec98339de15956",
-        "4ff089332c118f471e18e61400f9b4d3d0385eb2cd066bf2919b9e2b8a554d01"
+        "76a107ae84bc19683cc527d8325ac277fc82c41ee2432fb19793e2b4b145bbed",
+        "b41da2541d42e970cb37c95b2e3dc17a0bcffe5bc77dff41f3277a40797c481b",
+        "714b1c4062ba474b45a0aba15e18c2c943fe926a343dfc56170601eabb03eda6",
+        "f12b67e645e9995676c6e4aac8feaeb489ad1bf82634a44cd70912b1618f51f7",
+        "510c6cebccefbdbe18492621d72614c8ea415f260e1687bb0a72a54fd99d3be6"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:haderoth/bolt"
+            "item": "cruciblecraft:thaumium/fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:haderoth/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manasteel"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manasteel"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +78,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:haderoth/gear"
+            "id": "cruciblecraft:thaumium/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:manasteel/block"
           }
         ]
       ]
@@ -45,7 +94,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1659cafa62979087",
+        "cruciblecraft:gt6/f3841e3fc897858d",
         0,
         0
       ],
@@ -53,14 +102,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/172c5a4e9b5e721e",
+        "cruciblecraft:gt6/5230a514fc77c768",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/30787014d5e4d804",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/a6d8cbdaa3a41bad",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/acddbff7c900e432",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2075,
+      "duration": 2207,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +144,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        3,
         0
       ],
       "output_chances": [

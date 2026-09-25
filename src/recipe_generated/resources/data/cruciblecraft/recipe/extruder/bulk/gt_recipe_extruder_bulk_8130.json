@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "ebcaaaf652b37b49fa91490dace4cc494aa7074eab8ef138c2a7432038c32cf2",
-        "778bb57f42da6dfdafcd0c755680c8040c5062c82e34bc214b97bb2567031fb4"
+        "2f4677c5c75e2fe4bbba664d7cfcb213b8d3d9549a9229dad6c08b15dafd7eec",
+        "00fddb8e5721f8272d8d291cd32403fc02e3a6aa92d864dc351353a843bd30a2",
+        "02402892332c0839179c142d4d203ff0d622131f300e6fa272a1c719d07be95a",
+        "f58493dc58f843829b086e0e3bcbfb4ac5bfe81ee8ef345ce0f09878801bb234"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meutoite"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:infuscolium/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meutoite"
+              "cruciblecraft:prefix_material": "infuscolium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infuscolium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
             "count": 1,
-            "id": "cruciblecraft:meutoite/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/aa277f1942bcc2ed",
+        "cruciblecraft:gt6/d44d0484f7c0f6fa",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/3a96c5162a332fd6",
+        "cruciblecraft:gt6/508f3863ad2d6224",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/8715f9b9d108c835",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/ab0e53c79724c2a9",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1912,
+      "duration": 637,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        6,
         0
       ],
       "output_chances": [

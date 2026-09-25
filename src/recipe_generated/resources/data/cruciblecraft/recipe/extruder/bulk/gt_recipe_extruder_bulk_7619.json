@@ -10,72 +10,110 @@
         }
       ],
       "hashes": [
-        "0cac84b0ac1f483955312c7f39106d03bf2308d02cbe9e0679b57b249e474eb6",
-        "e550f581b852157288971258f84d778fb7112148ec304cbf444e7cef132b0287",
-        "94b116ee820a19f26db7206c2fc8ab784b7f6d1fd80de00810e56862317b1294",
-        "57dc40a1fc9529ee4cea1cd92344b7f22b39a7965daa439d175cda5d312baf54"
+        "0637e75a6199b19e25d2463fcf3de4ffc57b2f8c9cdc2d1d309822e8c6a8b7b1",
+        "6858d1454e7899f5ae6e77e5d791841ceef9778f77bdc8298f91615b30f9a8c9",
+        "a11c4acac546956da31ad98be7479836bf269d340aa3954165b736112dadea56",
+        "0f165f433edda16bbd091e9db1fc7b523e417c5387310447e0162e47ec6c2e01",
+        "522a46994da9b71b2deec69512de016c6b23dbc901a5770716ef7e833288fb14",
+        "0c751a9c5fe5792f1ce93b150c185647832ce1879bbe39177662d18783390a94"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungsten"
+              "cruciblecraft:prefix_material": "spectre_iron"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungsten_sintered"
+              "cruciblecraft:prefix_material": "spectre_iron"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungsten"
+              "cruciblecraft:prefix_material": "spectre_iron"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungsten_sintered"
+              "cruciblecraft:prefix_material": "spectre_iron"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "spectre_iron"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "spectre_iron"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "spectre_iron"
+            },
             "count": 1,
-            "id": "cruciblecraft:tungsten/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:tungsten_sintered/block"
+            "id": "cruciblecraft:spectre_iron/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "spectre_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -85,7 +123,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2f243ae019f94742",
+        "cruciblecraft:gt6/2904033c05e7611e",
         0,
         0
       ],
@@ -93,30 +131,46 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/a46f1b8abf8411cf",
+        "cruciblecraft:gt6/55537b82c6a7cd05",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/0ae9a4e98b38a742",
+        "cruciblecraft:gt6/5b35ce210b8aef20",
         2,
         2
       ],
       [
         3,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/cad4ea7aba2b732c",
+        "cruciblecraft:gt6/2d49e3f5607fc97f",
         3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/f3d2c79e2c80ffa9",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/c4225b49c11521de",
+        5,
         5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9096,
+      "duration": 832,
       "eut": 96,
       "item_input_actions": [
         {
@@ -127,7 +181,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

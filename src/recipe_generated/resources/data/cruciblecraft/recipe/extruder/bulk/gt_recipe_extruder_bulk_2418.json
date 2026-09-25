@@ -10,40 +10,89 @@
         }
       ],
       "hashes": [
-        "287fa94f0234cfbb2aa8e4da5b8ec4edd1317712c753a7a60313dd3427d116ea",
-        "1f3b0238e3e724491cebdfdfdcf29ac9dc8687a202d573dc763c65e3c341b406"
+        "08cdc89d680b869ae3e68653eca0317acfa74f4d8736762aaa187492d4e29bae",
+        "bf065e9e2af74e8318904ea5224bd673b54340ec1d5039f5d98830dea3ad91e1",
+        "686f16929088fbc20f335db337a3f4560753e716d63a8c8756a7d9c1101d2f6c",
+        "ee14106a1320130b8378dc01f0aa5badc901a0c222ef66f4123c5cf177181a79",
+        "4cd01c74e8d88987d56740954dec6fc259d34548e294ea8c37d941db3984c9be",
+        "2c6668787a239285d5cc25e6a8a208735018c28bae94e23e732bde54ed61f588"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:damascus_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:damascus_steel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:damascus_steel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:damascus_steel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:damascus_steel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:damascus_steel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:flamascus_steel/block"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -53,22 +102,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/485fbd10feb02e26",
+        "cruciblecraft:gt6/04defb16abfb4442",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/19bcf1c4e0f4aa46",
+        "cruciblecraft:gt6/866cd407f9b39a42",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/ac8ec895e67f0d08",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/2a43e4490168aca0",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/945a6cff296de7f4",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/d81ed1a5269d2975",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3497,
+      "duration": 463,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        16,
         0
       ],
       "output_chances": [

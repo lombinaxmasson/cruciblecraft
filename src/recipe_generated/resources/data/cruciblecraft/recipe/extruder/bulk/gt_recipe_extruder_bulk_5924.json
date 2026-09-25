@@ -10,116 +10,52 @@
         }
       ],
       "hashes": [
-        "06505b13956bd8b615997183c1f424c8b66aa2eec05ff1603342223c65295017",
-        "de8b2c1aa2e121e956a3e371d1517ac0a84ac86cad12d3ffc9c2fbcd133cb7e4",
-        "000247ca454500e3c3b1b1c3b54dda467eca957f658f6455c37c76668a4c3910",
-        "0975d756c5e3bdbaff77beae3f05fefe13a5ea7420f0c2ab3f76568310bef637",
-        "c092e9e607f15fa7a3a92d658738043448a28b9d0167a9f114f78e60f6aeb652",
-        "8176058706213ead0b6a026d9e8f607e9e9062c8828698746bfa3540ac654a24",
-        "db58d9f037281d89c31e3313c6a4fd7d7cf46929d8a3236cfe8c3a0570bd612d"
+        "3f4532edc33e800231044d71b67c3a97a18693cc8a140a94d8fe55acd6fa36a5",
+        "3df368c924ba1700887c1fec4eb2c02c636a7c56dd122998e8023e4bc19fda55"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:naquadah_enriched/machine_casing_dense"
+            "item": "cruciblecraft:vulcanite/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:naquadah_enriched/machine_casing_dense"
+            "item": "cruciblecraft:vulcanite/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:naquadah_enriched/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:naquadah_enriched/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:naquadah_enriched/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:naquadah_enriched/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:naquadah_enriched/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 14,
-            "id": "cruciblecraft:naquadah_enriched/gear"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:naquadah_enriched/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 6,
-            "id": "cruciblecraft:naquadah_enriched/block"
-          }
-        ],
-        [
+            "components": {
+              "cruciblecraft:prefix_material": "vulcanite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah_enriched"
+              "cruciblecraft:prefix_material": "vulcanite"
             },
-            "count": 56,
-            "id": "cruciblecraft:curved_plate"
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 56,
-            "id": "cruciblecraft:naquadah_enriched/ingot"
-          }
-        ],
-        [
+            "count": 64,
+            "id": "cruciblecraft:vulcanite/bolt"
+          },
           {
-            "count": 56,
-            "id": "cruciblecraft:naquadah_enriched/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:naquadah_enriched/plate"
+            "count": 48,
+            "id": "cruciblecraft:vulcanite/bolt"
           }
         ]
       ]
@@ -129,7 +65,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ca8996a66db68ece",
+        "cruciblecraft:gt6/de48deac70e9521f",
         0,
         0
       ],
@@ -137,54 +73,14 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/5b5f35acb5757520",
+        "cruciblecraft:gt6/87803fa1b200b8ad",
         1,
-        3
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/4c30a438519ed138",
-        2,
-        4
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/57a19c7134d67279",
-        3,
-        8
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/f8d932a74af2d590",
-        4,
-        9
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/f60e2992b8e32111",
-        5,
-        12
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/373d130375603b9b",
-        6,
-        13
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 22948,
+      "duration": 1225,
       "eut": 96,
       "item_input_actions": [
         {
@@ -199,6 +95,7 @@
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5924",

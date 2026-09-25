@@ -10,42 +10,28 @@
         }
       ],
       "hashes": [
-        "f2e793eef2c4cd8d0d907f9457a3c197b94636162ae18e6edd50166d05cd0e27",
-        "0aadd0b103e8fe485e6ad8cb8b0c7f1c3ce8712198386ce160902ac29fdfc6f3",
-        "31a9f60a15081a0f7e8dc7748ee4532a6520db0bd8f2b4292dff052452693a59",
-        "d1e4fa07ace339ef1076bb6122ba5fee1b5f81419f42de8f465393abece88ae4"
+        "5413bb7fb6036ed08ae183597c3162796bc8cf663ddbf17a05a284fc84b5e091",
+        "eb8f52a3894aab73ae5efa8a8577c90ab5dcbb23461e01b951f24d6235569184"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:coralium/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "technetium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:coralium/bolt"
+            "item": "cruciblecraft:technetium/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:coralium/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:coralium/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -53,16 +39,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:coralium/rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "coralium"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:technetium/block"
           }
         ]
       ]
@@ -72,7 +49,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/75f3c28f74f3766c",
+        "cruciblecraft:gt6/9e471f11270950cf",
         0,
         0
       ],
@@ -80,30 +57,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/c23f316659c0ea9e",
+        "cruciblecraft:gt6/2244fde3a621b239",
         1,
         1
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/6f9a782c64a85edf",
-        2,
-        2
-      ],
-      [
-        3,
-        1,
-        0,
-        "cruciblecraft:gt6/9931e2203aac0e2f",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 264,
+      "duration": 3414,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +75,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        18,
         0
       ],
       "output_chances": [

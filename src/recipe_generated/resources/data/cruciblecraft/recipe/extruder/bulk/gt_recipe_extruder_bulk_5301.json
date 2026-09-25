@@ -10,40 +10,134 @@
         }
       ],
       "hashes": [
-        "4282e56bd48a795395278632438ffe03406845394b4dfd917e95f197c9d44b2d",
-        "fcd8bf7a6e03b5fd15c0904727ce36b4627b88072cd2def51ddd54c2f16fb8ca"
+        "3edee9afd656df51642a30c7792c5c20e43636075767ffa187f0e045073f36a9",
+        "cf437d6d3087e56e8a08402a91315915e02e6f7d51ad8d1103f63194b2b43f35",
+        "8af32dfa5aaf00a19eb30fe1705a2311df52ec6149336f5b3172b17abd09141f",
+        "81541669c62802df6f51a12cc9def491434a09d47502416c60647bb367e5a3e8",
+        "6f4020a63747185589e9814c5b351a7b1e41bacefc3ea7f7abdf26eef66552ce",
+        "e279954c3edfd69ce3ca7312a9b83700a4927d21b05c954d91ba42c6d8df8412"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrum/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrum/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:enderium/block"
+            "count": 64,
+            "id": "cruciblecraft:electrum/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:electrum/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:electrum/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:electrum/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:electrum/wire"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:electrum/wire"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:electrum/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:electrum/rod"
           }
         ]
       ]
@@ -53,22 +147,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ac2d59dc9b42e4c6",
+        "cruciblecraft:gt6/e16bd7f8f0f755be",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/0f66896f9b408e54",
         1,
+        0,
+        "cruciblecraft:gt6/67126e5fab7e67f5",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/beced330dc46f2ac",
+        2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/6cd8ec02f9bfb837",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/d3c57bb6c8c9917f",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/867f452ccba40f73",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2710,
+      "duration": 12767,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +205,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5301",

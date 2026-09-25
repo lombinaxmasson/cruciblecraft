@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "e4082e4ef517b752625f71a99020008ad41e9d567f1a66d9169bb00ed38227a5",
-        "86a7f39a936a3ae2d7e1c469597e66c84f4ff6864e176418d68c86c871e71b7c"
+        "b5700e17d748449ce156fea7aa2310eaf953047a6ff284ceaaa87763c0095bd7",
+        "248787176f632a6dba8e697e181ce698a10593fca4a8a998a64900127172c90e",
+        "00af82e4447d4ae143906e71e934fe31dcc6bf43faed573189caad4a3b75660a",
+        "870ab3f89345b6f1992375329643183c46231990bda1f928a46a0a9de1fbcf2d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "naquadah"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:haderoth/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah"
+              "cruciblecraft:prefix_material": "haderoth"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:haderoth/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
             "count": 1,
-            "id": "cruciblecraft:naquadah/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -53,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9c27c828cd29cb38",
+        "cruciblecraft:gt6/7efc45eb9e311beb",
         0,
         0
       ],
@@ -61,14 +91,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/968dda2e797a9420",
+        "cruciblecraft:gt6/af38f366b7aa3200",
         1,
-        5
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/fa7a9e259993f998",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/195c3f49d8d8c33e",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3912,
+      "duration": 1556,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        6,
         0
       ],
       "output_chances": [

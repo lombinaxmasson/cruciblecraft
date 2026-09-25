@@ -10,55 +10,41 @@
         }
       ],
       "hashes": [
-        "89ac6556ab1b6e46da24d5c46660de69266a4bc252fe5b4f08704b1ea373db76",
-        "e2fbfdb12462d51487cbdb3d3f124f1b3b42d8d78f24a547f65a9f231dd2e15c",
-        "ba4ce92771406a730240f0d573e43dc8a8112abcaf303ba1c2b63cedf4c78905",
-        "241c5292653deea987c3e10abb1ba0c8d7cf722209875b8964697bbd8f7f676d",
-        "de84294d61d8f46be86e966673ffc2149e56ec39a47c5ace612877d0260bc0aa"
+        "aae027322d78c091c9396a8feb0bebbd73ab9ba34daaa15a23d5ad2942ce9a3f",
+        "26f3c0cdbd84951cc2a7f67b0bf55d3fd9852d54ecdf379863a44d263079dc69",
+        "90d2269a93a04e74ce80a4329ef0d136829263870de0d686736e4d035ceb7097"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:protactinium/ingot"
+            "components": {
+              "cruciblecraft:prefix_material": "platinum"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:protactinium/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:protactinium/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:protactinium/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "protactinium"
+              "cruciblecraft:prefix_material": "platinum"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:quintuple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:platinum/decuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -66,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:protactinium/block"
+            "id": "cruciblecraft:platinum/huge_item_pipe"
           }
         ]
       ]
@@ -76,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/98303ea396de8137",
+        "cruciblecraft:gt6/ede2c3e8e026b17e",
         0,
         0
       ],
@@ -84,7 +70,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/4954738c31eab8a8",
+        "cruciblecraft:gt6/bd2984c08945a34d",
         1,
         1
       ],
@@ -92,30 +78,14 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/29398039da621e8c",
+        "cruciblecraft:gt6/94198b70e8ebc51a",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/e555e781e7ee5a31",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/cd08d56fd99bc0c4",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3305,
+      "duration": 8684,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        3,
         0
       ],
       "output_chances": [

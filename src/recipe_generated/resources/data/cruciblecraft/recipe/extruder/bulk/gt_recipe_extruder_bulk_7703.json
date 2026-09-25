@@ -10,36 +10,79 @@
         }
       ],
       "hashes": [
-        "72efac0514e1f78a91d59c79c53c2d964d50f505d14df6a1d391e9b178762131",
-        "cc3324c4b08d91fb3ca577d57c31c0fdecf576cc15b619cd53229303885aa067"
+        "535ca5351d8ffc44d8f8fed6fec0a03f798e567354cd3bdb5fce942fdfd0ba7a",
+        "421b4afdc67ac4024288973104223877cc025749ebb2c6f82d409cc8c5c8d7c8",
+        "ddcc7138c2effccfa61a3dee2bdab94cf76ae8532009a8f4108a25606eb47f4f",
+        "4775d3d801e6c5729eb73da04439b5af6729b8451e60fdeb86af8786a5bf0f3e",
+        "14d693ee0cbb0f794c500578b00282625abee5e07cd1e04235d32600152a6e71"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_iridium"
+              "cruciblecraft:prefix_material": "nichrome"
             },
             "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:titanium_iridium/rod"
+            "item": "cruciblecraft:nichrome/wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cobalt/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
             "count": 1,
-            "id": "cruciblecraft:titanium_iridium/block"
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -49,7 +92,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/99f29bdc36ac2203",
+        "cruciblecraft:gt6/79fa9ff5954b29eb",
         0,
         0
       ],
@@ -57,14 +100,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/78e3d3190ab9e65f",
+        "cruciblecraft:gt6/314a44ea5304b875",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/abd2080978c04246",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/faacfde97a3d972b",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/606c801498324d05",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3834,
+      "duration": 303,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +142,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        3,
         0
       ],
       "output_chances": [

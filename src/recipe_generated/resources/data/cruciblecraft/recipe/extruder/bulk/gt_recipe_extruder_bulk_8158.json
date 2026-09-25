@@ -10,24 +10,111 @@
         }
       ],
       "hashes": [
-        "bdae85ef2f30b314213d19338e754e4b1520427dc119bcb8b9bc7de1b0b20690",
-        "26ab04a80d4bdee585b33a452b242c1ba7555362ba969524f0dc9f87ef6e47a8"
+        "6cc6a4993175304ae4ef4bc332674f7368e81245319c51b38cb5556c7feb5261",
+        "2f6cf489433781eb4501f61de42f84f8c81de6afb664889c393c3eb747f13142",
+        "2113ae73b9ab4a1d8cadf5458870879c859300e52d0d80148f3e0510223c438b",
+        "ec3796ebbb422daf7680a7574be7a01fd493aa97b089de1766d60ae561e7c384",
+        "b9df4a6c62d56b9e87a60a35a401c959a65d41316be8b15d15c984b3e6fab19b",
+        "971a406b8dfe3ed8acf74e353a265b40dac5c9bed81f17865101847d889759d9",
+        "3c1312355067a9a6054685634d6c2ff30c27c3e37430f6ed2e242fc3aa254c87",
+        "ea1ec179e6d471e4b886211b2ead6dd2ff0e5d5ca735cf791aa2494e15050b5a",
+        "5ad6dab1622f4115c66a9c7f6618f25f865b63e94e7a0135c25332fc19f07a05"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:osmium_elemental/bolt"
+            "item": "cruciblecraft:osmiridium/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:osmium_elemental/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
@@ -35,7 +122,34 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:osmium_elemental/gear"
+            "id": "cruciblecraft:osmiridium/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -45,7 +159,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c2a48dfd5a7573a1",
+        "cruciblecraft:gt6/b6b73537a30275b0",
         0,
         0
       ],
@@ -53,14 +167,70 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/aab347c1d9b3ba06",
+        "cruciblecraft:gt6/1b697e7c7794d916",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/b5315c0308ba0a84",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/e7c5e1873f7f058f",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/1808ea6a4f45bc0c",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/5d4f2dc68ba8a5ba",
+        5,
+        5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/fdf015e56a8c4607",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/f1b3a44cca42ed59",
+        7,
+        7
+      ],
+      [
+        8,
+        3,
+        0,
+        "cruciblecraft:gt6/9bfc3caabcfe7a78",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4206,
+      "duration": 316,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +241,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        3,
         0
       ],
       "output_chances": [

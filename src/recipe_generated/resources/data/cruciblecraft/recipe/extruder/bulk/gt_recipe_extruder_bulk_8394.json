@@ -10,46 +10,70 @@
         }
       ],
       "hashes": [
-        "2546532c11b67942d2fb3a13787dd5fd43cd4a22d8b4771feeadeb0529d308ab",
-        "2ae19f9769c6a444260f5ad88b93efb3928a88c609e7a46f64b34eb0bd9c9f2b"
+        "e8e085d290c7ea1a76bada7c5efd3b08c90aacacc375212f044d43fe1f3e4250",
+        "4369acbee182125bede95598868867a6c3a1944a0d5b2427f1352d7eacee60d7",
+        "41804ffb186d9e7a1bac556c76fbe5ff132201e13c506521c8ce4454db8c0e6a",
+        "2195c79855172b07953d5cebb47ee0cca512da3e3e43db13f580881e0ef7a0c0",
+        "e6d6c8e903a5f49e6fea13259454ea95a35efb1b20e667f3903553bb70987900"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "infinity"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:molybdenum/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "cosmic_neutronium"
+              "cruciblecraft:prefix_material": "molybdenum"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:molybdenum/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:molybdenum/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
             "count": 1,
-            "id": "cruciblecraft:infinity/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:cosmic_neutronium/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -59,22 +83,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6fc29a2b3cd22762",
+        "cruciblecraft:gt6/f7b3097ce11bcbc8",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/51171805d01a574c",
+        0,
+        "cruciblecraft:gt6/83941a56223de0d2",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/bf83289a24cdaed9",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/bf7b15f3177c3111",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/c3734cd234cce905",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 14362,
+      "duration": 2464,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        14,
+        24,
         0
       ],
       "output_chances": [

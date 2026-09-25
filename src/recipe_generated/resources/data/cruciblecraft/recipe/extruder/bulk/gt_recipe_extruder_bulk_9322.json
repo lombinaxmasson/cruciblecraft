@@ -10,24 +10,32 @@
         }
       ],
       "hashes": [
-        "c37400c1ec8cb9445161d25d09e083ac579b02ccc3bd8fa8ff6bc705fd56bd9a",
-        "6709c231c9d46b4c93f4ed147e7181be56fce20202e3670e2efea9bf575c3dcb"
+        "5a48ccac124c79b4f737def5375360070bdeb083e26cfce0dccb36013683836b",
+        "4ac3dcef06148f58f9d12e3fa769afbf7430332c67d977d8d68784e5d9bb868e"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:netherite/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:netherite/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "enderium_base"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +43,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:netherite/gear"
+            "id": "cruciblecraft:orichalcum/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:enderium_base/block"
           }
         ]
       ]
@@ -45,22 +59,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/18673d3c39b6fdca",
+        "cruciblecraft:gt6/e66d4223b340164d",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c7ddacc9b501e112",
+        "cruciblecraft:gt6/f058c55425839615",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9781,
+      "duration": 1304,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +85,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        14,
         0
       ],
       "output_chances": [

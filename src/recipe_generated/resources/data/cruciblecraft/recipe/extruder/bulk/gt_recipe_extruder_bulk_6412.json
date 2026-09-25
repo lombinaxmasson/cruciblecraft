@@ -10,16 +10,19 @@
         }
       ],
       "hashes": [
-        "0deac7b2e9a043dc783d558184781d8dc0d6ee5a43b3c963310c9c3e0d3e7fc0",
-        "3f5a5562c2424aa9e4af4e35c79ccac6a30891051697a94ad5f7a6bf84481985"
+        "c4054e1121e7aa49ba6c87c5e14945847899b251053b0657f9f8d5f196efa69c",
+        "efa5fbe971cd3ab0d227f9e1076c45036e2b8cb32d84ddbb9101bcd6d56438f0",
+        "bec034a80850f14e534e6ff3cacb7d2e8c3b208858334710127ea59b78d0bc40",
+        "120ab45f9dd099967008b191a389b543a23cdf08aaa763d5bad2f92f8d80a2a0",
+        "08921fd2815326344c6cf5598d3c3194fdceddd467313333511f9323be415e0a"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
+              "cruciblecraft:prefix_material": "electrum_flux"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -28,7 +31,35 @@
         ],
         [
           {
-            "item": "cruciblecraft:vibramantium/rod"
+            "item": "cruciblecraft:electrum_flux/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum_flux/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum_flux"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum_flux/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -39,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vibramantium/gear"
+            "id": "cruciblecraft:electrum_flux/gear"
           }
         ]
       ]
@@ -49,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/601e34766f555340",
+        "cruciblecraft:gt6/2bf3528362f801d2",
         0,
         0
       ],
@@ -57,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/2f0aa0247bfe3853",
+        "cruciblecraft:gt6/9f2b4b4d56a28f00",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/947641615058a7b6",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6cc6529cc2381189",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/306d8ffb1ca5d26d",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3234,
+      "duration": 431,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        16,
         0
       ],
       "output_chances": [

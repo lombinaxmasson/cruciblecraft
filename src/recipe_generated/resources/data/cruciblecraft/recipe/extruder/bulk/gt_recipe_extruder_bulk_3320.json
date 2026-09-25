@@ -10,31 +10,42 @@
         }
       ],
       "hashes": [
-        "4cde3265d395d9321564940abf0c954aed2a85942c59e77f0ca1d30f1382ac55",
-        "acf5fdb450aa74857df08e66c02fd2c780a3a7f8fb2650046429b7d80a66d523",
-        "d367fb4913bb556ebaf12e109ae967da1a0c68e1904761449dc7d13321020e31",
-        "d7d35f0d8b8c4bd08ed204a0db60dbcf56fa8a5c0c92df47a49d1411b6074276",
-        "7c400ee3cb918b1ecba573a7ae9e6254de693dd152c59e8b3cb77ad891b152be"
+        "98233962707c86dbe1bdeb0fc70ca3547f0afdd315135fd26a49f81252373fcb",
+        "36474258c18e5e7ffb02ce4831ae883c76f467828598061c255b40a19c262feb",
+        "a198008a38ed4799e4fbb0e9c06311c5ada44c5afd6ed968a699260cdb2a994b",
+        "779fdd00d4b18f698e8e433ebdd07bfd1cdbd2c4a4d236c86bfa98ff5f459755",
+        "9f349eea2d7889005e579c96b63d78a9a6beaf402b6a011f8860918d737ba43d",
+        "77bd72553004ffb7569e902721c2a340fd1de22e5e4e783f71a5bf86c4f5cab5",
+        "62b6e96720a1e8dc31742b642669657e95019a5b85d2d972cd9a36f946aaa861",
+        "a741d18b5a58ef2f60fcfb7275a91b96b43ad3490e821616f9376d4d58e7c15d",
+        "6bc110ff62e37e1f867ab8a964142bf654407307bf558692f7d69d03439bb2d4",
+        "32612e13e31f6e547cff710386560a1100fb8a684db9d2bbef13a035809c01fe",
+        "8af2d1aab62347ebbefc9a741bf07bb7650076b5df54978f78ecc955b3a66bc0",
+        "fed7db93a58e150b0d6e5063212a2ffb7e8714489d5dcc29af4b0fc53f3319fd"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "naquadah"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:terbium/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terbium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah"
+              "cruciblecraft:prefix_material": "terbium"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -43,23 +54,7 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "naquadah"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "naquadah"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:terbium/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_ingot"
@@ -68,13 +63,77 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah"
+              "cruciblecraft:prefix_material": "terbium"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terbium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terbium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terbium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terbium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terbium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terbium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terbium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ]
       ],
@@ -82,34 +141,28 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:naquadah/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:naquadah/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:naquadah/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:naquadah/ingot"
+            "id": "cruciblecraft:terbium/ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "naquadah"
+              "cruciblecraft:prefix_material": "terbium"
             },
             "count": 1,
             "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:terbium/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:terbium/long_rod"
           }
         ]
       ]
@@ -119,46 +172,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/071c8056c84ea13a",
+        "cruciblecraft:gt6/81c7afffc2514385",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/449bbeb60c03dd3e",
+        1,
         1
       ],
       [
-        1,
-        1,
+        2,
+        2,
         0,
-        "cruciblecraft:gt6/cad9ed21a4fa0f37",
-        1,
+        "cruciblecraft:gt6/1c6184699c72054a",
+        2,
         2
       ],
       [
-        2,
-        2,
+        3,
         0,
-        "cruciblecraft:gt6/02d72d88acf845a9",
-        2,
+        0,
+        "cruciblecraft:gt6/11a114533637eaf7",
+        3,
         3
       ],
       [
-        3,
-        3,
+        4,
+        1,
         0,
-        "cruciblecraft:gt6/62794e74ff1f7750",
-        3,
+        "cruciblecraft:gt6/4a03319a060ce7dd",
+        4,
         4
       ],
       [
-        4,
-        4,
+        5,
+        1,
         0,
-        "cruciblecraft:gt6/86e810697948d479",
-        4,
+        "cruciblecraft:gt6/80d40ee3612b354f",
+        5,
         5
+      ],
+      [
+        6,
+        3,
+        0,
+        "cruciblecraft:gt6/2e60e892af9479aa",
+        6,
+        6
+      ],
+      [
+        7,
+        2,
+        0,
+        "cruciblecraft:gt6/85d6d2dfd8811976",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/5dcb88c2f5073808",
+        8,
+        8
+      ],
+      [
+        9,
+        3,
+        0,
+        "cruciblecraft:gt6/ae9bba41a5f13075",
+        9,
+        9
+      ],
+      [
+        10,
+        3,
+        0,
+        "cruciblecraft:gt6/bc4cd893029f4cad",
+        10,
+        10
+      ],
+      [
+        11,
+        2,
+        0,
+        "cruciblecraft:gt6/4501b5a8e736d1cf",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 522,
+      "duration": 170,
       "eut": 96,
       "item_input_actions": [
         {
@@ -169,7 +278,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
       ],
       "output_chances": [

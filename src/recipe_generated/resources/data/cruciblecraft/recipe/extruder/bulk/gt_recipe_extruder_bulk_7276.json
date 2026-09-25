@@ -10,21 +10,31 @@
         }
       ],
       "hashes": [
-        "e1e94dc6be0eb55d78cee171cf90f61f54b12fa6aef57b8ec07ec87e3c5d8063",
-        "9a81054a9ae09c16fc047ec6bd7a65591738b1d9c3b71983f2b3e642991328ce",
-        "e9b83cbb61514b571013b596704ba794fb19920927ee830030da07ce85a8c137",
-        "2f81c5bcb669e5b248bd653df3d00af3c425b43e3da5efb63f89d3c76870fd72",
-        "475ce2a5c87b62dda4733642fbfc0a58987ece0e670a70ad87ac3c7fe1fc3ff4",
-        "ccabad1e4ce7253f4053184db6e36cae7a1cc73f5f81805f0e2792653b3fd043"
+        "ce11b678e99c175ef3eed2e58795c917a1ea036e8ae5a26c7ef98bdd378c5ce9",
+        "67c0d2ba3eddb1eadd903e99fefef723b05c7ee37e1234b67fb2854133e6ec0a",
+        "70cab47e003b3f286ed8a6b35b6b61a63199a48ced4e05a4ae9561532fef626b",
+        "8ca304ff4f8e86c0af86846ef1decebbd3b025cf3563bb669c63c3e70454da1f"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_black_steel"
-            },
-            "items": "cruciblecraft:scrap",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:gold/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold/quintuple_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -32,58 +42,42 @@
         ],
         [
           {
-            "item": "cruciblecraft:meteoric_black_steel/screw"
+            "item": "cruciblecraft:gold/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:meteoric_black_steel/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_black_steel"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:meteoric_black_steel/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_black_steel"
-            },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "gold"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoric_black_steel/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold/fluid_pipe"
           }
         ]
       ]
@@ -93,54 +87,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/737d27c5a6d20c15",
+        "cruciblecraft:gt6/0169c2b1181e7111",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/ff3d925fcccf39d5",
+        "cruciblecraft:gt6/44e1df3ad0238a3a",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/e17a3c9101ccf694",
+        "cruciblecraft:gt6/b6a669f9b8d1b145",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/8565c8714f8e1083",
+        "cruciblecraft:gt6/d61aec69f2dd5f27",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/86c48e34e5bd2438",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/1bfc340a314dec98",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 902,
+      "duration": 1554,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +129,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

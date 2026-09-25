@@ -10,44 +10,47 @@
         }
       ],
       "hashes": [
-        "9545b5495df506b9fd2ab87f5d884b33561d59fcdd820761220fd2615237eeec",
-        "a405378ca0ddb6770a2d5e6d458b5c505d5038a125c23fbce024a7fe57fa02de",
-        "5c7182ea279c25c2308a7c6c53b5da790318afc50bda96d5f2e3f4f621f8b4cb",
-        "a39dd8918321437141ba915c92d1138fd47a0a2edabcb790e439cf282c560fac",
-        "a1a32793ff7ce7db781112c2159aecbb390555020eedf1a07952d1f4d8c5e9f5",
-        "e5044d6b8850f9b50fbec198404698af7915a3f76556e00048219631493edebf",
-        "2fabb7ece8ecc3c7a1362189af9d5f96ee4457cb0bc24f7c1937a97821c924fb",
-        "0120679c418afc4b52c4483a5ec61a7a02112080bf2a4d7a67b6d925bae27f1f",
-        "633de639b3692ca61c6dee3171493da1d522c4643e44f1bcb24711153b23fa32"
+        "03a2f660bfe46b44cf05fcaa09e4317742f0fdb543f978bdc4ddf4ceb3062989",
+        "b4b24e4e3e432efcf1b3110fbeb6571ae9e641897cb66560c6c0aed3cdc47553",
+        "315047011d02bb4a104bd77c76865cd9f95dd3c763bb4d854e0cadcd22671e44",
+        "e0c179571482c37cb48263950163a6bf6ae97756193affae7ec46804e1220e4f",
+        "db7046a7f1d70834cb118470357ee2ac6d576a94cdfa8cc0e99ae8c54bcd8912",
+        "e4c34267a041174bc178f34f84262bcce6a35ff2a0389f6e668773339797a22b",
+        "b3fcc3f8e82d3afc4fb2f929817f753b7f0156563eb5908c28c1e739f2fa03cf",
+        "bfa1eaa0c68adea9bcd837f231bf2a75f5124665d9511557600e1196facc2193"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:conductive_iron/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "rhodium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -55,31 +58,23 @@
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/machine_casing_quadruple"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "rhodium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -87,72 +82,97 @@
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/machine_casing_quadruple"
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rhodium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 26,
-            "id": "cruciblecraft:conductive_iron/long_rod"
+            "count": 2,
+            "id": "cruciblecraft:naquadria/ring"
           }
         ],
         [
           {
-            "count": 26,
-            "id": "cruciblecraft:conductive_iron/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 26,
-            "id": "cruciblecraft:conductive_iron/plate"
+            "count": 5,
+            "id": "cruciblecraft:rhodium/bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
+              "cruciblecraft:prefix_material": "naquadria"
             },
-            "count": 52,
+            "count": 1,
             "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
-            "count": 6,
-            "id": "cruciblecraft:conductive_iron/gear"
+            "count": 5,
+            "id": "cruciblecraft:naquadria/bolt"
           }
         ],
         [
           {
-            "count": 2,
-            "id": "cruciblecraft:conductive_iron/block"
+            "count": 1,
+            "id": "cruciblecraft:rhodium/rod"
           }
         ],
         [
           {
-            "count": 26,
-            "id": "cruciblecraft:conductive_iron/ingot"
-          }
-        ],
-        [
-          {
-            "count": 52,
-            "id": "cruciblecraft:conductive_iron/rod"
+            "count": 1,
+            "id": "cruciblecraft:naquadria/rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
+              "cruciblecraft:prefix_material": "naquadria"
             },
-            "count": 26,
-            "id": "cruciblecraft:curved_plate"
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rhodium"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -162,7 +182,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ff462ddea0a2d711",
+        "cruciblecraft:gt6/a0bee9acab2c9da7",
         0,
         0
       ],
@@ -170,7 +190,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/8c9d51800350a076",
+        "cruciblecraft:gt6/a6786e0a970081db",
         1,
         1
       ],
@@ -178,62 +198,54 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/2148a1067e1e8ab3",
+        "cruciblecraft:gt6/97fa5753582c1a82",
         2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/e8bce6413fd77867",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/0722b280409a3207",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/63d9bad2c1df2c72",
+        5,
         5
       ],
       [
-        3,
-        3,
+        6,
+        6,
         0,
-        "cruciblecraft:gt6/85f820d1c506dff5",
-        3,
+        "cruciblecraft:gt6/e13c59c6efcee297",
+        6,
         6
       ],
       [
-        4,
-        4,
+        7,
+        7,
         0,
-        "cruciblecraft:gt6/c40661864a0733b6",
-        4,
+        "cruciblecraft:gt6/d28cfeadcbb99293",
+        7,
         7
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/915f6e91f8b6ce28",
-        5,
-        8
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/197676754b9c0949",
-        6,
-        10
-      ],
-      [
-        7,
-        7,
-        0,
-        "cruciblecraft:gt6/9a6348d1eac05ea7",
-        7,
-        11
-      ],
-      [
-        8,
-        8,
-        0,
-        "cruciblecraft:gt6/313e99be4481e1c1",
-        8,
-        13
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3040,
+      "duration": 249,
       "eut": 96,
       "item_input_actions": [
         {

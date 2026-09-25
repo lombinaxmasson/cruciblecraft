@@ -10,49 +10,84 @@
         }
       ],
       "hashes": [
-        "19b854b288f1ae0a98d2c4842e9c4dcdcf4ae8a6f22ebc84f8c84b72029c2c10",
-        "d0059be57a2db50fbc4136bb857291c23b09b27fac322e7d87ff487cd1a019bb"
+        "158b2689d320f1bfe219e8a53bad3e0fa0163336eb543be0c499aae8ca848e12",
+        "749ec95c97f1fba7565114aa13a7079d48b28315ae1f34319c2ac6af147b4525",
+        "7b8a95d6aa21d2f7781b5ef7bb2c1213784f05b56fe26de8a963a93d4e7166c7",
+        "652e6271aeac3e2368bbe96c2d01f0d12050ac3eb473f6f55343c4e4a388dc2c"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_steel"
+              "cruciblecraft:prefix_material": "muspelheim_power"
             },
             "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_steel"
+              "cruciblecraft:prefix_material": "niflheim_power"
             },
             "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "elvorium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ruthenium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_steel"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:muspelheim_power/bolt"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoflame_steel/rod"
+            "id": "cruciblecraft:niflheim_power/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:elvorium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ruthenium/bolt"
           }
         ]
       ]
@@ -62,7 +97,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/649fe471eec7b45f",
+        "cruciblecraft:gt6/dfb3bc085d428a6d",
         0,
         0
       ],
@@ -70,14 +105,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/d711302c87bd590b",
+        "cruciblecraft:gt6/0afff46bad0b486f",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ceb8451654ea31b9",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/44b9f0f3034d7437",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 173,
+      "duration": 56,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +139,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        9,
         0
       ],
       "output_chances": [

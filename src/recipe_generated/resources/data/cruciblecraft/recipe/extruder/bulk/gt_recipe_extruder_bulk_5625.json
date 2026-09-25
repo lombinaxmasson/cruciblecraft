@@ -10,42 +10,84 @@
         }
       ],
       "hashes": [
-        "893a3440d1e38ec0ebf8e324b08b512e31ca4cbc183a75160ddba3e238b29b3d",
-        "369423692c85318a480753fd7606558f199b476dd8fb90c81a88098a6ee6088c",
-        "c7ca880af0aad114b6a9072eabb18c5ee0399aea7c56bae6b84f1db21fb8e466",
-        "eec5ec2e436880b4b19a7bd24c1446ddc702329dfe24bc25bed29ecfc8c9dc8a"
+        "95811b7b5a538d7e1190095718ccda26fbdd302ea4f31cae29c22eb4e48efcae",
+        "6cb91e8e9c021e49fda1ee3c1a752b5637c337be346f926172aba4380875643e",
+        "647046bf7467c8f644e3b2b2dac83b9168b337eb588880c81104a3ce0bb27621",
+        "c174baf721e7c994b2181f1cec8d1d25b18a4deafabbfeb9a5a98024a78125a9",
+        "388dc666560fa2a1039434f6f70560f8643701eee5cdff64edac2bf8a05d2af5",
+        "d6558aef7b77b39f421ff6633bdd277bb5bf6212abf1518ab0d5628d8da208ff"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:aredrite/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:aredrite/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:aredrite/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:aredrite/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ]
       ],
@@ -53,16 +95,22 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:aredrite/rod"
+            "id": "cruciblecraft:invar/large_fluid_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "aredrite"
+              "cruciblecraft:prefix_material": "invar"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:invar/block"
           }
         ]
       ]
@@ -72,7 +120,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e460f1cba71307c4",
+        "cruciblecraft:gt6/e6862dd236bad2f4",
         0,
         0
       ],
@@ -80,7 +128,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/c8a02055e93e6406",
+        "cruciblecraft:gt6/3bdeb67606887ad6",
         1,
         1
       ],
@@ -88,22 +136,38 @@
         2,
         1,
         0,
-        "cruciblecraft:gt6/2f368cacdd75edfd",
+        "cruciblecraft:gt6/7fc4de15aaa3d539",
         2,
         2
       ],
       [
         3,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/0f019ddde918a434",
+        "cruciblecraft:gt6/dc57fb2e94ba8c99",
         3,
         3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/8bad98ac163d1131",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/317ad41711bea0dd",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 171,
+      "duration": 2059,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +178,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        2,
         0
       ],
       "output_chances": [

@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 7686,
+      "duration": 1300,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        14,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "tartarite"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:ceruclase/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:tartarite/block"
+          "components": {
+            "cruciblecraft:prefix_material": "ceruclase"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "ceruclase"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "734708b4a3eb448189711c01d3ef48d61406769cb4adcbafa2e91a6c10a2e47b"
+          "f98ad82d032a6dad49f3f1a7001aca7a5541f1b5b13ef4fdb3d154745aad85c0"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9552",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/8afafda049f87568"
+      "stable_id": "cruciblecraft:gt6/34e4abef54309729"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

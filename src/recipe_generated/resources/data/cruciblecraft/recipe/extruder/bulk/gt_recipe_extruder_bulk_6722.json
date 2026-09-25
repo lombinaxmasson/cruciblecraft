@@ -10,40 +10,89 @@
         }
       ],
       "hashes": [
-        "074e99ba445d423b978fe2da1c8c506d6fae9ce2eb322b338702a1c756088102",
-        "243e0640a4a69c0ecac6253782492cd964284024f01e5d870cffbf21c18b9e0a"
+        "eb5234ffe94213a17acd1d03d6e278f98bbe4321d27f2c60274f6dfd07e32275",
+        "3a84bcf7f8ca341f244aab65ea24033333b0cf09d071ab0ffd2f7edd367209be",
+        "b6542e8cfce98ab99ef11f03ebfb55be40b9dd675ad154d4ce5558410e2c8092",
+        "164f63219332ba3c135e72e29868f81b88cf47874ecdfbb267b68e8d8af7d1c2",
+        "72f425dedb47a226fc8956aa7d917fc56f4bcff070297ec8f9504a0653b280cf",
+        "4ef88d63b5bcdfb949928a010d30f2196436291a6a6a555263d95f91a6633c25"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:adamantium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:adamantium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
             "count": 1,
-            "id": "cruciblecraft:elven_elementium/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -53,22 +102,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a1c1840235d3c003",
+        "cruciblecraft:gt6/478fc60bf45b4e32",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/3eacfc91171744e0",
+        "cruciblecraft:gt6/9530f31262053212",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/d99e01d255d95f53",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/748aec2ad29abbcc",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/3a2127d7c406bb40",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/c91421695da73159",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3060,
+      "duration": 2034,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        16,
         0
       ],
       "output_chances": [

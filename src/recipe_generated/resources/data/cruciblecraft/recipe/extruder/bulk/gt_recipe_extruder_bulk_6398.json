@@ -10,40 +10,158 @@
         }
       ],
       "hashes": [
-        "a0d4d9cf52c518029a8559deca3a6774859fd656fdeb08afa0c6b7232b373cd5",
-        "aa9c7b7345e8f55de4e669d4c54fbcbb8f6f7a0c251dad5cbd03677d0cc26dde"
+        "1a7d651a9c31f2ccd33436952a5d34b9b4e5d594d435a4f75c862c4a8e7cb3dc",
+        "41a4b6607b388cb241be1fdbd8fd804c445a7c2f969b5d0fcf4f02ba6a49a202",
+        "f84c31a4369a58a0a241bccf03132834f95555e49c78ac95839d503be1db803b",
+        "f4fbd0195148763aa90d251f1cd531789b2e8f275f8e51fa473319598cbb584c",
+        "9dad1ec0d4a8561e697b5106dec15b86286bf765427bdf95fa507af51269d03e",
+        "68e9b3670d23f4b1d17de9f7d280098c164982c0e39a67e05ed64e955daad431",
+        "973124c23709c77a6e2d7032cd6d714939f1f37926708bad423b51c8b7688f90",
+        "9bbdd0203142eb12ac64a3d86fe70b693e4c03ad88bf46d050f65ccb62d13c82",
+        "6c8f396c15408a269f0d408f911491263452d4dcf9ee47b554cdd29d1a0dde27",
+        "ced070a573d3e5cd299fbef005f2c3c343a5af09bc43cad0600544efdc502f33",
+        "3749c76f0bbc6a107ab65da34436819198a8b6fb65e08ca3217b7d7cd9304098",
+        "5bb61b297311f01cf720b15734184ed083dfac965753b0369cc2613546a7dd19"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "chromium"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherized_diamond/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "chromium"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherized_diamond/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
             "count": 1,
-            "id": "cruciblecraft:chromium/gear"
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:netherized_diamond/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:netherized_diamond/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:netherized_diamond/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:netherized_diamond/long_rod"
           }
         ]
       ]
@@ -53,22 +171,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b71de9db41bb85f9",
+        "cruciblecraft:gt6/9473f02682fe656a",
         0,
-        3
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/eea17515363fc6de",
         1,
+        0,
+        "cruciblecraft:gt6/3778f423775f6ea4",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/8befcf8f49f49fb8",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/a5098e68a1871d7b",
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/c0bfcab1f6aff20c",
+        4,
+        4
+      ],
+      [
+        5,
+        3,
+        0,
+        "cruciblecraft:gt6/5109ec886e8eea53",
+        5,
         5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/d60db806f105053e",
+        6,
+        6
+      ],
+      [
+        7,
+        2,
+        0,
+        "cruciblecraft:gt6/2bd5d29e6bf2c985",
+        7,
+        7
+      ],
+      [
+        8,
+        4,
+        0,
+        "cruciblecraft:gt6/93650e52e2c99e21",
+        8,
+        8
+      ],
+      [
+        9,
+        5,
+        0,
+        "cruciblecraft:gt6/9574de3d6f8ea829",
+        9,
+        9
+      ],
+      [
+        10,
+        5,
+        0,
+        "cruciblecraft:gt6/27e39da7f832bc96",
+        10,
+        10
+      ],
+      [
+        11,
+        4,
+        0,
+        "cruciblecraft:gt6/a87722424d4f75f1",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 833,
+      "duration": 718,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +277,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        8,
         0
       ],
       "output_chances": [

@@ -10,24 +10,102 @@
         }
       ],
       "hashes": [
-        "5dbdde2999ab7812743536eff8dcae0264fde5a5161bdb81e35edd9bb9a2ee95",
-        "2e80f5377c5c8997be7a97f1371989190235469d47d8a9dedeab57527a687e2c"
+        "ed1b6cb9743c5d43e1bb96d486287d8eeafd544e023f6974db15a9763e590582",
+        "835d35674f17a41d35be619d677d560fd0262a2495bad952dbb4f044cffa4662",
+        "c1628bb72f3f14fa4138610329cd4dbdafda98da8e19265da0c82d5a0611d41a",
+        "8b8c4a2a262b33fb7f0845d3a82b146af1ffc27365bde051922331709e05641e",
+        "3ca79e5b2f67a902a37c287e87a5affe3299b2388d4b25a7a031a600fe55e6b5",
+        "9d136cc2a09f563da1bb4109870d2a17f0e123b9e76d360d89d82c94cf659d7c",
+        "451943e6ee03263ed501cd4b185a551260b743643e6b24543bfdfe6bd3759e44",
+        "28f25cdd4752b8eb6aa5fad223a93ebbbb0433fc7bf34f9f2063ecb8a5f76a12"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:aluminium_alloy/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "midasium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:aluminium_alloy/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "gold"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold198"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold198"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "midasium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold/fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold/sextuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +113,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:aluminium_alloy/gear"
+            "id": "cruciblecraft:midasium/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold198/block"
           }
         ]
       ]
@@ -45,22 +135,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/44207254ffe7d038",
+        "cruciblecraft:gt6/410ebbe7dfd017e7",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/8eb3665e41ed10d6",
+        "cruciblecraft:gt6/0c5c97b4033ebf9b",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/55f14d1b075963f0",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/f56aedfc9a440048",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/8bc9da7e61ed5304",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/7c9e353528f61acd",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/6c3c5dcb7237735c",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/fe7b37f45a596649",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 112,
+      "duration": 2796,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +209,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        3,
         0
       ],
       "output_chances": [

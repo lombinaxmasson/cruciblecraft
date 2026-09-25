@@ -10,67 +10,162 @@
         }
       ],
       "hashes": [
-        "8f8123722c25f978544bfc6c7cbafece6319e4e56d64699d815b741e2951a764",
-        "6410e00ac50832fdac3d4341af10b26d80065aa98543fd379b184e32ae7019bc",
-        "b6d5410b01cf4f36ca8aa0f905fc8c06ac629d51e9328e2989d80ef1a66d14da",
-        "8c09c4e0b9d541afd05ee6a2d217092b1efdfd351d741ac1d64697c59bdbf219",
-        "b77633ae1d5865d9cf24aec207dc35ef04cc0c8d4de5d02c004e1355374f8731"
+        "9ab2063090721f908951863dd8a510df4a76aba78a997ee98794fd97f40fa418",
+        "5322bce086610dcfc85a20c813c84616a2b777de971970e6e78e43a2339479c1",
+        "30d2e6ec2dd9bf161a9f40c4d0975c1b60f7b4e1717c6df3d8ebd29af5e2820e",
+        "4b440d362edb38fdbe23f0ccecbd09ae452107c00f11ffdeb2650a31bf6bd794",
+        "d4c53fc3ebcf7101e1926516e37931b41e76fa6717ce37c25923c8abad239730",
+        "7da6be8aa81130d74113590d62f3d4e90329981aa8b84a77e19be077cbe7e3c2",
+        "ba59ac74c292953073ac4c88b8d7e69394daeb5483eef011b76f50a770e378e6"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinaquadalloy"
+              "cruciblecraft:prefix_material": "manasteel"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:trinaquadalloy/foil"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinaquadalloy"
+              "cruciblecraft:prefix_material": "thaumium"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:trinaquadalloy/ring"
+            "components": {
+              "cruciblecraft:prefix_material": "manasteel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:trinaquadalloy/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manasteel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "manasteel"
+            },
             "count": 1,
-            "id": "cruciblecraft:trinaquadalloy/block"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thaumium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -80,46 +175,62 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1b472e52f544313d",
+        "cruciblecraft:gt6/f1f1cd2bd3e9c7d6",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/8b6f216db8e6e14b",
+        "cruciblecraft:gt6/7a87a8d6667d3360",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/2f4ed37a3952a436",
+        "cruciblecraft:gt6/fbdbfa0df2814816",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/08e98ae080d8a237",
+        "cruciblecraft:gt6/348effabf35fdd93",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/f26a7bc0932c46f9",
+        "cruciblecraft:gt6/9d1f10f78e432242",
         4,
         4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/8654c292b338a864",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/e50ee630517c90dd",
+        6,
+        6
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1741,
+      "duration": 491,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +241,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        3,
         0
       ],
       "output_chances": [

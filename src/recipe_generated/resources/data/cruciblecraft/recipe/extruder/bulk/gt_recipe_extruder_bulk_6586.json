@@ -10,16 +10,17 @@
         }
       ],
       "hashes": [
-        "f4381ab0980d4d1f04609ed449edc46538345a0788bc0c9bbc1bdc1b08d62f80",
-        "ad275d1e8f6659b8fb3712ee00d0778607563ff06a7f594c60a383f4e9f6f13b"
+        "fadc510d54af7faf3f8addd9cd6d6042b35a084b29d6d14ab688a870789c0409",
+        "d27e80262ade16c0c7a25f278cf3f899b49e7fcda8fd8907864ef265ee7bdb47",
+        "a39001d4183019eae35bb4d65c9ec8733fc9311a381985ad00ad88093f20cff1"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "trinium"
+              "cruciblecraft:prefix_material": "molybdenum"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
@@ -28,7 +29,19 @@
         ],
         [
           {
-            "item": "cruciblecraft:trinium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:molybdenum/gear"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -39,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:trinium/block"
+            "id": "cruciblecraft:molybdenum/block"
           }
         ]
       ]
@@ -49,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/35f7f1c5af9568da",
+        "cruciblecraft:gt6/359f5def9d938ac1",
         0,
         0
       ],
@@ -57,14 +70,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/f1caf1431b70e875",
+        "cruciblecraft:gt6/a9291592f6e69ea2",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/dc406df5c390b601",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 350,
+      "duration": 4927,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        3,
         0
       ],
       "output_chances": [

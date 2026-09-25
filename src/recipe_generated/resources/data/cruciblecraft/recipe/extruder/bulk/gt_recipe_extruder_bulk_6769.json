@@ -10,29 +10,39 @@
         }
       ],
       "hashes": [
-        "337f81ae55c9dcc705aaaddc1a71d78cb9b1c3669849d42facf46502d34a2d90",
-        "297f111cc7d08f27167fbe3b2757368b45839b88e4c07663d31e1ba7846d02c9"
+        "d5bbad4a085b50e1144af458ebc34346a4ef95ef49614a64399a8145fa37299d",
+        "5e487516c2c572d08cba77b2a1f3dea1c06e0a6d010367f690d0941d41d79320",
+        "0cf0e5edd1449bea06f06ade1ce5e0fc293eaf3d7fa09b9825d9884b8eb58c62",
+        "4006a62970b3520d0d3bba325e7ef717d839c7b742ae6a620204dcbb1cccb666"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "soularium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:iridium/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "soularium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:iridium/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/quintuple_wire"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -42,8 +52,32 @@
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
             "count": 1,
-            "id": "cruciblecraft:soularium/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:iridium/fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:iridium/gear"
           }
         ]
       ]
@@ -53,22 +87,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2169e567d7a20e9a",
+        "cruciblecraft:gt6/cd418b2c1b51bad9",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c862387c008f313f",
+        "cruciblecraft:gt6/be8c12adc14f4fd7",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/8ae073f6700beac5",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/78deccfa11e6a07a",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1801,
+      "duration": 4224,
       "eut": 96,
       "item_input_actions": [
         {

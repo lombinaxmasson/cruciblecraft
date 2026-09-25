@@ -10,13 +10,52 @@
         }
       ],
       "hashes": [
-        "3a522dbabf9f4c17ff7ad8a4a4b7fcb10d10f6619641e2d7db6b622ffdf1fa61",
-        "36d1dd1ca29fc826f3ee2efe49668fd3e1a9a08e2c5629e90cfcb26079f60847"
+        "20514265ee7a57c5bcd0b5c811a3d5f8d095472bf71573891b7951067fb9ccb4",
+        "08a3bf56d23429ed0e7af92664d0fb3005188dca9aa1c562c62fb4980f41f396",
+        "6449589c8ee744780dd91d9f8404771f8a7b6694b7493658d2534921292caad4",
+        "9cb371725151ff7002ba3a6b174eb568d2590723625dcbc3e24ff4f4d0992b61",
+        "22794d1f7bdb527e1e10454e25d035b7e98fb560c6912bc7c5aa6e96d325bd84",
+        "bdda03ba97173581a97c470a7381481fad613924ace977b061f1331f2bf3d7c0",
+        "2f84d99942a083849c1276e3fdc3513be0ade3c1c268c29e813a106da5587fb3",
+        "9827612ea765ef50d6797e5a6814df4dae44de4842bad22712efef5160e1f5cd",
+        "84f30114f75b58d9dcea2a55626f2497470860a8b884198a666f87d5b3e08acb"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:neodymium/rod"
+            "item": "cruciblecraft:enderium_base/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enderium_base/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enderium_base/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enderium_base/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enderium_base/machine_casing_quadruple"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -24,22 +63,96 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "neodymium"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:enderium_base/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enderium_base/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enderium_base/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enderium_base/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:neodymium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "enderium_base"
+            },
+            "count": 26,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 52,
+            "id": "cruciblecraft:enderium_base/rod"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:enderium_base/plate"
+          }
+        ],
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:enderium_base/gear"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:enderium_base/block"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:enderium_base/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium_base"
+            },
+            "count": 52,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:enderium_base/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 26,
+            "id": "cruciblecraft:enderium_base/ingot"
           }
         ]
       ]
@@ -49,22 +162,78 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c7286559c67c932a",
+        "cruciblecraft:gt6/f15a1cd35dd686f6",
         0,
-        1
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/47193d26e43abc04",
         1,
+        0,
+        "cruciblecraft:gt6/c7927710eae271ce",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/d861cc1dd8d9bae1",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/d83afc847a516642",
+        3,
         3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/1fa9ae3914a0d747",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/4cc3d288f314fdba",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/aeda3d55f723c840",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:gt6/ca5cc690d90f6d42",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:gt6/f9e163b85a8bf807",
+        8,
+        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 978,
+      "duration": 3632,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +244,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "output_chances": [

@@ -10,45 +10,59 @@
         }
       ],
       "hashes": [
-        "f1ba9dcc9ff4df78f96b4d2f624d78276b924022ab05cc1396a1760a63e05f0b",
-        "051ef86a819282bfa4c90f1bd13e6305766c4242c1aeace464d0f8afd5da622e",
-        "a06e53222f7987324d9ead4a8be3b002abec90ae23b4eaa8a0fd7ebebca46038"
+        "3f3eadb80a877296f3e02a5cff5e9eb55ec683cd1ccf00e95f367e7c1c0c779d",
+        "eae57b33fb81fbc68b0965006bbb25360b5f23bf8a8f794159deb0d5da105477",
+        "1b9769c50bf9f377517220fd9cb4f0bc5d7238d1a70bba78222a7ad26da05fa4",
+        "9575310690864785a59deca9b51c941e88b22dd1bca16cdc1224ecd1bb88360a",
+        "6fd5d7b4dbf2205b62ab077dc9d9145208861b8aba2acb750de091be4ca17f7d"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "workers_alloy"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:constantan/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:constantan/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "energetic_alloy"
+              "cruciblecraft:prefix_material": "constantan"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manganese"
+              "cruciblecraft:prefix_material": "constantan"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:constantan/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -56,19 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:workers_alloy/ring"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:energetic_alloy/ring"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:manganese/ring"
+            "id": "cruciblecraft:constantan/huge_item_pipe"
           }
         ]
       ]
@@ -78,30 +80,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e40fb175632574d2",
+        "cruciblecraft:gt6/283eefa03ea4edb3",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/40a76f3ea4bf0660",
+        0,
+        "cruciblecraft:gt6/f0089150a32ac9f7",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/bfe655102b30f1ba",
+        0,
+        "cruciblecraft:gt6/252c290417090f4c",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/f4ab1aa8d44398c5",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/3e48a5fb55df3b37",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 36,
+      "duration": 2067,
       "eut": 96,
       "item_input_actions": [
         {
@@ -112,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        48,
         0
       ],
       "output_chances": [

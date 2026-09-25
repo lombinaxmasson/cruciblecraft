@@ -10,67 +10,62 @@
         }
       ],
       "hashes": [
-        "15e8c71bdbca6a81a1ddc222e9cf6372b7588f94ac2e1b4ae637ae588a686f19",
-        "0e59b56381525b2cccdd67db14cd1240def9706dad8388c1e103e5d97dea5835",
-        "87272426aee1adab452097c2608235d636eb86f4fe2530385f0e6882a4f0f780",
-        "596af6782a1a33f321e1bfdafadf5ca6691bfe66a19aa4123fbb92e5908ea9ea",
-        "01b2f9a4e986be3de1a14fcb3961f7eda4bb75f1a9c0ff0f5c82e5942c0012e5"
+        "c4ff6bb7fc6277c26d1da9fef0d613feaf1c194a46c786dd2a3a899df7558d11",
+        "50a33660a416f9d9d8f5905e50fd7ea57c3c2d0ce86c27e0186515d3200931e0",
+        "172661a0cb83e4f0c00a13caee60c4511c0b74f44ecb088c4e5f9a39d5e5c71b",
+        "9bbe85dd5d5c9a2b9968133467e2069de3cc0a06bdc5afdfd010d5f02474c771"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "kalendrite"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:trinaquadalloy/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:kalendrite/small_dust"
+            "item": "cruciblecraft:trinaquadalloy/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:kalendrite/ring"
+            "item": "cruciblecraft:trinaquadalloy/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:kalendrite/foil"
+            "item": "cruciblecraft:trinaquadalloy/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "kalendrite"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "trinaquadalloy"
+            },
             "count": 1,
-            "id": "cruciblecraft:kalendrite/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "trinaquadalloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -80,23 +75,23 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9b34ff9693466d10",
+        "cruciblecraft:gt6/05fee1e5e5eec06d",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/14a0c4bdce438816",
+        "cruciblecraft:gt6/c4460d0f0f7fd70c",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b7313aeb539e385b",
+        "cruciblecraft:gt6/6bd5b6f1ccbad1e2",
         2,
         2
       ],
@@ -104,22 +99,14 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/8666256fcf2ed287",
+        "cruciblecraft:gt6/ee3d78bd5b48a76d",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/30c250abcdfe7156",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3161,
+      "duration": 581,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        24,
         0
       ],
       "output_chances": [

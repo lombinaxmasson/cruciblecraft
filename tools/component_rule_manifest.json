@@ -19,8 +19,8 @@
     "expansion_delta": 2,
     "source": "tools/component_rule_sources/acceptance_form_corrections.json"
   },
-  "authored_datapack_entries": 51,
-  "authored_projected_recipes": 8210,
+  "authored_datapack_entries": 31,
+  "authored_projected_recipes": 5428,
   "build_inputs": [
     "tools/gt6_extruder_templates_index_v5.json",
     "tools/gt6_extruder_templates_report.json",
@@ -73,14 +73,14 @@
     ],
     "expansion_delta": 5
   },
-  "expanded_recipes": 8210,
+  "expanded_recipes": 5428,
   "expansion_budget": 10000,
   "expansion_is_authored_projection": true,
-  "extruder_authored_entries": 20,
-  "extruder_expanded_recipes": 2782,
+  "extruder_authored_entries": 0,
+  "extruder_expanded_recipes": 0,
   "extruder_expansion_budget": 4648,
   "extruder_logical_relations": 2782,
-  "extruder_runtime_publication": 2782,
+  "extruder_runtime_publication": 0,
   "extruder_templates": {
     "authored_entries": 20,
     "classification_counts": {
@@ -89,25 +89,27 @@
     },
     "classified": 62,
     "compact_source": "tools/extruder_compact.json",
-    "datapack_entry_delta": -2762,
     "expected_source": "tools/extruder_expected.json",
     "family_compression_ratio": 139.1,
+    "fixture_files": 20,
+    "fixture_root": "src/test/resources/extruder_compact_rule_fixture/recipe",
     "legacy_replay": "tools/extruder_legacy_replay.json",
     "logical_relations": 2782,
-    "prefix_count": 144,
+    "prefix_count": 146,
     "registration_gate": "src/main/resources/data/cruciblecraft/material_registration_gate.json",
-    "runtime_publication": 2782,
+    "retired_by": "recipe/gt6-extruder-remainder",
+    "runtime_publication": 0,
     "skip_reasons": {
       "external_or_cross_material_input": 18,
       "external_or_unmapped_item": 22,
       "shadowed_by_shared_shape_heat_variant": 2
     },
     "source": "tools/gt6_extruder_templates_index_v5.json",
-    "status": "playable_compact_exact_sparse_projection",
+    "status": "retired_to_test_fixture",
     "unclassified": 0
   },
   "generated_tree": {
-    "files": 51
+    "files": 31
   },
   "material_groups": {
     "any_rubber": {
@@ -136,10 +138,6 @@
     "cutter": {
       "expanded_recipes": 651,
       "source_rules": 2
-    },
-    "extruder": {
-      "expanded_recipes": 2782,
-      "source_rules": 20
     },
     "lathe": {
       "expanded_recipes": 929,
@@ -178,26 +176,6 @@
     "bender/rod_to_small_springs": 332,
     "cutter/gear_to_small_gears": 415,
     "cutter/plate_to_foil": 236,
-    "extruder/compact/low_heat_block": 83,
-    "extruder/compact/low_heat_bolt": 156,
-    "extruder/compact/low_heat_fine_wire": 1,
-    "extruder/compact/low_heat_foil": 7,
-    "extruder/compact/low_heat_gear": 104,
-    "extruder/compact/low_heat_ingot": 86,
-    "extruder/compact/low_heat_long_rod": 156,
-    "extruder/compact/low_heat_plate": 161,
-    "extruder/compact/low_heat_ring": 102,
-    "extruder/compact/low_heat_rod": 155,
-    "extruder/compact/low_heat_small_gear": 104,
-    "extruder/compact/normal_block": 222,
-    "extruder/compact/normal_bolt": 227,
-    "extruder/compact/normal_gear": 105,
-    "extruder/compact/normal_ingot": 223,
-    "extruder/compact/normal_long_rod": 227,
-    "extruder/compact/normal_plate": 226,
-    "extruder/compact/normal_ring": 105,
-    "extruder/compact/normal_rod": 227,
-    "extruder/compact/normal_small_gear": 105,
     "lathe/bolts_to_screws": 599,
     "lathe/ingot_to_rods": 330,
     "press/double_and_plate_to_triple_plate": 321,
@@ -236,17 +214,17 @@
     "runtime_loader": "com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader"
   },
   "recipe_ids": {
-    "count": 8210
+    "count": 5428
   },
   "recipe_signatures": {
-    "count": 8210
+    "count": 5428
   },
   "runtime_codec": "cruciblecraft:material_rule/MaterialRule.CODEC",
   "schema_version": 1,
   "shadow_signatures": {
     "duplicates": 0,
-    "total": 8210,
-    "unique": 8210
+    "total": 5428,
+    "unique": 5428
   },
   "skip_reasons": [
     {
@@ -270,10 +248,10 @@
       "stage": "MaterialRuleExpansion"
     }
   ],
-  "source_rules": 51,
+  "source_rules": 31,
   "source_schema_version": 1,
   "unit_conservation": {
-    "conserving_rules": 2812,
+    "conserving_rules": 30,
     "documented_compatibility_bridges": 1,
     "status": "verified",
     "unit_scale": 144

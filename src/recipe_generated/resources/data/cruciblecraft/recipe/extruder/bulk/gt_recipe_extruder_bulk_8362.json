@@ -10,16 +10,17 @@
         }
       ],
       "hashes": [
-        "ab9dd295cd953bada6243685ddeeb75af76ed27b17f8e80c2de1f8a65d2a4bf5",
-        "5ca30164298914be6724825e0d8ed210ec89fd378f731347c62150fe30091f6c"
+        "0f9c2a1d781806b7f51f7a3bb1a56ffae09b048b64fa30aa2b1b33c1040150e1",
+        "70bb8c4b2306012df99ac3205f39413b8dc04da5d1ec720678ddd23e28a54d77",
+        "2d63f87deff6849933503c24b4bfd4e65705c14265070729f2af6a227e8466bf"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "kalendrite"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
@@ -29,10 +30,18 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "kalendrite"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kalendrite/gear"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -43,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/block"
+            "id": "cruciblecraft:kalendrite/block"
           }
         ]
       ]
@@ -53,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b8dee975654e57d2",
+        "cruciblecraft:gt6/440f50b82bf7987d",
         0,
         0
       ],
@@ -61,14 +70,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/500d65d1752ab84a",
+        "cruciblecraft:gt6/b489b2dec89dbd22",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/e27928ddbbe4c26a",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 31561,
+      "duration": 9483,
       "eut": 96,
       "item_input_actions": [
         {

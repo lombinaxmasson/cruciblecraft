@@ -10,17 +10,40 @@
         }
       ],
       "hashes": [
-        "835e3393beeb1e8842b927bbd364429480fc31c89cba1f7dd0e73cf5654ef540",
-        "5f8ab1b67564e47819ed761ee21430587e61cea59a757d2fa3313c4e308b3161"
+        "6b6ff0ebd22eca9f24f5688eb4f3e54740b9be947e685cbe3806fb57f0305941",
+        "77bf8dc92b867d36854274f39b39f8cf5462cec970f7d36f45736846741ea340",
+        "7e3755f89a51d1a0e2d78d7fbb5a3de904ce8b523d684e5caa31c16254185615",
+        "0c422ff95e626b9abf4e9e3418490935e9ab53bf941218469df51dba55b08fd2",
+        "f781f186d39cfdf14201e8b2db4709f57b2408388817d61cd3fa574ffdf834e3"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "technetium"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:dysprosium/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dysprosium/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dysprosium/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dysprosium/long_rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -29,9 +52,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "technetium"
+              "cruciblecraft:prefix_material": "dysprosium"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
@@ -43,7 +66,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:technetium/block"
+            "id": "cruciblecraft:dysprosium/block"
           }
         ]
       ]
@@ -53,7 +76,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5066c21a6b51c3d4",
+        "cruciblecraft:gt6/6688f3b0d79a9d3b",
         0,
         0
       ],
@@ -61,14 +84,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/fcef4ff7c16e7eaa",
+        "cruciblecraft:gt6/443320ab05f98a19",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/8c4e65bd144a8fa3",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/b5e4af390223def3",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/a8462265486f3090",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3793,
+      "duration": 1648,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        9,
         0
       ],
       "output_chances": [

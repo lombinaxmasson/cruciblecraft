@@ -10,21 +10,22 @@
         }
       ],
       "hashes": [
-        "d783027393c565b1dec477940b40f95fba17e4349b3146b3d086825590f4d7a8",
-        "5d96ddb35f2617094664262f9e20868164698623d730fa0816794751eff810fd",
-        "636f83b3305e0156692997e9d132a72726180b5c638af95fa57f91c8b0fae07a",
-        "85ff5ab738cd104967c0f927bc1e5b2b86f72898b50e58c0ce178cbd3689b6b3",
-        "6c9830288483e9caf2333819259cc21ba72a3fc19a7988b1eadaf3255d51b87f",
-        "37188a72a81b56f515cb4f09c71d8056eb4000dc8822b6fd422e1a4a9f3c700e",
-        "8ec8f3648ba0d162f1a6ccff053a0a71b5caa997e44344ad140634de3ce4cfcd",
-        "65efbe3963b5a823d530d7faaef0881ccd60d91a4f8cc83261ca852edd38cb6d",
-        "9e579be845e12ace128e836366411f07b5cdb158e3c34912a9b0b63999fd4dd5",
-        "da0a44a5918e547fd2a7941c28ae738b3f0ef69abc65f2cc6c6533fb289e9329"
+        "fee2694a018f1bfdf01dfa424d35e14b461b78c2ed35c9a7c020f460b6c5f8da",
+        "077e1b1ea497067eb60fbe8f9120fc21fff22e2f35d0e1ce109dec3503da6e5d",
+        "847f9030204d5f501b99b8470c12634a59acea852e9d5fe834f551a4e9be50a3",
+        "caa7300282938f14585c37f99c9d57979cbc102a66e6757a68e40b74a6b3d829",
+        "dfe8061bfe074e3f756bdf00567aca05ce58bf0995d355e4e9dc59fad6b1a4f6",
+        "887e5498499cff0242a079932b61cd1684324e678347307bafc2ebb6123d0596",
+        "f6a212acc809b0dbaaa53afd52b18c792f097c87e984af83c1dec0fab9347405"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:haderoth/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "neodymium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -32,142 +33,79 @@
         ],
         [
           {
-            "item": "cruciblecraft:haderoth/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "angmallen"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:haderoth/machine_casing"
+            "item": "cruciblecraft:angmallen/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:haderoth/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "angmallen"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:haderoth/machine_casing"
+            "components": {
+              "cruciblecraft:prefix_material": "neodymium_magnetic"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:haderoth/machine_casing"
+            "item": "cruciblecraft:angmallen/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:haderoth/machine_casing"
+            "item": "cruciblecraft:angmallen/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:haderoth/machine_casing"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:haderoth/machine_casing"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:haderoth/machine_casing"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 2,
-            "id": "cruciblecraft:haderoth/gear"
+            "count": 1,
+            "id": "cruciblecraft:neodymium/gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "haderoth"
+              "cruciblecraft:prefix_material": "angmallen"
             },
-            "count": 8,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 64,
-            "id": "cruciblecraft:haderoth/bolt"
-          }
-        ],
-        [
-          {
-            "count": 32,
-            "id": "cruciblecraft:haderoth/ring"
-          }
-        ],
-        [
-          {
-            "count": 8,
-            "id": "cruciblecraft:haderoth/plate"
-          }
-        ],
-        [
-          {
-            "count": 8,
-            "id": "cruciblecraft:haderoth/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 8,
-            "id": "cruciblecraft:haderoth/ingot"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "haderoth"
-            },
-            "count": 16,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 8,
-            "id": "cruciblecraft:haderoth/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 16,
-            "id": "cruciblecraft:haderoth/rod"
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -177,7 +115,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/632a4e6a3a24d403",
+        "cruciblecraft:gt6/19fc543c82216877",
         0,
         0
       ],
@@ -185,78 +123,54 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/b3580af411413749",
+        "cruciblecraft:gt6/ade9c95b1605b541",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/2cf82a624a727b20",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/1f614cea9e5e2652",
+        3,
         3
       ],
       [
-        2,
-        2,
+        4,
         0,
-        "cruciblecraft:gt6/b2c59f6ba9ad7860",
-        2,
+        0,
+        "cruciblecraft:gt6/0dec91e86521af73",
+        4,
         4
       ],
       [
-        3,
-        3,
+        5,
+        1,
         0,
-        "cruciblecraft:gt6/908e51679ee62aaf",
-        3,
+        "cruciblecraft:gt6/268a5d927342b478",
+        5,
         5
       ],
       [
-        4,
-        4,
+        6,
+        1,
         0,
-        "cruciblecraft:gt6/7f863067af31e058",
-        4,
+        "cruciblecraft:gt6/a15c37d8b1b01a3c",
+        6,
         6
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/6c637b731c856890",
-        5,
-        8
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/a0ec398b33e03dcf",
-        6,
-        9
-      ],
-      [
-        7,
-        7,
-        0,
-        "cruciblecraft:gt6/ee2f3c6746c0cd54",
-        7,
-        10
-      ],
-      [
-        8,
-        8,
-        0,
-        "cruciblecraft:gt6/a6961101dd399ae9",
-        8,
-        11
-      ],
-      [
-        9,
-        9,
-        0,
-        "cruciblecraft:gt6/60456166db99863f",
-        9,
-        14
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4149,
+      "duration": 435,
       "eut": 96,
       "item_input_actions": [
         {
@@ -267,7 +181,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        6,
         0
       ],
       "output_chances": [

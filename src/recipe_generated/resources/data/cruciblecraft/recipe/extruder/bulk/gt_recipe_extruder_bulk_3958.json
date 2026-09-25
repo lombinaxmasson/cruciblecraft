@@ -10,80 +10,479 @@
         }
       ],
       "hashes": [
-        "078242ca552b5b6c842943467dd972dcf7a81f76fad8e26e333a546604727f6c",
-        "bfc52df8abb8600270bdccad81d8e965314f165c97ab9cce1b8c2c4f0c0d0394",
-        "e5411df9e78901ef90da4e03438f5e2f045f51b293c9a2365564c13638ae6301",
-        "826b8ab57fa059f268d7315751b459c6296bfd87a3ef740de9b864c03988f427",
-        "2c090387a2748269e27a1530c69c7dfe60475a306db64d3fff313081980335f3",
-        "e01b67f759cab70640d3593817fe9e6c16fe3af71759c38e575e45ebb9f45adc"
+        "39de940fa5408a3bd08bf6670f0c7b7fe7259ba7c2a56385d9c8fd7215f6c8a4",
+        "3fb2ebd0bc0119b56299720a90771eae85ed75b50a790a11403bcf3779b7c230",
+        "1a5e048ae37c23b428986172be92d13aa254b05877cbf8316c9bde33114d249f",
+        "4628d3cc3ef26770d0458284591e9b999ced07fd9774dcf80385122419e82e85",
+        "aed8ea866e995aaa8e9895b2cd4ae664f756cd6871ef690939140b2bdcf5d343",
+        "a11df5b8dac1816a5c61f986da45ee63bec6caaaa0e1ebd749953a5130b25520",
+        "10bcc259a515e4ba1f2df34344f5983ee455d6befc889f86fafea80ba74d33d1",
+        "ed482991ccf1de9ad10ab70d9e7c5455a6c5ac028fac60608eccb43a35893f15",
+        "0c7a91fdcaa5518787d518979331a9e595a570bcd541998e5875a31a9c7ae348",
+        "5943f8ea67b1bb389096eb4e92b7299dd04d11268bd8a283c1350987b4e52811",
+        "96039f35d1d090b02cb3625e40a18957a967fe05e0060e719bb52fb4eb4ec4ba",
+        "a2c14807dbbfdb1c406eb7c855cb17d4d2e61fd75175ef7b40d4118cb01f0c18",
+        "be79bf1333d1c2805d311473abe5ed6d70610da5238831def322f6e55c389724",
+        "5abe3f7e24d2e9478d22f05a24c19e1b31642208aeed2e9d094e96b12e8a53de",
+        "94ebbd879c8ed9f70b38a38d6ef8def4e67d9dc680b80645d12adaae3a68caef",
+        "fa423c079024bd499452f68dd93276acd93aa21df05b0808b216c3c3db562bf8",
+        "bbc86d59d8eb6c4c68749f81b6b6e038aa2bb701862bb5321b4d639b229abd41",
+        "78c12d8a79187bff750e2efb4cd42cb63cf52f5b886ff0e9c5ac6036b8d4811e",
+        "7ee715fa7497f57f2808988fa93602777ec0a346279461e93ace57f6d659abfb",
+        "4f4c8f04d9b648c756e9bb758ee32229bd228500c1bd251f982b0a72d67382cd",
+        "66620e611055134374dbc72c7656338764e3780dfaa51809a79ae4b539219c95",
+        "a8530086fa0cac1001973408b14a71a43de6e82bd215a538c3ed87851c3e154e",
+        "dd27f63b6c19b452b1c8b7de0248e5d6c60bd8e63b0fea177cb3891f6985c154",
+        "422a99b6bb9f916a9340a683225146b8131c8883a4008a5b2269f20be56ed82d",
+        "fd27465338379d3e51b84b72a1243a25f38c1150c7c1cf6d23c36fbc13b4d0aa",
+        "a8c0e0770c93ae597ac48ac9d78a19b89c5b714561b7a871e12a0ae143ff4702",
+        "27153d37dd227c0ef37576cbcdf313675bee1166ef9d6df7003953e359e414dc",
+        "c44392156ac27b285521132a9a0967597549e7475d7bfa33f3407e786d370a8f",
+        "eef0aa425461d131cd2cd431287557f933ffda3d7c7d5c42b8e8f0799901ba6a",
+        "b9ee1a13498406acbc488a44fbbb864641b7c98f89019f37c6a7d65a2d0b794e",
+        "5ea3c485e88cb1132e2e2558c258ddf9fdca8332e1992b8f4dbce2aa7cd1d3bc",
+        "b87c984d8da137063b78478a42bb67f3d0718edd98cbc877c319b34874b451dc",
+        "a27a287401d7e94979f25d07a5c92f75538d458810ea9b73f46c8780ff9575c7",
+        "3ceb9987ff7e7a8ca97f76b74de2273777e731b8668ca56d2d8445b4a33a97f2",
+        "f4a39da5935f68a37b9e542ba051ad6cf3ea6279f29b8340b637546183f9c1f7"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:rhenium/tiny_dust"
+            "item": "cruciblecraft:workers_alloy/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rhenium"
+              "cruciblecraft:prefix_material": "manganese"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rhenium/nugget"
+            "item": "cruciblecraft:manganese/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rhenium"
+              "cruciblecraft:prefix_material": "manganese"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rhenium/screw"
+            "item": "cruciblecraft:manganese/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rhenium"
+              "cruciblecraft:prefix_material": "manganese"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "mauftrium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "mauftrium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:workers_alloy/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
             "count": 1,
-            "id": "cruciblecraft:rhenium/rod"
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "workers_alloy"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:manganese/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:manganese/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:workers_alloy/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:manganese/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:workers_alloy/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:workers_alloy/small_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:workers_alloy/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:workers_alloy/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "manganese"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:manganese/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:mauftrium/gear"
           }
         ]
       ]
@@ -93,54 +492,286 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e04efd57ce2823f8",
+        "cruciblecraft:gt6/ba93d3719a5bdf33",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/136a7d569b0af226",
+        "cruciblecraft:gt6/0436b03cf18c18fd",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/ad38167b1cc18670",
+        "cruciblecraft:gt6/9f451e3359092a0d",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/6bcabc11fe43eb3c",
+        "cruciblecraft:gt6/41ab2ef9d75d95e1",
         3,
         3
       ],
       [
         4,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/579f27e2aeaad55e",
+        "cruciblecraft:gt6/2206e664fb2e32a8",
         4,
         4
       ],
       [
         5,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/95956557cae454ef",
+        "cruciblecraft:gt6/0c9c8d5fc96f6cab",
         5,
         5
+      ],
+      [
+        6,
+        3,
+        0,
+        "cruciblecraft:gt6/d8e7dff59d3e403a",
+        6,
+        6
+      ],
+      [
+        7,
+        5,
+        0,
+        "cruciblecraft:gt6/4a1800360277d619",
+        7,
+        7
+      ],
+      [
+        8,
+        5,
+        0,
+        "cruciblecraft:gt6/9484f6d89d76bfa7",
+        8,
+        8
+      ],
+      [
+        9,
+        6,
+        0,
+        "cruciblecraft:gt6/7782cfa7f592f816",
+        9,
+        9
+      ],
+      [
+        10,
+        7,
+        0,
+        "cruciblecraft:gt6/a4c72a8cafdf9bac",
+        10,
+        10
+      ],
+      [
+        11,
+        8,
+        0,
+        "cruciblecraft:gt6/fe729cff7a905a5c",
+        11,
+        11
+      ],
+      [
+        12,
+        9,
+        0,
+        "cruciblecraft:gt6/b7083c2d7aa55bea",
+        12,
+        12
+      ],
+      [
+        13,
+        10,
+        0,
+        "cruciblecraft:gt6/2abd3427b2184856",
+        13,
+        13
+      ],
+      [
+        14,
+        6,
+        0,
+        "cruciblecraft:gt6/890acb5fe7505732",
+        14,
+        14
+      ],
+      [
+        15,
+        1,
+        0,
+        "cruciblecraft:gt6/751086474f2576a2",
+        15,
+        15
+      ],
+      [
+        16,
+        11,
+        0,
+        "cruciblecraft:gt6/f271d5aea5c2fb56",
+        16,
+        16
+      ],
+      [
+        17,
+        0,
+        0,
+        "cruciblecraft:gt6/042acb0a9107a98a",
+        17,
+        17
+      ],
+      [
+        18,
+        4,
+        0,
+        "cruciblecraft:gt6/6420d7adece92556",
+        18,
+        18
+      ],
+      [
+        19,
+        10,
+        0,
+        "cruciblecraft:gt6/70aa4b2502022ffa",
+        19,
+        19
+      ],
+      [
+        20,
+        8,
+        0,
+        "cruciblecraft:gt6/5474bf0d9c6bbe32",
+        20,
+        20
+      ],
+      [
+        21,
+        2,
+        0,
+        "cruciblecraft:gt6/2a4c0ab837d18e84",
+        21,
+        21
+      ],
+      [
+        22,
+        12,
+        0,
+        "cruciblecraft:gt6/ccd2a7b7d682a2ff",
+        22,
+        22
+      ],
+      [
+        23,
+        8,
+        0,
+        "cruciblecraft:gt6/7cde72ecf73efa06",
+        23,
+        23
+      ],
+      [
+        24,
+        7,
+        0,
+        "cruciblecraft:gt6/8b1f90f3fc85f9ff",
+        24,
+        24
+      ],
+      [
+        25,
+        6,
+        0,
+        "cruciblecraft:gt6/2431e25615eb049d",
+        25,
+        25
+      ],
+      [
+        26,
+        9,
+        0,
+        "cruciblecraft:gt6/0d68931c905fc12a",
+        26,
+        26
+      ],
+      [
+        27,
+        11,
+        0,
+        "cruciblecraft:gt6/3f2275263062652e",
+        27,
+        27
+      ],
+      [
+        28,
+        13,
+        0,
+        "cruciblecraft:gt6/bbc9ab4312f4ee80",
+        28,
+        28
+      ],
+      [
+        29,
+        10,
+        0,
+        "cruciblecraft:gt6/39e6070e3cb5295c",
+        29,
+        29
+      ],
+      [
+        30,
+        13,
+        0,
+        "cruciblecraft:gt6/b843f1b17cb4cc61",
+        30,
+        30
+      ],
+      [
+        31,
+        4,
+        0,
+        "cruciblecraft:gt6/93b79aa16b5cfa19",
+        31,
+        31
+      ],
+      [
+        32,
+        0,
+        0,
+        "cruciblecraft:gt6/4fd075b2c8585d6d",
+        32,
+        32
+      ],
+      [
+        33,
+        12,
+        0,
+        "cruciblecraft:gt6/57de4fe2555a05ba",
+        33,
+        33
+      ],
+      [
+        34,
+        9,
+        0,
+        "cruciblecraft:gt6/9142dfe102e33e0a",
+        34,
+        34
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 571,
+      "duration": 141,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +782,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        2,
         0
       ],
       "output_chances": [

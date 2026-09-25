@@ -10,13 +10,17 @@
         }
       ],
       "hashes": [
-        "2a15a52aee53b1c3e4cf9b37ebb9f3f2a5e91c4d82fc8cf858caf85233172052",
-        "915f1d6ee6a60dd663fdbf57b909a78e735754553057a369313ff4a60bc4071c"
+        "fa3f1e99c702abbce5948f2bfa3d47ba3b8a8580d7804583e96fb793aa2a6ab1",
+        "ecad345deef03aeab357cadb4f8b5445e20343e8129a5b3c79392430f824d3ab"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:conductive_iron/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -25,9 +29,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
+              "cruciblecraft:prefix_material": "coralium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:conductive_iron/block"
+            "id": "cruciblecraft:coralium/block"
           }
         ]
       ]
@@ -49,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b156384543f5ebf1",
+        "cruciblecraft:gt6/9ff89cb7b57cbca5",
         0,
         0
       ],
@@ -57,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/de0a41de03d73cbe",
+        "cruciblecraft:gt6/0ff1448cb0057f53",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1053,
+      "duration": 4742,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        3,
         0
       ],
       "output_chances": [

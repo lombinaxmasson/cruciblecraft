@@ -10,61 +10,27 @@
         }
       ],
       "hashes": [
-        "2229b17e543b061d83dcbad8d05fd5d31515d5adabf9a061bb97c2c20e7f3ae3",
-        "228ebc29412f3980f167f838f299aa94a2ebb0609a6d9e16baf4633756d0ae47",
-        "e9ced5fa7ae430fb9ae28bbd87062e468909a0ac94952ee59274f91a3900ea49",
-        "fb4b90cda10af113d5f9d459c35e5e37e6bc769bd1e39ae4f4c940723f122bfc",
-        "acd7073d8a08bca5b8825cba950ba172247bbc76e21f5b821fb42e600391bb81",
-        "f819dc24796b6fd2ed6cb0fe3535b72847b7bd58ebb4b319f4518d105d3943de",
-        "1b9a7be9ef4d50598f24f773938bba768b710546cc73634b5230826487d889b0",
-        "d1222bf351c22facadd537f9f1110009d310173d1afbb07787c1eee16171ad93",
-        "9564a76120abe9a5fc590f7a375541ad07cf381c971afed82413d9b3272fb306",
-        "792291a110935f125dcb3684d0aade83867671c18311edaf870ba044a6e0bacb"
+        "7f69bd1ffddbe53bebb19e3d8634814ce28949aef0beac5bfcdc7ab71e01a9c3",
+        "c8077d02a7a7127c6c5a7df8213b3c7092ee17490288ea261a6e7bb0467ffeaf",
+        "be5e71a90a1f772394ee1cd9ef0b6e7ec6c80747b4283bf7bcdebcb626f121c0",
+        "cf6d204fa4c24dcb96d109a05a2395ce7043e49e530cd58f352b0310604fafde",
+        "619a8fa06deaff4cbfa6c9da96718d36bc4ee31fd7d4f7d8915e8e8e4297690e",
+        "947c2f8fc1c067e6efe5c51991b81bfc9c07eb933cc12810a74ecf04833183e2",
+        "5fc9e71f7fbd6bd675ab4b87c1e24a661eb05343884a35147896ab0e0e6f57b5",
+        "280b06cc915d7fb049d844555b53ecf4b559db8222d560714fc90d412c69b2be",
+        "cce249f4a5bb96afd7ae2d7cc46e15dbaa085840ed70463ef310f85144e678cf",
+        "710ec22a1201dbf1e72eff9aef56a5b97ab05b51ce531a5637b76e202f5c54a4",
+        "85646c739b112d6cab33837b388523dbf845844bda3382c5201662b6913f9bf3",
+        "40b119320bc7a366818bf453cdb80504b61bc50a2bbc096721f2429645694fcd"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:conductive_iron/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:conductive_iron/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
@@ -72,7 +38,47 @@
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terrasteel/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terrasteel/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terrasteel/tiny_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -80,94 +86,79 @@
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/machine_casing_double"
+            "item": "cruciblecraft:terrasteel/screw"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/machine_casing_double"
+            "item": "cruciblecraft:terrasteel/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:conductive_iron/machine_casing_double"
+            "item": "cruciblecraft:terrasteel/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 14,
-            "id": "cruciblecraft:conductive_iron/plate"
-          }
-        ],
-        [
-          {
-            "count": 3,
-            "id": "cruciblecraft:conductive_iron/gear"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:conductive_iron/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:conductive_iron/long_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
-            },
-            "count": 14,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 28,
-            "id": "cruciblecraft:conductive_iron/rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
-            },
-            "count": 28,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:conductive_iron/ring"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:conductive_iron/ingot"
-          }
-        ],
-        [
-          {
             "count": 1,
-            "id": "cruciblecraft:conductive_iron/block"
+            "id": "cruciblecraft:terrasteel/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -177,86 +168,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fea3200b88068e9f",
+        "cruciblecraft:gt6/b0779d312cd9f28b",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/db80b69260539512",
+        0,
+        "cruciblecraft:gt6/82cb2d33f1fa581d",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/24f5d808be6228c7",
+        2,
         2
       ],
       [
-        2,
-        2,
+        3,
         0,
-        "cruciblecraft:gt6/6bc701021fa568a0",
-        2,
+        0,
+        "cruciblecraft:gt6/c1bc092d9a7fd13b",
+        3,
         3
       ],
       [
-        3,
-        3,
+        4,
         0,
-        "cruciblecraft:gt6/db1c1aaacefc0cd7",
-        3,
+        0,
+        "cruciblecraft:gt6/a2adaaf6e99d69d2",
+        4,
         4
       ],
       [
-        4,
-        4,
+        5,
+        1,
         0,
-        "cruciblecraft:gt6/f6e06ab64f0742a1",
-        4,
+        "cruciblecraft:gt6/2cf7124a53073a08",
+        5,
         5
       ],
       [
-        5,
-        5,
+        6,
+        1,
         0,
-        "cruciblecraft:gt6/6320e92d3f17731d",
-        5,
+        "cruciblecraft:gt6/d6038491c8ff12d2",
+        6,
         6
       ],
       [
-        6,
-        6,
+        7,
         0,
-        "cruciblecraft:gt6/8300b804e3ce2dec",
-        6,
+        0,
+        "cruciblecraft:gt6/757a59ad5728b058",
+        7,
+        7
+      ],
+      [
+        8,
+        1,
+        0,
+        "cruciblecraft:gt6/bac71eb74416e13c",
+        8,
         8
       ],
       [
-        7,
-        7,
+        9,
+        1,
         0,
-        "cruciblecraft:gt6/e7ed8838fda6c7e6",
-        7,
+        "cruciblecraft:gt6/da2e2011e82ca8a5",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/4d448a6d656400aa",
+        10,
         10
       ],
       [
-        8,
-        8,
+        11,
+        1,
         0,
-        "cruciblecraft:gt6/ebb26e3af0468b3b",
-        8,
-        13
-      ],
-      [
-        9,
-        9,
-        0,
-        "cruciblecraft:gt6/0b9b6b7534de71bf",
-        9,
-        15
+        "cruciblecraft:gt6/2ff40b76827d807b",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1637,
+      "duration": 154,
       "eut": 96,
       "item_input_actions": [
         {
@@ -267,7 +274,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        5,
         0
       ],
       "output_chances": [

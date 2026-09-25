@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 2248,
+      "duration": 95,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,21 +17,28 @@
         }
       ],
       "item_input_counts": [
-        2,
+        8,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:workers_alloy/machine_casing"
+          "components": {
+            "cruciblecraft:prefix_material": "dreadium"
+          },
+          "items": "cruciblecraft:dust_div72",
+          "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "dreadium"
+          },
           "count": 1,
-          "id": "cruciblecraft:workers_alloy/block"
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
@@ -39,14 +46,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "e9ac4a8655fe49a675f8131d0f881962d66811c7dd63de76cf6cbecfbe8a7868"
+          "d3ba76123d1fcf42c62a57ac564dcb2aecffc88d03fa230e567f879d5b835eae"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_6868",
         "source_kind": "SOURCE_DERIVED"
       },
-      "shadow_order": 1,
+      "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/959c72641447d58b"
+      "stable_id": "cruciblecraft:gt6/0a9d84755a145772"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

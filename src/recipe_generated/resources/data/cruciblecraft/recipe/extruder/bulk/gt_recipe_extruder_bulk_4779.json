@@ -1,13 +1,168 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_4779",
-  "publication_group": "cruciblecraft:extruder/bulk",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "15f187edb34656d9265ab9fe4a065b291b809cf537b542769799eabe922e06d4",
+        "6392c9922e98eb190832a2fd783d2621c16e9b43b19b61212d3f6bec7363989b",
+        "4ac76899b81767fca928dc1a80ad9748f56fa8e0e09bf471c97fac9898e7b0d5",
+        "b62b3980eecb94cde3a6ca47b81c8354dc5f41bece987432a36981dc1a9b7c2d",
+        "1b10e84ea411d0b220750499e2dca16c383876284260fe36b19fbb7160c5068e",
+        "53a0aa2c0e9c66d95d5c6d236b4b2e890c883a4f957aa4b78c2ebd7075ec3780",
+        "4140172a1042255ed031258fdcc04b3b928f5836071a218da6fded11d8667b70"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:tiny_plate_gem",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:netherized_diamond/gear"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/0cc4ae70d4c7bb93",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/9ab321d4f9667082",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/962b9d6d7b1ba713",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/d491136d513b7bdc",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/8be869bdba84abee",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/56052169796bc775",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/6904176c66f286a1",
+        6,
+        6
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
-      "duration": 64588,
+      "duration": 2871,
       "eut": 96,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -17,38 +172,18 @@
         }
       ],
       "item_input_counts": [
-        2,
+        36,
         0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:crystal_matrix/machine_casing"
-        },
-        {
-          "item": "cruciblecraft:extruder_shape_block"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:crystal_matrix/block"
-        }
       ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "956283fb998b336ac3e03e8bb95bc25aaedc6690f650345f9431199b16396ecb"
-        ],
-        "selected_source_recipe": "gt.recipe.extruder#bulk_4779",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/bebd641d78d7c38d"
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4779",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

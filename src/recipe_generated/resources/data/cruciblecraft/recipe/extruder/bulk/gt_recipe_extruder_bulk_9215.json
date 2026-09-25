@@ -10,40 +10,52 @@
         }
       ],
       "hashes": [
-        "2da7b0ec9c5e5ccf757f03b561fe2e0ae7c4dfbfcc9dea350029bc2bc35bdf3b",
-        "1d2fac793ed1d81768445821c2efbc2a6297565215231769934c5f2cd974a97c"
+        "73b03e7464f812737933c8b8aea406b335825379132e610bc2370b60752fcc69",
+        "516d748a7ac5c3294f31040d8fb03ce785675134538e3ca174b2547d050c9cad"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:sterling_silver/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:sterling_silver/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:terrasteel/block"
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sterling_silver"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:sterling_silver/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:sterling_silver/bolt"
           }
         ]
       ]
@@ -53,22 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/213a1eb2cfd98b82",
+        "cruciblecraft:gt6/2ad34dcf178ba606",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/a1e1abe353448e22",
+        "cruciblecraft:gt6/b10fbe8aaca209f3",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2481,
+      "duration": 2126,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_9215",

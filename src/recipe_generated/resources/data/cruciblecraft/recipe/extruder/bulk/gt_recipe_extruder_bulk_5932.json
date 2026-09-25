@@ -10,24 +10,59 @@
         }
       ],
       "hashes": [
-        "4b2c0fce78c25ca9cc59e8db0baa7d3702ffc41cc1d375d1d4fa8fe654e251b0",
-        "cfabf59160010f43915244a663792d9239c4b05801ae9c2b3fdebc1d87cb339c"
+        "778f0d872bb59c9063808155af6ab44159e74bb36c6b10fcabd74af66e21a582",
+        "cc33d53a200b4e7f7020ea6d321b5f827dbf97f459490c3c77e2dc1e115bf63e",
+        "a7110f673491f9660096121635e06965ebc9b8bf35bc4cd5cadab30c5ea9845e",
+        "60eb2500dfa5c663256676de0e44c75a70a3b08bd38c9da45716c85740570dd0",
+        "8bc4b66034310bcebd64dcce4dc16811b0c5c85096dea3e4de7db8818722f993"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vyroxeres/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vyroxeres/bolt"
+            "item": "cruciblecraft:aredrite/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vyroxeres/gear"
+            "id": "cruciblecraft:aredrite/block"
           }
         ]
       ]
@@ -45,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/34aa0ea351617d42",
+        "cruciblecraft:gt6/70f96df13c68817b",
         0,
         0
       ],
@@ -53,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/50f240905dd17bb8",
+        "cruciblecraft:gt6/216fc508bebf8246",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/eff466d77b41773e",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/7deb5c2384b84562",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/a6141dcdb9b4a303",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1137,
+      "duration": 3068,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        36,
         0
       ],
       "output_chances": [

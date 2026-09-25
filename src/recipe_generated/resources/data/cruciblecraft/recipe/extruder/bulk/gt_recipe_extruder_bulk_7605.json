@@ -10,16 +10,19 @@
         }
       ],
       "hashes": [
-        "5b270758f913d3e80eacffd80cedc88757d832d525a94ec839f673e1b489c6f5",
-        "71c205b8d519722c51cf1412ddfe30ffa148b121c09e77fd2b095f8dad9a46a4"
+        "070209a4920099aac96884c385a33fdd2b937a2dd6d6ccff13f6d67b07391baa",
+        "f22e6c07386b21e60ef4bd3964aefbd2c5c705d90fa9e1be4e7596f4621401f0",
+        "012b83852b18ac2cb346771b37f0de8b6f773dd900324d00cfc5faf03a4c3fc6",
+        "bef225093ce63ec55ff4f69b8c1bbd52e2d084714b6542ddb942ddd0923e6255",
+        "ad199c748f3a8888dbfecbd9e8ca671c40be124a2c82939a66f103baa0f5eced"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "blue_steel"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -28,11 +31,35 @@
         ],
         [
           {
+            "item": "cruciblecraft:meteoflame_red_steel/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "blue_steel"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_red_steel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_red_steel/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:blue_steel/block"
+            "id": "cruciblecraft:meteoflame_red_steel/block"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2c0401b1c26855d1",
+        "cruciblecraft:gt6/e9405035e6ef82e9",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/aa4e04f08550f7bd",
+        "cruciblecraft:gt6/36581fcf987db29f",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/547835e2c29e116a",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/3f722c0e3e8cfbd2",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/83d8723650bc4633",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1726,
+      "duration": 3560,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

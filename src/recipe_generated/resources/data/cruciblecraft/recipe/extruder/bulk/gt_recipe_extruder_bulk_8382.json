@@ -10,40 +10,59 @@
         }
       ],
       "hashes": [
-        "eed6a710fae78c4b53471f15b24b5258a513bc3609caf9bad66775b95462f798",
-        "0bd1152457ea878a06c9b40c1989e7065301ca5fd50f67289b577d7a2313c0dc"
+        "263eb2c8385c6124c72eed1638aceb3bd208dceea0a29c12766f4fe9da3c7046",
+        "21f79ff49a8a8b6a18fd6418e21485aeb71b54ac223be4273a32bd016d4b4d30",
+        "a37b96c659ec870d8f57809586b5da33843db35ccdf5e2ce56fefebbc78d00ab"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:silver/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "conductive_iron"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:silver/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:silver/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "silver"
+            },
             "count": 1,
-            "id": "cruciblecraft:conductive_iron/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:silver/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "silver"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,22 +72,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3413f019010e1fed",
+        "cruciblecraft:gt6/32daa0cd35de4ac7",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/7da773ceba54572a",
+        "cruciblecraft:gt6/3f5ffdd654aedabb",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/3d33eed3d7c2b84a",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1053,
+      "duration": 763,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +106,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

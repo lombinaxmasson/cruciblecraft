@@ -10,17 +10,22 @@
         }
       ],
       "hashes": [
-        "75367a7d1edae6dee7d10b8979140decf2837bdde1cf72ca95302850756923f5",
-        "9accba1acdb67829341da93d4cfcd8e22cbf49fedd59948b1312224a2d83cbd4"
+        "46c989f36e104c1b24e81f1a82fca883f7ca54521faefe0c72ddabc610abb88b",
+        "baee3e5a587b39e2ddfae598df242043446d5c980a9f20281db82633366e8e54",
+        "59ffacb74ade49268635282baf31e510b54ef7b94217860cde366990f8fc89ab"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_blue_steel"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hafnium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hafnium/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -29,9 +34,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoric_blue_steel"
+              "cruciblecraft:prefix_material": "hafnium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -43,7 +48,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoric_blue_steel/block"
+            "id": "cruciblecraft:hafnium/block"
           }
         ]
       ]
@@ -53,7 +58,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/68339bd2abb4beca",
+        "cruciblecraft:gt6/333fa3c47d9e11ed",
         0,
         0
       ],
@@ -61,14 +66,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/25c204199b9901dd",
+        "cruciblecraft:gt6/dd7c6f8b0f43d400",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/9c14f9a8839f6b13",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1859,
+      "duration": 4091,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +92,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

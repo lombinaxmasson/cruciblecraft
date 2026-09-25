@@ -10,72 +10,71 @@
         }
       ],
       "hashes": [
-        "ed7279059cd81f19a08e00b8314b003158555bdb55b26107acabccb19764b174",
-        "6da619de672d12e5a1fd53c4cf5906afa6dc48da4640e50b03922fa9e6d6b7af",
-        "40c8591cf923e7c55d92ad9c09ebf29a4c3df8b120048f056e9633c857f235d5",
-        "45110127e41003a439c5c6d42043be84a8286c01022199c4ba675a868e662581"
+        "2df6580d70bd0e171aac1fa1e24cc17c55d2cb5f4aedd0d25a9a0f86f419f767",
+        "865506df80b363fa28aef1012ad198b31436d5dd8c312312e59255115b602c24",
+        "cb200ef59b031e45c5e768bea1ca28b172fc0a40e14691736706e931def6fbe7"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "orichalcum"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:alumite/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "orichalcum"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:alumite/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium_base"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:alumite/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium_base"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:orichalcum/block"
+            "count": 64,
+            "id": "cruciblecraft:alumite/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:alumite/ring"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:enderium_base/block"
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:alumite/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:alumite/bolt"
           }
         ]
       ]
@@ -85,38 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0f528237012bb36a",
+        "cruciblecraft:gt6/414b815d3fd8d087",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/7e50084313a0682e",
         1,
+        0,
+        "cruciblecraft:gt6/7d8c83334a48b5f1",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/9c70e6c653096b61",
+        2,
         2
-      ],
-      [
-        2,
-        1,
-        0,
-        "cruciblecraft:gt6/c21b1652d7639b70",
-        2,
-        4
-      ],
-      [
-        3,
-        1,
-        0,
-        "cruciblecraft:gt6/ab761717a790c198",
-        3,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1397,
+      "duration": 1428,
       "eut": 96,
       "item_input_actions": [
         {
@@ -127,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_3399",

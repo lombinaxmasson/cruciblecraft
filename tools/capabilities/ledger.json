@@ -3551,6 +3551,30 @@
       "workflow": "accepted"
     },
     {
+      "depends_on": [
+        "recipe/gt6-extruder-bulk"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6挤压机配方补发详细计划.md",
+        "tools/waves/recipe/gt6-extruder-bulk/**",
+        "tools/capabilities/recipe/gt6-extruder-remainder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/extruder/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/extruder_bulk.json",
+        "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/Gt6ExtruderBulkGameTests.java"
+      ],
+      "path": "tools/capabilities/recipe/gt6-extruder-remainder/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "recipes"
+      ],
+      "slug": "recipe/gt6-extruder-remainder",
+      "survival_access": "unreviewed",
+      "title": "GT6 Extruder Recipe Remainder",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
@@ -3968,7 +3992,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 115,
+  "capability_count": 116,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5283,10 +5307,15 @@
     ],
     "recipe/gt6-bulk-capacity": [
       "recipe/gt6-bulk-capacity",
-      "recipe/gt6-extruder-bulk"
+      "recipe/gt6-extruder-bulk",
+      "recipe/gt6-extruder-remainder"
     ],
     "recipe/gt6-extruder-bulk": [
-      "recipe/gt6-extruder-bulk"
+      "recipe/gt6-extruder-bulk",
+      "recipe/gt6-extruder-remainder"
+    ],
+    "recipe/gt6-extruder-remainder": [
+      "recipe/gt6-extruder-remainder"
     ],
     "registry/catalog-modern-ids": [
       "content/gt6-connector-alias-repair",
@@ -5504,7 +5533,8 @@
     ],
     "recipes": [
       "recipe/gt6-bulk-capacity",
-      "recipe/gt6-extruder-bulk"
+      "recipe/gt6-extruder-bulk",
+      "recipe/gt6-extruder-remainder"
     ]
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",

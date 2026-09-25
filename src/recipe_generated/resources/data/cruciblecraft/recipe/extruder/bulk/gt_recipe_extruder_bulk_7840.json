@@ -10,65 +10,52 @@
         }
       ],
       "hashes": [
-        "69728ddbcc80538dfedc5eee459aee488c5969cda17f79e4d48e86881ab69bca",
-        "f48193b7e978883836b9c65fec1273b45e344ee8d6e13d9d89820d89af326a97",
-        "b826e86138c6a48c4d5fbb38e82254fda30df65763395873da6714220c4be30c"
+        "4a02c73d6e22dd82c1696c43b823431218cbda48b013878ff0d3082601f1bb44",
+        "fe7196b1df06efaa699d7c1dd65c8e2f77eefdd7331e4e773f2e728df022d90d",
+        "93fc7b58653e9a06294ab153699aeac103b6a45c4a55c8c3bb3474c1117d918e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "uranium233"
+              "cruciblecraft:prefix_material": "netherized_diamond"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "uranium235"
+              "cruciblecraft:prefix_material": "netherized_diamond"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "uranium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
             "count": 1,
-            "id": "cruciblecraft:uranium233/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:uranium235/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:uranium/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -78,30 +65,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1c515f96ac7e0f9f",
+        "cruciblecraft:gt6/f157aa1bfbdc0370",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/4957597add7a5dbe",
+        0,
+        "cruciblecraft:gt6/5208b0e47418ea1e",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/2f732b841ba5db2a",
+        0,
+        "cruciblecraft:gt6/fce8fa3665b516a1",
         2,
         2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3036,
+      "duration": 5742,
       "eut": 96,
       "item_input_actions": [
         {
@@ -112,7 +99,7 @@
         }
       ],
       "item_input_counts": [
-        14,
+        2,
         0
       ],
       "output_chances": [

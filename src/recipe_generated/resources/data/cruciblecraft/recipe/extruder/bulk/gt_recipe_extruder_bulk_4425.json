@@ -10,40 +10,216 @@
         }
       ],
       "hashes": [
-        "7052b313ff55a20f1632c1ac5e3d7bd91a359fc135b79f5e8c0e4d375e07b687",
-        "d8b6178093a982312c33f8a7ac376c180682f1d01fbfc855f215f9089ef889cc"
+        "36ba3d53e3fece7c0bf47464f3dccb1e477d1c952a3103e144bfe323844bd413",
+        "6189ffb67c30028131503b540a05985f0221751ecff23c4a1ce03a363a7672e8",
+        "25b5a075df00cb96ab58caa0dc77c391f97aef5db5ffd8f6ec6117e259483afe",
+        "a8cf8e0c0ef014ed4a0d3911e2ada1f716b8b527a5d887e7aaed5c01824fb81a",
+        "38d96d6e3e3d2e5e85ee46db33d66f340a5f8e296bffeff247066bcbf8e74890",
+        "8f30aa82624fd765ac454f27cd6c8326bb46ae970bd1a8c549ff47a0370b7671",
+        "108906880862c905a833b54aed967689e4247250d5780da5fc02d0b39b2734cf",
+        "528dd6ebf605188f0db8eb9b5a0bc2e12cf1abea6c8fdaf3d4fbc32e4a055772",
+        "cf10788055c4f6f038cd49bd2c7c4f58ff84a76b2f6caf7fa9867d5257484b79",
+        "ba14a1e1d4d9679c46f99bc77b7aba2029b721d8302ea958b362e41590aad922"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:efrine/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:efrine/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:efrine/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/block"
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "efrine"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:draconium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:draconium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:efrine/tiny_fluid_pipe"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:efrine/tiny_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:efrine/wire"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:efrine/wire"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:draconium/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:draconium/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:efrine/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:efrine/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:efrine/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:efrine/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:efrine/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:efrine/bolt"
           }
         ]
       ]
@@ -53,22 +229,86 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7a8f9c11046f330e",
+        "cruciblecraft:gt6/9cf5054b17bf5aec",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/d5f596a841e3731f",
+        "cruciblecraft:gt6/3ab2d65c24bcd966",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/3f8a3c9ccbd99406",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/cb4f80af3ee28fc9",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/c134255703b335d3",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/c9da6e219ce43747",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/eec956d12f70f1c4",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:gt6/574c117bc830368d",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:gt6/c1070b649fc71036",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:gt6/e883afe3837f1b82",
+        9,
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 35068,
+      "duration": 1688,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +319,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4425",

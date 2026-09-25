@@ -10,15 +10,34 @@
         }
       ],
       "hashes": [
-        "6a211d428f4283806154ade74f50d488088e1e01295b3929539f994ae7156d5d",
-        "01793bae4c90d04954350d929d33cc1e995f263c4e4c99eade02141661cac4de",
-        "1443f2b31c33f4ae578d2f8cd127f93096e7a215501a50884acdbc2dd16fb4a3",
-        "0386cb74362100197f2a05ffcf2a1b742a1326b29b0f12dfc0c5a868ec544939"
+        "eabb204ae05bccd9a1124db57d3c592383e3f331bec09c1b16d6afb6ad09ccf2",
+        "e5b7a156386be014646d7c46042ff8d6ecc6a562291558d850688250259c254a",
+        "6677fa6861802a74e0f5c55b872b6804897513b231f7ec59cc769d9050899002",
+        "7c802012313771e58cb3f589b99375775593ee2eac400c82fa0d2b776fdbe22c",
+        "798424c95ec2e3f7543d5773425784ea614e29fbd1fb9230c072990c11cf9d9c",
+        "998a72ea6806d4360d417b088209932962ca4975f726809031cebfa6b55692fc",
+        "8ce72e6e22f9576c622cdf29ea66852401eedc4696154914a63d79144ce14af3",
+        "9fd0afd94fbe2b1e1c935439532db8492ecb9738488b7817ccdece8c780c20ba",
+        "7689058936d5c1ca306817cd35a819e2f7f0f5d752d9c234658500d0c192e121",
+        "09324dedbb9c2eb857bf71de6982807e5fa486893910afbc424cc79b9dac05dd",
+        "9e3a8fe1197fd69573d72501c55e1743677354fa1d21b5f2e408616eb87c8128",
+        "951f2335aab8f9511b0ee494c2ca5bb1fea25378aaa0082caceae4276dc7446b",
+        "259b03a0ffa4453435128898528ab504013f0ccfa508eb0e55416ca6e776e6eb",
+        "9cc66f520f7c1724630ea15ecd15d5c2455427a95a7af79e30d93cfa9d5440b9",
+        "4c0488380200b7643660b08c51dce3fa45b26fe7d9faa01b42221fc5ac53f401"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:vibramantium/bolt"
+            "item": "cruciblecraft:elvorium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:niflheim_power/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -26,15 +45,31 @@
         ],
         [
           {
-            "item": "cruciblecraft:vibramantium/bolt"
+            "item": "cruciblecraft:niflheim_power/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vibramantium/fine_wire"
+            "item": "cruciblecraft:elvorium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:niflheim_power/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:elvorium/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_item_casing"
@@ -42,27 +77,262 @@
         ],
         [
           {
-            "item": "cruciblecraft:vibramantium/fine_wire"
+            "item": "cruciblecraft:elvorium/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:muspelheim_power/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:elvorium/machine_casing_dense"
           },
           {
             "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:muspelheim_power/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:muspelheim_power/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:muspelheim_power/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:niflheim_power/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:niflheim_power/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:muspelheim_power/machine_casing_dense"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "count": 64,
+            "id": "cruciblecraft:elvorium/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:elvorium/ring"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
+              "cruciblecraft:prefix_material": "niflheim_power"
             },
-            "count": 1,
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "niflheim_power"
+            },
+            "count": 48,
             "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vibramantium/rod"
+            "count": 64,
+            "id": "cruciblecraft:niflheim_power/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:niflheim_power/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "elvorium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "elvorium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:niflheim_power/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:niflheim_power/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "elvorium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "elvorium"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:elvorium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:elvorium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "muspelheim_power"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "muspelheim_power"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:elvorium/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:elvorium/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:muspelheim_power/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:muspelheim_power/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:muspelheim_power/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:muspelheim_power/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:muspelheim_power/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:muspelheim_power/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:niflheim_power/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:niflheim_power/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "niflheim_power"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "niflheim_power"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "muspelheim_power"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "muspelheim_power"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -72,7 +342,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2cb97d3b7921cb97",
+        "cruciblecraft:gt6/0ee7139855a56b4a",
         0,
         0
       ],
@@ -80,30 +350,118 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/f31f4f0f0d58c1b2",
+        "cruciblecraft:gt6/bbec664da911f97c",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/93694c046373853b",
+        "cruciblecraft:gt6/a319caf0bc28101a",
         2,
         2
       ],
       [
         3,
-        1,
+        3,
         0,
-        "cruciblecraft:gt6/da9931b52e093d5f",
+        "cruciblecraft:gt6/156dbb70879a74b2",
         3,
         3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/f38740a094040b76",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/e39f8fd0a8fe4e34",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:gt6/2e8ebd22296dc27b",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:gt6/9bf4e6bf1c0bea9f",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:gt6/2a8d6fef77db8d95",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:gt6/0e7160807b5b78fb",
+        9,
+        9
+      ],
+      [
+        10,
+        10,
+        0,
+        "cruciblecraft:gt6/e2f9145bae046b08",
+        10,
+        10
+      ],
+      [
+        11,
+        11,
+        0,
+        "cruciblecraft:gt6/b710ea00dc45ac89",
+        11,
+        11
+      ],
+      [
+        12,
+        12,
+        0,
+        "cruciblecraft:gt6/50f55ee54569b3ed",
+        12,
+        12
+      ],
+      [
+        13,
+        13,
+        0,
+        "cruciblecraft:gt6/a8511ef2956d4513",
+        13,
+        13
+      ],
+      [
+        14,
+        14,
+        0,
+        "cruciblecraft:gt6/1a529aedc37af0fb",
+        14,
+        14
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 405,
+      "duration": 24816,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,10 +472,11 @@
         }
       ],
       "item_input_counts": [
-        4,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5087",

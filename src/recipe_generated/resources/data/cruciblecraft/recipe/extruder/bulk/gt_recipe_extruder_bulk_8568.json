@@ -10,40 +10,71 @@
         }
       ],
       "hashes": [
-        "db809940ce1904a3113547bdd0c84eb993b95b7cfe68978feaa74fc96c2afd11",
-        "2e0af4ae2b7fa68a4d4fcc1eebf6047dd5d711b08c9ea6efb85ca96a6d3ee3be"
+        "d93b2d79f2b752b3be5bbd534ece852d73e7af316edb551b9a715f5346ac54ae",
+        "2553cf85f2833673872276cab0f7c46a54ba93ae3e13f6ffa64428e378472bb2",
+        "a11d6ca44fe7081a2f3a00d64d6db267a24782d4d672cc3e05b55b3261225276"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "zirconium"
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "zirconium"
+              "cruciblecraft:prefix_material": "stainless_steel"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:zirconium/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "stainless_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:stainless_steel/fluid_pipe"
           }
         ]
       ]
@@ -53,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/15e9c0982c139e64",
+        "cruciblecraft:gt6/edca572f75dd4a7d",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f81d729608b1da62",
+        "cruciblecraft:gt6/3be789edf552639c",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/05de0665c8f5a534",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1106,
+      "duration": 668,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +118,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        5,
         0
       ],
       "output_chances": [

@@ -10,80 +10,74 @@
         }
       ],
       "hashes": [
-        "cf2be628b14208ee88a841a4858ccfdd23dade0af80d67ddaf56a946653cd2ce",
-        "ea5bfc59f19cbfc3c6ace7fbcfbfc14eae16874cd500f96b6a782a897b8d7804",
-        "1308ff6df486564c0480ad8d40ff86285644d626ae2606874517dced09c6527d",
-        "657a758db17d426d8369dd921a1502d155a5ef58e4e10824c5ee5b93c6539387",
-        "3c3689aea7ce73135f5b31087816fd98f004cd759f298a85ceb49c1600ac785c",
-        "3df45e147706a5ba86b52691eacb95d034842277eb88ea259d787e9c968fb52d"
+        "f361845cb737389a869757ba536155467af7cc52c390ed1300cd9254a7730941",
+        "8a1a4c1e868324882d8c892aca218ad7c4145afd0bc9bd6018f6b78729ea0a47",
+        "22930a5d73c10c7dc8253c3422c5368f014765a8b9ebfcb3d14c7f4a3f0c050e"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rutherfordium"
+              "cruciblecraft:prefix_material": "tartarite"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rutherfordium/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rutherfordium"
+              "cruciblecraft:prefix_material": "tartarite"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rutherfordium/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rutherfordium"
+              "cruciblecraft:prefix_material": "tartarite"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:rutherfordium/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
             "count": 1,
-            "id": "cruciblecraft:rutherfordium/rod"
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tartarite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -93,54 +87,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0c16bf6339653277",
+        "cruciblecraft:gt6/6d1f257b7c2e82b5",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b5b42554cf9c62fb",
+        "cruciblecraft:gt6/4d54659c87d672cc",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/08e82ac612dab2ee",
+        "cruciblecraft:gt6/e10229f18e6ee044",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/d190b54a638f0b59",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/2ba4b92eb0070790",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/db7f255e4fe589d4",
-        5,
-        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 420,
+      "duration": 1647,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +121,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        3,
         0
       ],
       "output_chances": [

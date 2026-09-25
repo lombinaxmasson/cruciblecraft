@@ -10,111 +10,35 @@
         }
       ],
       "hashes": [
-        "9daba7052df434457dc368100388c29ee9a92fc9f1d614cbf73b809ae777835b",
-        "9a12d993d7cb1c8c004b8cafea6a4c1fe1c52b58b96df4ed8128bf37bb9af4dc",
-        "22b33fe1ad7ba3fba38d1bdc161bf67511f4fb79ffa47225744a0e6aee7b3bee",
-        "4ba5a5b392d9833aed9733f59ff42e363001e907f75f9142c78c9d318aff2d5f",
-        "e8d83a6026cee7e029fb8931d68839fa2edcf98256a55b2d0cda3ba51b90b0eb",
-        "b0cf600054da0dc2d465f924e132ba3156ba8a76994ed901487edbc724d44b3a",
-        "c2edc892bc83cbeb354776c9436e57cdf0f79ebaabc8e82be379a9ed5dad0700",
-        "da4cff9b2ba9f0eb4878bb616b37b913728901a2ee0054f2f37c78a632dbc2db",
-        "833c0f99e403f136f79f5c15c4d4147974f1dccdb5d967f9d05a798d37226075"
+        "e0b7d98cc647d701a4f2d37e3ca6e4a4e702edf8393d784ddd1e758791ab9ca9",
+        "8303f5db85a737d489e154d8ee9db61286b621eacbc034ea0dd3e69f11ae0355"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "osmium_elemental"
-            },
-            "items": "cruciblecraft:minecart_wheels",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungstensteel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:osmium_elemental/small_gear"
+            "item": "cruciblecraft:tungstensteel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:osmium_elemental/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "osmium_elemental"
-            },
-            "items": "cruciblecraft:spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:osmium_elemental/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "osmium_elemental"
-            },
-            "items": "cruciblecraft:chain",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:osmium_elemental/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:osmium_elemental/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "osmium_elemental"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tungstensteel"
+            },
             "count": 1,
-            "id": "cruciblecraft:osmium_elemental/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -124,7 +48,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/23f698c3472b5640",
+        "cruciblecraft:gt6/f729a5388d51dc60",
         0,
         0
       ],
@@ -132,70 +56,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/61160059c1a5f1ce",
+        "cruciblecraft:gt6/236d7383ecf6f711",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/e606426d441a6310",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/c1306f2ecdd8b545",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/269fd27028fe4faf",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/8713fd5d53e7e6f7",
-        5,
-        5
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/776bd014dc77a268",
-        6,
-        6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/52a5686113618d9b",
-        7,
-        8
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/b6a0bb5f824b2ccf",
-        8,
-        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9462,
+      "duration": 810,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +74,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        12,
         0
       ],
       "output_chances": [

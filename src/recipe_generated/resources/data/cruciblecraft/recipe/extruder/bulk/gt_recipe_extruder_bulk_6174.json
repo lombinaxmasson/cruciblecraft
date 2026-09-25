@@ -10,67 +10,62 @@
         }
       ],
       "hashes": [
-        "eb821479698f8ea57d75bc8f50407b56b39619d16e23457e330f32d972ea822b",
-        "4e1cea5138516c9274b4536eb20630103b38eed1d72dc1c86badbc1aba901cc8",
-        "61f5893a5e71bf62039d3126f104c3a1e4567e23e87f8790525c250fe4c9a7e1",
-        "47ff660dca52f9dd010e2eb25d790f58d5e1d93b065144bd3b25395ef8ff3b35",
-        "89dfb411f8a5b24242818e507189ce58dc7a93f6251528aa1641d05bec21f3a8"
+        "0dc4413e423693121b282a966c2556b6f9d249a04ddc7f0c5329d4d81e35a6f8",
+        "7f11123480843b532581d57254a0441b133b104717541f9a7b7679c40b5da79b",
+        "dbc6aa1ae0f9f975c6e63b61b5d2c43cb5c7b91f2b72d7568cb951de3c96a06e",
+        "b6df2b33ac2c30c59cb7dfefa989e17e41e5d0630711494ab335a8e650790d5b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:duranium/foil"
+            "item": "cruciblecraft:orichalcum/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:duranium/ring"
+            "item": "cruciblecraft:orichalcum/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:duranium/small_dust"
+            "item": "cruciblecraft:orichalcum/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:orichalcum/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
             "count": 1,
-            "id": "cruciblecraft:duranium/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "orichalcum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -80,15 +75,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/cb99405156f9eeda",
+        "cruciblecraft:gt6/a6dc05ca00332e92",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/a41d041655d58545",
+        "cruciblecraft:gt6/78540bb6897af339",
         1,
         1
       ],
@@ -96,30 +91,22 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/016b9b8efb8c9af2",
+        "cruciblecraft:gt6/9945140479a2efb3",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/21c9abd6763714dc",
+        "cruciblecraft:gt6/036a7c46a95406da",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/7eda54337036342d",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2146,
+      "duration": 419,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        24,
         0
       ],
       "output_chances": [

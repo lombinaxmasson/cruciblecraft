@@ -10,26 +10,30 @@
         }
       ],
       "hashes": [
-        "7f69bd1ffddbe53bebb19e3d8634814ce28949aef0beac5bfcdc7ab71e01a9c3",
-        "c8077d02a7a7127c6c5a7df8213b3c7092ee17490288ea261a6e7bb0467ffeaf",
-        "be5e71a90a1f772394ee1cd9ef0b6e7ec6c80747b4283bf7bcdebcb626f121c0",
-        "cf6d204fa4c24dcb96d109a05a2395ce7043e49e530cd58f352b0310604fafde",
-        "619a8fa06deaff4cbfa6c9da96718d36bc4ee31fd7d4f7d8915e8e8e4297690e",
-        "947c2f8fc1c067e6efe5c51991b81bfc9c07eb933cc12810a74ecf04833183e2",
-        "5fc9e71f7fbd6bd675ab4b87c1e24a661eb05343884a35147896ab0e0e6f57b5",
-        "280b06cc915d7fb049d844555b53ecf4b559db8222d560714fc90d412c69b2be",
-        "cce249f4a5bb96afd7ae2d7cc46e15dbaa085840ed70463ef310f85144e678cf",
-        "710ec22a1201dbf1e72eff9aef56a5b97ab05b51ce531a5637b76e202f5c54a4",
-        "85646c739b112d6cab33837b388523dbf845844bda3382c5201662b6913f9bf3",
-        "40b119320bc7a366818bf453cdb80504b61bc50a2bbc096721f2429645694fcd"
+        "807b5040a56576834012fe48bd865abfca17bf9459beafe327cfb54f412e9e0e",
+        "482ff73b1beb454340bc3147d7422346d7ec141c6449fecc0bd398636746a054",
+        "7e10500862cd889ab0f0376c8fa996b02ed1c851820efba250fd27a3b0fa0208",
+        "87cca811cfad0113ef7ef0bb3e2997309f271c7da7e45e092317aed69aa766b2"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
@@ -39,105 +43,21 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:terrasteel/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:terrasteel/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:terrasteel/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:terrasteel/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:terrasteel/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:terrasteel/nugget"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
-            },
-            "items": "cruciblecraft:tiny_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
-            },
-            "items": "cruciblecraft:round",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
-            },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
@@ -149,13 +69,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:terrasteel/rod"
+            "id": "cruciblecraft:tungsten/wire"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungsten/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungsten/tiny_fluid_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "terrasteel"
+              "cruciblecraft:prefix_material": "tungsten"
             },
             "count": 1,
             "id": "cruciblecraft:small_casing"
@@ -168,102 +100,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/580122423a7a6377",
+        "cruciblecraft:gt6/b438447d94676845",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/1bda0e8d9a2bff70",
+        "cruciblecraft:gt6/a81c62864f68273a",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/6025ae3ccdb8adc6",
+        "cruciblecraft:gt6/c87dbe41432ed207",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/40311ea91d52c199",
+        "cruciblecraft:gt6/ba6fcd29d5d64859",
         3,
         3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/2f4e17efd0311d62",
-        4,
-        4
-      ],
-      [
-        5,
-        1,
-        0,
-        "cruciblecraft:gt6/d56c02bee735995c",
-        5,
-        5
-      ],
-      [
-        6,
-        1,
-        0,
-        "cruciblecraft:gt6/db0c1f46cbdf12f7",
-        6,
-        6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/5d7e5e8a2a286505",
-        7,
-        7
-      ],
-      [
-        8,
-        1,
-        0,
-        "cruciblecraft:gt6/ed1beda11e030c94",
-        8,
-        8
-      ],
-      [
-        9,
-        1,
-        0,
-        "cruciblecraft:gt6/02f6d29fd0232ac8",
-        9,
-        9
-      ],
-      [
-        10,
-        1,
-        0,
-        "cruciblecraft:gt6/c1eb9f73a6cd7f5a",
-        10,
-        10
-      ],
-      [
-        11,
-        1,
-        0,
-        "cruciblecraft:gt6/44f66e55b1571e4d",
-        11,
-        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 154,
+      "duration": 506,
       "eut": 96,
       "item_input_actions": [
         {
@@ -274,7 +142,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        36,
         0
       ],
       "output_chances": [

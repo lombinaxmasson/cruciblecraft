@@ -10,36 +10,89 @@
         }
       ],
       "hashes": [
-        "d1e213d64fa655a58ba97d0e7d8605fe4c552ee227c99b0017ff531129a13bec",
-        "eae868072deb0751b298dfa05f787a492e501e6150c80838715ec8177b75f432"
+        "252d728c902ce0666b408a3f5921b48e07319da2e426de518cdf9287dca9632b",
+        "b7deb7e69f26f1ac7055999c28ef27445d0ea90c19cf5537ef7b0dff642a3e27",
+        "4a0bd9650c8d9c5b165660df1d40168d1751fa22d1603853dacedfbca7756e49",
+        "2fc8a47204bd859397b0928c84912b28d3f4d19c72e9822fa50d3d542e96d4c4",
+        "8d006551c32b29090b61c949c6fb6975936772bb933f2afe7c6d950ed3dfa38f",
+        "a67cbae85472318b217681817bd7b348e00a098ebd38a45d1b92b3fbf655df80"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "cd_in_ag_alloy"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hsse/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:cd_in_ag_alloy/rod"
+            "item": "cruciblecraft:hsse/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
             "count": 1,
-            "id": "cruciblecraft:cd_in_ag_alloy/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -49,7 +102,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/345a6762476ab148",
+        "cruciblecraft:gt6/3394ff1b62a569e4",
         0,
         0
       ],
@@ -57,14 +110,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/cf3cbc40854a03b2",
+        "cruciblecraft:gt6/8da695d03560bdb1",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/d5e2ab47c999ee9a",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/d55884033dba1fa4",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/c8cdb9e450844657",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/c58af349545ce32e",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 564,
+      "duration": 599,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        16,
         0
       ],
       "output_chances": [

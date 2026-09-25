@@ -10,40 +10,96 @@
         }
       ],
       "hashes": [
-        "27350b005d417d53c5d0d6ad0dc7ee81f84c5028dcf3d3db4313cd591fa22135",
-        "ac056a4fa865625ebc3ae4791583a6aa6de6effa6db77c90ea95053dc3095531"
+        "454506cb07f9509dd9b886e7c9bf9279b7a4d5748fe1dca5bedd7cfc92bc9cdc",
+        "7f2cbe448a18947a02bdf4fb39770d6761aab0f66a661e317c7b461185a71490",
+        "426ae8f364ed8366dee3f1de32551d9198a5f39804cbf48b42b943f545ee9774",
+        "395ecc8b9713fa5ab7c1fc6b4dc7e844c6fda9e1501bb6ace05f5916c29f0775"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:constantan/gear"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -53,22 +109,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/cebdd201fcab9645",
+        "cruciblecraft:gt6/5bfa61f4340c4044",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/7c7bc7247aa77a39",
         1,
+        0,
+        "cruciblecraft:gt6/fa0795a1d215999e",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/07d87fb1fc7d9464",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/9be6dd450b8c1ee7",
+        3,
         3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 689,
+      "duration": 696,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

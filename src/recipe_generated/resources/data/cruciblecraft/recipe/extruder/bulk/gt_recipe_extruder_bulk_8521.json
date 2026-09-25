@@ -10,16 +10,17 @@
         }
       ],
       "hashes": [
-        "2b36b14602779b8226fefaef0d134d5d0d9cfab0fd316a224e72d0170943f489",
-        "9f72ecf1fdd66aef22123dd9db6907068d64f0dba77a401bbb9c7ce693947b5c"
+        "2bc3f6e701b46025879ee0488cd0b105b983cfecb9684c7b0d82dfccaca13933",
+        "ba4da425802ce39f853c6d2732232f0c8200664fd2869885440e38fa7c9321a4",
+        "bbfdd827d898f25d6215ede85b0c97bd6ba3fed956fade2906717cd6f9f8e00b"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+              "cruciblecraft:prefix_material": "desh"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
@@ -28,11 +29,15 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:desh/tiny_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -43,7 +48,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoflame_blue_steel/block"
+            "id": "cruciblecraft:desh/block"
           }
         ]
       ]
@@ -53,7 +58,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e1f751d9edc80e29",
+        "cruciblecraft:gt6/eb17638fb5679194",
         0,
         0
       ],
@@ -61,14 +66,22 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/380e2299a90c9a14",
+        "cruciblecraft:gt6/d2aea7da9932c9a5",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/06d7dbc50a931322",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3132,
+      "duration": 938,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +92,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        18,
         0
       ],
       "output_chances": [

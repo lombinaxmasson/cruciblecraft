@@ -10,17 +10,24 @@
         }
       ],
       "hashes": [
-        "647876bb12859adb7ffccc2e03823b1e63ce2e3a60cc5491ed5a2729d1ba56c1",
-        "f1cfb5c66744297077c8fc6b053fff48e19368386f601ac38908ec340804e6a2"
+        "b0c84c28bce8e1743f5a6c93682eb421093a92f2f10d2179f14fd467f09e7f9b",
+        "9bcf70118358e42ceba3d5a8a5f60167587d9dd1af4fb2b86060aaa17e8b3891",
+        "7edef96d3facc7484463a7fa50c2c1c34c9b5cf784b2eecd56f612902fc4cade",
+        "2495fce615ebb2410f57d22076e24c8f4c4b721e9121f38f8e6e94b7f3b47bc0",
+        "72be9fa68e7733cc487562b9b6e501ad46594b499375fc492f06ab02dec1c868"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "chromium_dioxide"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steeleaf/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -29,9 +36,29 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "chromium_dioxide"
+              "cruciblecraft:prefix_material": "steeleaf"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steeleaf"
+            },
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -43,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:chromium_dioxide/block"
+            "id": "cruciblecraft:steeleaf/block"
           }
         ]
       ]
@@ -53,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fc000c5964f01bdd",
+        "cruciblecraft:gt6/be3c47a7a337060a",
         0,
         0
       ],
@@ -61,14 +88,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/126bcd5b394be51f",
+        "cruciblecraft:gt6/bd7197e89f5738f0",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/281b3535aa54013e",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/d04febf614c05037",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/2ef2a269ac6712cb",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 355,
+      "duration": 799,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

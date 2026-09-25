@@ -10,71 +10,67 @@
         }
       ],
       "hashes": [
-        "4a4067849eb3f98690dbec996f98797fe6bf5989a7dfb49aa1dc4103d9124e1c",
-        "b64050f51c33a4ae953dd4f8ce6217bcc38ca97dc0572f3f072ea57341948d02",
-        "fffcaec1e59640d42df36b8b6f4a8a868a1cc01d4f151a2cb998ff4fafb2f59b",
-        "d20c5546e92928fc4bcdd920aec986453e076c27f2c9b9c2581c4c41a1a10efc",
-        "c88e0034a05b4d4fc26141e3a2187d9b2b62a842b7a4300950d81993e6c8e4af"
+        "a19587b6c83ea232ab08fae5d1fe86e38a20af7c1ec29c57ef9e24df1bd4efb7",
+        "75fc59b1016c9ad5a95d7469dadc45deeb72b57918f0d8a4bf00864c98fb5dec",
+        "057448850d08bf03045c0b0e49129caf489b49996f273a6ba9e841ac5db7d21b",
+        "2d68670dbeb4b2f41b7d3d5a0e63ed888a286556f40e58d999b8b127cd69bf99",
+        "c214dfa28d0f410458a638ed6dc6894269a5de777ffd3f10e162ed421d99b55c"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "naquadria"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "naquadria"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "abyssalnite"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:abyssalnite/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium"
+              "cruciblecraft:prefix_material": "abyssalnite"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -82,34 +78,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:titanium/small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium"
-            },
-            "count": 1,
-            "id": "cruciblecraft:curved_plate"
+            "id": "cruciblecraft:naquadria/block"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:titanium/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:titanium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:titanium/long_rod"
+            "id": "cruciblecraft:abyssalnite/block"
           }
         ]
       ]
@@ -119,46 +94,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/895863e7ad10ea3d",
+        "cruciblecraft:gt6/32192be5446a1d61",
         0,
-        5
+        0
       ],
       [
         1,
+        0,
+        0,
+        "cruciblecraft:gt6/ad175f381bcf448e",
+        1,
+        1
+      ],
+      [
+        2,
         1,
         0,
-        "cruciblecraft:gt6/2642b398e38352bf",
+        "cruciblecraft:gt6/aab72d7cab0c9887",
+        2,
+        2
+      ],
+      [
+        3,
         1,
-        18
-      ],
-      [
-        2,
-        2,
         0,
-        "cruciblecraft:gt6/deacb0f152d155b8",
-        2,
-        22
-      ],
-      [
+        "cruciblecraft:gt6/542b0ab1830417d4",
         3,
-        3,
-        0,
-        "cruciblecraft:gt6/34383492a44f7cbc",
-        3,
-        29
+        3
       ],
       [
         4,
-        4,
+        1,
         0,
-        "cruciblecraft:gt6/9ad2eb251a72bcca",
+        "cruciblecraft:gt6/8557b910d6ea4fff",
         4,
-        31
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 154,
+      "duration": 3353,
       "eut": 96,
       "item_input_actions": [
         {
@@ -169,7 +144,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

@@ -10,40 +10,130 @@
         }
       ],
       "hashes": [
-        "a4e6614316a7428d06cce7199769579981f669dd81a355511fb7f4037859ea77",
-        "092683f743e1f9020bd544bac6880908d284d2207120cf14b63585b1e71f176d"
+        "f3ce209552a592ec46946f8eb171090251f593be0201ba42cf7da9612e75d715",
+        "0e1660d0640a4944c2900081a249ef1b49ffc7343d9458b891c03fdd47e22199",
+        "eae97dc9e11f4686852b90c2da6f177928f64705b2ad2903ce8cd8919f2c9900",
+        "7c9a966821e43d0b5578b855b6d5523ecd65a37d0a5f5f5e61dc736b7c03c609",
+        "ec2766a53af53c8d573a99e9fdde317c0029615f39a9a0880425bfde58285737",
+        "d28d0396bc953310c0e89bc15fbff1efb626f2e85152d33380f34cfc3d7e0f05",
+        "195bda222d3ab79a573e6266321425f233ab192a2b44a3d12d4587cf4d7b0de4",
+        "1111a80949c5f6d39269fc0f57c4d91f1ec13c91296bdca948af5c4970bb1a28"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "holmium"
+              "cruciblecraft:prefix_material": "titanium_gold"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_gold/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "holmium"
+              "cruciblecraft:prefix_material": "titanium_gold"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_gold"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_gold/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_gold"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_gold"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_gold"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:holmium/block"
+            "count": 64,
+            "id": "cruciblecraft:titanium_gold/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:titanium_gold/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_gold"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_gold"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -53,22 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c78fa53a36021332",
+        "cruciblecraft:gt6/f2b60c1640b30aca",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/7031297da33d6a05",
+        "cruciblecraft:gt6/ce42a8d6e6b21625",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/60d4cde4ba7b034a",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/3b2d1e28c9e0ef3f",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/e19274f8cc3592d2",
+        4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/0877abef12b718dc",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/ec9e64ad1b502b1c",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/bd1fd40f41c95a37",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1956,
+      "duration": 1711,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_2493",

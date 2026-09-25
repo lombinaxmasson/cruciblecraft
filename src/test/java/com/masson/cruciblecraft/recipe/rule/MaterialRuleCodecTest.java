@@ -25,8 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MaterialRuleCodecTest {
     @Test
-    void generatedComponentRuleUsesTheRuntimeRecipeResourcePath() throws Exception {
-        String path = "data/cruciblecraft/recipe/extruder/compact/normal_long_rod.json";
+    void retiredExtruderSparseFixtureStillDecodes() throws Exception {
+        String path = "extruder_compact_rule_fixture/recipe/extruder/compact/normal_long_rod.json";
         var stream = MaterialRuleCodecTest.class.getClassLoader().getResourceAsStream(path);
         assertNotNull(stream, path);
         try (stream; var reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
@@ -150,7 +150,7 @@ class MaterialRuleCodecTest {
                 catalyst.inputAction());
 
         MaterialRuleRecipe compact = new MaterialRuleRecipe(loadGeneratedRule(
-                "data/cruciblecraft/recipe/extruder/compact/normal_plate.json"));
+                "extruder_compact_rule_fixture/recipe/extruder/compact/normal_plate.json"));
         RegistryFriendlyByteBuf compactBuffer =
                 new RegistryFriendlyByteBuf(Unpooled.buffer(), RegistryAccess.EMPTY);
         serializer.streamCodec().encode(compactBuffer, compact);

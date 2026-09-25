@@ -10,50 +10,76 @@
         }
       ],
       "hashes": [
-        "04b3ad0743921ae9dacbc837ef402356410c3bb263c8e7eb1406287a51ac7c81",
-        "882ad825b74fe328b0310cbe08c193e3b562abda304d8c8ec4257909bf019e61",
-        "b00141a2b96c4ab6d060d654abcffbd2ef132321896c8115855c1645bf62684d",
-        "ebb51deffb41e25a052c7e85d3b89dbe52971a9a51c6f728a69b43af91b59c54"
+        "3b322982752d06db29eab01b3b23a3a19900fa98ce3d9eb4858fa1ca130bdb8f",
+        "0d7f7e45381bf1c92cf6dd89382454f39665a1fc9de7651705584a78eb33dd8f",
+        "117ece49340b3910e8e78c4e43b9725a2040a58450d5d5c049de7d64f16180d6",
+        "49b3610c167653cfbf2b4a6775423ed45e97a7991bc05aac58375083bf291ea3",
+        "d017e16aab72b927268c10641e7e1a889cf6577efef1e473b0bcc354e1242968",
+        "c1bf2dccfd26b8227a926b15b891b046d34462350b06135c91aaf1c8aff10c19"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:osmiridium/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:osmiridium/bolt"
+            "item": "cruciblecraft:iridium/quadruple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "chromium_dioxide"
+              "cruciblecraft:prefix_material": "iridium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "chromium_dioxide"
+              "cruciblecraft:prefix_material": "iridium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:double_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/quadruple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -61,13 +87,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:osmiridium/ring"
+            "id": "cruciblecraft:iridium/large_fluid_pipe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
             "count": 1,
-            "id": "cruciblecraft:chromium_dioxide/gear"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -77,7 +106,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/635f73d69a5b9355",
+        "cruciblecraft:gt6/21297f88d0d8a921",
         0,
         0
       ],
@@ -85,7 +114,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/0536ef7299051c16",
+        "cruciblecraft:gt6/d3fa2dbdd36d4396",
         1,
         1
       ],
@@ -93,22 +122,38 @@
         2,
         1,
         0,
-        "cruciblecraft:gt6/c7447dd6da1605b2",
+        "cruciblecraft:gt6/37bf64c11c6aa0bb",
         2,
         2
       ],
       [
         3,
-        1,
         0,
-        "cruciblecraft:gt6/106fe989abb771f5",
+        0,
+        "cruciblecraft:gt6/abd7f2f87b763d34",
         3,
         3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/315f7abea3a74f59",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/e0e1472b90faf3ca",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 237,
+      "duration": 5068,
       "eut": 96,
       "item_input_actions": [
         {
@@ -119,7 +164,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

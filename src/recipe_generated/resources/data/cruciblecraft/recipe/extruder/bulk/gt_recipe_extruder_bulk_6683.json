@@ -10,49 +10,52 @@
         }
       ],
       "hashes": [
-        "dbee8aa1ae30ec2d2d3a768c01eef2b39fd1150099c18b808e28abffc1247ae3",
-        "893b58db1fa292c99203a0e66da6fc15a471f110cdeae57b29ac889516564973"
+        "5e105a13f04ef029dc9ea61ff9602df9b2ec23e2581a4fd39e78ad01918d48e0",
+        "10983fd6eafa2a2673349d4de6c404fe88cecc8920e209614333c9be5a5a002e",
+        "38035e62b3cc6064422b1df30a70af511efe2ce52562b39a0f097f4ec037e872"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "crystal_matrix"
+              "cruciblecraft:prefix_material": "flamascus_steel"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "crystal_matrix"
+              "cruciblecraft:prefix_material": "flamascus_steel"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:flamascus_steel/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:crystal_matrix/rod"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "crystal_matrix"
+              "cruciblecraft:prefix_material": "flamascus_steel"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -62,22 +65,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9b554e5a589c819b",
+        "cruciblecraft:gt6/3a8f6395a93c9ef3",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/4a021eb612db31dc",
+        0,
+        "cruciblecraft:gt6/2be84d606a86e102",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/61412fed3abd7860",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2019,
+      "duration": 2797,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,7 +99,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

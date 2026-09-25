@@ -10,40 +10,86 @@
         }
       ],
       "hashes": [
-        "451c9ed3ce653557c8ddd2035de82888b7f0cc5f7efe86a9b91610961149adf3",
-        "a1c7500643ce00aa17c03b88753fba048891312675cec4b769db0af1817b4990"
+        "4fef8686ae3659e0d78bea6574251bcbb11d646dcb5b387ac8910af9a491f589",
+        "931db567d899f561e2aac3dcdcf40fe3c00a123ba301655a6cd8d118c813b21c",
+        "1ad8ab8002b96b9d6e5c7995814b4cd3b7efdf509328f94aef4fefaf57430c6e",
+        "bc643512ce9b59161a6dd35433a9803259be122123bbdd4cfc515ca9ab2c0430",
+        "275473e5c0bd46f32f62b87574fd5df843aff52b77443d3265695c8fa24158a1",
+        "b148dea3b755389085765af7a090abde00e44214e236d8acf20c49a0a1235688"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "end_steel"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungstensteel/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "end_steel"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungstensteel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungstensteel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungstensteel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungstensteel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungstensteel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tungstensteel"
+            },
             "count": 1,
-            "id": "cruciblecraft:end_steel/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungstensteel/fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungstensteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,22 +99,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/88cd6879ff793c7a",
+        "cruciblecraft:gt6/1a3318b606cbaf67",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/9d19100fc19be564",
+        "cruciblecraft:gt6/5b71e725ca8bc0a6",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/54025c0f88778e6b",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/c6bf491c7d62b908",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/48ccb49e10b85583",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/d0ed5aa65988a482",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2356,
+      "duration": 1619,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +157,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        24,
         0
       ],
       "output_chances": [

@@ -10,13 +10,32 @@
         }
       ],
       "hashes": [
-        "553da4cd9d2a4abff1890ce73a1cf0ff2a737a763f81b3b7fa02b8b7c66db53b",
-        "b32e1f422669e944ee62ea03c8816f82223d438f969b1cb3c6ed10e758b938e4"
+        "ed3d06bd5ab8d149d33c2845882d5b6bcc1323a97b9939db1423e533c8ef6f01",
+        "c596518b3ff05b9447b4894862f5de4c878664e6e686121ad98642f07a9b47f3",
+        "a5caeb87a5ceb9fef5c8b30747756b7c1f6c079857d28814758a4985e7a2bae9",
+        "45ec752a5fc0b8428d06017ead795ff02db0e9056801cd65de254f60573fa4df",
+        "749e04d71ceda1afebb1f043b3c77157867f512bfdad6e3a616b68fd46a0ec6b"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:oureclase/rod"
+            "item": "cruciblecraft:energetic_silver/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:energetic_silver/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:energetic_silver/dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -25,10 +44,18 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "oureclase"
+              "cruciblecraft:prefix_material": "energetic_silver"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:energetic_silver/plate"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -39,7 +66,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:oureclase/block"
+            "id": "cruciblecraft:energetic_silver/block"
           }
         ]
       ]
@@ -49,7 +76,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/bbec720aaa1932f5",
+        "cruciblecraft:gt6/1dba057582f32d4c",
         0,
         0
       ],
@@ -57,14 +84,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/0494e6a43b45a363",
+        "cruciblecraft:gt6/1c77d51696198a98",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/4504ca43d4a587dd",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/64929f8b49546cf5",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/2c62388927daa5fc",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3090,
+      "duration": 419,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        9,
         0
       ],
       "output_chances": [

@@ -10,32 +10,60 @@
         }
       ],
       "hashes": [
-        "cae3b7468187b9c182f0d7ba33bdcde9ca2a79217eb70bb21d6372f4dddc765c",
-        "848da9a47be4e74b4a02b4e79893a8aaf29f94f20d2e48cf4b24ea6b87f96980"
+        "8e5e1e5c75f21e99a4765f87a0f27a99e755dbc3ccea8e7a994d73ef7449ca4a",
+        "4857bc63809a2af607c3f168a33d5ac4845b7f2c46ed51221c511788fb4f8f83",
+        "df8d5b090b130c739aab13d9b5eb0d9d50c6fe3075aa79a8ad125afad6b4c98f",
+        "9a72ac66c34e00b5dd529661465f3a9718824629aff004f3757b7bebdfdf4e3b",
+        "bd8c538a1450c837b84a70d4e009c55590b25d5ebba4e732fa87bcf5b61ed17d",
+        "1de2d71dc1c2a4c08435bccc8199ed4417f234181ab07812664ed8685e581656"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibranium_silver"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:yttrium_barium_cuprate/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_wire"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibranium_silver"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steeleaf/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yttrium_barium_cuprate/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
@@ -43,7 +71,28 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vibranium_silver/block"
+            "id": "cruciblecraft:yttrium_barium_cuprate/wire"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steeleaf"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:yttrium_barium_cuprate/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steeleaf/rod"
           }
         ]
       ]
@@ -53,22 +102,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/843f40b678be11c3",
+        "cruciblecraft:gt6/edf9adcf0a535621",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/3d10d9b329c5ac24",
+        "cruciblecraft:gt6/804423e1633c2ca7",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/a2f6b92179d1655a",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/95b58971758709ca",
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/3a8d0b016aa8a10e",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/0d72aeed9db0c0b4",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2474,
+      "duration": 45,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        4,
         0
       ],
       "output_chances": [

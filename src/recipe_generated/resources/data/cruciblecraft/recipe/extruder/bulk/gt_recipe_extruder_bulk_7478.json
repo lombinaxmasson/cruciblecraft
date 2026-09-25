@@ -10,32 +10,70 @@
         }
       ],
       "hashes": [
-        "dba480a39ebd1f9dd586d735bc6cec0a62881909204d1ec17c87aa8a57e0f4ee",
-        "599a1de6117dc513e00a1f78b8e6e5b7bc9691f4cdec435dcc7eb15395303cd6"
+        "cf65620d003363e463fc66668376e381788ae55a98e105f33cf707d19afe005f",
+        "8850edb382e17aedfd00318cabc3c01be8d1ff28e9feb83e075fa55610dd7721",
+        "5e1121efbb80ea29a8a08c79e5d1b6da570f5234bbb00d8ef1ab4ca224fa841e",
+        "c0f12f2123bd06f3a38ae0ae477bf70b5856ac13f9d8d176cb78aa2a2b3e9470"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:rubracium/fine_wire"
+            "item": "cruciblecraft:syrmorite/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rubracium/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:syrmorite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
             "count": 1,
-            "id": "cruciblecraft:rubracium/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -45,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2088e494f360625d",
+        "cruciblecraft:gt6/c76c09f313fca6b0",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/339f986f5bb63682",
+        "cruciblecraft:gt6/a0c7a4d074f5f4b2",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/fdecea2afd8a0a7d",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/951887dd661ef52a",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1847,
+      "duration": 49,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        6,
         0
       ],
       "output_chances": [

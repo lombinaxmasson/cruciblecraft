@@ -10,17 +10,14 @@
         }
       ],
       "hashes": [
-        "166fa63a3a283922a42b64375b5a68e635d4b643841153d0aa56cd756b4ff543",
-        "517502fb7a557f7e487bd2a2a20bd891d3ebe6f5bc2844e23c8a07bd00759d43"
+        "7a3653e72bb25417bca1e4ba4be44e8db4fdb9082181dfeb0c9900763735b6e5",
+        "3546832ef15df2910118a915f893fe8a4f53d3132fa2afb5b2e02497dd148014",
+        "1a22cb2e0f118b8069c5811e8b1d50644d6458431fa9b5544a15372df3ac4226"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dark_iron"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:redstone_alloy/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -29,10 +26,18 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "dark_iron"
+              "cruciblecraft:prefix_material": "redstone_alloy"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:redstone_alloy/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -43,7 +48,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:dark_iron/block"
+            "id": "cruciblecraft:redstone_alloy/block"
           }
         ]
       ]
@@ -53,22 +58,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ecf9a434b2c14e4a",
+        "cruciblecraft:gt6/c451066d49ab7f50",
         0,
-        1
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/478c9d09feffc8b8",
+        "cruciblecraft:gt6/7d2ed7cb019eb526",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/8cafb7d7338b7633",
+        2,
         2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2136,
+      "duration": 259,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +92,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

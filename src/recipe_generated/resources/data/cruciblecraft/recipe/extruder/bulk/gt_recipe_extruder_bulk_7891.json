@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "2694f3186e944ebc4e9c7b906983c760374bd456a652aa3af0475414ebc19779",
-        "0448b4438c820f089d076277cd1ee573dbf7da8f3811dfabe8ae922dd540f736"
+        "1cd89e6dab3e0b7bbab15c48d9faf680fc650e46c193369dd88206725d1f2ec4",
+        "8a34c70e64f125ac164859e06bb04de780edee874f721abda1690302a18fbde7",
+        "88fd272b60f44f2258f49959555d3d93369162bd761cc5862d8712f8f702c964",
+        "41dfbaf57df25c434531b1f894ea9dc4b04e14153e4b6e18fb341e44c0201a11"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrum_flux"
+              "cruciblecraft:prefix_material": "spectre_iron"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:spectre_iron/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrum_flux"
+              "cruciblecraft:prefix_material": "spectre_iron"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:spectre_iron/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "spectre_iron"
+            },
             "count": 1,
-            "id": "cruciblecraft:electrum_flux/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "spectre_iron"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/49c5c6cd13e78999",
+        "cruciblecraft:gt6/d4e78ad506869aa4",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/23f07d5aa7a7997d",
+        "cruciblecraft:gt6/e8e07d50a3301963",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/827dd387c61c26f9",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/03e1f2cd9e13722d",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1076,
+      "duration": 624,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        6,
         0
       ],
       "output_chances": [

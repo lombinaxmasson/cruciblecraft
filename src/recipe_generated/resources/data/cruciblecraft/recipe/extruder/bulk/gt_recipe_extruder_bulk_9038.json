@@ -10,36 +10,71 @@
         }
       ],
       "hashes": [
-        "38c6fce7f8c2bb5682328eca7910fe2be41a678b98402c5bf3201b5b5fe07f31",
-        "5aa2379d43e8a8f0fb88f99fd3eb5ac3d6515231cd6db0dc4de45d3e46335f9c"
+        "85a1cce78a63da8b2515952546a88a4216f0ab35c266356369782a1c461f721c",
+        "275a1239a6a62226cad0fe27a590c4680233680b36728470b458598a188da1ec",
+        "4456274c8d5edf5046e402c21d02d2382d3c091e79a3d70c9070934bdb479d40"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "coralium"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherite/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:coralium/rod"
+            "item": "cruciblecraft:netherite/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherite/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:coralium/gear"
+            "count": 64,
+            "id": "cruciblecraft:netherite/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:netherite/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:netherite/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:netherite/bolt"
           }
         ]
       ]
@@ -49,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c2b1076fe93d6242",
+        "cruciblecraft:gt6/c5d185962b6c2645",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/db60801109a1db17",
+        "cruciblecraft:gt6/2e94ede7499337ec",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ff2db30a957a386c",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2108,
+      "duration": 63573,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        8,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_9038",

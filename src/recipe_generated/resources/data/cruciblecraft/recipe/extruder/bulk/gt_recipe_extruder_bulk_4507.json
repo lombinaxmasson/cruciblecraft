@@ -10,26 +10,17 @@
         }
       ],
       "hashes": [
-        "a88a39147266776ad9b064b175fd8020abe6b9b9c1038d17b01ffa89651cb241",
-        "8a1a66cb958b0de4143be339220924f94ff9e78bf6a1235f0535ac7d487c4dc8",
-        "ab6ea915537aad0143c6e9322d22f8a17b3965b126a3759df0f997ac5f2ac575",
-        "41f78aa6394c4805335ef8fe5f72aa19507f3d1c301230012b988ea09595f484",
-        "58d4bbf3dd5bf06c0c9faaec8ce8ba401fbc8375e8e2c71ca9c4a21b161c5531",
-        "b66b85f6b761ab4f0be5d7af8b32ede05598728f360065c5dd1349b6b52c6959",
-        "be4c0b5e0f8f38623775e8eab927c1dd6cb463059fe7530224ca6852a1e10293"
+        "647876bb12859adb7ffccc2e03823b1e63ce2e3a60cc5491ed5a2729d1ba56c1",
+        "f1cfb5c66744297077c8fc6b053fff48e19368386f601ac38908ec340804e6a2"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:dark_thaumium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:dark_thaumium/machine_casing_dense"
+            "components": {
+              "cruciblecraft:prefix_material": "chromium_dioxide"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -37,89 +28,22 @@
         ],
         [
           {
-            "item": "cruciblecraft:dark_thaumium/machine_casing_dense"
+            "components": {
+              "cruciblecraft:prefix_material": "chromium_dioxide"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:dark_thaumium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:dark_thaumium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:dark_thaumium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:dark_thaumium/machine_casing_dense"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dark_thaumium"
-            },
-            "count": 56,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 6,
-            "id": "cruciblecraft:dark_thaumium/block"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:dark_thaumium/plate"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:dark_thaumium/gear"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:dark_thaumium/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:dark_thaumium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:dark_thaumium/long_rod"
+            "count": 1,
+            "id": "cruciblecraft:chromium_dioxide/block"
           }
         ]
       ]
@@ -129,62 +53,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2a1b5a7a76edd17c",
+        "cruciblecraft:gt6/22d03c8ce73e4afa",
         0,
         0
       ],
       [
         1,
+        0,
+        0,
+        "cruciblecraft:gt6/0d3adbbd4f53d38d",
         1,
-        0,
-        "cruciblecraft:gt6/9ab02b9a60f540ac",
-        1,
-        4
-      ],
-      [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/8c5cb34cc7481a60",
-        2,
-        5
-      ],
-      [
-        3,
-        3,
-        0,
-        "cruciblecraft:gt6/fced886e1f366f72",
-        3,
-        7
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/3e228d06d64ab356",
-        4,
-        9
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/4111bab1fdfb1ec6",
-        5,
-        12
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/ea91d05712f8cd58",
-        6,
-        13
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1744,
+      "duration": 355,
       "eut": 96,
       "item_input_actions": [
         {
@@ -195,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        3,
         0
       ],
       "output_chances": [

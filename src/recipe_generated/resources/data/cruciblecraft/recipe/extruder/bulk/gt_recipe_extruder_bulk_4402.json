@@ -10,71 +10,72 @@
         }
       ],
       "hashes": [
-        "637fbcf38d147350929b1117e9de70803be6a39e92ed05b94f5970932bcaa354",
-        "0e8db57b143e28cc3e93ee6f95ad1de8f160f2d0fad3a682784d4199dde1547c",
-        "a00c383d7a26868c1f85085e644a1b41063b1a7822d9325c8eb6a63e82f419b9",
-        "7345ddc6c07e4bcf0d2769993a1fc1f740fd60e2aeecb716cb43a2d638b8ced8",
-        "d0be51ddef3f84989b23dc0206fa5c6f9007bd36e57417de8e6a71be2276fc08"
+        "de1aa05513703d8f6bb145979e7c85519514a4b1cc9a1333e2e62b0361a7a53b",
+        "b9803903737988a4916fe512c28b721e06efa38068c65d5282669f1bba19790d",
+        "0622405a5c64a07da22b405d87b0f7725069c98c605b60f4d80d50acf3a2b47c",
+        "bd875f3992496eb2b97aa9e288c2ac493931988dc40957c664248a3bfe8b58a7",
+        "356d7a8124d119676f2570613a0aba826cc61f14b6e013f55a553dd5fc68e68f",
+        "39669a686d55100f5dfbcbb0174e8f2c683ef35c0885a6f99316207de23ae216"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "carborundum"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carborundum/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carborundum/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carborundum/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "carborundum"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "carborundum"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -82,34 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:enderium/long_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium"
-            },
-            "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:enderium/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:enderium/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:enderium/ingot"
+            "id": "cruciblecraft:carborundum/gear"
           }
         ]
       ]
@@ -119,46 +93,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/41be0d613f9e787e",
+        "cruciblecraft:gt6/ba27115f6977875c",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/9e811443e8827621",
+        0,
+        "cruciblecraft:gt6/9c14cf328f95102a",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/12bd2354c19aaae2",
+        0,
+        "cruciblecraft:gt6/cbbc05950b46b304",
         2,
         2
       ],
       [
         3,
-        3,
         0,
-        "cruciblecraft:gt6/771a086ee98bffe0",
+        0,
+        "cruciblecraft:gt6/780d4c8861c4d23d",
         3,
         3
       ],
       [
         4,
-        4,
         0,
-        "cruciblecraft:gt6/20ae08ed3de5b963",
+        0,
+        "cruciblecraft:gt6/a7e8b326e86f0cf1",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/921a66a95e9f42dd",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 402,
+      "duration": 385,
       "eut": 96,
       "item_input_actions": [
         {
@@ -169,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        36,
         0
       ],
       "output_chances": [

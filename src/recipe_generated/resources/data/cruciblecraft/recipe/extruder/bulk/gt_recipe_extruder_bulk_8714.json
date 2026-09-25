@@ -10,40 +10,71 @@
         }
       ],
       "hashes": [
-        "7ecc9afdbb8cdbfa7c0400e82a8ea4bc7a34cd640e7d244fa6bc0a3f985f85e7",
-        "f3b4e5402ffe56d3966d2e20153b0c31dd34a0c97143e99cab8e9f0e5b458936"
+        "00c8ef095b393caa1853992f04181f063b8112fbce314c6c49c1e089ff51d7b6",
+        "05ea5192dbe8e167b0467df83e97b6ce1af36920f2c338cecdebfd0c85d6ac1b",
+        "bafb3c9dc362707e9966863221d9655472aeb12d3d9f436a889d076ca217861c"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "protactinium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:nichrome/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "protactinium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:nichrome/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:protactinium/block"
+            "count": 64,
+            "id": "cruciblecraft:nichrome/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:nichrome/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:nichrome/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:nichrome/bolt"
           }
         ]
       ]
@@ -53,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a6eb79d2f9e9abd4",
+        "cruciblecraft:gt6/5ec3849a1ff4cc92",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/d426b46cdc2082ce",
+        "cruciblecraft:gt6/8a5efd2cc59e6148",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/36bbbedff6b8cb72",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3305,
+      "duration": 5238,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8714",

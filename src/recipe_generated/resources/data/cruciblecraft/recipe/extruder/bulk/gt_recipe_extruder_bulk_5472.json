@@ -10,49 +10,49 @@
         }
       ],
       "hashes": [
-        "5d09e57f2136ef09d08ebd5c81395420bcb46d6c661d5b5eeed0f42ed4e519a3",
-        "6650c098a16acdd15b263801842fa6f2b0cee22fca4a3de942f880b454a4bd0b",
-        "33a267b370be5ca57d7840a0d1ef148e014b9c84e69bd796aaa7143de731a44e"
+        "d1fefd0a225d11ed2948d38913dd1bd85e7109a97b0a23b7977f72afea3360b4",
+        "0131c50628a035e4a02ff100d36a5454195a90c65a13e1cb538152c0fe63708f"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thorium"
+              "cruciblecraft:prefix_material": "obsidian_refined"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:thorium/gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "thorium"
+              "cruciblecraft:prefix_material": "obsidian_refined"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "obsidian"
+            },
             "count": 1,
-            "id": "cruciblecraft:thorium/block"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:obsidian/rod"
           }
         ]
       ]
@@ -62,30 +62,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c9348be1d81dbc40",
+        "cruciblecraft:gt6/c3335c7c81ef3b9d",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/df44fd9401b301ad",
+        "cruciblecraft:gt6/a40014df52d36e24",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/b38ae72abeb9aa12",
-        2,
-        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3955,
+      "duration": 30,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +88,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

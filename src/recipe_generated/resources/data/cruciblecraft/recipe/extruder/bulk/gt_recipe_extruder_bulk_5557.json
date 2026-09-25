@@ -10,15 +10,38 @@
         }
       ],
       "hashes": [
-        "f85f8e326f7bdf4935078bc044892131a8aa272c4b0621d6d795d917080e9b5b",
-        "844635a86252907d8c06b53221e83bcd716dfacea1b5c0f9b5c056bdcf1e8fbf",
-        "99268f82192a5ca20f2ef4333343ac1309a86bfda3ffe45d6d7e3721e1ade8a2"
+        "22737c196e8ae62899492ed0323b3ce8f471130856db0434db9d1b5c4ec08da1",
+        "a0edba99865cb02482a2abde87e444d3b59635cb882635edbc127a772b37e16f",
+        "e3d2d4d0c4997be9b6e0f9a020d8545a3e5932e1cfd06f974c619a3fa6025d93",
+        "0805e1847857c7b78d22a0e5e9ca5c66d87d9dced9f9ca5aa5388c55d4163d31",
+        "5f6b5035b8bfdf17d8c014606e0dec7ee170cdc82f52a09c5a7fda96ee387a51",
+        "24f70717ebe526aecf2d742b9d3751ef2bd95e9aa5fd7fa4cc61cf4e7a4244c4"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:dark_iron/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "gaia_spirit"
+              "cruciblecraft:prefix_material": "dark_iron"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_steel"
             },
             "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
@@ -30,9 +53,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "gaia_spirit"
+              "cruciblecraft:prefix_material": "dark_iron"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -41,7 +64,19 @@
         ],
         [
           {
-            "item": "cruciblecraft:gaia_spirit/gear"
+            "item": "cruciblecraft:meteoric_steel/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_steel"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -52,7 +87,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:gaia_spirit/block"
+            "id": "cruciblecraft:dark_iron/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_steel/block"
           }
         ]
       ]
@@ -62,30 +103,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a379319d09a5be5d",
+        "cruciblecraft:gt6/49602638681f44f9",
         0,
-        11
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/4121342abdf7ee8c",
+        "cruciblecraft:gt6/2f4668ecd98efcf3",
         1,
-        13
+        1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c91abf8d894f1faa",
+        "cruciblecraft:gt6/f834af2f93a009e8",
         2,
-        16
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/38461270a9a120ea",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/8866b6997405147f",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/24d31eee6ab5f5d6",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 677,
+      "duration": 2848,
       "eut": 96,
       "item_input_actions": [
         {

@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 1767,
+      "duration": 3986,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,12 +17,16 @@
         }
       ],
       "item_input_counts": [
-        18,
+        14,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:end_steel/rod"
+          "components": {
+            "cruciblecraft:prefix_material": "melodic_alloy"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
         },
         {
           "item": "cruciblecraft:extruder_shape_block"
@@ -31,7 +35,7 @@
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:end_steel/block"
+          "id": "cruciblecraft:melodic_alloy/block"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "cdeab0fcf77c0fbaf44e372088d627cd0ddc3c26e2a5be3f318d5c35a3020451"
+          "e1027a8d9f2c20a93f73601bb19159a942206e3910915ecfe2024b97bc69ca13"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9555",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/6a2a394dbf973b9a"
+      "stable_id": "cruciblecraft:gt6/4f2159405a494ff8"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

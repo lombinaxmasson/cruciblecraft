@@ -10,36 +10,74 @@
         }
       ],
       "hashes": [
-        "5c1e52b3c622c001a818f6b8c00984092609708113fa845c1b62750def7e4308",
-        "8eb319a18384ce185c4d422b0d52b0c68d535d107a119d4695eacb06aa6797ad"
+        "5f4e1e99ee5cbc84b517cbf2bd3d59f77b080316b890c78b819ad834c2325b82",
+        "dbb226585c1fa57aaeeb56a97ab2387eb7ad4ca8d74c243c5ec76d4a026c070d",
+        "464e99d9a2c6215789def814f10cca97844d636bb7d2a46c9da86b7c9f686db7",
+        "532ea8ce5569ba1419d0073c4aac96f98b740ae5a68be02065f260546da6bb6c"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hsss"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungsten/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hsss/rod"
+            "item": "cruciblecraft:tungsten/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
             "count": 1,
-            "id": "cruciblecraft:hsss/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungsten/fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungsten/gear"
           }
         ]
       ]
@@ -49,22 +87,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a6e7e4b5e67f7510",
+        "cruciblecraft:gt6/01a4536bdc1a71b6",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/b246244360ba1a97",
+        "cruciblecraft:gt6/3090b6c845e54375",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/c4c58bd8fef09c07",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/cc9e8fb3f9172e28",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5210,
+      "duration": 5054,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +129,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        2,
         0
       ],
       "output_chances": [

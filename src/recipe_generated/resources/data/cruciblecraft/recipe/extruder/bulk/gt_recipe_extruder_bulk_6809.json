@@ -10,23 +10,18 @@
         }
       ],
       "hashes": [
-        "64b97244e620f4711834f1d19928f354e6e8d5a8b3a0cdb4e3f8df1f2d9b3b86",
-        "70c37c1c8150cc6f562a12df0344b95407b10f5b706bed416c42739a652c09e8",
-        "2ee26ed402a9dbf14cc2597b09805d90760bed717a10f9dee4e18c33a6971bcf"
+        "3d615396496a34ad19f36387a2f30e91e87c86ac3bf4ca7a1e51608615d849b5",
+        "8f50c0be63761e050b984628d18b1803f6d3d9575abad26ad7e7e5f1f1201371",
+        "0edc2e969fd630ef8b59999f3ee50ae6d8cecaa9a738d28df4db16b59f107add",
+        "663d512b76d2022f55ca0e6e16655f13790c26786ffff050a011f2cedde49a30",
+        "4937d895d66f675b119863063847ce133f11fb53ba0bfbe27fdece4d84deefe7",
+        "199f201d73a539bed4325fbce8c9dc4fa6ad61a457379c216fc5beda606375e1"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:energetic_alloy/gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "energetic_alloy"
+              "cruciblecraft:prefix_material": "neodymium"
             },
             "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
@@ -37,8 +32,48 @@
         ],
         [
           {
+            "item": "cruciblecraft:neodymium_magnetic/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "energetic_alloy"
+              "cruciblecraft:prefix_material": "neodymium_magnetic"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "neodymium_magnetic"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:neodymium/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "neodymium"
             },
             "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
@@ -52,7 +87,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:energetic_alloy/block"
+            "id": "cruciblecraft:neodymium/block"
           }
         ]
       ]
@@ -62,7 +97,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d9d3175955bb0ce2",
+        "cruciblecraft:gt6/b373a270190abdd1",
         0,
         0
       ],
@@ -70,7 +105,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/30bfd0d27ad8c9e5",
+        "cruciblecraft:gt6/beb096e507866fd5",
         1,
         1
       ],
@@ -78,14 +113,38 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/c12675824baeea8d",
+        "cruciblecraft:gt6/b04dc26c19d7575a",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/a596035cd208e04b",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ad624f868370929b",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/04f867ee4c6a1f5b",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1700,
+      "duration": 1303,
       "eut": 96,
       "item_input_actions": [
         {

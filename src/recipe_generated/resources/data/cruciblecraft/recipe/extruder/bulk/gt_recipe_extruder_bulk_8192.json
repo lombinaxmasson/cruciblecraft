@@ -10,32 +10,45 @@
         }
       ],
       "hashes": [
-        "cebb5431ba31b8ec02c9d46128b1199073d442c158584495d739e9673b979f7e",
-        "88bc6d2bdc8a4274b7b040b0f73df42063b5bac18e86951e57389be2ad8896ce"
+        "b8333bcff92406f74678b9396c6578717c2d56d932964c651d09795e61f04982",
+        "be8308d3e4afec94176dc3b650e09055b6973b58bb2be9d5175447b5f99af9c6",
+        "728917ea9e9f992f37a2441252b24622f3d99235338ba8a6c596c0ec81d50aa9"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "draconium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "draconium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
@@ -43,7 +56,22 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:ignatius/block"
+            "id": "cruciblecraft:draconium/tiny_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:draconium/rod"
           }
         ]
       ]
@@ -53,22 +81,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/b6eca87c2689b6b9",
+        "cruciblecraft:gt6/185b7bfb8e346856",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/47b11b9a93f8998b",
+        "cruciblecraft:gt6/e754199ec9dbac65",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/9d6843d14afe92cb",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1706,
+      "duration": 33,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +115,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

@@ -10,46 +10,83 @@
         }
       ],
       "hashes": [
-        "bdd9030c60ff1fb7e87aa09a01f78eda927408203348381adedd21f44da91ab0",
-        "4533b8c390bf1cb21cf67728312a1baff9e89ecc1e2a51ab42b92a68dcc8dbd9"
+        "e0ca299607b80b5eac9ae56f3f2b61eba402128070a65ffd965441eaac789faf",
+        "2de794513669e75438e6a136241d682f95a24cbfce719d3b23dc1298eadb31b7",
+        "6ae84ad449f49b254087ce3db22b33325400da56cc6179afbfcec68aa08ab400",
+        "32fddf84ee2208801ac5f0306bf6b762981b25ed7d3def0369e376bb99b36ae6",
+        "4b6f5a09f8f2cbd7142b3f19eca4fe32fcf07c4d3d7752dc2fa192d56541a026",
+        "21888e60bc6feaf710f5005d3a6e35d70888fd5a12eba54952c6dae794036361"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "enderium_base"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:meteoflame_blue_steel/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_blue_steel/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "orichalcum"
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
             },
-            "items": "cruciblecraft:billet",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_blue_steel/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:enderium_base/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:orichalcum/gear"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -59,22 +96,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a4ddafbeadfd30e2",
+        "cruciblecraft:gt6/df6fbc806bae065d",
         0,
-        1
+        0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/ac46deee04d8c49a",
+        0,
+        "cruciblecraft:gt6/fe95fbf8b96e56a0",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/c47c0d65322d2333",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/9a6037dadec35ed7",
+        3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/9d4252e42b8a18af",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/68419246f500d304",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 559,
+      "duration": 2088,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +154,7 @@
         }
       ],
       "item_input_counts": [
-        6,
+        54,
         0
       ],
       "output_chances": [

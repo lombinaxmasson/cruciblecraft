@@ -599,7 +599,11 @@ class ProcessingAdaptersTest {
             assertEquals(4_096L, spec.energy().capacity());
             assertEquals(256L, spec.energy().maxPacket());
             assertEquals(spec.items().slotCount(), spec.ui().machineSlots().size());
-            assertEquals(1, spec.items().outputs().size());
+            assertEquals(
+                    spec == ModProcessingMachines.EXTRUDER
+                            ? ModProcessingMachines.EXTRUDER_ITEM_OUTPUTS
+                            : 1,
+                    spec.items().outputs().size());
             ProcessingMachineIoAssertions.assertMatchesProfile(spec);
             var placement = ProcessingMachineEnergyPlacement.connection(spec, Direction.NORTH);
             assertEquals(Direction.SOUTH, placement.providerOffset());
@@ -637,12 +641,15 @@ class ProcessingAdaptersTest {
         assertEquals(ProcessingMachineSpec.SlotRole.MATERIAL, spec.items().role(0));
         assertEquals(ProcessingMachineSpec.SlotRole.TOOL, spec.items().role(1));
         assertEquals(ProcessingMachineSpec.SlotRole.OUTPUT, spec.items().role(2));
+        assertEquals(ProcessingMachineSpec.SlotRole.OUTPUT, spec.items().role(3));
+        assertEquals(List.of(2, 3), spec.items().outputs());
+        assertEquals(4, spec.ui().machineSlots().size());
         assertFalse(spec.items().accepts(0, shape));
         assertTrue(spec.items().accepts(0, material));
         assertTrue(spec.items().accepts(1, shape));
         assertFalse(spec.items().accepts(1, material));
 
-        ItemStackHandler inventory = new ItemStackHandler(3) {
+        ItemStackHandler inventory = new ItemStackHandler(4) {
             @Override public boolean isItemValid(int slot, ItemStack stack) {
                 return spec.items().accepts(slot, stack);
             }
@@ -668,6 +675,21 @@ class ProcessingAdaptersTest {
                 List.of(new ItemStack(Items.IRON_NUGGET)),
                 List.of(), List.of(), List.of(10_000), 20, 24, 0, true);
         assertTrue(spec.validator().validate(nonShapeTool).isPresent());
+        GTRecipe twoOutputs = new GTRecipe(
+                List.of(Ingredient.of(Items.IRON_INGOT), Ingredient.of(shape.getItem())),
+                List.of(1, 0),
+                List.of(new ItemStack(Items.IRON_NUGGET, 64), new ItemStack(Items.IRON_NUGGET, 17)),
+                List.of(), List.of(), List.of(10_000, 10_000), 20, 24, 0, true);
+        assertTrue(spec.validator().validate(twoOutputs).isEmpty());
+        GTRecipe threeOutputs = new GTRecipe(
+                List.of(Ingredient.of(Items.IRON_INGOT), Ingredient.of(shape.getItem())),
+                List.of(1, 0),
+                List.of(
+                        new ItemStack(Items.IRON_NUGGET),
+                        new ItemStack(Items.IRON_NUGGET),
+                        new ItemStack(Items.IRON_NUGGET)),
+                List.of(), List.of(), List.of(10_000, 10_000, 10_000), 20, 24, 0, true);
+        assertTrue(spec.validator().validate(threeOutputs).isPresent());
     }
 
     @Test

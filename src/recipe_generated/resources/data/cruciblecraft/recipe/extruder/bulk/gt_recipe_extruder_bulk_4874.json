@@ -10,40 +10,107 @@
         }
       ],
       "hashes": [
-        "ba22ebf12178a24112f35b505ab5cef5d11f9bd5188f9b73190f62636299f91f",
-        "0a9397591a259985628c7e5b3d7ab45eab4f41d9199c1f8843ac38e06581da38"
+        "0536d805d8110e3d2b30d49db3704001c2a68f0b3b592b6de6462f933b518392",
+        "d3ee5d8e9af2fc8fd78f8e98a56d26a45163728534cb3d4ade054f284568bcbc",
+        "90e03ddb15981d28cd1b4616f9ac7c31363fafe849745fa530c38202011eb34f",
+        "ca8fe3e528d71a887e132e3e9866a9944d17827194d4602298d41b5d8c9b8062",
+        "72d8147125df4e612756a863ef4ea38aa06f76bd2a82330d6b09fe9272f307b0",
+        "0d14b5e8c8a0a5654b004b9a0406888a68e33835260075d3b68fe2202615ce0c"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "efrine"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "efrine"
+              "cruciblecraft:prefix_material": "cobalt"
             },
             "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt60"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt60"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "cobalt"
+            },
             "count": 1,
-            "id": "cruciblecraft:efrine/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cobalt/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cobalt60/gear"
           }
         ]
       ]
@@ -53,22 +120,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/070007b0f05cb4d3",
+        "cruciblecraft:gt6/4574a419627f6a7c",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/6a19ffb6d7333ec6",
         1,
+        0,
+        "cruciblecraft:gt6/a38ab1540043924f",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/413e805d96d08d48",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/55f525ae614fcdcb",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/aeeddb4c9a2fc138",
+        4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/04bc24056a2c8e8d",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 272,
+      "duration": 1211,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +178,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

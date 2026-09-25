@@ -10,40 +10,62 @@
         }
       ],
       "hashes": [
-        "4d61853c609a8e43551d02ce9f1d7c19ae95a33f74dc8c6a1ac5599f1d70326e",
-        "e32fee017a1cd71b474172d8679ffaffe881d70fc9a817a1dd439804f432cc2f"
+        "b413d9bcf3452ced9a8ffeea60b990c23a0fae9c0e9c28a416b0007a08e19902",
+        "c6dba3c4e17b53365d1bfccc0ff40e06329d94eb6c422314dbbee422f677783f",
+        "96609d917e93798b430f7a752617455950eac9e59486f9160fec0dec187ea670",
+        "48b42b400be0648afceec74f7aa38cc6b6692215e1e8b5954cedf376766d6ad3"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_red_steel"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:shadow_steel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_red_steel"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:shadow_steel/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:shadow_steel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:shadow_steel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoric_red_steel/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -53,22 +75,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/80518d562f4dc434",
+        "cruciblecraft:gt6/2b82bb6e8db4249e",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/4ee272042caa4bae",
+        "cruciblecraft:gt6/39c8753876ee2931",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/002aa88e783c8381",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/980845512940b966",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2074,
+      "duration": 290,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        24,
         0
       ],
       "output_chances": [

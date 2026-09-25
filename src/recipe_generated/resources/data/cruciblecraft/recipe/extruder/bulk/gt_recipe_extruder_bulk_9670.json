@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 3332,
+      "duration": 834,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,36 +17,47 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:chromium/machine_casing"
+          "item": "cruciblecraft:desh/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:chromium/block"
+          "components": {
+            "cruciblecraft:prefix_material": "desh"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "desh"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "2045340d9a1086bac0d33dc21f2efbe3336477964ec90ee4920a357c54b97311"
+          "b764be1bf5228e617d31b111ea42e453ecd1ed858025874eaa51df191c91dbd5"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9670",
         "source_kind": "SOURCE_DERIVED"
       },
-      "shadow_order": 1,
+      "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/ce5cb5750ac057ec"
+      "stable_id": "cruciblecraft:gt6/847847817ff50524"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

@@ -10,46 +10,59 @@
         }
       ],
       "hashes": [
-        "fca8bb0d41e4e7530a6f3413fb1d6c589c9393d3892626d255d91348d9136dd4",
-        "66a9fde680a3232c72ef2ef77492f00134a68ad920995daa1f82fc441023a093",
-        "85c00222200f455fe282e096b16058bd08518df1c68a2049ec435062c478862b",
-        "860e408ebbcf453df3d27626f9d7250821c70309f2417c33accb6ab03bccd088"
+        "dd722a87ee5d6cee11e441bbaaa6147c3b7791a8e94f8403fa5c6d8336da601b",
+        "be399dcc3029a7309fbeafb11578e5ac590b176c8e2ac1d923e2148c2fe9ee65",
+        "d1dcc64c806c41872ada9494a9fdcda68159418d04b1c1f4126a18d5043b0e1c",
+        "0708ad870e85085c42008ddd24658bc7bd922d4edbc93a91ccd08c122debb5c9",
+        "8aeb169277c0fe40db82c910d39b265e887d6559454c147ac906fe0d17aa8e8e"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:beryllium8/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:beryllium/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "beryllium"
+              "cruciblecraft:prefix_material": "osmiridium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:beryllium7/rod"
+            "item": "cruciblecraft:osmiridium/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -57,19 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:beryllium8/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:beryllium/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:beryllium7/block"
+            "id": "cruciblecraft:osmiridium/gear"
           }
         ]
       ]
@@ -79,38 +80,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/44b766fedf41c46b",
+        "cruciblecraft:gt6/40f432e4d43c5124",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/46f58cb7c115e33e",
+        0,
+        "cruciblecraft:gt6/a82ee1a6a8606f24",
         1,
         1
       ],
       [
         2,
-        1,
         0,
-        "cruciblecraft:gt6/6cc005abc42c25d6",
+        0,
+        "cruciblecraft:gt6/7f04a548418a67d0",
         2,
         2
       ],
       [
         3,
-        2,
         0,
-        "cruciblecraft:gt6/4ce7c885f683c114",
+        0,
+        "cruciblecraft:gt6/9c2d6339c2bca3e1",
         3,
         3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/200d2aa34cd7a991",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 326,
+      "duration": 3791,
       "eut": 96,
       "item_input_actions": [
         {
@@ -121,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        16,
         0
       ],
       "output_chances": [

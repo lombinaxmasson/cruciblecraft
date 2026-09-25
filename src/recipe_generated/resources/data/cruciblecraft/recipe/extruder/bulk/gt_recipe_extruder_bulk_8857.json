@@ -10,40 +10,98 @@
         }
       ],
       "hashes": [
-        "925bbe50607a37717a6a0c4090c146f79b1fb2a50ca19e799999a16c5624413a",
-        "cf3c8ae393be39d7574ef563887b1a54dc1bdc33f6ba4a523bfc4ab08da15e78"
+        "0292ed9f2ce710023710e0febb8f60be0dbbcf62cb34ce18fa6c57cb817fa790",
+        "b346f6ff858dc10473820fec150ed5f839b52e2fd196a33551336da176550060",
+        "40b22b23fe59cebf8e667b388c44807f6b966842dc3a23dd11928584fb4af1d6",
+        "ac5377609b55349212eb2e538ee40ea3a93fc479c75b22feb2f4b89153f917eb",
+        "fde3cc03f296b83b6be59b426a09beb3f95d37439c43973a44fe84cb4fc1b40f"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "cd_in_ag_alloy"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:nichrome/triple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "cd_in_ag_alloy"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:nichrome/triple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/triple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/triple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nichrome/triple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
             "count": 1,
-            "id": "cruciblecraft:cd_in_ag_alloy/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nichrome"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -53,22 +111,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/50c611a031620832",
+        "cruciblecraft:gt6/0b23d7b9ee1c7321",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f1c38624622ab4f0",
+        "cruciblecraft:gt6/14dd39e56952e17e",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/3d6656165459e00f",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/0d0187f71e4009a9",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/e18420d323be4dea",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 626,
+      "duration": 605,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +161,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        2,
         0
       ],
       "output_chances": [

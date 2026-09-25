@@ -10,45 +10,33 @@
         }
       ],
       "hashes": [
-        "9ef17c4f312e5604e0dcbbdd376bcf9421e77dab7d046c33fd8bcccc4d399cf3",
-        "f7c94fe6ed7b666616c298a76c5a8615c704d8af22945c39be02171995e52e92",
-        "ac5ea5fd2feab283a73a9c0261974be5be6ce1acbf90a4fbddc75f661c7eb7bb",
-        "6a75ad85ae60ae8423e4ec8c27092b38ab884d1816a8bf9757ed28124a1e2bfb",
-        "f7eb7931d18397c99f055ddb37719dfaa4385cede76617493574c029444b4707",
-        "181fb753881730c0ee46794504d03ccbca4c13698f029afe4b69ed6f6224cc84",
-        "be2177a2ab260568ca15d87542de66635eb141c5cc3ab49c3fb3e4d6fc964191",
-        "331d69221c1e12f45abd54a48a1690f763929e6d751766b1a0264ed5b647e921",
-        "1b80701b9af1df70f9aaf7191f8bb538e9b20bd267dd0000496f64d9cde54842",
-        "3f07bc1feed787b2e1bf8b8ebe3627e1e6fbde3e750e7d80d0e0ead1cba45a27"
+        "36aee163cbc8baad3577bc59174d2dada11ab0c366e87e535f804e9013e7ad53",
+        "2a4b5c54bfc35c9f1cc07471cf0c46ef9a8ea4066c0d4a93e078c03ec13da32f",
+        "8e8b8c9a27dadb329de35edfe4293bbbed496ac5c4926141cad679ba6f7e1126",
+        "acb8cc65c4eebdd6c4b818b2719e3898cceb6e11ca3a84e1c65c830ff8b54223",
+        "85a11dd4119378e4a7621768019fa3199ba75ecb00df4f0da44a4a115e1e8797",
+        "f2d92994a7a537a1a3d8228ee8cc0379330ca1546273e6a6fa54a16ecbdccad9"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "adamantine"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "adamantine"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_gear"
@@ -56,18 +44,10 @@
         ],
         [
           {
-            "item": "cruciblecraft:bedrock_hslaalloy/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "adamantine"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
@@ -77,38 +57,22 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "adamantine"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "adamantine"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_long_rod"
@@ -116,36 +80,37 @@
         ],
         [
           {
-            "item": "cruciblecraft:bedrock_hslaalloy/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "adamantine"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantine"
+            },
             "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/ingot"
+            "id": "cruciblecraft:tool_head_raw_shovel"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/small_gear"
+            "id": "cruciblecraft:adamantine/small_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "adamantine"
             },
             "count": 1,
             "id": "cruciblecraft:curved_plate"
@@ -154,7 +119,19 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/plate"
+            "id": "cruciblecraft:adamantine/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantine/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantine/plate"
           }
         ]
       ]
@@ -164,7 +141,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8ce1c9a421172518",
+        "cruciblecraft:gt6/d423db1bea2ce8ae",
         0,
         0
       ],
@@ -172,7 +149,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/2b43c108b508ab70",
+        "cruciblecraft:gt6/78b8946578f462ae",
         1,
         1
       ],
@@ -180,70 +157,38 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/8f21687b17938b8f",
+        "cruciblecraft:gt6/006d48086865cb15",
         2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/4c33070fa5773c72",
+        3,
         3
       ],
       [
-        3,
-        3,
+        4,
+        4,
         0,
-        "cruciblecraft:gt6/ba25c4892acc05cb",
-        3,
+        "cruciblecraft:gt6/ea3768ee69023218",
+        4,
         4
       ],
       [
-        4,
-        3,
+        5,
+        5,
         0,
-        "cruciblecraft:gt6/603263967d4f3b48",
-        4,
+        "cruciblecraft:gt6/f1dde2a53f28439e",
+        5,
         5
-      ],
-      [
-        5,
-        4,
-        0,
-        "cruciblecraft:gt6/fecb9bc6cdefd669",
-        5,
-        6
-      ],
-      [
-        6,
-        2,
-        0,
-        "cruciblecraft:gt6/5844d2de85dc8a14",
-        6,
-        8
-      ],
-      [
-        7,
-        4,
-        0,
-        "cruciblecraft:gt6/5b6e4104546be841",
-        7,
-        9
-      ],
-      [
-        8,
-        1,
-        0,
-        "cruciblecraft:gt6/80969830a0ccf1bf",
-        8,
-        10
-      ],
-      [
-        9,
-        0,
-        0,
-        "cruciblecraft:gt6/7f7e6b9fb0f6b228",
-        9,
-        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3507,
+      "duration": 581,
       "eut": 96,
       "item_input_actions": [
         {

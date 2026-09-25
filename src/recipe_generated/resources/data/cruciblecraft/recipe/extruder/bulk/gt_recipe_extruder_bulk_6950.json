@@ -10,40 +10,85 @@
         }
       ],
       "hashes": [
-        "4ca82956ae6be5be3702d4c8f3d89fe31d4ccfac4c8c2e3c55f6d67a01f64499",
-        "1cc567e162ccf021104a4a119227a023bf44f64fe36efcc8a6941ba6518d6e9b"
+        "9dbc1d53ba5ed0feb48693518e8c485a3ec40f7d3107084ad1b7db235653b897",
+        "12d7566d57b8e30dfb5c93408d4501b3d50f9945f6f9a410e9e13ac16f9b0348",
+        "a566e55de2aaeaeb0f055cd2dc2c752bd999cfd91a737dc81b9363c6f536bfda",
+        "5324762142c64c97fb41dd3f59fd21fb668f53d7d5eda2dd4cbd74c4cbcd1cf9",
+        "09c830473dbdd2b968ff5b20c500972af3ae3ed5d6c2e7716b60bd2a93c62d33",
+        "13a2b4bd745d077d1d8339e276fbe78699685d1db6756c975d7bbf640e7fee55"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
+              "cruciblecraft:prefix_material": "rhenium"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vibramantium"
+              "cruciblecraft:prefix_material": "rhenium"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rhenium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rhenium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rhenium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rhenium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vibramantium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "rhenium"
+            },
+            "count": 2,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:rhenium/bolt"
           }
         ]
       ]
@@ -53,22 +98,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5de0c0eae268e27a",
+        "cruciblecraft:gt6/e7e30562aedb3bf5",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c1ce8a9262e97716",
+        "cruciblecraft:gt6/fe0a83f7c5dad5de",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/424bed7d2eac904a",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/3a263d23d1b768e4",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/155296dfbd5f3088",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/c33a54e3026de8e6",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 7276,
+      "duration": 257,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +156,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [

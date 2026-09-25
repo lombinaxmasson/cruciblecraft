@@ -10,40 +10,89 @@
         }
       ],
       "hashes": [
-        "abcdd1b5d674fe37499c88c9c2c3bd81c1b7790751f9aee3321ef2916b629ef0",
-        "d80c158521f57380b75560eba0d3ef7a24fbf260ab0f332c1974694fbd6b4acd"
+        "742220b60eda99f6939a4e8c59f26e92c2bbbecebdf56e0287d4f178621f8f1b",
+        "694da1729ee78c2acf07490fb1d47219e7eac858eb207d199fd273993ca2cb0f",
+        "6ccb98fbf154801c545afc9f9b3bfc21da5e4661eeb5b16f88e1edc01c7ef612",
+        "b4393254a8afe13ca43e2c5d043953557153f90ce9e788ac234fc58936eae68a",
+        "7d962744ba6109ee3da2a44aed1bc68095fd8c18325b08c93dd8c4ed67cdd286",
+        "2c3840755b5dcb909c27287503b140a8ed0c80617a1890aacd01295aa1b4df56"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "haderoth"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:syrmorite/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "haderoth"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:syrmorite/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:syrmorite/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:syrmorite/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:syrmorite/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:syrmorite/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
             "count": 1,
-            "id": "cruciblecraft:haderoth/block"
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -53,22 +102,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/013079e06a5096c6",
+        "cruciblecraft:gt6/53c4b216ab9990ed",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/65b4c03a20a68bfb",
+        "cruciblecraft:gt6/9c02593301bc36b5",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/d1947195309a1244",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/89c842b962e560f5",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/5155f122606cdade",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/6dbd15f032f32212",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5187,
+      "duration": 33,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        16,
         0
       ],
       "output_chances": [

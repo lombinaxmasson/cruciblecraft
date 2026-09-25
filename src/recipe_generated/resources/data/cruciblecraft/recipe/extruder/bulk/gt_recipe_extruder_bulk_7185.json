@@ -10,74 +10,45 @@
         }
       ],
       "hashes": [
-        "0967505da3a5d2a0ba8593b51db75bb5f76043931b38f74baaf6cdd18a811b17",
-        "9b8ee45b4824a4f2065e8a3e8752c4e0cd4903491841d0fff71a00f43c7d41c1",
-        "a6e80cd0d235930ca555d21c61df5977584d646c988df7b7ceac235d0a51ef96",
-        "d3e019cb8644f4ab85e6f388f49d6da6bf4544b95f60588e403c159dbdf6eff8",
-        "0fe0bd4afc5fec5a455e2e1c7bbbb0e36fb7ec2a1f1e980889dbed587346d88c"
+        "b40a7a0795b32d91b8d5f255a8733e2ae4d210f39d7030a5ef4eb74c803b1993",
+        "16fee5935e60a5eb03f7a39f86459475c1e12c02dc2496ed631feeb53e564d85",
+        "6b9a219572aa651be94539a37160d80a4400dfb6129e4310d64aecce0b3c4c78"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:naquadria/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:naquadria/bolt"
+            "item": "cruciblecraft:osmiridium/wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rhodium/bolt"
+            "item": "cruciblecraft:osmiridium/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:naquadria/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:naquadria/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "naquadria"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:naquadria/rod"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:rhodium/rod"
+            "id": "cruciblecraft:osmiridium/huge_item_pipe"
           }
         ]
       ]
@@ -87,46 +58,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c7b758b02aac1560",
+        "cruciblecraft:gt6/60858d59a97e98d4",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/a2dc08e87bb3779f",
+        0,
+        "cruciblecraft:gt6/b7f11135c0135c42",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/fbfd691ee0ad5dc9",
+        0,
+        "cruciblecraft:gt6/fd12e714e956c400",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/c175dbc63d67463b",
-        3,
-        3
-      ],
-      [
-        4,
-        1,
-        0,
-        "cruciblecraft:gt6/142d413f269f2047",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 187,
+      "duration": 11372,
       "eut": 96,
       "item_input_actions": [
         {
@@ -137,7 +92,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        24,
         0
       ],
       "output_chances": [

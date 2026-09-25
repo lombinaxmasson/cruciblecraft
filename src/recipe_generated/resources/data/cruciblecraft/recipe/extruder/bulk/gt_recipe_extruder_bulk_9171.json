@@ -10,40 +10,74 @@
         }
       ],
       "hashes": [
-        "c5f6ab2324b913790ada04b85027af8ab49e8069bd9a54f56e7ac863f8432168",
-        "2a929edc801a964ee0266525b2109337d6a3a686fc221052d21bed60f1567617"
+        "18e70d908491209ce15165fb87e6ea650df72909762e9964bc71c65010281144",
+        "2fbcf32e237e4465b2fb8c8f84f701c1ce46943c9172783c1fa09bffda30ab76",
+        "cf9645b60c5bf8fcb7c54977cf526369bb8a5d2215b125d57f5c12af2de2d055"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_aluminide"
+              "cruciblecraft:prefix_material": "terrasteel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_aluminide"
+              "cruciblecraft:prefix_material": "terrasteel"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
             "count": 1,
-            "id": "cruciblecraft:titanium_aluminide/block"
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terrasteel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_hoe"
           }
         ]
       ]
@@ -53,22 +87,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4050d47ca118d925",
+        "cruciblecraft:gt6/8a9d5cff75e6b132",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/f57d3e873465759e",
+        "cruciblecraft:gt6/e5097e492217d972",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/1bc9d0aa8a90495e",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1418,
+      "duration": 552,
       "eut": 96,
       "item_input_actions": [
         {

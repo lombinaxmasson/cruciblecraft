@@ -10,40 +10,71 @@
         }
       ],
       "hashes": [
-        "ef85b9b47673d74d9d171bce4dcb97b05d586ca575aed1228ab64a51db6d2f81",
-        "b329eea1166c44c08a2bbdfbe12822681fd4940cb8c19a8941b1bfa4b90d7ec8"
+        "31634ef7fabc0cd793f3f3ee4166af04c97caaa76a605210d3e91bf2a31d6e54",
+        "3f29e4caf949e6db2fae53a283436b593bec689c30240b58967dfd2d4e8d4795",
+        "3df4349137aa46716fd1a83fce806d4cc615616c8ec27f3ac1931ce3c9d9bb91",
+        "02193b1c3d5ededfd80879269a4d77a43a888954ea335c3e2719a486447e89ee"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ancient_debris"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:terbium/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ancient_debris"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:terbium/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terbium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terbium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "terbium"
+            },
             "count": 1,
-            "id": "cruciblecraft:ancient_debris/block"
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:terbium/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:terbium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:terbium/plate"
           }
         ]
       ]
@@ -53,22 +84,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fe236f84a87aa1e1",
+        "cruciblecraft:gt6/da3e458ffdafb175",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/71ee75b25b8c23d8",
+        "cruciblecraft:gt6/47804190b1c3f61a",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ee23b83e99bdc888",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/dcf6ba53f0c8283c",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 266,
+      "duration": 170,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        2,
         0
       ],
       "output_chances": [

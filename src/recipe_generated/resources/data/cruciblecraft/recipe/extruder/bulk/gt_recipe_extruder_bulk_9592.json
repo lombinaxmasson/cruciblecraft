@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 2075,
+      "duration": 2762,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,40 +17,47 @@
         }
       ],
       "item_input_counts": [
-        6,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "haderoth"
-          },
-          "items": "cruciblecraft:billet",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:meteoflame_steel/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_gear"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:haderoth/gear"
+          "components": {
+            "cruciblecraft:prefix_material": "meteoflame_steel"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "meteoflame_steel"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "942b81699ef6820404936161eb5bf4d2be117b77e636f7a8c358ac307ad506b6"
+          "c0ffcf852755756360242994929498530c1345261c4d2a99c2959fb06298755b"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9592",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/d620b058bad90758"
+      "stable_id": "cruciblecraft:gt6/bf0ec95ffd5bb382"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

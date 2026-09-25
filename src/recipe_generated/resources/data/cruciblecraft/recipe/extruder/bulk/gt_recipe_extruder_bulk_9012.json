@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 6329,
+      "duration": 16,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,12 +17,16 @@
         }
       ],
       "item_input_counts": [
-        2,
+        14,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:meteoflame_red_steel/machine_casing"
+          "components": {
+            "cruciblecraft:prefix_material": "lawrencium"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
         },
         {
           "item": "cruciblecraft:extruder_shape_block"
@@ -31,7 +35,7 @@
       "item_outputs": [
         {
           "count": 1,
-          "id": "cruciblecraft:meteoflame_red_steel/block"
+          "id": "cruciblecraft:lawrencium/block"
         }
       ],
       "output_chances": [
@@ -39,14 +43,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "f1d5194fcc2cbe50030398f8c4c96a3813b5e121a5df316283e8056d9e7ec347"
+          "4a56348a1184fa0c0b67987021630014c4015cb28d98d0b26e58a4bee6eebcbc"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9012",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/d3fd33133b84e021"
+      "stable_id": "cruciblecraft:gt6/8d89021f1cd655cd"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

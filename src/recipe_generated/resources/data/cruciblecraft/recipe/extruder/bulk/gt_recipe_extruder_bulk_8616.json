@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 505,
+      "duration": 915,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,25 +17,24 @@
         }
       ],
       "item_input_counts": [
-        9,
+        4,
         0
       ],
       "item_inputs": [
         {
-          "components": {
-            "cruciblecraft:prefix_material": "crystal_matrix"
-          },
-          "items": "cruciblecraft:dust_div72",
-          "type": "neoforge:components"
+          "item": "cruciblecraft:silver/triple_wire"
         },
         {
-          "item": "cruciblecraft:extruder_shape_bolt"
+          "item": "cruciblecraft:extruder_shape_hammer_head"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "silver"
+          },
           "count": 1,
-          "id": "cruciblecraft:crystal_matrix/bolt"
+          "id": "cruciblecraft:tool_head_hammer"
         }
       ],
       "output_chances": [
@@ -43,14 +42,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "a8fb79af4e2a87d17716a2ce36e506be5b43100ffcdf43c0f238a2c057029a8a"
+          "433a8dc087ccce3a6c46287f1dcfa9351d3b1f70e6eb9298e2d331d02019064e"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_8616",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/a35b96bd6b39b8b4"
+      "stable_id": "cruciblecraft:gt6/cefb999a60ed3306"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

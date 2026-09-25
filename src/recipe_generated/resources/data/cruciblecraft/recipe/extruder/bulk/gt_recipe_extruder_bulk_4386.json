@@ -10,67 +10,115 @@
         }
       ],
       "hashes": [
-        "35ae254551aa85aac6b6bb59e211345fd6fe568415c948ac1cf381d44e119fd7",
-        "8ea440bb6c8761f13cc52af31752aace5c84b4e7d17aadf85de1524cd85d0aac",
-        "7f8fc57fbd6a07f3d6863db0e9faaae169e06c59217ddf9842ff983388f4fa74",
-        "da53e86b977167ad4e70c1d57ff2762476aa03f73c6993d0cd17f1da732e7370",
-        "da4e16d7f6b384524836900aa1242c4d9b01c9f28883c237b849b570f09e8dfb"
+        "3216bcf6f9a23aeb5882f9315dd05e953619d4f5e4719952a981de4861a05dda",
+        "246cf1c4d60c4d927f8a1a78cf69f4ca5e0d48f4f2c665d62180cb4f81f3b367",
+        "7cf6aedb56c1bb8a3696e7a26bd97dede06de4bf025d1faff036d61b64a9aeb6",
+        "aebd231a0ca18e6a3ac6764e8d81cbdc763c95cd19300239b62258eed7332f97",
+        "47f9139ecaeb24177325833a85a6c7261ec78d1ac2c169ec836c409740be8534"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:steeleaf/small_dust"
+            "item": "cruciblecraft:hsss/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "steeleaf"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hsss/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/foil"
+            "item": "cruciblecraft:hsss/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "steeleaf"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hsss/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "item": "cruciblecraft:steeleaf/ring"
+            "item": "cruciblecraft:hsss/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:steeleaf/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "hsss"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsss"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsss"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsss"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:hsss/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:hsss/rod"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:hsss/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:hsss/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:hsss/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:hsss/ring"
           }
         ]
       ]
@@ -80,46 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8e070b5e98296d49",
+        "cruciblecraft:gt6/520d00ee76c3918e",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/a62fce10c5c3b5fa",
+        "cruciblecraft:gt6/41a3297b1e072d30",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/90175a95454016b7",
+        "cruciblecraft:gt6/b76da3b16ae354b5",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/f79af2ca939a6370",
+        "cruciblecraft:gt6/0e108d4aa823e90e",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/02db61d2acf74a97",
+        "cruciblecraft:gt6/7f537cd8d412fbb9",
         4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 355,
+      "duration": 32414,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        16,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4386",

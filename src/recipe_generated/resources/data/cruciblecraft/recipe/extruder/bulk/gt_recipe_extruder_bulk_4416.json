@@ -10,59 +10,80 @@
         }
       ],
       "hashes": [
-        "0847256c6b91970d46d079711982c7cf51bb33580bfa967b166831a12d18184d",
-        "c34553c20d709d2827143fb767e7c0d12adc25a18eb5ac27ffd97fff989e4fe8",
-        "77937c739d664e7dc80d381a903569d5b7a594e5fd25a3c968d45b6f49b65feb",
-        "a668715f0a74077a37ac58bddd61cd29df575f9bb999b79b1f5c6570067a1e81"
+        "d6617a163361157219b3c5b1cdd82470655725aea100bfaf650cf479c0136d24",
+        "bc420dd65ed107fcfa47b2ef802483d7667f6bb3e70576715f43403e6ee0c032",
+        "2800cbf60f154fb2af86c3ae641c1ec91147de86637d42877324d94ad72bae5b",
+        "b54ff37f167d10cf84eefe3af5906151db426e2fec57cbf50f0f69dbf7030887",
+        "0480f463131b7d6ffae6c232915e618388ac68ec3dd312176f0df725c6166dbc",
+        "cbb158a3fb576d1acec50afdc5e03e23a0eb813c3013ff35867d93d9d8f4d079"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:netherite/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "mauftrium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:netherite/bolt"
+            "item": "cruciblecraft:mauftrium/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:netherite/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "mauftrium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:netherite/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "mauftrium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:mauftrium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:mauftrium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "netherite"
-            },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:netherite/rod"
+            "id": "cruciblecraft:mauftrium/gear"
           }
         ]
       ]
@@ -72,38 +93,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/26c952ce09fc9ea2",
+        "cruciblecraft:gt6/550964c7cc13f036",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/86901ebc0b9d1ebd",
+        1,
         1
       ],
       [
-        1,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/c64b1c101952066c",
-        1,
+        0,
+        "cruciblecraft:gt6/c8f3ca2a7c1d1444",
+        2,
         2
       ],
       [
-        2,
-        1,
+        3,
         0,
-        "cruciblecraft:gt6/6eafda4a52088bb1",
-        2,
+        0,
+        "cruciblecraft:gt6/c37526d5b83d3736",
+        3,
         3
       ],
       [
-        3,
+        4,
         0,
         0,
-        "cruciblecraft:gt6/4f19bc31760af5dc",
-        3,
+        "cruciblecraft:gt6/c6395d513943821a",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/bb941aa184005045",
+        5,
         5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1223,
+      "duration": 94,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        36,
         0
       ],
       "output_chances": [

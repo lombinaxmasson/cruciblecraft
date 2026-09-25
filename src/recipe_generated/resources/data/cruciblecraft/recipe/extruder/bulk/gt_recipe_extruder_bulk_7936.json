@@ -10,41 +10,59 @@
         }
       ],
       "hashes": [
-        "e8ad1d1117d23085ba26597684b83886cde95caf36ef9fb3e0209bc46db949a6",
-        "8f5325e34e18832d18f994647532ceea6309dfed7a28e3b36d22787210bf67bc",
-        "89b4d5984e949a7887029f1c90d67227104b95039fd7c6f50681680faeb5e34d"
+        "a6152ff0e8cdd940a6a49dd70b11ef7303fe04761158a1d4f3899d3d56dab09b",
+        "033889db8b7495308a2c09949096c64281db9e8bf0015b97563df8ca690d92a7",
+        "143742fb8c9ab84132daef4a8a9c266fcc1c99f54a9b71ad0a7023ff7f5e0934",
+        "4acdf273f526f39517df40ea5065c5d447088f4e3297d3b71c0acae76d6d9b99",
+        "77b6cbc4a0c57b8597f5870c7a9963b0eb458332a1743d28247e70e8c3cdf135"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:pulsating_iron/gear"
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:chromium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:chromium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "pulsating_iron"
+              "cruciblecraft:prefix_material": "chromium"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "pulsating_iron"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:chromium/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -52,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:pulsating_iron/block"
+            "id": "cruciblecraft:chromium/gear"
           }
         ]
       ]
@@ -62,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2e5d50ce77c521bc",
+        "cruciblecraft:gt6/b62d34d4079fac5b",
         0,
         0
       ],
@@ -70,7 +88,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/56da5272c54cdae4",
+        "cruciblecraft:gt6/9cbf437da352098d",
         1,
         1
       ],
@@ -78,14 +96,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/6850620227031947",
+        "cruciblecraft:gt6/21c5e14bf103f143",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/f36d8ff9fc0eaaa2",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/c465d37389f07d24",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3228,
+      "duration": 833,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

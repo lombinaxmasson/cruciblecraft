@@ -10,28 +10,72 @@
         }
       ],
       "hashes": [
-        "9092770ca36eba65e94a1599ad070c0f136b1e79d8526e1bab2b46c68c0e2d2b",
-        "65429fcc8c34c264e888174d01203d0ebaf8a9e315950eadf4e1d427c59b1b37"
+        "16365b894903405f81219f4ec215a45ab40f84e1c9b50f19562b2cbf88595f15",
+        "a9301a5c93f06e959ef571f95420805131be81539b4eac73cef60eb308ef7a00",
+        "05272f46d239332e755049ae58746711268a4b7f035042825b8ee712cfcd0b1a",
+        "69ca9e11814acf636d6eba10e02d5d6b79662100100a58dab9c9cc877e314a59",
+        "80e9b151e8e3c58a9df50a1a74a469f1e4ad254f347c3a1ddbf4dd09116d70e6",
+        "69dfdc92accd2c98fa3e9d664ca8cec9615a83678ac6eeee6e5a994d462e201d"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "damascus_steel"
+              "cruciblecraft:prefix_material": "molybdenum"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:damascus_steel/rod"
+            "item": "cruciblecraft:molybdenum/tiny_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:molybdenum/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "molybdenum"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:molybdenum/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -39,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:damascus_steel/block"
+            "id": "cruciblecraft:molybdenum/gear"
           }
         ]
       ]
@@ -49,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ca4c0255d4c4c3c4",
+        "cruciblecraft:gt6/ec5d35d1d4ca7f2a",
         0,
         0
       ],
@@ -57,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/5a061caf3c41dff9",
+        "cruciblecraft:gt6/baddb6548f7aa1d6",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/eae7bd5fbc7455a9",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/1750df9b689738ea",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/5d0f24ee2890004d",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/bba84a4dbdacc843",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2081,
+      "duration": 1643,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        36,
         0
       ],
       "output_chances": [

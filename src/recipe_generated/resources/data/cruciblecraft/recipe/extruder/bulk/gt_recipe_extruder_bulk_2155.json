@@ -10,40 +10,128 @@
         }
       ],
       "hashes": [
-        "8db9070c14df732fd27619ab9c5591934dd55245054c24fa02cdfd0bda686b24",
-        "02e48ca2a2c0f89ed24db45825fd47be39e5a71ff013cff035de91c9b99da145"
+        "a848ee50032ad77a486223de5f94a35a6132cc37280bb7e93c8549b7633d4d48",
+        "a9b98f3f88011b70933492bf076100f3cd310a2b4f3b029d276e457ba37a8741",
+        "893b222f1ab7b1aebf14cb22e61643cd62a0bdb78918b3299384394d97f71e0e",
+        "418451c44d04aeb93fe5367133484c9a57f94caa3713e60c6a6ad61bb1107738",
+        "af398ca737f420201115110832099c11d6955e8e347635f873000551f1112c5c",
+        "52f7e6d4a4aa50f8fc0bc7d21182ddeaef9bc01953e3ec651dbe63a534cb3c94"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
+              "cruciblecraft:prefix_material": "naquadah"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "flamascus_steel"
+              "cruciblecraft:prefix_material": "naquadah"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "count": 2,
+            "id": "cruciblecraft:naquadah/ring"
+          }
+        ],
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:naquadah/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
             "count": 1,
-            "id": "cruciblecraft:flamascus_steel/gear"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:naquadah/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:naquadah/wire"
           }
         ]
       ]
@@ -53,22 +141,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a0c2898ed625d042",
+        "cruciblecraft:gt6/029de90ee5a7298f",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/380374530ac3588e",
+        "cruciblecraft:gt6/b843fb80e560049a",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/b8f680cb6d6d0b4f",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/485bde4cd5173d5f",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/7a18684d09fdfa56",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/554435b57e7da301",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1399,
+      "duration": 261,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +199,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [

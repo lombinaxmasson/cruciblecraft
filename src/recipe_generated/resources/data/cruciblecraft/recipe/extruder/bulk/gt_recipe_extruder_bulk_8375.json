@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "5fa241238f8d87ed52c12b7d3853ee718a06e23b71119d57b168cd62a92fc1c2",
-        "e0c142fb4fd8d46fdb32caaaffc2049e76e251cc21ee8405c5ea7bff90bd49a4"
+        "5692361ccbdcdefc79b4dd4cf6535b51dbd73d63bf34b8704679d4a4ba96420f",
+        "d250a99ebef24fe87b15be04c4152dc58b472b9df1872f2e25116b3a228eb4ad",
+        "e1d4899e681d1f2afddf1d2ccbd9b4a3f10a5f92ebc181e504701fc7e85d4ecd",
+        "556faffd588daf854019623f4e67dae10602db882716d799c53ed1329c506081"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ethaxium"
+              "cruciblecraft:prefix_material": "electrical_steel"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrical_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrical_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ethaxium"
+              "cruciblecraft:prefix_material": "electrical_steel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "electrical_steel"
+            },
             "count": 1,
-            "id": "cruciblecraft:ethaxium/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrical_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -53,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5d3b9b28d0005412",
+        "cruciblecraft:gt6/0848b960484c9d96",
         0,
-        2
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/f3d54ba0e3e25a90",
+        "cruciblecraft:gt6/1eeb06bd82837e46",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/34e41e47f43b31ce",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/9306b18140c026b5",
+        3,
         3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 7520,
+      "duration": 744,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        6,
         0
       ],
       "output_chances": [

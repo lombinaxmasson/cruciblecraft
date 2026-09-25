@@ -10,58 +10,45 @@
         }
       ],
       "hashes": [
-        "f2057a74aa605190a48f8c0d7e5ffeb844a3825dcfa2b4cf867f99390df1c6bc",
-        "a13561bdd780c4ed0de4e1eae29e04321eb32ed13fbc365fd596223266ecaa93",
-        "79e2bb5f241bb000964a992c2f93771ad8f12b6bb957ec9cd88505d96bb0fc28",
-        "8de11e7f5f691d1d009108c047af11e32113fee841a713a19dd5ba57115feb58"
+        "f9081cfb31e9608295a275f65043171dee3fee30f5dba6707aed35b1b9782081",
+        "d324f937c1ffb6a2209ae6568bf33c3cd4719cefec4b673f6052d21d79f30044",
+        "e29e7f655c991205284a22fd1f107fb764ba7bfc997665b122cc1e4b15d8d3dc"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "fiery_steel"
+              "cruciblecraft:prefix_material": "netherite"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "fireleaf"
+              "cruciblecraft:prefix_material": "netherite"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "fiery_steel"
+              "cruciblecraft:prefix_material": "netherite"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "fireleaf"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
@@ -69,13 +56,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:fiery_steel/block"
+            "id": "cruciblecraft:netherite/fluid_pipe"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
             "count": 1,
-            "id": "cruciblecraft:fireleaf/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -85,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f7ce788ff8de41c7",
+        "cruciblecraft:gt6/0bbfbf7ef2930cb6",
         0,
         0
       ],
@@ -93,30 +92,22 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/0ab74ce4aa347bf7",
+        "cruciblecraft:gt6/cd7b0be41820117d",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/9b70f10e2b7fae68",
+        "cruciblecraft:gt6/6bf37b8382cfaee3",
         2,
         2
-      ],
-      [
-        3,
-        1,
-        0,
-        "cruciblecraft:gt6/23d1c5871e6fb023",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3210,
+      "duration": 8151,
       "eut": 96,
       "item_input_actions": [
         {

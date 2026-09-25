@@ -10,32 +10,41 @@
         }
       ],
       "hashes": [
-        "002682e983f0e012507996a528cf6278579a8251eb300acd691b84ab2bc6ecdd",
-        "8343058cac92af3e9883e91cacca1a5c155b870ea1be4bd3292ccdf84f836288"
+        "0b4d205d5bf671bd80351a3517244fa4e95b70046d272ef6e37e93b22564aaa5",
+        "b9be368cc5bff9dfacef669d4e67caa5b3ebd44e8a2373a4336748a5f62340fd",
+        "4161570d2ce9291f35fea1b06053a0dfcdfeda80422e453faefd744d9b9a29c2"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "nichrome"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:duralumin/gear"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "nichrome"
+              "cruciblecraft:prefix_material": "duralumin"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "duralumin"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -43,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:nichrome/gear"
+            "id": "cruciblecraft:duralumin/block"
           }
         ]
       ]
@@ -53,22 +62,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/137ec889474e29b7",
+        "cruciblecraft:gt6/b709c0ebae9c43f2",
         0,
-        2
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/aa324ed2d5752a5d",
+        "cruciblecraft:gt6/214b6d829b9d6b4c",
         1,
-        5
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/8d6ccfb8fcf9706c",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 806,
+      "duration": 920,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        3,
         0
       ],
       "output_chances": [

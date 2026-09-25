@@ -10,16 +10,17 @@
         }
       ],
       "hashes": [
-        "8d6450c9faf204ba76ff88d68fc49fd63ad104a88efadbc07c0cdf54f9d7127b",
-        "e0a7177da797d7f9cf80a24ee64f2aa428c0253005aec9eb2b09d482374201f1",
-        "8490a48fce12fcbb63fbee75b121939058b9ea85fa11a3ed73db53d178d2889b",
-        "23fcd534a7ec3a981cf46564d3f38399d36758b56fc43a233f5fe00be2111764",
-        "834701fd9e0eefaaf3a21d5411dcb774e5e05fdad0eaf67b1d982a136ae45485"
+        "d54648054191d80fee71d6d0b7edbcfddc5f953fa162b34c7bbfac84d47f800f",
+        "533d5afb2be7ff4896b26f14a7717ceaa026fe7fc4bfe564fa3bd82935456f41",
+        "e81e78138bee3580747ee9673305e37b1a75d33c602cb936d9c9cbbf0063620e",
+        "ccefefba83554359881cc7be2d1e5740d68b53cc5f0d795e11bfecad56b709e1",
+        "c2ceae19161d6e818c6a4623f2393103ac2d1934ff1abd7b9525202a8b782d7c",
+        "3832b6260e34e0da8efc6c4a83463e150579b4fdfda6b9ec5661814af133f759"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:void_metal/ring"
+            "item": "cruciblecraft:flamascus_steel/screw"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -27,7 +28,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:void_metal/small_dust"
+            "item": "cruciblecraft:flamascus_steel/nugget"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -36,9 +37,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "void_metal"
+              "cruciblecraft:prefix_material": "flamascus_steel"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
@@ -47,7 +48,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:void_metal/foil"
+            "item": "cruciblecraft:flamascus_steel/tiny_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -56,9 +57,21 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "void_metal"
+              "cruciblecraft:prefix_material": "flamascus_steel"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
           },
           {
@@ -70,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:void_metal/gear"
+            "id": "cruciblecraft:flamascus_steel/gear"
           }
         ]
       ]
@@ -80,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/00a0e4d8ad96c4ba",
+        "cruciblecraft:gt6/176afe2465254957",
         0,
         0
       ],
@@ -88,7 +101,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/95b725d5d9467d10",
+        "cruciblecraft:gt6/c94df8efee75eee0",
         1,
         1
       ],
@@ -96,7 +109,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/24739bf288590a8b",
+        "cruciblecraft:gt6/d87f80dfc80a4abf",
         2,
         2
       ],
@@ -104,7 +117,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/d0c9d43c1c95c858",
+        "cruciblecraft:gt6/a4d880a61df9ad45",
         3,
         3
       ],
@@ -112,14 +125,22 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/641a4a56de7f089a",
+        "cruciblecraft:gt6/6886d55402b59f11",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/3220e1b090237e47",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 168,
+      "duration": 1399,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        36,
         0
       ],
       "output_chances": [

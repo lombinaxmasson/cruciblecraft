@@ -10,58 +10,138 @@
         }
       ],
       "hashes": [
-        "2b0083de2763636d962bdb1f34c13c9dd82d5066204073bb0d71da1dcd08bda6",
-        "92c216f6e969396970b728e2165d073c4e113ce7c325864678d655013a06b0c8",
-        "ea609942df81e143ee6b38761166982e51074e75997ca0371f7d9cd5294ac51f",
-        "b8704937f74067e6a3249c59705fac9d65109c18c7e7d9be797438a822758ff0"
+        "0e6c7aace9fe1993f9ff543cc3cc796ce0c063feb7cc70cf0f5b85ed0104b01d",
+        "a6f53b7c96b8ac9175381b9738742ef7c97a667f31c7c6db392cc5e982c710b7",
+        "ad9496f5bd5ffcf3021cd1efe4a98f8a40cb4128c9f3c8fe8a1b49f089ba8d23",
+        "7afceb82955f88abd633db56065a75087e473aa948b2c5e24e44ea5651261837",
+        "a6d841deab5447d8ac8f5b56104e4fa33bc98f06f812f23622fbb63c26092d4a",
+        "7bc331eeddbe8acbd2de1891d1b760b0ba0c47ac5f58f167a01c8e3c9aca3d61",
+        "90d5918f2eec71de6a78ad6d29c54344cc833b0f69466729a5c0597129a9ebf1",
+        "48f0b1719a5bf9ff3b8f2260ab3e5f4d0c311c1a7a30f4042735092b87a82db2",
+        "dd78029058a06d2f92ba3adff5b536db8228e141e024d564c4a3381199557034",
+        "3c856288bc8f75078e80eef85da8849d3837c638d1237c5269ab09466c61827e",
+        "afd7710fefc298af1ef9ecaabe29597156acc8b32c4c0b735c7048a1989976bc",
+        "a174e0ba56f770e050a71aadd8579418986f01758129a9969b71e8caaba2d451"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "draconium"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:titanium_iridium/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ceruclase"
+              "cruciblecraft:prefix_material": "titanium_iridium"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ceruclase"
+              "cruciblecraft:prefix_material": "titanium_iridium"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_iridium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "draconium"
+              "cruciblecraft:prefix_material": "titanium_iridium"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_iridium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_iridium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_iridium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_iridium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_iridium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_iridium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium_iridium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ]
       ],
@@ -69,13 +149,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:draconium/block"
+            "id": "cruciblecraft:titanium_iridium/rod"
           }
         ],
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_iridium"
+            },
             "count": 1,
-            "id": "cruciblecraft:ceruclase/gear"
+            "id": "cruciblecraft:small_casing"
           }
         ]
       ]
@@ -85,38 +168,102 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/25399f8b37ef9e7e",
+        "cruciblecraft:gt6/2eb45c6ab3ef2b1b",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/df78afe6a8db816f",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/3c8721749c1529ff",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/22ae87b51f0dc961",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/c0ad2da556b3b276",
+        4,
         4
       ],
       [
-        1,
+        5,
         1,
         0,
-        "cruciblecraft:gt6/d2b0b0fd5a87f602",
-        1,
+        "cruciblecraft:gt6/2741aa4d7b3cc92d",
+        5,
         5
       ],
       [
-        2,
+        6,
         1,
         0,
-        "cruciblecraft:gt6/b4bd0f9dc898150e",
-        2,
+        "cruciblecraft:gt6/3f73c6249837697e",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/b7e8279f467f5719",
+        7,
         7
       ],
       [
-        3,
+        8,
         0,
         0,
-        "cruciblecraft:gt6/ce30ccb3064c7c1e",
-        3,
+        "cruciblecraft:gt6/043ef3aa854ceec6",
+        8,
+        8
+      ],
+      [
+        9,
+        1,
+        0,
+        "cruciblecraft:gt6/3e189d78a8dc1f82",
+        9,
+        9
+      ],
+      [
+        10,
+        0,
+        0,
+        "cruciblecraft:gt6/7ff83ebba0ab08a3",
+        10,
         10
+      ],
+      [
+        11,
+        1,
+        0,
+        "cruciblecraft:gt6/f9da8f3bb34c7f25",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 650,
+      "duration": 237,
       "eut": 96,
       "item_input_actions": [
         {
@@ -127,7 +274,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        5,
         0
       ],
       "output_chances": [

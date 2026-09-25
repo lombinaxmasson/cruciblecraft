@@ -10,13 +10,37 @@
         }
       ],
       "hashes": [
-        "c5786a215b8ae888bbff15505d6507a5bd2a6f5cd396118fb7e74f003ddc5810",
-        "cac3894c81c235eb0d0d729e394819de76715880b6cc1e6fc9754c25e0fca7ba"
+        "77b8aba9c5ec5989c4342de39db2ed7c2561ef2b59bfb7169ec1239a2ff1e909",
+        "dfb25cdc853ea8b43240fe2a0c72a5aafc3100b1b1d010be2613de51a206a0db",
+        "784ee6bef34904440b03ff98f87bd936eefdb642b16c5cbc496bc03d7f382288",
+        "f5edaddacf5b8317b730bea4862292fae45c7b9a92047dc35c098610deb08e23",
+        "d974dace1b02913cb344ef1f091ded47fc982e5cae8fb8242b2ed4a14a6a4bce",
+        "d869ef34f4e87c6879096a6eb8a9d21e746135b137b49875bd81da5d375d3543"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:blue_steel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/screw"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -25,10 +49,30 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "blue_steel"
+              "cruciblecraft:prefix_material": "aredrite"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aredrite/tiny_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -39,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:blue_steel/gear"
+            "id": "cruciblecraft:aredrite/gear"
           }
         ]
       ]
@@ -49,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9e974c1b74e81e63",
+        "cruciblecraft:gt6/1f739d733c160433",
         0,
         0
       ],
@@ -57,14 +101,46 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/03f9746b24812cc7",
+        "cruciblecraft:gt6/3cf7577e6008c60a",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/a0258419eca9da76",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/35f53c49a9b0770a",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/cc2021b143850c63",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/3590fe19ce995a65",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 767,
+      "duration": 1364,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        36,
         0
       ],
       "output_chances": [

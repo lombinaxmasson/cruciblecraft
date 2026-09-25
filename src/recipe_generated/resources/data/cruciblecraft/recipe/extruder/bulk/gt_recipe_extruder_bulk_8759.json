@@ -10,49 +10,52 @@
         }
       ],
       "hashes": [
-        "c81b98479dcdff4f6efd030d48879c77b470b227866b04e048e4dd14f84f055a",
-        "c270009a048a18fccb9edb6ee8641d2dad88c4fb279b9b2442d95d19b94545f8"
+        "0285bdff044fec52070f1576df55614eb5940ef75396a179bbd8d5eb22e5acdd",
+        "b7f39b569f21f9976763d5fd1a4a689311d497f85a9cda9fb678005498e17285"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:duralumin/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:duralumin/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "duranium"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 64,
+            "id": "cruciblecraft:duralumin/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:duralumin/bolt"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:duranium/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "duralumin"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "duralumin"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -62,7 +65,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/e692534d1e28deeb",
+        "cruciblecraft:gt6/3959582d153945d6",
         0,
         0
       ],
@@ -70,14 +73,14 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/481d7e23134270a2",
+        "cruciblecraft:gt6/249acee6395d14ae",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 120,
+      "duration": 1073,
       "eut": 96,
       "item_input_actions": [
         {
@@ -88,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        36,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8759",

@@ -10,40 +10,130 @@
         }
       ],
       "hashes": [
-        "4867b18cde4e68d07de8bbd6c0fbe24d566b148289e27ed076bf5959c7489694",
-        "bd1d4a2287f4ee0c11748969fc3c7ed4638760365a4fb8025e935267e9b19dcf"
+        "502530633f8b9fcdb607e081266c1a8e3368a4ec3eb4716db9a3cb14025c7e2e",
+        "ae7d4f084c1ae5c373a23a6ada885a76dcf73f0c06f14f589705454b68942e00",
+        "7458a3516db2a0616218150d37cc062ce7d6cd2a6dd4c58c74a36d6b21875efb",
+        "371a9b2af4521a9210d63e2298bc1d8f052eced91d984ebf01956e35672e77c1",
+        "16988dbb73d33478ce9cfb0d85fb9220de86b7e74b8d38a752ddab50bfa833ef",
+        "237a20bfaf63a9b011c93c4e837499601e82f576cc1881a8870c9d12fd55d487",
+        "cd731eb885f5f0e80cb0fb22aa691bc322a2e9eeb55324efca95df3d38db78eb",
+        "0feaaa6f1f45bf92be931063fb709ca031012852a63b3eeb819eb561741bfe24"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:actinium/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+              "cruciblecraft:prefix_material": "actinium"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:actinium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "actinium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "actinium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "actinium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "actinium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "actinium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:meteoflame_blue_steel/block"
+            "components": {
+              "cruciblecraft:prefix_material": "actinium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "actinium"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:actinium/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:actinium/bolt"
           }
         ]
       ]
@@ -53,22 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8bb4dc136f4eb4ea",
+        "cruciblecraft:gt6/7bb085b0df41b936",
         0,
-        2
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/774ba5958c41ecc7",
+        "cruciblecraft:gt6/9e37f3ee227964c4",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/205e37942cd1c450",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/f4f7919acb519e98",
+        3,
         3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/31d0d4f3d76fb376",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/7c1ced32bb070a8c",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/24393fe3f188e411",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/abbeae82ae7bedd6",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3480,
+      "duration": 1441,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4074",

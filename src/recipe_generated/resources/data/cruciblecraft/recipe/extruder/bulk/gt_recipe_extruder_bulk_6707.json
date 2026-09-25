@@ -10,80 +10,89 @@
         }
       ],
       "hashes": [
-        "39cf1796680864651447c3d1cf1d0ec86c370d4340a4316abcb6d70e984fbf19",
-        "729d8ce1751802b81dd7bd7bdb83b57e993ee912095349177444c9bbd744b8f6",
-        "aec9df42fdd1a5adeec60c621fee38f230f05910c420c4614ffb36bec359cb3d",
-        "8195493a8562eb55d7324fbe8e4d7dfd0c9c53256f8c5c5de536450467e240d0",
-        "b0a7f655e405642a2aea459b98381cedb0fbcfbcdbd008bcd3ee086251797965",
-        "0172ec652fc7bef848be595dc8f620f172bd074d9f6e47bbd65544d11fd55403"
+        "6abc99b2e9392368a7fc24bbc14d440c85a76b32abe52562f82ba52125b03581",
+        "3b77ac8feccf6888cc142bd8a89478f903d603a2f74e99d621811cbcd1fd2d73",
+        "0f6d6c5836c45a826cc7433afee0303cc788f94f1711281d1a1d7b57f09419af",
+        "db674730c0be956b14781745b0490af329c88da72324b30588df11459ba5b200",
+        "c621958cbe774cee62ae8c641375924c881cfb9843bdb414eb8edb1b2c8d5f20",
+        "01aaa83bf60637c34e4c00fabe760f83ea533c5eff5c203a31d005a4c116faf5"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hssg"
-            },
-            "items": "cruciblecraft:rail_gt",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:beryllium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hssg"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:beryllium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hssg"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:beryllium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hssg/ring"
+            "item": "cruciblecraft:beryllium/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hssg/foil"
+            "item": "cruciblecraft:beryllium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hssg/small_dust"
+            "item": "cruciblecraft:beryllium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "beryllium"
+            },
             "count": 1,
-            "id": "cruciblecraft:hssg/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "beryllium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "beryllium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -93,31 +102,31 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/30e28d4ae87552b1",
+        "cruciblecraft:gt6/ec73e5704a067f05",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/efd2ec8584e36773",
+        "cruciblecraft:gt6/a34b9a7f0fe0aedc",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/cefd05166bfd4c6b",
+        "cruciblecraft:gt6/aca52f6c3a3fa0e5",
         2,
         2
       ],
       [
         3,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/752928414c53275b",
+        "cruciblecraft:gt6/36c1f4d0fdc037d9",
         3,
         3
       ],
@@ -125,22 +134,22 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/30f5509bd36ead03",
+        "cruciblecraft:gt6/ce64b209fe2a8e1d",
         4,
         4
       ],
       [
         5,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/1739cf19128ecef7",
+        "cruciblecraft:gt6/4bab9cadb529f712",
         5,
         5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3806,
+      "duration": 73,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        16,
         0
       ],
       "output_chances": [

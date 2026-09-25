@@ -10,32 +10,42 @@
         }
       ],
       "hashes": [
-        "ad450b665c8182d95e549eb209dfba7906e56ba6f8f30a0763e03ccbffd0bb76",
-        "3f7882b0c69a3874e2f64bb1c3f32d6dd7ab4d5152e116cf07d51937ebc1208f"
+        "29bc6c928190c33e8f7bc269b407dc5fd2ff2542277db01d7f87e03150c92118",
+        "8a65d5c2e0c0257e5542f4c9e50d93e88558745aa06e2e36f210dd4f4b062a3c",
+        "f4a0581777922837fc716acbfa2e8af49a7f8331a116827a6eeeea697d3a2f12",
+        "2e63996c7247002f66680a2c4c6df10ed3aeb583e7a498305d68ba37f9951844"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_black_steel"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:osmiridium/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_black_steel"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:osmiridium/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmiridium/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
@@ -43,7 +53,31 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:meteoric_black_steel/block"
+            "id": "cruciblecraft:osmiridium/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:osmiridium/item_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmiridium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -53,22 +87,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/debc6dc050b35e0e",
+        "cruciblecraft:gt6/54025958027680ea",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/af1d020de603e83d",
+        "cruciblecraft:gt6/a6c6721f2cd452b9",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/fb57d1a31b4371af",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/6c6cbbd7dd502d9e",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2255,
+      "duration": 4739,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +129,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        2,
         0
       ],
       "output_chances": [

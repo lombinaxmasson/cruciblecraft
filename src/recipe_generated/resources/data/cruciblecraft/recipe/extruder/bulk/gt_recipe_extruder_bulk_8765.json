@@ -10,28 +10,32 @@
         }
       ],
       "hashes": [
-        "248e67de8b909d572aaecd42ca85935ae19984ab4cf4509b26c7b5d2ed720dc8",
-        "b91a55a7e86fc8624be3a53603d1ae844be4923f6369fb734900968c7d1420eb"
+        "8f32b77d5e4cde7409072317642017bafc09e6a412c8bd2d8370ba8e9996e7ca",
+        "522e8db51f71ea70b8386a59442cbddf91914a967172824e60e1eef5bc91ef51"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "netherite"
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:netherite/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_red_steel"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:netherite/gear"
+            "id": "cruciblecraft:meteoflame_red_steel/block"
           }
         ]
       ]
@@ -49,22 +53,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ee2f643cdb12eb34",
+        "cruciblecraft:gt6/683de775e11c37d7",
         0,
-        2
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/29df373eb791c9cd",
+        "cruciblecraft:gt6/d94453aa27fa534b",
         1,
-        3
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 9781,
+      "duration": 3560,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        3,
         0
       ],
       "output_chances": [

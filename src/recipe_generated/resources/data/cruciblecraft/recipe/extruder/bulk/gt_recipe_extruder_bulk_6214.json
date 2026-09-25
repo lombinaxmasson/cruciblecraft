@@ -10,41 +10,60 @@
         }
       ],
       "hashes": [
-        "ad271a540b016c7a613c6ea62002fc266d8bf1db3f56beb8eb5f90dccf28347b",
-        "b777de10d4c189f743aa800a51a8e5cb5151f41c1a376f7ea13e369c23f4690d",
-        "fc23c8b44d6791338c2454c45730c3bf6a1f75c94c6aa8ce13164b33d463abb4"
+        "d93eed83d1e40bac99a2c70efe9aaaf655019d6525cff581cd004b5e195c4c7a",
+        "f87754b0ddddffdb62cdc9c85d5222c6b845fdfe8e688b6612ac2fbf31cfbef0",
+        "2c8eca77fcfa37fc61650c83dfba9257a7f5f18ddda1a63f16d591d4afb84ac5",
+        "cc28e17605d7a1c16fc015ffadffadf23ccbf6711ad66c6acf483d3ed40c3bdd",
+        "157c1ba27884736678f59fcd8e470080f1cc4dfde32fb55ee18c9ea4d458ebfc",
+        "def9b39b30e7961a07fc3c9fa66265f2795a5386fc3c54a51d0346cab9311972"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:workers_alloy/gear"
+            "item": "cruciblecraft:osmium_elemental/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "workers_alloy"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:osmium_elemental/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "workers_alloy"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:osmium_elemental/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmium_elemental/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmium_elemental/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmium_elemental/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
           }
         ]
       ],
@@ -52,7 +71,25 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:workers_alloy/block"
+            "id": "cruciblecraft:osmium_elemental/item_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -62,30 +99,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f54f0a702fb32496",
+        "cruciblecraft:gt6/1bdbd5de8fbad4bc",
         0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/bf36df934db51a16",
+        1,
         1
       ],
       [
+        2,
         1,
         0,
+        "cruciblecraft:gt6/0e0f21ad52bb8d98",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
         0,
-        "cruciblecraft:gt6/2982e8a2410e35fc",
-        1,
+        "cruciblecraft:gt6/6a74507b871157cf",
+        3,
         3
       ],
       [
+        4,
         2,
         0,
+        "cruciblecraft:gt6/37ec3c3a21106526",
+        4,
+        4
+      ],
+      [
+        5,
         0,
-        "cruciblecraft:gt6/5094a833a905d7e6",
-        2,
+        0,
+        "cruciblecraft:gt6/841bc47cd5e89d3d",
+        5,
         5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1686,
+      "duration": 3154,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +157,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        24,
         0
       ],
       "output_chances": [

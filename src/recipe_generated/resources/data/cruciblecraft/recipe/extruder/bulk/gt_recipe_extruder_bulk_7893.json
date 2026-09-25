@@ -10,36 +10,70 @@
         }
       ],
       "hashes": [
-        "413eee5e928f1f0ce0becc93a2a4b39477f175ca1745ed28b771bb7d133dae63",
-        "a241a8939dba339064feae6b2c9a41bed8e1e3f527510348ece21d32009987a1"
+        "6b93f1d98bc8981d2f9841a1353a0e27398196457f6e29628c1b0606fa3d8caa",
+        "21331eeff4313433e6da59294cd16c4c024959179752294e30ac3cbc8a7bece4",
+        "132fe56aba78b83ac8416b1ba0e5535354600f24a71750ec521985c953b558c2",
+        "88a3a82a24444bc6cce579ee447bcaa3831de8ddecb96a1c06d6efea74938d9c",
+        "609ea50a729ecaea09dfb88ed3de51cfe019915afb744ac439706a1701e93901"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "workers_alloy"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:steeleaf/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:workers_alloy/rod"
+            "item": "cruciblecraft:steeleaf/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steeleaf"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "steeleaf"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steeleaf/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "steeleaf"
+            },
             "count": 1,
-            "id": "cruciblecraft:workers_alloy/block"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -49,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/841a7805ef8b9056",
+        "cruciblecraft:gt6/e83869c253066076",
         0,
         0
       ],
@@ -57,14 +91,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/2fa700097ae29717",
+        "cruciblecraft:gt6/cad796e8ea93743f",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/929f80a677339bb6",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/7ac33ff92f6fa05f",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ab57ae0d2ab0c91f",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1265,
+      "duration": 533,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        24,
         0
       ],
       "output_chances": [

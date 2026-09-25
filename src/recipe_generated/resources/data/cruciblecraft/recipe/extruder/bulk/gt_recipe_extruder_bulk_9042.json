@@ -10,40 +10,52 @@
         }
       ],
       "hashes": [
-        "b26488ab36caa822827faf3a529ced4acd1deb4078eec1f978ac279c3e67e104",
-        "dbe6a0a4141986776ee53c7723ba16fd449a6fe6e04921334fb8d74edac28ba7"
+        "3e5baf790d28a1b5ad17424300110732b2020aa9cbb4ee8b1879b572a4083eef",
+        "27a7a2274909e524e4d015c9714aad0394f7d432894fecf79ec2214d65c4bcbb"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "melodic_alloy"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:ultimet/huge_item_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "melodic_alloy"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:ultimet/huge_item_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:melodic_alloy/block"
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "count": 44,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:ultimet/bolt"
+          },
+          {
+            "count": 32,
+            "id": "cruciblecraft:ultimet/bolt"
           }
         ]
       ]
@@ -53,22 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/541514ce81c55747",
+        "cruciblecraft:gt6/19d1666d1a0c585a",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/405c51e417db09ff",
+        "cruciblecraft:gt6/a91d647d65d1ef21",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3844,
+      "duration": 2699,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_9042",

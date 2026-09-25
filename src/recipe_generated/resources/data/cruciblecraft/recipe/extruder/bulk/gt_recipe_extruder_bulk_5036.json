@@ -10,18 +10,20 @@
         }
       ],
       "hashes": [
-        "1d6acfee812a5ffcf2525c86b5fda0d7edd05fe717585423c3481cb4ae4c2d36",
-        "8d1c1366b83955ff6b317444c512283c2f182905b66208967be2200e6df06b58",
-        "ccf546f78b182599ad41dcac0b054f21e4ac493061fd5ae02afc85fb19db986f",
-        "0eb11ecd505e7b4f51f995034472ba5031dfc6df1d9e198b54f7f6b1a61fa4be",
-        "9af13d36b91afc15b84c1aa9e16b948a3e9fc37f51015ea8c1b4f2d3a68b46ec",
-        "85feb318414e516f4197b93e370d7b245e8b1e036449c640b2c92d0bc5fd2862",
-        "335c17d36ed01d42c385dcf02ee9c2b3de17cacf3a8f06faadcde16d999ded71"
+        "6b78360586f64fd9e69863ac0f6b9ee1b029666e70516f83b827bde636af1e27",
+        "7299989db5d44a58df6c993233fb444e60808903cfb50314455171f11cc18cfb",
+        "72c12de5e5a341cebd5947e2e1f91a5b4b81903c3f0843be2c30ffd9ca2ea573",
+        "562d0787daff149d4565910c8b62ff5af7947ac6d2b923f3b1d21a78340f0b04",
+        "659502f6be68c2aaba9d74962a232b263b4ca7d1a79115b4b264242e1bb8339e",
+        "5ce5d9ac6c77302c7ae4f9b2cd2d85a372b7913d9a6dd0f6c2363cc7a805c806",
+        "f3f40306a9c22d3c34454335a474c29489ed39ac42854da116b9e64b3fb970fa",
+        "689181a215acfbbba0cda8b52f43bd7d3397e09aa55bac7786df38e44e6f1005",
+        "23db6fd9f223a1b7eb3a0340f16ac6402f2778feeb50bb3635daf6ad7ff9fb0e"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:shadow_steel/machine_casing_dense"
+            "item": "cruciblecraft:alduorite/long_rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -29,97 +31,90 @@
         ],
         [
           {
-            "item": "cruciblecraft:shadow_steel/machine_casing_dense"
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:shadow_steel/machine_casing_dense"
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:shadow_steel/machine_casing_dense"
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:shadow_steel/machine_casing_dense"
+            "item": "cruciblecraft:alduorite/plate"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:shadow_steel/machine_casing_dense"
+            "item": "cruciblecraft:alduorite/ingot"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:shadow_steel/machine_casing_dense"
+            "item": "cruciblecraft:alduorite/small_gear"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alduorite/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alduorite"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 6,
-            "id": "cruciblecraft:shadow_steel/block"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:shadow_steel/ingot"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "shadow_steel"
-            },
-            "count": 56,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:shadow_steel/small_gear"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:shadow_steel/plate"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:shadow_steel/gear"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:shadow_steel/long_rod"
+            "count": 1,
+            "id": "cruciblecraft:alduorite/block"
           }
         ]
       ]
@@ -129,62 +124,78 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f772da5186b0ae68",
+        "cruciblecraft:gt6/7f1fd7cc8478d153",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/70d0abce2e396d32",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/2c50d636603f4bfc",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/dfdfc6f5a06602b6",
+        3,
         3
       ],
       [
-        1,
-        1,
+        4,
         0,
-        "cruciblecraft:gt6/d6df45eda5148cd6",
-        1,
+        0,
+        "cruciblecraft:gt6/c0a32686079f4286",
+        4,
         4
       ],
       [
-        2,
-        2,
+        5,
         0,
-        "cruciblecraft:gt6/b2a1208ce9d7bc08",
-        2,
+        0,
+        "cruciblecraft:gt6/453c9b587409a44f",
+        5,
         5
       ],
       [
-        3,
-        3,
+        6,
         0,
-        "cruciblecraft:gt6/111edc26f722747c",
-        3,
+        0,
+        "cruciblecraft:gt6/c49f76cb6d936ff3",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/89cab826f3fa07a4",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/4b5ee7db21071ce9",
+        8,
         8
-      ],
-      [
-        4,
-        4,
-        0,
-        "cruciblecraft:gt6/d099a0f6a9194b30",
-        4,
-        9
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/53e76ec6b5c090a5",
-        5,
-        10
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/e9ace598dae1fba2",
-        6,
-        12
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5408,
+      "duration": 478,
       "eut": 96,
       "item_input_actions": [
         {
@@ -195,7 +206,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        9,
         0
       ],
       "output_chances": [

@@ -10,111 +10,130 @@
         }
       ],
       "hashes": [
-        "504becafb2f4b48a5aa63ca615c51cc518321cc77dbc61c47a3e15ea21980086",
-        "0c8b6f41df4bdb1dbaad2c9cda582d89ba69020eb5394cdb0af710cc45061749",
-        "e6fed272709772840e78f85a7377044f35915bbfe1d6e0b8e521c8182c6ca1ed",
-        "977ef9dce54b0873a19569035ca9f686732de2d818e36ce4a578f9769f9c0068",
-        "e35113ee7e1d2296230de06f3ab596333dd1f24786d719ed4ec175b75de19d2e",
-        "bff97214337c4d00effe0d691ac17870dee3bbfb846ba25f3908ce44a6876b4f",
-        "bb613dcdd9fa0381cd2a6f0c4c20a2020538971f3b7284493ceeb541e7ec2c54",
-        "65d4e2e85b2e9184e95d9277fb046124de10f8714ff973ce2aa7ec5974c6e7a7",
-        "f52ca83b0f6095013900eb9359dea6885ec5cca915d1fcf86df8bd5b9f2be594"
+        "c1dd23e58fee3ae97764c6a3af2c6f7f28ad394b4668afd28e6034e5c0ae9cd2",
+        "1468a32a5aff775b9a21f30e137a1dc9915cf0f00f583c541a0023fdaa9e7f22",
+        "199709f1e25b73e958a2529b4287caa7be6b8283d4d63e69f36c6c7d9cbb99a1",
+        "17a3da85d0d7b389548b17ae6fcbdf4db64cd8755e4ca07c20b835d7177596e8",
+        "e7e16eae21926cfc18787f3de4e32f2a268bad0e4478f5cafc4c9a919f07f4c8",
+        "c595fa92ff564ebabbfe168616b4d15a890070a207f50abd479e86bc0aa50fc3",
+        "9ddf750bda16fac499275fbbba625ab42c5a32a588669cf6d2a0b9c2d53f5eaf",
+        "c3e2d889d48199a16f68cbcf799794ab5c921d9de8cf3c713cb6d64028d299a3"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:bedrock_hslaalloy/plate"
+            "components": {
+              "cruciblecraft:prefix_material": "kalendrite"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kalendrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kalendrite/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "kalendrite"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "kalendrite"
             },
-            "items": "cruciblecraft:chain",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "kalendrite"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "kalendrite"
             },
-            "items": "cruciblecraft:spring",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:bedrock_hslaalloy/small_gear"
+            "components": {
+              "cruciblecraft:prefix_material": "kalendrite"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/gear"
+            "count": 64,
+            "id": "cruciblecraft:kalendrite/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:kalendrite/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kalendrite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kalendrite"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -124,7 +143,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3fbe2dfecb7238ae",
+        "cruciblecraft:gt6/cab48ab53edd14ed",
         0,
         0
       ],
@@ -132,31 +151,31 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/843bcc895d11ab98",
+        "cruciblecraft:gt6/b948b632398efac7",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/746f4d7897ec4575",
+        "cruciblecraft:gt6/9247e4d0e86b1280",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/bc786b0b8fba49bf",
+        "cruciblecraft:gt6/00917ead01f22792",
         3,
         3
       ],
       [
         4,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/bb774e58434b07a0",
+        "cruciblecraft:gt6/6f63be714c86b28c",
         4,
         4
       ],
@@ -164,15 +183,15 @@
         5,
         0,
         0,
-        "cruciblecraft:gt6/73fab915662581fb",
+        "cruciblecraft:gt6/0cd376be5db32dbd",
         5,
         5
       ],
       [
         6,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/bbc703ef6b287148",
+        "cruciblecraft:gt6/c45dd4eecb06dbf7",
         6,
         6
       ],
@@ -180,22 +199,14 @@
         7,
         0,
         0,
-        "cruciblecraft:gt6/110503f4a5826d8a",
+        "cruciblecraft:gt6/2aa0188fa8a78306",
         7,
         7
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/e17014393c735b27",
-        8,
-        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 14027,
+      "duration": 7112,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        4,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_3386",

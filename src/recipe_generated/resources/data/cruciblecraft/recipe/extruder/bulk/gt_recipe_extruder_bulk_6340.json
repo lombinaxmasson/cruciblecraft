@@ -10,17 +10,34 @@
         }
       ],
       "hashes": [
-        "4ef8dfecd81a8f5a3a575da20959cd26387210fa39d29fee62b680f5b2d08822",
-        "69b81756f8eb941e2651c1b889ff48f35c5935a21958e9db25baa59177be89d0",
-        "f5f39eef6b58a3211aed99c34604499e03d64e89062e60b2452fcd56cc07f1ca"
+        "1f509bd65f553fbeef9e887b3bc26c237fa55cbbea905865b2910a559c45257c",
+        "c28fbd36af2081afa95aad699346552d004e65319209c5aea72be5564829b104",
+        "8cb87db62e99bcaf6d859d9ebb26f5f821474e2d94ae53fd87b309e206464950",
+        "52233e1b42fe1852887b8acd52478c525403b1ab703793e7e5992f317813b9c3"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:efrine/septuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bedrockium/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "carmot"
+              "cruciblecraft:prefix_material": "bedrockium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
@@ -30,18 +47,10 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "bedrockium"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:carmot/rod"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -52,13 +61,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:carmot/block"
+            "id": "cruciblecraft:efrine/block"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/ring"
+            "id": "cruciblecraft:bedrockium/block"
           }
         ]
       ]
@@ -68,7 +77,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/0237828a91bb785c",
+        "cruciblecraft:gt6/f977f0c54be54229",
         0,
         0
       ],
@@ -76,22 +85,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/c3ac0a240c0a1cf4",
+        "cruciblecraft:gt6/cb6a90d0b21eb00a",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/01976d07939194a6",
+        "cruciblecraft:gt6/458210dee090a782",
         2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/9b749d6ac7c3d342",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 877,
+      "duration": 317,
       "eut": 96,
       "item_input_actions": [
         {
@@ -102,7 +119,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        3,
         0
       ],
       "output_chances": [

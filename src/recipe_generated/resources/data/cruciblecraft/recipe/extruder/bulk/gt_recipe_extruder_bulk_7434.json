@@ -10,14 +10,16 @@
         }
       ],
       "hashes": [
-        "21ea9aab8bae09621b5e18357d83d47b393cf27c8b64337955ea737086ff39fa",
-        "a3d04f5b3e61986c2fdb0c14ede5187edad98fd251595941e21b4a5fb7ff81df",
-        "0ba25b14bee354e8408a6430663ab4012e853c67d0bce1bb72c2b53119b3776e"
+        "4645a831a1bb4a2b329caa033f2e5cf7e6306d9befb5c25deac86a7bd8bf1b5a",
+        "0148807e796fbe72caf4c3d4516e743cfa24df2004479f360431539c955d8e6b",
+        "ae9431c293b249a3d191f886bf80609087dc5a9edb0cd5bac846f8099bbdafa9",
+        "a13d7db80ee6f67c7c0e9238898f07cefa0ca2a1cfcf814800120325483c6a40",
+        "56bb62ea936aa33664f2d8bd32788da23c5026ba75c6f4251a65697cc89e4825"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:zirconium/rod"
+            "item": "cruciblecraft:electrum_flux/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -26,9 +28,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "zirconium"
+              "cruciblecraft:prefix_material": "electrum_flux"
             },
-            "items": "cruciblecraft:gem_flawed",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
@@ -38,10 +40,26 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "zirconium"
+              "cruciblecraft:prefix_material": "electrum_flux"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum_flux/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum_flux/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -52,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:zirconium/block"
+            "id": "cruciblecraft:electrum_flux/block"
           }
         ]
       ]
@@ -62,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/bcc5d46fdc8319f7",
+        "cruciblecraft:gt6/6cda5b859123e494",
         0,
         0
       ],
@@ -70,7 +88,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/6bf084c94095b402",
+        "cruciblecraft:gt6/cbaf6ae77115c9bd",
         1,
         1
       ],
@@ -78,14 +96,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/411af16f7415453e",
+        "cruciblecraft:gt6/60297186d18e4dc6",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/a789b3e641649870",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/5988dc56ba9c50d5",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1659,
+      "duration": 968,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        36,
         0
       ],
       "output_chances": [

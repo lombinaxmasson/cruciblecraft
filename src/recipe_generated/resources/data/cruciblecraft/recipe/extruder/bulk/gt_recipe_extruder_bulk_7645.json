@@ -10,32 +10,42 @@
         }
       ],
       "hashes": [
-        "6f8bebe2f6b0c8bfdd6061dc21214e3871f9cc0fe776449b0c3ea6b5c4941e3f",
-        "8512e378c52353c46e120f10129536827b3f52272ecd24230e86cbb3d04ddb89"
+        "4e4be038cf4d12871e7cccf82278e6f1f813acecb8341cbaa822d8c507aac7c2",
+        "52e400f4526982b3e63afd66fd8be3a1d4b566e6ec30f56dbe6b75b4b065e817",
+        "6ecc6ef6dd3c16d3b89bde4b87fee3cf612c6e5a7f608a0266b81b1ffa5e6379",
+        "94b41eec18d32357671e81759adb05e4f83b8f4ad4b10e61439c99519db849d5"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "molybdenum"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:dysprosium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "naquadah_enriched"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:dysprosium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dysprosium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dysprosium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ]
       ],
@@ -43,13 +53,28 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:molybdenum/ring"
+            "id": "cruciblecraft:dysprosium/long_rod"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:naquadah_enriched/ring"
+            "id": "cruciblecraft:dysprosium/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dysprosium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:dysprosium/ingot"
           }
         ]
       ]
@@ -59,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/cf30a98255d15b91",
+        "cruciblecraft:gt6/f91e45bee59ba294",
         0,
         0
       ],
@@ -67,14 +92,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/9dc41d1438cbd14a",
+        "cruciblecraft:gt6/4cfd52eb7453d45f",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/b157623d6f2744ae",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/7df4322e6f38ca87",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 103,
+      "duration": 184,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        8,
         0
       ],
       "output_chances": [

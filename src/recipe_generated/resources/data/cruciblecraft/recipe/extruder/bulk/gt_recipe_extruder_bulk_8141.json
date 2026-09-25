@@ -10,24 +10,50 @@
         }
       ],
       "hashes": [
-        "0a3f9b04fc8e7361d7751efb2ffc24eebd8888b446c5684aa29ad2369832b677",
-        "3606f76680587368afb83cf450b70c1a217272d384dcfd82efcfb6a665891b64"
+        "04a41f696861d1bfbb92168d795d1a282ecef37dbd6b82045f938995dc259b48",
+        "4560847f41d65374cbd1337dd6fedfd93244558bee98ffcaef96d15d24c6ed5d",
+        "ed33957e66c7e6c202823e804005aeecab63b539cc0c1a07b47e489dd2df5d20",
+        "fe5b49a52c6d1bcdd126f971926eea66817ef665017c9a7be96b573c073220d9"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:adamantine/bolt"
+            "item": "cruciblecraft:fiery_steel/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "fireleaf"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fiery_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fireleaf/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -35,7 +61,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:adamantine/gear"
+            "id": "cruciblecraft:fiery_steel/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:fireleaf/block"
           }
         ]
       ]
@@ -45,22 +77,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ff89f811f3ec00aa",
+        "cruciblecraft:gt6/fa4caf086efb8190",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/32bd896efa72e0fc",
+        "cruciblecraft:gt6/e3186e82a35668bd",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/495677b78d1b7df5",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/20290a16b4544335",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1743,
+      "duration": 2889,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +119,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        18,
         0
       ],
       "output_chances": [

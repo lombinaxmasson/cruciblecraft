@@ -10,67 +10,52 @@
         }
       ],
       "hashes": [
-        "dba82a88376cc179dd225e31f5495505796136d46b1fb6ddabe2593280eac01c",
-        "853f2a322d5173e1272fda83798f1aa13ee61d40e79324c017ce62b960e8f2d2",
-        "9e89ee2c70aced93333b814085527467b4c9c8d839f27945f9309a7524f53899",
-        "2fefbb6fc9854c5c8895a23f8c90955c0d100f36b13aeced801f788893d1be5a",
-        "124b9207c86664dc41dcb9aed918fe8b1f90766b8e193ffcf74f306fb8052aa1"
+        "d315c9a3a746a569ee32a2d8b0ceb198773a7045ad8c67c6a56dcb2024768789",
+        "e26f759f8e8b12507b55d982ea0db5ad72d0ec3191e674a5b8b201599ffb7d1e"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:carmot/foil"
+            "item": "cruciblecraft:osmium_elemental/huge_item_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "carmot"
-            },
-            "items": "cruciblecraft:small_spring",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:osmium_elemental/huge_item_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "carmot"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:carmot/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:carmot/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:carmot/gear"
+            "count": 64,
+            "id": "cruciblecraft:osmium_elemental/bolt"
+          },
+          {
+            "count": 32,
+            "id": "cruciblecraft:osmium_elemental/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "count": 44,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -80,46 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/295e47b20d0255ab",
+        "cruciblecraft:gt6/7ca62174c8850122",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/158213bc6dca945a",
+        "cruciblecraft:gt6/11c65f4f3a9b52fc",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/74cfc075959c8a4a",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/450ff610ee9ead23",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/1007f32199d8524f",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 390,
+      "duration": 12616,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        16,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7087",

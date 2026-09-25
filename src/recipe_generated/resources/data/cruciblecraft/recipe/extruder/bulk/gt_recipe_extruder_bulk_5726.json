@@ -10,111 +10,115 @@
         }
       ],
       "hashes": [
-        "bf53334a66c185984c2f65e7bb3ec27dfba3754c474dfd9e5e952a9567d165a2",
-        "e3323290da775f1b3396ac98ac97977b3a7dac4dd13e5a76454ffae7477922d2",
-        "2f2584e2b69cb854f8d3581fd502ae6862368a18c1f2214b32cbb1f9078fe16e",
-        "8b668bfb03d68bd2b2b1adc1ec2be9d9f0b1f9c4bff0b2c42b3896c6eb33e886",
-        "33b415b59e1a668a1a43b77b3413449918486e4845ffd4d508d00b05be3ff6cc",
-        "6e62219b2f1cd4cf1853a15175b519a03d5a2c33f903832e3f67bb1f5bcb5561",
-        "db343ca4359fb1f29b4b2f4cd812491a1bdb569bbf77792529d5f2494db4ace0",
-        "45174d1470e414921a13be44ebc39f3a942a18f3381e14aead328fa584a61542",
-        "0254f90c017c30309a1096cbf5036b768bcb89ff82485c16c297f2d370334f15"
+        "edd031d625e905c2f25e6aa30daebfba32ac9ae3b90b38b9b033f613e2da31d3",
+        "49ee97d2641112c754146f27b465254ae5c2b56f0efc6f604584c6bd8f31b6d6",
+        "95495b57a2a0f340c748d492502f19140abc25e6eb96fe92b1a389fca42c6865",
+        "25d2722d25a9582c2afdfa9421e15c142d9e0c12070b0e7519392803f44cf9ea",
+        "9f8b86e7a7e4e89d6d0808911a40b5d06f3aa64ffbec0383fc11b7741bec6172"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vyroxeres"
-            },
-            "items": "cruciblecraft:chain",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:enderium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vyroxeres/long_rod"
+            "item": "cruciblecraft:enderium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vyroxeres/ingot"
+            "item": "cruciblecraft:enderium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:vyroxeres/plate"
+            "item": "cruciblecraft:enderium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vyroxeres"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:enderium/machine_casing_dense"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "vyroxeres"
-            },
-            "items": "cruciblecraft:spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "vyroxeres"
-            },
-            "items": "cruciblecraft:minecart_wheels",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vyroxeres/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:vyroxeres/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:vyroxeres/block"
+            "count": 64,
+            "id": "cruciblecraft:enderium/rod"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:enderium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:small_casing"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "count": 48,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:enderium/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:enderium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:enderium/ring"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:enderium/ring"
           }
         ]
       ]
@@ -124,78 +128,46 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1ddf27c05ca5fa18",
+        "cruciblecraft:gt6/fe2b2bb350d8ba35",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/856ac140cb073928",
+        "cruciblecraft:gt6/a72f6bbb8a02c700",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/ef090124c816550f",
+        "cruciblecraft:gt6/54f06062f50074c7",
         2,
         2
       ],
       [
         3,
+        3,
         0,
-        0,
-        "cruciblecraft:gt6/1f89a588b9ad0c5d",
+        "cruciblecraft:gt6/f629800b3cd3e1ae",
         3,
         3
       ],
       [
         4,
+        4,
         0,
-        0,
-        "cruciblecraft:gt6/ee46c62b7e516f76",
+        "cruciblecraft:gt6/be0744177d2ce0c5",
         4,
         4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/7680055d441974a1",
-        5,
-        5
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/69e0bf26afda39b3",
-        6,
-        6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/bd14286b2d4061cd",
-        7,
-        7
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/98cb570a59277985",
-        8,
-        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2558,
+      "duration": 16862,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,10 +178,11 @@
         }
       ],
       "item_input_counts": [
-        9,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5726",

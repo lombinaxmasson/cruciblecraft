@@ -10,28 +10,32 @@
         }
       ],
       "hashes": [
-        "c6a19ab87dd5634d57034fc05b2b2b0f7c9b20bdd56a8c847af399a365fe02bf",
-        "faef303644d89d8802ee050a18d6863638531a0beefcf2108cab66fcec4eeb81"
+        "e61637c739e4790cfb2099991c2a65ad9241bb59a0643a0a656497edda0bd624",
+        "22eab1bd1fc511b603876795b4622e75a107f9c08846ac45a728bfb1d4008e87"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "abyssalnite"
+              "cruciblecraft:prefix_material": "thorium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:abyssalnite/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:abyssalnite/gear"
+            "id": "cruciblecraft:thorium/block"
           }
         ]
       ]
@@ -49,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9f791bd9be76d5ec",
+        "cruciblecraft:gt6/f220f40043f7b108",
         0,
         0
       ],
@@ -57,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/3003287722fd9972",
+        "cruciblecraft:gt6/0843f5c99bbc651e",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1118,
+      "duration": 2966,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        3,
         0
       ],
       "output_chances": [

@@ -10,16 +10,16 @@
         }
       ],
       "hashes": [
-        "1884348d4863fdfb8101039c5e159c3b53fda8a244e9184f021463b920fdc2d0",
-        "bc07a87f2520b69609541b2e5ebf1ffc30b996175555170fb7a136cc80fdfcbf",
-        "a4d10ee3487061a23a01a515d8aebd2513f873c8467e11bf19f204c348af97ad",
-        "84aec2ada8c868cc43b7b336fa31a5052ea6a868721b6bbb66518bf76cd40c03",
-        "434349e1fc0be7b68fbb0b42304b352b15d1e854293d677ed55d1e8231f9c7a8"
+        "e78eb492f1eff88f006e0a79f432ac4dea17ce394ecff3544c70cad4da7812f4",
+        "8bab6b5edc87eccb3c98a6d7405e0aa7eef6d3a1f890377de5bf3545b5b3e37d",
+        "707b64f63281393b01fa0d1e4457265da56c42fce12820e137fde88fee615a7c",
+        "18147e540aa4697a0005320c9dfbbd91110a3685e08a2350f0e11931e5b15c68",
+        "89e08a414b50646c86dbc53ef23f7be23e145e002ed891e22e729cbb14a61151"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:end_steel/dust"
+            "item": "cruciblecraft:sanguinite/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -28,9 +28,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "end_steel"
+              "cruciblecraft:prefix_material": "sanguinite"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -39,7 +39,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:end_steel/ingot"
+            "item": "cruciblecraft:sanguinite/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -47,7 +47,7 @@
         ],
         [
           {
-            "item": "cruciblecraft:end_steel/plate"
+            "item": "cruciblecraft:sanguinite/foil"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -55,7 +55,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:end_steel/long_rod"
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -66,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:end_steel/block"
+            "id": "cruciblecraft:sanguinite/block"
           }
         ]
       ]
@@ -76,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/5ab22afeb07d5857",
+        "cruciblecraft:gt6/a5ccc3d4c4d932a3",
         0,
         0
       ],
@@ -84,7 +88,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/fdc5e8e0b5b84028",
+        "cruciblecraft:gt6/70f3d97d2be2fa36",
         1,
         1
       ],
@@ -92,7 +96,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/dbb4a8435119b911",
+        "cruciblecraft:gt6/e3d42564584d2c24",
         2,
         2
       ],
@@ -100,7 +104,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/22807f7466483e02",
+        "cruciblecraft:gt6/fb83110ab0cb7bd5",
         3,
         3
       ],
@@ -108,14 +112,14 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/0e8c7d76de0f438c",
+        "cruciblecraft:gt6/f1adbdc22cb37bad",
         4,
         4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1767,
+      "duration": 5284,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        36,
         0
       ],
       "output_chances": [

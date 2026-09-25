@@ -10,49 +10,67 @@
         }
       ],
       "hashes": [
-        "be570c81ef23495b3451eba7f763dfa7b6e086655c6b91b10bcea517fcb854c8",
-        "cdd47d57d1b0154c92283826037a3a1be5a86a6e25565f5e92610435c91215dd",
-        "cf1f701be6071addab3fd5c5a0dca5c5f8d40a3e74bdc0621a800e8f483bcd26"
+        "f38382fcba89c47e7f5c756367e10081018df3a659036e19ad2fdf3dc6ff928c",
+        "80f7b3f340a6892b5afb44f25d9fd44c16be0ef4a9384a4f5bce4826a3b151e2",
+        "0a590dbdf6238a4fffeb097df9c15e2519be911555b6a59388ba449167b5da4f"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "obsidian_steel"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:astral_silver/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:obsidian_steel/gear"
+            "item": "cruciblecraft:silver/machine_casing"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "obsidian_steel"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:silver/hexadecuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:obsidian_steel/block"
+            "components": {
+              "cruciblecraft:prefix_material": "astral_silver"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "astral_silver"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "silver"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "silver"
+            },
+            "count": 8,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -62,30 +80,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8cee44ac652638fb",
+        "cruciblecraft:gt6/0a4b8489951741f9",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/8dea61eb9cabcfb5",
+        "cruciblecraft:gt6/9a778159e4a6363d",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/9131ec21280b3232",
+        "cruciblecraft:gt6/dc00da961ae0815c",
         2,
         2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1979,
+      "duration": 1220,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,10 +114,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_7632",

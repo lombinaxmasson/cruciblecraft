@@ -10,24 +10,33 @@
         }
       ],
       "hashes": [
-        "21c068b4468ae6297e336242639e475417da49eb9f7cdaaca5df48727a592767",
-        "c4f2f89b7d25055be291b2442de28057993059fbd9037b8efa667d86ce77a85d",
-        "fcb3b79ead512e3f34d08d36960692aea6c412c879eae19a53eae3e619c52f53",
-        "53d464aa672820bb374735a6d0222da3260aea4dc7f13a0f125d8c5c0a0987dc",
-        "948a9f6e2217b57b000c61ad9da517bd10d3c937d7667d3d59faf87ead81c132",
-        "ed2fa48f6e6f4fd5d49b790b94751e1f212780ff10e1de67396108d6d71f25fc",
-        "c2bf50960c3006ef81bee3c735a8be34bd9dda6b2a856153340f8b4db5d34819",
-        "dddb76e7028501b9ed7d3f31df35694d6287452db1f1939a1465e5863872579a",
-        "f5f363c6712c12d2a82da16c2b8c0bfdb7a5f7166efdf50dd2560396f5b82558"
+        "d0dd615ffd5037249acebb1c4b4f882af05422200f182d57ff3a8f5c3461e14c",
+        "8c2132424ddbdd4339e09d31582a9a37160bb3ae2b583d5439be6cc8cad67b61",
+        "985a8b7c757848e7ab98705ee39cc0d26daa984d0085050a3a132df2fe8f0430",
+        "d1446e1674ef738ed0ddfc71a8eaafcaa1a06c777f35a108c8ddbb7f4ddb2af0",
+        "82e4b898f7353e50c67ef20a598ddcad018a4c9b61a29887490afc18f5ad6581",
+        "db317993775a71f473fe0ce6753c32d1440519fd03d29e144eb6849221a62bcd"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "gaia_spirit"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:niobium_nitride/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:niobium_nitride/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:niobium_nitride/plate"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -36,45 +45,21 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hssg"
+              "cruciblecraft:prefix_material": "hepatizon"
             },
             "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "manganese"
+              "cruciblecraft:prefix_material": "niobium_nitride"
             },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "manganese"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "gaia_spirit"
-            },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:curved_plate",
             "type": "neoforge:components"
           },
           {
@@ -83,50 +68,10 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hssg"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:niobium_nitride/long_rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "hssg"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "hssg"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "hssg"
-            },
-            "items": "cruciblecraft:billet",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ]
       ],
@@ -134,46 +79,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:gaia_spirit/block"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:hssg/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:manganese/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:hssg/plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:hssg/small_gear"
+            "id": "cruciblecraft:niobium_nitride/block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hssg"
+              "cruciblecraft:prefix_material": "hepatizon"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:hssg/long_rod"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -183,78 +98,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/1808f55d993ff19c",
+        "cruciblecraft:gt6/600b264a2a1aa725",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/ec6997d4070d3059",
+        0,
+        "cruciblecraft:gt6/b3b944e08a4586e4",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/147bb98817234542",
+        2,
         2
       ],
       [
-        2,
-        2,
+        3,
+        1,
         0,
-        "cruciblecraft:gt6/722ca91048efd538",
-        2,
+        "cruciblecraft:gt6/a9e49babf9695a30",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/56a3f7f558786a59",
+        4,
         4
       ],
       [
-        3,
-        2,
+        5,
         0,
-        "cruciblecraft:gt6/785151261d9b218a",
-        3,
+        0,
+        "cruciblecraft:gt6/b7568859a61d904a",
+        5,
         5
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/f26cd501a7098ca5",
-        4,
-        7
-      ],
-      [
-        5,
-        3,
-        0,
-        "cruciblecraft:gt6/18eb937eb384aa2b",
-        5,
-        8
-      ],
-      [
-        6,
-        4,
-        0,
-        "cruciblecraft:gt6/0b45e5ae89b7e7d5",
-        6,
-        9
-      ],
-      [
-        7,
-        5,
-        0,
-        "cruciblecraft:gt6/26c03a038081b2fb",
-        7,
-        10
-      ],
-      [
-        8,
-        6,
-        0,
-        "cruciblecraft:gt6/730d73e1e2f5e817",
-        8,
-        12
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 564,
+      "duration": 1358,
       "eut": 96,
       "item_input_actions": [
         {
@@ -265,7 +156,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        9,
         0
       ],
       "output_chances": [

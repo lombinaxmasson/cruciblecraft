@@ -10,18 +10,16 @@
         }
       ],
       "hashes": [
-        "be43796ffff6a3e78b87bc2112410062669338cc5d9731611ad724d39d54429f",
-        "5a56e2bf6a98ec7718d73a81cb0b650a4c5d12c0d149217c7eb3968ba5d45538",
-        "132bb3017bb5e23146596b5c32f04e59b39b5e4faea6ebaa58c170bddbf1b362"
+        "f51048413177fa7bff82953d2b076b96e1cc726a7db75229c33a4eed760b0285",
+        "412e8d4905292f3952018d5643dffbf4bfda2577c97bb4a14f096ed4b2948976",
+        "923d6e95e10a833395e438e978e15dd2f485bc153019d1925d70dc2aa9167908",
+        "39bb7ae3fbe30db4c82669949b0bf982c62ec245fe45bdb972bf15bf82977144",
+        "14a72aab60bbab41593a467d677b7883dc0ddbdd7f56775da4246e5c3cf0e182"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "titanium_aluminide"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:chromium/ring"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -30,9 +28,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "titanium_aluminide"
+              "cruciblecraft:prefix_material": "chromium"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
@@ -41,7 +39,27 @@
         ],
         [
           {
-            "item": "cruciblecraft:titanium_aluminide/gear"
+            "item": "cruciblecraft:chromium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "chromium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:chromium/small_dust"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -52,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:titanium_aluminide/block"
+            "id": "cruciblecraft:chromium/block"
           }
         ]
       ]
@@ -62,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fa3d9e6c8ade39ab",
+        "cruciblecraft:gt6/0fd1a791f54a49c3",
         0,
         0
       ],
@@ -70,7 +88,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/c285aeb1c9f32e5b",
+        "cruciblecraft:gt6/011d356d01812d3c",
         1,
         1
       ],
@@ -78,14 +96,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/76579f0163e0295b",
+        "cruciblecraft:gt6/78ed51d8f8f9fd64",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/ba844db05f5927ba",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/fdd47c11d9e01b9e",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1891,
+      "duration": 1874,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        36,
         0
       ],
       "output_chances": [

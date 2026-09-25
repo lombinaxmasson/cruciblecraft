@@ -10,92 +10,129 @@
         }
       ],
       "hashes": [
-        "d4de625f5d110c008ec15fab4c386d7acb39ea126a75c91034a8a5ebbe6e2ef6",
-        "6e25bd1e096d911fb9fd1219b105f5453936f64253d082e3258dd83d39342a4a",
-        "de96fc841aff54202786ec91e10ccf294352ea0ea211516236304ba4036143fc",
-        "7067425edbe929920a4e02d5cd3a12a490ae7675b3c4483a2ca59ce7eb19b160",
-        "ac1ec1a9cb593a37b1a4ec57c34d8cfcc9feee74c3643c0d47db07668ba109c5",
-        "a2a19ebdbec3328319951f271c7c238d66f2c05e3320700d2b42e0dfcfbc78ec"
+        "45a259b618a0b66f0de6adce58ce46c45b719a29d98e24a1de70e25ff6944854",
+        "57f8e0b40a4718a70ec25cf892344821f6fc95513642c00e9b5c443050b24069",
+        "88bcda3789d3cdc2fbe68ec373b1d4d82f6f2e3f2dd9f99a83a3392665c53f5c",
+        "48296ea2c4a18f27e89b637127e70bdbac7b9a75939c5a1f62f032702b73e2a9",
+        "a72e48f19d3357c8bff802c3f076b2890812eaaad9df923f5b3423ff439e720f",
+        "41b4d983945b90dd6a39ef61c551d85228a51f21e69c318b9e359aee017c2407",
+        "a80b6644e49b32d3e7235b8e5949795ea6c2a9f4b0bc339af3a4953f051af9b2",
+        "481847fbfd1371d903095460fcada24f0d47f5194fb45084d242ca758ef5b920",
+        "b33bfde3a5a518cf58b6aeab7f1a89e2b6bab4697253afa1813d52aba920a756",
+        "1237fdea892a8861b2c4381144b44b73abbb70c10bb77cf49f49d4323b4af928"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "hslatungsten_alloy"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:iridium/foil"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hslasteel"
+              "cruciblecraft:prefix_material": "iridium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hslaspring_steel"
+              "cruciblecraft:prefix_material": "iridium"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hslasteel/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hslatungsten_alloy/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:hslaspring_steel/rod"
+            "item": "cruciblecraft:iridium/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "iridium"
+            },
             "count": 1,
-            "id": "cruciblecraft:hslatungsten_alloy/gear"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hslasteel/gear"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:hslaspring_steel/gear"
+            "id": "cruciblecraft:iridium/large_fluid_pipe"
           }
         ]
       ]
@@ -105,54 +142,86 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/91eb3688bdd051e7",
+        "cruciblecraft:gt6/0650d6f5f06df79a",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/46e88f0cc13fd626",
+        0,
+        "cruciblecraft:gt6/da38e02b196bfa66",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/4ab96aa4a1f9091b",
+        2,
         2
       ],
       [
-        2,
-        2,
-        0,
-        "cruciblecraft:gt6/1ed8479d82c2a84d",
-        2,
-        4
-      ],
-      [
         3,
         1,
         0,
-        "cruciblecraft:gt6/d42062246adaafbb",
+        "cruciblecraft:gt6/fac0fc1c65d318a8",
         3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/1c045003c8a04291",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/4e432c39f23c8a52",
+        5,
         5
       ],
       [
-        4,
+        6,
         0,
         0,
-        "cruciblecraft:gt6/575024d298d7fa44",
-        4,
+        "cruciblecraft:gt6/57bb6bf5d192a94f",
+        6,
         6
       ],
       [
-        5,
-        2,
+        7,
+        1,
         0,
-        "cruciblecraft:gt6/d939cdc59b0a0b73",
-        5,
+        "cruciblecraft:gt6/c316d4550b495221",
+        7,
         7
+      ],
+      [
+        8,
+        1,
+        0,
+        "cruciblecraft:gt6/bcb3fe196b797488",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:gt6/9558fe625511a2c6",
+        9,
+        9
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 768,
+      "duration": 5068,
       "eut": 96,
       "item_input_actions": [
         {
@@ -163,7 +232,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        24,
         0
       ],
       "output_chances": [

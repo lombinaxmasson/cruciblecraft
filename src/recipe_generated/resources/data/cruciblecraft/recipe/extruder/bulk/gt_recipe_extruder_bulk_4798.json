@@ -1,13 +1,202 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.extruder#bulk_4798",
-  "publication_group": "cruciblecraft:extruder/bulk",
-  "relations": [
-    {
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "41a672f4a2efd54048e5003900b3baa1abb5012f6d56244b4b108774bb39ad6d",
+        "fb928d72b58e6d8ce2068047701541e29feb72db1dade00903bd7c71e5f594e4",
+        "9523c29a1307d5a526c5f70c84040e07b3a7252cb585464adb16d7aabb4caf1f",
+        "572aff0c92766d1e3e324bb857437de9ba6c13a5b94a5fb6be7340ba5912819e",
+        "ad809a85f183c065582a09c16649c5496872c0f64623a36046af8d3cc12049f9",
+        "d9b31a68d47cb07fac9f19b37d6fe36cb0445b580969ffd821cee8c6cae6effb",
+        "95f1b3af1a23c250b1b60bc6d6d8b81b7dd24c8eee705aa7b1726dac7e9fb2bd",
+        "7251acd24182d1e1351e4a688857db0bbdfd9acf73e95f8c249477eedccd54cd",
+        "0ab19061bd9a26e58557b7993c678b415f9aa7eae8ea36ba7355e617c8cf3086"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:aluminium_alloy/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aluminium_alloy/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aluminium_alloy"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aluminium_alloy/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aluminium_alloy"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aluminium_alloy"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aluminium_alloy/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:aluminium_alloy/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "aluminium_alloy"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:aluminium_alloy/gear"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/1e65e6cc7bbb84a6",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/22aee0c7df9d1c1a",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/d00204f2ccbee689",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/3394c740c973ab78",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/dab2036e6e0c5b42",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/8227ba3b78a12325",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/5203729b471fd936",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/f41ca6ac45faad61",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/b8715e6ca998a301",
+        8,
+        8
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
-      "duration": 4971,
+      "duration": 112,
       "eut": 96,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -17,38 +206,18 @@
         }
       ],
       "item_input_counts": [
-        2,
+        4,
         0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:midasium/machine_casing"
-        },
-        {
-          "item": "cruciblecraft:extruder_shape_block"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:midasium/block"
-        }
       ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "eae4dcad214841f103ffd14b1a672d60f2f94b376ffdeca1a0e8e6079c016182"
-        ],
-        "selected_source_recipe": "gt.recipe.extruder#bulk_4798",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/68fd2d43309f7732"
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4798",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:extruder",
   "type": "cruciblecraft:compact_gt_recipe_family"

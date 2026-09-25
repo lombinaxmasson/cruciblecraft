@@ -10,40 +10,132 @@
         }
       ],
       "hashes": [
-        "bad35f2d670b36169ad4e8b62672802ad877c15261bfbfd1b1db0bda49820360",
-        "895df7f013986eba6e4cd624bf8f7063eec589323d3f3ce3f68641e06525997a"
+        "e6eb83ed6e7dabd5717de598412ccb380117da5bea1f86b808050630b28977b9",
+        "bd9af89863f699a3b8ef23051c6f0342a0ec0cc6f537511f49d7d2e60860f6de",
+        "87a0d24c4674333ad1a65533f3c3f5aafe1c044426e23c5488ec5106bf9779f1",
+        "acac3ff1e32a67d239d74735a6713100a117baf3d312c8ef96ee08ba02419af1",
+        "d4010bf34fe493b90aac40e23c8d5078f9452f6f94985e4877bc591cae5a022e",
+        "bc09d8e8fafc457e898722d6e7979134769e56f334f1fd3024c066bc9b474c94",
+        "147869486fc12484808da080f389ac76ae30e49ad282323361bb06501ff397d6",
+        "ed8db7d6ec01e1365e80262a8cd07acf69040bc0446fbc17972a181c3d8cb200"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "spectre_iron"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:sanguinite/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "spectre_iron"
+              "cruciblecraft:prefix_material": "sanguinite"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sanguinite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sanguinite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sanguinite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
             "count": 1,
-            "id": "cruciblecraft:spectre_iron/block"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 4,
+            "id": "cruciblecraft:sanguinite/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:sanguinite/rod"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:sanguinite/ring"
           }
         ]
       ]
@@ -53,22 +145,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/22dba5bc3b8fcdbf",
+        "cruciblecraft:gt6/0808a917f8a8cbb8",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/066be987817eadab",
+        "cruciblecraft:gt6/3a3f74e34fc90471",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/bdbaef8cdbd7ddc4",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/04cbdcff8302e8e8",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/903baeec218cbf66",
+        4,
+        4
+      ],
+      [
+        5,
+        3,
+        0,
+        "cruciblecraft:gt6/0f8b5e3f6851c289",
+        5,
+        5
+      ],
+      [
+        6,
+        4,
+        0,
+        "cruciblecraft:gt6/4feb7eef57da95fa",
+        6,
+        6
+      ],
+      [
+        7,
+        4,
+        0,
+        "cruciblecraft:gt6/ee488006f1c0a778",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2079,
+      "duration": 294,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +219,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        1,
         0
       ],
       "output_chances": [

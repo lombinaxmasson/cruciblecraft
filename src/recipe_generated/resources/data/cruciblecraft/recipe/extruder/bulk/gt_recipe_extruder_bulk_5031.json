@@ -10,72 +10,70 @@
         }
       ],
       "hashes": [
-        "0e381f271a41ded1b26746f5a88635749cce0591df2c821e6c4322d39ea33bc1",
-        "04c9c60cf25d58e8a70c4c21c3c2477f239ce411ecad721af48e1f170bcfdffe",
-        "9059d421a1d2bb1d611164a92e5373da4a4a361d04cf74eec6f18f9dd426bf6c",
-        "ac85b57ef51e6f8279c14351187866b650447f9da3cdcd3da40b4c35b65764cf"
+        "4ced3c0c1bc83aca890ecc5e1e9622f46b51ee4f36e891face19580f87673f6c",
+        "723f460aaadb819b36df53029e13726afbb98f5b20d8273222871a5f29b2d3b0",
+        "c295694be7a77b3eba47d0e60280f5a90d3e28998cebb178eb5307845cdfa38d",
+        "8ca5581609066bc03adcf81ca22379638e460266bdee5bee07a6a8a67d9b97f8"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "silver"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherite/huge_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "astral_silver"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherite/quadruple_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "silver"
-            },
-            "items": "cruciblecraft:quintuple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherite/huge_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "astral_silver"
-            },
-            "items": "cruciblecraft:quintuple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:netherite/quadruple_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:silver/block"
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "count": 44,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:astral_silver/block"
+            "count": 64,
+            "id": "cruciblecraft:netherite/bolt"
+          },
+          {
+            "count": 32,
+            "id": "cruciblecraft:netherite/bolt"
           }
         ]
       ]
@@ -85,38 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/000c2b329f1bafc8",
+        "cruciblecraft:gt6/6f6352ac45a195a6",
         0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/ccb9dae988d2494b",
+        1,
         1
       ],
       [
-        1,
-        1,
-        0,
-        "cruciblecraft:gt6/209434dcda81d8ed",
-        1,
-        6
-      ],
-      [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/3e8cebdc34a2de01",
+        "cruciblecraft:gt6/d62ee0661cc71a48",
         2,
-        7
+        2
       ],
       [
         3,
         1,
         0,
-        "cruciblecraft:gt6/08129082f13d97be",
+        "cruciblecraft:gt6/e2a2910c4ab5fc02",
         3,
-        9
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1525,
+      "duration": 29342,
       "eut": 96,
       "item_input_actions": [
         {
@@ -127,10 +125,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5031",

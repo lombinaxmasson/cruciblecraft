@@ -10,16 +10,25 @@
         }
       ],
       "hashes": [
-        "4645a831a1bb4a2b329caa033f2e5cf7e6306d9befb5c25deac86a7bd8bf1b5a",
-        "0148807e796fbe72caf4c3d4516e743cfa24df2004479f360431539c955d8e6b",
-        "ae9431c293b249a3d191f886bf80609087dc5a9edb0cd5bac846f8099bbdafa9",
-        "a13d7db80ee6f67c7c0e9238898f07cefa0ca2a1cfcf814800120325483c6a40",
-        "56bb62ea936aa33664f2d8bd32788da23c5026ba75c6f4251a65697cc89e4825"
+        "bb80411f497408f38e61478c04913b2299cdc13be660e320084d5711d9756c4c",
+        "a1c3175295d506d0c1ef034121758de58aa7e365783be49acb34476b29d02beb",
+        "003f051bb223ac887191121ab1209ecbaf75331e51b83b3e158767996e16d258",
+        "1f1a4bd84f377be10a51f993afc18b87d3736f9bef700fed2c2ec8fbad67228e",
+        "7ddfc8408e17eb63a582c2242e9425ef6ed6e3e6e31fd8d0bbcc49de8357de15",
+        "407006d416405ee3359ca9903d57d904805e86f84206b7c0c827120d00a327bb"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:electrum_flux/foil"
+            "item": "cruciblecraft:cosmic_neutronium/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infinity/gear"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -28,9 +37,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrum_flux"
+              "cruciblecraft:prefix_material": "infinity"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -40,9 +49,9 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "electrum_flux"
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
@@ -51,7 +60,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:electrum_flux/ring"
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -59,7 +72,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:electrum_flux/small_dust"
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -70,7 +87,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:electrum_flux/block"
+            "id": "cruciblecraft:cosmic_neutronium/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:infinity/block"
           }
         ]
       ]
@@ -80,23 +103,23 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9a7c82b41eaf9f83",
+        "cruciblecraft:gt6/52449182c02f6721",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/533bdeae2c3dd6fd",
+        "cruciblecraft:gt6/c651021a5a1c5884",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/e04feb30ba3d6c60",
+        "cruciblecraft:gt6/2a47d76e7c71cf69",
         2,
         2
       ],
@@ -104,22 +127,30 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/c4321c3bff68c02c",
+        "cruciblecraft:gt6/ebb3d62663f40d10",
         3,
         3
       ],
       [
         4,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/fb35b81bd1e40746",
+        "cruciblecraft:gt6/e0bfeff675781723",
         4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/bea49a9ee3fd3a36",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 968,
+      "duration": 18465,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +161,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        3,
         0
       ],
       "output_chances": [

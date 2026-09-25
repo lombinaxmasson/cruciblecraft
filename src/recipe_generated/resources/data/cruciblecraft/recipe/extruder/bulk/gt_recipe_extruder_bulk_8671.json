@@ -10,36 +10,52 @@
         }
       ],
       "hashes": [
-        "0112d2089ebb9f45b0f768fc8d2b66485a3af4071296c158ac9e530809f85218",
-        "5dd2a45434d1b007f032bbac81be240a88e11a03709ce3aa699b2d420e7f8b95"
+        "5e14649d58fb2b7cb205511beb61d94b450397a4213eefd87d0e67a5576c5356",
+        "364419591732580bfe7bd2ccf8d9d9e4c6b621bf0b0da3ae8b1a255932a18d82"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "efrine"
-            },
-            "items": "cruciblecraft:small_casing",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:mauftrium/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:efrine/rod"
+            "item": "cruciblecraft:mauftrium/machine_casing_double"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:efrine/block"
+            "components": {
+              "cruciblecraft:prefix_material": "mauftrium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "mauftrium"
+            },
+            "count": 62,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:mauftrium/bolt"
+          },
+          {
+            "count": 48,
+            "id": "cruciblecraft:mauftrium/bolt"
           }
         ]
       ]
@@ -49,22 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3808adc57b6cb06e",
+        "cruciblecraft:gt6/f232dc6371dc2ecc",
         0,
-        2
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/4a95fd3751421a14",
         1,
-        3
+        0,
+        "cruciblecraft:gt6/592b898d87a596f6",
+        1,
+        1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 272,
+      "duration": 328,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,10 +91,11 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8671",

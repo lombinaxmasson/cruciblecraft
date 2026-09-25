@@ -10,111 +10,52 @@
         }
       ],
       "hashes": [
-        "00230ab81bf3afdf0117c7344279473f8b1b9c16052eceb2c48823d7aed399ff",
-        "6038319a845368b41ce68bc87b5b240908380b4849c5d4ee8766da6e293608f3",
-        "992fc9bcec4b91c03a8d5c79c9e8049f96f6bccd75288c7bec30d41b5de3146e",
-        "7544bee6a0f37ecdfb99f98fe8d75d584efc6b91b0798452dd70e34f7ecbbadf",
-        "872c62dc528b243299eeea43e345966450b6deb6924f0f31aa8970295ec2447c",
-        "67f30189bebd34a23af0b13aac5fcbfb3b70779e9d46edf21edd236ae6490bc6",
-        "a9987522b25e92248981238e532f4f7bdce3bf1beaa533d5f77a569bedcafebe",
-        "b5e110ef09b03a410d611b184c3817c09a1695a6de3fd3c77430a32d62db2d01",
-        "aebee59c882536d447847729ac375825e7b2b7da4276017670bd0afe06202bf0"
+        "673301b5bdedf7c968a6b3e978a956d0bca9a1701afa2b51d80fb14292d192a6",
+        "9ee560cc1c458b774bfa68a0b5c53dc50ca46cafd5976f3274dabe902e17611a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:tartarite/long_rod"
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:tartarite/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tartarite"
+              "cruciblecraft:prefix_material": "rubracium"
             },
-            "items": "cruciblecraft:minecart_wheels",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tartarite"
-            },
-            "items": "cruciblecraft:spring",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:tartarite/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tartarite"
-            },
-            "items": "cruciblecraft:chain",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "tartarite"
-            },
-            "items": "cruciblecraft:curved_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:tartarite/small_gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:tartarite/ingot"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
             "count": 1,
-            "id": "cruciblecraft:tartarite/block"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rubracium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -124,78 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2e8c321b62952362",
+        "cruciblecraft:gt6/1a1ef8279957dc00",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/c74badd5dea11144",
+        "cruciblecraft:gt6/c7bb04cc4d07354e",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/e2314534aa9be4cc",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/932c55280f856693",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/c72f74666f3ba882",
-        4,
-        4
-      ],
-      [
-        5,
-        0,
-        0,
-        "cruciblecraft:gt6/f00d4bbeed4cc6a4",
-        5,
-        5
-      ],
-      [
-        6,
-        0,
-        0,
-        "cruciblecraft:gt6/1f2f4cb06db46231",
-        6,
-        6
-      ],
-      [
-        7,
-        0,
-        0,
-        "cruciblecraft:gt6/22ba6681d2d1dc21",
-        7,
-        7
-      ],
-      [
-        8,
-        0,
-        0,
-        "cruciblecraft:gt6/94d418b2a0acc29f",
-        8,
-        8
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 7412,
+      "duration": 1539,
       "eut": 96,
       "item_input_actions": [
         {
@@ -206,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        5,
         0
       ],
       "output_chances": [

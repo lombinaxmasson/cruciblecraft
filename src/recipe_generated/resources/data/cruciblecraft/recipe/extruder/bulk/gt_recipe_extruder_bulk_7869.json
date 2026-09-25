@@ -10,32 +10,42 @@
         }
       ],
       "hashes": [
-        "59fef7634c2519c2c796d301733be298f8628abb472f7e8c6930ee035b67fee5",
-        "31e6356e819d377919f8a4b38edf83eea72c244901368a00efd91ccc5a4fa78a"
+        "2d2c7f69612a46a67e88ec484fbc1318e209531664087bbd19c670c92923297b",
+        "5b662e5df4778a76299fa11df0cd533b73d55875ce7281348f4fd1bc5e3564f8",
+        "8528e229ac2e351749c78c922d1590d0f2ad04490b99adde8930b0151cd750f8",
+        "50990d0acb8c41c09ee4a560f9b26727ad7f0716480188477b4e10559325e59b"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrum/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vanadium_gallium"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:electrum/quintuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:electrum/quintuple_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
@@ -43,7 +53,31 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:vanadium_gallium/block"
+            "id": "cruciblecraft:electrum/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:electrum/item_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "electrum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,22 +87,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a830b0d8e90dc229",
+        "cruciblecraft:gt6/f40bdfaed32d0c25",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/ae6a9e45bef5b70a",
         1,
+        0,
+        "cruciblecraft:gt6/f56ea9771068a497",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/a5e3056a398dcd25",
+        2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/d8adbe7011746b47",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1593,
+      "duration": 1140,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +129,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

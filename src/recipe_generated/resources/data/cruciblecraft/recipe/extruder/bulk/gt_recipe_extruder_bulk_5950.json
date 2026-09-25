@@ -10,40 +10,130 @@
         }
       ],
       "hashes": [
-        "0e5f9d21002e0c6870a54b7b47d2d60f5de14b2b1166e21109aa2e0d134a625c",
-        "e5683011a1726a93868ff93f5839b82c43ad7312d4b48fd7093d7c39fea303fc"
+        "3484fd68899f6f04e6ca0efa7b6b269498a75afdf48d692436eef0548e626abc",
+        "a1661e464223fb9336b78047a4a2ef251a847cd7d2d674c8b19fc48a5b7331d4",
+        "cf1229afb9d5a7314a8b6da513f5b2b36a0188a35cb0d1dcdb9e2a6f3984fb9f",
+        "b6363fbd6fd3e54c7fb957c0607bc572d1ec3a1628e9f7babba19c4c6a82f9d6",
+        "049f760060057ca8fdc8a8d5ba7460ad4d533f7e7478706160f31ee4c0fa5ef8",
+        "cc52850a3874614d884600ab033fe5c89f15027f57e6798a5b697d840063c0f5",
+        "a9d60abef9d4330892e9ee1c3c619e107a7b74c9b8c23cb6319b4b1f2f467580",
+        "572b1148730368758265e6612e9bec35458a956f4eb42bc0fb2d90187189d117"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "samarium"
+              "cruciblecraft:prefix_material": "black_steel"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "samarium"
+              "cruciblecraft:prefix_material": "black_steel"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_steel/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_steel/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_steel"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_steel"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_steel"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_steel"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:samarium/block"
+            "components": {
+              "cruciblecraft:prefix_material": "black_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_steel"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:black_steel/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:black_steel/bolt"
           }
         ]
       ]
@@ -53,7 +143,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/087920b6ac9cc165",
+        "cruciblecraft:gt6/2e7b524ff252e515",
         0,
         0
       ],
@@ -61,14 +151,62 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/82d727cc8830940d",
+        "cruciblecraft:gt6/d7c45a174c9b5ed6",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/d35623e161ae8e69",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/ffdd566eac7c6162",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/cce196859896993b",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/5d1809f66613e619",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/cf2869b1d42c3598",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/ab4483b58070e2fa",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1099,
+      "duration": 1883,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_5950",

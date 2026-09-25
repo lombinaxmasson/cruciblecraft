@@ -10,36 +10,70 @@
         }
       ],
       "hashes": [
-        "0b972d91bac94d9cc9bda31e594f60a58c16c0c2554558929589dee3b8aa2ecf",
-        "099618eaaaeec2447b56220ce6cf9471f205916779a186f040a6a71a6fbb877b"
+        "cc9e70b7705ec4ee49c7f8aafb7fc25a712406b1e5a60f75505838a53eb36d52",
+        "c1b6ddaa7533ccc6a78909692e6bd808e6dd1786f9468f64098dfa363ba3b441",
+        "2a7ae9cabcd07b746370e9b0796707685727d9051ed0bb7b9cc3133b4790beac",
+        "17956fbfc4b412076d21109ea37183a131784f285601fba939ed88b9440e8c87"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "void_metal"
+              "cruciblecraft:prefix_material": "desichalkos"
             },
             "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:void_metal/rod"
+            "item": "cruciblecraft:desichalkos/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desichalkos/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
             "count": 1,
-            "id": "cruciblecraft:void_metal/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -49,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/23f7635e07aced5e",
+        "cruciblecraft:gt6/511bf23260b278ad",
         0,
         0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/589757e70e3ed6e6",
         1,
+        0,
+        "cruciblecraft:gt6/e96173c4464bf90c",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/d172762b1786bd75",
+        2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/265cd82ec4a45014",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 168,
+      "duration": 759,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        6,
         0
       ],
       "output_chances": [

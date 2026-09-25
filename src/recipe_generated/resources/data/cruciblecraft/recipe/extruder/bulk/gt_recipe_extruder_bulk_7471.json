@@ -10,32 +10,70 @@
         }
       ],
       "hashes": [
-        "717cd0cf9787269baa63c7767dfeac1c827919fc462e490565f56bea4180afa2",
-        "17d65404f6b418be6a21c23a6413fdb28600fa1bc8c29ad12d642d2d7793f84c"
+        "e4a8a68e8391fccb62994adea50fc1abcac017c2ce775cb40501b4879a53e523",
+        "894f431b6933a7360dfbe9b0f2cd131048427141614f35c698f1d58d59038552",
+        "3905d51e5e07893187e2e88f6d001eb44d48d82f0a7b111e847932af2ecea407",
+        "58f82fa57fd3cd2413df8b27db96c9d0c355159607e1597c1c5b6a51472e8b99"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:red_steel/bolt"
+            "item": "cruciblecraft:titanium_aluminide/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:red_steel/fine_wire"
+            "item": "cruciblecraft:titanium_aluminide/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
             "count": 1,
-            "id": "cruciblecraft:red_steel/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -45,22 +83,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/554207ee1b5c5508",
+        "cruciblecraft:gt6/f19806221c50c157",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/202963e0a0cef1e3",
+        "cruciblecraft:gt6/fac17dc02338f342",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/bba016ec85466fd9",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/5aeadff402f45a8d",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 857,
+      "duration": 473,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        6,
         0
       ],
       "output_chances": [

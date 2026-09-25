@@ -10,49 +10,89 @@
         }
       ],
       "hashes": [
-        "fb6c9529c1762bf21f9d4c26867f595ceb9cb24928159328b02dfd2a7e2254ee",
-        "d143fa347bb6767d29a4c6189983db9bd34d78fa71c7bf4bef8ea12eb4d67c42",
-        "64d8ec4c5d6b1fb5cb3aeec069d52b268b7ffe1043990988d3b57f6ffa20df0c"
+        "070c9f3a8529c7f853ad201a9b46e63711a09dd104a17c6216b946150c4325d1",
+        "39b1f53413c5184381c16af58e74555f80db6be819cad97e175ca85076496974",
+        "0c8278b3c80b57abba64b9d4eef6406dc20339227ca0e8364558e31090ed62c7",
+        "022a08955278eb27e6f4fa10c093e9c726adcc2bf2e8f1ea85eb683396ae3a65",
+        "50699c5498ac649276476d318bc6c07e9a3b9b7d41e9d4afcc279c23796efc1e",
+        "0685fa79b619c8cb65f1dcc9f76d75589ce2d583fc30148ce4e104b66b1db126"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_red_steel"
-            },
-            "items": "cruciblecraft:quadruple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hepatizon/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hoe_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "meteoric_red_steel"
-            },
-            "items": "cruciblecraft:quadruple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:hepatizon/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ],
         [
           {
-            "item": "cruciblecraft:meteoric_red_steel/gear"
+            "item": "cruciblecraft:hepatizon/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hepatizon/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hepatizon/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hepatizon/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
             "count": 1,
-            "id": "cruciblecraft:meteoric_red_steel/block"
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hepatizon"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_saw"
           }
         ]
       ]
@@ -62,30 +102,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/a3e5b2f7602045c3",
+        "cruciblecraft:gt6/585f6f5669a969b6",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/7fc92daa3b564535",
+        "cruciblecraft:gt6/a0ec73611cbc0620",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/0dea11ed10e5f802",
+        "cruciblecraft:gt6/2321db9014dbdd3a",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6b79e6734dfbc1d3",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/0a6156d0b59906dc",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/29d92f6641ea625f",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2765,
+      "duration": 453,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +160,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        16,
         0
       ],
       "output_chances": [

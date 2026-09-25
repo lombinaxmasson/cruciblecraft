@@ -10,40 +10,62 @@
         }
       ],
       "hashes": [
-        "2f8471d72d8a691e6670ee6da342c2433e0724a5dc7d6bbcd191a9f5965a485c",
-        "a4f68f1dcf923ac8b951159675ea4327e3a01202ad6f858e96c312ba38deed48"
+        "78d71774f1fc3cf97f4eb869d5d187450dee382bcced0aa595669d732a757d51",
+        "43fca624cfd2ddfa93cb9d3f2ff14df409558286fc240f0857459ee207b1a48e",
+        "f7db68885d482f683d58d0423a1b82005e30900ab3a3d9f4c053d919f99a5fbe",
+        "60d1be3312bda30ced7e929fc6135da703787bd85e303326613ba0e74f54e7b9"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "desh"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:fireleaf/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "desh"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:fireleaf/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fiery_steel/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fiery_steel/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "fireleaf"
+            },
             "count": 1,
-            "id": "cruciblecraft:desh/block"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fiery_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,7 +75,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/360b8f45ee632dad",
+        "cruciblecraft:gt6/09301270ab7c92db",
         0,
         0
       ],
@@ -61,14 +83,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/12fffc01a04d8289",
+        "cruciblecraft:gt6/1c8fe195569b3b08",
         1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/2c87d99aa085e22a",
+        2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/be832cd87a8f00e9",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 938,
+      "duration": 1926,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        48,
         0
       ],
       "output_chances": [

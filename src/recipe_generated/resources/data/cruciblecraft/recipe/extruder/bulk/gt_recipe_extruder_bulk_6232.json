@@ -10,36 +10,140 @@
         }
       ],
       "hashes": [
-        "fa985363ba4c48dff4962c2df6427cabef888598354ec1ff04ad99cd7c41bb46",
-        "af42e324724fccd24c4ae2d6e101fd91d2341534b5145f387f55ec8526b3154c"
+        "4026dd9ecbd49dc5ce79363d8746c69bac868d6d417c3026b5700edf1e19c825",
+        "6f3a3ec08fcc8882f5cdf2ac9ad1565c873d80e6b605d88bedfdaa123fd002a4",
+        "cd520458dd157bc255ef4731387d92305cc2b3b6dba5683e66111bc72ddfe893",
+        "c233830ff7703e4a95168dbd08f55ad5e5610b7ba9c063c505c29b591265a651",
+        "8bb774390ac92370aa40bdf720da28741bc6b48118c2b19a174ebc32be29f105",
+        "58736f9c0b53889cf9365e778508547572dda4d2af1ea1df8176186af6269314"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:ultimet/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "americium241"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ultimet"
+              "cruciblecraft:prefix_material": "americium242"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium241"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium242"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "americium241"
+            },
             "count": 1,
-            "id": "cruciblecraft:ultimet/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium242"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium241"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium242"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "americium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -49,22 +153,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3355c7fc34377fe9",
+        "cruciblecraft:gt6/fd9d22993b1dcd89",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/267f388ea2073291",
+        "cruciblecraft:gt6/f1ee268c48149e32",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/17d849fac183265a",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/ca1ebc8b86f1dfa2",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/26295a8e54dba546",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/faab078ff278395e",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 900,
+      "duration": 815,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +211,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        5,
         0
       ],
       "output_chances": [

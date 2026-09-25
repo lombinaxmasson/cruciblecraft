@@ -10,32 +10,58 @@
         }
       ],
       "hashes": [
-        "fd0fde735b2b49260aff9ae6d7bea1da0573de77c78bb6fc7390ff4e94dd8000",
-        "df40f25bec119670463745238b672eba32f1019318c2fcb4955f619297589a1d"
+        "4194aee1014c73c5f8888995dcf646dca4d9e6ad4eaf32fa18f21a7c213bb07f",
+        "a9b346a674a52a823c31daa2fe7768e1dbf87c18514cec822417de2135844d0d",
+        "cbc38ce98f992457d13a581036f3f9496a50516498f34d9fca872b58575ecf75",
+        "386d83e579d8f2463c93df572102bee971b025fe8232f3b369e8080695c3d49c"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungsten"
+              "cruciblecraft:prefix_material": "thulium"
             },
             "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "tungsten_sintered"
+              "cruciblecraft:prefix_material": "thulium"
             },
             "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thulium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thulium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ]
       ],
@@ -43,13 +69,28 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:tungsten/gear"
+            "id": "cruciblecraft:thulium/ingot"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:tungsten_sintered/gear"
+            "id": "cruciblecraft:thulium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thulium/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thulium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
           }
         ]
       ]
@@ -59,7 +100,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/726fd69f62cb8dce",
+        "cruciblecraft:gt6/3fadb7e9a66b2383",
         0,
         0
       ],
@@ -67,14 +108,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/c9d64fec269dacae",
+        "cruciblecraft:gt6/90ec3c1dc48a6579",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/7bb699a1378eca59",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/1e67d543adf1b21b",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4043,
+      "duration": 293,
       "eut": 96,
       "item_input_actions": [
         {
@@ -85,7 +142,7 @@
         }
       ],
       "item_input_counts": [
-        6,
+        2,
         0
       ],
       "output_chances": [

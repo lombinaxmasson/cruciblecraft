@@ -10,16 +10,16 @@
         }
       ],
       "hashes": [
-        "36a35d31f960a1bebb1a54342099a414b8cfff5223cdcf52c47ca5d89eea2dcf",
-        "16f08eb4e2c9b19a6b8450b4c178904f00641f375b86bfdefb7fbe9e360867a9"
+        "9fa1b527fc4479be0dea209b17fa335d128ba903c5f90fe0f45587aa707bc2ba",
+        "a3b0b74597c640550197de86dee0c9f7a00d1569848b9ebd37b0af5d97043343"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "sterling_silver"
+              "cruciblecraft:prefix_material": "vanadium_steel"
             },
-            "items": "cruciblecraft:small_casing",
+            "items": "cruciblecraft:double_ingot",
             "type": "neoforge:components"
           },
           {
@@ -28,7 +28,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:sterling_silver/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_steel"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_block"
@@ -39,7 +43,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:sterling_silver/block"
+            "id": "cruciblecraft:vanadium_steel/block"
           }
         ]
       ]
@@ -49,7 +53,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6f38b7f1a9683200",
+        "cruciblecraft:gt6/88ea7a851dc7bf5c",
         0,
         0
       ],
@@ -57,14 +61,14 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/a106a9d106fb45c2",
+        "cruciblecraft:gt6/a49083b84fbdc97b",
         1,
         1
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1367,
+      "duration": 2067,
       "eut": 96,
       "item_input_actions": [
         {
@@ -75,7 +79,7 @@
         }
       ],
       "item_input_counts": [
-        18,
+        5,
         0
       ],
       "output_chances": [

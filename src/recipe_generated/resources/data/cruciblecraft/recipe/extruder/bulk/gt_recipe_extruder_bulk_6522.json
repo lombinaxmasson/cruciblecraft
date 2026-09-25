@@ -10,37 +10,59 @@
         }
       ],
       "hashes": [
-        "5e0a12e4b18896a9705917c48a33e6559905319d41e9ae4301f9f8b2b9cb52ea",
-        "f4b05a06efb19af2833119249ae98248f859c2a4515c8709ddc151008c1f8892",
-        "18d17d604ef90444f5e040dea060ea762aac014a5c6eed20509fc6bd6fe563b0"
+        "26ff545a7f90df79a355b00c58e0d415330483870ba756729b6163bab76079c0",
+        "640e3f63d062a662a321e75fa2ee898d8b452fb94df763692f7cb5f9ae15b10c",
+        "f068b40b33b36271f894102f730758b16b6986ea354523ee32443bbde9656757",
+        "107bf71ca7c9a12d63418b2e26245a7244def39abd3b2a5072b663b7800f22ce",
+        "c47a6b01248eab27265b2596c498527a08ab57f8d41cd7fa84e4371100615c9a"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:rhenium/small_dust"
+            "item": "cruciblecraft:meteoric_black_steel/small_dust"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rhenium/foil"
+            "item": "cruciblecraft:meteoric_black_steel/ring"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rhenium"
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_black_steel"
             },
             "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_black_steel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -48,7 +70,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:rhenium/rod"
+            "id": "cruciblecraft:meteoric_black_steel/gear"
           }
         ]
       ]
@@ -58,7 +80,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d4c21c2d2a1c74dc",
+        "cruciblecraft:gt6/379859b635aca966",
         0,
         0
       ],
@@ -66,7 +88,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/ecbe0a0c2c459775",
+        "cruciblecraft:gt6/1314dfc4999b06f4",
         1,
         1
       ],
@@ -74,14 +96,30 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/9cda9bac97481453",
+        "cruciblecraft:gt6/0e1144cf81e98b95",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/e04be2ec1c14878d",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/15daf2432657cc6d",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 514,
+      "duration": 902,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        16,
         0
       ],
       "output_chances": [

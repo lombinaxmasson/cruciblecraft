@@ -10,45 +10,72 @@
         }
       ],
       "hashes": [
-        "7386dd12fc4542a34203d3308cb920d001450f25ab02c37ae5581bdc4d46d223",
-        "742db5e9d047db0bf290039985eb7ce2faa9f8ed16a49dbf1119aa6a39dfa730",
-        "f4212e03c6b34ca6d378a3c1dec681c8847e222a606781f16bae045e49905d58"
+        "b22ea9928c41ea1e19166fc7ea2b23932b7e704c61ce98546673aa9735fd9dfb",
+        "6e1ff3b2969393f5cde684bad2d5d619d3e96f187b6074f369c50d14b9a29a3f",
+        "c907637406e8de9623345732dae2803df321546e869ddb46f377648fad154090",
+        "f7970aca1ad4524854d14ce568bb66f3ab64bf9de1043774b88226496b62fd35",
+        "a50cec887afa38c179c0541b4307828a228999e007d96ddda6f44690fe85de85",
+        "0239d94bd73e1ecefbcfd6eb872878585424c288af526be380a2ccaeefc30146"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "dysprosium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:alumite/nugget"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "vanadium"
+              "cruciblecraft:prefix_material": "alumite"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:round",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alumite/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "black_bronze"
+              "cruciblecraft:prefix_material": "alumite"
             },
-            "items": "cruciblecraft:dust_div72",
+            "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alumite/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -56,19 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:dysprosium/bolt"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:vanadium/bolt"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:black_bronze/bolt"
+            "id": "cruciblecraft:alumite/gear"
           }
         ]
       ]
@@ -78,30 +93,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f27797494dd42ae5",
+        "cruciblecraft:gt6/3e0abc2d9cd99f6c",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/e5d520c9af1e9943",
+        0,
+        "cruciblecraft:gt6/795e8727f80711d0",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/adcd74ddfdd2f28d",
+        0,
+        "cruciblecraft:gt6/e1c097812c1e3c48",
         2,
         2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/070cb3034c37d244",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/df877aeacd3f3f82",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/cdd924faf415f2f4",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 23,
+      "duration": 220,
       "eut": 96,
       "item_input_actions": [
         {
@@ -112,7 +151,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        36,
         0
       ],
       "output_chances": [

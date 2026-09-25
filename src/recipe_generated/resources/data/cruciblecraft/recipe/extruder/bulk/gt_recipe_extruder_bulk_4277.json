@@ -10,67 +10,52 @@
         }
       ],
       "hashes": [
-        "89384f96cda7edc8dfe49c2e4731b28c236aff0d788ba536e7659dade4bd310c",
-        "0c389ac56c9a19468ea101f731e7ad4813f14c7db31e59a695e0bc470164fb18",
-        "f79656d14343c34836e9972d30b5d319ec54b525f26cad01f34a22cbc57ba64a",
-        "81c1bda31650203af4ef6f737e3924ffa2b7efe9ccec943ea23183d50e5dee88",
-        "2a3ad26854f633cb8397412e2d1813c7a1f3b592c6522ea56fd565de5d65f5be"
+        "5eae7261c8fc45e1c82e40e37d7d25db6332287976dda6bbca629c14a4d294a2",
+        "7cd5d4ab71a79ab0676166fb66c15f0c88cc9a8a346a49a308d439c535ed0d34"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:nichrome/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:nichrome/ring"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "nichrome"
+              "cruciblecraft:prefix_material": "sanguinite"
             },
-            "items": "cruciblecraft:small_spring",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:nichrome/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "nichrome"
-            },
-            "items": "cruciblecraft:chunk",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
             "count": 1,
-            "id": "cruciblecraft:nichrome/gear"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -80,46 +65,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/d84f2d690a46d97e",
+        "cruciblecraft:gt6/10d2874e154b1afa",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/1e2727a458725c8e",
+        "cruciblecraft:gt6/221c5422fdcbf500",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/a77be15cd48798ef",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/e675427a9802cfc7",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/ea747258d351a761",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 806,
+      "duration": 1957,
       "eut": 96,
       "item_input_actions": [
         {
@@ -130,7 +91,7 @@
         }
       ],
       "item_input_counts": [
-        16,
+        5,
         0
       ],
       "output_chances": [

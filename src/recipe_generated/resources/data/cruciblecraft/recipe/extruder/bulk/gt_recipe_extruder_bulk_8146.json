@@ -10,40 +10,70 @@
         }
       ],
       "hashes": [
-        "24199fd2e49ace8e17489082045b82fffafcb8ce75f5fc6a1a772f61c6c66751",
-        "9a349cdc203822dfd0c7dc30d15b33a11ee92adeae403f38397d365f9b01050e"
+        "34c5e0984c9e6860fe450acab184986ab8521aea5fab0004324a90294b46261f",
+        "6c52db205e096e145aba4b522408c1da9c0aca69f1659346b4f5b37e3a25eaca",
+        "cdeaf258e1dda7e96e796252511079c385d1f8bd634ecf20b881667a3b217fa8",
+        "9f57fe95f09c101164d0d990b6f29825cad36ab55a29ef2427e2a478021ef80e",
+        "dc2c9c51592d2392643a241782ddca01f4c490a401074cde38cf4402e53b557a"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "nickel"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:chunk",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nickel/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nickel/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nickel/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "ignatius"
+              "cruciblecraft:prefix_material": "nickel"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "nickel"
+            },
             "count": 1,
-            "id": "cruciblecraft:ignatius/block"
+            "id": "cruciblecraft:tool_head_file"
           }
         ]
       ]
@@ -53,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/07759e50365f3ea7",
+        "cruciblecraft:gt6/caaa9176714ff430",
         0,
         0
       ],
@@ -61,14 +91,38 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/f299ef70ee003ea6",
+        "cruciblecraft:gt6/025a347b837420de",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/dc4438c16cffcc3e",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/b977f9c97129d59a",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/9e202a577f485405",
+        4,
+        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1895,
+      "duration": 297,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +133,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        6,
         0
       ],
       "output_chances": [

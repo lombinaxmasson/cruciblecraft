@@ -10,41 +10,84 @@
         }
       ],
       "hashes": [
-        "29ecd53545847785e9832564cf7afefe249a45b967b9d1148831e71423b28a49",
-        "21f2f2b4b4bd5f4469bf47a11505453c1f5917466418f207cc746356f2956866",
-        "52c1a928ac515c89eb747e1abfe661684b3e15bc3c2872ead78df835007a7c5e"
+        "ea5a94a8f89a9653dac0566c680344edc0341383c2830415e5385b794eaa2425",
+        "75ce779cd0f73bd6765def7a6c42f6fcdf4d6185bc4b97820d3f62f18a13ad6d",
+        "a5dd2d05d5b52a9049933ea3af624b2d4a85dc0f47913bf9fcd204946fa9f377",
+        "d16554a68c28f81935435c6c4d9e163110a8fe8ce4050a36ca6d4c4828922553",
+        "9c9cd782b42a3ed3ae48d0edfc19598794cd7a011c2ec241124270e945ee8370",
+        "6409aad18cfc63808dd279e59274d3667ada90a9f46f95e48ed8a700b59589e3"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hssg"
+              "cruciblecraft:prefix_material": "meteoric_red_steel"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:hssg/gear"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_long_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hssg"
+              "cruciblecraft:prefix_material": "meteoric_red_steel"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:billet",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_red_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_red_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_red_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_red_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ]
       ],
@@ -52,7 +95,43 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:hssg/block"
+            "id": "cruciblecraft:meteoric_red_steel/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_red_steel/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_red_steel/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_red_steel/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_red_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoric_red_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
           }
         ]
       ]
@@ -62,30 +141,54 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/2766ed34c0edc55a",
+        "cruciblecraft:gt6/28a869187faca907",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/318c44c880a3afb8",
+        "cruciblecraft:gt6/f7b14287f84f31f1",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/c811f74c9350a755",
+        "cruciblecraft:gt6/68539fb2aa81f086",
         2,
         2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/3d132c848b1defa8",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/b78d127c87af389d",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/ada9931f633efa6c",
+        5,
+        5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 5074,
+      "duration": 308,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +199,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        2,
         0
       ],
       "output_chances": [

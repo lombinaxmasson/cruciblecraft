@@ -10,32 +10,70 @@
         }
       ],
       "hashes": [
-        "80c47d2b0cb853e5f10b5253bdaa344f862e485bc0655273354423f1f04b69c3",
-        "2c18a338833f2946711abe2744f2df1b1ac9eb906e3736f86a67ab49169bd1f1"
+        "5c1705e0fa2d5a110fb82116039d622cfaf80a46bd2985fe5760b07c5f64b335",
+        "b06650b700758c9f614bec127cf299fdfd0c31b1acfa13347514f2da7e6cdc7b",
+        "7fba17e54c143295360f193b5155a62d9326060065548f6af0dd85ae089e0151",
+        "d18305e7106b746977afd075de636b9d21872dd33e622b58a5bc2f4c2069b5b4"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:rose_gold/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "technetium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rose_gold/fine_wire"
+            "item": "cruciblecraft:technetium/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:technetium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "technetium"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "technetium"
+            },
             "count": 1,
-            "id": "cruciblecraft:rose_gold/gear"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "technetium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -45,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/35fd4a7386b0ebf0",
+        "cruciblecraft:gt6/5cc2318019d7a930",
         0,
         0
       ],
@@ -53,14 +91,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/8bc7075061e1d00e",
+        "cruciblecraft:gt6/ddef347bc2a6c862",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/f86491175c680075",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/04ace76f0efcee94",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1114,
+      "duration": 1138,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +125,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        6,
         0
       ],
       "output_chances": [

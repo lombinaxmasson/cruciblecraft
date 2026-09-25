@@ -10,40 +10,158 @@
         }
       ],
       "hashes": [
-        "cbe677cc3f099e6a075f8cbdf13c5f743061d6102dfd3d525504a87e933f0ceb",
-        "cb0b702e28ed9916f24e07f7002fc0258cf3c634f684ddde606af4b173f316b1"
+        "eba6287750dada38aecd08dd804d1b49e728d5e3bf9027d2023bc7872f8d9861",
+        "3f34a98dd71e77d9ef92d7beee9983456ed91d498f0523ed2735edfd5c0a6938",
+        "970c79a17bd55fa966fdf881fb2bb2947b7766605f3f1f52da4b937a796b58e4",
+        "813569a57d536938e88f2ab61a546c3703df9a019e58e7b4891695b7a447b8aa",
+        "b281abff3ef7b9d3c037ffdac916b62946a4c6b67b55c9f1c3e5610f1fc6c32c",
+        "85d31e69d3d95f23d3f685c16ec3d2adfbd7f24c243a8770252b010a04903a12",
+        "0fe4c6d356f559397f8075f0d59a551ac4b20713bf1a8499bd43192b1493e18f",
+        "303d9feb4acfee1031950b0386cd2f52dd96a5ac29480a21eb3a7d70dcb196fe",
+        "63098a1dba178df80e9db7039f2bda79d1993c1989ee3e395f6a17568c5a974f",
+        "a1b1f831454d1547bbe498be098f0be0d0b9f6940d6cca05f7bdb8395486abe8",
+        "241da6b278b9f1b387fee5746f678bd9107811f94be025e63bca4ac91ab4170b",
+        "61812ef1eaa73de314136ec56c6c0d63ebf099e1d108e343edb023bc9d7b192c"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "amordrine"
+              "cruciblecraft:prefix_material": "tungsten_carbide"
             },
-            "items": "cruciblecraft:double_ingot",
+            "items": "cruciblecraft:small_spring",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "amordrine"
+              "cruciblecraft:prefix_material": "tungsten_carbide"
             },
-            "items": "cruciblecraft:double_plate",
+            "items": "cruciblecraft:rail_gt",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:rail_gt",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
             "count": 1,
-            "id": "cruciblecraft:amordrine/block"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ]
       ]
@@ -53,7 +171,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/ede618ad7bf2242f",
+        "cruciblecraft:gt6/36d5f7040c4baca7",
         0,
         0
       ],
@@ -61,14 +179,94 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/eaaf44e0dee02f6b",
+        "cruciblecraft:gt6/b90978c7fd89c38a",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/656a46b2b2b8dd35",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/9112a11b4791991a",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/98a2ead75acf448c",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/e562361d9f2edb47",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/c031d449dd3c5726",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/9c751a30685e84fd",
+        7,
+        7
+      ],
+      [
+        8,
+        1,
+        0,
+        "cruciblecraft:gt6/6585d5cbb084e58d",
+        8,
+        8
+      ],
+      [
+        9,
+        1,
+        0,
+        "cruciblecraft:gt6/973d4d5ce8d2c769",
+        9,
+        9
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/0ac5f0d083d91570",
+        10,
+        10
+      ],
+      [
+        11,
+        1,
+        0,
+        "cruciblecraft:gt6/e6d5ebc7ad2dfcec",
+        11,
+        11
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3231,
+      "duration": 2006,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +277,7 @@
         }
       ],
       "item_input_counts": [
-        5,
+        12,
         0
       ],
       "output_chances": [

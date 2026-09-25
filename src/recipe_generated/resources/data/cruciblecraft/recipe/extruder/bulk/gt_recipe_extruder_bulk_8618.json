@@ -10,40 +10,71 @@
         }
       ],
       "hashes": [
-        "cd9e8c1be6e0e8f0cb8655fe6bd578e651a71ff06428fe8510f866d4c6cd7d55",
-        "efdeb8d6b37adf422d84a4e20a755b1c32eb4d565fe937b14015bdd69cf81b60"
+        "8f55282bf4f4c3f2dc6241a6280a3775c23dae27c3b68c48c453bf1a86750923",
+        "e8182de1af6d279720547e43012822db5469611d39f7ad68c45fc4aab98f0196",
+        "4473425f84909599611019e526235d64b510d814135c9d3fdb748145daedbab8"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "abyssalnite"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:desichalkos/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "abyssalnite"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:desichalkos/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desichalkos/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:abyssalnite/block"
+            "count": 64,
+            "id": "cruciblecraft:desichalkos/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:desichalkos/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:desichalkos/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:desichalkos/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "desichalkos"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -53,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4a7ff8376a8d6957",
+        "cruciblecraft:gt6/533ed4fea9714f51",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/0531937f68b6171d",
+        "cruciblecraft:gt6/bbfdbc784cb99fd7",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/9eea89c20681df63",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2515,
+      "duration": 6575,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8618",

@@ -10,71 +10,62 @@
         }
       ],
       "hashes": [
-        "08ed88c03fdcaacbb8daffe71fecf07a0d014e00866908d69a6ccc3dd8cfd90f",
-        "30b68d7390f44a3ca4579a9c44fccb498207c09dc92dc4e4e4d90e83e6d1386d",
-        "ed8f9e792fa136fdd514ac9476c00e822b2c0e137509e8819ad21d51ad0ecd56",
-        "0e64b53f9f4f650ee0b1ef42222fd11dfac2aa18877749fa4e267780554ebf16"
+        "96eae0ebf8452cd4e452f205b5620b48e3455968e75792abcb3720ff70f91d37",
+        "2d1dc3689c8eefc1e7e438974e6cbd2de2c0a200b50cc806da54efccaf643df0",
+        "3a67fb0120b22b06c2769ec7f25f5a2428ac1e11bf97555c48adc7bee9dfcc9f",
+        "30920a92a42cae5e5b1206761727c5459cb62c42d96a54da5733d9cccd8dba90"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:rutherfordium/bolt"
+            "item": "cruciblecraft:vulcanite/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_plate"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rutherfordium/bolt"
+            "item": "cruciblecraft:vulcanite/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rutherfordium/bolt"
+            "item": "cruciblecraft:vulcanite/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:rutherfordium/bolt"
+            "item": "cruciblecraft:vulcanite/fine_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_long_rod"
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "vulcanite"
+            },
             "count": 1,
-            "id": "cruciblecraft:rutherfordium/plate"
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "rutherfordium"
+              "cruciblecraft:prefix_material": "vulcanite"
             },
             "count": 1,
-            "id": "cruciblecraft:curved_plate"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:rutherfordium/ingot"
-          }
-        ],
-        [
-          {
-            "count": 1,
-            "id": "cruciblecraft:rutherfordium/long_rod"
+            "id": "cruciblecraft:tool_head_raw_axe"
           }
         ]
       ]
@@ -84,38 +75,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/6eeac71a6ba7f5aa",
+        "cruciblecraft:gt6/cfc4d825541b967d",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/045719aa3ab7eab2",
+        0,
+        "cruciblecraft:gt6/fa4697fd4010b468",
         1,
         1
       ],
       [
         2,
-        2,
+        1,
         0,
-        "cruciblecraft:gt6/0512dfbede0a67ab",
+        "cruciblecraft:gt6/5cd0af3023950e1b",
         2,
         2
       ],
       [
         3,
-        3,
+        1,
         0,
-        "cruciblecraft:gt6/d572bfac96a9aa40",
+        "cruciblecraft:gt6/e47fa3f91a4ba5ec",
         3,
         3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 755,
+      "duration": 263,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +117,7 @@
         }
       ],
       "item_input_counts": [
-        8,
+        24,
         0
       ],
       "output_chances": [

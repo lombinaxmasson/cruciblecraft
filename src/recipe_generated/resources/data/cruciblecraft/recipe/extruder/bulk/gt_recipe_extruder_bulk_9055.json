@@ -10,40 +10,71 @@
         }
       ],
       "hashes": [
-        "7095f1a73587b0f9eb91335d9fa53d5329b41ea7edbff38b15629a005b2a57c9",
-        "0936f47f3b50881b480703b90116dec1a61d4059c87da91b3fba874683651579"
+        "be5d9b6430c71ade363aa73b81fcbde9b6aae5d88a8ca7946d0778fd344406be",
+        "bffdf9e074e090509a9efdc4da8b8d3fcd733cae42a984ea3950035d22347cbf",
+        "4ac805032d8d56902cbc1812fdde9ca66e6bb4143f1773de5c28d8b04046c1fd"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "palladium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:atlarus/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "palladium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:atlarus/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:atlarus/machine_casing_quadruple"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:palladium/block"
+            "count": 64,
+            "id": "cruciblecraft:atlarus/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:atlarus/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:atlarus/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:atlarus/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "atlarus"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "atlarus"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -53,22 +84,30 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/8fb4e1dcb0559f39",
+        "cruciblecraft:gt6/e697245c86f064ee",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/54fe626b4ae7e780",
+        "cruciblecraft:gt6/32054038916e0453",
         1,
         1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ed6fed9519607bc6",
+        2,
+        2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2563,
+      "duration": 25430,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        3,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_9055",

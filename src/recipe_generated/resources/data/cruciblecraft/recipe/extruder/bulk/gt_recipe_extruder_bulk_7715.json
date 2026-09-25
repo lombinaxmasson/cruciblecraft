@@ -10,41 +10,50 @@
         }
       ],
       "hashes": [
-        "904ca3ed18d87ccb800fb49d60c548b6b8dec039d16a072d6b5545a3e5a6af16",
-        "5305cb049033424270e4d7d6a78c24a186a7b471bcfb42f07f8527270e088b7b",
-        "e79b7b80d723d2c59a2a9bb8bf205e96bd029d1ff8a1280635da7247da4af53b"
+        "53297ce68275142a108ccede8dfac2354ff1e32a9d4752b247ce3443162d85fc",
+        "00b23dcb581c4d6edfa42a6468aa551979727b36e1dccb426073f283576244a4",
+        "15b95490a1bfcf47d55dc74b50bdfb219c24466a0e6d90b173f62c2c00f50836",
+        "6dccf9435cad44566f7bf9abed9729ace154565a6d1de6c2246119cdd576a13c"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "fiery_steel"
             },
-            "items": "cruciblecraft:quadruple_plate",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:enderium/gear"
+            "item": "cruciblecraft:fiery_steel/rod"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "fireleaf"
             },
-            "items": "cruciblecraft:quadruple_ingot",
+            "items": "cruciblecraft:small_casing",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fireleaf/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ]
       ],
@@ -52,7 +61,13 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:enderium/block"
+            "id": "cruciblecraft:fiery_steel/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:fireleaf/gear"
           }
         ]
       ]
@@ -62,7 +77,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/f386cb2604f587f9",
+        "cruciblecraft:gt6/6190c953bbd5ccd4",
         0,
         0
       ],
@@ -70,22 +85,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/644c6260a6abdc6e",
+        "cruciblecraft:gt6/30d1cbc5ed963abf",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/418f5e02a812ac24",
+        "cruciblecraft:gt6/a39748a050c6896e",
         2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/d05466f5db6c0a7c",
+        3,
         3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 3614,
+      "duration": 1284,
       "eut": 96,
       "item_input_actions": [
         {
@@ -96,7 +119,7 @@
         }
       ],
       "item_input_counts": [
-        3,
+        8,
         0
       ],
       "output_chances": [

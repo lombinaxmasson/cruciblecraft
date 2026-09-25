@@ -10,29 +10,21 @@
         }
       ],
       "hashes": [
-        "844f5be09198cacafc1ce5ea50971b25d15f157570c7e06f2958c995b5f152cc",
-        "7fbed0f19e3c77294d4c22c9778e2be93f2cce59b1e69804ffeb440395d61197",
-        "0425b08fecb823a62d8bdf7e23544fd71c69c5d9c06e91c431a7e6548654753b",
-        "2708950aa868130e6e0de86deaac6b7e9a2f9cbfb0d492b0f8254b47e5948ffd",
-        "059210fc49efc2e3c09f359fd4fd8c07f2b3a9e842ed3d51815f406d079e53f1",
-        "5677d54449fe46055c26eb3db2e8fb1e772620b1cf335a75d66f3c66c44e8d2b",
-        "d7af5902ae6b4a18726387dfc87bd25a2cedf0bebeb1e5b1298b359e944cc645",
-        "b30ef55ea7242cb9d75ae1f94013484fb16615ebaef0ff95fc09302bf353f37c",
-        "b21e1bdf894e1403caeee179f55389807a50c6457d3fa77e9a219bbb0edfaae5",
-        "493ac1e778a343dc10c33cb32009ee9bd6648a84256ee47c6bc14c71000093a8"
+        "637fbcf38d147350929b1117e9de70803be6a39e92ed05b94f5970932bcaa354",
+        "0e8db57b143e28cc3e93ee6f95ad1de8f160f2d0fad3a682784d4199dde1547c",
+        "a00c383d7a26868c1f85085e644a1b41063b1a7822d9325c8eb6a63e82f419b9",
+        "7345ddc6c07e4bcf0d2769993a1fc1f740fd60e2aeecb716cb43a2d638b8ced8",
+        "d0be51ddef3f84989b23dc0206fa5c6f9007bd36e57417de8e6a71be2276fc08",
+        "48bc3c58c980dcb80185e062678cd88846fd47371fb571b42fe6ee0f1b094abb"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:black_steel/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:black_steel/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_long_rod"
@@ -40,31 +32,23 @@
         ],
         [
           {
-            "item": "cruciblecraft:black_steel/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:black_steel/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:black_steel/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:black_steel/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_plate"
@@ -72,23 +56,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:black_steel/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:black_steel/machine_casing_double"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:black_steel/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_small_gear"
@@ -96,78 +68,70 @@
         ],
         [
           {
-            "item": "cruciblecraft:black_steel/machine_casing_double"
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_curved_plate"
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "count": 1,
+            "id": "cruciblecraft:enderium/long_rod"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "black_steel"
+              "cruciblecraft:prefix_material": "enderium"
             },
-            "count": 28,
-            "id": "cruciblecraft:small_casing"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:black_steel/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:black_steel/ingot"
-          }
-        ],
-        [
-          {
-            "count": 3,
-            "id": "cruciblecraft:black_steel/gear"
-          }
-        ],
-        [
-          {
-            "count": 56,
-            "id": "cruciblecraft:black_steel/ring"
-          }
-        ],
-        [
-          {
-            "count": 14,
-            "id": "cruciblecraft:black_steel/plate"
-          }
-        ],
-        [
-          {
-            "count": 28,
-            "id": "cruciblecraft:black_steel/rod"
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
           }
         ],
         [
           {
             "count": 1,
-            "id": "cruciblecraft:black_steel/block"
+            "id": "cruciblecraft:enderium/plate"
           }
         ],
         [
           {
-            "count": 14,
-            "id": "cruciblecraft:black_steel/small_gear"
+            "count": 1,
+            "id": "cruciblecraft:enderium/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:enderium/ingot"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "black_steel"
+              "cruciblecraft:prefix_material": "enderium"
             },
-            "count": 14,
-            "id": "cruciblecraft:curved_plate"
+            "count": 1,
+            "id": "cruciblecraft:tool_head_raw_shovel"
           }
         ]
       ]
@@ -177,7 +141,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/96ad5c4ab1382eb3",
+        "cruciblecraft:gt6/c42758c5a58a105f",
         0,
         0
       ],
@@ -185,7 +149,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/686d0c8642b87f5a",
+        "cruciblecraft:gt6/0de0b3f4b0f9ac2b",
         1,
         1
       ],
@@ -193,70 +157,38 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/2988bc0fda334d1b",
+        "cruciblecraft:gt6/19422fa252cd68c4",
         2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/c5ef85c37c720a33",
+        3,
         3
       ],
       [
-        3,
-        3,
+        4,
+        4,
         0,
-        "cruciblecraft:gt6/88de423113b27a78",
-        3,
+        "cruciblecraft:gt6/f404b9673b597270",
+        4,
         4
       ],
       [
-        4,
-        4,
+        5,
+        5,
         0,
-        "cruciblecraft:gt6/54fb818cb26977c9",
-        4,
+        "cruciblecraft:gt6/d8ec88660cbfe00b",
+        5,
         5
-      ],
-      [
-        5,
-        5,
-        0,
-        "cruciblecraft:gt6/ffe4e216b3049f1f",
-        5,
-        8
-      ],
-      [
-        6,
-        6,
-        0,
-        "cruciblecraft:gt6/55f6e76a64b09744",
-        6,
-        10
-      ],
-      [
-        7,
-        7,
-        0,
-        "cruciblecraft:gt6/e54793215b439748",
-        7,
-        13
-      ],
-      [
-        8,
-        8,
-        0,
-        "cruciblecraft:gt6/55767627557c669c",
-        8,
-        14
-      ],
-      [
-        9,
-        9,
-        0,
-        "cruciblecraft:gt6/868ec4ecfb192aa9",
-        9,
-        16
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2929,
+      "duration": 402,
       "eut": 96,
       "item_input_actions": [
         {
@@ -267,7 +199,7 @@
         }
       ],
       "item_input_counts": [
-        1,
+        2,
         0
       ],
       "output_chances": [

@@ -10,59 +10,71 @@
         }
       ],
       "hashes": [
-        "2d93172481cde5971cdbebe97e178628b591824e11ec3101eb4bb038acaf5c6e",
-        "20657d3c1ba1075605a0dc790104ad90b6d0c36049c1ed68e2e1e82bed79bd7b",
-        "8553c92464f3d52ada24df65e68da67bf8800f91ea15b51e7fc689245016c0d1",
-        "ae9db713359fe5bac301b684182e2608fe111c4f05e6a7246c09b1a34fc338c7"
+        "adfd0297617c82b04bb961f9859be27d2c0ae38d749079965a45d8df3a722436",
+        "31dd4926d5fab7c1af813268c496bdc4043be652e4a9d167c8a0126e2339827f",
+        "c8b113defb0ef26b5693c0ee948daae314b281bd11feed796ce880dc560c3969"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:desichalkos/bolt"
+            "item": "cruciblecraft:black_steel/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desichalkos/bolt"
+            "item": "cruciblecraft:black_steel/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_ring"
           }
         ],
         [
           {
-            "item": "cruciblecraft:desichalkos/fine_wire"
+            "item": "cruciblecraft:black_steel/machine_casing_quadruple"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:desichalkos/fine_wire"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:desichalkos/rod"
+            "components": {
+              "cruciblecraft:prefix_material": "black_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "black_steel"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "desichalkos"
-            },
-            "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "count": 64,
+            "id": "cruciblecraft:black_steel/ring"
+          },
+          {
+            "count": 40,
+            "id": "cruciblecraft:black_steel/ring"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:black_steel/bolt"
+          },
+          {
+            "count": 64,
+            "id": "cruciblecraft:black_steel/bolt"
           }
         ]
       ]
@@ -72,7 +84,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/9319cf1ae282350d",
+        "cruciblecraft:gt6/a4c044e6cb140889",
         0,
         0
       ],
@@ -80,30 +92,22 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/8497e9fec5b1bc93",
+        "cruciblecraft:gt6/334dcdd7dedfd781",
         1,
         1
       ],
       [
         2,
-        1,
+        2,
         0,
-        "cruciblecraft:gt6/8e5f63b0bea67d95",
+        "cruciblecraft:gt6/5b43de0d8b56ef10",
         2,
         2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/7cb391dd6a7b5d5a",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 127,
+      "duration": 5439,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,10 +118,11 @@
         }
       ],
       "item_input_counts": [
-        4,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_9249",

@@ -10,18 +10,18 @@
         }
       ],
       "hashes": [
-        "62e3029e6defd90356adb62d73f4815def98c956b4512618e144a662cecfc0bf",
-        "b9124a56636b703fc6a67e7f36fb8739d58a76a7d069923ae426387caa943a60",
-        "8fa234e39912a7583eedb4d8434285c7bee67fca2d6a1b19f62be074d36e6dd4",
-        "e565329bdcf7ddefa4148a0fd879142619e06a48591d29a808937a1bafc19d82",
-        "e61e5bd3b8bb5f105c6cff06321ac08d85bfea3bd3318b6eb567b084f273ba0c",
-        "6d794f49b704c17972b3320cc51e9acaf556f517c9ec4f0a174f02ac962d3342"
+        "371824c090f834c27f7a4356a7e14c9ef9e831decac370d49eb667d1c3157cfd",
+        "4b43cc43976b478b5a5c20c95b7c0972a4569de1b1844d4b562a899fafd21443",
+        "7db643ec0dbbd2c4bd2ff560ab5365d6f33d80b51a9da4e3041c1589798b1378",
+        "ba02b12b07ea668285dc39e14333e9ee11ec3d9a13037598e58935aa8a0303bb",
+        "ba255b7531c5713274efffdd73f8ed4a1b7e73a9f22280825064cfcb271540ff",
+        "c42cd5cd8ed267762e0c76b6876ccbf53f9327fa509ba202f36ba6adea8eaca4"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "adamantine"
+              "cruciblecraft:prefix_material": "osmium_elemental"
             },
             "items": "cruciblecraft:scrap",
             "type": "neoforge:components"
@@ -32,8 +32,16 @@
         ],
         [
           {
+            "item": "cruciblecraft:osmium_elemental/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "adamantine"
+              "cruciblecraft:prefix_material": "osmium_elemental"
             },
             "items": "cruciblecraft:tiny_plate",
             "type": "neoforge:components"
@@ -44,24 +52,8 @@
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/screw"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:adamantine/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
             "components": {
-              "cruciblecraft:prefix_material": "adamantine"
+              "cruciblecraft:prefix_material": "osmium_elemental"
             },
             "items": "cruciblecraft:round",
             "type": "neoforge:components"
@@ -72,7 +64,15 @@
         ],
         [
           {
-            "item": "cruciblecraft:adamantine/nugget"
+            "item": "cruciblecraft:osmium_elemental/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmium_elemental/screw"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -83,7 +83,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:adamantine/gear"
+            "id": "cruciblecraft:osmium_elemental/gear"
           }
         ]
       ]
@@ -93,7 +93,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/7d354b130ed1b8a7",
+        "cruciblecraft:gt6/fbf5e6ba4ecb3ecd",
         0,
         0
       ],
@@ -101,7 +101,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/55a15cbf224ff1c1",
+        "cruciblecraft:gt6/bcdf85cd05d2e7ca",
         1,
         1
       ],
@@ -109,7 +109,7 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/383c012fe0d5f6b2",
+        "cruciblecraft:gt6/91ba4b3e91963811",
         2,
         2
       ],
@@ -117,7 +117,7 @@
         3,
         0,
         0,
-        "cruciblecraft:gt6/99aa4896c724bbf4",
+        "cruciblecraft:gt6/ee90b30291fff570",
         3,
         3
       ],
@@ -125,7 +125,7 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/3628c3c44758e093",
+        "cruciblecraft:gt6/7a2cf812a88cffc2",
         4,
         4
       ],
@@ -133,14 +133,14 @@
         5,
         0,
         0,
-        "cruciblecraft:gt6/faf0b2e50c7b97c2",
+        "cruciblecraft:gt6/0de96a8bbe1c84c1",
         5,
         5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1743,
+      "duration": 4206,
       "eut": 96,
       "item_input_actions": [
         {

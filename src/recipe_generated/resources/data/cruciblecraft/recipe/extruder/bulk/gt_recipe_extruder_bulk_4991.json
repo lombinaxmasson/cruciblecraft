@@ -10,40 +10,130 @@
         }
       ],
       "hashes": [
-        "37fd5b5ede7b2cbf4c09c26d81d954a44345cfe36f95b766012197f0124609e5",
-        "6d2006febb4cf044075ec408ccb8e5550106d4993a994f0315116071464b66bc"
+        "f080d12575f1f3129025fd59d8896be918c7b202b812a8845f6d9b85b93488cb",
+        "4f832505bdf19db1bf83c6704e0e683fb9d7e9ee2760e79a88dad92f68fd2581",
+        "890868bfdb0eb6d193085e80e342262bc8b959ec9c7cf14c9a9d9ab5ec811509",
+        "c61e9ce1a7e34daef7608b602701fa159aa53158f0afa16a668d1262edfcaef8",
+        "1e4f172a29b07364311027b270b3c8f7dddb6a2ba41d2c76d3cbff20f4c82458",
+        "7fcc1d9a085f369ac6d47e68593f12c1de225a21202db4e6f3b8e44951ebef82",
+        "e25deb73247b6c989cfbd97f545f2b822e78c7bdfe4625766e8fa7f06f755340",
+        "bb1475adf325382a947036fd9fc01db9c927ac45d690ca898d67a138256b8ecc"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "soularium"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "constantan"
+              "cruciblecraft:prefix_material": "soularium"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:soularium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:constantan/block"
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "soularium"
+            },
+            "count": 17,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 64,
+            "id": "cruciblecraft:soularium/bolt"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:soularium/bolt"
           }
         ]
       ]
@@ -53,22 +143,70 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/70bcf8111a88d59f",
+        "cruciblecraft:gt6/77dd13f2e73637f6",
         0,
-        2
+        0
       ],
       [
         1,
         0,
         0,
-        "cruciblecraft:gt6/e384ef0b1264e429",
+        "cruciblecraft:gt6/e6cca479513ab6c5",
         1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/5dbae206e59fc7d1",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/0c6a40b1c3601875",
+        3,
+        3
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/03f234c7b9fbb7bc",
+        4,
         4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/a0a37849e59124d6",
+        5,
+        5
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/d3abe92215dc5433",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/e3259c0f70694e68",
+        7,
+        7
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1723,
+      "duration": 2701,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,10 +217,11 @@
         }
       ],
       "item_input_counts": [
-        2,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_4991",

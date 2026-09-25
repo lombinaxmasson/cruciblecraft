@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 1604,
+      "duration": 700,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,36 +17,47 @@
         }
       ],
       "item_input_counts": [
-        18,
+        1,
         0
       ],
       "item_inputs": [
         {
-          "item": "cruciblecraft:vanadium/rod"
+          "item": "cruciblecraft:vulcanite/machine_casing"
         },
         {
-          "item": "cruciblecraft:extruder_shape_block"
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
         }
       ],
       "item_outputs": [
         {
-          "count": 1,
-          "id": "cruciblecraft:vanadium/block"
+          "components": {
+            "cruciblecraft:prefix_material": "vulcanite"
+          },
+          "count": 64,
+          "id": "cruciblecraft:tiny_plate"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "vulcanite"
+          },
+          "count": 8,
+          "id": "cruciblecraft:tiny_plate"
         }
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "provenance": {
         "evidence_hashes": [
-          "2718e67e3f9d906d1d5b8678f23c6a186f5091ef72333408fdc6c3aec5852b3a"
+          "a3dd5fe8b3dee19454f5e6fbd8ce9f0e0ac252bccec6dcdba02982300dabec10"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_9319",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/5c4e98e2a24454fc"
+      "stable_id": "cruciblecraft:gt6/4faca5ae2402b1d4"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

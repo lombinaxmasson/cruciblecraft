@@ -10,13 +10,43 @@
         }
       ],
       "hashes": [
-        "709684cf7f15afad7aa6addb6ce5f2dc87c6be8500f2379aec9093576c43fc0d",
-        "ed2986473f263ec2c89acd140225e4d591ee15d2e3996d5860b553a691b57039"
+        "54c476ab397221b7112a77e75b02b1198dfe32077473f3c5a54886d134e7c73a",
+        "2c95d6a9b37b81bb03096985c73772ffb1ff7507755c6faed9e070e187c89841",
+        "5fa241238f8d87ed52c12b7d3853ee718a06e23b71119d57b168cd62a92fc1c2",
+        "e0c142fb4fd8d46fdb32caaaffc2049e76e251cc21ee8405c5ea7bff90bd49a4"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:kanthal/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -24,7 +54,11 @@
         ],
         [
           {
-            "item": "cruciblecraft:kanthal/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_gear"
@@ -34,8 +68,17 @@
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
             "count": 1,
-            "id": "cruciblecraft:kanthal/gear"
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ethaxium/gear"
           }
         ]
       ]
@@ -45,7 +88,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4c5257cd9d019b81",
+        "cruciblecraft:gt6/a62066359123082f",
         0,
         0
       ],
@@ -53,14 +96,30 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/a8eee375b864eced",
+        "cruciblecraft:gt6/394b4e07132f6960",
         1,
         1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/20d67489c373919f",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/e52597a73afd2ddf",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 516,
+      "duration": 7520,
       "eut": 96,
       "item_input_actions": [
         {
@@ -71,7 +130,7 @@
         }
       ],
       "item_input_counts": [
-        32,
+        2,
         0
       ],
       "output_chances": [

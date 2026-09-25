@@ -10,63 +10,49 @@
         }
       ],
       "hashes": [
-        "0d6ea324e2bf81e3d47da6571076d91a3af24a1e3460123dadb7ba6d080a1912",
-        "501000b6c3194de5d71ef5129813e2fb1e913a519cbf8ceb79889fd702786d3e",
-        "2b9d0f1926eece5238639f1dc9311b2b79f4f811c5c766cf26b528fec522021e",
-        "1de1a10cac2ceb126c19060306394f66b0a49446a58d48a86ebe0a1e443f268f",
-        "afe896ec2267892eb8b27a27b3b1d03c97b82abe206caddf9f8e7884246d5ce5"
+        "6d28e3823a581306aa93f5e5da4b346ec44c063e0e5563b72d01d7d7c5ed5abc",
+        "d0b8b18f763d1e630e37fcd250b38ed60b6456d2cdfb69f673b7c42f8304f719"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:hafnium/ingot"
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "hafnium"
+              "cruciblecraft:prefix_material": "aredrite"
             },
-            "items": "cruciblecraft:curved_plate",
+            "items": "cruciblecraft:dust_div72",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:hafnium/plate"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:hafnium/long_rod"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:hafnium/dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "aredrite"
+            },
             "count": 1,
-            "id": "cruciblecraft:hafnium/block"
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:aredrite/rod"
           }
         ]
       ]
@@ -76,46 +62,22 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/84e55baaf1253899",
+        "cruciblecraft:gt6/653631a5b96be3b1",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/de7b050841b169bc",
+        "cruciblecraft:gt6/84b165350c6db2db",
         1,
         1
-      ],
-      [
-        2,
-        0,
-        0,
-        "cruciblecraft:gt6/5ae7f487e9d8b536",
-        2,
-        2
-      ],
-      [
-        3,
-        0,
-        0,
-        "cruciblecraft:gt6/49589c96fb106b0b",
-        3,
-        3
-      ],
-      [
-        4,
-        0,
-        0,
-        "cruciblecraft:gt6/8bbce363837a791f",
-        4,
-        4
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 4091,
+      "duration": 171,
       "eut": 96,
       "item_input_actions": [
         {
@@ -126,7 +88,7 @@
         }
       ],
       "item_input_counts": [
-        9,
+        36,
         0
       ],
       "output_chances": [

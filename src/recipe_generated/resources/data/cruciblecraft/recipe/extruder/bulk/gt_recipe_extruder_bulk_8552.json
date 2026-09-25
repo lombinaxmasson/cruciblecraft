@@ -10,18 +10,23 @@
         }
       ],
       "hashes": [
-        "b768b8807f2d8799d2608c73bd57d4c2cacb14d3e7d95d30f72079f37417ceeb",
-        "24539039beac05ba5514c777932d0f17f0a8b8785660c6396441f104ec9a1229",
-        "3a9674697dd9f770781e5c880b3ffb6e2216daea2ca15be75f4d422faa92c9bb"
+        "d9a5b3e443ca9a2b36de00683e72de37c107a4cd5d8904f7cd2faef56609f517",
+        "c58b1655890a73c2f65347f30e76f351948e99aa306bafd1ebdf14be8922f369",
+        "eaf149552ade68d64df2d3cf01d581a6466c1cea0ea7d4866b3530960f0eb357",
+        "3133513a6fbe386e7d665fc0f02dac56603686b6edeb6f17437b51b7622f9d0a"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "ceruclase"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:titanium/quadruple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:titanium/quadruple_fluid_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_bolt"
@@ -29,23 +34,15 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "obsidian_steel"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:titanium/huge_fluid_pipe"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "actinium"
-            },
-            "items": "cruciblecraft:dust_div72",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:titanium/huge_fluid_pipe"
           },
           {
             "item": "cruciblecraft:extruder_shape_bolt"
@@ -55,20 +52,28 @@
       "item_outputs": [
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:ceruclase/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "titanium"
+            },
+            "count": 64,
+            "id": "cruciblecraft:tiny_plate"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "titanium"
+            },
+            "count": 44,
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
-            "count": 1,
-            "id": "cruciblecraft:obsidian_steel/bolt"
-          }
-        ],
-        [
+            "count": 64,
+            "id": "cruciblecraft:titanium/bolt"
+          },
           {
-            "count": 1,
-            "id": "cruciblecraft:actinium/bolt"
+            "count": 32,
+            "id": "cruciblecraft:titanium/bolt"
           }
         ]
       ]
@@ -78,7 +83,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/60acf96b548e54e2",
+        "cruciblecraft:gt6/96bac4928fb7731a",
         0,
         0
       ],
@@ -86,22 +91,30 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/d103e2005192e220",
+        "cruciblecraft:gt6/7ee9bc8c511700b1",
         1,
         1
       ],
       [
         2,
-        2,
         0,
-        "cruciblecraft:gt6/bb42bdcc790e7038",
+        0,
+        "cruciblecraft:gt6/f94b88a02e2121b1",
         2,
         2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/9c1d133180b992f1",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 21,
+      "duration": 1386,
       "eut": 96,
       "item_input_actions": [
         {
@@ -112,10 +125,11 @@
         }
       ],
       "item_input_counts": [
-        9,
+        1,
         0
       ],
       "output_chances": [
+        10000,
         10000
       ],
       "selected_source_recipe": "gt.recipe.extruder#bulk_8552",

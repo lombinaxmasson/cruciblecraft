@@ -4,7 +4,7 @@
   "relations": [
     {
       "can_be_buffered": true,
-      "duration": 94,
+      "duration": 5869,
       "eut": 96,
       "fluid_inputs": [],
       "fluid_outputs": [],
@@ -17,25 +17,28 @@
         }
       ],
       "item_input_counts": [
-        18,
+        9,
         0
       ],
       "item_inputs": [
         {
           "components": {
-            "cruciblecraft:prefix_material": "naquadria"
+            "cruciblecraft:prefix_material": "atlarus"
           },
-          "items": "cruciblecraft:dust_div72",
+          "items": "cruciblecraft:billet",
           "type": "neoforge:components"
         },
         {
-          "item": "cruciblecraft:extruder_shape_ring"
+          "item": "cruciblecraft:extruder_shape_hammer_head"
         }
       ],
       "item_outputs": [
         {
+          "components": {
+            "cruciblecraft:prefix_material": "atlarus"
+          },
           "count": 1,
-          "id": "cruciblecraft:naquadria/ring"
+          "id": "cruciblecraft:tool_head_hammer"
         }
       ],
       "output_chances": [
@@ -43,14 +46,14 @@
       ],
       "provenance": {
         "evidence_hashes": [
-          "81bc4c2815bef72b7ac493f03acd970dc6ae0225271a8713aec759ee5351fe42"
+          "431009a17af9c9a12935f7d8f512d6e745e5a2914fedd178bf15c2a4d065abc3"
         ],
         "selected_source_recipe": "gt.recipe.extruder#bulk_8194",
         "source_kind": "SOURCE_DERIVED"
       },
       "shadow_order": 0,
       "special_value": 0,
-      "stable_id": "cruciblecraft:gt6/569212b21463f26a"
+      "stable_id": "cruciblecraft:gt6/864257321aae9457"
     }
   ],
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

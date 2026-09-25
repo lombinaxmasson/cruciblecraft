@@ -40,9 +40,9 @@
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder
 
-## runtime_ready accepted（98）
+## runtime_ready accepted（99）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -136,6 +136,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `machines/slicer` — Slicer — [切片机详细计划](../history/card-plans/closed/切片机详细计划.md)
 - `recipe/gt6-bulk-capacity` — GT6 Bulk Recipe Capacity Gate — [GT6 批量配方容量门详细计划](../history/card-plans/closed/GT6批量配方容量门详细计划.md)
 - `recipe/gt6-extruder-bulk` — GT6 Extruder Recipe Bulk — [GT6 挤压机配方批量详细计划](../history/card-plans/closed/GT6挤压机配方批量详细计划.md)
+- `recipe/gt6-extruder-remainder` — GT6 Extruder Recipe Remainder — [GT6 挤压机配方补发详细计划](../history/card-plans/closed/GT6挤压机配方补发详细计划.md)
 - `registry/catalog-modern-ids` — Catalog modern IDs — [目录身份现代 id 详细计划](../history/card-plans/closed/目录身份现代id详细计划.md)
 - `registry/hybrid-material-identity` — Hybrid material identity — [材料身份分层混合详细计划](../history/card-plans/closed/材料身份分层混合详细计划.md)
 - `registry/prefix-material-component` — Prefix Material Component — [材料前缀组件身份详细计划](../history/card-plans/closed/材料前缀组件身份详细计划.md)

@@ -10,37 +10,41 @@
         }
       ],
       "hashes": [
-        "d6e6bbc1073218601361ccf138c1bff2d1b4e9eeacc0b9ad22939d5828b818e6",
-        "f21517c97b68146a554a1d84742deda2a98036648b58c69ace293914bdf964ed",
-        "2b44dc072067e1fd3be212f1ff804b7e9af4d9deb325e3a32c0cb3c70aca6440"
+        "7079e6e450708f372680f5e9e584df0c83f35442dd80de888ffab348e744c192",
+        "15335610cbf4291b52f6fe5457ee063209911e3269421dc06ec52a953f79cbe0",
+        "142f6fe35646e741fccd2223f625c2f256c24c37d6ed2ed3c25e95873f366d23"
       ],
       "item_inputs": [
         [
           {
+            "item": "cruciblecraft:steel_galvanized/fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
+          }
+        ],
+        [
+          {
             "components": {
-              "cruciblecraft:prefix_material": "dysprosium"
+              "cruciblecraft:prefix_material": "steel_galvanized"
             },
-            "items": "cruciblecraft:chunk",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ],
         [
           {
-            "item": "cruciblecraft:dysprosium/foil"
+            "components": {
+              "cruciblecraft:prefix_material": "steel_galvanized"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:dysprosium/small_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_huge_pipe"
           }
         ]
       ],
@@ -48,7 +52,7 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:dysprosium/block"
+            "id": "cruciblecraft:steel/huge_fluid_pipe"
           }
         ]
       ]
@@ -58,7 +62,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/60f96d2cbd793214",
+        "cruciblecraft:gt6/089a6baf08fd8ce2",
         0,
         0
       ],
@@ -66,7 +70,7 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/a57cccf80604aebd",
+        "cruciblecraft:gt6/d5ee6b3e77c53d89",
         1,
         1
       ],
@@ -74,14 +78,14 @@
         2,
         0,
         0,
-        "cruciblecraft:gt6/eb36decd124e5e33",
+        "cruciblecraft:gt6/bfd2ec91e0f103cf",
         2,
         2
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1648,
+      "duration": 2814,
       "eut": 96,
       "item_input_actions": [
         {
@@ -92,7 +96,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        4,
         0
       ],
       "output_chances": [

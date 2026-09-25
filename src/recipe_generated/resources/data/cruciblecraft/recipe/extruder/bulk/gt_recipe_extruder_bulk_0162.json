@@ -10,130 +10,287 @@
         }
       ],
       "hashes": [
-        "0e85e41f131a0242333b37d54ae29e2d3b3fefedfe48c8b25f3ae59efcdabaa8",
-        "7d3e719f717c940015ad7330fa1e67a7679c470394c7e3c991a4c6ba3fe08d3c",
-        "1e3c62c1060c30d544e5aaeb878733f054e3e4c74b6cb5d1b2d0071d67748227",
-        "c41a9acf5de384c6f74b8c35bf4fb647fb43b1b033036153f98f3b4a7c1036b8",
-        "f1982cfef6af63e650ffed8e13d6cbe8ffb3b6c7e91f501b83204d1362f05b4b",
-        "cf1c9647646e3bda45d0ffd2e0c0e26c09ba3e5da95f0e82c9bfc61ada22bf47",
-        "62bea6d8f0798545c2d0dc43f1fd918991be3bc7fc9e152d07941190c50d8645",
-        "82c9ad6606cabf38c5d156f2e8b2c3721253a8bdc416e31813a343129234fdd1",
-        "a4ade3f8b07eca8ea1b0cece1ba82d3474f4bf42de97c6c0dc42a0a7ee72778e",
-        "77024d67a8b60a08cbca5f79e4e4853bd95fe4de151d509369ef45d783fb1987",
-        "589bdb8cdfb9dbec6a549557c60ff85b73cb51d4766c4786c7229ca6229d6b25",
-        "0273331fefd863c72ac253553872da0b739e11ba567d8d3c0857270ddde36fc4",
-        "f0766ad43ad6d239d4e25a7e18f5f10b04f904184226a15684cc3d8df7dfcbe8",
-        "6ef73e1a68bac0e0e5815e774536e904c4e16a6881b81676a570dfb258142570",
-        "3fec8c7e3cff237a20d1585b83d827553fcba8030b9444a04c4d8d640afb1c7e",
-        "c5010bc712c721e64cf853b72695ed83543156b0c5189b18cc6562871f8a3af1",
-        "e1e3886c462fc0c6e7bb9b516f93abafd9ead1c68648b2509302be645776f5f9",
-        "bf7427113eeeab2444bf3ef6d6d02694c9517f81dc7344a83c37072c1d53a4b4",
-        "b2f723dab86bc690004f2f1882acd39fdbc0635375fb6c2864e101eeb12689bc",
-        "0eb4bd1ac180ffe0a325b5b5bce4330ccab2fba7f2a5f92d57f2ae373f98ffb7"
+        "4b7dc11049670f15eef67734278429fa03d90344d48028b943d1abfa60446eaa",
+        "1ec3cc19806b9669f7cec820bf61ae2e1a9ecd5fddabb23711cf268b6a80b2df",
+        "76cae088bf67792b0ae386812f5ff76ee82395c2b3711dfa2a049d4eea39acb6",
+        "ee385524597f56253b8edceb5613ac7952ce7f3952633eb51064dd874da45abe",
+        "d5f544329a94b106bdf7e24c4e61d0fa6e50940b5d9d2fcfffd7f4d01b8a2915",
+        "4a881ac4517bbbc3bdbea0b87b958b97e7d9309489ec97ad517628606c545869",
+        "94ef4756911c4eec45014f03c700203d3a32b0b3c45467ec7009b93050598e4c",
+        "4efe35b9a60d896f818413910e8814e1df486b77cdd8b1ed0994b992586c6288",
+        "4a1241c8adceb45396e6674c9581bd6a009f5d3033a94526fe5c6872362f9344",
+        "059cf1d3e148adc94fa0e3e17aca1615edb3ce7893f6d95086a38fe6623591fe",
+        "9ed9a171c0afae9f8cbd818a2f48888b09975dbd9f8062d40f29594ef5288d51",
+        "8c9f95fa01841d9216bcf71f63a855ccfeb15e3657313afa87326d21bc7088ec",
+        "488c3d68ce5f7055715a0949f763d42c6aa215f00a70e30acc7fb207cd06242b",
+        "764b4cd0513ee597ef4d3c3a7ac35f278bcb68becd26f45cd4bc98a4cdb441e9",
+        "40d6b755da56bc692d69d59772c7b4e186146753113f2d649adf02df060794f8",
+        "f4baf6530e0e5fcc0b591c797d09251747d03be6a02d69c1d8e293bcd259f537",
+        "dad34fbca1289a074dc3ab925ca4caff4bd8824bbb60120b4b8fc5853e0bca79",
+        "c969e734b8060f2ca49de23c47d5fafd645e2f7f6214638601a91c2640785dd5",
+        "75ae42e6dc8af76a3186f8d1ee871814287482b42f426656650dae359eb11bc1",
+        "9bb664dbd283bf202b510405305d54f45afd2f4fc19c8eeb2d8439497c523093",
+        "4b0c56f10860f1e0a87faf1b651126a5a581ee56c4aa9ae9ae66828b663e7d9e",
+        "7d491e2dd19184397cbab9927ff57d619b08c70637dfd6caaef7cb9ddd5cdf32",
+        "8f0697a19b708cfdb760d1dca6ec001cb11c72d3e99f3f5c2c2645e71a534ffa",
+        "cb639a9e7c0352403bff6a59c6b9cf15ac79192038fb43c57b1a83de8b1611f2",
+        "aaa90763054de6ecc725f07809656ce854f6a5b6abfe50a724dd275fd4467ac3",
+        "68bd53ce92f654cbafdefaf88ce10fe9d1b6b354ed7eb38810b0cf9a17c1f635",
+        "a11cbd2a5f39c6fa233fd1278f31de26624a2045bcd8c63d78b8c3c7e19c41f5",
+        "029c725f6861284172167c3522cac06d842ccc5914318bdeb9a61a226e7dc7c3",
+        "1ade0365b28a9b3b0e8acc4dbcf460320b55b0212dd8947644b2673b29e9ec3c",
+        "b0d819869209c2dfc3fc7484faa41d69d0540d76e9d36e48a3b2be63ff737ee0",
+        "b326f87809a02b01d583d8106f7840b305c5d4107cd35f95a20fd2485b152a4d",
+        "526579d3759d43be2c761313e9b99a5e15077ec23aa0961e314d96602f4b4f56",
+        "6a6c001c40a3b41c451b830aa3c66f464a02a9174217414c98f69fcde243653c",
+        "8098abbece7e0c0c93f8406881fe1bea6e36e361234179caffa08ff59e302b6a",
+        "660cde993a0f54c0be9ba4c82815c6d30ca077dd443a8e790cbcdee105e4e753",
+        "fc14c0f269599b4320e42d4fe69c22e0664402443a240c4674411c80a2951d0c",
+        "8672833626ce28731c51b0d4ac6cf9f099f7a18adfd287161da003322d9b3748",
+        "6768e88bd1496153270151e491bcbfa0c333c6869c5dfebcc23e0b7d92860b18",
+        "2186bf635e31deb6d40d03d0d3c4a3f0add14a3369268785a26d79934d342ed4",
+        "daf00b4d2d24a3ee6632cb9a9f7c9002f0e62436a4df1b0a46ca6277a985d72a",
+        "19ce4e4eaf1e62805db17206e5d389998e79cb268fba5d7f9cd3e55834163ea3",
+        "9eec9c44388fa41839ac41ee202b9c53f8f857e0995d84bce8d8336867f7aca2",
+        "b0b9c4d4c3ae605bfebb2a4974d951bfc789225072ce22d0eb961b1e4446a685",
+        "e76bf2ed3696e1e8578d7d738eb3fae59edced8988144f8bacc4cdc3e2f4f59a",
+        "c13d7fa6b280eba61ef48f07c877c191d9990f26909e14476ae8d2aa14a2d97d",
+        "689c6ce0d32fc9c6ad5e9cdabeb7a11cb23816789deb4d0c70c87a4b1faefcaa",
+        "9de385172b4e811f265769f8d114b752538d7255d644c1160da56b6f0429dd59",
+        "4272351d4da5b4564c6bb7598be662ce792dd442960a7e851873a883eb3fdd9b",
+        "14dca3074a33c8668a15b73a631f1d83962f241c3b2e110a96a5fad28f329ee2",
+        "4aaf8c853611385c662016678d10a3481ac129401bf98554e4a23133964cec85",
+        "0fd46da1e29d6a615121eb5f651b1524e9deb1e4b7239605b04b1144f369d8fe",
+        "36d938ab7741abb5017c407533041518e8aca645ceacdd238663bd20ec79dfb5",
+        "8e976568020a6b5d58f895fcb9a9baeeb8a9fe15f173bbfa199d1dc025f3ad1d",
+        "368f51414775e9576ff33e8cf5acfa0ebf08da780bfaf55cbbd417632d330df4",
+        "27aa1e807c894839348330286c49baf675174b0bd7652f11acc41895e1df8760",
+        "8dcbb9f245a549ce6987186173cd6674ae76a9b57e6d3e11df8ce6f678515c94",
+        "da767ed811cd55ee034b3362a22251f14fc73440cc31e6cd8e186e2adf24a7a1",
+        "562bd0be96f382d131ae04d8bd02bba3413dbf78cb708d8ddbdc6ba4845c38fa",
+        "4414fcdba0138d829825053aff882f25a5f36a0f50fb0b4b020190b2ca147add",
+        "2dccace7898e23f6b3b089500ea75e063e8094a486435e45a0793c02f5623944",
+        "815999b6e551bacd6d5f0793f9bb5fbd4c453e814744f59815a9e7ff414f46ed",
+        "2a0e4030f589289ddf395595368d9b9901e8fc3378db13b002cd19eabe16952a",
+        "c5b4454d60904ca3e3157040363c6a38a63d93d2c21cdf7176456bddbea8a551",
+        "b994ab591d25ede2b173efa8345ca8d9b99b84a7ed80f9855005d215c31350e6",
+        "6651a5ad342896e6e7cc03a4092b3fe2215d87fbf13688a5699ff279ada7baf5",
+        "f9cf6e8f116979bb9fd66e58f01e3d658fcaa97a5f11452a13f08989fb6d27c1",
+        "87544eb9c149282a0f548fdd1ff761338d6311a7b29ecd97c111e758c036ed14",
+        "fda86480bbc16eeaa17b8e3cce6dc30f3a2dea298ba14bd94a88a0ab7acd104d",
+        "570b496e823bf30b53134830fd0a54bd0ed52859b3737f841d8e9da4a6607ace",
+        "1b4dac081428d909c5e3b3ddd2d7fbccce858567d9dd904fcad238f98b0fba11",
+        "9e8a1cdb24113ccae9c00eab0df65556b3f04701562f961af230478970fc0ecf",
+        "a353398e041ff9ec04283f0e7d80d8b293b11cda9633da3c03c914fa3f78e285",
+        "5675f70846930d4d87f13b890a413c25d15a7b90a9d42364eee3ad75102df533",
+        "51b5d741399d94d0e392d25d0e79aa3579fc0b1eccea3fe9f5d6140bce45f939",
+        "db149223774fbd0ad14817bfcb21d1a5d3d2b4ce04d2b58d2abd55362099046c",
+        "86da47b84ffce72dca8257f8f636a1cc005e70f2d7b8d8f8a3dbf62e41e9b124",
+        "d50f75d618d9d4e7b84c13fcfc9400720d0c66439bea41b2809d817f66f24062",
+        "49d3bc4f6fc974e715458b6e2d81584114a5bdf1df0d6b6d0bc5402fb110f7a0",
+        "4717d424a9a11a37a3c0dd895875565cd745d9969b5e15797ad9da7359681154",
+        "d7038fdf5a1473694592ff6ba448758de35cb259cbf3334b64f9d7e9f8464d34",
+        "97097c38de6d14c1bbd22ab81aa568c9f409e181062bb2acb844f84902496280",
+        "219c9fb97cd1773d0e260cc38a52d97ff9282f9cd1f3e8da2e2c2ff3d26f68d8",
+        "db1517138733c02a051987d0f7e6bd9700ff3b8b95826ca9c40975457b3d2125",
+        "09673d1051841ef096f450e05e381227939333d3779ac8c7720e6c89050aef2f",
+        "dc757e8d2cae070d9bb25bce49c24db0e32e28353ab675fccb80d2f8eed9dd9a",
+        "a65d1807c8135e09d84562c829f42d1edd74d85e84b2939736b4384f50ba5c9c",
+        "ca0d4da9b9aafc3085d591376ba5c8fd6714956a74f8440ec243bdfd9ad53620",
+        "714317185b1ab3721e2ab172f36012eea3426ddcada7b422f5e59822a7e05d37",
+        "05890d3f34c15ff80815247f835965f872f830b1ba7ae8a96279ee5e504343ec",
+        "64560fc05155ddbbfa69b0d543f5aecb1a04c28442a05c1a4f291a2760f90ae1",
+        "43296085264405c73c491825b46713237efc94438c06d1c907fedb00fe400431",
+        "e3ce98722bb5f2d3ea3d0513d098c70bd4e2465427e30b5d89db8c83d11ba6ad",
+        "2d24b01abba5a1ab3f2522ff7cca7f9ad755b1e5badc4d2703f2b07b9e247108",
+        "e84d5f022262786bee31136e74d87ae7694b9186d1cb7f43ef1071d1c1c33345",
+        "c09ab6c511916bd701dbce62163e67627b7c76f2ad5079c6580c31a1f9892642",
+        "717b79222c6b63ac85de7b626c92ed31fcd451a9f4eb3125137af60473bfc158",
+        "21e6785cab051eb8031a8f48fac498e845c78b35da872a4b4c5ab623cbfdd5be",
+        "72cf751bcffce80fa3fdc97931e3f633ed3d0326a821e09b4afaf5c1d65815c1",
+        "1299afb5b84f92159cf4a1aba59fcb8807e88e323c9c514ee575c6f1edc4fa1a",
+        "104e6cbb4914419ee05255b10e13c787712440fc6d90668ff4e7506418e4256c",
+        "d4f5814b39cccf8db8c08e8c67224c97e7a613f6ea81b9e7571dbe9c5eecf72e",
+        "472cb11db0af4fe8f40985984b4e536799cd4279d898e71b2effe8330c639b2a",
+        "07c833ca44760bfbeee0915a10a16f29208c222c9b49f731f5f9d7ff4b590b06",
+        "7ebcc0d807a1bac3f3114df9fd1d51fe42e495ab10c74905651dd548457cb60d",
+        "290d57dec5514f2ff1e36a6c9ac403756be85844f8b4bfe4ed4af139c055f4c9",
+        "2b012d2054df132450f0b4262e28182fe0277fbd7faa4d1380205da1db5a4895",
+        "c7a124d69e56e3a82c9113757469bb98d1bd8b2b5df1765f718e5a2d4514822f",
+        "cfb4a9b39b94d7299bfb48d1a3de20e3e7a0fd43eeb30b683ff45f7c6853ff9d",
+        "b69b70984d944d378495320a7e38d3f742dbc1c2b90cb2bbeae84dfb7a8c2916",
+        "f363fdaeb49929b3c693fa6c402dc08a47a0f47c3fec33f90d5bc78a024a043e",
+        "032985201928a708fdf9c4ac81aae4306147a848928fdf523962bbc0e50e51c6",
+        "d6e6a619586e118db60f0ca377ad57f8e4e057a12f909007725b1db351309a6e",
+        "59d2e9778659693f698c1d689eefd2ece395c5ebc0494a2f287a56b8ae142fd3",
+        "c7e19e77f182ca5135b0ed2187b6b828e32bbaca02a4b2baf6b086505e05cea0",
+        "2e833b9ee3ebcedb890af25e21aab34421182c3373204ae9b7b00d90413c5822",
+        "a8a1d719d6ec141f7d6f7d99f29afea61af11091824c598850e035353b214fe3",
+        "61a76258c1cecd5367ee41bd2c94339c53d472b7e4b50b70ed769d8edf554fde",
+        "54bb9a4c55b3afcf0b5dcccfb8a14fd96b6c51b173432cc43e0db1755cb6005d",
+        "a2b1b87db02af534237f5c94f9798f2ddca1547e10cc3ac55df0425c1bc1e57e",
+        "0e1879f8b4cc8782a32432eab49ded968954435335d917737f0d58a7f3ce9057",
+        "2dd940ac95de77e801de175285b64ddd8f7e0e94d0402ad449dd028bf5816ad0",
+        "9f025a402983a8bb34e279149568d7109cb9015c0948995787cea6e0a988883e",
+        "8b78885cd807bc038cef3bda75d780c2a939b85160156f3b5e5d334bb28b6fe4",
+        "e40e4e6b1cfa4c3e3ddc9f9aa02eaa00a36bce8ea3a16c350eda462a0f959574",
+        "ef6469f11b9c80fb8a989ee62aa2921f2cad2fd0dcfa1321b35ba3a677bc3767",
+        "4589ccea2fdc8b0116aac6c129c162964e622a28168807614531a9cb31ab0bd8",
+        "a3254281dca1319a81e3db35e185f5c788a2d26aa2d6f0d97c67f9f5c1a7f0c3",
+        "4c79b9f28b7e42a0dc0456d08abbcba770dbdd8d33ea739aac5a50832ba8c5f2",
+        "83bc9ef0cf7eb6fca41ad70339190101c07040e7a22510a508944970b6daaddc",
+        "fd7457fc13da1fac95102534b0b3086c4211f43c950dc81b586bf06b3d1abc24",
+        "8f2d136b6d23b7179cc041be43ac31d463ebec19f12eed8bba6dfa50260bde87",
+        "2e634256772ba52debf8c1fc3858feb0673eaeac3ebaa44f4f28b5aeeb3f7b44",
+        "dd22a62c109c26a6427708ec96c5bdd37da19cf0e36e0f6b6bd263b68501f616",
+        "23f47295acef9ae39d609513add56f8965f62b4612cb90ee6c221d44c961392a",
+        "6c16f1c6d73e3a00d7859f5f905401455d1fc020310b218ea7a359cceee02f7d",
+        "0af5bd1a542a3cdac7419b30b4d8e37641f19bb5f7e5be12741d1a5b57a4dbdf",
+        "dc4e8060336f8ed989f4e1aba6000dabec937662f86f19b4ae6dcecd73361035",
+        "fa939812c272aff48da997ca7e14340ad5e54c5182ce4a236716dccabd97b4f1",
+        "cff840b29b34b7f9443ea235aecf2158f4c73e55e1d6cf75f6bfdac3a3eec222",
+        "567932abbf4b23873a3c0646e308e74d969a8bde04ce827df77435315c9e965c",
+        "c8b17cf3f3e064b0e9cda4d762e1cdf2c007c7d70e386146d41f5232393979c8",
+        "ed8e43934dd274e1c332953709bd0ab8d1e27bf675932f70a005c1fb057ac481",
+        "8ba602440f30bc1c9ed5030f54ae762dfc677eac7e96d2c22d9567eb7f793030",
+        "77e68f479be920cfd7b3353437055fe068b443e384d9bd70ee5b223208b0459a",
+        "81c527e2ee0d2d3515040dacb2dab477271c59178c455940a2910fb1259f30ef",
+        "d13e83948bb7ba0ebbaf35538d74b46b15b97f7daeeee660e53f371478262824",
+        "fba2001a13fd93c735b00d2434692c169c9b39739843b1b649f22f92ea6dd043",
+        "678db989b2c73bda033c546e713df8bb837c68dbcf453732df76abf814e19b88",
+        "09cab27b72a148fb4fdedc7a6d70b85bbe1faaec8437cbcde1cfb869b3c809fa",
+        "7a10e1e647a84f4c94892292b261080510d0819c385ca8a26b38ea7c0d46355a",
+        "d0ff7d61c99fee5b1bd676286b4e43ef908f56e6c4165868e627542f8416a2b3",
+        "c1c94a0a502e183cc728fc663d36c64422f3da368ea02c1f7d98fcca5a4b7b9f",
+        "f7466511503611ca90e89cbd8bdb3591c05186e7cf1ffe3ef191d19746a20c82",
+        "4d5a502ff88162f184541c555a3406cff593d995cf372d84f83452010ddd405b",
+        "cb1d90d45e287b3fad6b815cd23df5fddcafcf8f039d969aec22e09eb30f4679",
+        "1ae21547ddb23664d2ee91b671c125e18637980d7800cd8a28dd0800e2cd7345",
+        "e94cac96f9bd9301884ffacc7ea2513f753285502425ae72e544da2c35c1eafb",
+        "e2dcfbda85bbb2f35d7ebd43424eff00efb2cb23afbebc4260e5173bba37847c",
+        "33bddbde8238ab75e1a51c973ee2e909e87091ddbfde51289bf01d3f629fa315",
+        "17060f98d3503c674ca72e44a28511493906d5f67652c2f69e4ed6c3921fe971",
+        "a5fe3d84f51dc59e6baf9c72818f91e1632e0295784e0e8f07e234252cf852f9",
+        "acb8606c44da3fa78ca635d7b5ba39e17c6ac587023b386872630f7fff3ddebf",
+        "de94c91e77402d540b1476bdb428527589c94337c72cc8eab2511bb8177d1ec6",
+        "61bf0131fd143f192478ea4f5437c3711787eb0719bbb58f1aed74e387db2303",
+        "0218266d825180995222c7b9e78f72f920a007514d0e6c0128ee267b7758fbda",
+        "d3920d61a1fe693fca4d2da335b5fe6bcf87ccf433643aa96725919c3c6b777d",
+        "b82ea004abde4f6fc0edd338df073413062de870c8caf85c669eb7afd315c189",
+        "216b0820bb4b509733adc2539493ad9a63c6680abf0913a1eed0143a3179cfa6",
+        "6b4027989563f147808b40d5a55bf45fd94d3c342152154b732d4fb86305d709"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ring"
+            "item": "cruciblecraft:extruder_shape_file_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_gear"
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_long_rod"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_bolt"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_plate"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_ring"
-          }
-        ],
-        [
-          {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
@@ -143,10 +300,70 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
           },
           {
             "item": "cruciblecraft:extruder_shape_plate"
@@ -154,22 +371,26 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:triple_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungsten_sintered/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
@@ -179,9 +400,33 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
             "type": "neoforge:components"
           },
           {
@@ -190,46 +435,66 @@
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
-            },
-            "items": "cruciblecraft:triple_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:tungsten/block"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
-            "items": "cruciblecraft:triple_ingot",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_bolt"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_tiny_plate"
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
@@ -239,21 +504,21 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:storage_dust",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_ingot"
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
@@ -263,84 +528,1737 @@
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
-            "items": "cruciblecraft:triple_plate",
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
             "type": "neoforge:components"
           },
           {
             "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_axe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_normal_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_saw_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_wire"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_sintered/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_file_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_shovel_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_pickaxe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_sword_blade"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hoe_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten/nonuple_fluid_pipe"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ]
       ],
       "item_outputs": [
         [
           {
-            "count": 6,
-            "id": "cruciblecraft:elven_elementium/rod"
+            "count": 2,
+            "id": "cruciblecraft:tungsten/gear"
           }
         ],
         [
           {
-            "count": 3,
-            "id": "cruciblecraft:elven_elementium/small_gear"
+            "count": 1,
+            "id": "cruciblecraft:tungsten/block"
           }
         ],
         [
           {
-            "count": 12,
-            "id": "cruciblecraft:elven_elementium/ring"
-          }
-        ],
-        [
-          {
-            "count": 3,
-            "id": "cruciblecraft:elven_elementium/long_rod"
-          }
-        ],
-        [
-          {
-            "count": 24,
-            "id": "cruciblecraft:elven_elementium/bolt"
-          }
-        ],
-        [
-          {
-            "count": 3,
-            "id": "cruciblecraft:elven_elementium/plate"
+            "count": 18,
+            "id": "cruciblecraft:tungsten/wire"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 18,
+            "id": "cruciblecraft:tungsten/tiny_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
             "count": 3,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_saw"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungsten_sintered/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:tungsten_sintered/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "count": 9,
             "id": "cruciblecraft:curved_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten"
             },
-            "count": 27,
-            "id": "cruciblecraft:tiny_plate"
+            "count": 9,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungsten/large_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten_sintered/plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "elven_elementium"
+              "cruciblecraft:prefix_material": "tungsten_sintered"
             },
-            "count": 6,
+            "count": 18,
             "id": "cruciblecraft:small_casing"
           }
         ],
         [
           {
+            "count": 18,
+            "id": "cruciblecraft:tungsten_sintered/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
             "count": 3,
-            "id": "cruciblecraft:elven_elementium/ingot"
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "count": 18,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten_sintered/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "count": 9,
+            "id": "cruciblecraft:tool_head_raw_shovel"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "count": 9,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten/small_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 3,
+            "id": "cruciblecraft:tungsten/fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 36,
+            "id": "cruciblecraft:tungsten/ring"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten_sintered/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "count": 3,
+            "id": "cruciblecraft:tool_head_raw_axe"
+          }
+        ],
+        [
+          {
+            "count": 18,
+            "id": "cruciblecraft:tungsten/rod"
+          }
+        ],
+        [
+          {
+            "count": 36,
+            "id": "cruciblecraft:tungsten_sintered/ring"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten_sintered/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten/plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "count": 3,
+            "id": "cruciblecraft:tool_head_raw_pickaxe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_hoe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tool_head_file"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_sintered"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_sword"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten"
+            },
+            "count": 4,
+            "id": "cruciblecraft:tool_head_raw_sword"
           }
         ]
       ]
@@ -350,7 +2268,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/360c779718967757",
+        "cruciblecraft:gt6/2700e3147da14fa3",
         0,
         0
       ],
@@ -358,7 +2276,7 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/d04003d3998971d1",
+        "cruciblecraft:gt6/8de877d7c1f7c515",
         1,
         1
       ],
@@ -366,150 +2284,1342 @@
         2,
         2,
         0,
-        "cruciblecraft:gt6/20def9e5de67a3b6",
+        "cruciblecraft:gt6/135925365702b9ba",
         2,
         2
       ],
       [
         3,
-        1,
+        3,
         0,
-        "cruciblecraft:gt6/0717e2b5ef6b1057",
+        "cruciblecraft:gt6/19826b589f80029b",
         3,
         3
       ],
       [
         4,
-        3,
+        4,
         0,
-        "cruciblecraft:gt6/a65f6224cf7e6cbc",
+        "cruciblecraft:gt6/d1a57503f0dd4c4a",
         4,
         4
       ],
       [
         5,
-        4,
+        5,
         0,
-        "cruciblecraft:gt6/17141e08cf72fcd6",
+        "cruciblecraft:gt6/3f952389d7729387",
         5,
         5
       ],
       [
         6,
-        5,
+        6,
         0,
-        "cruciblecraft:gt6/78aa731bf353ada6",
+        "cruciblecraft:gt6/b73f9368cf31b7b0",
         6,
         6
       ],
       [
         7,
-        2,
+        7,
         0,
-        "cruciblecraft:gt6/f36fc25ae41d37e9",
+        "cruciblecraft:gt6/2db774db4764a4e4",
         7,
         7
       ],
       [
         8,
-        6,
+        8,
         0,
-        "cruciblecraft:gt6/6c714207988ef150",
+        "cruciblecraft:gt6/a03523e1888715ef",
         8,
         8
       ],
       [
         9,
-        5,
+        9,
         0,
-        "cruciblecraft:gt6/66d4c5ffa7685c8c",
+        "cruciblecraft:gt6/0b1d8c98f8d2e547",
         9,
         9
       ],
       [
         10,
-        7,
+        6,
         0,
-        "cruciblecraft:gt6/dff225680fd7ec58",
+        "cruciblecraft:gt6/6b9d8b69d463ea98",
         10,
+        10
+      ],
+      [
+        11,
+        10,
+        0,
+        "cruciblecraft:gt6/7be3852a1c19c3fa",
+        11,
+        11
+      ],
+      [
+        12,
+        5,
+        0,
+        "cruciblecraft:gt6/644bd253f9d0729f",
+        12,
         12
       ],
       [
-        11,
-        8,
+        13,
+        10,
         0,
-        "cruciblecraft:gt6/699c77bd9a757ffa",
+        "cruciblecraft:gt6/8142e22225f39d00",
+        13,
+        13
+      ],
+      [
+        14,
         11,
+        0,
+        "cruciblecraft:gt6/78a16eea1dedad10",
+        14,
         14
       ],
       [
+        15,
         12,
-        9,
         0,
-        "cruciblecraft:gt6/12ee744006874618",
-        12,
+        "cruciblecraft:gt6/14ac0e8b4b5eaf73",
+        15,
         15
       ],
       [
+        16,
         13,
         0,
-        0,
-        "cruciblecraft:gt6/0f23599b49182ab4",
-        13,
+        "cruciblecraft:gt6/7b4b30561468687c",
+        16,
         16
       ],
       [
+        17,
         14,
-        4,
         0,
-        "cruciblecraft:gt6/aace19a36db36d4f",
-        14,
+        "cruciblecraft:gt6/72a0804898d20dfd",
+        17,
+        17
+      ],
+      [
+        18,
+        15,
+        0,
+        "cruciblecraft:gt6/eca2e371cc1c9412",
+        18,
+        18
+      ],
+      [
+        19,
+        16,
+        0,
+        "cruciblecraft:gt6/d72fc115f201fd4d",
+        19,
         19
       ],
       [
-        15,
-        7,
+        20,
+        17,
         0,
-        "cruciblecraft:gt6/7fd4282fec87fca1",
-        15,
+        "cruciblecraft:gt6/d8ae3d90907fd6d9",
+        20,
+        20
+      ],
+      [
+        21,
+        16,
+        0,
+        "cruciblecraft:gt6/e616fd826f6efe12",
+        21,
+        21
+      ],
+      [
+        22,
+        18,
+        0,
+        "cruciblecraft:gt6/49a7404651c79a49",
+        22,
+        22
+      ],
+      [
+        23,
+        19,
+        0,
+        "cruciblecraft:gt6/6b88df004cdde6f1",
+        23,
+        23
+      ],
+      [
+        24,
+        20,
+        0,
+        "cruciblecraft:gt6/57fa334e82865323",
+        24,
+        24
+      ],
+      [
+        25,
+        4,
+        0,
+        "cruciblecraft:gt6/b510b205f7ceb903",
+        25,
         25
       ],
       [
-        16,
-        6,
+        26,
+        10,
         0,
-        "cruciblecraft:gt6/e898451d207eee54",
-        16,
+        "cruciblecraft:gt6/c371b0ae7f4d1075",
+        26,
         26
       ],
       [
-        17,
-        9,
+        27,
+        21,
         0,
-        "cruciblecraft:gt6/7b87fb670ca3b640",
-        17,
+        "cruciblecraft:gt6/ce33cd24b366a181",
+        27,
+        27
+      ],
+      [
+        28,
+        22,
+        0,
+        "cruciblecraft:gt6/4e4fe0f78f588885",
+        28,
         28
       ],
       [
+        29,
         18,
-        8,
         0,
-        "cruciblecraft:gt6/0ed2075b36a124b0",
+        "cruciblecraft:gt6/4e66e93e8d76b416",
+        29,
+        29
+      ],
+      [
+        30,
         18,
+        0,
+        "cruciblecraft:gt6/275c1a8699471c46",
+        30,
         30
       ],
       [
+        31,
+        23,
+        0,
+        "cruciblecraft:gt6/cef270f193cab7ac",
+        31,
+        31
+      ],
+      [
+        32,
+        4,
+        0,
+        "cruciblecraft:gt6/944871f1871b73eb",
+        32,
+        32
+      ],
+      [
+        33,
         19,
+        0,
+        "cruciblecraft:gt6/8ac74c1cad7c5439",
+        33,
+        33
+      ],
+      [
+        34,
+        24,
+        0,
+        "cruciblecraft:gt6/107242f7be86e49c",
+        34,
+        34
+      ],
+      [
+        35,
+        25,
+        0,
+        "cruciblecraft:gt6/7a0c72f362a8122c",
+        35,
+        35
+      ],
+      [
+        36,
+        1,
+        0,
+        "cruciblecraft:gt6/6bd722fd44bbe113",
+        36,
+        36
+      ],
+      [
+        37,
+        18,
+        0,
+        "cruciblecraft:gt6/701d1bc9b73761a5",
+        37,
+        37
+      ],
+      [
+        38,
+        26,
+        0,
+        "cruciblecraft:gt6/138305592c7706cf",
+        38,
+        38
+      ],
+      [
+        39,
+        26,
+        0,
+        "cruciblecraft:gt6/b2b7bf7817dc5616",
+        39,
+        39
+      ],
+      [
+        40,
+        19,
+        0,
+        "cruciblecraft:gt6/fbdae459d3869cfe",
+        40,
+        40
+      ],
+      [
+        41,
+        25,
+        0,
+        "cruciblecraft:gt6/a13c809283ffff26",
+        41,
+        41
+      ],
+      [
+        42,
+        27,
+        0,
+        "cruciblecraft:gt6/82a57fed721fbef0",
+        42,
+        42
+      ],
+      [
+        43,
+        2,
+        0,
+        "cruciblecraft:gt6/03bbfe7d3bfd4198",
+        43,
+        43
+      ],
+      [
+        44,
+        28,
+        0,
+        "cruciblecraft:gt6/c19683130b481306",
+        44,
+        44
+      ],
+      [
+        45,
+        14,
+        0,
+        "cruciblecraft:gt6/852e4483447488c2",
+        45,
+        45
+      ],
+      [
+        46,
+        29,
+        0,
+        "cruciblecraft:gt6/499d256b40ca4e55",
+        46,
+        46
+      ],
+      [
+        47,
+        7,
+        0,
+        "cruciblecraft:gt6/f21e172eb90fbdd7",
+        47,
+        47
+      ],
+      [
+        48,
+        11,
+        0,
+        "cruciblecraft:gt6/6543566177eb2ff6",
+        48,
+        48
+      ],
+      [
+        49,
+        30,
+        0,
+        "cruciblecraft:gt6/acb6072796f00094",
+        49,
+        49
+      ],
+      [
+        50,
+        2,
+        0,
+        "cruciblecraft:gt6/869ced1f47408687",
+        50,
+        50
+      ],
+      [
+        51,
         3,
         0,
-        "cruciblecraft:gt6/9e93c56b337bf3f3",
+        "cruciblecraft:gt6/f94ae4d84dce49df",
+        51,
+        51
+      ],
+      [
+        52,
+        29,
+        0,
+        "cruciblecraft:gt6/fe535865808948ed",
+        52,
+        52
+      ],
+      [
+        53,
+        31,
+        0,
+        "cruciblecraft:gt6/4204ce8a0fa6aaf7",
+        53,
+        53
+      ],
+      [
+        54,
+        9,
+        0,
+        "cruciblecraft:gt6/ac8934b3208c7fed",
+        54,
+        54
+      ],
+      [
+        55,
         19,
-        31
+        0,
+        "cruciblecraft:gt6/da68001e655a6f9e",
+        55,
+        55
+      ],
+      [
+        56,
+        5,
+        0,
+        "cruciblecraft:gt6/3b7c60f02b467185",
+        56,
+        56
+      ],
+      [
+        57,
+        13,
+        0,
+        "cruciblecraft:gt6/697c29f6a7f6c6d8",
+        57,
+        57
+      ],
+      [
+        58,
+        6,
+        0,
+        "cruciblecraft:gt6/2dee82cca2920457",
+        58,
+        58
+      ],
+      [
+        59,
+        32,
+        0,
+        "cruciblecraft:gt6/7578afdf4fb7136d",
+        59,
+        59
+      ],
+      [
+        60,
+        27,
+        0,
+        "cruciblecraft:gt6/d5fdf06554c60aa8",
+        60,
+        60
+      ],
+      [
+        61,
+        26,
+        0,
+        "cruciblecraft:gt6/8b6f676149eab4d1",
+        61,
+        61
+      ],
+      [
+        62,
+        33,
+        0,
+        "cruciblecraft:gt6/7103a072fe889b47",
+        62,
+        62
+      ],
+      [
+        63,
+        7,
+        0,
+        "cruciblecraft:gt6/f57356cdc66b6d43",
+        63,
+        63
+      ],
+      [
+        64,
+        32,
+        0,
+        "cruciblecraft:gt6/4476da69a6a315c9",
+        64,
+        64
+      ],
+      [
+        65,
+        34,
+        0,
+        "cruciblecraft:gt6/d5cec07104bc90a5",
+        65,
+        65
+      ],
+      [
+        66,
+        20,
+        0,
+        "cruciblecraft:gt6/06975e58b176aee7",
+        66,
+        66
+      ],
+      [
+        67,
+        14,
+        0,
+        "cruciblecraft:gt6/2adf4fbcdffa619e",
+        67,
+        67
+      ],
+      [
+        68,
+        1,
+        0,
+        "cruciblecraft:gt6/8f3a6b48d99c8079",
+        68,
+        68
+      ],
+      [
+        69,
+        35,
+        0,
+        "cruciblecraft:gt6/a745c84a28e06d3f",
+        69,
+        69
+      ],
+      [
+        70,
+        9,
+        0,
+        "cruciblecraft:gt6/6a2333a2ffc34a1c",
+        70,
+        70
+      ],
+      [
+        71,
+        6,
+        0,
+        "cruciblecraft:gt6/fc8636176c42eb1e",
+        71,
+        71
+      ],
+      [
+        72,
+        14,
+        0,
+        "cruciblecraft:gt6/21ccc7335e71f3fe",
+        72,
+        72
+      ],
+      [
+        73,
+        36,
+        0,
+        "cruciblecraft:gt6/ebefaffb15c55b07",
+        73,
+        73
+      ],
+      [
+        74,
+        26,
+        0,
+        "cruciblecraft:gt6/edad8b664eb7886d",
+        74,
+        74
+      ],
+      [
+        75,
+        28,
+        0,
+        "cruciblecraft:gt6/9a126f837c7d8549",
+        75,
+        75
+      ],
+      [
+        76,
+        8,
+        0,
+        "cruciblecraft:gt6/900febf257add66e",
+        76,
+        76
+      ],
+      [
+        77,
+        30,
+        0,
+        "cruciblecraft:gt6/10e213832ec47707",
+        77,
+        77
+      ],
+      [
+        78,
+        0,
+        0,
+        "cruciblecraft:gt6/e12cbdcf82900f8d",
+        78,
+        78
+      ],
+      [
+        79,
+        36,
+        0,
+        "cruciblecraft:gt6/f231faefcbafc190",
+        79,
+        79
+      ],
+      [
+        80,
+        15,
+        0,
+        "cruciblecraft:gt6/c6c7903e61d278f9",
+        80,
+        80
+      ],
+      [
+        81,
+        35,
+        0,
+        "cruciblecraft:gt6/aad11e546b24922d",
+        81,
+        81
+      ],
+      [
+        82,
+        22,
+        0,
+        "cruciblecraft:gt6/d76eb75a299513e6",
+        82,
+        82
+      ],
+      [
+        83,
+        37,
+        0,
+        "cruciblecraft:gt6/d09a828f5dd8bd8a",
+        83,
+        83
+      ],
+      [
+        84,
+        25,
+        0,
+        "cruciblecraft:gt6/7ec55788f0bd8ee5",
+        84,
+        84
+      ],
+      [
+        85,
+        35,
+        0,
+        "cruciblecraft:gt6/1be80279e88966d2",
+        85,
+        85
+      ],
+      [
+        86,
+        38,
+        0,
+        "cruciblecraft:gt6/45a2f6de44f87a0d",
+        86,
+        86
+      ],
+      [
+        87,
+        21,
+        0,
+        "cruciblecraft:gt6/143be068a52182b3",
+        87,
+        87
+      ],
+      [
+        88,
+        12,
+        0,
+        "cruciblecraft:gt6/a0ed153b88356f05",
+        88,
+        88
+      ],
+      [
+        89,
+        37,
+        0,
+        "cruciblecraft:gt6/3eb3cd3882659c99",
+        89,
+        89
+      ],
+      [
+        90,
+        27,
+        0,
+        "cruciblecraft:gt6/981e1f07abe454aa",
+        90,
+        90
+      ],
+      [
+        91,
+        39,
+        0,
+        "cruciblecraft:gt6/8d835be670f1a0ae",
+        91,
+        91
+      ],
+      [
+        92,
+        0,
+        0,
+        "cruciblecraft:gt6/04a2ac91fd5841fd",
+        92,
+        92
+      ],
+      [
+        93,
+        18,
+        0,
+        "cruciblecraft:gt6/6fb4498681c9f2d5",
+        93,
+        93
+      ],
+      [
+        94,
+        27,
+        0,
+        "cruciblecraft:gt6/156668bed6736456",
+        94,
+        94
+      ],
+      [
+        95,
+        21,
+        0,
+        "cruciblecraft:gt6/6006153f8c07745e",
+        95,
+        95
+      ],
+      [
+        96,
+        29,
+        0,
+        "cruciblecraft:gt6/3c54c33f0ffa82f8",
+        96,
+        96
+      ],
+      [
+        97,
+        4,
+        0,
+        "cruciblecraft:gt6/f49827a75c8098b4",
+        97,
+        97
+      ],
+      [
+        98,
+        37,
+        0,
+        "cruciblecraft:gt6/69c982708f9837a7",
+        98,
+        98
+      ],
+      [
+        99,
+        26,
+        0,
+        "cruciblecraft:gt6/7ac72a2a106836e4",
+        99,
+        99
+      ],
+      [
+        100,
+        25,
+        0,
+        "cruciblecraft:gt6/b85fb97e80be89ec",
+        100,
+        100
+      ],
+      [
+        101,
+        17,
+        0,
+        "cruciblecraft:gt6/9130b470abac1ae3",
+        101,
+        101
+      ],
+      [
+        102,
+        0,
+        0,
+        "cruciblecraft:gt6/1008a25ebaa4f478",
+        102,
+        102
+      ],
+      [
+        103,
+        34,
+        0,
+        "cruciblecraft:gt6/e88e623075eb800b",
+        103,
+        103
+      ],
+      [
+        104,
+        30,
+        0,
+        "cruciblecraft:gt6/ebe5d7dd60216a49",
+        104,
+        104
+      ],
+      [
+        105,
+        24,
+        0,
+        "cruciblecraft:gt6/ff8fc2d2e3f8fac8",
+        105,
+        105
+      ],
+      [
+        106,
+        13,
+        0,
+        "cruciblecraft:gt6/1494d8dd54d23621",
+        106,
+        106
+      ],
+      [
+        107,
+        34,
+        0,
+        "cruciblecraft:gt6/445e437a59013995",
+        107,
+        107
+      ],
+      [
+        108,
+        12,
+        0,
+        "cruciblecraft:gt6/93fcf336e52262f2",
+        108,
+        108
+      ],
+      [
+        109,
+        24,
+        0,
+        "cruciblecraft:gt6/10c040f98e3bbea1",
+        109,
+        109
+      ],
+      [
+        110,
+        38,
+        0,
+        "cruciblecraft:gt6/a6c917a23023577e",
+        110,
+        110
+      ],
+      [
+        111,
+        37,
+        0,
+        "cruciblecraft:gt6/e951217f6a5292c2",
+        111,
+        111
+      ],
+      [
+        112,
+        2,
+        0,
+        "cruciblecraft:gt6/5adfd80060dc14f6",
+        112,
+        112
+      ],
+      [
+        113,
+        40,
+        0,
+        "cruciblecraft:gt6/a91468c57727a7d7",
+        113,
+        113
+      ],
+      [
+        114,
+        12,
+        0,
+        "cruciblecraft:gt6/354e81d3504e33fe",
+        114,
+        114
+      ],
+      [
+        115,
+        21,
+        0,
+        "cruciblecraft:gt6/48006c5f782eaec7",
+        115,
+        115
+      ],
+      [
+        116,
+        22,
+        0,
+        "cruciblecraft:gt6/0235e4bcd9d7ffb5",
+        116,
+        116
+      ],
+      [
+        117,
+        40,
+        0,
+        "cruciblecraft:gt6/3a52c7e688d5b3ca",
+        117,
+        117
+      ],
+      [
+        118,
+        11,
+        0,
+        "cruciblecraft:gt6/93d16b3e79b64bfc",
+        118,
+        118
+      ],
+      [
+        119,
+        31,
+        0,
+        "cruciblecraft:gt6/558d676b9015a8d4",
+        119,
+        119
+      ],
+      [
+        120,
+        40,
+        0,
+        "cruciblecraft:gt6/93f3c8d976db7341",
+        120,
+        120
+      ],
+      [
+        121,
+        39,
+        0,
+        "cruciblecraft:gt6/472a69be5b4b2277",
+        121,
+        121
+      ],
+      [
+        122,
+        23,
+        0,
+        "cruciblecraft:gt6/4ae6f71f4f2b94f2",
+        122,
+        122
+      ],
+      [
+        123,
+        28,
+        0,
+        "cruciblecraft:gt6/3803f8d424c4ffd8",
+        123,
+        123
+      ],
+      [
+        124,
+        38,
+        0,
+        "cruciblecraft:gt6/1d9357aaa8d6657c",
+        124,
+        124
+      ],
+      [
+        125,
+        6,
+        0,
+        "cruciblecraft:gt6/2fead2b255aafd10",
+        125,
+        125
+      ],
+      [
+        126,
+        1,
+        0,
+        "cruciblecraft:gt6/33e2a8b82e2fd37e",
+        126,
+        126
+      ],
+      [
+        127,
+        38,
+        0,
+        "cruciblecraft:gt6/e2c8333514c0c5b7",
+        127,
+        127
+      ],
+      [
+        128,
+        32,
+        0,
+        "cruciblecraft:gt6/1b5eb75d58e8d841",
+        128,
+        128
+      ],
+      [
+        129,
+        3,
+        0,
+        "cruciblecraft:gt6/240e39dedaea7e5c",
+        129,
+        129
+      ],
+      [
+        130,
+        33,
+        0,
+        "cruciblecraft:gt6/eeae8e2f5abe6219",
+        130,
+        130
+      ],
+      [
+        131,
+        14,
+        0,
+        "cruciblecraft:gt6/6faea9d4cdcda224",
+        131,
+        131
+      ],
+      [
+        132,
+        13,
+        0,
+        "cruciblecraft:gt6/b1c42adb54423b25",
+        132,
+        132
+      ],
+      [
+        133,
+        8,
+        0,
+        "cruciblecraft:gt6/29878b10cedd6a81",
+        133,
+        133
+      ],
+      [
+        134,
+        40,
+        0,
+        "cruciblecraft:gt6/de10028ace54b303",
+        134,
+        134
+      ],
+      [
+        135,
+        23,
+        0,
+        "cruciblecraft:gt6/5aa091b6751d3772",
+        135,
+        135
+      ],
+      [
+        136,
+        15,
+        0,
+        "cruciblecraft:gt6/239f0d8603106976",
+        136,
+        136
+      ],
+      [
+        137,
+        30,
+        0,
+        "cruciblecraft:gt6/74a438d16c8832d5",
+        137,
+        137
+      ],
+      [
+        138,
+        34,
+        0,
+        "cruciblecraft:gt6/6a6d58d0a154059d",
+        138,
+        138
+      ],
+      [
+        139,
+        2,
+        0,
+        "cruciblecraft:gt6/5f08144276d600f1",
+        139,
+        139
+      ],
+      [
+        140,
+        0,
+        0,
+        "cruciblecraft:gt6/9979a0dc42f23bc7",
+        140,
+        140
+      ],
+      [
+        141,
+        33,
+        0,
+        "cruciblecraft:gt6/ad6a82f3a44c4fb3",
+        141,
+        141
+      ],
+      [
+        142,
+        38,
+        0,
+        "cruciblecraft:gt6/f469cdc4acbf8bb8",
+        142,
+        142
+      ],
+      [
+        143,
+        31,
+        0,
+        "cruciblecraft:gt6/1648b00ea2d00f01",
+        143,
+        143
+      ],
+      [
+        144,
+        11,
+        0,
+        "cruciblecraft:gt6/21e1b0545fe681cb",
+        144,
+        144
+      ],
+      [
+        145,
+        34,
+        0,
+        "cruciblecraft:gt6/3bcf71831ed906a4",
+        145,
+        145
+      ],
+      [
+        146,
+        21,
+        0,
+        "cruciblecraft:gt6/9794c349126ef4fe",
+        146,
+        146
+      ],
+      [
+        147,
+        35,
+        0,
+        "cruciblecraft:gt6/bd9311c9970b59be",
+        147,
+        147
+      ],
+      [
+        148,
+        37,
+        0,
+        "cruciblecraft:gt6/85ea3ac4c96cbf50",
+        148,
+        148
+      ],
+      [
+        149,
+        16,
+        0,
+        "cruciblecraft:gt6/8a5f8da5c39ea4bb",
+        149,
+        149
+      ],
+      [
+        150,
+        11,
+        0,
+        "cruciblecraft:gt6/2bf4d517c872c201",
+        150,
+        150
+      ],
+      [
+        151,
+        19,
+        0,
+        "cruciblecraft:gt6/06cca2cddfc3f169",
+        151,
+        151
+      ],
+      [
+        152,
+        20,
+        0,
+        "cruciblecraft:gt6/7802e3e4a7e8437b",
+        152,
+        152
+      ],
+      [
+        153,
+        35,
+        0,
+        "cruciblecraft:gt6/d024c0eef34a2c91",
+        153,
+        153
+      ],
+      [
+        154,
+        33,
+        0,
+        "cruciblecraft:gt6/807d7bf33b1fa7d6",
+        154,
+        154
+      ],
+      [
+        155,
+        25,
+        0,
+        "cruciblecraft:gt6/0ec6e976d3b5ce47",
+        155,
+        155
+      ],
+      [
+        156,
+        40,
+        0,
+        "cruciblecraft:gt6/f95c7ddfe7074b1e",
+        156,
+        156
+      ],
+      [
+        157,
+        23,
+        0,
+        "cruciblecraft:gt6/a1460aded6b2eefa",
+        157,
+        157
+      ],
+      [
+        158,
+        30,
+        0,
+        "cruciblecraft:gt6/12adcd7513bcf63a",
+        158,
+        158
+      ],
+      [
+        159,
+        4,
+        0,
+        "cruciblecraft:gt6/bf6289c06f033634",
+        159,
+        159
+      ],
+      [
+        160,
+        17,
+        0,
+        "cruciblecraft:gt6/f5b36a79ad887f84",
+        160,
+        160
+      ],
+      [
+        161,
+        39,
+        0,
+        "cruciblecraft:gt6/e6148c5cae07a39c",
+        161,
+        161
+      ],
+      [
+        162,
+        33,
+        0,
+        "cruciblecraft:gt6/a49f9ec627c7882b",
+        162,
+        162
+      ],
+      [
+        163,
+        27,
+        0,
+        "cruciblecraft:gt6/ddffd80a98ab0536",
+        163,
+        163
+      ],
+      [
+        164,
+        23,
+        0,
+        "cruciblecraft:gt6/5b3b942da0fb3065",
+        164,
+        164
+      ],
+      [
+        165,
+        36,
+        0,
+        "cruciblecraft:gt6/2b2d6391c5a2bf16",
+        165,
+        165
+      ],
+      [
+        166,
+        12,
+        0,
+        "cruciblecraft:gt6/5456fc905a40ab66",
+        166,
+        166
+      ],
+      [
+        167,
+        1,
+        0,
+        "cruciblecraft:gt6/fd6b31e2074863b3",
+        167,
+        167
+      ],
+      [
+        168,
+        13,
+        0,
+        "cruciblecraft:gt6/e387f6fb66701771",
+        168,
+        168
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 918,
+      "duration": 9096,
       "eut": 96,
       "item_input_actions": [
         {

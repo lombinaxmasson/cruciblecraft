@@ -10,59 +10,74 @@
         }
       ],
       "hashes": [
-        "4e920f614ec5d3acc6c2dd387a502de8944b06ff1d50b67a514da72220241cb9",
-        "9fadde238985382a1125fb15343699aee4ced08621a59bc41f196992f846da2f",
-        "2b3a407b66cf1c589dc108836d5c6d1abd3c9a4c0fee52209082a0e64a9f8d53",
-        "1ecf1d8fe5391994f53ad66f24cb47c690294b22ab820cfb08da1e16d6f06f5b"
+        "b90c4b4724bcd7c58bf670974735d6928b430d92f0ff2cfa2b7e84e4c5b5bd18",
+        "7e7124f3c54335f922f6053adeeb7108d9e54e2bbb554405b1630215b3bbd62f",
+        "4708be53ef955373520b029874fe23279f42b65d1ac09b1eb4a95f9e26c0b8be"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:bedrock_hslaalloy/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "gadolinium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:bedrock_hslaalloy/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "titanium_aluminide"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ],
         [
           {
-            "item": "cruciblecraft:bedrock_hslaalloy/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "actinium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:bedrock_hslaalloy/bolt"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "gadolinium"
+            },
             "count": 1,
-            "id": "cruciblecraft:bedrock_hslaalloy/rod"
+            "id": "cruciblecraft:tiny_plate"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+              "cruciblecraft:prefix_material": "titanium_aluminide"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "actinium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
           }
         ]
       ]
@@ -72,7 +87,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/4f907ee5f3ae4dfc",
+        "cruciblecraft:gt6/d741d3267ae1b709",
         0,
         0
       ],
@@ -80,30 +95,22 @@
         1,
         1,
         0,
-        "cruciblecraft:gt6/d28d29e5df64ce62",
+        "cruciblecraft:gt6/18ef26a247cbf91b",
         1,
         1
       ],
       [
         2,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/75a5db22f67fa79f",
+        "cruciblecraft:gt6/99c0ed683e003f85",
         2,
         2
-      ],
-      [
-        3,
-        1,
-        0,
-        "cruciblecraft:gt6/5d1a905d115fbe29",
-        3,
-        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1754,
+      "duration": 18,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +121,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        8,
         0
       ],
       "output_chances": [

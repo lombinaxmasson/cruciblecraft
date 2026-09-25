@@ -10,40 +10,71 @@
         }
       ],
       "hashes": [
-        "b33cbc870b005769533ad185074b431945b2edc723de774448cf5c81bf3f08bd",
-        "f87d5dee642dac96000455e1641ee7caeca2c1b5751461789553ad7706050a6c"
+        "2fe7befb9cd47bc0e1d6376a9fea4e7f1b76e5acb75c2dbd01de1f913babc47a",
+        "34d92087eeb2ab5654effd4a193dc73f89b6f5c30b65b689a7b9be390c151892",
+        "aa81232d1f4197b789b54c936e691e1ed0acdf1e594547871a71f6a4e8be2f21",
+        "8944f8042d7eecaf71c2bd6a3dd549263476dceef837046003436c52182ca4ab"
       ],
       "item_inputs": [
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibranium_steel"
-            },
-            "items": "cruciblecraft:double_ingot",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:berkelium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_curved_plate"
           }
         ],
         [
           {
-            "components": {
-              "cruciblecraft:prefix_material": "vibranium_steel"
-            },
-            "items": "cruciblecraft:double_plate",
-            "type": "neoforge:components"
+            "item": "cruciblecraft:berkelium/bolt"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:berkelium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:berkelium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
           }
         ]
       ],
       "item_outputs": [
         [
           {
+            "components": {
+              "cruciblecraft:prefix_material": "berkelium"
+            },
             "count": 1,
-            "id": "cruciblecraft:vibranium_steel/gear"
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:berkelium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:berkelium/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:berkelium/ingot"
           }
         ]
       ]
@@ -53,22 +84,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/3d2f017128cf3408",
+        "cruciblecraft:gt6/28b6b60143274a43",
         0,
-        2
+        0
       ],
       [
         1,
-        0,
-        0,
-        "cruciblecraft:gt6/d7ef478edfb50e5b",
         1,
-        4
+        0,
+        "cruciblecraft:gt6/dc335b7350283777",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/55419a6d446ca860",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/19d6c54102e3847b",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1018,
+      "duration": 221,
       "eut": 96,
       "item_input_actions": [
         {
@@ -79,7 +126,7 @@
         }
       ],
       "item_input_counts": [
-        2,
+        8,
         0
       ],
       "output_chances": [

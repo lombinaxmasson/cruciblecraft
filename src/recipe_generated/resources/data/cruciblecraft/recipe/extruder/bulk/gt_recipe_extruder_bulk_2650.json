@@ -10,72 +10,76 @@
         }
       ],
       "hashes": [
-        "8066db923b12804c67101bfefc8e9848da941b0146942e677f7a8d08c7badad3",
-        "4d40af43b2d33d8863263ccad03e34556299e1411b085861b1d794633d3f4723",
-        "d1395cdf2ba20284f5f4a11d7a23b57d07c893c54dd616c50e11cd1150ea38b3",
-        "2b64d4ac5cfb9b4d10f4d09012a25a608e8eeeb988cbbc73e876ca3fe69745b5",
-        "558e5f11f8341fdbe5b390b465c4548ad82bd5c77ae8d7d11abf3d5c4fe38b23",
-        "4ac03508ef92aa3e448e2bf53cb6b843bea6dd92a841d8ee13cd4bc80edaa1e0"
+        "ce30e25f1349d478eaf6a7095226ce4bdfe8a6ff922e6cd180895f912e8bcaa3",
+        "857b0d6296808a0dfea405ae90fdc36e0087c69b660c53a7a3f5eddd0c2c305b",
+        "e74aaf6696ecce78f0decc47f005cdd19b2faceed34b71c48251fc56ff2b8614",
+        "5b0350a2bc6fa6e1b6c147e37a76adcaea6ad7c48ef4f257200f603ce967cbbf",
+        "a20f87d7f39a275daf6fe77be49cd303f44f916a53d7fe1f75018a2039eb0fd0",
+        "021a78c0f38301b1952cdf0cd0a8a5916ac6ec3e1bf1056126913d300741132f"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:enderium/screw"
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
-          }
-        ],
-        [
-          {
-            "item": "cruciblecraft:enderium/tiny_dust"
-          },
-          {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:tiny_plate",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:round",
+            "items": "cruciblecraft:quadruple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "enderium"
+              "cruciblecraft:prefix_material": "rose_gold"
             },
-            "items": "cruciblecraft:scrap",
+            "items": "cruciblecraft:quadruple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ],
         [
           {
-            "item": "cruciblecraft:enderium/nugget"
+            "item": "cruciblecraft:rose_gold/gear"
           },
           {
-            "item": "cruciblecraft:extruder_shape_gear"
+            "item": "cruciblecraft:extruder_shape_large_pipe"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rose_gold/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -83,7 +87,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:enderium/gear"
+            "id": "cruciblecraft:rose_gold/large_item_pipe"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -93,7 +106,7 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/fd01256baea64583",
+        "cruciblecraft:gt6/2ead470c195c97dd",
         0,
         0
       ],
@@ -101,23 +114,23 @@
         1,
         0,
         0,
-        "cruciblecraft:gt6/0ce93c8d839772bf",
+        "cruciblecraft:gt6/f2b0b8e232e47262",
         1,
         1
       ],
       [
         2,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/fc654e4f8d5f61d3",
+        "cruciblecraft:gt6/2d1f726a78134a5b",
         2,
         2
       ],
       [
         3,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/28b0e6dabbf6616a",
+        "cruciblecraft:gt6/cd44410d7a057586",
         3,
         3
       ],
@@ -125,22 +138,22 @@
         4,
         0,
         0,
-        "cruciblecraft:gt6/de7afefd493b61e7",
+        "cruciblecraft:gt6/73f1100df4f0b50e",
         4,
         4
       ],
       [
         5,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/3293b299db83c2a4",
+        "cruciblecraft:gt6/813a7a3f4fac0d16",
         5,
         5
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 1205,
+      "duration": 2228,
       "eut": 96,
       "item_input_actions": [
         {
@@ -151,7 +164,7 @@
         }
       ],
       "item_input_counts": [
-        36,
+        2,
         0
       ],
       "output_chances": [

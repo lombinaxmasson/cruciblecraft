@@ -10,32 +10,58 @@
         }
       ],
       "hashes": [
-        "46d016b770048fff9d6a9385879564b1abaf4401d3b616ad483bc63bcf8ed776",
-        "559f1134a2b791c5f9ba2a2bc7335ffb892820033526b69fa806aae5ccff2d0d"
+        "493b4b262d88c2ebbd4e25b5ed4083c1a4f9e336d5830d8236ee45ed988c251b",
+        "c2f46fde951edc4a1f602e0990425c68627bfb46ea9fea2d03086854fe11e831",
+        "1e2b2beb8a014a904ced9b62234576fb4d96b340129536d8501304ebb8fdd343",
+        "3b870962b298f2d249b2e6a1836b6721c5295a6f93ee2186dde560895d41dfa9"
       ],
       "item_inputs": [
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "infuscolium"
+              "cruciblecraft:prefix_material": "dreadium"
             },
-            "items": "cruciblecraft:quintuple_plate",
+            "items": "cruciblecraft:triple_ingot",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "infuscolium"
+              "cruciblecraft:prefix_material": "dreadium"
             },
-            "items": "cruciblecraft:quintuple_ingot",
+            "items": "cruciblecraft:triple_plate",
             "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_block"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -43,7 +69,16 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:infuscolium/block"
+            "id": "cruciblecraft:dreadium/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -53,22 +88,38 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/926d65efab2df99e",
+        "cruciblecraft:gt6/75655108a96dd66e",
         0,
         0
       ],
       [
         1,
+        1,
         0,
-        0,
-        "cruciblecraft:gt6/584de2f99c80ac72",
+        "cruciblecraft:gt6/97f6926700784462",
         1,
         1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/6a700a406cd473fb",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/d94f4180a85405a2",
+        3,
+        3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2123,
+      "duration": 5109,
       "eut": 96,
       "item_input_actions": [
         {

@@ -10,42 +10,50 @@
         }
       ],
       "hashes": [
-        "b9f2c745a945bf28d9dbd55a56759de105caad11b57d70f7468e4318a2054865",
-        "bfdfb8ea3529a192986cbc0fe4a967969db4d1968908efe7cfdc0076b7f07f3e",
-        "cc04d79a3aa5da26ef990e03edade5475abc381e5bfa8b7e16e8883fee926f81",
-        "61de3044b91acf4f5da16f021813ef3d8bc710a8a00fa1ca35973a344cb411ad"
+        "7ca62fde8898cf61d57363bf7530c6d0192384536691ba322d2345b11c2366a9",
+        "c4503a713fd6ee38072ab2bce27b107779a2ccbe880b64db69ed310fef8d190e",
+        "50a711e443cc23b3c28b9f20b58b1cfe8c51f28cdaba59015046c7a5472efc82",
+        "bda66bf01263129f3d19055338f688e7d7d9f15798c4b3159e39eaf4df035111"
       ],
       "item_inputs": [
         [
           {
-            "item": "cruciblecraft:crystal_matrix/bolt"
+            "components": {
+              "cruciblecraft:prefix_material": "trinaquadalloy"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:crystal_matrix/fine_wire"
+            "components": {
+              "cruciblecraft:prefix_material": "trinaquadalloy"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_gear"
           }
         ],
         [
           {
-            "item": "cruciblecraft:crystal_matrix/bolt"
+            "item": "cruciblecraft:kanthal/nonuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_small_item_casing"
+            "item": "cruciblecraft:extruder_shape_block"
           }
         ],
         [
           {
-            "item": "cruciblecraft:crystal_matrix/fine_wire"
+            "item": "cruciblecraft:kanthal/nonuple_wire"
           },
           {
-            "item": "cruciblecraft:extruder_shape_rod"
+            "item": "cruciblecraft:extruder_shape_hammer_head"
           }
         ]
       ],
@@ -53,16 +61,22 @@
         [
           {
             "count": 1,
-            "id": "cruciblecraft:crystal_matrix/rod"
+            "id": "cruciblecraft:trinaquadalloy/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:kanthal/block"
           }
         ],
         [
           {
             "components": {
-              "cruciblecraft:prefix_material": "crystal_matrix"
+              "cruciblecraft:prefix_material": "kanthal"
             },
             "count": 1,
-            "id": "cruciblecraft:small_casing"
+            "id": "cruciblecraft:tool_head_hammer"
           }
         ]
       ]
@@ -72,15 +86,15 @@
         0,
         0,
         0,
-        "cruciblecraft:gt6/c4b66133a2026c6f",
+        "cruciblecraft:gt6/4730e9d98924c2bd",
         0,
         0
       ],
       [
         1,
-        1,
         0,
-        "cruciblecraft:gt6/b51fc614eb2165af",
+        0,
+        "cruciblecraft:gt6/d2d358a7362ec2c5",
         1,
         1
       ],
@@ -88,22 +102,22 @@
         2,
         1,
         0,
-        "cruciblecraft:gt6/ab9e76a04b7930c3",
+        "cruciblecraft:gt6/6fc80d2f04c3996a",
         2,
         2
       ],
       [
         3,
+        2,
         0,
-        0,
-        "cruciblecraft:gt6/32fae1f8b3177ce4",
+        "cruciblecraft:gt6/7fbfde55e21b8fcc",
         3,
         3
       ]
     ],
     "shared": {
       "can_be_buffered": true,
-      "duration": 2019,
+      "duration": 1161,
       "eut": 96,
       "item_input_actions": [
         {
@@ -114,7 +128,7 @@
         }
       ],
       "item_input_counts": [
-        4,
+        2,
         0
       ],
       "output_chances": [
