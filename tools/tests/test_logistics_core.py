@@ -101,10 +101,10 @@ class LogisticsCoreCatalogLockTest(unittest.TestCase):
             hashlib.sha256(T19.read_bytes()).hexdigest(),
         )
 
-    def test_register_builtin_stays_eight(self) -> None:
+    def test_register_builtin_includes_all_live_cover_plugins(self) -> None:
         text = REGISTRY.read_text(encoding="utf-8")
         builtins = BUILTIN_RE.findall(text)
-        self.assertEqual(8, len(builtins))
+        self.assertEqual(13, len(builtins))
         self.assertNotIn("logistics_generic_dump", builtins)
 
     def test_dump_sidecar_is_owned_by_core_not_generic(self) -> None:

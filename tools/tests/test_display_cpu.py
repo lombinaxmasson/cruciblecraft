@@ -128,10 +128,10 @@ class DisplayCpuCatalogLockTest(unittest.TestCase):
             hashlib.sha256(COVER_DEFINITIONS.read_bytes()).hexdigest(),
         )
 
-    def test_register_builtin_stays_eight(self) -> None:
+    def test_register_builtin_includes_all_live_cover_plugins(self) -> None:
         text = REGISTRY.read_text(encoding="utf-8")
         builtins = BUILTIN_RE.findall(text)
-        self.assertEqual(8, len(builtins))
+        self.assertEqual(13, len(builtins))
         self.assertNotIn("logistics_display_cpu", builtins)
         self.assertNotIn("logistics_display_cpu_logic", builtins)
 
