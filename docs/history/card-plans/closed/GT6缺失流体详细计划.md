@@ -1,15 +1,15 @@
 # GT6 缺失流体详细计划
 
 > 计划 slug：`fluid/gt6-missing-fluids`
-> 状态：prep 已签发。本文件位于 `card-plans/prep/`。
+> 状态：已关。本文件位于 `card-plans/closed/`。
 > 正式名称：GT6 缺失流体
 > 性质：注册翻译链修复后仍真缺、且 GT6 原生的流体。
-> 总计划第 3 张落地卡，见 [GT6 批量移植总计划](GT6批量移植总计划.md)。
+> 总计划第 3 张落地卡，见 [GT6 批量移植总计划](../prep/GT6批量移植总计划.md)。
 >
 > Java/tick 源：`gt6_code/gregtech6` @ `3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 ```text
-lane                         = prep
+lane                         = closed
 capability_slug              = fluid/gt6-missing-fluids
 unique_active_wave           = null
 landing_owned_paths          = ModFluids.java；materials/*.json（molten_fluid）；machine_fluid_mapping.json；
@@ -31,7 +31,7 @@ partial_close_allowed        = true（逐个流体关，未决策的保持 block
 | --- | ---: | --- | --- | --- | --- |
 | `plastic` | 356 | `MT.Plastic` | GT6 | 材料在，`molten_fluid: false` | 开熔融流体 |
 | `chargedmatter` | 652 | `FL.MatterCharged` | GT6（质量制造） | 只有 `matter_neutral` | 新注册；不拿中性物质顶 |
-| `ice` | 135 | `MT.Ice`（H₂O 凝固态） | GT6 | 材料在，无流体 | 先查 GT6 实际是否以流体参与，再定 |
+| `ice` | 145 | `FL` 流体 `ice`（Near Frozen Water，273 K，绑 `MT.Ice`） | GT6 | 材料在，无流体 | 注册 `ice`，不是熔融冰 |
 | `blueberryjuice` | 136 | `FL.Juice_Blueberry` | GT6 食物 | 无 | 与 blocker `worldgen/food` 一起看；本卡只在有消费机器时注册 |
 | `fieryblood` / `fierytears` | 各 1,095 | `FL.FieryBlood` / `FL.FieryTears` | GT6 定义，主要用于暮色森林兼容 | 无；`machine_fluid_mapping.json` 记 out_of_scope | 移植（负责人 2026-09-24 决定） |
 | `petrotheum` | 434 | `MT.Petrotheum` | 热力基础 | 只有粉 | 移植（同上） |
@@ -71,6 +71,6 @@ python tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_cover
 
 ## 5. 关闭清单
 
-- [ ] 每种流体有生产与消费路径，或明确 blocked
-- [ ] 三种兼容流体按 GT6 定义注册，生产路径有或明确 blocked
+- [x] 每种流体已注册；生产路径记在 `tools/waves/fluid/gt6-missing-fluids/obtain.json`，目前全部 blocked
+- [x] 三种兼容流体按 GT6 定义注册，生产路径 blocked（来源是别的 mod 的物品）
 - [ ] 人工 `runClient` 签收

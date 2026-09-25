@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "slug": "fluid/gt6-missing-fluids",
+  "title": "GT6 Missing Fluids",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "blocked",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6缺失流体详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/material/Gt6NamedFluidRegistrationGate.java",
+    "src/main/java/com/masson/cruciblecraft/registry/ModFluids.java",
+    "src/main/java/com/masson/cruciblecraft/material/ChemicalFluidRegistrationGate.java",
+    "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+    "src/main/resources/data/cruciblecraft/gt6_named_fluid_gate.json",
+    "src/main/resources/data/cruciblecraft/gt6_material_fluid_gate.json",
+    "src/main/resources/data/cruciblecraft/materials/plastic.json",
+    "src/main/resources/assets/cruciblecraft/gt6_missing_fluids_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/charged_matter.png",
+    "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/fiery_blood.png",
+    "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/fiery_tears.png",
+    "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/blueberry_juice.png",
+    "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/ice.png",
+    "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/petrotheum.png",
+    "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/plastic.png",
+    "tools/machine_fluid_mapping.json",
+    "src/test/java/com/masson/cruciblecraft/gametest/Gt6MissingFluidsGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/material/Gt6MissingFluidGateTest.java",
+    "tools/waves/fluid/gt6-missing-fluids/**",
+    "tools/capabilities/fluid/gt6-missing-fluids/**"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "fluid/gt6-missing-fluids",
+  "required_test_ids": [
+    "registeredFluidsFillATank"
+  ],
+  "note": "Seven GT6 fluids registered under their own names. Plastic is molten_plastic. Ice is Near Frozen Water, not molten ice. Charged matter is not neutral matter. Production paths are blocked in tools/waves/fluid/gt6-missing-fluids/obtain.json."
+}

@@ -14,6 +14,7 @@ import com.masson.cruciblecraft.content.item.BathRemainderFluidCatalog;
 import com.masson.cruciblecraft.content.item.SemanticFluidCatalog;
 import com.masson.cruciblecraft.worldgen.tree.TreeHoleFluidCatalog;
 import com.masson.cruciblecraft.material.ChemicalFluidRegistrationGate;
+import com.masson.cruciblecraft.material.Gt6NamedFluidRegistrationGate;
 import com.masson.cruciblecraft.material.HotFluidRegistrationGate;
 import com.masson.cruciblecraft.material.GT6ImportUnits;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -43,6 +44,8 @@ public final class ModFluids {
     private static volatile Map<Fluid, ChemicalFluidRegistrationGate.State>
             chemicalStateByFluid;
     private static volatile HotRegistration hotRegistration = HotRegistration.empty();
+    private static volatile NamedRegistration namedRegistration =
+            NamedRegistration.empty();
     private static volatile Map<Fluid, String> hotIdByFluid;
 
     public static final Supplier<FluidType> CREOSOTE_TYPE = FLUID_TYPES.register(
@@ -217,11 +220,13 @@ public final class ModFluids {
             Collection<MaterialDefinition> definitions) {
         if (!moltenRegistration.byMaterial().isEmpty()
                 || !chemicalRegistration.byMaterial().isEmpty()
-                || !hotRegistration.byId().isEmpty()) {
+                || !hotRegistration.byId().isEmpty()
+                || !namedRegistration.byId().isEmpty()) {
             throw new IllegalStateException("Material fluids already registered");
         }
         registerChemicalMaterials(definitions);
         registerHotFluids();
+        registerNamedFluids();
         LinkedHashMap<String, MoltenFluidEntry> registered = new LinkedHashMap<>();
         for (MaterialDefinition material : definitions) {
             if (!material.moltenFluid()) {
@@ -387,6 +392,50 @@ public final class ModFluids {
         hotRegistration = new HotRegistration(registered, registered.values());
     }
 
+    private static void registerNamedFluids() {
+        LinkedHashMap<String, NamedFluidEntry> registered = new LinkedHashMap<>();
+        for (Gt6NamedFluidRegistrationGate.Entry entry
+                : Gt6NamedFluidRegistrationGate.load()) {
+            Supplier<FluidType> type = FLUID_TYPES.register(
+                    entry.id(),
+                    () -> new FluidType(FluidType.Properties.create()
+                            .temperature(entry.temperatureKelvin())
+                            .density(entry.density())
+                            .viscosity(entry.viscosity())
+                            .lightLevel(entry.lightLevel())));
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> source =
+                    new AtomicReference<>();
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> flowing =
+                    new AtomicReference<>();
+            Supplier<BaseFlowingFluid.Properties> properties =
+                    () -> new BaseFlowingFluid.Properties(
+                            type,
+                            () -> source.get().get(),
+                            () -> flowing.get().get());
+            source.set(FLUIDS.register(
+                    entry.id(),
+                    () -> new BaseFlowingFluid.Source(properties.get())));
+            flowing.set(FLUIDS.register(
+                    "flowing_" + entry.id(),
+                    () -> new BaseFlowingFluid.Flowing(properties.get())));
+            NamedFluidEntry previous = registered.putIfAbsent(
+                    entry.id(),
+                    new NamedFluidEntry(
+                            entry.id(),
+                            entry.gt6Fluid(),
+                            entry.english(),
+                            entry.chinese(),
+                            type,
+                            source.get(),
+                            flowing.get()));
+            if (previous != null) {
+                throw new IllegalStateException(
+                        "Duplicate named fluid registration: " + entry.id());
+            }
+        }
+        namedRegistration = new NamedRegistration(registered, registered.values());
+    }
+
     public static Optional<MoltenFluidEntry> molten(String materialId) {
         return Optional.ofNullable(
                 moltenRegistration.byMaterial().get(materialId));
@@ -438,6 +487,14 @@ public final class ModFluids {
 
     public static Collection<HotFluidEntry> hotFluids() {
         return hotRegistration.entries();
+    }
+
+    public static Collection<NamedFluidEntry> namedFluids() {
+        return namedRegistration.entries();
+    }
+
+    public static Optional<NamedFluidEntry> named(String id) {
+        return Optional.ofNullable(namedRegistration.byId().get(id));
     }
 
     public static Optional<HotFluidEntry> hot(String id) {
@@ -644,6 +701,28 @@ public final class ModFluids {
             DeferredHolder<Fluid, FlowingFluid> flowing) {
         public MaterialDefinition material() {
             return MaterialCatalog.require(materialId);
+        }
+    }
+
+    public record NamedFluidEntry(
+            String id,
+            String gt6Fluid,
+            String english,
+            String chinese,
+            Supplier<FluidType> type,
+            DeferredHolder<Fluid, FlowingFluid> source,
+            DeferredHolder<Fluid, FlowingFluid> flowing) {}
+
+    private record NamedRegistration(
+            Map<String, NamedFluidEntry> byId,
+            Collection<NamedFluidEntry> entries) {
+        private NamedRegistration {
+            byId = Map.copyOf(byId);
+            entries = java.util.List.copyOf(entries);
+        }
+
+        private static NamedRegistration empty() {
+            return new NamedRegistration(Map.of(), java.util.List.of());
         }
     }
 

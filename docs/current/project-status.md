@@ -20,7 +20,6 @@
 - `energy/gt6-laser-magnet-zpm-converters` — [GT6 激光、磁铁与 ZPM 转换器详细计划](../history/card-plans/prep/GT6激光磁铁ZPM转换器详细计划.md)
 - `energy/gt6-remainder-devices` — [GT6 余量能源设备详细计划](../history/card-plans/prep/GT6余量能源设备详细计划.md)
 - `energy/small-gas-turbine` — [微型燃气涡轮详细计划](../history/card-plans/prep/微型燃气涡轮详细计划.md)
-- `fluid/gt6-missing-fluids` — [GT6 缺失流体详细计划](../history/card-plans/prep/GT6缺失流体详细计划.md)
 - `machines/gt6-basic-machine-batch` — [GT6 同类基础加工机批量详细计划](../history/card-plans/prep/GT6同类基础加工机批量详细计划.md)
 - `machines/large-bath` — [大型洗矿机详细计划](../history/card-plans/prep/大型洗矿机详细计划.md)
 - `machines/printer` — [印刷机详细计划](../history/card-plans/prep/印刷机详细计划.md)
@@ -43,9 +42,9 @@
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids
 
-## runtime_ready accepted（95）
+## runtime_ready accepted（96）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -100,6 +99,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `energy/nuclear-fission-observation-safety` — Nuclear Fission Observation Safety — [裂变观测安全与能源 Jade 详细计划](../history/card-plans/closed/裂变观测安全与能源Jade详细计划.md)
 - `energy/nuclear-fission-survival` — Nuclear Fission Survival — [裂变生存闭环与全量棒堆芯详细计划](../history/card-plans/closed/裂变生存闭环与全量棒堆芯详细计划.md)
 - `energy/transformers` — Energy Transformers
+- `fluid/gt6-missing-fluids` — GT6 Missing Fluids — [GT6 缺失流体详细计划](../history/card-plans/closed/GT6缺失流体详细计划.md)
 - `localization/language-key-display-name-normalization` — Language Key and Display Name Normalization — [语言键与显示名规范收口详细计划](../history/card-plans/closed/语言键与显示名规范收口详细计划.md)
 - `logistics/cover-remainder` — Cover remainder — [盖板余量详细计划](../history/card-plans/closed/盖板余量详细计划.md)
 - `logistics/display-cpu` — Logistics Display CPU

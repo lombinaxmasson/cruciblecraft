@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "fluids": [
+    {
+      "id": "ice",
+      "material": "ice",
+      "state": "liquid",
+      "temperature_kelvin": 273,
+      "density": 1000,
+      "viscosity": 1000,
+      "color": "#C8C8FF",
+      "world_placeable": false,
+      "source": {
+        "repository": "GregTech6/gregtech6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/a/Loader_Fluids.java:364",
+        "reason": "GT6 fluid ice, localized Near Frozen Water, bound to MT.Ice at temperature C (273 K). It is a drink fluid, not molten.ice. Density follows the material gram density of 1.0."
+      }
+    },
+    {
+      "id": "petrotheum",
+      "material": "petrotheum",
+      "state": "liquid",
+      "temperature_kelvin": 400,
+      "density": 4000,
+      "viscosity": 1500,
+      "color": "#564C52",
+      "world_placeable": false,
+      "source": {
+        "repository": "GregTech6/gregtech6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/a/Loader_Fluids.java:132",
+        "reason": "GT6 fluid petrotheum bound to MT.Petrotheum. create() then setDensity(4000).setViscosity(1500). Temperature is 400 K. Not molten.petrotheum."
+      }
+    }
+  ]
+}

@@ -90,7 +90,7 @@ P1、P2 做完重跑逐行分类；P3 完成验证基础设施收口后，后面
 | --- | --- | --- | ---: |
 | 1 | [GT6 粉块批量](GT6粉块批量详细计划.md) | `registry/gt6-storage-dust-blocks` | 约 951 种材料 / 15,727 行；退役 `storage_ingot` |
 | 2 | [GT6 长尾形态开门](GT6长尾形态开门详细计划.md) | `registry/gt6-long-tail-forms` | 约 75,500 行（上界） |
-| 3 | [GT6 缺失流体](GT6缺失流体详细计划.md) | `fluid/gt6-missing-fluids` | 7 种流体；依赖 P3 |
+| 3 | [GT6 缺失流体](../closed/GT6缺失流体详细计划.md) | `fluid/gt6-missing-fluids` | 7 种流体；已关 |
 | — | 重跑逐行分类 | — | 第二层缺口出现后调整 4–7 |
 | 4 | [GT6 批量配方容量门](GT6批量配方容量门详细计划.md) | `recipe/gt6-bulk-capacity` | 不导配方；重定上限与各卡预算 |
 | 5 | [GT6 挤压机配方批量](GT6挤压机配方批量详细计划.md) | `recipe/gt6-extruder-bulk` | 108,210 行起（模具修复后可能更多） |

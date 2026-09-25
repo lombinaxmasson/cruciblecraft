@@ -1,10 +1,10 @@
 {
   "consumers": "Runtime derivation reference remains build_t5_source_projection.fluid_form(); wiring the translation layer to consume this artifact is T23 work.",
   "counts": {
-    "mapped": 304,
-    "no_cc_fluid": 16,
+    "mapped": 311,
+    "no_cc_fluid": 13,
     "out_of_scope": 2,
-    "total": 322,
+    "total": 326,
     "unclassified": 0
   },
   "derivation_chain": {
@@ -2548,10 +2548,10 @@
       "material_id": 9793
     },
     {
-      "cc_fluid_id": null,
+      "cc_fluid_id": "cruciblecraft:ice",
       "cc_material": "ice",
-      "derivation": "chemical_gate",
-      "disposition": "no_cc_fluid",
+      "derivation": "gt6_missing_fluids",
+      "disposition": "mapped",
       "fluid": "ice",
       "material_id": 9802
     },
@@ -2580,18 +2580,18 @@
       "material_id": 9790
     },
     {
-      "cc_fluid_id": null,
+      "cc_fluid_id": "cruciblecraft:petrotheum",
       "cc_material": "petrotheum",
-      "derivation": "chemical_gate",
-      "disposition": "no_cc_fluid",
+      "derivation": "gt6_missing_fluids",
+      "disposition": "mapped",
       "fluid": "petrotheum",
       "material_id": 8245
     },
     {
-      "cc_fluid_id": null,
+      "cc_fluid_id": "cruciblecraft:molten_plastic",
       "cc_material": "plastic",
-      "derivation": "chemical_gate",
-      "disposition": "no_cc_fluid",
+      "derivation": "gt6_missing_fluids",
+      "disposition": "mapped",
       "fluid": "plastic",
       "material_id": 8218
     },
@@ -2616,6 +2616,30 @@
       "disposition": "out_of_scope",
       "fluid": "molten.schrabidium",
       "material_id": -1
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:charged_matter",
+      "derivation": "gt6_missing_fluids",
+      "disposition": "mapped",
+      "fluid": "chargedmatter"
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:fiery_blood",
+      "derivation": "gt6_missing_fluids",
+      "disposition": "mapped",
+      "fluid": "fieryblood"
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:fiery_tears",
+      "derivation": "gt6_missing_fluids",
+      "disposition": "mapped",
+      "fluid": "fierytears"
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:blueberry_juice",
+      "derivation": "gt6_missing_fluids",
+      "disposition": "mapped",
+      "fluid": "blueberryjuice"
     }
   ],
   "publication_delta": 0,
@@ -2624,7 +2648,7 @@
   "status": "T22_5_FLUID_MAPPING_READY",
   "unknown_identity": {
     "definition": "Fluid names referenced by T21 source rows but absent from the 322 normalized GT6 oredict fluids. Each has an explicit identity decision; recorded_rows come from the GT6-dump scan (full-replay).",
-    "recorded_rows_total": 47719,
+    "recorded_rows_total": 47569,
     "records": [
       {
         "class": "out_of_scope_g10_food",
@@ -2884,20 +2908,6 @@
         "rationale": "End dimension atmosphere fluid; no CC consumer.",
         "recheck_point": "CC adds End dimension content.",
         "recorded_rows": 5
-      },
-      {
-        "class": "out_of_scope_g10_nether_mobs",
-        "fluid": "fieryblood",
-        "rationale": "GT6 nether mob-drop fluid; mob drops are G10.",
-        "recheck_point": "CC adds nether mob processing.",
-        "recorded_rows": 75
-      },
-      {
-        "class": "out_of_scope_g10_nether_mobs",
-        "fluid": "fierytears",
-        "rationale": "GT6 nether mob-drop fluid; mob drops are G10.",
-        "recheck_point": "CC adds nether mob processing.",
-        "recorded_rows": 75
       },
       {
         "class": "out_of_scope_g10_food",

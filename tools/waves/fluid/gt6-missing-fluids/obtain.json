@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "capability_slug": "fluid/gt6-missing-fluids",
+  "note": "Identities are live. Production is blocked until a real GT6 source exists in CC. No stand-in recipe was added.",
+  "fluids": [
+    {
+      "gt6_fluid": "plastic",
+      "cc_fluid_id": "cruciblecraft:molten_plastic",
+      "production": "blocked",
+      "reason": "GT6 melts plastic on the melter. The live melter publication is a closed 3601-row set and does not yet include those rows."
+    },
+    {
+      "gt6_fluid": "chargedmatter",
+      "cc_fluid_id": "cruciblecraft:charged_matter",
+      "production": "blocked",
+      "reason": "GT6 produces this on the mass fabricator. energy/quantum-massfab is paused, and neutral matter is a different fluid."
+    },
+    {
+      "gt6_fluid": "ice",
+      "cc_fluid_id": "cruciblecraft:ice",
+      "production": "blocked",
+      "reason": "GT6 fluid ice is Near Frozen Water at 273 K, bound to MT.Ice. It is used by fermenter, mixer, squeezer, juicer, and freezer. Those rows are not in a live recipe publication."
+    },
+    {
+      "gt6_fluid": "blueberryjuice",
+      "cc_fluid_id": "cruciblecraft:blueberry_juice",
+      "production": "blocked",
+      "reason": "Bath and mixer consume it, so the identity is registered. Juicer production stays on blocker worldgen/food."
+    },
+    {
+      "gt6_fluid": "fieryblood",
+      "cc_fluid_id": "cruciblecraft:fiery_blood",
+      "production": "blocked",
+      "reason": "GT6 production uses Twilight Forest items. Those items are not in CC, so no source was invented."
+    },
+    {
+      "gt6_fluid": "fierytears",
+      "cc_fluid_id": "cruciblecraft:fiery_tears",
+      "production": "blocked",
+      "reason": "GT6 production uses Twilight Forest items. Those items are not in CC, so no source was invented."
+    },
+    {
+      "gt6_fluid": "petrotheum",
+      "cc_fluid_id": "cruciblecraft:petrotheum",
+      "production": "blocked",
+      "reason": "GT6 production uses Thermal Foundation items. Those items are not in CC, so no source was invented."
+    }
+  ]
+}

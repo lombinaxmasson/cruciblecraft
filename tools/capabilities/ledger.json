@@ -2025,6 +2025,43 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
+        "docs/history/card-plans/closed/GT6缺失流体详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/material/Gt6NamedFluidRegistrationGate.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModFluids.java",
+        "src/main/java/com/masson/cruciblecraft/material/ChemicalFluidRegistrationGate.java",
+        "src/main/java/com/masson/cruciblecraft/client/ClientSetup.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+        "src/main/resources/data/cruciblecraft/gt6_named_fluid_gate.json",
+        "src/main/resources/data/cruciblecraft/gt6_material_fluid_gate.json",
+        "src/main/resources/data/cruciblecraft/materials/plastic.json",
+        "src/main/resources/assets/cruciblecraft/gt6_missing_fluids_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/charged_matter.png",
+        "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/fiery_blood.png",
+        "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/fiery_tears.png",
+        "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/blueberry_juice.png",
+        "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/ice.png",
+        "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/petrotheum.png",
+        "src/main/resources/assets/cruciblecraft/textures/fluid/gt6_import/plastic.png",
+        "tools/machine_fluid_mapping.json",
+        "src/test/java/com/masson/cruciblecraft/gametest/Gt6MissingFluidsGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/material/Gt6MissingFluidGateTest.java",
+        "tools/waves/fluid/gt6-missing-fluids/**",
+        "tools/capabilities/fluid/gt6-missing-fluids/**"
+      ],
+      "path": "tools/capabilities/fluid/gt6-missing-fluids/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "fluid/gt6-missing-fluids",
+      "survival_access": "blocked",
+      "title": "GT6 Missing Fluids",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
         "docs/history/card-plans/closed/语言键与显示名规范收口详细计划.md",
         "src/main/java/com/masson/cruciblecraft/localization/LanguageNames.java",
         "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
@@ -3872,7 +3909,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 112,
+  "capability_count": 113,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -4525,6 +4562,9 @@
       "worldgen/gt-crops",
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
+    ],
+    "fluid/gt6-missing-fluids": [
+      "fluid/gt6-missing-fluids"
     ],
     "localization/language-key-display-name-normalization": [
       "localization/language-key-display-name-normalization"
@@ -5341,6 +5381,7 @@
       "energy/small-gas-turbine",
       "energy/steam-turbine",
       "energy/transformers",
+      "fluid/gt6-missing-fluids",
       "localization/language-key-display-name-normalization",
       "logistics/cover-net-r0",
       "logistics/cover-remainder",

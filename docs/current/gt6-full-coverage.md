@@ -13,8 +13,8 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 轴 | 分母 | 当前状态分布 |
 | --- | --- | --- |
 | 配方图 | 95 maps / 720841 源行 | `denominator_only` 17，`runtime_only` 4，`bounded_subset` 52，`full_replay` 6，`empty_source` 14，`legacy_exclusion_pending` 2 |
-| **配方移植进度** | 目标 706959 源行（720841 − 决策排除 13882） | **已证明 17.4%**（122767）；身份就绪 82.8%；按机器平均 27.2%（73 台，完成 7，未开始 33） |
-| 配方源行逐行分类 | 720841 源行 | 已证明 122767（17.0%）；部分一致 9405（1.3%）；缺配方 453472（62.9%）；缺身份 111979（15.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
+| **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 17.4%**（122767）；身份就绪 83.5%；按机器平均 27.2%（73 台，完成 7，未开始 33） |
+| 配方源行逐行分类 | 720841 源行 | 已证明 122767（17.0%）；部分一致 9469（1.3%）；缺配方 457851（63.5%）；缺身份 107536（14.9%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
 | 机器 kind | 96 canonical kinds | `denominator_only` 16，`identity_only` 1，`runtime_code_uncarded` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 43，`runtime_accepted` 21，`full_replay` 4 |
 | 多方块控制器 | 30 canonical kinds | `identity_only` 2，`runtime_code_uncarded` 2，`runtime_paused` 6，`runtime_accepted` 20 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
@@ -23,16 +23,16 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 1652 demand pairs | openable 96，gated_unresolved 1207，ungated 规模 3298（规模，非待办） |
-| Capability | 112 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 95，`runtime_ready:paused` 3；survival_access `blocked` 2，`not_applicable` 2，`partial` 23，`unreviewed` 21，`unset` 64 |
+| Capability | 113 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 96，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 2，`partial` 23，`unreviewed` 21，`unset` 64 |
 | Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
 配方源行逐行分类（每一条 GT6 源行只落一类，合计等于分母；口径见工作流文档第 3.3 节）：
 
 - **已证明** 122767（17.0%）：`source_exact` 118941，`translated_exact` 3826
-- **部分一致** 9405（1.3%）：`translated_io_only` 1778，`translated_item_io` 7627
-- **缺配方** 453472（62.9%）：`translatable_missing` 453472
-- **缺身份** 111979（15.5%）：`missing_material_form` 79103，`missing_material` 0，`missing_fluid` 12378，`missing_object` 20498
+- **部分一致** 9469（1.3%）：`translated_io_only` 1778，`translated_item_io` 7691
+- **缺配方** 457851（63.5%）：`translatable_missing` 457851
+- **缺身份** 107536（14.9%）：`missing_material_form` 79103，`missing_material` 0，`missing_fluid` 7935，`missing_object` 20498
 - **展示用** 13576（1.9%）：`display_only` 13576
 - **旧排除待决策** 9642（1.3%）：`legacy_exclusion_pending` 9642
 
@@ -186,12 +186,12 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | GT6 map | 源行 | 目标 | 进度 | 就绪 | `source_exact` | `translated_exact` | `translated_io_only` | `translated_item_io` | `translatable_missing` | `missing_material_form` | `missing_material` | `missing_fluid` | `missing_object` | `display_only` | `legacy_exclusion_pending` |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `gt.recipe.extruder` | 325595 | 325519 | 0.9% | 93.7% | 0 | 2787 | 0 | 0 | 302175 | 11096 | 0 | 0 | 9537 | 0 | 0 |
-| `gt.recipe.mixer` | 64245 | 64239 | 11.2% | 99.0% | 7198 | 30 | 0 | 4556 | 51803 | 0 | 0 | 571 | 87 | 0 | 0 |
-| `gt.recipe.bath` | 59855 | 59791 | 82.7% | 87.8% | 49407 | 9 | 0 | 2918 | 163 | 3568 | 0 | 3787 | 1 | 2 | 0 |
+| `gt.recipe.mixer` | 64245 | 64238 | 11.2% | 99.0% | 7198 | 30 | 0 | 4556 | 51804 | 0 | 0 | 570 | 87 | 0 | 0 |
+| `gt.recipe.bath` | 59855 | 59791 | 82.7% | 91.8% | 49407 | 9 | 0 | 2981 | 2505 | 3568 | 0 | 1382 | 1 | 2 | 0 |
 | `gt.recipe.shredder` | 41246 | 41245 | 71.6% | 86.2% | 29180 | 363 | 0 | 0 | 6025 | 5359 | 0 | 0 | 319 | 0 | 0 |
 | `gt.recipe.cutter` | 27454 | 27446 | 0.0% | 91.8% | 0 | 0 | 0 | 0 | 25206 | 0 | 0 | 0 | 2248 | 0 | 0 |
 | `gt.recipe.boxinator` | 27291 | 27291 | 0.0% | 41.9% | 0 | 0 | 0 | 0 | 11439 | 15440 | 0 | 0 | 412 | 0 | 0 |
-| `gt.recipe.smelter` | 21969 | 21968 | 76.6% | 81.5% | 16627 | 194 | 0 | 0 | 1095 | 3442 | 0 | 505 | 106 | 0 | 0 |
+| `gt.recipe.smelter` | 21969 | 21968 | 76.6% | 83.6% | 16627 | 194 | 0 | 0 | 1542 | 3442 | 0 | 58 | 106 | 0 | 0 |
 | `gt.recipe.unboxinator` | 17513 | 17505 | 0.0% | 43.4% | 0 | 0 | 0 | 0 | 7594 | 9816 | 0 | 0 | 95 | 8 | 0 |
 | `gt.recipe.crusher` | 12932 | 12932 | 2.3% | 14.6% | 0 | 302 | 0 | 0 | 1587 | 10817 | 0 | 0 | 226 | 0 | 0 |
 | `gt.recipe.toolhead` | 10960 | 0 | — | — | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 10960 | 0 |
@@ -200,11 +200,11 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.press` | 8160 | 8160 | 0.0% | 22.3% | 0 | 0 | 0 | 0 | 1818 | 5997 | 0 | 0 | 345 | 0 | 0 |
 | `gt.recipe.steamcracking` | 7746 | 7746 | 0.0% | 99.6% | 0 | 0 | 0 | 0 | 7714 | 0 | 0 | 32 | 0 | 0 | 0 |
 | `gt.recipe.sharpener` | 7637 | 7637 | 100.0% | 100.0% | 7637 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| `gt.recipe.melter` | 6756 | 6755 | 53.4% | 57.9% | 3547 | 63 | 0 | 0 | 300 | 2294 | 0 | 441 | 111 | 0 | 0 |
-| `gt.recipe.fermenter` | 6435 | 6360 | 0.0% | 12.8% | 0 | 2 | 0 | 44 | 771 | 0 | 0 | 4136 | 1482 | 0 | 0 |
+| `gt.recipe.melter` | 6756 | 6755 | 53.4% | 64.4% | 3547 | 63 | 0 | 1 | 740 | 2294 | 0 | 0 | 111 | 0 | 0 |
+| `gt.recipe.fermenter` | 6435 | 6360 | 0.0% | 15.2% | 0 | 2 | 0 | 44 | 919 | 0 | 0 | 3988 | 1482 | 0 | 0 |
 | `gt.recipe.mortar` | 6318 | 6317 | 0.0% | 92.3% | 0 | 0 | 0 | 0 | 5834 | 1 | 0 | 0 | 483 | 0 | 0 |
-| `gt.recipe.squeezer` | 5322 | 5322 | 0.3% | 0.8% | 15 | 1 | 0 | 0 | 27 | 5190 | 0 | 21 | 68 | 0 | 0 |
-| `gt.recipe.sluice` | 4840 | 4840 | 0.0% | 80.0% | 0 | 0 | 0 | 0 | 3872 | 0 | 0 | 968 | 0 | 0 | 0 |
+| `gt.recipe.squeezer` | 5322 | 5322 | 0.3% | 1.1% | 15 | 1 | 0 | 0 | 40 | 5190 | 0 | 8 | 68 | 0 | 0 |
+| `gt.recipe.sluice` | 4840 | 4840 | 0.0% | 100.0% | 0 | 0 | 0 | 0 | 4840 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.welder` | 4762 | 4762 | 0.0% | 98.9% | 0 | 0 | 1045 | 0 | 3664 | 0 | 0 | 0 | 53 | 0 | 0 |
 | `gt.recipe.canner` | 3609 | 3609 | 0.1% | 2.4% | 0 | 3 | 0 | 0 | 82 | 2343 | 0 | 72 | 1109 | 0 | 0 |
 | `gt.recipe.sifter` | 2877 | 2877 | 0.0% | 14.1% | 0 | 0 | 0 | 0 | 405 | 2468 | 0 | 0 | 4 | 0 | 0 |
@@ -216,12 +216,12 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.compressor` | 1472 | 1472 | 87.6% | 100.0% | 1289 | 0 | 0 | 0 | 183 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.bumblelyzer` | 1440 | 0 | — | — | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1440 | 0 |
 | `gt.recipe.loom` | 1334 | 1334 | 35.7% | 87.5% | 476 | 0 | 0 | 0 | 691 | 34 | 0 | 0 | 133 | 0 | 0 |
-| `gt.recipe.centrifuge` | 1296 | 1296 | 19.4% | 97.0% | 252 | 0 | 0 | 7 | 998 | 1 | 0 | 15 | 23 | 0 | 0 |
+| `gt.recipe.centrifuge` | 1296 | 1296 | 19.4% | 97.2% | 252 | 0 | 0 | 7 | 1000 | 1 | 0 | 13 | 23 | 0 | 0 |
 | `gt.recipe.implosioncompressor` | 1072 | 1072 | 72.4% | 100.0% | 776 | 0 | 0 | 0 | 296 | 0 | 0 | 0 | 0 | 0 | 0 |
-| `gt.recipe.freezer` | 957 | 957 | 0.2% | 94.6% | 0 | 2 | 0 | 6 | 897 | 48 | 0 | 4 | 0 | 0 | 0 |
+| `gt.recipe.freezer` | 957 | 957 | 0.2% | 95.0% | 0 | 2 | 0 | 6 | 901 | 48 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.polarizer` | 943 | 943 | 0.0% | 93.3% | 0 | 0 | 0 | 0 | 880 | 63 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.rollbender` | 940 | 940 | 0.0% | 100.0% | 0 | 0 | 405 | 0 | 535 | 0 | 0 | 0 | 0 | 0 | 0 |
-| `gt.recipe.massfab` | 920 | 920 | 0.0% | 1.4% | 0 | 0 | 0 | 0 | 13 | 15 | 0 | 892 | 0 | 0 | 0 |
+| `gt.recipe.massfab` | 920 | 920 | 0.0% | 1.5% | 0 | 0 | 0 | 0 | 14 | 15 | 0 | 891 | 0 | 0 | 0 |
 | `gt.recipe.replicator` | 895 | 307 | 0.0% | 38.1% | 0 | 0 | 0 | 0 | 117 | 20 | 0 | 110 | 60 | 588 | 0 |
 | `gt.recipe.anvil.bend.big` | 723 | 723 | 0.0% | 100.0% | 0 | 0 | 0 | 0 | 723 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.injector` | 638 | 638 | 16.1% | 26.5% | 103 | 0 | 0 | 14 | 52 | 0 | 0 | 21 | 448 | 0 | 0 |
@@ -240,7 +240,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.crystallisationcrucible` | 132 | 132 | 0.0% | 100.0% | 0 | 0 | 0 | 0 | 132 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.cokeoven` | 124 | 124 | 30.6% | 96.8% | 0 | 38 | 0 | 1 | 81 | 4 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.roaster` | 115 | 115 | 63.5% | 100.0% | 73 | 0 | 0 | 34 | 8 | 0 | 0 | 0 | 0 | 0 | 0 |
-| `gt.recipe.juicer` | 96 | 96 | 0.0% | 15.6% | 0 | 0 | 0 | 0 | 15 | 0 | 0 | 18 | 63 | 0 | 0 |
+| `gt.recipe.juicer` | 96 | 96 | 0.0% | 29.2% | 0 | 0 | 0 | 0 | 28 | 0 | 0 | 5 | 63 | 0 | 0 |
 | `gt.recipe.bumblequeen` | 80 | 0 | — | — | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 80 | 0 |
 | `gt.recipe.other` | 71 | 0 | — | — | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 71 | 0 |
 | `gt.recipe.nanofab` | 64 | 64 | 14.1% | 100.0% | 7 | 2 | 0 | 0 | 55 | 0 | 0 | 0 | 0 | 0 | 0 |
@@ -572,7 +572,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - `skipped`：0
 - `ungated_generated_flag_pairs`：3298
 
-## 12. Capability（112）
+## 12. Capability（113）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -636,6 +636,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `energy/small-gas-turbine` | frozen | paused | unreviewed |
 | `energy/steam-turbine` | frozen | paused | — |
 | `energy/transformers` | runtime_ready | accepted | unreviewed |
+| `fluid/gt6-missing-fluids` | runtime_ready | accepted | blocked |
 | `localization/language-key-display-name-normalization` | runtime_ready | accepted | — |
 | `logistics/cover-net-r0` | frozen | accepted | — |
 | `logistics/cover-remainder` | runtime_ready | accepted | — |
@@ -798,13 +799,9 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料形态 | `plantGtTwig` | 1394 | 1038 | squeezer 1038, smelter 276, melter 80 |  |
 | 材料形态 | `storage.gem` | 1371 | 207 | boxinator 617, shredder 206, unboxinator 205 |  |
 | 物品/方块 | `gregtech:gt.multiitem.randomtools` | 1240 | — | assembler 1239, boxinator 1 |  |
-| 流体 | `fieryblood` | 1171 | — | bath 1171 |  |
-| 流体 | `fierytears` | 1171 | — | bath 1171 |  |
 | 材料形态 | `arrowGtPlastic` | 1080 | 1 | press 539, unboxinator 539, melter 1 |  |
 | 材料形态 | `arrowGtWood` | 1078 | 1 | press 539, unboxinator 539 |  |
-| 流体 | `petrotheum` | 975 | — | sluice 968, smelter 6, centrifuge 1 |  |
-| 流体 | `chargedmatter` | 891 | — | massfab 891 |  |
-| 流体 | `plastic` | 880 | — | melter 440, smelter 440 |  |
+| 流体 | `neutralmatter` | 1000 | — | massfab 890, replicator 110 |  |
 | 材料形态 | `toolHeadPickaxeGem` | 744 | 31 | press 713, unboxinator 31 |  |
 | 材料形态 | `crate.64.gem` | 635 | 209 | boxinator 426, unboxinator 209 |  |
 | 材料形态 | `crate.64.plateGem` | 621 | 207 | boxinator 414, unboxinator 207 |  |
@@ -817,8 +814,12 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料形态 | `ore.broken.andesite` | 492 | 492 | crusher 492 |  |
 | 材料形态 | `ore.broken.basalt` | 492 | 492 | crusher 492 |  |
 | 材料形态 | `ore.broken.blackgranite` | 492 | 492 | crusher 492 |  |
+| 材料形态 | `ore.broken.blueschist` | 492 | 492 | crusher 492 |  |
+| 材料形态 | `ore.broken.diorite` | 492 | 492 | crusher 492 |  |
+| 材料形态 | `ore.broken.granite` | 492 | 492 | crusher 492 |  |
+| 材料形态 | `ore.broken.greenschist` | 492 | 492 | crusher 492 |  |
 
-按类型合计（第一缺口口径）：材料形态 79103，物品/方块 20337，流体 12233
+按类型合计（第一缺口口径）：材料形态 79103，物品/方块 20337，流体 7789
 
 ### 17.2 缺配方（按机器，前 20 项）
 
@@ -827,7 +828,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | GT6 map | 缺配方行 | 部分一致 | 已证明 | 交付深度 | 提示 |
 | --- | ---: | ---: | ---: | --- | --- |
 | `gt.recipe.extruder` | 302175 | 0 | 2787 | `bounded_subset` | 补材料规则模板 |
-| `gt.recipe.mixer` | 51803 | 4556 | 7228 | `bounded_subset` | 扩展已有 wave |
+| `gt.recipe.mixer` | 51804 | 4556 | 7228 | `bounded_subset` | 扩展已有 wave |
 | `gt.recipe.cutter` | 25206 | 0 | 0 | `bounded_subset` | 补材料规则模板 |
 | `gt.recipe.boxinator` | 11439 | 0 | 0 | `runtime_only` | 新开 dump wave |
 | `gt.recipe.generifier` | 8650 | 16 | 7 | `bounded_subset` | 扩展已有 wave |
@@ -835,21 +836,21 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.unboxinator` | 7594 | 0 | 0 | `denominator_only` | 先做机器，再做 wave |
 | `gt.recipe.shredder` | 6025 | 0 | 29543 | `bounded_subset` | 扩展已有 wave |
 | `gt.recipe.mortar` | 5834 | 0 | 0 | `bounded_subset` | 补材料规则模板 |
-| `gt.recipe.sluice` | 3872 | 0 | 0 | `bounded_subset` | 新开 dump wave |
+| `gt.recipe.sluice` | 4840 | 0 | 0 | `bounded_subset` | 新开 dump wave |
 | `gt.recipe.welder` | 3664 | 1045 | 0 | `bounded_subset` | 补材料规则模板 |
 | `gt.recipe.lathe` | 2521 | 0 | 0 | `bounded_subset` | 补材料规则模板 |
+| `gt.recipe.bath` | 2505 | 2981 | 49416 | `bounded_subset` | 补材料规则模板 |
 | `gt.recipe.rollingmill` | 2139 | 297 | 0 | `bounded_subset` | 补材料规则模板 |
 | `gt.recipe.press` | 1818 | 0 | 0 | `bounded_subset` | 补材料规则模板 |
 | `gt.recipe.crusher` | 1587 | 0 | 302 | `bounded_subset` | 补材料规则模板 |
-| `gt.recipe.smelter` | 1095 | 0 | 16821 | `bounded_subset` | 补材料规则模板 |
-| `gt.recipe.centrifuge` | 998 | 7 | 252 | `bounded_subset` | 扩展已有 wave |
-| `gt.recipe.freezer` | 897 | 6 | 2 | `bounded_subset` | 新开 dump wave |
-| `gt.recipe.distillery` | 888 | 0 | 6 | `bounded_subset` | 扩展已有 wave |
-| `gt.recipe.polarizer` | 880 | 0 | 0 | `bounded_subset` | 新开 dump wave |
+| `gt.recipe.smelter` | 1542 | 0 | 16821 | `bounded_subset` | 补材料规则模板 |
+| `gt.recipe.centrifuge` | 1000 | 7 | 252 | `bounded_subset` | 扩展已有 wave |
+| `gt.recipe.fermenter` | 919 | 44 | 2 | `bounded_subset` | 新开 dump wave |
+| `gt.recipe.freezer` | 901 | 6 | 2 | `bounded_subset` | 新开 dump wave |
 
 ### 17.3 排除候选（待决策，不会自动生效）
 
 下列缺口来自 GT6 以外的 mod，或是旧分母排除的图。决定不移植的，把规则写进 `tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json` （要写理由和决策人），它们就会从进度目标里移出；决定移植的，留在上面的清单里。
 
-- 别的 mod：`for.honey`（100）、`dye.watermixed.blue`（97）、`dye.watermixed.brown`（94）、`binnie.juicelemon`（92）、`binnie.juicelime`（87）、`dye.watermixed.cyan`（85）、`dye.chemical.black`（83）、`dye.watermixed.yellow`（83）、`grcmilk.milk`（83）、`binnie.juicetomato`（80）、`binnie.juiceredgrape`（79）、`binnie.juicewhitegrape`（79）、`grc.grapewine0`（79）、`binnie.juicecherry`（78）、`binnie.juicepineapple`（78）、`binnie.juiceplum`（78）、`dye.chemical.green`（78）、`dye.chemical.red`（78）、`potion.goldenapplejuice`（78）、`potion.idunsapplejuice`（78）、`binnie.juiceapple`（77）、`binnie.juiceapricot`（77）、`binnie.juicebanana`（77）、`binnie.juiceelderberry`（77）、`binnie.juiceorange`（77）
+- 别的 mod：`for.honey`（100）、`dye.watermixed.blue`（97）、`dye.watermixed.brown`（94）、`binnie.juicelemon`（93）、`binnie.juicelime`（88）、`dye.watermixed.cyan`（85）、`dye.chemical.black`（83）、`dye.chemical.blue`（83）、`dye.watermixed.yellow`（83）、`grcmilk.milk`（83）、`binnie.juiceredgrape`（80）、`binnie.juicetomato`（80）、`binnie.juicewhitegrape`（80）、`grc.grapewine0`（80）、`binnie.juicecherry`（79）、`binnie.juicepineapple`（79）、`binnie.juiceplum`（79）、`potion.goldenapplejuice`（79）、`potion.idunsapplejuice`（79）、`binnie.juiceapple`（78）、`binnie.juiceapricot`（78）、`binnie.juicebanana`（78）、`binnie.juiceelderberry`（78）、`binnie.juiceorange`（78）、`binnie.juicepeach`（78）
 - 旧分母排除的图：`gt.recipe.anvil`（9228）、`gt.recipe.cruciblealloying`（414）

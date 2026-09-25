@@ -629,6 +629,10 @@ public class ClientSetup {
             }
         }, ModFluids.STEAM_TYPE.get());
         ModFluids.moltenFluids().forEach(entry -> {
+            if ("plastic".equals(entry.materialId())) {
+                registerImportedSpringFluid(event, entry.type().get(), "plastic");
+                return;
+            }
             int tintColor = 0xFF000000
                     | entry.material().colorRgb();
             event.registerFluidType(new IClientFluidTypeExtensions() {
@@ -653,6 +657,10 @@ public class ClientSetup {
                 registerImportedSpringFluid(event, entry.type().get(), "natural_gas");
                 return;
             }
+            if ("ice".equals(entry.id()) || "petrotheum".equals(entry.id())) {
+                registerImportedSpringFluid(event, entry.type().get(), entry.id());
+                return;
+            }
             int tintColor = 0xFF000000
                     | MaterialColors.parse(entry.color());
             event.registerFluidType(new IClientFluidTypeExtensions() {
@@ -669,6 +677,26 @@ public class ClientSetup {
                 @Override
                 public int getTintColor() {
                     return tintColor;
+                }
+            }, entry.type().get());
+        });
+        ModFluids.namedFluids().forEach(entry -> {
+            ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(
+                    CrucibleCraft.MODID, "fluid/gt6_import/" + entry.id());
+            event.registerFluidType(new IClientFluidTypeExtensions() {
+                @Override
+                public ResourceLocation getStillTexture() {
+                    return texture;
+                }
+
+                @Override
+                public ResourceLocation getFlowingTexture() {
+                    return texture;
+                }
+
+                @Override
+                public int getTintColor() {
+                    return 0xFFFFFFFF;
                 }
             }, entry.type().get());
         });

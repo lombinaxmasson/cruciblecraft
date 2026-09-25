@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "fluids": [
+    {
+      "id": "charged_matter",
+      "gt6_fluid": "chargedmatter",
+      "state": "liquid",
+      "temperature_kelvin": 1,
+      "density": -5000,
+      "viscosity": 1000,
+      "light_level": 15,
+      "english": "Charged Matter",
+      "chinese": "带电物质",
+      "source": {
+        "repository": "GregTech6/gregtech6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/a/Loader_Fluids.java:70",
+        "reason": "GT6 FL.MatterCharged. Independent of FL.MatterNeutral. Liquid viscosity is the STATE_LIQUID default; density and light are the create() overrides."
+      }
+    },
+    {
+      "id": "fiery_blood",
+      "gt6_fluid": "fieryblood",
+      "state": "liquid",
+      "temperature_kelvin": 1500,
+      "density": 1000,
+      "viscosity": 1000,
+      "light_level": 10,
+      "english": "Fiery Blood",
+      "chinese": "炽热之血",
+      "source": {
+        "repository": "GregTech6/gregtech6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/a/Loader_Fluids.java:108",
+        "reason": "GT6 FL.FieryBlood. No material binding. Density stays the Forge default because create() does not call setDensity."
+      }
+    },
+    {
+      "id": "fiery_tears",
+      "gt6_fluid": "fierytears",
+      "state": "liquid",
+      "temperature_kelvin": 1500,
+      "density": 1000,
+      "viscosity": 1000,
+      "light_level": 10,
+      "english": "Fiery Tears",
+      "chinese": "炽热之泪",
+      "source": {
+        "repository": "GregTech6/gregtech6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/a/Loader_Fluids.java:109",
+        "reason": "GT6 FL.FieryTears. No material binding. Same physical defaults as Fiery Blood."
+      }
+    },
+    {
+      "id": "blueberry_juice",
+      "gt6_fluid": "blueberryjuice",
+      "state": "liquid",
+      "temperature_kelvin": 300,
+      "density": 1000,
+      "viscosity": 1000,
+      "light_level": 0,
+      "english": "Blueberry Juice",
+      "chinese": "蓝莓汁",
+      "source": {
+        "repository": "GregTech6/gregtech6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/a/Loader_Fluids.java:384",
+        "reason": "GT6 FL.Juice_Blueberry. Food drink fluid. Registered because bath and mixer rows consume it. Juicer production stays blocked with worldgen/food."
+      }
+    }
+  ]
+}

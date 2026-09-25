@@ -759,6 +759,14 @@ public class ModLanguageProvider extends LanguageProvider {
                                     "熔融" + name)));
             ModFluids.chemicalFluids().forEach(entry -> {
                 String id = entry.id();
+                if ("ice".equals(id)) {
+                    add("fluid_type.cruciblecraft.ice", "近冰点水");
+                    return;
+                }
+                if ("petrotheum".equals(id)) {
+                    add("fluid_type.cruciblecraft.petrotheum", "构造岩石油质");
+                    return;
+                }
                 boolean molten = id.startsWith("molten_");
                 MaterialZhNames.material(id)
                         .or(() -> molten
@@ -770,6 +778,10 @@ public class ModLanguageProvider extends LanguageProvider {
                                 (molten ? "熔融" : "") + name));
             });
             ModFluids.hotFluids().forEach(entry -> {
+                add("fluid_type.cruciblecraft." + entry.id(), entry.chinese());
+                add("fluid.cruciblecraft." + entry.id(), entry.chinese());
+            });
+            ModFluids.namedFluids().forEach(entry -> {
                 add("fluid_type.cruciblecraft." + entry.id(), entry.chinese());
                 add("fluid.cruciblecraft." + entry.id(), entry.chinese());
             });
@@ -1316,8 +1328,16 @@ public class ModLanguageProvider extends LanguageProvider {
         ModFluids.chemicalFluids().forEach(entry ->
                 add(
                         "fluid_type.cruciblecraft." + entry.id(),
-                        title(entry.id())));
+                        switch (entry.id()) {
+                            case "ice" -> "Near Frozen Water";
+                            case "petrotheum" -> "Tectonic Petrotheum";
+                            default -> title(entry.id());
+                        }));
         ModFluids.hotFluids().forEach(entry -> {
+            add("fluid_type.cruciblecraft." + entry.id(), entry.english());
+            add("fluid.cruciblecraft." + entry.id(), entry.english());
+        });
+        ModFluids.namedFluids().forEach(entry -> {
             add("fluid_type.cruciblecraft." + entry.id(), entry.english());
             add("fluid.cruciblecraft." + entry.id(), entry.english());
         });

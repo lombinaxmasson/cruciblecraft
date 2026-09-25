@@ -26,7 +26,8 @@ public final class ChemicalFluidRegistrationGate {
             "/data/cruciblecraft/chemical_fluid_gate.json",
             "/data/cruciblecraft/container_fluid_gate.json",
             "/data/cruciblecraft/hydrocarbon_fluid_gate.json",
-            "/data/cruciblecraft/puv_omega_fluid_gate.json");
+            "/data/cruciblecraft/puv_omega_fluid_gate.json",
+            "/data/cruciblecraft/gt6_material_fluid_gate.json");
 
     private ChemicalFluidRegistrationGate() {}
 
@@ -52,6 +53,11 @@ public final class ChemicalFluidRegistrationGate {
         for (HotFluidRegistrationGate.Entry hot : HotFluidRegistrationGate.load()) {
             reservedFluidIds.add(hot.id());
             reservedFluidIds.add("flowing_" + hot.id());
+        }
+        for (Gt6NamedFluidRegistrationGate.Entry named
+                : Gt6NamedFluidRegistrationGate.load()) {
+            reservedFluidIds.add(named.id());
+            reservedFluidIds.add("flowing_" + named.id());
         }
 
         LinkedHashMap<String, Entry> byId = new LinkedHashMap<>();
