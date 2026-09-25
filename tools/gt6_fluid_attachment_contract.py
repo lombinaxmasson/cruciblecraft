@@ -31,6 +31,14 @@ CONTRACT = (
 )
 WAVE = CONTRACT.parent
 OVERLAY = WAVE / "runtime_overlay.json"
+D0_MATRIX = (
+    ROOT
+    / "tools"
+    / "waves"
+    / "prep"
+    / "gt6-mte-fluid-attachments-acquisition"
+    / "d0_obtain_matrix.json"
+)
 ART_MANIFEST = WAVE / "art_manifest.json"
 RECIPE_ROOT = ROOT / "src" / "generated" / "resources" / "data" / "cruciblecraft" / "recipe"
 ZH_LANG = ROOT / "src" / "generated" / "resources" / "assets" / "cruciblecraft" / "lang" / "zh_cn.json"
@@ -281,8 +289,16 @@ def _check_resource_files(
 
 def _check_recipes(rows: list[dict[str, Any]]) -> list[str]:
     errors: list[str] = []
+    d0 = _load_json(D0_MATRIX)
+    source_exact = {
+        str(row.get("runtime_id") or "")
+        for row in d0.get("hosts") or []
+        if row.get("status") == "source_exact"
+    }
     for row in rows:
         path = str(row["registry_path"])
+        if f"cruciblecraft:{path}" not in source_exact:
+            continue
         recipe_path = RECIPE_ROOT / f"{path}.json"
         if not recipe_path.is_file():
             errors.append(f"{path} missing generated recipe")

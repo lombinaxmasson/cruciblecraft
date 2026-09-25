@@ -820,7 +820,27 @@ def fold_17101_dummy() -> dict[str, Any]:
             withdrawn += 1
     if CRAFT_HOT.is_file():
         CRAFT_HOT.unlink()
-    _dump(DUMMY_CRAFT, dummy_craft())
+    dummy = dummy_craft()
+    _dump(DUMMY_CRAFT, dummy)
+    acquisition = census.load_json(ACQUISITION_CATALOG)
+    recipes = [
+        row
+        for row in acquisition.get("recipes") or []
+        if row.get("path") != DUMMY_CONTROLLER_PATH
+    ]
+    recipes.append(
+        {
+            "catalysts": {},
+            "domain": "multiblock",
+            "ingredients": dummy["ingredients"],
+            "path": DUMMY_CONTROLLER_PATH,
+            "pattern": dummy["pattern"],
+            "result": dummy["result"],
+            "type": dummy["type"],
+        }
+    )
+    acquisition["recipes"] = recipes
+    _dump(ACQUISITION_CATALOG, acquisition)
     remapped = []
     for path in (
         ACQUISITION_CATALOG,

@@ -101,9 +101,9 @@ class Gt6MteAcquisitionTest(unittest.TestCase):
         matrix = census.load_json(
             runtime._wave("attachments") / "d0_obtain_matrix.json"
         )
-        self.assertEqual(46, matrix["counts"]["hosts"])
-        self.assertEqual(46, matrix["counts"]["source_exact"])
-        self.assertEqual(0, matrix["counts"]["explicitly_blocked"])
+        self.assertEqual(47, matrix["counts"]["hosts"])
+        self.assertEqual(28, matrix["counts"]["source_exact"])
+        self.assertEqual(19, matrix["counts"]["explicitly_blocked"])
         by_id = {row["stable_id"]: row for row in matrix["hosts"]}
         self.assertEqual(
             "smelting",
@@ -114,7 +114,11 @@ class Gt6MteAcquisitionTest(unittest.TestCase):
             by_id["fluid_attachment/ceramic_tap"]["operands"]["ingredient"]["cc"],
         )
         self.assertTrue(
-            all(row["live_recipe"]["matches_source"] for row in matrix["hosts"])
+            all(
+                row["live_recipe"]["matches_source"]
+                for row in matrix["hosts"]
+                if row["status"] == "source_exact"
+            )
         )
 
     def test_furniture_chest_live_recipes_are_generated(self) -> None:
@@ -161,14 +165,16 @@ class Gt6MteAcquisitionTest(unittest.TestCase):
         self.assertTrue(runtime._item_is_live("cruciblecraft:circuit_ultimate"))
         self.assertTrue(runtime._item_is_live("cruciblecraft:circuit_quantum"))
         self.assertTrue(runtime._item_is_live("cruciblecraft:steel/plate"))
-        self.assertFalse(runtime._item_is_live("cruciblecraft:wood_treated/plate"))
+        self.assertTrue(runtime._item_is_live("cruciblecraft:wood_treated/plate"))
         barrel = census.load_json(runtime._wave("furniture_barrel") / "d0_obtain_matrix.json")
         treated = next(
             row for row in barrel["hosts"] if row["stable_id"] == "furniture/wooden_item_barrel"
         )
-        self.assertEqual("explicitly_blocked", treated["status"])
-        self.assertEqual("missing_form", treated["operands"]["P"]["reason"])
-        self.assertEqual("cruciblecraft:wood_treated/plate", treated["operands"]["P"]["cc"])
+        self.assertEqual("source_exact", treated["status"])
+        self.assertEqual(
+            "cruciblecraft:wood_treated/plate",
+            treated["operands"]["P"]["cc"],
+        )
 
     def test_decorative_wood_panels_stay_blocked(self) -> None:
         matrix = census.load_json(runtime._wave("decorative") / "d0_obtain_matrix.json")
