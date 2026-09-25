@@ -1,0 +1,97 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_8288",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "541dbd65f2e7f332b7051c0b7fe6a31c0025cf91234168438712e6c0158e1788",
+        "08e44e397742eb19f1329616f5fd082eaeaa98389ca3d540c80c006eeb70f0ea"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vulcanite"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vulcanite"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vulcanite/block"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/8d0a0293d45350bf",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/e918b0a49d097053",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 875,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        5,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_8288",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,62 @@
+{
+  "family_id": "gt.recipe.extruder#bulk_2287",
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 38,
+      "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        8,
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "aredrite"
+          },
+          "items": "cruciblecraft:dust_div72",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_tiny_plate"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "aredrite"
+          },
+          "count": 1,
+          "id": "cruciblecraft:tiny_plate"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "af94bade786bf20e29ecbe6c368035912f5d77857d57675696c1e28a22fe5fe9"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_2287",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/8aa7951d82b739cd"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

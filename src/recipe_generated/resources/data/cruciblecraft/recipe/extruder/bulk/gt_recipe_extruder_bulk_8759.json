@@ -1,0 +1,106 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_8759",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "c81b98479dcdff4f6efd030d48879c77b470b227866b04e048e4dd14f84f055a",
+        "c270009a048a18fccb9edb6ee8641d2dad88c4fb279b9b2442d95d19b94545f8"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "duranium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "duranium"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "duranium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:duranium/rod"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/e692534d1e28deeb",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/481d7e23134270a2",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 120,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        36,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_8759",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

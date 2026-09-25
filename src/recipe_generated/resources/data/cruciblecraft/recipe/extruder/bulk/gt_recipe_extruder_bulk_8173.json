@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.extruder#bulk_8173",
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 840,
+      "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        14,
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "yttrium_barium_cuprate"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_block"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:yttrium_barium_cuprate/block"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "480f82e019c2f19b275a039f26ae320bf8378a2a0d12b81aeb3c78ef298e6a79"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_8173",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/5bdaac7de7d10fd0"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

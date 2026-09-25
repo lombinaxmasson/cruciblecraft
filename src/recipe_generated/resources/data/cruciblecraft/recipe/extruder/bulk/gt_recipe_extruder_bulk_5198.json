@@ -1,0 +1,93 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_5198",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "312b9b7ca07de00973947a2f31b6a76b6e862779f5e80ac1f73fbe384c1a6943",
+        "2a4de2afdade847878fc9be62099cbf245f2a38fb2e004a327d910a7076b8f09"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoflame_blue_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoflame_blue_steel/gear"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/65230fa3c5a96544",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/51e30b3bed18f5ee",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 1392,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        8,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_5198",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

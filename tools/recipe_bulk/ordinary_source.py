@@ -470,6 +470,22 @@ def _empty_operand(item: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def extruder_shape_runtime(meta: int) -> str | None:
+    cached = getattr(extruder_shape_runtime, "by_meta", None)
+    if cached is None:
+        from tools.gt6_resolve import extruder_shapes
+
+        cached = {
+            int(row["meta"]): str(row["cc_item"])
+            for row in extruder_shapes().values()
+            if isinstance(row.get("meta"), int)
+            and row.get("live")
+            and row.get("cc_item")
+        }
+        extruder_shape_runtime.by_meta = cached
+    return cached.get(meta)
+
+
 def _assert_runtime(runtime: str) -> str:
     if not runtime.startswith(("minecraft:", "cruciblecraft:")):
         raise ValueError(f"runtime id must be minecraft: or cruciblecraft:: {runtime}")
@@ -668,6 +684,22 @@ def map_item_operand(
             return operand, []
         operand["value"] = f"{item_id}@{meta}"
         return operand, [f"unmapped MTE {item_id}@{meta}"]
+    if item_id == "gregtech:gt.multiitem.technological" and isinstance(meta, int):
+        operand = _empty_operand(item)
+        runtime = extruder_shape_runtime(meta)
+        if runtime:
+            operand.update(
+                {
+                    "mapping": "proven_equivalent",
+                    "value": runtime,
+                    "runtime_id": _assert_runtime(runtime),
+                    "reachable": True,
+                    "kind": "extruder_shape",
+                }
+            )
+            return operand, []
+        operand["value"] = f"{item_id}@{meta}"
+        return operand, [f"unmapped extruder shape {item_id}@{meta}"]
     if item_id.startswith("gregtech:gt.block."):
         operand = _empty_operand(item)
         runtime = block_runtime.get((item_id, int(meta) if isinstance(meta, int) else 0))

@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_6229",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "a71a73ca4451d29ca1feaf1844251ddca7adf2b02e0025ed31d465dc3a389789",
+        "5d551816f4b92c3063c5fdb98c3e426922f6a7e9290c7787777adb0209155799",
+        "e1248394a65cbff88c6ea389eb2c7d4e3d65fce95eac90e83e9d5fa9a037416a",
+        "5bda33666546e2be97bf98f003634c69ed41bdce19f99876fdb278f20ade02cb",
+        "878a981d8dba581df4085eb734ab1a0a73cdd71658082c0d224b5233ac8bfba9",
+        "97b93e528c93879fcd3b7139c1a07e01f8f8ccf79315f3ef0840ba03d32e8ac3"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungstensteel"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungstensteel/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungstensteel"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungstensteel/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungstensteel/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungstensteel"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungstensteel/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/8e086f9670be2865",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/5603839a99b1c6e8",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/73d66db4a0971e14",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/571bd4d48a6c8fd6",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/3a033844bba203e1",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/8d4ec853e41636d5",
+        5,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 180,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_6229",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

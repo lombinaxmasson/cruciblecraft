@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_2676",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "5309ba4b0507c67e0eae9f18cb7d187b7991635d869c213350801a0a0b8dbcf4",
+        "98b7c5ae2b11b4ccbb7cbf1a0ab36296a3817c71d308fc00b6cc09e56adb0497",
+        "88f6ea9c1f922cfb88c780f6e9649b726ba73f8e547cf003786602ad9f29f336",
+        "e836ea2d0ed4b0948287be8f3d0eb4e48d5ca51ab5824275f537c8564c38b6b3",
+        "ad91ba22fd7be48f96de65b4c0786f1b74b88255cda3eb37153fc5c35a425d92",
+        "b234781995b180176342784e46a86a899cd291c0f227756c9cb14dc29ce443a8"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:vanadium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vanadium/rod"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/5fa33401dbb5e50e",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/53231d9e71068aa6",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/489213347cae3104",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/fb607cbbb7afcf42",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/5314131c09332d4e",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/92021c57b3ebeb66",
+        5,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 100,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        5,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_2676",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,190 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_7250",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "ab7e7a8fd0bc4a7729d085f4051e024de5b54e1cd5b3d9f3b400483668e3d9d1",
+        "22d88073df43383d16368f2b1044ef2c5e634a7ce3488735c05a98c1e8a53ae1",
+        "08ff3aff7d763731c583514098630c50b456b2171b52b5bccc4e5d1b5aaa1c3a",
+        "622e19ff0d71f4a9c69fd0f34ffe68313e5e17401f8fe6e6ae446822c9d3214e",
+        "4ce0536d0502393a8ded289dba6f48c0fc05f40202778f7ed7b4db27e17d1f04"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:dreadium/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dreadium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:dreadium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:dreadium/rod"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/8a4f65ff7fb72e22",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/b1f276c8b91d8986",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/e6345995f62903b2",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/64a2891182d4b8d4",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/fd006393254f82a4",
+        4,
+        4
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 568,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_7250",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

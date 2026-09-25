@@ -148,6 +148,11 @@ def _consume_identity(relation: dict[str, Any], *, wave_id: str) -> str:
             "item_inputs": relation.get("item_inputs") or [],
             "item_outputs": relation.get("item_outputs") or [],
         }
+    # Low-heat and normal extruder rows share items and differ by duration or EU/t.
+    if wave_id == "recipe/gt6-extruder-bulk":
+        payload["duration"] = int(relation.get("duration") or 0)
+        payload["eut"] = int(relation.get("eut") or 0)
+        payload["special_value"] = int(relation.get("special_value") or 0)
     return json.dumps(payload, sort_keys=True, separators=(",", ":"))
 
 

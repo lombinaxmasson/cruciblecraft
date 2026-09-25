@@ -1,0 +1,160 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_2276",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "d38ccb337e7c3c22da7a155c742d04da9520d3820e395a65952c521c44eb26bb",
+        "8c1802cfc65f365a93f47b0c99a867ee21e6162d87f6dae1180d75ae3050650a",
+        "6d68076070b74327f24a8713baf5d60b8c91f2fe2f39957b462cd18c8ea60596",
+        "5bb0398801f0c03f9448aaa07bcc82bd76725903defa4b84ebbcce7b3bbc5b4b"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hafnium/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hafnium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hafnium/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hafnium/plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/177770d9bfedff12",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/f43172d1f3f02f2f",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/752c3203160d325c",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/086f3f2677db8512",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 607,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_2276",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

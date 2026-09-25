@@ -1,0 +1,137 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_8116",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "04a41f696861d1bfbb92168d795d1a282ecef37dbd6b82045f938995dc259b48",
+        "4560847f41d65374cbd1337dd6fedfd93244558bee98ffcaef96d15d24c6ed5d",
+        "ed33957e66c7e6c202823e804005aeecab63b539cc0c1a07b47e489dd2df5d20",
+        "fe5b49a52c6d1bcdd126f971926eea66817ef665017c9a7be96b573c073220d9"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:fiery_steel/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fireleaf"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fiery_steel"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fireleaf/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:fiery_steel/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:fireleaf/block"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/ca5cdaf5439414fd",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/6b1293a78693a98e",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/64cbb9c962163d5f",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/380b305f91db7853",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 2889,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        18,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_8116",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

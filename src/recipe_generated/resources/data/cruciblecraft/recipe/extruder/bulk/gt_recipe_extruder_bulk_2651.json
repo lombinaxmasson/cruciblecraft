@@ -1,0 +1,187 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_2651",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "ec60a92f46b1109cff4a4d0a476d0e28c653e3ae44d35ed279e6ba20d67258a0",
+        "1e08dcb3fb98be641cfde02afa9acd894c10be8d0aedfcac0c021df0ef10c0b1",
+        "074a3452171ae9508d09b94740590628ff41cf404a32edab08f30a374957054c",
+        "918ff3b4270442ba52b90610b6c251f18cae0261ce0db660613cc4d8d63a6749",
+        "1cf6a91136db2bc80aaa308fd71630085fc71c02f5b911bd8bc8b467557d1951"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "damascus_steel"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:damascus_steel/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:damascus_steel/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:damascus_steel/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:damascus_steel/plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/52bec556d70bab7b",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/3b8f03d5aec20dc2",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/42d152acea9eff89",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/68f502c2e980d920",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/c713ce5279f5a390",
+        4,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 309,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_2651",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

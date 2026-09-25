@@ -1,0 +1,130 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_6361",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "085c7f186d068dd09ad0f36781a2210aa5f63e6d1f1072a3925f572ffdaa7a89",
+        "f9d4ac8b2a7a0e4d5aeca94cf1f8b24344b2b4f804f82e3b7757f259012b0e79",
+        "82717c10b260975d5e88850fcc2a9b46b748612cf5891239dbb047786dd96e4a"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fireleaf"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "amordrine"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "fiery_steel"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:fireleaf/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:amordrine/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:fiery_steel/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/5c4015232f12671e",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/a1ee9358f5c3e185",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/604afe2634926b56",
+        2,
+        2
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 81,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        18,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_6361",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

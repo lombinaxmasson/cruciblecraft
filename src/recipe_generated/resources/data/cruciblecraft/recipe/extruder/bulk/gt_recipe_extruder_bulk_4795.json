@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4795",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "2d4819a72f8e5bee69375be46d9deb8479a2c9d3c107ab2fa8a197cfb0690546",
+        "c913e7cf33dab1083e3df28c38400a62f54874983d8f8ad490fa8163c5e3d533",
+        "8239b9d91fddd3bb5febb60e77363de7774a749b6024af59ce31fdf0afc2422f",
+        "b3ad90ce0ff628cfe1e71df345d0aa42915c66c856d13cbc9ad77eb895062a88",
+        "16471abde2854a28aaa49f39b7b2a74406e822199586106b10726501ef2c354c",
+        "e6abb220caff04ecc28d9993c8e2b0c1dbad02cac49a712d9f15afb09a463f12"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "holmium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "holmium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:holmium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "holmium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:holmium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:holmium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:holmium/rod"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/aa382a3915945907",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/37b6cc289983e56e",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/51c43a0d9a490d65",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/580fa8d805693373",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/36f528ba2d0b0392",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/6906743a1abf5fd0",
+        5,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 109,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        5,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4795",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,162 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_5951",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "51bfd0221395663f76c3ac178a56d961ce00a68aaff59946750750d64633c9a7",
+        "7317dd84e199a5d311bfe06aec7a7119d961dd65eac3a7b66c5ce2e0beaa15d9",
+        "6166ef16e56cf41af35210adf2679e4965c539e9e9189b9ba1adde2912f777b8",
+        "c513e44d509e8c35509722edbf9aa248167a37c97fe974e8dd77dcd0659f5f03",
+        "aea76eebbbf4a29845fda91ceab2138a1bc0f3941e839fc4dec74edb0713581a"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:midasium/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold198"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold198"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "midasium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "midasium"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:midasium/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold198/block"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/8a39cdebc8dae314",
+        0,
+        2
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/c5eef8fe3d2f9045",
+        1,
+        6
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/ecbd1ef3f6ef6256",
+        2,
+        7
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/04ea0d52f14589eb",
+        3,
+        8
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/137667969ea52594",
+        4,
+        12
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 3728,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_5951",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,215 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_5130",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "aacfb442c08e457785f239ef8e351936c351c5540381e84932e196194e402bf3",
+        "d99f725d0340b7668c409e5437cc7dbe5bdc2c60d7a2a87f0ee3233302eee751",
+        "af0d980d15e081dca29dde33c72567fcfbf8d7b53089e5045927467d5283827f",
+        "2d0264bc9a3670cee0a83ad77fee109bc29f9ad5c9338e3741df155675bc367a",
+        "1ed106aae3ca8e06e4a6daa28b95af2bb3183584158513f2eddfd576fc480926",
+        "9f5c1637b25a456b70a6e63fa949c4323c45c8b7a89561f1c89424a296dd177b",
+        "54961b34963767e8b22397c45024db0a5555093a1ec89044e7636184a6e82813",
+        "96e45cd3ac1ff9926c6d0e0fab55c6db3b1c000b799cf172c70eb4f5af5221bc"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:meutoite/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meutoite/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infuscolium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infuscolium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meutoite/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meutoite/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infuscolium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infuscolium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meutoite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meutoite/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infuscolium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:infuscolium/rod"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/9ab39b9a692586e5",
+        0,
+        2
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/e7c0d026eea89acc",
+        1,
+        4
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/fb7ba20329ac21ff",
+        2,
+        5
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/d17833d5086a87d5",
+        3,
+        13
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/90b716615511db0e",
+        4,
+        14
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/0da1a748034672bf",
+        5,
+        15
+      ],
+      [
+        6,
+        3,
+        0,
+        "cruciblecraft:gt6/9fde773974291af4",
+        6,
+        18
+      ],
+      [
+        7,
+        2,
+        0,
+        "cruciblecraft:gt6/b36dea08fc3e9c3f",
+        7,
+        19
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 107,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        4,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_5130",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

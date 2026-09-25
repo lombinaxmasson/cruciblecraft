@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_5659",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "ab7f4c4d3120ed0db21a6f1020a02a8229d3731e2b5667b546f193768c36d47c",
+        "56e35e7435d98a5727bb805102bd2f262503139459027c3c7ff3613773e8ad50",
+        "c8ffce91bf9f355ee3d37e281323854e718fd0366c59ac5bd33be7443576ef26",
+        "9a936591264a8400990316bde5b20032ce003b4d287c88d9b1ffd77f73d9d707",
+        "85e0ef620711128f9034f010e8ffcdaea388b5b5233c58d950fe250ffe7a590e",
+        "fa23e81fb4a69eefd59f7394065e8b9000f0553bbd26e145ffee16d738aa4182"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:naquadria/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadria/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:naquadria/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:naquadria/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/cc7d6f38abf02595",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/c35515d346efdc4d",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/2cb7c0cebb1f100b",
+        2,
+        3
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/94c425d314e0b40d",
+        3,
+        4
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/28f7ca72add6d3a8",
+        4,
+        5
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/85aef49ff093b1bf",
+        5,
+        6
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 125,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_5659",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

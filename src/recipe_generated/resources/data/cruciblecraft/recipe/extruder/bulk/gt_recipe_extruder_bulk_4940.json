@@ -1,0 +1,148 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4940",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "64c2683b852a3bb376167f3fc8810f351a47614a68567a1f1243c23a02fbf2b8",
+        "1c4e63ff3aa81c1f4b02c13c52f383c92765dc6e1e761c5813907c93384dc25b",
+        "892e57d62c8bfb1739f814727f89d50524935eb5791fe0b3b3a1b16a7572bfcf",
+        "a0e463b88be33e321dfd70436774fdb9b083fe115ee5e5491df2c18040c7eab9",
+        "84e1afe014deea81ee504c739d7b340d7b9baeb5aa7d11a0c1c45fff0790349c"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_iron"
+            },
+            "items": "cruciblecraft:small_spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/ring"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_iron"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:dark_iron/block"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/9552e7634e507ad5",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/b319748d2f163442",
+        1,
+        2
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/fc1772df28b4e3f3",
+        2,
+        3
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/613c646ca78f5b41",
+        3,
+        4
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ec01882e76e3607d",
+        4,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 2136,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        36,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4940",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

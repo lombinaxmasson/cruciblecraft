@@ -1,0 +1,188 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_2630",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "abe7fec54da609a4b6ad327d8ba6b632f6893b6f6ff94bb3c23e2744e397a234",
+        "cf3c8693d85a90598b79590da7d7e5a80da6bb88017439120be9090fb26b4154",
+        "109fd8edb4550d826f60a700a0666c5b45de3541bb40f1f201e1cba45cfaf794",
+        "13c1433d44a1d1a14bfc96eb04182a43014ca37077e632263070e999d20469a7",
+        "04049df3590880f350c44c4d7c621477a7c9a5228f234a649a21aaced996617d",
+        "e61eb28a17c0a57b0ab09f23f284f8577f9db236072472558f413779ede8b653"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:thulium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thulium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:alumite/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thulium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "alumite"
+            },
+            "items": "cruciblecraft:small_casing",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thulium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thulium/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thulium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:alumite/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thulium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thulium/plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/a2180b262398bfa1",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/710add42606cf1c9",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/41e3156f8769cc39",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/bca8263711778ca5",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/7b5c3aabd91d9008",
+        4,
+        4
+      ],
+      [
+        5,
+        4,
+        0,
+        "cruciblecraft:gt6/4ccad963c562efe3",
+        5,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 220,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        8,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_2630",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

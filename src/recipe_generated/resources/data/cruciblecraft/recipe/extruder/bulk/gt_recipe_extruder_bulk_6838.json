@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.extruder#bulk_6838",
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 1205,
+      "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        6,
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "enderium"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_gear"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:enderium/gear"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "e0699fdcb0c06689e3d30dea4ad67532a6470a77bc489ad44b76d4b8b8679157"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_6838",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4a76f9a2a135f144"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

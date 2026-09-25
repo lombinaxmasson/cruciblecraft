@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4120",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "33feef4c2bf6a2ce61f3d1feb08c8944527087e82e4de285b48b777fa7138d2e",
+        "bb207f36e18cf2d70af88d20e199c8e8c797f9c7a2074d6a93eabbe5fb7d987c",
+        "1323fec7204c38ea94a81b54bc9526d6ad2cd20c1f96e0715b397f158796b0d4",
+        "2678edee9b752f5886dcf8379d7b4934b09d5f71ee5cf7cf69fadd4510a557df",
+        "bcc6a30e261122dd58cf75b262d7e07c1c7ab4bb558920a0f8d93512cdf5cfc5",
+        "9822801352573ea24e29b69026abb32464362d9cbe6b9b075f062783768aaf89"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_gallium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_gallium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium_gallium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium_gallium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium_gallium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_gallium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vanadium_gallium/rod"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/31e0ec1bf23c0614",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/44a5877425105b09",
+        1,
+        2
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/78038844c62b6d00",
+        2,
+        4
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/3d9666163771241f",
+        3,
+        8
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/96d563cf70a8ca25",
+        4,
+        9
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/91007a7ca1c7b4db",
+        5,
+        10
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 74,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        5,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4120",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

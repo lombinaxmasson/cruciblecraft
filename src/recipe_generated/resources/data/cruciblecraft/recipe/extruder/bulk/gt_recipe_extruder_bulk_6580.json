@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.extruder#bulk_6580",
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 1243,
+      "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        6,
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "midasium"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_gear"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:midasium/gear"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "cea1d045d7a45d41be6222088c6f925b1559a408963b5c7e1b26186143f77f27"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_6580",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 1,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/6a9634a0bd99026f"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

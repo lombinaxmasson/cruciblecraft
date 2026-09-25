@@ -92,7 +92,7 @@ P1、P2 做完重跑逐行分类；P3 完成验证基础设施收口后，后面
 | 3 | [GT6 缺失流体](../closed/GT6缺失流体详细计划.md) | `fluid/gt6-missing-fluids` | 7 种流体；已关 |
 | — | 重跑逐行分类 | — | 2026-09-25 已完成。用缺失流体关卡后的覆盖页调整 4–7 |
 | 4 | [GT6 批量配方容量门](../closed/GT6批量配方容量门详细计划.md) | `recipe/gt6-bulk-capacity` | 已关。lazy 上限 500,000，只包后三张配方卡 |
-| 5 | [GT6 挤压机配方批量](GT6挤压机配方批量详细计划.md) | `recipe/gt6-extruder-bulk` | 可翻译 302,175 行 |
+| 5 | [GT6 挤压机配方批量](../closed/GT6挤压机配方批量详细计划.md) | `recipe/gt6-extruder-bulk` | 已关。可翻译行已按 Rule IR 发布；缺形态和缺物品仍挡住 |
 | 6 | [GT6 前缀规则类配方批量](GT6前缀规则类配方批量详细计划.md) | `recipe/gt6-prefix-regular-bulk` | 可翻译 45,363 行，12 张图 |
 | 7 | [GT6 化学杂项配方批量](GT6化学杂项配方批量详细计划.md) | `recipe/gt6-chemical-misc-bulk` | 可翻译 68,363 行 |
 | 8 | [GT6 同类基础加工机批量](GT6同类基础加工机批量详细计划.md) | `machines/gt6-basic-machine-batch` | 5 kind / 19 台 + 3 张小图 |

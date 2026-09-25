@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.extruder#bulk_8074",
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 4067,
+      "eut": 96,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        6,
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "adamantium"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:extruder_shape_gear"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:adamantium/gear"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "d559d379c22a047e2b307afda10f6b5e1135cfe44737e0cd174eb250e8f3060e"
+        ],
+        "selected_source_recipe": "gt.recipe.extruder#bulk_8074",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/865d23e9b8d239c3"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

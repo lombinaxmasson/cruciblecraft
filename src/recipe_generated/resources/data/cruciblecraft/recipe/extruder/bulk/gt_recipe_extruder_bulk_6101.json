@@ -1,0 +1,187 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_6101",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "fd90bf68cdf5576bd61b27098330663b18763f84561c36ebe3863ecd7b895c49",
+        "69eabc751b65e5b9af6769ab044361f9a6298a6bbc896924dcd929a4c4481e02",
+        "8ae945ec4cef4373191c4b15323a8e32d669b09d913f59af7e9a0c70dfcb98a9",
+        "29e2f795b4a581cf1e8aeb6ad930e63a4acf494424dbd369ccd33edcb39190f6",
+        "0c0a39b31639fd459eccb54d80fc9f1ebcbff0b8d6256341f8e1eec2ef35add9"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:haderoth/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:haderoth/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:haderoth/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "haderoth"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:haderoth/ingot"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/4b9ce19ab8e15b9b",
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/94e8574f0b2313ae",
+        1,
+        2
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/be0e1898a11903f2",
+        2,
+        3
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/ded5b662bc7930ef",
+        3,
+        4
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/32d66fb7d685d530",
+        4,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 692,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_6101",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

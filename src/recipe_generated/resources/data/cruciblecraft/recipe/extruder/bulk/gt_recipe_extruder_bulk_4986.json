@@ -1,0 +1,190 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4986",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "33edb95d08a092a7787e4f1f74b7fe29951dfb565ea5fc5949d488d000a4e4b7",
+        "222db4f9eb42112b9795f756a896073fc6db986f671de0439d90bb97216dae23",
+        "1bc594f8fdee4e951222fe93db082c155558ba17b185235ebca468471f8e5e13",
+        "b48b5a706e5ab4e058f28fd7bcf1d4a2a1bc540d4fd3121af3f5b5941e76c0f6",
+        "160cfe552965dda1466f0080fabcb42a8f71cb872f0001b52e5e0b386e9fcf07"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:netherite/rod"
+          }
+        ],
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:netherite/bolt"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:netherite/ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/929412d6f98a3470",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/dc55d98e8fe5c654",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/451cc8de910af478",
+        2,
+        3
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/5c352c2fcf1290f9",
+        3,
+        5
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/b3826e3e7d7c2c26",
+        4,
+        6
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 1631,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4986",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,226 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_6861",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "b797d5a112eb93ad4d900ba985f372e44bac4de9c894882628a54d04e85eee1f",
+        "4592cc10d0e96afcbd811dc54611591aa5da699dcc284cdc67448733ff92ac9c",
+        "dcefcd070d9750b1c62f2bce837635ddbf11828f0fdbfa3545567ffaaf6b17a3",
+        "319f6d724fe69b00e9e255ee2f67fd3d4493d61f42a865f47c3558867f4f1963",
+        "baa0e6110a8297dd10fd271ae83ab6666dfc799efb0ca906ce39e44094faad03",
+        "aaf6a10adf1aee9e7114fa5c70b70b030fee14971045ae2e2efd3b0089b5ac84",
+        "db46d1fa410a5449db3902d8395b6fff384a07f7f7fa730a900c7d05a2ef9c6d",
+        "e2e389a14f0f0e13606e9f5d93be0152ca1c4608d314b16da163da5f635aa615"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:syrmorite/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:syrmorite/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:syrmorite/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
+            "items": "cruciblecraft:dust_div72",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:syrmorite/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:kanthal/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kanthal"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_casing"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/9a0ed4e70c5e7f7e",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/44cd2bafbf6694d6",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/ad886569bfd65514",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/968cfe546e2b3ae7",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/a1e561fb5372d082",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/86a14424df97df3b",
+        5,
+        5
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/742c0c858ee3c672",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/15098594461816b9",
+        7,
+        8
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 65,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        36,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_6861",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

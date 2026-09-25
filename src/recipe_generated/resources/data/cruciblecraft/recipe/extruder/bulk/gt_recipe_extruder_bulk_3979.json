@@ -1,0 +1,145 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_3979",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "d262c8b62de8bc1ccfbccfe0bd949910d6dcb4abd958fe694b1e3f0804679697",
+        "c7b6bd8063a2497a11bf16ce868152635b96195178a053c5ca499fcab6924ae1",
+        "b97eba5244e5d441f686e5e6e2603c9b6086f2f26e9879ed45f099d78759978e",
+        "be8a9972c442a8eddce069b584454fb81d8f8f63201713465cfe6cb405648169"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "shadow_iron"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "meteoflame_blue_steel"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoflame_blue_steel/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:shadow_iron/block"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/70a963739526183a",
+        0,
+        5
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/97f41a82d97ebc99",
+        1,
+        10
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/94083cffe96ae756",
+        2,
+        11
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/e02dc26d14e2dd85",
+        3,
+        21
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 2088,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_3979",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,145 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_2628",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "c233fbc80415420f6d322a4802eca3b9f7a40b75e0170dd47f2d7c70005ff622",
+        "78322493bd948c00a4f8ec205f28e3191ac65b93840ea536e570555b0f564609",
+        "a67612343798edb7add95e1de7e6098787945f25e28073c4699eaf13c19382cd",
+        "0c74e52273037f169db3936ddb4db91bda953ff41b23810e715be22b10604ab9"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ultimet"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium_barium_cuprate"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "yttrium_barium_cuprate"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ultimet/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:yttrium_barium_cuprate/block"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/e59318cdb6d359a5",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/ef6b5cb6344d5e1e",
+        1,
+        2
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/784089a8f70cbc4e",
+        2,
+        5
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/82139d8d0634face",
+        3,
+        7
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 900,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_2628",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

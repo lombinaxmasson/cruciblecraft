@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from tools import census_common as census
-from tools.recipe_bulk.handlers import exact_remainder, prefix_transform, tool_head_cycle
+from tools.recipe_bulk.handlers import exact_remainder, prefix_transform, shape_transform, tool_head_cycle
 from tools.recipe_bulk.models import WaveSpec
 from tools.recipe_bulk.schema_lite import validate
 
@@ -14,6 +14,7 @@ SCHEMA_PATH = census.TOOLS / "recipe_rule_ir.schema.json"
 HANDLERS = {
     "exact_remainder": exact_remainder,
     "prefix_transform": prefix_transform,
+    "shape_transform": shape_transform,
     "tool_head_cycle": tool_head_cycle,
 }
 

@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_5245",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "d3485ddd9991037750b9c6e0501cb106e65f8aa30bbe23c7687f20bc0013cc87",
+        "2c504f4823035c6d6065b45190b47ac9e8e0ee8dd7293d93b4164acc6dee3219",
+        "a9519852609f375de467852ff82048923c678213407456e30f398436fdd60b53",
+        "e51ad662fa747296a278743ee5e32277ad1c828755cae1ed5c97f019a105e6b7",
+        "bf28ba5bbb704bee95f938c2480e12d75c440994cca9795659eb24d108bedebe",
+        "fd08f78ff7fa823bfa3786be420d398850b9c58de1d59d7faca67db3dd807fca"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ethaxium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ethaxium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ethaxium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ethaxium/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/69de1bb5aedc29f6",
+        0,
+        7
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/5962cac7cdb0fa5d",
+        1,
+        8
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/22e1c930c315bbe2",
+        2,
+        9
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/577a424df9f55e45",
+        3,
+        15
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/bb1562f62ba14d66",
+        4,
+        17
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/c1d3ed918bd4ba4e",
+        5,
+        21
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 418,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_5245",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

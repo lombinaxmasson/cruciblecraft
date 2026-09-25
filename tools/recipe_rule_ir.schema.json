@@ -38,7 +38,7 @@
       "properties": {
         "handler_id": { "type": "string", "minLength": 1 },
         "kind": {
-          "enum": ["prefix_transform", "tool_head_cycle", "exact_remainder"]
+          "enum": ["prefix_transform", "shape_transform", "tool_head_cycle", "exact_remainder"]
         },
         "template": { "type": "object" },
         "covered_source_row_sha256": {

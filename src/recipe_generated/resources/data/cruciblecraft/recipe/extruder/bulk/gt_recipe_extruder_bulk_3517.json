@@ -1,0 +1,235 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_3517",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "462139feb3edb2dca104b8d39ea8b8c61684c3170852239b14a21cf9199063d5",
+        "b3c51124184268dfe46a388d5b4eeb1de3d9b69976dfb80e7b484c4331ee0b2d",
+        "9118667ff2589fa43caf830f253099883435dada7def213db82900b86dccdcc0",
+        "a33ae53e9ca8d046d3e42a1576e247cdf94e59353b19f8aa828ff8618ad852a5",
+        "8a7cb65d969662caa2c3be9ae1e0671457d3cf19336cf5109005645a01dfcb48",
+        "6150e22b98d2197efc0333e6d7bb86fc62469f4c654966c469902db65c179919",
+        "c9726d5b3813a0b2266980a224b3453137dcfdcf53c2fd8133e5daf8405e0406"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:triple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "rose_gold"
+            },
+            "items": "cruciblecraft:triple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ethaxium/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ethaxium/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:rose_gold/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ethaxium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ethaxium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ethaxium/small_gear"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/8cd18692f9c0a271",
+        0,
+        3
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/1a0fbaac114f5b79",
+        1,
+        6
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/1c5decabc4ad1fff",
+        2,
+        11
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/1a44a95e1c461b4b",
+        3,
+        17
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/1ecb2b37a615649e",
+        4,
+        18
+      ],
+      [
+        5,
+        4,
+        0,
+        "cruciblecraft:gt6/d38792ddba050ec8",
+        5,
+        19
+      ],
+      [
+        6,
+        5,
+        0,
+        "cruciblecraft:gt6/61a126627c19a17e",
+        6,
+        26
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 1671,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_3517",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

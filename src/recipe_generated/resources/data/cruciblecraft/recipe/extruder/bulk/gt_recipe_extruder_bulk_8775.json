@@ -1,0 +1,115 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_8775",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "024c76bb5e33db178bc8847f45b97d92c102efd5a77db3c7133c3502175d749c",
+        "a1e3f8655a9003bffd17f88e846c3d972438b5124b8f6e8f964b4529c3af8055",
+        "8de6b696aeabed097b136b5a57e940ce4daa6f9df5ddb3e5fb579f4bb25dd848"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:sanguinite/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sanguinite/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sanguinite/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:sanguinite/bolt"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/7f96c370e258b973",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/b25ceb3f4acb465f",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/37509b7d3da6b3f8",
+        2,
+        2
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 74,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_8775",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

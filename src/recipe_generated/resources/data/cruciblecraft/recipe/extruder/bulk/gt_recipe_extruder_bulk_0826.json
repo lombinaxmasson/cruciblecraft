@@ -1,0 +1,114 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_0826",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "9a208e9fb377cf27517f8e3075eba716e7ccdefc772ee6fbb224964ca509316f",
+        "415cc47c469c79725a88477125f2972386b3880a4a167e46869c30acb4c3eb6b",
+        "5afca148694bfee070abcbfb6edbf5f8ba5a95f40e7eae95bb0f8318c9e1d34f"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:invar/gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "invar"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:invar/block"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/2969d36492c9cb72",
+        0,
+        6
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/939cdcd8e22f77d7",
+        1,
+        13
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/4dfd06981cce252c",
+        2,
+        20
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 2471,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_0826",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

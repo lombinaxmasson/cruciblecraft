@@ -1,0 +1,193 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_2611",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "fdca9cdd3c6101b87994f751a03814678c43d21355958c234727a6cac2c5041d",
+        "51abb9fae65c803c15836bf2af7cc287bd58379800aa23b42b54a2470f43cc4c",
+        "7f68067c1a22e9777b1e852ed21c649ae8d315a7be3b27874bfa0d1783225f19",
+        "a3d4268aa1195db9c3de42bfc9daf2832102fe8ee055cbd598df13ab6ea03369",
+        "6461904a0c1019d61243565da08e211ffacaf33e388d685c4ad6903e80fcdf25",
+        "f49191995cdfda6868416928ed278141e986c339da9419df2e301a074eb8cf5e"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslaspring_steel"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslaspring_steel"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslatungsten_alloy"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslasteel"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslatungsten_alloy"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hslasteel"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hslaspring_steel/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hslatungsten_alloy/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hslasteel/gear"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/a19085c77c8ca7d9",
+        0,
+        2
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/887cf8d698e576f3",
+        1,
+        4
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/2ea6be273905ff46",
+        2,
+        5
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/edf37fd299db4848",
+        3,
+        12
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/5b16b36a5197c5b1",
+        4,
+        13
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/c77933486211b64d",
+        5,
+        22
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 768,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_2611",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

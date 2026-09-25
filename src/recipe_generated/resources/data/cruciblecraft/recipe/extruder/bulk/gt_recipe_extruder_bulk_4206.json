@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4206",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "f424bd758d675c6530d5ece2d421393e8355d9bbedb6cc7819dc7339dafe6dd9",
+        "42b0a0e059ed4f5b6d4ed9bf97e5d64b5b652d20df126a34c08a74d803309522",
+        "536f4318bc8296bb04979b4e0657e4de348bb499307f0610179b42157e7add29",
+        "b16ce8f06bfa7b640f426cf31c010b5fe6aa109cde06e01e4ef8debc1726c19f",
+        "368fb3fb1f98aac7f7030457afad55c741038f51dfffd4a85831973b5bbaf46a",
+        "9e071727986314d626c67295ad08399da5f960615a171e8fcfbcd6ccf4b5b7e6"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:angmallen/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:angmallen/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "angmallen"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "angmallen"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "angmallen"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:angmallen/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:angmallen/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/3cf21316576b918d",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/d554711dd634fab4",
+        1,
+        2
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/5680ea5d36caaf38",
+        2,
+        4
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/daf2c17eef9baae1",
+        3,
+        5
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/a208e63593d90052",
+        4,
+        6
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/66cba89527bfa601",
+        5,
+        7
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 97,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4206",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,217 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_1424",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "ffbfb8611885f25da8cd4f531e9dc8995ab0f9cc71732fab64352d3da14eb89c",
+        "e3a1cf5b66b444116dd5053e9d0d4fc79a441cca6a6e92fce04d0751f7b62eb7",
+        "d900dfc7a6146789bc6790e99638698077b398232270c87d70d41806ed0019e4",
+        "fb56cab064ee3c7dcc681157791bb7d43ffc8a36a845f3824e0c5ff6943616c9",
+        "da3c4c56eb4901a7f5e851cf1b64ef3510cbca9b7712c907a5432bd390cf1797",
+        "63ae20bb896759047f806843a5095e2ecda89bfa9633a24e9ecf6ccd027bad9f",
+        "e8eb47f2b6a4e09c9baf11f6333dfea3796f6549000a696d29672913876dd2e0",
+        "2a70e5f1bac5ac9c19df3895d313c601e3f5ad865b55a22d0539c2fa7d0a6e8a"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ferrite"
+            },
+            "items": "cruciblecraft:quadruple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ferrite"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "flamascus_steel"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:flamascus_steel/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:flamascus_steel/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:flamascus_steel/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ferrite/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:flamascus_steel/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/fd226b8aefd4ff0c",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/f511e28588f0bd09",
+        1,
+        4
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/0bafa0f1d60d8eb0",
+        2,
+        8
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/0515e019c5443d87",
+        3,
+        12
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/6e0fbebafceaece8",
+        4,
+        14
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/ee888ad83b6fac7f",
+        5,
+        18
+      ],
+      [
+        6,
+        1,
+        0,
+        "cruciblecraft:gt6/5175c9e7411b62c6",
+        6,
+        25
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/8c232fab977f97ac",
+        7,
+        26
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 117,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_1424",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

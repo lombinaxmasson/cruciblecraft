@@ -1,0 +1,145 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4830",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "2b0083de2763636d962bdb1f34c13c9dd82d5066204073bb0d71da1dcd08bda6",
+        "92c216f6e969396970b728e2165d073c4e113ce7c325864678d655013a06b0c8",
+        "ea609942df81e143ee6b38761166982e51074e75997ca0371f7d9cd5294ac51f",
+        "b8704937f74067e6a3249c59705fac9d65109c18c7e7d9be797438a822758ff0"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:quintuple_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "ceruclase"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:quintuple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:draconium/block"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ceruclase/gear"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/25399f8b37ef9e7e",
+        0,
+        4
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/d2b0b0fd5a87f602",
+        1,
+        5
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/b4bd0f9dc898150e",
+        2,
+        7
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/ce30ccb3064c7c1e",
+        3,
+        10
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 650,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4830",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

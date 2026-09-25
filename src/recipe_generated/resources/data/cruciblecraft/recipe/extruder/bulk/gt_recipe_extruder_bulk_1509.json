@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_1509",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "5ff9a259b6010d00f04d87d0fcd82e1969651cad1cc118018f1d82c181725f58",
+        "f343de4a89371131bf42942b23f9bcd737b910eecd4a3ffaa3d640094c57ce48",
+        "a18457da7815a3e72465943e875e11528edab275101ba8fc653b021dbc48deb4",
+        "0daed1c98973328c696ec5b0ca6db89a7abe2d8b99d315f8a39f66660b3185e0",
+        "dbd0debdac4c01f881f23ae1283de17be220df7a4afaefdc861c03718aa148a1",
+        "5c837dcbc50972051d30fef32f9f8362a8ff1260bdd2ce4932ebdadd05df83a2"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:thorium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:thorium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "thorium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:thorium/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/4e1a9a414f7bef01",
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/85f3027ddf0d433d",
+        1,
+        5
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/ab523e39f185bc8b",
+        2,
+        6
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/217d40510388ec23",
+        3,
+        7
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/670656f58a93790a",
+        4,
+        8
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/5e9cd968e8f16dae",
+        5,
+        9
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 110,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_1509",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

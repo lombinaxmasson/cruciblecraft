@@ -1,0 +1,217 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_5020",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "2f0f1ec19c59cf4a589048c844683d536ab3d688d2433aa7b9ad4974acfc996b",
+        "87384c408d86f739db1a503a8a8a47888bd67ccbddf4f9515922244466d22fe2",
+        "fb9ae437d71097117c8b9314d5f672ffdb576d9a77c1eb70faa6e3476fd26ba9",
+        "8f5e19d42e67847bff062dc948869f88abe48794f42d64948281c34eb85106e8",
+        "ddb3f0239d24b7a10d16b3f5ce8aaf6e183bda68455f641a504c6f6ab253d463",
+        "7817d958f50e0f3f8634c420b9946450d18dacb7b0bb859ba01e6d059d7eeb2a"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "end_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "end_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "holmium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "end_steel"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "holmium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "holmium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:end_steel/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:end_steel/rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:holmium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "end_steel"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 5,
+            "id": "cruciblecraft:holmium/bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "holmium"
+            },
+            "count": 6,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/cacee8b0d1b6b8b9",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/d458f5b388cc4b83",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/1a80dc835ae5d50b",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/ea1edd7a22caed8c",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/a7afb1ba4d44aca6",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/2e9f009c4ddf30de",
+        5,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 131,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_5020",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,898 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_3667",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "e141eb429080e8ca5dcfbf02efee8c75b71099346f975fa7c318d8a8161b06a3",
+        "800faf7154f1c544c16118b7bd8fe43ffcabf90d5b2b125d52b62f6c49e9bb0a",
+        "2597897055cfb4aa3d56e53cad25dfcd75e65eae56182ac89ce6611a0201e23b",
+        "d791b42f20d18e5a8be945559f2a983cce4523ecffb1ea009cf1f7bb42fa0103",
+        "1cb4b69e2fb02ff3c369b6351237b4f74522203afae3819577897651788e8d0e",
+        "91403ab85a458549364a871b74357c708be271f17e2670029a060b51c84b04e8",
+        "56b66ec046b4c8c314beb66f8ac32b496b19b4bbb5fb1fceb14b6c9cd6ba4541",
+        "aeb64831345abe77413d8ccba9f09a8ad0d1f83d2424ce6866ec558acd21f2b4",
+        "68e2a8bf7fb3c5caa400830f1d70e2a6ed1d17aeb336f9e36f005c2e9a4d4296",
+        "5abe8155b78d00935e16d9b9a05e02024b9a104582cef26be459ea664f20cf58",
+        "01d7dca558fa06993d47e7d17fa0d30fdc55b8093a28ac50ef4636900d6f1b63",
+        "45261ffb7affbb3bdfba3e5b83a60f866230ade916ac2d181bcdb01950385d7f",
+        "35a7f324cb70b373ae1fe4ac8b67d52b300f1a66dd151da8af4f372c8ea9bfd3",
+        "70f06be1fa11a2864d6c3dc70bf94c1c57fc353d84119fe3a0bf6e340d776612",
+        "61dfab94739f3b13c2c3d59bb4ea4d6cb01a28982d7c3bd6c884883117feaa05",
+        "91e494b8b13225b03048627ce791aa9856a2a9a3d8fdac46720bcf2f814ddeb3",
+        "a4b025dcbf9d68430f6c9be60fd1395497c62ac644edadd5ce74f29a1d7bec26",
+        "6a49fc1fa451934ef923b966c7eeaebfaadc70e3815d957549b55cd9147796fc",
+        "01f65d5a3b31966cb8aad906a300c3a2f793be65a2f60da738dd693c1928cf5b",
+        "35f40fa99fa1743c12c471798f71d900dda1dea2171db9188d872dd02e2cd6f0",
+        "7079cb40dbbd001b72cb5fe20fa3e4b0a62e54669a7e888eab982ecb04af2f2e",
+        "aec8f87596a56e81b072c39d7c6bbcaa900a46c4e2d518a3c38faedf66acc27b",
+        "d452d40592abbf03b63035f899f568c9acdbb679f68f18d5f4390f2bc67b1421",
+        "da90e5a936cae9636fd24f2ba089162bfbe45d3f09b15fab9dea05e03f2fa5d6",
+        "1d37b7fe6c06921c5c6f19fc2090c122681f14921626775e832c0d6db2695b60",
+        "5f706207855228325fccaf0e8891b7bbf763a2517f54e37b64f95ba966124be7",
+        "d8403f45cf967e5f1f2cc21af26ca755e4ea804b5c6f00abfddeaa6c09b2636b",
+        "72e9146b62aee96b9cbf860dc1a58923518fbdce0b7a2888b255146b77151d3e",
+        "538b9977415e1eac934cd279c4b4cbed961527e7da4a2522446a80381667a461",
+        "c789c621dfaf4bef7e3691688c08eccc4463622a8e93492c295497a9c5dff8e2",
+        "9c0a197044ad8a3560834dfad35b7163a7bda2d90098ef6a3a743b33f4c51620",
+        "e974253c981dd32b412d8fe5ab1f81501eab0ce315abcee34a750e9587999a56",
+        "2a8703def25a0d41a04a5e98732c8fb310bbf16701f0579218fe4343053063f2",
+        "46d0c36e8ba50b338d5a504560d7218678c471b44e8452d526e4191515ab4c5b",
+        "c54e71636777da6478c8b11cc82d106edff2541f830f6e48a4ba6c783ca9533d",
+        "51b759e111ea3f8b007d8ebedaf11335ad019a1cc7ec9b64bd476bad50498dca",
+        "fe4bafc984a2927acd031e449e8397b9d7c061447c8f7d9a74ca73980417fdd9",
+        "e453541cae42bfc2bfa2fc194ec014221fe1333996e9a628ecd9c9d9932f54d6",
+        "5a9a26a5c7a325c09a57af9c1608c117687b9de352643063d67a3dc87e62a73e"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantium/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:adamantium/small_gear"
+          }
+        ],
+        [
+          {
+            "count": 18,
+            "id": "cruciblecraft:adamantium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "count": 9,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantium/block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "count": 18,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:adamantium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:adamantium/plate"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:adamantium/gear"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:adamantium/ingot"
+          }
+        ],
+        [
+          {
+            "count": 36,
+            "id": "cruciblecraft:adamantium/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/f1202a930e05fea5",
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/7dea8ffe78aaca9c",
+        1,
+        2
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/3677cb1d5cc4e432",
+        2,
+        3
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/62480cfd3673d441",
+        3,
+        5
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/deb7ef7a3f0f1121",
+        4,
+        7
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/2b268ac8bee817a2",
+        5,
+        9
+      ],
+      [
+        6,
+        2,
+        0,
+        "cruciblecraft:gt6/336b208cde2cd43e",
+        6,
+        12
+      ],
+      [
+        7,
+        5,
+        0,
+        "cruciblecraft:gt6/509627dedc8504e1",
+        7,
+        14
+      ],
+      [
+        8,
+        6,
+        0,
+        "cruciblecraft:gt6/9c67002aaab9b847",
+        8,
+        15
+      ],
+      [
+        9,
+        7,
+        0,
+        "cruciblecraft:gt6/ea881d9aaa15488b",
+        9,
+        17
+      ],
+      [
+        10,
+        3,
+        0,
+        "cruciblecraft:gt6/8b3d32dd5bd1c2c6",
+        10,
+        18
+      ],
+      [
+        11,
+        6,
+        0,
+        "cruciblecraft:gt6/d0ec34f08694b056",
+        11,
+        21
+      ],
+      [
+        12,
+        7,
+        0,
+        "cruciblecraft:gt6/8cb754f79e0d47fd",
+        12,
+        28
+      ],
+      [
+        13,
+        1,
+        0,
+        "cruciblecraft:gt6/c8ecc4a51aa4c127",
+        13,
+        30
+      ],
+      [
+        14,
+        4,
+        0,
+        "cruciblecraft:gt6/f2f25f07a1ac7b7d",
+        14,
+        33
+      ],
+      [
+        15,
+        5,
+        0,
+        "cruciblecraft:gt6/9a59ba49e262ecac",
+        15,
+        34
+      ],
+      [
+        16,
+        7,
+        0,
+        "cruciblecraft:gt6/ecef82b4251e6a6f",
+        16,
+        36
+      ],
+      [
+        17,
+        8,
+        0,
+        "cruciblecraft:gt6/6091044a6d763344",
+        17,
+        39
+      ],
+      [
+        18,
+        8,
+        0,
+        "cruciblecraft:gt6/834c7d9fdc69f0fd",
+        18,
+        40
+      ],
+      [
+        19,
+        4,
+        0,
+        "cruciblecraft:gt6/fb3d09fcb36ad0d3",
+        19,
+        46
+      ],
+      [
+        20,
+        0,
+        0,
+        "cruciblecraft:gt6/838ceb76b2ebd022",
+        20,
+        51
+      ],
+      [
+        21,
+        1,
+        0,
+        "cruciblecraft:gt6/10012b4c7837a31b",
+        21,
+        54
+      ],
+      [
+        22,
+        3,
+        0,
+        "cruciblecraft:gt6/23bb4f018ffc84de",
+        22,
+        60
+      ],
+      [
+        23,
+        8,
+        0,
+        "cruciblecraft:gt6/efada8caecb9be44",
+        23,
+        61
+      ],
+      [
+        24,
+        9,
+        0,
+        "cruciblecraft:gt6/be07bf5945d466d7",
+        24,
+        65
+      ],
+      [
+        25,
+        8,
+        0,
+        "cruciblecraft:gt6/0bbd48db58c5d63b",
+        25,
+        66
+      ],
+      [
+        26,
+        9,
+        0,
+        "cruciblecraft:gt6/68b0be610746cc1c",
+        26,
+        68
+      ],
+      [
+        27,
+        6,
+        0,
+        "cruciblecraft:gt6/3c815946cc204547",
+        27,
+        75
+      ],
+      [
+        28,
+        9,
+        0,
+        "cruciblecraft:gt6/fbef8ad0e052503a",
+        28,
+        76
+      ],
+      [
+        29,
+        0,
+        0,
+        "cruciblecraft:gt6/c84ac15e1bf5492d",
+        29,
+        82
+      ],
+      [
+        30,
+        9,
+        0,
+        "cruciblecraft:gt6/ff6c45d0f1706ca5",
+        30,
+        88
+      ],
+      [
+        31,
+        4,
+        0,
+        "cruciblecraft:gt6/d391ebd79bb699cb",
+        31,
+        89
+      ],
+      [
+        32,
+        5,
+        0,
+        "cruciblecraft:gt6/1e3f848068ede093",
+        32,
+        91
+      ],
+      [
+        33,
+        7,
+        0,
+        "cruciblecraft:gt6/6b118934ee504df1",
+        33,
+        96
+      ],
+      [
+        34,
+        1,
+        0,
+        "cruciblecraft:gt6/5363de8981c1584e",
+        34,
+        99
+      ],
+      [
+        35,
+        2,
+        0,
+        "cruciblecraft:gt6/b63a42116a7dd32c",
+        35,
+        101
+      ],
+      [
+        36,
+        2,
+        0,
+        "cruciblecraft:gt6/aeedca8f4b432b96",
+        36,
+        111
+      ],
+      [
+        37,
+        6,
+        0,
+        "cruciblecraft:gt6/96d9a34cdbfd6548",
+        37,
+        113
+      ],
+      [
+        38,
+        0,
+        0,
+        "cruciblecraft:gt6/06a91d03a46dd309",
+        38,
+        116
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 9150,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_3667",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

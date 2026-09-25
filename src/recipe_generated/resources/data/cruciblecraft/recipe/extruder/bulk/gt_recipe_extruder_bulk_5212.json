@@ -1,0 +1,230 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_5212",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "e6dd2ecf3744d22abfa354a0c1c0b30cc24848b7064f1ed8e85fb3dadef016b9",
+        "45ed460c326e7ef933560c19a8a4bcffee75685eb05f208ec4a4e05e7ae2e909",
+        "395e3419f72d1d8a0facbca94a04e7e04a12dfb2f9e8bfbbe0966e5fe6679f1a",
+        "278248b662efdd2c26424e14aad65c12a14ca5d96d26f81e20aa04c5c0986421",
+        "e7932642bba4b0c4d2604141dce0f50ad2d3b5e35bdb1dafed0b619f17e70bad",
+        "ce4b7623d9c147f7e8e90106b8e567852aa851882dfa283e296431a7aec60c95",
+        "d5774c4d0edf27dacd1f81a4240905389bd932080947e1c5bdd8650496197ef6",
+        "296882887bee81d7f02d038c7223a0de4b39ffd325660e425427cbb5dd15456a",
+        "6b0f3f6a994e6c3bf14669982cc8df70ba6d92c3b5a6e7112984997f73fdc687"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "technetium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "technetium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:technetium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terbium/small_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:technetium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:terbium/foil"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "technetium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "terbium"
+            },
+            "items": "cruciblecraft:chunk",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:technetium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:technetium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:terbium/rod"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/52f40528c5166e49",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/e60a6cd534781a64",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/a7dba41d4a8f87f1",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/bb604d2c58327e43",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/ef24980074efe0de",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/00262a28aaec3874",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/6abb496ae3129182",
+        6,
+        6
+      ],
+      [
+        7,
+        1,
+        0,
+        "cruciblecraft:gt6/a031f110b207e537",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/f4b6aded35fc07d0",
+        8,
+        8
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 85,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_5212",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

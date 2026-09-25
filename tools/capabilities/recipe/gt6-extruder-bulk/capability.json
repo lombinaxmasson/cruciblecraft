@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "slug": "recipe/gt6-extruder-bulk",
+  "title": "GT6 Extruder Recipe Bulk",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6挤压机配方批量详细计划.md",
+    "tools/recipe_bulk/handlers/shape_transform.py",
+    "tools/recipe_bulk/rule_ir.py",
+    "tools/recipe_bulk/ordinary_source.py",
+    "tools/recipe_bulk/compile.py",
+    "tools/recipe_rule_ir.schema.json",
+    "tools/waves/recipe/gt6-extruder-bulk/**",
+    "tools/capabilities/recipe/gt6-extruder-bulk/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/extruder/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/extruder_bulk.json",
+    "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/Gt6ExtruderBulkGameTests.java"
+  ],
+  "depends_on": [
+    "recipe/gt6-bulk-capacity"
+  ],
+  "profiles": [
+    "recipes"
+  ],
+  "wave_slug": "recipe/gt6-extruder-bulk",
+  "required_test_ids": [
+    "bulkMapPublishesTranslatedRows"
+  ],
+  "note": "Imports translatable gt.recipe.extruder rows as on-demand matrix_v1. Missing forms and objects stay blocked. Does not stand in ingredients."
+}

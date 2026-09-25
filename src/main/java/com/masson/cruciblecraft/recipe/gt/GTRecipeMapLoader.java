@@ -352,7 +352,7 @@ public final class GTRecipeMapLoader {
                 componentHostRecipes,
                 chemicalPublishedRecipes,
                 chemicalRecipesOnComponentMaps,
-                eagerPublishedRecipes);
+                allPublishedRecipes);
         int compactFamilyAuthoredEntries = compactSources.size();
         int compactFamilyLogicalRecipes = 0;
         int compactFamilyEagerRecipes = 0;

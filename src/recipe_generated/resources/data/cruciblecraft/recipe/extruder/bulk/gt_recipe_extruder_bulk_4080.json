@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4080",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "6169e481c2d4368b5483fbf303827a121535d6f263ec3c4615cdaa21baf64cf5",
+        "8c1ef996f8bfe94e2570c23629907a3a5f788aab35278f9f49d51ceeae5760f2",
+        "57a6b480c0dede34e8242ffdad445a25e66b25da47c7431544e7c30300e6c22c",
+        "ba6f71c4c2fdffc55f1c9ee4e58cabf52944bd663ec2163cee06a47d587778a4",
+        "f86ce92d1e20af1a1bebd51fa03482a285c05285df03ae315299d065e3d434ac",
+        "fddcf8afbd6f5cdd2ac047ef875996d40dae9e2e48be71a078d9d8c83d1509a6"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:draconium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:draconium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:draconium/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/30b8558b1a1cd200",
+        0,
+        3
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/c446a4e2f3ea2d32",
+        1,
+        4
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/6099ed7d3b89263b",
+        2,
+        11
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/15712dfcf717a501",
+        3,
+        12
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/5808dda810b63505",
+        4,
+        13
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/bbdbf23cffd0dedd",
+        5,
+        14
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 22,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4080",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

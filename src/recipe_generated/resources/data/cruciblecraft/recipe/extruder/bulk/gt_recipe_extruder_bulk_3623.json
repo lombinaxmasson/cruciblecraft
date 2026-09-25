@@ -1,0 +1,177 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_3623",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "286ae017a78c778e1a05685921168fde0fe3f804bbc8a1ce611a0cfa1b664037",
+        "0ddc67f553dbd3ea44eb5d105b622cfe76cdf772fd29ce23d997201f69fba569",
+        "46a32971050db6eeb280d019098436ab2aff113dac882d9908ffbed0b5d753c0",
+        "f7518716c1476426ce577cd708f5b923ee646746ec179efc854c08c81be52cf1",
+        "827f2e2c2d353e8d1ca0c5ad8284fa2b1d014d713fb50f7bc5d07c9e08583cfb",
+        "20fa2450960066d833cd73d09b458f67bd4dfed5fda6e1c5c568756d0bc6ad5d"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:infinity/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carborundum"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cosmic_neutronium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infinity/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cosmic_neutronium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carborundum"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:infinity/ring"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:carborundum/gear"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cosmic_neutronium/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/6d6d44adbfb816e0",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/e3f235b441b28eaf",
+        1,
+        2
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/48d270c8764bf0f0",
+        2,
+        6
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/5902d1813ff7a516",
+        3,
+        8
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/9b9afb4e8d1d6670",
+        4,
+        9
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/1446b0b6eec8b926",
+        5,
+        11
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 385,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_3623",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

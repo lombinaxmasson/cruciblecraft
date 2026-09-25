@@ -106,6 +106,7 @@ KNOWN_SEMANTIC_SLUGS = (
     "machines/nanofab",
     "machines/melter",
     "machines/sanding",
+    "recipe/gt6-extruder-bulk",
     "machines/oven",
     "content/electric-wire-cable-mte-fold",
     "content/technological-parts-foundation",

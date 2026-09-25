@@ -1,0 +1,898 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_1955",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "ea657fe3caa90f28dcd9ce44130a1d0b73d77bc6c6a1074e4512659ea5851e60",
+        "672711591a2b2ed4579aa92da55c2ae7e6ab27811d044f54421f6744c7452066",
+        "3c1c058cba1e08a2c3149dbeff560fc2c2eedf6120431af5a62c09dcf5647105",
+        "60ead508aad311a8e37978aecb3fd4e610aa88991881bc66398f2e36d69627a7",
+        "7bd16a3f7f4363fd6d7776c52408c1a4d361ccd5aae92627882473cf8f73b853",
+        "55d1571f0e6022a5a3d7492eaec37dc24455e81d2f316c261e3a51f59ff83e34",
+        "26dbf3c92a20d12b8547547da574ee8f068baa2ebde6ff60ced5cb39b1cced1d",
+        "f9db65b18f3d483e18a161e9acc772f991ab0ca0f2472765a580aea5c12ee8ec",
+        "d96dce87727853d121cb90c9f375464678ceb723bdadae37fdd450af412e20bd",
+        "a781bc60ed876d1cbd8f90b0266ee034907c33ae8604c786ef7c4d772e9a2872",
+        "93dc93be718203dd9348e786ec5b0337c4a9f7f67fe8206e937c2b33d11ac02d",
+        "f0d114679220c2136b4a621e28ea9c1c999a8ee199d9d92327e06b745378c3a5",
+        "64fde8a78435765c614812384339d0262fa27dca60675f1399a99aab4ecb916c",
+        "98d1cfcd77d43744985e524a762ab3bb4abf6b8eb33e5d5a6aae1a089b36c89e",
+        "f215e88cde8c1d02a301d1e5cc44ef056eefc4189c6a2c2c6d1eccd234359e29",
+        "9a9f4bce1542b07d4e744d998a3032edf544b5c311b0e5c79a049e68eb2858a5",
+        "4793efcb700ef92d0e1d74ac468cc355d709caec1051fe0fca0582ec5adffa62",
+        "0bf47244b2ac33f25297befc5a20af47ce8d6cd4816f0cca5e6d2a4047110913",
+        "a39f5fdd4ed7dd12f1c6aabe786106a19fe7f3a5ab5af6767a93272eb98128ed",
+        "bbb24b9010cc25d7f7a7fb4b817419679eb40537064ddba4863e8742270cb33e",
+        "02a2c4fce4f6928807d7b5a80377a6525b08b64ff48560a3c0c0812f0bf820ba",
+        "9284f0747c8fc4795c99154c0e1b28eac6d9c4f89f70b35c6fd1a2c1df2932db",
+        "a62d6d84096ba9d9c9ab6b9fab8de0266678db5805dcce4e00341957f1ef0825",
+        "fe0be37dd6aa359e1e8ee1cb3639a846e3424b0f8401e4a9fee1257c984e4afc",
+        "90a8f1b127b0bcafc53a45f2a6cdd953fe877d34e69652b92c998794d0c8b985",
+        "6ed870d3b355f9d2262c042f7736ac1639feebae28310b89db179ba40da082f6",
+        "fdc1b68a8f906bd42c97fcb5e085616085d43b382b7b3e35ce43a1f36f9c7a39",
+        "a104f887db81f084ed3f4aeade62c1d514b2f7558c79a1309cc779afdf4fe8f9",
+        "6eec7e44e9dda30204c760489a0bb520d7ab8df4b15f2279e79d0f17a5eb1795",
+        "78493f6a1405eedf701843159f34ab0abdb927618ba696abfb05e093364a4491",
+        "fe5e7c4f57e58d3e4b9ecb814948f975b83e31188bd938c118c26487ce10ba7c",
+        "e6d7a71f1f6019cd0abae91359dbdb50f7885d7900a34eef40fb198497afeb0d",
+        "13925c00db7d04ef659054d9a272614e5dbc550cb27eda6e043c9bd5e33cc894",
+        "6cb93e107bf91d45fb9ed5e5898bb7e57705318e38d8db7cff19d8ee95138988",
+        "0e7d59ed0b4b224df2a4d97a6b8aa98e5d9217dffa6cce6a9a273d57df1196c5",
+        "bd7220dfd105fbab0c7572b8d082d992b327a73e26cde818680537b9392ef8d1",
+        "3e1fc8ecf594c9e316cebefed23aecb342362fcdecb59a8d9d5165d3f592719d",
+        "f827e6acd6b0e9ef5e1fd52da10f67581e1c5b5ee4d720ba54362ce4946643b3",
+        "c4da310b877617b6abe5bbb0ab70555d2208176a6c5cb45aaa137dd04865fcfc"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_block"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_item_casing"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:dense_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungsten_carbide/block"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "items": "cruciblecraft:storage_dust",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 18,
+            "id": "cruciblecraft:tungsten_carbide/rod"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:tungsten_carbide/gear"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten_carbide/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "count": 18,
+            "id": "cruciblecraft:small_casing"
+          }
+        ],
+        [
+          {
+            "count": 36,
+            "id": "cruciblecraft:tungsten_carbide/ring"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten_carbide/plate"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten_carbide/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungsten_carbide/block"
+          }
+        ],
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:tungsten_carbide/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tungsten_carbide"
+            },
+            "count": 9,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/4c691b46bca562fc",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/80ae468f443b7d78",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/2d1016f51e306d49",
+        2,
+        3
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/5f63a8598b7bb2c4",
+        3,
+        4
+      ],
+      [
+        4,
+        3,
+        0,
+        "cruciblecraft:gt6/d529348da33b9ab9",
+        4,
+        5
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/a124984f477e0224",
+        5,
+        6
+      ],
+      [
+        6,
+        4,
+        0,
+        "cruciblecraft:gt6/c6f210e5ed1ecef4",
+        6,
+        10
+      ],
+      [
+        7,
+        5,
+        0,
+        "cruciblecraft:gt6/f0ed47f76a0a9cd0",
+        7,
+        12
+      ],
+      [
+        8,
+        6,
+        0,
+        "cruciblecraft:gt6/a443fcafe14f32af",
+        8,
+        13
+      ],
+      [
+        9,
+        5,
+        0,
+        "cruciblecraft:gt6/5b546c9a8f08c4c1",
+        9,
+        14
+      ],
+      [
+        10,
+        1,
+        0,
+        "cruciblecraft:gt6/3c363acca574ada8",
+        10,
+        15
+      ],
+      [
+        11,
+        7,
+        0,
+        "cruciblecraft:gt6/7c75342381c14b71",
+        11,
+        17
+      ],
+      [
+        12,
+        1,
+        0,
+        "cruciblecraft:gt6/e35f90bd1e2a0e2c",
+        12,
+        19
+      ],
+      [
+        13,
+        7,
+        0,
+        "cruciblecraft:gt6/22e4022a0730408a",
+        13,
+        21
+      ],
+      [
+        14,
+        0,
+        0,
+        "cruciblecraft:gt6/e970045931e67317",
+        14,
+        26
+      ],
+      [
+        15,
+        7,
+        0,
+        "cruciblecraft:gt6/b1af34fab0c037e1",
+        15,
+        27
+      ],
+      [
+        16,
+        8,
+        0,
+        "cruciblecraft:gt6/135d2aa25ad76652",
+        16,
+        29
+      ],
+      [
+        17,
+        9,
+        0,
+        "cruciblecraft:gt6/ec7a4f438cf6110b",
+        17,
+        30
+      ],
+      [
+        18,
+        4,
+        0,
+        "cruciblecraft:gt6/b131c28204ae587d",
+        18,
+        31
+      ],
+      [
+        19,
+        6,
+        0,
+        "cruciblecraft:gt6/8ed7433cded205db",
+        19,
+        32
+      ],
+      [
+        20,
+        9,
+        0,
+        "cruciblecraft:gt6/fa5099d2134d6aa0",
+        20,
+        34
+      ],
+      [
+        21,
+        2,
+        0,
+        "cruciblecraft:gt6/aff3980c28849d9f",
+        21,
+        38
+      ],
+      [
+        22,
+        9,
+        0,
+        "cruciblecraft:gt6/fdaf1befbff4bfcb",
+        22,
+        41
+      ],
+      [
+        23,
+        5,
+        0,
+        "cruciblecraft:gt6/f2bc773290c6044c",
+        23,
+        43
+      ],
+      [
+        24,
+        6,
+        0,
+        "cruciblecraft:gt6/efa8bfbb2b1db451",
+        24,
+        44
+      ],
+      [
+        25,
+        2,
+        0,
+        "cruciblecraft:gt6/56d86f9f2acb521d",
+        25,
+        45
+      ],
+      [
+        26,
+        8,
+        0,
+        "cruciblecraft:gt6/6bae1d354a833801",
+        26,
+        50
+      ],
+      [
+        27,
+        4,
+        0,
+        "cruciblecraft:gt6/e801243b7abdcfe4",
+        27,
+        52
+      ],
+      [
+        28,
+        3,
+        0,
+        "cruciblecraft:gt6/dc5e4fcbad813d5a",
+        28,
+        53
+      ],
+      [
+        29,
+        3,
+        0,
+        "cruciblecraft:gt6/268253de0cbc4f2a",
+        29,
+        54
+      ],
+      [
+        30,
+        4,
+        0,
+        "cruciblecraft:gt6/a7a22f7be91b16f4",
+        30,
+        55
+      ],
+      [
+        31,
+        2,
+        0,
+        "cruciblecraft:gt6/b350275f04b1df78",
+        31,
+        60
+      ],
+      [
+        32,
+        8,
+        0,
+        "cruciblecraft:gt6/6bbcb73c0bd4dd74",
+        32,
+        62
+      ],
+      [
+        33,
+        0,
+        0,
+        "cruciblecraft:gt6/f941f986bfb45ccc",
+        33,
+        67
+      ],
+      [
+        34,
+        9,
+        0,
+        "cruciblecraft:gt6/00ed9be85bdd0a46",
+        34,
+        68
+      ],
+      [
+        35,
+        5,
+        0,
+        "cruciblecraft:gt6/f602dd3ed46d419c",
+        35,
+        71
+      ],
+      [
+        36,
+        6,
+        0,
+        "cruciblecraft:gt6/e78871b8cbd84d3f",
+        36,
+        72
+      ],
+      [
+        37,
+        0,
+        0,
+        "cruciblecraft:gt6/cbc59cc5c1b53176",
+        37,
+        73
+      ],
+      [
+        38,
+        8,
+        0,
+        "cruciblecraft:gt6/cbf0b8888f2e8956",
+        38,
+        78
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 6017,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_1955",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

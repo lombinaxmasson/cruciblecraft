@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_2879",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "b31baf14967353c74465ba16ea8dcadfdca54c21b5f9d2913299f055ea047a97",
+        "1b6555e7debc7f184612c8997f1e54bfc15c7915ce9143b87af92e73f0af14e0",
+        "1b50cdfac90307539f2f9774b012cbc56e9a8aa337aec8eb4ca31dab99102b18",
+        "3ff6857ce13c197a7f8953c2f61249462e631dafd47292d1bf8e7f791236641a",
+        "b4a5fbd1fdcb2e10af988fe0a83da5ba514e93bbd911ab3d39182b560062a986",
+        "f40852692d2f75234eb9c2c7ce4b28bd660823d2e68adcf0c1be648f95efc074"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:osmium_elemental/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmium_elemental/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "osmium_elemental"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmium_elemental/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:osmium_elemental/bolt"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/a22157b767aa529e",
+        0,
+        3
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/4cc73a5fd4923918",
+        1,
+        6
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/53fd30a464e682c6",
+        2,
+        9
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/f4291056a1511fff",
+        3,
+        18
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/68a8bbadcd965a94",
+        4,
+        21
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/6e457dbd9a3d56c3",
+        5,
+        26
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 234,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_2879",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

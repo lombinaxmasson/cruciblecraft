@@ -8348,24 +8348,24 @@ public final class CrucibleCraftGameTests {
                         && metrics.pipeMaterialRules() == 257
                         && metrics.ingotFormMaterialRules() == 967
                         && metrics.liveComponentMapRecipes() == 12064
-                        && metrics.allPublishedRecipes() == 19_089
-                        && metrics.eagerPublishedRecipes() == 16_864
+                        && metrics.allPublishedRecipes() == 146_447
+                        && metrics.eagerPublishedRecipes() == 16_846
                         && metrics.eagerPublishedRecipes()
                                 <= ModProcessingMachines
                                         .ALL_EAGER_PUBLICATION_SOFT_BUDGET
-                        && metrics.lazyLogicalRecipes() == 2_225
+                        && metrics.lazyLogicalRecipes() == 129_601
                         && metrics.lazyLogicalRecipes()
                                 <= ModProcessingMachines
                                         .ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING
-                        && metrics.compactLoadExtruderLogicalRecipes() == 2_782
-                        && metrics.compactLoadExtruderEagerRecipes() == 557
-                        && metrics.compactLoadExtruderLazyRecipes() == 2_225
+                        && metrics.compactLoadExtruderLogicalRecipes() == 2_691
+                        && metrics.compactLoadExtruderEagerRecipes() == 539
+                        && metrics.compactLoadExtruderLazyRecipes() == 2_152
                         && metrics.compactLoadExtruderCacheCeiling() == 512
-                        && metrics.compactLoadExtruderSyncBytes() == 331_124L
+                        && metrics.compactLoadExtruderSyncBytes() == 320_481L
                         && metrics.compactLoadExtruderCacheCeiling()
                                 <= ModProcessingMachines
                                         .ALL_LAZY_RECIPE_CACHE_HARD_CEILING
-                        && metrics.compactLoadExtruderAuthoredEntries() == 20
+                        && metrics.compactLoadExtruderAuthoredEntries() == 17
                         && metrics.compactLoadExtruderStableFingerprint()
                                 .matches("[0-9a-f]{64}")
                         && metrics.runtimeSide()
@@ -8398,12 +8398,13 @@ public final class CrucibleCraftGameTests {
                 .orElseThrow();
         helper.assertTrue(
                 extruderFamily.epoch() == ModRecipeMaps.EXTRUDER.runtimeEpoch()
-                        && extruderFamily.logicalRecipeCount() == 2_782
-                        && extruderFamily.eagerRecipeCount() == 557
-                        && extruderFamily.lazyRecipeCount() == 2_225
+                        && extruderFamily.logicalRecipeCount() == 2_691
+                        && extruderFamily.eagerRecipeCount() == 539
+                        && extruderFamily.lazyRecipeCount() == 2_152
                         && extruderFamily.cacheCeiling() == 512,
                 "Extruder family snapshot shape drifted");
-        for (RecipeMap.Entry entry : ModRecipeMaps.EXTRUDER.entries()) {
+        for (int index = 0; index < extruderFamily.logicalRecipeCount(); index++) {
+            RecipeMap.Entry entry = extruderFamily.enumerationEntry(index);
             GTRecipe recipe = entry.recipe();
             helper.assertTrue(
                     recipe.itemInputs().size() == 2
@@ -8417,13 +8418,10 @@ public final class CrucibleCraftGameTests {
                             .allMatch(ExtruderShapeCatalog::isShape),
                     "Extruder recipe retains a no-shape bypass: " + entry.id());
             GTRecipeQuery query = queryFor(recipe);
-            RecipeMap.Match resolved =
-                    ModRecipeMaps.EXTRUDER.findMatch(query).orElse(null);
             helper.assertTrue(
-                    resolved != null && resolved.id().equals(entry.id()),
-                    "Extruder expected input did not find its stable publication: "
-                            + entry.id() + " resolved="
-                            + (resolved == null ? null : resolved.id()));
+                    recipe.matches(query),
+                    "Extruder material-rule row does not match its own input: "
+                            + entry.id());
         }
         helper.assertTrue(
                 extruderFamily.cacheSize() <= extruderFamily.cacheCeiling(),
@@ -8737,7 +8735,8 @@ public final class CrucibleCraftGameTests {
                 "recipe_expansion_publication_baseline",
                 "later_wave_publication_baseline",
                 "closing_publication_baseline",
-                "fission_survival_publication_baseline")) {
+                "fission_survival_publication_baseline",
+                "extruder_bulk_publication_baseline")) {
             var stream = CrucibleCraftGameTests.class.getClassLoader()
                     .getResourceAsStream(
                             "data/cruciblecraft/" + baselineName + ".json");

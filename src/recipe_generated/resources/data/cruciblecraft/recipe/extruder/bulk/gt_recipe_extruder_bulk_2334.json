@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_2334",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "d90c366bdaae1f7c590f8a14d712b0d5eb494519c27a7ce382e15284cf6422fc",
+        "83226c37b21d6805210061a3b933cfd49584b486967658803d3d8b04552df76b",
+        "21c7e649f12cbbd152a52dc11309b50054654d666e271f9060c27bbb85eb34a9",
+        "74ebeab4874d0b0f15401c11da87f99fcb4ac04c39d974fc4abe70a8d18dad9f",
+        "411d504a0231c922bd6815ff30a1b10eceb03bbfd1cc777dcfe6f6ac5686a99c",
+        "0a7de8c7f17c3f3c26e756629356005f7b36a549d3b9c509dc650ab1ad72fd05"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:hsse/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hsse/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hsse"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hsse/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/288deca5c36b4ddf",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/0e676c77fb74a483",
+        1,
+        5
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/2c165a3965d65cd6",
+        2,
+        10
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/771bea5331aeb6dd",
+        3,
+        11
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/91733981d5594f55",
+        4,
+        21
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/ec9d3ecafca4bfb9",
+        5,
+        22
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 100,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_2334",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

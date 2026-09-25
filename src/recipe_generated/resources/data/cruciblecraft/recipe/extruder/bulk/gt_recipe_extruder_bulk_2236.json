@@ -1,0 +1,192 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_2236",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "594766fff980c9d551cfcd99c0a3f7905bd4371cbc0edc96c60b745263ec6fa5",
+        "731256aee7b5b095b3ef4023598f0736d492438ed92ab83646e0ac11a9e27f5a",
+        "ffd91b29ce8a46df05934fc9262dfd6a3acca4dcb979b8a1224b36ece1a150ef",
+        "f0e0d86034b9ca74f692e703d7042e14cf84c8f1686d1330a55a8a5de23fd88d",
+        "7d64ecb09fc6bf7b59e92f421fa51228fb7b1d0ffdd95f9e3d56d4b74ec52c50",
+        "bc848beabdf7b5fe47739c89ba1c2e5d34129c811e5df7a5709a16f5f0593261"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:vanadium_gallium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium_gallium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium_gallium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kreknorite"
+            },
+            "items": "cruciblecraft:double_ingot",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium_gallium/rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "kreknorite"
+            },
+            "items": "cruciblecraft:double_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vanadium_gallium/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vanadium_gallium/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vanadium_gallium/ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:kreknorite/gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_gallium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/2a8d598eb91d436a",
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/def36a621df2ae9a",
+        1,
+        4
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/de29854717feaf9b",
+        2,
+        6
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/fc12bc056f497dac",
+        3,
+        10
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/1a3e969c9830da93",
+        4,
+        11
+      ],
+      [
+        5,
+        3,
+        0,
+        "cruciblecraft:gt6/350bccd5dcf00937",
+        5,
+        13
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 133,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_2236",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

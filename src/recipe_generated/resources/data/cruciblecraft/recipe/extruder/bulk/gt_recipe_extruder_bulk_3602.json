@@ -1,0 +1,224 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_3602",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "e231f49c33c0be08c09c89a92c32be2a2f70ccd5eb8bf32e18d6732201a8fbe5",
+        "511a656f2c32878b8e9358b11ed5b7b2560cddc03bfc3db32560649173340afb",
+        "b5de60f76f6e46eaaab683dd5733509c3b00fad883c19eb78fe3acd318a7df87",
+        "a85b502f97897c9a6714b08046828ffdfc5bd62aed3fee812b8daf7162cf0ffe",
+        "eb034c939d81c2642cda15258a10e146645afd1f2a57301ff2bed40b5c2ac0ce",
+        "821597e361b4b5e0af49fa983a672f50bef457a5b9abb8f61cb5dcd73fb1c4b6",
+        "80a450f6d9f9405931dcc1041dfa39095b437184072c6d7903104975a3a97881",
+        "aebfb6e6290a70c0fde7dec7672e5bb6ce0d3be17b2df292e918aa8b79842c34",
+        "2ce1f11242dbcb5e658016d657b26f71d3397d0fb033b6b982715fbec34459a7"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_iron"
+            },
+            "items": "cruciblecraft:spring",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/ingot"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/plate"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_iron"
+            },
+            "items": "cruciblecraft:minecart_wheels",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_iron"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "dark_iron"
+            },
+            "items": "cruciblecraft:chain",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/small_gear"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/long_rod"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_gear"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:dark_iron/gear"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/53e945da6543689c",
+        0,
+        2
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/7aa78e4f96e59fe9",
+        1,
+        5
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/8a911ca631e41ab0",
+        2,
+        7
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/dcc0e430bcf16227",
+        3,
+        8
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/0791f97530092890",
+        4,
+        9
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/0bed5e3ffcdf44e6",
+        5,
+        11
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/ae674c537288c5c4",
+        6,
+        12
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/1663476e583f7060",
+        7,
+        13
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:gt6/f85b683a6a82b53f",
+        8,
+        15
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 950,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        4,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_3602",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,217 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4560",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "cdd30b3d82c2aa14d565cf0de41b6096fcd105c569acc2ab56fef2ced6e6e05f",
+        "fb18ac7da8f9365103193bd8dc29aff354fb9118d79eacb67710cdc4c732a4a5",
+        "4ffa821f6e9d93cec33d6f4078ea587de4077b760d10bf007e470e88b31fbe8e",
+        "4ca920923befef21932a684da775af55869e0b86173dac2d1b16edc6c9381c46",
+        "9654e4333b11f4a8d71bbb81fab65273c4947db78f5096a79aba2882c9837903",
+        "df416c68ab54cb2f59cf80799074d129147531cc050aa5cb9247282aee31ecd2",
+        "267a73c975ed78f6fea949603efb8c9758b2dd31f8629af2c7be96a910304696",
+        "f8da9e9c2b5b8b383ae2e784da920575e264c43dd7bd79d6353e926a82af0262"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:sanguinite/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sanguinite/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:coralium/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sanguinite/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_tiny_plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "coralium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:coralium/bolt"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/f73c0ec5b8f9fe42",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/5f75aeee23378f1d",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/8475d2c9f18897df",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/585c4e753ce104f6",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/b7f19a372f41545d",
+        4,
+        4
+      ],
+      [
+        5,
+        2,
+        0,
+        "cruciblecraft:gt6/0693681e510a35fe",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/97333c18f78f92b2",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/053c00d0b8dbb6ca",
+        7,
+        7
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 66,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4560",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

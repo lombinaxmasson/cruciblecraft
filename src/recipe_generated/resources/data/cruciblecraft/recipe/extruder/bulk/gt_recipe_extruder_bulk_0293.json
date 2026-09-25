@@ -1,0 +1,121 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_0293",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "232c609a0602af58b719d45121bc775118cbbaccf00dbc28be3c8d2fb9235096",
+        "0dbe4b81c7cf93e68ba6af5bf9ce62f5ada39fac93a3626cdc552804f03a9108",
+        "5d8e7fe7d2064aee10b852be03c6fb20a340c8c187edd99c1d7d4a1078e64fdd"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:netherized_diamond/machine_casing"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "netherized_diamond"
+            },
+            "count": 8,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:netherized_diamond/plate"
+          }
+        ],
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:netherized_diamond/ingot"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/e88df933c85d9598",
+        0,
+        2
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/c7b01e1e9ec6f0d9",
+        1,
+        5
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/a5454a5fffda7b43",
+        2,
+        13
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 5742,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_0293",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

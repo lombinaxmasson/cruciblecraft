@@ -1,0 +1,187 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_1866",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "8cde3bdfde56eae06c71c03bbdd57e7a4ee635b5693faa140938f21c0d1dfff6",
+        "f0bd997221d0e8cb9a4a9203e383b7d59585c29acfa3a78e118d34fb8427ac75",
+        "a5d8c7432c3ff2c5beaca54a97cdbd4684e3103381742b1e060687361d32a6b3",
+        "bf9c7f8930fac1ed9ad99a0ced881ee7f4a2c3e82506ee8de644af22dfbeabbd",
+        "10d8514bb22d5f5788116ef5b25872c61b21fb8349a22307db77a5bd9c2d15c7"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ingot"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tantalum_hafnium_carbide/long_rod"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tantalum_hafnium_carbide/small_gear"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "tantalum_hafnium_carbide"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tantalum_hafnium_carbide/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tantalum_hafnium_carbide/ingot"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/77e93fa1c49d77ca",
+        0,
+        4
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/4f77df9cb2b4b291",
+        1,
+        6
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/0a58537714605f87",
+        2,
+        8
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/14a95cb64d18b74b",
+        3,
+        34
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/f409a081b7419ddc",
+        4,
+        36
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 746,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_1866",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

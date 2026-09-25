@@ -1,0 +1,209 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4851",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "9b5e55fd8e0736c2c6e03a3129aae5b9e4117c7a019135bb99c0c347f81e23ae",
+        "b8691aaff2bb51b9bf3d3f224b46ca36faacb33d49f790e37d5e28f32b5863ce",
+        "832950a4555f417afc5b6969916009dc662a005891c65efeaa0088abbdaca31e",
+        "e4744ff209d9057a6329330462a7c2e76b90979e014a91fa6b6aedecaed5f821",
+        "c225289f04896299457d142ab16bb22882e2947b588d9c7f0458bae5fb35d579",
+        "3542ffb0d3d77ebe432484d7b739e5aec94da2d0a941b7a8ebda3278cd87b792",
+        "e4a6a9534e1fcb5e64ff259fc4d0b8d5e80a07a969d17d0a30beb5c2b2d19eec",
+        "d8edcff93ec51e5dabfd47516c953f727300c565591c373feeca3d1e13314601"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:vanadium_gallium/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium_gallium/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_gallium"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_gallium"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:conductive_iron/fine_wire"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:conductive_iron/bolt"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vanadium_gallium/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vanadium_gallium"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_bolt"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vanadium_gallium/bolt"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:conductive_iron/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/afac99234e1dc333",
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/8a0cec836875c83a",
+        1,
+        5
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/3dda6eb5b7ba9f22",
+        2,
+        7
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/d04e028083fbf1b8",
+        3,
+        8
+      ],
+      [
+        4,
+        1,
+        0,
+        "cruciblecraft:gt6/e35e97fe3d5835f0",
+        4,
+        10
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/33b0c52a850ad7f8",
+        5,
+        12
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:gt6/8da3adb2d182a140",
+        6,
+        14
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:gt6/ae65ab46170646ab",
+        7,
+        16
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 30,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4851",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

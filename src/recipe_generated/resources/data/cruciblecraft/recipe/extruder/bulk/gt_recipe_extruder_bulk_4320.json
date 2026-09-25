@@ -1,0 +1,169 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.extruder#bulk_4320",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "6ed7c7f371815653b08291c74c8f0582334cf7affed6846a6ea9a22303215ec9",
+        "756fe6d4029149c82d05f68c08fea6c4ab733c812705cc611cc8fa3d50cee6a1",
+        "978d7db200c7cabf9f37aa3aa9a6650aed5443f0a43e534160346e546df4d8a4",
+        "a0e75f81330249472cc0f866d99af80a7cb5d73df611535ae603381e547e2471",
+        "f4fc9b9f925731881b776390da4c642f2bdd0bbd7c07f79bf9b9b43f98587a6f",
+        "bf4bf55f1557e88dfceb95f7780025a80a14077e092dcd6ac54c3ede0ef70c2f"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:energetic_alloy/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:energetic_alloy/nugget"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "energetic_alloy"
+            },
+            "items": "cruciblecraft:round",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "energetic_alloy"
+            },
+            "items": "cruciblecraft:tiny_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:energetic_alloy/screw"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "energetic_alloy"
+            },
+            "items": "cruciblecraft:scrap",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:extruder_shape_ring"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:energetic_alloy/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/c9b66f876a92da08",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/37f1538d22148f6b",
+        1,
+        2
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:gt6/858ad4b57db4d188",
+        2,
+        4
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/aff304b8be147f10",
+        3,
+        5
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:gt6/469746650336242a",
+        4,
+        6
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:gt6/2cc40b51e90de305",
+        5,
+        7
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 48,
+      "eut": 96,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.extruder#bulk_4320",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:extruder/bulk",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:extruder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

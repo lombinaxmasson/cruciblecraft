@@ -834,6 +834,43 @@ class RecipeRuleIrTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "remainder hashes missing|coverage drifted"):
             rule_ir_mod.prove_coverage(document, rows)
 
+    def test_shape_transform_requires_preserved_extruder_shape(self) -> None:
+        from tools.recipe_bulk.handlers import shape_transform
+
+        row = {
+            "duration": 128,
+            "eut": 16,
+            "fluid_inputs": [],
+            "fluid_outputs": [],
+            "item_input_actions": [{"kind": "CONSUME"}, {"kind": "PRESERVE"}],
+            "item_inputs": [
+                {"form": "ingot", "material": "aluminium", "runtime_id": "cruciblecraft:aluminium/ingot"},
+                {
+                    "form": None,
+                    "material": None,
+                    "runtime_id": "cruciblecraft:extruder_shape_plate",
+                },
+            ],
+            "item_outputs": [
+                {"form": "plate", "material": "aluminium", "runtime_id": "cruciblecraft:aluminium/plate"}
+            ],
+        }
+        self.assertTrue(shape_transform.matches(row, {}))
+        bare = {
+            **row,
+            "item_inputs": [row["item_inputs"][0], {"form": "plate", "material": "iron", "runtime_id": "cruciblecraft:iron/plate"}],
+        }
+        self.assertFalse(shape_transform.matches(bare, {}))
+        missing_form = {
+            **row,
+            "item_inputs": [
+                {"form": None, "material": "aluminium", "runtime_id": None},
+                row["item_inputs"][1],
+            ],
+        }
+        self.assertFalse(shape_transform.matches(missing_form, {}))
+
+
     def test_handler_overlap_fails_closed(self) -> None:
         from tools.recipe_bulk import rule_ir as rule_ir_mod
 
