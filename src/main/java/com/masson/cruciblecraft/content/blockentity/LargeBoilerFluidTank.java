@@ -77,6 +77,11 @@ public final class LargeBoilerFluidTank extends FluidTank {
     }
 
     @Override
+    public boolean isEmpty() {
+        return fluid.isEmpty() || amount <= 0L;
+    }
+
+    @Override
     public boolean isFluidValid(FluidStack stack) {
         return stack != null && !stack.isEmpty() && validator.test(stack);
     }

@@ -54,7 +54,8 @@ public final class LargeCoagulatorBlockEntity
             LargeCoagulatorBlockEntity coagulator) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (coagulator.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, 20)) {
             coagulator.recheckStructure(level, pos, state);
         }

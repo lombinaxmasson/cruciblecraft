@@ -54,7 +54,8 @@ public final class LargeAutoclaveBlockEntity
             LargeAutoclaveBlockEntity autoclave) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (autoclave.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, 20)) {
             autoclave.recheckStructure(level, pos, state);
         }

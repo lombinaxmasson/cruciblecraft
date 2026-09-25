@@ -271,7 +271,10 @@ class VerificationProfileTest(unittest.TestCase):
                 "src/main/java/com/masson/cruciblecraft/content/block/HopperBlock.java",
             ],
         )
-        self.assertEqual(["runtime-java"], classified["selected_profiles"])
+        self.assertEqual(
+            ["runtime-java", "game-tests"],
+            classified["selected_profiles"],
+        )
         self.assertEqual([], classified["unmatched_paths"])
 
     def test_datagen_provider_selects_runtime_java_and_semantic_generators(self) -> None:
@@ -282,7 +285,7 @@ class VerificationProfileTest(unittest.TestCase):
             ],
         )
         self.assertEqual(
-            ["runtime-java", "semantic-generators"],
+            ["runtime-java", "semantic-generators", "game-tests"],
             classified["selected_profiles"],
         )
 

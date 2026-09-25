@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 public final class RotationalGearboxBlock extends Block
         implements EntityBlock {
     public static final DirectionProperty FACING =
-            BlockStateProperties.HORIZONTAL_FACING;
+            BlockStateProperties.FACING;
 
     public RotationalGearboxBlock(Properties properties) {
         super(properties);

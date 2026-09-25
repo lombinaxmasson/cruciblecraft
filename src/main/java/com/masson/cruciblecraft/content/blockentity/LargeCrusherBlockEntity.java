@@ -65,7 +65,8 @@ public final class LargeCrusherBlockEntity
             LargeCrusherBlockEntity crusher) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (crusher.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, 20)) {
             crusher.recheckStructure(level, pos, state);
         }

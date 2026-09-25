@@ -1,18 +1,28 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "C": {
-      "item": "cruciblecraft:steel/machine_casing_double"
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "tag": "cruciblecraft:crafting_tools/hammer"
     },
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
     "G": {
       "item": "cruciblecraft:steel/gear"
+    },
+    "M": {
+      "item": "cruciblecraft:steel/machine_casing_double"
+    },
+    "S": {
+      "item": "cruciblecraft:steel/small_gear"
     }
   },
   "pattern": [
-    "G ",
-    "C ",
-    "G "
+    "wS ",
+    "GMG",
+    " Sh"
   ],
   "result": {
     "count": 1,

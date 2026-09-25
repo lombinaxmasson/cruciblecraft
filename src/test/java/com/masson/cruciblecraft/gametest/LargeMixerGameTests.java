@@ -46,15 +46,16 @@ public final class LargeMixerGameTests {
                             helper, structure, PortType.ITEM_FLUID_OUT);
                     MteInPlaceBlockEntity energy = portEntity(
                             helper, structure, PortType.ENERGY_INPUT);
+                    BlockPos controller = helper.absolutePos(CONTROLLER);
                     helper.assertTrue(
                             input.mixerControllerPosition()
-                                    .filter(CONTROLLER::equals)
+                                    .filter(controller::equals)
                                     .isPresent()
                                     && input.itemHandler(Direction.NORTH) != null,
                             "Mixer input wall was not bound as item/fluid input");
                     helper.assertTrue(
                             output.mixerControllerPosition()
-                                    .filter(CONTROLLER::equals)
+                                    .filter(controller::equals)
                                     .isPresent()
                                     && output.itemHandler(Direction.NORTH) != null,
                             "Mixer output wall was not bound as item/fluid output");

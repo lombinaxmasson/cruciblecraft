@@ -54,7 +54,8 @@ public final class LargeMixerBlockEntity
             LargeMixerBlockEntity mixer) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (mixer.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, 20)) {
             mixer.recheckStructure(level, pos, state);
         }

@@ -143,7 +143,8 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             LargeCrucibleBlockEntity crucible) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (crucible.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, 20)) {
             crucible.recheckStructure(level, pos, state);
         }
@@ -196,17 +197,23 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
     }
 
     private void tickProcess(Level level) {
+        if (outputStackFull()) {
+            outputJammed = true;
+        }
         if (!outputJammed) {
             suckDroppedItems(level);
             ingestInput(level);
         }
-        process.addRainWater(
-                level.getGameTime(),
-                level.isRainingAt(worldPosition.above(2)) ? 1.0F : 0.0F,
-                level.isThundering());
-        long incoming = process.thermal().takePendingHeat();
-        CrucibleProcessCore.TickOutcome outcome = process.advance(incoming, true);
-        if (outcome.boiled()) {
+        CrucibleProcessCore.TickOutcome outcome = null;
+        if (!outputStackFull()) {
+            process.addRainWater(
+                    level.getGameTime(),
+                    level.isRainingAt(worldPosition.above(2)) ? 1.0F : 0.0F,
+                    level.isThundering());
+            long incoming = process.thermal().takePendingHeat();
+            outcome = process.advance(incoming, true);
+        }
+        if (outcome != null && outcome.boiled()) {
             CrucibleWorldHazards.boilHazards(
                     level,
                     worldPosition,
@@ -214,7 +221,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
                     CrucibleWorldHazards.LARGE_GAS_RANGE,
                     4);
         }
-        if (outcome.destroysHost()) {
+        if (outcome != null && outcome.destroysHost()) {
             applyDestruction(level, outcome);
             return;
         }
@@ -396,6 +403,12 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         return outputJammed;
     }
 
+    private boolean outputStackFull() {
+        ItemStack existing = inventory.getStackInSlot(SLOT_OUTPUT);
+        return !existing.isEmpty()
+                && existing.getCount() >= existing.getMaxStackSize();
+    }
+
     public InsertResult insertMaterial(
             MaterialUnits.Entry entry, float temperature) {
         process.setFrozen(pluginQuarantined);
@@ -524,9 +537,9 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
                 PortStore.Assignment assignment = element.offset().y() == 2
                         ? new PortStore.Assignment(
                                 List.of(SLOT_INPUT, SLOT_MOLD),
-                                List.of(SLOT_OUTPUT),
-                                List.of(0),
-                                List.of(0))
+                                List.of(),
+                                List.of(),
+                                List.of())
                         : PortStore.Assignment.EMPTY;
                 carrier.configurePortStore(this, assignment);
                 PortStoreRegistry.bind(this, world, carrier);
@@ -887,7 +900,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
                 return 0;
             }
             int filled = process.fluids().fill(resource, action);
-            if (filled > 0 && action.execute()) {
+            if (filled > 0 && action.execute() && !outputStackFull()) {
                 outputJammed = false;
             }
             return filled;

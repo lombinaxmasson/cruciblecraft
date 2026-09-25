@@ -8,7 +8,6 @@ import com.masson.cruciblecraft.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTestHelper;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 
 /** Shared HU fixture after the early firebox block was removed. */
@@ -59,9 +58,6 @@ public final class GameTestHeatSources {
             GameTestHelper helper,
             FuelGeneratorBlockEntity generator,
             int ticks) {
-        var registries = helper.getLevel().registryAccess();
-        CompoundTag tag = generator.saveWithoutMetadata(registries);
-        tag.putInt("heat_emit_cooldown", Math.max(0, ticks));
-        generator.loadWithComponents(tag, registries);
+        generator.holdHeatEmission(ticks);
     }
 }

@@ -24,6 +24,7 @@ import com.masson.cruciblecraft.content.blockentity.CoinageMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleEntityMelts;
 import com.masson.cruciblecraft.content.blockentity.CruciblePlayerInteraction;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeBoilerTier;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MultiblockPortBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
@@ -1168,7 +1169,8 @@ public final class MteInPlaceBlock extends Block
         if (CoinageMoldHosts.isCoinage(spec)) {
             return new CoinageMoldBlockEntity(pos, state);
         }
-        if (spec.kind() == MteInPlaceKind.LARGE_BOILER) {
+        if (spec.kind() == MteInPlaceKind.LARGE_BOILER
+                || LargeBoilerTier.bySpec(spec).isPresent()) {
             return new LargeBoilerBlockEntity(pos, state);
         }
         if (spec.kind() == MteInPlaceKind.GAS_TURBINE) {
@@ -1241,7 +1243,8 @@ public final class MteInPlaceBlock extends Block
                     }
                     : null;
         }
-        if (spec.kind() == MteInPlaceKind.LARGE_BOILER) {
+        if (spec.kind() == MteInPlaceKind.LARGE_BOILER
+                || LargeBoilerTier.bySpec(spec).isPresent()) {
             return type == ModBlockEntities.LARGE_BOILER.get()
                     ? (lvl, pos, st, be) -> {
                         if (!lvl.isClientSide

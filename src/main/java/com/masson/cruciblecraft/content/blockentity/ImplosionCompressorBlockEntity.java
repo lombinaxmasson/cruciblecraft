@@ -57,7 +57,8 @@ public final class ImplosionCompressorBlockEntity
             ImplosionCompressorBlockEntity implosion) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (implosion.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, 20)) {
             implosion.recheckStructure(level, pos, state);
         }

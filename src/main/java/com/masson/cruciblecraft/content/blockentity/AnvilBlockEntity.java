@@ -123,8 +123,7 @@ public final class AnvilBlockEntity extends BlockEntity {
         int workpieceTier = MaterialUnits.resolve(source)
                 .map(entry -> entry.material().tier())
                 .orElse(Integer.MAX_VALUE);
-        if (hammerTier < workpieceTier
-                || !MachineMaterialRules.supportsTier(Device.ANVIL, materialId, workpieceTier)) {
+        if (hammerTier < workpieceTier) {
             return Optional.empty();
         }
 

@@ -1892,6 +1892,10 @@ public final class ModRecipeProvider extends RecipeProvider {
             }
             case "centrifuge" -> centrifugeCrafting(
                     output, result, casing, material, path);
+            case "mixer" -> mixerCrafting(
+                    output, result, casing, material, path);
+            case "sluice" -> sluiceCrafting(
+                    output, result, casing, material, path);
             case "sifter" -> sifterCrafting(
                     output, result, casing, material, path);
             case "kinetic" -> kineticMachineCrafting(
@@ -2033,6 +2037,70 @@ public final class ModRecipeProvider extends RecipeProvider {
                         keyedIngredient(
                                 longRod, material, MaterialPrefixes.LONG_ROD))
                 .define('C', casing)
+                .unlockedBy("has_casing", has(casing))
+                .save(output, id("machines/" + id));
+    }
+
+    private static void mixerCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        MaterialPrefix plate = switch (material) {
+            case "steel" -> MaterialPrefixes.DOUBLE_PLATE;
+            case "titanium" -> MaterialPrefixes.TRIPLE_PLATE;
+            case "tungstensteel" -> MaterialPrefixes.QUADRUPLE_PLATE;
+            default -> MaterialPrefixes.PLATE;
+        };
+        Item plateItem = materialItem("stainless_steel", plate);
+        Item rotor = materialItem("stainless_steel", MaterialPrefixes.ROTOR);
+        Item stick = materialItem(material, MaterialPrefixes.ROD);
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put(
+                "P",
+                keyedIngredient(plateItem, "stainless_steel", plate));
+        ingredients.put(
+                "R",
+                keyedIngredient(rotor, "stainless_steel", MaterialPrefixes.ROTOR));
+        ingredients.put(
+                "S", keyedIngredient(stick, material, MaterialPrefixes.ROD));
+        ingredients.put("M", Ingredient.of(casing));
+        // GT6 Loader_MultiTileEntities.java:1392 {"PMP","PRP","hSw"}.
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("PMP", "PRP", "hSw"),
+                ingredients,
+                Map.of(
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
+    }
+
+    private static void sluiceCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        Item plate = materialItem(material, MaterialPrefixes.DOUBLE_PLATE);
+        Item rotor = materialItem(material, MaterialPrefixes.ROTOR);
+        Item gear = materialItem(material, MaterialPrefixes.GEAR);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                .pattern("PPP")
+                .pattern("RGR")
+                .pattern("GMG")
+                .define(
+                        'P',
+                        keyedIngredient(plate, material, MaterialPrefixes.DOUBLE_PLATE))
+                .define(
+                        'R',
+                        keyedIngredient(rotor, material, MaterialPrefixes.ROTOR))
+                .define(
+                        'G',
+                        keyedIngredient(gear, material, MaterialPrefixes.GEAR))
+                .define('M', casing)
                 .unlockedBy("has_casing", has(casing))
                 .save(output, id("machines/" + id));
     }
@@ -2834,6 +2902,27 @@ public final class ModRecipeProvider extends RecipeProvider {
                     new ItemStack(result));
             return;
         }
+        if ("rollbender".equals(kind)) {
+            Item smallGear = materialItem(material, MaterialPrefixes.SMALL_GEAR);
+            Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+            ingredients.put(
+                    "S",
+                    keyedIngredient(smallGear, material, MaterialPrefixes.SMALL_GEAR));
+            ingredients.put(
+                    "G", keyedIngredient(gear, material, MaterialPrefixes.GEAR));
+            ingredients.put("M", Ingredient.of(casing));
+            // GT6 Loader_MultiTileEntities.java:1355 {"wS ","GMG"," Sh"}.
+            acceptShapedCatalyst(
+                    output,
+                    "machines/" + id,
+                    List.of("wS ", "GMG", " Sh"),
+                    ingredients,
+                    Map.of(
+                            "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
+                            "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
+                    new ItemStack(result));
+            return;
+        }
         if ("sanding".equals(kind)) {
             Item smallGear = materialItem(material, MaterialPrefixes.SMALL_GEAR);
             Map<String, Ingredient> ingredients = new LinkedHashMap<>();
@@ -2880,7 +2969,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                             materialIngredient(
                                     material,
                                     MaterialPrefixes.SMALL_GEAR));
-            case "rollingmill", "rollbender" -> builder
+            case "rollingmill" -> builder
                     .pattern("G ")
                     .pattern("C ")
                     .pattern("G ");

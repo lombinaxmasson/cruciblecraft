@@ -6,7 +6,6 @@ import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
-import com.masson.cruciblecraft.content.multiblock.PortHostViews;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
@@ -71,6 +70,6 @@ public final class TankWallParts {
                 || !structure.get().equals(binding.structureId())) {
             return null;
         }
-        return PortHostViews.forPort(binding.portHost(), wall);
+        return binding.portHost();
     }
 }

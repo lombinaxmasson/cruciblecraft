@@ -100,6 +100,9 @@
 ### release checkpoint
 
 全 profile、真客户端、无受影响的 open verification debt。与单个工作包解耦。
+`release` 必须 fresh 执行 `game-tests`（`cruciblecraft_default_grid`）。
+功能卡仍跑自己的隔离 namespace。该 profile 只接受当前日志，不读历史
+`gametest_receipt.json`。服务器崩溃、未执行 required 测试、发现数下降都是失败。
 
 ## 4. 共享面与 impact
 

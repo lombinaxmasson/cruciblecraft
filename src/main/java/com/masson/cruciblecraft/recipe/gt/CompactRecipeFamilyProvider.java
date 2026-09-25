@@ -652,6 +652,23 @@ public final class CompactRecipeFamilyProvider {
         }
 
         @Override
+        public Optional<RecipeMap.Entry> findLazyAtMostEut(
+                GTRecipeQuery query,
+                long maximumEut,
+                java.util.function.Predicate<RecipeMap.Entry> accepted) {
+            for (IndexedRelation indexed : lazyCandidates(query)) {
+                if (indexed.relation().eut() > maximumEut) {
+                    continue;
+                }
+                RecipeMap.Entry entry = materializeCached(indexed);
+                if (entry.recipe().matches(query) && accepted.test(entry)) {
+                    return Optional.of(entry);
+                }
+            }
+            return Optional.empty();
+        }
+
+        @Override
         public int indexedLazyCandidateCount(GTRecipeQuery query) {
             return lazyCandidates(query).size();
         }

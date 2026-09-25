@@ -17,6 +17,7 @@ public final class GTRecipeMapClientEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void recipesUpdated(RecipesUpdatedEvent event) {
         var manager = event.getRecipeManager();
+        PipeCraftingGridGuard.dropTokenRecipes(manager);
         Minecraft minecraft = Minecraft.getInstance();
         boolean integratedServer = minecraft.hasSingleplayerServer()
                 || minecraft.getConnection() != null

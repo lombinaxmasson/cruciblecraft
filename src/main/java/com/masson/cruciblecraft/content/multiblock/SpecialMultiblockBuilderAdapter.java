@@ -372,6 +372,12 @@ public final class SpecialMultiblockBuilderAdapter
                         0,
                         FusionStructure.VERSATILE_PROCESSORS
                                 - versatilePresent);
+                BlockPos frontProcessor = center.relative(
+                        target.facing().getOpposite());
+                boolean reserveFront = versatileNeed > 0;
+                if (reserveFront) {
+                    versatileNeed--;
+                }
                 int logicNeed = Math.max(
                         0,
                         FusionStructure.LOGIC_PROCESSORS - logicPresent);
@@ -392,7 +398,9 @@ public final class SpecialMultiblockBuilderAdapter
                             if (radius < 4) {
                                 Block found = level.getBlockState(pos).getBlock();
                                 List<Block> processors;
-                                if (found == versatile
+                                if (reserveFront && pos.equals(frontProcessor)) {
+                                    processors = List.of(versatile);
+                                } else if (found == versatile
                                         || found == logic
                                         || found == control) {
                                     processors = List.of(

@@ -1,0 +1,56 @@
+---
+description: How to write JUnit and GameTest tests without fake fixtures, frozen counts, or server-crashing exceptions.
+globs: src/test/**
+alwaysApply: false
+---
+
+# Test authoring
+
+Human contract: `docs/current/test-authoring.md`.
+Landing card: `docs/history/card-plans/prep/测试制作流程详细计划.md`.
+
+## Pick the layer
+
+- Pure logic / data / JSON / counts → JUnit.
+- Only real-world placement, capabilities, ticking → GameTest.
+- Do not iterate hundreds of thousands of recipes inside a GameTest.
+
+## Fixtures
+
+- Use only parts GT6 registers and CC already registers. Check
+  `gt6_code/gregtech6` and `python tools/gt6_resolve.py` first.
+- No pure tin or iron pipes (GT6 has none). Non-gasproof pipe → wood /
+  treated wood fluid pipe.
+- Missing part = assertion failure. Never swap in another material, prefix,
+  or vanilla item.
+- Copy the material `ItemStack`; `new ItemStack(item)` drops components.
+
+## Expected values
+
+- GT6 source fact (blade count, energy side): may be literal; cite GT6 file:line.
+- Projection of our own data (recipe / EMI / catalog counts): compare against
+  runtime catalog or generated manifest. No new literal `== 12064`.
+- Performance: separate budget assert. Never raise budget constants to go green.
+- Changing a literal: state which data change caused it.
+
+## GameTest must not throw
+
+```java
+// BAD
+var be = (FooBlockEntity) helper.getBlockEntity(pos);
+var r = map.findMatch(q).orElseThrow();
+// GOOD
+helper.assertTrue(helper.getBlockEntity(pos) instanceof FooBlockEntity, "missing Foo at " + pos);
+var r = map.findMatch(q).orElse(null);
+helper.assertTrue(r != null, "no match for " + q);
+```
+
+- `level.getCapability` needs `helper.absolutePos(pos)`.
+- Failure text ≤ 900 chars (long text breaks shutdown save).
+- Place machines by `Gt6SidedIo`: electrolyzer / centrifuge power from BOTTOM.
+
+## Running
+
+- `-PgameTestFilter` is diagnosis only; close on the full grid.
+- Never treat `gametest_receipt.json` as PASS.
+- Never delete tests, drop `required`, or skip failures.

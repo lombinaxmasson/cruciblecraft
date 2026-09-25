@@ -16,6 +16,7 @@ public final class GTRecipeMapEvents {
     @SubscribeEvent
     public static void serverStarted(ServerStartedEvent event) {
         RecipeManager manager = event.getServer().getRecipeManager();
+        PipeCraftingGridGuard.dropTokenRecipes(manager);
         // Compact families are aggregated with Extruder inside the loader.
         // Same manager/generation as TagsUpdated is suppressed by the coordinator.
         GTRecipeMapLoader.reload(
@@ -31,6 +32,7 @@ public final class GTRecipeMapEvents {
                 event.getUpdateCause() == TagsUpdatedEvent.UpdateCause.SERVER_DATA_LOAD,
                 server != null)) {
             RecipeManager manager = server.getRecipeManager();
+            PipeCraftingGridGuard.dropTokenRecipes(manager);
             GTRecipeMapLoader.reload(
                     manager,
                     ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,

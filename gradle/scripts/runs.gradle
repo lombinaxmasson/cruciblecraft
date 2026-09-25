@@ -79,6 +79,10 @@ neoForge {
             } else {
                 systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             }
+            if (providers.gradleProperty('gameTestFilter').isPresent()) {
+                systemProperty 'cruciblecraft.gameTestFilter',
+                        providers.gradleProperty('gameTestFilter').get()
+            }
             if (providers.gradleProperty('clientSmoke').isPresent()) {
                 systemProperty 'cruciblecraft.clientSmoke',
                         providers.gradleProperty('clientSmoke').get()

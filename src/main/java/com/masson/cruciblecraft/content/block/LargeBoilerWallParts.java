@@ -7,8 +7,6 @@ import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
 import com.masson.cruciblecraft.content.multiblock.PortCapabilityGate;
-import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
-import com.masson.cruciblecraft.content.multiblock.PortHostViews;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
@@ -60,15 +58,14 @@ public final class LargeBoilerWallParts {
         if (!(entity instanceof LargeBoilerBlockEntity boiler)) {
             return null;
         }
-        MultiblockPortHost view = PortHostViews.forPort(boiler, wall);
         ProcessingMachineSpec.CapabilityAccess access =
                 wall.portType() == PortType.FLUID_OUT
                         ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
                         : ProcessingMachineSpec.CapabilityAccess.INPUT;
         return new SidedFluidHandler(
-                view.tanks(),
-                view.fluidInputTanks(),
-                view.fluidOutputTanks(),
+                boiler.tanks(),
+                boiler.fluidInputTanks(),
+                boiler.fluidOutputTanks(),
                 access,
                 wall::setChanged);
     }
@@ -78,9 +75,6 @@ public final class LargeBoilerWallParts {
         if (!accepts(wall.spec(), wall.portType())
                 || wall.getLevel() == null) {
             return null;
-        }
-        if (wall.portStore().configured()) {
-            return wall.portStore().longFluids(wall.portType());
         }
         Optional<BlockPos> controller = wall.controllerPosition();
         if (controller.isEmpty()) {

@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.content.multiblock;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -51,16 +52,24 @@ public final class MultiblockBuilderInteraction {
             Map<String, Block> selectedUniformBlocks =
                     new HashMap<>();
             int placed = 0;
-            for (MultiblockBuildCell cell : plan.missingNear(
+            List<MultiblockBuildCell> missing = plan.missingNear(
                     level,
-                    context.getClickedPos())) {
-                if (place(
-                        level,
-                        player,
-                        context,
-                        cell,
-                        selectedUniformBlocks)) {
-                    placed++;
+                    target.controller());
+            boolean blockedBySolid = missing.stream().anyMatch(cell -> {
+                BlockState current = level.getBlockState(cell.position());
+                return !cell.matches(current) && !current.canBeReplaced();
+            });
+            boolean mayPlace = !player.isSpectator() && !blockedBySolid;
+            if (mayPlace) {
+                for (MultiblockBuildCell cell : missing) {
+                    if (place(
+                            level,
+                            player,
+                            context,
+                            cell,
+                            selectedUniformBlocks)) {
+                        placed++;
+                    }
                 }
             }
             if (placed > 0) {

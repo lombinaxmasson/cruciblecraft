@@ -11,7 +11,6 @@ import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPort;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
-import com.masson.cruciblecraft.content.multiblock.PortHostViews;
 import com.masson.cruciblecraft.content.multiblock.PortStore;
 import com.masson.cruciblecraft.content.multiblock.PortStoreCarrier;
 import com.masson.cruciblecraft.content.multiblock.PortCapabilityGate;
@@ -162,9 +161,7 @@ public final class MultiblockPortBlockEntity extends BlockEntity
 
     private MultiblockPortHost host() {
         MultiblockControllerBinding binding = binding();
-        return binding == null
-                ? null
-                : PortHostViews.forPort(binding.portHost(), this);
+        return binding == null ? null : binding.portHost();
     }
 
     @Override

@@ -148,6 +148,7 @@ public final class CokeOvenBlockEntity extends BlockEntity
     private final CheckpointTracker checkpoint = new CheckpointTracker();
     private int ignitionTicks;
     private boolean structureValid;
+    private boolean structureChecked;
     private int operations;
     private final List<ItemStack> pendingOutputs = new ArrayList<>();
     private FluidStack pendingFluid = FluidStack.EMPTY;
@@ -207,7 +208,8 @@ public final class CokeOvenBlockEntity extends BlockEntity
             BlockState state,
             CokeOvenBlockEntity cokeOven) {
         long phaseKey = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(level.getGameTime(), phaseKey, 20)) {
+        if (!cokeOven.structureChecked
+                || CheckpointDecisions.onPositionPhase(level.getGameTime(), phaseKey, 20)) {
             cokeOven.refreshStructure(state);
         }
 
@@ -300,6 +302,7 @@ public final class CokeOvenBlockEntity extends BlockEntity
     }
 
     private void refreshStructure(BlockState state) {
+        structureChecked = true;
         boolean previous = structureValid;
         var definition = MultiblockStructureCatalog.find(STRUCTURE_ID);
         if (definition.isEmpty() || level == null) {

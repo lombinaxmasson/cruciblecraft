@@ -772,7 +772,10 @@ public final class ModProcessingMachines {
             int gt6OutFluids) {
         ProcessingMachineSpec.TankLayout tanks = waterInput
                 ? new ProcessingMachineSpec.TankLayout(
-                        List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)), List.of())
+                        List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)),
+                        "sluice".equals(path)
+                                ? List.of(new ProcessingMachineSpec.TankSpec(1, 4_000))
+                                : List.of())
                 : new ProcessingMachineSpec.TankLayout(List.of(), List.of());
         return new ProcessingMachineSpec(
                 id(path),
@@ -798,7 +801,7 @@ public final class ModProcessingMachines {
                         1,
                         4,
                         waterInput ? 1 : 0,
-                        0,
+                        "sluice".equals(path) ? 1 : 0,
                         PROCESSING_STATUSES));
     }
 

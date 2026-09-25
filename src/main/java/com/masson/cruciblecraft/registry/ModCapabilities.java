@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.block.StainlessSteelMixerWalls;
 import com.masson.cruciblecraft.content.block.AutoclaveWalls;
 import com.masson.cruciblecraft.content.block.DenseLeadPorts;
 import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
+import com.masson.cruciblecraft.content.block.DistillationTowerParts;
 import com.masson.cruciblecraft.content.block.GalvanizedGraaggWalls;
 import com.masson.cruciblecraft.content.block.InvarOvenWalls;
 import com.masson.cruciblecraft.content.block.TungstensteelCrusherWalls;
@@ -362,6 +363,9 @@ public final class ModCapabilities {
                         return blockEntity;
                     }
                     if (GalvanizedGraaggWalls.forwardsEnergy(blockEntity)) {
+                        return blockEntity;
+                    }
+                    if (DistillationTowerParts.isHeatTransmitter(blockEntity.spec())) {
                         return blockEntity;
                     }
                     if (blockEntity.forwardsLargeDynamoEnergy(side)) {

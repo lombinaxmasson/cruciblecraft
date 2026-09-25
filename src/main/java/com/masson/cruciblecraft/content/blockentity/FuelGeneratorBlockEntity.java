@@ -232,19 +232,25 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
                 }
                 return;
             }
-            Direction facing = front();
-            if (facing == null
-                    || !BurningBoxWorldEffects.hasFrontAir(
-                            level, worldPosition.relative(facing))) {
-                if (facing != null) {
-                    BurningBoxWorldEffects.burnFront(
-                            level, worldPosition.relative(facing));
+            // GT6 kills the fire for missing front air only while it is
+            // still trying to burn fuel. A buffer of at least two packets
+            // keeps emitting without that check.
+            if (energy.stored()
+                    < spec.maximumOutputPacketsPerTick() * 2L) {
+                Direction facing = front();
+                if (facing == null
+                        || !BurningBoxWorldEffects.hasFrontAir(
+                                level, worldPosition.relative(facing))) {
+                    if (facing != null) {
+                        BurningBoxWorldEffects.burnFront(
+                                level, worldPosition.relative(facing));
+                    }
+                    burning = false;
+                    heatEmitCooldown = 0;
+                    setStatus("no_air");
+                    markPersistentMutation();
+                    return;
                 }
-                burning = false;
-                heatEmitCooldown = 0;
-                setStatus("no_air");
-                markPersistentMutation();
-                return;
             }
         }
         GTRecipe recipe;
@@ -363,8 +369,10 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
                 changed = true;
             }
             if (!tank.isEmpty()
-                    && gaseous(tank.getFluid())
-                    && !hasCollision(level, target)) {
+                    && !hasCollision(level, target)
+                    && (gaseous(tank.getFluid())
+                            || spec.outputEnergyType()
+                                    == EnergyType.KINETIC_ROTATION)) {
                 tank.setFluid(FluidStack.EMPTY);
                 changed = true;
             }
@@ -664,6 +672,16 @@ public final class FuelGeneratorBlockEntity extends MachineCoverHostBlockEntity
 
     public boolean burning() {
         return burning;
+    }
+
+    /**
+     * GameTest helper: hold the GT6 afterburn gate open without an NBT
+     * reload. A reload with a partial tag quarantines the generator and
+     * then {@code emitOutput} refuses to push heat.
+     */
+    public void holdHeatEmission(int ticks) {
+        heatEmitCooldown = Math.max(heatEmitCooldown, Math.max(0, ticks));
+        markPersistentMutation();
     }
 
     /** GameTest helper: fill the remaining HU/RU buffer without a recipe. */

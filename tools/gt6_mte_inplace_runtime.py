@@ -117,6 +117,7 @@ CLASS_KIND = (
     ("GearBox", "GEARBOX"),
     ("EngineRotation", "ROTATION_ENGINE"),
     ("TransformerRotation", "ROTATION_TRANSFORMER"),
+    ("LargeBoiler", "LARGE_BOILER"),
 )
 
 DOMAINS: dict[str, dict[str, Any]] = {

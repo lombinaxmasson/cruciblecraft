@@ -18,6 +18,7 @@ import com.masson.cruciblecraft.content.block.CrusherWheels;
 import com.masson.cruciblecraft.content.block.ShredderBlades;
 import com.masson.cruciblecraft.content.block.AutoclaveWalls;
 import com.masson.cruciblecraft.content.block.DenseLeadPorts;
+import com.masson.cruciblecraft.content.block.DistillationTowerParts;
 import com.masson.cruciblecraft.content.block.ElectrolyzerParts;
 import com.masson.cruciblecraft.content.block.GalvanizedGraaggWalls;
 import com.masson.cruciblecraft.content.block.InvarOvenWalls;
@@ -318,6 +319,50 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             return dynamo;
         }
         return null;
+    }
+
+    public LargeBoilerBlockEntity boundLargeBoiler() {
+        if (level == null || mixerController == null) {
+            return null;
+        }
+        BlockEntity controller = level.getBlockEntity(mixerController);
+        return controller instanceof LargeBoilerBlockEntity boiler
+                ? boiler
+                : null;
+    }
+
+    private boolean forwardsTransmitterEnergy(EnergyType type) {
+        if (level == null || mixerController == null) {
+            return false;
+        }
+        BlockEntity controller = level.getBlockEntity(mixerController);
+        if (controller instanceof LargeBoilerBlockEntity) {
+            return type == EnergyType.HEAT;
+        }
+        if (controller instanceof ProcessingMachineBlockEntity machine) {
+            return type == machine.spec().energy().type();
+        }
+        return false;
+    }
+
+    private long insertTransmitterEnergy(
+            EnergyType type,
+            long size,
+            long amount,
+            Direction side,
+            boolean simulate) {
+        if (!forwardsTransmitterEnergy(type) || level == null) {
+            return 0L;
+        }
+        BlockEntity controller = level.getBlockEntity(mixerController);
+        if (controller instanceof LargeBoilerBlockEntity boiler) {
+            return boiler.insert(type, size, amount, side, simulate);
+        }
+        if (controller instanceof ProcessingMachineBlockEntity machine) {
+            return machine.insertFromMultiblockPort(
+                    type, size, amount, simulate);
+        }
+        return 0L;
     }
 
     public boolean forwardsLargeDynamoEnergy(Direction side) {
@@ -916,9 +961,6 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (LargeBoilerWallParts.isWall(spec())) {
             return null;
         }
-        if (TankWallParts.isWall(spec())) {
-            return null;
-        }
         if (spec().kind().inventory()) {
             return items;
         }
@@ -931,6 +973,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         IItemHandler mixer = StainlessSteelMixerWalls.items(this);
         if (mixer != null) {
             return mixer;
+        }
+        if (TankWallParts.isWall(spec())) {
+            return null;
         }
         IItemHandler electrolyzer = ElectrolyzerParts.items(this);
         if (electrolyzer != null) {
@@ -1030,6 +1075,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 || SteelSqueezerWalls.accepts(spec(), type)
                 || DenseLeadPorts.accepts(spec(), type)
                 || LargeBoilerWallParts.accepts(spec(), type)
+                || DistillationTowerParts.accepts(spec(), type)
                 || TankWallParts.accepts(spec(), type)
                 || GalvanizedGraaggWalls.accepts(spec(), type);
     }
@@ -1057,6 +1103,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 && !SteelSqueezerWalls.isWall(spec())
                 && !DenseLeadPorts.isPort(spec())
                 && !LargeBoilerWallParts.isWall(spec())
+                && !DistillationTowerParts.isLivePort(spec())
                 && !TankWallParts.isWall(spec())
                 && !GalvanizedGraaggWalls.isWall(spec())) {
             return;
@@ -1196,6 +1243,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             return host != null
                     && LargeCrucibleWalls.forwardsEnergy(this)
                     && host.handles(type, side);
+        }
+        if (DistillationTowerParts.isHeatTransmitter(spec())) {
+            return forwardsTransmitterEnergy(type);
         }
         if (rotationEngine != null) {
             return type == EnergyType.KINETIC_ROTATION
@@ -1447,6 +1497,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (LargeCrucibleHosts.isWall(spec())) {
             return LargeCrucibleWalls.insertEnergy(
                     this, type, size, amount, side, simulate);
+        }
+        if (DistillationTowerParts.isHeatTransmitter(spec())) {
+            return insertTransmitterEnergy(type, size, amount, side, simulate);
         }
         if (rotationEngine != null) {
             return insertRotationRu(type, size, amount, side, simulate);

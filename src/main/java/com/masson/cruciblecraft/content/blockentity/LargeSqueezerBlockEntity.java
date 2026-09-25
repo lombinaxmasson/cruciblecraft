@@ -56,7 +56,8 @@ public final class LargeSqueezerBlockEntity
     public static void serverTick(Level level, BlockPos pos, BlockState state,
             LargeSqueezerBlockEntity squeezer) {
         long phaseKey = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(level.getGameTime(), phaseKey, 20)) {
+        if (squeezer.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(level.getGameTime(), phaseKey, 20)) {
             squeezer.recheckStructure(level, pos, state);
         }
         if (squeezer.structureValid && !squeezer.pluginQuarantined) {

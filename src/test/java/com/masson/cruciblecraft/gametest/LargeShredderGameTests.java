@@ -111,6 +111,9 @@ public final class LargeShredderGameTests {
                 ModMultiblockControllers.LARGE_SHREDDER.structureId());
         long input = structure.portCount(PortType.ITEM_FLUID_IN);
         long structureOnly = structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == com.masson.cruciblecraft.content.multiblock
+                                .MultiblockStructureDefinition.PredicateKind.BLOCK)
                 .filter(element -> structure.predicate(element).block()
                         .filter(ShredderBlades.PART_ID::equals)
                         .isPresent())

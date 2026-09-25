@@ -36,7 +36,7 @@ import org.jetbrains.annotations.Nullable;
 public final class SteamEngineBlock extends Block
         implements EntityBlock, ToolInteractable,
                 com.masson.cruciblecraft.energy.converter.EnergyConverterHost {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = BlockStateProperties.FACING;
     private final net.minecraft.resources.ResourceLocation converterId;
     public SteamEngineBlock(
             net.minecraft.resources.ResourceLocation converterId,

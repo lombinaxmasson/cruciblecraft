@@ -21,7 +21,8 @@
     "recipe-generators",
     "recipes",
     "capability-runtime",
-    "player-complete"
+    "player-complete",
+    "game-tests"
   ],
   "release_profiles": [
     "verification",
@@ -29,7 +30,8 @@
     "semantic-generators",
     "recipe-generators",
     "capability-runtime",
-    "player-complete"
+    "player-complete",
+    "game-tests"
   ],
   "profiles": {
     "verification": {
@@ -659,6 +661,25 @@
         "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
         "src/main/java/com/masson/cruciblecraft/compat/emi/CrucibleCraftEmiPlugin.java",
         "src/main/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRegistrationPlan.java"
+      ]
+    },
+    "game-tests": {
+      "owner": "runtime",
+      "tier": "integration",
+      "datagen": false,
+      "gradle_tasks": [
+        "runGameTestServer"
+      ],
+      "python_modules": [],
+      "builders": [],
+      "owned_paths": [
+        "src/main/java/**",
+        "src/test/java/**",
+        "src/main/resources/**",
+        "src/test/resources/**",
+        "gradle/scripts/runs.gradle",
+        "docs/current/capability-delivery-workflow.md",
+        "docs/current/verification.md"
       ]
     }
   }

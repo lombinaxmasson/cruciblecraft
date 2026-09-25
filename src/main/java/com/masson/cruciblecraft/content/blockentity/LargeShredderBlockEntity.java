@@ -65,7 +65,8 @@ public final class LargeShredderBlockEntity
             LargeShredderBlockEntity shredder) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (shredder.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, 20)) {
             shredder.recheckStructure(level, pos, state);
         }

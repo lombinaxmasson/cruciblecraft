@@ -51,8 +51,15 @@ public final class EnergyConverterFuelSpecs {
                     profile.outputPacket().size(),
                     Math.max(1L, profile.outputPacket().maxAmountPerTick()),
                     Math.max(
-                            profile.outputPacket().size(),
-                            profile.outputCapacity()),
+                            Math.max(
+                                    profile.outputPacket().size(),
+                                    profile.outputCapacity()),
+                            Math.multiplyExact(
+                                    Math.max(
+                                            1L,
+                                            profile.outputPacket()
+                                                    .maxAmountPerTick()),
+                                    128L)),
                     requireEfficiency(profile),
                     FuelGeneratorSpec.EnergyOutputFace.UP,
                     List.of(Direction.NORTH, Direction.SOUTH),

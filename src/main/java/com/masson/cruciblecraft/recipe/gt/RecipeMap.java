@@ -11,6 +11,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -65,6 +66,11 @@ public final class RecipeMap {
         return snapshot.families().isEmpty()
                 ? snapshot.baseEntries()
                 : logicalEntries(snapshot);
+    }
+
+    /** JSON-backed rows. Family expansion is visible through {@link #entries()}. */
+    public List<Entry> authoredEntries() {
+        return List.copyOf(index.baseEntries());
     }
 
     public Optional<Entry> entry(ResourceLocation id) {
@@ -268,6 +274,44 @@ public final class RecipeMap {
         return Optional.empty();
     }
 
+    /**
+     * First declaration-ordered concrete match whose EU/t is within the tier.
+     * Does not expand logical families.
+     */
+    public Optional<Match> findFirstMatchAtMostEut(
+            GTRecipeQuery query,
+            long maximumEut,
+            Predicate<Match> accepted) {
+        Objects.requireNonNull(query, "query");
+        Objects.requireNonNull(accepted, "accepted");
+        Index snapshot = index;
+        for (int recipeIndex : candidates(snapshot, query)) {
+            Entry entry = snapshot.entries().get(recipeIndex);
+            GTRecipe recipe = entry.recipe();
+            if (recipe.eut() > maximumEut || !recipe.matches(query)) {
+                continue;
+            }
+            Match match = new Match(entry.id(), recipe);
+            if (accepted.test(match)) {
+                return Optional.of(match);
+            }
+        }
+        for (RecipeFamily family : snapshot.families()) {
+            Optional<Entry> entry = family.findLazyAtMostEut(
+                    query,
+                    maximumEut,
+                    candidate -> accepted.test(new Match(
+                            candidate.id(), candidate.recipe())));
+            requireCurrent(snapshot);
+            if (entry.isPresent()) {
+                return Optional.of(new Match(
+                        entry.orElseThrow().id(),
+                        entry.orElseThrow().recipe()));
+            }
+        }
+        return Optional.empty();
+    }
+
     public int indexedCandidateCount(GTRecipeQuery query) {
         Objects.requireNonNull(query, "query");
         Index snapshot = index;
@@ -445,6 +489,20 @@ public final class RecipeMap {
         Entry enumerationEntry(int index);
         Optional<Entry> entry(ResourceLocation id);
         Optional<Entry> findLazy(GTRecipeQuery query);
+
+        default Optional<Entry> findLazyAtMostEut(
+                GTRecipeQuery query,
+                long maximumEut,
+                java.util.function.Predicate<Entry> accepted) {
+            Optional<Entry> found = findLazy(query);
+            if (found.isPresent()
+                    && found.get().recipe().eut() <= maximumEut
+                    && accepted.test(found.get())) {
+                return found;
+            }
+            return Optional.empty();
+        }
+
         int indexedLazyCandidateCount(GTRecipeQuery query);
         boolean hasLazyCandidate(ItemStack stack);
     }

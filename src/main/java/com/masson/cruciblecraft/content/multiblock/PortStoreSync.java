@@ -15,8 +15,21 @@ import net.minecraft.world.item.ItemStack;
 public final class PortStoreSync {
     private PortStoreSync() {}
 
+    /**
+     * {@code MultiblockPortBlockEntity} capabilities read and write the
+     * controller inventory directly. Moving those stacks into the shadow
+     * {@link PortStore} hides committed outputs from the host.
+     */
+    private static boolean aliasesSharedHost(PortStoreCarrier carrier) {
+        return carrier instanceof com.masson.cruciblecraft.content.blockentity
+                .MultiblockPortBlockEntity;
+    }
+
     public static void pullInputs(MultiblockPortHost host) {
         for (PortStoreCarrier carrier : PortStoreRegistry.stores(host)) {
+            if (aliasesSharedHost(carrier)) {
+                continue;
+            }
             PortStore store = carrier.portStore();
             PortStore.Assignment assignment = store.assignment();
             for (int local : assignment.itemInputLocals()) {
@@ -73,6 +86,9 @@ public final class PortStoreSync {
 
     public static void pushOutputs(MultiblockPortHost host) {
         for (PortStoreCarrier carrier : PortStoreRegistry.stores(host)) {
+            if (aliasesSharedHost(carrier)) {
+                continue;
+            }
             PortStore store = carrier.portStore();
             PortStore.Assignment assignment = store.assignment();
             for (int local : assignment.itemOutputLocals()) {

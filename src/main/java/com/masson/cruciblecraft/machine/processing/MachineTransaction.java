@@ -230,9 +230,16 @@ public record MachineTransaction(
                 }
             }
         }
-        for (FluidStack output : recipe.fluidOutputs()) {
-            if (!insertFluid(afterFluids, outputTanks, output)) {
+        if (indexedOutputs) {
+            if (!insertIndexedFluids(
+                    afterFluids, outputTanks, recipe.fluidOutputs())) {
                 return Optional.empty();
+            }
+        } else {
+            for (FluidStack output : recipe.fluidOutputs()) {
+                if (!insertFluid(afterFluids, outputTanks, output)) {
+                    return Optional.empty();
+                }
             }
         }
         return Optional.of(new MachineTransaction(items, afterItems, fluids, afterFluids));
@@ -364,6 +371,39 @@ public record MachineTransaction(
             ItemStack merged = current.copy();
             merged.grow(offered.getCount());
             inventory.set(slot, merged);
+        }
+        return true;
+    }
+
+    private static boolean insertIndexedFluids(
+            List<FluidStack> fluids,
+            List<ProcessingMachineSpec.TankSpec> outputs,
+            List<FluidStack> offered) {
+        if (offered.size() > outputs.size()) {
+            return false;
+        }
+        for (int index = 0; index < offered.size(); index++) {
+            FluidStack output = offered.get(index);
+            if (output.isEmpty()) {
+                continue;
+            }
+            ProcessingMachineSpec.TankSpec tank = outputs.get(index);
+            FluidStack current = fluids.get(tank.index());
+            if (current.isEmpty()) {
+                if (output.getAmount() > tank.capacity()) {
+                    return false;
+                }
+                fluids.set(tank.index(), output.copy());
+                continue;
+            }
+            if (!FluidStack.isSameFluidSameComponents(current, output)
+                    || output.getAmount()
+                            > tank.capacity() - current.getAmount()) {
+                return false;
+            }
+            FluidStack merged = current.copy();
+            merged.grow(output.getAmount());
+            fluids.set(tank.index(), merged);
         }
         return true;
     }

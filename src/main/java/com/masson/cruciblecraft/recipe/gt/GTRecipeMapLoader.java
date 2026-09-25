@@ -504,9 +504,20 @@ public final class GTRecipeMapLoader {
 
     /** Runs production Extruder lookup p95/candidate gates for verification. */
     public static CompactLoadLookupMetrics benchmarkCompactLoadLookupsForVerification() {
-        RecipeMap.RecipeFamily family = ModRecipeMaps.EXTRUDER
-                .family(ExtruderRecipeFamilyProvider.FAMILY_ID)
-                .orElseThrow();
+        RecipeMap.RecipeFamily family = null;
+        for (RecipeMap.RecipeFamily candidate : ModRecipeMaps.EXTRUDER.families()) {
+            if (candidate.logicalRecipeCount() <= 0) {
+                continue;
+            }
+            if (family == null
+                    || candidate.logicalRecipeCount() > family.logicalRecipeCount()) {
+                family = candidate;
+            }
+        }
+        if (family == null) {
+            throw new IllegalStateException(
+                    "Extruder has no live compact-load family to benchmark");
+        }
         int sampleCount = Math.min(
                 LOOKUP_BENCHMARK_SAMPLES, family.logicalRecipeCount());
         List<GTRecipeQuery> queries = new ArrayList<>(sampleCount);

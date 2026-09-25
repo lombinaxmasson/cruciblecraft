@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 /** Pinned EU-to-RU motor used by the first rotational network slice. */
 public final class ElectricMotorBlock extends Block implements EntityBlock, com.masson.cruciblecraft.energy.converter.EnergyConverterHost {
     public static final DirectionProperty FACING =
-            BlockStateProperties.HORIZONTAL_FACING;
+            BlockStateProperties.FACING;
     private final net.minecraft.resources.ResourceLocation converterId;
 
     public ElectricMotorBlock(

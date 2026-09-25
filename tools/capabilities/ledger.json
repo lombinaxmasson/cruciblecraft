@@ -3495,6 +3495,28 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
+        "docs/history/card-plans/active/默认GameTest主测试集复原详细计划.md",
+        "docs/history/card-plans/closed/默认GameTest主测试集复原详细计划.md",
+        "tools/waves/prep/default-gametest-recovery/**",
+        "tools/capabilities/portfolio/default-gametest-recovery/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/GameTestRunControl.java",
+        "tools/verify.py"
+      ],
+      "path": "tools/capabilities/portfolio/default-gametest-recovery/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "game-tests"
+      ],
+      "slug": "portfolio/default-gametest-recovery",
+      "survival_access": "not_applicable",
+      "title": "Default GameTest Grid Recovery",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
         "docs/history/card-plans/closed/GT6批量配方容量门详细计划.md",
         "docs/current/recipe-wave-workflow.md",
         "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
@@ -3992,7 +4014,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 116,
+  "capability_count": 117,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5305,6 +5327,9 @@
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
+    "portfolio/default-gametest-recovery": [
+      "portfolio/default-gametest-recovery"
+    ],
     "recipe/gt6-bulk-capacity": [
       "recipe/gt6-bulk-capacity",
       "recipe/gt6-extruder-bulk",
@@ -5530,6 +5555,9 @@
       "worldgen/gt-stone-layer-rocks",
       "worldgen/gt-surface-rocks",
       "worldgen/gt-trees"
+    ],
+    "game-tests": [
+      "portfolio/default-gametest-recovery"
     ],
     "recipes": [
       "recipe/gt6-bulk-capacity",

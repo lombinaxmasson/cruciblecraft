@@ -12,7 +12,6 @@ import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
-import com.masson.cruciblecraft.content.multiblock.PortStoreSync;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator;
 import com.masson.cruciblecraft.content.multiblock.PluginQuarantinePolicy;
@@ -101,12 +100,8 @@ public final class TankBlockEntity extends BlockEntity
         if (!tank.structureValid || tank.pluginQuarantined) {
             return;
         }
-        PortStoreSync.pullInputs(tank);
         tank.tickFluidSafety(level);
-        if (tank.structureValid && !tank.pluginQuarantined) {
-            tank.autoOutput(level);
-        }
-        PortStoreSync.pushOutputs(tank);
+        tank.autoOutput(level);
     }
 
     public FluidTank contents() {

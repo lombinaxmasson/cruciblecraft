@@ -12,6 +12,7 @@ import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModMultiblockControllers;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
@@ -138,19 +139,27 @@ public final class LargeBathGameTests {
                                     controllerPos, facing, element.offset()))
                             .findFirst()
                             .orElseThrow();
+                    BlockEntity portEntity = helper.getBlockEntity(portPos);
+                    helper.assertTrue(
+                            portEntity instanceof MteInPlaceBlockEntity,
+                            "Bath input port is not an in-place MTE");
                     MteInPlaceBlockEntity port =
-                            helper.getBlockEntity(portPos);
+                            (MteInPlaceBlockEntity) portEntity;
+                    var items = port.itemHandler(Direction.NORTH);
+                    var fluids = port.fluidHandler(Direction.NORTH);
+                    helper.assertTrue(
+                            items != null,
+                            "Bath input port has no item capability on NORTH");
+                    helper.assertTrue(
+                            fluids != null,
+                            "Bath input port has no fluid capability on NORTH");
                     Item board = BuiltInRegistries.ITEM.getOptional(
                                     ResourceLocation.fromNamespaceAndPath(
                                             "cruciblecraft",
                                             "circuit_board_basic"))
                             .orElseThrow();
                     helper.assertTrue(
-                            port.itemHandler(Direction.NORTH)
-                                            .insertItem(
-                                                    0,
-                                                    new ItemStack(board),
-                                                    false)
+                            items.insertItem(0, new ItemStack(board), false)
                                     .isEmpty(),
                             "Bath input port rejected circuit board");
                     FluidStack moltenTin = ModFluids.molten("tin")
@@ -158,12 +167,10 @@ public final class LargeBathGameTests {
                                     entry.source().get(), 72))
                             .orElseThrow();
                     helper.assertTrue(
-                            port.fluidHandler(Direction.NORTH)
-                                            .fill(
-                                                    moltenTin,
-                                                    net.neoforged.neoforge.fluids
-                                                            .capability.IFluidHandler
-                                                                    .FluidAction.EXECUTE)
+                            fluids.fill(
+                                    moltenTin,
+                                    net.neoforged.neoforge.fluids.capability
+                                            .IFluidHandler.FluidAction.EXECUTE)
                                     == 72,
                             "Bath input port rejected molten tin");
                 })
@@ -181,9 +188,9 @@ public final class LargeBathGameTests {
                             .filter(MteInPlaceBlockEntity.class::isInstance)
                             .map(MteInPlaceBlockEntity.class::cast)
                             .map(port -> port.itemHandler(Direction.NORTH))
-                            .anyMatch(handler -> !handler
-                                    .getStackInSlot(outputSlot)
-                                    .isEmpty());
+                            .anyMatch(handler -> handler != null
+                                    && !handler.getStackInSlot(outputSlot)
+                                            .isEmpty());
                     helper.assertTrue(
                             output,
                             "Large bathing vat did not execute the molten-tin recipe");

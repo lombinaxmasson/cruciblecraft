@@ -45,6 +45,7 @@ import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverItems;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverSet;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
+import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeCache;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -131,6 +132,8 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     private long lastSuccessfulGameTime = Long.MIN_VALUE;
     private long coverRecipeCacheTick = Long.MIN_VALUE;
     private Optional<RecipeMap.Match> coverRecipeCache;
+    private long tierFallbackKey = Long.MIN_VALUE;
+    private Optional<RecipeMap.Match> tierFallbackCache = Optional.empty();
     private MachineIdentityPolicy.Identity savedMachineIdentity =
             new MachineIdentityPolicy.Identity("", "", "", "");
     private Optional<String> persistedIdentityQuarantine = Optional.empty();
@@ -284,6 +287,22 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                         variant.tierBand(),
                         1);
         if (invalid.isEmpty() && singlePlan.isEmpty()) {
+            Optional<RecipeMap.Match> runnable = matchWithinTier();
+            if (runnable.isPresent() && !runnable.get().id().equals(match.id())) {
+                match = runnable.get();
+                recipe = match.recipe();
+                invalid = GTRecipeMapLoader.isBathRemainderCompactRecipe(match.id())
+                        ? Optional.empty()
+                        : spec.validator().validate(recipe);
+                beforeRuntimeSelect(match);
+                singlePlan = MachineExecutionPlan.create(
+                        recipe,
+                        variant.kind(),
+                        variant.tierBand(),
+                        1);
+            }
+        }
+        if (invalid.isEmpty() && singlePlan.isEmpty()) {
             selectPowerExceeded(match);
             powerDemand = 0L;
             runtime.recipePowerExceeded(
@@ -296,17 +315,17 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         Optional<PlannedExecution> planned = invalid.isEmpty()
                 ? planExecution(recipe)
                 : Optional.empty();
+        MachineExecutionPlan fallbackPlan = singlePlan.orElse(new MachineExecutionPlan(
+                1L,
+                1L,
+                1L,
+                recipe.duration(),
+                recipe.duration(),
+                1,
+                0));
         MachineExecutionPlan plan = planned
                 .map(PlannedExecution::plan)
-                .orElseGet(() -> singlePlan.orElseGet(
-                        () -> new MachineExecutionPlan(
-                                1L,
-                                1L,
-                                1L,
-                                recipe.duration(),
-                                recipe.duration(),
-                                1,
-                                0)));
+                .orElse(fallbackPlan);
         int operations = planned
                 .map(PlannedExecution::operations)
                 .orElse(1);
@@ -334,6 +353,8 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 .orElse(Math.min(
                         remainingWork, plan.minimumPower()));
         boolean powered = powerPlan.isPresent();
+        boolean workComplete = plan.totalWork() > 0L
+                && workProgress >= plan.totalWork();
         if (invalid.isEmpty() && capacity && powered) {
             executePowerForTransaction(
                     transaction.orElseThrow(),
@@ -345,12 +366,14 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         int previousProgress = runtime.processor().progress();
         int previousDuration = runtime.processor().duration();
         ProcessingRuntime.Result result;
-        if (invalid.isEmpty() && capacity && powered) {
-            workProgress = Math.min(
-                    plan.totalWork(),
-                    Math.addExact(
-                            workProgress,
-                            powerPlan.orElseThrow().workUnits()));
+        if (invalid.isEmpty() && capacity && (powered || workComplete)) {
+            if (powered) {
+                workProgress = Math.min(
+                        plan.totalWork(),
+                        Math.addExact(
+                                workProgress,
+                                powerPlan.orElseThrow().workUnits()));
+            }
             result = runtime.tickWork(
                     match.id().toString(),
                     plan.effectiveDuration(),
@@ -415,6 +438,43 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         return coverRecipeCache;
     }
 
+    /**
+     * The map's first maximal match can sit above this tier. Keep a later
+     * matching recipe the tier can actually plan, such as a zero-EU time bath.
+     */
+    private Optional<RecipeMap.Match> matchWithinTier() {
+        RecipeMap map = spec.requireRecipeMap();
+        long key = resourceRevision
+                ^ (map.revision() * 31L)
+                ^ (materialRevision * 131L)
+                ^ selectorMode;
+        if (tierFallbackKey == key) {
+            return tierFallbackCache;
+        }
+        List<ItemStack> itemInputs = new ArrayList<>(
+                spec.items().inputs().stream().map(inventory::getStackInSlot).toList());
+        List<FluidStack> fluidInputs =
+                spec.fluids().inputs().stream().map(
+                        tank -> tanks.get(tank.index()).getFluid()).toList();
+        itemInputs.addAll(selectorCircuitOffered());
+        GTRecipeQuery query = new GTRecipeQuery(itemInputs, fluidInputs);
+        long maximum = variant.tierBand().inputMaximum();
+        Optional<RecipeMap.Match> found = map.findFirstMatchAtMostEut(
+                query,
+                maximum,
+                candidate -> MachineExecutionPlan.create(
+                        candidate.recipe(),
+                        variant.kind(),
+                        variant.tierBand(),
+                        1).isPresent()
+                        && (spec.validator().validate(candidate.recipe()).isEmpty()
+                                || GTRecipeMapLoader.isBathRemainderCompactRecipe(
+                                        candidate.id())));
+        tierFallbackKey = key;
+        tierFallbackCache = found;
+        return found;
+    }
+
     private List<ItemStack> selectorCircuitOffered() {
         if (!MachineCoverBehaviors.hasSelector(this)) {
             return List.of();
@@ -457,9 +517,6 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 && fingerprint.isPresent()
                 && fingerprint.equals(selectedRecipeFingerprint)) {
             return;
-        }
-        if (selectedMatch != null && selectedMatch.id().equals(match.id())) {
-            runtime.reset();
         }
         selectedMatch = match;
         selectedPlan = plan;
@@ -565,6 +622,10 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         int displayed = runtime.processor().progress();
         int duration = runtime.processor().duration();
         if (displayed <= 0 || duration <= 0) {
+            return;
+        }
+        if (displayed >= duration - 1) {
+            workProgress = plan.totalWork();
             return;
         }
         long scaled = Math.multiplyExact(

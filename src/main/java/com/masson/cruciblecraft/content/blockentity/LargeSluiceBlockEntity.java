@@ -66,7 +66,8 @@ public final class LargeSluiceBlockEntity
             LargeSluiceBlockEntity sluice) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (sluice.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, 20)) {
             sluice.recheckStructure(level, pos, state);
         }

@@ -17,7 +17,6 @@ import com.masson.cruciblecraft.content.blockentity.MachineCoverHostBlockEntity;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
-import com.masson.cruciblecraft.content.multiblock.PortStoreSync;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator;
@@ -115,16 +114,15 @@ public final class LargeBoilerBlockEntity extends MachineCoverHostBlockEntity
         }
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (boiler.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, STRUCTURE_RECHECK_TICKS)) {
             boiler.recheckStructure(level, pos, state);
         }
         if (boiler.structureValid && !boiler.pluginQuarantined) {
-            PortStoreSync.pullInputs(boiler);
             boiler.convert();
             boiler.coolDown();
             boiler.pushSteam();
-            PortStoreSync.pushOutputs(boiler);
         }
         boiler.updateBarometer();
         boiler.explodeIfUnsafe();
@@ -769,6 +767,12 @@ public final class LargeBoilerBlockEntity extends MachineCoverHostBlockEntity
                 worldPosition.getZ() + 0.5,
                 strength,
                 Level.ExplosionInteraction.TNT);
+        if (!level.getBlockState(worldPosition).isAir()) {
+            level.setBlock(
+                    worldPosition,
+                    net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),
+                    Block.UPDATE_ALL);
+        }
     }
 
     private void migrateLegacyController(Level level, BlockState state) {

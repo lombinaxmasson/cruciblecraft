@@ -7,6 +7,7 @@ import fnmatch
 import json
 import os
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -246,6 +247,69 @@ def gradle_isolated() -> bool:
     return value in {"1", "true", "yes"}
 
 
+DEFAULT_GRID_NAMESPACE = "cruciblecraft_default_grid"
+DEFAULT_GRID_MINIMUM = 244
+DEFAULT_GRID_LOG = ROOT / "run-game-test-filtered" / "logs" / "latest.log"
+
+
+def default_grid_result() -> dict[str, Any]:
+    """Read the log written by the current default-grid GameTestServer.
+
+    Historical gametest_receipt.json files are not consulted.
+    """
+    if not DEFAULT_GRID_LOG.is_file():
+        return {
+            "status": "FAIL",
+            "namespace": DEFAULT_GRID_NAMESPACE,
+            "reason": "missing current GameTestServer log",
+        }
+    text = DEFAULT_GRID_LOG.read_text(encoding="utf-8", errors="replace")
+    crashed = "---- Minecraft Crash Report ----" in text or "Negative index in crash" in text
+    discovered = None
+    failed = None
+    for line in text.splitlines():
+        lower = line.lower()
+        complete = re.search(r"(\d+) game tests complete", lower)
+        if complete:
+            discovered = int(complete.group(1))
+        passed = re.search(r"all (\d+) required tests passed", lower)
+        if passed:
+            discovered = int(passed.group(1))
+            failed = 0
+        failed_line = re.search(r"(\d+) required tests failed", lower)
+        if failed_line:
+            failed = int(failed_line.group(1))
+    if crashed or discovered is None or failed is None:
+        return {
+            "status": "FAIL",
+            "namespace": DEFAULT_GRID_NAMESPACE,
+            "discovered": discovered,
+            "failed": failed,
+            "crashed": crashed,
+            "reason": "server crash or missing GameTest summary",
+        }
+    passed = discovered - failed
+    unexecuted = max(0, DEFAULT_GRID_MINIMUM - discovered)
+    ok = (
+        not crashed
+        and failed == 0
+        and discovered >= DEFAULT_GRID_MINIMUM
+        and passed == discovered
+    )
+    return {
+        "status": "PASS" if ok else "FAIL",
+        "namespace": DEFAULT_GRID_NAMESPACE,
+        "discovered": discovered,
+        "passed": passed,
+        "failed": failed,
+        "crashed": crashed,
+        "unexecuted": unexecuted,
+        "reason": None
+        if ok
+        else "default grid did not execute every required test",
+    }
+
+
 def gradle_command(task: str) -> list[str]:
     wrapper = "gradlew.bat" if os.name == "nt" else "./gradlew"
     command = [
@@ -254,6 +318,8 @@ def gradle_command(task: str) -> list[str]:
         "--max-workers=1",
         "--rerun",
     ]
+    if task == "runGameTestServer":
+        command.append("-PgameTestNamespaces=cruciblecraft_default_grid")
     if gradle_isolated():
         command.append("--no-daemon")
     return command
@@ -511,6 +577,17 @@ def run_profile(
             profile_result["gradle_test"] = summary
             if code == 0 and gradle_full_suite_errors(summary):
                 code = 1
+        if task == "runGameTestServer":
+            grid = default_grid_result()
+            profile_result["game_tests"] = grid
+            if code == 0 and grid.get("status") != "PASS":
+                code = 1
+                print(
+                    "default grid "
+                    + str(grid.get("reason", "did not pass")),
+                    file=sys.stderr,
+                    flush=True,
+                )
         if code:
             profile_result["status"] = "FAIL"
             return code

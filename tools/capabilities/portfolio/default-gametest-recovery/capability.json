@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "slug": "portfolio/default-gametest-recovery",
+  "title": "Default GameTest Grid Recovery",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/active/默认GameTest主测试集复原详细计划.md",
+    "docs/history/card-plans/closed/默认GameTest主测试集复原详细计划.md",
+    "tools/waves/prep/default-gametest-recovery/**",
+    "tools/capabilities/portfolio/default-gametest-recovery/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/GameTestRunControl.java",
+    "tools/verify.py"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "game-tests"
+  ],
+  "note": "Restores the default GameTest grid. 2026-09-26 06:25: 244 required tests passed. Reload time is portfolio/publication-reload-performance. Does not sign playtest."
+}

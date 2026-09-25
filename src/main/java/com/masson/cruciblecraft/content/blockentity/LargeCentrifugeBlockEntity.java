@@ -54,7 +54,8 @@ public final class LargeCentrifugeBlockEntity
             LargeCentrifugeBlockEntity centrifuge) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (centrifuge.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, 20)) {
             centrifuge.recheckStructure(level, pos, state);
         }

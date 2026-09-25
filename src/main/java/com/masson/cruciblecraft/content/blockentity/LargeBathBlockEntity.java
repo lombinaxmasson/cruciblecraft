@@ -54,7 +54,8 @@ public final class LargeBathBlockEntity
             LargeBathBlockEntity bath) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (bath.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, 20)) {
             bath.recheckStructure(level, pos, state);
         }

@@ -393,8 +393,8 @@ public final class HandheldToolBehaviorGameTests {
         ItemStack hammer = ModItems.SMITHING_HAMMER.get().variant("iron");
         player.setItemInHand(InteractionHand.MAIN_HAND, hammer);
         helper.assertTrue(
-                ((net.minecraft.server.level.ServerPlayer) player)
-                        .gameMode.destroyBlock(helper.absolutePos(POS)),
+                helper.getLevel().destroyBlock(
+                        helper.absolutePos(POS), true, player),
                 "hammer could not break copper ore");
         helper.assertTrue(
                 helper.getLevel()

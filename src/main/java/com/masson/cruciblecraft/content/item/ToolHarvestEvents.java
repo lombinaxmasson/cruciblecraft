@@ -116,6 +116,10 @@ public final class ToolHarvestEvents {
     @SubscribeEvent
     public static void convertDrops(BlockDropsEvent event) {
         ItemStack tool = event.getTool();
+        if (tool.isEmpty()
+                && event.getBreaker() instanceof net.minecraft.world.entity.LivingEntity breaker) {
+            tool = breaker.getMainHandItem();
+        }
         BlockState state = event.getState();
         if (!(event.getLevel() instanceof ServerLevel server)) {
             return;

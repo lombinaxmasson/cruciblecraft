@@ -719,11 +719,11 @@
     },
     "cc_recipe_rows": 420563,
     "cc_material_rule_files": 98,
-    "capability_count": 116,
+    "capability_count": 117,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 12,
-      "runtime_ready:accepted": 99,
+      "runtime_ready:accepted": 100,
       "runtime_ready:paused": 3
     },
     "blocker_count": 62,
@@ -1690,6 +1690,15 @@
       "survival_access": null,
       "wave_slug": "machines/slicer",
       "path": "tools/capabilities/machines/slicer/capability.json"
+    },
+    {
+      "slug": "portfolio/default-gametest-recovery",
+      "title": "Default GameTest Grid Recovery",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "not_applicable",
+      "wave_slug": null,
+      "path": "tools/capabilities/portfolio/default-gametest-recovery/capability.json"
     },
     {
       "slug": "recipe/gt6-bulk-capacity",

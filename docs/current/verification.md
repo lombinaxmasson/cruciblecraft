@@ -18,6 +18,7 @@ python tools/verify.py integration --profile semantic-generators
 python tools/verify.py integration --profile recipe-generators
 python tools/verify.py integration --profile recipes
 python tools/verify.py integration --profile capability-runtime
+python tools/verify.py integration --profile game-tests
 python tools/verify.py release
 ```
 
@@ -54,7 +55,16 @@ python tools/verify.py release
   （NeoForge 在已启用命名空间为零测试时会崩溃）。`CrucibleCraftGameTests` 与
   `CircuitTierGameTests` 在 `cruciblecraft_default_grid`，需
   `-PgameTestNamespaces=cruciblecraft_default_grid`。内容/机制闭门仍用
-  `-PwaveRecipes=<slug>`。
+  `-PwaveRecipes=<slug>`。排错时加
+  `-PgameTestFilter=方法名片段`（逗号分隔，大小写不敏感，按测试全名包含匹配；
+  PowerShell 里给整个 `-PgameTestFilter=...` 加引号）。
+  过滤只用于定位，不能代替默认网格关卡。GameTest 服务器不写关服区块存档。
+- `game-tests` 是默认网格门：fresh 跑 `cruciblecraft_default_grid`，只认本次
+  `run-game-test-filtered/logs/latest.log`。发现数低于 244、失败、崩溃或
+  未执行 required 测试都是 FAIL。不读取历史 `gametest_receipt.json`。
+  `release` 会跑它。改 `src/main/java`、`src/test/java` 或对应资源会选中它。
+  配方卡仍用自己的隔离 namespace，不把这次服务器测试塞进 `recipes`。
+- 怎么写测试见[测试制作规范](test-authoring.md)。
 - 每次结果写到被 Git 忽略的 `build/verification/latest.json`。报告只包含 revision、
   dirty paths、命令、测试计数、环境和 PASS/FAIL，不包含文件摘要。
 

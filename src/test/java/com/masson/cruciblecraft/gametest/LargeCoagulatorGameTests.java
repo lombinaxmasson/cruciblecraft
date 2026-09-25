@@ -162,9 +162,9 @@ public final class LargeCoagulatorGameTests {
                             .filter(MteInPlaceBlockEntity.class::isInstance)
                             .map(MteInPlaceBlockEntity.class::cast)
                             .map(port -> port.itemHandler(Direction.NORTH))
-                            .anyMatch(handler -> !handler
-                                    .getStackInSlot(outputSlot)
-                                    .isEmpty());
+                            .anyMatch(handler -> handler != null
+                                    && !handler.getStackInSlot(outputSlot)
+                                            .isEmpty());
                     helper.assertTrue(
                             output,
                             "Large coagulator did not execute water bootstrap");

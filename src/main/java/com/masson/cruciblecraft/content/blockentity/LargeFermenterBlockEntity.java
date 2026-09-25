@@ -57,7 +57,8 @@ public final class LargeFermenterBlockEntity
             LargeFermenterBlockEntity fermenter) {
         long phaseKey = CheckpointDecisions.phaseKey(
                 pos.getX(), pos.getY(), pos.getZ());
-        if (CheckpointDecisions.onPositionPhase(
+        if (fermenter.lastValidation == null
+                || CheckpointDecisions.onPositionPhase(
                 level.getGameTime(), phaseKey, 20)) {
             fermenter.recheckStructure(level, pos, state);
         }
