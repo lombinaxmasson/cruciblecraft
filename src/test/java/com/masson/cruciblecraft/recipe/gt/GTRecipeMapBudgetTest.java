@@ -125,7 +125,7 @@ class GTRecipeMapBudgetTest {
                 18_000,
                 ModProcessingMachines.ALL_EAGER_PUBLICATION_SOFT_BUDGET);
         assertEquals(
-                56_000,
+                500_000,
                 ModProcessingMachines
                         .ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING);
         assertEquals(

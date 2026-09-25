@@ -45,10 +45,10 @@
     },
     "lazy_logical_rows": {
       "aggregation": "sum",
-      "hard_ceiling": 56000,
+      "hard_ceiling": 500000,
       "readiness_verdict": "UNVERIFIED_SCALE",
       "soft_budget": 16000,
-      "source": "Lazy logical count is capacity telemetry. Overage is UNVERIFIED_SCALE.",
+      "source": "recipe/gt6-bulk-capacity measured 500000 synthetic matrix rows. Per-holder row ceiling stays 4096 and the shard ceiling stays 128.",
       "unit": "rows",
       "workload": "opening_19_group_plus_future_waves"
     },

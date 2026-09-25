@@ -535,8 +535,21 @@ public final class ModProcessingMachines {
     public static final int TEMPORARY_EAGER_COMPATIBILITY_CEILING = 41_000;
     /** Compact-load hybrid soft envelope for recipes retained eagerly in map indexes. */
     public static final int ALL_EAGER_PUBLICATION_SOFT_BUDGET = 18_000;
-    /** Compact-load measured 20x hard envelope for logical rows kept by lazy families. */
-    public static final int ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING = 56_000;
+    /**
+     * Global on-demand logical rows. The 2026-09-25 capacity gate encoded
+     * 500,000 synthetic matrix rows (extruder, cutter, and mixer shapes) in
+     * under a second and about 20 MiB, as 123 holders. Rows stay on demand.
+     * One holder is still at most
+     * {@link com.masson.cruciblecraft.recipe.gt.CompactRecipeWireLimits#DECODE_RELATIONS_CEILING}
+     * rows, and one shard is still at most
+     * {@link com.masson.cruciblecraft.recipe.gt.CompactRecipeShardRouter#HARD_SHARD_CEILING}
+     * relations.
+     * This ceiling covers the live lazy rows plus the next three recipe
+     * cards (415,901 translatable rows). The full missing-recipe backlog
+     * is about 458,000 rows and would pass 500,000; raise it on a later
+     * card before that import. It is not a budget for all 720,841 source rows.
+     */
+    public static final int ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING = 500_000;
     /** Aggregate per-epoch cache ceiling for currently selected lazy families. */
     public static final int ALL_LAZY_RECIPE_CACHE_HARD_CEILING = 4_096;
     public static final long RECIPE_RELOAD_BUDGET_MS = 10_000L;

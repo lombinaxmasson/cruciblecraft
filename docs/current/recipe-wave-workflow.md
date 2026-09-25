@@ -193,6 +193,21 @@ representation breakdown、publication group/shard count、overflow 与 worst ro
 candidate。容量门约束 query 实际候选区间和 integrated load，不把“每 N 行一张卡”当性能
 策略。card-only 通过不能掩盖 integrated regression。
 
+`recipe/gt6-bulk-capacity`（2026-09-25）把全局 lazy 逻辑行硬顶定为 500,000。
+单 holder 仍是 4,096 行，单 shard 仍是 128 条 relation，cache 总和仍是 4,096，
+同步硬顶仍是 64 MB。批量配方走 on-demand `matrix_v1`，每个新 family 的 cache 声明不超过 16。
+
+| 卡 | 可翻译逻辑行 | holder（按图向上取整） | cache |
+| --- | ---: | ---: | ---: |
+| 挤压机 | 302,175 | 74 | 每个 family ≤ 16 |
+| 前缀规则类 | 45,363 | 19 | 每个 family ≤ 16 |
+| 化学杂项 | 68,363 | 28 | 每个 family ≤ 16 |
+
+三张合计 415,901 行、121 个 holder。叠在这次进服的 live lazy（57,597）之上仍低于 500,000。
+不要把一个 holder 整段展开进同一个 shard。
+
+500,000 只包这三张卡。全部缺配方约 457,851 行，加上现有 lazy 会超过它；缺身份以后变成配方还会再高。那一档以后另卡再改，不在本上限里。
+
 ## 7. 历史与迁移
 
 历史编号波的源码和 artifacts 保持原字节，并列入

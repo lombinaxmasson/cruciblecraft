@@ -212,11 +212,14 @@ def build_policy() -> dict[str, Any]:
             aggregation="sum",
         ),
         "lazy_logical_rows": _axis(
-            hard=56000,
+            hard=500_000,
             soft=16000,
             unit="rows",
             workload="opening_19_group_plus_future_waves",
-            source="Existing 56000 hard ceiling is retained.",
+            source=(
+                "recipe/gt6-bulk-capacity measured 500000 synthetic matrix rows. "
+                "Per-holder row ceiling stays 4096 and the shard ceiling stays 128."
+            ),
             aggregation="sum",
         ),
         "lookup_allocation_bytes_per_operation": _axis(

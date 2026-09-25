@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "kind": "synthetic_compact_matrix",
+  "live_datapack": false,
+  "per_holder_row_ceiling": 4096,
+  "shard_relation_ceiling": 128,
+  "transport_fragment_ceiling": 256,
+  "note": "Encode and one-holder expand only. Dedicated client join and EMI index time are a separate human measurement.",
+  "tiers": [
+    {
+      "shape": "extruder",
+      "logical_rows": 100000,
+      "holders": 25,
+      "encoded_bytes": 3990855,
+      "encode_ms": 691,
+      "expanded_relations": 4096,
+      "expand_one_holder_ms": 253,
+      "heap_delta_bytes": 104959608
+    },
+    {
+      "shape": "extruder",
+      "logical_rows": 300000,
+      "holders": 74,
+      "encoded_bytes": 12194726,
+      "encode_ms": 611,
+      "expanded_relations": 4096,
+      "expand_one_holder_ms": 98,
+      "heap_delta_bytes": 0
+    },
+    {
+      "shape": "extruder",
+      "logical_rows": 500000,
+      "holders": 123,
+      "encoded_bytes": 20398619,
+      "encode_ms": 780,
+      "expanded_relations": 4096,
+      "expand_one_holder_ms": 57,
+      "heap_delta_bytes": 0
+    },
+    {
+      "shape": "cutter",
+      "logical_rows": 100000,
+      "holders": 25,
+      "encoded_bytes": 3791155,
+      "encode_ms": 133,
+      "expanded_relations": 4096,
+      "expand_one_holder_ms": 72,
+      "heap_delta_bytes": 92274688
+    },
+    {
+      "shape": "cutter",
+      "logical_rows": 300000,
+      "holders": 74,
+      "encoded_bytes": 11595614,
+      "encode_ms": 435,
+      "expanded_relations": 4096,
+      "expand_one_holder_ms": 78,
+      "heap_delta_bytes": 48360144
+    },
+    {
+      "shape": "cutter",
+      "logical_rows": 500000,
+      "holders": 123,
+      "encoded_bytes": 19400095,
+      "encode_ms": 698,
+      "expanded_relations": 4096,
+      "expand_one_holder_ms": 37,
+      "heap_delta_bytes": 10454616
+    },
+    {
+      "shape": "mixer",
+      "logical_rows": 100000,
+      "holders": 25,
+      "encoded_bytes": 3691605,
+      "encode_ms": 144,
+      "expanded_relations": 4096,
+      "expand_one_holder_ms": 55,
+      "heap_delta_bytes": 0
+    },
+    {
+      "shape": "mixer",
+      "logical_rows": 300000,
+      "holders": 74,
+      "encoded_bytes": 11296946,
+      "encode_ms": 391,
+      "expanded_relations": 4096,
+      "expand_one_holder_ms": 45,
+      "heap_delta_bytes": 51165984
+    },
+    {
+      "shape": "mixer",
+      "logical_rows": 500000,
+      "holders": 123,
+      "encoded_bytes": 18902309,
+      "encode_ms": 677,
+      "expanded_relations": 4096,
+      "expand_one_holder_ms": 40,
+      "heap_delta_bytes": 5964328
+    }
+  ]
+}

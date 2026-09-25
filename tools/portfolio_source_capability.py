@@ -220,7 +220,7 @@ COUNT_CEILING_POINTS = (
         "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
     ),
     (
-        "ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING = 56000",
+        "ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING = 500_000",
         "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
     ),
     (

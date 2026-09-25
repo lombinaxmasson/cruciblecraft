@@ -32,6 +32,10 @@ OPENING_COMPACT_EAGER = 14
 OPENING_CONCRETE_EAGER = 16966
 OPENING_EAGER = 16980
 OPENING_LAZY = 50652
+# Covers live lazy plus the next three recipe cards (415,901 rows).
+# The full missing-recipe backlog (~458,000) would pass this; raise it
+# on a later card. Not a budget for all 720,841 GT6 source rows.
+LAZY_LOGICAL_HARD_CEILING = 500_000
 OPENING_CACHE = 876
 OPENING_AUTHORED = 6269
 OPENING_SYNC = 5021175
@@ -856,7 +860,7 @@ def build_publication(
                 "eager_verified_opening": opening["eager_rows"],
                 "eager_hard": 41000,
                 "lazy_with_opening": opening["lazy_rows"] + lazy,
-                "lazy_hard": 56000,
+                "lazy_hard": LAZY_LOGICAL_HARD_CEILING,
                 "temporary_compatibility_ceiling": 41000,
                 "note": (
                     "Count is UNVERIFIED_SCALE telemetry, not a runtime throw. "
@@ -1179,7 +1183,7 @@ def build_census(
                     lazy_closing,
                     measured=True,
                     evidence="Previous-wave closing lazy plus this wave's on_demand groups. Count is UNVERIFIED_SCALE.",
-                    hard_ceiling=56000,
+                    hard_ceiling=LAZY_LOGICAL_HARD_CEILING,
                 ),
                 _axis(
                     "lazy_cache_ceiling_rows",

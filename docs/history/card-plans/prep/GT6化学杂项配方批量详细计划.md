@@ -28,23 +28,29 @@ partial_close_allowed        = false；每张图是独立 publication group
 例如 mixer 64,245 行里 92% 就绪，但 `mixer/ordinary-closure` 只锁了 7,162 行。
 不是 overflow，也不是身份问题。
 
-## 1. 分母（首轮 `translatable_missing`）
+## 1. 分母（2026-09-25 重跑，`translatable_missing`）
 
 | GT6 图 | 可翻译缺配方 | 现有 | 路径 |
 | --- | ---: | --- | --- |
-| mixer | 47,299 | `mixer/ordinary-closure` 7,162 行 | 扩选现有 ordinary 波 |
-| generifier | 7,057 | 6 行 | 新 Source Pack |
-| distillery | 888 | 7 行 | 新 |
-| freezer | 860 | 4 行未追溯 | 新 |
-| polarizer | 824 | 3 行未追溯 | 新（MU 主机已 live） |
+| mixer | 51,804 | `mixer/ordinary-closure` 7,162 行 | 扩选现有 ordinary 波。另有缺流体 570 |
+| generifier | 8,650 | 6 行 | 新 Source Pack |
+| smelter | 1,542 | ordinary 波已证明 16,821 | 扩选。另有缺形态 3,442 |
+| centrifuge | 1,000 | ordinary 波已证明 252 | 扩选 |
+| fermenter | 919 | 1 行 | 新。另有缺流体 3,988，不在本卡顶 |
+| freezer | 901 | 4 行未追溯 | 新 |
+| distillery | 888 | 7 行 | 新。另有缺流体 620 |
+| polarizer | 880 | 3 行未追溯 | 新（MU 主机已 live） |
 | loom | 691 | `machines/loom` 476 行 | 扩选；858 行 overflow 另有 blocker |
-| fermenter | 677 | 1 行 | 新 |
-| laserengraver | 577 | 8 行 | 新 |
-| centrifuge / smelter / compressor / electrolyzer | 270 / 158 / 93 / 73 | 各有 ordinary 波 | 扩选 |
-| magneticseparator / nanofab | 106 / 47 | 少量 | 新 / 扩选 |
-| 合计 | 约 59,600 | | |
+| laserengraver | 577 | 8 行 | 新。另有缺物品 1,210 |
+| magneticseparator | 179 | 少量 | 新 |
+| compressor | 183 | ordinary 波已证明 1,289 | 扩选 |
+| electrolyzer | 94 | ordinary 波 | 扩选 |
+| nanofab | 55 | 少量 | 扩选 |
+| 合计 | 68,363 | | |
 
 mixer 另有 4,556 行 `translated_item_io`（物品对、流体不对），先查是否翻译链问题，再决定改正。
+
+容量预算（`recipe/gt6-bulk-capacity`）：68,363 行走 on-demand `matrix_v1`，按图向上取整共 28 个 holder，每个不超过 4,096 行。每个新 family 的 cache 声明不超过 16。不进 eager。
 
 ## 1.1 获得格（D0）
 

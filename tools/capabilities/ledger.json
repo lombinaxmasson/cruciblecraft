@@ -3495,6 +3495,36 @@
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
+        "docs/history/card-plans/closed/GT6批量配方容量门详细计划.md",
+        "docs/current/recipe-wave-workflow.md",
+        "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+        "src/main/resources/data/cruciblecraft_wave_recipe_gt6_bulk_capacity/structure/empty.nbt",
+        "src/test/java/com/masson/cruciblecraft/gametest/Gt6BulkCapacityGameTests.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/BulkCapacitySyntheticLoadHarness.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapBudgetTest.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/OrdinaryCloseoutIntegratedMeasurementHarness.java",
+        "tools/recipe_bulk/ordinary_wave.py",
+        "tools/build_runtime_load_allocation_split.py",
+        "tools/runtime_load_budget_policy.v3.json",
+        "tools/portfolio_source_capability.py",
+        "tools/waves/recipe/gt6-bulk-capacity/**",
+        "tools/capabilities/recipe/gt6-bulk-capacity/**"
+      ],
+      "path": "tools/capabilities/recipe/gt6-bulk-capacity/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "recipes",
+        "capability-runtime"
+      ],
+      "slug": "recipe/gt6-bulk-capacity",
+      "survival_access": "not_applicable",
+      "title": "GT6 Bulk Recipe Capacity Gate",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
         "docs/history/card-plans/closed/目录身份现代id详细计划.md",
         "tools/catalog_modern_ids.py",
         "tools/catalog_modern_id_map.json",
@@ -3909,7 +3939,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 113,
+  "capability_count": 114,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5222,6 +5252,9 @@
       "worldgen/gt-dungeon",
       "worldgen/gt-trees"
     ],
+    "recipe/gt6-bulk-capacity": [
+      "recipe/gt6-bulk-capacity"
+    ],
     "registry/catalog-modern-ids": [
       "content/gt6-connector-alias-repair",
       "content/gt6-connector-art",
@@ -5423,6 +5456,7 @@
       "machines/roll-former",
       "machines/sanding",
       "machines/slicer",
+      "recipe/gt6-bulk-capacity",
       "registry/catalog-modern-ids",
       "registry/hybrid-material-identity",
       "registry/prefix-material-component",
@@ -5434,6 +5468,9 @@
       "worldgen/gt-stone-layer-rocks",
       "worldgen/gt-surface-rocks",
       "worldgen/gt-trees"
+    ],
+    "recipes": [
+      "recipe/gt6-bulk-capacity"
     ]
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",

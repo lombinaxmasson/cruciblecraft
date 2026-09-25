@@ -719,11 +719,11 @@
     },
     "cc_recipe_rows": 121420,
     "cc_material_rule_files": 118,
-    "capability_count": 113,
+    "capability_count": 114,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 12,
-      "runtime_ready:accepted": 96,
+      "runtime_ready:accepted": 97,
       "runtime_ready:paused": 3
     },
     "blocker_count": 62,
@@ -1690,6 +1690,15 @@
       "survival_access": null,
       "wave_slug": "machines/slicer",
       "path": "tools/capabilities/machines/slicer/capability.json"
+    },
+    {
+      "slug": "recipe/gt6-bulk-capacity",
+      "title": "GT6 Bulk Recipe Capacity Gate",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "not_applicable",
+      "wave_slug": "recipe/gt6-bulk-capacity",
+      "path": "tools/capabilities/recipe/gt6-bulk-capacity/capability.json"
     },
     {
       "slug": "registry/catalog-modern-ids",
@@ -23467,7 +23476,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -23487,7 +23496,8 @@
       "worldgen/gt-trees rubber tree to rubber chain",
       "capability close machines/large-processing-parts (major)",
       "capability close machines/implosion-compressor (major)",
-      "capability close fluid/gt6-missing-fluids (major)"
+      "capability close fluid/gt6-missing-fluids (major)",
+      "capability close recipe/gt6-bulk-capacity (major)"
     ],
     "accepted": null
   }

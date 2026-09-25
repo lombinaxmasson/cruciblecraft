@@ -69,8 +69,7 @@ landing_depends_on           = 当前 unique-active 空窗；卡与卡严格串�
 - **一批 storage 与流体是漏映射**：`storage.ingot`、`storage.plate`、`sluicejuice`、`mercury`、`glass`
   在 CC 已有身份，只缺查找表；对照表还把 `storage.solid` 错映射成 `blockIngot`。
 - **2x2 反应堆核心已 live**：覆盖页误记 `denominator_only`。
-- **容量是硬约束**：集成加载 lazy 上限 56,000，mixer 收口时已 53,447。后面约 20 万行配方
-  必须先过容量门。
+- **容量是硬约束**：集成加载 lazy 上限已由容量门改为 500,000（单 holder 仍是 4,096）。后面三张配方卡必须走 on-demand。
 
 ## 4. 卡序
 
@@ -91,16 +90,16 @@ P1、P2 做完重跑逐行分类；P3 完成验证基础设施收口后，后面
 | 1 | [GT6 粉块批量](GT6粉块批量详细计划.md) | `registry/gt6-storage-dust-blocks` | 约 951 种材料 / 15,727 行；退役 `storage_ingot` |
 | 2 | [GT6 长尾形态开门](GT6长尾形态开门详细计划.md) | `registry/gt6-long-tail-forms` | 约 75,500 行（上界） |
 | 3 | [GT6 缺失流体](../closed/GT6缺失流体详细计划.md) | `fluid/gt6-missing-fluids` | 7 种流体；已关 |
-| — | 重跑逐行分类 | — | 第二层缺口出现后调整 4–7 |
-| 4 | [GT6 批量配方容量门](GT6批量配方容量门详细计划.md) | `recipe/gt6-bulk-capacity` | 不导配方；重定上限与各卡预算 |
-| 5 | [GT6 挤压机配方批量](GT6挤压机配方批量详细计划.md) | `recipe/gt6-extruder-bulk` | 108,210 行起（模具修复后可能更多） |
-| 6 | [GT6 前缀规则类配方批量](GT6前缀规则类配方批量详细计划.md) | `recipe/gt6-prefix-regular-bulk` | 约 35,100 行，12 张图 |
-| 7 | [GT6 化学杂项配方批量](GT6化学杂项配方批量详细计划.md) | `recipe/gt6-chemical-misc-bulk` | 约 59,600 行 |
+| — | 重跑逐行分类 | — | 2026-09-25 已完成。用缺失流体关卡后的覆盖页调整 4–7 |
+| 4 | [GT6 批量配方容量门](../closed/GT6批量配方容量门详细计划.md) | `recipe/gt6-bulk-capacity` | 已关。lazy 上限 500,000，只包后三张配方卡 |
+| 5 | [GT6 挤压机配方批量](GT6挤压机配方批量详细计划.md) | `recipe/gt6-extruder-bulk` | 可翻译 302,175 行 |
+| 6 | [GT6 前缀规则类配方批量](GT6前缀规则类配方批量详细计划.md) | `recipe/gt6-prefix-regular-bulk` | 可翻译 45,363 行，12 张图 |
+| 7 | [GT6 化学杂项配方批量](GT6化学杂项配方批量详细计划.md) | `recipe/gt6-chemical-misc-bulk` | 可翻译 68,363 行 |
 | 8 | [GT6 同类基础加工机批量](GT6同类基础加工机批量详细计划.md) | `machines/gt6-basic-machine-batch` | 5 kind / 19 台 + 3 张小图 |
 | 9 | [GT6 激光、磁铁与 ZPM 转换器](GT6激光磁铁ZPM转换器详细计划.md) | `energy/gt6-laser-magnet-zpm-converters` | 4 kind / 16 台 |
 | 10 | [GT6 余量能源设备](GT6余量能源设备详细计划.md) | `energy/gt6-remainder-devices` | 5 种 / 33 台 |
 
-第 8 张不依赖身份卡与配方卡，可以插到任何空窗里提前做。第 8 张关后，steamcracking（7,746 行）
+第 8 张不依赖身份卡与配方卡，可以插到任何空窗里提前做。第 8 张关后，steamcracking（可翻译 7,714 行，源行 7,746）
 作为第 7 张的后续批次另开。
 
 ## 5. 每张卡的共同门

@@ -27,24 +27,26 @@ partial_close_allowed        = false；每张图是独立 publication group
 这些图的主体都是“同材料换形态”，和挤压机同一套 Rule IR（`prefix_transform` / `shape_transform` +
 `exact_remainder`）。一张卡带多个 `(target_map, publication_group)` 是工作流允许的。
 
-## 1. 分母（首轮 `translatable_missing`）
+## 1. 分母（2026-09-25 重跑，`translatable_missing`）
 
 | GT6 图 | 可翻译缺配方 | 现有 material_rule（文件 → 展开） | 备注 |
 | --- | ---: | --- | --- |
-| cutter | 20,774 | 2 → 651 | |
-| mortar | 4,699 | 4 条 | 与 shredder 有同形行，归属以源图为准 |
-| welder | 2,442 | 1 → 321（另有 126 行 `translated_io_only`） | |
-| lathe | 2,261 | 2 → 929 | |
-| rollingmill | 1,532 | 1 → 336（297 行 io_only） | 与 compressor 有同形行 |
-| crusher | 1,257 | 2 条；另有 361 行 reference 追溯 | ore-chain 投影行要先去重 |
-| press | 592 | 5 → 1,191 | |
-| anvil.bend.big / small | 442 / 271 | bender 2 → 638 | 查 CC 承载图 |
-| rollbender | 337 | 1 → 438（307 行 io_only） | |
-| wiremill | 326 | 10 → 356（31 行 io_only） | |
-| sifter | 208 | —；1,720 行 reference 追溯 | ore-chain |
-| 合计 | 约 35,100 | | |
+| cutter | 25,206 | 2 → 651 | 另有缺物品 2,248 |
+| mortar | 5,834 | 4 条 | 与 shredder 有同形行，归属以源图为准 |
+| welder | 3,664 | 1 → 321（另有 1,045 行 `translated_io_only`） | |
+| lathe | 2,521 | 2 → 929 | |
+| rollingmill | 2,139 | 1 → 336（297 行 io_only） | 与 compressor 有同形行 |
+| press | 1,818 | 5 → 1,191 | 另有缺形态 5,997 |
+| crusher | 1,587 | 2 条；另有 361 行 reference 追溯 | ore-chain 投影行要先去重；另有缺形态 10,817 |
+| anvil.bend.big / small | 723 / 507 | bender 2 → 638 | 查 CC 承载图。不是被排除的 `gt.recipe.anvil` |
+| rollbender | 535 | 1 → 438（405 行 io_only） | |
+| wiremill | 424 | 10 → 356（31 行 io_only） | |
+| sifter | 405 | —；1,720 行 reference 追溯 | ore-chain；另有缺形态 2,468 |
+| 合计 | 45,363 | | |
 
 `translated_io_only`（时长或 EU/t 不同）的现有行在本卡按 GT6 数值改正。
+
+容量预算（`recipe/gt6-bulk-capacity`）：45,363 行走 on-demand `matrix_v1`，按图向上取整共 19 个 holder，每个不超过 4,096 行。每个新 family 的 cache 声明不超过 16。不进 eager。
 
 ## 1.1 获得格（D0）
 

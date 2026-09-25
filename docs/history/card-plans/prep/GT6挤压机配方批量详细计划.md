@@ -34,14 +34,17 @@ partial_close_allowed        = false
 
 ## 1. 分母
 
-| 分类（首轮） | 行数 |
+| 分类（2026-09-25 重跑） | 行数 |
 | --- | ---: |
-| `translatable_missing` | 108,210 |
-| `missing_object`（其中模具 162,800 是假缺口，翻译链修复后转为可翻译或缺形态） | 167,390 |
-| `missing_material_form` | 47,806 |
-| `translated_exact` | 2,189 |
+| `translatable_missing` | 302,175 |
+| `missing_material_form` | 11,096 |
+| `missing_object` | 9,537 |
+| `translated_exact` | 2,787 |
+| 源行 / 目标 / 就绪 | 325,595 / 325,519 / 93.7% |
 
-开卡前以重跑后的逐行分类为准；分母 = 当时的 `translatable_missing` + 已证明行。
+首轮 108,210 可翻译、167,390 缺物品里的模具假缺口已经收进可翻译行。本卡分母是上表的 `translatable_missing` 加已证明的 2,787 行。缺形态和缺物品留在身份卡，不在本卡用别的零件顶。
+
+容量预算（`recipe/gt6-bulk-capacity`）：302,175 行走 on-demand `matrix_v1`，74 个 holder，每个不超过 4,096 行。每个新 family 的 cache 声明不超过 16。不进 eager，也不把一个 holder 展开进同一个 shard。
 
 ## 2. Rule IR 设计
 

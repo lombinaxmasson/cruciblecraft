@@ -523,8 +523,8 @@ class OrdinaryCloseoutIntegratedMeasurementHarness {
         if (hybrid.eager > 21_000) {
             unverified.add("UNVERIFIED_SCALE:eager_publication_rows:" + hybrid.eager + ">21000");
         }
-        if (hybrid.lazy > 56_000) {
-            unverified.add("UNVERIFIED_SCALE:lazy_logical_rows:" + hybrid.lazy + ">56000");
+        if (hybrid.lazy > 500_000) {
+            unverified.add("UNVERIFIED_SCALE:lazy_logical_rows:" + hybrid.lazy + ">500000");
         }
         if (hybrid.cache > 4_096) {
             unverified.add("UNVERIFIED_SCALE:lazy_cache_ceiling_rows:" + hybrid.cache + ">4096");
