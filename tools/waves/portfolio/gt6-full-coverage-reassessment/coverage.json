@@ -719,11 +719,11 @@
     },
     "cc_recipe_rows": 561122,
     "cc_material_rule_files": 98,
-    "capability_count": 125,
+    "capability_count": 126,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 12,
-      "runtime_ready:accepted": 108,
+      "runtime_ready:accepted": 109,
       "runtime_ready:paused": 3
     },
     "blocker_count": 62,
@@ -1222,6 +1222,15 @@
       "survival_access": null,
       "wave_slug": "energy/fusion-quantum",
       "path": "tools/capabilities/energy/fusion-quantum/capability.json"
+    },
+    {
+      "slug": "energy/gt6-laser-magnet-zpm-converters",
+      "title": "GT6 laser, magnet, and ZPM converters",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "partial",
+      "wave_slug": null,
+      "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
     },
     {
       "slug": "energy/heat-exchangers",
@@ -3502,6 +3511,54 @@
       "disposition": "new_distinct",
       "runtime_ids": [
         "cruciblecraft:fusion_reactor"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "energy/gt6-laser-magnet-zpm-converters",
+      "semantic_key": "energy:laser-electric:10101-10105",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:steel_galvanized_laser_electric",
+        "cruciblecraft:aluminium_laser_electric",
+        "cruciblecraft:stainless_steel_laser_electric",
+        "cruciblecraft:chromium_laser_electric",
+        "cruciblecraft:titanium_laser_electric"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "energy/gt6-laser-magnet-zpm-converters",
+      "semantic_key": "energy:laser-absorber:10151-10155",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:steel_galvanized_laser_absorber",
+        "cruciblecraft:aluminium_laser_absorber",
+        "cruciblecraft:stainless_steel_laser_absorber",
+        "cruciblecraft:chromium_laser_absorber",
+        "cruciblecraft:titanium_laser_absorber"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "energy/gt6-laser-magnet-zpm-converters",
+      "semantic_key": "energy:electromagnet:10031-10035",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:steel_galvanized_electromagnet",
+        "cruciblecraft:aluminium_electromagnet",
+        "cruciblecraft:stainless_steel_electromagnet",
+        "cruciblecraft:chromium_electromagnet",
+        "cruciblecraft:titanium_electromagnet"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "energy/gt6-laser-magnet-zpm-converters",
+      "semantic_key": "energy:zpm-decharger-eu:11171",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:osmiridium_zpm_decharger"
       ],
       "blocker_ids": []
     },
@@ -16215,14 +16272,48 @@
       "cc_hosts": [],
       "recipe_map_depth": null,
       "evidence": {
-        "capabilities": [],
-        "owner_attributed": [],
+        "capabilities": [
+          {
+            "slug": "energy/converter-catalog",
+            "title": "Energy Converter Catalog",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "unreviewed",
+            "wave_slug": "runtime/converter-catalog",
+            "path": "tools/capabilities/energy/converter-catalog/capability.json"
+          },
+          {
+            "slug": "energy/gt6-laser-magnet-zpm-converters",
+            "title": "GT6 laser, magnet, and ZPM converters",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
+          },
+          {
+            "slug": "energy/small-gas-turbine",
+            "title": "Small Gas Turbine",
+            "maturity": "frozen",
+            "workflow": "paused",
+            "survival_access": "unreviewed",
+            "wave_slug": "energy/small-gas-turbine",
+            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
+          }
+        ],
+        "owner_attributed": [
+          "energy/converter-catalog",
+          "energy/small-gas-turbine"
+        ],
         "java_files": [],
         "java_file_count": 0,
-        "data_files": [],
-        "data_file_count": 0
+        "data_files": [
+          "src/main/resources/data/cruciblecraft/energy_converter_kinds.json",
+          "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
+        ],
+        "data_file_count": 2
       },
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityLaserElectric|NONE|accepts:EU|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -16245,14 +16336,48 @@
       "cc_hosts": [],
       "recipe_map_depth": null,
       "evidence": {
-        "capabilities": [],
-        "owner_attributed": [],
+        "capabilities": [
+          {
+            "slug": "energy/converter-catalog",
+            "title": "Energy Converter Catalog",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "unreviewed",
+            "wave_slug": "runtime/converter-catalog",
+            "path": "tools/capabilities/energy/converter-catalog/capability.json"
+          },
+          {
+            "slug": "energy/gt6-laser-magnet-zpm-converters",
+            "title": "GT6 laser, magnet, and ZPM converters",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
+          },
+          {
+            "slug": "energy/small-gas-turbine",
+            "title": "Small Gas Turbine",
+            "maturity": "frozen",
+            "workflow": "paused",
+            "survival_access": "unreviewed",
+            "wave_slug": "energy/small-gas-turbine",
+            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
+          }
+        ],
+        "owner_attributed": [
+          "energy/converter-catalog",
+          "energy/small-gas-turbine"
+        ],
         "java_files": [],
         "java_file_count": 0,
-        "data_files": [],
-        "data_file_count": 0
+        "data_files": [
+          "src/main/resources/data/cruciblecraft/energy_converter_kinds.json",
+          "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
+        ],
+        "data_file_count": 2
       },
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityLongDistanceTransformer|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -16341,14 +16466,48 @@
       "cc_hosts": [],
       "recipe_map_depth": null,
       "evidence": {
-        "capabilities": [],
-        "owner_attributed": [],
+        "capabilities": [
+          {
+            "slug": "energy/converter-catalog",
+            "title": "Energy Converter Catalog",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "unreviewed",
+            "wave_slug": "runtime/converter-catalog",
+            "path": "tools/capabilities/energy/converter-catalog/capability.json"
+          },
+          {
+            "slug": "energy/gt6-laser-magnet-zpm-converters",
+            "title": "GT6 laser, magnet, and ZPM converters",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
+          },
+          {
+            "slug": "energy/small-gas-turbine",
+            "title": "Small Gas Turbine",
+            "maturity": "frozen",
+            "workflow": "paused",
+            "survival_access": "unreviewed",
+            "wave_slug": "energy/small-gas-turbine",
+            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
+          }
+        ],
+        "owner_attributed": [
+          "energy/converter-catalog",
+          "energy/small-gas-turbine"
+        ],
         "java_files": [],
         "java_file_count": 0,
-        "data_files": [],
-        "data_file_count": 0
+        "data_files": [
+          "src/main/resources/data/cruciblecraft/energy_converter_kinds.json",
+          "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
+        ],
+        "data_file_count": 2
       },
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityMotorElectric|NONE|accepts:EU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -16825,14 +16984,52 @@
       "cc_hosts": [],
       "recipe_map_depth": null,
       "evidence": {
-        "capabilities": [],
-        "owner_attributed": [],
-        "java_files": [],
-        "java_file_count": 0,
-        "data_files": [],
-        "data_file_count": 0
+        "capabilities": [
+          {
+            "slug": "energy/converter-catalog",
+            "title": "Energy Converter Catalog",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "unreviewed",
+            "wave_slug": "runtime/converter-catalog",
+            "path": "tools/capabilities/energy/converter-catalog/capability.json"
+          },
+          {
+            "slug": "energy/gt6-laser-magnet-zpm-converters",
+            "title": "GT6 laser, magnet, and ZPM converters",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
+          },
+          {
+            "slug": "energy/small-gas-turbine",
+            "title": "Small Gas Turbine",
+            "maturity": "frozen",
+            "workflow": "paused",
+            "survival_access": "unreviewed",
+            "wave_slug": "energy/small-gas-turbine",
+            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
+          }
+        ],
+        "owner_attributed": [
+          "energy/converter-catalog",
+          "energy/gt6-laser-magnet-zpm-converters",
+          "energy/small-gas-turbine"
+        ],
+        "java_files": [
+          "src/main/java/com/masson/cruciblecraft/content/blockentity/ZpmDechargerBlockEntity.java",
+          "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java"
+        ],
+        "java_file_count": 2,
+        "data_files": [
+          "src/main/resources/data/cruciblecraft/energy_converter_kinds.json",
+          "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
+        ],
+        "data_file_count": 2
       },
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityZPMDechargerQU|NONE|accepts:QU|emits:QU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -23710,7 +23907,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -23738,7 +23935,8 @@
       "capability close recipe/gt6-chemical-misc-bulk (major)",
       "capability close machines/gt6-basic-machine-batch (major)",
       "recipe/gt6-steamcracking-bulk",
-      "capability close recipe/gt6-steamcracking-bulk (major)"
+      "capability close recipe/gt6-steamcracking-bulk (major)",
+      "energy/gt6-laser-magnet-zpm-converters"
     ],
     "accepted": null
   }

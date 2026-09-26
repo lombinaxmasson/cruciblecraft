@@ -1,0 +1,77 @@
+{
+  "schema_version": 2,
+  "slug": "energy/gt6-laser-magnet-zpm-converters",
+  "title": "GT6 laser, magnet, and ZPM converters",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "player_signoff": null,
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6激光磁铁ZPM转换器详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/block/DirectedWasteConverterBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/block/ZpmDechargerBlock.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/DirectedWasteConverterBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/ZpmDechargerBlockEntity.java",
+    "src/main/resources/assets/cruciblecraft/gt6_laser_magnet_zpm_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/energy/laser_electric/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/energy/laser_absorber/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/energy/magnet_electric/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/energy/zpm_decharger/**",
+    "src/test/java/com/masson/cruciblecraft/energy/converter/LaserMagnetZpmConverterTest.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/LaserMagnetZpmGameTests.java",
+    "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/**"
+  ],
+  "depends_on": [
+    "energy/converter-catalog"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "energy:laser-electric:10101-10105",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:steel_galvanized_laser_electric",
+        "cruciblecraft:aluminium_laser_electric",
+        "cruciblecraft:stainless_steel_laser_electric",
+        "cruciblecraft:chromium_laser_electric",
+        "cruciblecraft:titanium_laser_electric"
+      ],
+      "reason": "GT6 MultiTileEntityLaserElectric 10101-10105. EU to LU, WASTE_ENERGY. Recipes stay unemitted because IL.Comp_Laser_Gas_CO2 is unmapped."
+    },
+    {
+      "semantic_key": "energy:laser-absorber:10151-10155",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:steel_galvanized_laser_absorber",
+        "cruciblecraft:aluminium_laser_absorber",
+        "cruciblecraft:stainless_steel_laser_absorber",
+        "cruciblecraft:chromium_laser_absorber",
+        "cruciblecraft:titanium_laser_absorber"
+      ],
+      "reason": "GT6 MultiTileEntityLaserAbsorberElectric 10151-10155. LU in the back, EU out the front, WASTE_ENERGY."
+    },
+    {
+      "semantic_key": "energy:electromagnet:10031-10035",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:steel_galvanized_electromagnet",
+        "cruciblecraft:aluminium_electromagnet",
+        "cruciblecraft:stainless_steel_electromagnet",
+        "cruciblecraft:chromium_electromagnet",
+        "cruciblecraft:titanium_electromagnet"
+      ],
+      "reason": "GT6 MultiTileEntityMagnetElectric 10031-10035. Bipolar EU to MU, WASTE_ENERGY. Wire cutter and wrench stay catalysts."
+    },
+    {
+      "semantic_key": "energy:zpm-decharger-eu:11171",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:osmiridium_zpm_decharger"
+      ],
+      "reason": "GT6 MultiTileEntityZPMDechargerEU 11171. QU to EU at V[7]. The slot accepts only IL.ZPM, which is unmapped, so discharge stays blocked. 11170 QU decharger is out of scope."
+    }
+  ],
+  "note": "Folded into energy/converter-catalog. Laser crafting is blocked on CO2 laser gas. ZPM machine recipe is source-exact; discharge is blocked on the missing ZPM item. Playtest is unsigned."
+}

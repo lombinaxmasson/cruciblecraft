@@ -6888,7 +6888,627 @@
           }
         }
       }
+    },
+    {
+      "id": "cruciblecraft:steel_galvanized_laser_electric",
+      "kind": "cruciblecraft:laser_electric",
+      "material": "steel_galvanized",
+      "source_id": 10101,
+      "source_line": 930,
+      "gt6_class": "MultiTileEntityLaserElectric",
+      "material_expression": "MT.DATA.Electric_T[1]",
+      "nbt_output": 16,
+      "nbt_input": 32,
+      "efficiency_bps": 0,
+      "output_expression": "16",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          " L ",
+          " W ",
+          "CMC"
+        ],
+        "keys": {
+          "L": {
+            "item": "gt6:comp_laser_gas_co2"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "tin"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_basic"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:aluminium_laser_electric",
+      "kind": "cruciblecraft:laser_electric",
+      "material": "aluminium",
+      "source_id": 10102,
+      "source_line": 931,
+      "gt6_class": "MultiTileEntityLaserElectric",
+      "material_expression": "MT.DATA.Electric_T[2]",
+      "nbt_output": 64,
+      "nbt_input": 128,
+      "efficiency_bps": 0,
+      "output_expression": "64",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "L L",
+          "W W",
+          "CMC"
+        ],
+        "keys": {
+          "L": {
+            "item": "gt6:comp_laser_gas_co2"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "copper"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_good"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:stainless_steel_laser_electric",
+      "kind": "cruciblecraft:laser_electric",
+      "material": "stainless_steel",
+      "source_id": 10103,
+      "source_line": 932,
+      "gt6_class": "MultiTileEntityLaserElectric",
+      "material_expression": "MT.DATA.Electric_T[3]",
+      "nbt_output": 256,
+      "nbt_input": 512,
+      "efficiency_bps": 0,
+      "output_expression": "256",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "LLL",
+          "WWW",
+          "CMC"
+        ],
+        "keys": {
+          "L": {
+            "item": "gt6:comp_laser_gas_co2"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "gold"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_advanced"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_laser_electric",
+      "kind": "cruciblecraft:laser_electric",
+      "material": "chromium",
+      "source_id": 10104,
+      "source_line": 933,
+      "gt6_class": "MultiTileEntityLaserElectric",
+      "material_expression": "MT.DATA.Electric_T[4]",
+      "nbt_output": 1024,
+      "nbt_input": 2048,
+      "efficiency_bps": 0,
+      "output_expression": "1024",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "L L",
+          "LWL",
+          "CMC"
+        ],
+        "keys": {
+          "L": {
+            "item": "gt6:comp_laser_gas_co2"
+          },
+          "W": {
+            "prefix": "quadruple_cable",
+            "material": "aluminium"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_elite"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_laser_electric",
+      "kind": "cruciblecraft:laser_electric",
+      "material": "titanium",
+      "source_id": 10105,
+      "source_line": 934,
+      "gt6_class": "MultiTileEntityLaserElectric",
+      "material_expression": "MT.DATA.Electric_T[5]",
+      "nbt_output": 4096,
+      "nbt_input": 8192,
+      "efficiency_bps": 0,
+      "output_expression": "4096",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "LLL",
+          "LWL",
+          "CMC"
+        ],
+        "keys": {
+          "L": {
+            "item": "gt6:comp_laser_gas_co2"
+          },
+          "W": {
+            "prefix": "quadruple_cable",
+            "material": "platinum"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_master"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_galvanized_laser_absorber",
+      "kind": "cruciblecraft:laser_absorber",
+      "material": "steel_galvanized",
+      "source_id": 10151,
+      "source_line": 976,
+      "gt6_class": "MultiTileEntityLaserAbsorberElectric",
+      "material_expression": "MT.DATA.Electric_T[1]",
+      "nbt_output": 16,
+      "nbt_input": 32,
+      "efficiency_bps": 0,
+      "output_expression": "16",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "SCW",
+          "SMP",
+          "SCW"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "plate_gem",
+            "material": "silicon"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_good"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "tin"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          },
+          "P": {
+            "item": "cruciblecraft:processor_crystal_sapphire"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:aluminium_laser_absorber",
+      "kind": "cruciblecraft:laser_absorber",
+      "material": "aluminium",
+      "source_id": 10152,
+      "source_line": 977,
+      "gt6_class": "MultiTileEntityLaserAbsorberElectric",
+      "material_expression": "MT.DATA.Electric_T[2]",
+      "nbt_output": 64,
+      "nbt_input": 128,
+      "efficiency_bps": 0,
+      "output_expression": "64",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "SCW",
+          "SMP",
+          "SCW"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "plate_gem",
+            "material": "silicon"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_advanced"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          },
+          "P": {
+            "item": "cruciblecraft:processor_crystal_sapphire"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:stainless_steel_laser_absorber",
+      "kind": "cruciblecraft:laser_absorber",
+      "material": "stainless_steel",
+      "source_id": 10153,
+      "source_line": 978,
+      "gt6_class": "MultiTileEntityLaserAbsorberElectric",
+      "material_expression": "MT.DATA.Electric_T[3]",
+      "nbt_output": 256,
+      "nbt_input": 512,
+      "efficiency_bps": 0,
+      "output_expression": "256",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "SCW",
+          "SMP",
+          "SCW"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "plate_gem",
+            "material": "silicon"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_elite"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "gold"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          },
+          "P": {
+            "item": "cruciblecraft:processor_crystal_sapphire"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_laser_absorber",
+      "kind": "cruciblecraft:laser_absorber",
+      "material": "chromium",
+      "source_id": 10154,
+      "source_line": 979,
+      "gt6_class": "MultiTileEntityLaserAbsorberElectric",
+      "material_expression": "MT.DATA.Electric_T[4]",
+      "nbt_output": 1024,
+      "nbt_input": 2048,
+      "efficiency_bps": 0,
+      "output_expression": "1024",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "SCW",
+          "SMP",
+          "SCW"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "plate_gem",
+            "material": "silicon"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_master"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "aluminium"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          },
+          "P": {
+            "item": "cruciblecraft:processor_crystal_sapphire"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_laser_absorber",
+      "kind": "cruciblecraft:laser_absorber",
+      "material": "titanium",
+      "source_id": 10155,
+      "source_line": 980,
+      "gt6_class": "MultiTileEntityLaserAbsorberElectric",
+      "material_expression": "MT.DATA.Electric_T[5]",
+      "nbt_output": 4096,
+      "nbt_input": 8192,
+      "efficiency_bps": 0,
+      "output_expression": "4096",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "SCW",
+          "SMP",
+          "SCW"
+        ],
+        "keys": {
+          "S": {
+            "prefix": "plate_gem",
+            "material": "silicon"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_ultimate"
+          },
+          "W": {
+            "prefix": "cable",
+            "material": "platinum"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          },
+          "P": {
+            "item": "cruciblecraft:processor_crystal_sapphire"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:steel_galvanized_electromagnet",
+      "kind": "cruciblecraft:electromagnet",
+      "material": "steel_galvanized",
+      "source_id": 10031,
+      "source_line": 865,
+      "gt6_class": "MultiTileEntityMagnetElectric",
+      "material_expression": "MT.DATA.Electric_T[1]",
+      "nbt_output": 16,
+      "nbt_input": 32,
+      "efficiency_bps": 0,
+      "output_expression": "16",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "CxC",
+          "CMC",
+          "CwC"
+        ],
+        "keys": {
+          "C": {
+            "prefix": "wire",
+            "material": "copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          },
+          "x": {
+            "item": "cruciblecraft:material_wire_cutter",
+            "catalyst": true
+          },
+          "w": {
+            "item": "cruciblecraft:material_wrench",
+            "catalyst": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:aluminium_electromagnet",
+      "kind": "cruciblecraft:electromagnet",
+      "material": "aluminium",
+      "source_id": 10032,
+      "source_line": 866,
+      "gt6_class": "MultiTileEntityMagnetElectric",
+      "material_expression": "MT.DATA.Electric_T[2]",
+      "nbt_output": 64,
+      "nbt_input": 128,
+      "efficiency_bps": 0,
+      "output_expression": "64",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "CxC",
+          "CMC",
+          "CwC"
+        ],
+        "keys": {
+          "C": {
+            "prefix": "double_wire",
+            "material": "copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          },
+          "x": {
+            "item": "cruciblecraft:material_wire_cutter",
+            "catalyst": true
+          },
+          "w": {
+            "item": "cruciblecraft:material_wrench",
+            "catalyst": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:stainless_steel_electromagnet",
+      "kind": "cruciblecraft:electromagnet",
+      "material": "stainless_steel",
+      "source_id": 10033,
+      "source_line": 867,
+      "gt6_class": "MultiTileEntityMagnetElectric",
+      "material_expression": "MT.DATA.Electric_T[3]",
+      "nbt_output": 256,
+      "nbt_input": 512,
+      "efficiency_bps": 0,
+      "output_expression": "256",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "CxC",
+          "CMC",
+          "CwC"
+        ],
+        "keys": {
+          "C": {
+            "prefix": "quadruple_wire",
+            "material": "annealed_copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          },
+          "x": {
+            "item": "cruciblecraft:material_wire_cutter",
+            "catalyst": true
+          },
+          "w": {
+            "item": "cruciblecraft:material_wrench",
+            "catalyst": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:chromium_electromagnet",
+      "kind": "cruciblecraft:electromagnet",
+      "material": "chromium",
+      "source_id": 10034,
+      "source_line": 868,
+      "gt6_class": "MultiTileEntityMagnetElectric",
+      "material_expression": "MT.DATA.Electric_T[4]",
+      "nbt_output": 1024,
+      "nbt_input": 2048,
+      "efficiency_bps": 0,
+      "output_expression": "1024",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "CxC",
+          "CMC",
+          "CwC"
+        ],
+        "keys": {
+          "C": {
+            "prefix": "octuple_wire",
+            "material": "annealed_copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          },
+          "x": {
+            "item": "cruciblecraft:material_wire_cutter",
+            "catalyst": true
+          },
+          "w": {
+            "item": "cruciblecraft:material_wrench",
+            "catalyst": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:titanium_electromagnet",
+      "kind": "cruciblecraft:electromagnet",
+      "material": "titanium",
+      "source_id": 10035,
+      "source_line": 869,
+      "gt6_class": "MultiTileEntityMagnetElectric",
+      "material_expression": "MT.DATA.Electric_T[5]",
+      "nbt_output": 4096,
+      "nbt_input": 8192,
+      "efficiency_bps": 0,
+      "output_expression": "4096",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "CxC",
+          "CMC",
+          "CwC"
+        ],
+        "keys": {
+          "C": {
+            "prefix": "hexadecuple_wire",
+            "material": "annealed_copper"
+          },
+          "M": {
+            "prefix": "machine_casing",
+            "material": "variant"
+          },
+          "x": {
+            "item": "cruciblecraft:material_wire_cutter",
+            "catalyst": true
+          },
+          "w": {
+            "item": "cruciblecraft:material_wrench",
+            "catalyst": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:osmiridium_zpm_decharger",
+      "kind": "cruciblecraft:zpm_decharger",
+      "material": "osmiridium",
+      "source_id": 11171,
+      "source_line": 1001,
+      "gt6_class": "MultiTileEntityZPMDechargerEU",
+      "material_expression": "MT.Osmiridium",
+      "nbt_output": 131072,
+      "nbt_input": 131072,
+      "efficiency_bps": 0,
+      "output_expression": "131072",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "CMC",
+          "FCF"
+        ],
+        "keys": {
+          "P": {
+            "item": "cruciblecraft:processor_crystal_sapphire"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_ultimate"
+          },
+          "M": {
+            "prefix": "machine_casing_dense",
+            "material": "osmiridium"
+          },
+          "F": {
+            "item": "cruciblecraft:compact_force_field_emitter_luv"
+          }
+        }
+      }
     }
   ]
 }
-

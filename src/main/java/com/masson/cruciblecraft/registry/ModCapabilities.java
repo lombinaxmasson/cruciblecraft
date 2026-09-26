@@ -102,6 +102,18 @@ public final class ModCapabilities {
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
                 ENERGY,
+                ModBlockEntities.DIRECTED_WASTE_CONVERTER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.ZPM_DECHARGER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.ZPM_DECHARGER.get(),
+                (blockEntity, side) -> blockEntity.items());
+        event.registerBlockEntity(
+                ENERGY,
                 ModBlockEntities.ROTATIONAL_AXLE.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(

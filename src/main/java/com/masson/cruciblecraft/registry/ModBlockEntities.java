@@ -20,6 +20,8 @@ import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricMotorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricHeaterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricEngineBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.DirectedWasteConverterBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ZpmDechargerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidDepositExtractorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
@@ -402,6 +404,27 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     ElectricEngineBlockEntity::new,
                                     ModBlocks.converterBlocks("electric_engine"))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<DirectedWasteConverterBlockEntity>>
+                    DIRECTED_WASTE_CONVERTER = BLOCK_ENTITIES.register(
+                            "directed_waste_converter",
+                            () -> BlockEntityType.Builder.of(
+                                    DirectedWasteConverterBlockEntity::new,
+                                    ModBlocks.converterBlocks(
+                                            "laser_electric",
+                                            "laser_absorber",
+                                            "magnet_electric"))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<ZpmDechargerBlockEntity>>
+                    ZPM_DECHARGER = BLOCK_ENTITIES.register(
+                            "zpm_decharger",
+                            () -> BlockEntityType.Builder.of(
+                                    ZpmDechargerBlockEntity::new,
+                                    ModBlocks.converterBlocks("zpm_decharger"))
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

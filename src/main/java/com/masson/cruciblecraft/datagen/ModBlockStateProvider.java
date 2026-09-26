@@ -1068,7 +1068,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 continue;
             }
             boolean allDirections = kind.runtime().equals("electric_heater")
-                    || kind.runtime().equals("electric_engine");
+                    || kind.runtime().equals("electric_engine")
+                    || kind.runtime().equals("laser_electric")
+                    || kind.runtime().equals("laser_absorber")
+                    || kind.runtime().equals("magnet_electric")
+                    || kind.runtime().equals("zpm_decharger");
             if (allDirections) {
                 configuredFacingLitAllDirections(block, inactive, active);
             } else if (kind.overlayActive()) {
@@ -1557,6 +1561,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         if (HANDWRITTEN_CONVERTER_MODELS.contains(texture)) {
             return;
         }
+        if (AXIS_ENERGY_TEXTURES.contains(texture)) {
+            axisEnergyCube(texture, false);
+            if (overlayActive) {
+                axisEnergyCube(texture, true);
+            }
+            return;
+        }
         converterCube(texture, false);
         if (overlayActive) {
             converterCube(texture, true);
@@ -1582,6 +1593,35 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("top_south", modLoc(base + "/" + overlay + "/back"))
                 .texture("top_west", modLoc(base + "/" + overlay + "/left"))
                 .texture("top_east", modLoc(base + "/" + overlay + "/right"));
+    }
+
+    private static final java.util.Set<String> AXIS_ENERGY_TEXTURES =
+            java.util.Set.of(
+                    "laser_electric",
+                    "laser_absorber",
+                    "magnet_electric",
+                    "zpm_decharger");
+
+    /** GT6 laser, magnet, and ZPM art is front/back/side, not six faces. */
+    private ModelFile axisEnergyCube(String textureId, boolean active) {
+        String name = active ? textureId + "_active" : textureId;
+        String overlay = active ? "overlay_active" : "overlay";
+        String base = "block/energy/" + textureId;
+        return models()
+                .withExistingParent(name, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/side"))
+                .texture("bot_up", modLoc(base + "/colored/side"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/back"))
+                .texture("bot_west", modLoc(base + "/colored/side"))
+                .texture("bot_east", modLoc(base + "/colored/side"))
+                .texture("top_down", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_up", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_north", modLoc(base + "/" + overlay + "/front"))
+                .texture("top_south", modLoc(base + "/" + overlay + "/back"))
+                .texture("top_west", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_east", modLoc(base + "/" + overlay + "/side"));
     }
 
     private void configuredFacingLit(

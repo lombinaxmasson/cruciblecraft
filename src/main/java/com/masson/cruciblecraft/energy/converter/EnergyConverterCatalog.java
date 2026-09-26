@@ -111,6 +111,7 @@ public final class EnergyConverterCatalog {
         validateSmallGasTurbine(result);
         validateGasGenerator(result);
         validateElectricConverters(result);
+        validateLaserMagnetZpm(result);
         return Map.copyOf(result);
     }
 
@@ -330,6 +331,56 @@ public final class EnergyConverterCatalog {
                         List.of("FRONT"))) {
             throw new IllegalStateException(
                     "Electric heater/engine converter rows drifted");
+        }
+    }
+
+    private static void validateLaserMagnetZpm(
+            Map<ResourceLocation, EnergyConverterProfile> profiles) {
+        assertFamily(profiles, "laser_electric", 5, "LU", false);
+        assertFamily(profiles, "laser_absorber", 5, "EU", false);
+        assertFamily(profiles, "magnet_electric", 5, "MU", true);
+        EnergyConverterProfile zpm = profiles.get(ResourceLocation.parse(
+                "cruciblecraft:osmiridium_zpm_decharger"));
+        if (zpm == null
+                || !"zpm_decharger".equals(zpm.runtimeBinding())
+                || zpm.source().sourceId() != 11171
+                || !"MultiTileEntityZPMDechargerEU".equals(
+                        zpm.source().machineKind())
+                || !"QU".equals(zpm.inputPacket().identity())
+                || !"EU".equals(zpm.outputPacket().identity())
+                || zpm.inputPacket().size() != zpm.outputPacket().size()
+                || !zpm.policy().sourceResolution().contains("ZPM_ITEM_SLOT")
+                || !zpm.policy().sourceResolution().contains(
+                        "IL_ZPM_UNMAPPED_DISCHARGE_BLOCKED")) {
+            throw new IllegalStateException("ZPM decharger row drifted");
+        }
+    }
+
+    private static void assertFamily(
+            Map<ResourceLocation, EnergyConverterProfile> profiles,
+            String runtime,
+            int expected,
+            String outputIdentity,
+            boolean bipolar) {
+        List<EnergyConverterProfile> rows = profiles.values().stream()
+                .filter(profile -> runtime.equals(profile.runtimeBinding()))
+                .toList();
+        if (rows.size() != expected) {
+            throw new IllegalStateException(
+                    runtime + " count drifted: " + rows.size());
+        }
+        for (EnergyConverterProfile profile : rows) {
+            if (profile.outputPacket().size() * 2L
+                            != profile.inputPacket().size()
+                    || !outputIdentity.equals(profile.outputPacket().identity())
+                    || profile.outputPacket().maxAmountPerTick() != 1L
+                    || !profile.policy().sourceResolution().contains(
+                            "WASTE_ENERGY")
+                    || bipolar != profile.policy().sourceResolution().contains(
+                            "BIPOLAR")) {
+                throw new IllegalStateException(
+                        "Converter row drifted: " + profile.id());
+            }
         }
     }
 

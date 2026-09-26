@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "cruciblecraft:circuit_master"
+    },
+    "M": {
+      "tag": "c:machine_casings/chromium"
+    },
+    "P": {
+      "item": "cruciblecraft:processor_crystal_sapphire"
+    },
+    "S": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "silicon"
+      },
+      "items": "cruciblecraft:plate_gem"
+    },
+    "W": {
+      "tag": "c:cables/aluminium"
+    }
+  },
+  "pattern": [
+    "SCW",
+    "SMP",
+    "SCW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:chromium_laser_absorber"
+  }
+}

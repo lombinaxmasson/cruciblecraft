@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Energy converter catalog closed card: 179 loader rows plus 7 DESIGN_POLICY turbines."""
+"""Energy converter catalog: 179 loader rows, 7 turbines, 16 laser/magnet/ZPM hosts."""
 from __future__ import annotations
 
 import json
@@ -127,8 +127,8 @@ class EnergyConverterCatalogCardTest(unittest.TestCase):
     def test_kinds_and_tiers_are_not_processing_catalog(self) -> None:
         kinds = io.load_json(KINDS)
         tiers = io.load_json(TIERS)
-        self.assertEqual(19, len(kinds["kinds"]))
-        self.assertEqual(186, len(tiers["tiers"]))
+        self.assertEqual(23, len(kinds["kinds"]))
+        self.assertEqual(202, len(tiers["tiers"]))
         ids = {row["id"] for row in tiers["tiers"]}
         self.assertIn("cruciblecraft:bronze_burning_box_gas", ids)
         self.assertIn("cruciblecraft:bronze_boiler", ids)
@@ -137,6 +137,9 @@ class EnergyConverterCatalogCardTest(unittest.TestCase):
         self.assertIn("cruciblecraft:steel_galvanized_electric_motor", ids)
         self.assertIn("cruciblecraft:steel_galvanized_electric_heater", ids)
         self.assertIn("cruciblecraft:steel_galvanized_electric_engine", ids)
+        self.assertIn("cruciblecraft:steel_galvanized_laser_electric", ids)
+        self.assertIn("cruciblecraft:titanium_electromagnet", ids)
+        self.assertIn("cruciblecraft:osmiridium_zpm_decharger", ids)
         self.assertNotIn("cruciblecraft:burning_gas_generator", ids)
         machine_tiers = json.dumps(io.load_json(MACHINE_TIERS), ensure_ascii=False)
         machine_kinds = json.dumps(io.load_json(MACHINE_KINDS), ensure_ascii=False)

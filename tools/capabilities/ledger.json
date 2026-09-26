@@ -1720,6 +1720,36 @@
     },
     {
       "depends_on": [
+        "energy/converter-catalog"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6激光磁铁ZPM转换器详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/block/DirectedWasteConverterBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/ZpmDechargerBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/DirectedWasteConverterBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/ZpmDechargerBlockEntity.java",
+        "src/main/resources/assets/cruciblecraft/gt6_laser_magnet_zpm_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/energy/laser_electric/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/energy/laser_absorber/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/energy/magnet_electric/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/energy/zpm_decharger/**",
+        "src/test/java/com/masson/cruciblecraft/energy/converter/LaserMagnetZpmConverterTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/LaserMagnetZpmGameTests.java",
+        "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/**"
+      ],
+      "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "energy/gt6-laser-magnet-zpm-converters",
+      "survival_access": "partial",
+      "title": "GT6 laser, magnet, and ZPM converters",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "energy/nuclear-fission-hot-fluids"
       ],
       "maturity": "runtime_ready",
@@ -4279,7 +4309,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 125,
+  "capability_count": 126,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -4615,6 +4645,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/fusion-quantum",
+      "energy/gt6-laser-magnet-zpm-converters",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -4670,6 +4701,9 @@
       "machines/gt6-coil-hosts",
       "machines/large-oven",
       "machines/puv-omega-matrix"
+    ],
+    "energy/gt6-laser-magnet-zpm-converters": [
+      "energy/gt6-laser-magnet-zpm-converters"
     ],
     "energy/heat-exchangers": [
       "content/electric-wire-cable-mte-fold",
@@ -4958,6 +4992,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/fusion-quantum",
+      "energy/gt6-laser-magnet-zpm-converters",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5028,6 +5063,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/fusion-quantum",
+      "energy/gt6-laser-magnet-zpm-converters",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5089,6 +5125,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/fusion-quantum",
+      "energy/gt6-laser-magnet-zpm-converters",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5153,6 +5190,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/fusion-quantum",
+      "energy/gt6-laser-magnet-zpm-converters",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5216,6 +5254,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/fusion-quantum",
+      "energy/gt6-laser-magnet-zpm-converters",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5281,6 +5320,7 @@
       "energy/batteries",
       "energy/converter-catalog",
       "energy/fusion-quantum",
+      "energy/gt6-laser-magnet-zpm-converters",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5793,6 +5833,7 @@
       "energy/cooler",
       "energy/flux-converters",
       "energy/fusion-quantum",
+      "energy/gt6-laser-magnet-zpm-converters",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",

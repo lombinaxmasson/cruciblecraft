@@ -521,6 +521,110 @@
       "lang_key_en": "Electric Engine",
       "lang_key_zh": "电引擎",
       "gt6_class": "MultiTileEntityEngineElectric"
+    },
+    {
+      "id": "cruciblecraft:laser_electric",
+      "runtime": "laser_electric",
+      "fuel_map": "NONE",
+      "accepts": [
+        "EU"
+      ],
+      "emits": [
+        "LU"
+      ],
+      "faces": {
+        "energyInputs": [
+          "ALL_BUT_FRONT"
+        ],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "laser_electric",
+      "overlay_active": true,
+      "lang_key_en": "Electric CO2 Laser",
+      "lang_key_zh": "电二氧化碳激光",
+      "gt6_class": "MultiTileEntityLaserElectric"
+    },
+    {
+      "id": "cruciblecraft:laser_absorber",
+      "runtime": "laser_absorber",
+      "fuel_map": "NONE",
+      "accepts": [
+        "LU"
+      ],
+      "emits": [
+        "EU"
+      ],
+      "faces": {
+        "energyInputs": [
+          "BACK"
+        ],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "laser_absorber",
+      "overlay_active": true,
+      "lang_key_en": "Laser Absorber",
+      "lang_key_zh": "激光吸收器",
+      "gt6_class": "MultiTileEntityLaserAbsorberElectric"
+    },
+    {
+      "id": "cruciblecraft:electromagnet",
+      "runtime": "magnet_electric",
+      "fuel_map": "NONE",
+      "accepts": [
+        "EU"
+      ],
+      "emits": [
+        "MU"
+      ],
+      "faces": {
+        "energyInputs": [
+          "ANY_BUT_AXIS"
+        ],
+        "energyOutputs": [
+          "FRONT_AND_BACK"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "magnet_electric",
+      "overlay_active": true,
+      "lang_key_en": "Electromagnet",
+      "lang_key_zh": "电磁铁",
+      "gt6_class": "MultiTileEntityMagnetElectric"
+    },
+    {
+      "id": "cruciblecraft:zpm_decharger",
+      "runtime": "zpm_decharger",
+      "fuel_map": "NONE",
+      "accepts": [
+        "QU"
+      ],
+      "emits": [
+        "EU"
+      ],
+      "faces": {
+        "energyInputs": [
+          "ALL_BUT_FRONT"
+        ],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "zpm_decharger",
+      "overlay_active": true,
+      "lang_key_en": "ZPM Decharger (Electric)",
+      "lang_key_zh": "电动ZPM放电器",
+      "gt6_class": "MultiTileEntityZPMDechargerEU"
     }
   ],
   "material_lang": {
@@ -619,6 +723,10 @@
     "copper": {
       "lang_key_zh": "铜制",
       "lang_key_en": "Copper"
+    },
+    "osmiridium": {
+      "lang_key_zh": "锇铱",
+      "lang_key_en": "Osmiridium"
     }
   }
 }

@@ -32,6 +32,8 @@ import com.masson.cruciblecraft.content.block.DynamoBlock;
 import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
 import com.masson.cruciblecraft.content.block.ElectricHeaterBlock;
 import com.masson.cruciblecraft.content.block.ElectricEngineBlock;
+import com.masson.cruciblecraft.content.block.DirectedWasteConverterBlock;
+import com.masson.cruciblecraft.content.block.ZpmDechargerBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.FluidDepositExtractorBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
@@ -1315,6 +1317,15 @@ public final class ModBlocks {
                     path,
                     () -> new ElectricEngineBlock(
                             profile.id(), machineProperties().noOcclusion()));
+            case "laser_electric", "laser_absorber", "magnet_electric" ->
+                    BLOCKS.register(
+                    path,
+                    () -> new DirectedWasteConverterBlock(
+                            profile.id(), machineProperties()));
+            case "zpm_decharger" -> BLOCKS.register(
+                    path,
+                    () -> new ZpmDechargerBlock(
+                            profile.id(), machineProperties()));
             case "fuel_engine", "small_gas_turbine", "fluid_burning_box" ->
                     BLOCKS.register(
                     path,

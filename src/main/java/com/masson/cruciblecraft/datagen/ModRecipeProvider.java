@@ -4032,7 +4032,18 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "aluminium_electric_engine",
                     "stainless_steel_electric_engine",
                     "chromium_electric_engine",
-                    "titanium_electric_engine");
+                    "titanium_electric_engine",
+                    "steel_galvanized_laser_absorber",
+                    "aluminium_laser_absorber",
+                    "stainless_steel_laser_absorber",
+                    "chromium_laser_absorber",
+                    "titanium_laser_absorber",
+                    "steel_galvanized_electromagnet",
+                    "aluminium_electromagnet",
+                    "stainless_steel_electromagnet",
+                    "chromium_electromagnet",
+                    "titanium_electromagnet",
+                    "osmiridium_zpm_decharger");
 
     private static void addConverterRecipes(RecipeOutput output) {
         for (var entry : EnergyConverterTierCatalog.entries()) {
@@ -4046,6 +4057,12 @@ public final class ModRecipeProvider extends RecipeProvider {
         String path = entry.id().getPath();
         boolean required = REQUIRED_CONVERTER_RECIPES.contains(path);
         Item result = ModItems.converterItemsById().get(entry.id()).get();
+        boolean catalytic = entry.recipe().keys().values().stream()
+                .anyMatch(EnergyConverterTierCatalog.Ingredient::catalyst);
+        if (catalytic) {
+            emitCatalyticConverterRecipe(output, entry, result, required);
+            return;
+        }
         java.util.LinkedHashMap<Character, Ingredient> keys =
                 new java.util.LinkedHashMap<>();
         for (var key : entry.recipe().keys().entrySet()) {
@@ -4087,6 +4104,44 @@ public final class ModRecipeProvider extends RecipeProvider {
             }
         }
         builder.unlockedBy("has_part", has(unlock)).save(output, id(path));
+    }
+
+    private static void emitCatalyticConverterRecipe(
+            RecipeOutput output,
+            EnergyConverterTierCatalog.Entry entry,
+            Item result,
+            boolean required) {
+        String path = entry.id().getPath();
+        java.util.LinkedHashMap<String, Ingredient> consumed =
+                new java.util.LinkedHashMap<>();
+        java.util.LinkedHashMap<String, Ingredient> catalysts =
+                new java.util.LinkedHashMap<>();
+        for (var key : entry.recipe().keys().entrySet()) {
+            Ingredient item = resolveConverterIngredient(entry, key.getValue());
+            if (item == null) {
+                if (required) {
+                    throw new IllegalStateException(
+                            "Missing converter recipe ingredient for "
+                                    + path
+                                    + " key "
+                                    + key.getKey());
+                }
+                return;
+            }
+            if (key.getValue().catalyst()) {
+                catalysts.put(key.getKey(), item);
+            } else {
+                consumed.put(key.getKey(), item);
+            }
+        }
+        output.accept(
+                id(path),
+                new ShapedCatalystRecipe(
+                        entry.recipe().pattern(),
+                        consumed,
+                        catalysts,
+                        new ItemStack(result)),
+                null);
     }
 
     private static void addLuFiberRecipe(RecipeOutput output) {

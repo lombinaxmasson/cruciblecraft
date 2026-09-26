@@ -28,6 +28,9 @@ final class EnergyConverterProfiles {
             case "solid_burning_box" -> solidBox(kind, tier);
             case "fluid_burning_box" -> fluidBox(kind, tier);
             case "fluid_bed_burning_box" -> fluidBed(kind, tier);
+            case "laser_electric", "laser_absorber", "magnet_electric" ->
+                    directedWaste(kind, tier);
+            case "zpm_decharger" -> zpmDecharger(kind, tier);
             default -> throw new IllegalStateException(
                     "Unknown converter runtime " + kind.runtime());
         };
@@ -384,6 +387,100 @@ final class EnergyConverterProfiles {
                                 + "SCREWDRIVER_STATE_CONTROL"),
                 null,
                 Math.toIntExact(maximum),
+                0);
+    }
+
+    private static EnergyConverterProfile directedWaste(
+            EnergyConverterKindCatalog.Kind kind,
+            EnergyConverterTierCatalog.Entry tier) {
+        int input = Math.max(1, tier.nbtInput());
+        int output = Math.max(1, tier.nbtOutput());
+        long minimum = Math.max(1L, input / 2L);
+        long maximum = Math.multiplyExact(input, 2L);
+        String inputIdentity = "laser_absorber".equals(kind.runtime())
+                ? "LU"
+                : "EU";
+        String outputIdentity = switch (kind.runtime()) {
+            case "laser_electric" -> "LU";
+            case "laser_absorber" -> "EU";
+            case "magnet_electric" -> "MU";
+            default -> throw new IllegalStateException(
+                    "Directed waste runtime " + kind.runtime());
+        };
+        String stage = switch (kind.runtime()) {
+            case "laser_electric" -> "laser_lu_chain";
+            case "laser_absorber" -> "laser_eu_chain";
+            case "magnet_electric" -> "magnet_mu_chain";
+            default -> throw new IllegalStateException(
+                    "Directed waste runtime " + kind.runtime());
+        };
+        boolean bipolar = "magnet_electric".equals(kind.runtime());
+        String resolution = "SOURCE_" + tier.sourceId()
+                + "_WASTE_ENERGY_"
+                + inputIdentity + "_TO_" + outputIdentity + "_"
+                + input + "_TO_" + output
+                + (bipolar ? "; BIPOLAR" : "");
+        return new EnergyConverterProfile(
+                tier.id(),
+                stage,
+                EnergyConverterProfile.Status.COMPLETE,
+                kind.runtime(),
+                source(kind, tier, "NONE", "5000"),
+                kind.accepts(),
+                kind.emits(),
+                packet("ENERGY", inputIdentity, input, 1L),
+                packet("ENERGY", outputIdentity, output, 1L),
+                window(minimum, (long) input, maximum),
+                clampedEfficiency(tier.efficiencyBps(), 5_000),
+                "NONE",
+                conservation(
+                        inputIdentity, input, "NONE", 0,
+                        outputIdentity, output, "NONE", 0),
+                exhaust("NONE", "NONE", 0),
+                kind.faces(),
+                policy(
+                        "WASTE_ENERGY_CONSUMES_INPUT_WHEN_OUTPUT_BLOCKED",
+                        "INPUT_ABOVE_MAX_OVERLOADS",
+                        resolution),
+                null,
+                Math.toIntExact(maximum),
+                0);
+    }
+
+    private static EnergyConverterProfile zpmDecharger(
+            EnergyConverterKindCatalog.Kind kind,
+            EnergyConverterTierCatalog.Entry tier) {
+        int units = Math.max(1, tier.nbtInput());
+        if (units != tier.nbtOutput()) {
+            throw new IllegalStateException(
+                    "ZPM decharger input and output drifted: " + tier.id());
+        }
+        return new EnergyConverterProfile(
+                tier.id(),
+                "zpm_qu_chain",
+                EnergyConverterProfile.Status.COMPLETE,
+                kind.runtime(),
+                source(kind, tier, "NONE", "10000"),
+                kind.accepts(),
+                kind.emits(),
+                packet("ENERGY", "QU", units, 1L),
+                packet("ENERGY", "EU", units, 1L),
+                window((long) units, (long) units, (long) units),
+                10_000,
+                "NONE",
+                conservation(
+                        "QU", units, "NONE", 0,
+                        "EU", units, "NONE", 0),
+                exhaust("NONE", "NONE", 0),
+                kind.faces(),
+                policy(
+                        "ZPM_ITEM_SLOT_EMPTY",
+                        "OVERSIZE_QU_REJECTED",
+                        "SOURCE_" + tier.sourceId()
+                                + "_ZPM_ITEM_SLOT; "
+                                + "IL_ZPM_UNMAPPED_DISCHARGE_BLOCKED"),
+                null,
+                units,
                 0);
     }
 
