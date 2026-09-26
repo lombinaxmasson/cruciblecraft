@@ -22,6 +22,7 @@ import com.masson.cruciblecraft.content.blockentity.ElectricHeaterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ElectricEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DirectedWasteConverterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ZpmDechargerBlockEntity;
+import com.masson.cruciblecraft.energy.zpm.ZpmModuleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidDepositExtractorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
@@ -424,7 +425,18 @@ public final class ModBlockEntities {
                             "zpm_decharger",
                             () -> BlockEntityType.Builder.of(
                                     ZpmDechargerBlockEntity::new,
-                                    ModBlocks.converterBlocks("zpm_decharger"))
+                                    ModBlocks.converterBlocks(
+                                            "zpm_decharger",
+                                            "zpm_decharger_qu"))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<ZpmModuleBlockEntity>>
+                    ZERO_POINT_MODULE = BLOCK_ENTITIES.register(
+                            "zero_point_module",
+                            () -> BlockEntityType.Builder.of(
+                                    ZpmModuleBlockEntity::new,
+                                    ModBlocks.ZERO_POINT_MODULE.get())
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

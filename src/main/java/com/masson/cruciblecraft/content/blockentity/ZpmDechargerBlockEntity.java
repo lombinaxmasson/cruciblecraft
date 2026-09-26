@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.EnergyPackets;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterHost;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
+import com.masson.cruciblecraft.energy.zpm.ZpmModule;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
@@ -24,16 +25,20 @@ import net.neoforged.neoforge.items.IItemHandler;
 /**
  * GT6 {@code MultiTileEntityZPMDechargerEU} / {@code TileEntityBase10EnergyBatBox}.
  *
- * <p>The single slot accepts only {@code IL.ZPM}. That item is unmapped, so
- * the slot rejects every stack and the machine neither accepts QU nor emits
- * EU. Packet sizes stay at GT6 {@code V[7]}.
+ * <p>The single slot accepts only the zero-point module ({@code IL.ZPM}).
+ * Once a second the buffer pulls QU out of that module, then the front emits
+ * one packet of the profile output ({@code EU} or {@code QU}). The module
+ * cannot be charged, so external QU is rejected. Packet sizes stay at GT6
+ * {@code V[7]}.
  */
 public final class ZpmDechargerBlockEntity extends BlockEntity
         implements IEnergyHandler {
     private final EnergyConverterProfile profile;
     private final long packet;
+    private final EnergyType outputType;
     private final Slot slot = new Slot(this::setChanged);
     private long stored;
+    private int tickPhase;
     private boolean emitsEnergy;
     private String status = "no_zpm";
 
@@ -45,10 +50,20 @@ public final class ZpmDechargerBlockEntity extends BlockEntity
         }
         profile = host.converterProfile();
         packet = profile.inputPacket().size();
+        outputType = energyType(profile.outputPacket().identity());
         if (packet != profile.outputPacket().size() || packet <= 0L) {
             throw new IllegalStateException(
                     "ZPM decharger packet sizes drifted");
         }
+    }
+
+    private static EnergyType energyType(String identity) {
+        return switch (identity) {
+            case "EU" -> EnergyType.ELECTRIC;
+            case "QU" -> EnergyType.QUANTUM;
+            default -> throw new IllegalStateException(
+                    "ZPM decharger emits " + identity);
+        };
     }
 
     public static void serverTick(
@@ -56,7 +71,35 @@ public final class ZpmDechargerBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             ZpmDechargerBlockEntity decharger) {
+        decharger.pullFromModule();
         decharger.emit(level, pos, state);
+    }
+
+    /**
+     * GT6 bat-box item callback, once per second. Index 0 pulls 40 packets
+     * and index 1 pulls 20. The module refuses injection, so indexes 6 and 7
+     * add nothing.
+     */
+    private void pullFromModule() {
+        tickPhase++;
+        if (tickPhase % 20 != 1 || !ZpmModule.is(slot.stack)) {
+            return;
+        }
+        long band = stored / (packet * 40L);
+        int index = (int) Math.max(0L, Math.min(7L, band));
+        int packets = switch (index) {
+            case 0 -> ZpmModule.PULL_PACKETS_LOW;
+            case 1 -> ZpmModule.PULL_PACKETS_HIGH;
+            default -> 0;
+        };
+        if (packets == 0) {
+            return;
+        }
+        long taken = ZpmModule.extractPackets(slot.stack, packet, packets);
+        if (taken > 0L) {
+            stored += packet * taken;
+            setChanged();
+        }
     }
 
     private void emit(Level level, BlockPos pos, BlockState state) {
@@ -68,7 +111,7 @@ public final class ZpmDechargerBlockEntity extends BlockEntity
         }
         Direction front = front();
         long delivered = EnergyEmitter.pushToSide(
-                level, pos, EnergyType.ELECTRIC, packet, 1L, front);
+                level, pos, outputType, packet, 1L, front);
         if (delivered > 0L) {
             stored -= packet * delivered;
             emitsEnergy = true;
@@ -109,10 +152,10 @@ public final class ZpmDechargerBlockEntity extends BlockEntity
         if (front == null || side == null) {
             return false;
         }
-        if (type == EnergyType.QUANTUM && side != front) {
-            return true;
+        if (side == front) {
+            return type == outputType;
         }
-        return type == EnergyType.ELECTRIC && side == front;
+        return type == EnergyType.QUANTUM;
     }
 
     @Override
@@ -122,30 +165,16 @@ public final class ZpmDechargerBlockEntity extends BlockEntity
             long amount,
             Direction side,
             boolean simulate) {
-        // GT6 doInject returns 0 unless a chargeable item set mReceivablePower.
-        if (type != EnergyType.QUANTUM
-                || !handles(type, side)
-                || amount <= 0L
-                || slot.stack.isEmpty()) {
-            return 0L;
-        }
-        if (EnergyPackets.magnitude(size) > packet) {
-            return amount;
-        }
-        long room = profile.inputCapacity() - stored;
-        long accepted = Math.min(
-                amount, EnergyPackets.packetsForUnits(size, room));
-        if (!simulate && accepted > 0L) {
-            stored += EnergyPackets.units(size, accepted);
-            setChanged();
-        }
-        return accepted;
+        // The only legal item refuses charging, so receivable power stays 0.
+        return 0L;
     }
 
     @Override
     public long outputSize(EnergyType type, Direction side) {
-        return type == EnergyType.ELECTRIC
-                        && handles(type, side)
+        Direction front = front();
+        return type == outputType
+                        && front != null
+                        && side == front
                         && !slot.stack.isEmpty()
                         && stored >= packet
                 ? packet
@@ -226,6 +255,7 @@ public final class ZpmDechargerBlockEntity extends BlockEntity
             HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.putLong("stored", stored);
+        tag.putInt("tick_phase", tickPhase);
         tag.putBoolean("emits_energy", emitsEnergy);
         tag.putString("status", status);
         if (!slot.stack.isEmpty()) {
@@ -239,6 +269,7 @@ public final class ZpmDechargerBlockEntity extends BlockEntity
             HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         stored = Math.max(0L, tag.getLong("stored"));
+        tickPhase = Math.max(0, tag.getInt("tick_phase"));
         emitsEnergy = tag.getBoolean("emits_energy");
         status = tag.getString("status");
         slot.stack = tag.contains("Item")
@@ -249,10 +280,7 @@ public final class ZpmDechargerBlockEntity extends BlockEntity
         }
     }
 
-    /**
-     * GT6 {@code isItemValidForSlot} is {@code IL.ZPM.equal}. No CC item
-     * maps to that container, so every insert is rejected.
-     */
+    /** GT6 {@code isItemValidForSlot} is {@code IL.ZPM.equal}. */
     private static final class Slot implements IItemHandler {
         private final Runnable changed;
         private ItemStack stack = ItemStack.EMPTY;
@@ -273,6 +301,19 @@ public final class ZpmDechargerBlockEntity extends BlockEntity
 
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+            if (slot != 0
+                    || stack.isEmpty()
+                    || !this.stack.isEmpty()
+                    || !ZpmModule.is(stack)) {
+                return stack;
+            }
+            if (simulate) {
+                return stack.getCount() == 1
+                        ? ItemStack.EMPTY
+                        : stack.copyWithCount(stack.getCount() - 1);
+            }
+            this.stack = stack.split(1);
+            changed.run();
             return stack;
         }
 
@@ -296,7 +337,7 @@ public final class ZpmDechargerBlockEntity extends BlockEntity
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return false;
+            return slot == 0 && ZpmModule.is(stack);
         }
     }
 }

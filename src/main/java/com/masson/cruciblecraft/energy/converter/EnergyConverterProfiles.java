@@ -30,7 +30,7 @@ final class EnergyConverterProfiles {
             case "fluid_bed_burning_box" -> fluidBed(kind, tier);
             case "laser_electric", "laser_absorber", "magnet_electric" ->
                     directedWaste(kind, tier);
-            case "zpm_decharger" -> zpmDecharger(kind, tier);
+            case "zpm_decharger", "zpm_decharger_qu" -> zpmDecharger(kind, tier);
             default -> throw new IllegalStateException(
                     "Unknown converter runtime " + kind.runtime());
         };
@@ -451,9 +451,14 @@ final class EnergyConverterProfiles {
             EnergyConverterKindCatalog.Kind kind,
             EnergyConverterTierCatalog.Entry tier) {
         int units = Math.max(1, tier.nbtInput());
-        if (units != tier.nbtOutput()) {
+        if (units != tier.nbtOutput() || kind.emits().size() != 1) {
             throw new IllegalStateException(
                     "ZPM decharger input and output drifted: " + tier.id());
+        }
+        String emitted = kind.emits().getFirst();
+        if (!"EU".equals(emitted) && !"QU".equals(emitted)) {
+            throw new IllegalStateException(
+                    "ZPM decharger emits an unexpected energy: " + tier.id());
         }
         return new EnergyConverterProfile(
                 tier.id(),
@@ -464,13 +469,13 @@ final class EnergyConverterProfiles {
                 kind.accepts(),
                 kind.emits(),
                 packet("ENERGY", "QU", units, 1L),
-                packet("ENERGY", "EU", units, 1L),
+                packet("ENERGY", emitted, units, 1L),
                 window((long) units, (long) units, (long) units),
                 10_000,
                 "NONE",
                 conservation(
                         "QU", units, "NONE", 0,
-                        "EU", units, "NONE", 0),
+                        emitted, units, "NONE", 0),
                 exhaust("NONE", "NONE", 0),
                 kind.faces(),
                 policy(
@@ -478,7 +483,7 @@ final class EnergyConverterProfiles {
                         "OVERSIZE_QU_REJECTED",
                         "SOURCE_" + tier.sourceId()
                                 + "_ZPM_ITEM_SLOT; "
-                                + "IL_ZPM_UNMAPPED_DISCHARGE_BLOCKED"),
+                                + "ZPM_MODULE_14999"),
                 null,
                 units,
                 0);

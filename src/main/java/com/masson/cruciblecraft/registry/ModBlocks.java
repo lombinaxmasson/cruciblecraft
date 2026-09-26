@@ -34,6 +34,7 @@ import com.masson.cruciblecraft.content.block.ElectricHeaterBlock;
 import com.masson.cruciblecraft.content.block.ElectricEngineBlock;
 import com.masson.cruciblecraft.content.block.DirectedWasteConverterBlock;
 import com.masson.cruciblecraft.content.block.ZpmDechargerBlock;
+import com.masson.cruciblecraft.energy.zpm.ZpmModuleBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.FluidDepositExtractorBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
@@ -374,6 +375,14 @@ public final class ModBlocks {
                     .noOcclusion()
                     .sound(SoundType.STONE)));
 
+    public static final DeferredBlock<ZpmModuleBlock> ZERO_POINT_MODULE =
+            BLOCKS.register(
+                    "zero_point_module",
+                    () -> new ZpmModuleBlock(BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.GOLD)
+                            .strength(0.5F, 1.0F)
+                            .noOcclusion()
+                            .sound(SoundType.METAL)));
     public static final DeferredBlock<CokeOvenBlock> COKE_OVEN = BLOCKS.register(
             "coke_oven",
             () -> new CokeOvenBlock(BlockBehaviour.Properties.of()
@@ -1322,7 +1331,7 @@ public final class ModBlocks {
                     path,
                     () -> new DirectedWasteConverterBlock(
                             profile.id(), machineProperties()));
-            case "zpm_decharger" -> BLOCKS.register(
+            case "zpm_decharger", "zpm_decharger_qu" -> BLOCKS.register(
                     path,
                     () -> new ZpmDechargerBlock(
                             profile.id(), machineProperties()));

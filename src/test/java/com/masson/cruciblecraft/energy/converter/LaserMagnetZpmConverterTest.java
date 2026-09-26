@@ -31,7 +31,14 @@ class LaserMagnetZpmConverterTest {
         assertEquals(zpm.inputPacket().size(), zpm.outputPacket().size());
         assertTrue(zpm.policy().sourceResolution().contains("ZPM_ITEM_SLOT"));
         assertTrue(zpm.policy().sourceResolution().contains(
-                "IL_ZPM_UNMAPPED_DISCHARGE_BLOCKED"));
+                "ZPM_MODULE_14999"));
+        EnergyConverterProfile quantum = EnergyConverterCatalog.require(
+                ResourceLocation.parse(
+                        "cruciblecraft:osmiridium_zpm_decharger_qu"));
+        assertEquals(11170, quantum.source().sourceId());
+        assertEquals("QU", quantum.outputPacket().identity());
+        assertEquals(
+                quantum.inputPacket().size(), quantum.outputPacket().size());
         assertTrue(lasers.getFirst().faces().energyInputs().contains(
                 "ALL_BUT_FRONT"));
         assertTrue(absorbers.getFirst().faces().energyInputs().contains("BACK"));

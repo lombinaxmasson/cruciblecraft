@@ -1332,10 +1332,14 @@ final class PuvOmegaRecipes {
                             "d", CraftingTools.of(ModItems.MATERIAL_SCREWDRIVER.get())),
                     new ItemStack(emptyLaser));
         }
-        fillLaserGas(output, emptyLaser, "helium_neon", "laser_gas_hene");
+        fillLaserGas(output, emptyLaser, "helium", "laser_gas_he");
+        fillLaserGas(output, emptyLaser, "neon", "laser_gas_ne");
         fillLaserGas(output, emptyLaser, "argon", "laser_gas_ar");
         fillLaserGas(output, emptyLaser, "krypton", "laser_gas_kr");
         fillLaserGas(output, emptyLaser, "xenon", "laser_gas_xe");
+        fillLaserGas(output, emptyLaser, "helium_neon", "laser_gas_hene");
+        fillLaserGas(output, emptyLaser, "carbon_monoxide", "laser_gas_co");
+        fillLaserGas(output, emptyLaser, "carbon_dioxide", "laser_gas_co2");
         Item filled = part("laser_gas_hene");
         Item emptyProcessor = part("processor_crystal_empty");
         Item ultimate = part("circuit_ultimate");

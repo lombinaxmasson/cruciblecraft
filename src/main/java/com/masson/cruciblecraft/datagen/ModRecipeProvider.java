@@ -4038,12 +4038,18 @@ public final class ModRecipeProvider extends RecipeProvider {
                     "stainless_steel_laser_absorber",
                     "chromium_laser_absorber",
                     "titanium_laser_absorber",
+                    "steel_galvanized_laser_electric",
+                    "aluminium_laser_electric",
+                    "stainless_steel_laser_electric",
+                    "chromium_laser_electric",
+                    "titanium_laser_electric",
                     "steel_galvanized_electromagnet",
                     "aluminium_electromagnet",
                     "stainless_steel_electromagnet",
                     "chromium_electromagnet",
                     "titanium_electromagnet",
-                    "osmiridium_zpm_decharger");
+                    "osmiridium_zpm_decharger",
+                    "osmiridium_zpm_decharger_qu");
 
     private static void addConverterRecipes(RecipeOutput output) {
         for (var entry : EnergyConverterTierCatalog.entries()) {

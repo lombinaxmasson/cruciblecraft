@@ -351,8 +351,22 @@ public final class EnergyConverterCatalog {
                 || zpm.inputPacket().size() != zpm.outputPacket().size()
                 || !zpm.policy().sourceResolution().contains("ZPM_ITEM_SLOT")
                 || !zpm.policy().sourceResolution().contains(
-                        "IL_ZPM_UNMAPPED_DISCHARGE_BLOCKED")) {
+                        "ZPM_MODULE_14999")) {
             throw new IllegalStateException("ZPM decharger row drifted");
+        }
+        EnergyConverterProfile quantum = profiles.get(ResourceLocation.parse(
+                "cruciblecraft:osmiridium_zpm_decharger_qu"));
+        if (quantum == null
+                || !"zpm_decharger_qu".equals(quantum.runtimeBinding())
+                || quantum.source().sourceId() != 11170
+                || !"MultiTileEntityZPMDechargerQU".equals(
+                        quantum.source().machineKind())
+                || !"QU".equals(quantum.inputPacket().identity())
+                || !"QU".equals(quantum.outputPacket().identity())
+                || quantum.inputPacket().size() != quantum.outputPacket().size()
+                || !quantum.policy().sourceResolution().contains(
+                        "ZPM_MODULE_14999")) {
+            throw new IllegalStateException("Quantum ZPM decharger row drifted");
         }
     }
 

@@ -15,7 +15,7 @@ public final class EnergyConverterTierCatalog {
             "/data/cruciblecraft/energy_converter_tiers.json";
     public static final int GT6_LOADER_SIZE = 179;
     public static final int SMALL_GAS_TURBINE_SIZE = 7;
-    public static final int LASER_MAGNET_ZPM_SIZE = 16;
+    public static final int LASER_MAGNET_ZPM_SIZE = 17;
     public static final int EXPECTED_SIZE =
             GT6_LOADER_SIZE + SMALL_GAS_TURBINE_SIZE + LASER_MAGNET_ZPM_SIZE;
     private static final EnergyConverterTierCatalog BUNDLED = loadBundled();

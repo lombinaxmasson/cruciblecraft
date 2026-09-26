@@ -6910,7 +6910,7 @@
         ],
         "keys": {
           "L": {
-            "item": "gt6:comp_laser_gas_co2"
+            "item": "cruciblecraft:laser_gas_co2"
           },
           "W": {
             "prefix": "cable",
@@ -6947,7 +6947,7 @@
         ],
         "keys": {
           "L": {
-            "item": "gt6:comp_laser_gas_co2"
+            "item": "cruciblecraft:laser_gas_co2"
           },
           "W": {
             "prefix": "cable",
@@ -6984,7 +6984,7 @@
         ],
         "keys": {
           "L": {
-            "item": "gt6:comp_laser_gas_co2"
+            "item": "cruciblecraft:laser_gas_co2"
           },
           "W": {
             "prefix": "cable",
@@ -7021,7 +7021,7 @@
         ],
         "keys": {
           "L": {
-            "item": "gt6:comp_laser_gas_co2"
+            "item": "cruciblecraft:laser_gas_co2"
           },
           "W": {
             "prefix": "quadruple_cable",
@@ -7058,7 +7058,7 @@
         ],
         "keys": {
           "L": {
-            "item": "gt6:comp_laser_gas_co2"
+            "item": "cruciblecraft:laser_gas_co2"
           },
           "W": {
             "prefix": "quadruple_cable",
@@ -7496,6 +7496,42 @@
         "keys": {
           "P": {
             "item": "cruciblecraft:processor_crystal_sapphire"
+          },
+          "C": {
+            "item": "cruciblecraft:circuit_ultimate"
+          },
+          "M": {
+            "prefix": "machine_casing_dense",
+            "material": "osmiridium"
+          },
+          "F": {
+            "item": "cruciblecraft:compact_force_field_emitter_luv"
+          }
+        }
+      }
+    },
+    {
+      "id": "cruciblecraft:osmiridium_zpm_decharger_qu",
+      "kind": "cruciblecraft:zpm_decharger_qu",
+      "material": "osmiridium",
+      "source_id": 11170,
+      "source_line": 1000,
+      "gt6_class": "MultiTileEntityZPMDechargerQU",
+      "material_expression": "MT.Osmiridium",
+      "nbt_output": 131072,
+      "nbt_input": 131072,
+      "efficiency_bps": 0,
+      "output_expression": "131072",
+      "fuel_map": "NONE",
+      "recipe": {
+        "pattern": [
+          "PCP",
+          "CMC",
+          "FCF"
+        ],
+        "keys": {
+          "P": {
+            "item": "cruciblecraft:processor_crystal_ruby"
           },
           "C": {
             "item": "cruciblecraft:circuit_ultimate"

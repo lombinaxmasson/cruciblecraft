@@ -9,11 +9,15 @@ import com.masson.cruciblecraft.content.blockentity.DirectedWasteConverterBlockE
 import com.masson.cruciblecraft.content.blockentity.ElectricHeaterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ZpmDechargerBlockEntity;
+import com.masson.cruciblecraft.energy.battery.BatteryCharge;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
 import com.masson.cruciblecraft.gametest.support.GameTestRequirements;
+import com.masson.cruciblecraft.energy.zpm.ZpmModule;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
 import net.minecraft.core.BlockPos;
@@ -21,6 +25,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,7 +44,7 @@ public final class LaserMagnetZpmGameTests {
     private LaserMagnetZpmGameTests() {}
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void catalogRowsAndBlockedLaserRecipes(GameTestHelper helper) {
+    public static void catalogRowsAndLaserRecipes(GameTestHelper helper) {
         helper.assertTrue(
                 EnergyConverterCatalog.profiles().stream()
                                 .filter(profile ->
@@ -50,15 +55,18 @@ public final class LaserMagnetZpmGameTests {
                                                 || "magnet_electric".equals(
                                                         profile.runtimeBinding())
                                                 || "zpm_decharger".equals(
+                                                        profile.runtimeBinding())
+                                                || "zpm_decharger_qu".equals(
                                                         profile.runtimeBinding()))
                                 .count()
                         == EnergyConverterTierCatalog.LASER_MAGNET_ZPM_SIZE,
                 "Laser, magnet, and ZPM host count drifted");
-        assertRecipe(helper, "steel_galvanized_laser_electric", false);
-        assertRecipe(helper, "titanium_laser_electric", false);
+        assertRecipe(helper, "steel_galvanized_laser_electric", true);
+        assertRecipe(helper, "titanium_laser_electric", true);
         assertRecipe(helper, "steel_galvanized_laser_absorber", true);
         assertRecipe(helper, "titanium_electromagnet", true);
         assertRecipe(helper, "osmiridium_zpm_decharger", true);
+        assertRecipe(helper, "osmiridium_zpm_decharger_qu", true);
         helper.succeed();
     }
 
@@ -86,6 +94,64 @@ public final class LaserMagnetZpmGameTests {
         helper.assertTrue(
                 "blocked".equals(laser.status()),
                 "Laser did not report blocked LU output");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void selectorCoverScalesLaserOutput(GameTestHelper helper) {
+        BlockPos laserPos = new BlockPos(2, 1, 2);
+        BlockPos absorberPos = new BlockPos(2, 1, 1);
+        EnergyConverterProfile laserProfile = placeDirected(
+                helper, laserPos, "steel_galvanized_laser_electric", Direction.NORTH);
+        placeDirected(
+                helper,
+                absorberPos,
+                "steel_galvanized_laser_absorber",
+                Direction.NORTH);
+        DirectedWasteConverterBlockEntity laser =
+                GameTestRequirements.requireBlockEntity(
+                        helper, laserPos, DirectedWasteConverterBlockEntity.class);
+        DirectedWasteConverterBlockEntity absorber =
+                GameTestRequirements.requireBlockEntity(
+                        helper,
+                        absorberPos,
+                        DirectedWasteConverterBlockEntity.class);
+        int mode = 8;
+        helper.assertTrue(
+                laser.setCover(
+                        Direction.UP,
+                        PipeCover.of("cruciblecraft:selector_tag")
+                                .withDisplay(0, mode)),
+                "Laser rejected the selector cover");
+        helper.assertTrue(
+                laser.insert(
+                                EnergyType.ELECTRIC,
+                                laserProfile.inputWindow().maximum(),
+                                1L,
+                                Direction.SOUTH,
+                                false)
+                        == 1L,
+                "Scaled laser rejected its input maximum");
+        DirectedWasteConverterBlockEntity.serverTick(
+                helper.getLevel(),
+                helper.absolutePos(laserPos),
+                helper.getBlockState(laserPos),
+                laser);
+        long outputCap = DirectedWasteConverterBlockEntity.selectorLimit(
+                laserProfile.outputPacket().size() * 2L, mode, false);
+        long waste = DirectedWasteConverterBlockEntity.selectorLimit(
+                laserProfile.inputWindow().maximum(), mode, true);
+        helper.assertTrue(laser.selectorMode() == mode, "Selector mode was not read");
+        helper.assertTrue(
+                outputCap == laserProfile.outputPacket().size(),
+                "Mode 8 did not halve the laser maximum");
+        helper.assertTrue(
+                absorber.stored() == outputCap,
+                "Absorber did not receive the scaled LU packet");
+        helper.assertTrue(
+                laser.stored()
+                        == laserProfile.inputWindow().maximum() - waste,
+                "Laser did not keep the unspent EU");
         helper.succeed();
     }
 
@@ -223,7 +289,7 @@ public final class LaserMagnetZpmGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void zpmSlotRejectsItemsAndQuantum(GameTestHelper helper) {
+    public static void zpmDischargesModuleAndRejectsOtherItems(GameTestHelper helper) {
         BlockPos relative = new BlockPos(2, 1, 2);
         helper.setBlock(
                 relative,
@@ -255,6 +321,96 @@ public final class LaserMagnetZpmGameTests {
                                 false)
                         == 0L,
                 "Empty ZPM decharger accepted QU");
+        ItemStack module = ModItems.ZERO_POINT_MODULE.get().fullStack();
+        helper.assertTrue(
+                items.insertItem(0, module, false).isEmpty(),
+                "Full zero-point module was rejected");
+        helper.assertTrue(
+                decharger.insert(
+                                EnergyType.QUANTUM,
+                                decharger.profile().inputPacket().size(),
+                                1L,
+                                Direction.SOUTH,
+                                false)
+                        == 0L,
+                "Charged module made the decharger accept QU");
+        ZpmDechargerBlockEntity.serverTick(
+                helper.getLevel(),
+                helper.absolutePos(relative),
+                helper.getBlockState(relative),
+                decharger);
+        long packet = decharger.profile().inputPacket().size();
+        long pulled = packet * ZpmModule.PULL_PACKETS_LOW;
+        helper.assertTrue(
+                BatteryCharge.get(items.getStackInSlot(0))
+                        == ZpmModule.CAPACITY - pulled,
+                "Module did not lose one low-buffer pull");
+        helper.assertTrue(
+                decharger.stored() == pulled,
+                "Decharger buffer did not keep the pulled QU");
+        helper.assertTrue(
+                decharger.extract(
+                                EnergyType.ELECTRIC,
+                                packet,
+                                1L,
+                                Direction.NORTH,
+                                false)
+                        == 1L,
+                "Decharger did not emit one EU packet");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void zpmQuantumEmitsQuantumFromTheModule(GameTestHelper helper) {
+        BlockPos relative = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                relative,
+                facing(
+                        ModBlocks.converterBlocksById()
+                                .get(id("osmiridium_zpm_decharger_qu"))
+                                .get(),
+                        ZpmDechargerBlock.FACING,
+                        Direction.NORTH));
+        ZpmDechargerBlockEntity decharger =
+                GameTestRequirements.requireBlockEntity(
+                        helper, relative, ZpmDechargerBlockEntity.class);
+        IItemHandler items = GameTestRequirements.requireCapability(
+                helper,
+                Capabilities.ItemHandler.BLOCK,
+                relative,
+                Direction.UP,
+                "Quantum ZPM decharger has no item capability");
+        helper.assertTrue(
+                items.insertItem(
+                                0,
+                                ModItems.ZERO_POINT_MODULE.get().fullStack(),
+                                false)
+                        .isEmpty(),
+                "Full zero-point module was rejected");
+        ZpmDechargerBlockEntity.serverTick(
+                helper.getLevel(),
+                helper.absolutePos(relative),
+                helper.getBlockState(relative),
+                decharger);
+        long packet = decharger.profile().outputPacket().size();
+        helper.assertTrue(
+                decharger.extract(
+                                EnergyType.ELECTRIC,
+                                packet,
+                                1L,
+                                Direction.NORTH,
+                                true)
+                        == 0L,
+                "Quantum decharger offered EU");
+        helper.assertTrue(
+                decharger.extract(
+                                EnergyType.QUANTUM,
+                                packet,
+                                1L,
+                                Direction.NORTH,
+                                false)
+                        == 1L,
+                "Quantum decharger did not emit one QU packet");
         helper.succeed();
     }
 

@@ -17,6 +17,7 @@
     "src/main/resources/assets/cruciblecraft/textures/block/energy/laser_absorber/**",
     "src/main/resources/assets/cruciblecraft/textures/block/energy/magnet_electric/**",
     "src/main/resources/assets/cruciblecraft/textures/block/energy/zpm_decharger/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/energy/zpm_decharger_qu/**",
     "src/test/java/com/masson/cruciblecraft/energy/converter/LaserMagnetZpmConverterTest.java",
     "src/test/java/com/masson/cruciblecraft/gametest/LaserMagnetZpmGameTests.java",
     "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/**"
@@ -38,7 +39,7 @@
         "cruciblecraft:chromium_laser_electric",
         "cruciblecraft:titanium_laser_electric"
       ],
-      "reason": "GT6 MultiTileEntityLaserElectric 10101-10105. EU to LU, WASTE_ENERGY. Recipes stay unemitted because IL.Comp_Laser_Gas_CO2 is unmapped."
+      "reason": "GT6 MultiTileEntityLaserElectric 10101-10105. EU to LU, WASTE_ENERGY. The grid L is cruciblecraft:laser_gas_co2, the canned Carbon Dioxide Laser Emitter (11008)."
     },
     {
       "semantic_key": "energy:laser-absorber:10151-10155",
@@ -70,8 +71,16 @@
       "runtime_ids": [
         "cruciblecraft:osmiridium_zpm_decharger"
       ],
-      "reason": "GT6 MultiTileEntityZPMDechargerEU 11171. QU to EU at V[7]. The slot accepts only IL.ZPM, which is unmapped, so discharge stays blocked. 11170 QU decharger is out of scope."
+      "reason": "GT6 MultiTileEntityZPMDechargerEU 11171. QU to EU at V[7]. The slot accepts only the zero-point module (14999) and discharges it. The module has no recipe."
+    },
+    {
+      "semantic_key": "energy:zpm-decharger-qu:11170",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:osmiridium_zpm_decharger_qu"
+      ],
+      "reason": "GT6 MultiTileEntityZPMDechargerQU 11170. QU to QU at V[7]. Same slot and pull as 11171; the front emits QU. Recipe uses the ruby crystal processor."
     }
   ],
-  "note": "Folded into energy/converter-catalog. Laser crafting is blocked on CO2 laser gas. ZPM machine recipe is source-exact; discharge is blocked on the missing ZPM item. Playtest is unsigned."
+  "note": "Folded into energy/converter-catalog. Electric laser recipes use the canned Carbon Dioxide Laser Emitter. Both ZPM dechargers discharge zero-point modules. The module has no recipe; GT6 dungeon libraries are not placed yet. Playtest is unsigned."
 }

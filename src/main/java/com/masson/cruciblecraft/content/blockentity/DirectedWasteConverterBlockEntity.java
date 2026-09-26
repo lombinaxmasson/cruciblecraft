@@ -15,7 +15,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
@@ -25,9 +24,12 @@ import net.minecraft.world.level.block.state.BlockState;
  * <p>Laser and laser absorber emit one packet whose size is the converted
  * amount. Electromagnets emit that packet out the front and the negated
  * packet out the back. Waste then discards up to the input maximum even
- * when the output side accepts nothing.
+ * when the output side accepts nothing. A selector cover mode above 0 caps
+ * both the emitted size and that waste at {@code (16 - mode) / 16} of the
+ * GT6 maximum, matching {@code TE_Behavior_Energy_Converter}.
  */
-public final class DirectedWasteConverterBlockEntity extends BlockEntity
+public final class DirectedWasteConverterBlockEntity
+        extends MachineCoverHostBlockEntity
         implements IEnergyHandler {
     private final EnergyConverterProfile profile;
     private final EnergyType inputType;
@@ -72,7 +74,28 @@ public final class DirectedWasteConverterBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             DirectedWasteConverterBlockEntity converter) {
+        converter.tickCovers();
         converter.convert(level, pos, state);
+    }
+
+    /**
+     * GT6 {@code UT.Code.units(maximum, 16, 16 - mode, roundUp)}. Mode 0 is
+     * the uncapped maximum.
+     */
+    public static long selectorLimit(long maximum, int mode, boolean roundUp) {
+        if (mode <= 0) {
+            return maximum;
+        }
+        int kept = 16 - Math.min(mode, 15);
+        if (maximum <= 0L || kept <= 0) {
+            return 0L;
+        }
+        long product = maximum * kept;
+        long quotient = product / 16L;
+        if (roundUp && product % 16L > 0L) {
+            quotient++;
+        }
+        return Math.max(0L, quotient);
     }
 
     private void convert(Level level, BlockPos pos, BlockState state) {
@@ -89,6 +112,11 @@ public final class DirectedWasteConverterBlockEntity extends BlockEntity
             setLit(level, pos, state, false);
             setChanged();
             return;
+        }
+        int mode = selectorMode();
+        if (mode > 0) {
+            converted = Math.min(
+                    converted, selectorLimit(outputMaximum, mode, false));
         }
         active = converted >= outputMinimum && stored >= inputMinimum;
         long delivered = 0L;
@@ -118,7 +146,8 @@ public final class DirectedWasteConverterBlockEntity extends BlockEntity
             status = "idle";
         }
         if (stored > 0L) {
-            buffer.consume(Math.min(stored, inputMaximum));
+            long drain = selectorLimit(inputMaximum, selectorMode(), true);
+            buffer.consume(Math.min(stored, drain));
         }
         setLit(level, pos, state, active);
         if (stored > 0L || delivered > 0L) {
@@ -203,6 +232,26 @@ public final class DirectedWasteConverterBlockEntity extends BlockEntity
 
     public boolean overcharged() {
         return overcharged;
+    }
+
+    @Override
+    public boolean runningActively() {
+        return active;
+    }
+
+    @Override
+    public boolean runningSuccessfully() {
+        return emitsEnergy;
+    }
+
+    @Override
+    public long energyStored() {
+        return buffer.stored();
+    }
+
+    @Override
+    public long energyCapacity() {
+        return buffer.capacity();
     }
 
     public String status() {

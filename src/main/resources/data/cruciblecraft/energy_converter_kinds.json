@@ -625,6 +625,32 @@
       "lang_key_en": "ZPM Decharger (Electric)",
       "lang_key_zh": "电动ZPM放电器",
       "gt6_class": "MultiTileEntityZPMDechargerEU"
+    },
+    {
+      "id": "cruciblecraft:zpm_decharger_qu",
+      "runtime": "zpm_decharger_qu",
+      "fuel_map": "NONE",
+      "accepts": [
+        "QU"
+      ],
+      "emits": [
+        "QU"
+      ],
+      "faces": {
+        "energyInputs": [
+          "ALL_BUT_FRONT"
+        ],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "texture_profile": "zpm_decharger_qu",
+      "overlay_active": true,
+      "lang_key_en": "ZPM Decharger (Quantum)",
+      "lang_key_zh": "量子ZPM放电器",
+      "gt6_class": "MultiTileEntityZPMDechargerQU"
     }
   ],
   "material_lang": {

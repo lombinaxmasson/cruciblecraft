@@ -2328,6 +2328,20 @@ public class ModLanguageProvider extends LanguageProvider {
         });
         addConverterCatalogNames();
         addBatteryCatalogNames();
+        add(
+                "tooltip.cruciblecraft.zpm.artifact",
+                chinese
+                        ? "远古的巨大能量遗物"
+                        : "An Ancient Artifact of huge Power");
+        add(
+                "tooltip.cruciblecraft.zpm.capacity",
+                chinese ? "容量：%s QU" : "Capacity: %s QU");
+        add(
+                LanguageNames.translationKey("block", "zero_point_module"),
+                chinese ? "零点模块（ZPM）" : "Zero-Point Module (ZPM)");
+        add(
+                LanguageNames.translationKey("item", "zero_point_module"),
+                chinese ? "零点模块（ZPM）" : "Zero-Point Module (ZPM)");
         addTransformerCatalogNames();
         addHeatExchangerCatalogNames();
         addLargeGasTurbineTooltips();

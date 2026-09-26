@@ -1072,7 +1072,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     || kind.runtime().equals("laser_electric")
                     || kind.runtime().equals("laser_absorber")
                     || kind.runtime().equals("magnet_electric")
-                    || kind.runtime().equals("zpm_decharger");
+                    || kind.runtime().equals("zpm_decharger")
+                    || kind.runtime().equals("zpm_decharger_qu");
             if (allDirections) {
                 configuredFacingLitAllDirections(block, inactive, active);
             } else if (kind.overlayActive()) {
@@ -1600,7 +1601,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     "laser_electric",
                     "laser_absorber",
                     "magnet_electric",
-                    "zpm_decharger");
+                    "zpm_decharger",
+                    "zpm_decharger_qu");
 
     /** GT6 laser, magnet, and ZPM art is front/back/side, not six faces. */
     private ModelFile axisEnergyCube(String textureId, boolean active) {

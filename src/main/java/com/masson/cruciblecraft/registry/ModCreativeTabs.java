@@ -295,6 +295,8 @@ public final class ModCreativeTabs {
         output.accept(ModItems.REACTOR_CORE_1X1.get());
         output.accept(ModItems.REACTOR_CORE_2X2.get());
         ModItems.reactorRods().forEach(rod -> output.accept(rod.get()));
+        output.accept(ModItems.ZERO_POINT_MODULE.get());
+        output.accept(ModItems.ZERO_POINT_MODULE.get().fullStack());
         ModItems.converterItemsById().values()
                 .forEach(item -> output.accept(item.get()));
         ModItems.batteryItemsById().values().forEach(item -> {

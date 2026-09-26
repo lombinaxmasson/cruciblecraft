@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.energy.battery.BatteryBlockItem;
+import com.masson.cruciblecraft.energy.zpm.ZpmModuleItem;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlockItem;
@@ -303,6 +304,12 @@ public final class ModItems {
                     ModBlocks.ANVIL.get(),
                     Device.ANVIL,
                     new Item.Properties()));
+    public static final DeferredItem<ZpmModuleItem> ZERO_POINT_MODULE =
+            ITEMS.register(
+                    "zero_point_module",
+                    () -> new ZpmModuleItem(
+                            ModBlocks.ZERO_POINT_MODULE.get(),
+                            new Item.Properties()));
     public static final DeferredItem<BlockItem> COKE_OVEN =
             ITEMS.registerSimpleBlockItem("coke_oven", ModBlocks.COKE_OVEN);
     public static final DeferredItem<BlockItem> MULTIBLOCK_CASING =
