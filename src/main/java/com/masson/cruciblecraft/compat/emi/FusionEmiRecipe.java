@@ -34,7 +34,7 @@ final class FusionEmiRecipe implements EmiRecipe {
         List<EmiIngredient> displayedCatalysts = new ArrayList<>();
         for (int index = 0; index < recipe.itemInputs().size(); index++) {
             int count = recipe.itemInputCounts().get(index);
-            EmiIngredient ingredient = EmiIngredient.of(
+            EmiIngredient ingredient = EmiStacks.ofIngredient(
                     recipe.itemInputs().get(index), Math.max(1, count));
             if (count == 0) {
                 displayedCatalysts.add(ingredient);
@@ -111,7 +111,7 @@ final class FusionEmiRecipe implements EmiRecipe {
         List<EmiStack> fluidInputs = new ArrayList<>();
         for (int index = 0; index < recipe.itemInputs().size(); index++) {
             int count = recipe.itemInputCounts().get(index);
-            EmiIngredient ingredient = EmiIngredient.of(
+            EmiIngredient ingredient = EmiStacks.ofIngredient(
                     recipe.itemInputs().get(index), Math.max(1, count));
             if (count == 0) {
                 Gt6EmiGui.catalyst(

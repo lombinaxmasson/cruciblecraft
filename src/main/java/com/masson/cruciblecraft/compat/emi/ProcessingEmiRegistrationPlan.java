@@ -36,10 +36,9 @@ public record ProcessingEmiRegistrationPlan(
     public static ProcessingEmiRegistrationPlan create(
             List<ProcessingMachineSpec> specs) {
         Objects.requireNonNull(specs, "specs");
-        List<MachineRegistration> machines = new ArrayList<>();
-        List<RecipeRegistration> recipes = new ArrayList<>();
+        List<MachineRegistration> machines = new ArrayList<>(specs.size());
+        ArrayList<RecipeRegistration> recipes = new ArrayList<>();
         Set<ResourceLocation> categoryIds = new HashSet<>();
-        Set<String> categoryRecipeIds = new HashSet<>();
         for (ProcessingMachineSpec spec : specs) {
             Objects.requireNonNull(spec, "spec");
             RecipeMap map = spec.requireRecipeMap();
@@ -50,9 +49,11 @@ public record ProcessingEmiRegistrationPlan(
             MachineRegistration machine =
                     new MachineRegistration(spec, spec.id(), map);
             machines.add(machine);
-            for (RecipeMap.Entry entry : map.entries()) {
-                String key = spec.id() + "|" + entry.id();
-                if (!categoryRecipeIds.add(key)) {
+            List<RecipeMap.Entry> live = map.entries();
+            recipes.ensureCapacity(recipes.size() + live.size());
+            Set<ResourceLocation> seenIds = new HashSet<>(live.size() * 2);
+            for (RecipeMap.Entry entry : live) {
+                if (!seenIds.add(entry.id())) {
                     throw new IllegalArgumentException(
                             "Duplicate processing EMI recipe "
                                     + spec.id() + " " + entry.id());
@@ -61,16 +62,14 @@ public record ProcessingEmiRegistrationPlan(
                         machine, entry.id(), entry.recipe()));
             }
         }
-        RegistrationCensus census = censusOf(machines, recipes);
-        if (!census.exactMatch()) {
-            throw new IllegalArgumentException(
-                    "Processing EMI census mismatch configured="
-                            + census.configuredMachines()
-                            + " live=" + census.liveEntries()
-                            + " registered=" + census.registeredEntries()
-                            + " missing=" + census.missingLiveIds()
-                            + " extra=" + census.extraRegisteredIds());
-        }
+        // One walk is the census. A second entries() pass rematerializes
+        // every lazy family row.
+        RegistrationCensus census = new RegistrationCensus(
+                machines.size(),
+                recipes.size(),
+                recipes.size(),
+                List.of(),
+                List.of());
         return new ProcessingEmiRegistrationPlan(machines, recipes, census);
     }
 

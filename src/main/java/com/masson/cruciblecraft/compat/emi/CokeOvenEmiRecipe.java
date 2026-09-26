@@ -29,7 +29,7 @@ final class CokeOvenEmiRecipe implements EmiRecipe {
         texture = Gt6EmiGui.texture("coke_oven");
         workstation = EmiStack.of(ModBlocks.COKE_OVEN.get());
         inputs = java.util.stream.IntStream.range(0, recipe.itemInputs().size())
-                .mapToObj(index -> EmiIngredient.of(
+                .mapToObj(index -> EmiStacks.ofIngredient(
                         recipe.itemInputs().get(index),
                         recipe.itemInputCounts().get(index)))
                 .toList();

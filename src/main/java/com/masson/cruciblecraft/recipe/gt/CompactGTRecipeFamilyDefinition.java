@@ -382,7 +382,7 @@ public record CompactGTRecipeFamilyDefinition(
         }
 
         public GTRecipe materialize() {
-            return new GTRecipe(
+            return GTRecipe.adoptValidated(
                     itemInputs,
                     itemInputCounts,
                     itemInputActions,

@@ -63,23 +63,24 @@ public record ProcessingEmiRecipeData(
                     ? consumed
                     : catalysts).add(input);
         }
-        List<ItemOutput> itemOutputs = java.util.stream.IntStream
-                .range(0, recipe.itemOutputs().size())
-                .mapToObj(index -> new ItemOutput(
-                        index,
-                        recipe.itemOutputs().get(index),
-                        recipe.outputChances().get(index)))
-                .toList();
-        List<FluidResource> fluidInputs = java.util.stream.IntStream
-                .range(0, recipe.fluidInputs().size())
-                .mapToObj(index -> new FluidResource(
-                        index, recipe.fluidInputs().get(index)))
-                .toList();
-        List<FluidResource> fluidOutputs = java.util.stream.IntStream
-                .range(0, recipe.fluidOutputs().size())
-                .mapToObj(index -> new FluidResource(
-                        index, recipe.fluidOutputs().get(index)))
-                .toList();
+        List<ItemStack> outputStacks = recipe.itemOutputsView();
+        List<ItemOutput> itemOutputs = new ArrayList<>(outputStacks.size());
+        for (int index = 0; index < outputStacks.size(); index++) {
+            itemOutputs.add(new ItemOutput(
+                    index,
+                    outputStacks.get(index),
+                    recipe.outputChances().get(index)));
+        }
+        List<FluidStack> inputFluids = recipe.fluidInputsView();
+        List<FluidResource> fluidInputs = new ArrayList<>(inputFluids.size());
+        for (int index = 0; index < inputFluids.size(); index++) {
+            fluidInputs.add(new FluidResource(index, inputFluids.get(index)));
+        }
+        List<FluidStack> outputFluids = recipe.fluidOutputsView();
+        List<FluidResource> fluidOutputs = new ArrayList<>(outputFluids.size());
+        for (int index = 0; index < outputFluids.size(); index++) {
+            fluidOutputs.add(new FluidResource(index, outputFluids.get(index)));
+        }
         return new ProcessingEmiRecipeData(
                 consumed,
                 catalysts,

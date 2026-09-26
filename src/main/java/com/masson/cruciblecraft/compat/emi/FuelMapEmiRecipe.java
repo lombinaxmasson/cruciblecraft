@@ -32,7 +32,7 @@ final class FuelMapEmiRecipe implements EmiRecipe {
             int count = index < recipe.itemInputCounts().size()
                     ? recipe.itemInputCounts().get(index)
                     : 1;
-            displayedInputs.add(EmiIngredient.of(
+            displayedInputs.add(EmiStacks.ofIngredient(
                     recipe.itemInputs().get(index), count));
         }
         recipe.fluidInputs().forEach(stack ->

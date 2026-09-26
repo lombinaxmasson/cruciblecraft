@@ -39,7 +39,7 @@ final class AnvilEmiRecipe implements EmiRecipe {
             case ANVIL -> "anvil";
         });
         inputs = java.util.stream.IntStream.range(0, recipe.itemInputs().size())
-                .mapToObj(index -> EmiIngredient.of(
+                .mapToObj(index -> EmiStacks.ofIngredient(
                         recipe.itemInputs().get(index),
                         recipe.itemInputCounts().get(index)))
                 .toList();

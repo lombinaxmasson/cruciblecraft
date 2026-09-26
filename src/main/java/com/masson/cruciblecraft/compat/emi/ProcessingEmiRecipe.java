@@ -1,16 +1,14 @@
 package com.masson.cruciblecraft.compat.emi;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 
 import com.masson.cruciblecraft.client.screen.MachineGuiTextures;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
-import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
@@ -20,7 +18,7 @@ import dev.emi.emi.api.widget.SlotWidget;
 import dev.emi.emi.api.widget.WidgetHolder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 /** Generic EMI renderer for every configured processing-machine spec. */
@@ -29,76 +27,79 @@ final class ProcessingEmiRecipe implements EmiRecipe {
     private final EmiRecipeCategory category;
     private final ResourceLocation texture;
     private final EmiStack workstation;
-    private final ProcessingEmiRecipeData data;
-    private final ProcessingEmiLayout layout;
-    private final Map<Integer, EmiIngredient> itemInputs;
-    private final Map<Integer, EmiStack> itemOutputs;
-    private final Map<Integer, EmiStack> fluidInputs;
-    private final Map<Integer, EmiStack> fluidOutputs;
+    private final ProcessingMachineSpec spec;
+    private final GTRecipe recipe;
+    private final EmiIngredient[] itemInputs;
+    private final EmiStack[] itemOutputs;
+    private final EmiStack[] fluidInputs;
+    private final EmiStack[] fluidOutputs;
     private final List<EmiIngredient> inputs;
     private final List<EmiIngredient> catalysts;
     private final List<EmiStack> outputs;
-
-    ProcessingEmiRecipe(
-            ResourceLocation id,
-            EmiRecipeCategory category,
-            ProcessingMachineSpec spec,
-            GTRecipe recipe) {
-        this(
-                id,
-                category,
-                spec,
-                recipe,
-                ModBlocks.configuredProcessingBlock(spec));
-    }
+    private ProcessingEmiRecipeData data;
+    private volatile ProcessingEmiLayout layout;
 
     ProcessingEmiRecipe(
             ResourceLocation id,
             EmiRecipeCategory category,
             ProcessingMachineSpec spec,
             GTRecipe recipe,
-            Block workstationBlock) {
+            EmiStack workstation) {
         this.category = Objects.requireNonNull(category, "category");
         this.id = EmiIds.synthetic(this.category.getId(), id);
+        this.spec = Objects.requireNonNull(spec, "spec");
+        this.recipe = Objects.requireNonNull(recipe, "recipe");
         texture = MachineGuiTextures.forMachine(spec.id());
-        workstation = EmiStack.of(workstationBlock);
-        data = ProcessingEmiRecipeData.from(spec, recipe);
-        layout = ProcessingEmiLayout.create(spec, data);
+        this.workstation = Objects.requireNonNull(workstation, "workstation");
 
-        itemInputs = new HashMap<>();
-        data.consumedInputs().forEach(input -> itemInputs.put(
-                input.recipeIndex(),
-                EmiIngredient.of(input.ingredient(), input.displayAmount())));
-        data.catalysts().forEach(input -> itemInputs.put(
-                input.recipeIndex(),
-                EmiIngredient.of(input.ingredient(), input.displayAmount())));
-        itemOutputs = new HashMap<>();
-        data.itemOutputs().forEach(output -> itemOutputs.put(
-                output.recipeIndex(),
-                EmiStacks.ofItem(output.stack()).setChance(output.chanceFraction())));
-        fluidInputs = new HashMap<>();
-        data.fluidInputs().forEach(input ->
-                fluidInputs.put(input.recipeIndex(), fluidStack(input.stack())));
-        fluidOutputs = new HashMap<>();
-        data.fluidOutputs().forEach(output ->
-                fluidOutputs.put(output.recipeIndex(), fluidStack(output.stack())));
+        int inputCount = recipe.itemInputs().size();
+        itemInputs = new EmiIngredient[inputCount];
+        List<EmiIngredient> consumed = new ArrayList<>();
+        List<EmiIngredient> catalystInputs = new ArrayList<>();
+        for (int index = 0; index < inputCount; index++) {
+            ItemInputAction action = recipe.itemInputActions().get(index);
+            long amount = action.kind() == ItemInputAction.Kind.CONSUME
+                    ? recipe.itemInputCounts().get(index)
+                    : 1L;
+            EmiIngredient ingredient = EmiStacks.ofIngredient(
+                    recipe.itemInputs().get(index), amount);
+            itemInputs[index] = ingredient;
+            if (action.kind() == ItemInputAction.Kind.CONSUME) {
+                consumed.add(ingredient);
+            } else {
+                catalystInputs.add(ingredient);
+            }
+        }
+        List<FluidStack> inputFluids = recipe.fluidInputsView();
+        fluidInputs = new EmiStack[inputFluids.size()];
+        for (int index = 0; index < inputFluids.size(); index++) {
+            fluidInputs[index] = EmiStacks.ofFluid(inputFluids.get(index));
+            consumed.add(fluidInputs[index]);
+        }
+        inputs = List.copyOf(consumed);
 
-        List<EmiIngredient> displayedInputs = new ArrayList<>();
-        data.consumedInputs().forEach(input ->
-                displayedInputs.add(requireItemInput(input.recipeIndex())));
-        data.fluidInputs().forEach(input ->
-                displayedInputs.add(requireFluidInput(input.recipeIndex())));
-        inputs = List.copyOf(displayedInputs);
-        List<EmiIngredient> displayedCatalysts = new ArrayList<>();
-        data.catalysts().forEach(input ->
-                displayedCatalysts.add(requireItemInput(input.recipeIndex())));
-        displayedCatalysts.add(workstation);
-        catalysts = List.copyOf(displayedCatalysts);
-        List<EmiStack> displayedOutputs = new ArrayList<>();
-        data.itemOutputs().forEach(output ->
-                displayedOutputs.add(requireItemOutput(output.recipeIndex())));
-        data.fluidOutputs().forEach(output ->
-                displayedOutputs.add(requireFluidOutput(output.recipeIndex())));
+        catalystInputs.add(this.workstation);
+        catalysts = List.copyOf(catalystInputs);
+
+        List<ItemStack> outputStacks = recipe.itemOutputsView();
+        itemOutputs = new EmiStack[outputStacks.size()];
+        List<EmiStack> displayedOutputs = new ArrayList<>(
+                outputStacks.size() + recipe.fluidOutputsView().size());
+        for (int index = 0; index < outputStacks.size(); index++) {
+            EmiStack stack = EmiStacks.ofItem(outputStacks.get(index));
+            int chance = recipe.outputChances().get(index);
+            if (chance != GTRecipe.GUARANTEED_CHANCE) {
+                stack.setChance(chance / (float) GTRecipe.GUARANTEED_CHANCE);
+            }
+            itemOutputs[index] = stack;
+            displayedOutputs.add(stack);
+        }
+        List<FluidStack> outputFluids = recipe.fluidOutputsView();
+        fluidOutputs = new EmiStack[outputFluids.size()];
+        for (int index = 0; index < outputFluids.size(); index++) {
+            fluidOutputs[index] = EmiStacks.ofFluid(outputFluids.get(index));
+            displayedOutputs.add(fluidOutputs[index]);
+        }
         outputs = List.copyOf(displayedOutputs);
     }
 
@@ -134,19 +135,20 @@ final class ProcessingEmiRecipe implements EmiRecipe {
 
     @Override
     public int getDisplayWidth() {
-        return layout.width();
+        return displayed().width();
     }
 
     @Override
     public int getDisplayHeight() {
-        return layout.height();
+        return displayed().height();
     }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
+        ProcessingEmiLayout shown = displayed();
         Gt6EmiGui.addPanel(widgets, texture);
-        Gt6EmiGui.addProgress(widgets, texture, layout.progress(), data.durationTicks());
-        for (ProcessingEmiLayout.ItemSlot slot : layout.itemSlots()) {
+        Gt6EmiGui.addProgress(widgets, texture, shown.progress(), data.durationTicks());
+        for (ProcessingEmiLayout.ItemSlot slot : shown.itemSlots()) {
             ProcessingEmiLayout.Rect bounds = slot.bounds();
             switch (slot.kind()) {
                 case INPUT -> Gt6EmiGui.slot(
@@ -195,7 +197,7 @@ final class ProcessingEmiRecipe implements EmiRecipe {
                 }
             }
         }
-        for (ProcessingEmiLayout.FluidTank tank : layout.fluidTanks()) {
+        for (ProcessingEmiLayout.FluidTank tank : shown.fluidTanks()) {
             ProcessingEmiLayout.Rect bounds = tank.bounds();
             SlotWidget widget = Gt6EmiGui.tank(
                     widgets,
@@ -215,32 +217,38 @@ final class ProcessingEmiRecipe implements EmiRecipe {
         Gt6EmiGui.addStats(
                 widgets,
                 data,
-                layout.costsTextY(),
-                layout.powerTextY(),
-                layout.durationTextY());
+                shown.costsTextY(),
+                shown.powerTextY(),
+                shown.durationTextY());
+    }
+
+    private ProcessingEmiLayout displayed() {
+        ProcessingEmiLayout current = layout;
+        if (current == null) {
+            data = ProcessingEmiRecipeData.from(spec, recipe);
+            current = ProcessingEmiLayout.create(spec, data);
+            layout = current;
+        }
+        return current;
     }
 
     private EmiIngredient requireItemInput(int recipeIndex) {
         return Objects.requireNonNull(
-                itemInputs.get(recipeIndex), "missing item input " + recipeIndex);
+                itemInputs[recipeIndex], "missing item input " + recipeIndex);
     }
 
     private EmiStack requireItemOutput(int recipeIndex) {
         return Objects.requireNonNull(
-                itemOutputs.get(recipeIndex), "missing item output " + recipeIndex);
+                itemOutputs[recipeIndex], "missing item output " + recipeIndex);
     }
 
     private EmiStack requireFluidInput(int recipeIndex) {
         return Objects.requireNonNull(
-                fluidInputs.get(recipeIndex), "missing fluid input " + recipeIndex);
+                fluidInputs[recipeIndex], "missing fluid input " + recipeIndex);
     }
 
     private EmiStack requireFluidOutput(int recipeIndex) {
         return Objects.requireNonNull(
-                fluidOutputs.get(recipeIndex), "missing fluid output " + recipeIndex);
-    }
-
-    private static EmiStack fluidStack(FluidStack stack) {
-        return EmiStacks.ofFluid(stack);
+                fluidOutputs[recipeIndex], "missing fluid output " + recipeIndex);
     }
 }

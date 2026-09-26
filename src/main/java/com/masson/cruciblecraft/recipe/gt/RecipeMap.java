@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -402,34 +404,90 @@ public final class RecipeMap {
             ItemInputAction action) {}
 
     private List<Entry> logicalEntries(Index snapshot) {
+        List<Entry> base = snapshot.baseEntries();
+        List<RecipeFamily> families = snapshot.families();
+        int[] boundaries = new int[families.size()];
+        int cursor = base.size();
+        for (int index = 0; index < families.size(); index++) {
+            cursor += families.get(index).logicalRecipeCount();
+            boundaries[index] = cursor;
+        }
+        int size = cursor;
         return new AbstractList<>() {
             @Override
             public Entry get(int position) {
                 requireCurrent(snapshot);
-                if (position < 0 || position >= size()) {
+                if (position < 0 || position >= size) {
                     throw new IndexOutOfBoundsException(position);
                 }
-                if (position < snapshot.baseEntries().size()) {
-                    return snapshot.baseEntries().get(position);
+                if (position < base.size()) {
+                    return base.get(position);
                 }
-                int familyIndex = position - snapshot.baseEntries().size();
-                for (RecipeFamily family : snapshot.families()) {
-                    if (familyIndex < family.logicalRecipeCount()) {
-                        Entry entry = family.enumerationEntry(familyIndex);
-                        requireCurrent(snapshot);
-                        return entry;
-                    }
-                    familyIndex -= family.logicalRecipeCount();
-                }
-                throw new IndexOutOfBoundsException(position);
+                int family = familyIndex(boundaries, position);
+                int start = family == 0 ? base.size() : boundaries[family - 1];
+                Entry entry = families.get(family).enumerationEntry(position - start);
+                requireCurrent(snapshot);
+                return entry;
             }
 
             @Override
             public int size() {
                 requireCurrent(snapshot);
-                return snapshot.logicalRecipeCount();
+                return size;
+            }
+
+            @Override
+            public Iterator<Entry> iterator() {
+                return new Iterator<>() {
+                    private int position;
+                    private int family;
+
+                    @Override
+                    public boolean hasNext() {
+                        return position < size;
+                    }
+
+                    @Override
+                    public Entry next() {
+                        if (position >= size) {
+                            throw new NoSuchElementException();
+                        }
+                        requireCurrent(snapshot);
+                        Entry entry;
+                        if (position < base.size()) {
+                            entry = base.get(position);
+                        } else {
+                            while (family < boundaries.length
+                                    && position >= boundaries[family]) {
+                                family++;
+                            }
+                            int start = family == 0
+                                    ? base.size()
+                                    : boundaries[family - 1];
+                            entry = families.get(family)
+                                    .enumerationEntry(position - start);
+                            requireCurrent(snapshot);
+                        }
+                        position++;
+                        return entry;
+                    }
+                };
             }
         };
+    }
+
+    private static int familyIndex(int[] boundaries, int position) {
+        int low = 0;
+        int high = boundaries.length - 1;
+        while (low < high) {
+            int mid = (low + high) >>> 1;
+            if (position < boundaries[mid]) {
+                high = mid;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return low;
     }
 
     private void requireCurrent(Index snapshot) {

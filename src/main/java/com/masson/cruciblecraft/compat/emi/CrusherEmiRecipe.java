@@ -27,7 +27,7 @@ final class CrusherEmiRecipe implements EmiRecipe {
         texture = Gt6EmiGui.texture("crusher");
         workstation = EmiStack.of(ModBlocks.BRONZE_CRUSHER.get());
         inputs = java.util.stream.IntStream.range(0, recipe.itemInputs().size())
-                .mapToObj(index -> EmiIngredient.of(
+                .mapToObj(index -> EmiStacks.ofIngredient(
                         recipe.itemInputs().get(index),
                         recipe.itemInputCounts().get(index)))
                 .toList();

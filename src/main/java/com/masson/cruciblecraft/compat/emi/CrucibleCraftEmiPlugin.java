@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -85,7 +84,9 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     @Override
     public void register(EmiRegistry registry) {
         long started = System.nanoTime();
+        int processingRecipes = 0;
         try {
+            EmiStacks.clearIngredientCache();
             Set<ResourceLocation> addedCategories = new HashSet<>();
             addCategory(registry, CRUCIBLE, addedCategories);
             addCategory(registry, ANVIL, addedCategories);
@@ -113,8 +114,8 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
             registerMoldCasting(registry);
             registerCrusherRecipes(registry);
             registerFusionRecipes(registry);
-            registerProcessingMachines(registry, addedCategories);
-            registerMultiblockMenuHosts(registry, addedCategories);
+            processingRecipes += registerProcessingMachines(registry, addedCategories);
+            processingRecipes += registerMultiblockMenuHosts(registry, addedCategories);
             registerMultiblockBlueprints(registry, addedCategories);
             registerFuelMaps(registry, addedCategories);
             registerHeatExchangerFuels(registry, addedCategories);
@@ -131,8 +132,9 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                     EmiIndexDedupe.isLaterCopy(indexedItems, stack.getItemStack()));
         } finally {
             CrucibleCraft.LOGGER.info(
-                    "CrucibleCraft EMI plugin registration timing: {}ms",
-                    elapsedMillis(started));
+                    "CrucibleCraft EMI plugin registration: {}ms ({} processing recipes)",
+                    elapsedMillis(started),
+                    processingRecipes);
         }
     }
 
@@ -424,11 +426,12 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         }
     }
 
-    private static void registerProcessingMachines(
+    private static int registerProcessingMachines(
             EmiRegistry registry, Set<ResourceLocation> addedCategories) {
         ProcessingEmiRegistrationPlan plan = ProcessingEmiProjectionCache.planFor(
                 ModProcessingMachines.CONFIGURED_MACHINES);
         Map<ResourceLocation, EmiRecipeCategory> categories = new HashMap<>();
+        Map<ResourceLocation, EmiStack> workstations = new HashMap<>();
         for (ProcessingEmiRegistrationPlan.MachineRegistration machine
                 : plan.machines()) {
             EmiStack workstation = EmiStack.of(
@@ -436,6 +439,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
             EmiRecipeCategory category = internCategory(
                     machine.categoryId(), workstation);
             categories.put(machine.spec().id(), category);
+            workstations.put(machine.spec().id(), workstation);
             addCategory(registry, category, addedCategories);
             registry.addWorkstation(category, workstation);
             if (machine.spec() == ModProcessingMachines.CENTRIFUGE) {
@@ -498,20 +502,14 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 }
             }
         }
-        for (ProcessingEmiRegistrationPlan.RecipeRegistration recipe
-                : plan.recipes()) {
-            EmiRecipeCategory category = Objects.requireNonNull(
-                    categories.get(recipe.machine().spec().id()),
-                    "Missing processing EMI category");
-            registry.addRecipe(new ProcessingEmiRecipe(
-                    recipe.id(),
-                    category,
-                    recipe.machine().spec(),
-                    recipe.recipe()));
+        for (ProcessingEmiRecipe recipe : EmiProjection.project(
+                plan.recipes(), categories, workstations)) {
+            registry.addRecipe(recipe);
         }
+        return plan.recipes().size();
     }
 
-    private static void registerMultiblockMenuHosts(
+    private static int registerMultiblockMenuHosts(
             EmiRegistry registry, Set<ResourceLocation> addedCategories) {
         Map<ResourceLocation, Block> workstations = Map.of(
                 ModProcessingMachines.DISTILLATION_TOWER.id(),
@@ -529,6 +527,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                         .filter(spec -> workstations.containsKey(spec.id()))
                         .toList());
         Map<ResourceLocation, EmiRecipeCategory> categories = new HashMap<>();
+        Map<ResourceLocation, EmiStack> workstationStacks = new HashMap<>();
         for (ProcessingEmiRegistrationPlan.MachineRegistration machine
                 : plan.machines()) {
             Block workstationBlock = workstations.get(machine.spec().id());
@@ -540,23 +539,15 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
             EmiRecipeCategory category = internCategory(
                     machine.categoryId(), workstation);
             categories.put(machine.spec().id(), category);
+            workstationStacks.put(machine.spec().id(), workstation);
             addCategory(registry, category, addedCategories);
             registry.addWorkstation(category, workstation);
         }
-        for (ProcessingEmiRegistrationPlan.RecipeRegistration recipe
-                : plan.recipes()) {
-            EmiRecipeCategory category = Objects.requireNonNull(
-                    categories.get(recipe.machine().spec().id()),
-                    "Missing tower EMI category");
-            Block workstationBlock = workstations.get(
-                    recipe.machine().spec().id());
-            registry.addRecipe(new ProcessingEmiRecipe(
-                    recipe.id(),
-                    category,
-                    recipe.machine().spec(),
-                    recipe.recipe(),
-                    workstationBlock));
+        for (ProcessingEmiRecipe recipe : EmiProjection.project(
+                plan.recipes(), categories, workstationStacks)) {
+            registry.addRecipe(recipe);
         }
+        return plan.recipes().size();
     }
 
     private static void registerMultiblockBlueprints(
