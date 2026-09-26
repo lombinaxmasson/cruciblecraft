@@ -146,6 +146,11 @@ import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.energy.battery.BatteryBlock;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryCatalog;
 import com.masson.cruciblecraft.energy.battery.EnergyBatteryProfile;
+import com.masson.cruciblecraft.energy.remainder.EnergyBatBoxBlock;
+import com.masson.cruciblecraft.energy.remainder.MagicFieldAbsorberBlock;
+import com.masson.cruciblecraft.energy.remainder.RemainderDevice;
+import com.masson.cruciblecraft.energy.remainder.RemainderDevices;
+import com.masson.cruciblecraft.energy.remainder.SolarPanelBlock;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerCatalog;
 import com.masson.cruciblecraft.energy.transformer.EnergyTransformerProfile;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlock;
@@ -1418,6 +1423,56 @@ public final class ModBlocks {
     public static Block[] batteryBlockArray() {
         return BATTERY_BLOCKS.values().stream()
                 .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
+    private static final Map<
+            ResourceLocation,
+            DeferredBlock<? extends Block>> REMAINDER_BLOCKS =
+                    registerRemainderBlocks();
+
+    private static Map<ResourceLocation, DeferredBlock<? extends Block>>
+            registerRemainderBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<? extends Block>> blocks =
+                new LinkedHashMap<>();
+        for (RemainderDevice device : RemainderDevices.placeable()) {
+            DeferredBlock<? extends Block> block = BLOCKS.register(
+                    device.id().getPath(),
+                    () -> remainderBlock(device));
+            if (blocks.put(device.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate remainder block " + device.id());
+            }
+        }
+        if (blocks.size() != RemainderDevices.NEW_BLOCK_COUNT) {
+            throw new IllegalStateException(
+                    "Remainder block registration drifted");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    private static Block remainderBlock(RemainderDevice device) {
+        return switch (device.kind()) {
+            case SOLAR -> new SolarPanelBlock(device, machineProperties());
+            case MAGIC_ABSORBER ->
+                    new MagicFieldAbsorberBlock(device, machineProperties());
+            case BATTERY_BOX, BATTERY_BOX_LARGE, CRYSTAL_CHARGER,
+                    CRYSTAL_CHARGER_LARGE ->
+                    new EnergyBatBoxBlock(device, machineProperties());
+        };
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<? extends Block>>
+            remainderBlocksById() {
+        return REMAINDER_BLOCKS;
+    }
+
+    public static Block[] remainderBlocks(RemainderDevice.Kind... kinds) {
+        java.util.Set<RemainderDevice.Kind> wanted = java.util.Set.of(kinds);
+        return REMAINDER_BLOCKS.entrySet().stream()
+                .filter(entry -> wanted.contains(
+                        RemainderDevices.require(entry.getKey()).kind()))
+                .map(entry -> entry.getValue().get())
                 .toArray(Block[]::new);
     }
 

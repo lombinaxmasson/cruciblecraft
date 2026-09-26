@@ -153,6 +153,24 @@ public final class StorageMenu extends AbstractContainerMenu {
         throw new IllegalStateException("Missing in-place storage at " + pos);
     }
 
+    public static StorageMenu clientRemainder(
+            int id, Inventory inventory, BlockPos pos) {
+        if (inventory.player.level().getBlockEntity(pos)
+                instanceof com.masson.cruciblecraft.energy.remainder
+                        .EnergyBatBoxBlockEntity box) {
+            return new StorageMenu(
+                    ModMenus.REMAINDER_BAT_BOX.get(),
+                    id,
+                    inventory,
+                    box.items(),
+                    box.items().getSlots(),
+                    0,
+                    pos,
+                    box::stillValid);
+        }
+        throw new IllegalStateException("Missing remainder bat box at " + pos);
+    }
+
     public StorageMenu(
             MenuType<?> type,
             int id,

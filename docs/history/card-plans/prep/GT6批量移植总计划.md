@@ -100,7 +100,7 @@ P1、P2 做完重跑逐行分类；P3 完成验证基础设施收口后，后面
 | 8 | [GT6 同类基础加工机批量](../closed/GT6同类基础加工机批量详细计划.md) | `machines/gt6-basic-machine-batch` | 已关。4 kind / 16 台 + 3 张小图 `full_replay`；石英熔炼坩埚 1018 已注册；ScannerVisuals 拆出；试玩未签 |
 | 7b | [GT6 蒸汽裂化配方批量](../closed/GT6蒸汽裂化配方批量详细计划.md) | `recipe/gt6-steamcracking-bulk` | 已关。发布 7,714 / 源行 7,746；32 行缺 `for.honey` / `honeydew`；试玩未签 |
 | 9 | [GT6 激光、磁铁与 ZPM 转换器](../closed/GT6激光磁铁ZPM转换器详细计划.md) | `energy/gt6-laser-magnet-zpm-converters` | 已关。5 kind / 17 台。电激光、电动与量子 ZPM 放电已接上；零点模块无配方，地牢图书馆尚未摆放；试玩未签 |
-| 10 | [GT6 余量能源设备](GT6余量能源设备详细计划.md) | `energy/gt6-remainder-devices` | 5 种 / 33 台 |
+| 10 | [GT6 余量能源设备](../closed/GT6余量能源设备详细计划.md) | `energy/gt6-remainder-devices` | 已关。43 台宿主（41 个新方块，LuV/ZPM 小电池箱改为四槽）。晶体充能器收发 LU。ULV 原始电路、大电池箱 PUV1、魔法场吸收器配方未发；暮色奖杯未接。试玩未签 |
 
 第 8 张不依赖身份卡与配方卡，已经提前做完。steamcracking 整图作为第 7 张的后续批次已经导入。
 

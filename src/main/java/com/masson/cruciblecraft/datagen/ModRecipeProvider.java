@@ -1013,6 +1013,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         addLargeHeatExchangerRecipes(output);
         addBatteryCellRecipes(output);
         addBatteryRecipes(output);
+        com.masson.cruciblecraft.datagen.RemainderDeviceRecipes.addAll(output);
         addTransformerRecipes(output);
         addHeatExchangerRecipes(output);
         addCoolerRecipes(output);

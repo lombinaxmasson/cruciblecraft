@@ -690,6 +690,9 @@ public final class ModItems {
             ResourceLocation, DeferredItem<BlockItem>> CONVERTER_ITEMS =
                     registerConverterItems();
     private static final Map<
+            ResourceLocation, DeferredItem<BlockItem>> REMAINDER_ITEMS =
+                    registerRemainderItems();
+    private static final Map<
             ResourceLocation, DeferredItem<BatteryBlockItem>> BATTERY_ITEMS =
                     registerBatteryItems();
     private static final Map<
@@ -1572,6 +1575,33 @@ public final class ModItems {
     public static Map<ResourceLocation, DeferredItem<BlockItem>>
             converterItemsById() {
         return CONVERTER_ITEMS;
+    }
+
+    private static Map<ResourceLocation, DeferredItem<BlockItem>>
+            registerRemainderItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
+                new LinkedHashMap<>();
+        for (var device : com.masson.cruciblecraft.energy.remainder
+                .RemainderDevices.placeable()) {
+            DeferredItem<BlockItem> item = ITEMS.registerSimpleBlockItem(
+                    device.id().getPath(),
+                    ModBlocks.remainderBlocksById().get(device.id()));
+            if (items.put(device.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate remainder item " + device.id());
+            }
+        }
+        if (items.size() != com.masson.cruciblecraft.energy.remainder
+                .RemainderDevices.NEW_BLOCK_COUNT) {
+            throw new IllegalStateException(
+                    "Remainder item registration drifted");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<BlockItem>>
+            remainderItemsById() {
+        return REMAINDER_ITEMS;
     }
 
     private static Map<ResourceLocation, DeferredItem<BatteryBlockItem>>

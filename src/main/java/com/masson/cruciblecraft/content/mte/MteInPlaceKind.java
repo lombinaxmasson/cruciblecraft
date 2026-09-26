@@ -67,7 +67,8 @@ public enum MteInPlaceKind {
                     BOTTLE_CRATE,
                     DRAWER,
                     LOCKER,
-                    MASS_STORAGE -> true;
+                    MASS_STORAGE,
+                    BATTERY_BOX -> true;
             default -> false;
         };
     }
@@ -81,6 +82,7 @@ public enum MteInPlaceKind {
             case DRAWER -> 144;
             case LOCKER -> 4;
             case BARREL, MASS_STORAGE -> 1;
+            case BATTERY_BOX -> 4;
             default -> 0;
         };
     }
@@ -95,7 +97,7 @@ public enum MteInPlaceKind {
 
     public boolean playerInventoryGui() {
         return switch (this) {
-            case CHEST, SAFE, BOOKSHELF, BOTTLE_CRATE, DRAWER -> true;
+            case CHEST, SAFE, BOOKSHELF, BOTTLE_CRATE, DRAWER, BATTERY_BOX -> true;
             default -> false;
         };
     }

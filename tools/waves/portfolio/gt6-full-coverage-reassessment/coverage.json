@@ -717,13 +717,13 @@
         "maps_untouched": 15
       }
     },
-    "cc_recipe_rows": 561122,
+    "cc_recipe_rows": 561126,
     "cc_material_rule_files": 98,
-    "capability_count": 126,
+    "capability_count": 127,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 12,
-      "runtime_ready:accepted": 109,
+      "runtime_ready:accepted": 110,
       "runtime_ready:paused": 3
     },
     "blocker_count": 62,
@@ -1231,6 +1231,15 @@
       "survival_access": "partial",
       "wave_slug": null,
       "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
+    },
+    {
+      "slug": "energy/gt6-remainder-devices",
+      "title": "GT6 remainder energy devices",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "partial",
+      "wave_slug": null,
+      "path": "tools/capabilities/energy/gt6-remainder-devices/capability.json"
     },
     {
       "slug": "energy/heat-exchangers",
@@ -3559,6 +3568,106 @@
       "disposition": "new_distinct",
       "runtime_ids": [
         "cruciblecraft:osmiridium_zpm_decharger"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "energy/gt6-laser-magnet-zpm-converters",
+      "semantic_key": "energy:zpm-decharger-qu:11170",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:osmiridium_zpm_decharger_qu"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "energy/gt6-remainder-devices",
+      "semantic_key": "energy:solar-panel:10050-10051",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tin_alloy_solar_panel",
+        "cruciblecraft:aluminium_solar_panel"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "energy/gt6-remainder-devices",
+      "semantic_key": "energy:battery-box:10080-10089",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tin_alloy_battery_box",
+        "cruciblecraft:steel_galvanized_battery_box",
+        "cruciblecraft:aluminium_battery_box",
+        "cruciblecraft:stainless_steel_battery_box",
+        "cruciblecraft:chromium_battery_box",
+        "cruciblecraft:titanium_battery_box",
+        "cruciblecraft:boxwood/battery_luv",
+        "cruciblecraft:boxwood/battery_zpm",
+        "cruciblecraft:trinitanium_battery_box",
+        "cruciblecraft:trinaquadalloy_battery_box"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "energy/gt6-remainder-devices",
+      "semantic_key": "energy:battery-box-large:10090-10099",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tin_alloy_battery_box_large",
+        "cruciblecraft:steel_galvanized_battery_box_large",
+        "cruciblecraft:aluminium_battery_box_large",
+        "cruciblecraft:stainless_steel_battery_box_large",
+        "cruciblecraft:chromium_battery_box_large",
+        "cruciblecraft:titanium_battery_box_large",
+        "cruciblecraft:iridium_battery_box_large",
+        "cruciblecraft:osmium_elemental_battery_box_large",
+        "cruciblecraft:trinitanium_battery_box_large",
+        "cruciblecraft:trinaquadalloy_battery_box_large"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "energy/gt6-remainder-devices",
+      "semantic_key": "energy:crystal-charger:10130-10139",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tin_alloy_crystal_charger",
+        "cruciblecraft:steel_galvanized_crystal_charger",
+        "cruciblecraft:aluminium_crystal_charger",
+        "cruciblecraft:stainless_steel_crystal_charger",
+        "cruciblecraft:chromium_crystal_charger",
+        "cruciblecraft:titanium_crystal_charger",
+        "cruciblecraft:iridium_crystal_charger",
+        "cruciblecraft:osmium_elemental_crystal_charger",
+        "cruciblecraft:trinitanium_crystal_charger",
+        "cruciblecraft:trinaquadalloy_crystal_charger"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "energy/gt6-remainder-devices",
+      "semantic_key": "energy:crystal-charger-large:10140-10149",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tin_alloy_crystal_charger_large",
+        "cruciblecraft:steel_galvanized_crystal_charger_large",
+        "cruciblecraft:aluminium_crystal_charger_large",
+        "cruciblecraft:stainless_steel_crystal_charger_large",
+        "cruciblecraft:chromium_crystal_charger_large",
+        "cruciblecraft:titanium_crystal_charger_large",
+        "cruciblecraft:iridium_crystal_charger_large",
+        "cruciblecraft:osmium_elemental_crystal_charger_large",
+        "cruciblecraft:trinitanium_crystal_charger_large",
+        "cruciblecraft:trinaquadalloy_crystal_charger_large"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "energy/gt6-remainder-devices",
+      "semantic_key": "energy:magic-absorber:10180",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:palladium_magic_field_absorber"
       ],
       "blocker_ids": []
     },
@@ -10157,10 +10266,10 @@
       "owned_cc_maps": [
         "canner"
       ],
-      "untraced_cc_rows": 32,
+      "untraced_cc_rows": 36,
       "untraced_cc_row_kinds": {
         "gt6_source": 28,
-        "none": 4
+        "none": 8
       },
       "rule_files": 0,
       "rule_expanded_recipes": 0,
@@ -10751,7 +10860,7 @@
       "tools/recipe_bulk/ordinary_source.py": "c29df485693a495edf056579ac192d9e9e86b46961aacda23926659a77a2065f",
       "tools/recipe_bulk/emit.py": "b95f775c318991653bff54a9bd616fddcf76ffa6c04d757b9b40c330bc2d8485",
       "tools/recipe_bulk/matrix.py": "445f496e726bbc35ee6b837a98da7f306a5824c19d163e0d9969e883acd3b5af",
-      "tools/gt6_resolve.py": "d329ed6aef840bad5d0e4b002aa2963b2439f75a01a9f80c9479f44be5b7b869",
+      "tools/gt6_resolve.py": "bc4c4e8173c806380a4ec7f86f6e6260a9f7079177afda7a2e52df17a317c54d",
       "tools/compare_gt6_recipes.py": "1a77bdbad83a7d8e004f84876397c506b8d53d2c81f6691dd7497a7e9f78fa37",
       "tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_coverage.py": "5765d66c2537e58e96a6213055580011e25f38f8e2ee92dba6e75f496913a768",
       "tools/gt6_oredict_cross_reference.json": "7b4dd75801b9c04437c176e39e4fbd6c9579dbd30af38e0fc2d8aebe322aa60b",
@@ -10760,9 +10869,9 @@
       "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "594a79e57f79a92b6d13cd9b1e08aa72ab1b837e3c7a3d15f21e7735de1067b3"
     },
     "cc_projection": {
-      "runtime_rows": 561122,
+      "runtime_rows": 561126,
       "rule_rows": 19893,
-      "digest": "33fc2dae296091758d351bec0b6eae2c6f2ac181872d63a820977e406878d8b7"
+      "digest": "ee2969071521de7baad15f12544c0c4c1b3810143e6aadbb222188c395f8ed7e"
     },
     "summary": {
       "legacy_exclusion_pending": 9642,
@@ -15266,14 +15375,28 @@
       "cc_hosts": [],
       "recipe_map_depth": null,
       "evidence": {
-        "capabilities": [],
-        "owner_attributed": [],
-        "java_files": [],
-        "java_file_count": 0,
+        "capabilities": [
+          {
+            "slug": "energy/gt6-remainder-devices",
+            "title": "GT6 remainder energy devices",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/energy/gt6-remainder-devices/capability.json"
+          }
+        ],
+        "owner_attributed": [
+          "energy/gt6-remainder-devices"
+        ],
+        "java_files": [
+          "src/main/java/com/masson/cruciblecraft/energy/remainder/RemainderDevice.java"
+        ],
+        "java_file_count": 1,
         "data_files": [],
         "data_file_count": 0
       },
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityBatteryBox|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -15301,13 +15424,28 @@
             "survival_access": null,
             "wave_slug": "content/gt6-mte-converter-remainder-runtime",
             "path": "tools/capabilities/content/gt6-mte-converter-remainder-runtime/capability.json"
+          },
+          {
+            "slug": "energy/gt6-remainder-devices",
+            "title": "GT6 remainder energy devices",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/energy/gt6-remainder-devices/capability.json"
           }
         ],
-        "owner_attributed": [],
-        "java_files": [],
-        "java_file_count": 0,
-        "data_files": [],
-        "data_file_count": 0
+        "owner_attributed": [
+          "energy/gt6-remainder-devices"
+        ],
+        "java_files": [
+          "src/main/java/com/masson/cruciblecraft/energy/remainder/RemainderDevice.java"
+        ],
+        "java_file_count": 1,
+        "data_files": [
+          "src/main/resources/data/cruciblecraft/mte_inplace_catalog.json"
+        ],
+        "data_file_count": 1
       },
       "delivery_depth": "runtime_accepted"
     },
@@ -15454,14 +15592,28 @@
       "cc_hosts": [],
       "recipe_map_depth": null,
       "evidence": {
-        "capabilities": [],
-        "owner_attributed": [],
-        "java_files": [],
-        "java_file_count": 0,
+        "capabilities": [
+          {
+            "slug": "energy/gt6-remainder-devices",
+            "title": "GT6 remainder energy devices",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/energy/gt6-remainder-devices/capability.json"
+          }
+        ],
+        "owner_attributed": [
+          "energy/gt6-remainder-devices"
+        ],
+        "java_files": [
+          "src/main/java/com/masson/cruciblecraft/energy/remainder/RemainderDevice.java"
+        ],
+        "java_file_count": 1,
         "data_files": [],
         "data_file_count": 0
       },
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityCrystalCharger|NONE|accepts:NONE|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -15480,14 +15632,28 @@
       "cc_hosts": [],
       "recipe_map_depth": null,
       "evidence": {
-        "capabilities": [],
-        "owner_attributed": [],
-        "java_files": [],
-        "java_file_count": 0,
+        "capabilities": [
+          {
+            "slug": "energy/gt6-remainder-devices",
+            "title": "GT6 remainder energy devices",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/energy/gt6-remainder-devices/capability.json"
+          }
+        ],
+        "owner_attributed": [
+          "energy/gt6-remainder-devices"
+        ],
+        "java_files": [
+          "src/main/java/com/masson/cruciblecraft/energy/remainder/RemainderDevice.java"
+        ],
+        "java_file_count": 1,
         "data_files": [],
         "data_file_count": 0
       },
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityDynamoElectric|NONE|accepts:RU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -16436,14 +16602,29 @@
       "cc_hosts": [],
       "recipe_map_depth": null,
       "evidence": {
-        "capabilities": [],
-        "owner_attributed": [],
-        "java_files": [],
-        "java_file_count": 0,
+        "capabilities": [
+          {
+            "slug": "energy/gt6-remainder-devices",
+            "title": "GT6 remainder energy devices",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/energy/gt6-remainder-devices/capability.json"
+          }
+        ],
+        "owner_attributed": [
+          "energy/gt6-remainder-devices"
+        ],
+        "java_files": [
+          "src/main/java/com/masson/cruciblecraft/energy/remainder/MagicFieldOffer.java",
+          "src/main/java/com/masson/cruciblecraft/energy/remainder/RemainderDevice.java"
+        ],
+        "java_file_count": 2,
         "data_files": [],
         "data_file_count": 0
       },
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityMagnetElectric|NONE|accepts:EU|emits:MU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -16791,14 +16972,29 @@
       "cc_hosts": [],
       "recipe_map_depth": null,
       "evidence": {
-        "capabilities": [],
-        "owner_attributed": [],
-        "java_files": [],
-        "java_file_count": 0,
+        "capabilities": [
+          {
+            "slug": "energy/gt6-remainder-devices",
+            "title": "GT6 remainder energy devices",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/energy/gt6-remainder-devices/capability.json"
+          }
+        ],
+        "owner_attributed": [
+          "energy/gt6-remainder-devices"
+        ],
+        "java_files": [
+          "src/main/java/com/masson/cruciblecraft/energy/remainder/RemainderDevice.java",
+          "src/main/java/com/masson/cruciblecraft/energy/remainder/SolarGeneration.java"
+        ],
+        "java_file_count": 2,
         "data_files": [],
         "data_file_count": 0
       },
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityTransformerElectric|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -17048,14 +17244,50 @@
       "cc_hosts": [],
       "recipe_map_depth": null,
       "evidence": {
-        "capabilities": [],
-        "owner_attributed": [],
-        "java_files": [],
-        "java_file_count": 0,
-        "data_files": [],
-        "data_file_count": 0
+        "capabilities": [
+          {
+            "slug": "energy/converter-catalog",
+            "title": "Energy Converter Catalog",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "unreviewed",
+            "wave_slug": "runtime/converter-catalog",
+            "path": "tools/capabilities/energy/converter-catalog/capability.json"
+          },
+          {
+            "slug": "energy/gt6-laser-magnet-zpm-converters",
+            "title": "GT6 laser, magnet, and ZPM converters",
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "partial",
+            "wave_slug": null,
+            "path": "tools/capabilities/energy/gt6-laser-magnet-zpm-converters/capability.json"
+          },
+          {
+            "slug": "energy/small-gas-turbine",
+            "title": "Small Gas Turbine",
+            "maturity": "frozen",
+            "workflow": "paused",
+            "survival_access": "unreviewed",
+            "wave_slug": "energy/small-gas-turbine",
+            "path": "tools/capabilities/energy/small-gas-turbine/capability.json"
+          }
+        ],
+        "owner_attributed": [
+          "energy/converter-catalog",
+          "energy/small-gas-turbine"
+        ],
+        "java_files": [
+          "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java"
+        ],
+        "java_file_count": 1,
+        "data_files": [
+          "src/main/resources/data/cruciblecraft/energy_converter_kinds.json",
+          "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
+        ],
+        "data_file_count": 2
       },
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "runtime_accepted"
     }
   ],
   "multiblock_kinds": [
@@ -23907,7 +24139,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -23936,7 +24168,8 @@
       "capability close machines/gt6-basic-machine-batch (major)",
       "recipe/gt6-steamcracking-bulk",
       "capability close recipe/gt6-steamcracking-bulk (major)",
-      "energy/gt6-laser-magnet-zpm-converters"
+      "energy/gt6-laser-magnet-zpm-converters",
+      "capability close energy/gt6-remainder-devices (major)"
     ],
     "accepted": null
   }

@@ -109,6 +109,22 @@ public final class ModCapabilities {
                 ModBlockEntities.ZPM_DECHARGER.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.SOLAR_PANEL.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.ENERGY_BAT_BOX.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.ENERGY_BAT_BOX.get(),
+                (blockEntity, side) -> blockEntity.items());
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.MAGIC_FIELD_ABSORBER.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.ZPM_DECHARGER.get(),
                 (blockEntity, side) -> blockEntity.items());

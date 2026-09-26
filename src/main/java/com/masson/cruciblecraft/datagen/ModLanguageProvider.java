@@ -2327,6 +2327,7 @@ public class ModLanguageProvider extends LanguageProvider {
                     });
         });
         addConverterCatalogNames();
+        addRemainderDeviceNames();
         addBatteryCatalogNames();
         add(
                 "tooltip.cruciblecraft.zpm.artifact",
@@ -2461,6 +2462,16 @@ public class ModLanguageProvider extends LanguageProvider {
             add(LanguageNames.translationKey("block", path), name);
             add(LanguageNames.translationKey("item", path), name);
         });
+    }
+
+    private void addRemainderDeviceNames() {
+        com.masson.cruciblecraft.energy.remainder.RemainderDevices.placeable()
+                .forEach(device -> {
+                    String path = device.id().getPath();
+                    String name = chinese ? device.chineseName() : device.englishName();
+                    add(LanguageNames.translationKey("block", path), name);
+                    add(LanguageNames.translationKey("item", path), name);
+                });
     }
 
     private String converterDisplayName(

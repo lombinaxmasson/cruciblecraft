@@ -7,6 +7,10 @@ import java.util.Set;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
+import com.masson.cruciblecraft.energy.EnergyEmitter;
+import com.masson.cruciblecraft.energy.remainder.BatBoxEngine;
+import com.masson.cruciblecraft.energy.remainder.BatteryItemEnergy;
+import com.masson.cruciblecraft.energy.remainder.RemainderDevices;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.fluid.LongFluidHandler;
 import com.masson.cruciblecraft.content.block.LargeBoilerWallParts;
@@ -125,6 +129,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     };
 
     private final ItemStackHandler items;
+    private final BatBoxEngine batBox;
     private final BathingPotRuntime bathingPot;
     private final MassStorageHandler massStorage;
     private final FluidTank tank;
@@ -180,13 +185,25 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 return switch (spec().kind()) {
                     case BOOKSHELF -> StorageFilters.book(stack);
                     case BOTTLE_CRATE -> StorageFilters.bottle(stack);
+                    case BATTERY_BOX -> BatteryItemEnergy.matches(
+                            stack, EnergyType.ELECTRIC);
                     default -> true;
                 };
             }
 
             @Override
+            public int getSlotLimit(int slot) {
+                return spec().kind() == MteInPlaceKind.BATTERY_BOX
+                        ? 1
+                        : super.getSlotLimit(slot);
+            }
+
+            @Override
             protected void onContentsChanged(int slot) {
                 MteInPlaceBlockEntity.this.setChanged();
+                if (batBox != null) {
+                    batBox.markDirty();
+                }
                 MteInPlaceKind kind = spec().kind();
                 if (kind == MteInPlaceKind.BOOKSHELF
                         || kind == MteInPlaceKind.BOTTLE_CRATE
@@ -195,6 +212,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
                 }
             }
         };
+        this.batBox = spec.kind() == MteInPlaceKind.BATTERY_BOX
+                ? new BatBoxEngine(
+                        RemainderDevices.requireMeta(spec.meta()), items)
+                : null;
         this.massStorage = spec.kind().massStorage()
                 ? new MassStorageHandler(massStorageCapacity(spec.kind()), () -> {
                     massInventoryChanged = true;
@@ -843,6 +864,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (host.bathingPot != null) {
             host.bathingPot.serverTick(level, pos);
         }
+        if (host.batBox != null) {
+            host.tickBatteryBox(level, state);
+        }
     }
 
     public void transferOnce() {
@@ -1165,6 +1189,80 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         return Optional.ofNullable(mixerStructure);
     }
 
+    private void tickBatteryBox(Level level, BlockState state) {
+        int packets = batBox.beginTick(level.getGameTime(), stopped);
+        if (packets > 0) {
+            long accepted = EnergyEmitter.pushToSide(
+                    level,
+                    worldPosition,
+                    EnergyType.ELECTRIC,
+                    batBox.output(),
+                    packets,
+                    state.getValue(MteInPlaceBlock.FACING));
+            batBox.consumeEmitted(accepted);
+        }
+        storedEnergy = batBox.buffer();
+        setChanged();
+    }
+
+    private boolean batteryBoxHandles(EnergyType type, Direction side) {
+        if (type != EnergyType.ELECTRIC) {
+            return false;
+        }
+        if (side == null) {
+            return true;
+        }
+        return side != getBlockState().getValue(MteInPlaceBlock.FACING);
+    }
+
+    private long batteryBoxOutput(EnergyType type, Direction side) {
+        if (type != EnergyType.ELECTRIC || stopped) {
+            return 0L;
+        }
+        Direction facing = getBlockState().getValue(MteInPlaceBlock.FACING);
+        if (side != null && side != facing) {
+            return 0L;
+        }
+        return batBox.buffer() >= batBox.output() ? batBox.output() : 0L;
+    }
+
+    private long insertBatteryBox(
+            EnergyType type,
+            long size,
+            long amount,
+            Direction side,
+            boolean simulate) {
+        if (!batteryBoxHandles(type, side) || amount <= 0L) {
+            return 0L;
+        }
+        BatBoxEngine.Intake intake = batBox.insert(size, amount, simulate);
+        if (intake.overcharge()) {
+            overchargeBatteryBox(size);
+        } else if (!simulate && intake.consumed() > 0L) {
+            storedEnergy = batBox.buffer();
+            setChanged();
+        }
+        return intake.consumed();
+    }
+
+    private void overchargeBatteryBox(long size) {
+        if (level == null) {
+            return;
+        }
+        float strength = SteamTurbinePresentation.overchargeExplosionStrength(size);
+        BlockPos pos = worldPosition;
+        level.removeBlock(pos, false);
+        if (strength >= 1.0F && level instanceof ServerLevel server) {
+            server.explode(
+                    null,
+                    pos.getX() + 0.5,
+                    pos.getY() + 0.5,
+                    pos.getZ() + 0.5,
+                    strength,
+                    Level.ExplosionInteraction.TNT);
+        }
+    }
+
     public void dropContents() {
         if (level == null) {
             return;
@@ -1192,6 +1290,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
 
     @Override
     public boolean handles(EnergyType type, Direction side) {
+        if (batBox != null) {
+            return batteryBoxHandles(type, side);
+        }
         if (forwardsLargeDynamoEnergy(side)) {
             return type == EnergyType.ELECTRIC;
         }
@@ -1262,6 +1363,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
 
     @Override
     public long stored(EnergyType type) {
+        if (batBox != null) {
+            return type == EnergyType.ELECTRIC ? batBox.buffer() : 0L;
+        }
         if (gasTurbineRole != null || steamTurbineRole != null) {
             return 0L;
         }
@@ -1304,6 +1408,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
 
     @Override
     public long capacity(EnergyType type) {
+        if (batBox != null) {
+            return type == EnergyType.ELECTRIC ? batBox.networkCapacity() : 0L;
+        }
         if (gasTurbineRole != null || steamTurbineRole != null) {
             return 0L;
         }
@@ -1409,6 +1516,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
 
     @Override
     public long outputSize(EnergyType type, Direction side) {
+        if (batBox != null) {
+            return batteryBoxOutput(type, side);
+        }
         if (forwardsLargeDynamoEnergy(side)) {
             LargeDynamoBlockEntity host = boundLargeDynamo();
             return host == null ? 0L : host.hatchOutputSize(type, side);
@@ -1443,6 +1553,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             long amount,
             Direction side,
             boolean simulate) {
+        if (batBox != null) {
+            return insertBatteryBox(type, size, amount, side, simulate);
+        }
         if (gasTurbineRole != null
                 || steamTurbineRole != null
                 || largeDynamoHost != null
@@ -1523,6 +1636,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             long maxAmount,
             Direction side,
             boolean simulate) {
+        if (batBox != null) {
+            return 0L;
+        }
         if (forwardsLargeDynamoEnergy(side)) {
             if (maxAmount <= 0L) {
                 return 0L;
@@ -1603,6 +1719,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             tag.putInt("compartment", drawerCompartment);
         }
         tag.put("tank", tank.writeToNBT(registries, new CompoundTag()));
+        if (batBox != null) {
+            storedEnergy = batBox.buffer();
+            tag.putInt("BatBoxMode", batBox.mode());
+        }
         tag.putLong("StoredEnergy", storedEnergy);
         tag.putLong("SteamCounter", steamCounter);
         tag.putLong("EnergyProducedNextTick", energyProducedNextTick);
@@ -1656,6 +1776,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             tank.readFromNBT(registries, tag.getCompound("tank"));
         }
         storedEnergy = tag.getLong("StoredEnergy");
+        if (batBox != null) {
+            batBox.restore(storedEnergy, tag.getInt("BatBoxMode"));
+        }
         steamCounter = tag.getLong("SteamCounter");
         energyProducedNextTick = tag.getLong("EnergyProducedNextTick");
         formed = tag.getBoolean("Formed");

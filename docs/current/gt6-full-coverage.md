@@ -15,7 +15,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 配方图 | 95 maps / 720841 源行 | `denominator_only` 13，`runtime_only` 4，`bounded_subset` 49，`full_replay` 13，`empty_source` 14，`legacy_exclusion_pending` 2 |
 | **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 80.0%**（565619）；身份就绪 86.0%；按机器平均 61.0%（73 台，完成 15，未开始 15） |
 | 配方源行逐行分类 | 720841 源行 | 已证明 565619（78.5%）；部分一致 3064（0.4%）；缺配方 39032（5.4%）；缺身份 89908（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
-| 机器 kind | 96 canonical kinds | `denominator_only` 8，`identity_only` 1，`runtime_code_uncarded` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 40，`runtime_accepted` 25，`full_replay` 11 |
+| 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_code_uncarded` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 40，`runtime_accepted` 31，`full_replay` 11 |
 | 多方块控制器 | 30 canonical kinds | `identity_only` 2，`runtime_code_uncarded` 2，`runtime_paused` 6，`runtime_accepted` 20 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
 | 能量身份 | 20 identities | 有 CC `EnergyType` 10，无 10 |
@@ -23,7 +23,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 1652 demand pairs | openable 96，gated_unresolved 1207，ungated 规模 3298（规模，非待办） |
-| Capability | 126 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 109，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 6，`partial` 25，`unreviewed` 28，`unset` 64 |
+| Capability | 127 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 110，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 6，`partial` 26，`unreviewed` 28，`unset` 64 |
 | Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
@@ -57,7 +57,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - **CC 未追溯行**：落在本图对应 CC 图上、但没有行级 GT6 evidence 的配方行（datagen 手写、`gt6_java_source`、bootstrap、design policy 等），只证明有内容，不算源行。
 - **材料规则**：`material_rule` 文件数 → `component_rule_manifest.json` 记录的离线展开数；没有展开数的规则由运行时按材料展开。
 
-扫描范围：12 个运行时资源根（含 `src/generated/resources`），按 `source-sets.gradle` 排除 5 个 pattern；CC 配方行 561122，材料规则文件 98。源行归属钉在 `tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json`（覆盖 7878，未能在 dump 中找到 0，多图歧义 0）。
+扫描范围：12 个运行时资源根（含 `src/generated/resources`），按 `source-sets.gradle` 排除 5 个 pattern；CC 配方行 561126，材料规则文件 98。源行归属钉在 `tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json`（覆盖 7878，未能在 dump 中找到 0，多图歧义 0）。
 
 | GT6 map | 源行 | 历史源分母分类 | 当前交付深度 | 逐行已证明 | reference 追溯 | CC 承载图（CC 行） | CC 未追溯行 | 材料规则 | overflow | capability | blocker |
 | --- | ---: | --- | --- | ---: | ---: | --- | ---: | ---: | ---: | --- | --- |
@@ -83,7 +83,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.assembler` | 1582 | in_scope | `bounded_subset` | 343（21.7%） | 0 | assembler 343 | 0 | 32 条 → 568 | 0 | — | architecture/combinatorial-leftover |
 | `gt.recipe.autoclave` | 392 | in_scope | `bounded_subset` | 366（93.4%） | 0 | autoclave 366 | 0 | — | 0 | — | — |
 | `gt.recipe.bath` | 59855 | in_scope | `bounded_subset` | 49407（82.5%） | 0 | bath 49407 | 58 | 1 条 | 0 | machines/bath, machines/large-bathing-vat | identity/bath-large-vat-17104, obtain/wooden-bathing-pot-glue, recipe/bath-identity-families, recipe/bath-remainder-families |
-| `gt.recipe.canner` | 3609 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 32 | — | 0 | — | — |
+| `gt.recipe.canner` | 3609 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 36 | — | 0 | — | — |
 | `gt.recipe.centrifuge` | 1296 | in_scope | `bounded_subset` | 899（69.4%） | 816 | centrifuge 1257 | 20 | — | 0 | machines/large-centrifuge | — |
 | `gt.recipe.coagulator` | 5 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 2 | — | 0 | machines/large-coagulator | — |
 | `gt.recipe.cokeoven` | 124 | in_scope | `bounded_subset` | 0 | 0 | — | 77 | — | 0 | machines/coke-oven | — |
@@ -281,12 +281,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | --- | --- | --- | --- | ---: | ---: | --- | --- |
 | `MultiTileEntityBasicMachineElectric` | RM.ScannerVisuals | EU→NONE | in_scope | 5 | 5 | — | `denominator_only` |
 | `MultiTileEntityBasicMachineElectric` | RM.Unboxinator | EU→NONE | in_scope | 5 | 5 | — | `denominator_only` |
-| `MultiTileEntityBatteryBoxLarge` | — | NONE→EU | in_scope | 1 | 1 | — | `denominator_only` |
-| `MultiTileEntityCrystalCharger` | — | NONE→LU | deferred_with_reason | 1 | 1 | — | `denominator_only` |
-| `MultiTileEntityCrystalChargerLarge` | — | NONE→LU | deferred_with_reason | 1 | 1 | — | `denominator_only` |
-| `MultiTileEntityMagicFieldAbsorber` | — | NONE→CU+HU+KU+LU+QU+TU | in_scope | 1 | 1 | — | `denominator_only` |
-| `MultiTileEntitySolarPanelElectric` | — | NONE→EU | in_scope | 2 | 2 | — | `denominator_only` |
-| `MultiTileEntityZPMDechargerQU` | — | QU→QU | deferred_with_reason | 1 | 1 | — | `denominator_only` |
 | `MultiTileEntityQuantumEnergizerLaser` | — | LU→QU | deferred_with_reason | 5 | 5 | 目录 1 个文件，无运行时 | `identity_only` |
 | `MultiTileEntityEngineRotation` | — | RU→KU | in_scope | 13 | 13 | 代码 2 个文件，无 capability | `runtime_code_uncarded` |
 | `MultiTileEntityBasicMachine` | RM.Furnace | HU→NONE | in_scope | 4 | 4 | cruciblecraft:oven | `runtime_only` |
@@ -340,8 +334,11 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityBasicMachineElectric` | RM.Mixer | EU→NONE | in_scope | 5 | 5 | cruciblecraft:electric_mixer, cruciblecraft:mixer | `bounded_subset` |
 | `MultiTileEntityBasicMachineElectric` | RM.Sifting | EU→NONE | in_scope | 5 | 5 | cruciblecraft:sifter | `bounded_subset` |
 | `MultiTileEntityAxle` | — | RU→RU | in_scope | 52 | 52 | content/gt6-mte-drive-runtime（runtime_ready/accepted） | `runtime_accepted` |
-| `MultiTileEntityBatteryBox` | — | NONE→EU | in_scope | 1 | 1 | content/gt6-mte-converter-remainder-runtime（runtime_ready/accepted） | `runtime_accepted` |
+| `MultiTileEntityBatteryBox` | — | NONE→EU | in_scope | 1 | 1 | content/gt6-mte-converter-remainder-runtime（runtime_ready/accepted）, energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
+| `MultiTileEntityBatteryBoxLarge` | — | NONE→EU | in_scope | 1 | 1 | energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityBoilerTank` | — | HU→STEAM | in_scope | 26 | 26 | energy/converter-catalog（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
+| `MultiTileEntityCrystalCharger` | — | NONE→LU | deferred_with_reason | 1 | 1 | energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
+| `MultiTileEntityCrystalChargerLarge` | — | NONE→LU | deferred_with_reason | 1 | 1 | energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityDynamoElectric` | — | RU→EU | in_scope | 5 | 5 | energy/converter-catalog（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
 | `MultiTileEntityEngineElectric` | — | EU→KU | in_scope | 5 | 5 | energy/converter-catalog（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
 | `MultiTileEntityEngineSteam` | — | STEAM→KU | in_scope | 28 | 28 | energy/converter-catalog（runtime_ready/accepted）, energy/nuclear-fission-observation-safety（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
@@ -356,14 +353,17 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityLaserAbsorberElectric` | — | LU→EU | in_scope | 5 | 5 | energy/converter-catalog（runtime_ready/accepted）, energy/gt6-laser-magnet-zpm-converters（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
 | `MultiTileEntityLaserElectric` | — | EU→LU | in_scope | 5 | 5 | energy/converter-catalog（runtime_ready/accepted）, energy/gt6-laser-magnet-zpm-converters（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
 | `MultiTileEntityLongDistanceTransformer` | — | EU→EU | in_scope | 5 | 5 | energy/transformers（runtime_ready/accepted） | `runtime_accepted` |
+| `MultiTileEntityMagicFieldAbsorber` | — | NONE→CU+HU+KU+LU+QU+TU | in_scope | 1 | 1 | energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityMagnetElectric` | — | EU→MU | in_scope | 5 | 5 | energy/converter-catalog（runtime_ready/accepted）, energy/gt6-laser-magnet-zpm-converters（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
 | `MultiTileEntityMotorElectric` | — | EU→RU | in_scope | 5 | 5 | energy/converter-catalog（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
 | `MultiTileEntityMotorLiquid` | FM.Engine | NONE→RU | in_scope | 8 | 8 | energy/converter-catalog（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
 | `MultiTileEntityReactorCore1x1` | — | NONE→NONE | deferred_with_reason | 2 | 2 | energy/nuclear-fission-hot-fluids（runtime_ready/accepted）, energy/nuclear-fission-observation-safety（runtime_ready/accepted）, energy/nuclear-fission-survival（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityReactorCore2x2` | — | NONE→NONE | deferred_with_reason | 1 | 1 | energy/nuclear-fission-hot-fluids（runtime_ready/accepted）, energy/nuclear-fission-observation-safety（runtime_ready/accepted）, energy/nuclear-fission-survival（runtime_ready/accepted） | `runtime_accepted` |
+| `MultiTileEntitySolarPanelElectric` | — | NONE→EU | in_scope | 2 | 2 | energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityTransformerElectric` | — | EU→EU | in_scope | 9 | 9 | content/puv-omega-parts（frozen/paused）, energy/transformers（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityTransformerRotation` | — | RU→RU | in_scope | 13 | 13 | energy/transformers（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityZPMDechargerEU` | — | QU→EU | in_scope | 1 | 1 | energy/converter-catalog（runtime_ready/accepted）, energy/gt6-laser-magnet-zpm-converters（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
+| `MultiTileEntityZPMDechargerQU` | — | QU→QU | deferred_with_reason | 1 | 1 | energy/converter-catalog（runtime_ready/accepted）, energy/gt6-laser-magnet-zpm-converters（runtime_ready/accepted）, energy/small-gas-turbine（frozen/paused） | `runtime_accepted` |
 | `MultiTileEntityBasicMachine` | RM.BurnMixer | RU→NONE | in_scope | 4 | 4 | cruciblecraft:burn_mixer | `full_replay` |
 | `MultiTileEntityBasicMachine` | RM.CatalyticCracking | HU→NONE | in_scope | 4 | 4 | cruciblecraft:catalytic_cracker | `full_replay` |
 | `MultiTileEntityBasicMachine` | RM.ClusterMill | RU→NONE | in_scope | 4 | 4 | cruciblecraft:clustermill | `full_replay` |
@@ -572,7 +572,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - `skipped`：0
 - `ungated_generated_flag_pairs`：3298
 
-## 12. Capability（126）
+## 12. Capability（127）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -627,6 +627,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `energy/flux-converters` | runtime_ready | paused | unreviewed |
 | `energy/fusion-quantum` | frozen | paused | — |
 | `energy/gt6-laser-magnet-zpm-converters` | runtime_ready | accepted | partial |
+| `energy/gt6-remainder-devices` | runtime_ready | accepted | partial |
 | `energy/heat-exchangers` | runtime_ready | accepted | unreviewed |
 | `energy/large-gas-turbine` | runtime_ready | accepted | partial |
 | `energy/large-heat-exchanger` | frozen | paused | — |

@@ -305,6 +305,17 @@ public final class ModCreativeTabs {
         });
         ModItems.transformerItemsById().values()
                 .forEach(item -> output.accept(item.get()));
+        ModItems.remainderItemsById().values()
+                .forEach(item -> output.accept(item.get()));
+        com.masson.cruciblecraft.energy.remainder.RemainderDevices.devices()
+                .stream()
+                .filter(com.masson.cruciblecraft.energy.remainder.RemainderDevice::legacy)
+                .forEach(device -> {
+                    var item = ModItems.mteInPlaceItemsById().get(device.id());
+                    if (item != null) {
+                        output.accept(item.get());
+                    }
+                });
         ModItems.heatExchangerItemsById().values()
                 .forEach(item -> output.accept(item.get()));
         ModItems.coolerItemsById().values()

@@ -210,6 +210,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 "rotational_gearbox",
                 ModBlocks.ROTATIONAL_GEARBOX.get());
         registerConverters();
+        registerRemainderDevices();
         registerBatteries();
         registerTransformers();
         registerHeatExchangers();
@@ -1043,6 +1044,105 @@ public class ModBlockStateProvider extends BlockStateProvider {
             face.end();
         }
         element.end();
+    }
+
+    private void registerRemainderDevices() {
+        java.util.Map<String, ModelFile[]> batModels = new java.util.HashMap<>();
+        java.util.Map<String, ModelFile[]> panelModels = new java.util.HashMap<>();
+        for (var device : com.masson.cruciblecraft.energy.remainder
+                .RemainderDevices.placeable()) {
+            var block = ModBlocks.remainderBlocksById().get(device.id()).get();
+            String texture = device.kind().texture();
+            switch (device.kind()) {
+                case BATTERY_BOX, BATTERY_BOX_LARGE, CRYSTAL_CHARGER,
+                        CRYSTAL_CHARGER_LARGE -> {
+                    ModelFile[] models = batModels.computeIfAbsent(
+                            texture, this::remainderChargeModels);
+                    getVariantBuilder(block).forAllStates(state -> {
+                        Direction facing = state.getValue(
+                                com.masson.cruciblecraft.energy.remainder
+                                        .EnergyBatBoxBlock.FACING);
+                        int charge = state.getValue(
+                                com.masson.cruciblecraft.energy.remainder
+                                        .EnergyBatBoxBlock.CHARGE);
+                        var builder = ConfiguredModel.builder()
+                                .modelFile(models[charge]);
+                        return switch (facing) {
+                            case DOWN -> builder.rotationX(90).build();
+                            case UP -> builder.rotationX(270).build();
+                            case SOUTH -> builder.rotationY(180).build();
+                            case WEST -> builder.rotationY(270).build();
+                            case EAST -> builder.rotationY(90).build();
+                            case NORTH -> builder.build();
+                        };
+                    });
+                    simpleBlockItem(block, models[0]);
+                }
+                case SOLAR, MAGIC_ABSORBER -> {
+                    ModelFile[] models = panelModels.computeIfAbsent(
+                            texture, this::remainderPanelModels);
+                    configuredFacingLitAllDirections(block, models[0], models[1]);
+                    simpleBlockItem(block, models[0]);
+                }
+            }
+        }
+    }
+
+    private ModelFile[] remainderChargeModels(String texture) {
+        return new ModelFile[] {
+                remainderFrontSide(texture, "overlay", false),
+                remainderFrontSide(texture, "overlay_active", true),
+                remainderFrontSide(texture, "overlay_blinking", true)
+        };
+    }
+
+    private ModelFile[] remainderPanelModels(String texture) {
+        return new ModelFile[] {
+                remainderPanel(texture, "overlay", false),
+                remainderPanel(texture, "overlay_active", true)
+        };
+    }
+
+    private ModelFile remainderFrontSide(
+            String texture, String overlay, boolean active) {
+        String name = "energy/" + texture + (active ? "_" + overlay : "");
+        String base = "block/energy/" + texture;
+        return models()
+                .withExistingParent(name, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/front"))
+                .texture("bot_down", modLoc(base + "/colored/side"))
+                .texture("bot_up", modLoc(base + "/colored/side"))
+                .texture("bot_north", modLoc(base + "/colored/front"))
+                .texture("bot_south", modLoc(base + "/colored/side"))
+                .texture("bot_west", modLoc(base + "/colored/side"))
+                .texture("bot_east", modLoc(base + "/colored/side"))
+                .texture("top_down", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_up", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_north", modLoc(base + "/" + overlay + "/front"))
+                .texture("top_south", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_west", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_east", modLoc(base + "/" + overlay + "/side"));
+    }
+
+    private ModelFile remainderPanel(
+            String texture, String overlay, boolean active) {
+        String name = "energy/" + texture + (active ? "_" + overlay : "");
+        String base = "block/energy/" + texture;
+        return models()
+                .withExistingParent(name, modLoc("block/machine_cube_2_layer"))
+                .texture("particle", modLoc(base + "/colored/side_facing"))
+                .texture("bot_down", modLoc(base + "/colored/bottom"))
+                .texture("bot_up", modLoc(base + "/colored/top"))
+                .texture("bot_north", modLoc(base + "/colored/side_facing"))
+                .texture("bot_south", modLoc(base + "/colored/side"))
+                .texture("bot_west", modLoc(base + "/colored/side"))
+                .texture("bot_east", modLoc(base + "/colored/side"))
+                .texture("top_down", modLoc(base + "/" + overlay + "/bottom"))
+                .texture("top_up", modLoc(base + "/" + overlay + "/top"))
+                .texture("top_north", modLoc(base + "/" + overlay + "/side_facing"))
+                .texture("top_south", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_west", modLoc(base + "/" + overlay + "/side"))
+                .texture("top_east", modLoc(base + "/" + overlay + "/side"));
     }
 
     private void registerConverters() {

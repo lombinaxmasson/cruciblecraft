@@ -82,6 +82,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         });
         ModBlocks.batteryBlocksById().forEach(
                 (id, block) -> dropSelf(block.get()));
+        ModBlocks.remainderBlocksById().forEach(
+                (id, block) -> dropSelf(block.get()));
         ModBlocks.transformerBlocksById().forEach(
                 (id, block) -> dropSelf(block.get()));
         ModBlocks.quantumEnergizerBlocksById().forEach(
@@ -310,6 +312,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
             }
         });
         ModBlocks.batteryBlocksById().forEach(
+                (id, holder) -> blocks.add(holder.get()));
+        ModBlocks.remainderBlocksById().forEach(
                 (id, holder) -> blocks.add(holder.get()));
         ModBlocks.transformerBlocksById().forEach(
                 (id, holder) -> blocks.add(holder.get()));

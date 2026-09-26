@@ -269,7 +269,7 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
         kinds = {row["behavior_class"]: row for row in self.coverage["machine_kinds"] if not row.get("recipe_map") or row["recipe_map"] == "NONE"}
         self.assertEqual("runtime_accepted", kinds["MultiTileEntityReactorCore1x1"]["delivery_depth"])
         self.assertEqual("runtime_accepted", kinds["MultiTileEntityAxle"]["delivery_depth"])
-        self.assertEqual("denominator_only", kinds["MultiTileEntitySolarPanelElectric"]["delivery_depth"])
+        self.assertEqual("runtime_accepted", kinds["MultiTileEntitySolarPanelElectric"]["delivery_depth"])
         self.assertNotIn(
             "needs_manual_audit",
             {row["delivery_depth"] for row in self.coverage["machine_kinds"]},

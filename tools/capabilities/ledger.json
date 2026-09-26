@@ -1751,6 +1751,38 @@
     },
     {
       "depends_on": [
+        "energy/batteries",
+        "energy/transformers",
+        "energy/gt6-laser-magnet-zpm-converters"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/closed/GT6余量能源设备详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/energy/remainder/**",
+        "src/main/java/com/masson/cruciblecraft/datagen/RemainderDeviceRecipes.java",
+        "src/main/resources/assets/cruciblecraft/gt6_remainder_devices_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/energy/solar_panel/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/energy/battery_box/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/energy/battery_box_large/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/energy/crystal_charger/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/energy/crystal_charger_large/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/energy/magic_absorber/**",
+        "src/test/java/com/masson/cruciblecraft/energy/remainder/RemainderDeviceTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/RemainderDeviceGameTests.java",
+        "tools/capabilities/energy/gt6-remainder-devices/**"
+      ],
+      "path": "tools/capabilities/energy/gt6-remainder-devices/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "energy/gt6-remainder-devices",
+      "survival_access": "partial",
+      "title": "GT6 remainder energy devices",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "energy/nuclear-fission-hot-fluids"
       ],
       "maturity": "runtime_ready",
@@ -4310,7 +4342,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 126,
+  "capability_count": 127,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -4587,6 +4619,7 @@
       "content/technological-parts-foundation",
       "energy/batteries",
       "energy/fusion-quantum",
+      "energy/gt6-remainder-devices",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -4647,6 +4680,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/gt6-laser-magnet-zpm-converters",
+      "energy/gt6-remainder-devices",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -4704,7 +4738,11 @@
       "machines/puv-omega-matrix"
     ],
     "energy/gt6-laser-magnet-zpm-converters": [
-      "energy/gt6-laser-magnet-zpm-converters"
+      "energy/gt6-laser-magnet-zpm-converters",
+      "energy/gt6-remainder-devices"
+    ],
+    "energy/gt6-remainder-devices": [
+      "energy/gt6-remainder-devices"
     ],
     "energy/heat-exchangers": [
       "content/electric-wire-cable-mte-fold",
@@ -4928,6 +4966,7 @@
       "content/sensors",
       "content/technological-parts-foundation",
       "energy/fusion-quantum",
+      "energy/gt6-remainder-devices",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -4994,6 +5033,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/gt6-laser-magnet-zpm-converters",
+      "energy/gt6-remainder-devices",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5065,6 +5105,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/gt6-laser-magnet-zpm-converters",
+      "energy/gt6-remainder-devices",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5127,6 +5168,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/gt6-laser-magnet-zpm-converters",
+      "energy/gt6-remainder-devices",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5192,6 +5234,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/gt6-laser-magnet-zpm-converters",
+      "energy/gt6-remainder-devices",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5256,6 +5299,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/gt6-laser-magnet-zpm-converters",
+      "energy/gt6-remainder-devices",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5322,6 +5366,7 @@
       "energy/converter-catalog",
       "energy/fusion-quantum",
       "energy/gt6-laser-magnet-zpm-converters",
+      "energy/gt6-remainder-devices",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",
@@ -5835,6 +5880,7 @@
       "energy/flux-converters",
       "energy/fusion-quantum",
       "energy/gt6-laser-magnet-zpm-converters",
+      "energy/gt6-remainder-devices",
       "energy/heat-exchangers",
       "energy/large-gas-turbine",
       "energy/large-heat-exchanger",

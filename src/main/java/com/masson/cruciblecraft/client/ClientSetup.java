@@ -587,6 +587,7 @@ public class ClientSetup {
         event.register(ModMenus.BOTTLE_CRATE.get(), StorageScreen::new);
         event.register(ModMenus.DRAWER.get(), StorageScreen::new);
         event.register(ModMenus.MTE_STORAGE.get(), StorageScreen::new);
+        event.register(ModMenus.REMAINDER_BAT_BOX.get(), StorageScreen::new);
         event.register(ModMenus.COKE_OVEN.get(), CokeOvenScreen::new);
         event.register(ModMenus.CRUSHER.get(), CrusherScreen::new);
         for (var menu : ModMenus.processingMenus()) {

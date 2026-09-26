@@ -77,6 +77,10 @@ import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SolidBurningBoxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SubsurfaceFluidDepositBlockEntity;
 import com.masson.cruciblecraft.energy.battery.BatteryBlockEntity;
+import com.masson.cruciblecraft.energy.remainder.EnergyBatBoxBlockEntity;
+import com.masson.cruciblecraft.energy.remainder.MagicFieldAbsorberBlock;
+import com.masson.cruciblecraft.energy.remainder.RemainderDevice;
+import com.masson.cruciblecraft.energy.remainder.SolarPanelBlockEntity;
 import com.masson.cruciblecraft.energy.transformer.TransformerBlockEntity;
 import com.masson.cruciblecraft.energy.heatexchanger.HeatExchangerBlockEntity;
 import com.masson.cruciblecraft.energy.cooler.CoolerBlockEntity;
@@ -695,6 +699,39 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     BatteryBlockEntity::new,
                                     ModBlocks.batteryBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<SolarPanelBlockEntity>>
+                    SOLAR_PANEL = BLOCK_ENTITIES.register(
+                            "solar_panel",
+                            () -> BlockEntityType.Builder.of(
+                                    SolarPanelBlockEntity::new,
+                                    ModBlocks.remainderBlocks(
+                                            RemainderDevice.Kind.SOLAR))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<EnergyBatBoxBlockEntity>>
+                    ENERGY_BAT_BOX = BLOCK_ENTITIES.register(
+                            "energy_bat_box",
+                            () -> BlockEntityType.Builder.of(
+                                    EnergyBatBoxBlockEntity::new,
+                                    ModBlocks.remainderBlocks(
+                                            RemainderDevice.Kind.BATTERY_BOX,
+                                            RemainderDevice.Kind.BATTERY_BOX_LARGE,
+                                            RemainderDevice.Kind.CRYSTAL_CHARGER,
+                                            RemainderDevice.Kind.CRYSTAL_CHARGER_LARGE))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<MagicFieldAbsorberBlock.MagicFieldAbsorberBlockEntity>>
+                    MAGIC_FIELD_ABSORBER = BLOCK_ENTITIES.register(
+                            "magic_field_absorber",
+                            () -> BlockEntityType.Builder.of(
+                                    MagicFieldAbsorberBlock.MagicFieldAbsorberBlockEntity::new,
+                                    ModBlocks.remainderBlocks(
+                                            RemainderDevice.Kind.MAGIC_ABSORBER))
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

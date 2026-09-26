@@ -1,0 +1,120 @@
+{
+  "schema_version": 2,
+  "slug": "energy/gt6-remainder-devices",
+  "title": "GT6 remainder energy devices",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "player_signoff": null,
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6余量能源设备详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/energy/remainder/**",
+    "src/main/java/com/masson/cruciblecraft/datagen/RemainderDeviceRecipes.java",
+    "src/main/resources/assets/cruciblecraft/gt6_remainder_devices_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/energy/solar_panel/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/energy/battery_box/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/energy/battery_box_large/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/energy/crystal_charger/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/energy/crystal_charger_large/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/energy/magic_absorber/**",
+    "src/test/java/com/masson/cruciblecraft/energy/remainder/RemainderDeviceTest.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/RemainderDeviceGameTests.java",
+    "tools/capabilities/energy/gt6-remainder-devices/**"
+  ],
+  "depends_on": [
+    "energy/batteries",
+    "energy/transformers",
+    "energy/gt6-laser-magnet-zpm-converters"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "energy:solar-panel:10050-10051",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tin_alloy_solar_panel",
+        "cruciblecraft:aluminium_solar_panel"
+      ],
+      "reason": "GT6 MultiTileEntitySolarPanelElectric 10050 silicon output 8 EU and 10051 germanium output 16 EU. Sky, day, rain, and thunder follow generateEnergy. Both recipes are shaped."
+    },
+    {
+      "semantic_key": "energy:battery-box:10080-10089",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tin_alloy_battery_box",
+        "cruciblecraft:steel_galvanized_battery_box",
+        "cruciblecraft:aluminium_battery_box",
+        "cruciblecraft:stainless_steel_battery_box",
+        "cruciblecraft:chromium_battery_box",
+        "cruciblecraft:titanium_battery_box",
+        "cruciblecraft:boxwood/battery_luv",
+        "cruciblecraft:boxwood/battery_zpm",
+        "cruciblecraft:trinitanium_battery_box",
+        "cruciblecraft:trinaquadalloy_battery_box"
+      ],
+      "reason": "GT6 MultiTileEntityBatteryBox 10080-10089. Four EU battery slots. LuV 10086 and ZPM 10087 stay on the existing MTE ids and now exchange batteries. The ULV recipe is unregistered because OD_CIRCUITS[0] is the unmapped primitive circuit. LuV and ZPM recipes were already live."
+    },
+    {
+      "semantic_key": "energy:battery-box-large:10090-10099",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tin_alloy_battery_box_large",
+        "cruciblecraft:steel_galvanized_battery_box_large",
+        "cruciblecraft:aluminium_battery_box_large",
+        "cruciblecraft:stainless_steel_battery_box_large",
+        "cruciblecraft:chromium_battery_box_large",
+        "cruciblecraft:titanium_battery_box_large",
+        "cruciblecraft:iridium_battery_box_large",
+        "cruciblecraft:osmium_elemental_battery_box_large",
+        "cruciblecraft:trinitanium_battery_box_large",
+        "cruciblecraft:trinaquadalloy_battery_box_large"
+      ],
+      "reason": "GT6 MultiTileEntityBatteryBoxLarge 10090-10099. Sixteen EU slots. The grid center is transformer 10040+tier. ULV is unregistered because the primitive circuit is unmapped. PUV1 is unregistered because transformer 10049 does not exist."
+    },
+    {
+      "semantic_key": "energy:crystal-charger:10130-10139",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tin_alloy_crystal_charger",
+        "cruciblecraft:steel_galvanized_crystal_charger",
+        "cruciblecraft:aluminium_crystal_charger",
+        "cruciblecraft:stainless_steel_crystal_charger",
+        "cruciblecraft:chromium_crystal_charger",
+        "cruciblecraft:titanium_crystal_charger",
+        "cruciblecraft:iridium_crystal_charger",
+        "cruciblecraft:osmium_elemental_crystal_charger",
+        "cruciblecraft:trinitanium_crystal_charger",
+        "cruciblecraft:trinaquadalloy_crystal_charger"
+      ],
+      "reason": "GT6 MultiTileEntityCrystalCharger 10130-10139. NBT_ENERGY_EMITTED is LU, so the box accepts and emits LU into four crystal items. The ULV recipe is unregistered because the primitive circuit is unmapped."
+    },
+    {
+      "semantic_key": "energy:crystal-charger-large:10140-10149",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:tin_alloy_crystal_charger_large",
+        "cruciblecraft:steel_galvanized_crystal_charger_large",
+        "cruciblecraft:aluminium_crystal_charger_large",
+        "cruciblecraft:stainless_steel_crystal_charger_large",
+        "cruciblecraft:chromium_crystal_charger_large",
+        "cruciblecraft:titanium_crystal_charger_large",
+        "cruciblecraft:iridium_crystal_charger_large",
+        "cruciblecraft:osmium_elemental_crystal_charger_large",
+        "cruciblecraft:trinitanium_crystal_charger_large",
+        "cruciblecraft:trinaquadalloy_crystal_charger_large"
+      ],
+      "reason": "GT6 MultiTileEntityCrystalChargerLarge 10140-10149. Sixteen LU slots. The grid center is the same-tier small crystal charger. The ULV recipe is unregistered because the primitive circuit is unmapped."
+    },
+    {
+      "semantic_key": "energy:magic-absorber:10180",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:palladium_magic_field_absorber"
+      ],
+      "reason": "GT6 MultiTileEntityMagicFieldAbsorber 10180. A dragon egg offers QU 64 and a vanilla skull offers TU 1. Twilight Forest trophies are absent, so the Naga, Lich, Hydra, Ur-Ghast, and Snow Queen rows are not implemented. The recipe is unregistered because IL.Circuit_Magic is unmapped."
+    }
+  ],
+  "note": "43 hosts are live: 41 new blocks plus the LuV and ZPM small boxes. Crystal chargers accept and emit LU. Large battery boxes center on the same-tier transformer. ULV recipes, the PUV1 large battery box, and the magic absorber stay unregistered. Twilight Forest trophies are absent. Playtest is unsigned."
+}
