@@ -1,10 +1,9 @@
 package com.masson.cruciblecraft.content.item;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 import com.masson.cruciblecraft.registry.ModComponents;
 
@@ -40,22 +39,36 @@ public final class GtWoodCatalog {
             wood("rubberwood_planks", "Rubberwood Planks", "橡胶树木板", "planks_rubber"),
             wood("willow_planks", "Willow Planks", "柳树木板", "planks_willow"),
             wood("wood_planks", "Wood Planks", "普通木板", "planks_wood"));
-    private static final Map<String, Definition> BY_ID = DEFINITIONS.stream()
-            .collect(Collectors.toUnmodifiableMap(Definition::id, Function.identity()));
+    private static final Map<String, Definition> BY_ID = definitionsById();
 
     private GtWoodCatalog() {}
 
     public static Map<String, DeferredItem<Item>> registerItems(
             DeferredRegister.Items items,
             Map<String, ? extends Supplier<? extends Block>> blocks) {
-        return DEFINITIONS.stream().collect(Collectors.toUnmodifiableMap(
-                Definition::id,
-                definition -> items.register(
-                        definition.registryPath(),
-                        () -> new GtWoodBlockItem(
-                                definition,
-                                blocks.get(definition.id()).get(),
-                                new Item.Properties()))));
+        LinkedHashMap<String, DeferredItem<Item>> registered = new LinkedHashMap<>();
+        for (Definition definition : DEFINITIONS) {
+            DeferredItem<Item> item = items.register(
+                    definition.registryPath(),
+                    () -> new GtWoodBlockItem(
+                            definition,
+                            blocks.get(definition.id()).get(),
+                            new Item.Properties()));
+            if (registered.put(definition.id(), item) != null) {
+                throw new IllegalStateException("Duplicate GT wood " + definition.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(registered);
+    }
+
+    private static Map<String, Definition> definitionsById() {
+        LinkedHashMap<String, Definition> definitions = new LinkedHashMap<>();
+        for (Definition definition : DEFINITIONS) {
+            if (definitions.put(definition.id(), definition) != null) {
+                throw new IllegalStateException("Duplicate GT wood " + definition.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(definitions);
     }
 
     public static Definition require(String id) {
