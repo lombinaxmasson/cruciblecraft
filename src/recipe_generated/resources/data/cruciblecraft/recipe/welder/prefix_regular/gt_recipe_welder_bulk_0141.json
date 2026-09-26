@@ -1,0 +1,230 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.welder#bulk_0141",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "2369c3f461da2a32c4cea8f4915eef916b2e51eedf02c4837dbee7680c772fdf",
+        "99d1f3037c2cee99ae2eb6330ef43340ad96e1cd5ce6893b92441a4c9ed5b532",
+        "da2ec38cd60c2c34c5392cce8a12edb785457dd252d4837073742a686c8f3857",
+        "b8c90a01327082e6782d705a8d7a7fbdd71918cb63ac3464ec957481705d51c2",
+        "75cc081631be5894d8a763435ba776ea613d980a4f702b3e9a869682322629bb",
+        "1e9a9878bdba82f8f916e907c89398b4a3907286689ced37c4672ab911cf2aa1"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:constantan/ingot"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 3
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:syrmorite/ingot"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 3
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:prometheum/ingot"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 3
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:carmot/ingot"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 3
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:technetium/ingot"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 3
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 3
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "count": 1,
+            "id": "cruciblecraft:triple_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "syrmorite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:triple_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "prometheum"
+            },
+            "count": 1,
+            "id": "cruciblecraft:triple_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "carmot"
+            },
+            "count": 1,
+            "id": "cruciblecraft:triple_ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "technetium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:triple_ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:constantan/item_pipe"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/2940d6303b0ace26",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/b044f72326de4c04",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/d42eecc8cbfc5064",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/ddf0965b456ce8a9",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/225f0e18b40a5a02",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:gt6/039b32294a19cddd",
+        5,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 384,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.welder#bulk_0141",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:welder/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:welder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

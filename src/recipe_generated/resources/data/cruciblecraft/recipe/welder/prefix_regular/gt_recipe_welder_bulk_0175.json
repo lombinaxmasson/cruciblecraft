@@ -1,0 +1,103 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.welder#bulk_0175",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "22a14a12d5e406b3c2207270887026e4b2501262c662435efbc3898d6bbeefc0",
+        "a4a749492158f412a2a6a79d2878633f511688a6aadffbec1d7dc21edfb19839"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_steel"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:vibranium_steel/long_rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:cosmic_neutronium/long_rod"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vibranium_steel/machine_casing_quadruple"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cosmic_neutronium/machine_casing_quadruple"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/b465c5cb7dfb720f",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/46f0ec4dccde706c",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 18304,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        6,
+        2
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.welder#bulk_0175",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:welder/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:welder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

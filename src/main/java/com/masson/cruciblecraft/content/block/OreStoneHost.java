@@ -146,7 +146,35 @@ public enum OreStoneHost implements StringRepresentable {
             "nether_quartz",
             "cruciblecraft:block/gt6/rock_ores/ore_netherquartz",
             "minecraft:block/netherrack",
-            true);
+            true),
+    PRISMARINE(
+            "prismarine",
+            "cruciblecraft:block/gt6/stones/gt.stone.prismarine.light/stone",
+            "cruciblecraft:block/gt6/stones/gt.stone.prismarine.light/cobble",
+            true),
+    PRISMARINE_DARK(
+            "prismarine_dark",
+            "cruciblecraft:block/gt6/stones/gt.stone.prismarine.dark/stone",
+            "cruciblecraft:block/gt6/stones/gt.stone.prismarine.dark/cobble",
+            true),
+    END_STONE(
+            "end_stone",
+            "minecraft:block/end_stone",
+            "minecraft:block/end_stone",
+            false),
+    SANDSTONE(
+            "sandstone",
+            "minecraft:block/sandstone",
+            "minecraft:block/sandstone",
+            false),
+    GRAVEL("gravel", "minecraft:block/gravel", "minecraft:block/gravel", false),
+    SAND("sand", "minecraft:block/sand", "minecraft:block/sand", false),
+    RED_SAND(
+            "red_sand",
+            "minecraft:block/red_sand",
+            "minecraft:block/red_sand",
+            false),
+    MUD("mud", "minecraft:block/mud", "minecraft:block/mud", false);
 
     private static final Map<String, OreStoneHost> BY_NAME =
             Arrays.stream(values()).collect(Collectors.toUnmodifiableMap(

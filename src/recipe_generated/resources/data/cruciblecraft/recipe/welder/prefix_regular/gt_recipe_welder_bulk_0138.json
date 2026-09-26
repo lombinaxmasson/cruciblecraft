@@ -1,0 +1,142 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.welder#bulk_0138",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "64b9bc5d1db18b9c7d6c9171311c12d3c6832af622018dad871c3c709285d025",
+        "712272998e27a438f4717f59ac4a24d5fb936ecdfcde4700319b8bad38b5f875",
+        "e2093940d20d8b235d8776208a2870a1a65dac415d3528d924944a9762132eec"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "draconium_awakened"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "bedrock_hslaalloy"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "adamantium"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 5
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:draconium_awakened/huge_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:bedrock_hslaalloy/huge_fluid_pipe"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantium/huge_fluid_pipe"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/1e8f428df4c09ec3",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/cbdee3ccae6c93d6",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ef1fe9ecd5e6679d",
+        2,
+        2
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 4608,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        12,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.welder#bulk_0138",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:welder/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:welder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,110 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.welder#bulk_0142",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "4a033831dc1d6fcce5730278310d34402013e3d2ed405ca3699d17c9d020efb7",
+        "5553a15f69e3d5311d7b093a55b076d335da6bd3b757d790e090af4462f2f702"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:vibranium_silver/ingot"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 3
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_silver"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 3
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_silver"
+            },
+            "count": 1,
+            "id": "cruciblecraft:triple_ingot"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vibranium_silver/item_pipe"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/21977b3c8d933574",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/ae2c41484ca3f311",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 1920,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.welder#bulk_0142",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:welder/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:welder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

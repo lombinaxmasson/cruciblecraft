@@ -65,6 +65,30 @@ Shard 是运行时索引单位，不是另一张卡。缺失单块机器晋升�
 配方卡不再顺手开门，也不再把已经能对上的缺形态当成「本图 blocked 余量」。
 非前缀缺口（染料流体、激光气体、未映射 OD / plank / MTE）仍记 blocked。
 
+## 1.2 同一个缺口跨卡怎么读
+
+三层各看一件事，不要互相代替，也不要手写进生成页。
+
+1. **是不是同一个东西。** 关卡重跑之后读
+   [gt6-full-coverage.md](gt6-full-coverage.md) §17.1，机器可读全名单在
+   `tools/waves/portfolio/gt6-full-coverage-reassessment/semantic_coverage.json`
+   的 `blockers[]`。`key` 相同就是同一个缺的身份：物品是 `物品id@meta`，
+   流体是 `fluid:<名>`，形态是 `form:<GT6 前缀>`。`rows` 是受影响源行，
+   `top_maps` 是出现最多的几张图。同一 `(材料, 形态)` 在 `form_demand_pairs`。
+   §17.1 只印前 40 项；更长的名单以 JSON 的 `key` 为准。这是全部分母上的第一缺口，
+   不是某一张配方卡的发布账。
+2. **是不是同一类、某张卡已经决定不收。** 读那张已关计划里的分类索引。
+   前缀规则类卡是
+   [GT6前缀规则类配方批量详细计划](../history/card-plans/closed/GT6前缀规则类配方批量详细计划.md)
+   §4.2（箭、子弹、`storage.raw`、缺的装饰石头、未登记科技零件等）。
+   后来的配方卡撞上同一类时引用这一节，不新开 blocker，也不在配方卡上开门。
+3. **这一张卡的哪一行没发。** 读该 wave 的
+   `tools/waves/<lane>/<slug>/<map>/blocked.json`。`reason` 里带 GT6 物品 id。
+   它只证明这张卡没发这行，不证明别的图没有同一个 `key`。
+
+形态对走普查，不把 `blocked.json` 当成开门队列。`blocked.md` 是能力级 catalog，
+不是按物品聚合的配方缺口。
+
 ## 2. Source Pack 与 production lock
 
 Source Pack 声明：

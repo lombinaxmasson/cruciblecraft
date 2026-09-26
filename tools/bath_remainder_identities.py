@@ -42,7 +42,8 @@ VANILLA_SPECIAL_META = {
 # overflow and shard_count collapses (exact 189 -> 185).
 VANILLA_RENAMES = {
     "minecraft:hardened_clay": "minecraft:terracotta",
-    "minecraft:grass": "minecraft:short_grass",
+    "minecraft:grass": "minecraft:grass_block",
+    "minecraft:quartz_ore": "minecraft:nether_quartz_ore",
     "minecraft:reeds": "minecraft:sugar_cane",
     # 1.12 melon is the slice; 1.21 minecraft:melon is the block.
     "minecraft:melon": "minecraft:melon_slice",

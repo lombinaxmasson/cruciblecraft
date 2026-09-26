@@ -1,0 +1,114 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.cutter#bulk_0060",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [
+            {
+              "amount": 400,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 400,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 400,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "0644268a9dd20d6e3d1d218f3fadbf9f8d197adf25413c77368fb618ac53cac2",
+        "9c020be77eb96a62781b5786f58a361ccd6b54d3a8a8e3b5777b28af6dda6144",
+        "2544534286373905fd7865d59d38cc55864f79cb7d7a7c7f3b958d43c6ec37c3"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "minecraft:ladder"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 2,
+            "id": "minecraft:stick"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wood"
+            },
+            "count": 12,
+            "id": "cruciblecraft:dust_div72"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/08306b7be14278cb",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:gt6/a18578fba6c1dd8f",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:gt6/0f988e52b1d1ea94",
+        2,
+        2
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 160,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.cutter#bulk_0060",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:cutter/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:cutter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

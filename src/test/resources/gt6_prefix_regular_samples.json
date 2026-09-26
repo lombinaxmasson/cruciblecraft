@@ -1,0 +1,829 @@
+{
+  "maps": [
+    {
+      "machine": "cutter",
+      "publication_group": "cruciblecraft:cutter/prefix-regular",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 32,
+          "fluids": [
+            {
+              "amount": 64,
+              "id": "cruciblecraft:lubricant"
+            }
+          ],
+          "guaranteed_outputs": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:abyssalnite/rod"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:abyssalnite/long_rod"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 16,
+          "eut": 16,
+          "fluids": [
+            {
+              "amount": 5,
+              "id": "cruciblecraft:lubricant"
+            }
+          ],
+          "guaranteed_outputs": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:slate/reinforced_bricks/slab_down"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:slate/reinforced_bricks"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 48,
+          "eut": 32,
+          "fluids": [
+            {
+              "amount": 192,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "guaranteed_outputs": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:zirconium/plate"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:double_plate",
+              "material": "zirconium"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:cutter"
+    },
+    {
+      "machine": "mortar",
+      "publication_group": "cruciblecraft:mortar/prefix-regular",
+      "samples": [
+        {
+          "duration": 2,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:abyssal_oat/tiny_dust"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:scrap",
+              "material": "abyssal_oat"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 2,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 9,
+              "id": "cruciblecraft:dust_div72",
+              "material": "wood_mossy"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:wood_mossy/bolt"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 2,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:zinc/tiny_dust"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_plate",
+              "material": "zinc"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:mortar"
+    },
+    {
+      "machine": "welder",
+      "publication_group": "cruciblecraft:welder/prefix-regular",
+      "samples": [
+        {
+          "duration": 64,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:rotor",
+              "material": "lead"
+            }
+          ],
+          "items": [
+            {
+              "count": 4,
+              "id": "cruciblecraft:curved_plate",
+              "material": "lead"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:lead/ring"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 64,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:rotor",
+              "material": "aluminium"
+            }
+          ],
+          "items": [
+            {
+              "count": 4,
+              "id": "cruciblecraft:curved_plate",
+              "material": "aluminium"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:aluminium/ring"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 64,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:rotor",
+              "material": "tin_alloy"
+            }
+          ],
+          "items": [
+            {
+              "count": 4,
+              "id": "cruciblecraft:curved_plate",
+              "material": "tin_alloy"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:tin_alloy/ring"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:welder"
+    },
+    {
+      "machine": "lathe",
+      "publication_group": "cruciblecraft:lathe/prefix-regular",
+      "samples": [
+        {
+          "duration": 1,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:round",
+              "material": "aluminium"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:aluminium/nugget"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 1,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:round",
+              "material": "silver"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:silver/nugget"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 29,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:round",
+              "material": "zirconium"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:zirconium/nugget"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:lathe"
+    },
+    {
+      "machine": "rollingmill",
+      "publication_group": "cruciblecraft:rollingmill/prefix-regular",
+      "samples": [
+        {
+          "duration": 1,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_plate",
+              "material": "aluminium"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:aluminium/nugget"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 1,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_plate",
+              "material": "tin"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tin/nugget"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 1,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_plate",
+              "material": "zinc"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:zinc/nugget"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:rollingmill"
+    },
+    {
+      "machine": "press",
+      "publication_group": "cruciblecraft:press/prefix-regular",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tool_head_pickaxe_gem",
+              "material": "zanite"
+            }
+          ],
+          "items": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:gem_flawed",
+              "material": "zanite"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:tool_head_raw_pickaxe",
+              "material": "iron"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 16,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tool_head_pickaxe_gem",
+              "material": "tanzanite"
+            }
+          ],
+          "items": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:gem_flawed",
+              "material": "tanzanite"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:tool_head_raw_pickaxe",
+              "material": "enori"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 16,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tool_head_pickaxe_gem",
+              "material": "zirconium"
+            }
+          ],
+          "items": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:gem_flawed",
+              "material": "zirconium"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:tool_head_raw_pickaxe",
+              "material": "iron"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:press"
+    },
+    {
+      "machine": "crusher",
+      "publication_group": "cruciblecraft:crusher/prefix-regular",
+      "samples": [
+        {
+          "duration": 36,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 9,
+              "id": "cruciblecraft:actinium/small_dust"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:actinium/rock"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 16,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:marble/cracked_bricks"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:marble/tiles"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 36,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 9,
+              "id": "cruciblecraft:zeolite/small_dust"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:zeolite/rock"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:crusher"
+    },
+    {
+      "machine": "anvil_bend_big",
+      "publication_group": "cruciblecraft:anvil_bend_big/bend-big",
+      "samples": [
+        {
+          "duration": 64,
+          "eut": 64,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:curved_plate",
+              "material": "actinium"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:actinium/plate"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 32,
+          "eut": 64,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:small_spring",
+              "material": "annealed_copper"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:annealed_copper/rod"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 64,
+          "eut": 64,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:curved_plate",
+              "material": "zinc"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:zinc/plate"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:anvil_bend_big"
+    },
+    {
+      "machine": "anvil_bend_small",
+      "publication_group": "cruciblecraft:anvil_bend_small/bend-small",
+      "samples": [
+        {
+          "duration": 32,
+          "eut": 64,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:annealed_copper/ring"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:annealed_copper/rod"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 32,
+          "eut": 64,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:antimony/ring"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:antimony/rod"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 64,
+          "eut": 64,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:zinc/foil"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:zinc/plate"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:anvil_bend_small"
+    },
+    {
+      "machine": "rollbender",
+      "publication_group": "cruciblecraft:rollbender/prefix-regular",
+      "samples": [
+        {
+          "duration": 4,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:aluminium/ring"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:aluminium/rod"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 4,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:lead/ring"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:lead/rod"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 16,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:curved_plate",
+              "material": "zinc"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:zinc/plate"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:rollbender"
+    },
+    {
+      "machine": "wiremill",
+      "publication_group": "cruciblecraft:wiremill/prefix-regular",
+      "samples": [
+        {
+          "duration": 8,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 4,
+              "id": "cruciblecraft:aluminium/fine_wire"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:aluminium/rod"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 8,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 4,
+              "id": "cruciblecraft:gold/fine_wire"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:gold/rod"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 8,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 4,
+              "id": "cruciblecraft:tin_alloy/fine_wire"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tin_alloy/rod"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:wiremill"
+    },
+    {
+      "machine": "sifter",
+      "publication_group": "cruciblecraft:sifter/prefix-regular",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_washed_crushed_ore",
+              "material": "cobaltite"
+            }
+          ],
+          "role": "rule",
+          "special_value": 0
+        },
+        {
+          "duration": 16,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_washed_crushed_ore",
+              "material": "yellow_fluorite"
+            }
+          ],
+          "role": "remainder",
+          "special_value": 0
+        },
+        {
+          "duration": 16,
+          "eut": 16,
+          "fluids": [],
+          "guaranteed_outputs": [],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_washed_crushed_ore",
+              "material": "zanite"
+            }
+          ],
+          "role": "boundary",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:sifter"
+    }
+  ],
+  "schema_version": 1
+}

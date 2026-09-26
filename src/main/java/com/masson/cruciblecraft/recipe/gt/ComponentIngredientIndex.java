@@ -13,6 +13,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
@@ -21,12 +22,16 @@ import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
  * Ingredient matching remains authoritative after candidate lookup.
  */
 public final class ComponentIngredientIndex {
+    private static final ResourceLocation BLOCK_STATE =
+            ResourceLocation.withDefaultNamespace("block_state");
     private static final Set<ResourceLocation> INDEXABLE_COMPONENTS = Set.of(
             ModComponents.TOOL_MATERIAL.getId(),
             ModComponents.MACHINE_MATERIAL.getId(),
             ModComponents.PREFIX_MATERIAL.getId(),
+            ModComponents.ORE_MATERIAL.getId(),
             ModComponents.CIRCUIT_CONFIG.getId(),
-            ModComponents.FIREPROOF.getId());
+            ModComponents.FIREPROOF.getId(),
+            BLOCK_STATE);
 
     private ComponentIngredientIndex() {}
 
@@ -44,6 +49,9 @@ public final class ComponentIngredientIndex {
         }
         if (componentId.equals(ModComponents.PREFIX_MATERIAL.getId())) {
             return Optional.of(ModComponents.PREFIX_MATERIAL.get());
+        }
+        if (componentId.equals(ModComponents.ORE_MATERIAL.getId())) {
+            return Optional.of(ModComponents.ORE_MATERIAL.get());
         }
         return Optional.empty();
     }
@@ -99,6 +107,13 @@ public final class ComponentIngredientIndex {
     private static String indexableValue(ResourceLocation componentId, Object value) {
         if (value instanceof String string) {
             return string;
+        }
+        if (value instanceof BlockItemStateProperties state) {
+            String host = state.properties().get("host");
+            if (host == null || host.isEmpty()) {
+                return null;
+            }
+            return host;
         }
         if (value instanceof Integer integer
                 && (componentId.equals(ModComponents.CIRCUIT_CONFIG.getId())

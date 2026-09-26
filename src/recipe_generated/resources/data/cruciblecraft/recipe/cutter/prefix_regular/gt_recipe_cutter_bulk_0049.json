@@ -1,0 +1,106 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.cutter#bulk_0049",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [
+            {
+              "amount": 400,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 400,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 400,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "9aa13e16a4eb17d5bce5c471777a9856e70d119801908cbbcc74d3055c8d2b04",
+        "7df0960506b6f8fc9d5983730c90ea0559eb841bdaf636eddb5326749a3a0d78",
+        "5ecc7ce55a82bc1c82ece68a3b79beaa76302dfa27e85813b57f29bba6a72e7f"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "minecraft:chest"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 8,
+            "id": "cruciblecraft:planks/cyan"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/21cdf195fe8227e1",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:gt6/98835d0ff0490ede",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:gt6/d771f138aed0f68c",
+        2,
+        2
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 512,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.cutter#bulk_0049",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:cutter/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:cutter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

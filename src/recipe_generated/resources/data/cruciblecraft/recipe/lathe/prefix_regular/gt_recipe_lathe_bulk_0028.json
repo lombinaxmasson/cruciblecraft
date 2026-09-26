@@ -1,0 +1,91 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.lathe#bulk_0028",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "511192ec8ba6b0cee9dbd0452c31eccd68cad95abab41fa07786adbb82d585ab",
+        "fa15314aa55872ac398a441e5601574ec3e7d2e28f649ba7d3d02514d5edbd5c"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:vibramantium/nugget"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infinity/nugget"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:round"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 1,
+            "id": "cruciblecraft:round"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/ee218d1ae98c2b2c",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/295e054a54e5e660",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 114,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.lathe#bulk_0028",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:lathe/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:lathe",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

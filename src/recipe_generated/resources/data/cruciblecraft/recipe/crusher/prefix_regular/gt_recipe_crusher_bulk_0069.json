@@ -1,0 +1,211 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.crusher#bulk_0069",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "1690fa22226960b9c0083efebc849b1de2eaadb6c9b3b46ef9ffac147cdcf6be",
+        "aee5b92136951eb63f02a690768dbc390c42b24ee63628b88b3d1c7aff4b365a",
+        "81fdd42500ca40fda05cfbe8798fd7581c291fbfd7fce69feeb67b18054ff4a6",
+        "4d8a09aeb1f25e489343e7cc784be45ef4283371897c446714c02349d34b4028"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "naquadria",
+              "minecraft:block_state": {
+                "host": "granite_red"
+              }
+            },
+            "items": "cruciblecraft:gt_broken_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "naquadria",
+              "minecraft:block_state": {
+                "host": "granite_black"
+              }
+            },
+            "items": "cruciblecraft:gt_broken_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "sunstone",
+              "minecraft:block_state": {
+                "host": "granite_black"
+              }
+            },
+            "items": "cruciblecraft:gt_broken_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "sunstone",
+              "minecraft:block_state": {
+                "host": "granite_red"
+              }
+            },
+            "items": "cruciblecraft:gt_broken_ore",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "count": 4,
+            "id": "cruciblecraft:granite_red/dust"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "count": 4,
+            "id": "cruciblecraft:granite_black/dust"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sunstone"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sunstone"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "count": 4,
+            "id": "cruciblecraft:granite_black/dust"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sunstone"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sunstone"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "count": 4,
+            "id": "cruciblecraft:granite_red/dust"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/6b89e65977a47194",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/1ac04b8e18b49fa9",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/dbe83cbc783f07b2",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/73f984f49e87978f",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 3584,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.crusher#bulk_0069",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:crusher/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:crusher",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

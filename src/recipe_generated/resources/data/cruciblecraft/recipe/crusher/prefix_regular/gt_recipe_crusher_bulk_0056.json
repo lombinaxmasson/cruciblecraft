@@ -1,0 +1,118 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.crusher#bulk_0056",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "0efcce94ba7c19fccc8c86fbb0be3e5a5b00dd7b02308a20e4720b78b1da7d34",
+        "c7011a369444325b9b42f73bc76ab1f61287ff2632220041cfecd5ee1157f6d1",
+        "4b90630355da8f5e9d2c8dc38b1d944e04effb6fd5ff18be0fb9085febb80bee"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:granite/reinforced_bricks"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:slate/reinforced_bricks"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:prismarine_dark/reinforced_bricks"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:granite/cobble"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:iron/small_dust"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:slate/cobble"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:iron/small_dust"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:prismarine_dark/cobble"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:iron/small_dust"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/3a56a997b12de2f3",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/00508345a6d173f8",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/14c6a0ed16fbfef0",
+        2,
+        2
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 128,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.crusher#bulk_0056",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:crusher/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:crusher",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

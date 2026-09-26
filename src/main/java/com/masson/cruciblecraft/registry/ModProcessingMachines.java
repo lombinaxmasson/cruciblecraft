@@ -40,7 +40,7 @@ public final class ModProcessingMachines {
             id("bronze_crusher"),
             id("crusher"),
             () -> ModRecipeMaps.CRUSHER,
-            new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
+            crusherSlots(),
             new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
             new ProcessingMachineSpec.EnergySpec(
                     EnergyType.KINETIC_PUSH,
@@ -48,11 +48,11 @@ public final class ModProcessingMachines {
                     1_024L,
                     1_024L),
             Gt6SidedIo.policy("crusher"),
-            ModProcessingMachines::validateCrusher,
+            recipe -> validateCrusherOutputs(recipe, 1_024L),
             ProcessingMachineSpec.BufferPolicy.PAUSE,
             Gt6BasicMachineGui.ui(
                     1, 12, 0, 0,
-                    1, 1, 0, 0,
+                    1, 12, 0, 0,
                     PROCESSING_STATUSES));
     public static final ProcessingMachineSpec SLUICE =
             mechanical(
@@ -82,13 +82,7 @@ public final class ModProcessingMachines {
                     false,
                     EnergyType.KINETIC_ROTATION,
                     1, 12, 0, 0);
-    public static final ProcessingMachineSpec SIFTER =
-            mechanical(
-                    "sifter",
-                    () -> ModRecipeMaps.SIFTER,
-                    false,
-                    EnergyType.KINETIC_PUSH,
-                    1, 12, 0, 0);
+    public static final ProcessingMachineSpec SIFTER = sifterSpec();
     public static final ProcessingMachineSpec MORTAR =
             mechanical(
                     "mortar",
@@ -119,10 +113,11 @@ public final class ModProcessingMachines {
                     "cutter",
                     () -> ModRecipeMaps.CUTTER,
                     1,
-                    false,
+                    true,
                     false,
                     EnergyType.KINETIC_ROTATION,
-                    1, 3, 1, 0);
+                    1, 3, 1, 0,
+                    3);
     public static final ProcessingMachineSpec LATHE =
             componentSpec(
                     "lathe",
@@ -131,7 +126,8 @@ public final class ModProcessingMachines {
                     false,
                     false,
                     EnergyType.KINETIC_ROTATION,
-                    1, 2, 0, 0);
+                    1, 2, 0, 0,
+                    2);
     public static final ProcessingMachineSpec ROLLINGMILL =
             componentSpec(
                     "rollingmill",
@@ -621,27 +617,25 @@ public final class ModProcessingMachines {
 
     private ModProcessingMachines() {}
 
-    private static Optional<String> validateCrusher(GTRecipe recipe) {
-        if (recipe.itemInputs().size() != 1
-                || recipe.itemOutputs().size() != 1
-                || recipe.outputChances().getFirst() != GTRecipe.GUARANTEED_CHANCE
-                || !recipe.fluidInputs().isEmpty()
-                || !recipe.fluidOutputs().isEmpty()
-                || recipe.eut() <= 0L
-                || recipe.eut() > 1_024L) {
-            return Optional.of("crusher_recipe_shape");
-        }
-        return Optional.empty();
+    /** GT6 crusher panel is 1 input and 12 outputs, including chance byproducts. */
+    private static ProcessingMachineSpec.SlotLayout crusherSlots() {
+        return new ProcessingMachineSpec.SlotLayout(
+                13,
+                List.of(0),
+                List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12));
     }
 
-    private static Optional<String> validateLargeCrusher(GTRecipe recipe) {
+    private static Optional<String> validateCrusherOutputs(GTRecipe recipe, long maxEut) {
         if (recipe.itemInputs().size() != 1
-                || recipe.itemOutputs().size() != 1
-                || recipe.outputChances().getFirst() != GTRecipe.GUARANTEED_CHANCE
+                || recipe.itemOutputs().isEmpty()
+                || recipe.itemOutputs().size() > 12
                 || !recipe.fluidInputs().isEmpty()
                 || !recipe.fluidOutputs().isEmpty()
                 || recipe.eut() <= 0L
-                || recipe.eut() > 4_096L) {
+                || recipe.eut() > maxEut
+                || recipe.outputChances().size() != recipe.itemOutputs().size()
+                || recipe.outputChances().stream().anyMatch(
+                        chance -> chance <= 0 || chance > GTRecipe.GUARANTEED_CHANCE)) {
             return Optional.of("crusher_recipe_shape");
         }
         return Optional.empty();
@@ -805,6 +799,43 @@ public final class ModProcessingMachines {
                         PROCESSING_STATUSES));
     }
 
+    private static ProcessingMachineSpec sifterSpec() {
+        return new ProcessingMachineSpec(
+                id("sifter"),
+                id("sifter"),
+                () -> ModRecipeMaps.SIFTER,
+                crusherSlots(),
+                new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.KINETIC_PUSH,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        4_096L,
+                        1_024L),
+                Gt6SidedIo.policy("sifter"),
+                ModProcessingMachines::validateSifter,
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                Gt6BasicMachineGui.ui(
+                        1, 12, 0, 0,
+                        1, 12, 0, 0,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateSifter(GTRecipe recipe) {
+        if (recipe.itemInputs().size() != 1
+                || recipe.itemOutputs().isEmpty()
+                || recipe.itemOutputs().size() > 12
+                || !recipe.fluidInputs().isEmpty()
+                || !recipe.fluidOutputs().isEmpty()
+                || recipe.eut() <= 0L
+                || recipe.eut() > 1_024L
+                || recipe.outputChances().size() != recipe.itemOutputs().size()
+                || recipe.outputChances().stream().anyMatch(
+                        chance -> chance <= 0 || chance > GTRecipe.GUARANTEED_CHANCE)) {
+            return Optional.of("sifter_recipe_shape");
+        }
+        return Optional.empty();
+    }
+
     private static Optional<String> validateConfigured(GTRecipe recipe, boolean waterInput) {
         if (recipe.itemInputs().size() > 1
                 || recipe.itemOutputs().size() > 4
@@ -849,13 +880,41 @@ public final class ModProcessingMachines {
             int gt6OutItems,
             int gt6InFluids,
             int gt6OutFluids) {
+        return componentSpec(
+                path,
+                map,
+                itemInputs,
+                futureFluidInput,
+                extruderTool,
+                energyType,
+                gt6InItems,
+                gt6OutItems,
+                gt6InFluids,
+                gt6OutFluids,
+                extruderTool ? EXTRUDER_ITEM_OUTPUTS : 1);
+    }
+
+    private static ProcessingMachineSpec componentSpec(
+            String path,
+            Supplier<RecipeMap> map,
+            int itemInputs,
+            boolean futureFluidInput,
+            boolean extruderTool,
+            EnergyType energyType,
+            int gt6InItems,
+            int gt6OutItems,
+            int gt6InFluids,
+            int gt6OutFluids,
+            int itemOutputs) {
         List<Integer> inputs = java.util.stream.IntStream.range(0, itemInputs).boxed().toList();
         int outputSlot = itemInputs;
         boolean assemblerCatalysts = "assembler".equals(path);
         boolean pressPreserve = "press".equals(path);
+        int fluidCapacity = "cutter".equals(path) ? 4_096 : 4_000;
         var tanks = futureFluidInput
                 ? new ProcessingMachineSpec.TankLayout(
-                        List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)), List.of())
+                        List.of(new ProcessingMachineSpec.TankSpec(0, fluidCapacity)),
+                        List.of())
                 : new ProcessingMachineSpec.TankLayout(List.of(), List.of());
         ProcessingMachineSpec.SlotLayout itemLayout = extruderTool
                 ? new ProcessingMachineSpec.SlotLayout(
@@ -887,7 +946,11 @@ public final class ModProcessingMachines {
                                         ? CraftingCatalystPolicy.acceptsMaterialSlot(stack)
                                         : CraftingCatalystPolicy.acceptsToolSlot(stack))
                 : new ProcessingMachineSpec.SlotLayout(
-                        itemInputs + 1, inputs, List.of(outputSlot));
+                        itemInputs + itemOutputs,
+                        inputs,
+                        java.util.stream.IntStream.range(outputSlot, outputSlot + itemOutputs)
+                                .boxed()
+                                .toList());
         ProcessingMachineSpec spec = new ProcessingMachineSpec(
                 id(path),
                 id(path),
@@ -903,10 +966,12 @@ public final class ModProcessingMachines {
                 recipe -> validateComponentRecipe(
                         recipe,
                         itemInputs,
+                        itemOutputs,
                         futureFluidInput,
                         extruderTool,
                         assemblerCatalysts,
-                        pressPreserve),
+                        pressPreserve,
+                        fluidCapacity),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         gt6InItems,
@@ -914,7 +979,7 @@ public final class ModProcessingMachines {
                         gt6InFluids,
                         gt6OutFluids,
                         extruderTool ? 1 : itemInputs,
-                        extruderTool ? EXTRUDER_ITEM_OUTPUTS : 1,
+                        extruderTool ? EXTRUDER_ITEM_OUTPUTS : itemOutputs,
                         futureFluidInput ? 1 : 0,
                         0,
                         extruderTool ? 1 : -1,
@@ -925,12 +990,14 @@ public final class ModProcessingMachines {
     private static Optional<String> validateComponentRecipe(
             GTRecipe recipe,
             int itemInputs,
+            int itemOutputs,
             boolean fluidInput,
             boolean extruderTool,
             boolean assemblerCatalysts,
-            boolean pressPreserve) {
+            boolean pressPreserve,
+            int fluidCapacity) {
         if (recipe.itemInputs().size() > itemInputs
-                || recipe.itemOutputs().size() > (extruderTool ? EXTRUDER_ITEM_OUTPUTS : 1)
+                || recipe.itemOutputs().size() > itemOutputs
                 || recipe.fluidInputs().size() > (fluidInput ? 1 : 0)
                 || !recipe.fluidOutputs().isEmpty()) {
             return Optional.of("component_recipe_shape");
@@ -995,7 +1062,7 @@ public final class ModProcessingMachines {
                 || recipe.outputChances().stream().anyMatch(
                         chance -> chance <= 0 || chance > GTRecipe.GUARANTEED_CHANCE)
                 || recipe.fluidInputs().stream().anyMatch(
-                        stack -> stack.isEmpty() || stack.getAmount() > 4_000)) {
+                        stack -> stack.isEmpty() || stack.getAmount() > fluidCapacity)) {
             return Optional.of("component_recipe_amount");
         }
         return Optional.empty();
@@ -1395,7 +1462,7 @@ public final class ModProcessingMachines {
                         256L),
                 Gt6SidedIo.policy("rollformer"),
                 recipe -> validateComponentRecipe(
-                        recipe, 1, false, false, false, false),
+                        recipe, 1, 1, false, false, false, false, 4_000),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         1, 1, 0, 0,
@@ -1456,7 +1523,7 @@ public final class ModProcessingMachines {
                 id("large_crusher"),
                 id("crusher"),
                 () -> ModRecipeMaps.CRUSHER,
-                new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
+                crusherSlots(),
                 new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
                 new ProcessingMachineSpec.EnergySpec(
                         EnergyType.KINETIC_ROTATION,
@@ -1464,11 +1531,11 @@ public final class ModProcessingMachines {
                         4_096L,
                         4_096L),
                 Gt6SidedIo.policy("large_crusher"),
-                ModProcessingMachines::validateLargeCrusher,
+                recipe -> validateCrusherOutputs(recipe, 4_096L),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         1, 12, 0, 0,
-                        1, 1, 0, 0,
+                        1, 12, 0, 0,
                         PROCESSING_STATUSES));
     }
 
@@ -1661,7 +1728,7 @@ public final class ModProcessingMachines {
                         256L),
                 Gt6SidedIo.policy("clustermill"),
                 recipe -> validateComponentRecipe(
-                        recipe, 1, false, false, false, false),
+                        recipe, 1, 1, false, false, false, false, 4_000),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         1, 1, 0, 0,

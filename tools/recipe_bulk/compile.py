@@ -130,6 +130,10 @@ def _template_kind(spec, source_rows: list[dict[str, Any]]) -> str:
     return spec.template_kind
 
 
+def _prefix_regular_wave(wave_id: str) -> bool:
+    return wave_id.endswith("/prefix-regular") or wave_id.startswith("anvil/bend-")
+
+
 def _consume_identity(relation: dict[str, Any], *, wave_id: str) -> str:
     payload = {
         "fluid_inputs": relation.get("fluid_inputs") or [],
@@ -148,11 +152,15 @@ def _consume_identity(relation: dict[str, Any], *, wave_id: str) -> str:
             "item_inputs": relation.get("item_inputs") or [],
             "item_outputs": relation.get("item_outputs") or [],
         }
-    # Low-heat and normal extruder rows share items and differ by duration or EU/t.
-    if wave_id == "recipe/gt6-extruder-bulk":
+    # Rows that share items and differ by duration, EU/t, or output chance.
+    if wave_id == "recipe/gt6-extruder-bulk" or _prefix_regular_wave(wave_id):
         payload["duration"] = int(relation.get("duration") or 0)
         payload["eut"] = int(relation.get("eut") or 0)
         payload["special_value"] = int(relation.get("special_value") or 0)
+    if _prefix_regular_wave(wave_id):
+        payload["output_chances"] = [
+            int(value) for value in (relation.get("output_chances") or [])
+        ]
     return json.dumps(payload, sort_keys=True, separators=(",", ":"))
 
 

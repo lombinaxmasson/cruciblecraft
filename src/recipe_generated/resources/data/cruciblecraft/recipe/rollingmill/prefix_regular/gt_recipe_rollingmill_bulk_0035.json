@@ -1,0 +1,121 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.rollingmill#bulk_0035",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "116090f83c1f67c087f75ab4d75e13b8db5dda279f6aee3f0dd68c90c1758a56",
+        "056acb5b889f6c0637dd9809658ff4b00b5d4d536162ba99c52d18601c331a1c",
+        "af50591b2a328b5f3d61a6e1f6e78208594878d8ce425eb23fa51cea0d69f182",
+        "93c23caeaf2cf2f3370fc080d36b46357265b767d2d0c70ea8a67a23c967254a"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:vibranium_steel/ingot"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cosmic_neutronium/ingot"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_steel"
+            },
+            "items": "cruciblecraft:curved_plate",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vibranium_steel/plate"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cosmic_neutronium/plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/1b37de70c557eb4a",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/d23e98ea4ddd2342",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/e109bf2fb6a351e9",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:gt6/6438983fcf170975",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 2816,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.rollingmill#bulk_0035",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:rollingmill/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:rollingmill",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

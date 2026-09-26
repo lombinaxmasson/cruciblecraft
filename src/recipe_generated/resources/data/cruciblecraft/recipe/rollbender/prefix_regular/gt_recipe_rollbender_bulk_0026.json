@@ -1,0 +1,137 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.rollbender#bulk_0026",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "b4601acd8cd6e0bea3f1f7026c660a4c1b2676c7102574761daf00b39400c087",
+        "50a30a590a663787a92bd49292cfae7a95f231c50dfa3d4855d585e4bf729e42",
+        "8862913f99992e49b8e4a9950adeaccedd2a2b25554f1965e508cd2cf8469e6a",
+        "053e78cbb9e501708a50c9635bcca388c8305fc69e16169eea0b5dfc7dacd700"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:vibramantium/long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infinity/long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infinity/plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibramantium/plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:spring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 1,
+            "id": "cruciblecraft:spring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/024ab701c76402c8",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/b433569b57aae5af",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/265be773b9ca9a1a",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/7d6379ab7d0ec732",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 4096,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.rollbender#bulk_0026",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:rollbender/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:rollbender",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

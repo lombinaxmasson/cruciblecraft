@@ -1,0 +1,91 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.rollbender#bulk_0022",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "02f3e6b98f6ac09ae7320ed2b1de490f707331cc15bab7c5092d1aa6e0817b05",
+        "e11dc874fbd756ff92d793c2774b3a94df3f11a4007e7baf09cc50f91605bf10"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:vibranium_silver/long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibranium_silver/plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_silver"
+            },
+            "count": 1,
+            "id": "cruciblecraft:spring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_silver"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/0d6d28221b14e78f",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/ae5d29b9959d341c",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 2560,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.rollbender#bulk_0022",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:rollbender/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:rollbender",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

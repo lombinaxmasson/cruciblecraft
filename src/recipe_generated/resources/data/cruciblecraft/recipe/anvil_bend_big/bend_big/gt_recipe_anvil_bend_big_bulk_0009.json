@@ -1,0 +1,137 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.anvil.bend.big#bulk_0009",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "dd0c076ce5a89f0ecacfb5b917b6d9a717d2fe99a1adacdfa50e5ec59c66e14b",
+        "1455f0e4c134550be3a0c44269c805da32a6d4769546b9b18a1d6392de3ad8a3",
+        "30041a684fdb499301c18585a7a9a6908ca32a14e3835c53e3d8647a45f6c966",
+        "391160ee5e48437194b9dc0a867a32e945fdd9d9b493b5d6fe53ee8f950619cf"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:vibramantium/plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infinity/plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:infinity/long_rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibramantium/long_rod"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 1,
+            "id": "cruciblecraft:curved_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 1,
+            "id": "cruciblecraft:spring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:spring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/e50d9d091b2225a1",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/d1579cac7c008d26",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/3c3c8b5162e33e38",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/4acafe6844a5ab7f",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 1024,
+      "eut": 64,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.anvil.bend.big#bulk_0009",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:anvil_bend_big/bend-big",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:anvil_bend_big",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

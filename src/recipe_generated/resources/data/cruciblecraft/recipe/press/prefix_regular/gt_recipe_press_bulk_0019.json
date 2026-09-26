@@ -1,0 +1,105 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.press#bulk_0019",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "d200de959df6a23be8185ab6c8bf8f9129feb0c67ee881ed4e17f67a51afe28d",
+        "7a0a5faaf0f0efc99aaea0f33fbf6b321b5c690db448ec69c37fccb9e8aaecb2"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:lapis/rod"
+          },
+          {
+            "item": "cruciblecraft:lapis/bolt"
+          },
+          {
+            "item": "cruciblecraft:redstone/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:apatite/rod"
+          },
+          {
+            "item": "cruciblecraft:apatite/bolt"
+          },
+          {
+            "item": "cruciblecraft:redstone/small_dust"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:part/electrode_lapis_needs_glass_tube"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:part/electrode_apatite_needs_glass_tube"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/a933b87c75475acb",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/e3336ab3cebad361",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 64,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        2,
+        2
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.press#bulk_0019",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:press/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:press",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

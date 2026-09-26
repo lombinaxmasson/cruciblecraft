@@ -10,8 +10,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.content.block.GtBrokenOreBlock;
+import com.masson.cruciblecraft.content.block.OreStoneHost;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.registry.ModComponents;
@@ -27,6 +30,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
@@ -368,6 +372,25 @@ class CompactRecipeShardRouterTest {
             List<CompactGTRecipeFamilyDefinition.Relation> relations) {
         return new CompactRecipeShardRouter(
                 ModRecipeMaps.CENTRIFUGE.id(), group, relations);
+    }
+
+    @Test
+    void oreHostBlockStateEncodesTheHostProperty() {
+        BlockItemStateProperties state = BlockItemStateProperties.EMPTY.with(
+                GtBrokenOreBlock.HOST, OreStoneHost.ANDESITE);
+        JsonElement encoded = BlockItemStateProperties.CODEC
+                .encodeStart(JsonOps.INSTANCE, state)
+                .getOrThrow();
+        JsonObject expected = new JsonObject();
+        expected.addProperty("host", "andesite");
+        assertEquals(expected, encoded);
+        assertEquals(
+                "andesite",
+                BlockItemStateProperties.CODEC
+                        .parse(JsonOps.INSTANCE, expected)
+                        .getOrThrow()
+                        .properties()
+                        .get("host"));
     }
 
     private static CompactGTRecipeFamilyDefinition.Relation fluidItemRelation(

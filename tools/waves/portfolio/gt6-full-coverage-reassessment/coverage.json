@@ -670,28 +670,28 @@
   "summary": {
     "recipe_map_count": 95,
     "recipe_source_rows": 720841,
-    "traced_source_rows": 418084,
+    "traced_source_rows": 478139,
     "reference_traced_rows": 22886,
     "recipe_evidence_grades": {
       "source_rows": 720841,
       "classes": {
-        "source_exact": 418086,
-        "translated_exact": 6837,
-        "translated_io_only": 1778,
-        "translated_item_io": 7691,
-        "translatable_missing": 155695,
-        "missing_material_form": 79103,
+        "source_exact": 478141,
+        "translated_exact": 6559,
+        "translated_io_only": 0,
+        "translated_item_io": 7703,
+        "translatable_missing": 115291,
+        "missing_material_form": 66811,
         "missing_material": 0,
-        "missing_fluid": 7935,
-        "missing_object": 20498,
+        "missing_fluid": 7999,
+        "missing_object": 15119,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
       },
       "groups": {
-        "proven": 424923,
-        "partial_match": 9469,
-        "recipe_gap": 155695,
-        "identity_gap": 107536,
+        "proven": 484700,
+        "partial_match": 7703,
+        "recipe_gap": 115291,
+        "identity_gap": 89929,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
       },
@@ -704,26 +704,26 @@
         "source_rows": 720841,
         "excluded_rows": 13883,
         "target_rows": 706958,
-        "proven_rows": 424923,
-        "identity_blocked_rows": 107229,
+        "proven_rows": 484700,
+        "identity_blocked_rows": 89622,
         "undecided_rows": 9642,
-        "recipe_progress": 0.6011,
-        "identity_ready": 0.8347
+        "recipe_progress": 0.6856,
+        "identity_ready": 0.8596
       },
       "machine_progress": {
         "maps": 73,
-        "mean_recipe_progress": 0.285,
-        "maps_complete": 7,
-        "maps_untouched": 33
+        "mean_recipe_progress": 0.4333,
+        "maps_complete": 9,
+        "maps_untouched": 22
       }
     },
-    "cc_recipe_rows": 420563,
+    "cc_recipe_rows": 480618,
     "cc_material_rule_files": 98,
-    "capability_count": 121,
+    "capability_count": 122,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 12,
-      "runtime_ready:accepted": 104,
+      "runtime_ready:accepted": 105,
       "runtime_ready:paused": 3
     },
     "blocker_count": 62,
@@ -735,7 +735,7 @@
       "superseded": 5
     },
     "registered_recipe_maps": 71,
-    "cc_maps_with_rows": 50,
+    "cc_maps_with_rows": 59,
     "overflow_artifacts": 24,
     "live_cover_definitions": 54
   },
@@ -767,7 +767,7 @@
       "cruciblecraft:material_rule"
     ],
     "attribution": "tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json",
-    "attribution_digest": "a71e61df403cb25464ef391fa01e4161be4aafb97c61fa99d4d9d9622a32ede3",
+    "attribution_digest": "725a0b681c90bdb292ca1e8779c25e24128298f33d669d4558dbad7830f8b2e7",
     "attribution_overrides": 0,
     "unverified_hashes": 0,
     "ambiguous_hashes": 0
@@ -1744,6 +1744,15 @@
       "survival_access": "unreviewed",
       "wave_slug": "recipe/gt6-extruder-bulk",
       "path": "tools/capabilities/recipe/gt6-extruder-remainder/capability.json"
+    },
+    {
+      "slug": "recipe/gt6-prefix-regular-bulk",
+      "title": "GT6 Prefix Regular Recipe Bulk",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "unreviewed",
+      "wave_slug": "recipe/gt6-prefix-regular-bulk",
+      "path": "tools/capabilities/recipe/gt6-prefix-regular-bulk/capability.json"
     },
     {
       "slug": "registry/catalog-modern-ids",
@@ -6087,8 +6096,8 @@
         "translated_exact": 30,
         "translated_item_io": 4556,
         "translatable_missing": 51804,
-        "missing_fluid": 570,
-        "missing_object": 87
+        "missing_fluid": 634,
+        "missing_object": 23
       },
       "raw_row_excluded": {
         "missing_fluid": 7
@@ -6574,10 +6583,10 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.sifter.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 2377,
       "reference_traced_rows": 1720,
       "cc_host_maps": {
-        "sifter": 351
+        "sifter": 2728
       },
       "owned_cc_maps": [
         "sifter"
@@ -6603,20 +6612,19 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 405,
-        "missing_material_form": 2468,
-        "missing_object": 4
+        "source_exact": 2377,
+        "missing_material_form": 500
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 2877,
         "excluded_rows": 0,
         "target_rows": 2877,
-        "proven_rows": 0,
-        "identity_blocked_rows": 2472,
+        "proven_rows": 2377,
+        "identity_blocked_rows": 500,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
-        "identity_ready": 0.1408
+        "recipe_progress": 0.8262,
+        "identity_ready": 0.8262
       }
     },
     {
@@ -6871,9 +6879,8 @@
       "raw_row_classes": {
         "source_exact": 103,
         "translated_item_io": 14,
-        "translatable_missing": 52,
-        "missing_fluid": 21,
-        "missing_object": 448
+        "translatable_missing": 500,
+        "missing_fluid": 21
       },
       "raw_row_excluded": {},
       "progress": {
@@ -6881,10 +6888,10 @@
         "excluded_rows": 0,
         "target_rows": 638,
         "proven_rows": 103,
-        "identity_blocked_rows": 469,
+        "identity_blocked_rows": 21,
         "undecided_rows": 0,
         "recipe_progress": 0.1614,
-        "identity_ready": 0.2649
+        "identity_ready": 0.9671
       }
     },
     {
@@ -7101,8 +7108,7 @@
       },
       "raw_row_classes": {
         "source_exact": 366,
-        "translatable_missing": 6,
-        "missing_object": 20
+        "translatable_missing": 26
       },
       "raw_row_excluded": {},
       "progress": {
@@ -7110,10 +7116,10 @@
         "excluded_rows": 0,
         "target_rows": 392,
         "proven_rows": 366,
-        "identity_blocked_rows": 20,
+        "identity_blocked_rows": 0,
         "undecided_rows": 0,
         "recipe_progress": 0.9337,
-        "identity_ready": 0.949
+        "identity_ready": 1.0
       }
     },
     {
@@ -7379,9 +7385,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.lathe.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 2525,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "lathe": 2525
+      },
       "owned_cc_maps": [
         "lathe"
       ],
@@ -7404,19 +7412,19 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 2521,
-        "missing_object": 7
+        "source_exact": 2525,
+        "missing_object": 3
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 2528,
         "excluded_rows": 0,
         "target_rows": 2528,
-        "proven_rows": 0,
-        "identity_blocked_rows": 7,
+        "proven_rows": 2525,
+        "identity_blocked_rows": 3,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
-        "identity_ready": 0.9972
+        "recipe_progress": 0.9988,
+        "identity_ready": 0.9988
       }
     },
     {
@@ -7486,9 +7494,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.press.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 1904,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "press": 1904
+      },
       "owned_cc_maps": [
         "press"
       ],
@@ -7518,20 +7528,22 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 1818,
+        "source_exact": 1904,
+        "translated_exact": 13,
+        "translatable_missing": 66,
         "missing_material_form": 5997,
-        "missing_object": 345
+        "missing_object": 180
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 8160,
         "excluded_rows": 0,
         "target_rows": 8160,
-        "proven_rows": 0,
-        "identity_blocked_rows": 6342,
+        "proven_rows": 1917,
+        "identity_blocked_rows": 6177,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
-        "identity_ready": 0.2228
+        "recipe_progress": 0.2349,
+        "identity_ready": 0.243
       }
     },
     {
@@ -8059,9 +8071,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.wiremill.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 455,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "wiremill": 455
+      },
       "owned_cc_maps": [
         "wiremill"
       ],
@@ -8078,24 +8092,23 @@
         "survival_access": [],
         "signoff_required": true
       },
-      "delivery_depth": "bounded_subset",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translated_io_only": 31,
-        "translatable_missing": 424
+        "source_exact": 455
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 455,
         "excluded_rows": 0,
         "target_rows": 455,
-        "proven_rows": 0,
+        "proven_rows": 455,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -8164,9 +8177,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.rollingmill.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 2436,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "rollingmill": 2436
+      },
       "owned_cc_maps": [
         "rollingmill"
       ],
@@ -8189,8 +8204,7 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translated_io_only": 297,
-        "translatable_missing": 2139,
+        "source_exact": 2436,
         "missing_object": 2
       },
       "raw_row_excluded": {},
@@ -8198,10 +8212,10 @@
         "source_rows": 2438,
         "excluded_rows": 0,
         "target_rows": 2438,
-        "proven_rows": 0,
+        "proven_rows": 2436,
         "identity_blocked_rows": 2,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 0.9992,
         "identity_ready": 0.9992
       }
     },
@@ -8217,9 +8231,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.rollbender.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 940,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "rollbender": 940
+      },
       "owned_cc_maps": [
         "bender",
         "rollbender"
@@ -8237,24 +8253,23 @@
         "survival_access": [],
         "signoff_required": true
       },
-      "delivery_depth": "bounded_subset",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translated_io_only": 405,
-        "translatable_missing": 535
+        "source_exact": 940
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 940,
         "excluded_rows": 0,
         "target_rows": 940,
-        "proven_rows": 0,
+        "proven_rows": 940,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -8383,9 +8398,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.welder.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 4760,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "welder": 4760
+      },
       "owned_cc_maps": [
         "welder"
       ],
@@ -8408,20 +8425,19 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translated_io_only": 1045,
-        "translatable_missing": 3664,
-        "missing_object": 53
+        "source_exact": 4760,
+        "missing_object": 2
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 4762,
         "excluded_rows": 0,
         "target_rows": 4762,
-        "proven_rows": 0,
-        "identity_blocked_rows": 53,
+        "proven_rows": 4760,
+        "identity_blocked_rows": 2,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
-        "identity_ready": 0.9889
+        "recipe_progress": 0.9996,
+        "identity_ready": 0.9996
       }
     },
     {
@@ -8487,9 +8503,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.anvil.bend.small.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 505,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "anvil_bend_small": 505
+      },
       "owned_cc_maps": [
         "anvil_bend_small"
       ],
@@ -8512,17 +8530,18 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 507
+        "source_exact": 505,
+        "translatable_missing": 2
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 507,
         "excluded_rows": 0,
         "target_rows": 507,
-        "proven_rows": 0,
+        "proven_rows": 505,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 0.9961,
         "identity_ready": 1.0
       }
     },
@@ -8538,9 +8557,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.anvil.bend.big.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 722,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "anvil_bend_big": 722
+      },
       "owned_cc_maps": [
         "anvil_bend_big"
       ],
@@ -8563,17 +8584,18 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 723
+        "source_exact": 722,
+        "translatable_missing": 1
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 723,
         "excluded_rows": 0,
         "target_rows": 723,
-        "proven_rows": 0,
+        "proven_rows": 722,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 0.9986,
         "identity_ready": 1.0
       }
     },
@@ -8967,9 +8989,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cutter.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 25389,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "cutter": 25389
+      },
       "owned_cc_maps": [
         "cutter"
       ],
@@ -8992,8 +9016,10 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 25206,
-        "missing_object": 2248
+        "source_exact": 25389,
+        "translated_exact": 5,
+        "translated_item_io": 12,
+        "missing_object": 2048
       },
       "raw_row_excluded": {
         "missing_object": 8
@@ -9002,11 +9028,11 @@
         "source_rows": 27454,
         "excluded_rows": 8,
         "target_rows": 27446,
-        "proven_rows": 0,
-        "identity_blocked_rows": 2240,
+        "proven_rows": 25394,
+        "identity_blocked_rows": 2040,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
-        "identity_ready": 0.9184
+        "recipe_progress": 0.9252,
+        "identity_ready": 0.9257
       }
     },
     {
@@ -9080,9 +9106,9 @@
         "source_exact": 3547,
         "translated_exact": 63,
         "translated_item_io": 1,
-        "translatable_missing": 740,
+        "translatable_missing": 825,
         "missing_material_form": 2294,
-        "missing_object": 111
+        "missing_object": 26
       },
       "raw_row_excluded": {
         "missing_object": 1
@@ -9092,10 +9118,10 @@
         "excluded_rows": 1,
         "target_rows": 6755,
         "proven_rows": 3610,
-        "identity_blocked_rows": 2404,
+        "identity_blocked_rows": 2319,
         "undecided_rows": 0,
         "recipe_progress": 0.5344,
-        "identity_ready": 0.6441
+        "identity_ready": 0.6567
       }
     },
     {
@@ -9140,11 +9166,11 @@
       },
       "raw_row_classes": {
         "source_exact": 16627,
-        "translated_exact": 194,
-        "translatable_missing": 1542,
+        "translated_exact": 193,
+        "translatable_missing": 1628,
         "missing_material_form": 3442,
         "missing_fluid": 58,
-        "missing_object": 106
+        "missing_object": 21
       },
       "raw_row_excluded": {
         "missing_object": 1
@@ -9153,11 +9179,11 @@
         "source_rows": 21969,
         "excluded_rows": 1,
         "target_rows": 21968,
-        "proven_rows": 16821,
-        "identity_blocked_rows": 3605,
+        "proven_rows": 16820,
+        "identity_blocked_rows": 3520,
         "undecided_rows": 0,
         "recipe_progress": 0.7657,
-        "identity_ready": 0.8359
+        "identity_ready": 0.8398
       }
     },
     {
@@ -9172,9 +9198,11 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mortar.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 5832,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "mortar": 5832
+      },
       "owned_cc_maps": [
         "mortar"
       ],
@@ -9197,7 +9225,8 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 5834,
+        "source_exact": 5832,
+        "translatable_missing": 2,
         "missing_material_form": 1,
         "missing_object": 483
       },
@@ -9208,10 +9237,10 @@
         "source_rows": 6318,
         "excluded_rows": 1,
         "target_rows": 6317,
-        "proven_rows": 0,
+        "proven_rows": 5832,
         "identity_blocked_rows": 483,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 0.9232,
         "identity_ready": 0.9235
       }
     },
@@ -9276,9 +9305,9 @@
       "raw_row_classes": {
         "source_exact": 29180,
         "translated_exact": 363,
-        "translatable_missing": 6025,
+        "translatable_missing": 6061,
         "missing_material_form": 5359,
-        "missing_object": 319
+        "missing_object": 283
       },
       "raw_row_excluded": {
         "missing_object": 1
@@ -9288,10 +9317,10 @@
         "excluded_rows": 1,
         "target_rows": 41245,
         "proven_rows": 29543,
-        "identity_blocked_rows": 5677,
+        "identity_blocked_rows": 5641,
         "undecided_rows": 0,
         "recipe_progress": 0.7163,
-        "identity_ready": 0.8624
+        "identity_ready": 0.8632
       }
     },
     {
@@ -9306,10 +9335,10 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.crusher.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 12210,
       "reference_traced_rows": 361,
       "cc_host_maps": {
-        "crusher": 352
+        "crusher": 12562
       },
       "owned_cc_maps": [
         "crusher"
@@ -9336,21 +9365,22 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translated_exact": 302,
-        "translatable_missing": 1587,
-        "missing_material_form": 10817,
-        "missing_object": 226
+        "source_exact": 12210,
+        "translated_exact": 3,
+        "translatable_missing": 24,
+        "missing_material_form": 493,
+        "missing_object": 202
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 12932,
         "excluded_rows": 0,
         "target_rows": 12932,
-        "proven_rows": 302,
-        "identity_blocked_rows": 11043,
+        "proven_rows": 12213,
+        "identity_blocked_rows": 695,
         "undecided_rows": 0,
-        "recipe_progress": 0.0234,
-        "identity_ready": 0.1461
+        "recipe_progress": 0.9444,
+        "identity_ready": 0.9463
       }
     },
     {
@@ -9396,9 +9426,9 @@
       "raw_row_classes": {
         "source_exact": 299145,
         "translated_exact": 5798,
-        "translatable_missing": 19,
+        "translatable_missing": 4170,
         "missing_material_form": 11096,
-        "missing_object": 9537
+        "missing_object": 5386
       },
       "raw_row_excluded": {
         "missing_object": 76
@@ -9408,10 +9438,10 @@
         "excluded_rows": 76,
         "target_rows": 325519,
         "proven_rows": 304943,
-        "identity_blocked_rows": 20557,
+        "identity_blocked_rows": 16406,
         "undecided_rows": 0,
         "recipe_progress": 0.9368,
-        "identity_ready": 0.9368
+        "identity_ready": 0.9496
       }
     },
     {
@@ -9465,8 +9495,8 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 138,
-        "missing_object": 171
+        "translatable_missing": 150,
+        "missing_object": 159
       },
       "raw_row_excluded": {},
       "progress": {
@@ -9474,10 +9504,10 @@
         "excluded_rows": 0,
         "target_rows": 309,
         "proven_rows": 0,
-        "identity_blocked_rows": 171,
+        "identity_blocked_rows": 159,
         "undecided_rows": 0,
         "recipe_progress": 0.0,
-        "identity_ready": 0.4466
+        "identity_ready": 0.4854
       }
     },
     {
@@ -9996,22 +10026,22 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translated_exact": 3,
+        "translated_exact": 7,
         "translatable_missing": 82,
         "missing_material_form": 2343,
         "missing_fluid": 72,
-        "missing_object": 1109
+        "missing_object": 1105
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 3609,
         "excluded_rows": 0,
         "target_rows": 3609,
-        "proven_rows": 3,
-        "identity_blocked_rows": 3524,
+        "proven_rows": 7,
+        "identity_blocked_rows": 3520,
         "undecided_rows": 0,
-        "recipe_progress": 0.0008,
-        "identity_ready": 0.0236
+        "recipe_progress": 0.0019,
+        "identity_ready": 0.0247
       }
     },
     {
@@ -10165,10 +10195,10 @@
         "source_exact": 6,
         "translated_exact": 1,
         "translated_item_io": 16,
-        "translatable_missing": 8650,
+        "translatable_missing": 8676,
         "missing_material_form": 1084,
         "missing_fluid": 56,
-        "missing_object": 423
+        "missing_object": 397
       },
       "raw_row_excluded": {
         "missing_fluid": 1,
@@ -10179,10 +10209,10 @@
         "excluded_rows": 74,
         "target_rows": 10162,
         "proven_rows": 7,
-        "identity_blocked_rows": 1489,
+        "identity_blocked_rows": 1463,
         "undecided_rows": 0,
         "recipe_progress": 0.0007,
-        "identity_ready": 0.8535
+        "identity_ready": 0.856
       }
     },
     {
@@ -10502,23 +10532,23 @@
   "recipe_evidence_grades": {
     "source_rows": 720841,
     "classes": {
-      "source_exact": 418086,
-      "translated_exact": 6837,
-      "translated_io_only": 1778,
-      "translated_item_io": 7691,
-      "translatable_missing": 155695,
-      "missing_material_form": 79103,
+      "source_exact": 478141,
+      "translated_exact": 6559,
+      "translated_io_only": 0,
+      "translated_item_io": 7703,
+      "translatable_missing": 115291,
+      "missing_material_form": 66811,
       "missing_material": 0,
-      "missing_fluid": 7935,
-      "missing_object": 20498,
+      "missing_fluid": 7999,
+      "missing_object": 15119,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
     },
     "groups": {
-      "proven": 424923,
-      "partial_match": 9469,
-      "recipe_gap": 155695,
-      "identity_gap": 107536,
+      "proven": 484700,
+      "partial_match": 7703,
+      "recipe_gap": 115291,
+      "identity_gap": 89929,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
     },
@@ -10531,17 +10561,17 @@
       "source_rows": 720841,
       "excluded_rows": 13883,
       "target_rows": 706958,
-      "proven_rows": 424923,
-      "identity_blocked_rows": 107229,
+      "proven_rows": 484700,
+      "identity_blocked_rows": 89622,
       "undecided_rows": 9642,
-      "recipe_progress": 0.6011,
-      "identity_ready": 0.8347
+      "recipe_progress": 0.6856,
+      "identity_ready": 0.8596
     },
     "machine_progress": {
       "maps": 73,
-      "mean_recipe_progress": 0.285,
-      "maps_complete": 7,
-      "maps_untouched": 33
+      "mean_recipe_progress": 0.4333,
+      "maps_complete": 9,
+      "maps_untouched": 22
     }
   },
   "semantic_coverage": {
@@ -10565,7 +10595,7 @@
     ],
     "translator": {
       "tools/recipe_bulk/dialects/gt6.py": "27eea11a67b274c7cec084c8d7ba0bec13f9c0b98a1b54039f5f4f4474a4fb26",
-      "tools/recipe_bulk/ordinary_source.py": "2ec975806a9f3c61da92e05d40ba1d7020fa64a2f3d6ace889713f18b268bf9a",
+      "tools/recipe_bulk/ordinary_source.py": "c29df485693a495edf056579ac192d9e9e86b46961aacda23926659a77a2065f",
       "tools/recipe_bulk/emit.py": "b95f775c318991653bff54a9bd616fddcf76ffa6c04d757b9b40c330bc2d8485",
       "tools/recipe_bulk/matrix.py": "445f496e726bbc35ee6b837a98da7f306a5824c19d163e0d9969e883acd3b5af",
       "tools/gt6_resolve.py": "d329ed6aef840bad5d0e4b002aa2963b2439f75a01a9f80c9479f44be5b7b869",
@@ -10577,22 +10607,22 @@
       "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "594a79e57f79a92b6d13cd9b1e08aa72ab1b837e3c7a3d15f21e7735de1067b3"
     },
     "cc_projection": {
-      "runtime_rows": 420563,
+      "runtime_rows": 480618,
       "rule_rows": 19893,
-      "digest": "09a1fcd1948a2d775833707ec85e9dfe09dc1e31966e11d5c0bc5dd49b5a432f"
+      "digest": "c7b917f1937965758e545a89928b3e31135e2918d6ee34c81adedddb54c5a8f4"
     },
     "summary": {
       "legacy_exclusion_pending": 9642,
-      "source_exact": 418086,
+      "source_exact": 478141,
       "display_only": 13576,
-      "translated_exact": 6837,
-      "translated_io_only": 1778,
-      "translated_item_io": 7691,
-      "translatable_missing": 155695,
-      "missing_material_form": 79103,
+      "translated_exact": 6559,
+      "translated_io_only": 0,
+      "translated_item_io": 7703,
+      "translatable_missing": 115291,
+      "missing_material_form": 66811,
       "missing_material": 0,
-      "missing_fluid": 7935,
-      "missing_object": 20498
+      "missing_fluid": 7999,
+      "missing_object": 15119
     },
     "excluded_summary": {
       "display_only": 13576,
@@ -10610,10 +10640,12 @@
         "legacy_exclusion_pending": 9228
       },
       "gt.recipe.anvil.bend.big": {
-        "translatable_missing": 723
+        "source_exact": 722,
+        "translatable_missing": 1
       },
       "gt.recipe.anvil.bend.small": {
-        "translatable_missing": 507
+        "source_exact": 505,
+        "translatable_missing": 2
       },
       "gt.recipe.assembler": {
         "source_exact": 343,
@@ -10621,8 +10653,7 @@
       },
       "gt.recipe.autoclave": {
         "source_exact": 366,
-        "translatable_missing": 6,
-        "missing_object": 20
+        "translatable_missing": 26
       },
       "gt.recipe.bath": {
         "source_exact": 49407,
@@ -10655,11 +10686,11 @@
         "display_only": 289
       },
       "gt.recipe.canner": {
-        "translated_exact": 3,
+        "translated_exact": 7,
         "translatable_missing": 82,
         "missing_material_form": 2343,
         "missing_fluid": 72,
-        "missing_object": 1109
+        "missing_object": 1105
       },
       "gt.recipe.catalyticcracking": {
         "translatable_missing": 3
@@ -10700,10 +10731,11 @@
         "legacy_exclusion_pending": 414
       },
       "gt.recipe.crusher": {
-        "translated_exact": 302,
-        "translatable_missing": 1587,
-        "missing_material_form": 10817,
-        "missing_object": 226
+        "source_exact": 12210,
+        "translated_exact": 3,
+        "translatable_missing": 24,
+        "missing_material_form": 493,
+        "missing_object": 202
       },
       "gt.recipe.cryodistillationtower": {
         "translated_exact": 1,
@@ -10718,8 +10750,10 @@
         "translatable_missing": 132
       },
       "gt.recipe.cutter": {
-        "translatable_missing": 25206,
-        "missing_object": 2248
+        "source_exact": 25389,
+        "translated_exact": 5,
+        "translated_item_io": 12,
+        "missing_object": 2048
       },
       "gt.recipe.distillationtower": {
         "translated_exact": 3,
@@ -10745,9 +10779,9 @@
       "gt.recipe.extruder": {
         "source_exact": 299145,
         "translated_exact": 5798,
-        "translatable_missing": 19,
+        "translatable_missing": 4170,
         "missing_material_form": 11096,
-        "missing_object": 9537
+        "missing_object": 5386
       },
       "gt.recipe.fermenter": {
         "translated_exact": 2,
@@ -10793,14 +10827,14 @@
         "source_exact": 6,
         "translated_exact": 1,
         "translated_item_io": 16,
-        "translatable_missing": 8650,
+        "translatable_missing": 8676,
         "missing_material_form": 1084,
         "missing_fluid": 56,
-        "missing_object": 423
+        "missing_object": 397
       },
       "gt.recipe.hammer": {
-        "translatable_missing": 138,
-        "missing_object": 171
+        "translatable_missing": 150,
+        "missing_object": 159
       },
       "gt.recipe.implosioncompressor": {
         "source_exact": 776,
@@ -10809,9 +10843,8 @@
       "gt.recipe.injector": {
         "source_exact": 103,
         "translated_item_io": 14,
-        "translatable_missing": 52,
-        "missing_fluid": 21,
-        "missing_object": 448
+        "translatable_missing": 500,
+        "missing_fluid": 21
       },
       "gt.recipe.juicer": {
         "translatable_missing": 28,
@@ -10827,8 +10860,8 @@
         "missing_object": 1210
       },
       "gt.recipe.lathe": {
-        "translatable_missing": 2521,
-        "missing_object": 7
+        "source_exact": 2525,
+        "missing_object": 3
       },
       "gt.recipe.lightning": {
         "translated_exact": 1,
@@ -10853,20 +10886,21 @@
         "source_exact": 3547,
         "translated_exact": 63,
         "translated_item_io": 1,
-        "translatable_missing": 740,
+        "translatable_missing": 825,
         "missing_material_form": 2294,
-        "missing_object": 111
+        "missing_object": 26
       },
       "gt.recipe.mixer": {
         "source_exact": 7198,
         "translated_exact": 30,
         "translated_item_io": 4556,
         "translatable_missing": 51804,
-        "missing_fluid": 570,
-        "missing_object": 87
+        "missing_fluid": 634,
+        "missing_object": 23
       },
       "gt.recipe.mortar": {
-        "translatable_missing": 5834,
+        "source_exact": 5832,
+        "translatable_missing": 2,
         "missing_material_form": 1,
         "missing_object": 483
       },
@@ -10883,9 +10917,11 @@
         "missing_material_form": 63
       },
       "gt.recipe.press": {
-        "translatable_missing": 1818,
+        "source_exact": 1904,
+        "translated_exact": 13,
+        "translatable_missing": 66,
         "missing_material_form": 5997,
-        "missing_object": 345
+        "missing_object": 180
       },
       "gt.recipe.pressurewasher": {
         "source_exact": 312
@@ -10907,16 +10943,14 @@
         "translatable_missing": 8
       },
       "gt.recipe.rollbender": {
-        "translated_io_only": 405,
-        "translatable_missing": 535
+        "source_exact": 940
       },
       "gt.recipe.rollformer": {
         "source_exact": 26,
         "translatable_missing": 2
       },
       "gt.recipe.rollingmill": {
-        "translated_io_only": 297,
-        "translatable_missing": 2139,
+        "source_exact": 2436,
         "missing_object": 2
       },
       "gt.recipe.scannervisuals": {
@@ -10928,14 +10962,13 @@
       "gt.recipe.shredder": {
         "source_exact": 29180,
         "translated_exact": 363,
-        "translatable_missing": 6025,
+        "translatable_missing": 6061,
         "missing_material_form": 5359,
-        "missing_object": 319
+        "missing_object": 283
       },
       "gt.recipe.sifter": {
-        "translatable_missing": 405,
-        "missing_material_form": 2468,
-        "missing_object": 4
+        "source_exact": 2377,
+        "missing_material_form": 500
       },
       "gt.recipe.slicer": {
         "source_exact": 33
@@ -10945,11 +10978,11 @@
       },
       "gt.recipe.smelter": {
         "source_exact": 16627,
-        "translated_exact": 194,
-        "translatable_missing": 1542,
+        "translated_exact": 193,
+        "translatable_missing": 1628,
         "missing_material_form": 3442,
         "missing_fluid": 58,
-        "missing_object": 106
+        "missing_object": 21
       },
       "gt.recipe.squeezer": {
         "source_exact": 15,
@@ -10976,13 +11009,11 @@
         "missing_object": 95
       },
       "gt.recipe.welder": {
-        "translated_io_only": 1045,
-        "translatable_missing": 3664,
-        "missing_object": 53
+        "source_exact": 4760,
+        "missing_object": 2
       },
       "gt.recipe.wiremill": {
-        "translated_io_only": 31,
-        "translatable_missing": 424
+        "source_exact": 455
       }
     },
     "maps_excluded": {
@@ -11056,9 +11087,9 @@
       }
     },
     "blocker_kinds": {
-      "fluid": 7789,
-      "form": 79103,
-      "object": 20337
+      "fluid": 7853,
+      "form": 66811,
+      "object": 14958
     },
     "blockers": [
       {
@@ -11451,54 +11482,6 @@
       },
       {
         "kind": "form",
-        "key": "form:ore.normal.gravel",
-        "label": "ore.normal.gravel",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 617,
-        "materials": 617,
-        "top_maps": {
-          "gt.recipe.sifter": 617
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.normal.mud",
-        "label": "ore.normal.mud",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 617,
-        "materials": 617,
-        "top_maps": {
-          "gt.recipe.sifter": 617
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.normal.redsand",
-        "label": "ore.normal.redsand",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 617,
-        "materials": 617,
-        "top_maps": {
-          "gt.recipe.sifter": 617
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.normal.sand",
-        "label": "ore.normal.sand",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 617,
-        "materials": 617,
-        "top_maps": {
-          "gt.recipe.sifter": 617
-        }
-      },
-      {
-        "kind": "form",
         "key": "form:crate.plate",
         "label": "crate.plate",
         "class": "missing_material_form",
@@ -11511,6 +11494,18 @@
       },
       {
         "kind": "form",
+        "key": "form:crushedPurified",
+        "label": "crushedPurified",
+        "class": "missing_material_form",
+        "other_mod": false,
+        "rows": 500,
+        "materials": 125,
+        "top_maps": {
+          "gt.recipe.sifter": 500
+        }
+      },
+      {
+        "kind": "form",
         "key": "form:crate.raw",
         "label": "crate.raw",
         "class": "missing_material_form",
@@ -11519,258 +11514,6 @@
         "materials": 493,
         "top_maps": {
           "gt.recipe.unboxinator": 493
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.andesite",
-        "label": "ore.broken.andesite",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.basalt",
-        "label": "ore.broken.basalt",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.blackgranite",
-        "label": "ore.broken.blackgranite",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.blueschist",
-        "label": "ore.broken.blueschist",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.diorite",
-        "label": "ore.broken.diorite",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.granite",
-        "label": "ore.broken.granite",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.greenschist",
-        "label": "ore.broken.greenschist",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.kimberlite",
-        "label": "ore.broken.kimberlite",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.komatiite",
-        "label": "ore.broken.komatiite",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.limestone",
-        "label": "ore.broken.limestone",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.marble",
-        "label": "ore.broken.marble",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.prismarine.dark",
-        "label": "ore.broken.prismarine.dark",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.prismarine.light",
-        "label": "ore.broken.prismarine.light",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.quartzite",
-        "label": "ore.broken.quartzite",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.redgranite",
-        "label": "ore.broken.redgranite",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.shale",
-        "label": "ore.broken.shale",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.broken.slate",
-        "label": "ore.broken.slate",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.normal.endstone",
-        "label": "ore.normal.endstone",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.normal.sandstone",
-        "label": "ore.normal.sandstone",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 492,
-        "materials": 492,
-        "top_maps": {
-          "gt.recipe.crusher": 492
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.normal.netherrack",
-        "label": "ore.normal.netherrack",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 491,
-        "materials": 491,
-        "top_maps": {
-          "gt.recipe.crusher": 491
-        }
-      },
-      {
-        "kind": "form",
-        "key": "form:ore.normal.default",
-        "label": "ore.normal.default",
-        "class": "missing_material_form",
-        "other_mod": false,
-        "rows": 485,
-        "materials": 485,
-        "top_maps": {
-          "gt.recipe.crusher": 485
         }
       },
       {
@@ -12082,6 +11825,19 @@
       },
       {
         "kind": "object",
+        "key": "gregtech:gt.multitileentity@32606",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 135,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 134,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
         "key": "gregtech:gt.stone.prismarine.dark@7",
         "label": "gregtech:gt.stone.prismarine.dark",
         "class": "missing_object",
@@ -12126,77 +11882,6 @@
           "gt.recipe.cutter": 5,
           "gt.recipe.shredder": 1,
           "gt.recipe.crusher": 1
-        }
-      },
-      {
-        "kind": "object",
-        "key": "gregtech:gt.multitileentity@26060",
-        "label": "gregtech:gt.multitileentity",
-        "class": "missing_object",
-        "other_mod": false,
-        "rows": 130,
-        "materials": null,
-        "top_maps": {
-          "gt.recipe.extruder": 128,
-          "gt.recipe.melter": 1,
-          "gt.recipe.smelter": 1
-        }
-      },
-      {
-        "kind": "object",
-        "key": "gregtech:gt.multitileentity@26061",
-        "label": "gregtech:gt.multitileentity",
-        "class": "missing_object",
-        "other_mod": false,
-        "rows": 129,
-        "materials": null,
-        "top_maps": {
-          "gt.recipe.extruder": 126,
-          "gt.recipe.melter": 1,
-          "gt.recipe.smelter": 1,
-          "gt.recipe.boxinator": 1
-        }
-      },
-      {
-        "kind": "object",
-        "key": "gregtech:gt.multitileentity@26062",
-        "label": "gregtech:gt.multitileentity",
-        "class": "missing_object",
-        "other_mod": false,
-        "rows": 127,
-        "materials": null,
-        "top_maps": {
-          "gt.recipe.extruder": 124,
-          "gt.recipe.melter": 1,
-          "gt.recipe.smelter": 1,
-          "gt.recipe.boxinator": 1
-        }
-      },
-      {
-        "kind": "object",
-        "key": "gregtech:gt.multitileentity@26063",
-        "label": "gregtech:gt.multitileentity",
-        "class": "missing_object",
-        "other_mod": false,
-        "rows": 126,
-        "materials": null,
-        "top_maps": {
-          "gt.recipe.extruder": 124,
-          "gt.recipe.melter": 1,
-          "gt.recipe.smelter": 1
-        }
-      },
-      {
-        "kind": "object",
-        "key": "gregtech:gt.multitileentity@32606",
-        "label": "gregtech:gt.multitileentity",
-        "class": "missing_object",
-        "other_mod": false,
-        "rows": 125,
-        "materials": null,
-        "top_maps": {
-          "gt.recipe.extruder": 124,
-          "gt.recipe.shredder": 1
         }
       },
       {
@@ -12249,34 +11934,6 @@
           "gt.recipe.shredder": 14,
           "gt.recipe.juicer": 13,
           "gt.recipe.mortar": 13
-        }
-      },
-      {
-        "kind": "object",
-        "key": "gregtech:gt.multiitem.technological@30000",
-        "label": "technological@30000",
-        "class": "missing_object",
-        "other_mod": false,
-        "rows": 118,
-        "materials": null,
-        "top_maps": {
-          "gt.recipe.press": 116,
-          "gt.recipe.melter": 1,
-          "gt.recipe.smelter": 1
-        }
-      },
-      {
-        "kind": "object",
-        "key": "gregtech:gt.multitileentity@26064",
-        "label": "gregtech:gt.multitileentity",
-        "class": "missing_object",
-        "other_mod": false,
-        "rows": 110,
-        "materials": null,
-        "top_maps": {
-          "gt.recipe.extruder": 108,
-          "gt.recipe.melter": 1,
-          "gt.recipe.smelter": 1
         }
       },
       {
@@ -12527,6 +12184,32 @@
       },
       {
         "kind": "fluid",
+        "key": "fluid:dye.chemical.black",
+        "label": "dye.chemical.black",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 87,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 63,
+          "gt.recipe.mixer": 24
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.blue",
+        "label": "dye.chemical.blue",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 87,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 63,
+          "gt.recipe.mixer": 24
+        }
+      },
+      {
+        "kind": "fluid",
         "key": "fluid:dye.watermixed.cyan",
         "label": "dye.watermixed.cyan",
         "class": "missing_fluid",
@@ -12537,32 +12220,6 @@
           "gt.recipe.bath": 62,
           "gt.recipe.mixer": 22,
           "gt.recipe.drying": 1
-        }
-      },
-      {
-        "kind": "fluid",
-        "key": "fluid:dye.chemical.black",
-        "label": "dye.chemical.black",
-        "class": "missing_fluid",
-        "other_mod": true,
-        "rows": 83,
-        "materials": null,
-        "top_maps": {
-          "gt.recipe.bath": 63,
-          "gt.recipe.mixer": 20
-        }
-      },
-      {
-        "kind": "fluid",
-        "key": "fluid:dye.chemical.blue",
-        "label": "dye.chemical.blue",
-        "class": "missing_fluid",
-        "other_mod": true,
-        "rows": 83,
-        "materials": null,
-        "top_maps": {
-          "gt.recipe.bath": 63,
-          "gt.recipe.mixer": 20
         }
       },
       {
@@ -12593,6 +12250,32 @@
           "gt.recipe.coagulator": 1,
           "gt.recipe.centrifuge": 1,
           "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.green",
+        "label": "dye.chemical.green",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 82,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 63,
+          "gt.recipe.mixer": 19
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.red",
+        "label": "dye.chemical.red",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 82,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 62,
+          "gt.recipe.mixer": 20
         }
       },
       {
@@ -12652,6 +12335,58 @@
           "gt.recipe.mixer": 3,
           "gt.recipe.cryomixer": 1,
           "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.gray",
+        "label": "dye.chemical.gray",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 80,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 62,
+          "gt.recipe.mixer": 18
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.lightgray",
+        "label": "dye.chemical.lightgray",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 80,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 63,
+          "gt.recipe.mixer": 17
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.lime",
+        "label": "dye.chemical.lime",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 80,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 63,
+          "gt.recipe.mixer": 17
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.purple",
+        "label": "dye.chemical.purple",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 80,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 62,
+          "gt.recipe.mixer": 18
         }
       },
       {
@@ -12727,6 +12462,58 @@
           "gt.recipe.mixer": 2,
           "gt.recipe.cryomixer": 1,
           "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.lightblue",
+        "label": "dye.chemical.lightblue",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 79,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 62,
+          "gt.recipe.mixer": 17
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.magenta",
+        "label": "dye.chemical.magenta",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 79,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 62,
+          "gt.recipe.mixer": 17
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.orange",
+        "label": "dye.chemical.orange",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 79,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 62,
+          "gt.recipe.mixer": 17
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.pink",
+        "label": "dye.chemical.pink",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 79,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 62,
+          "gt.recipe.mixer": 17
         }
       },
       {
@@ -12882,32 +12669,6 @@
       },
       {
         "kind": "fluid",
-        "key": "fluid:dye.chemical.green",
-        "label": "dye.chemical.green",
-        "class": "missing_fluid",
-        "other_mod": true,
-        "rows": 78,
-        "materials": null,
-        "top_maps": {
-          "gt.recipe.bath": 63,
-          "gt.recipe.mixer": 15
-        }
-      },
-      {
-        "kind": "fluid",
-        "key": "fluid:dye.chemical.red",
-        "label": "dye.chemical.red",
-        "class": "missing_fluid",
-        "other_mod": true,
-        "rows": 78,
-        "materials": null,
-        "top_maps": {
-          "gt.recipe.bath": 62,
-          "gt.recipe.mixer": 16
-        }
-      },
-      {
-        "kind": "fluid",
         "key": "fluid:grc.applecider0",
         "label": "grc.applecider0",
         "class": "missing_fluid",
@@ -13025,6 +12786,19 @@
           "gt.recipe.mixer": 1,
           "gt.recipe.cryomixer": 1,
           "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.white",
+        "label": "dye.chemical.white",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 77,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 60,
+          "gt.recipe.mixer": 17
         }
       },
       {
@@ -13176,22 +12950,305 @@
           "gt.recipe.cryomixer": 1,
           "gt.recipe.generifier": 1
         }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:starfruitjuice",
+        "label": "starfruitjuice",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 77,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 74,
+          "gt.recipe.mixer": 1,
+          "gt.recipe.cryomixer": 1,
+          "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:beetjuice",
+        "label": "beetjuice",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 76,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 74,
+          "gt.recipe.distillery": 1,
+          "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:binnie.juicecarrot",
+        "label": "binnie.juicecarrot",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 76,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 75,
+          "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:goldencarrotjuice",
+        "label": "goldencarrotjuice",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 76,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 74,
+          "gt.recipe.squeezer": 1,
+          "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32611",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 76,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 75,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32612",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 76,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 75,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32618",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 76,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 75,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:pumpkinjuice",
+        "label": "pumpkinjuice",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 75,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 74,
+          "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:riverwater",
+        "label": "riverwater",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 75,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 74,
+          "gt.recipe.generifier": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32609",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 75,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 74,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32619",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 75,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 74,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32620",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 75,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 74,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32622",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 75,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 74,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32623",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 75,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 74,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32632",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 75,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 74,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "object",
+        "key": "gregtech:gt.multitileentity@32638",
+        "label": "gregtech:gt.multitileentity",
+        "class": "missing_object",
+        "other_mod": false,
+        "rows": 75,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.extruder": 74,
+          "gt.recipe.shredder": 1
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.brown",
+        "label": "dye.chemical.brown",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 74,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 63,
+          "gt.recipe.mixer": 11
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.yellow",
+        "label": "dye.chemical.yellow",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 74,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 63,
+          "gt.recipe.mixer": 11
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:rottendrink",
+        "label": "rottendrink",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 74,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 74
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:spoiledmilk",
+        "label": "spoiledmilk",
+        "class": "missing_fluid",
+        "other_mod": false,
+        "rows": 74,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.fermenter": 74
+        }
+      },
+      {
+        "kind": "fluid",
+        "key": "fluid:dye.chemical.cyan",
+        "label": "dye.chemical.cyan",
+        "class": "missing_fluid",
+        "other_mod": true,
+        "rows": 73,
+        "materials": null,
+        "top_maps": {
+          "gt.recipe.bath": 62,
+          "gt.recipe.mixer": 11
+        }
       }
     ],
     "calibration": {
-      "pairs": 417879,
-      "equal": 417329,
-      "differs": 524,
+      "pairs": 477934,
+      "equal": 477349,
+      "differs": 559,
       "untranslatable": 26,
-      "agreement": 0.9987,
+      "agreement": 0.9988,
       "by_map": {
         "gt.recipe.assembler": {
           "differs": 288,
           "equal": 54
         },
+        "gt.recipe.bath": {
+          "differs": 29,
+          "equal": 49372
+        },
         "gt.recipe.distillery": {
           "differs": 1,
           "untranslatable": 4
+        },
+        "gt.recipe.drying": {
+          "differs": 1,
+          "equal": 192
         },
         "gt.recipe.fuels.burn": {
           "equal": 18,
@@ -13208,8 +13265,16 @@
           "differs": 228,
           "equal": 248
         },
+        "gt.recipe.melter": {
+          "differs": 1,
+          "equal": 3546
+        },
         "gt.recipe.nanofab": {
           "differs": 7
+        },
+        "gt.recipe.pressurewasher": {
+          "differs": 4,
+          "equal": 308
         },
         "gt.recipe.smelter": {
           "equal": 16611,
@@ -13223,103 +13288,103 @@
           "sha256": "8b59c67b0baa2fa78a2cdd0b3725c6e90723464aabf7d69c07f3254ee8cb4536"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 0,
-          "sha256": "7b670b14897aa96227e10ca14d2b962f7ae13d3096808970f7a0b9bfea911889"
+          "map": "gt.recipe.drying",
+          "index": 142,
+          "sha256": "41e3c8a05098dbf62955e2f9b14b7b6b405e6b5df9b5813e649546d92cee9c45"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 2,
-          "sha256": "405904bd0c222fdb9b9729fabc6907215b9d25e41e17282867dcc3d67e4ad1d3"
+          "map": "gt.recipe.bath",
+          "index": 1394,
+          "sha256": "cd1aa7c484bf8f9051e551ee6fdaddc095e260debece9fd499b053256fa20472"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 3,
-          "sha256": "5c00cfd9561992c66377e636e30f58b78a7c96d6fcd704f6d82b92237032bc4c"
+          "map": "gt.recipe.bath",
+          "index": 1541,
+          "sha256": "b113735d7ee854114a15ec79c50d58fd2164214bf6a4d533cfeecc2df4795e98"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 4,
-          "sha256": "0c17f62f7c6ecedd9f634e226a30d412eb70ba6f451d7c1414e754e2d3987f72"
+          "map": "gt.recipe.bath",
+          "index": 2574,
+          "sha256": "c4302e1101d102e3eb7c58876a5cba63d78b6b0d24ebe0151869d96d89cca66a"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 6,
-          "sha256": "0c990749781bc0abd07b4757920a20c649f0d8eae10bda67fbe41df3f9e5f078"
+          "map": "gt.recipe.bath",
+          "index": 6480,
+          "sha256": "0584832c8489b68d177ba5fc9ff6d2b5218b3a431106bae6ea27abe2bdfdd188"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 8,
-          "sha256": "c5576e4f876748cb14cc31708e610aeb40530787a1e8a813ed43fe81771568fa"
+          "map": "gt.recipe.bath",
+          "index": 9933,
+          "sha256": "f527733a23ca0c249b0c8229e39a502880920392f7a8fc3f6a4c54b99f739bd8"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 9,
-          "sha256": "cd48d12c9431da9b113a5c115dad2e11f65eb01cf766aa7c770ec2aeba22d9b4"
+          "map": "gt.recipe.bath",
+          "index": 12569,
+          "sha256": "ca5611c9a732d34ec9b784634bfc848ae4b0e5808ee699d50ef40c6f9b1b8f44"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 10,
-          "sha256": "53bb2de9fb45f30f8ae466ecfe2fb20c6c8ca3989b15802fbf378fd636957645"
+          "map": "gt.recipe.bath",
+          "index": 15620,
+          "sha256": "f50f42b27898a27f4abeb663ce0cea2c2cafcb7eeab2a68ff653825ad4854b92"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 12,
-          "sha256": "ae6a4b1fdc278ec2454297aae0d171ac899693514afa611903e2ae290dbaeb0c"
+          "map": "gt.recipe.bath",
+          "index": 16165,
+          "sha256": "4c6b53afc1965c30ed8eab523e2ffcdf0e956a0b8a15b3be2f255957fd512b4d"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 13,
-          "sha256": "237dc367dca0960f4895d9dcc2c0372c0b8864c0901f4a5ef0e199594e0b7f9f"
+          "map": "gt.recipe.bath",
+          "index": 16722,
+          "sha256": "19e179884ef6b27612dae9d11005cba86562c194ef8bc9f36cf0eb5258ba2499"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 14,
-          "sha256": "df3810f690aacc558450389fd7ec76aed3df08ab379c8809692227a4933a7d8d"
+          "map": "gt.recipe.bath",
+          "index": 18642,
+          "sha256": "66486a8219071acd7de2af1f02eaadbfed7712b66aed34aac997a2259e6fd7c3"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 17,
-          "sha256": "72a311eee64fa4246efc9d740b87cebffbf9608e842346c99755f2d831bc8386"
+          "map": "gt.recipe.bath",
+          "index": 20835,
+          "sha256": "39c8329834623ef86372ac5f17cd00bfd7590133153f0f544f730e7f8098c60d"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 18,
-          "sha256": "b1ac2b92914384ab1e75fdb80a52251bd7d10ad074be714b54fb287acc1492bb"
+          "map": "gt.recipe.bath",
+          "index": 25747,
+          "sha256": "e88cd290a60b810b76969f36d1a977a00c7c92fa942d9d3da1664b146506605a"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 19,
-          "sha256": "77b1c91f8ecd9d99ef842f029db9be0a3107c85aa52e804d5d78c214eccd09c5"
+          "map": "gt.recipe.bath",
+          "index": 28749,
+          "sha256": "489c02e219301cf265320722c2badec7063032c02655b2b20598149b020650ae"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 21,
-          "sha256": "6696c0c9cbceb4b5466130d1d6f3833f44750ea147ea2c8cf1e070d20e21baa0"
+          "map": "gt.recipe.bath",
+          "index": 28946,
+          "sha256": "84d5697d33459dbc198254afade36c743f913cf4aa191c4eb3596c34cd55eb58"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 23,
-          "sha256": "70e2efd47bb1ec16cfb4533c4c4e266ad7f155d4803563e4d1697a322ab1674f"
+          "map": "gt.recipe.bath",
+          "index": 29907,
+          "sha256": "fc3c4cddb8ae6b3dd28f8a977ce863b6ff8ed62bba5bc0773eb9d5efc5882067"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 24,
-          "sha256": "020f2bd8702bce0d06fb025637b5e8d447e4a33b8b541f9ccfa7d80dda97614f"
+          "map": "gt.recipe.bath",
+          "index": 30134,
+          "sha256": "d6eb760dfd939de52170f1c6fe402da0df643f67e6914028f2b556935180c713"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 25,
-          "sha256": "9e0f87a39419e5a57e549618959b09dc153ed728c8160f84c2bb4ce9559895b8"
+          "map": "gt.recipe.bath",
+          "index": 32949,
+          "sha256": "b0d308f61dae3fdf90a16ba613c77110379dc42e4603e2eda474d12ea2f53c9a"
         },
         {
-          "map": "gt.recipe.loom",
-          "index": 26,
-          "sha256": "6fb243be99d4f4ee44ca3fafcdece197540eda9f3c9e20eaa76113a0f5b13283"
+          "map": "gt.recipe.bath",
+          "index": 33136,
+          "sha256": "92b8b16747c858bb3c2bb82fe8895bae3618757fcc5c3c8a7bfae125915f4628"
         }
       ]
     },
-    "form_demand_pairs_sha256": "8c632c1b079985e4fc485a9a52ea327ea5a4d8fc48947e5667d827c6768bb89d"
+    "form_demand_pairs_sha256": "5ceef55be4ab59f0d71387904a76f8b9fa56c52d2b7ae917b2ac2db3b211b6f0"
   },
   "unowned_cc_maps": [
     {
@@ -14737,9 +14802,9 @@
       "cc_hosts": [
         "cruciblecraft:rollbender"
       ],
-      "recipe_map_depth": "bounded_subset",
+      "recipe_map_depth": "full_replay",
       "evidence": null,
-      "delivery_depth": "bounded_subset"
+      "delivery_depth": "full_replay"
     },
     {
       "canonical_key": "MultiTileEntityBasicMachine|recipe:RM.RollFormer|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -15021,9 +15086,9 @@
       "cc_hosts": [
         "cruciblecraft:wiremill"
       ],
-      "recipe_map_depth": "bounded_subset",
+      "recipe_map_depth": "full_replay",
       "evidence": null,
-      "delivery_depth": "bounded_subset"
+      "delivery_depth": "full_replay"
     },
     {
       "canonical_key": "MultiTileEntityBatteryBoxLarge|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -23543,7 +23608,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -23566,7 +23631,8 @@
       "capability close fluid/gt6-missing-fluids (major)",
       "capability close recipe/gt6-bulk-capacity (major)",
       "capability close recipe/gt6-extruder-bulk (major)",
-      "capability close recipe/gt6-extruder-remainder (major)"
+      "capability close recipe/gt6-extruder-remainder (major)",
+      "capability close recipe/gt6-prefix-regular-bulk (major)"
     ],
     "accepted": null
   }

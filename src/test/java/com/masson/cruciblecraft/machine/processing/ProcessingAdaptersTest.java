@@ -499,7 +499,7 @@ class ProcessingAdaptersTest {
     void crusherSpecPreservesLegacyShapePowerAndSides() {
         ProcessingMachineSpec crusher = ModProcessingMachines.CRUSHER;
         assertEquals(List.of(0), crusher.items().inputs());
-        assertEquals(List.of(1), crusher.items().outputs());
+        assertEquals(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), crusher.items().outputs());
         assertEquals(1024, crusher.energy().capacity());
         ProcessingMachineIoAssertions.assertMatchesProfile(crusher);
         assertEquals(
@@ -599,11 +599,15 @@ class ProcessingAdaptersTest {
             assertEquals(4_096L, spec.energy().capacity());
             assertEquals(256L, spec.energy().maxPacket());
             assertEquals(spec.items().slotCount(), spec.ui().machineSlots().size());
-            assertEquals(
-                    spec == ModProcessingMachines.EXTRUDER
-                            ? ModProcessingMachines.EXTRUDER_ITEM_OUTPUTS
-                            : 1,
-                    spec.items().outputs().size());
+            int expectedOutputs = 1;
+            if (spec == ModProcessingMachines.EXTRUDER) {
+                expectedOutputs = ModProcessingMachines.EXTRUDER_ITEM_OUTPUTS;
+            } else if (spec == ModProcessingMachines.CUTTER) {
+                expectedOutputs = 3;
+            } else if (spec == ModProcessingMachines.LATHE) {
+                expectedOutputs = 2;
+            }
+            assertEquals(expectedOutputs, spec.items().outputs().size());
             ProcessingMachineIoAssertions.assertMatchesProfile(spec);
             var placement = ProcessingMachineEnergyPlacement.connection(spec, Direction.NORTH);
             assertEquals(Direction.SOUTH, placement.providerOffset());

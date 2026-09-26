@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/recipe/gt6-prefix-regular-bulk/rollingmill/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "83c59ea79c43cd117ea8a985a89b93d77c9318eeae1bacaeb1f00039c25e534c"
+    },
+    {
+      "path": "tools/waves/recipe/gt6-prefix-regular-bulk/rollingmill/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "b53b43ea57c9d922c9e08d4b11947d930e8a1c8034a831b66b4454d9a179838a"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "rollingmill/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

@@ -1,0 +1,184 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.welder#bulk_0100",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "b00b97930d895cc987315c5ae22807f4ef04425fb11cb2af80507156890b468a",
+        "42cd7dc2fbf7498e6706d991e64af8caf191c5106e8e91b1d9b2f381a51eed4c",
+        "44d578c186a94fe498316968f944ad328ac5b6a783794a245c40f4e8f84a9eda",
+        "489c7fd72fb2eca15414ed46c2560b9d14445d2edf64a2cd40776c02352225b0",
+        "2f9091be0f89e1c915f8aafa77e4e6b199e788c8c008716f1c66bd142067ea00"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cd_in_ag_alloy"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:cd_in_ag_alloy/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sunnarium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:sunnarium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "gold_inductive"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:gold_inductive/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "bedrockium"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:bedrockium/rod"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "enderium_base"
+            },
+            "items": "cruciblecraft:quadruple_plate",
+            "type": "neoforge:components"
+          },
+          {
+            "item": "cruciblecraft:enderium_base/rod"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cd_in_ag_alloy/machine_casing_quadruple"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:sunnarium/machine_casing_quadruple"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold_inductive/machine_casing_quadruple"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:bedrockium/machine_casing_quadruple"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:enderium_base/machine_casing_quadruple"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/a0f2ea821d636f77",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/460a741f0920f03c",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/ec32dbb3eebbbf3a",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/6676922d96ca850f",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:gt6/c5d020a348e8905b",
+        4,
+        4
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 1664,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        6,
+        4
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.welder#bulk_0100",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:welder/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:welder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

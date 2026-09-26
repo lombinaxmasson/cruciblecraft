@@ -114,6 +114,15 @@ compressor/rollingmill、mortar/shredder 也有重合。所以**只要声明的�
 “缺配方”是真正要写配方的缺口；“缺身份”要先开材料形态、流体或物品，
 配方才有地方落。两者分开，是为了不把形态缺口算成配方工作量。
 
+同一件缺的物品或形态跨多张图时，人读页 §17.1 把它们合成一行：`label` 是缺什么，
+`rows` 是受影响源行，主要机器来自 `semantic_coverage.json` 里该条 `blockers[].key`。
+`key` 相同就是同一个东西（`物品id@meta`、`fluid:<名>` 或 `form:<前缀>`）。
+§17.1 只印前 40；第 41 项以后以 JSON 的 `key` 为准，不要在本页手写第二份名单。
+某张已关配方卡决定整类不收时，分类索引在那张计划里（前缀规则类卡是
+`docs/history/card-plans/closed/GT6前缀规则类配方批量详细计划.md` §4.2），
+单卡没发的行在该 wave 的 `blocked.json`。三层怎么读见
+[recipe-wave-workflow.md](recipe-wave-workflow.md) §1.2。
+
 翻译用的是 recipe wave 自己的链路（`dialects/gt6.compile_row` + `emit`），
 比较在 CC 逻辑身份空间里做：slash id 与 `prefix_material` 组件视为同一身份。
 GT6 挤压模具额外用 `gt6_resolve.extruder_shapes()` 映射到 live 的 CC 模具。

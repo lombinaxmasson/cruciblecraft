@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/recipe/gt6-prefix-regular-bulk/crusher/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "0f15b11bb7ca8476fa82dc6450d83e64793efed01a10fc3380be461c1e2e23ae"
+    },
+    {
+      "path": "tools/waves/recipe/gt6-prefix-regular-bulk/crusher/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "6856bf3562908a0aa5b450d731d1e3bc7180636454a09a77b4c2895caf8447e7"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "crusher/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

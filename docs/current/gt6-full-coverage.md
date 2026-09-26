@@ -12,10 +12,10 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 | 轴 | 分母 | 当前状态分布 |
 | --- | --- | --- |
-| 配方图 | 95 maps / 720841 源行 | `denominator_only` 17，`runtime_only` 4，`bounded_subset` 52，`full_replay` 6，`empty_source` 14，`legacy_exclusion_pending` 2 |
-| **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 60.1%**（424923）；身份就绪 83.5%；按机器平均 28.5%（73 台，完成 7，未开始 33） |
-| 配方源行逐行分类 | 720841 源行 | 已证明 424923（58.9%）；部分一致 9469（1.3%）；缺配方 155695（21.6%）；缺身份 107536（14.9%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
-| 机器 kind | 96 canonical kinds | `denominator_only` 16，`identity_only` 1，`runtime_code_uncarded` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 43，`runtime_accepted` 21，`full_replay` 4 |
+| 配方图 | 95 maps / 720841 源行 | `denominator_only` 17，`runtime_only` 4，`bounded_subset` 50，`full_replay` 8，`empty_source` 14，`legacy_exclusion_pending` 2 |
+| **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 68.6%**（484700）；身份就绪 86.0%；按机器平均 43.3%（73 台，完成 9，未开始 22） |
+| 配方源行逐行分类 | 720841 源行 | 已证明 484700（67.2%）；部分一致 7703（1.1%）；缺配方 115291（16.0%）；缺身份 89929（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
+| 机器 kind | 96 canonical kinds | `denominator_only` 16，`identity_only` 1，`runtime_code_uncarded` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 41，`runtime_accepted` 21，`full_replay` 6 |
 | 多方块控制器 | 30 canonical kinds | `identity_only` 2，`runtime_code_uncarded` 2，`runtime_paused` 6，`runtime_accepted` 20 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
 | 能量身份 | 20 identities | 有 CC `EnergyType` 10，无 10 |
@@ -23,27 +23,27 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 1652 demand pairs | openable 96，gated_unresolved 1207，ungated 规模 3298（规模，非待办） |
-| Capability | 121 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 104，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 6，`partial` 23，`unreviewed` 25，`unset` 64 |
+| Capability | 122 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 105，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 6，`partial` 23，`unreviewed` 26，`unset` 64 |
 | Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
 配方源行逐行分类（每一条 GT6 源行只落一类，合计等于分母；口径见工作流文档第 3.3 节）：
 
-- **已证明** 424923（58.9%）：`source_exact` 418086，`translated_exact` 6837
-- **部分一致** 9469（1.3%）：`translated_io_only` 1778，`translated_item_io` 7691
-- **缺配方** 155695（21.6%）：`translatable_missing` 155695
-- **缺身份** 107536（14.9%）：`missing_material_form` 79103，`missing_material` 0，`missing_fluid` 7935，`missing_object` 20498
+- **已证明** 484700（67.2%）：`source_exact` 478141，`translated_exact` 6559
+- **部分一致** 7703（1.1%）：`translated_io_only` 0，`translated_item_io` 7703
+- **缺配方** 115291（16.0%）：`translatable_missing` 115291
+- **缺身份** 89929（12.5%）：`missing_material_form` 66811，`missing_material` 0，`missing_fluid` 7999，`missing_object` 15119
 - **展示用** 13576（1.9%）：`display_only` 13576
 - **旧排除待决策** 9642（1.3%）：`legacy_exclusion_pending` 9642
 
-翻译链校准：在 417879 对 hash 已证明的“CC 行 ↔ GT6 源行”上，翻译后完全一致 417329（99.9%），不一致 524，不可翻译 26。不一致的是真实移植差异（例如缺电路编号、有意替换），样例见 `semantic_coverage.json`。
+翻译链校准：在 477934 对 hash 已证明的“CC 行 ↔ GT6 源行”上，翻译后完全一致 477349（99.9%），不一致 559，不可翻译 26。不一致的是真实移植差异（例如缺电路编号、有意替换），样例见 `semantic_coverage.json`。
 
 按交付深度的源行数：
 
 - `denominator_only`：37386 源行，已追溯 0
 - `runtime_only`：29648 源行，已追溯 0
-- `bounded_subset`：635812 源行，已追溯 409731
-- `full_replay`：8353 源行，已追溯 8353
+- `bounded_subset`：634417 源行，已追溯 468391
+- `full_replay`：9748 源行，已追溯 9748
 - `empty_source`：0 源行，已追溯 0
 - `legacy_exclusion_pending`：9642 源行，已追溯 0
 
@@ -57,7 +57,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - **CC 未追溯行**：落在本图对应 CC 图上、但没有行级 GT6 evidence 的配方行（datagen 手写、`gt6_java_source`、bootstrap、design policy 等），只证明有内容，不算源行。
 - **材料规则**：`material_rule` 文件数 → `component_rule_manifest.json` 记录的离线展开数；没有展开数的规则由运行时按材料展开。
 
-扫描范围：12 个运行时资源根（含 `src/generated/resources`），按 `source-sets.gradle` 排除 5 个 pattern；CC 配方行 420563，材料规则文件 98。源行归属钉在 `tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json`（覆盖 0，未能在 dump 中找到 0，多图歧义 0）。
+扫描范围：12 个运行时资源根（含 `src/generated/resources`），按 `source-sets.gradle` 排除 5 个 pattern；CC 配方行 480618，材料规则文件 98。源行归属钉在 `tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json`（覆盖 0，未能在 dump 中找到 0，多图歧义 0）。
 
 | GT6 map | 源行 | 历史源分母分类 | 当前交付深度 | 逐行已证明 | reference 追溯 | CC 承载图（CC 行） | CC 未追溯行 | 材料规则 | overflow | capability | blocker |
 | --- | ---: | --- | --- | ---: | ---: | --- | ---: | ---: | ---: | --- | --- |
@@ -82,8 +82,8 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.bumblelyzer` | 1440 | deferred_with_reason | `runtime_only` | 0 | 0 | — | 0 | — | 0 | — | — |
 | `gt.recipe.printer` | 22 | deferred_with_reason | `runtime_only` | 0 | 0 | — | 0 | — | 22 | — | recipe/printer-dye-fluids |
 | `gt.recipe.replicator` | 895 | deferred_with_reason | `runtime_only` | 0 | 0 | — | 0 | — | 0 | — | — |
-| `gt.recipe.anvil.bend.big` | 723 | in_scope | `bounded_subset` | 0 | 0 | — | 0 | 3 条 | 0 | — | — |
-| `gt.recipe.anvil.bend.small` | 507 | in_scope | `bounded_subset` | 0 | 0 | — | 0 | 2 条 | 0 | — | — |
+| `gt.recipe.anvil.bend.big` | 723 | in_scope | `bounded_subset` | 722（99.9%） | 0 | anvil_bend_big 722 | 0 | 3 条 | 0 | — | — |
+| `gt.recipe.anvil.bend.small` | 507 | in_scope | `bounded_subset` | 505（99.6%） | 0 | anvil_bend_small 505 | 0 | 2 条 | 0 | — | — |
 | `gt.recipe.assembler` | 1582 | in_scope | `bounded_subset` | 343（21.7%） | 0 | assembler 343 | 0 | 32 条 → 568 | 0 | — | architecture/combinatorial-leftover |
 | `gt.recipe.autoclave` | 392 | in_scope | `bounded_subset` | 366（93.4%） | 0 | autoclave 366 | 0 | — | 0 | — | — |
 | `gt.recipe.bath` | 59855 | in_scope | `bounded_subset` | 49407（82.5%） | 0 | bath 49407 | 58 | 1 条 | 0 | machines/bath, machines/large-bathing-vat | identity/bath-large-vat-17104, obtain/wooden-bathing-pot-glue, recipe/bath-identity-families, recipe/bath-remainder-families |
@@ -92,10 +92,10 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.coagulator` | 5 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 2 | — | 0 | machines/large-coagulator | — |
 | `gt.recipe.cokeoven` | 124 | in_scope | `bounded_subset` | 0 | 0 | — | 77 | — | 0 | machines/coke-oven | — |
 | `gt.recipe.compressor` | 1472 | in_scope | `bounded_subset` | 1289（87.6%） | 0 | compressor 1289 | 0 | — | 0 | — | — |
-| `gt.recipe.crusher` | 12932 | in_scope | `bounded_subset` | 0 | 361 | crusher 352 | 152 | 2 条 | 0 | — | — |
+| `gt.recipe.crusher` | 12932 | in_scope | `bounded_subset` | 12210（94.4%） | 361 | crusher 12562 | 152 | 2 条 | 0 | — | — |
 | `gt.recipe.cryodistillationtower` | 3 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 1 | — | 0 | machines/distillation-tower | — |
 | `gt.recipe.cryomixer` | 57 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 4 | — | 0 | — | — |
-| `gt.recipe.cutter` | 27454 | in_scope | `bounded_subset` | 0 | 0 | — | 0 | 2 条 → 651 | 0 | — | — |
+| `gt.recipe.cutter` | 27454 | in_scope | `bounded_subset` | 25389（92.5%） | 0 | cutter 25389 | 0 | 2 条 → 651 | 0 | — | — |
 | `gt.recipe.distillationtower` | 8 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 6 | — | 0 | machines/distillation-tower | — |
 | `gt.recipe.distillery` | 1517 | in_scope | `bounded_subset` | 6（0.4%） | 0 | distillery 7 | 0 | — | 0 | — | — |
 | `gt.recipe.drying` | 217 | in_scope | `bounded_subset` | 198（91.2%） | 0 | drying 198 | 0 | — | 0 | — | — |
@@ -112,34 +112,34 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.injector` | 638 | deferred_with_reason | `bounded_subset` | 103（16.1%） | 0 | injector 103 | 0 | — | 535 | machines/injector | fluid/ic2-coolant, fluid/thorium-salt, obtain/injector-mv-hv-iv-hosts, recipe/injector-overflow |
 | `gt.recipe.laminator` | 498 | deferred_with_reason | `bounded_subset` | 486（97.6%） | 0 | laminator 486 | 6 | — | 12 | machines/laminator | identity/redstone-insulated-extras, obtain/redstone-wiregt01, recipe/laminator-overflow |
 | `gt.recipe.laserengraver` | 1787 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 8 | — | 0 | — | — |
-| `gt.recipe.lathe` | 2528 | in_scope | `bounded_subset` | 0 | 0 | — | 0 | 2 条 → 929 | 0 | — | — |
+| `gt.recipe.lathe` | 2528 | in_scope | `bounded_subset` | 2525（99.9%） | 0 | lathe 2525 | 0 | 2 条 → 929 | 0 | — | — |
 | `gt.recipe.lightning` | 12 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 1 | — | 0 | — | — |
 | `gt.recipe.loom` | 1334 | deferred_with_reason | `bounded_subset` | 476（35.7%） | 0 | loom 476 | 0 | — | 858 | machines/loom | recipe/loom-overflow |
 | `gt.recipe.magneticseparator` | 179 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 1 | — | 0 | — | — |
 | `gt.recipe.massfab` | 920 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 1 | — | 0 | — | — |
 | `gt.recipe.melter` | 6756 | deferred_with_reason | `bounded_subset` | 3547（52.5%） | 0 | melter 3547 | 0 | — | 3155 | machines/melter | recipe/melter-overflow |
 | `gt.recipe.mixer` | 64245 | in_scope | `bounded_subset` | 7198（11.2%） | 0 | mixer 7218 | 3 | — | 0 | machines/large-mixer | — |
-| `gt.recipe.mortar` | 6318 | in_scope | `bounded_subset` | 0 | 0 | — | 0 | 4 条 | 0 | — | — |
+| `gt.recipe.mortar` | 6318 | in_scope | `bounded_subset` | 5832（92.3%） | 0 | mortar 5832 | 0 | 4 条 | 0 | — | — |
 | `gt.recipe.nanofab` | 64 | deferred_with_reason | `bounded_subset` | 7（10.9%） | 0 | nanofab 7 | 2 | — | 57 | machines/nanofab | obtain/nanofab-hosts, recipe/nanofab-overflow |
 | `gt.recipe.polarizer` | 943 | deferred_with_reason | `bounded_subset` | 0 | 0 | — | 3 | — | 0 | — | identity/processing-ungated-families |
-| `gt.recipe.press` | 8160 | in_scope | `bounded_subset` | 0 | 0 | — | 23 | 5 条 → 1191 | 0 | — | recipe/pressure-washer-stone |
+| `gt.recipe.press` | 8160 | in_scope | `bounded_subset` | 1904（23.3%） | 0 | press 1904 | 23 | 5 条 → 1191 | 0 | — | recipe/pressure-washer-stone |
 | `gt.recipe.roaster` | 115 | deferred_with_reason | `bounded_subset` | 73（63.5%） | 0 | roaster 73 | 1 | — | 0 | — | — |
-| `gt.recipe.rollbender` | 940 | in_scope | `bounded_subset` | 0 | 0 | — | 0 | 3 条 → 1076 | 0 | — | — |
 | `gt.recipe.rollformer` | 28 | deferred_with_reason | `bounded_subset` | 26（92.9%） | 0 | rollformer 26 | 0 | — | 0 | — | recipe/roll-former-rail-gt |
-| `gt.recipe.rollingmill` | 2438 | in_scope | `bounded_subset` | 0 | 0 | — | 0 | 1 条 → 336 | 0 | — | — |
+| `gt.recipe.rollingmill` | 2438 | in_scope | `bounded_subset` | 2436（99.9%） | 0 | rollingmill 2436 | 0 | 1 条 → 336 | 0 | — | — |
 | `gt.recipe.shredder` | 41246 | in_scope | `bounded_subset` | 29180（70.7%） | 14803 | shredder 29537 | 0 | — | 11881 | machines/large-shredder | — |
-| `gt.recipe.sifter` | 2877 | in_scope | `bounded_subset` | 0 | 1720 | sifter 351 | 6 | — | 0 | — | — |
+| `gt.recipe.sifter` | 2877 | in_scope | `bounded_subset` | 2377（82.6%） | 1720 | sifter 2728 | 6 | — | 0 | — | — |
 | `gt.recipe.sluice` | 4840 | in_scope | `bounded_subset` | 0 | 3183 | sluice 355 | 2 | — | 0 | machines/large-sluice | — |
 | `gt.recipe.smelter` | 21969 | in_scope | `bounded_subset` | 16627（75.7%） | 2003 | smelter 16748 | 91 | 1 条 | 0 | — | — |
 | `gt.recipe.squeezer` | 5322 | deferred_with_reason | `bounded_subset` | 15（0.3%） | 0 | squeezer 15 | 5 | — | 0 | machines/large-squeezer | identity/processing-ungated-families, recipe/squeezer-dump-5322, worldgen/crops-glowtus-bush |
-| `gt.recipe.welder` | 4762 | in_scope | `bounded_subset` | 0 | 0 | — | 0 | 15 条 → 321 | 0 | — | — |
-| `gt.recipe.wiremill` | 455 | in_scope | `bounded_subset` | 0 | 0 | — | 0 | 10 条 → 356 | 0 | — | — |
+| `gt.recipe.welder` | 4762 | in_scope | `bounded_subset` | 4760（100.0%） | 0 | welder 4760 | 0 | 15 条 → 321 | 0 | — | — |
 | `gt.recipe.clustermill` | 307 | deferred_with_reason | `full_replay` | 307（100.0%） | 0 | clustermill 307 | 0 | — | 0 | — | — |
 | `gt.recipe.fuels.fluidbed` | 55 | deferred_with_reason | `full_replay` | 55（100.0%） | 0 | fuels_fluidbed 55 | 0 | — | 0 | — | — |
 | `gt.recipe.fuels.gas` | 9 | deferred_with_reason | `full_replay` | 9（100.0%） | 0 | fuels_gas_turbine 9 | 0 | — | 0 | — | — |
 | `gt.recipe.pressurewasher` | 312 | deferred_with_reason | `full_replay` | 312（100.0%） | 0 | pressurewasher 312 | 24 | — | 0 | — | — |
+| `gt.recipe.rollbender` | 940 | in_scope | `full_replay` | 940（100.0%） | 0 | rollbender 940 | 0 | 3 条 → 1076 | 0 | — | — |
 | `gt.recipe.sharpener` | 7637 | deferred_with_reason | `full_replay` | 7637（100.0%） | 0 | sanding 7637 | 0 | — | 0 | machines/sanding | identity/sanding-grindstone-32703 |
 | `gt.recipe.slicer` | 33 | deferred_with_reason | `full_replay` | 33（100.0%） | 0 | slicer 33 | 0 | — | 0 | machines/slicer | material-form/paper-tiny-plate |
+| `gt.recipe.wiremill` | 455 | in_scope | `full_replay` | 455（100.0%） | 0 | wiremill 455 | 0 | 10 条 → 356 | 0 | — | — |
 | `(unnamed)` | 0 | deferred_with_reason | `empty_source` | 0 | 0 | — | 0 | — | 0 | — | — |
 | `gt.recipe.autocrafting` | 0 | deferred_with_reason | `empty_source` | 0 | 0 | — | 0 | — | 0 | — | — |
 | `gt.recipe.blastfurnace` | 0 | deferred_with_reason | `empty_source` | 0 | 0 | — | 0 | — | 0 | — | — |
@@ -185,31 +185,31 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 | GT6 map | 源行 | 目标 | 进度 | 就绪 | `source_exact` | `translated_exact` | `translated_io_only` | `translated_item_io` | `translatable_missing` | `missing_material_form` | `missing_material` | `missing_fluid` | `missing_object` | `display_only` | `legacy_exclusion_pending` |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `gt.recipe.extruder` | 325595 | 325519 | 93.7% | 93.7% | 299145 | 5798 | 0 | 0 | 19 | 11096 | 0 | 0 | 9537 | 0 | 0 |
-| `gt.recipe.mixer` | 64245 | 64238 | 11.2% | 99.0% | 7198 | 30 | 0 | 4556 | 51804 | 0 | 0 | 570 | 87 | 0 | 0 |
+| `gt.recipe.extruder` | 325595 | 325519 | 93.7% | 95.0% | 299145 | 5798 | 0 | 0 | 4170 | 11096 | 0 | 0 | 5386 | 0 | 0 |
+| `gt.recipe.mixer` | 64245 | 64238 | 11.2% | 99.0% | 7198 | 30 | 0 | 4556 | 51804 | 0 | 0 | 634 | 23 | 0 | 0 |
 | `gt.recipe.bath` | 59855 | 59791 | 82.7% | 91.8% | 49407 | 9 | 0 | 2981 | 2505 | 3568 | 0 | 1382 | 1 | 2 | 0 |
-| `gt.recipe.shredder` | 41246 | 41245 | 71.6% | 86.2% | 29180 | 363 | 0 | 0 | 6025 | 5359 | 0 | 0 | 319 | 0 | 0 |
-| `gt.recipe.cutter` | 27454 | 27446 | 0.0% | 91.8% | 0 | 0 | 0 | 0 | 25206 | 0 | 0 | 0 | 2248 | 0 | 0 |
+| `gt.recipe.shredder` | 41246 | 41245 | 71.6% | 86.3% | 29180 | 363 | 0 | 0 | 6061 | 5359 | 0 | 0 | 283 | 0 | 0 |
+| `gt.recipe.cutter` | 27454 | 27446 | 92.5% | 92.6% | 25389 | 5 | 0 | 12 | 0 | 0 | 0 | 0 | 2048 | 0 | 0 |
 | `gt.recipe.boxinator` | 27291 | 27291 | 0.0% | 41.9% | 0 | 0 | 0 | 0 | 11439 | 15440 | 0 | 0 | 412 | 0 | 0 |
-| `gt.recipe.smelter` | 21969 | 21968 | 76.6% | 83.6% | 16627 | 194 | 0 | 0 | 1542 | 3442 | 0 | 58 | 106 | 0 | 0 |
+| `gt.recipe.smelter` | 21969 | 21968 | 76.6% | 84.0% | 16627 | 193 | 0 | 0 | 1628 | 3442 | 0 | 58 | 21 | 0 | 0 |
 | `gt.recipe.unboxinator` | 17513 | 17505 | 0.0% | 43.4% | 0 | 0 | 0 | 0 | 7594 | 9816 | 0 | 0 | 95 | 8 | 0 |
-| `gt.recipe.crusher` | 12932 | 12932 | 2.3% | 14.6% | 0 | 302 | 0 | 0 | 1587 | 10817 | 0 | 0 | 226 | 0 | 0 |
+| `gt.recipe.crusher` | 12932 | 12932 | 94.4% | 94.6% | 12210 | 3 | 0 | 0 | 24 | 493 | 0 | 0 | 202 | 0 | 0 |
 | `gt.recipe.toolhead` | 10960 | 0 | — | — | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 10960 | 0 |
-| `gt.recipe.generifier` | 10236 | 10162 | 0.1% | 85.4% | 6 | 1 | 0 | 16 | 8650 | 1084 | 0 | 56 | 423 | 0 | 0 |
+| `gt.recipe.generifier` | 10236 | 10162 | 0.1% | 85.6% | 6 | 1 | 0 | 16 | 8676 | 1084 | 0 | 56 | 397 | 0 | 0 |
 | `gt.recipe.anvil` | 9228 | 9228 | 0.0% | 0.0% | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 9228 |
-| `gt.recipe.press` | 8160 | 8160 | 0.0% | 22.3% | 0 | 0 | 0 | 0 | 1818 | 5997 | 0 | 0 | 345 | 0 | 0 |
+| `gt.recipe.press` | 8160 | 8160 | 23.5% | 24.3% | 1904 | 13 | 0 | 0 | 66 | 5997 | 0 | 0 | 180 | 0 | 0 |
 | `gt.recipe.steamcracking` | 7746 | 7746 | 0.0% | 99.6% | 0 | 0 | 0 | 0 | 7714 | 0 | 0 | 32 | 0 | 0 | 0 |
 | `gt.recipe.sharpener` | 7637 | 7637 | 100.0% | 100.0% | 7637 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| `gt.recipe.melter` | 6756 | 6755 | 53.4% | 64.4% | 3547 | 63 | 0 | 1 | 740 | 2294 | 0 | 0 | 111 | 0 | 0 |
+| `gt.recipe.melter` | 6756 | 6755 | 53.4% | 65.7% | 3547 | 63 | 0 | 1 | 825 | 2294 | 0 | 0 | 26 | 0 | 0 |
 | `gt.recipe.fermenter` | 6435 | 6360 | 0.0% | 15.2% | 0 | 2 | 0 | 44 | 919 | 0 | 0 | 3988 | 1482 | 0 | 0 |
-| `gt.recipe.mortar` | 6318 | 6317 | 0.0% | 92.3% | 0 | 0 | 0 | 0 | 5834 | 1 | 0 | 0 | 483 | 0 | 0 |
+| `gt.recipe.mortar` | 6318 | 6317 | 92.3% | 92.3% | 5832 | 0 | 0 | 0 | 2 | 1 | 0 | 0 | 483 | 0 | 0 |
 | `gt.recipe.squeezer` | 5322 | 5322 | 0.3% | 1.1% | 15 | 1 | 0 | 0 | 40 | 5190 | 0 | 8 | 68 | 0 | 0 |
 | `gt.recipe.sluice` | 4840 | 4840 | 0.0% | 100.0% | 0 | 0 | 0 | 0 | 4840 | 0 | 0 | 0 | 0 | 0 | 0 |
-| `gt.recipe.welder` | 4762 | 4762 | 0.0% | 98.9% | 0 | 0 | 1045 | 0 | 3664 | 0 | 0 | 0 | 53 | 0 | 0 |
-| `gt.recipe.canner` | 3609 | 3609 | 0.1% | 2.4% | 0 | 3 | 0 | 0 | 82 | 2343 | 0 | 72 | 1109 | 0 | 0 |
-| `gt.recipe.sifter` | 2877 | 2877 | 0.0% | 14.1% | 0 | 0 | 0 | 0 | 405 | 2468 | 0 | 0 | 4 | 0 | 0 |
-| `gt.recipe.lathe` | 2528 | 2528 | 0.0% | 99.7% | 0 | 0 | 0 | 0 | 2521 | 0 | 0 | 0 | 7 | 0 | 0 |
-| `gt.recipe.rollingmill` | 2438 | 2438 | 0.0% | 99.9% | 0 | 0 | 297 | 0 | 2139 | 0 | 0 | 0 | 2 | 0 | 0 |
+| `gt.recipe.welder` | 4762 | 4762 | 100.0% | 100.0% | 4760 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 |
+| `gt.recipe.canner` | 3609 | 3609 | 0.2% | 2.5% | 0 | 7 | 0 | 0 | 82 | 2343 | 0 | 72 | 1105 | 0 | 0 |
+| `gt.recipe.sifter` | 2877 | 2877 | 82.6% | 82.6% | 2377 | 0 | 0 | 0 | 0 | 500 | 0 | 0 | 0 | 0 | 0 |
+| `gt.recipe.lathe` | 2528 | 2528 | 99.9% | 99.9% | 2525 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 0 |
+| `gt.recipe.rollingmill` | 2438 | 2438 | 99.9% | 99.9% | 2436 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 |
 | `gt.recipe.laserengraver` | 1787 | 1787 | 0.0% | 32.3% | 0 | 0 | 0 | 0 | 577 | 0 | 0 | 0 | 1210 | 0 | 0 |
 | `gt.recipe.assembler` | 1582 | 1582 | 21.7% | 21.7% | 343 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1239 | 0 | 0 |
 | `gt.recipe.distillery` | 1517 | 1517 | 0.4% | 58.9% | 6 | 0 | 0 | 0 | 888 | 3 | 0 | 620 | 0 | 0 | 0 |
@@ -220,18 +220,18 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `gt.recipe.implosioncompressor` | 1072 | 1072 | 72.4% | 100.0% | 776 | 0 | 0 | 0 | 296 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.freezer` | 957 | 957 | 0.2% | 95.0% | 0 | 2 | 0 | 6 | 901 | 48 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.polarizer` | 943 | 943 | 0.0% | 93.3% | 0 | 0 | 0 | 0 | 880 | 63 | 0 | 0 | 0 | 0 | 0 |
-| `gt.recipe.rollbender` | 940 | 940 | 0.0% | 100.0% | 0 | 0 | 405 | 0 | 535 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `gt.recipe.rollbender` | 940 | 940 | 100.0% | 100.0% | 940 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.massfab` | 920 | 920 | 0.0% | 1.5% | 0 | 0 | 0 | 0 | 14 | 15 | 0 | 891 | 0 | 0 | 0 |
 | `gt.recipe.replicator` | 895 | 307 | 0.0% | 38.1% | 0 | 0 | 0 | 0 | 117 | 20 | 0 | 110 | 60 | 588 | 0 |
-| `gt.recipe.anvil.bend.big` | 723 | 723 | 0.0% | 100.0% | 0 | 0 | 0 | 0 | 723 | 0 | 0 | 0 | 0 | 0 | 0 |
-| `gt.recipe.injector` | 638 | 638 | 16.1% | 26.5% | 103 | 0 | 0 | 14 | 52 | 0 | 0 | 21 | 448 | 0 | 0 |
-| `gt.recipe.anvil.bend.small` | 507 | 507 | 0.0% | 100.0% | 0 | 0 | 0 | 0 | 507 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `gt.recipe.anvil.bend.big` | 723 | 723 | 99.9% | 100.0% | 722 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `gt.recipe.injector` | 638 | 638 | 16.1% | 96.7% | 103 | 0 | 0 | 14 | 500 | 0 | 0 | 21 | 0 | 0 | 0 |
+| `gt.recipe.anvil.bend.small` | 507 | 507 | 99.6% | 100.0% | 505 | 0 | 0 | 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.laminator` | 498 | 498 | 97.6% | 97.6% | 486 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 12 | 0 | 0 |
-| `gt.recipe.wiremill` | 455 | 455 | 0.0% | 100.0% | 0 | 0 | 31 | 0 | 424 | 0 | 0 | 0 | 0 | 0 | 0 |
+| `gt.recipe.wiremill` | 455 | 455 | 100.0% | 100.0% | 455 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.cruciblealloying` | 414 | 414 | 0.0% | 0.0% | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 414 |
-| `gt.recipe.autoclave` | 392 | 392 | 93.4% | 94.9% | 366 | 0 | 0 | 0 | 6 | 0 | 0 | 0 | 20 | 0 | 0 |
+| `gt.recipe.autoclave` | 392 | 392 | 93.4% | 100.0% | 366 | 0 | 0 | 0 | 26 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.pressurewasher` | 312 | 312 | 100.0% | 100.0% | 312 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| `gt.recipe.hammer` | 309 | 309 | 0.0% | 44.7% | 0 | 0 | 0 | 0 | 138 | 0 | 0 | 0 | 171 | 0 | 0 |
+| `gt.recipe.hammer` | 309 | 309 | 0.0% | 48.5% | 0 | 0 | 0 | 0 | 150 | 0 | 0 | 0 | 159 | 0 | 0 |
 | `gt.recipe.clustermill` | 307 | 307 | 100.0% | 100.0% | 307 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.electrolyzer` | 290 | 290 | 61.4% | 100.0% | 178 | 0 | 0 | 18 | 94 | 0 | 0 | 0 | 0 | 0 | 0 |
 | `gt.recipe.byproductlist` | 289 | 0 | — | — | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 289 | 0 |
@@ -333,7 +333,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityBasicMachine` | RM.Polarizer | MU→NONE | deferred_with_reason | 5 | 5 | cruciblecraft:polarizer | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Press | KU→NONE | in_scope | 4 | 4 | cruciblecraft:press | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Roasting | HU→NONE | in_scope | 4 | 4 | cruciblecraft:roaster | `bounded_subset` |
-| `MultiTileEntityBasicMachine` | RM.RollBender | RU→NONE | in_scope | 4 | 4 | cruciblecraft:rollbender | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.RollFormer | RU→NONE | in_scope | 4 | 4 | cruciblecraft:rollformer | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.RollingMill | RU→NONE | in_scope | 4 | 4 | cruciblecraft:rollingmill | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Shredder | RU→NONE | in_scope | 4 | 4 | cruciblecraft:shredder | `bounded_subset` |
@@ -342,7 +341,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityBasicMachine` | RM.Smelter | HU→NONE | in_scope | 4 | 4 | cruciblecraft:smelter | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Squeezer | KU→NONE | in_scope | 4 | 4 | cruciblecraft:squeezer | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Welder | LU→NONE | deferred_with_reason | 5 | 5 | cruciblecraft:laser_welder | `bounded_subset` |
-| `MultiTileEntityBasicMachine` | RM.Wiremill | RU→NONE | in_scope | 4 | 4 | cruciblecraft:wiremill | `bounded_subset` |
 | `MultiTileEntityBasicMachineElectric` | RM.Canner | EU→NONE | in_scope | 5 | 5 | cruciblecraft:canner | `bounded_subset` |
 | `MultiTileEntityBasicMachineElectric` | RM.Electrolyzer | EU→NONE | in_scope | 5 | 5 | cruciblecraft:electrolyzer | `bounded_subset` |
 | `MultiTileEntityBasicMachineElectric` | RM.Injector | EU→NONE | in_scope | 5 | 5 | cruciblecraft:injector | `bounded_subset` |
@@ -373,7 +371,9 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityTransformerRotation` | — | RU→RU | in_scope | 13 | 13 | energy/transformers（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityBasicMachine` | RM.ClusterMill | RU→NONE | in_scope | 4 | 4 | cruciblecraft:clustermill | `full_replay` |
 | `MultiTileEntityBasicMachine` | RM.PressureWasher | RU→NONE | in_scope | 4 | 4 | cruciblecraft:pressurewasher | `full_replay` |
+| `MultiTileEntityBasicMachine` | RM.RollBender | RU→NONE | in_scope | 4 | 4 | cruciblecraft:rollbender | `full_replay` |
 | `MultiTileEntityBasicMachine` | RM.Sharpening | RU→NONE | in_scope | 4 | 4 | cruciblecraft:sanding | `full_replay` |
+| `MultiTileEntityBasicMachine` | RM.Wiremill | RU→NONE | in_scope | 4 | 4 | cruciblecraft:wiremill | `full_replay` |
 | `MultiTileEntityBasicMachineElectric` | RM.Slicer | EU→NONE | in_scope | 5 | 5 | cruciblecraft:slicer | `full_replay` |
 
 ## 5. 多方块控制器（30）
@@ -572,7 +572,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - `skipped`：0
 - `ungated_generated_flag_pairs`：3298
 
-## 12. Capability（121）
+## 12. Capability（122）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -684,6 +684,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `recipe/gt6-bulk-capacity` | runtime_ready | accepted | not_applicable |
 | `recipe/gt6-extruder-bulk` | runtime_ready | accepted | unreviewed |
 | `recipe/gt6-extruder-remainder` | runtime_ready | accepted | unreviewed |
+| `recipe/gt6-prefix-regular-bulk` | runtime_ready | accepted | unreviewed |
 | `registry/catalog-modern-ids` | runtime_ready | accepted | — |
 | `registry/gt6-long-tail-forms` | runtime_ready | accepted | unreviewed |
 | `registry/gt6-storage-dust-blocks` | runtime_ready | accepted | unreviewed |
@@ -813,21 +814,21 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料形态 | `toolHeadPickaxeGem` | 744 | 31 | press 713, unboxinator 31 |  |
 | 材料形态 | `crate.64.gem` | 635 | 209 | boxinator 426, unboxinator 209 |  |
 | 材料形态 | `crate.64.plateGem` | 621 | 207 | boxinator 414, unboxinator 207 |  |
-| 材料形态 | `ore.normal.gravel` | 617 | 617 | sifter 617 |  |
-| 材料形态 | `ore.normal.mud` | 617 | 617 | sifter 617 |  |
-| 材料形态 | `ore.normal.redsand` | 617 | 617 | sifter 617 |  |
-| 材料形态 | `ore.normal.sand` | 617 | 617 | sifter 617 |  |
 | 材料形态 | `crate.plate` | 562 | 562 | unboxinator 562 |  |
+| 材料形态 | `crushedPurified` | 500 | 125 | sifter 500 |  |
 | 材料形态 | `crate.raw` | 493 | 493 | unboxinator 493 |  |
-| 材料形态 | `ore.broken.andesite` | 492 | 492 | crusher 492 |  |
-| 材料形态 | `ore.broken.basalt` | 492 | 492 | crusher 492 |  |
-| 材料形态 | `ore.broken.blackgranite` | 492 | 492 | crusher 492 |  |
-| 材料形态 | `ore.broken.blueschist` | 492 | 492 | crusher 492 |  |
-| 材料形态 | `ore.broken.diorite` | 492 | 492 | crusher 492 |  |
-| 材料形态 | `ore.broken.granite` | 492 | 492 | crusher 492 |  |
-| 材料形态 | `ore.broken.greenschist` | 492 | 492 | crusher 492 |  |
+| 材料形态 | `crate.gem` | 209 | 209 | unboxinator 209 |  |
+| 材料形态 | `crate.plateGem` | 207 | 207 | unboxinator 207 |  |
+| 物品/方块 | `gregtech:gt.multitileentity` | 185 | — | extruder 184, shredder 1 |  |
+| 材料形态 | `toolHeadBuilderwand` | 161 | 159 | shredder 159, smelter 2 |  |
+| 材料形态 | `toolHeadBuzzSaw` | 161 | 159 | shredder 159, smelter 2 |  |
+| 材料形态 | `toolHeadConstructionPickaxe` | 161 | 159 | shredder 159, smelter 2 |  |
+| 材料形态 | `toolHeadScrewdriver` | 161 | 159 | shredder 159, smelter 2 |  |
+| 物品/方块 | `gregtech:gt.multitileentity` | 151 | — | extruder 150, shredder 1 |  |
+| 物品/方块 | `gregtech:gt.multitileentity` | 145 | — | extruder 144, shredder 1 |  |
+| 物品/方块 | `gregtech:gt.stone.andesite` | 140 | — | laserengraver 75, extruder 56, cutter 5 |  |
 
-按类型合计（第一缺口口径）：材料形态 79103，物品/方块 20337，流体 7789
+按类型合计（第一缺口口径）：材料形态 66811，物品/方块 14958，流体 7853
 
 ### 17.2 缺配方（按机器，前 20 项）
 
@@ -836,29 +837,29 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | GT6 map | 缺配方行 | 部分一致 | 已证明 | 交付深度 | 提示 |
 | --- | ---: | ---: | ---: | --- | --- |
 | `gt.recipe.mixer` | 51804 | 4556 | 7228 | `bounded_subset` | 扩展已有 wave |
-| `gt.recipe.cutter` | 25206 | 0 | 0 | `bounded_subset` | 补材料规则模板 |
 | `gt.recipe.boxinator` | 11439 | 0 | 0 | `runtime_only` | 新开 dump wave |
-| `gt.recipe.generifier` | 8650 | 16 | 7 | `bounded_subset` | 扩展已有 wave |
+| `gt.recipe.generifier` | 8676 | 16 | 7 | `bounded_subset` | 扩展已有 wave |
 | `gt.recipe.steamcracking` | 7714 | 0 | 0 | `denominator_only` | 先做机器，再做 wave |
 | `gt.recipe.unboxinator` | 7594 | 0 | 0 | `denominator_only` | 先做机器，再做 wave |
-| `gt.recipe.shredder` | 6025 | 0 | 29543 | `bounded_subset` | 扩展已有 wave |
-| `gt.recipe.mortar` | 5834 | 0 | 0 | `bounded_subset` | 补材料规则模板 |
+| `gt.recipe.shredder` | 6061 | 0 | 29543 | `bounded_subset` | 扩展已有 wave |
 | `gt.recipe.sluice` | 4840 | 0 | 0 | `bounded_subset` | 新开 dump wave |
-| `gt.recipe.welder` | 3664 | 1045 | 0 | `bounded_subset` | 补材料规则模板 |
-| `gt.recipe.lathe` | 2521 | 0 | 0 | `bounded_subset` | 补材料规则模板 |
+| `gt.recipe.extruder` | 4170 | 0 | 304943 | `bounded_subset` | 补材料规则模板 |
 | `gt.recipe.bath` | 2505 | 2981 | 49416 | `bounded_subset` | 补材料规则模板 |
-| `gt.recipe.rollingmill` | 2139 | 297 | 0 | `bounded_subset` | 补材料规则模板 |
-| `gt.recipe.press` | 1818 | 0 | 0 | `bounded_subset` | 补材料规则模板 |
-| `gt.recipe.crusher` | 1587 | 0 | 302 | `bounded_subset` | 补材料规则模板 |
-| `gt.recipe.smelter` | 1542 | 0 | 16821 | `bounded_subset` | 补材料规则模板 |
+| `gt.recipe.smelter` | 1628 | 0 | 16820 | `bounded_subset` | 补材料规则模板 |
 | `gt.recipe.centrifuge` | 1000 | 7 | 252 | `bounded_subset` | 扩展已有 wave |
 | `gt.recipe.fermenter` | 919 | 44 | 2 | `bounded_subset` | 新开 dump wave |
 | `gt.recipe.freezer` | 901 | 6 | 2 | `bounded_subset` | 新开 dump wave |
 | `gt.recipe.distillery` | 888 | 0 | 6 | `bounded_subset` | 扩展已有 wave |
+| `gt.recipe.polarizer` | 880 | 0 | 0 | `bounded_subset` | 新开 dump wave |
+| `gt.recipe.melter` | 825 | 1 | 3610 | `bounded_subset` | 扩展已有 wave |
+| `gt.recipe.loom` | 691 | 0 | 476 | `bounded_subset` | 扩展已有 wave |
+| `gt.recipe.laserengraver` | 577 | 0 | 0 | `bounded_subset` | 新开 dump wave |
+| `gt.recipe.injector` | 500 | 14 | 103 | `bounded_subset` | 扩展已有 wave |
+| `gt.recipe.implosioncompressor` | 296 | 0 | 776 | `bounded_subset` | 扩展已有 wave |
 
 ### 17.3 排除候选（待决策，不会自动生效）
 
 下列缺口来自 GT6 以外的 mod，或是旧分母排除的图。决定不移植的，把规则写进 `tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json` （要写理由和决策人），它们就会从进度目标里移出；决定移植的，留在上面的清单里。
 
-- 别的 mod：`for.honey`（100）、`dye.watermixed.blue`（97）、`dye.watermixed.brown`（94）、`binnie.juicelemon`（93）、`binnie.juicelime`（88）、`dye.watermixed.cyan`（85）、`dye.chemical.black`（83）、`dye.chemical.blue`（83）、`dye.watermixed.yellow`（83）、`grcmilk.milk`（83）、`binnie.juiceredgrape`（80）、`binnie.juicetomato`（80）、`binnie.juicewhitegrape`（80）、`grc.grapewine0`（80）、`binnie.juicecherry`（79）、`binnie.juicepineapple`（79）、`binnie.juiceplum`（79）、`potion.goldenapplejuice`（79）、`potion.idunsapplejuice`（79）、`binnie.juiceapple`（78）、`binnie.juiceapricot`（78）、`binnie.juicebanana`（78）、`binnie.juiceelderberry`（78）、`binnie.juiceorange`（78）、`binnie.juicepeach`（78）
+- 别的 mod：`for.honey`（100）、`dye.watermixed.blue`（97）、`dye.watermixed.brown`（94）、`binnie.juicelemon`（93）、`binnie.juicelime`（88）、`dye.chemical.black`（87）、`dye.chemical.blue`（87）、`dye.watermixed.cyan`（85）、`dye.watermixed.yellow`（83）、`grcmilk.milk`（83）、`dye.chemical.green`（82）、`dye.chemical.red`（82）、`binnie.juiceredgrape`（80）、`binnie.juicetomato`（80）、`binnie.juicewhitegrape`（80）、`dye.chemical.gray`（80）、`dye.chemical.lightgray`（80）、`dye.chemical.lime`（80）、`dye.chemical.purple`（80）、`grc.grapewine0`（80）、`binnie.juicecherry`（79）、`binnie.juicepineapple`（79）、`binnie.juiceplum`（79）、`dye.chemical.lightblue`（79）、`dye.chemical.magenta`（79）
 - 旧分母排除的图：`gt.recipe.anvil`（9228）、`gt.recipe.cruciblealloying`（414）

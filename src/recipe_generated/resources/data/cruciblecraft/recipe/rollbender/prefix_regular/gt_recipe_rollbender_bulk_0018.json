@@ -1,0 +1,85 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.rollbender#bulk_0018",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "c3b3a29ce1da2f3e9076af0ac691ff57053798d06817e8153ba6d83d3a3b0d27",
+        "6fe784eaa36fb702cf1bbcf691b7bbcd58ab9d41cbd8c7770d1f05df0fa5e8f6"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:infinity/rod"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibramantium/rod"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:infinity/ring"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:vibramantium/ring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/8a3e0371772ad9b2",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/ddfc0199aeed6c79",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 2048,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.rollbender#bulk_0018",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:rollbender/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:rollbender",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

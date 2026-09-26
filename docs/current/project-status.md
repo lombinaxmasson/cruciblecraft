@@ -26,7 +26,6 @@
 - `portfolio/gt6-bulk-port` — [GT6 批量移植总计划](../history/card-plans/prep/GT6批量移植总计划.md)
 - `portfolio/gt6-bulk-port-verification` — [GT6 批量移植基础设施收口](../history/card-plans/prep/GT6批量移植基础设施收口详细计划.md)
 - `recipe/gt6-chemical-misc-bulk` — [GT6 化学杂项配方批量详细计划](../history/card-plans/prep/GT6化学杂项配方批量详细计划.md)
-- `recipe/gt6-prefix-regular-bulk` — [GT6 前缀规则类配方批量详细计划](../history/card-plans/prep/GT6前缀规则类配方批量详细计划.md)
 - `registry/gt6-translator-mapping-repair` — [GT6 翻译链映射修复详细计划](../history/card-plans/prep/GT6翻译链映射修复详细计划.md)
 - `registry/material-form-demand-census` — [材料形态需求普查详细计划](../history/card-plans/prep/材料形态需求普查详细计划.md)
 - `worldgen/gt-center` — [GT Center 详细计划](../history/card-plans/prep/GT中枢详细计划.md)
@@ -38,9 +37,9 @@
 
 `2026-09-15-obtain-reset` **pending**. Major worldgen / gameplay / obtain / GUI / save / network changes open or extend this cycle. Ordinary bugfix does not invalidate it. Accept only after a human `runClient`; CI never auto-signs.
 
-Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder
+Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk
 
-## runtime_ready accepted（104）
+## runtime_ready accepted（105）
 
 机制可跑。`survival_access` 独立、不挡关闭。不得再用 catalog scatter 或历史 `player_complete` 签收当获得证明。
 
@@ -138,6 +137,7 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `recipe/gt6-bulk-capacity` — GT6 Bulk Recipe Capacity Gate — [GT6 批量配方容量门详细计划](../history/card-plans/closed/GT6批量配方容量门详细计划.md)
 - `recipe/gt6-extruder-bulk` — GT6 Extruder Recipe Bulk — [GT6 挤压机配方批量详细计划](../history/card-plans/closed/GT6挤压机配方批量详细计划.md)
 - `recipe/gt6-extruder-remainder` — GT6 Extruder Recipe Remainder — [GT6 挤压机配方补发详细计划](../history/card-plans/closed/GT6挤压机配方补发详细计划.md)
+- `recipe/gt6-prefix-regular-bulk` — GT6 Prefix Regular Recipe Bulk — [GT6 前缀规则类配方批量详细计划](../history/card-plans/closed/GT6前缀规则类配方批量详细计划.md)
 - `registry/catalog-modern-ids` — Catalog modern IDs — [目录身份现代 id 详细计划](../history/card-plans/closed/目录身份现代id详细计划.md)
 - `registry/gt6-long-tail-forms` — GT6 Long-tail Forms — [GT6 长尾形态开门详细计划](../history/card-plans/closed/GT6长尾形态开门详细计划.md)
 - `registry/gt6-storage-dust-blocks` — GT6 Storage Dust Blocks — [GT6 粉块批量详细计划](../history/card-plans/closed/GT6粉块批量详细计划.md)

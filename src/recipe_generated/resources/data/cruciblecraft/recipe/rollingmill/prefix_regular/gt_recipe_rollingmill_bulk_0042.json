@@ -1,0 +1,91 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.rollingmill#bulk_0042",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "35d67ba7be870bd6e96a12756a3031bb40e030b73e8e256bb7719b09f7ee0528",
+        "0104f45bbebe21553f8cad97c66ad298b03e5655b3a3a5174545944005dba149"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:infinity/nugget"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibramantium/nugget"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:tiny_plate"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/9b702b0404ed6a4f",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/cf510bd8c72c2a4d",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 456,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.rollingmill#bulk_0042",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:rollingmill/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:rollingmill",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

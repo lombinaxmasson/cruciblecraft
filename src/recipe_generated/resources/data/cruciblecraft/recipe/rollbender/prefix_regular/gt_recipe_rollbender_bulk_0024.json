@@ -1,0 +1,91 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.rollbender#bulk_0024",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "645f3fdf4ae3762acda330af5e3aad24161d69ca91e26f9fbb7741238ef638a0",
+        "997f10d0923b3e7b02adcf5b2c72fe3c8aaa376d3f6ce90c68834d38cf8d82ad"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:constantan/fine_wire"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:technetium/fine_wire"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "constantan"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_spring"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "technetium"
+            },
+            "count": 1,
+            "id": "cruciblecraft:small_spring"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/b97c97c06d9ebcc0",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/5430451853d0f067",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 128,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        2
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.rollbender#bulk_0024",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:rollbender/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:rollbender",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

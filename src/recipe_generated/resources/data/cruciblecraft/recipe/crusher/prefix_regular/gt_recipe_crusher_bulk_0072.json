@@ -1,0 +1,207 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.crusher#bulk_0072",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "7f382efb8d23c4e0b3691fd66ca77114ac50c9d64f6e82dad88469b91e418a71",
+        "9f67359a303f5e8381c9b57aaa8c15d1b4cd6468d21eff3525bb883e76e75f6a",
+        "47cceef7fa3eb5003f12cd5ea18e027491e627230af3da6dbebf07348691f441",
+        "1f3a5e3ea291457d8e2a39d5bc04b75c911ffeab2dafde23e517d6069e81a624",
+        "e6ce404e939b1f11ed2d3670c30b4f75c96d1ba9c51fa42d38f54ba838972451",
+        "d3569cb4c7a031aa5cdda45001011c628d27c1425ad595770771fa450624a132"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "minecraft:raw_iron"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "iron",
+              "minecraft:block_state": {
+                "host": "sandstone"
+              }
+            },
+            "items": "cruciblecraft:gt_hosted_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "hexorium_white",
+              "minecraft:block_state": {
+                "host": "sandstone"
+              }
+            },
+            "items": "cruciblecraft:gt_hosted_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hexorium_black"
+            },
+            "items": "cruciblecraft:raw_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "hexorium_black",
+              "minecraft:block_state": {
+                "host": "sandstone"
+              }
+            },
+            "items": "cruciblecraft:gt_hosted_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hexorium_white"
+            },
+            "items": "cruciblecraft:raw_ore",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hematite"
+            },
+            "count": 3,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hematite"
+            },
+            "count": 3,
+            "id": "cruciblecraft:crushed_ore"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hexorium_white"
+            },
+            "count": 3,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hexorium_white"
+            },
+            "count": 3,
+            "id": "cruciblecraft:crushed_ore"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hexorium_black"
+            },
+            "count": 3,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "hexorium_black"
+            },
+            "count": 3,
+            "id": "cruciblecraft:crushed_ore"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/e6484dfe35a955a8",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/a4f361ced5443544",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/58c185e5c1ff3fa7",
+        2,
+        2
+      ],
+      [
+        3,
+        2,
+        0,
+        "cruciblecraft:gt6/95b5ee92de537dcb",
+        3,
+        3
+      ],
+      [
+        4,
+        2,
+        0,
+        "cruciblecraft:gt6/7f0d67ba889ca548",
+        4,
+        4
+      ],
+      [
+        5,
+        1,
+        0,
+        "cruciblecraft:gt6/ec31c5c3de58d3f6",
+        5,
+        5
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 1152,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.crusher#bulk_0072",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:crusher/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:crusher",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

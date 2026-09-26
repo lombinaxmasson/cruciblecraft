@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/recipe/gt6-prefix-regular-bulk/cutter/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "6b3537f50c8c1299afbb8a53ca264e2335eab0b8df7d5e9175f720f9dedae348"
+    },
+    {
+      "path": "tools/waves/recipe/gt6-prefix-regular-bulk/cutter/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "200bf98f0c8545c4d31516e6a0233fdf9370cc9d14676e6ae0adda46ddb95ee8"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "cutter/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

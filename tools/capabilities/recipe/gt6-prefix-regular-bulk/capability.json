@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "slug": "recipe/gt6-prefix-regular-bulk",
+  "title": "GT6 Prefix Regular Recipe Bulk",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/closed/GT6前缀规则类配方批量详细计划.md",
+    "tools/waves/recipe/gt6-prefix-regular-bulk/**",
+    "tools/capabilities/recipe/gt6-prefix-regular-bulk/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/cutter/prefix_regular/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/mortar/prefix_regular/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/welder/prefix_regular/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/lathe/prefix_regular/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/rollingmill/prefix_regular/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/press/prefix_regular/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/crusher/prefix_regular/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/anvil_bend_big/bend_big/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/anvil_bend_small/bend_small/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/rollbender/prefix_regular/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/wiremill/prefix_regular/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/sifter/prefix_regular/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/cutter_prefix_regular.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/mortar_prefix_regular.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/welder_prefix_regular.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/lathe_prefix_regular.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/rollingmill_prefix_regular.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/press_prefix_regular.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/crusher_prefix_regular.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/anvil_bend_big_bend_big.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/anvil_bend_small_bend_small.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/rollbender_prefix_regular.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/wiremill_prefix_regular.json",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/sifter_prefix_regular.json",
+    "src/test/java/com/masson/cruciblecraft/gametest/Gt6PrefixRegularBulkGameTests.java",
+    "src/test/resources/gt6_prefix_regular_samples.json"
+  ],
+  "depends_on": [
+    "recipe/gt6-bulk-capacity",
+    "recipe/gt6-extruder-bulk"
+  ],
+  "profiles": [
+    "recipes"
+  ],
+  "wave_slug": "recipe/gt6-prefix-regular-bulk",
+  "required_test_ids": [
+    "prefixRegularGroupsStayOnDemand",
+    "prefixRegularSamplesRun"
+  ],
+  "note": "Imports host-accepted translated rows from twelve prefix-regular GT6 maps as on-demand matrix_v1. Missing objects stay blocked; the class index is the closed plan section 4.2, and the cross-map identity key is semantic_coverage.json blockers[].key. Does not stand in ingredients. Old material rules and io_only durations are unchanged. Playtest is unsigned."
+}

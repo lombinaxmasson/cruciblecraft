@@ -1,0 +1,156 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.crusher#bulk_0042",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "20e459cb6cb51d77f1dd5b4746e5d9e0e71a5e98d0848279692e0c99805f3818",
+        "9fb3f80234dee2f7490fa4888472eabceabbeedd381e15e94f2fbb67c7ef46ff",
+        "347c1fd735b8586099e3dcdb590e66e40e834dfa13ee2f6bbda849da48cdb93e",
+        "d2573c6897c450b2c9abdf1bb6dd0d72457c804ea8dee120fe9b48ab2491a6ba"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadria"
+            },
+            "items": "cruciblecraft:raw_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "naquadria",
+              "minecraft:block_state": {
+                "host": "sandstone"
+              }
+            },
+            "items": "cruciblecraft:gt_hosted_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "sunstone",
+              "minecraft:block_state": {
+                "host": "sandstone"
+              }
+            },
+            "items": "cruciblecraft:gt_hosted_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sunstone"
+            },
+            "items": "cruciblecraft:raw_ore",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "naquadah"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sunstone"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sunstone"
+            },
+            "count": 4,
+            "id": "cruciblecraft:crushed_ore"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/ae11463d8c7d2d34",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/4e306935864bf62b",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/2eb90c027996c8ff",
+        2,
+        2
+      ],
+      [
+        3,
+        1,
+        0,
+        "cruciblecraft:gt6/79e254518a90f6e6",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 2560,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.crusher#bulk_0042",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:crusher/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:crusher",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,108 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.lathe#bulk_0036",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "86a1a86a6a26ebf9b6b9449656b5a8a3f9349c1d01d41b9a25669f8249dfd385",
+        "a49c713a118324e6c9bad1549965575ddb5ffd8634c17b4512f13ad5d11753d2"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "items": "cruciblecraft:billet",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:infinity/rod"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infinity"
+            },
+            "count": 12,
+            "id": "cruciblecraft:dust_div72"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:vibramantium/rod"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibramantium"
+            },
+            "count": 12,
+            "id": "cruciblecraft:dust_div72"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/fbcb5ae1e89b0151",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/ac090999fba6bebb",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 683,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.lathe#bulk_0036",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:lathe/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:lathe",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

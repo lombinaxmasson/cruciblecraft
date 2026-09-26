@@ -1,0 +1,183 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.crusher#bulk_0091",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "604998ff037cb45292073fd9d2515adb3eb12368ad57b88cf69258ac119e6fc1",
+        "ff5376fa8660e8aa69c59abf6fbd3695f05cf9cf3e8b6dec1fa8ece587bc8d39",
+        "234071c444a9eb3f9f38edcab41e095db393378e0966cdb34bbbf02dfb721b03"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "cinnabar",
+              "minecraft:block_state": {
+                "host": "kimberlite"
+              }
+            },
+            "items": "cruciblecraft:gt_broken_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "cinnabar",
+              "minecraft:block_state": {
+                "host": "basalt"
+              }
+            },
+            "items": "cruciblecraft:gt_broken_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "cinnabar",
+              "minecraft:block_state": {
+                "host": "komatiite"
+              }
+            },
+            "items": "cruciblecraft:gt_broken_ore",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cinnabar"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cinnabar"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:cinnabar/gem"
+          },
+          {
+            "count": 4,
+            "id": "cruciblecraft:kimberlite/dust"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cinnabar"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cinnabar"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:cinnabar/gem"
+          },
+          {
+            "count": 4,
+            "id": "cruciblecraft:basalt/dust"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cinnabar"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cinnabar"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:cinnabar/gem"
+          },
+          {
+            "count": 4,
+            "id": "cruciblecraft:komatiite/dust"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/0adb89794af79de6",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/825c2087f0229aaa",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/c779d84f7dc9b02c",
+        2,
+        2
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 896,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000,
+        3000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.crusher#bulk_0091",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:crusher/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:crusher",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

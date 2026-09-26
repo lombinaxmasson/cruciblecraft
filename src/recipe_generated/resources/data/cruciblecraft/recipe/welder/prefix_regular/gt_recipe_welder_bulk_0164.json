@@ -1,0 +1,63 @@
+{
+  "family_id": "gt.recipe.welder#bulk_0164",
+  "publication_group": "cruciblecraft:welder/prefix-regular",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 7680,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        12,
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "vibranium_silver"
+          },
+          "items": "cruciblecraft:curved_plate",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 5
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:vibranium_silver/huge_item_pipe"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "d7a166846f0b10e177ae16e4fa1d4f0b50876c14d662b2c77af6ce3ddc5d4de2"
+        ],
+        "selected_source_recipe": "gt.recipe.welder#bulk_0164",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/f5d481e0068e163c"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:welder",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

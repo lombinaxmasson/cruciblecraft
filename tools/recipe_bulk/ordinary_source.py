@@ -70,9 +70,25 @@ ORDINARY_VANILLA_SPECIAL: dict[tuple[str, int], str] = {
     ("minecraft:anvil", 0): "minecraft:anvil",
     ("minecraft:anvil", 1): "minecraft:chipped_anvil",
     ("minecraft:anvil", 2): "minecraft:damaged_anvil",
+    ("minecraft:dirt", 1): "minecraft:coarse_dirt",
+    ("minecraft:dirt", 2): "minecraft:podzol",
     ("minecraft:stone_slab", 0): "minecraft:smooth_stone_slab",
+    ("minecraft:stone_slab", 1): "minecraft:sandstone_slab",
+    ("minecraft:stone_slab", 2): "minecraft:petrified_oak_slab",
     ("minecraft:stone_slab", 3): "minecraft:cobblestone_slab",
+    ("minecraft:stone_slab", 4): "minecraft:brick_slab",
     ("minecraft:stone_slab", 5): "minecraft:stone_brick_slab",
+    ("minecraft:stone_slab", 6): "minecraft:nether_brick_slab",
+    ("minecraft:stone_slab", 7): "minecraft:quartz_slab",
+    ("minecraft:stone_slab", 9): "minecraft:sandstone_slab",
+    ("minecraft:stone_slab", 10): "minecraft:petrified_oak_slab",
+    ("minecraft:stone_slab", 12): "minecraft:brick_slab",
+    ("minecraft:stone_slab", 14): "minecraft:nether_brick_slab",
+    ("minecraft:stone_slab", 15): "minecraft:quartz_slab",
+    ("minecraft:stonebrick", 0): "minecraft:stone_bricks",
+    ("minecraft:stonebrick", 1): "minecraft:mossy_stone_bricks",
+    ("minecraft:stonebrick", 2): "minecraft:cracked_stone_bricks",
+    ("minecraft:stonebrick", 3): "minecraft:chiseled_stone_bricks",
     ("minecraft:stone_slab", 8): "minecraft:smooth_stone_slab",
     ("minecraft:stone_slab", 11): "minecraft:smooth_stone_slab",
     ("minecraft:stone_slab", 13): "minecraft:smooth_stone_slab",
@@ -97,23 +113,81 @@ ORDINARY_VANILLA_SPECIAL: dict[tuple[str, int], str] = {
     ("minecraft:double_plant", 3): "minecraft:large_fern",
     ("minecraft:double_plant", 4): "minecraft:rose_bush",
     ("minecraft:double_plant", 5): "minecraft:peony",
+    ("minecraft:wooden_slab", 0): "minecraft:oak_slab",
+    ("minecraft:wooden_slab", 1): "minecraft:spruce_slab",
+    ("minecraft:wooden_slab", 2): "minecraft:birch_slab",
+    ("minecraft:wooden_slab", 3): "minecraft:jungle_slab",
+    ("minecraft:wooden_slab", 4): "minecraft:acacia_slab",
+    ("minecraft:wooden_slab", 5): "minecraft:dark_oak_slab",
+    ("minecraft:wooden_slab", 8): "minecraft:oak_slab",
+    ("minecraft:wooden_slab", 9): "minecraft:spruce_slab",
+    ("minecraft:wooden_slab", 10): "minecraft:birch_slab",
+    ("minecraft:wooden_slab", 11): "minecraft:jungle_slab",
+    ("minecraft:wooden_slab", 12): "minecraft:acacia_slab",
+    ("minecraft:wooden_slab", 13): "minecraft:dark_oak_slab",
+    ("minecraft:planks", 0): "minecraft:oak_planks",
+    ("minecraft:planks", 1): "minecraft:spruce_planks",
+    ("minecraft:planks", 2): "minecraft:birch_planks",
+    ("minecraft:planks", 3): "minecraft:jungle_planks",
+    ("minecraft:planks", 4): "minecraft:acacia_planks",
+    ("minecraft:planks", 5): "minecraft:dark_oak_planks",
+    ("minecraft:brick_block", 0): "minecraft:bricks",
+    ("minecraft:double_stone_slab", 1): "minecraft:sandstone",
+    ("minecraft:double_stone_slab", 2): "minecraft:petrified_oak_slab",
+    ("minecraft:double_stone_slab", 4): "minecraft:bricks",
+    ("minecraft:double_stone_slab", 6): "minecraft:nether_bricks",
+    ("minecraft:double_stone_slab", 7): "minecraft:quartz_block",
+    ("minecraft:double_stone_slab", 9): "minecraft:sandstone",
+    ("minecraft:double_stone_slab", 10): "minecraft:petrified_oak_slab",
+    ("minecraft:double_stone_slab", 12): "minecraft:bricks",
+    ("minecraft:double_stone_slab", 14): "minecraft:nether_bricks",
+    ("minecraft:double_stone_slab", 15): "minecraft:quartz_block",
+    ("minecraft:skull", 0): "minecraft:skeleton_skull",
+    ("minecraft:skull", 1): "minecraft:wither_skeleton_skull",
+    ("minecraft:skull", 2): "minecraft:zombie_head",
+    ("minecraft:skull", 3): "minecraft:player_head",
+    ("minecraft:skull", 4): "minecraft:creeper_head",
+    ("minecraft:dye", 0): "minecraft:ink_sac",
+    ("minecraft:dye", 1): "minecraft:red_dye",
+    ("minecraft:dye", 2): "minecraft:green_dye",
+    ("minecraft:dye", 3): "minecraft:cocoa_beans",
+    ("minecraft:dye", 4): "minecraft:lapis_lazuli",
+    ("minecraft:dye", 5): "minecraft:purple_dye",
+    ("minecraft:dye", 6): "minecraft:cyan_dye",
+    ("minecraft:dye", 7): "minecraft:light_gray_dye",
+    ("minecraft:dye", 8): "minecraft:gray_dye",
+    ("minecraft:dye", 9): "minecraft:pink_dye",
+    ("minecraft:dye", 10): "minecraft:lime_dye",
+    ("minecraft:dye", 11): "minecraft:yellow_dye",
+    ("minecraft:dye", 12): "minecraft:light_blue_dye",
+    ("minecraft:dye", 13): "minecraft:magenta_dye",
+    ("minecraft:dye", 14): "minecraft:orange_dye",
+    ("minecraft:dye", 15): "minecraft:bone_meal",
 }
 # 1.7.10 / 1.12 ids that 1.21.1 does not register. Leaving them as
 # exact_runtime_id makes RegistryOps drop item_inputs while counts stay,
 # and GTRecipe dies with inputs=0, counts=1.
 UNSPLIT_VANILLA_ITEM_IDS = frozenset(
     {
-        "minecraft:fish",
+        "minecraft:bed",
+        "minecraft:boat",
+        "minecraft:brick_block",
         "minecraft:cooked_fished",
         "minecraft:double_plant",
+        "minecraft:double_stone_slab",
+        "minecraft:fence_gate",
+        "minecraft:fish",
+        "minecraft:sapling",
+        "minecraft:sign",
+        "minecraft:skull",
         "minecraft:tallgrass",
+        "minecraft:wooden_slab",
     }
 )
 ORDINARY_VANILLA_RENAMES: dict[str, str] = {
     "minecraft:lit_furnace": "minecraft:furnace",
     "minecraft:melon_block": "minecraft:melon",
     "minecraft:netherbrick": "minecraft:nether_brick",
-    "minecraft:stonebrick": "minecraft:stone_bricks",
     "minecraft:web": "minecraft:cobweb",
 }
 LEGACY_VANILLA_META_RENAMES: dict[tuple[str, int], str] = {
@@ -128,6 +202,12 @@ ORDINARY_VANILLA_WILDCARDS: dict[str, tuple[str, str]] = {
     "minecraft:log": ("cruciblecraft:gt6_legacy_log", "minecraft:oak_log"),
     "minecraft:log2": ("cruciblecraft:gt6_legacy_log2", "minecraft:acacia_log"),
     "minecraft:wool": ("minecraft:wool", "minecraft:white_wool"),
+    "minecraft:wooden_slab": ("minecraft:wooden_slabs", "minecraft:oak_slab"),
+    "minecraft:bed": ("minecraft:beds", "minecraft:white_bed"),
+    "minecraft:boat": ("minecraft:boats", "minecraft:oak_boat"),
+    "minecraft:fence_gate": ("minecraft:fence_gates", "minecraft:oak_fence_gate"),
+    "minecraft:sapling": ("minecraft:saplings", "minecraft:oak_sapling"),
+    "minecraft:sign": ("minecraft:signs", "minecraft:oak_sign"),
 }
 
 
@@ -492,6 +572,296 @@ def _assert_runtime(runtime: str) -> str:
     return runtime
 
 
+_STONE_VARIANT = {
+    0: "stone",
+    1: "cobble",
+    2: "mossy_cobble",
+    3: "bricks",
+    4: "cracked_bricks",
+    5: "mossy_bricks",
+    6: "chiseled",
+    7: "smooth",
+    8: "reinforced_bricks",
+    9: "redstoned_bricks",
+    10: "tiles",
+    11: "small_tiles",
+    12: "small_bricks",
+    13: "windmill_tiles_a",
+    14: "windmill_tiles_b",
+    15: "square_bricks",
+}
+_SLAB_FACE = ("down", "up", "north", "south", "west", "east")
+_STONE_SLUG = {
+    "granite.black": "granite_black",
+    "granite.red": "granite_red",
+    "prismarine.dark": "prismarine_dark",
+    "prismarine.light": "prismarine",
+}
+_GLASS_COLORS = (
+    ("light blue", "light_blue"),
+    ("light gray", "light_gray"),
+    ("light grey", "light_gray"),
+    ("dark gray", "gray"),
+    ("white", "white"),
+    ("orange", "orange"),
+    ("magenta", "magenta"),
+    ("yellow", "yellow"),
+    ("lime", "lime"),
+    ("pink", "pink"),
+    ("gray", "gray"),
+    ("grey", "gray"),
+    ("cyan", "cyan"),
+    ("purple", "purple"),
+    ("blue", "blue"),
+    ("brown", "brown"),
+    ("green", "green"),
+    ("red", "red"),
+    ("black", "black"),
+)
+
+
+def _live_registry_ids() -> set[str]:
+    cached = getattr(_live_registry_ids, "value", None)
+    if cached is not None:
+        return cached
+    gate = census.load_json(
+        census.ROOT
+        / "src"
+        / "main"
+        / "resources"
+        / "census"
+        / "runtime_registry_gate.json"
+    )
+    categories = gate.get("categories") or {}
+    cached = set(categories.get("items") or []) | set(categories.get("blocks") or [])
+    _live_registry_ids.value = cached
+    return cached
+
+
+def _if_live(runtime: str | None) -> str | None:
+    if runtime and runtime in _live_registry_ids():
+        return runtime
+    return None
+
+
+def _stone_block_runtime(item_id: str, meta: int) -> str | None:
+    tail = item_id.removeprefix("gregtech:gt.stone.")
+    face = None
+    if ".slab." in tail:
+        tail, slab_s = tail.rsplit(".slab.", 1)
+        if not slab_s.isdigit():
+            return None
+        face = _SLAB_FACE[int(slab_s) % 6]
+    variant = _STONE_VARIANT.get(meta)
+    if variant is None:
+        return None
+    stone = _STONE_SLUG.get(tail, tail.replace(".", "_"))
+    path = f"cruciblecraft:{stone}/{variant}"
+    if face:
+        path = f"{path}/slab_{face}"
+    return _if_live(path)
+
+
+def _glass_block_runtime(item_id: str, display: str) -> str | None:
+    if not item_id.startswith("gregtech:gt.block.glass"):
+        return None
+    family = "glow_glass" if ".glow" in item_id else "glass"
+    face = None
+    if ".slab." in item_id:
+        slab_s = item_id.rsplit(".slab.", 1)[-1]
+        if not slab_s.isdigit():
+            return None
+        face = _SLAB_FACE[int(slab_s) % 6]
+    lowered = display.lower()
+    color = next((slug for word, slug in _GLASS_COLORS if word in lowered), None)
+    if color is None:
+        return None
+    path = f"cruciblecraft:{family}/{color}"
+    if face:
+        path = f"{path}/slab_{face}"
+    return _if_live(path)
+
+
+def _technological_part_runtime(meta: int) -> str | None:
+    cached = getattr(_technological_part_runtime, "by_meta", None)
+    if cached is None:
+        document = census.load_json(
+            census.ROOT
+            / "src"
+            / "main"
+            / "resources"
+            / "data"
+            / "cruciblecraft"
+            / "technological_parts.json"
+        )
+        cached = {
+            int(row["source_id"]): str(row["id"])
+            for row in document.get("parts") or []
+            if isinstance(row.get("source_id"), int) and row.get("id")
+        }
+        _technological_part_runtime.by_meta = cached
+    return _if_live(cached.get(meta))
+
+
+def _energium_runtime(meta: int) -> str | None:
+    cached = getattr(_energium_runtime, "by_meta", None)
+    if cached is None:
+        document = census.load_json(
+            census.ROOT
+            / "src"
+            / "main"
+            / "resources"
+            / "data"
+            / "cruciblecraft"
+            / "energy_battery_tiers.json"
+        )
+        cached = {}
+        for row in document.get("tiers") or document.get("batteries") or []:
+            source = row.get("source_id")
+            runtime = row.get("id")
+            if isinstance(source, int) and runtime:
+                cached[int(source)] = str(runtime)
+        if not cached:
+            for row in document.get("entries") or []:
+                source = row.get("source_id")
+                runtime = row.get("id")
+                if isinstance(source, int) and runtime:
+                    cached[int(source)] = str(runtime)
+        _energium_runtime.by_meta = cached
+    return _if_live(cached.get(meta))
+
+
+def _pipe_runtime(meta: int) -> str | None:
+    cached = getattr(_pipe_runtime, "by_meta", None)
+    if cached is None:
+        from tools import gt6_pipes
+        from tools.gt6_pipe_cable_baseline import (
+            FLUID_GAUGES,
+            ITEM_GAUGES,
+            PIPE_SOURCE,
+            _cc_material,
+        )
+
+        source = gt6_pipes.load(PIPE_SOURCE)
+
+        def material_for(symbol: str) -> str | None:
+            from tools import gt6_resolve
+
+            resolved = gt6_resolve.resolve(f"MT.{symbol}").get("cc_material")
+            slugged = _cc_material(symbol)
+            forms = [
+                form
+                for _spec, _offset, form, _diameter, _extra in (
+                    *FLUID_GAUGES,
+                    *ITEM_GAUGES,
+                )
+                if form
+            ]
+            for candidate in (resolved, slugged):
+                if not isinstance(candidate, str) or not candidate:
+                    continue
+                if any(
+                    _if_live(f"cruciblecraft:{candidate}/{form}") for form in forms
+                ):
+                    return candidate
+            return None
+
+        mapped: dict[int, str] = {}
+        for row in source["direct_addFluidPipes_calls"]:
+            material = material_for(str(row["source_symbol"]))
+            if not material:
+                continue
+            for _spec, offset, form, _diameter, _tanks in FLUID_GAUGES:
+                if not form:
+                    continue
+                runtime = _if_live(f"cruciblecraft:{material}/{form}")
+                if runtime:
+                    mapped[int(row["base_id"]) + int(offset)] = runtime
+        for row in source["direct_addItemPipes_calls"]:
+            material = material_for(str(row["source_symbol"]))
+            if not material:
+                continue
+            for _spec, offset, form, _diameter, _restrictive in ITEM_GAUGES:
+                if not form:
+                    continue
+                runtime = _if_live(f"cruciblecraft:{material}/{form}")
+                if runtime:
+                    mapped[int(row["base_id"]) + int(offset)] = runtime
+        cached = mapped
+        _pipe_runtime.by_meta = cached
+    return cached.get(meta)
+
+
+# GT6 ore.broken / ore.normal stone hosts. The material meta is the ore,
+# the item path is the stone. Sediment hosts are not unique overworld cubes.
+_ORE_STONE_HOSTS = {
+    "andesite": "andesite",
+    "basalt": "basalt",
+    "blackgranite": "granite_black",
+    "blueschist": "blueschist",
+    "default": "stone",
+    "diorite": "diorite",
+    "endstone": "end_stone",
+    "granite": "granite",
+    "gravel": "gravel",
+    "greenschist": "greenschist",
+    "kimberlite": "kimberlite",
+    "komatiite": "komatiite",
+    "limestone": "limestone",
+    "marble": "marble",
+    "mud": "mud",
+    "netherrack": "netherrack",
+    "prismarine.dark": "prismarine_dark",
+    "prismarine.light": "prismarine",
+    "quartzite": "quartzite",
+    "redgranite": "granite_red",
+    "redsand": "red_sand",
+    "sand": "sand",
+    "sandstone": "sandstone",
+    "shale": "shale",
+    "slate": "slate",
+}
+_ORE_HOST_RUNTIME = {
+    "broken": "cruciblecraft:gt_broken_ore",
+    "normal": "cruciblecraft:gt_hosted_ore",
+}
+
+
+def _ore_stone_operand(
+    item: dict[str, Any],
+    catalogs: assembler.Catalogs,
+) -> dict[str, Any] | None:
+    item_id = str(item.get("item") or "")
+    prefix = "gregtech:gt.meta.ore."
+    if not item_id.startswith(prefix):
+        return None
+    kind, _, stone = item_id[len(prefix):].partition(".")
+    runtime = _ORE_HOST_RUNTIME.get(kind)
+    host = _ORE_STONE_HOSTS.get(stone)
+    meta = item.get("meta")
+    if runtime is None or host is None or not isinstance(meta, int):
+        return None
+    material = catalogs.material_id_to_cc.get(meta)
+    if not material:
+        return None
+    operand = _empty_operand(item)
+    operand.update(
+        {
+            "mapping": "proven_equivalent",
+            "value": runtime,
+            "runtime_id": _assert_runtime(runtime),
+            "reachable": True,
+            "material": material,
+            "kind": "ore_host",
+            "_components": {
+                "cruciblecraft:ore_material": material,
+                "minecraft:block_state": {"host": host},
+            },
+        }
+    )
+    return operand
+
+
 def map_item_operand(
     item: dict[str, Any],
     catalogs: assembler.Catalogs,
@@ -514,6 +884,10 @@ def map_item_operand(
         block_runtime=block_runtime,
     )
     if proven:
+        if item_id == "gregtech:gt.multiitem.technological" and isinstance(meta, int):
+            part_runtime = _technological_part_runtime(meta)
+            if part_runtime:
+                proven = part_runtime
         operand = _empty_operand(item)
         runtime = _assert_runtime(proven)
         operand.update(
@@ -567,7 +941,9 @@ def map_item_operand(
                 }
             )
             return operand, []
-        native = NATIVE_ITEM_EQUIVALENTS.get((item_id, meta))
+        native = NATIVE_ITEM_EQUIVALENTS.get((item_id, meta)) or _stone_block_runtime(
+            item_id, meta
+        )
         if native:
             operand.update(
                 {
@@ -644,6 +1020,8 @@ def map_item_operand(
     vanilla = ORDINARY_VANILLA_SPECIAL.get((item_id, int(meta) if isinstance(meta, int) else -1))
     if vanilla is None and isinstance(meta, int):
         vanilla = LEGACY_VANILLA_META_RENAMES.get((item_id, meta))
+    if vanilla is None and item_id == "minecraft:brick_block":
+        vanilla = "minecraft:bricks"
     if vanilla is None and item_id in ORDINARY_VANILLA_RENAMES:
         vanilla = ORDINARY_VANILLA_RENAMES[item_id]
     if vanilla is None:
@@ -670,7 +1048,11 @@ def map_item_operand(
         return operand, [f"unsplit 1.7.10 vanilla {item_id}@{meta}"]
     if item_id == "gregtech:gt.multitileentity" and isinstance(meta, int):
         operand = _empty_operand(item)
-        runtime = mte_runtime.get((item_id, meta))
+        runtime = (
+            mte_runtime.get((item_id, meta))
+            or _pipe_runtime(meta)
+            or _energium_runtime(meta)
+        )
         if runtime:
             operand.update(
                 {
@@ -686,7 +1068,7 @@ def map_item_operand(
         return operand, [f"unmapped MTE {item_id}@{meta}"]
     if item_id == "gregtech:gt.multiitem.technological" and isinstance(meta, int):
         operand = _empty_operand(item)
-        runtime = extruder_shape_runtime(meta)
+        runtime = extruder_shape_runtime(meta) or _technological_part_runtime(meta)
         if runtime:
             operand.update(
                 {
@@ -703,6 +1085,8 @@ def map_item_operand(
     if item_id.startswith("gregtech:gt.block."):
         operand = _empty_operand(item)
         runtime = block_runtime.get((item_id, int(meta) if isinstance(meta, int) else 0))
+        if runtime is None:
+            runtime = _glass_block_runtime(item_id, str(item.get("displayName") or ""))
         if runtime:
             operand.update(
                 {
@@ -744,6 +1128,9 @@ def map_item_operand(
                 }
             )
             return operand, []
+    hosted = _ore_stone_operand(item, catalogs)
+    if hosted is not None:
+        return hosted, []
     operand, errors = assembler.map_item_operand(item, catalogs, side=side)
     runtime = str(operand.get("runtime_id") or "")
     renamed = identities.VANILLA_RENAMES.get(runtime)

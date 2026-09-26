@@ -1,0 +1,117 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.crusher#bulk_0082",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "fbd96e071e74251a6d25d7c7f1447ca7cd67e40c72e8ed733982acc629660840",
+        "18359826e08908968d47707a85a5fcc58083f9b4a9e91dabad6232a95165f016",
+        "9686c579129c3fe5149f519db3f655c59a75605b009e14c95c6e3fd8c8dfbf48"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "minecraft:nether_brick_stairs"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:nether_brick_fence"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:brick_stairs"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "minecraft:nether_brick"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:nether_brick"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:nether_brick"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "minecraft:brick"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:brick"
+          },
+          {
+            "count": 1,
+            "id": "minecraft:brick"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/da0d03ca264a52d8",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:gt6/8df00ff722b91f27",
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        "cruciblecraft:gt6/2510b716dc379844",
+        2,
+        2
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 64,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        9000,
+        8000
+      ],
+      "selected_source_recipe": "gt.recipe.crusher#bulk_0082",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:crusher/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:crusher",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

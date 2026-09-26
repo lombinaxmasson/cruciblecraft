@@ -1,0 +1,60 @@
+{
+  "family_id": "gt.recipe.lathe#bulk_0039",
+  "publication_group": "cruciblecraft:lathe/prefix-regular",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 427,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "vibranium_silver"
+          },
+          "items": "cruciblecraft:billet",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:vibranium_silver/rod"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "vibranium_silver"
+          },
+          "count": 12,
+          "id": "cruciblecraft:dust_div72"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "06dbdf8ce57303e4de422563461a8678bf354fae4507dc66324bc356ce5da94e"
+        ],
+        "selected_source_recipe": "gt.recipe.lathe#bulk_0039",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/93fea422fe39e1f6"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:lathe",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

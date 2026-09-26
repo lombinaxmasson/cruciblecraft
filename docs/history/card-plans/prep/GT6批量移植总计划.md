@@ -45,8 +45,10 @@ landing_depends_on           = 当前 unique-active 空窗；卡与卡严格串�
    不再只读 `current_gap.json` / blocker 目录。旧来源基于过期文档，只有 68 对。
    仍然禁止按 `generation_flag` 全开长尾。
 2. 一次一张 unique-active，每张都跑验证加玩家测试。
-3. **暂不处理**：boxinator / unboxinator 两图，`crate.*` 与 `bulletGt*` 形态。
+3. **暂不处理**：boxinator / unboxinator 两图，`crate.*`、`bulletGt*` 与 `arrowGt*`
+   （`arrow_gt_wood` / `arrow_gt_plastic`）形态。
    不补映射、不开形态、不写 `exclusions.json`；它们留在目标里，等以后单独决定。
+   箭与子弹同一决定（2026-09-26，前缀规则类配方卡）。
 4. 锭块已有（双身份按 §2.1 处理）。
 5. 粉块 `storage_dust` 要批量建立（当前 gate 只有 12 种材料，dump 需求 963 种）。
 
@@ -93,7 +95,7 @@ P1、P2 做完重跑逐行分类；P3 完成验证基础设施收口后，后面
 | — | 重跑逐行分类 | — | 2026-09-25 已完成。用缺失流体关卡后的覆盖页调整 4–7 |
 | 4 | [GT6 批量配方容量门](../closed/GT6批量配方容量门详细计划.md) | `recipe/gt6-bulk-capacity` | 已关。lazy 上限 500,000，只包后三张配方卡 |
 | 5 | [GT6 挤压机配方批量](../closed/GT6挤压机配方批量详细计划.md) | `recipe/gt6-extruder-bulk` | 已关。可翻译行已按 Rule IR 发布；缺形态和缺物品仍挡住 |
-| 6 | [GT6 前缀规则类配方批量](GT6前缀规则类配方批量详细计划.md) | `recipe/gt6-prefix-regular-bulk` | 可翻译 45,363 行，12 张图 |
+| 6 | [GT6 前缀规则类配方批量](../closed/GT6前缀规则类配方批量详细计划.md) | `recipe/gt6-prefix-regular-bulk` | 已关。可翻译行已发布。blocked 分类见该计划 §4.2；io_only 与未覆盖的 material_rule 保留；试玩未签 |
 | 7 | [GT6 化学杂项配方批量](GT6化学杂项配方批量详细计划.md) | `recipe/gt6-chemical-misc-bulk` | 可翻译 68,363 行 |
 | 8 | [GT6 同类基础加工机批量](GT6同类基础加工机批量详细计划.md) | `machines/gt6-basic-machine-batch` | 5 kind / 19 台 + 3 张小图 |
 | 9 | [GT6 激光、磁铁与 ZPM 转换器](GT6激光磁铁ZPM转换器详细计划.md) | `energy/gt6-laser-magnet-zpm-converters` | 4 kind / 16 台 |
@@ -116,7 +118,12 @@ P1、P2 做完重跑逐行分类；P3 完成验证基础设施收口后，后面
 
 ## 6. 明确不接管
 
-- boxinator / unboxinator、`crate.*`、`bulletGt*`、`storage.raw/gem/plateGem`（见 §1.3）
+- boxinator / unboxinator、`crate.*`、`bulletGt*`、`arrowGt*`、`storage.raw/gem/plateGem`（见 §1.3）
+- 第 6 张卡仍 blocked 的分类索引在
+  [该详细计划 §4.2](../closed/GT6前缀规则类配方批量详细计划.md)。
+  跨图是不是同一个东西，读全覆盖页 §17.1 和 `semantic_coverage.json` 的 `blockers[].key`
+  （见 [recipe-wave-workflow.md](../../../current/recipe-wave-workflow.md) §1.2）。
+  单卡逐行账本是 `tools/waves/recipe/gt6-prefix-regular-bulk/<map>/blocked.json`
 - `gt.recipe.anvil`、`gt.recipe.cruciblealloying` 的旧排除决策
 - toolhead、bumblelyzer 等 `display_only` 行
 - 来自其他 mod 的物品与流体（逐项决定后再进计划）

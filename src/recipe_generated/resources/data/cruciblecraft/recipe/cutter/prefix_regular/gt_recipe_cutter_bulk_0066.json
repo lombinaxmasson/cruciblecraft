@@ -1,0 +1,102 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.cutter#bulk_0066",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [
+            {
+              "amount": 100,
+              "id": "cruciblecraft:lubricant"
+            }
+          ],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "a13463e4812603479cb70b99c9776757cc6786fb858bae6b238620334a9b80c6",
+        "f74f579258a99fb6c22e1fbbd91d39ddee14c9c2fb01d9cd97b32b138833b981"
+      ],
+      "item_inputs": [
+        [
+          {
+            "tag": "minecraft:fence_gates"
+          }
+        ],
+        [
+          {
+            "tag": "minecraft:signs"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:planks/cyan"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:wood/dust"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:planks/cyan"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "wood"
+            },
+            "count": 12,
+            "id": "cruciblecraft:dust_div72"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/e8a0a5c233553924",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/9ab47e600be89366",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 32,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.cutter#bulk_0066",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:cutter/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:cutter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

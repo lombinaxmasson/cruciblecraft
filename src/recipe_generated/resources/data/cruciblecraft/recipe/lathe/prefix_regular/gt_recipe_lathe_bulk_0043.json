@@ -1,0 +1,108 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.lathe#bulk_0043",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "cda2881e837889a14ea67e93538ecf92392cb43632b2fbf581b044052526e098",
+        "ef8c81841bf0a3e216e507f02972a819eafa3468c1ed57f2328099fba2f0c751"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "realgar"
+            },
+            "items": "cruciblecraft:gem_chipped",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "glass"
+            },
+            "items": "cruciblecraft:gem_chipped",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:realgar/bolt"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "realgar"
+            },
+            "count": 9,
+            "id": "cruciblecraft:dust_div72"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:glass/bolt"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "glass"
+            },
+            "count": 9,
+            "id": "cruciblecraft:dust_div72"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/ba292da87d3cb2b1",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/c1490e906ce8a38b",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 4,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.lathe#bulk_0043",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:lathe/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:lathe",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

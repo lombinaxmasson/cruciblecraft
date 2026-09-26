@@ -1,0 +1,141 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.press#bulk_0021",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "b8f5350bc70beaa4a975331dff3b7bc7654fb7884797294ef9952e2bdcbc1f73",
+        "46983c3c34dac6570ddff0d4a014fe565d972e846d1866232b4f1e5b28281d00",
+        "2f911ab5554aa119a44383ab925cebf3cd7b0929ecafb67e310e1b1e1889206b",
+        "ef436e973d5bdfcc896edfa2543401b440163564baeb60b6d19dc5b83cabb8d9"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:processor_crystal_empty"
+          },
+          {
+            "item": "cruciblecraft:sapphire/crystal_circuit_sapphire_conversion"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:processor_crystal_empty"
+          },
+          {
+            "item": "cruciblecraft:emerald/crystal_circuit_emerald_storage"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:processor_crystal_empty"
+          },
+          {
+            "item": "cruciblecraft:ruby/crystal_circuit_ruby_control"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:processor_crystal_empty"
+          },
+          {
+            "item": "cruciblecraft:diamond/crystal_circuit_diamond_logic"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:processor_crystal_sapphire"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:processor_crystal_emerald"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:processor_crystal_ruby"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:processor_crystal_diamond"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/8d787f96039cd914",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/908e5056946ebf13",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/4df8f653fe5666b0",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/35ab4cab8f8abed7",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.press#bulk_0021",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:press/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:press",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

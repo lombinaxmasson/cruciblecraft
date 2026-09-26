@@ -133,7 +133,7 @@ public final class AnvilBlockEntity extends BlockEntity {
             activeRecipe = recipeId;
         }
         strikes++;
-        int requiredHits = Math.toIntExact(recipe.specialValue());
+        int requiredHits = requiredStrikes(recipe);
         boolean completed = strikes >= requiredHits;
         ItemStack result = source.copy();
         List<ItemStack> overflow = new java.util.ArrayList<>();
@@ -338,8 +338,20 @@ public final class AnvilBlockEntity extends BlockEntity {
         }
     }
 
+    /**
+     * GT6 completes an anvil recipe on one hammer click and leaves
+     * {@code specialValue} at 0. Older CC material rules store an explicit hit count.
+     */
+    private static int requiredStrikes(GTRecipe recipe) {
+        long special = recipe.specialValue();
+        if (special == 0L) {
+            return 1;
+        }
+        return Math.toIntExact(special);
+    }
+
     private static boolean validAnvilRecipe(GTRecipe recipe) {
-        return recipe.specialValue() > 0L
+        return recipe.specialValue() >= 0L
                 && recipe.specialValue() <= Integer.MAX_VALUE
                 && recipe.eut() > 0L
                 && AnvilRecipeExecutionRules.supportsOutputs(

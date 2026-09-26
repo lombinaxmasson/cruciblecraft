@@ -1,0 +1,98 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.lathe#bulk_0038",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "ba62a88a261d9a486c77e8a6057c2956297402e26386dd4b6e1bc06f3e9967ff",
+        "00cc869380e19285160d65953e2dce7e1ce9ae42b17990336c1d605fa2de0c49"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:red_matter/gem"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "red_matter"
+            },
+            "items": "cruciblecraft:plate_gem",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:red_matter/rod"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:red_matter/small_dust"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:red_matter/ring"
+          },
+          {
+            "count": 3,
+            "id": "cruciblecraft:red_matter/small_dust"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/11401eeb93674cb6",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/0d1aa355a91e584e",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 448,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.lathe#bulk_0038",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:lathe/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:lathe",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

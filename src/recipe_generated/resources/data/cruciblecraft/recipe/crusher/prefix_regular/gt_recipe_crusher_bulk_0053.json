@@ -1,0 +1,183 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.crusher#bulk_0053",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "05ea583686f1480450b5ac0a5b7fb9f67c34d5e7329b3b8c033ff22e08e11e8a",
+        "8969f3d8d2063ca44183bb9f47af5abdd893ec3d2fdea18f7d513d114e73918a",
+        "4f3ec0a77e623f50c9a6be16c0bb437a1c5c3b306458a31df5d9544fe42a059f"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "sanguinite",
+              "minecraft:block_state": {
+                "host": "basalt"
+              }
+            },
+            "items": "cruciblecraft:gt_broken_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "sanguinite",
+              "minecraft:block_state": {
+                "host": "komatiite"
+              }
+            },
+            "items": "cruciblecraft:gt_broken_ore",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:ore_material": "sanguinite",
+              "minecraft:block_state": {
+                "host": "kimberlite"
+              }
+            },
+            "items": "cruciblecraft:gt_broken_ore",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:cinnabar/gem"
+          },
+          {
+            "count": 4,
+            "id": "cruciblecraft:basalt/dust"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:cinnabar/gem"
+          },
+          {
+            "count": 4,
+            "id": "cruciblecraft:komatiite/dust"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "sanguinite"
+            },
+            "count": 1,
+            "id": "cruciblecraft:crushed_ore"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:cinnabar/gem"
+          },
+          {
+            "count": 4,
+            "id": "cruciblecraft:kimberlite/dust"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/bb84df72337b0a84",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/897683dded8b3548",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/c92a8990fd0d5e4d",
+        2,
+        2
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 1408,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000,
+        1000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.crusher#bulk_0053",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:crusher/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:crusher",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

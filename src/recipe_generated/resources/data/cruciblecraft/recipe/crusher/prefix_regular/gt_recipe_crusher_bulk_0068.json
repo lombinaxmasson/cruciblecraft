@@ -1,0 +1,141 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.crusher#bulk_0068",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "29bbafd0c130ec4dc1462aa394fe172356094aed047a5fb56359b989551493b2",
+        "ef4522c53b82721b1124fd26125902a9ed8093b530ebe554fd9a7a449c587b76",
+        "732806147c2bfcfbfcfe512f396e3528ec02a84267bfbde0f1498c766c928750",
+        "3d9f070b341779452511b106cc9e836f9202afa014590276edc0f090dfacdd9a"
+      ],
+      "item_inputs": [
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "diamantine"
+            },
+            "items": "cruciblecraft:gem_flawless",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infused_balance"
+            },
+            "items": "cruciblecraft:gem_flawless",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "nether_star"
+            },
+            "items": "cruciblecraft:gem_flawless",
+            "type": "neoforge:components"
+          }
+        ],
+        [
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "infused_entropy"
+            },
+            "items": "cruciblecraft:gem_flawless",
+            "type": "neoforge:components"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:diamantine/gem"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:infused_balance/gem"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "minecraft:nether_star"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:infused_entropy/gem"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/071a6ec10008aabd",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/3e174c1ab8d8e5d9",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:gt6/e83dcb67c4cec40c",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:gt6/e560142df188e687",
+        3,
+        3
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 2560,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.crusher#bulk_0068",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:crusher/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:crusher",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

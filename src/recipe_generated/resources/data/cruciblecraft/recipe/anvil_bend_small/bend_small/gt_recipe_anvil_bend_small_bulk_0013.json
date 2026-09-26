@@ -1,0 +1,100 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.anvil.bend.small#bulk_0013",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "0ae557548e8e88d07733f6d835e37a59be9be0ea13cbeb86c5d8855cc6b07eec",
+        "80e0228ca9a958f91ce998996313d71213647f46899c9a4f89d2880e50fd9c8a"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:cosmic_neutronium/plate"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:vibranium_steel/plate"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:cosmic_neutronium/foil"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "cosmic_neutronium"
+            },
+            "count": 4,
+            "id": "cruciblecraft:scrap"
+          }
+        ],
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:vibranium_steel/foil"
+          },
+          {
+            "components": {
+              "cruciblecraft:prefix_material": "vibranium_steel"
+            },
+            "count": 4,
+            "id": "cruciblecraft:scrap"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/abaee6255264547f",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/d5f9396ba5c682db",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 704,
+      "eut": 64,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        9000
+      ],
+      "selected_source_recipe": "gt.recipe.anvil.bend.small#bulk_0013",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:anvil_bend_small/bend-small",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:anvil_bend_small",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -1,0 +1,94 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.crusher#bulk_0100",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [],
+          "fluid_outputs": []
+        }
+      ],
+      "hashes": [
+        "8b2d73a195b7baf2d5218baf0a87bdea7870232b36ae6758b8aae4828c86e18a",
+        "536cb4f8d77a22d14313be2247817fdbdade54043e0d5fccab06f353e602ef63"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:granite_red/reinforced_bricks"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:granite_black/reinforced_bricks"
+          }
+        ]
+      ],
+      "item_outputs": [
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:granite_red/cobble"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:iron/small_dust"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:granite_black/cobble"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:iron/small_dust"
+          }
+        ]
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/d0490068eed90763",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:gt6/39921a46d52cd265",
+        1,
+        1
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 256,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "selected_source_recipe": "gt.recipe.crusher#bulk_0100",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:crusher/prefix-regular",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:crusher",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}
