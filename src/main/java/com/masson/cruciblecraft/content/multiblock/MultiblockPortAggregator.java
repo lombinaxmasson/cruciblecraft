@@ -75,10 +75,12 @@ public final class MultiblockPortAggregator {
             Level level,
             BlockPos controller,
             Set<BlockPos> positions) {
-        MultiblockPortHost host = level.getBlockEntity(controller)
-                instanceof MultiblockControllerBinding binding
-                ? binding.portHost()
-                : null;
+        MultiblockPortHost host = null;
+        if (level.hasChunkAt(controller)
+                && level.getBlockEntity(controller)
+                        instanceof MultiblockControllerBinding binding) {
+            host = binding.portHost();
+        }
         for (BlockPos position : positions) {
             if (level.hasChunkAt(position)
                     && level.getBlockEntity(position)

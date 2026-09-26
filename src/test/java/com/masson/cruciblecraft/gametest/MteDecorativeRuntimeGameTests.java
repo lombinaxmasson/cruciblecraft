@@ -15,7 +15,7 @@ import net.minecraft.world.item.Items;
 @PrefixGameTestTemplate(false)
 public final class MteDecorativeRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_mte_decorative_runtime";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private MteDecorativeRuntimeGameTests() {}

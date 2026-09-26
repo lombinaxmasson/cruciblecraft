@@ -22,13 +22,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated fission hot-fluid gate. Run with
- * {@code -PwaveRecipes=runtime/fission-hot-fluids}.
+ * {@code -PgameTestGrid=energy}.
  */
 @GameTestHolder(NuclearFissionHotFluidsGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class NuclearFissionHotFluidsGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_fission_hot_fluids";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final String CAPABILITY = "energy/nuclear-fission-hot-fluids";
     private static final BlockPos POS = new BlockPos(2, 1, 2);

@@ -26,13 +26,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 quadruple/nonuple fluid-pipe runtime. Run with
- * {@code -PwaveRecipes=content/gt6-fluid-combo-pipe-runtime}.
+ * {@code -PgameTestGrid=logistics}.
  */
 @GameTestHolder(FluidComboPipeRuntimeGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class FluidComboPipeRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_fluid_combo_pipe_runtime";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
 
     private FluidComboPipeRuntimeGameTests() {}

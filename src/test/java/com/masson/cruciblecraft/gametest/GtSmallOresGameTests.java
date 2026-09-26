@@ -22,13 +22,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 WorldgenOresSmall + WorldgenColtan. Run with
- * {@code -PwaveRecipes=worldgen/gt-small-ores}.
+ * {@code -PgameTestGrid=worldgen}.
  */
 @GameTestHolder(GtSmallOresGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class GtSmallOresGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_worldgen_gt_small_ores";
+            "cruciblecraft_worldgen";
     private static final String TEMPLATE = "empty";
     private static final BlockPos POS = new BlockPos(8, 2, 8);
 

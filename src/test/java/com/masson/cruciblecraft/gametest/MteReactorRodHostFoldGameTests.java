@@ -13,13 +13,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated reactor-rod host fold. Run with
- * {@code -PwaveRecipes=content/gt6-mte-reactor-rod-host-fold}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(MteReactorRodHostFoldGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class MteReactorRodHostFoldGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_mte_reactor_rod_host_fold";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private MteReactorRodHostFoldGameTests() {}

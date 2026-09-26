@@ -63,13 +63,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated converter-catalog gate. Run with
- * {@code -PwaveRecipes=runtime/converter-catalog}.
+ * {@code -PgameTestGrid=energy}.
  */
 @GameTestHolder(EnergyConverterCatalogGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class EnergyConverterCatalogGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_converter_catalog";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final String CAPABILITY = "energy/converter-catalog";
     private static final List<String> SIGNOFF_ITEMS = List.of(

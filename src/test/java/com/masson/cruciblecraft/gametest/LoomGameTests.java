@@ -24,7 +24,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(LoomGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class LoomGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines_loom";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.NORTH;
     private static final ResourceLocation PUBLICATION_GROUP =

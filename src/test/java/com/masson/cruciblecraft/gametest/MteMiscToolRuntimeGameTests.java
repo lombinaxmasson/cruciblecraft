@@ -21,7 +21,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class MteMiscToolRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_mte_misc_tool_runtime";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private MteMiscToolRuntimeGameTests() {}

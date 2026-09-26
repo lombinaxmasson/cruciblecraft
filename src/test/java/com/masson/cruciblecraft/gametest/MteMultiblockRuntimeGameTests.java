@@ -14,7 +14,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class MteMultiblockRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_mte_multiblock_runtime";
+            "cruciblecraft_multiblock";
     private static final String TEMPLATE = "empty";
 
     private MteMultiblockRuntimeGameTests() {}

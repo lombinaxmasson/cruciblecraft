@@ -16,13 +16,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 foundry art. Run with
- * {@code -PwaveRecipes=content/gt6-foundry-art}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(FoundryArtGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class FoundryArtGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_foundry_art";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private FoundryArtGameTests() {}

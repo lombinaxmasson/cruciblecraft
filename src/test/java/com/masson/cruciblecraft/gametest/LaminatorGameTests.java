@@ -29,7 +29,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(LaminatorGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class LaminatorGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines_laminator";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.NORTH;
     private static final ResourceLocation PUBLICATION_GROUP =

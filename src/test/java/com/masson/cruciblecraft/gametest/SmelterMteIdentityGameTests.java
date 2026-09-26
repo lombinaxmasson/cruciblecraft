@@ -11,14 +11,14 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated Smelter MTE identity gate. Run with
- * {@code -PwaveRecipes=recycling/smelter-mte-identity}.
+ * {@code -PgameTestGrid=machines}.
  * Catalog items are identities, not overworld scatter obtain.
  */
 @GameTestHolder(SmelterMteIdentityGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class SmelterMteIdentityGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_recycling_smelter_mte_identity";
+            "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
 
     private SmelterMteIdentityGameTests() {}

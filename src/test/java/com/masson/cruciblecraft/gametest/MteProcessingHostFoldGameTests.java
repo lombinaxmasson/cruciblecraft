@@ -13,13 +13,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated processing-machine host fold. Run with
- * {@code -PwaveRecipes=content/gt6-mte-processing-host-fold}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(MteProcessingHostFoldGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class MteProcessingHostFoldGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_mte_processing_host_fold";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private MteProcessingHostFoldGameTests() {}

@@ -23,13 +23,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 connector art. Run with
- * {@code -PwaveRecipes=content/gt6-connector-art}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(ConnectorArtGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class ConnectorArtGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_connector_art";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private ConnectorArtGameTests() {}

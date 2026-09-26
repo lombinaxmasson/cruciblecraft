@@ -27,12 +27,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated Oven gate. Run with {@code -PwaveRecipes=machines/oven}.
+ * Isolated Oven gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(OvenGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class OvenGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines_oven";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.NORTH;
     private static final BlockPos POS = new BlockPos(2, 2, 2);

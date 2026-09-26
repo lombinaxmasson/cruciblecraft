@@ -1,0 +1,377 @@
+{
+  "schema_version": 1,
+  "note": "Fresh per-grid runs on 2026-09-26. These tests failed. This card does not change runtime or frozen counts to make them pass. class=split and blocks=false records that they stay in the grid and do not block the test-authoring close. Owners fix them on their own cards.",
+  "entries": [
+    {
+      "test_id": "autoclavereleaseperformancegates",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Release performance SLO failed: ReleasePerformanceVerdict[reload=false, index=true, lookupP95=true, lookupCandidates=true, sync=true, retained=true, lookupAllocation=true] metrics="
+    },
+    {
+      "test_id": "norecoveryrecipespublished",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "identity child published recovery recipes: 1817"
+    },
+    {
+      "test_id": "bathidentitygroupsunchanged",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Bath identity compact ids drifted after tiny-purified: 34081"
+    },
+    {
+      "test_id": "livesqueezerhasgt6javalatexrows",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "No live stack for potassium/plant_gt_berry"
+    },
+    {
+      "test_id": "mixerreleaseperformancegates",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Release performance SLO failed: ReleasePerformanceVerdict[reload=false, index=true, lookupP95=true, lookupCandidates=true, sync=true, retained=true, lookupAllocation=true] metrics="
+    },
+    {
+      "test_id": "lockedcounts",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "bath/identity Bath compact ids drifted from 34091: 34081"
+    },
+    {
+      "test_id": "sharedmappublishesfourhundredsixtyfiverows",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Loom family is not the 465 non-shadowed rows: 476"
+    },
+    {
+      "test_id": "reloadrootsstable",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "bath/identity locked ids missing before re-enumeration"
+    },
+    {
+      "test_id": "centrifugereleaseperformancegates",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Release performance SLO failed: ReleasePerformanceVerdict[reload=false, index=true, lookupP95=true, lookupCandidates=true, sync=true, retained=true, lookupAllocation=true] metrics="
+    },
+    {
+      "test_id": "livemappublishesallselectedrows",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Melter family is not the 3601 selected rows: 3547"
+    },
+    {
+      "test_id": "compressorreleaseperformancegates",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Release performance SLO failed: ReleasePerformanceVerdict[reload=false, index=true, lookupP95=true, lookupCandidates=true, sync=true, retained=true, lookupAllocation=true] metrics="
+    },
+    {
+      "test_id": "stainlessbathingpottablehasacquisitionrecipe",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Stainless bathing pot table recipe missing"
+    },
+    {
+      "test_id": "smelterdeferredreleaseperformancegates",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Release performance SLO failed: ReleasePerformanceVerdict[reload=false, index=true, lookupP95=true, lookupCandidates=true, sync=true, retained=true, lookupAllocation=true] metrics="
+    },
+    {
+      "test_id": "smelterreleaseperformancegates",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Release performance SLO failed: ReleasePerformanceVerdict[reload=false, index=true, lookupP95=true, lookupCandidates=true, sync=true, retained=true, lookupAllocation=true] metrics="
+    },
+    {
+      "test_id": "electrolyzerreleaseperformancegates",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Release performance SLO failed: ReleasePerformanceVerdict[reload=false, index=true, lookupP95=true, lookupCandidates=true, sync=true, retained=true, lookupAllocation=true] metrics="
+    },
+    {
+      "test_id": "dryingreleaseperformancegates",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Release performance SLO failed: ReleasePerformanceVerdict[reload=false, index=true, lookupP95=true, lookupCandidates=true, sync=true, retained=true, lookupAllocation=true] metrics="
+    },
+    {
+      "test_id": "livemappublishesfourhundredninetytworows",
+      "grid": "machines",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Laminator compact family is not the 492 runtime rows: 486"
+    },
+    {
+      "test_id": "fullradiationsuitblocksradiation",
+      "grid": "energy",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Full radiation suit did not block radiation"
+    },
+    {
+      "test_id": "fourdynamosconvertrutoeu",
+      "grid": "energy",
+      "class": "split",
+      "blocks": false,
+      "evidence": "stainless_steel/dynamo_main_housing kind drifted"
+    },
+    {
+      "test_id": "cablelossandoverloadperspecification",
+      "grid": "energy",
+      "class": "split",
+      "blocks": false,
+      "evidence": "rated tin wireGt01 rejected 1A"
+    },
+    {
+      "test_id": "sixcoilidentitiesarelive",
+      "grid": "energy",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Missing coil recipe multiblock/large_niobium_titanium_coil"
+    },
+    {
+      "test_id": "ludoesnottravelacrosseucable",
+      "grid": "energy",
+      "class": "split",
+      "blocks": false,
+      "evidence": "LU packet crossed an EU cable instead of dedicated fiber"
+    },
+    {
+      "test_id": "playersurfaceisregistered",
+      "grid": "energy",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Player-complete registry snapshot failed"
+    },
+    {
+      "test_id": "fullheatsuitblocksheat",
+      "grid": "energy",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Full heat suit did not block heat"
+    },
+    {
+      "test_id": "eighthazmatpiecesarewearable",
+      "grid": "energy",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Hazmat is not wearable: radiation/hazard_suit_helmet"
+    },
+    {
+      "test_id": "sameidentityconnectedexportsintostorage",
+      "grid": "logistics",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Export did not drain the source pipe"
+    },
+    {
+      "test_id": "importpullsfromstorage",
+      "grid": "logistics",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Import did not pull from storage"
+    },
+    {
+      "test_id": "coveridentitysurvivesblockentityreload",
+      "grid": "logistics",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Reloaded export cover did not keep transferring"
+    },
+    {
+      "test_id": "sameidentityconnectedexportsfluidsintostorage",
+      "grid": "logistics",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Export did not drain the source pipe"
+    },
+    {
+      "test_id": "displaycoverissurvivalcraftable",
+      "grid": "logistics",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Display CPU logic recipe missing"
+    },
+    {
+      "test_id": "fourhousingsarelive",
+      "grid": "multiblock",
+      "class": "split",
+      "blocks": false,
+      "evidence": "cruciblecraft:trinitanium/gas_turbine_main_housing source id drifted"
+    },
+    {
+      "test_id": "biomassrunusesheatandkeepscircuit",
+      "grid": "multiblock",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Biomass did not yield methane"
+    },
+    {
+      "test_id": "controllerhullacceptsanyfaceio",
+      "grid": "multiblock",
+      "class": "split",
+      "blocks": false,
+      "evidence": "17112 hull rejected items on down"
+    },
+    {
+      "test_id": "survivalrecipeispresent",
+      "grid": "multiblock",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Carborundum coil recipe is missing"
+    },
+    {
+      "test_id": "wallportcookscobbletostone",
+      "grid": "multiblock",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Controller stayed unlit after EU"
+    },
+    {
+      "test_id": "mixedcoilsdonotform",
+      "grid": "multiblock",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Mixed nichrome and carborundum coils formed"
+    },
+    {
+      "test_id": "autooutputsdownwithoutautoinput",
+      "grid": "multiblock",
+      "class": "split",
+      "blocks": false,
+      "evidence": "17112 did not auto-output into the inventory below"
+    },
+    {
+      "test_id": "stonelayerplacesnetherquartz",
+      "grid": "worldgen",
+      "class": "split",
+      "blocks": false,
+      "evidence": "nether quartz dense cube must drop 2 nether_quartz/raw_ore"
+    },
+    {
+      "test_id": "cropobtaindoesnotuseitementityscatter",
+      "grid": "worldgen",
+      "class": "split",
+      "blocks": false,
+      "evidence": "crop obtain must not use ItemEntity scatter"
+    },
+    {
+      "test_id": "stonelayerreplacesvanillastone",
+      "grid": "worldgen",
+      "class": "split",
+      "blocks": false,
+      "evidence": "No stone-layer cube granite_black/cobble"
+    },
+    {
+      "test_id": "surfacerocklootmatchesworldgenrocks",
+      "grid": "worldgen",
+      "class": "split",
+      "blocks": false,
+      "evidence": "meteoric raw pebble must drop meteoric_iron/raw_ore"
+    },
+    {
+      "test_id": "stonelayerdoesnoteatvillagecobble",
+      "grid": "worldgen",
+      "class": "split",
+      "blocks": false,
+      "evidence": "No stone-layer cube granite_black/cobble"
+    },
+    {
+      "test_id": "geothermalimmersionregenerates",
+      "grid": "worldgen",
+      "class": "split",
+      "blocks": false,
+      "evidence": "geothermal bathing regenerates without oil poison"
+    },
+    {
+      "test_id": "stonelayercatalogmatchesloaderworldgen",
+      "grid": "worldgen",
+      "class": "split",
+      "blocks": false,
+      "evidence": "granite_black cubes register; village SBRIK registers; marble reuses gt_stone_catalog"
+    },
+    {
+      "test_id": "fourgraniteblackrockscraftlayercobble",
+      "grid": "worldgen",
+      "class": "split",
+      "blocks": false,
+      "evidence": "No stone-layer cube granite_black/cobble"
+    },
+    {
+      "test_id": "stonelayerplacesdenserockores",
+      "grid": "worldgen",
+      "class": "split",
+      "blocks": false,
+      "evidence": "BlockRockOres coal must drop 2 coal/raw_ore without fortune"
+    },
+    {
+      "test_id": "oilimmersionpoisonsandblinds",
+      "grid": "worldgen",
+      "class": "split",
+      "blocks": false,
+      "evidence": "oil bathing blinds; breathing poisons and nauseates"
+    },
+    {
+      "test_id": "machinerowsstaycatalogsized",
+      "grid": "content",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Live machine catalog rows drifted: 298"
+    },
+    {
+      "test_id": "massstoragechunkunitsarequarteringot",
+      "grid": "content",
+      "class": "split",
+      "blocks": false,
+      "evidence": "iron ingot/chunk forms are missing"
+    },
+    {
+      "test_id": "massstoragemergesnuggetsintostoredingots",
+      "grid": "content",
+      "class": "split",
+      "blocks": false,
+      "evidence": "iron ingot/nugget forms are missing"
+    },
+    {
+      "test_id": "massstorageironblockjoinsingotfamilynotplate",
+      "grid": "content",
+      "class": "split",
+      "blocks": false,
+      "evidence": "iron ingot/plate forms are missing"
+    },
+    {
+      "test_id": "steamturbineconsumessteam",
+      "grid": "content",
+      "class": "split",
+      "blocks": false,
+      "evidence": "steam turbine stored no rotational energy"
+    },
+    {
+      "test_id": "papertinyplateitemisregistered",
+      "grid": "content",
+      "class": "split",
+      "blocks": false,
+      "evidence": "cruciblecraft:paper/tiny_plate is missing"
+    }
+  ]
+}

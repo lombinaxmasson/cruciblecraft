@@ -39,13 +39,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated Display CPU gate. Run with
- * {@code -PwaveRecipes=runtime/display-cpu}.
+ * {@code -PgameTestGrid=logistics}.
  */
 @GameTestHolder(DisplayCpuGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class DisplayCpuGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_display_cpu";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
     private static final int MOVED = 16;
 

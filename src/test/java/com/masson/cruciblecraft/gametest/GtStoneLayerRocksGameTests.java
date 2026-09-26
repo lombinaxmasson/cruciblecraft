@@ -34,13 +34,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 WorldgenStoneLayers cubes, pebbles, and StoneLayerOres. Run with
- * {@code -PwaveRecipes=worldgen/gt-stone-layer-rocks}.
+ * {@code -PgameTestGrid=worldgen}.
  */
 @GameTestHolder(GtStoneLayerRocksGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class GtStoneLayerRocksGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_worldgen_gt_stone_layer_rocks";
+            "cruciblecraft_worldgen";
     private static final String TEMPLATE = "empty";
     private static final BlockPos POS = new BlockPos(8, 2, 8);
 

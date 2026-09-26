@@ -16,13 +16,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 restrictive item-pipe runtime. Run with
- * {@code -PwaveRecipes=content/gt6-restrictive-item-pipe-runtime}.
+ * {@code -PgameTestGrid=logistics}.
  */
 @GameTestHolder(RestrictiveItemPipeRuntimeGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class RestrictiveItemPipeRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_restrictive_item_pipe_runtime";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
 
     private RestrictiveItemPipeRuntimeGameTests() {}

@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "slug": "portfolio/test-authoring-workflow",
+  "title": "Test Authoring Workflow",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "not_applicable",
+  "owned_paths": [
+    "docs/history/card-plans/prep/测试制作流程详细计划.md",
+    "docs/history/card-plans/active/测试制作流程详细计划.md",
+    "docs/history/card-plans/closed/测试制作流程详细计划.md",
+    "docs/current/test-authoring.md",
+    "docs/current/verification.md",
+    "docs/current/capability-delivery-workflow.md",
+    ".cursor/rules/test-authoring.mdc",
+    "tools/waves/prep/test-authoring-workflow/**",
+    "tools/capabilities/portfolio/test-authoring-workflow/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/support/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/**",
+    "tools/gametest_grids.json",
+    "tools/check_gametest_hygiene.py",
+    "tools/gametest_hygiene_baseline.json",
+    "tools/tests/test_check_gametest_hygiene.py",
+    "tools/verify.py",
+    "tools/verification_profiles.json",
+    "tools/python_test_policy.json",
+    "gradle/scripts/runs.gradle",
+    "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockPortAggregator.java",
+    "src/main/resources/data/cruciblecraft_machines/**",
+    "src/main/resources/data/cruciblecraft_energy/**",
+    "src/main/resources/data/cruciblecraft_logistics/**",
+    "src/main/resources/data/cruciblecraft_multiblock/**",
+    "src/main/resources/data/cruciblecraft_worldgen/**",
+    "src/main/resources/data/cruciblecraft_content/**"
+  ],
+  "depends_on": [
+    "portfolio/default-gametest-recovery"
+  ],
+  "profiles": [
+    "verification",
+    "game-tests"
+  ],
+  "note": "Test infrastructure. Eight domain grids, hygiene ratchet, shared GameTest helpers. 53 failing tests stay in disposition.json as non-blocking splits. Does not sign playtest. VD-2026-09-003 stays open."
+}

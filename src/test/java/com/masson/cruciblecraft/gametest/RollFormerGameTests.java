@@ -32,12 +32,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated Roll Former gate. Run with {@code -PwaveRecipes=machines/roll-former}.
+ * Isolated Roll Former gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(RollFormerGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class RollFormerGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines_roll_former";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final String CAPABILITY = "machines/roll-former";
     private static final Direction FRONT = Direction.NORTH;

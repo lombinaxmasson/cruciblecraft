@@ -38,13 +38,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated Logistics Core gate. Run with
- * {@code -PwaveRecipes=runtime/logistics-core}.
+ * {@code -PgameTestGrid=logistics}.
  */
 @GameTestHolder(LogisticsCoreGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class LogisticsCoreGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_logistics_core";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
     private static final int MOVED = 16;
 

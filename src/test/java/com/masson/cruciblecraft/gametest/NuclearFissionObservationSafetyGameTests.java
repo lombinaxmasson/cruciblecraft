@@ -36,13 +36,13 @@ import net.neoforged.neoforge.registries.DeferredItem;
 
 /**
  * Isolated fission observation/safety gate. Run with
- * {@code -PwaveRecipes=runtime/fission-observation-safety}.
+ * {@code -PgameTestGrid=energy}.
  */
 @GameTestHolder(NuclearFissionObservationSafetyGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class NuclearFissionObservationSafetyGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_fission_observation_safety";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final String CAPABILITY =
             "energy/nuclear-fission-observation-safety";

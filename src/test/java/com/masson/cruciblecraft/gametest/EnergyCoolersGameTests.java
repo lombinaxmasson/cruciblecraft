@@ -25,12 +25,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated cooler gate. Run with {@code -PwaveRecipes=runtime/cooler}.
+ * Isolated cooler gate. Run with {@code -PgameTestGrid=energy}.
  */
 @GameTestHolder(EnergyCoolersGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class EnergyCoolersGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_runtime_cooler";
+    public static final String NAMESPACE = "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final String CAPABILITY = "energy/cooler";
     private static final BlockPos POS = new BlockPos(2, 1, 2);

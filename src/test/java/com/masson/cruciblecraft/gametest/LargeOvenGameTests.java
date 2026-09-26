@@ -34,7 +34,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class LargeOvenGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_machines_large_oven";
+            "cruciblecraft_multiblock";
     private static final String TEMPLATE = "empty";
     private static final BlockPos CONTROLLER = new BlockPos(2, 2, 2);
     private static final Direction FACING = Direction.NORTH;

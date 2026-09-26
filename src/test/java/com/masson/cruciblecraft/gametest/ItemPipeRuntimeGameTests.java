@@ -31,13 +31,13 @@ import net.neoforged.neoforge.items.IItemHandler;
 
 /**
  * Isolated GT6 ordinary item-pipe runtime. Run with
- * {@code -PwaveRecipes=content/gt6-item-pipe-runtime}.
+ * {@code -PgameTestGrid=logistics}.
  */
 @GameTestHolder(ItemPipeRuntimeGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class ItemPipeRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_item_pipe_runtime";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
 
     private ItemPipeRuntimeGameTests() {}

@@ -14,13 +14,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated paper tiny_plate gate. Run with
- * {@code -PwaveRecipes=content/gt6-paper-tiny-plate}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(PaperTinyPlateGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class PaperTinyPlateGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_paper_tiny_plate";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private PaperTinyPlateGameTests() {}

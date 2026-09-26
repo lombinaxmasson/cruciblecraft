@@ -39,13 +39,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 WorldgenOresBedrock gate. Run with
- * {@code -PgameTestNamespaces=cruciblecraft_wave_worldgen_gt_bedrock_ores}.
+ * {@code -PgameTestGrid=worldgen}.
  */
 @GameTestHolder(GtBedrockOreVeinsGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class GtBedrockOreVeinsGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_worldgen_gt_bedrock_ores";
+            "cruciblecraft_worldgen";
     private static final String TEMPLATE = "empty";
 
     private GtBedrockOreVeinsGameTests() {}

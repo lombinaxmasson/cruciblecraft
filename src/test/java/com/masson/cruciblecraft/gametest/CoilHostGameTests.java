@@ -37,7 +37,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class CoilHostGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_machines_gt6_coil_hosts";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
 
     private CoilHostGameTests() {}

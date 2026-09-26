@@ -40,13 +40,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 crucible / mold interaction. Run with
- * {@code -PwaveRecipes=content/gt6-crucible-mold-interaction}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(CrucibleMoldInteractionGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class CrucibleMoldInteractionGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_crucible_mold_interaction";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
     private static final float MELT_TEMPERATURE = 1600.0F;
 

@@ -28,12 +28,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated assembler/compact compact-family runtime gate. Run with {@code -PwaveRecipes=assembler/compact}.
+ * Isolated assembler/compact compact-family runtime gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(AssemblerCompactGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class AssemblerCompactGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_assembler_compact";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
 

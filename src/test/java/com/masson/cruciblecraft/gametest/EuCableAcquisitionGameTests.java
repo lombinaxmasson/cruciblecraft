@@ -22,13 +22,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 EU cable acquisition. Run with
- * {@code -PwaveRecipes=content/gt6-eu-cable-acquisition}.
+ * {@code -PgameTestGrid=energy}.
  */
 @GameTestHolder(EuCableAcquisitionGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class EuCableAcquisitionGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_eu_cable_acquisition";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
 
     private EuCableAcquisitionGameTests() {}

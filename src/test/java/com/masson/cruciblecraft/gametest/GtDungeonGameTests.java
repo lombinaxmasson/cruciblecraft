@@ -15,12 +15,12 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT dungeon gate. Run with
- * {@code -PgameTestNamespaces=cruciblecraft_wave_worldgen_gt_dungeon}.
+ * {@code -PgameTestGrid=worldgen}.
  */
 @GameTestHolder(GtDungeonGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class GtDungeonGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_worldgen_gt_dungeon";
+    public static final String NAMESPACE = "cruciblecraft_worldgen";
 
     private GtDungeonGameTests() {}
 

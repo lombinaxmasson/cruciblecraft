@@ -10,13 +10,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated large-processing parts/maps gate. Run with
- * {@code -PwaveRecipes=machines/large-processing-parts}.
+ * {@code -PgameTestGrid=multiblock}.
  */
 @GameTestHolder(LargeProcessingPartsGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class LargeProcessingPartsGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_machines_large_processing_parts";
+            "cruciblecraft_multiblock";
     private static final String TEMPLATE = "empty";
 
     private LargeProcessingPartsGameTests() {}

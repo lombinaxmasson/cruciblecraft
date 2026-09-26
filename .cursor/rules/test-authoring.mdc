@@ -7,7 +7,8 @@ alwaysApply: false
 # Test authoring
 
 Human contract: `docs/current/test-authoring.md`.
-Landing card: `docs/history/card-plans/prep/测试制作流程详细计划.md`.
+Domain grids: `tools/gametest_grids.json`.
+Checker: `tools/check_gametest_hygiene.py`.
 
 ## Pick the layer
 
@@ -17,6 +18,7 @@ Landing card: `docs/history/card-plans/prep/测试制作流程详细计划.md`.
 
 ## Fixtures
 
+- Use `GameTestFixtures.requireMaterialStack` and `requirePipe`.
 - Use only parts GT6 registers and CC already registers. Check
   `gt6_code/gregtech6` and `python tools/gt6_resolve.py` first.
 - No pure tin or iron pipes (GT6 has none). Non-gasproof pipe → wood /
@@ -24,12 +26,16 @@ Landing card: `docs/history/card-plans/prep/测试制作流程详细计划.md`.
 - Missing part = assertion failure. Never swap in another material, prefix,
   or vanilla item.
 - Copy the material `ItemStack`; `new ItemStack(item)` drops components.
+- A test that intentionally rejects a missing part needs a previous-line
+  `hygiene-negative:` comment.
 
 ## Expected values
 
-- GT6 source fact (blade count, energy side): may be literal; cite GT6 file:line.
+- GT6 source fact (blade count, energy side): may be literal; cite
+  `gt6-source:` on the same or previous line.
 - Projection of our own data (recipe / EMI / catalog counts): compare against
-  runtime catalog or generated manifest. No new literal `== 12064`.
+  runtime catalog or generated manifest. New 3-digit assertion literals fail
+  the hygiene ratchet. VD-2026-09-003 stays open for the existing ones.
 - Performance: separate budget assert. Never raise budget constants to go green.
 - Changing a literal: state which data change caused it.
 
@@ -40,17 +46,23 @@ Landing card: `docs/history/card-plans/prep/测试制作流程详细计划.md`.
 var be = (FooBlockEntity) helper.getBlockEntity(pos);
 var r = map.findMatch(q).orElseThrow();
 // GOOD
-helper.assertTrue(helper.getBlockEntity(pos) instanceof FooBlockEntity, "missing Foo at " + pos);
-var r = map.findMatch(q).orElse(null);
-helper.assertTrue(r != null, "no match for " + q);
+var be = GameTestRequirements.requireBlockEntity(helper, pos, FooBlockEntity.class);
+var r = GameTestRequirements.requirePresent(optional, "no match for " + q);
 ```
 
-- `level.getCapability` needs `helper.absolutePos(pos)`.
-- Failure text ≤ 900 chars (long text breaks shutdown save).
-- Place machines by `Gt6SidedIo`: electrolyzer / centrifuge power from BOTTOM.
+- `level.getCapability` needs `helper.absolutePos(pos)`, or
+  `GameTestRequirements.requireCapability`.
+- `GameTestFailures.fail` truncates to 900 characters.
+- Place machines with `GameTestMachinePlacement`. Electrolyzer and centrifuge
+  take power from the bottom.
 
 ## Running
 
-- `-PgameTestFilter` is diagnosis only; close on the full grid.
+- `.\gradlew.bat runGameTestServer -PgameTestGrid=<id>`.
+- `-PgameTestFilter` is diagnosis only; close on the grid.
+- `-PwaveRecipes` is only an in-progress namespace. Committed holders must not
+  keep `cruciblecraft_wave_`.
 - Never treat `gametest_receipt.json` as PASS.
 - Never delete tests, drop `required`, or skip failures.
+- A failure that stays needs an entry in
+  `tools/waves/prep/test-authoring-workflow/disposition.json`.

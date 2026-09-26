@@ -1,0 +1,4379 @@
+{
+  "schema_version": 1,
+  "violations": [
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/air/AirOutputModelTest.java",
+      "kind": "projection_count",
+      "line": 12,
+      "excerpt": "assertEquals(640L, AirOutputModel.bellowsStrokeTotal());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/air/AirOutputModelTest.java",
+      "kind": "projection_count",
+      "line": 26,
+      "excerpt": "assertEquals(640L, AirOutputModel.addToBuffer(0L, 640L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/air/AirOutputModelTest.java",
+      "kind": "projection_count",
+      "line": 30,
+      "excerpt": "assertEquals(639L, AirOutputModel.consumeProcessingTick(640L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/air/TransferStateHelpersTest.java",
+      "kind": "projection_count",
+      "line": 51,
+      "excerpt": "assertEquals(805, display);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/air/TransferStateHelpersTest.java",
+      "kind": "projection_count",
+      "line": 52,
+      "excerpt": "assertEquals(900, authoritative.temperature());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/api/energy/EnergyTypePacketContractTest.java",
+      "kind": "projection_count",
+      "line": 23,
+      "excerpt": "assertEquals(128L, EnergyType.ELECTRIC.emitPacketSize(128L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiLayoutTest.java",
+      "kind": "projection_count",
+      "line": 47,
+      "excerpt": "assertEquals(166, Gt6EmiGui.NEI_CHROME_HEIGHT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiLayoutTest.java",
+      "kind": "projection_count",
+      "line": 48,
+      "excerpt": "assertEquals(166, ProcessingEmiLayout.NEI_HEIGHT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRecipeDataTest.java",
+      "kind": "projection_count",
+      "line": 65,
+      "excerpt": "assertEquals(750, data.fluidInputs().getFirst().stack().getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRecipeDataTest.java",
+      "kind": "projection_count",
+      "line": 68,
+      "excerpt": "assertEquals(125, data.fluidOutputs().getFirst().stack().getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/compat/emi/ProcessingEmiRecipeDataTest.java",
+      "kind": "projection_count",
+      "line": 73,
+      "excerpt": "assertEquals(\"Costs: 960 KU\", data.costsText());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/compat/jade/observation/JadeObservationTest.java",
+      "kind": "projection_count",
+      "line": 43,
+      "excerpt": "assertEquals(\"1\", JadeDisplayUnits.formatIngotAmount(144));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/compat/jade/observation/JadeObservationTest.java",
+      "kind": "projection_count",
+      "line": 44,
+      "excerpt": "assertEquals(\"0.111\", JadeDisplayUnits.formatIngotAmount(16));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/compat/jade/observation/JadeObservationTest.java",
+      "kind": "projection_count",
+      "line": 75,
+      "excerpt": "assertEquals(128L, stepDown.sides().get(\"up\").voltage());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/compat/jade/observation/JadeObservationTest.java",
+      "kind": "projection_count",
+      "line": 93,
+      "excerpt": "assertEquals(128L, stepUp.sides().get(\"up\").voltage());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/compat/jade/observation/JadeObservationTest.java",
+      "kind": "projection_count",
+      "line": 233,
+      "excerpt": "assertEquals(100, JadeDisplayUnits.fillPercent(1.0f));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/compat/kubejs/StartupMaterialBuilderTest.java",
+      "kind": "projection_count",
+      "line": 21,
+      "excerpt": "assertEquals(930, tuning.meltingPoint().orElseThrow());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/block/WoodDebarkTest.java",
+      "kind": "projection_count",
+      "line": 12,
+      "excerpt": "assertEquals(300, WoodDebark.beamCreosoteMb(GtTreeSpecies.RUBBER));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/block/WoodDebarkTest.java",
+      "kind": "projection_count",
+      "line": 14,
+      "excerpt": "assertEquals(350, WoodDebark.beamCreosoteMb(GtTreeSpecies.MAPLE));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/block/WoodDebarkTest.java",
+      "kind": "projection_count",
+      "line": 16,
+      "excerpt": "assertEquals(400, WoodDebark.beamCreosoteMb(GtTreeSpecies.WILLOW));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/block/WoodDebarkTest.java",
+      "kind": "projection_count",
+      "line": 18,
+      "excerpt": "assertEquals(400, WoodDebark.beamCreosoteMb(GtTreeSpecies.RAINBOWOOD));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/block/WoodDebarkTest.java",
+      "kind": "projection_count",
+      "line": 20,
+      "excerpt": "assertEquals(200, WoodDebark.beamCreosoteMb(GtTreeSpecies.CINNAMON));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/block/WoodDebarkTest.java",
+      "kind": "projection_count",
+      "line": 22,
+      "excerpt": "assertEquals(200, WoodDebark.vanillaBeamCreosoteMb());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/FluidPipeSyncScheduleTest.java",
+      "kind": "projection_count",
+      "line": 22,
+      "excerpt": "assertEquals(100, due);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeBoilerFluidTankTest.java",
+      "kind": "projection_count",
+      "line": 58,
+      "excerpt": "assertEquals(750L, tank.longAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/LargeCrucibleBlockEntityTest.java",
+      "kind": "projection_count",
+      "line": 39,
+      "excerpt": "assertEquals(432, CrucibleProcessCore.LARGE_MAX_INGOTS);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
+      "kind": "projection_count",
+      "line": 99,
+      "excerpt": "assertEquals(400, restored.tanks().getFirst().getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/GtBuildingBlockCatalogTest.java",
+      "kind": "projection_count",
+      "line": 17,
+      "excerpt": "assertEquals(246, GtBuildingBlockCatalog.VARIANT_COUNT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/GtBuildingBlockCatalogTest.java",
+      "kind": "projection_count",
+      "line": 19,
+      "excerpt": "assertEquals(246, GtBuildingBlockCatalog.variants().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/GtBuildingBlockCatalogTest.java",
+      "kind": "projection_count",
+      "line": 37,
+      "excerpt": "assertEquals(246, ids.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/GtBuildingBlockCatalogTest.java",
+      "kind": "projection_count",
+      "line": 38,
+      "excerpt": "assertEquals(112, glass);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/GtBuildingBlockCatalogTest.java",
+      "kind": "projection_count",
+      "line": 39,
+      "excerpt": "assertEquals(112, glow);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/GtBuildingBlockCatalogTest.java",
+      "kind": "projection_count",
+      "line": 40,
+      "excerpt": "assertTrue(slabs >= 202);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/GtStoneCatalogTest.java",
+      "kind": "projection_count",
+      "line": 17,
+      "excerpt": "assertEquals(119, GtStoneCatalog.IDENTITY_COUNT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/GtStoneCatalogTest.java",
+      "kind": "projection_count",
+      "line": 18,
+      "excerpt": "assertEquals(466, GtStoneCatalog.VARIANT_COUNT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/GtStoneCatalogTest.java",
+      "kind": "projection_count",
+      "line": 19,
+      "excerpt": "assertEquals(466, GtStoneCatalog.variants().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/GtStoneCatalogTest.java",
+      "kind": "projection_count",
+      "line": 34,
+      "excerpt": "assertEquals(466, ids.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/TechnologicalPartCatalogTest.java",
+      "kind": "projection_count",
+      "line": 17,
+      "excerpt": "assertEquals(160, paths.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCatalogTest.java",
+      "kind": "projection_count",
+      "line": 18,
+      "excerpt": "assertEquals(128L, ElectricToolCatalog.Voltage.MV.packet());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/item/tool/ElectricToolCatalogTest.java",
+      "kind": "projection_count",
+      "line": 19,
+      "excerpt": "assertEquals(512L, ElectricToolCatalog.Voltage.HV.packet());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/mold/MoldCastingRulesTest.java",
+      "kind": "projection_count",
+      "line": 41,
+      "excerpt": "assertEquals(995.0F, MoldCastingRules.cool(1_000.0F, 20.0F));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/mte/MteFoundryTanksTest.java",
+      "kind": "projection_count",
+      "line": 10,
+      "excerpt": "assertEquals(2304, MteFoundryTanks.SMELTERY_MB);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/multiblock/CoilHostIdentityTest.java",
+      "kind": "projection_count",
+      "line": 135,
+      "excerpt": "assertEquals(\"MATTER_FABRICATOR\", byMeta.get(17199).get(\"kind\").getAsString());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/multiblock/CoilHostIdentityTest.java",
+      "kind": "projection_count",
+      "line": 136,
+      "excerpt": "assertEquals(\"LARGE_DYNAMO\", byMeta.get(17221).get(\"kind\").getAsString());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/multiblock/CoilHostIdentityTest.java",
+      "kind": "projection_count",
+      "line": 137,
+      "excerpt": "assertEquals(\"LARGE_DYNAMO\", byMeta.get(17224).get(\"kind\").getAsString());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/multiblock/CoilHostIdentityTest.java",
+      "kind": "projection_count",
+      "line": 138,
+      "excerpt": "assertEquals(\"VON_DA_GRAAGG\", byMeta.get(17996).get(\"kind\").getAsString());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/multiblock/CoilHostIdentityTest.java",
+      "kind": "projection_count",
+      "line": 139,
+      "excerpt": "assertEquals(\"LIGHTNING_ROD\", byMeta.get(17998).get(\"kind\").getAsString());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/multiblock/CoilHostIdentityTest.java",
+      "kind": "projection_count",
+      "line": 140,
+      "excerpt": "assertEquals(\"MULTIBLOCK_PART\", byMeta.get(18104).get(\"kind\").getAsString());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/multiblock/TankControllerProfilesTest.java",
+      "kind": "projection_count",
+      "line": 47,
+      "excerpt": "assertEquals(18002, stainless.wallMeta());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/redstonewire/RedstoneWireCoversTest.java",
+      "kind": "projection_count",
+      "line": 61,
+      "excerpt": "assertEquals(0, MachineCoverBehaviors.scaledRedstone(0, 0L, 16000L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/MassStorageHandlerTest.java",
+      "kind": "projection_count",
+      "line": 159,
+      "excerpt": "assertEquals(\"100%\", StorageCountFormat.face(64, 64, \"mass_storage_barrel\"));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/MassStorageHandlerTest.java",
+      "kind": "projection_count",
+      "line": 167,
+      "excerpt": "assertEquals(266, handler.maxContent());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/MassStorageHandlerTest.java",
+      "kind": "projection_count",
+      "line": 169,
+      "excerpt": "assertEquals(44, handler.insertAll(iron(300), false).getCount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/MassStorageHandlerTest.java",
+      "kind": "projection_count",
+      "line": 170,
+      "excerpt": "assertEquals(266, handler.stored());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/StorageFaceDisplayTest.java",
+      "kind": "projection_count",
+      "line": 30,
+      "excerpt": "assertEquals(\"9999\", StorageCountFormat.format(9_999));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/StorageVariantCatalogTest.java",
+      "kind": "projection_count",
+      "line": 19,
+      "excerpt": "assertEquals(624, StorageVariantCatalog.STORAGE_COUNT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/StorageVariantCatalogTest.java",
+      "kind": "projection_count",
+      "line": 21,
+      "excerpt": "assertEquals(625, StorageVariantCatalog.TOTAL_COUNT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/StorageVariantCatalogTest.java",
+      "kind": "projection_count",
+      "line": 22,
+      "excerpt": "assertEquals(625, StorageVariantCatalog.variants().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/StorageVariantCatalogTest.java",
+      "kind": "projection_count",
+      "line": 23,
+      "excerpt": "assertEquals(624, StorageVariantCatalog.storageVariants().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/StorageVariantCatalogTest.java",
+      "kind": "projection_count",
+      "line": 30,
+      "excerpt": "assertEquals(625, ids.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/StorageVariantCatalogTest.java",
+      "kind": "projection_count",
+      "line": 74,
+      "excerpt": "assertEquals(607, hidden);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/content/storage/StorageVariantCatalogTest.java",
+      "kind": "projection_count",
+      "line": 90,
+      "excerpt": "assertEquals(625, assigned);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/ChemicalResourceTest.java",
+      "kind": "projection_count",
+      "line": 122,
+      "excerpt": "assertEquals(152, mapCounts.values().stream().mapToInt(Integer::intValue).sum());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/ChemicalResourceTest.java",
+      "kind": "projection_count",
+      "line": 124,
+      "excerpt": "assertEquals(854, maxEut);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/CoverResourceTest.java",
+      "kind": "projection_count",
+      "line": 120,
+      "excerpt": "assertTrue(schemaText.contains(\"\\\"maximum\\\": 65536000\"));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/CoverResourceTest.java",
+      "kind": "projection_count",
+      "line": 121,
+      "excerpt": "assertTrue(schemaText.contains(\"\\\"maximum\\\": 1000000\"));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/HopperAcquisitionResourceTest.java",
+      "kind": "projection_count",
+      "line": 29,
+      "excerpt": "assertEquals(120, variants.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/MaterialVisualResourceTest.java",
+      "kind": "projection_count",
+      "line": 37,
+      "excerpt": "assertEquals(486, storage);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/MaterialVisualResourceTest.java",
+      "kind": "projection_count",
+      "line": 89,
+      "excerpt": "assertEquals(212, casings);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/OreResourceTest.java",
+      "kind": "projection_count",
+      "line": 51,
+      "excerpt": "assertEquals(147, oreMaterials.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/OreResourceTest.java",
+      "kind": "projection_count",
+      "line": 459,
+      "excerpt": "assertEquals(144, MaterialPrefixes.RAW_ORE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/OreResourceTest.java",
+      "kind": "projection_count",
+      "line": 460,
+      "excerpt": "assertEquals(144, MaterialPrefixes.CRUSHED_ORE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/RockPebbleResourceTest.java",
+      "kind": "projection_count",
+      "line": 187,
+      "excerpt": "assertEquals(1.0, chalcopyrite.get(\"experience\").getAsDouble(), 0.001);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/RockPebbleResourceTest.java",
+      "kind": "projection_count",
+      "line": 198,
+      "excerpt": "assertEquals(2.0, cassiterite.get(\"experience\").getAsDouble(), 0.001);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/RockPebbleResourceTest.java",
+      "kind": "projection_count",
+      "line": 205,
+      "excerpt": "assertEquals(0.0, netherrack.get(\"experience\").getAsDouble(), 0.001);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/StorageAcquisitionResourceTest.java",
+      "kind": "projection_count",
+      "line": 74,
+      "excerpt": "assertEquals(625, StorageVariantCatalog.variants().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/EnergyPacketsTest.java",
+      "kind": "projection_count",
+      "line": 12,
+      "excerpt": "assertEquals(4L, EnergyPackets.packetsForUnits(-24L, 100L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/battery/EnergyBatteryCatalogTest.java",
+      "kind": "projection_count",
+      "line": 35,
+      "excerpt": "assertEquals(14000, lead.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/battery/EnergyBatteryCatalogTest.java",
+      "kind": "projection_count",
+      "line": 38,
+      "excerpt": "assertEquals(14505, red.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/battery/EnergyBatteryCatalogTest.java",
+      "kind": "projection_count",
+      "line": 41,
+      "excerpt": "assertEquals(14515, cyan.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cable/CableLoadStateTest.java",
+      "kind": "projection_count",
+      "line": 79,
+      "excerpt": "assertEquals(1, restored.burnCounter(100L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cable/CableLoadStateTest.java",
+      "kind": "projection_count",
+      "line": 80,
+      "excerpt": "assertEquals(612L, restored.snapshot(100L).nextDecayTick());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cable/CableLoadStateTest.java",
+      "kind": "projection_count",
+      "line": 81,
+      "excerpt": "assertEquals(0, restored.burnCounter(612L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cable/CableLoadStateTest.java",
+      "kind": "projection_count",
+      "line": 104,
+      "excerpt": "assertEquals(8.0F, GT6VoltageTiers.contactDamage(128L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 30,
+      "excerpt": "assertEquals(1202, profiles.get(\"cruciblecraft:bronze_boiler\").source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 31,
+      "excerpt": "assertEquals(1302, profiles.get(\"cruciblecraft:bronze_steam_engine\").source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 32,
+      "excerpt": "assertEquals(10111, profiles.get(\"cruciblecraft:bronze_dynamo\").source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 33,
+      "excerpt": "assertEquals(9147, profiles.get(\"cruciblecraft:bronze_fuel_engine\").source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 34,
+      "excerpt": "assertEquals(1602, profiles.get(\"cruciblecraft:bronze_burning_box_gas\").source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 75,
+      "excerpt": "assertEquals(10001, heater.source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 76,
+      "excerpt": "assertEquals(10011, engine.source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 100,
+      "excerpt": "assertEquals(1302, engine.source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 101,
+      "excerpt": "assertEquals(586, engine.source().sourceLine());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 111,
+      "excerpt": "assertEquals(200, semantics.conservation().steamInputMb());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 167,
+      "excerpt": "assertEquals(160, boiler.conservation().outputUnits());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 169,
+      "excerpt": "assertEquals(200, engine.conservation().primaryInputUnits());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 207,
+      "excerpt": "assertEquals(nominal * 400L, engine.inputCapacity());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 296,
+      "excerpt": "assertEquals(10111, dynamo.source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 322,
+      "excerpt": "assertEquals(9147, engine.source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 329,
+      "excerpt": "assertEquals(512, engine.conservation().outputUnits());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 359,
+      "excerpt": "assertEquals(110000, turbine.source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 366,
+      "excerpt": "assertEquals(256L, chromium.outputPacket().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 367,
+      "excerpt": "assertEquals(768L, iridium.outputPacket().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 368,
+      "excerpt": "assertEquals(110006, chromium.source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 369,
+      "excerpt": "assertEquals(110005, iridium.source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "kind": "projection_count",
+      "line": 391,
+      "excerpt": "assertEquals(1602, generator.source().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cooler/CoolerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 37,
+      "excerpt": "assertEquals(10161, lv.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cooler/CoolerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 44,
+      "excerpt": "assertEquals(10165, iv.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cooler/CoolerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 45,
+      "excerpt": "assertEquals(8192, iv.nbtInput());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cooler/CoolerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 46,
+      "excerpt": "assertEquals(11161, lead.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cooler/CoolerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 47,
+      "excerpt": "assertEquals(128, lead.nbtInput());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cooler/CoolerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 50,
+      "excerpt": "assertEquals(11165, enderium.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cooler/CoolerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 51,
+      "excerpt": "assertEquals(32768, enderium.nbtInput());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/cooler/CoolerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 72,
+      "excerpt": "assertEquals(8L, CoolerBlockEntity.convertUnits(128L, 128L, 8L, false));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/drive/RotationEngineCatalogTest.java",
+      "kind": "projection_count",
+      "line": 31,
+      "excerpt": "assertEquals(24827, steel.sourceMeta());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/drive/RotationEngineCatalogTest.java",
+      "kind": "projection_count",
+      "line": 32,
+      "excerpt": "assertEquals(128L, steel.inputRec());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/flux/FluxCatalogTest.java",
+      "kind": "projection_count",
+      "line": 37,
+      "excerpt": "assertEquals(11001, leadHeater.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/flux/FluxCatalogTest.java",
+      "kind": "projection_count",
+      "line": 38,
+      "excerpt": "assertEquals(128, leadHeater.nbtInput());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/flux/FluxCatalogTest.java",
+      "kind": "projection_count",
+      "line": 44,
+      "excerpt": "assertEquals(11115, enderiumDynamo.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/flux/FluxCatalogTest.java",
+      "kind": "projection_count",
+      "line": 45,
+      "excerpt": "assertEquals(8192, enderiumDynamo.nbtInput());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/flux/FluxCatalogTest.java",
+      "kind": "projection_count",
+      "line": 46,
+      "excerpt": "assertEquals(22528, enderiumDynamo.nbtOutput());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/flux/FluxCatalogTest.java",
+      "kind": "projection_count",
+      "line": 71,
+      "excerpt": "assertEquals(16L, FluxMath.convertUnits(128L, 128L, 16L, false));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/flux/FluxCatalogTest.java",
+      "kind": "projection_count",
+      "line": 72,
+      "excerpt": "assertEquals(1L, FluxMath.convertUnits(8L, 128L, 16L, false));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/flux/FluxCatalogTest.java",
+      "kind": "projection_count",
+      "line": 74,
+      "excerpt": "assertEquals(256L, FluxMath.convertUnits(256L, 16L, 16L, true));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/heatexchanger/HeatExchangerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 35,
+      "excerpt": "assertEquals(9103, invar.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/heatexchanger/HeatExchangerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 38,
+      "excerpt": "assertEquals(320L, invar.energyCapacity());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/heatexchanger/HeatExchangerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 40,
+      "excerpt": "assertEquals(9108, tungstensteel.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/heatexchanger/HeatExchangerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 41,
+      "excerpt": "assertEquals(128, tungstensteel.huRate());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/heatexchanger/HeatExchangerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 43,
+      "excerpt": "assertEquals(9159, denseTantalum.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/heatexchanger/HeatExchangerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 44,
+      "excerpt": "assertEquals(1024, denseTantalum.huRate());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/largedynamo/LargeDynamoConversionTest.java",
+      "kind": "projection_count",
+      "line": 39,
+      "excerpt": "assertEquals(2048L, stainless.inputRec() / 2L);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/largedynamo/LargeDynamoConversionTest.java",
+      "kind": "projection_count",
+      "line": 40,
+      "excerpt": "assertEquals(4096L, stainless.inputRec());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/largedynamo/LargeDynamoConversionTest.java",
+      "kind": "projection_count",
+      "line": 41,
+      "excerpt": "assertEquals(8192L, stainless.inputMax());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/largedynamo/LargeDynamoConversionTest.java",
+      "kind": "projection_count",
+      "line": 42,
+      "excerpt": "assertEquals(1536L, stainless.outputMin());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/largedynamo/LargeDynamoConversionTest.java",
+      "kind": "projection_count",
+      "line": 43,
+      "excerpt": "assertEquals(6144L, stainless.outputMax());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/largedynamo/LargeDynamoConversionTest.java",
+      "kind": "projection_count",
+      "line": 52,
+      "excerpt": "assertEquals(3072L, tick.packetSize());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/largedynamo/LargeDynamoConversionTest.java",
+      "kind": "projection_count",
+      "line": 62,
+      "excerpt": "assertEquals(6144L, tick.packetSize());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/lightningrod/LightningRodLogicTest.java",
+      "kind": "projection_count",
+      "line": 15,
+      "excerpt": "assertTrue(LightningRodLogic.tipHighEnough(100));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/lightningrod/LightningRodLogicTest.java",
+      "kind": "projection_count",
+      "line": 31,
+      "excerpt": "assertTrue(LightningRodLogic.tickDue(300L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/lightningrod/LightningRodLogicTest.java",
+      "kind": "projection_count",
+      "line": 35,
+      "excerpt": "assertEquals(100, LightningRodLogic.MAX_ACTIVE_SIZE);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/lightningrod/LightningRodLogicTest.java",
+      "kind": "projection_count",
+      "line": 50,
+      "excerpt": "assertEquals(256, LightningRodLogic.COMPETITION_RANGE);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/lightningrod/LightningRodLogicTest.java",
+      "kind": "projection_count",
+      "line": 58,
+      "excerpt": "assertEquals(0L, LightningRodLogic.emitDrain(100L, 1L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/longdistance/LongDistanceTransformerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 18,
+      "excerpt": "assertEquals(10064, ev.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/longdistance/LongDistanceTransformerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 19,
+      "excerpt": "assertEquals(2048L, ev.voltage());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/longdistance/LongDistanceTransformerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 28,
+      "excerpt": "assertEquals(10068, uv.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/longdistance/LongDistanceTransformerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 29,
+      "excerpt": "assertEquals(524288L, uv.voltage());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/longdistance/LongDistanceTransformerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 38,
+      "excerpt": "assertEquals(524288L, graphene.voltage());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/steam/SteamTurbineConversionTest.java",
+      "kind": "projection_count",
+      "line": 30,
+      "excerpt": "assertEquals(192, bronze.tankCapacityMb());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/steam/SteamTurbineConversionTest.java",
+      "kind": "projection_count",
+      "line": 74,
+      "excerpt": "assertEquals(170, large.steamPerWater());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/transformer/EnergyTransformerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 31,
+      "excerpt": "assertEquals(10040, ulv.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/transformer/EnergyTransformerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 45,
+      "excerpt": "assertEquals(10048, puv.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/transformer/EnergyTransformerCatalogTest.java",
+      "kind": "projection_count",
+      "line": 57,
+      "excerpt": "assertEquals(81053, omega.sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/vondagraagg/VonDaGraaggLogicTest.java",
+      "kind": "projection_count",
+      "line": 11,
+      "excerpt": "assertEquals(0, VonDaGraaggLogic.range(4096L, false));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/vondagraagg/VonDaGraaggLogicTest.java",
+      "kind": "projection_count",
+      "line": 13,
+      "excerpt": "assertEquals(255, VonDaGraaggLogic.range(4096L, true));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/vondagraagg/VonDaGraaggLogicTest.java",
+      "kind": "projection_count",
+      "line": 14,
+      "excerpt": "assertEquals(255, VonDaGraaggLogic.range(10_000L, true));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/vondagraagg/VonDaGraaggLogicTest.java",
+      "kind": "projection_count",
+      "line": 15,
+      "excerpt": "assertEquals(255, VonDaGraaggLogic.MAX_RANGE);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/vondagraagg/VonDaGraaggLogicTest.java",
+      "kind": "projection_count",
+      "line": 16,
+      "excerpt": "assertEquals(255, VonDaGraaggLogic.range(8192L, true));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/vondagraagg/VonDaGraaggLogicTest.java",
+      "kind": "projection_count",
+      "line": 21,
+      "excerpt": "assertEquals(0L, VonDaGraaggLogic.afterDrain(4096L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/vondagraagg/VonDaGraaggLogicTest.java",
+      "kind": "projection_count",
+      "line": 23,
+      "excerpt": "assertEquals(4096L, VonDaGraaggLogic.afterDrain(8192L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/fluid/MoltenTransferMathTest.java",
+      "kind": "projection_count",
+      "line": 13,
+      "excerpt": "assertEquals(144, MoltenTransferMath.MILLIBUCKETS_PER_INGOT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/fluid/MoltenTransferMathTest.java",
+      "kind": "projection_count",
+      "line": 18,
+      "excerpt": "assertEquals(100, MoltenTransferMath.planFill(101, 200, 4));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/fluid/MoltenTransferMathTest.java",
+      "kind": "projection_count",
+      "line": 19,
+      "excerpt": "assertEquals(48, MoltenTransferMath.planFill(100, 50, 4));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/fluid/MoltenTransferMathTest.java",
+      "kind": "projection_count",
+      "line": 20,
+      "excerpt": "assertEquals(0, MoltenTransferMath.planFill(3, 100, 4));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/fluid/MoltenTransferMathTest.java",
+      "kind": "projection_count",
+      "line": 30,
+      "excerpt": "assertEquals(100, plan.amount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/fluid/MoltenTransferMathTest.java",
+      "kind": "projection_count",
+      "line": 42,
+      "excerpt": "assertEquals(Map.of(\"copper\", 108, \"tin\", 36), contents);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/fluid/MoltenTransferMathTest.java",
+      "kind": "projection_count",
+      "line": 43,
+      "excerpt": "assertEquals(144, plan.amount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/AssemblerCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 69,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/AssemblerCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 115,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/AssemblerWoodGameTests.java",
+      "kind": "or_else_throw",
+      "line": 112,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/AssemblerWoodGameTests.java",
+      "kind": "or_else_throw",
+      "line": 163,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/AssemblerWoodGameTests.java",
+      "kind": "or_else_throw",
+      "line": 168,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/AssemblerWoodGameTests.java",
+      "kind": "or_else_throw",
+      "line": 173,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/AssemblerWoodGameTests.java",
+      "kind": "or_else_throw",
+      "line": 222,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/AssemblerWoodGameTests.java",
+      "kind": "or_else_throw",
+      "line": 240,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathGameTests.java",
+      "kind": "or_else_throw",
+      "line": 121,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathGameTests.java",
+      "kind": "or_else_throw",
+      "line": 204,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathIdentityGameTests.java",
+      "kind": "or_else_throw",
+      "line": 201,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathIdentityGameTests.java",
+      "kind": "or_else_throw",
+      "line": 215,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathIdentityGameTests.java",
+      "kind": "or_else_throw",
+      "line": 344,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathIdentityGameTests.java",
+      "kind": "or_else_throw",
+      "line": 348,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathIdentityGameTests.java",
+      "kind": "or_else_throw",
+      "line": 366,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathMteGameTests.java",
+      "kind": "or_else_throw",
+      "line": 167,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathMteGameTests.java",
+      "kind": "or_else_throw",
+      "line": 220,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathMteGameTests.java",
+      "kind": "or_else_throw",
+      "line": 281,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathRemainderGameTests.java",
+      "kind": "or_else_throw",
+      "line": 163,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathRemainderGameTests.java",
+      "kind": "or_else_throw",
+      "line": 269,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathRemainderGameTests.java",
+      "kind": "or_else_throw",
+      "line": 273,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathRemainderGameTests.java",
+      "kind": "or_else_throw",
+      "line": 291,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathTinyPurifiedGameTests.java",
+      "kind": "or_else_throw",
+      "line": 174,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathTinyPurifiedGameTests.java",
+      "kind": "or_else_throw",
+      "line": 289,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathTinyPurifiedGameTests.java",
+      "kind": "or_else_throw",
+      "line": 292,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BathTinyPurifiedGameTests.java",
+      "kind": "or_else_throw",
+      "line": 335,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BedrockDrillGameTests.java",
+      "kind": "or_else_throw",
+      "line": 81,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BlockObjectGameTests.java",
+      "kind": "or_else_throw",
+      "line": 118,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BlockObjectGameTests.java",
+      "kind": "or_else_throw",
+      "line": 152,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BlockObjectGameTests.java",
+      "kind": "or_else_throw",
+      "line": 184,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/BlockObjectGameTests.java",
+      "kind": "or_else_throw",
+      "line": 193,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CentrifugeCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 120,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CentrifugeCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 159,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CentrifugeCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 198,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CentrifugeCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 231,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CentrifugeCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 236,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ClusterMillGameTests.java",
+      "kind": "or_else_throw",
+      "line": 100,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CokeOvenEnergyGameTests.java",
+      "kind": "or_else_throw",
+      "line": 55,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ConverterBurningBoxGameTests.java",
+      "kind": "or_else_throw",
+      "line": 405,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ConverterBurningBoxGameTests.java",
+      "kind": "or_else_throw",
+      "line": 411,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CoverRemainderGameTests.java",
+      "kind": "or_else_throw",
+      "line": 114,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CoverRemainderGameTests.java",
+      "kind": "or_else_throw",
+      "line": 513,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CoverRemainderGameTests.java",
+      "kind": "or_else_throw",
+      "line": 731,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CoverRemainderGameTests.java",
+      "kind": "or_else_throw",
+      "line": 759,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CoverRemainderGameTests.java",
+      "kind": "or_else_throw",
+      "line": 780,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CropFoodSplitGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 81,
+      "excerpt": "(CropBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CropFoodSplitGameTests.java",
+      "kind": "or_else_throw",
+      "line": 110,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 1396,
+      "excerpt": "(CableBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 1398,
+      "excerpt": "(CableBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 1400,
+      "excerpt": "(CableBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 7728,
+      "excerpt": "(SubsurfaceFluidDepositBlockEntity) level.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 575,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 1435,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 1437,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 1512,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 1941,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 1964,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 2038,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 2043,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 2053,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 2113,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 2443,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 2948,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3042,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3044,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3047,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3144,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3147,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3215,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3368,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3378,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3586,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3650,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3732,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3784,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3802,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3932,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 3939,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 4037,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 4046,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 4055,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 4086,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 4106,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 4111,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 4117,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 4170,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 4176,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 4544,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 4995,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 5041,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 5773,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 5782,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 5791,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 5808,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 5811,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 5814,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 5824,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 5869,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 5950,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 5951,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 6271,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 6333,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 6397,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 6460,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 6466,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 6874,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 6878,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 7096,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 7193,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 7433,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 8053,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 8256,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 8430,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 8642,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 10206,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 10249,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 10360,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 10705,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 10932,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 10935,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 11345,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 11346,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 11462,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 11672,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 11754,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 11999,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 12362,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 12370,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "or_else_throw",
+      "line": 12799,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "kind": "projection_count",
+      "line": 8472,
+      "excerpt": "helper.assertTrue(chemicalTotal == 164, \"Live chemical recipe total is not 164: \" + chemicalTotal);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleMoldBehaviorCorrectionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 354,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleMoldBehaviorCorrectionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 358,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleMoldInteractionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 85,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleMoldInteractionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 157,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/CrucibleMoldInteractionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 183,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ElectrolyzerCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 116,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ElectrolyzerCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 155,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ElectrolyzerCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 194,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ElectrolyzerCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 227,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ElectrolyzerCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 232,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
+      "kind": "or_else_throw",
+      "line": 687,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
+      "kind": "or_else_throw",
+      "line": 716,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
+      "kind": "or_else_throw",
+      "line": 740,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
+      "kind": "or_else_throw",
+      "line": 809,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
+      "kind": "or_else_throw",
+      "line": 918,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
+      "kind": "or_else_throw",
+      "line": 937,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/EnergyConverterCatalogGameTests.java",
+      "kind": "or_else_throw",
+      "line": 969,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/EnergyHeatExchangersGameTests.java",
+      "kind": "or_else_throw",
+      "line": 86,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/EnergyHeatExchangersGameTests.java",
+      "kind": "or_else_throw",
+      "line": 239,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/EuCableAcquisitionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 122,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/EuCableAcquisitionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 161,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ExplosiveGameTests.java",
+      "kind": "projection_count",
+      "line": 65,
+      "excerpt": "helper.assertTrue(explosive.fuse() == 100, \"igniter fuse is not 100 ticks\");"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/FluidDangerousMediaRuntimeGameTests.java",
+      "kind": "or_else_throw",
+      "line": 42,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/FluidPipeRuntimeGameTests.java",
+      "kind": "or_else_throw",
+      "line": 148,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/FluidPipeRuntimeGameTests.java",
+      "kind": "or_else_throw",
+      "line": 156,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/FluidPipeRuntimeGameTests.java",
+      "kind": "projection_count",
+      "line": 143,
+      "excerpt": "helper.assertTrue(lava == 0, \"lava was accepted by a 340 K wood pipe\");"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/FusionPlasmaGameTests.java",
+      "kind": "or_else_throw",
+      "line": 72,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/FusionPlasmaGameTests.java",
+      "kind": "or_else_throw",
+      "line": 416,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/FusionPlasmaGameTests.java",
+      "kind": "or_else_throw",
+      "line": 466,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/FusionPlasmaGameTests.java",
+      "kind": "or_else_throw",
+      "line": 538,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/FusionPlasmaGameTests.java",
+      "kind": "or_else_throw",
+      "line": 565,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/FusionPlasmaGameTests.java",
+      "kind": "or_else_throw",
+      "line": 568,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/Gt6MissingFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 29,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/Gt6MissingFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 30,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/Gt6MissingFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 31,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/Gt6MissingFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 32,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/Gt6MissingFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 33,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/Gt6MissingFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 34,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/Gt6MissingFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 35,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/Gt6MissingFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 45,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/Gt6ToolWorldBehaviorGameTests.java",
+      "kind": "or_else_throw",
+      "line": 98,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/Gt6ToolWorldBehaviorGameTests.java",
+      "kind": "or_else_throw",
+      "line": 304,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/GtCropsGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 125,
+      "excerpt": "(GtBushBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/GtCropsGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 143,
+      "excerpt": "(GtBushBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/GtStoneLayerRocksGameTests.java",
+      "kind": "or_else_throw",
+      "line": 314,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/GtStoneLayerRocksGameTests.java",
+      "kind": "or_else_throw",
+      "line": 493,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/GtTreesGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 221,
+      "excerpt": "(GtTreeHoleBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ImplosionCompressorGameTests.java",
+      "kind": "or_else_throw",
+      "line": 254,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ImplosionCompressorGameTests.java",
+      "kind": "or_else_throw",
+      "line": 255,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ItemNetworkCoreGameTests.java",
+      "kind": "or_else_throw",
+      "line": 329,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/ItemPipeAcquisitionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 248,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeAutoclaveGameTests.java",
+      "kind": "or_else_throw",
+      "line": 162,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeBathGameTests.java",
+      "kind": "or_else_throw",
+      "line": 56,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeBathGameTests.java",
+      "kind": "or_else_throw",
+      "line": 141,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeBathGameTests.java",
+      "kind": "or_else_throw",
+      "line": 160,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeBathGameTests.java",
+      "kind": "or_else_throw",
+      "line": 168,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeBathGameTests.java",
+      "kind": "or_else_throw",
+      "line": 203,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeBathGameTests.java",
+      "kind": "or_else_throw",
+      "line": 204,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeCoagulatorGameTests.java",
+      "kind": "or_else_throw",
+      "line": 52,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeCoagulatorGameTests.java",
+      "kind": "or_else_throw",
+      "line": 140,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeCoagulatorGameTests.java",
+      "kind": "or_else_throw",
+      "line": 177,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeCoagulatorGameTests.java",
+      "kind": "or_else_throw",
+      "line": 178,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeCrusherGameTests.java",
+      "kind": "or_else_throw",
+      "line": 165,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeCrusherGameTests.java",
+      "kind": "or_else_throw",
+      "line": 166,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeElectrolyzerGameTests.java",
+      "kind": "or_else_throw",
+      "line": 222,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeFermenterGameTests.java",
+      "kind": "or_else_throw",
+      "line": 106,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeFermenterGameTests.java",
+      "kind": "or_else_throw",
+      "line": 182,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeGasTurbineGameTests.java",
+      "kind": "or_else_throw",
+      "line": 366,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeGasTurbineGameTests.java",
+      "kind": "or_else_throw",
+      "line": 375,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeHeatExchangerGameTests.java",
+      "kind": "or_else_throw",
+      "line": 153,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeMixerGameTests.java",
+      "kind": "or_else_throw",
+      "line": 111,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeMixerGameTests.java",
+      "kind": "or_else_throw",
+      "line": 112,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeMixerGameTests.java",
+      "kind": "or_else_throw",
+      "line": 134,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeOvenGameTests.java",
+      "kind": "or_else_throw",
+      "line": 199,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeShredderGameTests.java",
+      "kind": "or_else_throw",
+      "line": 215,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeShredderGameTests.java",
+      "kind": "or_else_throw",
+      "line": 216,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeSluiceGameTests.java",
+      "kind": "or_else_throw",
+      "line": 123,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeSluiceGameTests.java",
+      "kind": "or_else_throw",
+      "line": 125,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeSluiceGameTests.java",
+      "kind": "or_else_throw",
+      "line": 204,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeSluiceGameTests.java",
+      "kind": "or_else_throw",
+      "line": 205,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeSqueezerGameTests.java",
+      "kind": "or_else_throw",
+      "line": 143,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeSqueezerGameTests.java",
+      "kind": "or_else_throw",
+      "line": 143,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeSqueezerGameTests.java",
+      "kind": "projection_count",
+      "line": 78,
+      "excerpt": "helper.assertTrue(variant.tierBand().inputMinimum() == 512L,"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/LargeSqueezerGameTests.java",
+      "kind": "projection_count",
+      "line": 80,
+      "excerpt": "helper.assertTrue(variant.tierBand().inputMaximum() == 4096L,"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/MachineRuntimeGameTests.java",
+      "kind": "or_else_throw",
+      "line": 333,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 362,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 505,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 528,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 534,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 538,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 638,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionHotFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 89,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionHotFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 100,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionHotFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 140,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionHotFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 361,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionHotFluidsGameTests.java",
+      "kind": "or_else_throw",
+      "line": 384,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/NuclearFissionObservationSafetyGameTests.java",
+      "kind": "or_else_throw",
+      "line": 223,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/QuantumMassfabGameTests.java",
+      "kind": "or_else_throw",
+      "line": 66,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/QuantumMassfabGameTests.java",
+      "kind": "or_else_throw",
+      "line": 84,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/RedstoneWireAcquisitionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 88,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/RedstoneWireAcquisitionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 117,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/RedstoneWireAcquisitionGameTests.java",
+      "kind": "or_else_throw",
+      "line": 141,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/RoasterCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 79,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/RoasterCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 112,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/RoasterCompactGameTests.java",
+      "kind": "or_else_throw",
+      "line": 141,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/RollFormerGameTests.java",
+      "kind": "or_else_throw",
+      "line": 98,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/SandingGameTests.java",
+      "kind": "or_else_throw",
+      "line": 97,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/SensorGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 130,
+      "excerpt": "(SensorBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/SensorGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 362,
+      "excerpt": "(SensorBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/SensorGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 370,
+      "excerpt": "(SensorBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/SlicerGameTests.java",
+      "kind": "or_else_throw",
+      "line": 90,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/SmallGasTurbineGameTests.java",
+      "kind": "or_else_throw",
+      "line": 135,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/SmallGasTurbineGameTests.java",
+      "kind": "or_else_throw",
+      "line": 143,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/SmelterStoneGameTests.java",
+      "kind": "or_else_throw",
+      "line": 95,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/SmelterStoneGameTests.java",
+      "kind": "or_else_throw",
+      "line": 128,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/SmelterStoneGameTests.java",
+      "kind": "or_else_throw",
+      "line": 158,
+      "excerpt": ".orElseThrow("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/SmelterStoneGameTests.java",
+      "kind": "projection_count",
+      "line": 155,
+      "excerpt": "helper.assertTrue(first.size() == 407, \"smelter/stone locked ids missing before re-enumeration\");"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageArtGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 87,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageArtGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 122,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageArtGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 151,
+      "excerpt": "(BookshelfBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageArtGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 193,
+      "excerpt": "(BottleCrateBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageArtGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 229,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 101,
+      "excerpt": "(BookshelfBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 120,
+      "excerpt": "(BottleCrateBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 137,
+      "excerpt": "(LockerBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 155,
+      "excerpt": "(LockerBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 176,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 216,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 254,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 256,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 289,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 322,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 342,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 374,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 379,
+      "excerpt": "(StorageInserterBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 396,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 398,
+      "excerpt": "(MassStorageBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java",
+      "kind": "cast_block_entity",
+      "line": 428,
+      "excerpt": "(BookshelfBlockEntity) helper.getBlockEntity("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/heat/CrucibleThermalModelTest.java",
+      "kind": "projection_count",
+      "line": 53,
+      "excerpt": "assertEquals(999, cooling.temperature());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/heat/CrucibleThermalModelTest.java",
+      "kind": "projection_count",
+      "line": 117,
+      "excerpt": "assertEquals(635.0F, mixed);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/heat/CrucibleThermalModelTest.java",
+      "kind": "projection_count",
+      "line": 118,
+      "excerpt": "assertTrue(mixed < 1_000.0F - 300.0F);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/heat/CrucibleThermalModelTest.java",
+      "kind": "projection_count",
+      "line": 124,
+      "excerpt": "assertEquals(200, result.temperature());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/heat/ItemHeatTest.java",
+      "kind": "projection_count",
+      "line": 50,
+      "excerpt": "assertEquals(40.0f, ItemHeat.temperature(stack, 110L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/heat/ItemHeatTest.java",
+      "kind": "projection_count",
+      "line": 51,
+      "excerpt": "assertEquals(ItemHeat.AMBIENT_TEMPERATURE, ItemHeat.temperature(stack, 200L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/heat/ThermalSimTest.java",
+      "kind": "projection_count",
+      "line": 34,
+      "excerpt": "assertEquals(500.0f, ThermalSim.step(500.0f, 1_400.0f, 0.0f), EPSILON);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/heat/ThermalSimTest.java",
+      "kind": "projection_count",
+      "line": 35,
+      "excerpt": "assertEquals(500.0f, ThermalSim.step(500.0f, 20.0f, -1.0f), EPSILON);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/heat/ThermalSimTest.java",
+      "kind": "projection_count",
+      "line": 36,
+      "excerpt": "assertEquals(500.0f, ThermalSim.stepTicks(500.0f, 1_400.0f, -1.0f, 100), EPSILON);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/heat/ThermalSimTest.java",
+      "kind": "projection_count",
+      "line": 45,
+      "excerpt": "assertEquals(repeated, ThermalSim.stepTicks(20.0f, 1_400.0f, 2.5f, 317), EPSILON);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/core/LogisticsCoreGeometryTest.java",
+      "kind": "projection_count",
+      "line": 28,
+      "excerpt": "assertEquals(125, inner + vent + wall);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/core/LogisticsCoreGeometryTest.java",
+      "kind": "projection_count",
+      "line": 29,
+      "excerpt": "assertEquals(192L, LogisticsCoreGeometry.operateThreshold(1, 1));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/core/LogisticsCoreGeometryTest.java",
+      "kind": "projection_count",
+      "line": 30,
+      "excerpt": "assertEquals(384L, LogisticsCoreGeometry.capacity(1, 1));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/fluidnet/FluidNetworkKindsTest.java",
+      "kind": "projection_count",
+      "line": 59,
+      "excerpt": "assertEquals(4096, FluidNetworkLimits.MAX_VISITED_PIPES);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/fluidnet/FluidNetworkKindsTest.java",
+      "kind": "projection_count",
+      "line": 60,
+      "excerpt": "assertEquals(256, FluidNetworkLimits.MAX_ENDPOINTS_PER_COMPONENT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/fluidnet/FluidNetworkKindsTest.java",
+      "kind": "projection_count",
+      "line": 61,
+      "excerpt": "assertEquals(1000, FluidNetworkLimits.DEFAULT_RATE);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/genericnet/GenericNetworkKindsTest.java",
+      "kind": "projection_count",
+      "line": 64,
+      "excerpt": "assertEquals(4096, GenericNetworkLimits.MAX_VISITED_PIPES);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/genericnet/GenericNetworkKindsTest.java",
+      "kind": "projection_count",
+      "line": 65,
+      "excerpt": "assertEquals(256, GenericNetworkLimits.MAX_ENDPOINTS_PER_COMPONENT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/genericnet/GenericNetworkKindsTest.java",
+      "kind": "projection_count",
+      "line": 67,
+      "excerpt": "assertEquals(1000, GenericNetworkLimits.DEFAULT_FLUID_RATE);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/hopper/HopperMenuLayoutTest.java",
+      "kind": "projection_count",
+      "line": 26,
+      "excerpt": "assertEquals(List.of(44, 62, 80, 98, 116), five.stream().map(SlotPos::x).toList());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/hopper/HopperMenuLayoutTest.java",
+      "kind": "projection_count",
+      "line": 30,
+      "excerpt": "assertEquals(142, HopperMenuLayout.hotbarY(5));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/hopper/HopperMenuLayoutTest.java",
+      "kind": "projection_count",
+      "line": 31,
+      "excerpt": "assertEquals(166, HopperMenuLayout.imageHeight(5));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/hopper/HopperMenuLayoutTest.java",
+      "kind": "projection_count",
+      "line": 49,
+      "excerpt": "assertEquals(166, HopperMenuLayout.imageHeight(slots));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/hopper/HopperVariantCatalogTest.java",
+      "kind": "projection_count",
+      "line": 24,
+      "excerpt": "assertEquals(120, HopperVariantCatalog.variants().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/hopper/HopperVariantCatalogTest.java",
+      "kind": "projection_count",
+      "line": 28,
+      "excerpt": "assertEquals(120, ids.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/itemnet/ItemNetworkKindsTest.java",
+      "kind": "projection_count",
+      "line": 67,
+      "excerpt": "assertEquals(4096, ItemNetworkLimits.MAX_VISITED_PIPES);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/itemnet/ItemNetworkKindsTest.java",
+      "kind": "projection_count",
+      "line": 68,
+      "excerpt": "assertEquals(256, ItemNetworkLimits.MAX_ENDPOINTS_PER_COMPONENT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/machinecover/MachineCoverVisualsTest.java",
+      "kind": "projection_count",
+      "line": 20,
+      "excerpt": "assertEquals(1 | 8 | 32 | 64 | 128 | 256, visual);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 27,
+      "excerpt": "assertEquals(406, PipeCatalog.all().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 28,
+      "excerpt": "assertEquals(280, PipeCatalog.fluid().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 29,
+      "excerpt": "assertEquals(126, PipeCatalog.item().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 33,
+      "excerpt": "assertEquals(144, MaterialPrefixes.SMALL_FLUID_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 34,
+      "excerpt": "assertEquals(432, MaterialPrefixes.FLUID_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 35,
+      "excerpt": "assertEquals(864, MaterialPrefixes.LARGE_FLUID_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 36,
+      "excerpt": "assertEquals(1728, MaterialPrefixes.HUGE_FLUID_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 37,
+      "excerpt": "assertEquals(1728, MaterialPrefixes.QUADRUPLE_FLUID_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 38,
+      "excerpt": "assertEquals(1296, MaterialPrefixes.NONUPLE_FLUID_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 39,
+      "excerpt": "assertEquals(432, MaterialPrefixes.ITEM_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 40,
+      "excerpt": "assertEquals(864, MaterialPrefixes.LARGE_ITEM_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 41,
+      "excerpt": "assertEquals(1728, MaterialPrefixes.HUGE_ITEM_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 42,
+      "excerpt": "assertEquals(432, MaterialPrefixes.RESTRICTIVE_ITEM_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 43,
+      "excerpt": "assertEquals(864, MaterialPrefixes.LARGE_RESTRICTIVE_ITEM_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 44,
+      "excerpt": "assertEquals(1728, MaterialPrefixes.HUGE_RESTRICTIVE_ITEM_PIPE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 67,
+      "excerpt": "assertEquals(600, copperFluid.fluid().capacityMb());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 70,
+      "excerpt": "assertEquals(600, copperQuad.fluid().capacityMb());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalogTest.java",
+      "kind": "projection_count",
+      "line": 76,
+      "excerpt": "assertEquals(200, copperNonuple.fluid().capacityMb());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/PipeTransferPhaseTest.java",
+      "kind": "projection_count",
+      "line": 19,
+      "excerpt": "assertEquals(100, due);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/cover/CoverDefinitionCatalogTest.java",
+      "kind": "projection_count",
+      "line": 117,
+      "excerpt": "assertEquals(512, ulvConveyor.values().interval());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/logistics/pipe/cover/CoverDefinitionCatalogTest.java",
+      "kind": "projection_count",
+      "line": 176,
+      "excerpt": "assertEquals(2047, PipeCoverConfig.EMPTY.withDisplay(2047, 0).visual());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/MachineMaterialRulesTest.java",
+      "kind": "projection_count",
+      "line": 51,
+      "excerpt": "assertEquals(2227.0f, MachineMaterialRules.maxTemperature(1727.0), 0.001f);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/MachineMaterialRulesTest.java",
+      "kind": "projection_count",
+      "line": 52,
+      "excerpt": "assertEquals(1255.0f, MachineMaterialRules.maxTemperature(950.0), 0.001f);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/MachineMaterialRulesTest.java",
+      "kind": "projection_count",
+      "line": 53,
+      "excerpt": "assertEquals(2284.0f, MachineMaterialRules.maxTemperature(1773.0), 0.001f);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/component/CompositionTankTest.java",
+      "kind": "projection_count",
+      "line": 29,
+      "excerpt": "assertEquals(144, tank.units(\"iron\"));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/component/CrucibleInteriorGeometryTest.java",
+      "kind": "projection_count",
+      "line": 10,
+      "excerpt": "assertEquals(0, CrucibleInteriorGeometry.displayedHeight(0, 2304));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/component/CrucibleInteriorGeometryTest.java",
+      "kind": "projection_count",
+      "line": 11,
+      "excerpt": "assertEquals(255, CrucibleInteriorGeometry.displayedHeight(2304, 2304));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/component/CrucibleInteriorGeometryTest.java",
+      "kind": "projection_count",
+      "line": 12,
+      "excerpt": "assertEquals(1, CrucibleInteriorGeometry.displayedHeight(1, 2304));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCoreTest.java",
+      "kind": "projection_count",
+      "line": 59,
+      "excerpt": "assertEquals(432, core.maxIngots());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCoreTest.java",
+      "kind": "projection_count",
+      "line": 63,
+      "excerpt": "assertEquals(InsertResult.SUCCESS, fillIngots(core, 432));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCoreTest.java",
+      "kind": "projection_count",
+      "line": 90,
+      "excerpt": "assertEquals(1.25, small.heatResistanceBonus(), 0.0001);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/component/CrucibleProcessCoreTest.java",
+      "kind": "projection_count",
+      "line": 91,
+      "excerpt": "assertEquals(1.10, large.heatResistanceBonus(), 0.0001);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorEnergyTest.java",
+      "kind": "projection_count",
+      "line": 20,
+      "excerpt": "assertEquals(512L, energy.generated());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorEnergyTest.java",
+      "kind": "projection_count",
+      "line": 21,
+      "excerpt": "assertEquals(512L, energy.stored());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorEnergyTest.java",
+      "kind": "projection_count",
+      "line": 23,
+      "excerpt": "assertEquals(512L, energy.stored());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorEnergyTest.java",
+      "kind": "projection_count",
+      "line": 26,
+      "excerpt": "assertEquals(512L, energy.extracted());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/Gt6BasicMachineGuiTest.java",
+      "kind": "projection_count",
+      "line": 96,
+      "excerpt": "assertEquals(List.of(tank(0, 107, 63)), layout.tanks());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/KineticMachineTierMatrixTest.java",
+      "kind": "projection_count",
+      "line": 327,
+      "excerpt": "assertEquals(800L, ruPlan.totalWork());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/KineticMachineTierMatrixTest.java",
+      "kind": "projection_count",
+      "line": 339,
+      "excerpt": "assertEquals(100, kuPlan.effectiveDuration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeAutoclaveProfileTest.java",
+      "kind": "projection_count",
+      "line": 88,
+      "excerpt": "assertEquals(100, parallel.effectiveDuration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCentrifugeProfileTest.java",
+      "kind": "projection_count",
+      "line": 81,
+      "excerpt": "assertEquals(512L, tower.inputNominal());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCentrifugeProfileTest.java",
+      "kind": "projection_count",
+      "line": 97,
+      "excerpt": "assertEquals(512L, cryo.inputNominal());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCentrifugeProfileTest.java",
+      "kind": "projection_count",
+      "line": 110,
+      "excerpt": "assertEquals(512L, profile.inputMinimum());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCentrifugeProfileTest.java",
+      "kind": "projection_count",
+      "line": 111,
+      "excerpt": "assertEquals(512L, profile.inputNominal());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCentrifugeProfileTest.java",
+      "kind": "projection_count",
+      "line": 157,
+      "excerpt": "assertEquals(512L, cheap.nominalPower());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCentrifugeProfileTest.java",
+      "kind": "projection_count",
+      "line": 166,
+      "excerpt": "assertEquals(100, parallel.effectiveDuration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCrusherProfileTest.java",
+      "kind": "projection_count",
+      "line": 56,
+      "excerpt": "assertEquals(512L, profile.inputMinimum());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCrusherProfileTest.java",
+      "kind": "projection_count",
+      "line": 57,
+      "excerpt": "assertEquals(512L, profile.inputNominal());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeCrusherProfileTest.java",
+      "kind": "projection_count",
+      "line": 84,
+      "excerpt": "assertEquals(400, parallel.effectiveDuration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeElectrolyzerProfileTest.java",
+      "kind": "projection_count",
+      "line": 54,
+      "excerpt": "assertEquals(512L, profile.inputMinimum());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeElectrolyzerProfileTest.java",
+      "kind": "projection_count",
+      "line": 55,
+      "excerpt": "assertEquals(512L, profile.inputNominal());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeElectrolyzerProfileTest.java",
+      "kind": "projection_count",
+      "line": 82,
+      "excerpt": "assertEquals(100, parallel.effectiveDuration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeFermenterProfileTest.java",
+      "kind": "projection_count",
+      "line": 55,
+      "excerpt": "assertEquals(512L, profile.inputNominal());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeFermenterProfileTest.java",
+      "kind": "projection_count",
+      "line": 58,
+      "excerpt": "assertEquals(256, profile.parallelLimit());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeFermenterProfileTest.java",
+      "kind": "projection_count",
+      "line": 85,
+      "excerpt": "assertEquals(256, parallel.operations());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeFermenterProfileTest.java",
+      "kind": "projection_count",
+      "line": 86,
+      "excerpt": "assertEquals(800, parallel.effectiveDuration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+      "kind": "projection_count",
+      "line": 123,
+      "excerpt": "assertEquals(512L, profile.inputMinimum());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeMachinesCapabilityTest.java",
+      "kind": "projection_count",
+      "line": 125,
+      "excerpt": "assertEquals(256, profile.parallelLimit());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeOvenProfileTest.java",
+      "kind": "projection_count",
+      "line": 51,
+      "excerpt": "assertEquals(512L, profile.inputMinimum());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeOvenProfileTest.java",
+      "kind": "projection_count",
+      "line": 52,
+      "excerpt": "assertEquals(512L, profile.inputNominal());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeOvenProfileTest.java",
+      "kind": "projection_count",
+      "line": 91,
+      "excerpt": "assertEquals(800, parallel.effectiveDuration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeShredderProfileTest.java",
+      "kind": "projection_count",
+      "line": 56,
+      "excerpt": "assertEquals(512L, profile.inputMinimum());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeShredderProfileTest.java",
+      "kind": "projection_count",
+      "line": 57,
+      "excerpt": "assertEquals(512L, profile.inputNominal());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeShredderProfileTest.java",
+      "kind": "projection_count",
+      "line": 120,
+      "excerpt": "assertEquals(400, parallel.effectiveDuration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeSluiceProfileTest.java",
+      "kind": "projection_count",
+      "line": 58,
+      "excerpt": "assertEquals(512L, profile.inputMinimum());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/LargeSluiceProfileTest.java",
+      "kind": "projection_count",
+      "line": 59,
+      "excerpt": "assertEquals(512L, profile.inputNominal());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineRepairExtensibilityTest.java",
+      "kind": "projection_count",
+      "line": 113,
+      "excerpt": "assertEquals(298, JsonParser.parseString(tiers)"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTierArchitectureTest.java",
+      "kind": "projection_count",
+      "line": 120,
+      "excerpt": "assertEquals(800L, single.totalWork());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTierArchitectureTest.java",
+      "kind": "projection_count",
+      "line": 137,
+      "excerpt": "assertEquals(100, parallel.effectiveDuration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTierArchitectureTest.java",
+      "kind": "projection_count",
+      "line": 186,
+      "excerpt": "assertEquals(100, scaled.duration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
+      "kind": "projection_count",
+      "line": 64,
+      "excerpt": "assertEquals(500, resources.fluids.get(1).getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
+      "kind": "projection_count",
+      "line": 158,
+      "excerpt": "assertEquals(1000, resources.fluids.get(0).getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
+      "kind": "projection_count",
+      "line": 417,
+      "excerpt": "assertEquals(300, resources.fluids.get(1).getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
+      "kind": "projection_count",
+      "line": 418,
+      "excerpt": "assertEquals(1000, resources.fluids.get(2).getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
+      "kind": "projection_count",
+      "line": 419,
+      "excerpt": "assertEquals(500, resources.fluids.get(3).getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
+      "kind": "projection_count",
+      "line": 420,
+      "excerpt": "assertEquals(1000,"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
+      "kind": "projection_count",
+      "line": 422,
+      "excerpt": "assertEquals(700,"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
+      "kind": "projection_count",
+      "line": 455,
+      "excerpt": "assertEquals(1300,"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
+      "kind": "projection_count",
+      "line": 458,
+      "excerpt": "assertEquals(1000, fluidAmount(blocked.fluids, Fluids.LAVA));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
+      "kind": "projection_count",
+      "line": 485,
+      "excerpt": "assertEquals(1299, fluidAmount(resources.fluids, Fluids.WATER));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
+      "kind": "projection_count",
+      "line": 486,
+      "excerpt": "assertEquals(800, fluidAmount(resources.fluids, Fluids.LAVA));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 89,
+      "excerpt": "assertEquals(1000, fluidInput.fill("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 93,
+      "excerpt": "assertEquals(1000, fluidInput.fill("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 97,
+      "excerpt": "assertTrue(fluidInput.drain(100, IFluidHandler.FluidAction.EXECUTE).isEmpty());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 101,
+      "excerpt": "assertEquals(250, fluidOutput.drain("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 211,
+      "excerpt": "assertEquals(700, simulated.getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 218,
+      "excerpt": "assertEquals(700, executed.getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 237,
+      "excerpt": "assertEquals(700, simulated.getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 238,
+      "excerpt": "assertEquals(800, first.getFluidAmount() + second.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 242,
+      "excerpt": "assertEquals(700, executed.getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 243,
+      "excerpt": "assertEquals(100, first.getFluidAmount() + second.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 272,
+      "excerpt": "assertEquals(700, input.fill(request, IFluidHandler.FluidAction.SIMULATE));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 273,
+      "excerpt": "assertEquals(400, first.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 277,
+      "excerpt": "assertEquals(700, input.fill(request, IFluidHandler.FluidAction.EXECUTE));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 278,
+      "excerpt": "assertEquals(500, first.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 279,
+      "excerpt": "assertEquals(600, second.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 280,
+      "excerpt": "assertEquals(700,"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 342,
+      "excerpt": "assertEquals(300, first.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 343,
+      "excerpt": "assertEquals(300, violating.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 344,
+      "excerpt": "assertEquals(600, first.getFluidAmount() + violating.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 450,
+      "excerpt": "assertEquals(250, water.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 451,
+      "excerpt": "assertEquals(250, incompatible.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 503,
+      "excerpt": "assertEquals(1024, crusher.energy().capacity());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 560,
+      "excerpt": "assertTrue(spec.fluids().inputs().getFirst().capacity() >= 250);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 573,
+      "excerpt": "assertTrue(smelterRule.duration().startsWith(\"800 * (\"));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 600,
+      "excerpt": "assertEquals(256L, spec.energy().maxPacket());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 846,
+      "excerpt": "assertEquals(250, maintenance.drain("
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java",
+      "kind": "projection_count",
+      "line": 848,
+      "excerpt": "assertEquals(500, recoverable.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingProgressSyncTest.java",
+      "kind": "projection_count",
+      "line": 33,
+      "excerpt": "assertEquals(250, sync.update(\"test:first\", 16L, 64L, false));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingProgressSyncTest.java",
+      "kind": "projection_count",
+      "line": 34,
+      "excerpt": "assertEquals(250, sync.update(\"test:first\", 16L, 64L, false));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingProgressSyncTest.java",
+      "kind": "projection_count",
+      "line": 35,
+      "excerpt": "assertEquals(375, sync.update(\"test:first\", 24L, 64L, false));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingProgressSyncTest.java",
+      "kind": "projection_count",
+      "line": 36,
+      "excerpt": "assertEquals(125, sync.update(\"test:second\", 8L, 64L, false));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingProgressSyncTest.java",
+      "kind": "projection_count",
+      "line": 46,
+      "excerpt": "assertEquals(984, sync.update(\"test:short\", 63L, 64L, false));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingProgressSyncTest.java",
+      "kind": "projection_count",
+      "line": 58,
+      "excerpt": "assertEquals(500, ProcessingProgressSync.permille(required / 2L, required));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingRuntimeTest.java",
+      "kind": "projection_count",
+      "line": 85,
+      "excerpt": "assertEquals(512, preserved.getLong(\"energy\"));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingRuntimeTest.java",
+      "kind": "projection_count",
+      "line": 95,
+      "excerpt": "assertEquals(512, supportedAgain.energy());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingRuntimeTest.java",
+      "kind": "projection_count",
+      "line": 118,
+      "excerpt": "assertEquals(256, energy.stored());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingRuntimeTest.java",
+      "kind": "projection_count",
+      "line": 119,
+      "excerpt": "assertEquals(0, energy.insert(256, 1, false));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingRuntimeTest.java",
+      "kind": "projection_count",
+      "line": 121,
+      "excerpt": "assertEquals(240, energy.stored());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingRuntimeTest.java",
+      "kind": "projection_count",
+      "line": 126,
+      "excerpt": "assertEquals(1024, energy.stored());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/prep/ClusterMillPrepSpecTest.java",
+      "kind": "projection_count",
+      "line": 46,
+      "excerpt": "assertEquals(256L, spec.energy().maxPacket());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/GT6ImportUnitsTest.java",
+      "kind": "projection_count",
+      "line": 13,
+      "excerpt": "assertEquals(505.08, GT6ImportUnits.celsiusToKelvin(231.93), 1.0e-9);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/GT6ImportUnitsTest.java",
+      "kind": "projection_count",
+      "line": 17,
+      "excerpt": "assertEquals(505, GT6ImportUnits.celsiusToRoundedKelvin(231.93));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/GT6ImportUnitsTest.java",
+      "kind": "projection_count",
+      "line": 22,
+      "excerpt": "assertEquals(144, GT6ImportUnits.gt6UToCcMaterialUnits(648_648_000));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/GT6ImportUnitsTest.java",
+      "kind": "projection_count",
+      "line": 23,
+      "excerpt": "assertEquals(648_648_000, GT6ImportUnits.ccMaterialUnitsToGt6U(144));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/MaterialCatalogTest.java",
+      "kind": "projection_count",
+      "line": 195,
+      "excerpt": "assertEquals(327.5, MaterialCatalog.require(\"lead\").thermal().meltingPoint());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/MaterialCatalogTest.java",
+      "kind": "projection_count",
+      "line": 196,
+      "excerpt": "assertEquals(1749.0, MaterialCatalog.require(\"lead\").thermal().boilingPoint());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/MaterialCatalogTest.java",
+      "kind": "projection_count",
+      "line": 201,
+      "excerpt": "assertEquals(2562.0, MaterialCatalog.require(\"copper\").thermal().boilingPoint());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/MaterialCatalogTest.java",
+      "kind": "projection_count",
+      "line": 202,
+      "excerpt": "assertEquals(1538.0, MaterialCatalog.require(\"iron\").thermal().meltingPoint());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/MaterialCatalogTest.java",
+      "kind": "projection_count",
+      "line": 203,
+      "excerpt": "assertEquals(3527.0, MaterialCatalog.require(\"carbon\").thermal().meltingPoint());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/MaterialCatalogTest.java",
+      "kind": "projection_count",
+      "line": 204,
+      "excerpt": "assertEquals(1773.0, MaterialCatalog.require(\"steel\").thermal().meltingPoint());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/MaterialCatalogTest.java",
+      "kind": "projection_count",
+      "line": 239,
+      "excerpt": "assertEquals(144, bronzeDrain.orElseThrow().amount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/MaterialCatalogTest.java",
+      "kind": "projection_count",
+      "line": 240,
+      "excerpt": "assertEquals(Map.of(\"copper\", 108, \"tin\", 36), bronzeDrain.orElseThrow().removals());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/MaterialCatalogTest.java",
+      "kind": "projection_count",
+      "line": 312,
+      "excerpt": "assertEquals(1600.0, runtimeTank.moltenThreshold(),"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/MaterialTuningTest.java",
+      "kind": "projection_count",
+      "line": 83,
+      "excerpt": "assertEquals(120.0, tuned.thermal().meltingPoint());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/MaterialTuningTest.java",
+      "kind": "projection_count",
+      "line": 84,
+      "excerpt": "assertEquals(300.0, tuned.thermal().boilingPoint());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/def/ThermalPropertiesTest.java",
+      "kind": "projection_count",
+      "line": 26,
+      "excerpt": "assertEquals(1000.0, thermal.meltingPoint());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/def/ThermalPropertiesTest.java",
+      "kind": "projection_count",
+      "line": 27,
+      "excerpt": "assertEquals(2000.0, thermal.boilingPoint());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/ComponentRuleDataTest.java",
+      "kind": "projection_count",
+      "line": 280,
+      "excerpt": "assertEquals(144L, outputUnits);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/ComponentRuleDataTest.java",
+      "kind": "projection_count",
+      "line": 503,
+      "excerpt": "assertEquals(2782, rules.stream()"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/ExtruderCompactRuleTest.java",
+      "kind": "projection_count",
+      "line": 106,
+      "excerpt": "assertEquals(2782, runtime.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/ExtruderCompactRuleTest.java",
+      "kind": "projection_count",
+      "line": 122,
+      "excerpt": "assertEquals(2782, scope.get(\"runtime_publication\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/HotIngotRuleDataTest.java",
+      "kind": "projection_count",
+      "line": 59,
+      "excerpt": "assertEquals(321, expected.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/HotIngotRuleDataTest.java",
+      "kind": "projection_count",
+      "line": 78,
+      "excerpt": "assertEquals(321, plans.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialChainIntegrationTest.java",
+      "kind": "projection_count",
+      "line": 101,
+      "excerpt": "assertEquals(144 + 6 * 16,"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialChainIntegrationTest.java",
+      "kind": "projection_count",
+      "line": 110,
+      "excerpt": "assertEquals(\"250\", fluid.amount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 193,
+      "excerpt": "assertEquals(146, MaterialPrefixCatalog.values().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 195,
+      "excerpt": "assertEquals(144, MaterialPrefixes.WASHED_CRUSHED_ORE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 196,
+      "excerpt": "assertEquals(144, MaterialPrefixes.CENTRIFUGED_CRUSHED_ORE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 197,
+      "excerpt": "assertEquals(144, MaterialPrefixes.PURIFIED_DUST.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 198,
+      "excerpt": "assertEquals(216, MaterialPrefixes.TRIPLE_WIRE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 199,
+      "excerpt": "assertEquals(360, MaterialPrefixes.QUINTUPLE_WIRE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 200,
+      "excerpt": "assertEquals(432, MaterialPrefixes.SEXTUPLE_WIRE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 208,
+      "excerpt": "assertEquals(144, MaterialPrefixes.GEM.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 221,
+      "excerpt": "assertEquals(1296, MaterialPrefixes.STORAGE_DUST.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 223,
+      "excerpt": "assertEquals(1296, MaterialPrefixes.STORAGE_PLATE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 237,
+      "excerpt": "assertEquals(1152, MaterialPrefixes.MACHINE_CASING.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 238,
+      "excerpt": "assertEquals(2016, MaterialPrefixes.MACHINE_CASING_DOUBLE.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 242,
+      "excerpt": "assertEquals(288, MaterialPrefixes.DOUBLE_INGOT.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 243,
+      "excerpt": "assertEquals(432, MaterialPrefixes.TRIPLE_INGOT.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 244,
+      "excerpt": "assertEquals(144, MaterialPrefixes.INGOT_HOT.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalogTest.java",
+      "kind": "projection_count",
+      "line": 601,
+      "excerpt": "assertEquals(290, material.gt6Metadata().orElseThrow().sourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MortarMaterialRuleDataTest.java",
+      "kind": "projection_count",
+      "line": 90,
+      "excerpt": "assertEquals(132, actual.get(\"ingot_to_dust\").size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MortarMaterialRuleDataTest.java",
+      "kind": "projection_count",
+      "line": 92,
+      "excerpt": "assertEquals(228, signatures.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MultiIngotRuleDataTest.java",
+      "kind": "projection_count",
+      "line": 60,
+      "excerpt": "assertEquals(323, expected.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MultiIngotRuleDataTest.java",
+      "kind": "projection_count",
+      "line": 84,
+      "excerpt": "assertEquals(323, plans.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/MultiIngotRuleDataTest.java",
+      "kind": "projection_count",
+      "line": 93,
+      "excerpt": "assertEquals(646, signatures.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/PipeRuleDataTest.java",
+      "kind": "projection_count",
+      "line": 100,
+      "excerpt": "assertEquals(238, plans);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/PipeRuleDataTest.java",
+      "kind": "projection_count",
+      "line": 101,
+      "excerpt": "assertEquals(238, signatures.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/material/prefix/RockPrefixDefinitionTest.java",
+      "kind": "projection_count",
+      "line": 19,
+      "excerpt": "assertEquals(324, definition.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/network/MaterialConfigurationHandshakeTest.java",
+      "kind": "projection_count",
+      "line": 64,
+      "excerpt": "assertTrue(exception.getMessage().contains(\"actual=4097\"));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/network/MaterialConfigurationHandshakeTest.java",
+      "kind": "projection_count",
+      "line": 65,
+      "excerpt": "assertTrue(exception.getMessage().contains(\"cap=4096\"));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/nuclear/NuclearFissionCatalogTest.java",
+      "kind": "projection_count",
+      "line": 72,
+      "excerpt": "assertEquals(512, uranium.get(\"neutron_max\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/nuclear/ReactorHazardsTest.java",
+      "kind": "projection_count",
+      "line": 11,
+      "excerpt": "assertEquals(1, ReactorHazards.neutronCalc(256));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/nuclear/ReactorHazardsTest.java",
+      "kind": "projection_count",
+      "line": 12,
+      "excerpt": "assertEquals(1, ReactorHazards.neutronCalc(511));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/nuclear/ReactorHazardsTest.java",
+      "kind": "projection_count",
+      "line": 13,
+      "excerpt": "assertEquals(2, ReactorHazards.neutronCalc(512));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/nuclear/ReactorHazardsTest.java",
+      "kind": "projection_count",
+      "line": 14,
+      "excerpt": "assertEquals(0, ReactorHazards.areaStrength(255, 0));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/nuclear/ReactorHazardsTest.java",
+      "kind": "projection_count",
+      "line": 15,
+      "excerpt": "assertEquals(1, ReactorHazards.areaStrength(512, 1));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/nuclear/ReactorHazardsTest.java",
+      "kind": "projection_count",
+      "line": 20,
+      "excerpt": "assertEquals(2, ReactorHazards.areaStrength(512, 0));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/nuclear/ReactorHazardsTest.java",
+      "kind": "projection_count",
+      "line": 21,
+      "excerpt": "assertEquals(4, ReactorHazards.failStrength(512, 0));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/nuclear/ReactorHazardsTest.java",
+      "kind": "projection_count",
+      "line": 22,
+      "excerpt": "assertEquals(500, ReactorHazards.FAIL_RANGE);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/nuclear/ReactorHazardsTest.java",
+      "kind": "projection_count",
+      "line": 23,
+      "excerpt": "assertEquals(200, ReactorHazards.AREA_RANGE);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/crafting/RockGtProcessingTest.java",
+      "kind": "projection_count",
+      "line": 40,
+      "excerpt": "assertEquals(324L, chalcopyriteDust.units());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/crafting/WorkbenchToolRecipePlanTest.java",
+      "kind": "projection_count",
+      "line": 173,
+      "excerpt": "assertTrue(variants.size() > 100, variants.size() + \" assembly rows\");"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/BathIdentityIntegratedMeasurementHarness.java",
+      "kind": "projection_count",
+      "line": 178,
+      "excerpt": "assertTrue(hybrid.logical > 1517);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/BathIdentityIntegratedMeasurementHarness.java",
+      "kind": "projection_count",
+      "line": 187,
+      "excerpt": "assertEquals(1517, production.get(bathMte).lazyRecipeCount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/BathMteIntegratedMeasurementHarness.java",
+      "kind": "projection_count",
+      "line": 130,
+      "excerpt": "assertTrue(hybrid.logical > 1517);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/BathMteIntegratedMeasurementHarness.java",
+      "kind": "projection_count",
+      "line": 139,
+      "excerpt": "assertEquals(1517, production.get(bathMte).lazyRecipeCount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/BathRemainderHarnessTest.java",
+      "kind": "projection_count",
+      "line": 96,
+      "excerpt": "assertEquals(283, BathRemainderBlockObjectCatalog.VARIANT_COUNT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/BathRemainderHarnessTest.java",
+      "kind": "projection_count",
+      "line": 97,
+      "excerpt": "assertEquals(283, BathRemainderBlockObjectCatalog.variants().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/BathRemainderIntegratedMeasurementHarness.java",
+      "kind": "projection_count",
+      "line": 159,
+      "excerpt": "assertTrue(hybrid.logical > 1517);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/BathRemainderIntegratedMeasurementHarness.java",
+      "kind": "projection_count",
+      "line": 168,
+      "excerpt": "assertEquals(1517, production.get(bathMte).lazyRecipeCount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/BathTinyPurifiedIntegratedMeasurementHarness.java",
+      "kind": "projection_count",
+      "line": 185,
+      "excerpt": "assertTrue(hybrid.logical > 1517);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/BathTinyPurifiedIntegratedMeasurementHarness.java",
+      "kind": "projection_count",
+      "line": 194,
+      "excerpt": "assertEquals(1517, production.get(bathMte).lazyRecipeCount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyGeneratedTest.java",
+      "kind": "projection_count",
+      "line": 127,
+      "excerpt": "assertEquals(250, first.fluidInputs().getFirst().getAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyGeneratedTest.java",
+      "kind": "projection_count",
+      "line": 224,
+      "excerpt": "assertEquals(157, documents.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyGeneratedTest.java",
+      "kind": "projection_count",
+      "line": 239,
+      "excerpt": "assertEquals(123, singleton.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyGeneratedTest.java",
+      "kind": "projection_count",
+      "line": 240,
+      "excerpt": "assertEquals(127, multi.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilySyncSizeTest.java",
+      "kind": "projection_count",
+      "line": 146,
+      "excerpt": "assertEquals(\"gt.recipe.sharpener#0000\", source.definition().familyId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilySyncSizeTest.java",
+      "kind": "projection_count",
+      "line": 203,
+      "excerpt": "assertEquals(1116, original.definition().authoredRelations().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilySyncSizeTest.java",
+      "kind": "projection_count",
+      "line": 233,
+      "excerpt": "assertEquals(1116, originalSnapshot.logicalRecipeCount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilySyncSizeTest.java",
+      "kind": "projection_count",
+      "line": 234,
+      "excerpt": "assertEquals(1116, decodedSnapshot.logicalRecipeCount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProviderTest.java",
+      "kind": "projection_count",
+      "line": 755,
+      "excerpt": "assertEquals(2500, byId.recipe().outputChances().get(1));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProviderTest.java",
+      "kind": "projection_count",
+      "line": 936,
+      "excerpt": "assertEquals(\"gt.recipe.assembler#0002\", decoded.familyId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeShardRouterTest.java",
+      "kind": "projection_count",
+      "line": 159,
+      "excerpt": "assertTrue(thrown.getMessage().contains(\"129\"));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/ElectrolyzerCatalogFixtureTest.java",
+      "kind": "projection_count",
+      "line": 49,
+      "excerpt": "assertEquals(151, relations);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/ExtruderRecipeFamilyProviderTest.java",
+      "kind": "projection_count",
+      "line": 362,
+      "excerpt": "assertTrue(relationOverflow.getMessage().contains(\"2782\"));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapBudgetTest.java",
+      "kind": "projection_count",
+      "line": 120,
+      "excerpt": "assertEquals(876, ModProcessingMachines.VERIFIED_OPENING_CACHE_CEILING);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/RecipeLogicalRelationIdentityTest.java",
+      "kind": "projection_count",
+      "line": 148,
+      "excerpt": "assertTrue(identity.contains(\"144@\"));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleCodecTest.java",
+      "kind": "projection_count",
+      "line": 159,
+      "excerpt": "assertEquals(226, compact.rule().sparse().orElseThrow().relations().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansionTest.java",
+      "kind": "projection_count",
+      "line": 67,
+      "excerpt": "assertEquals(256, lead.duration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansionTest.java",
+      "kind": "projection_count",
+      "line": 88,
+      "excerpt": "assertEquals(256, leadRecipe.duration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansionTest.java",
+      "kind": "projection_count",
+      "line": 711,
+      "excerpt": "assertEquals(800, plans.getFirst().duration());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/GtStoneRegistrationTest.java",
+      "kind": "projection_count",
+      "line": 24,
+      "excerpt": "assertEquals(119, GtStoneCatalog.IDENTITY_COUNT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/GtStoneRegistrationTest.java",
+      "kind": "projection_count",
+      "line": 25,
+      "excerpt": "assertEquals(466, GtStoneCatalog.VARIANT_COUNT);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/GtStoneRegistrationTest.java",
+      "kind": "projection_count",
+      "line": 26,
+      "excerpt": "assertEquals(466, ModBlocks.gtStoneBlocksById().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/GtStoneRegistrationTest.java",
+      "kind": "projection_count",
+      "line": 27,
+      "excerpt": "assertEquals(466, ModItems.gtStoneItemsById().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/GtStoneRegistrationTest.java",
+      "kind": "projection_count",
+      "line": 45,
+      "excerpt": "assertEquals(466, ids.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/HopperRegistrationTest.java",
+      "kind": "projection_count",
+      "line": 40,
+      "excerpt": "assertEquals(120, HopperVariantCatalog.variants().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/HopperRegistrationTest.java",
+      "kind": "projection_count",
+      "line": 41,
+      "excerpt": "assertEquals(120, ModBlocks.hopperBlocksById().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/HopperRegistrationTest.java",
+      "kind": "projection_count",
+      "line": 42,
+      "excerpt": "assertEquals(120, ModItems.hopperItemsById().size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/MachineRuntimeEqualityTest.java",
+      "kind": "projection_count",
+      "line": 41,
+      "excerpt": "assertEquals(298, catalog.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/MachineRuntimeEqualityTest.java",
+      "kind": "projection_count",
+      "line": 42,
+      "excerpt": "assertEquals(296, generic.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/MaterialCreativeTabTest.java",
+      "kind": "projection_count",
+      "line": 75,
+      "excerpt": "assertEquals(324L, registered.values().stream()"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/MaterialCreativeTabTest.java",
+      "kind": "projection_count",
+      "line": 78,
+      "excerpt": "assertEquals(324L, registered.values().stream()"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/registry/MaterialCreativeTabTest.java",
+      "kind": "projection_count",
+      "line": 81,
+      "excerpt": "assertEquals(321L, registered.values().stream()"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/scale/ScaleHarnessIdentityTest.java",
+      "kind": "projection_count",
+      "line": 130,
+      "excerpt": "assertEquals(256, recorder.cacheEntriesMax());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/scale/ScaleWorkloadBoundTest.java",
+      "kind": "projection_count",
+      "line": 75,
+      "excerpt": "assertEquals(100, due, \"tick \" + tick);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/scale/ScaleWorkloadBoundTest.java",
+      "kind": "projection_count",
+      "line": 90,
+      "excerpt": "assertEquals(400, due, \"tick \" + tick);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/scale/ScaleWorkloadBoundTest.java",
+      "kind": "projection_count",
+      "line": 159,
+      "excerpt": "assertEquals(162, tower.get(\"validation_ops_max\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/scale/ScaleWorkloadBoundTest.java",
+      "kind": "projection_count",
+      "line": 161,
+      "excerpt": "assertEquals(160, tower.get(\"port_scan_ops_max\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/scale/ScaleWorkloadBoundTest.java",
+      "kind": "projection_count",
+      "line": 237,
+      "excerpt": "assertEquals(100, pipeGate.get(\"maximum_due_per_tick\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/ExactFluidTransferTest.java",
+      "kind": "projection_count",
+      "line": 32,
+      "excerpt": "assertEquals(600, ExactFluidTransfer.move(source, target, 1_280));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/ExactFluidTransferTest.java",
+      "kind": "projection_count",
+      "line": 33,
+      "excerpt": "assertEquals(400, source.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/ExactFluidTransferTest.java",
+      "kind": "projection_count",
+      "line": 34,
+      "excerpt": "assertEquals(600, target.getFluidAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamConversionTest.java",
+      "kind": "projection_count",
+      "line": 11,
+      "excerpt": "assertEquals(0, SteamConversion.boilerBatches(1, 159, 80));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamConversionTest.java",
+      "kind": "projection_count",
+      "line": 12,
+      "excerpt": "assertEquals(0, SteamConversion.boilerBatches(1, 160, 79));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamConversionTest.java",
+      "kind": "projection_count",
+      "line": 13,
+      "excerpt": "assertEquals(1, SteamConversion.boilerBatches(1, 160, 80));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamConversionTest.java",
+      "kind": "projection_count",
+      "line": 14,
+      "excerpt": "assertEquals(3, SteamConversion.boilerBatches(5, 500, 400));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamConversionTest.java",
+      "kind": "projection_count",
+      "line": 17,
+      "excerpt": "assertEquals(0, SteamConversion.engineBatches(199));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamConversionTest.java",
+      "kind": "projection_count",
+      "line": 18,
+      "excerpt": "assertEquals(1, SteamConversion.engineBatches(200));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamConversionTest.java",
+      "kind": "projection_count",
+      "line": 19,
+      "excerpt": "assertEquals(1, SteamConversion.engineBatches(399));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamConversionTest.java",
+      "kind": "projection_count",
+      "line": 20,
+      "excerpt": "assertEquals(2, SteamConversion.engineBatches(400));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamConversionTest.java",
+      "kind": "projection_count",
+      "line": 21,
+      "excerpt": "assertEquals(200, SteamConversion.ENGINE_STEAM_PER_BATCH);"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamConversionTest.java",
+      "kind": "projection_count",
+      "line": 78,
+      "excerpt": "assertEquals(0, SteamConversion.boilerBatches(1, 160, accumulated));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamConversionTest.java",
+      "kind": "projection_count",
+      "line": 81,
+      "excerpt": "assertEquals(1, SteamConversion.boilerBatches(1, 160, accumulated));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamEngineKuCurveTest.java",
+      "kind": "projection_count",
+      "line": 27,
+      "excerpt": "assertEquals(7, SteamEngineKuCurve.visualState(224L, 1_024L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/steam/SteamEngineKuCurveTest.java",
+      "kind": "projection_count",
+      "line": 28,
+      "excerpt": "assertEquals(15, SteamEngineKuCurve.visualState(480L, 1_024L));"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/BedrockOreCatalogTest.java",
+      "kind": "projection_count",
+      "line": 28,
+      "excerpt": "assertEquals(128000, BedrockOreCatalog.VEINS.getFirst().probability());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/FluidSpringCatalogTest.java",
+      "kind": "projection_count",
+      "line": 28,
+      "excerpt": "assertEquals(400, FluidSpringCatalog.VEINS.getFirst().probability());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/FluidSpringCatalogTest.java",
+      "kind": "projection_count",
+      "line": 33,
+      "excerpt": "assertEquals(6000, FluidSpringCatalog.VEINS.getFirst().springAmount());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeatureConfigTest.java",
+      "kind": "projection_count",
+      "line": 40,
+      "excerpt": "assertEquals(128, decoded.probability());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeatureConfigTest.java",
+      "kind": "projection_count",
+      "line": 67,
+      "excerpt": "assertEquals(131, declaration.get(\"layer_count\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/StoneLayerRockFeatureConfigTest.java",
+      "kind": "projection_count",
+      "line": 97,
+      "excerpt": "assertEquals(648648000, declaration.get(\"unit\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+      "kind": "projection_count",
+      "line": 26,
+      "excerpt": "assertEquals(129, counts.get(\"closure_vein_classifications\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+      "kind": "projection_count",
+      "line": 27,
+      "excerpt": "assertEquals(129, counts.get(\"profile_v2_veins\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+      "kind": "projection_count",
+      "line": 28,
+      "excerpt": "assertEquals(129, counts.get(\"closure_configured_ore_features\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+      "kind": "projection_count",
+      "line": 29,
+      "excerpt": "assertEquals(129, counts.get(\"closure_placed_ore_features\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+      "kind": "projection_count",
+      "line": 30,
+      "excerpt": "assertEquals(147, counts.get(\"registered_ore_materials\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+      "kind": "projection_count",
+      "line": 31,
+      "excerpt": "assertEquals(294, counts.get(\"registered_ore_blocks\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+      "kind": "projection_count",
+      "line": 67,
+      "excerpt": "assertEquals(129, ids.size());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+      "kind": "projection_count",
+      "line": 139,
+      "excerpt": "assertEquals(269, counts.get(\"catalog_generated_files\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+      "kind": "projection_count",
+      "line": 140,
+      "excerpt": "assertEquals(280, counts.get(\"all_worldgen_files\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java",
+      "kind": "projection_count",
+      "line": 141,
+      "excerpt": "assertEquals(129, counts.get(\"closure_vein_classifications\").getAsInt());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/tree/prep/GtTreeGrowerTest.java",
+      "kind": "projection_count",
+      "line": 112,
+      "excerpt": "assertEquals(32762, GtTreeSpecies.RUBBER.holeSourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/tree/prep/GtTreeGrowerTest.java",
+      "kind": "projection_count",
+      "line": 113,
+      "excerpt": "assertEquals(32761, GtTreeSpecies.MAPLE.holeSourceId());"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/worldgen/tree/prep/GtTreeGrowerTest.java",
+      "kind": "projection_count",
+      "line": 114,
+      "excerpt": "assertEquals(32760, GtTreeSpecies.RAINBOWOOD.holeSourceId());"
+    }
+  ]
+}

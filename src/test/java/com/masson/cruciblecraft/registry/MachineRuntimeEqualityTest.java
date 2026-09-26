@@ -62,18 +62,18 @@ class MachineRuntimeEqualityTest {
                         + "CrucibleCraftGameTests.java"));
         assertTrue(
                 !daily.contains("MachineRuntimeGameTests")
-                        && !daily.contains("cruciblecraft_wave_machines"),
+                        && !daily.contains("cruciblecraft_machines"),
                 "daily GameTest grid must not own the machine runtime namespace");
         String holder = Files.readString(Path.of(
                 "src/test/java/com/masson/cruciblecraft/gametest/"
                         + "MachineRuntimeGameTests.java"));
         assertTrue(holder.contains("@GameTestHolder"));
-        assertTrue(holder.contains("cruciblecraft_wave_machines"));
+        assertTrue(holder.contains("NAMESPACE = \"cruciblecraft_machines\""));
         assertTrue(holder.contains("targetCatalogAndRuntimeIdsMatch"));
         assertTrue(Files.isRegularFile(Path.of(
-                "src/main/resources/data/cruciblecraft_wave_machines/structure/empty.nbt")));
+                "src/main/resources/data/cruciblecraft_machines/structure/empty.nbt")));
         assertTrue(Files.isRegularFile(Path.of(
-                "src/main/resources/data/cruciblecraft_wave_machines/gametest/structure/empty.nbt")));
+                "src/main/resources/data/cruciblecraft_machines/gametest/structure/empty.nbt")));
     }
 
     private static boolean isOpeningId(String id) {

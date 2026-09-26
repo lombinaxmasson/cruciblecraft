@@ -27,12 +27,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated extruder bulk gate. Run with {@code -PwaveRecipes=recipe/gt6-extruder-bulk}.
+ * Isolated extruder bulk gate. Run with {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(Gt6ExtruderBulkGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class Gt6ExtruderBulkGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_recipe_gt6_extruder_bulk";
+    public static final String NAMESPACE = "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
     private static final int LIVE_ROWS = 299_143;
     private static final long MAX_SAMPLE_EUT = 32L;

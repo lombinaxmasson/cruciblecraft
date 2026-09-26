@@ -22,7 +22,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class Gt6MissingFluidsGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_fluid_gt6_missing_fluids";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private Gt6MissingFluidsGameTests() {}

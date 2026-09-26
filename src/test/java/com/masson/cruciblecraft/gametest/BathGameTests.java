@@ -38,12 +38,12 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated Bath host + bathing-pot gate. Run with
- * {@code -PwaveRecipes=machines/bath}.
+ * {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(BathGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class BathGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines_bath";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final BlockPos POS = new BlockPos(2, 2, 2);
 

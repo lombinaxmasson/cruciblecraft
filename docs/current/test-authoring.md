@@ -1,10 +1,7 @@
 # 测试制作规范
 
 > 适用范围：`src/test/java/**` 下的 JUnit 与 GameTest，以及卡计划里的测试条目。
-> 落地卡：`portfolio/test-authoring-workflow`
-> （[详细计划](../history/card-plans/prep/测试制作流程详细计划.md)）。
-> 第 1–5 节现在就适用，靠作者自觉和评审；标「待落地」的帮手、检查器和
-> 领域网格由落地卡交付。
+> 现行合同。帮手、检查器和领域网格已经落地。
 
 ## 0. 为什么要有这份规范
 
@@ -51,7 +48,9 @@
    断言信息或紧邻注释写明 GT6 文件和行号。
 2. **我们自己数据的投影**：配方数、EMI 机器数、工具路线数、目录条数。
    不写死。和运行时目录、生成清单或 builder `--check` 产物比较。
-   已有的写死投影计数是验证债 VD-2026-09-003，改到它时顺手转成比较。
+   已有的写死投影计数是验证债 VD-2026-09-003，仍然开着。
+   检查器把新的三位数 `assertEquals` / `assertTrue` / `assertThat` 字面量记进棘轮；
+   同一行或上一行有 `gt6-source:` 的 GT6 源码事实除外。本卡不批量改写旧断言。
 3. **性能数字**：单独的预算测试，失败信息打出实际值。
    不许为了变绿抬预算常数；超预算要登记给负责人决定。
 
@@ -60,39 +59,49 @@
 
 ## 4. GameTest 不许抛未捕获异常
 
-- 方块实体：先 `instanceof` 判断再用，或用 `requireBlockEntity`（待落地）。
+- 方块实体用 `GameTestRequirements.requireBlockEntity`。先 `instanceof` 再转换，
   不直接强转 `helper.getBlockEntity(pos)`。
-- capability、`Optional`：先 `helper.assertTrue(x != null / isPresent(), ...)`。
-  不写裸 `orElseThrow()` / `get()`。
+- capability 用 `requireCapability`，`Optional` 用 `requirePresent`。
+  失败走 `GameTestFailures.fail`。不写裸 `orElseThrow()`，也不对
+  `findFirst()` / `byKey()` 直接 `get()`。
 - `helper.getLevel().getCapability(...)` 用 `helper.absolutePos(pos)`；
   `helper.getBlockEntity` 自己会换算。
-- 失败信息带实际值和期望值，但总长不超过 900 字符。超长文本在关服时会写进
-  讲台书并报错，服务器卡住。
+- 失败信息带实际值和期望值。`GameTestFailures.fail` 把文本截断到 900 字符。
+  超长文本在关服时会写进讲台书并报错，服务器卡住。
 - 遍历大量数据的测试调大 `timeoutTicks`，或者挪去 JUnit。
+- 材料夹具用 `GameTestFixtures.requireMaterialStack`，管道夹具用 `requirePipe`。
+  缺件时失败信息写出缺的材料、形态和种类。
 
 ## 5. 机器摆放按 GT6 侧面来
 
-- 供能面、流体 / 物品输入面按 `Gt6SidedIo` 和 `MachineRelativeFace` 算，
-  左右是玩家面对正面时的左右。
-- 已知坑：电解机、离心机只从底面接电，机器要放在电缆上方、连接朝上；
-  蒸馏器流体输入是顶面和左面。
-- 待落地：摆放帮手按侧面表自动算朝向，测试不再手写方向。
+- 供能面、流体 / 物品输入面用 `GameTestMachinePlacement`。它按
+  `Gt6SidedIo` 和 `MachineRelativeFace` 算世界方向。左右是玩家面对正面时的左右。
+- 电解机、离心机只从底面接电：机器放在电缆上方，连接朝上。
+- 没有登记的侧面会失败，并写出缺的是哪个通道。
 
 ## 6. 命名空间与运行
 
-现行：
+领域网格在 `tools/gametest_grids.json`，一共 8 个：`default`、`machines`、
+`energy`、`logistics`、`multiblock`、`worldgen`、`content`、`measurement`
+（scale 与 census 同一次服务器）。
 
-- 默认网格 `cruciblecraft_default_grid` 由 `game-tests` profile 与 `release` 跑。
-- 内容卡用 `-PwaveRecipes=<slug>` 的隔离命名空间。
+- 跑一个网格：`.\gradlew.bat runGameTestServer -PgameTestGrid=<id>`。
+  日志在 `run-game-test-<id>/logs/latest.log`。
+- `release` 和没有路径范围的 `game-tests` 跑全部领域网格。发现数下限是该网格
+  源码里的 `@GameTest` 个数，不写死。
+- 改一个 GameTest 文件时，`verify.py` 只跑它所属的网格。改 `src/main/**` 或
+  `gradle/**` 时跑全部网格。
+- 卡进行中仍可用 `-PwaveRecipes=<slug>` 临时命名空间。提交的 `@GameTestHolder`
+  不能留下 `cruciblecraft_wave_`。
+- 裸 `runGameTestServer` 只跑 mod id `cruciblecraft` 上的占位测试。
 - 排错用 `-PgameTestFilter=方法名片段`，只用于定位，不能代替网格关卡。
-- 不认历史 `gametest_receipt.json`。
-
-目标（待落地）：
-
-- 每个 GameTest 只属于少数几个领域网格之一，名单在一个 JSON 里。
-- 卡进行中可临时用自己的命名空间，关卡时并入领域网格。
-- `release` 跑全部网格，发现数下限从源码 `@GameTest` 计数自动算，不写死。
-- 日常只跑改动碰到的领域网格。
+- 不认历史 `gametest_receipt.json`。失败若要留下，写进
+  `tools/waves/prep/test-authoring-workflow/disposition.json`。
+  只有 `class=split` 且 `blocks=false` 的条目可以让门通过。
+- 检查器 `tools/check_gametest_hygiene.py` 在 `verification` 和 `game-tests`
+  上跑。基线只减不增；新的强转、裸抛、未注册夹具和三位数投影字面量都是失败。
+  GT6 源码事实在同一行或上一行写 `gt6-source:`。故意断言缺失零件时，上一行写
+  `hygiene-negative:`。
 
 ## 7. 卡里的测试流程
 

@@ -34,13 +34,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 storage art. Run with
- * {@code -PwaveRecipes=content/gt6-storage-art}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(StorageArtGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class StorageArtGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_storage_art";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private StorageArtGameTests() {}

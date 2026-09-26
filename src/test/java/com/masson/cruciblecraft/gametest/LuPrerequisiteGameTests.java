@@ -28,7 +28,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(LuPrerequisiteGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class LuPrerequisiteGameTests {
-    public static final String NAMESPACE = "cruciblecraft_lu_prerequisite";
+    public static final String NAMESPACE = "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
 
     private LuPrerequisiteGameTests() {}

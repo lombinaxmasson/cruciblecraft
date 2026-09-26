@@ -32,12 +32,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated Cluster Mill gate. Run with {@code -PwaveRecipes=machines/cluster-mill}.
+ * Isolated Cluster Mill gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(ClusterMillGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class ClusterMillGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines_cluster_mill";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final String CAPABILITY = "machines/cluster-mill";
     private static final Direction FRONT = Direction.NORTH;

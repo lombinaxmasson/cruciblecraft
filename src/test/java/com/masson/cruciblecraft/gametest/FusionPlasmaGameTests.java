@@ -40,7 +40,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class FusionPlasmaGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_energy_fusion_quantum";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
 
     private FusionPlasmaGameTests() {}

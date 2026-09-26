@@ -26,13 +26,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated flux converter gate. Run with
- * {@code -PwaveRecipes=runtime/flux-converters}.
+ * {@code -PgameTestGrid=energy}.
  */
 @GameTestHolder(EnergyFluxConvertersGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class EnergyFluxConvertersGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_flux_converters";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final String CAPABILITY = "energy/flux-converters";
     private static final BlockPos POS = new BlockPos(2, 1, 2);

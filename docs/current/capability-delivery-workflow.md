@@ -100,9 +100,10 @@
 ### release checkpoint
 
 全 profile、真客户端、无受影响的 open verification debt。与单个工作包解耦。
-`release` 必须 fresh 执行 `game-tests`（`cruciblecraft_default_grid`）。
-功能卡仍跑自己的隔离 namespace。该 profile 只接受当前日志，不读历史
-`gametest_receipt.json`。服务器崩溃、未执行 required 测试、发现数下降都是失败。
+`release` 必须 fresh 执行 `game-tests`（`tools/gametest_grids.json` 里的全部领域网格）。
+功能卡进行中仍可用 `-PwaveRecipes` 临时命名空间。该 profile 只接受当前日志，不读历史
+`gametest_receipt.json`。服务器崩溃、未执行 required 测试、发现数低于源码 `@GameTest`
+计数都是失败。
 
 ## 4. 共享面与 impact
 

@@ -16,7 +16,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(Gt6BulkCapacityGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class Gt6BulkCapacityGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_recipe_gt6_bulk_capacity";
+    public static final String NAMESPACE = "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private Gt6BulkCapacityGameTests() {}

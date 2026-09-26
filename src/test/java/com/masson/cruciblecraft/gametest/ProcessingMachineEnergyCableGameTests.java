@@ -26,7 +26,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(ProcessingMachineEnergyCableGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class ProcessingMachineEnergyCableGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
 
     private ProcessingMachineEnergyCableGameTests() {}

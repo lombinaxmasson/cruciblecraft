@@ -32,13 +32,13 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated bath/mte compact-family runtime gate. Run with {@code -PwaveRecipes=bath/mte}.
+ * Isolated bath/mte compact-family runtime gate. Run with {@code -PgameTestGrid=machines}.
  * Relation-level equivalence lives in JUnit; these tests are representative.
  */
 @GameTestHolder(BathMteGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class BathMteGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_bath_mte";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
     private static final int LOCKED_RELATIONS = 1517;

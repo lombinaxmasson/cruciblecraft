@@ -36,12 +36,12 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 /**
  * Isolated GT6 magnifying-glass, mixing-bowl, hand-drill, grafter, and
  * electric placer remainder. Run with
- * {@code -PgameTestNamespaces=cruciblecraft_gt6_tool_behaviors}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(Gt6ToolWorldBehaviorGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class Gt6ToolWorldBehaviorGameTests {
-    public static final String NAMESPACE = "cruciblecraft_gt6_tool_behaviors";
+    public static final String NAMESPACE = "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
     private static final BlockPos POS = new BlockPos(2, 2, 2);
 

@@ -42,12 +42,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated storage runtime gate. Run with {@code -PwaveRecipes=storage}.
+ * Isolated storage runtime gate. Run with {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(StorageGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class StorageGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_storage";
+    public static final String NAMESPACE = "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private StorageGameTests() {}

@@ -76,7 +76,7 @@
       "summary": "Java tests still lock global projection counts such as hopper 60/120, storage 625, EMI 28 machines",
       "owner": "future verification card",
       "trigger": "A content card adds a hopper variant, storage variant, or processing machine and those tests fail",
-      "evidence": "HopperVariantCatalogTest, StorageAcquisitionResourceTest, ProcessingEmiLayoutTest assertEquals on catalog size",
+      "evidence": "HopperVariantCatalogTest, StorageAcquisitionResourceTest, ProcessingEmiLayoutTest assertEquals on catalog size. New 3-digit assertion literals are ratcheted by tools/check_gametest_hygiene.py unless the same or previous line cites gt6-source.",
       "status": "open",
       "scope": "tooling",
       "detect": "rg assertEquals\\\\(\\\\s*\\\\d+ src/test/java",

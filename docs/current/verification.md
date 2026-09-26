@@ -52,16 +52,17 @@ python tools/verify.py release
   缺失形态；完整 registry 冻结子集探针用
   `.\gradlew.bat runGameTestServer -PrecipeCensus`，在 release 或改注册表后跑。
 - 裸 `.\gradlew.bat runGameTestServer` 只跑 `cruciblecraft` 命名空间里的占位测试
-  （NeoForge 在已启用命名空间为零测试时会崩溃）。`CrucibleCraftGameTests` 与
-  `CircuitTierGameTests` 在 `cruciblecraft_default_grid`，需
-  `-PgameTestNamespaces=cruciblecraft_default_grid`。内容/机制闭门仍用
-  `-PwaveRecipes=<slug>`。排错时加
+  （NeoForge 在已启用命名空间为零测试时会崩溃）。领域网格用
+  `-PgameTestGrid=<id>`，名单在 `tools/gametest_grids.json`。
+  卡进行中的临时命名空间仍用 `-PwaveRecipes=<slug>`，提交的 holder 不能留下
+  `cruciblecraft_wave_`。排错时加
   `-PgameTestFilter=方法名片段`（逗号分隔，大小写不敏感，按测试全名包含匹配；
   PowerShell 里给整个 `-PgameTestFilter=...` 加引号）。
-  过滤只用于定位，不能代替默认网格关卡。GameTest 服务器不写关服区块存档。
-- `game-tests` 是默认网格门：fresh 跑 `cruciblecraft_default_grid`，只认本次
-  `run-game-test-filtered/logs/latest.log`。发现数低于 244、失败、崩溃或
-  未执行 required 测试都是 FAIL。不读取历史 `gametest_receipt.json`。
+  过滤只用于定位，不能代替网格关卡。GameTest 服务器不写关服区块存档。
+- `game-tests` 跑领域网格：有路径范围时只跑改动碰到的网格，`release` 或无范围时
+  跑全部 8 个。每个网格只认本次 `run-game-test-<id>/logs/latest.log`。
+  发现数低于该网格源码 `@GameTest` 计数、失败、崩溃或未执行 required 测试都是
+  FAIL。不读取历史 `gametest_receipt.json`。
   `release` 会跑它。改 `src/main/java`、`src/test/java` 或对应资源会选中它。
   配方卡仍用自己的隔离 namespace，不把这次服务器测试塞进 `recipes`。
 - 怎么写测试见[测试制作规范](test-authoring.md)。

@@ -27,13 +27,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 redstone-wire gate. Run with
- * {@code -PwaveRecipes=content/mte-redstone-wire}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(RedstoneWireGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class RedstoneWireGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_mte_redstone_wire";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
     private static final BlockPos POS = new BlockPos(2, 2, 2);
 

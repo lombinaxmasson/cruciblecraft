@@ -39,13 +39,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated generic-network core gate. Run with
- * {@code -PwaveRecipes=runtime/generic-network-core}.
+ * {@code -PgameTestGrid=logistics}.
  */
 @GameTestHolder(GenericNetworkCoreGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class GenericNetworkCoreGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_generic_network_core";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
     private static final int ITEM_MOVED = 8;
     private static final int FLUID_MOVED = 600;

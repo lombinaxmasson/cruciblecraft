@@ -27,13 +27,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated extender runtime. Run with
- * {@code -PwaveRecipes=content/gt6-mte-extender-runtime}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(MteExtenderRuntimeGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class MteExtenderRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_mte_extender_runtime";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private MteExtenderRuntimeGameTests() {}

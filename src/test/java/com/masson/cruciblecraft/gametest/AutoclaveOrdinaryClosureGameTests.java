@@ -20,7 +20,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(AutoclaveOrdinaryClosureGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class AutoclaveOrdinaryClosureGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_autoclave_ordinary_closure";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final String RECIPE_PREFIX = "autoclave/ordinary_closure/";
 

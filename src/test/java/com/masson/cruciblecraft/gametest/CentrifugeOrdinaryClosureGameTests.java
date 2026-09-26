@@ -21,7 +21,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(CentrifugeOrdinaryClosureGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class CentrifugeOrdinaryClosureGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_centrifuge_ordinary_closure";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final String RECIPE_PREFIX = "centrifuge/ordinary_closure/";
 

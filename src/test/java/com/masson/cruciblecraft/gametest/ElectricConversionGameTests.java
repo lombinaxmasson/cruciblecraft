@@ -22,7 +22,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(ElectricConversionGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class ElectricConversionGameTests {
-    public static final String NAMESPACE = "cruciblecraft_electric_conversion";
+    public static final String NAMESPACE = "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final List<String> VARIANTS = List.of(
             "steel_galvanized_electric_heater",

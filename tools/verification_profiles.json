@@ -41,6 +41,7 @@
       "gradle_tasks": [],
       "python_modules": [
         "test_verification_profiles",
+        "test_check_gametest_hygiene",
         "test_bulk_port_verification",
         "test_python_test_workflow",
         "test_check_no_workflow_hashes",
@@ -70,6 +71,11 @@
         "tools/legacy_verification_index.json",
         "tools/waves/portfolio/gt6-full-coverage-reassessment/**",
         "tools/tests/test_verification_profiles.py",
+        "tools/tests/test_check_gametest_hygiene.py",
+        "tools/check_gametest_hygiene.py",
+        "tools/gametest_grids.json",
+        "tools/gametest_hygiene_baseline.json",
+        "tools/waves/prep/test-authoring-workflow/**",
         "tools/tests/test_bulk_port_verification.py",
         "tools/material_form_authority.py",
         "tools/tests/test_python_test_workflow.py",
@@ -670,7 +676,9 @@
       "gradle_tasks": [
         "runGameTestServer"
       ],
-      "python_modules": [],
+      "python_modules": [
+        "test_check_gametest_hygiene"
+      ],
       "builders": [],
       "owned_paths": [
         "src/main/java/**",

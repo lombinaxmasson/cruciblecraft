@@ -17,13 +17,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 missing EU wire-gauge runtime. Run with
- * {@code -PwaveRecipes=content/gt6-eu-missing-wire-gauges-runtime}.
+ * {@code -PgameTestGrid=energy}.
  */
 @GameTestHolder(EuMissingWireGaugesRuntimeGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class EuMissingWireGaugesRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_eu_missing_wire_gauges_runtime";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
 
     private EuMissingWireGaugesRuntimeGameTests() {}

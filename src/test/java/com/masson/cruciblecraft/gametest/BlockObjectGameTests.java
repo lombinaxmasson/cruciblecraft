@@ -35,13 +35,13 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated block-object compact-family runtime gate. Run with {@code -PwaveRecipes=block/object}.
+ * Isolated block-object compact-family runtime gate. Run with {@code -PgameTestGrid=content}.
  * Relation-level equivalence lives in JUnit; these tests are representative.
  */
 @GameTestHolder(BlockObjectGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class BlockObjectGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_block_object";
+    public static final String NAMESPACE = "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
     private static final int LOCKED_RELATIONS = 379;

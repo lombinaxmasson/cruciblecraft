@@ -3514,6 +3514,50 @@
       "workflow": "accepted"
     },
     {
+      "depends_on": [
+        "portfolio/default-gametest-recovery"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/prep/测试制作流程详细计划.md",
+        "docs/history/card-plans/active/测试制作流程详细计划.md",
+        "docs/history/card-plans/closed/测试制作流程详细计划.md",
+        "docs/current/test-authoring.md",
+        "docs/current/verification.md",
+        "docs/current/capability-delivery-workflow.md",
+        ".cursor/rules/test-authoring.mdc",
+        "tools/waves/prep/test-authoring-workflow/**",
+        "tools/capabilities/portfolio/test-authoring-workflow/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/support/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/**",
+        "tools/gametest_grids.json",
+        "tools/check_gametest_hygiene.py",
+        "tools/gametest_hygiene_baseline.json",
+        "tools/tests/test_check_gametest_hygiene.py",
+        "tools/verify.py",
+        "tools/verification_profiles.json",
+        "tools/python_test_policy.json",
+        "gradle/scripts/runs.gradle",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockPortAggregator.java",
+        "src/main/resources/data/cruciblecraft_machines/**",
+        "src/main/resources/data/cruciblecraft_energy/**",
+        "src/main/resources/data/cruciblecraft_logistics/**",
+        "src/main/resources/data/cruciblecraft_multiblock/**",
+        "src/main/resources/data/cruciblecraft_worldgen/**",
+        "src/main/resources/data/cruciblecraft_content/**"
+      ],
+      "path": "tools/capabilities/portfolio/test-authoring-workflow/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "verification",
+        "game-tests"
+      ],
+      "slug": "portfolio/test-authoring-workflow",
+      "survival_access": "not_applicable",
+      "title": "Test Authoring Workflow",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
@@ -4014,7 +4058,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 117,
+  "capability_count": 118,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5328,7 +5372,11 @@
       "worldgen/gt-trees"
     ],
     "portfolio/default-gametest-recovery": [
-      "portfolio/default-gametest-recovery"
+      "portfolio/default-gametest-recovery",
+      "portfolio/test-authoring-workflow"
+    ],
+    "portfolio/test-authoring-workflow": [
+      "portfolio/test-authoring-workflow"
     ],
     "recipe/gt6-bulk-capacity": [
       "recipe/gt6-bulk-capacity",
@@ -5557,12 +5605,16 @@
       "worldgen/gt-trees"
     ],
     "game-tests": [
-      "portfolio/default-gametest-recovery"
+      "portfolio/default-gametest-recovery",
+      "portfolio/test-authoring-workflow"
     ],
     "recipes": [
       "recipe/gt6-bulk-capacity",
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder"
+    ],
+    "verification": [
+      "portfolio/test-authoring-workflow"
     ]
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",

@@ -27,13 +27,13 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated batteries gate. Run with {@code -PwaveRecipes=runtime/batteries}.
+ * Isolated batteries gate. Run with {@code -PgameTestGrid=energy}.
  */
 @GameTestHolder(EnergyBatteriesGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class EnergyBatteriesGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_batteries";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final String CAPABILITY = "energy/batteries";
     private static final BlockPos POS = new BlockPos(2, 1, 2);

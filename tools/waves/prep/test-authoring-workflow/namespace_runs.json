@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "ran_at": "2026-09-26",
+  "note": "One GameTestServer per release grid after the holder-only move. verify.py does not read this file as PASS. Failures are listed in disposition.json. The default grid log records 247 required tests passed; that process was stopped during shutdown before the controller-chunk guard was in the running JVM.",
+  "grids": [
+    {
+      "id": "default",
+      "namespace": "cruciblecraft_default_grid",
+      "discovered": 247,
+      "passed": 247,
+      "failed": 0,
+      "crashed": false,
+      "log": "run-game-test-default/logs/latest.log"
+    },
+    {
+      "id": "machines",
+      "namespace": "cruciblecraft_machines",
+      "discovered": 217,
+      "passed": 200,
+      "failed": 17,
+      "crashed": false,
+      "log": "run-game-test-machines/logs/latest.log"
+    },
+    {
+      "id": "energy",
+      "namespace": "cruciblecraft_energy",
+      "discovered": 162,
+      "passed": 154,
+      "failed": 8,
+      "crashed": false,
+      "log": "run-game-test-energy/logs/latest.log"
+    },
+    {
+      "id": "logistics",
+      "namespace": "cruciblecraft_logistics",
+      "discovered": 99,
+      "passed": 88,
+      "failed": 11,
+      "crashed": false,
+      "log": "run-game-test-logistics/logs/latest.log"
+    },
+    {
+      "id": "multiblock",
+      "namespace": "cruciblecraft_multiblock",
+      "discovered": 48,
+      "passed": 41,
+      "failed": 7,
+      "crashed": false,
+      "log": "run-game-test-multiblock/logs/latest.log"
+    },
+    {
+      "id": "worldgen",
+      "namespace": "cruciblecraft_worldgen",
+      "discovered": 82,
+      "passed": 72,
+      "failed": 10,
+      "crashed": false,
+      "log": "run-game-test-worldgen/logs/latest.log"
+    },
+    {
+      "id": "content",
+      "namespace": "cruciblecraft_content",
+      "discovered": 177,
+      "passed": 171,
+      "failed": 6,
+      "crashed": false,
+      "log": "run-game-test-content/logs/latest.log"
+    },
+    {
+      "id": "measurement",
+      "namespace": "cruciblecraft_scale,cruciblecraft_census",
+      "discovered": 2,
+      "passed": 2,
+      "failed": 0,
+      "crashed": false,
+      "log": "run-game-test-measurement/logs/latest.log"
+    }
+  ]
+}

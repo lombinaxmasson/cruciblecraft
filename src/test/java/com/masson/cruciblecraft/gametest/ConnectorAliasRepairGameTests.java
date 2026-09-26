@@ -18,13 +18,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated HSLA connector alias repair. Run with
- * {@code -PwaveRecipes=content/gt6-connector-alias-repair}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(ConnectorAliasRepairGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class ConnectorAliasRepairGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_connector_alias_repair";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private ConnectorAliasRepairGameTests() {}

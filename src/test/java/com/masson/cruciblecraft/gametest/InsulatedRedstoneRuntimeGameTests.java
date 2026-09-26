@@ -27,13 +27,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 insulated redstone runtime. Run with
- * {@code -PwaveRecipes=content/gt6-insulated-redstone-runtime}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(InsulatedRedstoneRuntimeGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class InsulatedRedstoneRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_insulated_redstone_runtime";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
     private static final BlockPos WIRE = new BlockPos(2, 2, 2);
     private static final BlockPos CABLE = new BlockPos(1, 2, 2);

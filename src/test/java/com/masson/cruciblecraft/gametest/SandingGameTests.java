@@ -32,12 +32,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated Sanding Machine gate. Run with {@code -PwaveRecipes=machines/sanding}.
+ * Isolated Sanding Machine gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(SandingGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class SandingGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines_sanding";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final int LIVE_ROWS = 7_637;
     private static final Direction FRONT = Direction.NORTH;

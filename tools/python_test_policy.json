@@ -26,6 +26,7 @@
     "test_display_cpu",
     "test_cover_remainder",
     "test_verification_profiles",
+    "test_check_gametest_hygiene",
     "test_bulk_port_verification",
     "test_python_test_workflow",
     "test_check_no_workflow_hashes",
@@ -231,6 +232,22 @@
         "test_check_no_workflow_hashes",
         "test_check_zero_milestone_names",
         "test_tree_compare"
+      ]
+    },
+    {
+      "paths": [
+        "tools/check_gametest_hygiene.py",
+        "tools/gametest_grids.json",
+        "tools/gametest_hygiene_baseline.json",
+        "tools/tests/test_check_gametest_hygiene.py",
+        "tools/verify.py",
+        "gradle/scripts/runs.gradle",
+        "src/test/java/**/gametest/**",
+        "src/test/java/**/census/**",
+        "src/test/java/**/scale/**"
+      ],
+      "test_modules": [
+        "test_check_gametest_hygiene"
       ]
     },
     {

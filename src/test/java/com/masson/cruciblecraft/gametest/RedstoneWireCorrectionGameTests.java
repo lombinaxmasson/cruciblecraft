@@ -26,13 +26,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 redstone-wire behavior correction. Run with
- * {@code -PwaveRecipes=content/gt6-redstone-wire-correction}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(RedstoneWireCorrectionGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class RedstoneWireCorrectionGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_redstone_wire_correction";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private RedstoneWireCorrectionGameTests() {}

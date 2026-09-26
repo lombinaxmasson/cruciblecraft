@@ -26,13 +26,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 item-pipe acquisition. Run with
- * {@code -PwaveRecipes=content/gt6-item-pipe-acquisition}.
+ * {@code -PgameTestGrid=logistics}.
  */
 @GameTestHolder(ItemPipeAcquisitionGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class ItemPipeAcquisitionGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_item_pipe_acquisition";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
 
     private ItemPipeAcquisitionGameTests() {}

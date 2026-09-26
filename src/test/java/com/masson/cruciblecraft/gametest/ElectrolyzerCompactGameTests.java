@@ -32,12 +32,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated electrolyzer/compact compact-family runtime gate. Run with {@code -PwaveRecipes=electrolyzer/compact}.
+ * Isolated electrolyzer/compact compact-family runtime gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(ElectrolyzerCompactGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class ElectrolyzerCompactGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_electrolyzer_compact";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
 

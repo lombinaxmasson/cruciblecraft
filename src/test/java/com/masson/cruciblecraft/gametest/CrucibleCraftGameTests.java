@@ -15,6 +15,7 @@ import static com.masson.cruciblecraft.gametest.GameTestHeatSources.energyCapaci
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.gametest.support.GameTestFixtures;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
@@ -189,7 +190,7 @@ import net.neoforged.neoforge.items.IItemHandler;
 /**
  * Retired kitchen-sink block-world coverage. Isolated {@code -PwaveRecipes}
  * namespaces remain the closeout gates. Re-enable with
- * {@code -PgameTestNamespaces=cruciblecraft_default_grid}. Recipes are those
+ * {@code -PgameTestGrid=default}. Recipes are those
  * loaded by the production reload listener; no test-only RecipeMaps or
  * processing hosts are used.
  */
@@ -11457,12 +11458,7 @@ public final class CrucibleCraftGameTests {
     }
 
     private static GTRecipe requireRecipe(RecipeMap map, String path) {
-        return map.entries().stream()
-                .filter(entry -> entry.id().getPath().equals(path))
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException(
-                        "Missing live recipe " + map.id() + "/" + path))
-                .recipe();
+        return GameTestFixtures.requireRecipe(map, path);
     }
 
     private static GTRecipe requireMixerRecipeWithFluids(String... fluidIds) {
@@ -11866,7 +11862,7 @@ public final class CrucibleCraftGameTests {
     }
 
     private static ItemStack material(String id, com.masson.cruciblecraft.api.material.MaterialPrefix prefix, int count) {
-        return MaterialLookup.stack(id, prefix, count);
+        return GameTestFixtures.requireMaterialStack(id, prefix, count);
     }
 
     // ---- Small workload: declared scenario identity, deterministic

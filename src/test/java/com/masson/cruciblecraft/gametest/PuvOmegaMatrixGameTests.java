@@ -14,7 +14,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class PuvOmegaMatrixGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_machines_puv_omega_matrix";
+            "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
 
     private PuvOmegaMatrixGameTests() {}

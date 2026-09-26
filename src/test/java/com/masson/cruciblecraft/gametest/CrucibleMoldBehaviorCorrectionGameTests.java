@@ -35,13 +35,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated ceramic crucible / mold behavior correction. Run with
- * {@code -PwaveRecipes=content/gt6-crucible-mold-behavior-correction}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(CrucibleMoldBehaviorCorrectionGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class CrucibleMoldBehaviorCorrectionGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_crucible_mold_behavior_correction";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
     private static final float MELT_TEMPERATURE = 1600.0F;
 

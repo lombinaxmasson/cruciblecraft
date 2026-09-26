@@ -14,7 +14,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class MteFurnitureScaffoldRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_mte_furniture_scaffold_runtime";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private MteFurnitureScaffoldRuntimeGameTests() {}

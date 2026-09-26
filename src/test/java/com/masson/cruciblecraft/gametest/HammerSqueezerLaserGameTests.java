@@ -46,7 +46,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class HammerSqueezerLaserGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_machines_hammer_squeezer_laser";
+            "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final BlockPos POS = new BlockPos(2, 2, 2);
 

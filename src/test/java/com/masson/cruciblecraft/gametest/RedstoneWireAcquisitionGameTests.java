@@ -19,13 +19,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 insulated-redstone acquisition. Run with
- * {@code -PwaveRecipes=content/gt6-redstone-wire-acquisition}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(RedstoneWireAcquisitionGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class RedstoneWireAcquisitionGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_redstone_wire_acquisition";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private RedstoneWireAcquisitionGameTests() {}

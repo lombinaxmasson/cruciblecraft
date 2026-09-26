@@ -26,7 +26,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class PressureWasherGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_machines_pressure_washer";
+            "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.NORTH;
     private static final ResourceLocation PUBLICATION_GROUP =

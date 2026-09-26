@@ -43,13 +43,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated fluid-attachment runtime. Run with
- * {@code -PwaveRecipes=content/gt6-mte-fluid-attachments-runtime}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(MteFluidAttachmentsRuntimeGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class MteFluidAttachmentsRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_mte_fluid_attachments_runtime";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private MteFluidAttachmentsRuntimeGameTests() {}

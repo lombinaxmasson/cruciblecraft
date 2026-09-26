@@ -24,13 +24,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 fluid-pipe acquisition. Run with
- * {@code -PwaveRecipes=content/gt6-fluid-pipe-acquisition}.
+ * {@code -PgameTestGrid=logistics}.
  */
 @GameTestHolder(FluidPipeAcquisitionGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class FluidPipeAcquisitionGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_fluid_pipe_acquisition";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
 
     private FluidPipeAcquisitionGameTests() {}

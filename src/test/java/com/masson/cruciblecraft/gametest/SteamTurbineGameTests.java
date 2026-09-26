@@ -36,7 +36,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class SteamTurbineGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_energy_steam_turbine";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final BlockPos CONTROLLER = new BlockPos(1, 2, 2);
     private static final Direction FACING = Direction.WEST;

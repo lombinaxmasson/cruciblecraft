@@ -23,7 +23,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 /**
  * GT6 {@code AdvancedCraftingTool}: tool head plus a wooden stick.
  */
-@GameTestHolder(CrucibleCraft.MODID)
+@GameTestHolder("cruciblecraft_content")
 @PrefixGameTestTemplate(false)
 public final class ToolHeadAssemblyGameTests {
     private static final String TEMPLATE = "empty";

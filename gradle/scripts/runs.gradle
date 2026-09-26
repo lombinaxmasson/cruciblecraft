@@ -72,6 +72,21 @@ neoForge {
                 def waveNs = 'cruciblecraft_wave_' + waveSlug.replace('/', '_').replace('-', '_')
                 systemProperty 'neoforge.enabledGameTestNamespaces', waveNs
                 gameDirectory = project.file('run-wave-' + waveSlug.replace('/', '-'))
+            } else if (providers.gradleProperty('gameTestGrid').isPresent()) {
+                def gridId = providers.gradleProperty('gameTestGrid').get()
+                def parsed = new groovy.json.JsonSlurper().parse(
+                        file('tools/gametest_grids.json'))
+                def grid = parsed.grids.find { it.id == gridId }
+                if (grid == null) {
+                    throw new GradleException("Unknown -PgameTestGrid=${gridId}")
+                }
+                def names = grid.namespaces ? grid.namespaces : [grid.namespace]
+                if (names.any { it == null || it.toString().isEmpty() }) {
+                    throw new GradleException(
+                            "game test grid ${gridId} has no namespace")
+                }
+                systemProperty 'neoforge.enabledGameTestNamespaces', names.join(',')
+                gameDirectory = project.file('run-game-test-' + gridId)
             } else if (providers.gradleProperty('gameTestNamespaces').isPresent()) {
                 systemProperty 'neoforge.enabledGameTestNamespaces',
                         providers.gradleProperty('gameTestNamespaces').get()

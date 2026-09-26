@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "bootstrap": {
+    "namespace": "cruciblecraft",
+    "file": "src/test/java/com/masson/cruciblecraft/gametest/ModIdNamespaceGameTests.java",
+    "release": false,
+    "reason": "Bare runGameTestServer enables the mod id. NeoForge crashes when that namespace has zero tests, so one immediate-success stub stays here."
+  },
+  "temporary_namespace_prefix": "cruciblecraft_wave_",
+  "grids": [
+    {
+      "id": "default",
+      "namespace": "cruciblecraft_default_grid",
+      "release": true
+    },
+    {
+      "id": "machines",
+      "namespace": "cruciblecraft_machines",
+      "release": true
+    },
+    {
+      "id": "energy",
+      "namespace": "cruciblecraft_energy",
+      "release": true
+    },
+    {
+      "id": "logistics",
+      "namespace": "cruciblecraft_logistics",
+      "release": true
+    },
+    {
+      "id": "multiblock",
+      "namespace": "cruciblecraft_multiblock",
+      "release": true
+    },
+    {
+      "id": "worldgen",
+      "namespace": "cruciblecraft_worldgen",
+      "release": true
+    },
+    {
+      "id": "content",
+      "namespace": "cruciblecraft_content",
+      "release": true
+    },
+    {
+      "id": "measurement",
+      "namespaces": [
+        "cruciblecraft_scale",
+        "cruciblecraft_census"
+      ],
+      "release": true
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.gametest.support.GameTestFixtures;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineIoFaces;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -32,12 +33,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated machine runtime gate. Run with {@code -PwaveRecipes=machines}.
+ * Isolated machine runtime gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(MachineRuntimeGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class MachineRuntimeGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
 
@@ -323,12 +324,7 @@ public final class MachineRuntimeGameTests {
     }
 
     private static GTRecipe requireRecipe(RecipeMap map, String path) {
-        return map.entries().stream()
-                .filter(entry -> entry.id().getPath().equals(path))
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException(
-                        "Missing live recipe " + map.id() + "/" + path))
-                .recipe();
+        return GameTestFixtures.requireRecipe(map, path);
     }
 
     private static GTRecipe firstPowered(RecipeMap map, long maxEut) {

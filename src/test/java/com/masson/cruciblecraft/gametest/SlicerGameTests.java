@@ -27,12 +27,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated Slicer gate. Run with {@code -PwaveRecipes=machines/slicer}.
+ * Isolated Slicer gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(SlicerGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class SlicerGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines_slicer";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.NORTH;
     private static final BlockPos POS = new BlockPos(2, 2, 2);

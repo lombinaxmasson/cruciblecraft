@@ -14,6 +14,7 @@ import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineB
 import com.masson.cruciblecraft.content.blockentity.ReactorCoreBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.item.ReactorRodItem;
+import com.masson.cruciblecraft.gametest.support.GameTestFixtures;
 import com.masson.cruciblecraft.nuclear.ReactorCoreHost;
 import com.masson.cruciblecraft.nuclear.ReactorRodCatalog;
 import com.masson.cruciblecraft.nuclear.ReactorRodPhysics;
@@ -42,12 +43,12 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
-/** Isolated fission-survival gate. Run with {@code -PwaveRecipes=runtime/fission-survival}. */
+/** Isolated fission-survival gate. Run with {@code -PgameTestGrid=energy}. */
 @GameTestHolder(NuclearFissionGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class NuclearFissionGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_fission_survival";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final String CAPABILITY = "energy/nuclear-fission-survival";
     private static final Direction FRONT = Direction.EAST;
@@ -620,12 +621,7 @@ public final class NuclearFissionGameTests {
     }
 
     private static GTRecipe requireRecipe(RecipeMap map, String path) {
-        return map.entries().stream()
-                .filter(entry -> entry.id().getPath().equals(path))
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException(
-                        "Missing live recipe " + map.id() + "/" + path))
-                .recipe();
+        return GameTestFixtures.requireRecipe(map, path);
     }
 
     private static ItemStack craft(GameTestHelper helper, List<ItemStack> slots) {

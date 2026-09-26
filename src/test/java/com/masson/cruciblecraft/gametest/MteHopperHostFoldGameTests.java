@@ -16,13 +16,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated hopper host fold. Run with
- * {@code -PwaveRecipes=content/gt6-mte-hopper-host-fold}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(MteHopperHostFoldGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class MteHopperHostFoldGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_mte_hopper_host_fold";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private MteHopperHostFoldGameTests() {}

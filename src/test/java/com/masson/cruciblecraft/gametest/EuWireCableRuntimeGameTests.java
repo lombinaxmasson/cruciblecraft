@@ -33,13 +33,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 EU wire/cable runtime. Run with
- * {@code -PwaveRecipes=content/gt6-eu-wire-cable-runtime}.
+ * {@code -PgameTestGrid=energy}.
  */
 @GameTestHolder(EuWireCableRuntimeGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class EuWireCableRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_eu_wire_cable_runtime";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
 
     private EuWireCableRuntimeGameTests() {}

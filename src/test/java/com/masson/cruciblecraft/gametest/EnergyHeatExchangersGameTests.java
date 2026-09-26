@@ -27,13 +27,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated heat-exchanger gate. Run with
- * {@code -PwaveRecipes=runtime/heat-exchangers}.
+ * {@code -PgameTestGrid=energy}.
  */
 @GameTestHolder(EnergyHeatExchangersGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class EnergyHeatExchangersGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_heat_exchangers";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final String CAPABILITY = "energy/heat-exchangers";
     private static final BlockPos POS = new BlockPos(2, 1, 2);

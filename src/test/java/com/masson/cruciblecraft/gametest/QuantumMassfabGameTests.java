@@ -28,7 +28,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class QuantumMassfabGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_energy_quantum_massfab";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final BlockPos POS = new BlockPos(2, 1, 2);
 

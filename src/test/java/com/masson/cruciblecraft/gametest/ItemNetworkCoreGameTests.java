@@ -36,13 +36,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated item-network core gate. Run with
- * {@code -PwaveRecipes=runtime/item-network-core}.
+ * {@code -PgameTestGrid=logistics}.
  */
 @GameTestHolder(ItemNetworkCoreGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class ItemNetworkCoreGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_item_network_core";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
 
     private ItemNetworkCoreGameTests() {}

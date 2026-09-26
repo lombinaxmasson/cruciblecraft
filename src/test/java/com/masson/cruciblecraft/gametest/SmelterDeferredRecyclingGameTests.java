@@ -21,13 +21,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated Smelter deferred-recycling runtime gate. Run with
- * {@code -PwaveRecipes=smelter/deferred-recycling}.
+ * {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(SmelterDeferredRecyclingGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class SmelterDeferredRecyclingGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_smelter_deferred_recycling";
+            "cruciblecraft_machines";
     public static final int FAMILY_COUNT = 1817;
     private static final String TEMPLATE = "empty";
     private static final String RECIPE_PREFIX = "smelter/deferred_recycling/";

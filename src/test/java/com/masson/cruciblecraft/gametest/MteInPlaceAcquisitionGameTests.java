@@ -20,13 +20,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated in-place MTE source-exact obtain. Run with
- * {@code -PwaveRecipes=content/gt6-mte-inplace-acquisition}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(MteInPlaceAcquisitionGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class MteInPlaceAcquisitionGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_mte_inplace_acquisition";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private MteInPlaceAcquisitionGameTests() {}

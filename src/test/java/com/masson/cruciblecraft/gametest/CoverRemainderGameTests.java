@@ -44,12 +44,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /** Isolated runtime gate for the GT6 machine-cover remainder.
- *  Run with {@code -PwaveRecipes=runtime/cover-remainder}. */
+ *  Run with {@code -PgameTestGrid=logistics}. */
 @GameTestHolder(CoverRemainderGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class CoverRemainderGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_cover_remainder";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
     private static final BlockPos MACHINE_POS = new BlockPos(2, 2, 2);
     private static final BlockPos WIRE_POS = MACHINE_POS;

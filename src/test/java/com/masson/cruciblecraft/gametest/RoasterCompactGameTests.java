@@ -31,12 +31,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated roaster/compact compact-family runtime gate. Run with {@code -PwaveRecipes=roaster/compact}.
+ * Isolated roaster/compact compact-family runtime gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(RoasterCompactGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class RoasterCompactGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_roaster_compact";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
     private static final ResourceLocation COAL_DUST_BOOTSTRAP =

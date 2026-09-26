@@ -24,7 +24,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(InjectorGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class InjectorGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines_injector";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.NORTH;
     private static final ResourceLocation PUBLICATION_GROUP =

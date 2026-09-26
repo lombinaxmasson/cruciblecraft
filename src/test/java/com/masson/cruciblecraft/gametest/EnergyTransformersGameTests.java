@@ -29,13 +29,13 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated transformers gate. Run with {@code -PwaveRecipes=runtime/transformers}.
+ * Isolated transformers gate. Run with {@code -PgameTestGrid=energy}.
  */
 @GameTestHolder(EnergyTransformersGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class EnergyTransformersGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_transformers";
+            "cruciblecraft_energy";
     private static final String TEMPLATE = "empty";
     private static final String CAPABILITY = "energy/transformers";
     private static final BlockPos POS = new BlockPos(2, 1, 2);

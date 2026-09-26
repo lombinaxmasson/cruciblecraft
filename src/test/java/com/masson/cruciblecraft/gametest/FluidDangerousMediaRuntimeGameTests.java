@@ -26,13 +26,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT6 fluid dangerous-media runtime. Run with
- * {@code -PwaveRecipes=content/gt6-fluid-dangerous-media-runtime}.
+ * {@code -PgameTestGrid=logistics}.
  */
 @GameTestHolder(FluidDangerousMediaRuntimeGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class FluidDangerousMediaRuntimeGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_fluid_dangerous_media_runtime";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
 
     private FluidDangerousMediaRuntimeGameTests() {}

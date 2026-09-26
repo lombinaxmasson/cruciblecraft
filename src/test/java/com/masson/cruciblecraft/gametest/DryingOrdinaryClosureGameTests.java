@@ -21,7 +21,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(DryingOrdinaryClosureGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class DryingOrdinaryClosureGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_drying_ordinary_closure";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final String RECIPE_PREFIX = "drying/ordinary_closure/";
 

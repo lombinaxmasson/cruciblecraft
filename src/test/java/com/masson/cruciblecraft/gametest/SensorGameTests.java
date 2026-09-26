@@ -46,12 +46,12 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 import net.neoforged.neoforge.items.IItemHandler;
 
 /**
- * Isolated Sensors gate. Run with {@code -PwaveRecipes=content/sensors}.
+ * Isolated Sensors gate. Run with {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(SensorGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class SensorGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_content_sensors";
+    public static final String NAMESPACE = "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
     private static final BlockPos POS = new BlockPos(2, 2, 2);
     private static final BlockPos PROBE = new BlockPos(2, 2, 3);

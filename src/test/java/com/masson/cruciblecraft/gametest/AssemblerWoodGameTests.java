@@ -34,12 +34,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated assembler/wood compact-family runtime gate. Run with {@code -PwaveRecipes=assembler/wood}.
+ * Isolated assembler/wood compact-family runtime gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(AssemblerWoodGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class AssemblerWoodGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_assembler_wood";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
     private static final int ASSEMBLER_WOOD_LOCKED_RELATIONS = 242;

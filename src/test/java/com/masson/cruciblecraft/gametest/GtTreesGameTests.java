@@ -38,13 +38,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated GT trees gate. Run with
- * {@code -PgameTestNamespaces=cruciblecraft_wave_worldgen_gt_trees}.
+ * {@code -PgameTestGrid=worldgen}.
  * {@code -PwaveRecipes} is for compact recipe waves, not this worldgen slug.
  */
 @GameTestHolder(GtTreesGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class GtTreesGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_worldgen_gt_trees";
+    public static final String NAMESPACE = "cruciblecraft_worldgen";
     private static final String TEMPLATE = "empty";
     private static final BlockPos SAPLING = new BlockPos(8, 2, 8);
 

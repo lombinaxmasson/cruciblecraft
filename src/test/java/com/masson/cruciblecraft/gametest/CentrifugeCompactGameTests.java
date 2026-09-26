@@ -33,12 +33,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated centrifuge/compact compact-family runtime gate. Run with {@code -PwaveRecipes=centrifuge/compact}.
+ * Isolated centrifuge/compact compact-family runtime gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(CentrifugeCompactGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class CentrifugeCompactGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_centrifuge_compact";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
     private static final ResourceLocation TUNGSTENSTEEL_CENTRIFUGE =

@@ -37,13 +37,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated Smelter ordinary-closure runtime gate. Run with
- * {@code -PwaveRecipes=smelter/ordinary-closure}.
+ * {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(SmelterOrdinaryClosureGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class SmelterOrdinaryClosureGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_smelter_ordinary_closure";
+            "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
     private static final String RECIPE_PREFIX = "smelter/ordinary_closure/";

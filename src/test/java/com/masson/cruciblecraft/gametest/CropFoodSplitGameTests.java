@@ -25,9 +25,9 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Crop addon overlay, crop-stick harvest, Foods tags, and no ItemEntity scatter.
- * Lives on the default GameTest namespace so a bare {@code runGameTestServer}
- * exercises it.
+ * Runs on the worldgen grid.
  */
+@GameTestHolder("cruciblecraft_worldgen")
 @PrefixGameTestTemplate(false)
 public final class CropFoodSplitGameTests {
     private static final String TEMPLATE = "empty";

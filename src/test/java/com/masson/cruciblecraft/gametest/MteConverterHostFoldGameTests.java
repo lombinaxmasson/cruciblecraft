@@ -15,13 +15,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated converter host fold. Run with
- * {@code -PwaveRecipes=content/gt6-mte-converter-host-fold}.
+ * {@code -PgameTestGrid=content}.
  */
 @GameTestHolder(MteConverterHostFoldGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class MteConverterHostFoldGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_content_gt6_mte_converter_host_fold";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private MteConverterHostFoldGameTests() {}

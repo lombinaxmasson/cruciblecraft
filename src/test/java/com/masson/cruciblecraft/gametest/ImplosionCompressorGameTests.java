@@ -28,7 +28,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class ImplosionCompressorGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_machines_implosion_compressor";
+            "cruciblecraft_multiblock";
     private static final String TEMPLATE = "empty";
     private static final BlockPos CONTROLLER = new BlockPos(6, 2, 6);
     private static final Direction FACING = Direction.NORTH;

@@ -36,13 +36,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated fluid-network basic-transfer gate. Run with
- * {@code -PwaveRecipes=runtime/fluid-network-basic-transfer}.
+ * {@code -PgameTestGrid=logistics}.
  */
 @GameTestHolder(FluidNetworkCoreGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class FluidNetworkCoreGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_runtime_fluid_network_basic_transfer";
+            "cruciblecraft_logistics";
     private static final String TEMPLATE = "empty";
     /** Copper fluid pipe capacity is 600 mB. */
     private static final int MOVED = 600;

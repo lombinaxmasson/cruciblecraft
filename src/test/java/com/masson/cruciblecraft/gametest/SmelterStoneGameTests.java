@@ -34,12 +34,12 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
- * Isolated smelter/stone compact-family runtime gate. Run with {@code -PwaveRecipes=smelter/stone}.
+ * Isolated smelter/stone compact-family runtime gate. Run with {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(SmelterStoneGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class SmelterStoneGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_smelter_stone";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
 

@@ -34,13 +34,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated Mixer ordinary-closure runtime gate. Run with
- * {@code -PwaveRecipes=mixer/ordinary-closure}.
+ * {@code -PgameTestGrid=machines}.
  */
 @GameTestHolder(MixerOrdinaryClosureGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class MixerOrdinaryClosureGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_mixer_ordinary_closure";
+            "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.EAST;
     private static final String RECIPE_PREFIX = "mixer/ordinary_closure/";

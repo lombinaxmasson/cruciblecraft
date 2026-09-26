@@ -26,7 +26,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(MelterGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class MelterGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_machines_melter";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final Direction FRONT = Direction.NORTH;
     private static final int LIVE_ROWS = 3_601;

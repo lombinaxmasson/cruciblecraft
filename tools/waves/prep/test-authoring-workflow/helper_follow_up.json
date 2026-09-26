@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "note": "Private helpers left in place because their semantics are not the shared helper.",
+  "entries": [
+    {
+      "site": "BathGameTests.material",
+      "reason": "Builds a prefix-material component stack through ModItems.materialItem. GameTestFixtures.requireMaterialStack uses MaterialLookup.tryStack, so replacing it would change the stack."
+    }
+  ]
+}

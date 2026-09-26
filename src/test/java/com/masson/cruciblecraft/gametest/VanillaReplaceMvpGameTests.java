@@ -10,14 +10,14 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /**
  * Isolated vanilla-replace gate. Run with
- * {@code -PwaveRecipes=vanilla-replace-mvp}. Opening through chainmail /
+ * {@code -PgameTestGrid=content}. Opening through chainmail /
  * food delates is implemented; arrows / dyes / RecipeMap stay later.
  */
 @GameTestHolder(VanillaReplaceMvpGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class VanillaReplaceMvpGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_vanilla_replace_mvp";
+            "cruciblecraft_content";
     private static final String TEMPLATE = "empty";
 
     private VanillaReplaceMvpGameTests() {

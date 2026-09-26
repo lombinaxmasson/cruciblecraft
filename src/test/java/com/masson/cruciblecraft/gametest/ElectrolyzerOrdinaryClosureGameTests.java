@@ -21,7 +21,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(ElectrolyzerOrdinaryClosureGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class ElectrolyzerOrdinaryClosureGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_electrolyzer_ordinary_closure";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final String RECIPE_PREFIX = "electrolyzer/ordinary_closure/";
 

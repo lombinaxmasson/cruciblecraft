@@ -29,7 +29,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
  * and plate-family packing into placeable {@code OP.blockPlate}. Lives on the
  * default GameTest namespace so a bare {@code runGameTestServer} exercises it.
  */
-@GameTestHolder(CrucibleCraft.MODID)
+@GameTestHolder("cruciblecraft_content")
 @PrefixGameTestTemplate(false)
 public final class PrefixPackGameTests {
     private static final String TEMPLATE = "empty";

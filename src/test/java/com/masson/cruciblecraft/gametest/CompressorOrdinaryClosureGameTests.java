@@ -20,7 +20,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder(CompressorOrdinaryClosureGameTests.NAMESPACE)
 @PrefixGameTestTemplate(false)
 public final class CompressorOrdinaryClosureGameTests {
-    public static final String NAMESPACE = "cruciblecraft_wave_compressor_ordinary_closure";
+    public static final String NAMESPACE = "cruciblecraft_machines";
     private static final String TEMPLATE = "empty";
     private static final String RECIPE_PREFIX = "compressor/ordinary_closure/";
 

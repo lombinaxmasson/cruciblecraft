@@ -25,7 +25,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public final class LargeHeatExchangerGameTests {
     public static final String NAMESPACE =
-            "cruciblecraft_wave_energy_large_heat_exchanger";
+            "cruciblecraft_multiblock";
     private static final String TEMPLATE = "empty";
     private static final BlockPos CONTROLLER = new BlockPos(2, 1, 2);
 
