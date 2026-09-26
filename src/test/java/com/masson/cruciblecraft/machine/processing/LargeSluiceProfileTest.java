@@ -74,7 +74,9 @@ class LargeSluiceProfileTest {
         assertEquals(0, spec.fluids().inputs().getFirst().index());
         assertEquals(1, spec.fluids().outputs().getFirst().index());
         assertEquals(4_000, spec.fluids().inputs().getFirst().capacity());
-        assertEquals(4_000, spec.fluids().outputs().getFirst().capacity());
+        assertEquals(
+                ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT,
+                spec.fluids().outputs().getFirst().capacity());
 
         var items = spec.sidedIo().itemsChannel();
         assertEquals(

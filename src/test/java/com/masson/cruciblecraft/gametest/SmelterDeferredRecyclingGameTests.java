@@ -32,7 +32,7 @@ public final class SmelterDeferredRecyclingGameTests {
     private static final String TEMPLATE = "empty";
     private static final String RECIPE_PREFIX = "smelter/deferred_recycling/";
     private static final int SMELTER_OUTPUT_TANK =
-            ModProcessingMachines.SMELTER_GT6_FLUID_OUTPUT;
+            ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT;
 
     private SmelterDeferredRecyclingGameTests() {}
 

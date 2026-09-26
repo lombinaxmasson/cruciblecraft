@@ -13,6 +13,7 @@ import java.util.Optional;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModMultiblockControllers;
 
 import net.minecraft.SharedConstants;
@@ -102,7 +103,8 @@ class MachineTierArchitectureTest {
                         * 2,
                 fluids.inputs().getFirst().capacity());
         assertTrue(fluids.outputs().stream()
-                .allMatch(tank -> tank.capacity() == 8_000));
+                .allMatch(tank -> tank.capacity()
+                        == ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT));
     }
 
     @Test

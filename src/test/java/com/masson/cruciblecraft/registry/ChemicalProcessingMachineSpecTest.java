@@ -117,18 +117,30 @@ class ChemicalProcessingMachineSpecTest {
 
     @Test
     void dedicatedSpecsExposeExactLayoutsAndSourceEnergyIo() {
-        assertLayout(ModProcessingMachines.ELECTROLYZER, 2, 6, 2, 3, 32_000, 32_000);
+        assertLayout(
+                ModProcessingMachines.ELECTROLYZER,
+                2, 6, 2, 3, 32_000, ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
         assertLayout(
                 ModProcessingMachines.MIXER,
                 6, 1, 6, 2,
                 CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
-                CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY);
-        assertLayout(ModProcessingMachines.DISTILLERY, 2, 2, 2, 3, 8_000, 8_000);
-        assertLayout(ModProcessingMachines.AUTOCLAVE, 2, 3, 1, 1, 4_000_000, 512_000);
-        assertLayout(ModProcessingMachines.DRYING, 1, 1, 1, 1, 32_000, 32_000);
+                ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
+        assertLayout(
+                ModProcessingMachines.DISTILLERY,
+                2, 2, 2, 3, 8_000, ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
+        assertLayout(
+                ModProcessingMachines.AUTOCLAVE,
+                2, 3, 1, 1, 4_000_000, ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
+        assertLayout(
+                ModProcessingMachines.DRYING,
+                1, 1, 1, 1, 32_000, ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
         assertLayout(ModProcessingMachines.COMPRESSOR, 1, 1, 0, 0, 0, 0);
-        assertLayout(ModProcessingMachines.ROASTER, 1, 3, 1, 1, 72_000, 72_000);
-        assertLayout(ModProcessingMachines.CANNER, 2, 1, 1, 1, 128_000, 128_000);
+        assertLayout(
+                ModProcessingMachines.ROASTER,
+                1, 3, 1, 1, 72_000, ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
+        assertLayout(
+                ModProcessingMachines.CANNER,
+                2, 1, 1, 1, 128_000, ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
         var roasterHeat = ProcessingMachineEnergyPlacement.connection(
                 ModProcessingMachines.ROASTER, Direction.EAST);
         assertEquals(Direction.DOWN, roasterHeat.providerOffset());
@@ -220,16 +232,19 @@ class ChemicalProcessingMachineSpecTest {
 
     @Test
     void reusedSourceMapsExposeT5OutputCapacityWithoutChangingEnergyType() {
-        assertLayout(ModProcessingMachines.BATH, 6, 6, 1, 3, 4_000, 8_000);
+        assertLayout(
+                ModProcessingMachines.BATH,
+                6, 6, 1, 3, 4_000, ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
         assertLayout(
                 ModProcessingMachines.CENTRIFUGE,
                 1, 6, 1, 6,
                 ModProcessingMachines.CENTRIFUGE_BRONZE_FLUID_INPUT,
-                CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY);
+                ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
+        assertEquals(Integer.MAX_VALUE, ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
         assertLayout(
                 ModProcessingMachines.SMELTER,
                 1, 4, 1, 1, 4_000,
-                ModProcessingMachines.SMELTER_GT6_FLUID_OUTPUT);
+                ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT);
         assertEquals(EnergyType.TIME, ModProcessingMachines.BATH.energy().type());
         assertEquals(
                 EnergyType.KINETIC_ROTATION,
@@ -423,9 +438,9 @@ class ChemicalProcessingMachineSpecTest {
                 20,
                 16L,
                 0L);
-        assertEquals(
-                Optional.of("chemical_recipe_amount"),
-                ModProcessingMachines.MIXER.validator().validate(overCapacity));
+        assertTrue(
+                ModProcessingMachines.MIXER.validator().validate(overCapacity).isEmpty(),
+                "Mixer output tank accepts amounts above the old panel cap");
     }
 
     @Test

@@ -22,6 +22,7 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
@@ -148,9 +149,14 @@ class KineticMachineTierMatrixTest {
         var fluids = variant.runtimeSpec().fluids();
         assertEquals(1, fluids.inputs().size());
         assertEquals(6, fluids.outputs().size());
-        assertEquals(100_000, fluids.inputs().getFirst().capacity());
+        assertEquals(
+                ModProcessingMachines.CENTRIFUGE_GT6_RECIPE_FLUID_INPUT
+                        * variant.tier().parallelLimit()
+                        * 2,
+                fluids.inputs().getFirst().capacity());
         assertTrue(fluids.outputs().stream()
-                .allMatch(tank -> tank.capacity() == 8_000));
+                .allMatch(tank -> tank.capacity()
+                        == ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT));
     }
 
     @Test

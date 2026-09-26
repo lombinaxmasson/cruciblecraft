@@ -190,15 +190,10 @@ class ChemicalPublicationBudgetTest {
                 id("smelter/deferred_recycling/steel/gt_recipe_smelter_0001"),
                 ModRecipeMaps.SMELTER,
                 oversizedMolten));
-        IllegalArgumentException smelterAmount = assertThrows(
-                IllegalArgumentException.class,
-                () -> GTRecipeMapLoader.validateTarget(
-                        id("smelter/ordinary_closure/steel/example"),
-                        ModRecipeMaps.SMELTER,
-                        oversizedMolten));
-        assertTrue(
-                smelterAmount.getMessage().contains("chemical_recipe_amount"),
-                smelterAmount.getMessage());
+        assertDoesNotThrow(() -> GTRecipeMapLoader.validateTarget(
+                id("smelter/ordinary_closure/steel/example"),
+                ModRecipeMaps.SMELTER,
+                oversizedMolten));
         assertDoesNotThrow(() -> GTRecipeMapLoader.validateTarget(
                 id("chemical/bath/over_shape"),
                 ModRecipeMaps.BATH,

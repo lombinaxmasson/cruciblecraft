@@ -81,7 +81,7 @@ public final class MixerOrdinaryClosureGameTests {
                         && ModProcessingMachines.MIXER.fluids().inputs().size() == 6
                         && ModProcessingMachines.MIXER.fluids().outputs().get(0)
                                 .capacity()
-                        == CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+                        == ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT,
                 "Mixer inventory is not the GT6 6/1/6/2 panel");
         helper.assertTrue(
                 CompactPublicationGroups.ENVELOPE_GT6_PANEL.equals(

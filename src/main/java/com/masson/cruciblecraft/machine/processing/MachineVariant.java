@@ -143,7 +143,8 @@ public final class MachineVariant {
     /**
      * Steel, titanium and tungstensteel centrifuges keep the GT6 6-fluid-out
      * envelope. Input tanks follow {@code recipeAmount * parallel * 2}
-     * (200k / 400k / 800k / 1.6M). Bronze uses {@link ModProcessingMachines#CENTRIFUGE}.
+     * (200k / 400k / 800k / 1.6M). Output tanks are unbounded.
+     * Bronze uses {@link ModProcessingMachines#CENTRIFUGE}.
      */
     private static boolean usesCentrifugeCompactEnvelope(
             ResourceLocation id,
@@ -172,7 +173,7 @@ public final class MachineVariant {
                 java.util.stream.IntStream.range(
                                 fluidInputs, fluidInputs + fluidOutputs)
                         .mapToObj(index -> new ProcessingMachineSpec.TankSpec(
-                                index, 8_000))
+                                index, ModProcessingMachines.UNBOUNDED_FLUID_OUTPUT))
                         .toList();
         return new ProcessingMachineSpec(
                 id,

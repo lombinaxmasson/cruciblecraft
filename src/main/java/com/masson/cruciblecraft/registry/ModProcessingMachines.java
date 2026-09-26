@@ -75,8 +75,14 @@ public final class ModProcessingMachines {
     public static final int CENTRIFUGE_GT6_RECIPE_FLUID_INPUT = 100_000;
     public static final int CENTRIFUGE_BRONZE_FLUID_INPUT =
             CENTRIFUGE_GT6_RECIPE_FLUID_INPUT * 2;
-    /** Observed {@code gt.recipe.smelter} max fluid output. GT6 output tanks are unbounded. */
-    public static final int SMELTER_GT6_FLUID_OUTPUT = 13_032;
+    /**
+     * Processing-machine output tanks. GT6 basic-machine output tanks are
+     * {@code Long.MAX_VALUE}, so fluid from repeated runs stays until drained.
+     * NeoForge tanks store capacity as an int, so this is that uncapped capacity.
+     * A recipe is still rejected when one output stack cannot fit in an empty tank.
+     * Input tanks stay at their GT6 sizes.
+     */
+    public static final int UNBOUNDED_FLUID_OUTPUT = Integer.MAX_VALUE;
     public static final ProcessingMachineSpec CENTRIFUGE =
             reusedChemicalSpec("centrifuge", () -> ModRecipeMaps.CENTRIFUGE,
                     1, 6, 1, 6,
@@ -102,7 +108,7 @@ public final class ModProcessingMachines {
                     1, 2, 0, 0);
     public static final ProcessingMachineSpec SMELTER =
             reusedChemicalSpec("smelter", () -> ModRecipeMaps.SMELTER,
-                    1, 4, 1, 1, 4_000, SMELTER_GT6_FLUID_OUTPUT,
+                    1, 4, 1, 1, 4_000, UNBOUNDED_FLUID_OUTPUT,
                     1, 1, 1, 1,
                     EnergyType.HEAT,
                     ProcessingMachineSpec.EnergyMode.ADJACENT);
@@ -275,7 +281,7 @@ public final class ModProcessingMachines {
                             List.of(new ProcessingMachineSpec.TankSpec(
                                     0, 8_000)),
                             List.of(new ProcessingMachineSpec.TankSpec(
-                                    1, 8_000))),
+                                    1, UNBOUNDED_FLUID_OUTPUT))),
                     new ProcessingMachineSpec.EnergySpec(
                             EnergyType.TIME,
                             ProcessingMachineSpec.EnergyMode.ADJACENT,
@@ -690,7 +696,8 @@ public final class ModProcessingMachines {
                 || recipe.fluidInputs().stream().anyMatch(
                         stack -> stack.isEmpty() || stack.getAmount() > 4_000)
                 || recipe.fluidOutputs().stream().anyMatch(
-                        stack -> stack.isEmpty() || stack.getAmount() > 4_000)) {
+                        stack -> stack.isEmpty()
+                                || stack.getAmount() > UNBOUNDED_FLUID_OUTPUT)) {
             return Optional.of("sluice_recipe_shape");
         }
         return Optional.empty();
@@ -771,7 +778,8 @@ public final class ModProcessingMachines {
                 ? new ProcessingMachineSpec.TankLayout(
                         List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)),
                         "sluice".equals(path)
-                                ? List.of(new ProcessingMachineSpec.TankSpec(1, 4_000))
+                                ? List.of(new ProcessingMachineSpec.TankSpec(
+                                        1, UNBOUNDED_FLUID_OUTPUT))
                                 : List.of())
                 : new ProcessingMachineSpec.TankLayout(List.of(), List.of());
         return new ProcessingMachineSpec(
@@ -866,7 +874,8 @@ public final class ModProcessingMachines {
                 || recipe.fluidInputs().stream().anyMatch(
                         stack -> stack.isEmpty() || stack.getAmount() > 4_000)
                 || recipe.fluidOutputs().stream().anyMatch(
-                        stack -> stack.isEmpty() || stack.getAmount() > 4_000)) {
+                        stack -> stack.isEmpty()
+                                || stack.getAmount() > UNBOUNDED_FLUID_OUTPUT)) {
             return Optional.of("sluice_recipe_shape");
         }
         return Optional.empty();
@@ -1086,6 +1095,8 @@ public final class ModProcessingMachines {
             int gt6OutFluids,
             EnergyType energyType,
             ProcessingMachineSpec.EnergyMode energyMode) {
+        // Callers still pass a historical output number. The tank ignores it.
+        final int outputCapacity = UNBOUNDED_FLUID_OUTPUT;
         ProcessingMachineSpec layout = chemicalSpec(
                 path,
                 map,
@@ -1094,7 +1105,7 @@ public final class ModProcessingMachines {
                 fluidInputs,
                 fluidOutputs,
                 fluidInputCapacity,
-                fluidOutputCapacity,
+                outputCapacity,
                 gt6InItems,
                 gt6OutItems,
                 gt6InFluids,
@@ -1121,7 +1132,7 @@ public final class ModProcessingMachines {
                         fluidInputs,
                         fluidOutputs,
                         fluidInputCapacity,
-                        fluidOutputCapacity,
+                        outputCapacity,
                         chemicalAllowsPreserveCatalyst(path),
                         energyType,
                         "centrifuge".equals(path) || "fermenter".equals(path)
@@ -1198,12 +1209,12 @@ public final class ModProcessingMachines {
                 && fluidAmountsFit(
                         recipe,
                         CompactPublicationGroups.BRONZE_TANK_CAPACITY,
-                        CompactPublicationGroups.BRONZE_TANK_CAPACITY)) {
+                        UNBOUNDED_FLUID_OUTPUT)) {
             return validateChemicalRecipe(
                     recipe,
                     4, 1, 3, 2,
                     CompactPublicationGroups.BRONZE_TANK_CAPACITY,
-                    CompactPublicationGroups.BRONZE_TANK_CAPACITY,
+                    UNBOUNDED_FLUID_OUTPUT,
                     true,
                     EnergyType.KINETIC_ROTATION,
                     1_024L);
@@ -1212,7 +1223,7 @@ public final class ModProcessingMachines {
                 recipe,
                 6, 1, 6, 2,
                 CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
-                CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+                UNBOUNDED_FLUID_OUTPUT,
                 true,
                 EnergyType.KINETIC_ROTATION,
                 1_024L);
@@ -1304,6 +1315,8 @@ public final class ModProcessingMachines {
             int gt6OutFluids,
             EnergyType energyType,
             long energyMax) {
+        // Callers still pass a historical output number. The tank ignores it.
+        final int outputCapacity = UNBOUNDED_FLUID_OUTPUT;
         int layoutItemOutputs = itemOutputs;
         int layoutFluidOutputs = fluidOutputs;
         List<Integer> inputSlots =
@@ -1320,7 +1333,7 @@ public final class ModProcessingMachines {
         List<ProcessingMachineSpec.TankSpec> outputTanks = java.util.stream.IntStream
                 .range(fluidInputs, fluidInputs + layoutFluidOutputs)
                 .mapToObj(index ->
-                        new ProcessingMachineSpec.TankSpec(index, fluidOutputCapacity))
+                        new ProcessingMachineSpec.TankSpec(index, outputCapacity))
                 .toList();
         return new ProcessingMachineSpec(
                 id(path),
@@ -1342,7 +1355,7 @@ public final class ModProcessingMachines {
                         fluidInputs,
                         fluidOutputs,
                         fluidInputCapacity,
-                        fluidOutputCapacity,
+                        outputCapacity,
                         chemicalAllowsPreserveCatalyst(path),
                         energyType,
                         energyMax),
@@ -1385,7 +1398,8 @@ public final class ModProcessingMachines {
                 || recipe.fluidInputs().stream().anyMatch(
                         stack -> stack.isEmpty() || stack.getAmount() > 100_000)
                 || recipe.fluidOutputs().stream().anyMatch(
-                        stack -> stack.isEmpty() || stack.getAmount() > 8_000)) {
+                        stack -> stack.isEmpty()
+                                || stack.getAmount() > UNBOUNDED_FLUID_OUTPUT)) {
             return Optional.of("centrifuge_compact_amount");
         }
         return Optional.empty();
@@ -1503,7 +1517,8 @@ public final class ModProcessingMachines {
                 new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
                 new ProcessingMachineSpec.TankLayout(
                         List.of(new ProcessingMachineSpec.TankSpec(0, 32_000)),
-                        List.of(new ProcessingMachineSpec.TankSpec(1, 32_000))),
+                        List.of(new ProcessingMachineSpec.TankSpec(
+                                1, UNBOUNDED_FLUID_OUTPUT))),
                 new ProcessingMachineSpec.EnergySpec(
                         EnergyType.QUANTUM,
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
@@ -1511,7 +1526,7 @@ public final class ModProcessingMachines {
                         2_097_152L),
                 Gt6SidedIo.policy("large_matter_fabricator"),
                 recipe -> validateChemicalRecipe(
-                        recipe, 1, 1, 1, 1, 32_000, 32_000,
+                        recipe, 1, 1, 1, 1, 32_000, UNBOUNDED_FLUID_OUTPUT,
                         chemicalAllowsPreserveCatalyst("massfab"),
                         EnergyType.QUANTUM,
                         2_097_152L),
@@ -1578,7 +1593,8 @@ public final class ModProcessingMachines {
                         List.of(1, 2, 3, 4, 5, 6, 7, 8, 9)),
                 new ProcessingMachineSpec.TankLayout(
                         List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)),
-                        List.of(new ProcessingMachineSpec.TankSpec(1, 4_000))),
+                        List.of(new ProcessingMachineSpec.TankSpec(
+                                1, UNBOUNDED_FLUID_OUTPUT))),
                 new ProcessingMachineSpec.EnergySpec(
                         EnergyType.KINETIC_ROTATION,
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
@@ -1602,7 +1618,8 @@ public final class ModProcessingMachines {
                         3, List.of(0), List.of(1, 2)),
                 new ProcessingMachineSpec.TankLayout(
                         List.of(),
-                        List.of(new ProcessingMachineSpec.TankSpec(0, 8_000))),
+                        List.of(new ProcessingMachineSpec.TankSpec(
+                                0, UNBOUNDED_FLUID_OUTPUT))),
                 new ProcessingMachineSpec.EnergySpec(
                         EnergyType.KINETIC_ROTATION,
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
@@ -1781,7 +1798,8 @@ public final class ModProcessingMachines {
                 new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
                 new ProcessingMachineSpec.TankLayout(
                         List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)),
-                        List.of(new ProcessingMachineSpec.TankSpec(1, 8_000))),
+                        List.of(new ProcessingMachineSpec.TankSpec(
+                                1, UNBOUNDED_FLUID_OUTPUT))),
                 new ProcessingMachineSpec.EnergySpec(
                         EnergyType.HEAT,
                         ProcessingMachineSpec.EnergyMode.ADJACENT,
@@ -1810,7 +1828,7 @@ public final class ModProcessingMachines {
         if (recipe.fluidInputs().stream()
                         .anyMatch(stack -> stack.getAmount() > 4_000)
                 || recipe.fluidOutputs().stream()
-                        .anyMatch(stack -> stack.getAmount() > 8_000)) {
+                        .anyMatch(stack -> stack.getAmount() > UNBOUNDED_FLUID_OUTPUT)) {
             return Optional.of("melter_recipe_amount");
         }
         return Optional.empty();
@@ -1946,7 +1964,8 @@ public final class ModProcessingMachines {
                         List.of(
                                 new ProcessingMachineSpec.TankSpec(0, 4_000),
                                 new ProcessingMachineSpec.TankSpec(1, 4_000)),
-                        List.of(new ProcessingMachineSpec.TankSpec(2, 4_000))),
+                        List.of(new ProcessingMachineSpec.TankSpec(
+                                2, UNBOUNDED_FLUID_OUTPUT))),
                 new ProcessingMachineSpec.EnergySpec(
                         EnergyType.ELECTRIC,
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
@@ -1975,7 +1994,7 @@ public final class ModProcessingMachines {
         if (recipe.fluidInputs().stream()
                         .anyMatch(stack -> stack.getAmount() > 4_000)
                 || recipe.fluidOutputs().stream()
-                        .anyMatch(stack -> stack.getAmount() > 4_000)) {
+                        .anyMatch(stack -> stack.getAmount() > UNBOUNDED_FLUID_OUTPUT)) {
             return Optional.of("injector_recipe_amount");
         }
         return Optional.empty();
@@ -1989,7 +2008,8 @@ public final class ModProcessingMachines {
                 new ProcessingMachineSpec.SlotLayout(3, List.of(0, 1), List.of(2)),
                 new ProcessingMachineSpec.TankLayout(
                         List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)),
-                        List.of(new ProcessingMachineSpec.TankSpec(1, 4_000))),
+                        List.of(new ProcessingMachineSpec.TankSpec(
+                                1, UNBOUNDED_FLUID_OUTPUT))),
                 new ProcessingMachineSpec.EnergySpec(
                         EnergyType.ELECTRIC,
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
@@ -2016,7 +2036,7 @@ public final class ModProcessingMachines {
         if (recipe.fluidInputs().stream()
                         .anyMatch(stack -> stack.getAmount() > 4_000)
                 || recipe.fluidOutputs().stream()
-                        .anyMatch(stack -> stack.getAmount() > 4_000)) {
+                        .anyMatch(stack -> stack.getAmount() > UNBOUNDED_FLUID_OUTPUT)) {
             return Optional.of("nanofab_recipe_amount");
         }
         return Optional.empty();
@@ -2064,7 +2084,8 @@ public final class ModProcessingMachines {
                         3, List.of(0), List.of(1, 2)),
                 new ProcessingMachineSpec.TankLayout(
                         List.of(),
-                        List.of(new ProcessingMachineSpec.TankSpec(0, 8_000))),
+                        List.of(new ProcessingMachineSpec.TankSpec(
+                                0, UNBOUNDED_FLUID_OUTPUT))),
                 new ProcessingMachineSpec.EnergySpec(
                         EnergyType.KINETIC_PUSH,
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
@@ -2089,7 +2110,7 @@ public final class ModProcessingMachines {
             return Optional.of("squeezer_recipe_shape");
         }
         if (recipe.fluidOutputs().stream()
-                        .anyMatch(fluid -> fluid.getAmount() > 8_000)) {
+                        .anyMatch(fluid -> fluid.getAmount() > UNBOUNDED_FLUID_OUTPUT)) {
             return Optional.of("squeezer_fluid_amount");
         }
         return Optional.empty();

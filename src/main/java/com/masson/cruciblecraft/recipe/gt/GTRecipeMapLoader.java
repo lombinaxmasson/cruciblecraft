@@ -1344,9 +1344,10 @@ public final class GTRecipeMapLoader {
                     // Bath with reused chemical machines but are not
                     // chemical-dedicated. GT6 remainder IO can exceed the
                     // bronze envelope (2 FO, >4k mB).
-                    // Smelter deferred MTE recovery keeps GT6 molten amounts.
-                    // The bronze output tank is the observed recipe-map max
-                    // (13032 mB). Rows above that still skip this gate.
+                    // Smelter deferred MTE recovery keeps GT6 molten amounts and
+                    // is published on its own gate. The smelter output tank is
+                    // uncapped, so those amounts fit; this skip stays because
+                    // the rows are not chemical-dedicated.
                     // Publication stays exact; GameTest executes tank-fitting
                     // representatives.
                     continue;
