@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "cruciblecraft:tungstensteel/gear"
+    },
+    "M": {
+      "item": "cruciblecraft:tungstensteel/machine_casing_double"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "tungstensteel"
+      },
+      "items": "cruciblecraft:double_plate"
+    },
+    "R": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "tungstensteel"
+      },
+      "items": "cruciblecraft:rotor"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "RGR",
+    "GMG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:tungstensteel_sluice"
+  }
+}

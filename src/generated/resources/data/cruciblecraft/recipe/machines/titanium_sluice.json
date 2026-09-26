@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "cruciblecraft:titanium/gear"
+    },
+    "M": {
+      "item": "cruciblecraft:titanium/machine_casing_double"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "titanium"
+      },
+      "items": "cruciblecraft:double_plate"
+    },
+    "R": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "titanium"
+      },
+      "items": "cruciblecraft:rotor"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "RGR",
+    "GMG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:titanium_sluice"
+  }
+}

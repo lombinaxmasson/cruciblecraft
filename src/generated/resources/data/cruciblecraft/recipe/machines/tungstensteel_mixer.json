@@ -1,0 +1,42 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "tag": "cruciblecraft:crafting_tools/hammer"
+    },
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "M": {
+      "item": "cruciblecraft:tungstensteel/machine_casing_double"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "stainless_steel"
+      },
+      "items": "cruciblecraft:quadruple_plate"
+    },
+    "R": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "stainless_steel"
+      },
+      "items": "cruciblecraft:rotor"
+    },
+    "S": {
+      "item": "cruciblecraft:tungstensteel/rod"
+    }
+  },
+  "pattern": [
+    "PMP",
+    "PRP",
+    "hSw"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:tungstensteel_mixer"
+  }
+}

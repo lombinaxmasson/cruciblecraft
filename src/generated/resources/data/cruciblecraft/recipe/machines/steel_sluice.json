@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "cruciblecraft:steel/gear"
+    },
+    "M": {
+      "item": "cruciblecraft:steel/machine_casing_double"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "steel"
+      },
+      "items": "cruciblecraft:double_plate"
+    },
+    "R": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "steel"
+      },
+      "items": "cruciblecraft:rotor"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "RGR",
+    "GMG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:steel_sluice"
+  }
+}
