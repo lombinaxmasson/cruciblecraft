@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/machines/gt6-basic-machine-batch/crystallisation-crucible/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "7a21244be17cd45d7dea74f86c94cd665b2a26f61c335b2a30ce3f3084ff294a"
+    },
+    {
+      "path": "tools/waves/machines/gt6-basic-machine-batch/crystallisation-crucible/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "dbf1bdfebf4c72605f1c9a26b75d7feb37f0a34682c1868fba8f77a6a234d07b"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "crystallisation-crucible/basic-batch",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

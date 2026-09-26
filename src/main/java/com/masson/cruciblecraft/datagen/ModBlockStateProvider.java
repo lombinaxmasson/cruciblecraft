@@ -474,7 +474,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         StorageVariantCatalog.variants().forEach(variant -> {
             var block = ModBlocks.storageBlocksById().get(variant.id()).get();
             ModelFile model = models().getExistingFile(variant.model());
-            horizontalBlock(block, model);
+            blockWithFacing(block, model);
             simpleBlockItem(block, model);
         });
     }
@@ -1074,7 +1074,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             } else if (kind.overlayActive()) {
                 configuredFacingLit(block, inactive, active);
             } else {
-                horizontalBlock(block, inactive);
+                blockWithFacing(block, inactive);
             }
             simpleBlockItem(block, inactive);
         }
@@ -1939,8 +1939,43 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     mcLoc("block/furnace_front"),
                     mcLoc("block/cut_copper"));
         }
-        horizontalBlock(block, model);
+        blockWithFacing(block, model);
         simpleBlockItem(block, model);
+    }
+
+    /**
+     * {@code horizontalBlock} reads {@code HORIZONTAL_FACING}. Gearboxes,
+     * steam engines, and boilers register six-way {@code FACING} instead.
+     */
+    private void blockWithFacing(
+            net.minecraft.world.level.block.Block block, ModelFile model) {
+        var state = block.defaultBlockState();
+        if (state.hasProperty(
+                net.minecraft.world.level.block.state.properties
+                        .BlockStateProperties.HORIZONTAL_FACING)) {
+            horizontalBlock(block, model);
+            return;
+        }
+        if (state.hasProperty(
+                net.minecraft.world.level.block.state.properties
+                        .BlockStateProperties.FACING)) {
+            getVariantBuilder(block).forAllStates(current -> {
+                Direction facing = current.getValue(
+                        net.minecraft.world.level.block.state.properties
+                                .BlockStateProperties.FACING);
+                var builder = ConfiguredModel.builder().modelFile(model);
+                return switch (facing) {
+                    case DOWN -> builder.rotationX(90).build();
+                    case UP -> builder.rotationX(270).build();
+                    case SOUTH -> builder.rotationY(180).build();
+                    case WEST -> builder.rotationY(270).build();
+                    case EAST -> builder.rotationY(90).build();
+                    case NORTH -> builder.build();
+                };
+            });
+            return;
+        }
+        simpleBlock(block, model);
     }
 
     private void registerAutomaticHammers() {

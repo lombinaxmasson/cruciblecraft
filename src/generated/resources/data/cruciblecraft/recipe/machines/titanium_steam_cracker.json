@@ -1,0 +1,39 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "C": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "copper"
+      },
+      "items": "cruciblecraft:quadruple_plate"
+    },
+    "I": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "invar"
+      },
+      "items": "cruciblecraft:quadruple_plate"
+    },
+    "M": {
+      "item": "cruciblecraft:titanium/machine_casing_double"
+    },
+    "P": {
+      "item": "cruciblecraft:titanium/fluid_pipe"
+    }
+  },
+  "pattern": [
+    "IwI",
+    "PMP",
+    "ICI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:titanium_steam_cracker"
+  }
+}

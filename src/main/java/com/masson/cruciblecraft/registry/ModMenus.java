@@ -228,6 +228,18 @@ public final class ModMenus {
             LARGE_MATTER_FABRICATOR = processing(
                     "large_matter_fabricator",
                     ModProcessingMachines.LARGE_MATTER_FABRICATOR);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            BURN_MIXER = processing("burn_mixer", ModProcessingMachines.BURN_MIXER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            CATALYTIC_CRACKER = processing(
+                    "catalytic_cracker", ModProcessingMachines.CATALYTIC_CRACKER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            CRYSTALLISATION_CRUCIBLE = processing(
+                    "crystallisation_crucible",
+                    ModProcessingMachines.CRYSTALLISATION_CRUCIBLE);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            STEAM_CRACKER = processing(
+                    "steam_cracker", ModProcessingMachines.STEAM_CRACKER);
 
     static {
         validateProcessingMenuMapping(

@@ -11,7 +11,9 @@ import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.machine.processing.CraftingCatalystPolicy;
 import com.masson.cruciblecraft.machine.processing.Gt6SidedIo;
 import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
+import com.masson.cruciblecraft.machine.processing.MachineDeliveryCatalog;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpecFactory;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationGroups;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
@@ -229,6 +231,35 @@ public final class ModProcessingMachines {
     public static final ProcessingMachineSpec MIXER =
             mixer("mixer", () -> ModRecipeMaps.MIXER,
                     EnergyType.KINETIC_ROTATION);
+    /**
+     * Largest {@code gt.recipe.burnmixer} fluid input is 14_000 mB.
+     * GT6 sizes each input tank to {@code amount * parallel * 2}; tier 4
+     * parallel is 32.
+     */
+    public static final int BURN_MIXER_FLUID_INPUT = 14_000 * 32 * 2;
+    /** Kind envelope. Placed variants replace this with the tier window. */
+    private static final long BASIC_BATCH_ENERGY_CAPACITY = 65_536L;
+    private static final long BASIC_BATCH_MAX_PACKET = 4_096L;
+    public static final ProcessingMachineSpec BURN_MIXER = basicBatch(
+            "burn_mixer",
+            () -> ModRecipeMaps.BURN_MIXER,
+            BURN_MIXER_FLUID_INPUT,
+            ModProcessingMachines::validateBurnMixer);
+    public static final ProcessingMachineSpec CATALYTIC_CRACKER = basicBatch(
+            "catalytic_cracker",
+            () -> ModRecipeMaps.CATALYTIC_CRACKER,
+            CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+            ModProcessingMachines::validateCatalyticCracker);
+    public static final ProcessingMachineSpec CRYSTALLISATION_CRUCIBLE = basicBatch(
+            "crystallisation_crucible",
+            () -> ModRecipeMaps.CRYSTALLISATION_CRUCIBLE,
+            CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+            ModProcessingMachines::validateCrystallisationCrucible);
+    public static final ProcessingMachineSpec STEAM_CRACKER = basicBatch(
+            "steam_cracker",
+            () -> ModRecipeMaps.STEAM_CRACKER,
+            CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+            ModProcessingMachines::validateSteamCracker);
     public static final ProcessingMachineSpec DISTILLERY =
             reusedChemicalSpec("distillery", () -> ModRecipeMaps.DISTILLERY,
                     2, 2, 2, 3, 8_000, 8_000,
@@ -605,7 +636,11 @@ public final class ModProcessingMachines {
                                             ELECTRICLOOM,
                                             INJECTOR,
                                             NANOFAB,
-                                            IMPLOSION_COMPRESSOR),
+                                            IMPLOSION_COMPRESSOR,
+                                            BURN_MIXER,
+                                            CATALYTIC_CRACKER,
+                                            CRYSTALLISATION_CRUCIBLE,
+                                            STEAM_CRACKER),
                                     PUV_OMEGA_HOST_MACHINES.stream()))
                     .distinct()
                     .toList();
@@ -1174,6 +1209,21 @@ public final class ModProcessingMachines {
      * Mixer keeps the platinum catalyst; electrolyzer and autoclave keep GT6
      * programmed_circuit (count-0 PRESERVE). Other chemical hosts remain CONSUME-only.
      */
+    private static ProcessingMachineSpec basicBatch(
+            String id,
+            Supplier<RecipeMap> recipeMap,
+            int fluidInputCapacity,
+            ProcessingMachineSpec.ExecutionValidator validator) {
+        return ProcessingMachineSpecFactory.create(
+                MachineDeliveryCatalog.require(id(id)),
+                recipeMap,
+                BASIC_BATCH_ENERGY_CAPACITY,
+                BASIC_BATCH_MAX_PACKET,
+                fluidInputCapacity,
+                PROCESSING_STATUSES,
+                validator);
+    }
+
     /**
      * Mixer inventory uses the GT6 panel layout (6/1/6/2). Bronze chemical-map
      * recipes remain valid as a subset; mixer ordinary-closure groups declare
@@ -1403,6 +1453,64 @@ public final class ModProcessingMachines {
             return Optional.of("centrifuge_compact_amount");
         }
         return Optional.empty();
+    }
+
+    public static Optional<String> validateBurnMixer(GTRecipe recipe) {
+        return validateBasicBatch(
+                recipe,
+                6, 1, 6, 2,
+                BURN_MIXER_FLUID_INPUT,
+                true,
+                EnergyType.KINETIC_ROTATION);
+    }
+
+    public static Optional<String> validateCatalyticCracker(GTRecipe recipe) {
+        return validateBasicBatch(
+                recipe,
+                1, 3, 2, 9,
+                CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+                true,
+                EnergyType.HEAT);
+    }
+
+    public static Optional<String> validateCrystallisationCrucible(GTRecipe recipe) {
+        return validateBasicBatch(
+                recipe,
+                1, 1, 3, 0,
+                CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+                false,
+                EnergyType.HEAT);
+    }
+
+    public static Optional<String> validateSteamCracker(GTRecipe recipe) {
+        return validateBasicBatch(
+                recipe,
+                1, 3, 2, 9,
+                CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+                true,
+                EnergyType.HEAT);
+    }
+
+    private static Optional<String> validateBasicBatch(
+            GTRecipe recipe,
+            int itemInputs,
+            int itemOutputs,
+            int fluidInputs,
+            int fluidOutputs,
+            int fluidInputCapacity,
+            boolean allowPreserve,
+            EnergyType energyType) {
+        return validateChemicalRecipe(
+                recipe,
+                itemInputs,
+                itemOutputs,
+                fluidInputs,
+                fluidOutputs,
+                fluidInputCapacity,
+                UNBOUNDED_FLUID_OUTPUT,
+                allowPreserve,
+                energyType,
+                BASIC_BATCH_MAX_PACKET);
     }
 
     private static Optional<String> validateChemicalRecipe(

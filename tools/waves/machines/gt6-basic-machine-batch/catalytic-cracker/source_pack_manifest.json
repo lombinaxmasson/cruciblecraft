@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/machines/gt6-basic-machine-batch/catalytic-cracker/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "65f16d6d94134b8a0f7202612aabb6dab7d972a1319a7f1541d8d7b0ba38072a"
+    },
+    {
+      "path": "tools/waves/machines/gt6-basic-machine-batch/catalytic-cracker/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "bf576211dbf4c4dba082e9b95bf6d8f0c3e14317ef6c7c11c1d5cd938b6bbea1"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "catalytic-cracker/basic-batch",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

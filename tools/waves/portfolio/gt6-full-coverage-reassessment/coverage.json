@@ -670,28 +670,28 @@
   "summary": {
     "recipe_map_count": 95,
     "recipe_source_rows": 720841,
-    "traced_source_rows": 550609,
+    "traced_source_rows": 550929,
     "reference_traced_rows": 22886,
     "recipe_evidence_grades": {
       "source_rows": 720841,
       "classes": {
-        "source_exact": 550611,
-        "translated_exact": 6618,
+        "source_exact": 550931,
+        "translated_exact": 6974,
         "translated_io_only": 0,
         "translated_item_io": 3064,
-        "translatable_missing": 47401,
+        "translatable_missing": 46746,
         "missing_material_form": 66811,
         "missing_material": 0,
-        "missing_fluid": 7999,
+        "missing_fluid": 7978,
         "missing_object": 15119,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
       },
       "groups": {
-        "proven": 557229,
+        "proven": 557905,
         "partial_match": 3064,
-        "recipe_gap": 47401,
-        "identity_gap": 89929,
+        "recipe_gap": 46746,
+        "identity_gap": 89908,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
       },
@@ -704,26 +704,26 @@
         "source_rows": 720841,
         "excluded_rows": 13883,
         "target_rows": 706958,
-        "proven_rows": 557229,
-        "identity_blocked_rows": 89622,
+        "proven_rows": 557905,
+        "identity_blocked_rows": 89601,
         "undecided_rows": 9642,
-        "recipe_progress": 0.7882,
+        "recipe_progress": 0.7892,
         "identity_ready": 0.8596
       },
       "machine_progress": {
         "maps": 73,
-        "mean_recipe_progress": 0.5406,
-        "maps_complete": 11,
-        "maps_untouched": 19
+        "mean_recipe_progress": 0.5961,
+        "maps_complete": 15,
+        "maps_untouched": 16
       }
     },
-    "cc_recipe_rows": 553088,
+    "cc_recipe_rows": 553408,
     "cc_material_rule_files": 98,
-    "capability_count": 123,
+    "capability_count": 124,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 12,
-      "runtime_ready:accepted": 106,
+      "runtime_ready:accepted": 107,
       "runtime_ready:paused": 3
     },
     "blocker_count": 62,
@@ -734,8 +734,8 @@
       "resolved": 20,
       "superseded": 5
     },
-    "registered_recipe_maps": 71,
-    "cc_maps_with_rows": 59,
+    "registered_recipe_maps": 75,
+    "cc_maps_with_rows": 62,
     "overflow_artifacts": 24,
     "live_cover_definitions": 54
   },
@@ -767,8 +767,8 @@
       "cruciblecraft:material_rule"
     ],
     "attribution": "tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json",
-    "attribution_digest": "9ab10520a0ded47a1cd43ea6faed8d13e906af7a7b1bc862cbc9e4f0c12e045a",
-    "attribution_overrides": 0,
+    "attribution_digest": "afef79c4a09b4f9f521708a6d322444a38f8fdfbc02e6bcd5487a4c076de08ab",
+    "attribution_overrides": 164,
     "unverified_hashes": 0,
     "ambiguous_hashes": 0
   },
@@ -1438,6 +1438,15 @@
       "survival_access": "partial",
       "wave_slug": "machines/distillation-tower",
       "path": "tools/capabilities/machines/distillation-tower/capability.json"
+    },
+    {
+      "slug": "machines/gt6-basic-machine-batch",
+      "title": "GT6 basic machine batch",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "partial",
+      "wave_slug": "machines/gt6-basic-machine-batch",
+      "path": "tools/capabilities/machines/gt6-basic-machine-batch/capability.json"
     },
     {
       "slug": "machines/gt6-coil-hosts",
@@ -4095,6 +4104,46 @@
       "blocker_ids": []
     },
     {
+      "capability": "machines/gt6-basic-machine-batch",
+      "semantic_key": "machine:basic-batch:20521-20524",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:burn_mixer",
+        "cruciblecraft:steel_burn_mixer",
+        "cruciblecraft:titanium_burn_mixer",
+        "cruciblecraft:tungstensteel_burn_mixer"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "machines/gt6-basic-machine-batch",
+      "semantic_key": "machine:basic-batch:20481-20494",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:catalytic_cracker",
+        "cruciblecraft:invar_catalytic_cracker",
+        "cruciblecraft:titanium_catalytic_cracker",
+        "cruciblecraft:tungsten_carbide_catalytic_cracker",
+        "cruciblecraft:steam_cracker",
+        "cruciblecraft:invar_steam_cracker",
+        "cruciblecraft:titanium_steam_cracker",
+        "cruciblecraft:tungsten_carbide_steam_cracker"
+      ],
+      "blocker_ids": []
+    },
+    {
+      "capability": "machines/gt6-basic-machine-batch",
+      "semantic_key": "machine:basic-batch:20251-20254",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:crystallisation_crucible",
+        "cruciblecraft:invar_crystallisation_crucible",
+        "cruciblecraft:titanium_crystallisation_crucible",
+        "cruciblecraft:tungsten_carbide_crystallisation_crucible"
+      ],
+      "blocker_ids": []
+    },
+    {
       "capability": "machines/gt6-coil-hosts",
       "semantic_key": "machine:gt6_coils:18040-18045",
       "disposition": "new_distinct",
@@ -5065,8 +5114,8 @@
       "raw_row_classes": {
         "source_exact": 23,
         "translated_exact": 3,
-        "translated_item_io": 8,
-        "missing_fluid": 15
+        "translated_item_io": 9,
+        "missing_fluid": 14
       },
       "raw_row_excluded": {},
       "progress": {
@@ -5074,10 +5123,10 @@
         "excluded_rows": 0,
         "target_rows": 49,
         "proven_rows": 26,
-        "identity_blocked_rows": 15,
+        "identity_blocked_rows": 14,
         "undecided_rows": 0,
         "recipe_progress": 0.5306,
-        "identity_ready": 0.6939
+        "identity_ready": 0.7143
       }
     },
     {
@@ -5557,19 +5606,19 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translated_exact": 3,
-        "missing_fluid": 5
+        "translated_exact": 7,
+        "translated_item_io": 1
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 8,
         "excluded_rows": 0,
         "target_rows": 8,
-        "proven_rows": 3,
-        "identity_blocked_rows": 5,
+        "proven_rows": 7,
+        "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.375,
-        "identity_ready": 0.375
+        "recipe_progress": 0.875,
+        "identity_ready": 1.0
       }
     },
     {
@@ -5694,20 +5743,22 @@
     {
       "source_map": "gt.recipe.catalyticcracking",
       "normalized_map": "gt.recipe.catalyticcracking",
-      "local_map": "catalyticcracking",
+      "local_map": "catalytic_cracker",
       "source_rows": 3,
       "denominator_class": "deferred_with_reason",
       "owner": "POST_T19",
       "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.catalyticcracking has 3 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
       "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.catalyticcracking.json",
-      "cc_recipe_map_registered": false,
+      "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 3,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "catalytic_cracker": 3
+      },
       "owned_cc_maps": [
-        "catalyticcracking"
+        "catalytic_cracker"
       ],
       "untraced_cc_rows": 0,
       "untraced_cc_row_kinds": {},
@@ -5722,23 +5773,23 @@
         "survival_access": [],
         "signoff_required": true
       },
-      "delivery_depth": "denominator_only",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 3
+        "source_exact": 3
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 3,
         "excluded_rows": 0,
         "target_rows": 3,
-        "proven_rows": 0,
+        "proven_rows": 3,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -5860,8 +5911,9 @@
       "raw_row_classes": {
         "source_exact": 892,
         "translated_exact": 2,
+        "translated_item_io": 1,
         "missing_material_form": 3,
-        "missing_fluid": 620
+        "missing_fluid": 619
       },
       "raw_row_excluded": {},
       "progress": {
@@ -5869,10 +5921,10 @@
         "excluded_rows": 0,
         "target_rows": 1517,
         "proven_rows": 894,
-        "identity_blocked_rows": 623,
+        "identity_blocked_rows": 622,
         "undecided_rows": 0,
         "recipe_progress": 0.5893,
-        "identity_ready": 0.5893
+        "identity_ready": 0.59
       }
     },
     {
@@ -6002,20 +6054,22 @@
     {
       "source_map": "gt.recipe.crystallisationcrucible",
       "normalized_map": "gt.recipe.crystallisationcrucible",
-      "local_map": "crystallisationcrucible",
+      "local_map": "crystallisation_crucible",
       "source_rows": 132,
       "denominator_class": "deferred_with_reason",
       "owner": "POST_T19",
       "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.crystallisationcrucible has 132 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
       "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.crystallisationcrucible.json",
-      "cc_recipe_map_registered": false,
+      "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 132,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "crystallisation_crucible": 132
+      },
       "owned_cc_maps": [
-        "crystallisationcrucible"
+        "crystallisation_crucible"
       ],
       "untraced_cc_rows": 0,
       "untraced_cc_row_kinds": {},
@@ -6030,23 +6084,23 @@
         "survival_access": [],
         "signoff_required": true
       },
-      "delivery_depth": "denominator_only",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 132
+        "source_exact": 132
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 132,
         "excluded_rows": 0,
         "target_rows": 132,
-        "proven_rows": 0,
+        "proven_rows": 132,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -6072,10 +6126,10 @@
           "path": "tools/capabilities/machines/large-mixer/capability.json"
         }
       ],
-      "traced_source_rows": 63558,
+      "traced_source_rows": 63568,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "mixer": 63578
+        "mixer": 63588
       },
       "owned_cc_maps": [
         "mixer"
@@ -6103,9 +6157,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 63558,
+        "source_exact": 63568,
         "translated_exact": 30,
-        "missing_fluid": 634,
+        "missing_fluid": 624,
         "missing_object": 23
       },
       "raw_row_excluded": {
@@ -6115,30 +6169,32 @@
         "source_rows": 64245,
         "excluded_rows": 7,
         "target_rows": 64238,
-        "proven_rows": 63588,
-        "identity_blocked_rows": 650,
+        "proven_rows": 63598,
+        "identity_blocked_rows": 640,
         "undecided_rows": 0,
-        "recipe_progress": 0.9899,
-        "identity_ready": 0.9899
+        "recipe_progress": 0.99,
+        "identity_ready": 0.99
       }
     },
     {
       "source_map": "gt.recipe.burnmixer",
       "normalized_map": "gt.recipe.burnmixer",
-      "local_map": "burnmixer",
+      "local_map": "burn_mixer",
       "source_rows": 29,
       "denominator_class": "deferred_with_reason",
       "owner": "POST_T19",
       "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.burnmixer has 29 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
       "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.burnmixer.json",
-      "cc_recipe_map_registered": false,
+      "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 29,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "burn_mixer": 29
+      },
       "owned_cc_maps": [
-        "burnmixer"
+        "burn_mixer"
       ],
       "untraced_cc_rows": 0,
       "untraced_cc_row_kinds": {},
@@ -6153,23 +6209,23 @@
         "survival_access": [],
         "signoff_required": true
       },
-      "delivery_depth": "denominator_only",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 29
+        "source_exact": 29
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 29,
         "excluded_rows": 0,
         "target_rows": 29,
-        "proven_rows": 0,
+        "proven_rows": 29,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -7293,8 +7349,7 @@
       },
       "raw_row_classes": {
         "translated_exact": 1,
-        "translatable_missing": 10,
-        "missing_fluid": 1
+        "translatable_missing": 11
       },
       "raw_row_excluded": {},
       "progress": {
@@ -7302,10 +7357,10 @@
         "excluded_rows": 0,
         "target_rows": 12,
         "proven_rows": 1,
-        "identity_blocked_rows": 1,
+        "identity_blocked_rows": 0,
         "undecided_rows": 0,
         "recipe_progress": 0.0833,
-        "identity_ready": 0.9167
+        "identity_ready": 1.0
       }
     },
     {
@@ -8641,10 +8696,10 @@
           "path": "tools/capabilities/machines/large-centrifuge/capability.json"
         }
       ],
-      "traced_source_rows": 893,
+      "traced_source_rows": 899,
       "reference_traced_rows": 816,
       "cc_host_maps": {
-        "centrifuge": 1251
+        "centrifuge": 1257
       },
       "owned_cc_maps": [
         "centrifuge"
@@ -8672,11 +8727,11 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 893,
-        "translated_item_io": 4,
-        "translatable_missing": 362,
+        "source_exact": 899,
+        "translated_exact": 352,
+        "translatable_missing": 10,
         "missing_material_form": 1,
-        "missing_fluid": 13,
+        "missing_fluid": 11,
         "missing_object": 23
       },
       "raw_row_excluded": {},
@@ -8684,11 +8739,11 @@
         "source_rows": 1296,
         "excluded_rows": 0,
         "target_rows": 1296,
-        "proven_rows": 893,
-        "identity_blocked_rows": 37,
+        "proven_rows": 1251,
+        "identity_blocked_rows": 35,
         "undecided_rows": 0,
-        "recipe_progress": 0.689,
-        "identity_ready": 0.9715
+        "recipe_progress": 0.9653,
+        "identity_ready": 0.973
       }
     },
     {
@@ -9154,10 +9209,10 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 18086,
+      "traced_source_rows": 18209,
       "reference_traced_rows": 2003,
       "cc_host_maps": {
-        "smelter": 18207
+        "smelter": 18330
       },
       "owned_cc_maps": [
         "smelter"
@@ -9183,10 +9238,10 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 18086,
+        "source_exact": 18209,
         "translated_exact": 201,
         "translated_item_io": 3,
-        "translatable_missing": 158,
+        "translatable_missing": 35,
         "missing_material_form": 3442,
         "missing_fluid": 58,
         "missing_object": 21
@@ -9198,10 +9253,10 @@
         "source_rows": 21969,
         "excluded_rows": 1,
         "target_rows": 21968,
-        "proven_rows": 18287,
+        "proven_rows": 18410,
         "identity_blocked_rows": 3520,
         "undecided_rows": 0,
-        "recipe_progress": 0.8324,
+        "recipe_progress": 0.838,
         "identity_ready": 0.8398
       }
     },
@@ -9602,10 +9657,10 @@
           "path": "tools/capabilities/machines/nanofab/capability.json"
         }
       ],
-      "traced_source_rows": 45,
+      "traced_source_rows": 62,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "nanofab": 45
+        "nanofab": 62
       },
       "owned_cc_maps": [
         "nanofab"
@@ -9652,19 +9707,18 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 45,
-        "translated_exact": 2,
-        "translatable_missing": 17
+        "source_exact": 62,
+        "translated_exact": 2
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 64,
         "excluded_rows": 0,
         "target_rows": 64,
-        "proven_rows": 47,
+        "proven_rows": 64,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.7344,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -10213,9 +10267,10 @@
       "raw_row_classes": {
         "source_exact": 8653,
         "translated_exact": 34,
+        "translated_item_io": 1,
         "translatable_missing": 12,
         "missing_material_form": 1084,
-        "missing_fluid": 56,
+        "missing_fluid": 55,
         "missing_object": 397
       },
       "raw_row_excluded": {
@@ -10227,10 +10282,10 @@
         "excluded_rows": 74,
         "target_rows": 10162,
         "proven_rows": 8687,
-        "identity_blocked_rows": 1463,
+        "identity_blocked_rows": 1462,
         "undecided_rows": 0,
         "recipe_progress": 0.8549,
-        "identity_ready": 0.856
+        "identity_ready": 0.8561
       }
     },
     {
@@ -10550,23 +10605,23 @@
   "recipe_evidence_grades": {
     "source_rows": 720841,
     "classes": {
-      "source_exact": 550611,
-      "translated_exact": 6618,
+      "source_exact": 550931,
+      "translated_exact": 6974,
       "translated_io_only": 0,
       "translated_item_io": 3064,
-      "translatable_missing": 47401,
+      "translatable_missing": 46746,
       "missing_material_form": 66811,
       "missing_material": 0,
-      "missing_fluid": 7999,
+      "missing_fluid": 7978,
       "missing_object": 15119,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
     },
     "groups": {
-      "proven": 557229,
+      "proven": 557905,
       "partial_match": 3064,
-      "recipe_gap": 47401,
-      "identity_gap": 89929,
+      "recipe_gap": 46746,
+      "identity_gap": 89908,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
     },
@@ -10579,17 +10634,17 @@
       "source_rows": 720841,
       "excluded_rows": 13883,
       "target_rows": 706958,
-      "proven_rows": 557229,
-      "identity_blocked_rows": 89622,
+      "proven_rows": 557905,
+      "identity_blocked_rows": 89601,
       "undecided_rows": 9642,
-      "recipe_progress": 0.7882,
+      "recipe_progress": 0.7892,
       "identity_ready": 0.8596
     },
     "machine_progress": {
       "maps": 73,
-      "mean_recipe_progress": 0.5406,
-      "maps_complete": 11,
-      "maps_untouched": 19
+      "mean_recipe_progress": 0.5961,
+      "maps_complete": 15,
+      "maps_untouched": 16
     }
   },
   "semantic_coverage": {
@@ -10625,21 +10680,21 @@
       "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "594a79e57f79a92b6d13cd9b1e08aa72ab1b837e3c7a3d15f21e7735de1067b3"
     },
     "cc_projection": {
-      "runtime_rows": 553088,
+      "runtime_rows": 553408,
       "rule_rows": 19893,
-      "digest": "c9fc05507f9fd8faae8cfa9a79da26c9a9c5e41a8b3288f3d56184c0dca64e2a"
+      "digest": "6917bbdca013e6e2540de51765e6700c6bc8a105365f5eb9b2f4400c08dd409f"
     },
     "summary": {
       "legacy_exclusion_pending": 9642,
-      "source_exact": 550611,
+      "source_exact": 550931,
       "display_only": 13576,
-      "translated_exact": 6618,
+      "translated_exact": 6974,
       "translated_io_only": 0,
       "translated_item_io": 3064,
-      "translatable_missing": 47401,
+      "translatable_missing": 46746,
       "missing_material_form": 66811,
       "missing_material": 0,
-      "missing_fluid": 7999,
+      "missing_fluid": 7978,
       "missing_object": 15119
     },
     "excluded_summary": {
@@ -10698,7 +10753,7 @@
         "display_only": 80
       },
       "gt.recipe.burnmixer": {
-        "translatable_missing": 29
+        "source_exact": 29
       },
       "gt.recipe.byproductlist": {
         "display_only": 289
@@ -10711,14 +10766,14 @@
         "missing_object": 1105
       },
       "gt.recipe.catalyticcracking": {
-        "translatable_missing": 3
+        "source_exact": 3
       },
       "gt.recipe.centrifuge": {
-        "source_exact": 893,
-        "translated_item_io": 4,
-        "translatable_missing": 362,
+        "source_exact": 899,
+        "translated_exact": 352,
+        "translatable_missing": 10,
         "missing_material_form": 1,
-        "missing_fluid": 13,
+        "missing_fluid": 11,
         "missing_object": 23
       },
       "gt.recipe.chisel": {
@@ -10764,7 +10819,7 @@
         "missing_fluid": 45
       },
       "gt.recipe.crystallisationcrucible": {
-        "translatable_missing": 132
+        "source_exact": 132
       },
       "gt.recipe.cutter": {
         "source_exact": 25389,
@@ -10773,14 +10828,15 @@
         "missing_object": 2048
       },
       "gt.recipe.distillationtower": {
-        "translated_exact": 3,
-        "missing_fluid": 5
+        "translated_exact": 7,
+        "translated_item_io": 1
       },
       "gt.recipe.distillery": {
         "source_exact": 892,
         "translated_exact": 2,
+        "translated_item_io": 1,
         "missing_material_form": 3,
-        "missing_fluid": 620
+        "missing_fluid": 619
       },
       "gt.recipe.drying": {
         "source_exact": 198,
@@ -10815,8 +10871,8 @@
       "gt.recipe.fuels.burn": {
         "source_exact": 23,
         "translated_exact": 3,
-        "translated_item_io": 8,
-        "missing_fluid": 15
+        "translated_item_io": 9,
+        "missing_fluid": 14
       },
       "gt.recipe.fuels.engine": {
         "source_exact": 6,
@@ -10842,9 +10898,10 @@
       "gt.recipe.generifier": {
         "source_exact": 8653,
         "translated_exact": 34,
+        "translated_item_io": 1,
         "translatable_missing": 12,
         "missing_material_form": 1084,
-        "missing_fluid": 56,
+        "missing_fluid": 55,
         "missing_object": 397
       },
       "gt.recipe.hammer": {
@@ -10881,8 +10938,7 @@
       },
       "gt.recipe.lightning": {
         "translated_exact": 1,
-        "translatable_missing": 10,
-        "missing_fluid": 1
+        "translatable_missing": 11
       },
       "gt.recipe.loom": {
         "source_exact": 1166,
@@ -10908,9 +10964,9 @@
         "missing_object": 26
       },
       "gt.recipe.mixer": {
-        "source_exact": 63558,
+        "source_exact": 63568,
         "translated_exact": 30,
-        "missing_fluid": 634,
+        "missing_fluid": 624,
         "missing_object": 23
       },
       "gt.recipe.mortar": {
@@ -10920,9 +10976,8 @@
         "missing_object": 483
       },
       "gt.recipe.nanofab": {
-        "source_exact": 45,
-        "translated_exact": 2,
-        "translatable_missing": 17
+        "source_exact": 62,
+        "translated_exact": 2
       },
       "gt.recipe.other": {
         "display_only": 71
@@ -10993,10 +11048,10 @@
         "translatable_missing": 4840
       },
       "gt.recipe.smelter": {
-        "source_exact": 18086,
+        "source_exact": 18209,
         "translated_exact": 201,
         "translated_item_io": 3,
-        "translatable_missing": 158,
+        "translatable_missing": 35,
         "missing_material_form": 3442,
         "missing_fluid": 58,
         "missing_object": 21
@@ -11104,7 +11159,7 @@
       }
     },
     "blocker_kinds": {
-      "fluid": 7853,
+      "fluid": 7832,
       "form": 66811,
       "object": 14958
     },
@@ -13245,11 +13300,11 @@
       }
     ],
     "calibration": {
-      "pairs": 550404,
-      "equal": 549819,
-      "differs": 559,
-      "untranslatable": 26,
-      "agreement": 0.9989,
+      "pairs": 550560,
+      "equal": 549989,
+      "differs": 557,
+      "untranslatable": 14,
+      "agreement": 0.999,
       "by_map": {
         "gt.recipe.assembler": {
           "differs": 288,
@@ -13260,25 +13315,25 @@
           "equal": 49372
         },
         "gt.recipe.distillery": {
-          "differs": 1,
-          "equal": 886,
-          "untranslatable": 4
+          "differs": 5,
+          "equal": 886
         },
         "gt.recipe.drying": {
           "differs": 1,
           "equal": 192
         },
         "gt.recipe.fuels.burn": {
-          "equal": 18,
-          "untranslatable": 5
+          "differs": 1,
+          "equal": 21,
+          "untranslatable": 1
         },
         "gt.recipe.fuels.gas": {
           "equal": 8,
           "untranslatable": 1
         },
         "gt.recipe.generifier": {
-          "equal": 8647,
-          "untranslatable": 5
+          "equal": 8651,
+          "untranslatable": 1
         },
         "gt.recipe.loom": {
           "differs": 228,
@@ -13288,24 +13343,45 @@
           "differs": 1,
           "equal": 3546
         },
-        "gt.recipe.nanofab": {
-          "differs": 7,
-          "equal": 38
-        },
         "gt.recipe.pressurewasher": {
           "differs": 4,
           "equal": 308
         },
         "gt.recipe.smelter": {
-          "equal": 18070,
+          "equal": 18193,
           "untranslatable": 11
         }
       },
       "differs_samples": [
         {
+          "map": "gt.recipe.fuels.burn",
+          "index": 11,
+          "sha256": "29d3dabb8cdcd5abaa315f457c4e5d6a51232d405b5ea42a2ae5f4d924cb9f69"
+        },
+        {
           "map": "gt.recipe.distillery",
           "index": 705,
           "sha256": "8b59c67b0baa2fa78a2cdd0b3725c6e90723464aabf7d69c07f3254ee8cb4536"
+        },
+        {
+          "map": "gt.recipe.distillery",
+          "index": 716,
+          "sha256": "0b6abf382bfd03ac4f5f89121c7c46e6f6645dbc1216e7af0e9cc8bede6f6937"
+        },
+        {
+          "map": "gt.recipe.distillery",
+          "index": 851,
+          "sha256": "28364f9c4a5bf81839a73456d9819d2f4f83671b29d978a133d2df8bc100b2e1"
+        },
+        {
+          "map": "gt.recipe.distillery",
+          "index": 872,
+          "sha256": "239b7501c6e465ba64e949217423ae46553146cd8e34e69a1c4a56046599a83a"
+        },
+        {
+          "map": "gt.recipe.distillery",
+          "index": 1035,
+          "sha256": "65bd4f3ca29a05d652fd2565c3c834b14dab33c92ee3a8f58c375e9af461b5ad"
         },
         {
           "map": "gt.recipe.drying",
@@ -13376,31 +13452,6 @@
           "map": "gt.recipe.bath",
           "index": 28749,
           "sha256": "489c02e219301cf265320722c2badec7063032c02655b2b20598149b020650ae"
-        },
-        {
-          "map": "gt.recipe.bath",
-          "index": 28946,
-          "sha256": "84d5697d33459dbc198254afade36c743f913cf4aa191c4eb3596c34cd55eb58"
-        },
-        {
-          "map": "gt.recipe.bath",
-          "index": 29907,
-          "sha256": "fc3c4cddb8ae6b3dd28f8a977ce863b6ff8ed62bba5bc0773eb9d5efc5882067"
-        },
-        {
-          "map": "gt.recipe.bath",
-          "index": 30134,
-          "sha256": "d6eb760dfd939de52170f1c6fe402da0df643f67e6914028f2b556935180c713"
-        },
-        {
-          "map": "gt.recipe.bath",
-          "index": 32949,
-          "sha256": "b0d308f61dae3fdf90a16ba613c77110379dc42e4603e2eda474d12ea2f53c9a"
-        },
-        {
-          "map": "gt.recipe.bath",
-          "index": 33136,
-          "sha256": "92b8b16747c858bb3c2bb82fe8895bae3618757fcc5c3c8a7bfae125915f4628"
         }
       ]
     },
@@ -14085,10 +14136,12 @@
       "fuel_map": "NONE",
       "variant_count": 4,
       "reason": "Fixed-loader Basic Machine canonical kind.",
-      "cc_hosts": [],
-      "recipe_map_depth": "denominator_only",
+      "cc_hosts": [
+        "cruciblecraft:burn_mixer"
+      ],
+      "recipe_map_depth": "full_replay",
       "evidence": null,
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "full_replay"
     },
     {
       "canonical_key": "MultiTileEntityBasicMachine|recipe:RM.CatalyticCracking|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -14107,10 +14160,12 @@
       "fuel_map": "NONE",
       "variant_count": 4,
       "reason": "Fixed-loader Basic Machine canonical kind.",
-      "cc_hosts": [],
-      "recipe_map_depth": "denominator_only",
+      "cc_hosts": [
+        "cruciblecraft:catalytic_cracker"
+      ],
+      "recipe_map_depth": "full_replay",
       "evidence": null,
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "full_replay"
     },
     {
       "canonical_key": "MultiTileEntityBasicMachine|recipe:RM.Centrifuge|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -14271,10 +14326,12 @@
       "fuel_map": "NONE",
       "variant_count": 4,
       "reason": "Fixed-loader Basic Machine canonical kind.",
-      "cc_hosts": [],
-      "recipe_map_depth": "denominator_only",
+      "cc_hosts": [
+        "cruciblecraft:crystallisation_crucible"
+      ],
+      "recipe_map_depth": "full_replay",
       "evidence": null,
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "full_replay"
     },
     {
       "canonical_key": "MultiTileEntityBasicMachine|recipe:RM.Cutter|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -23628,7 +23685,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -23653,7 +23710,8 @@
       "capability close recipe/gt6-extruder-bulk (major)",
       "capability close recipe/gt6-extruder-remainder (major)",
       "capability close recipe/gt6-prefix-regular-bulk (major)",
-      "capability close recipe/gt6-chemical-misc-bulk (major)"
+      "capability close recipe/gt6-chemical-misc-bulk (major)",
+      "capability close machines/gt6-basic-machine-batch (major)"
     ],
     "accepted": null
   }

@@ -91,6 +91,11 @@ public final class ModRecipeMaps {
     public static final RecipeMap POLARIZER = create("polarizer");
     public static final RecipeMap MAGNETIC_SEPARATOR = create("magnetic_separator");
     public static final RecipeMap FERMENTER = create("fermenter");
+    public static final RecipeMap BURN_MIXER = create("burn_mixer");
+    public static final RecipeMap CATALYTIC_CRACKER = create("catalytic_cracker");
+    public static final RecipeMap CRYSTALLISATION_CRUCIBLE =
+            create("crystallisation_crucible");
+    public static final RecipeMap STEAM_CRACKER = create("steam_cracker");
 
     public static final List<RecipeMap> ALL = List.of(
             COKE_OVEN,
@@ -163,7 +168,11 @@ public final class ModRecipeMaps {
             CRYO_MIXER,
             POLARIZER,
             MAGNETIC_SEPARATOR,
-            FERMENTER);
+            FERMENTER,
+            BURN_MIXER,
+            CATALYTIC_CRACKER,
+            CRYSTALLISATION_CRUCIBLE,
+            STEAM_CRACKER);
 
     private ModRecipeMaps() {}
 

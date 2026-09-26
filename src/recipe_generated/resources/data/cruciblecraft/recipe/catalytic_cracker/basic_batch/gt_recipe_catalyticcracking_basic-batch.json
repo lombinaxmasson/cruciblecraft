@@ -1,0 +1,138 @@
+{
+  "authored_form": "matrix_v1",
+  "family_id": "gt.recipe.catalyticcracking#basic-batch",
+  "matrix": {
+    "dicts": {
+      "fluids": [
+        {
+          "fluid_inputs": [
+            {
+              "amount": 100,
+              "id": "cruciblecraft:hydrogen"
+            },
+            {
+              "amount": 100,
+              "id": "cruciblecraft:ethanol"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 20,
+              "id": "cruciblecraft:ethylene"
+            },
+            {
+              "amount": 5,
+              "id": "cruciblecraft:propylene"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 100,
+              "id": "cruciblecraft:hydrogen"
+            },
+            {
+              "amount": 100,
+              "id": "cruciblecraft:petrol"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 30,
+              "id": "cruciblecraft:ethylene"
+            },
+            {
+              "amount": 20,
+              "id": "cruciblecraft:propylene"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 100,
+              "id": "cruciblecraft:hydrogen"
+            },
+            {
+              "amount": 100,
+              "id": "cruciblecraft:fuel"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 40,
+              "id": "cruciblecraft:ethylene"
+            },
+            {
+              "amount": 10,
+              "id": "cruciblecraft:propylene"
+            }
+          ]
+        }
+      ],
+      "hashes": [
+        "5e4302e92acc3e6972df8dd3bb37489d3633d798914a28422384ec04899bcd09",
+        "1dd12267f7a54eaa77a040455fa6aab2f7a653ec523b1b27e60f51709603353e",
+        "191cfa63bfab268cf25272f17566a7c79bc5f91a08b4bc4cbd0718f31f9121d7"
+      ],
+      "item_inputs": [
+        [
+          {
+            "item": "cruciblecraft:platinum/dust"
+          }
+        ]
+      ],
+      "item_outputs": [
+        []
+      ]
+    },
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:gt6/a172cfe4a24e1a49",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:gt6/8b48aed607140e47",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:gt6/3179efb75ad7fd83",
+        2,
+        2
+      ]
+    ],
+    "shared": {
+      "can_be_buffered": true,
+      "duration": 64,
+      "eut": 16,
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "output_chances": [],
+      "selected_source_recipe": "gt.recipe.catalyticcracking#basic-batch",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
+    }
+  },
+  "publication_group": "cruciblecraft:catalytic_cracker/pilot/basic_batch",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:catalytic_cracker",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

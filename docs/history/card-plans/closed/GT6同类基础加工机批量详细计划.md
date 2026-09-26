@@ -1,22 +1,23 @@
 # GT6 同类基础加工机批量详细计划
 
 > 计划 slug：`machines/gt6-basic-machine-batch`
-> 状态：prep 已签发。本文件位于 `card-plans/prep/`。
+> 状态：已关（`runtime_ready`，`workflow=accepted`）。本文件位于 `card-plans/closed/`。试玩未签。
 > 正式名称：GT6 同类基础加工机批量
-> 性质：一次落地五个 GT6 `MultiTileEntityBasicMachine` kind 及其三张全就绪小图。
-> 总计划第 8 张落地卡，见 [GT6 批量移植总计划](GT6批量移植总计划.md)。
+> 性质：落地四个 GT6 `MultiTileEntityBasicMachine` kind 及其三张全就绪小图。ScannerVisuals 已拆出。
+> 总计划第 8 张落地卡，见 [GT6 批量移植总计划](../prep/GT6批量移植总计划.md)。
 >
 > Java/tick 源：`gt6_code/gregtech6` @ `3703e40308c8c030763fd6297dea8b210d2a77b1`。
 > 贴图源：`gt6_referencable_port_code/gregtech6_w`。
 
 ```text
-lane                         = prep
+lane                         = closed
 capability_slug              = machines/gt6-basic-machine-batch
 unique_active_wave           = null
 dump_maps                    = gt.recipe.burnmixer 29；gt.recipe.catalyticcracking 3；
-                               gt.recipe.crystallisationcrucible 132；gt.recipe.scannervisuals 50（display_only）
-hosts                        = 19（BurnMixer 4、CatalyticCracker 4、CrystallisationCrucible 4、
-                               SteamCracker 4、ScannerVisuals 5）
+                               gt.recipe.crystallisationcrucible 132；
+                               gt.recipe.scannervisuals 50（display_only，本卡不导入）
+hosts                        = 16（BurnMixer 4、CatalyticCracker 4、CrystallisationCrucible 4、
+                               SteamCracker 4）。ScannerVisuals 5 台拆出。
 prep_owned_paths             = machine/processing/prep/*PrepSpec.java（未注册）；
                                textures/block/machine/{burnmixer,catalyticcracker,crystallisationcrucible,
                                steamcracker,scannervisuals}/**；tools/waves/prep/gt6-basic-machine-batch/**
@@ -44,7 +45,7 @@ partial_close_allowed        = false
 
 | kind | GT6 类 | sourceId | 材质列 | 能量 | NBT_INPUT | 贴图键 | 面板（RM.java） |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| BurnMixer | BasicMachine | 20521–20524 | `Kinetic_T[1–4]` | RU | 32/128/512/2048 | `burnmixer` | 物品 6/0，流体 6/2；`NEEDS_IGNITION`，`PARALLEL` 4/8/16/32 |
+| BurnMixer | BasicMachine | 20521–20524 | `Kinetic_T[1–4]` | RU | 32/128/512/2048 | `burnmixer` | 物品 6/1，流体 6/2；`NEEDS_IGNITION`，`PARALLEL` 4/8/16/32 |
 | CatalyticCracker | BasicMachine | 20481–20484 | `Heat_T[1–4]` | HU | 32–2048 | `catalyticcracker` | 物品 1/3，流体 2/9 |
 | CrystallisationCrucible | BasicMachine | 20251–20254 | `Heat_T[1–4]` | HU | 32–2048 | `crystallisationcrucible` | 物品 1/1，流体 3/0；只右出 |
 | SteamCracker | BasicMachine | 20491–20494 | `Heat_T[1–4]` | HU | 32–2048 | `steamcracker` | 物品 1/3，流体 2/9 |
@@ -61,12 +62,16 @@ GT6 网格（一档；高档板厚递增，按注册行逐档核）：
 | --- | --- | --- |
 | BurnMixer | `PMP` / `PRP` / `hSw` | M 机器外壳，S 杆，R Invar 转子，P Invar 板 |
 | CatalyticCracker | `IPI` / `ZMZ` / `ICI` | M 双层外壳，C/I 铜 / Invar 双层板，P 四联管，Z 沸石粉 |
-| CrystallisationCrucible | `wUh` / `PMP` / `BCB` | M 双层外壳，U 熔炼炉 1018，C 铜双层板，B 砖，P 中管 |
+| CrystallisationCrucible | `wUh` / `PMP` / `BCB` | M 双层外壳，一档 U 石英熔炼坩埚 1018，二至四档 U 铱熔炼坩埚 1039，C 铜双层板，B 砖，P 中管 |
 | SteamCracker | `IwI` / `PMP` / `ICI` | 同催化裂化，P 中管 |
 | ScannerVisuals | `CPC` / `wXh` / `WMW` | M 外壳，X 传送带盖板[档]，C 电路[档]，W 电缆[档]，P Lumium 板 |
 
-开卡第一步对每一格跑 `python tools/gt6_resolve.py`。缺格的机器整台保持 `blocked`，不替换材料或前缀。
-沸石粉、Lumium 板、四联管最可能缺；缺了就按形态普查排队，不在本卡开门。
+获得格已逐格 `gt6_resolve`。沸石粉、殷瓦板、铜板、管、外壳、转子、杆都已注册。
+结晶坩埚一档的 U 是 GT6 registry item 1018 石英熔炼坩埚，已注册为
+`foundry/smelting_crucible_nether_quartz`（下界石英宝石 ×7，锤子、凿子不消耗）。
+二至四档仍用铱熔炼坩埚 1039。不用别的物品顶 1018。
+ScannerVisuals 的 `RecipeMapScannerVisuals` 会把 NBT 抄到 USB 并把物品映射成方块外观，
+不是普通配方，本卡不注册这 5 台。
 
 ## 2. 实施
 
@@ -94,7 +99,7 @@ python tools/waves/portfolio/gt6-full-coverage-reassessment/build_reconciliation
 ```
 
 GameTest：每个 kind 至少一档放置、供能、跑一条抽样配方、产物落槽。
-人工 `runClient`：生存合成一台一档 BurnMixer 与 CrystallisationCrucible，接能量跑通，EMI 可见三张图。
+人工 `runClient`：生存合成一台一档 BurnMixer，以及一档 CrystallisationCrucible（石英熔炼坩埚）和二档及以上（铱熔炼坩埚）。一档结晶坩埚能量上限 64，最短配方在二档才能跑。接能量跑通，EMI 可见三张图。蒸汽裂化机只放置供能，steamcracking 配方不在本卡。
 
 ## 4. 明确不接管
 
@@ -105,10 +110,11 @@ GameTest：每个 kind 至少一档放置、供能、跑一条抽样配方、产
 
 ## 5. 关闭清单
 
-- [ ] spec 生成器对已 live kind 逐字段一致；工作流文档 §1 已改
-- [ ] 19 台主机注册、GUI 与侧面 IO 对 GT6
-- [ ] burnmixer / catalyticcracking / crystallisationcrucible `full_replay`，overflow 0
-- [ ] 获得格 source-exact，缺格 `blocked` 并记 blocker
-- [ ] 贴图来自 GT6，清单齐
-- [ ] GameTest 与人工 `runClient` 签收
-- [ ] 覆盖页重建：五个 kind 离开 `denominator_only`
+- [x] spec 生成器对已 live kind 逐字段一致；工作流文档 §1 已改
+- [x] 16 台主机注册、GUI 与侧面 IO 对 GT6；ScannerVisuals 不在本卡
+- [x] burnmixer / catalyticcracking / crystallisationcrucible `full_replay`，overflow 0
+- [x] 获得格 source-exact。石英熔炼坩埚 1018 已注册，一档结晶坩埚用它；二至四档用铱坩埚 1039
+- [x] 贴图来自 GT6，清单齐
+- [x] GameTest `cruciblecraft_wave_machines_gt6_basic_machine_batch` 4 项通过（2026-09-26）
+- [ ] 人工 `runClient` 签收
+- [x] 覆盖页重建：BurnMixer、CatalyticCracking、CrystallisationCrucible 为 `full_replay`。SteamCracking 与 ScannerVisuals 仍 `denominator_only`（配方不在本卡）

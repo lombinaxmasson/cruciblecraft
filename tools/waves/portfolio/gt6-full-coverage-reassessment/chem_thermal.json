@@ -5,27 +5,27 @@
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "map_count": 21,
   "source_rows": 172327,
-  "traced_source_rows": 139726,
+  "traced_source_rows": 140023,
   "recipe_evidence_grades": {
     "source_rows": 172327,
     "classes": {
-      "source_exact": 139726,
-      "translated_exact": 358,
+      "source_exact": 140023,
+      "translated_exact": 362,
       "translated_io_only": 0,
-      "translated_item_io": 3025,
-      "translatable_missing": 11521,
+      "translated_item_io": 3027,
+      "translatable_missing": 11234,
       "missing_material_form": 9359,
       "missing_material": 0,
-      "missing_fluid": 6783,
+      "missing_fluid": 6767,
       "missing_object": 1553,
       "display_only": 2,
       "legacy_exclusion_pending": 0
     },
     "groups": {
-      "proven": 140084,
-      "partial_match": 3025,
-      "recipe_gap": 11521,
-      "identity_gap": 17695,
+      "proven": 140385,
+      "partial_match": 3027,
+      "recipe_gap": 11234,
+      "identity_gap": 17679,
       "display_only": 2,
       "legacy_exclusion_pending": 0
     },
@@ -38,25 +38,25 @@
       "source_rows": 172327,
       "excluded_rows": 149,
       "target_rows": 172178,
-      "proven_rows": 140084,
-      "identity_blocked_rows": 17548,
+      "proven_rows": 140385,
+      "identity_blocked_rows": 17532,
       "undecided_rows": 0,
-      "recipe_progress": 0.8136,
-      "identity_ready": 0.8981
+      "recipe_progress": 0.8153,
+      "identity_ready": 0.8982
     },
     "machine_progress": {
       "maps": 21,
-      "mean_recipe_progress": 0.5029,
-      "maps_complete": 2,
-      "maps_untouched": 5
+      "mean_recipe_progress": 0.6698,
+      "maps_complete": 5,
+      "maps_untouched": 2
     }
   },
   "pipeline_deferred_map_count": 11,
   "pipeline_deferred_source_rows": 15811,
   "delivery_depth_counts": {
     "bounded_subset": 15,
-    "denominator_only": 4,
-    "full_replay": 2
+    "denominator_only": 1,
+    "full_replay": 5
   },
   "maps": [
     {
@@ -110,19 +110,19 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translated_exact": 3,
-        "missing_fluid": 5
+        "translated_exact": 7,
+        "translated_item_io": 1
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 8,
         "excluded_rows": 0,
         "target_rows": 8,
-        "proven_rows": 3,
-        "identity_blocked_rows": 5,
+        "proven_rows": 7,
+        "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.375,
-        "identity_ready": 0.375
+        "recipe_progress": 0.875,
+        "identity_ready": 1.0
       }
     },
     {
@@ -247,20 +247,22 @@
     {
       "source_map": "gt.recipe.catalyticcracking",
       "normalized_map": "gt.recipe.catalyticcracking",
-      "local_map": "catalyticcracking",
+      "local_map": "catalytic_cracker",
       "source_rows": 3,
       "denominator_class": "deferred_with_reason",
       "owner": "POST_T19",
       "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.catalyticcracking has 3 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
       "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.catalyticcracking.json",
-      "cc_recipe_map_registered": false,
+      "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 3,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "catalytic_cracker": 3
+      },
       "owned_cc_maps": [
-        "catalyticcracking"
+        "catalytic_cracker"
       ],
       "untraced_cc_rows": 0,
       "untraced_cc_row_kinds": {},
@@ -275,23 +277,23 @@
         "survival_access": [],
         "signoff_required": true
       },
-      "delivery_depth": "denominator_only",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 3
+        "source_exact": 3
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 3,
         "excluded_rows": 0,
         "target_rows": 3,
-        "proven_rows": 0,
+        "proven_rows": 3,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -413,8 +415,9 @@
       "raw_row_classes": {
         "source_exact": 892,
         "translated_exact": 2,
+        "translated_item_io": 1,
         "missing_material_form": 3,
-        "missing_fluid": 620
+        "missing_fluid": 619
       },
       "raw_row_excluded": {},
       "progress": {
@@ -422,10 +425,10 @@
         "excluded_rows": 0,
         "target_rows": 1517,
         "proven_rows": 894,
-        "identity_blocked_rows": 623,
+        "identity_blocked_rows": 622,
         "undecided_rows": 0,
         "recipe_progress": 0.5893,
-        "identity_ready": 0.5893
+        "identity_ready": 0.59
       }
     },
     {
@@ -555,20 +558,22 @@
     {
       "source_map": "gt.recipe.crystallisationcrucible",
       "normalized_map": "gt.recipe.crystallisationcrucible",
-      "local_map": "crystallisationcrucible",
+      "local_map": "crystallisation_crucible",
       "source_rows": 132,
       "denominator_class": "deferred_with_reason",
       "owner": "POST_T19",
       "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.crystallisationcrucible has 132 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
       "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.crystallisationcrucible.json",
-      "cc_recipe_map_registered": false,
+      "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 132,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "crystallisation_crucible": 132
+      },
       "owned_cc_maps": [
-        "crystallisationcrucible"
+        "crystallisation_crucible"
       ],
       "untraced_cc_rows": 0,
       "untraced_cc_row_kinds": {},
@@ -583,23 +588,23 @@
         "survival_access": [],
         "signoff_required": true
       },
-      "delivery_depth": "denominator_only",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 132
+        "source_exact": 132
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 132,
         "excluded_rows": 0,
         "target_rows": 132,
-        "proven_rows": 0,
+        "proven_rows": 132,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -625,10 +630,10 @@
           "path": "tools/capabilities/machines/large-mixer/capability.json"
         }
       ],
-      "traced_source_rows": 63558,
+      "traced_source_rows": 63568,
       "reference_traced_rows": 0,
       "cc_host_maps": {
-        "mixer": 63578
+        "mixer": 63588
       },
       "owned_cc_maps": [
         "mixer"
@@ -656,9 +661,9 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 63558,
+        "source_exact": 63568,
         "translated_exact": 30,
-        "missing_fluid": 634,
+        "missing_fluid": 624,
         "missing_object": 23
       },
       "raw_row_excluded": {
@@ -668,30 +673,32 @@
         "source_rows": 64245,
         "excluded_rows": 7,
         "target_rows": 64238,
-        "proven_rows": 63588,
-        "identity_blocked_rows": 650,
+        "proven_rows": 63598,
+        "identity_blocked_rows": 640,
         "undecided_rows": 0,
-        "recipe_progress": 0.9899,
-        "identity_ready": 0.9899
+        "recipe_progress": 0.99,
+        "identity_ready": 0.99
       }
     },
     {
       "source_map": "gt.recipe.burnmixer",
       "normalized_map": "gt.recipe.burnmixer",
-      "local_map": "burnmixer",
+      "local_map": "burn_mixer",
       "source_rows": 29,
       "denominator_class": "deferred_with_reason",
       "owner": "POST_T19",
       "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.burnmixer has 29 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
       "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.burnmixer.json",
-      "cc_recipe_map_registered": false,
+      "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 0,
+      "traced_source_rows": 29,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "burn_mixer": 29
+      },
       "owned_cc_maps": [
-        "burnmixer"
+        "burn_mixer"
       ],
       "untraced_cc_rows": 0,
       "untraced_cc_row_kinds": {},
@@ -706,23 +713,23 @@
         "survival_access": [],
         "signoff_required": true
       },
-      "delivery_depth": "denominator_only",
+      "delivery_depth": "full_replay",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 29
+        "source_exact": 29
       },
       "raw_row_excluded": {},
       "progress": {
         "source_rows": 29,
         "excluded_rows": 0,
         "target_rows": 29,
-        "proven_rows": 0,
+        "proven_rows": 29,
         "identity_blocked_rows": 0,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 1.0,
         "identity_ready": 1.0
       }
     },
@@ -1349,10 +1356,10 @@
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
       "cc_recipe_map_registered": true,
       "capabilities": [],
-      "traced_source_rows": 18086,
+      "traced_source_rows": 18209,
       "reference_traced_rows": 2003,
       "cc_host_maps": {
-        "smelter": 18207
+        "smelter": 18330
       },
       "owned_cc_maps": [
         "smelter"
@@ -1378,10 +1385,10 @@
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "source_exact": 18086,
+        "source_exact": 18209,
         "translated_exact": 201,
         "translated_item_io": 3,
-        "translatable_missing": 158,
+        "translatable_missing": 35,
         "missing_material_form": 3442,
         "missing_fluid": 58,
         "missing_object": 21
@@ -1393,10 +1400,10 @@
         "source_rows": 21969,
         "excluded_rows": 1,
         "target_rows": 21968,
-        "proven_rows": 18287,
+        "proven_rows": 18410,
         "identity_blocked_rows": 3520,
         "undecided_rows": 0,
-        "recipe_progress": 0.8324,
+        "recipe_progress": 0.838,
         "identity_ready": 0.8398
       }
     }

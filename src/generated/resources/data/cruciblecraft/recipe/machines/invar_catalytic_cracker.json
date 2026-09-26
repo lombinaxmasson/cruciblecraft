@@ -1,0 +1,37 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "ingredients": {
+    "C": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "copper"
+      },
+      "items": "cruciblecraft:triple_plate"
+    },
+    "I": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "invar"
+      },
+      "items": "cruciblecraft:triple_plate"
+    },
+    "M": {
+      "item": "cruciblecraft:invar/machine_casing_double"
+    },
+    "P": {
+      "item": "cruciblecraft:invar/quadruple_fluid_pipe"
+    },
+    "Z": {
+      "item": "cruciblecraft:zeolite/dust"
+    }
+  },
+  "pattern": [
+    "IPI",
+    "ZMZ",
+    "ICI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:invar_catalytic_cracker"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "tag": "cruciblecraft:crafting_tools/hammer"
+    },
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "B": {
+      "item": "minecraft:bricks"
+    },
+    "C": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "copper"
+      },
+      "items": "cruciblecraft:double_plate"
+    },
+    "M": {
+      "item": "cruciblecraft:titanium/machine_casing_double"
+    },
+    "P": {
+      "item": "cruciblecraft:titanium/fluid_pipe"
+    },
+    "U": {
+      "item": "cruciblecraft:foundry/smelting_crucible_iridium"
+    }
+  },
+  "pattern": [
+    "wUh",
+    "PMP",
+    "BCB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:titanium_crystallisation_crucible"
+  }
+}

@@ -38,7 +38,7 @@ class MachineTierArchitectureTest {
     @Test
     void bundledCatalogDeclaresEverySelectedKindAcrossThreeTiers() {
         assertTrue(ModMachineVariants.ALL.size() > 33);
-        assertEquals(56, ModMachineVariants.KINDS.size());
+        assertEquals(60, ModMachineVariants.KINDS.size());
         for (var kind : ModMachineVariants.SELECTED_KINETIC_KINDS) {
             List<MachineVariant> variants =
                     ModMachineVariants.SELECTED_KINETIC_VARIANTS.stream()

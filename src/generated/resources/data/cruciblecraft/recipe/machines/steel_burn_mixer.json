@@ -1,0 +1,42 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "catalysts": {
+    "h": {
+      "tag": "cruciblecraft:crafting_tools/hammer"
+    },
+    "w": {
+      "tag": "cruciblecraft:crafting_tools/wrench"
+    }
+  },
+  "ingredients": {
+    "M": {
+      "item": "cruciblecraft:steel/machine_casing"
+    },
+    "P": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "invar"
+      },
+      "items": "cruciblecraft:double_plate"
+    },
+    "R": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "invar"
+      },
+      "items": "cruciblecraft:rotor"
+    },
+    "S": {
+      "item": "cruciblecraft:steel/rod"
+    }
+  },
+  "pattern": [
+    "PMP",
+    "PRP",
+    "hSw"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:steel_burn_mixer"
+  }
+}

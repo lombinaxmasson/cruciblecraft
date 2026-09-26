@@ -12,9 +12,10 @@
 - `machine_delivery.json` 是 kind-level sidecar：RecipeMap、spec family、能量、
   槽/罐签名、GT6 source、贴图 profile。名称、acquisition 与 variant 行仍在
   `machine_kinds.json` / `machine_tiers.json` / `machine_acquisition.json`。
-- 新 kind 仍要一次人工 Java `ProcessingMachineSpec`（槽位、流体容量、能量模式、
-  输入动作、GUI）。之后屏幕、模型、语言、掉落、标签、EMI 与合成由 catalog/datagen
-  推导，不再改固定白名单。
+- 新基础加工 kind 由 `ProcessingMachineSpecFactory` 从这张 sidecar 生成槽位、
+  流体罐、能量模式、侧面 IO 和 GUI。点火、并行、扫描仍是按 kind 挂上的 Java
+  钩子。之后屏幕、模型、语言、掉落、标签、EMI 与合成由 catalog/datagen 推导，
+  不再改固定白名单。
 - 编译单位是 RecipeMap/family，不是机器档位。RU/EU 同图只导入、锁定、编译一次。
 
 配方接入：

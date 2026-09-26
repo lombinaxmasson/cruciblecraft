@@ -84,6 +84,10 @@ def _write_compile(waves: tuple[str, ...]) -> dict[str, Any]:
             path_prefix=spec.path_prefix,
             tree_prefixes=spec.tree_prefixes,
         )
+        from tools.recipe_bulk.publication_policy import needs_policy, write_policies
+
+        if needs_policy(spec):
+            write_policies(built["planned"], spec.target_map)
         if wave_id == "block/object":
             compile_mod.write_tree(
                 built["planned"],
@@ -136,6 +140,10 @@ def _check_wave_tree(wave_id: str) -> list[str]:
     expected = {str(path): doc for path, doc in built["planned"]}
     if generated != expected:
         return [f"{wave_id} generated recipe tree drifted"]
+    from tools.recipe_bulk.publication_policy import check_policies, needs_policy
+
+    if needs_policy(spec):
+        return check_policies(built["planned"], spec.target_map)
     return []
 
 

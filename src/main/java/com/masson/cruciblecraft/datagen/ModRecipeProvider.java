@@ -67,6 +67,7 @@ import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerProf
 import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
 import com.masson.cruciblecraft.energy.largegasturbine.LargeGasTurbineCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceAcquisitionCatalog;
+import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.registry.ModItemTags;
@@ -1894,6 +1895,14 @@ public final class ModRecipeProvider extends RecipeProvider {
                     output, result, casing, material, path);
             case "mixer" -> mixerCrafting(
                     output, result, casing, material, path);
+            case "burn_mixer" -> burnMixerCrafting(
+                    output, result, material, path);
+            case "catalytic_cracker" -> catalyticCrackerCrafting(
+                    output, result, casing, material, path);
+            case "steam_cracker" -> steamCrackerCrafting(
+                    output, result, casing, material, path);
+            case "crystallisation_crucible" -> crystallisationCrucibleCrafting(
+                    output, result, casing, material, path);
             case "sluice" -> sluiceCrafting(
                     output, result, casing, material, path);
             case "sifter" -> sifterCrafting(
@@ -2076,6 +2085,173 @@ public final class ModRecipeProvider extends RecipeProvider {
                         "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()),
                         "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
                 new ItemStack(result));
+    }
+
+    /**
+     * GT6 Loader_MultiTileEntities.java:1595 {@code PMP/PRP/hSw}.
+     * Plates and the rotor stay Invar; thickness follows the casing tier.
+     * The hull is a single machine casing, not the heat/kinetic double casing.
+     */
+    private static void burnMixerCrafting(
+            RecipeOutput output,
+            Item result,
+            String material,
+            String id) {
+        MaterialPrefix plate = switch (material) {
+            case "steel" -> MaterialPrefixes.DOUBLE_PLATE;
+            case "titanium" -> MaterialPrefixes.TRIPLE_PLATE;
+            case "tungstensteel" -> MaterialPrefixes.QUADRUPLE_PLATE;
+            default -> MaterialPrefixes.PLATE;
+        };
+        Item plateItem = materialItem("invar", plate);
+        Item rotor = materialItem("invar", MaterialPrefixes.ROTOR);
+        Item stick = materialItem(material, MaterialPrefixes.ROD);
+        Item hull = materialItem(material, MaterialPrefixes.MACHINE_CASING);
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("P", keyedIngredient(plateItem, "invar", plate));
+        ingredients.put(
+                "R", keyedIngredient(rotor, "invar", MaterialPrefixes.ROTOR));
+        ingredients.put(
+                "S", keyedIngredient(stick, material, MaterialPrefixes.ROD));
+        ingredients.put(
+                "M",
+                keyedIngredient(hull, material, MaterialPrefixes.MACHINE_CASING));
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("PMP", "PRP", "hSw"),
+                ingredients,
+                Map.of(
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get()),
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
+    }
+
+    /**
+     * GT6 Loader_MultiTileEntities.java:1570 {@code IPI/ZMZ/ICI}.
+     * Copper and Invar plates thicken together with the heat tier.
+     */
+    private static void catalyticCrackerCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        MaterialPrefix plate = crackerPlate(material);
+        Item invar = materialItem("invar", plate);
+        Item copper = materialItem("copper", plate);
+        Item pipe = materialItem(material, MaterialPrefixes.QUADRUPLE_FLUID_PIPE);
+        Item zeolite = materialItem("zeolite", MaterialPrefixes.DUST);
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("I", keyedIngredient(invar, "invar", plate));
+        ingredients.put("C", keyedIngredient(copper, "copper", plate));
+        ingredients.put(
+                "P",
+                keyedIngredient(
+                        pipe, material, MaterialPrefixes.QUADRUPLE_FLUID_PIPE));
+        ingredients.put(
+                "Z", keyedIngredient(zeolite, "zeolite", MaterialPrefixes.DUST));
+        ingredients.put("M", Ingredient.of(casing));
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("IPI", "ZMZ", "ICI"),
+                ingredients,
+                Map.of(),
+                new ItemStack(result));
+    }
+
+    /**
+     * GT6 Loader_MultiTileEntities.java:1576 {@code IwI/PMP/ICI}.
+     */
+    private static void steamCrackerCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        MaterialPrefix plate = crackerPlate(material);
+        Item invar = materialItem("invar", plate);
+        Item copper = materialItem("copper", plate);
+        Item pipe = materialItem(material, MaterialPrefixes.FLUID_PIPE);
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("I", keyedIngredient(invar, "invar", plate));
+        ingredients.put("C", keyedIngredient(copper, "copper", plate));
+        ingredients.put(
+                "P",
+                keyedIngredient(pipe, material, MaterialPrefixes.FLUID_PIPE));
+        ingredients.put("M", Ingredient.of(casing));
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("IwI", "PMP", "ICI"),
+                ingredients,
+                Map.of("w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get())),
+                new ItemStack(result));
+    }
+
+    /**
+     * GT6 Loader_MultiTileEntities.java:1437 {@code wUh/PMP/BCB}.
+     * Tier 1 uses registry item 1018, the quartz smelting crucible.
+     * Tiers 2–4 use registry item 1039, the iridium smelting crucible.
+     */
+    private static void crystallisationCrucibleCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        Item crucible = "steel".equals(material)
+                ? quartzSmeltingCrucible()
+                : iridiumSmeltingCrucible();
+        Item copper = materialItem("copper", MaterialPrefixes.DOUBLE_PLATE);
+        Item pipe = materialItem(material, MaterialPrefixes.FLUID_PIPE);
+        Map<String, Ingredient> ingredients = new LinkedHashMap<>();
+        ingredients.put("U", Ingredient.of(crucible));
+        ingredients.put(
+                "C",
+                keyedIngredient(
+                        copper, "copper", MaterialPrefixes.DOUBLE_PLATE));
+        ingredients.put(
+                "P",
+                keyedIngredient(pipe, material, MaterialPrefixes.FLUID_PIPE));
+        ingredients.put("M", Ingredient.of(casing));
+        ingredients.put("B", Ingredient.of(Items.BRICKS));
+        acceptShapedCatalyst(
+                output,
+                "machines/" + id,
+                List.of("wUh", "PMP", "BCB"),
+                ingredients,
+                Map.of(
+                        "w", CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
+                        "h", CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
+                new ItemStack(result));
+    }
+
+    private static MaterialPrefix crackerPlate(String material) {
+        return switch (material) {
+            case "invar" -> MaterialPrefixes.TRIPLE_PLATE;
+            case "titanium" -> MaterialPrefixes.QUADRUPLE_PLATE;
+            case "tungsten_carbide" -> MaterialPrefixes.QUINTUPLE_PLATE;
+            default -> MaterialPrefixes.DOUBLE_PLATE;
+        };
+    }
+
+    private static Item iridiumSmeltingCrucible() {
+        return smeltingCrucible("foundry/smelting_crucible_iridium");
+    }
+
+    private static Item quartzSmeltingCrucible() {
+        return smeltingCrucible("foundry/smelting_crucible_nether_quartz");
+    }
+
+    private static Item smeltingCrucible(String path) {
+        var holder = ModBlocks.mteInPlaceBlocksById().get(
+                ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, path));
+        if (holder == null) {
+            throw new IllegalStateException(path + " is not registered");
+        }
+        return holder.get().asItem();
     }
 
     private static void sluiceCrafting(

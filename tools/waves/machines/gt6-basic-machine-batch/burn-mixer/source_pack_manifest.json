@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/machines/gt6-basic-machine-batch/burn-mixer/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "c3dbff95a484035f90f25eadc6ae54eb7d3e6e9d05ff1f0c9876752582b0757f"
+    },
+    {
+      "path": "tools/waves/machines/gt6-basic-machine-batch/burn-mixer/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "14d1f996cd75c58556476aa2d4d7d3129fc9f544dc3f555abf48b442f8fb9e8b"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "burn-mixer/basic-batch",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

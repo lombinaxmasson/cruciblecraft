@@ -2,7 +2,7 @@
   "$schema": "schema/machine_delivery.schema.json",
   "schema_version": 1,
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
-  "note": "Kind-level delivery sidecar. Names, acquisition templates and variant rows stay in machine_kinds.json / machine_tiers.json / machine_acquisition.json. New kinds still need one Java ProcessingMachineSpec; catalog/datagen then derive screens, models, language and energy audit.",
+  "note": "Kind-level delivery sidecar. Names, acquisition templates and variant rows stay in machine_kinds.json / machine_tiers.json / machine_acquisition.json. New basic-machine kinds are built by ProcessingMachineSpecFactory from this sidecar. Ignition, parallel and scan stay Java hooks. Catalog/datagen then derive screens, models, language and energy audit.",
   "texture_aliases": {
     "large_boiler": "boiler"
   },
@@ -1434,6 +1434,106 @@
       "texture_profile": "wiremill",
       "gt6_source": "Loader_MultiTileEntities.java:1373",
       "art_destination": "textures/block/machine/wiremill",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:burn_mixer",
+      "recipe_map": "cruciblecraft:burn_mixer",
+      "spec_family": "chemical",
+      "energy": {
+        "type": "KINETIC_ROTATION",
+        "mode": "BUFFERED"
+      },
+      "slots": {
+        "item_inputs": 6,
+        "item_outputs": 1,
+        "fluid_inputs": 6,
+        "fluid_outputs": 2
+      },
+      "gt6_panel": {
+        "in_items": 6,
+        "out_items": 1,
+        "in_fluids": 6,
+        "out_fluids": 2
+      },
+      "texture_profile": "burnmixer",
+      "gt6_source": "Loader_MultiTileEntities.java:1595",
+      "art_destination": "textures/block/machine/burnmixer",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:catalytic_cracker",
+      "recipe_map": "cruciblecraft:catalytic_cracker",
+      "spec_family": "chemical",
+      "energy": {
+        "type": "HEAT",
+        "mode": "BUFFERED"
+      },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 3,
+        "fluid_inputs": 2,
+        "fluid_outputs": 9
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 3,
+        "in_fluids": 2,
+        "out_fluids": 9
+      },
+      "texture_profile": "catalyticcracker",
+      "gt6_source": "Loader_MultiTileEntities.java:1570",
+      "art_destination": "textures/block/machine/catalyticcracker",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:crystallisation_crucible",
+      "recipe_map": "cruciblecraft:crystallisation_crucible",
+      "spec_family": "chemical",
+      "energy": {
+        "type": "HEAT",
+        "mode": "BUFFERED"
+      },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 1,
+        "fluid_inputs": 3,
+        "fluid_outputs": 0
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 1,
+        "in_fluids": 3,
+        "out_fluids": 0
+      },
+      "texture_profile": "crystallisationcrucible",
+      "gt6_source": "Loader_MultiTileEntities.java:1437",
+      "art_destination": "textures/block/machine/crystallisationcrucible",
+      "kind_catalog": true
+    },
+    {
+      "id": "cruciblecraft:steam_cracker",
+      "recipe_map": "cruciblecraft:steam_cracker",
+      "spec_family": "chemical",
+      "energy": {
+        "type": "HEAT",
+        "mode": "BUFFERED"
+      },
+      "slots": {
+        "item_inputs": 1,
+        "item_outputs": 3,
+        "fluid_inputs": 2,
+        "fluid_outputs": 9
+      },
+      "gt6_panel": {
+        "in_items": 1,
+        "out_items": 3,
+        "in_fluids": 2,
+        "out_fluids": 9
+      },
+      "texture_profile": "steamcracker",
+      "gt6_source": "Loader_MultiTileEntities.java:1576",
+      "art_destination": "textures/block/machine/steamcracker",
       "kind_catalog": true
     }
   ]

@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "slug": "machines/gt6-basic-machine-batch",
+  "title": "GT6 basic machine batch",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "partial",
+  "owned_paths": [
+    "docs/history/card-plans/active/GT6同类基础加工机批量详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/ProcessingMachineSpecFactory.java",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/ProcessingMachineIgnition.java",
+    "src/main/resources/assets/cruciblecraft/gt6_basic_machine_batch_art_manifest.json",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burnmixer/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/catalyticcracker/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/crystallisationcrucible/**",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/steamcracker/**",
+    "src/main/resources/assets/cruciblecraft/textures/gui/machines/burnmixer.png",
+    "src/main/resources/assets/cruciblecraft/textures/gui/machines/catalyticcracking.png",
+    "src/main/resources/assets/cruciblecraft/textures/gui/machines/crystallisationcrucible.png",
+    "src/main/resources/assets/cruciblecraft/textures/gui/machines/steamcracking.png",
+    "src/main/resources/data/cruciblecraft_wave_machines_gt6_basic_machine_batch/**",
+    "src/test/java/com/masson/cruciblecraft/gametest/Gt6BasicMachineBatchGameTests.java",
+    "tools/capabilities/machines/gt6-basic-machine-batch/**",
+    "tools/waves/machines/gt6-basic-machine-batch/**"
+  ],
+  "depends_on": [],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/gt6-basic-machine-batch",
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:basic-batch:20521-20524",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:burn_mixer",
+        "cruciblecraft:steel_burn_mixer",
+        "cruciblecraft:titanium_burn_mixer",
+        "cruciblecraft:tungstensteel_burn_mixer"
+      ],
+      "reason": "GT6 MultiTileEntityBasicMachine 20521-20524. RU, ignition, parallel 4/8/16/32."
+    },
+    {
+      "semantic_key": "machine:basic-batch:20481-20494",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:catalytic_cracker",
+        "cruciblecraft:invar_catalytic_cracker",
+        "cruciblecraft:titanium_catalytic_cracker",
+        "cruciblecraft:tungsten_carbide_catalytic_cracker",
+        "cruciblecraft:steam_cracker",
+        "cruciblecraft:invar_steam_cracker",
+        "cruciblecraft:titanium_steam_cracker",
+        "cruciblecraft:tungsten_carbide_steam_cracker"
+      ],
+      "reason": "GT6 catalytic cracker 20481-20484 and steam cracker 20491-20494. Steamcracking rows stay on a later card."
+    },
+    {
+      "semantic_key": "machine:basic-batch:20251-20254",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:crystallisation_crucible",
+        "cruciblecraft:invar_crystallisation_crucible",
+        "cruciblecraft:titanium_crystallisation_crucible",
+        "cruciblecraft:tungsten_carbide_crystallisation_crucible"
+      ],
+      "reason": "GT6 crystallisation crucible 20251-20254. Tier 1 crafts with quartz smelting crucible 1018; tiers 2-4 use iridium 1039."
+    }
+  ]
+}

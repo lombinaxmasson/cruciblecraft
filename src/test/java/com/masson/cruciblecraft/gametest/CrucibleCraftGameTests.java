@@ -8477,7 +8477,7 @@ public final class CrucibleCraftGameTests {
                 .mapToInt(spec -> spec.requireRecipeMap().entries().size())
                 .sum();
         helper.assertTrue(
-                emiPlan.machines().size() == 56
+                emiPlan.machines().size() == 60
                         && emiPlan.recipes().size() == expectedEmiRecipes,
                 "Generic processing EMI does not cover every configured machine recipe: "
                         + emiPlan.machines().size()

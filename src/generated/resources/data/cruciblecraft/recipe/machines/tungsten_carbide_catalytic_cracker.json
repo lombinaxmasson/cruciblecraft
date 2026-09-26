@@ -1,0 +1,37 @@
+{
+  "type": "cruciblecraft:shaped_catalyst",
+  "ingredients": {
+    "C": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "copper"
+      },
+      "items": "cruciblecraft:quintuple_plate"
+    },
+    "I": {
+      "type": "neoforge:components",
+      "components": {
+        "cruciblecraft:prefix_material": "invar"
+      },
+      "items": "cruciblecraft:quintuple_plate"
+    },
+    "M": {
+      "item": "cruciblecraft:tungsten_carbide/machine_casing_double"
+    },
+    "P": {
+      "item": "cruciblecraft:tungsten_carbide/quadruple_fluid_pipe"
+    },
+    "Z": {
+      "item": "cruciblecraft:zeolite/dust"
+    }
+  },
+  "pattern": [
+    "IPI",
+    "ZMZ",
+    "ICI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cruciblecraft:tungsten_carbide_catalytic_cracker"
+  }
+}

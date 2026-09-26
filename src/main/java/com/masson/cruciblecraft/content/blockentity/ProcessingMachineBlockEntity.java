@@ -26,6 +26,7 @@ import com.masson.cruciblecraft.machine.processing.MachineTransaction;
 import com.masson.cruciblecraft.machine.processing.ParallelRecipeOperations;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacement;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineIgnition;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineState;
 import com.masson.cruciblecraft.machine.processing.ProcessingRuntime;
@@ -128,6 +129,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     private boolean disabledFluidInput;
     private boolean disabledFluidOutput;
     private int screwdriverMode;
+    private int ignitionTicks;
     private boolean inventoryChangedForAutoIo;
     private long lastSuccessfulGameTime = Long.MIN_VALUE;
     private long coverRecipeCacheTick = Long.MIN_VALUE;
@@ -234,6 +236,10 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     private void tickProcessingServerInternal() {
         if (level == null || level.isClientSide) {
             return;
+        }
+        if (ProcessingMachineIgnition.requires(spec) && ignitionTicks > 0) {
+            ignitionTicks--;
+            markMutation();
         }
         coverRecipeCacheTick = level.getGameTime();
         coverRecipeCache = null;
@@ -342,6 +348,11 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 && !outputsCompletelyEmpty()) {
             capacity = false;
         }
+        if (ProcessingMachineIgnition.requires(spec)
+                && workProgress == 0L
+                && ignitionTicks <= 0) {
+            capacity = false;
+        }
         long remainingWork = Math.max(
                 0L, plan.totalWork() - workProgress);
         Optional<PowerPlan> powerPlan =
@@ -401,6 +412,9 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                         "Processing resources changed after committed energy extraction");
             }
             lastSuccessfulGameTime = level.getGameTime();
+            if (ProcessingMachineIgnition.requires(spec)) {
+                ignitionTicks = ProcessingMachineIgnition.IGNITION_TICKS;
+            }
             onProcessingCompleted(match.id().toString());
             runtime.completed(plan.effectiveDuration());
             clearSelection();
@@ -769,6 +783,15 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         return machineFront();
     }
 
+    public final void ignite() {
+        ignitionTicks = ProcessingMachineIgnition.IGNITION_TICKS;
+        markMutation();
+    }
+
+    public final int ignitionTicks() {
+        return ignitionTicks;
+    }
+
     public boolean handleIoTool(ToolAction action, Direction side, Player player) {
         boolean server = level != null && !level.isClientSide;
         if (action == ToolAction.SCREWDRIVER) {
@@ -788,6 +811,16 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                                             : "message.cruciblecraft.machine.mode.input_all"),
                             false);
                 }
+                markMutation();
+            }
+            return true;
+        }
+        if (action == ToolAction.IGNITER) {
+            if (!ProcessingMachineIgnition.requires(spec)) {
+                return false;
+            }
+            if (server) {
+                ignitionTicks = ProcessingMachineIgnition.IGNITION_TICKS;
                 markMutation();
             }
             return true;
@@ -1682,6 +1715,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         tag.putBoolean("gt6_disabled_fluid_in", disabledFluidInput);
         tag.putBoolean("gt6_disabled_fluid_out", disabledFluidOutput);
         tag.putInt("gt6_screwdriver_mode", screwdriverMode);
+        tag.putInt("gt6_ignition", ignitionTicks);
         CompoundTag coverTag = new CompoundTag();
         covers.save(coverTag, registries);
         tag.put("machine_covers", coverTag);
@@ -1740,6 +1774,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         disabledFluidInput = tag.getBoolean("gt6_disabled_fluid_in");
         disabledFluidOutput = tag.getBoolean("gt6_disabled_fluid_out");
         screwdriverMode = Math.max(0, Math.min(3, tag.getInt("gt6_screwdriver_mode")));
+        ignitionTicks = Math.max(0, tag.getInt("gt6_ignition"));
         if (tag.contains("machine_covers")) {
             covers.load(
                     tag.getCompound("machine_covers"),

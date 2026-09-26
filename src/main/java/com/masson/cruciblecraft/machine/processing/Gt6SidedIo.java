@@ -70,6 +70,15 @@ public final class Gt6SidedIo {
         put("electricloom", p(U, TOP, D, BOTTOM, 0, NO_AUTO, 0, NO_AUTO, L | R));
         put("pressurewasher", p(L, LEFT, R, RIGHT, U | D, TOP, 0, NO_AUTO, B));
         put("mixer", p(L | U, LEFT, R | B, RIGHT, L | U, TOP, R | B, BACK, D));
+        // Loader_MultiTileEntities.java:1595 burn mixer.
+        put("burn_mixer", p(L | U, LEFT, R | B, RIGHT, L | U, TOP, R | B, BACK, D));
+        // Loader_MultiTileEntities.java:1570 catalytic cracker.
+        put("catalytic_cracker", p(U | L, TOP, R | B, BACK, U | L, LEFT, R | B, RIGHT, D));
+        // Loader_MultiTileEntities.java:1576 steam cracker. Same faces as catalytic.
+        put("steam_cracker", p(U | L, TOP, R | B, BACK, U | L, LEFT, R | B, RIGHT, D));
+        // Loader_MultiTileEntities.java:1437 crystallisation crucible. No fluid output.
+        put("crystallisation_crucible", p(
+                L | B | U, TOP, R, RIGHT, L | B | U, LEFT, 0, NO_AUTO, D));
         put("electric_mixer", p(L | U, LEFT, R | B, RIGHT, L | U, TOP, R | B, BACK, D));
         put("cryo_mixer", p(L | U, LEFT, R | B, RIGHT, L | U, TOP, R | B, BACK, D));
         put("electrolyzer", p(U | F | B, TOP, R | L, RIGHT, U | F | B, TOP, R | L, LEFT, D));

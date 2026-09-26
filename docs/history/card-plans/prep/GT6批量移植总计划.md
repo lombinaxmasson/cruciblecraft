@@ -97,7 +97,7 @@ P1、P2 做完重跑逐行分类；P3 完成验证基础设施收口后，后面
 | 5 | [GT6 挤压机配方批量](../closed/GT6挤压机配方批量详细计划.md) | `recipe/gt6-extruder-bulk` | 已关。可翻译行已按 Rule IR 发布；缺形态和缺物品仍挡住 |
 | 6 | [GT6 前缀规则类配方批量](../closed/GT6前缀规则类配方批量详细计划.md) | `recipe/gt6-prefix-regular-bulk` | 已关。可翻译行已发布。blocked 分类见该计划 §4.2；io_only 与未覆盖的 material_rule 保留；试玩未签 |
 | 7 | [GT6 化学杂项配方批量](../closed/GT6化学杂项配方批量详细计划.md) | `recipe/gt6-chemical-misc-bulk` | 已关。发布 72,626 行（含 2026-09-26 补的润滑油、熔炉罐、离心机、nanofab）；蒸馏塔药水流体按用户决定暂不补；试玩未签 |
-| 8 | [GT6 同类基础加工机批量](GT6同类基础加工机批量详细计划.md) | `machines/gt6-basic-machine-batch` | 5 kind / 19 台 + 3 张小图 |
+| 8 | [GT6 同类基础加工机批量](../closed/GT6同类基础加工机批量详细计划.md) | `machines/gt6-basic-machine-batch` | 已关。4 kind / 16 台 + 3 张小图 `full_replay`；石英熔炼坩埚 1018 已注册；ScannerVisuals 拆出；steamcracking 配方未导入；试玩未签 |
 | 9 | [GT6 激光、磁铁与 ZPM 转换器](GT6激光磁铁ZPM转换器详细计划.md) | `energy/gt6-laser-magnet-zpm-converters` | 4 kind / 16 台 |
 | 10 | [GT6 余量能源设备](GT6余量能源设备详细计划.md) | `energy/gt6-remainder-devices` | 5 种 / 33 台 |
 

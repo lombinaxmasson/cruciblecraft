@@ -2559,6 +2559,37 @@
       "workflow": "accepted"
     },
     {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/GT6同类基础加工机批量详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/ProcessingMachineSpecFactory.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/ProcessingMachineIgnition.java",
+        "src/main/resources/assets/cruciblecraft/gt6_basic_machine_batch_art_manifest.json",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/burnmixer/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/catalyticcracker/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/crystallisationcrucible/**",
+        "src/main/resources/assets/cruciblecraft/textures/block/machine/steamcracker/**",
+        "src/main/resources/assets/cruciblecraft/textures/gui/machines/burnmixer.png",
+        "src/main/resources/assets/cruciblecraft/textures/gui/machines/catalyticcracking.png",
+        "src/main/resources/assets/cruciblecraft/textures/gui/machines/crystallisationcrucible.png",
+        "src/main/resources/assets/cruciblecraft/textures/gui/machines/steamcracking.png",
+        "src/main/resources/data/cruciblecraft_wave_machines_gt6_basic_machine_batch/**",
+        "src/test/java/com/masson/cruciblecraft/gametest/Gt6BasicMachineBatchGameTests.java",
+        "tools/capabilities/machines/gt6-basic-machine-batch/**",
+        "tools/waves/machines/gt6-basic-machine-batch/**"
+      ],
+      "path": "tools/capabilities/machines/gt6-basic-machine-batch/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/gt6-basic-machine-batch",
+      "survival_access": "partial",
+      "title": "GT6 basic machine batch",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [
         "content/gt6-mte-multiblock-runtime",
         "content/gt6-mte-inplace-acquisition",
@@ -4219,7 +4250,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 123,
+  "capability_count": 124,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5282,6 +5313,9 @@
     "machines/distillation-tower": [
       "machines/distillation-tower"
     ],
+    "machines/gt6-basic-machine-batch": [
+      "machines/gt6-basic-machine-batch"
+    ],
     "machines/gt6-coil-hosts": [
       "machines/gt6-coil-hosts",
       "machines/large-oven"
@@ -5746,6 +5780,7 @@
       "machines/cluster-mill",
       "machines/coke-oven",
       "machines/distillation-tower",
+      "machines/gt6-basic-machine-batch",
       "machines/gt6-coil-hosts",
       "machines/hammer-squeezer-laser",
       "machines/implosion-compressor",
