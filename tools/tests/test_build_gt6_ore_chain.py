@@ -374,10 +374,6 @@ class OreChainBuilderTest(unittest.TestCase):
                 "df9eede93e9972ef7067",
                 [10_000, 300, 300, 300],
             ),
-            "chain_shredder": (
-                "fe6db051602d4e6833dd",
-                [10_000],
-            ),
         }
         reference = builder.load(builder.REFERENCE)
         materials = self.materials
@@ -426,13 +422,49 @@ class OreChainBuilderTest(unittest.TestCase):
             if row["family"] == "chain_centrifuge"
             and row["material"] == "copper"
         )
-        self.assertIsNone(centrifuge["selected_source_recipe"])
+        self.assertEqual(
+            "d9dd87f61b96f0909d03",
+            centrifuge["selected_source_recipe"],
+        )
         document = json.loads(
             self.files[centrifuge["path"].split("ore_chain/", 1)[1]]
         )
         self.assertEqual(
-            "topology_fallback",
+            "gt6_evidence",
             document["provenance"]["source_kind"],
+        )
+        self.assertEqual(144, document["duration"])
+        self.assertEqual(16, document["eut"])
+        self.assertEqual(
+            [
+                {"count": 9, "id": "cruciblecraft:copper/tiny_centrifuged_crushed_ore"},
+                {"count": 9, "id": "cruciblecraft:cobaltite/tiny_centrifuged_crushed_ore"},
+                {"count": 9, "id": "cruciblecraft:gold/tiny_centrifuged_crushed_ore"},
+                {"count": 9, "id": "cruciblecraft:nickel/tiny_centrifuged_crushed_ore"},
+            ],
+            document["item_outputs"],
+        )
+        self.assertEqual([10000, 1000, 1000, 1000], document["output_chances"])
+        shredder = next(
+            row
+            for row in self.index["recipes"]
+            if row["family"] == "chain_shredder"
+            and row["material"] == "copper"
+        )
+        shredder_document = json.loads(
+            self.files[shredder["path"].split("ore_chain/", 1)[1]]
+        )
+        self.assertEqual(
+            "topology_fallback",
+            shredder_document["provenance"]["source_kind"],
+        )
+        self.assertEqual(
+            [9],
+            shredder_document["item_input_counts"],
+        )
+        self.assertEqual(
+            "cruciblecraft:tiny_centrifuged_crushed_ores/copper",
+            shredder_document["item_inputs"][0]["tag"],
         )
 
     def test_t2_coverage_debts_are_committed_as_ledger(self):

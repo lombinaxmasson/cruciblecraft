@@ -372,6 +372,27 @@
       "class": "split",
       "blocks": false,
       "evidence": "cruciblecraft:paper/tiny_plate is missing"
+    },
+    {
+      "test_id": "everylivecomponentrecipetracestogeneratedcomponentjson",
+      "grid": "default",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Recipe publication snapshot drifted. The literal lazy count 354515 predates recipe/gt6-extruder-remainder and recipe/gt6-prefix-regular-bulk, which publish 60055 lazy rows without a registered publication delta; recipe/gt6-chemical-misc-bulk registers its 72470."
+    },
+    {
+      "test_id": "recipepublicationbaselineremainsstable",
+      "grid": "default",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Kinetic logical/eager/lazy baseline drifted (delta +203850/+4004/+199846): logical=575433 eager=88393 lazy=487040. The 60055 lazy gap is extruder-remainder plus prefix-regular rows with no publication delta file."
+    },
+    {
+      "test_id": "recipepublicationmatchespriorbaseline",
+      "grid": "default",
+      "class": "split",
+      "blocks": false,
+      "evidence": "Heat logical/eager/lazy baseline drifted (delta +203850/+4004/+199846): logical=575433 eager=88393 lazy=487040. Same 60055 lazy gap as recipepublicationbaselineremainsstable."
     }
   ]
 }

@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "slug": "recipe/gt6-chemical-misc-bulk",
+  "title": "GT6 Chemical and Misc Recipe Bulk",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/active/GT6化学杂项配方批量详细计划.md",
+    "docs/history/card-plans/closed/GT6化学杂项配方批量详细计划.md",
+    "tools/waves/recipe/gt6-chemical-misc-bulk/**",
+    "tools/capabilities/recipe/gt6-chemical-misc-bulk/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/mixer/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/generifier/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/smelter/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/centrifuge/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/fermenter/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/freezer/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/distillery/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/polarizer/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/loom/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/laser_engraver/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/magnetic_separator/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/compressor/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/electrolyzer/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/nanofab/chemical_misc/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/*_chemical_misc.json",
+    "src/main/resources/data/cruciblecraft/chemical_misc_bulk_publication_baseline.json",
+    "src/test/java/com/masson/cruciblecraft/gametest/Gt6ChemicalMiscBulkGameTests.java",
+    "src/test/resources/gt6_chemical_misc_samples.json"
+  ],
+  "depends_on": [
+    "recipe/gt6-bulk-capacity",
+    "recipe/gt6-prefix-regular-bulk"
+  ],
+  "profiles": [
+    "recipes"
+  ],
+  "wave_slug": "recipe/gt6-chemical-misc-bulk",
+  "required_test_ids": [
+    "chemicalMiscGroupsStayOnDemand",
+    "chemicalMiscSamplesRun"
+  ],
+  "note": "Imports host-accepted translated rows from fourteen chemical, thermal and misc GT6 maps as on-demand matrix_v1. Rows already proven stay on their existing waves; missing objects stay blocked. Does not stand in ingredients. Playtest is unsigned."
+}

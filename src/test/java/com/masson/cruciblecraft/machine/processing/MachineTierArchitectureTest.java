@@ -96,7 +96,11 @@ class MachineTierArchitectureTest {
         var fluids = variant.runtimeSpec().fluids();
         assertEquals(1, fluids.inputs().size());
         assertEquals(6, fluids.outputs().size());
-        assertEquals(100_000, fluids.inputs().getFirst().capacity());
+        assertEquals(
+                ModProcessingMachines.CENTRIFUGE_GT6_RECIPE_FLUID_INPUT
+                        * variant.tier().parallelLimit()
+                        * 2,
+                fluids.inputs().getFirst().capacity());
         assertTrue(fluids.outputs().stream()
                 .allMatch(tank -> tank.capacity() == 8_000));
     }

@@ -3618,6 +3618,46 @@
     },
     {
       "depends_on": [
+        "recipe/gt6-bulk-capacity",
+        "recipe/gt6-prefix-regular-bulk"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/GT6化学杂项配方批量详细计划.md",
+        "docs/history/card-plans/closed/GT6化学杂项配方批量详细计划.md",
+        "tools/waves/recipe/gt6-chemical-misc-bulk/**",
+        "tools/capabilities/recipe/gt6-chemical-misc-bulk/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/mixer/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/generifier/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/smelter/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/centrifuge/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/fermenter/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/freezer/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/distillery/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/polarizer/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/loom/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/laser_engraver/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/magnetic_separator/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/compressor/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/electrolyzer/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/nanofab/chemical_misc/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/*_chemical_misc.json",
+        "src/main/resources/data/cruciblecraft/chemical_misc_bulk_publication_baseline.json",
+        "src/test/java/com/masson/cruciblecraft/gametest/Gt6ChemicalMiscBulkGameTests.java",
+        "src/test/resources/gt6_chemical_misc_samples.json"
+      ],
+      "path": "tools/capabilities/recipe/gt6-chemical-misc-bulk/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "recipes"
+      ],
+      "slug": "recipe/gt6-chemical-misc-bulk",
+      "survival_access": "unreviewed",
+      "title": "GT6 Chemical and Misc Recipe Bulk",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
         "recipe/gt6-bulk-capacity"
       ],
       "maturity": "runtime_ready",
@@ -4179,7 +4219,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 122,
+  "capability_count": 123,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5505,11 +5545,16 @@
     ],
     "recipe/gt6-bulk-capacity": [
       "recipe/gt6-bulk-capacity",
+      "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
       "recipe/gt6-prefix-regular-bulk"
     ],
+    "recipe/gt6-chemical-misc-bulk": [
+      "recipe/gt6-chemical-misc-bulk"
+    ],
     "recipe/gt6-extruder-bulk": [
+      "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
       "recipe/gt6-prefix-regular-bulk"
@@ -5518,6 +5563,7 @@
       "recipe/gt6-extruder-remainder"
     ],
     "recipe/gt6-prefix-regular-bulk": [
+      "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-prefix-regular-bulk"
     ],
     "registry/catalog-modern-ids": [
@@ -5750,6 +5796,7 @@
     ],
     "recipes": [
       "recipe/gt6-bulk-capacity",
+      "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
       "recipe/gt6-prefix-regular-bulk"

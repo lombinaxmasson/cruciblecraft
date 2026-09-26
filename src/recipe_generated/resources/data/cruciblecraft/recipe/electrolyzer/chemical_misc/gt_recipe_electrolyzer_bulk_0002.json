@@ -1,0 +1,3725 @@
+{
+  "family_id": "gt.recipe.electrolyzer#bulk_0002",
+  "publication_group": "cruciblecraft:electrolyzer/chemical_misc",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 13140,
+      "eut": 630,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 4000,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        5
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "biotite"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:potassium/dust"
+        },
+        {
+          "count": 6,
+          "id": "cruciblecraft:magnesium/dust"
+        },
+        {
+          "count": 15,
+          "id": "cruciblecraft:alumina/dust"
+        },
+        {
+          "count": 18,
+          "id": "cruciblecraft:silicon_dioxide/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000,
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "dd5bc382eac5c163750f7b170e0e592b8e47bfb91fd9f8751800f542c266d9c6"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/81eb9c2f7286e1f5"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5120,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:potion_mineralwater"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 500,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 1500,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 500,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:salt/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 6,
+          "id": "cruciblecraft:sodium_hydroxide/small_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "090a2feadd7fd42b560c4db45a9ea3ab91444dd28ee83b98dd9de0dd4a0e2c0b"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 1,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/38b06907db39601d"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2628,
+      "eut": 126,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1000,
+          "id": "cruciblecraft:chlorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "apatite"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 5,
+          "id": "cruciblecraft:calcium/dust"
+        },
+        {
+          "count": 3,
+          "id": "cruciblecraft:phosphate/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "af90c5d65e02f146be25c08d751e496e6ec74836ca759a34da6c0fd9060f2c3b"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 2,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/5828b2420c064b4f"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 6144,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 6,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 12,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 27000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 87,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        30
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "graphite"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:alumina/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 12,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "5fe68c4a81192d0077d74b10e4e09bd240ce71658629fdaefad61c11dfe0f2b3"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 3,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/af823ea67c9322b2"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5548,
+      "eut": 266,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        2
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "clay_red"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:potassium_hydroxide/dust"
+        },
+        {
+          "count": 18,
+          "id": "cruciblecraft:clay/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "4a37ebeebcbdee4cb4c3af27390bdb8c93a63a9b2947b16450d0a40b19e1724e"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 4,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/e45b7bb6e08fd5fc"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 6144,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 6,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 12,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 27000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 87,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        30
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "coal"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:alumina/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 12,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "bc3311c239c044c36f247911650c5faa82ac6e9cbcf2469119d1ab9c2b23322a"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 5,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/d828da4ab23631dd"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1752,
+      "eut": 84,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1000,
+          "id": "cruciblecraft:fluorine"
+        },
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        6
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:bastnasite/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:cerium/dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:carbon/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "2afdcd267841651c25f5f7fe05c292bab84bc91af05543c430e0c5e0c4ab4b31"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 6,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/a88b587a19af6415"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 584,
+      "eut": 28,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:garnierite/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:nickel/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "1ec0331c7ba09d65bdb7efe242746ed871fa278be82e005b59db1656a30592ab"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 7,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/6689a4d24ed11a10"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5548,
+      "eut": 266,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        2
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "bentonite"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:sodium_hydroxide/dust"
+        },
+        {
+          "count": 18,
+          "id": "cruciblecraft:clay/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "7d13bb8af3662da5fef1d137583373cddfb01927fd4fc67f68e65ba0c25f11e6"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 8,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/72b5ad3fe3863238"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 48,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:martian_vitriol"
+        },
+        {
+          "amount": 1500,
+          "id": "cruciblecraft:spectral_dew"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 3500,
+          "id": "cruciblecraft:sulfuric_acid"
+        },
+        {
+          "amount": 500,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 3,
+          "id": "cruciblecraft:meteoric_iron/tiny_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "d15e040057154326e285aaf1224c1ccea61cce46f2876de7cee9c9f5241d70b3"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 9,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/fc18a9b04114883f"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5120,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:spectral_dew"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 500,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 1500,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 500,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:sylvite/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 6,
+          "id": "cruciblecraft:potassium_hydroxide/small_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "04cd8c97d7fc0b45fafea5f7d24db0e3b463ae443f84111c9ff7c331487341d2"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 10,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/d5a9472076d98bc5"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 96,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:chloroplatinic_acid"
+        },
+        {
+          "amount": 6000,
+          "id": "cruciblecraft:spectral_dew"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 12000,
+          "id": "cruciblecraft:hydrochloric_acid"
+        },
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:platinum/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "3e318e0cf1382e35cde730cce8ffff322be5b2cdf5c7844db665ed377cd1d0f8"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 11,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/881c10aabd9b2f62"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5120,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:potion_mineralwater"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 500,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 1500,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 500,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:sylvite/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 6,
+          "id": "cruciblecraft:potassium_hydroxide/small_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "e6daea2147428ea3da29385f113c8a53c60480dc6cee2e83e54339cd561b68ad"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 12,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/1cb973fe26dd8ab7"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5120,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:potion_mineralwater"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 500,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 1500,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 500,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:lithium_chloride/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 6,
+          "id": "cruciblecraft:lithium_hydroxide/small_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "cd278047f7541fe5302c917ad4a1f644d7d1e275980ac2df13a79d8be09923eb"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 13,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/abef770f2ca24d04"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1280,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 750,
+          "id": "cruciblecraft:spectral_dew"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 125,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 375,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 125,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:salt/small_dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "sodium_hydroxide"
+          },
+          "count": 27,
+          "id": "cruciblecraft:dust_div72"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "617fee49667b6d56cc4ca6f16c97f552214770deb16bb57526bc7140c197cd35"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 14,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4f1b1d47e0a88bea"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1280,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 750,
+          "id": "cruciblecraft:potion_mineralwater"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 125,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 375,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 125,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:sylvite/small_dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "potassium_hydroxide"
+          },
+          "count": 27,
+          "id": "cruciblecraft:dust_div72"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "d58770a9a6752d6944e61a608aa8e0d9811eb9e8efe1a5a5b6e9b3913b97a4ea"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 15,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/cf424a8fd7ca23fc"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1280,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 750,
+          "id": "cruciblecraft:spectral_dew"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 125,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 375,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 125,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:sylvite/small_dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "potassium_hydroxide"
+          },
+          "count": 27,
+          "id": "cruciblecraft:dust_div72"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "5ac8ccf4cfb985baa9d538ffe1e9d7c09019b5b987020154697eb383ab2d1877"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 16,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/b2e021803914ed03"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2048,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 4,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 29,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        10
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:coal/dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 4,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "1287e585a01ab79cadedfe2b7134d34e7d619989cebc1a4deb791da876fa2af1"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 17,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/41f6389ee2a0cd4e"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2628,
+      "eut": 126,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1000,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "phosphorite"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 5,
+          "id": "cruciblecraft:calcium/dust"
+        },
+        {
+          "count": 3,
+          "id": "cruciblecraft:phosphate/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "8d92f126eb4f0223cd16c32a00e21a17af8a3762bb5f6cf61d07cb5403419d6a"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 18,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/6dbe45df847587c1"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 96,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:chloroplatinic_acid"
+        },
+        {
+          "amount": 6000,
+          "id": "minecraft:water"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 12000,
+          "id": "cruciblecraft:hydrochloric_acid"
+        },
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:platinum/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "dc867f05fed4211654305277d36850594f994e411cb861dab89e62b23853ff3b"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 19,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/b1b64d609fe23eaa"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2048,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 4,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 29,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        10
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:coal/dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/ingot"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 4,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "6a32b1cc800bdd3e8ef748a950b39d5efc609fca454f9c3472d4c15109e783f1"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 20,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/bf5da658409f95ab"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 6144,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 6,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 12,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 27000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 87,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        30
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "carbon"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:alumina/ingot"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 12,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "2b9d99baa486349649df41250de1582519b4e36ef6657575909dc9395c840366"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 21,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/e20d02364c8bd077"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2048,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 4,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 29,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        27,
+        10
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:coal/tiny_dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 4,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "5bb040d1a8bcdd04a74ef77637c52cbbcc7bc51b211c641c3358124b7f1b5826"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 22,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/2ce3ff92520cb3d5"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5120,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:spectral_dew"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 500,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 1500,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 500,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:salt/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 6,
+          "id": "cruciblecraft:sodium_hydroxide/small_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "f59c83ffa69ff474d06f894ba2ea230f5876f26a229935d340daae432d0074d4"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 23,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/de3278493d6fa8d3"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5548,
+      "eut": 266,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        2
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "kaolinite"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:calcium/dust"
+        },
+        {
+          "count": 18,
+          "id": "cruciblecraft:clay/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "46ccfb877738118827896a996df35293d34e5b5316ff0ec7c0b75e59818958c3"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 24,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/bc94df38baebaa4d"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 19,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 15,
+          "id": "cruciblecraft:spectral_dew"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 10,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 5,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "b714f7644e18683760248db8dcdc7091c36a542d1464f587666ce594cb77dff6"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 25,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/20af0815dd4ab908"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5120,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:spectral_dew"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 500,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 1500,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 500,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:lithium_chloride/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 6,
+          "id": "cruciblecraft:lithium_hydroxide/small_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "bf6ea2b7845b7094487e4179f84bb97b380a86a61f18ca6b66337a4e767e0c81"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 26,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/0371dfa811006f75"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1280,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 750,
+          "id": "cruciblecraft:potion_mineralwater"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 125,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 375,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 125,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:salt/small_dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "sodium_hydroxide"
+          },
+          "count": 27,
+          "id": "cruciblecraft:dust_div72"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "33d34a94ea70b87291bd87b032a1d8b2afa99d5336de65851d9480ed40335cd7"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 27,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/31f73a940b58e398"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 6144,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 6,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 12,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 27000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 87,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        30
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "coal_coke"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:alumina/ingot"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 12,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "057abe2c3892056de7bc2a0ca9de800363e31d56cb6b37d3bb7f02baaea85253"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 28,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4f74978f9654dd00"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2048,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 4,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 29,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        27,
+        10
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:coal/tiny_dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/ingot"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 4,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "8c8dab0fcc6b5524611bf5b8fa9563446a369fa58eb180efff3cee82236e4ac2"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 29,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/14137ecdfcd33dbb"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 96,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:chloroplatinic_acid"
+        },
+        {
+          "amount": 6000,
+          "id": "cruciblecraft:potion_mineralwater"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 12000,
+          "id": "cruciblecraft:hydrochloric_acid"
+        },
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:platinum/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "dd98a946c7b39babd99f46d1b85fd659b107349be56e7cdf052203f19fa386b5"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 30,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/1d25c5889beb0447"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1024,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 1,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 4500,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 14,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        6,
+        5
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:coal/small_dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "99522a24083a18111440c11e22b948120ad5a1944baaf20b4f4eea882b754a95"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 31,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/c19625bf3360f20b"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5256,
+      "eut": 252,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 6000,
+          "id": "minecraft:water"
+        },
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        2
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "asbestos"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 3,
+          "id": "cruciblecraft:magnesium/dust"
+        },
+        {
+          "count": 6,
+          "id": "cruciblecraft:silicon_dioxide/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "acae8f0b6862c7cbc1d497cff1506bf067cdebde38bee414f94305118ab48f2a"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 32,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4be9109105d108a8"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 4964,
+      "eut": 238,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        2
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "ceramic"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 5,
+          "id": "cruciblecraft:alumina/dust"
+        },
+        {
+          "count": 12,
+          "id": "cruciblecraft:silicon_dioxide/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "317f9fa30783d815102ba99b084256c3ea381e5fe61b425f0ceecd2530eff0a6"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 33,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/5c34049741aad8cb"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 6144,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 6,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 12,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 27000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 87,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        30
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "carbon"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:alumina/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 12,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "68a9b2b70da2aaf084ef514333dcd2479102674cb89cba3c13370d5a9a4579da"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 34,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/76d41d2198706a50"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1024,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 1,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 4500,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 14,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        6,
+        5
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:charcoal/small_dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "37f64963b817b053f17c28bd18d1c00a1cad139f130b9094a51c2ae6386964e2"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 35,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/979aaa85c8cc942a"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1752,
+      "eut": 84,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 4000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        6
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:celestine/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:strontium/dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:sulfur/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "824a9949ab2e2368b935eb142fab52f36197bd1e236c641b932cf494765a53d4"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 36,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/01c56a73905bf47b"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 19,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 1700,
+          "id": "cruciblecraft:vitriol_of_clay"
+        },
+        {
+          "amount": 900,
+          "id": "cruciblecraft:potion_mineralwater"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 2100,
+          "id": "cruciblecraft:sulfuric_acid"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:alumina/small_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "73a1dfb9c11f13d2f7d2cd664253d7d19179c38da5b1faef3f3c50db29258c46"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 37,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/f620274e6f427c4e"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5548,
+      "eut": 266,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        2
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "clay_brown"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:lithium_hydroxide/dust"
+        },
+        {
+          "count": 18,
+          "id": "cruciblecraft:clay/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "dc97e2843cda759dd7ad77df9893e2bb7097bba6606191d343f7d31e9215a284"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 38,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4a1a67384b458426"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 48,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:martian_vitriol"
+        },
+        {
+          "amount": 1500,
+          "id": "cruciblecraft:potion_mineralwater"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 3500,
+          "id": "cruciblecraft:sulfuric_acid"
+        },
+        {
+          "amount": 500,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 3,
+          "id": "cruciblecraft:meteoric_iron/tiny_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "0581eb5fb78038576ed23b7da99db9d6fc223e4c5d78f6a229f396c4117dd5bb"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 39,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/1dab70819a1fb0d3"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2048,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 4,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 29,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        27,
+        10
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:charcoal/tiny_dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/ingot"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 4,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "27d19f0be11d30ac7d9ffda9f5d84c820a49b61da1390196c25600d8749aac2b"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 40,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/b69979bfea5bea24"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1280,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 750,
+          "id": "cruciblecraft:potion_mineralwater"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 125,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 375,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 125,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:lithium_chloride/small_dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "lithium_hydroxide"
+          },
+          "count": 27,
+          "id": "cruciblecraft:dust_div72"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "7cef8fc18660eabd1c0b872023d9801c08469152d992d28dba524f69c35849b6"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 41,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/bcbaccf6ebef580b"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2628,
+      "eut": 252,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1000,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 5000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "datolite"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:calcium/dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:boron/dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:silicon/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "f257bc753813a93f6d9c1b63deff79155a2c9f8f2daeec2b69119311d7152d1c"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 42,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/ab23e3961787f6e6"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 19,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 1700,
+          "id": "cruciblecraft:vitriol_of_clay"
+        },
+        {
+          "amount": 900,
+          "id": "cruciblecraft:spectral_dew"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 2100,
+          "id": "cruciblecraft:sulfuric_acid"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:alumina/small_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "047bbd5df1ed1c3285b2957447f5b340232adc7defd5865078dba8939cd1eae4"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 43,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/f568052d989828fa"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1280,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 750,
+          "id": "cruciblecraft:spectral_dew"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 125,
+          "id": "cruciblecraft:chlorine"
+        },
+        {
+          "amount": 375,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 125,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:lithium_chloride/small_dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "lithium_hydroxide"
+          },
+          "count": 27,
+          "id": "cruciblecraft:dust_div72"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "665686f98ed598ea2871316630983fe4c72a46559dfcab69f34a95cd705babfb"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 44,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/b6d78113701d6a52"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 19,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 15,
+          "id": "cruciblecraft:potion_mineralwater"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 10,
+          "id": "cruciblecraft:hydrogen"
+        },
+        {
+          "amount": 5,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "561a2bc17b96b2bdf2e42f4e98dd9263c6a30c81200374f55d7bbd1962d8ee29"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 45,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4d4777dac1ba056b"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2048,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 4,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 29,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        10
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:charcoal/dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 4,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "22df2a41050a8871a0c547221b0edebfbfa3eed23296570e2e869695bd90cfa6"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 46,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/09889e0a4e64b5a8"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 96,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:chloroplatinic_acid"
+        },
+        {
+          "amount": 6000,
+          "id": "cruciblecraft:water_distilled"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 12000,
+          "id": "cruciblecraft:hydrochloric_acid"
+        },
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:platinum/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "256da02b17c2da6e27aba6104fb993241770b9f5d68bcfe395a92a1d1e342df4"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 47,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/757a65ffb7262c5e"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1024,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 1,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 4500,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 14,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        6,
+        5
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:charcoal/small_dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/ingot"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "c11f05411e1bb9a5081f469bfb02f8cf2f669537c6945bed034f380823de4aa6"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 48,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/b65fd84686b3a548"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 6144,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 6,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 12,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 27000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 87,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        30
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "graphite"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:alumina/ingot"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 12,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "84cf9d0a4d5ac6fbd78f9afc94682ea22751bea7095c89b7f02f3fae627c6164"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 49,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/4bcdcbcc48aa20f3"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 5548,
+      "eut": 266,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        2
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "palygorskite"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:magnesium/dust"
+        },
+        {
+          "count": 18,
+          "id": "cruciblecraft:clay/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "5a8c9cd0045227e00f0dc44833007fa2db6055bc436f3874bb0dbf83a8007102"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 50,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/963afeae28a5da2c"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2048,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 4,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 29,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        10
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:charcoal/dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/ingot"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 4,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "8be6efe8d0169f442685b84d7660dce98bdfc5326e4a1633a648da829196c9eb"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 51,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/f3b88a8db536aa7c"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 876,
+      "eut": 42,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:petroleum_coke/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:carbon/dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:sulfur/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "25899a112aa6214f4448280efbca31c6d5749471d2ce9000c9309c05bba62987"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 52,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/a3634b204864b65a"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 6144,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 6,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 12,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 27000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 87,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        30
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "charcoal"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:alumina/ingot"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 12,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "373757041a2c044da4a91f52bc8dd26694b306ac2e9ac292d8619a0ccc0972a8"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 53,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/e0ec58b848d3e0d4"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 876,
+      "eut": 42,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        7
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:lignite_coke/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:carbon/dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:dark_ashes/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "bd769746bcd0842624847fb558530220512c9eb1674eb8811d52cf00bae4c689"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 54,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/6eb164962d0ec0c0"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 6144,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 6,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 12,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 27000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 87,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        30
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "coal_coke"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:alumina/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 12,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "3020180ea0b182539a2341e444fa47665f540d571dcfdccededf89c47142b3e7"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 55,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/abbde22056e7d5f6"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2048,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 4,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 29,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        27,
+        10
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:charcoal/tiny_dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 4,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "d02a1904b3d5dbe474a4e5a779539c7ef87d9d92a35b6a84e5c7c7ae6502ad1a"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 56,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/bb0b1af89382cd62"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 6144,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 6,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 12,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 27000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 87,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        30
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "coal"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:alumina/ingot"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 12,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "aecd7aae2931121f0f85756c1e2da2fe0f06b7ffeb06ece4e3f2ab8a89eea399"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 57,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/e8fe81a5acb06de8"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 1024,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 1,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 4500,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 14,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        6,
+        5
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:coal/small_dust"
+        },
+        {
+          "item": "cruciblecraft:alumina/ingot"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "22afb78bbb020aea06dc96cd51750c68175fbc675e4d43da436dfefe67a072a8"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 58,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/562bdd2fddcb064a"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 6144,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 6,
+          "id": "cruciblecraft:molten_cryolite"
+        },
+        {
+          "amount": 12,
+          "id": "cruciblecraft:molten_aluminium_fluoride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 27000,
+          "id": "cruciblecraft:carbon_dioxide"
+        },
+        {
+          "amount": 87,
+          "id": "cruciblecraft:fluorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        30
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:prefix_material": "charcoal"
+          },
+          "items": "cruciblecraft:storage_dust",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:alumina/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 12,
+          "id": "cruciblecraft:aluminium/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "f63ab53a2c8a9e6064bd30db6ee1c47c2c15e3f3a9d4017314398412699b2340"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#bulk_0002",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 59,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:gt6/63ffdc45eb7a3caa"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -33,6 +33,15 @@ class CompactWaveRecipeIdsTest {
     }
 
     @Test
+    void dumpImportedIdsAreOnlyTheGt6StableIdPath() {
+        assertTrue(CompactWaveRecipeIds.isDumpImportedRecipe(id("gt6/60e310eb2ae420a3")));
+        assertFalse(CompactWaveRecipeIds.isDumpImportedRecipe(
+                id("mixer/chemical_misc/gt_recipe_mixer_bulk_0000")));
+        assertFalse(CompactWaveRecipeIds.isDumpImportedRecipe(
+                ResourceLocation.fromNamespaceAndPath("minecraft", "gt6/60e310eb2ae420a3")));
+    }
+
+    @Test
     void gradleNamespaceUsesSlugNotMilestone() {
         String milestone = "T" + "50";
         assertEquals(

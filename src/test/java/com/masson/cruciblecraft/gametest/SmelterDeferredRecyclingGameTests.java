@@ -31,7 +31,8 @@ public final class SmelterDeferredRecyclingGameTests {
     public static final int FAMILY_COUNT = 1817;
     private static final String TEMPLATE = "empty";
     private static final String RECIPE_PREFIX = "smelter/deferred_recycling/";
-    private static final int SMELTER_OUTPUT_TANK = 8_000;
+    private static final int SMELTER_OUTPUT_TANK =
+            ModProcessingMachines.SMELTER_GT6_FLUID_OUTPUT;
 
     private SmelterDeferredRecyclingGameTests() {}
 

@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/recipe/gt6-chemical-misc-bulk/nanofab/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "93dcdaf32898663d5b46f3f70e672c3f9f9f5fb2f507b31e57f54603dd4e16e7"
+    },
+    {
+      "path": "tools/waves/recipe/gt6-chemical-misc-bulk/nanofab/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "df2e534d030aff0b67a95edb4faf8231271523f3f9f09b2909bcc3cfbec3271d"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "nanofab/chemical-misc",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

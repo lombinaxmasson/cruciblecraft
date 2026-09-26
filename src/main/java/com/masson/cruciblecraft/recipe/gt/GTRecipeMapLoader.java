@@ -1344,10 +1344,11 @@ public final class GTRecipeMapLoader {
                     // Bath with reused chemical machines but are not
                     // chemical-dedicated. GT6 remainder IO can exceed the
                     // bronze envelope (2 FO, >4k mB).
-                    // Smelter deferred MTE recovery keeps GT6 molten amounts;
-                    // 13 families exceed the 8000 mB bronze output tank.
+                    // Smelter deferred MTE recovery keeps GT6 molten amounts.
+                    // The bronze output tank is the observed recipe-map max
+                    // (13032 mB). Rows above that still skip this gate.
                     // Publication stays exact; GameTest executes tank-fitting
-                    // representatives. Do not raise the Smelter tank gate.
+                    // representatives.
                     continue;
                 }
                 var invalid = machine.validator().validate(recipe);
@@ -1441,7 +1442,8 @@ public final class GTRecipeMapLoader {
             boolean petroleum = isPetroleumRecipe(entry.id());
             boolean machineBootstrap = isMachineBootstrapRecipe(entry.id());
             boolean hostCompact = CompactWaveRecipeIds.isCompactHostRecipe(
-                    entry.id());
+                    entry.id())
+                    || CompactWaveRecipeIds.isDumpImportedRecipe(entry.id());
             boolean recovery = CompactWaveRecipeIds.isRoasterRecoveryRecipe(
                     entry.id());
             boolean nuclearCanner = isNuclearRecipe(entry.id())

@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "tools/waves/recipe/gt6-chemical-misc-bulk/loom/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "9e49cc8744635c2f7673e10eec3dc0f9f404465425534d4ab2d69aecd95f81f9"
+    },
+    {
+      "path": "tools/waves/recipe/gt6-chemical-misc-bulk/loom/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "1d5f107a5fa400b08f869e384f4e1e95fe8a4d32b259adeef55d4844ab696963"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "loom/chemical-misc",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

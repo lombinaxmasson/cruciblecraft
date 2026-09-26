@@ -1,0 +1,501 @@
+{
+  "maps": [
+    {
+      "block": "cruciblecraft:mixer",
+      "machine": "mixer",
+      "publication_group": "cruciblecraft:mixer/chemical_misc",
+      "samples": [
+        {
+          "duration": 8,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 4,
+              "id": "cruciblecraft:bronze/compound_put_in_furnace_to_smelt_it"
+            }
+          ],
+          "items": [
+            {
+              "count": 3,
+              "id": "cruciblecraft:scrap",
+              "material": "copper"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:scrap",
+              "material": "tin"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        },
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:arcane_compound/small_dust"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:stone/dust"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:netherrack/dust"
+            },
+            {
+              "count": 1,
+              "id": "minecraft:redstone"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:glowstone_pluto/dust"
+            }
+          ],
+          "role": "widest",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:mixer"
+    },
+    {
+      "block": "cruciblecraft:generifier",
+      "machine": "generifier",
+      "publication_group": "cruciblecraft:generifier/chemical_misc",
+      "samples": [
+        {
+          "duration": 1,
+          "eut": 0,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:arrow_gt_wood",
+              "material": "stone"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:arrow_gt_wood",
+              "material": "eclogite"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:generifier"
+    },
+    {
+      "block": "cruciblecraft:smelter",
+      "machine": "smelter",
+      "publication_group": "cruciblecraft:smelter/chemical_misc",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:arrow_gt_plastic",
+              "material": "locust"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:smelter"
+    },
+    {
+      "block": "cruciblecraft:centrifuge",
+      "machine": "centrifuge",
+      "publication_group": "cruciblecraft:centrifuge/chemical_misc",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_centrifuged_crushed_ore",
+              "material": "stibnite"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_washed_crushed_ore",
+              "material": "stibnite"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:centrifuge"
+    },
+    {
+      "block": null,
+      "machine": "fermenter",
+      "publication_group": "cruciblecraft:fermenter/chemical_misc",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": false,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:meat_rotten/tiny_dust"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:meat_cooked/tiny_dust"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:fermenter"
+    },
+    {
+      "block": "cruciblecraft:steel_galvanized_freezer",
+      "machine": "freezer",
+      "publication_group": "cruciblecraft:freezer/chemical_misc",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": true,
+          "fluids": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:log_1/light_blue"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:log_a/blue"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:freezer"
+    },
+    {
+      "block": "cruciblecraft:distillery",
+      "machine": "distillery",
+      "publication_group": "cruciblecraft:distillery/chemical_misc",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": true,
+          "fluids": [
+            {
+              "amount": 10,
+              "id": "cruciblecraft:royaljelly"
+            }
+          ],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "minecraft:sugar"
+            }
+          ],
+          "items": [
+            {
+              "circuit": 0,
+              "count": 1,
+              "id": "cruciblecraft:programmed_circuit"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:distillery"
+    },
+    {
+      "block": "cruciblecraft:steel_galvanized_polarizer",
+      "machine": "polarizer",
+      "publication_group": "cruciblecraft:polarizer/chemical_misc",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_plate",
+              "material": "iron_magnetic"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_plate",
+              "material": "iron_compressed"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:polarizer"
+    },
+    {
+      "block": "cruciblecraft:loom",
+      "machine": "loom",
+      "publication_group": "cruciblecraft:loom/chemical_misc",
+      "samples": [
+        {
+          "duration": 64,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:yttrium_barium_cuprate/double_wire"
+            }
+          ],
+          "items": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:yttrium_barium_cuprate/wire"
+            },
+            {
+              "circuit": 2,
+              "count": 1,
+              "id": "cruciblecraft:programmed_circuit"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:loom"
+    },
+    {
+      "block": "cruciblecraft:laser_engraver",
+      "machine": "laser_engraver",
+      "publication_group": "cruciblecraft:laser_engraver/chemical_misc",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:limestone/windmill_tiles_a"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:limestone/smooth"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:lens",
+              "material": "blue_diamond"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:laser_engraver"
+    },
+    {
+      "block": "cruciblecraft:steel_galvanized_magnetic_separator",
+      "machine": "magnetic_separator",
+      "publication_group": "cruciblecraft:magnetic_separator/chemical_misc",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_centrifuged_crushed_ore",
+              "material": "cobaltite"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_washed_crushed_ore",
+              "material": "cobaltite"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:magnetic_separator"
+    },
+    {
+      "block": "cruciblecraft:compressor",
+      "machine": "compressor",
+      "publication_group": "cruciblecraft:compressor/chemical_misc",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:plate_gem",
+              "material": "chalcopyrite"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:chalcopyrite/dust"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:compressor"
+    },
+    {
+      "block": "cruciblecraft:electrolyzer",
+      "machine": "electrolyzer",
+      "publication_group": "cruciblecraft:electrolyzer/chemical_misc",
+      "samples": [
+        {
+          "duration": 19,
+          "eut": 64,
+          "execute": true,
+          "fluids": [
+            {
+              "amount": 1700,
+              "id": "cruciblecraft:vitriol_of_clay"
+            },
+            {
+              "amount": 900,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "guaranteed_outputs": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:alumina/small_dust"
+            }
+          ],
+          "items": [
+            {
+              "circuit": 1,
+              "count": 1,
+              "id": "cruciblecraft:programmed_circuit"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        },
+        {
+          "duration": 292,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:calcite/dust"
+            }
+          ],
+          "items": [
+            {
+              "circuit": 0,
+              "count": 1,
+              "id": "cruciblecraft:programmed_circuit"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:chalk/dust"
+            }
+          ],
+          "role": "widest",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:electrolyzer"
+    },
+    {
+      "block": "cruciblecraft:nanofab",
+      "machine": "nanofab",
+      "publication_group": "cruciblecraft:nanofab/chemical_misc",
+      "samples": [
+        {
+          "duration": 64,
+          "eut": 16,
+          "execute": true,
+          "fluids": [],
+          "guaranteed_outputs": [
+            {
+              "count": 2,
+              "id": "cruciblecraft:graphene/bolt"
+            }
+          ],
+          "items": [
+            {
+              "circuit": 6,
+              "count": 1,
+              "id": "cruciblecraft:programmed_circuit"
+            },
+            {
+              "count": 1,
+              "id": "cruciblecraft:carbon/small_dust"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:nanofab"
+    }
+  ],
+  "schema_version": 1
+}

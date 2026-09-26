@@ -1,10 +1,10 @@
 {
   "consumers": "Runtime derivation reference remains build_t5_source_projection.fluid_form(); wiring the translation layer to consume this artifact is T23 work.",
   "counts": {
-    "mapped": 311,
+    "mapped": 316,
     "no_cc_fluid": 13,
     "out_of_scope": 2,
-    "total": 326,
+    "total": 331,
     "unclassified": 0
   },
   "derivation_chain": {
@@ -2640,6 +2640,46 @@
       "derivation": "gt6_missing_fluids",
       "disposition": "mapped",
       "fluid": "blueberryjuice"
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:oil_extra_heavy",
+      "cc_material": "oil_extra_heavy",
+      "derivation": "spring_fluid",
+      "disposition": "mapped",
+      "fluid": "liquid_extra_heavy_oil",
+      "material_id": 0
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:oil_heavy",
+      "cc_material": "oil_heavy",
+      "derivation": "spring_fluid",
+      "disposition": "mapped",
+      "fluid": "liquid_heavy_oil",
+      "material_id": 0
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:oil_light",
+      "cc_material": "oil_light",
+      "derivation": "spring_fluid",
+      "disposition": "mapped",
+      "fluid": "liquid_light_oil",
+      "material_id": 0
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:oil_medium",
+      "cc_material": "oil_medium",
+      "derivation": "spring_fluid",
+      "disposition": "mapped",
+      "fluid": "liquid_medium_oil",
+      "material_id": 0
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:soulsand_oil",
+      "cc_material": "soulsand_oil",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "soulsandoil",
+      "material_id": 0
     }
   ],
   "publication_delta": 0,
@@ -2648,7 +2688,7 @@
   "status": "T22_5_FLUID_MAPPING_READY",
   "unknown_identity": {
     "definition": "Fluid names referenced by T21 source rows but absent from the 322 normalized GT6 oredict fluids. Each has an explicit identity decision; recorded_rows come from the GT6-dump scan (full-replay).",
-    "recorded_rows_total": 47569,
+    "recorded_rows_total": 47563,
     "records": [
       {
         "class": "out_of_scope_g10_food",
@@ -2917,34 +2957,6 @@
         "recorded_rows": 4
       },
       {
-        "class": "covered_by_petroleum_identity",
-        "fluid": "liquid_extra_heavy_oil",
-        "rationale": "Same as liquid_light_oil.",
-        "recheck_point": "Same as liquid_light_oil.",
-        "recorded_rows": 1
-      },
-      {
-        "class": "covered_by_petroleum_identity",
-        "fluid": "liquid_heavy_oil",
-        "rationale": "Same as liquid_light_oil.",
-        "recheck_point": "Same as liquid_light_oil.",
-        "recorded_rows": 1
-      },
-      {
-        "class": "covered_by_petroleum_identity",
-        "fluid": "liquid_light_oil",
-        "rationale": "GT6 distillation fraction covered by the T11/T22 petroleum identity (crude_oil chain); O-37 keeps GT6 fluid names unbound from CC materials.",
-        "recheck_point": "T22.5 B1 reclassifies its rows under the petroleum vocabulary.",
-        "recorded_rows": 1
-      },
-      {
-        "class": "covered_by_petroleum_identity",
-        "fluid": "liquid_medium_oil",
-        "rationale": "Same as liquid_light_oil.",
-        "recheck_point": "Same as liquid_light_oil.",
-        "recorded_rows": 1
-      },
-      {
         "class": "out_of_scope_g10_dimension",
         "fluid": "netherair",
         "rationale": "Nether dimension atmosphere fluid; no CC consumer.",
@@ -2971,13 +2983,6 @@
         "rationale": "G10 food-processing fluid; no CC consumer.",
         "recheck_point": "CC adds a food chain.",
         "recorded_rows": 11
-      },
-      {
-        "class": "out_of_scope_g10_dimension",
-        "fluid": "soulsandoil",
-        "rationale": "Soul sand processing fluid; nether content is G10.",
-        "recheck_point": "CC adds nether processing.",
-        "recorded_rows": 2
       },
       {
         "class": "out_of_scope_magic_compat",

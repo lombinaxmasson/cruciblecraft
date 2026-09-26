@@ -120,7 +120,8 @@ public final class MachineVariant {
                         : 0L,
                 tierBand.inputMaximum());
         if (usesCentrifugeCompactEnvelope(id, kind)) {
-            return centrifugeCompactVariantSpec(id, base, energy);
+            return centrifugeCompactVariantSpec(
+                    id, base, energy, tierBand.parallelLimit());
         }
         ProcessingMachineSpec.SidedIoPolicy sided =
                 Gt6SidedIo.known(id.getPath())
@@ -140,9 +141,9 @@ public final class MachineVariant {
     }
 
     /**
-     * Steel/titanium/tungstensteel single-block centrifuges execute the GT6
-     * 6-fluid-out / 100,000 mB envelope. Bronze {@code cruciblecraft:centrifuge}
-     * and the large centrifuge controller keep the opening 2-out / 4,000 mB host.
+     * Steel, titanium and tungstensteel centrifuges keep the GT6 6-fluid-out
+     * envelope. Input tanks follow {@code recipeAmount * parallel * 2}
+     * (200k / 400k / 800k / 1.6M). Bronze uses {@link ModProcessingMachines#CENTRIFUGE}.
      */
     private static boolean usesCentrifugeCompactEnvelope(
             ResourceLocation id,
@@ -153,15 +154,19 @@ public final class MachineVariant {
     private static ProcessingMachineSpec centrifugeCompactVariantSpec(
             ResourceLocation id,
             ProcessingMachineSpec base,
-            ProcessingMachineSpec.EnergySpec energy) {
+            ProcessingMachineSpec.EnergySpec energy,
+            int parallel) {
         int itemInputs = base.items().inputs().size();
         int itemOutputs = base.items().outputs().size();
         int fluidInputs = 1;
         int fluidOutputs = 6;
+        int inputCapacity = ModProcessingMachines.CENTRIFUGE_GT6_RECIPE_FLUID_INPUT
+                * parallel
+                * 2;
         List<ProcessingMachineSpec.TankSpec> inputTanks =
                 java.util.stream.IntStream.range(0, fluidInputs)
                         .mapToObj(index -> new ProcessingMachineSpec.TankSpec(
-                                index, 100_000))
+                                index, inputCapacity))
                         .toList();
         List<ProcessingMachineSpec.TankSpec> outputTanks =
                 java.util.stream.IntStream.range(

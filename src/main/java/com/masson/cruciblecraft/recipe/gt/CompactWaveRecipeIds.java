@@ -65,6 +65,11 @@ public final class CompactWaveRecipeIds {
         return matchesAny(id, RECIPE_PREFIXES) || matchesAny(id, SUPPORT_PREFIXES);
     }
 
+    /** Stable ids of {@code recipe_bulk} rows imported from the GT6 dump. */
+    public static boolean isDumpImportedRecipe(ResourceLocation id) {
+        return pathStartsWith(id, "gt6/");
+    }
+
     public static boolean isSemanticWaveRecipe(ResourceLocation id) {
         return pathStartsWith(id, "smelter/ordinary_closure/")
                 || pathStartsWith(id, "mixer/ordinary_closure/")

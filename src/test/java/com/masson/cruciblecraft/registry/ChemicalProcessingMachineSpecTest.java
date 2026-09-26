@@ -224,9 +224,12 @@ class ChemicalProcessingMachineSpecTest {
         assertLayout(
                 ModProcessingMachines.CENTRIFUGE,
                 1, 6, 1, 6,
-                CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+                ModProcessingMachines.CENTRIFUGE_BRONZE_FLUID_INPUT,
                 CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY);
-        assertLayout(ModProcessingMachines.SMELTER, 1, 4, 0, 1, 0, 8_000);
+        assertLayout(
+                ModProcessingMachines.SMELTER,
+                1, 4, 1, 1, 4_000,
+                ModProcessingMachines.SMELTER_GT6_FLUID_OUTPUT);
         assertEquals(EnergyType.TIME, ModProcessingMachines.BATH.energy().type());
         assertEquals(
                 EnergyType.KINETIC_ROTATION,

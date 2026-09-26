@@ -67,10 +67,20 @@ public final class ModProcessingMachines {
                     6, 6, 1, 3,
                     EnergyType.TIME,
                     ProcessingMachineSpec.EnergyMode.BUFFERED);
+    /**
+     * Largest fluid amount on {@code gt.recipe.centrifuge}. GT6 sizes each
+     * input tank to {@code max(1000, amount * parallel * 2)}; bronze parallel
+     * is 1, so the heavy-water row needs 200_000 mB.
+     */
+    public static final int CENTRIFUGE_GT6_RECIPE_FLUID_INPUT = 100_000;
+    public static final int CENTRIFUGE_BRONZE_FLUID_INPUT =
+            CENTRIFUGE_GT6_RECIPE_FLUID_INPUT * 2;
+    /** Observed {@code gt.recipe.smelter} max fluid output. GT6 output tanks are unbounded. */
+    public static final int SMELTER_GT6_FLUID_OUTPUT = 13_032;
     public static final ProcessingMachineSpec CENTRIFUGE =
             reusedChemicalSpec("centrifuge", () -> ModRecipeMaps.CENTRIFUGE,
                     1, 6, 1, 6,
-                    CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
+                    CENTRIFUGE_BRONZE_FLUID_INPUT,
                     CompactPublicationGroups.GT6_PANEL_TANK_CAPACITY,
                     1, 6, 1, 6,
                     EnergyType.KINETIC_ROTATION,
@@ -92,7 +102,7 @@ public final class ModProcessingMachines {
                     1, 2, 0, 0);
     public static final ProcessingMachineSpec SMELTER =
             reusedChemicalSpec("smelter", () -> ModRecipeMaps.SMELTER,
-                    1, 4, 0, 1, 4_000, 8_000,
+                    1, 4, 1, 1, 4_000, SMELTER_GT6_FLUID_OUTPUT,
                     1, 1, 1, 1,
                     EnergyType.HEAT,
                     ProcessingMachineSpec.EnergyMode.ADJACENT);
@@ -260,7 +270,7 @@ public final class ModProcessingMachines {
                     id("generifier"),
                     () -> ModRecipeMaps.GENERIFIER,
                     new ProcessingMachineSpec.SlotLayout(
-                            0, List.of(), List.of()),
+                            2, List.of(0), List.of(1)),
                     new ProcessingMachineSpec.TankLayout(
                             List.of(new ProcessingMachineSpec.TankSpec(
                                     0, 8_000)),
@@ -272,18 +282,11 @@ public final class ModProcessingMachines {
                             0L,
                             1L),
                     Gt6SidedIo.policy("generifier"),
-                    recipe -> recipe.itemInputs().isEmpty()
-                                    && recipe.itemOutputs().isEmpty()
-                                    && recipe.fluidInputs().size() == 1
-                                    && recipe.fluidOutputs().size() == 1
-                                    && recipe.eut() == 0L
-                                    && recipe.duration() == 1
-                            ? Optional.empty()
-                            : Optional.of("generifier_recipe_shape"),
+                    ModProcessingMachines::validateGenerifierRecipe,
                     ProcessingMachineSpec.BufferPolicy.PAUSE,
                     Gt6BasicMachineGui.ui(
                             1, 1, 1, 1,
-                            0, 0, 1, 1,
+                            1, 1, 1, 1,
                             PROCESSING_STATUSES));
     public static final ProcessingMachineSpec ROASTER =
             reusedChemicalSpec("roaster", () -> ModRecipeMaps.ROASTER,
@@ -1243,6 +1246,7 @@ public final class ModProcessingMachines {
                 || "cryo_mixer".equals(path)
                 || "electrolyzer".equals(path)
                 || "autoclave".equals(path)
+                || "distillery".equals(path)
                 || "fermenter".equals(path)
                 || "lightning".equals(path)
                 || "nanofab".equals(path)
@@ -1851,6 +1855,32 @@ public final class ModProcessingMachines {
         return Optional.empty();
     }
 
+    /**
+     * GT6 {@code RM.Generifier} (RM.java:151): one stack to its generic stack,
+     * or one fluid to its generic fluid in a single tick, both at 0 EU/t.
+     */
+    private static Optional<String> validateGenerifierRecipe(GTRecipe recipe) {
+        if (recipe.eut() != 0L) {
+            return Optional.of("generifier_recipe_shape");
+        }
+        boolean itemRow = recipe.itemInputs().size() == 1
+                && recipe.itemOutputs().size() == 1
+                && recipe.fluidInputs().isEmpty()
+                && recipe.fluidOutputs().isEmpty()
+                && recipe.duration() > 0
+                && recipe.itemInputActions().getFirst().kind() == ItemInputAction.Kind.CONSUME
+                && recipe.itemInputCounts().getFirst() > 0
+                && recipe.itemInputCounts().getFirst() <= 64;
+        boolean fluidRow = recipe.itemInputs().isEmpty()
+                && recipe.itemOutputs().isEmpty()
+                && recipe.fluidInputs().size() == 1
+                && recipe.fluidOutputs().size() == 1
+                && recipe.duration() == 1;
+        return itemRow || fluidRow
+                ? Optional.empty()
+                : Optional.of("generifier_recipe_shape");
+    }
+
     private static ProcessingMachineSpec loomSpec() {
         return loomSpec(
                 "loom",
@@ -2132,7 +2162,7 @@ public final class ModProcessingMachines {
                 || !recipe.fluidInputs().isEmpty()
                 || !recipe.fluidOutputs().isEmpty()
                 || (recipe.eut() != 16L && recipe.eut() != 256L)
-                || recipe.duration() != 64) {
+                || recipe.duration() <= 0) {
             return Optional.of("laser_recipe_shape");
         }
         if (recipe.itemInputCounts().size() != 2

@@ -78,7 +78,8 @@ COMPAT_SHORTCUT_GROUP = "cruciblecraft:compat_shortcut"
 MACHINE_LIMITS = {
     "crusher": (1, 1, 0, 0),
     "sluice": (1, 4, 1, 1),
-    "centrifuge": (1, 4, 0, 0),
+    # GT6 purified-ore centrifuge: 4 item outs, up to 3 fluid outs (mercury).
+    "centrifuge": (1, 4, 0, 6),
     "shredder": (1, 4, 0, 0),
     "sifter": (1, 4, 0, 0),
     "smelter": (1, 1, 0, 0),
@@ -332,6 +333,133 @@ def validate_recipe_shape(
             )
 
 
+_FLUID_TO_CC: dict[str, str] | None = None
+CENTRIFUGE_TINY = "tiny_centrifuged_crushed_ore"
+
+
+def fluid_to_cc() -> dict[str, str]:
+    global _FLUID_TO_CC
+    if _FLUID_TO_CC is None:
+        mapped: dict[str, str] = {}
+        for row in load(TOOLS / "machine_fluid_mapping.json")["mapping"]:
+            if str(row.get("disposition") or "") != "mapped":
+                continue
+            fluid_id = str(row.get("fluid") or "")
+            cc_id = str(row.get("cc_fluid_id") or "")
+            if fluid_id and cc_id:
+                mapped[fluid_id] = cc_id
+        _FLUID_TO_CC = mapped
+    return _FLUID_TO_CC
+
+
+def centrifuge_reference_recipe(
+    reference: dict[str, Any],
+    material_id: str,
+    materials: dict[str, dict[str, Any]],
+) -> compare.NormRecipe | None:
+    """GT6 purified ore: washed crushed → 9 tiny centrifuged ores, plus byproducts.
+
+    The old selector demanded a full ``centrifuged_crushed_ore`` and rewrote
+    byproducts to dust, so every chain row fell through to topology_fallback
+    and shadowed the dump. Keep the tiny outputs and mapped fluid byproducts.
+    A row with an unmapped fluid or a missing tiny form stays unset so the
+    topology projection remains for that material.
+    """
+    expected_input = f"{material_id}:washed_crushed_ore"
+    expected_primary = f"{material_id}:{CENTRIFUGE_TINY}"
+    candidates: list[tuple[str, compare.NormRecipe]] = []
+    frequencies: Counter[str] = Counter()
+    for row in reference["families"]["chain_centrifuge"]:
+        if row.get("material") != material_id or row.get("fake"):
+            continue
+        inputs = [
+            compare.Resource(entry["kind"], entry["id"], int(entry["count"]))
+            for entry in row["inputs"]
+        ]
+        outputs = [
+            compare.Resource(entry["kind"], entry["id"], int(entry["count"]))
+            for entry in row["outputs"]
+        ]
+        item_inputs = [resource for resource in inputs if resource.kind == "item"]
+        if item_inputs != [compare.Resource("item", expected_input, 1)]:
+            continue
+        item_outputs = [
+            resource for resource in outputs if resource.kind == "item"
+        ]
+        fluid_outputs = [
+            resource for resource in outputs if resource.kind == "fluid"
+        ]
+        if not item_outputs or len(item_outputs) > 4 or len(fluid_outputs) > 6:
+            continue
+        source_chances = [int(chance) for chance in row.get("chances") or []]
+        if source_chances and len(source_chances) != len(item_outputs):
+            continue
+        if not source_chances:
+            source_chances = [10_000] * len(item_outputs)
+        if item_outputs[0].id != expected_primary or item_outputs[0].count != 9:
+            continue
+        if source_chances[0] != 10_000:
+            continue
+        kept_items: list[compare.Resource] = []
+        missing_form = False
+        for output in item_outputs:
+            parsed = material_resource(output, materials)
+            if (
+                parsed is None
+                or parsed[1] != CENTRIFUGE_TINY
+                or CENTRIFUGE_TINY
+                not in compare.material_forms(materials[parsed[0]])
+            ):
+                missing_form = True
+                break
+            kept_items.append(output)
+        if missing_form:
+            continue
+        kept_fluids: list[compare.Resource] = []
+        unmapped_fluid = False
+        for output in fluid_outputs:
+            cc_id = fluid_to_cc().get(output.id)
+            if not cc_id or output.count <= 0:
+                unmapped_fluid = True
+                break
+            kept_fluids.append(compare.Resource("fluid", cc_id, output.count))
+        if unmapped_fluid:
+            continue
+        normalized = compare.NormRecipe(
+            family="chain_centrifuge",
+            source="gt",
+            map_name="cruciblecraft:centrifuge",
+            material=material_id,
+            inputs=item_inputs,
+            outputs=kept_items + kept_fluids,
+            duration=int(row["duration"]),
+            eut=int(row["eut"]),
+            special_value=int(row.get("special_value") or 0),
+            chances=source_chances,
+            raw_hint=f"gt6:{value_hash(row)}",
+        )
+        signature = value_hash({
+            "inputs": [resource.key() for resource in item_inputs],
+            "outputs": [
+                resource.key() for resource in kept_items + kept_fluids
+            ],
+            "duration": row["duration"],
+            "eut": row["eut"],
+            "special_value": row.get("special_value") or 0,
+            "chances": source_chances,
+        }, 64)
+        frequencies[signature] += 1
+        candidates.append((signature, normalized))
+    if not candidates:
+        return None
+    candidates.sort(key=lambda candidate: (
+        -frequencies[candidate[0]],
+        candidate[0],
+        candidate[1].raw_hint,
+    ))
+    return candidates[0][1]
+
+
 def reference_recipe(
     reference: dict[str, Any],
     family: str,
@@ -341,6 +469,8 @@ def reference_recipe(
     materials: dict[str, dict[str, Any]],
 ) -> compare.NormRecipe | None:
     """Select the modal directly expressible GT6 recipe for one stage."""
+    if family == "chain_centrifuge":
+        return centrifuge_reference_recipe(reference, material_id, materials)
     input_form, output_form = STAGE_FORMS[family]
     expected_input = f"{material_id}:{input_form}"
     expected_output = f"{output_material}:{output_form}"
@@ -579,22 +709,32 @@ def expand_offline_chain(
             chances=chances or [],
             raw_hint="offline_ore_chain_projection",
         )
-        selected = reference_recipe(
-            reference,
-            family,
-            material_id,
-            output_material or material_id,
-            next(
-                resource.count
-                for resource in outputs
-                if resource.id
-                == (
-                    f"{output_material or material_id}:"
-                    f"{STAGE_FORMS[family][1]}"
-                )
-            ),
-            materials,
+        selected = None
+        projected_is_tiny_centrifuge = (
+            family == "chain_shredder"
+            and any(
+                resource.kind == "item"
+                and resource.id.endswith(":" + CENTRIFUGE_TINY)
+                for resource in inputs
+            )
         )
+        if not projected_is_tiny_centrifuge:
+            selected = reference_recipe(
+                reference,
+                family,
+                material_id,
+                output_material or material_id,
+                next(
+                    resource.count
+                    for resource in outputs
+                    if resource.id
+                    == (
+                        f"{output_material or material_id}:"
+                        f"{STAGE_FORMS[family][1]}"
+                    )
+                ),
+                materials,
+            )
         if selected is not None and family == "chain_smelter":
             try:
                 validate_recipe_shape(selected, materials, prefixes)
@@ -660,10 +800,16 @@ def expand_offline_chain(
         outputs, chances = byproduct_outputs(
             material_id, "purified_dust", "chain_shredder"
         )
+        shredder_input = (
+            item(material_id, CENTRIFUGE_TINY, 9)
+            if centrifuge_reference_recipe(reference, material_id, materials)
+            is not None
+            else item(material_id, "centrifuged_crushed_ore")
+        )
         append(
             "chain_shredder",
             material_id,
-            [item(material_id, "centrifuged_crushed_ore")],
+            [shredder_input],
             outputs,
             180,
             24,
@@ -1018,9 +1164,11 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any], dict[str, str]]:
         recipes_by_stage[recipe.family].append(recipe)
         stage_materials[recipe.family].add(str(recipe.material))
     for family in STAGE_ORDER:
-        input_form, _ = STAGE_FORMS[family]
         for recipe in recipes_by_stage[family]:
-            primary_input = (str(recipe.material), input_form)
+            item_inputs = [
+                resource for resource in recipe.inputs if resource.kind == "item"
+            ]
+            primary_input = material_resource(item_inputs[0], materials)
             if family != STAGE_ORDER[0] and primary_input not in produced:
                 raise ValueError(
                     f"{family}/{recipe.material}: input has no upstream producer"

@@ -8925,7 +8925,8 @@ public final class CrucibleCraftGameTests {
                 "later_wave_publication_baseline",
                 "closing_publication_baseline",
                 "fission_survival_publication_baseline",
-                "extruder_bulk_publication_baseline")) {
+                "extruder_bulk_publication_baseline",
+                "chemical_misc_bulk_publication_baseline")) {
             var stream = CrucibleCraftGameTests.class.getClassLoader()
                     .getResourceAsStream(
                             "data/cruciblecraft/" + baselineName + ".json");

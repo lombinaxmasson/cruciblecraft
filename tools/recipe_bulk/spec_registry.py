@@ -89,6 +89,11 @@ def derive_wave_spec(slug: str) -> WaveSpec:
     wave_root = source_path.parent
     host = str(document["host"])
     path_prefix = host.split(":", 1)[-1]
+    cohort = slug.split("/", 1)[-1].replace("-", "_")
+    lock_cohorts = {
+        str(row.get("cohort") or "")
+        for row in (census.load_json(lock_path).get("production") or {}).get("families") or []
+    } - {""}
     rule_ir_path = wave_root / "rule_ir.json"
     compile_authority = "rule_ir_v1" if rule_ir_path.is_file() else "recipe_bulk"
     return WaveSpec(
@@ -111,9 +116,13 @@ def derive_wave_spec(slug: str) -> WaveSpec:
         lock_path=lock_path,
         operand_map_path=wave_root / "operand_runtime_map.json",
         wave_slug=slug,
-        cohort=slug.split("/", 1)[-1].replace("-", "_"),
+        cohort=cohort,
         representation="exact_or_exact_multi",
         path_prefix=path_prefix,
+        # Other waves share the host folder; write and check only this wave's cohorts.
+        tree_prefixes=tuple(
+            f"{path_prefix}/{name}" for name in sorted(lock_cohorts or {cohort})
+        ),
         dry_run_without_lock=False,
         rule_ir_path=rule_ir_path if rule_ir_path.is_file() else None,
     )

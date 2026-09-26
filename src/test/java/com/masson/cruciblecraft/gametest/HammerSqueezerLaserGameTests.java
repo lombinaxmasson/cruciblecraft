@@ -15,6 +15,7 @@ import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineB
 import com.masson.cruciblecraft.content.blockentity.LaserEngraverBlockEntity;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyProvider;
+import com.masson.cruciblecraft.recipe.gt.CompactWaveRecipeIds;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -743,10 +744,24 @@ public final class HammerSqueezerLaserGameTests {
                         "machine/laser_engraver/circuit_wire_platinum"
                                 .equals(entry.id().getPath())),
                 "Platinum foil laser-engraver row is missing");
+        long authored = entries.stream()
+                .filter(entry -> !CompactWaveRecipeIds.isDumpImportedRecipe(entry.id()))
+                .count();
         helper.assertTrue(
-                entries.size() == 8,
-                "Laser engraver live map is not 4 GT6 foil rows plus 4 frozen PUV crystal rows: "
-                        + entries.size());
+                authored == 8,
+                "Laser engraver authored rows are not 4 GT6 foil rows plus 4 frozen PUV crystal rows: "
+                        + authored);
+        int imported = ModRecipeMaps.LASER_ENGRAVER.family(
+                        CompactRecipeFamilyProvider.familyId(
+                                ModRecipeMaps.LASER_ENGRAVER.id(),
+                                ResourceLocation.fromNamespaceAndPath(
+                                        "cruciblecraft", "laser_engraver/chemical_misc")))
+                .map(RecipeMap.RecipeFamily::logicalRecipeCount)
+                .orElse(0);
+        helper.assertTrue(
+                imported > 0 && entries.size() - authored == imported,
+                "Laser engraver dump rows drifted from the on-demand family: "
+                        + (entries.size() - authored) + " vs " + imported);
         helper.succeed();
     }
 
