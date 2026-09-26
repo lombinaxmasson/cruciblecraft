@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import java.util.TreeMap;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 
 /**
  * Host-neutral compact family snapshot: epoch, publication group, shards,
@@ -64,7 +66,7 @@ public final class CompactRecipeFamilyProvider {
         sources = CompactTransportFragments.reassemble(sources);
         ResourceLocation publicationGroup = resolvePublicationGroup(
                 map.id(), sources);
-        List<IndexedRelation> relations = collectRelations(map.id(), sources);
+        List<IndexedRelation> relations = collectRelations(map.id(), sources, null);
         return new Snapshot(
                 map.id(),
                 publicationGroup,
@@ -173,6 +175,11 @@ public final class CompactRecipeFamilyProvider {
                     "Compact family epoch must be positive");
         }
         sources = CompactTransportFragments.reassemble(sources);
+        Map<CompactRecipeFamilySource, List<CompactGTRecipeFamilyDefinition.Relation>>
+                expanded = new IdentityHashMap<>();
+        for (CompactRecipeFamilySource source : sources) {
+            expanded.put(source, CompactAuthoredMatrix.expand(source.definition()));
+        }
         for (var entry : policies.entrySet()) {
             PublicationGroupKey key = Objects.requireNonNull(
                     entry.getKey(), "compact publication group policy key");
@@ -209,15 +216,16 @@ public final class CompactRecipeFamilyProvider {
             }
             grouped.computeIfAbsent(key, ignored -> new ArrayList<>()).add(source);
         }
-        validateCrossGroupCollisions(grouped);
+        validateCrossGroupCollisions(grouped, expanded);
 
         LinkedHashMap<PublicationGroupKey, Snapshot> snapshots =
                 new LinkedHashMap<>();
         for (var entry : grouped.entrySet()) {
             PublicationGroupKey key = entry.getKey();
-            Snapshot snapshot = prepare(
+            Snapshot snapshot = prepareExpanded(
                     knownMaps.get(key.targetMap()),
                     entry.getValue(),
+                    expanded,
                     epoch,
                     side,
                     policies.get(key));
@@ -230,9 +238,30 @@ public final class CompactRecipeFamilyProvider {
         return Collections.unmodifiableMap(snapshots);
     }
 
+    private static Snapshot prepareExpanded(
+            RecipeMap map,
+            List<CompactRecipeFamilySource> sources,
+            Map<CompactRecipeFamilySource, List<CompactGTRecipeFamilyDefinition.Relation>>
+                    expanded,
+            long epoch,
+            RuntimeSide side,
+            MaterializationPolicy policy) {
+        ResourceLocation publicationGroup = resolvePublicationGroup(
+                map.id(), sources);
+        return new Snapshot(
+                map.id(),
+                publicationGroup,
+                epoch,
+                side,
+                policy,
+                collectRelations(map.id(), sources, expanded));
+    }
+
     private static List<IndexedRelation> collectRelations(
             ResourceLocation mapId,
-            List<CompactRecipeFamilySource> sources) {
+            List<CompactRecipeFamilySource> sources,
+            Map<CompactRecipeFamilySource, List<CompactGTRecipeFamilyDefinition.Relation>>
+                    expanded) {
         Set<ResourceLocation> sourceIds = new HashSet<>();
         Set<String> authoredFamilyIds = new HashSet<>();
         List<IndexedRelation> relations = new ArrayList<>();
@@ -254,8 +283,11 @@ public final class CompactRecipeFamilyProvider {
                                 + " instead of " + mapId);
             }
             try {
-                for (CompactGTRecipeFamilyDefinition.Relation relation
-                        : CompactAuthoredMatrix.expand(definition)) {
+                List<CompactGTRecipeFamilyDefinition.Relation> authored =
+                        expanded == null
+                                ? CompactAuthoredMatrix.expand(definition)
+                                : expanded.get(source);
+                for (CompactGTRecipeFamilyDefinition.Relation relation : authored) {
                     relations.add(new IndexedRelation(source, relation));
                 }
             } catch (IllegalArgumentException failure) {
@@ -266,7 +298,9 @@ public final class CompactRecipeFamilyProvider {
         }
         relations.sort(Comparator
                 .comparingInt((IndexedRelation value) -> value.relation().shadowOrder())
-                .thenComparing(value -> value.relation().stableId().toString()));
+                .thenComparing(
+                        value -> value.relation().stableId(),
+                        CompactRecipeFamilyProvider::compareLocation));
         Set<ResourceLocation> stableIds = new HashSet<>();
         for (IndexedRelation indexed : relations) {
             if (!stableIds.add(indexed.relation().stableId())) {
@@ -310,18 +344,38 @@ public final class CompactRecipeFamilyProvider {
         return Objects.requireNonNull(resolved, "resolved publication group");
     }
 
+    private static int compareLocation(
+            ResourceLocation left, ResourceLocation right) {
+        int namespace = left.getNamespace().compareTo(right.getNamespace());
+        if (namespace != 0) {
+            return namespace;
+        }
+        return left.getPath().compareTo(right.getPath());
+    }
+
     private static void validateCrossGroupCollisions(
-            Map<PublicationGroupKey, List<CompactRecipeFamilySource>> grouped) {
+            Map<PublicationGroupKey, List<CompactRecipeFamilySource>> grouped,
+            Map<CompactRecipeFamilySource, List<CompactGTRecipeFamilyDefinition.Relation>>
+                    expanded) {
+        Map<ResourceLocation, Integer> groupsOnTarget = new HashMap<>();
+        for (PublicationGroupKey key : grouped.keySet()) {
+            groupsOnTarget.merge(key.targetMap(), 1, Integer::sum);
+        }
         Map<ResourceLocation, Map<ResourceLocation, PublicationGroupKey>>
                 authoredOwners = new HashMap<>();
         Map<ResourceLocation, Map<ResourceLocation, PublicationGroupKey>>
                 stableOwners = new HashMap<>();
-                Map<ResourceLocation, Map<String, PublicationGroupKey>>
+        Map<ResourceLocation, Map<String, PublicationGroupKey>>
                 logicalOwners = new HashMap<>();
         Map<ResourceLocation, Map<String, String>>
                 logicalOutputs = new HashMap<>();
+        Map<Ingredient, String> ingredientTails =
+                GTRecipeMapLoader.newIngredientTailCache();
         for (var entry : grouped.entrySet()) {
             PublicationGroupKey key = entry.getKey();
+            if (groupsOnTarget.get(key.targetMap()) < 2) {
+                continue;
+            }
             Map<ResourceLocation, PublicationGroupKey> targetAuthored =
                     authoredOwners.computeIfAbsent(
                             key.targetMap(), ignored -> new HashMap<>());
@@ -345,8 +399,12 @@ public final class CompactRecipeFamilyProvider {
                                     + " and " + key.publicationGroup()
                                     + " on target " + key.targetMap());
                 }
-                for (CompactGTRecipeFamilyDefinition.Relation relation
-                        : source.authoredRelations()) {
+                List<CompactGTRecipeFamilyDefinition.Relation> relations =
+                        expanded.get(source);
+                if (relations == null) {
+                    relations = source.authoredRelations();
+                }
+                for (CompactGTRecipeFamilyDefinition.Relation relation : relations) {
                     PublicationGroupKey stablePrevious =
                             targetStable.putIfAbsent(relation.stableId(), key);
                     if (stablePrevious != null && !stablePrevious.equals(key)) {
@@ -358,13 +416,17 @@ public final class CompactRecipeFamilyProvider {
                                         + " and " + key.publicationGroup()
                                         + " on target " + key.targetMap());
                     }
-                    GTRecipe materialized = relation.materialize();
                     String logicalIdentity = GTRecipeMapLoader.inputSignature(
-                            materialized);
+                            relation.itemInputs(),
+                            relation.itemInputCounts(),
+                            relation.itemInputActions(),
+                            relation.fluidInputs(),
+                            ingredientTails);
                     String outputIdentity = GTRecipeMapLoader.outputSignature(
-                            materialized)
-                            + "|" + materialized.duration()
-                            + "|" + materialized.eut();
+                            relation.itemOutputs(),
+                            relation.fluidOutputs())
+                            + "|" + relation.duration()
+                            + "|" + relation.eut();
                     PublicationGroupKey logicalPrevious =
                             targetLogical.putIfAbsent(logicalIdentity, key);
                     if (logicalPrevious != null && !logicalPrevious.equals(key)) {
@@ -734,6 +796,10 @@ public final class CompactRecipeFamilyProvider {
         }
     }
 
+    private static void updateUtf8(MessageDigest digest, String text) {
+        digest.update(text.getBytes(StandardCharsets.UTF_8));
+    }
+
     private static String fingerprint(
             ResourceLocation mapId,
             ResourceLocation publicationGroup,
@@ -750,21 +816,34 @@ public final class CompactRecipeFamilyProvider {
             for (IndexedRelation indexed : relations) {
                 CompactGTRecipeFamilyDefinition.Relation relation = indexed.relation();
                 CompactRecipeFamilySource source = indexed.source();
-                String row = source.definition().familyId()
-                        + "|" + source.definition().sourceRevision()
-                        + "|" + relation.shadowOrder()
-                        + "|" + relation.stableId()
-                        + "|" + relation.duration()
-                        + "|" + relation.eut()
-                        + "|" + relation.specialValue()
-                        + "|" + relation.canBeBuffered()
-                        + "|" + relation.itemInputCounts()
-                        + "|" + relation.itemInputActions()
-                        + "|" + relation.outputChances()
-                        + "|" + relation.provenance().sourceKind()
-                        + "|" + relation.provenance().selectedSourceRecipe().orElse("")
-                        + "\n";
-                digest.update(row.getBytes(StandardCharsets.UTF_8));
+                updateUtf8(digest, source.definition().familyId());
+                digest.update((byte) '|');
+                updateUtf8(digest, source.definition().sourceRevision());
+                digest.update((byte) '|');
+                updateUtf8(digest, Integer.toString(relation.shadowOrder()));
+                digest.update((byte) '|');
+                updateUtf8(digest, relation.stableId().toString());
+                digest.update((byte) '|');
+                updateUtf8(digest, Integer.toString(relation.duration()));
+                digest.update((byte) '|');
+                updateUtf8(digest, Long.toString(relation.eut()));
+                digest.update((byte) '|');
+                updateUtf8(digest, Long.toString(relation.specialValue()));
+                digest.update((byte) '|');
+                updateUtf8(digest, Boolean.toString(relation.canBeBuffered()));
+                digest.update((byte) '|');
+                updateUtf8(digest, String.valueOf(relation.itemInputCounts()));
+                digest.update((byte) '|');
+                updateUtf8(digest, String.valueOf(relation.itemInputActions()));
+                digest.update((byte) '|');
+                updateUtf8(digest, String.valueOf(relation.outputChances()));
+                digest.update((byte) '|');
+                updateUtf8(digest, String.valueOf(relation.provenance().sourceKind()));
+                digest.update((byte) '|');
+                updateUtf8(digest, relation.provenance()
+                        .selectedSourceRecipe()
+                        .orElse(""));
+                digest.update((byte) '\n');
             }
             return java.util.HexFormat.of().formatHex(digest.digest());
         } catch (NoSuchAlgorithmException exception) {

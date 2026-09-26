@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.recipe.gt;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -1695,47 +1696,92 @@ public final class GTRecipeMapLoader {
     }
 
     static String inputSignature(GTRecipe recipe) {
-        List<String> items = new ArrayList<>();
-        for (int index = 0; index < recipe.itemInputs().size(); index++) {
-            var ingredient = recipe.itemInputs().get(index);
-            String alternatives = java.util.Arrays.stream(ingredient.getItems())
-                    .filter(stack -> !stack.isEmpty())
-                    .map(GTRecipeMapLoader::stackIdentity)
-                    .sorted()
-                    .collect(java.util.stream.Collectors.joining("|"));
-            items.add(recipe.itemInputCounts().get(index)
-                    + ":" + recipe.itemInputActions().get(index)
-                    + "@" + ingredient.getClass().getName()
-                    + "@" + alternatives
-                    + (ingredient.isCustom()
-                            ? "@" + ingredient.getCustomIngredient()
-                            : "@" + java.util.Arrays.toString(
-                                    ingredient.getValues())));
+        return inputSignature(
+                recipe.itemInputs(),
+                recipe.itemInputCounts(),
+                recipe.itemInputActions(),
+                recipe.fluidInputsView(),
+                null);
+    }
+
+    static String inputSignature(
+            List<Ingredient> itemInputs,
+            List<Integer> itemInputCounts,
+            List<ItemInputAction> itemInputActions,
+            List<net.neoforged.neoforge.fluids.FluidStack> fluidInputs,
+            Map<Ingredient, String> ingredientTails) {
+        List<String> items = new ArrayList<>(itemInputs.size());
+        for (int index = 0; index < itemInputs.size(); index++) {
+            Ingredient ingredient = itemInputs.get(index);
+            items.add(itemInputCounts.get(index)
+                    + ":" + itemInputActions.get(index)
+                    + ingredientTail(ingredient, ingredientTails));
         }
         items.sort(String::compareTo);
-        List<String> fluids = recipe.fluidInputs().stream()
-                .map(stack -> stack.getAmount()
-                        + "@" + BuiltInRegistries.FLUID.getKey(stack.getFluid())
-                        + "@" + stack.getComponentsPatch())
-                .sorted()
-                .toList();
+        List<String> fluids = new ArrayList<>(fluidInputs.size());
+        for (net.neoforged.neoforge.fluids.FluidStack stack : fluidInputs) {
+            fluids.add(fluidIdentity(stack));
+        }
+        fluids.sort(String::compareTo);
         return String.join(",", items) + "||" + String.join(",", fluids);
     }
 
     static String outputSignature(GTRecipe recipe) {
-        List<String> items = recipe.itemOutputs().stream()
-                .map(stack -> stack.getCount()
-                        + "@" + BuiltInRegistries.ITEM.getKey(stack.getItem())
-                        + "@" + stack.getComponentsPatch())
-                .sorted()
-                .toList();
-        List<String> fluids = recipe.fluidOutputs().stream()
-                .map(stack -> stack.getAmount()
-                        + "@" + BuiltInRegistries.FLUID.getKey(stack.getFluid())
-                        + "@" + stack.getComponentsPatch())
-                .sorted()
-                .toList();
+        return outputSignature(recipe.itemOutputsView(), recipe.fluidOutputsView());
+    }
+
+    static String outputSignature(
+            List<ItemStack> itemOutputs,
+            List<net.neoforged.neoforge.fluids.FluidStack> fluidOutputs) {
+        List<String> items = new ArrayList<>(itemOutputs.size());
+        for (ItemStack stack : itemOutputs) {
+            items.add(stack.getCount()
+                    + "@" + BuiltInRegistries.ITEM.getKey(stack.getItem())
+                    + "@" + stack.getComponentsPatch());
+        }
+        items.sort(String::compareTo);
+        List<String> fluids = new ArrayList<>(fluidOutputs.size());
+        for (net.neoforged.neoforge.fluids.FluidStack stack : fluidOutputs) {
+            fluids.add(fluidIdentity(stack));
+        }
+        fluids.sort(String::compareTo);
         return String.join(",", items) + "||" + String.join(",", fluids);
+    }
+
+    static Map<Ingredient, String> newIngredientTailCache() {
+        return new IdentityHashMap<>();
+    }
+
+    private static String ingredientTail(
+            Ingredient ingredient,
+            Map<Ingredient, String> cache) {
+        if (cache != null) {
+            String cached = cache.get(ingredient);
+            if (cached != null) {
+                return cached;
+            }
+        }
+        String alternatives = java.util.Arrays.stream(ingredient.getItems())
+                .filter(stack -> !stack.isEmpty())
+                .map(GTRecipeMapLoader::stackIdentity)
+                .sorted()
+                .collect(java.util.stream.Collectors.joining("|"));
+        String tail = "@" + ingredient.getClass().getName()
+                + "@" + alternatives
+                + (ingredient.isCustom()
+                        ? "@" + ingredient.getCustomIngredient()
+                        : "@" + java.util.Arrays.toString(ingredient.getValues()));
+        if (cache != null) {
+            cache.put(ingredient, tail);
+        }
+        return tail;
+    }
+
+    private static String fluidIdentity(
+            net.neoforged.neoforge.fluids.FluidStack stack) {
+        return stack.getAmount()
+                + "@" + BuiltInRegistries.FLUID.getKey(stack.getFluid())
+                + "@" + stack.getComponentsPatch();
     }
 
     private static String stackIdentity(ItemStack stack) {

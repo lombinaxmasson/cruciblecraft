@@ -48,7 +48,9 @@ public final class CompactRecipeShardRouter {
             RELATION_ORDER = Comparator
                     .comparingInt(
                             CompactGTRecipeFamilyDefinition.Relation::shadowOrder)
-                    .thenComparing(relation -> relation.stableId().toString());
+                    .thenComparing(
+                            CompactGTRecipeFamilyDefinition.Relation::stableId,
+                            CompactRecipeShardRouter::compareLocation);
 
     private final ResourceLocation targetMap;
     private final ResourceLocation publicationGroup;
@@ -69,7 +71,8 @@ public final class CompactRecipeShardRouter {
         this.publicationGroup = Objects.requireNonNull(
                 publicationGroup, "publicationGroup");
         Objects.requireNonNull(relations, "relations");
-        this.overflowShardId = shardId(OVERFLOW_ROUTE_KEY);
+        MessageDigest digest = sha256();
+        this.overflowShardId = shardId(digest, OVERFLOW_ROUTE_KEY);
 
         List<CompactGTRecipeFamilyDefinition.Relation> ordered = relations.stream()
                 .map(relation -> Objects.requireNonNull(relation, "relation"))
@@ -90,7 +93,7 @@ public final class CompactRecipeShardRouter {
             if (keys.unindexed()) {
                 continue;
             }
-            for (RouteTuple tuple : routeTuples(keys.canonicalKeys())) {
+            for (RouteTuple tuple : keys.tuples()) {
                 postingFrequencies.merge(tuple.encoded(), 1, Integer::sum);
             }
         }
@@ -111,18 +114,19 @@ public final class CompactRecipeShardRouter {
                 routeKey = OVERFLOW_ROUTE_KEY;
                 mutableOverflowCount++;
             } else {
-                selected = routeTuples(keys.canonicalKeys()).stream()
-                        .min(Comparator
-                                .comparingInt((RouteTuple tuple) ->
-                                        postingFrequencies.get(tuple.encoded()))
-                                .thenComparingInt(RouteTuple::length)
-                                .thenComparing(RouteTuple::encoded))
-                        .orElseThrow();
+                selected = selectRoute(keys.tuples(), postingFrequencies);
                 routeKey = selected.encoded();
             }
-            String relationShardId = routeKey.equals(OVERFLOW_ROUTE_KEY)
-                    ? overflowShardId
-                    : shardId(routeKey);
+            String relationShardId;
+            if (routeKey.equals(OVERFLOW_ROUTE_KEY)) {
+                relationShardId = overflowShardId;
+            } else {
+                relationShardId = mutableShardIdByRouteKey.get(routeKey);
+                if (relationShardId == null) {
+                    relationShardId = shardId(digest, routeKey);
+                    mutableShardIdByRouteKey.put(routeKey, relationShardId);
+                }
+            }
             String previousRoute = routeKeyByShardId.putIfAbsent(
                     relationShardId, routeKey);
             if (previousRoute != null && !previousRoute.equals(routeKey)) {
@@ -270,18 +274,72 @@ public final class CompactRecipeShardRouter {
         return Collections.unmodifiableSet(candidates);
     }
 
-    private String shardId(String routeKey) {
-        String input = targetMap + "\n"
-                + publicationGroup + "\n"
-                + ROUTING_SCHEMA_VERSION + "\n"
-                + routeKey + "\n";
+    private static MessageDigest sha256() {
         try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            return java.util.HexFormat.of().formatHex(
-                    digest.digest(input.getBytes(StandardCharsets.UTF_8)));
+            return MessageDigest.getInstance("SHA-256");
         } catch (NoSuchAlgorithmException exception) {
             throw new IllegalStateException("SHA-256 is unavailable", exception);
         }
+    }
+
+    private String shardId(MessageDigest digest, String routeKey) {
+        digest.reset();
+        updateUtf8(digest, targetMap.toString());
+        digest.update((byte) '\n');
+        updateUtf8(digest, publicationGroup.toString());
+        digest.update((byte) '\n');
+        updateUtf8(digest, ROUTING_SCHEMA_VERSION);
+        digest.update((byte) '\n');
+        updateUtf8(digest, routeKey);
+        digest.update((byte) '\n');
+        return java.util.HexFormat.of().formatHex(digest.digest());
+    }
+
+    private static void updateUtf8(MessageDigest digest, String text) {
+        digest.update(text.getBytes(StandardCharsets.UTF_8));
+    }
+
+    private static int compareLocation(
+            ResourceLocation left, ResourceLocation right) {
+        int namespace = left.getNamespace().compareTo(right.getNamespace());
+        if (namespace != 0) {
+            return namespace;
+        }
+        return left.getPath().compareTo(right.getPath());
+    }
+
+    private static RouteTuple selectRoute(
+            List<RouteTuple> tuples,
+            Map<String, Integer> postingFrequencies) {
+        RouteTuple selected = null;
+        for (RouteTuple tuple : tuples) {
+            if (selected == null
+                    || compareRoute(tuple, selected, postingFrequencies) < 0) {
+                selected = tuple;
+            }
+        }
+        if (selected == null) {
+            throw new IllegalArgumentException(
+                    "Compact shard routing found no route tuple");
+        }
+        return selected;
+    }
+
+    private static int compareRoute(
+            RouteTuple left,
+            RouteTuple right,
+            Map<String, Integer> postingFrequencies) {
+        int byFrequency = Integer.compare(
+                postingFrequencies.get(left.encoded()),
+                postingFrequencies.get(right.encoded()));
+        if (byFrequency != 0) {
+            return byFrequency;
+        }
+        int byLength = Integer.compare(left.length(), right.length());
+        if (byLength != 0) {
+            return byLength;
+        }
+        return left.encoded().compareTo(right.encoded());
     }
 
     private static IndexKeys extractIndexKeys(
@@ -332,7 +390,11 @@ public final class CompactRecipeShardRouter {
         if (keys.isEmpty()) {
             unindexed = true;
         }
-        return new IndexKeys(List.copyOf(keys), unindexed);
+        List<String> canonical = List.copyOf(keys);
+        return new IndexKeys(
+                canonical,
+                unindexed,
+                unindexed ? List.of() : routeTuples(canonical));
     }
 
     private static List<String> queryKeys(GTRecipeQuery query) {
@@ -418,7 +480,10 @@ public final class CompactRecipeShardRouter {
         return Map.copyOf(result);
     }
 
-    private record IndexKeys(List<String> canonicalKeys, boolean unindexed) {}
+    private record IndexKeys(
+            List<String> canonicalKeys,
+            boolean unindexed,
+            List<RouteTuple> tuples) {}
 
     private record RouteTuple(
             String encoded,

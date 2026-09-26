@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "slug": "registry/gt6-long-tail-forms",
+  "title": "GT6 Long-tail Forms",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/prep/GT6长尾形态开门详细计划.md",
+    "docs/history/card-plans/active/GT6长尾形态开门详细计划.md",
+    "docs/history/card-plans/closed/GT6长尾形态开门详细计划.md",
+    "tools/waves/registry/gt6-long-tail-forms/**",
+    "tools/capabilities/registry/gt6-long-tail-forms/**",
+    "src/main/resources/data/cruciblecraft/material_prefixes/chemtube.json"
+  ],
+  "depends_on": [
+    "registry/gt6-storage-dust-blocks"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "note": "1079 materials and 7779 long-tail form pairs are in the registration gate. chemtube prefix and GT6 art are present. Remaining missing_material_form rows stay outside this card. RunClient signoff is still open. Does not sign playtest."
+}

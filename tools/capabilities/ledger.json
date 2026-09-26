@@ -3519,6 +3519,35 @@
       ],
       "maturity": "runtime_ready",
       "owned_paths": [
+        "docs/history/card-plans/prep/配方发布重载性能详细计划.md",
+        "docs/history/card-plans/active/配方发布重载性能详细计划.md",
+        "docs/history/card-plans/closed/配方发布重载性能详细计划.md",
+        "tools/waves/prep/publication-reload-performance/**",
+        "tools/capabilities/portfolio/publication-reload-performance/**",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipe.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProvider.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeShardRouter.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java"
+      ],
+      "path": "tools/capabilities/portfolio/publication-reload-performance/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "verification",
+        "game-tests"
+      ],
+      "slug": "portfolio/publication-reload-performance",
+      "survival_access": "not_applicable",
+      "title": "Publication Reload Performance",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "portfolio/default-gametest-recovery"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
         "docs/history/card-plans/prep/测试制作流程详细计划.md",
         "docs/history/card-plans/active/测试制作流程详细计划.md",
         "docs/history/card-plans/closed/测试制作流程详细计划.md",
@@ -3669,6 +3698,51 @@
       "slug": "registry/catalog-modern-ids",
       "survival_access": "unreviewed",
       "title": "Catalog modern IDs",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "registry/gt6-storage-dust-blocks"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/prep/GT6长尾形态开门详细计划.md",
+        "docs/history/card-plans/active/GT6长尾形态开门详细计划.md",
+        "docs/history/card-plans/closed/GT6长尾形态开门详细计划.md",
+        "tools/waves/registry/gt6-long-tail-forms/**",
+        "tools/capabilities/registry/gt6-long-tail-forms/**",
+        "src/main/resources/data/cruciblecraft/material_prefixes/chemtube.json"
+      ],
+      "path": "tools/capabilities/registry/gt6-long-tail-forms/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "registry/gt6-long-tail-forms",
+      "survival_access": "unreviewed",
+      "title": "GT6 Long-tail Forms",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/prep/GT6粉块批量详细计划.md",
+        "docs/history/card-plans/active/GT6粉块批量详细计划.md",
+        "docs/history/card-plans/closed/GT6粉块批量详细计划.md",
+        "tools/waves/registry/gt6-storage-dust-blocks/**",
+        "tools/capabilities/registry/gt6-storage-dust-blocks/**",
+        "src/main/java/com/masson/cruciblecraft/registry/StorageRegistryAliases.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/StorageGameTests.java"
+      ],
+      "path": "tools/capabilities/registry/gt6-storage-dust-blocks/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "registry/gt6-storage-dust-blocks",
+      "survival_access": "unreviewed",
+      "title": "GT6 Storage Dust Blocks",
       "workflow": "accepted"
     },
     {
@@ -4058,7 +4132,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 118,
+  "capability_count": 121,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5373,7 +5447,11 @@
     ],
     "portfolio/default-gametest-recovery": [
       "portfolio/default-gametest-recovery",
+      "portfolio/publication-reload-performance",
       "portfolio/test-authoring-workflow"
+    ],
+    "portfolio/publication-reload-performance": [
+      "portfolio/publication-reload-performance"
     ],
     "portfolio/test-authoring-workflow": [
       "portfolio/test-authoring-workflow"
@@ -5450,6 +5528,13 @@
       "machines/large-sluice",
       "machines/large-squeezer",
       "registry/catalog-modern-ids"
+    ],
+    "registry/gt6-long-tail-forms": [
+      "registry/gt6-long-tail-forms"
+    ],
+    "registry/gt6-storage-dust-blocks": [
+      "registry/gt6-long-tail-forms",
+      "registry/gt6-storage-dust-blocks"
     ],
     "registry/hybrid-material-identity": [
       "registry/hybrid-material-identity"
@@ -5593,6 +5678,8 @@
       "machines/slicer",
       "recipe/gt6-bulk-capacity",
       "registry/catalog-modern-ids",
+      "registry/gt6-long-tail-forms",
+      "registry/gt6-storage-dust-blocks",
       "registry/hybrid-material-identity",
       "registry/prefix-material-component",
       "registry/tool-head-prefix-reclaim",
@@ -5606,6 +5693,7 @@
     ],
     "game-tests": [
       "portfolio/default-gametest-recovery",
+      "portfolio/publication-reload-performance",
       "portfolio/test-authoring-workflow"
     ],
     "recipes": [
@@ -5614,6 +5702,7 @@
       "recipe/gt6-extruder-remainder"
     ],
     "verification": [
+      "portfolio/publication-reload-performance",
       "portfolio/test-authoring-workflow"
     ]
   },

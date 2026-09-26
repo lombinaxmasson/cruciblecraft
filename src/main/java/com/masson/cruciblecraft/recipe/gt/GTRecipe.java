@@ -288,8 +288,18 @@ public record GTRecipe(
     }
 
     /** Package-private zero-copy view for trusted index/matching code. */
+    List<ItemStack> itemOutputsView() {
+        return itemOutputs;
+    }
+
+    /** Package-private zero-copy view for trusted index/matching code. */
     List<FluidStack> fluidInputsView() {
         return fluidInputs;
+    }
+
+    /** Package-private zero-copy view for trusted index/matching code. */
+    List<FluidStack> fluidOutputsView() {
+        return fluidOutputs;
     }
 
     private static <T> List<T> immutable(List<T> values, String name) {

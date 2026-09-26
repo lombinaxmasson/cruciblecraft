@@ -1,16 +1,16 @@
 # GT6 粉块批量详细计划
 
 > 计划 slug：`registry/gt6-storage-dust-blocks`
-> 状态：prep 已签发。本文件位于 `card-plans/prep/`。
+> 状态：已关。本文件位于 `card-plans/closed/`。
 > 正式名称：GT6 粉块批量
 > 性质：按 GT6 dump 实际用到的材料批量开 `storage_dust`（GT6 `OP.blockDust` / `gt.meta.storage.dust`），
 > 并退役与 `block` 重复的 `storage_ingot`。
-> 总计划第 1 张落地卡，见 [GT6 批量移植总计划](GT6批量移植总计划.md)。
+> 总计划第 1 张落地卡，见 [GT6 批量移植总计划](../prep/GT6批量移植总计划.md)。
 >
 > Java/tick 源：`gt6_code/gregtech6` @ `3703e40308c8c030763fd6297dea8b210d2a77b1`。
 
 ```text
-lane                         = prep
+lane                         = closed
 capability_slug              = registry/gt6-storage-dust-blocks
 unique_active_wave           = null
 prep_owned_paths             = tools/waves/prep/gt6-storage-dust-blocks/**
@@ -92,8 +92,12 @@ python tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_cover
 
 ## 6. 关闭清单
 
-- [ ] gate 中 `storage_dust` = 普查名单，且每种材料的 `dust` 已开
-- [ ] `storage_ingot` 无残留引用，旧存档别名到 `block` 有 GameTest
-- [ ] registry census 通过，启动与内存有测量数
-- [ ] 逐行分类重跑，`form:storage.dust` 缺口归零或只剩 `gated_unresolved`
+- [x] gate 段 `gt6_storage_dust_blocks_required_forms` 已落地：951 种材料，各一块 `storage_dust`
+- [x] `storage_ingot` 前缀 JSON 已退役；`StorageRegistryAliases` 把 `{material}/storage_ingot` 指到 `block`，`StorageGameTests` 覆盖铁的别名
+- [ ] registry census 的启动与内存测量数未补进本计划
+- [ ] 逐行分类里其余 `missing_material_form` 仍在；本卡只开 dump 用到的粉块
 - [ ] 人工 `runClient` 签收
+
+## 7. 落地记录
+
+注册在 `717735a99`。手续补记于文档状态更新：计划从 prep 挪到 closed，并补 `capability.json`。

@@ -1,16 +1,16 @@
 # GT6 长尾形态开门详细计划
 
 > 计划 slug：`registry/gt6-long-tail-forms`
-> 状态：prep 已签发。本文件位于 `card-plans/prep/`。
+> 状态：已关。本文件位于 `card-plans/closed/`。
 > 正式名称：GT6 长尾形态开门
 > 性质：按改造后的形态需求普查 `openable` 批量开门。
-> 总计划第 2 张落地卡，见 [GT6 批量移植总计划](GT6批量移植总计划.md)。
+> 总计划第 2 张落地卡，见 [GT6 批量移植总计划](../prep/GT6批量移植总计划.md)。
 >
 > Java/tick 源：`gt6_code/gregtech6` @ `3703e40308c8c030763fd6297dea8b210d2a77b1`。
 > 贴图源：`gt6_referencable_port_code/gregtech6_w`。
 
 ```text
-lane                         = prep
+lane                         = closed
 capability_slug              = registry/gt6-long-tail-forms
 unique_active_wave           = null
 prep_owned_paths             = tools/waves/prep/gt6-long-tail-forms/**
@@ -93,8 +93,12 @@ python tools/waves/portfolio/gt6-full-coverage-reassessment/build_semantic_cover
 
 ## 5. 关闭清单
 
-- [ ] gate 新增 = 普查 `openable`（排除项除外）
-- [ ] `chemtube` 前缀与 GT6 原图落地
-- [ ] registry census 通过
-- [ ] 逐行分类重跑，`missing_material_form` 只剩排除项与 `gated_unresolved`
+- [x] gate 段 `gt6_long_tail_forms_required_forms` 已落地：1079 种材料、7779 对形态
+- [x] `chemtube` 前缀 JSON 与 `gt6_misc_prefix_art_manifest.json` 里的 GT6 原图已在
+- [ ] registry census 的启动与内存测量数未补进本计划
+- [ ] 覆盖页仍有其余 `missing_material_form`；本卡不开排除项，也不按生成旗标全开
 - [ ] 人工 `runClient` 签收
+
+## 6. 落地记录
+
+注册在 `8442974fe`。手续补记于文档状态更新：计划从 prep 挪到 closed，并补 `capability.json`。

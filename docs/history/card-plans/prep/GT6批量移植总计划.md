@@ -87,8 +87,8 @@ P1、P2 做完重跑逐行分类；P3 完成验证基础设施收口后，后面
 
 | 序 | 卡 | slug | 首轮规模 |
 | --- | --- | --- | ---: |
-| 1 | [GT6 粉块批量](GT6粉块批量详细计划.md) | `registry/gt6-storage-dust-blocks` | 约 951 种材料 / 15,727 行；退役 `storage_ingot` |
-| 2 | [GT6 长尾形态开门](GT6长尾形态开门详细计划.md) | `registry/gt6-long-tail-forms` | 约 75,500 行（上界） |
+| 1 | [GT6 粉块批量](../closed/GT6粉块批量详细计划.md) | `registry/gt6-storage-dust-blocks` | 已关。951 种 `storage_dust`；`storage_ingot` 已退役 |
+| 2 | [GT6 长尾形态开门](../closed/GT6长尾形态开门详细计划.md) | `registry/gt6-long-tail-forms` | 已关。1079 种材料 / 7779 对进 gate |
 | 3 | [GT6 缺失流体](../closed/GT6缺失流体详细计划.md) | `fluid/gt6-missing-fluids` | 7 种流体；已关 |
 | — | 重跑逐行分类 | — | 2026-09-25 已完成。用缺失流体关卡后的覆盖页调整 4–7 |
 | 4 | [GT6 批量配方容量门](../closed/GT6批量配方容量门详细计划.md) | `recipe/gt6-bulk-capacity` | 已关。lazy 上限 500,000，只包后三张配方卡 |

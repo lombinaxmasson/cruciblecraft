@@ -8501,6 +8501,16 @@ public final class CrucibleCraftGameTests {
         CrucibleCraft.LOGGER.info("GameTest compact lookup: {}", lookup);
         CrucibleCraft.LOGGER.info("GameTest online gate: {}", onlineGate);
         helper.assertTrue(
+                metrics.reloadMillis()
+                                <= ModProcessingMachines.VERIFICATION_RECIPE_RELOAD_BUDGET_MS
+                        && onlineGate.sideReload(),
+                "Recipe reload exceeded the verification budget: reloadMillis="
+                        + metrics.reloadMillis()
+                        + " sideReload="
+                        + onlineGate.sideReload()
+                        + " budget="
+                        + ModProcessingMachines.VERIFICATION_RECIPE_RELOAD_BUDGET_MS);
+        helper.assertTrue(
                 metrics.componentRecipes() == 310_023
                         && metrics.toolRecipes() == 4_119
                         && metrics.chemicalPublishedRecipes() == 164
