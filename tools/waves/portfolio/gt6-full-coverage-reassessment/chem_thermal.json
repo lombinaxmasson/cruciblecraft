@@ -5,15 +5,15 @@
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "map_count": 21,
   "source_rows": 172327,
-  "traced_source_rows": 140023,
+  "traced_source_rows": 147737,
   "recipe_evidence_grades": {
     "source_rows": 172327,
     "classes": {
-      "source_exact": 140023,
+      "source_exact": 147737,
       "translated_exact": 362,
       "translated_io_only": 0,
       "translated_item_io": 3027,
-      "translatable_missing": 11234,
+      "translatable_missing": 3520,
       "missing_material_form": 9359,
       "missing_material": 0,
       "missing_fluid": 6767,
@@ -22,9 +22,9 @@
       "legacy_exclusion_pending": 0
     },
     "groups": {
-      "proven": 140385,
+      "proven": 148099,
       "partial_match": 3027,
-      "recipe_gap": 11234,
+      "recipe_gap": 3520,
       "identity_gap": 17679,
       "display_only": 2,
       "legacy_exclusion_pending": 0
@@ -38,24 +38,23 @@
       "source_rows": 172327,
       "excluded_rows": 149,
       "target_rows": 172178,
-      "proven_rows": 140385,
+      "proven_rows": 148099,
       "identity_blocked_rows": 17532,
       "undecided_rows": 0,
-      "recipe_progress": 0.8153,
+      "recipe_progress": 0.8602,
       "identity_ready": 0.8982
     },
     "machine_progress": {
       "maps": 21,
-      "mean_recipe_progress": 0.6698,
+      "mean_recipe_progress": 0.7173,
       "maps_complete": 5,
-      "maps_untouched": 2
+      "maps_untouched": 1
     }
   },
   "pipeline_deferred_map_count": 11,
   "pipeline_deferred_source_rows": 15811,
   "delivery_depth_counts": {
-    "bounded_subset": 15,
-    "denominator_only": 1,
+    "bounded_subset": 16,
     "full_replay": 5
   },
   "maps": [
@@ -195,20 +194,32 @@
     {
       "source_map": "gt.recipe.steamcracking",
       "normalized_map": "gt.recipe.steamcracking",
-      "local_map": "steamcracking",
+      "local_map": "steam_cracker",
       "source_rows": 7746,
       "denominator_class": "deferred_with_reason",
       "owner": "POST_T19",
       "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.steamcracking has 7746 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
       "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.steamcracking.json",
-      "cc_recipe_map_registered": false,
-      "capabilities": [],
-      "traced_source_rows": 0,
+      "cc_recipe_map_registered": true,
+      "capabilities": [
+        {
+          "slug": "recipe/gt6-steamcracking-bulk",
+          "title": "GT6 Steam Cracking Recipe Bulk",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "unreviewed",
+          "wave_slug": "steam-cracker/steamcracking",
+          "path": "tools/capabilities/recipe/gt6-steamcracking-bulk/capability.json"
+        }
+      ],
+      "traced_source_rows": 7714,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "steam_cracker": 7714
+      },
       "owned_cc_maps": [
-        "steamcracking"
+        "steam_cracker"
       ],
       "untraced_cc_rows": 0,
       "untraced_cc_row_kinds": {},
@@ -220,16 +231,18 @@
       "related_blockers": [],
       "gap_axes": [],
       "player_path": {
-        "survival_access": [],
+        "survival_access": [
+          "unreviewed"
+        ],
         "signoff_required": true
       },
-      "delivery_depth": "denominator_only",
+      "delivery_depth": "bounded_subset",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 7714,
+        "source_exact": 7714,
         "missing_fluid": 32
       },
       "raw_row_excluded": {},
@@ -237,10 +250,10 @@
         "source_rows": 7746,
         "excluded_rows": 0,
         "target_rows": 7746,
-        "proven_rows": 0,
+        "proven_rows": 7714,
         "identity_blocked_rows": 32,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 0.9959,
         "identity_ready": 0.9959
       }
     },

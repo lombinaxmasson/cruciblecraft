@@ -80,6 +80,8 @@ CAPABILITY_ALIASES: dict[str, tuple[str, ...]] = {
     "shredder": ("machines/large-shredder",),
     "sluice": ("machines/large-sluice",),
     "squeezer": ("machines/large-squeezer",),
+    "steam_cracker": ("recipe/gt6-steamcracking-bulk",),
+    "steamcracking": ("recipe/gt6-steamcracking-bulk",),
 }
 
 # GT6 map key -> CC RecipeMap path. The fuel entries follow row evidence:

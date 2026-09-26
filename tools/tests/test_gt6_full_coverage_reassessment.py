@@ -168,7 +168,10 @@ class Gt6FullCoverageReassessmentTest(unittest.TestCase):
             in {"gt.recipe.catalyticcracking", "gt.recipe.steamcracking"}
         }
         self.assertEqual(cracking["gt.recipe.catalyticcracking"]["capabilities"], [])
-        self.assertEqual(cracking["gt.recipe.steamcracking"]["capabilities"], [])
+        self.assertEqual(
+            ["recipe/gt6-steamcracking-bulk"],
+            [row["slug"] for row in cracking["gt.recipe.steamcracking"]["capabilities"]],
+        )
 
     def test_every_denominator_axis_is_reconciled(self):
         self.assertEqual(96, len(self.coverage["machine_kinds"]))

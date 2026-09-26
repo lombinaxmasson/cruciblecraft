@@ -138,6 +138,8 @@ KNOWN_SEMANTIC_SLUGS = (
     "compressor/chemical-misc",
     "electrolyzer/chemical-misc",
     "nanofab/chemical-misc",
+    "recipe/gt6-steamcracking-bulk",
+    "steam-cracker/steamcracking",
     "machines/oven",
     "content/electric-wire-cable-mte-fold",
     "content/technological-parts-foundation",

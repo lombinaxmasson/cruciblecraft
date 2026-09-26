@@ -3788,6 +3788,35 @@
       "workflow": "accepted"
     },
     {
+      "depends_on": [
+        "recipe/gt6-chemical-misc-bulk",
+        "machines/gt6-basic-machine-batch"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/GT6蒸汽裂化配方批量详细计划.md",
+        "docs/history/card-plans/closed/GT6蒸汽裂化配方批量详细计划.md",
+        "tools/waves/recipe/gt6-steamcracking-bulk/**",
+        "tools/capabilities/recipe/gt6-steamcracking-bulk/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/steam_cracker/steamcracking/**",
+        "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/steam_cracker_steamcracking.json",
+        "src/main/resources/data/cruciblecraft/steamcracking_bulk_publication_baseline.json",
+        "src/main/resources/data/cruciblecraft_wave_steam_cracker_steamcracking/structure/empty.nbt",
+        "src/main/resources/data/cruciblecraft_wave_steam_cracker_steamcracking/gametest/structure/empty.nbt",
+        "src/test/java/com/masson/cruciblecraft/gametest/Gt6SteamcrackingBulkGameTests.java",
+        "src/test/resources/gt6_steamcracking_samples.json"
+      ],
+      "path": "tools/capabilities/recipe/gt6-steamcracking-bulk/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "recipes"
+      ],
+      "slug": "recipe/gt6-steamcracking-bulk",
+      "survival_access": "unreviewed",
+      "title": "GT6 Steam Cracking Recipe Bulk",
+      "workflow": "accepted"
+    },
+    {
       "depends_on": [],
       "maturity": "runtime_ready",
       "owned_paths": [
@@ -4250,7 +4279,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 124,
+  "capability_count": 125,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -5314,7 +5343,8 @@
       "machines/distillation-tower"
     ],
     "machines/gt6-basic-machine-batch": [
-      "machines/gt6-basic-machine-batch"
+      "machines/gt6-basic-machine-batch",
+      "recipe/gt6-steamcracking-bulk"
     ],
     "machines/gt6-coil-hosts": [
       "machines/gt6-coil-hosts",
@@ -5582,23 +5612,30 @@
       "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
-      "recipe/gt6-prefix-regular-bulk"
+      "recipe/gt6-prefix-regular-bulk",
+      "recipe/gt6-steamcracking-bulk"
     ],
     "recipe/gt6-chemical-misc-bulk": [
-      "recipe/gt6-chemical-misc-bulk"
+      "recipe/gt6-chemical-misc-bulk",
+      "recipe/gt6-steamcracking-bulk"
     ],
     "recipe/gt6-extruder-bulk": [
       "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
-      "recipe/gt6-prefix-regular-bulk"
+      "recipe/gt6-prefix-regular-bulk",
+      "recipe/gt6-steamcracking-bulk"
     ],
     "recipe/gt6-extruder-remainder": [
       "recipe/gt6-extruder-remainder"
     ],
     "recipe/gt6-prefix-regular-bulk": [
       "recipe/gt6-chemical-misc-bulk",
-      "recipe/gt6-prefix-regular-bulk"
+      "recipe/gt6-prefix-regular-bulk",
+      "recipe/gt6-steamcracking-bulk"
+    ],
+    "recipe/gt6-steamcracking-bulk": [
+      "recipe/gt6-steamcracking-bulk"
     ],
     "registry/catalog-modern-ids": [
       "content/gt6-connector-alias-repair",
@@ -5834,7 +5871,8 @@
       "recipe/gt6-chemical-misc-bulk",
       "recipe/gt6-extruder-bulk",
       "recipe/gt6-extruder-remainder",
-      "recipe/gt6-prefix-regular-bulk"
+      "recipe/gt6-prefix-regular-bulk",
+      "recipe/gt6-steamcracking-bulk"
     ],
     "verification": [
       "portfolio/publication-reload-performance",

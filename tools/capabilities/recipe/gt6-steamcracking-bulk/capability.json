@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "slug": "recipe/gt6-steamcracking-bulk",
+  "title": "GT6 Steam Cracking Recipe Bulk",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
+  "survival_access": "unreviewed",
+  "owned_paths": [
+    "docs/history/card-plans/active/GT6蒸汽裂化配方批量详细计划.md",
+    "docs/history/card-plans/closed/GT6蒸汽裂化配方批量详细计划.md",
+    "tools/waves/recipe/gt6-steamcracking-bulk/**",
+    "tools/capabilities/recipe/gt6-steamcracking-bulk/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/steam_cracker/steamcracking/**",
+    "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/steam_cracker_steamcracking.json",
+    "src/main/resources/data/cruciblecraft/steamcracking_bulk_publication_baseline.json",
+    "src/main/resources/data/cruciblecraft_wave_steam_cracker_steamcracking/structure/empty.nbt",
+    "src/main/resources/data/cruciblecraft_wave_steam_cracker_steamcracking/gametest/structure/empty.nbt",
+    "src/test/java/com/masson/cruciblecraft/gametest/Gt6SteamcrackingBulkGameTests.java",
+    "src/test/resources/gt6_steamcracking_samples.json"
+  ],
+  "depends_on": [
+    "recipe/gt6-chemical-misc-bulk",
+    "machines/gt6-basic-machine-batch"
+  ],
+  "profiles": [
+    "recipes"
+  ],
+  "wave_slug": "steam-cracker/steamcracking",
+  "required_test_ids": [
+    "steamCrackingGroupStaysOnDemand",
+    "steamCrackingSampleRuns"
+  ],
+  "note": "Imports host-accepted translated gt.recipe.steamcracking rows onto the live steam cracker as one on-demand matrix publication. Missing fluids stay blocked. Does not stand in ingredients. Playtest is unsigned."
+}

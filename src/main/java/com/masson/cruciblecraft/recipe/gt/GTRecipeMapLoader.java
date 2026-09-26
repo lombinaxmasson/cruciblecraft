@@ -1401,8 +1401,7 @@ public final class GTRecipeMapLoader {
                     .mapToInt(RecipeMap.RecipeFamily::logicalRecipeCount)
                     .sum();
             if (entries.isEmpty() && familyRows == 0 && !provisionedChemicalMap
-                    && !isFakeOrCraftingOnlyHostMap(map)
-                    && !isRecipeDeferredHostMap(map)) {
+                    && !isFakeOrCraftingOnlyHostMap(map)) {
                 throw new IllegalArgumentException(
                         "Required playable map " + map.id() + " loaded zero recipes");
             }
@@ -1424,14 +1423,6 @@ public final class GTRecipeMapLoader {
                 || map == ModRecipeMaps.BUMBLELYZER
                 || map == ModRecipeMaps.BOXINATOR
                 || map == ModRecipeMaps.REPLICATOR;
-    }
-
-    /**
-     * The steam cracker machine is live. Its 7,746 steamcracking rows stay on
-     * the chemical-misc follow-up, so this map is intentionally empty.
-     */
-    private static boolean isRecipeDeferredHostMap(RecipeMap map) {
-        return map == ModRecipeMaps.STEAM_CRACKER;
     }
 
     /**

@@ -670,16 +670,16 @@
   "summary": {
     "recipe_map_count": 95,
     "recipe_source_rows": 720841,
-    "traced_source_rows": 550929,
+    "traced_source_rows": 558643,
     "reference_traced_rows": 22886,
     "recipe_evidence_grades": {
       "source_rows": 720841,
       "classes": {
-        "source_exact": 550931,
+        "source_exact": 558645,
         "translated_exact": 6974,
         "translated_io_only": 0,
         "translated_item_io": 3064,
-        "translatable_missing": 46746,
+        "translatable_missing": 39032,
         "missing_material_form": 66811,
         "missing_material": 0,
         "missing_fluid": 7978,
@@ -688,9 +688,9 @@
         "legacy_exclusion_pending": 9642
       },
       "groups": {
-        "proven": 557905,
+        "proven": 565619,
         "partial_match": 3064,
-        "recipe_gap": 46746,
+        "recipe_gap": 39032,
         "identity_gap": 89908,
         "display_only": 13576,
         "legacy_exclusion_pending": 9642
@@ -704,26 +704,26 @@
         "source_rows": 720841,
         "excluded_rows": 13883,
         "target_rows": 706958,
-        "proven_rows": 557905,
+        "proven_rows": 565619,
         "identity_blocked_rows": 89601,
         "undecided_rows": 9642,
-        "recipe_progress": 0.7892,
+        "recipe_progress": 0.8001,
         "identity_ready": 0.8596
       },
       "machine_progress": {
         "maps": 73,
-        "mean_recipe_progress": 0.5961,
+        "mean_recipe_progress": 0.6097,
         "maps_complete": 15,
-        "maps_untouched": 16
+        "maps_untouched": 15
       }
     },
-    "cc_recipe_rows": 553408,
+    "cc_recipe_rows": 561122,
     "cc_material_rule_files": 98,
-    "capability_count": 124,
+    "capability_count": 125,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 12,
-      "runtime_ready:accepted": 107,
+      "runtime_ready:accepted": 108,
       "runtime_ready:paused": 3
     },
     "blocker_count": 62,
@@ -735,7 +735,7 @@
       "superseded": 5
     },
     "registered_recipe_maps": 75,
-    "cc_maps_with_rows": 62,
+    "cc_maps_with_rows": 63,
     "overflow_artifacts": 24,
     "live_cover_definitions": 54
   },
@@ -767,8 +767,8 @@
       "cruciblecraft:material_rule"
     ],
     "attribution": "tools/waves/portfolio/gt6-full-coverage-reassessment/source_attribution.json",
-    "attribution_digest": "afef79c4a09b4f9f521708a6d322444a38f8fdfbc02e6bcd5487a4c076de08ab",
-    "attribution_overrides": 164,
+    "attribution_digest": "c6ca52bf97b1103668884ccaa4e2c92c6839b67f895d7748e120da67bb62bcd3",
+    "attribution_overrides": 7878,
     "unverified_hashes": 0,
     "ambiguous_hashes": 0
   },
@@ -1771,6 +1771,15 @@
       "survival_access": "unreviewed",
       "wave_slug": "recipe/gt6-prefix-regular-bulk",
       "path": "tools/capabilities/recipe/gt6-prefix-regular-bulk/capability.json"
+    },
+    {
+      "slug": "recipe/gt6-steamcracking-bulk",
+      "title": "GT6 Steam Cracking Recipe Bulk",
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "unreviewed",
+      "wave_slug": "steam-cracker/steamcracking",
+      "path": "tools/capabilities/recipe/gt6-steamcracking-bulk/capability.json"
     },
     {
       "slug": "registry/catalog-modern-ids",
@@ -5691,20 +5700,32 @@
     {
       "source_map": "gt.recipe.steamcracking",
       "normalized_map": "gt.recipe.steamcracking",
-      "local_map": "steamcracking",
+      "local_map": "steam_cracker",
       "source_rows": 7746,
       "denominator_class": "deferred_with_reason",
       "owner": "POST_T19",
       "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.steamcracking has 7746 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
       "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.steamcracking.json",
-      "cc_recipe_map_registered": false,
-      "capabilities": [],
-      "traced_source_rows": 0,
+      "cc_recipe_map_registered": true,
+      "capabilities": [
+        {
+          "slug": "recipe/gt6-steamcracking-bulk",
+          "title": "GT6 Steam Cracking Recipe Bulk",
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "unreviewed",
+          "wave_slug": "steam-cracker/steamcracking",
+          "path": "tools/capabilities/recipe/gt6-steamcracking-bulk/capability.json"
+        }
+      ],
+      "traced_source_rows": 7714,
       "reference_traced_rows": 0,
-      "cc_host_maps": {},
+      "cc_host_maps": {
+        "steam_cracker": 7714
+      },
       "owned_cc_maps": [
-        "steamcracking"
+        "steam_cracker"
       ],
       "untraced_cc_rows": 0,
       "untraced_cc_row_kinds": {},
@@ -5716,16 +5737,18 @@
       "related_blockers": [],
       "gap_axes": [],
       "player_path": {
-        "survival_access": [],
+        "survival_access": [
+          "unreviewed"
+        ],
         "signoff_required": true
       },
-      "delivery_depth": "denominator_only",
+      "delivery_depth": "bounded_subset",
       "freshness": {
         "source_revision_matches_scope": true,
         "evidence_class": "current_worktree_scan"
       },
       "raw_row_classes": {
-        "translatable_missing": 7714,
+        "source_exact": 7714,
         "missing_fluid": 32
       },
       "raw_row_excluded": {},
@@ -5733,10 +5756,10 @@
         "source_rows": 7746,
         "excluded_rows": 0,
         "target_rows": 7746,
-        "proven_rows": 0,
+        "proven_rows": 7714,
         "identity_blocked_rows": 32,
         "undecided_rows": 0,
-        "recipe_progress": 0.0,
+        "recipe_progress": 0.9959,
         "identity_ready": 0.9959
       }
     },
@@ -10605,11 +10628,11 @@
   "recipe_evidence_grades": {
     "source_rows": 720841,
     "classes": {
-      "source_exact": 550931,
+      "source_exact": 558645,
       "translated_exact": 6974,
       "translated_io_only": 0,
       "translated_item_io": 3064,
-      "translatable_missing": 46746,
+      "translatable_missing": 39032,
       "missing_material_form": 66811,
       "missing_material": 0,
       "missing_fluid": 7978,
@@ -10618,9 +10641,9 @@
       "legacy_exclusion_pending": 9642
     },
     "groups": {
-      "proven": 557905,
+      "proven": 565619,
       "partial_match": 3064,
-      "recipe_gap": 46746,
+      "recipe_gap": 39032,
       "identity_gap": 89908,
       "display_only": 13576,
       "legacy_exclusion_pending": 9642
@@ -10634,17 +10657,17 @@
       "source_rows": 720841,
       "excluded_rows": 13883,
       "target_rows": 706958,
-      "proven_rows": 557905,
+      "proven_rows": 565619,
       "identity_blocked_rows": 89601,
       "undecided_rows": 9642,
-      "recipe_progress": 0.7892,
+      "recipe_progress": 0.8001,
       "identity_ready": 0.8596
     },
     "machine_progress": {
       "maps": 73,
-      "mean_recipe_progress": 0.5961,
+      "mean_recipe_progress": 0.6097,
       "maps_complete": 15,
-      "maps_untouched": 16
+      "maps_untouched": 15
     }
   },
   "semantic_coverage": {
@@ -10680,18 +10703,18 @@
       "tools/waves/portfolio/gt6-full-coverage-reassessment/exclusions.json": "594a79e57f79a92b6d13cd9b1e08aa72ab1b837e3c7a3d15f21e7735de1067b3"
     },
     "cc_projection": {
-      "runtime_rows": 553408,
+      "runtime_rows": 561122,
       "rule_rows": 19893,
-      "digest": "6917bbdca013e6e2540de51765e6700c6bc8a105365f5eb9b2f4400c08dd409f"
+      "digest": "33fc2dae296091758d351bec0b6eae2c6f2ac181872d63a820977e406878d8b7"
     },
     "summary": {
       "legacy_exclusion_pending": 9642,
-      "source_exact": 550931,
+      "source_exact": 558645,
       "display_only": 13576,
       "translated_exact": 6974,
       "translated_io_only": 0,
       "translated_item_io": 3064,
-      "translatable_missing": 46746,
+      "translatable_missing": 39032,
       "missing_material_form": 66811,
       "missing_material": 0,
       "missing_fluid": 7978,
@@ -11065,7 +11088,7 @@
         "missing_object": 68
       },
       "gt.recipe.steamcracking": {
-        "translatable_missing": 7714,
+        "source_exact": 7714,
         "missing_fluid": 32
       },
       "gt.recipe.toolhead": {
@@ -15113,10 +15136,12 @@
       "fuel_map": "NONE",
       "variant_count": 4,
       "reason": "Fixed-loader Basic Machine canonical kind.",
-      "cc_hosts": [],
-      "recipe_map_depth": "denominator_only",
+      "cc_hosts": [
+        "cruciblecraft:steam_cracker"
+      ],
+      "recipe_map_depth": "bounded_subset",
       "evidence": null,
-      "delivery_depth": "denominator_only"
+      "delivery_depth": "bounded_subset"
     },
     {
       "canonical_key": "MultiTileEntityBasicMachine|recipe:RM.Welder|accepts:LU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -23685,7 +23710,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -23711,7 +23736,9 @@
       "capability close recipe/gt6-extruder-remainder (major)",
       "capability close recipe/gt6-prefix-regular-bulk (major)",
       "capability close recipe/gt6-chemical-misc-bulk (major)",
-      "capability close machines/gt6-basic-machine-batch (major)"
+      "capability close machines/gt6-basic-machine-batch (major)",
+      "recipe/gt6-steamcracking-bulk",
+      "capability close recipe/gt6-steamcracking-bulk (major)"
     ],
     "accepted": null
   }

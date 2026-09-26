@@ -103,7 +103,7 @@ GameTest：每个 kind 至少一档放置、供能、跑一条抽样配方、产
 
 ## 4. 明确不接管
 
-- steamcracking 7,746 行（化学杂项配方卡的后续批次）
+- steamcracking 7,746 行（后续卡 `recipe/gt6-steamcracking-bulk`）
 - Unboxinator（决策暂缓）
 - 电驱同图机以外的任何新能量类型
 - 缺格用替代材料凑获得格

@@ -53,7 +53,7 @@ mixer 另有 4,556 行 `translated_item_io`（物品对、流体不对），先�
 
 ## 1.1 获得格（D0）
 
-无新网格，全部主机已 live。steamcracking（7,746 行）等主机在同类基础加工机卡落地后，作为本卡的后续批次另开。
+无新网格，全部主机已 live。steamcracking（7,746 行）等主机在同类基础加工机卡落地后另开；2026-09-26 已由 `recipe/gt6-steamcracking-bulk` 导入。
 
 主机按 GT6 面板补齐，不把这些行记 blocked：
 

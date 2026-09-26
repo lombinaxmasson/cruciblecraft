@@ -1,0 +1,45 @@
+{
+  "maps": [
+    {
+      "block": "cruciblecraft:steam_cracker",
+      "machine": "steam_cracker",
+      "publication_group": "cruciblecraft:steam_cracker/steamcracking",
+      "samples": [
+        {
+          "duration": 16,
+          "eut": 16,
+          "execute": true,
+          "fluids": [
+            {
+              "amount": 160,
+              "id": "cruciblecraft:steam"
+            },
+            {
+              "amount": 16,
+              "id": "cruciblecraft:molten_wax"
+            }
+          ],
+          "guaranteed_outputs": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:thallium/tiny_dust"
+            }
+          ],
+          "items": [
+            {
+              "count": 1,
+              "id": "cruciblecraft:tiny_centrifuged_crushed_ore",
+              "material": "thallium"
+            }
+          ],
+          "role": "short",
+          "special_value": 0
+        }
+      ],
+      "target_map": "cruciblecraft:steam_cracker"
+    }
+  ],
+  "published_rows": 7714,
+  "schema_version": 1,
+  "source_rows": 7746
+}
