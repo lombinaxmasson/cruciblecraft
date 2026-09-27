@@ -114,13 +114,9 @@ public class CrucibleBlockEntity extends BlockEntity
         int previousCooldown = crucible.process.thermal().cooldownTicks();
         long previousAir = crucible.process.steelmaking().storedAir();
         int previousReactionTicks = crucible.process.steelmaking().reactionTicks();
-        int shownAir = crucible.process.visibleAirUnits();
         boolean meltedDown = incomingEnergy == 0L && crucible.isThermallyQuiescent()
                 ? false
                 : crucible.advance(incomingEnergy, true);
-        if (crucible.process.visibleAirUnits() != shownAir) {
-            crucible.syncToClient();
-        }
         if (meltedDown) {
             return;
         }
@@ -281,19 +277,14 @@ public class CrucibleBlockEntity extends BlockEntity
             }
             return accepted;
         }
-        int shownBefore = process.visibleAirUnits();
-        long accepted = process.acceptKineticAir(size, amount, simulate);
-        if (!simulate && accepted > 0L && process.visibleAirUnits() != shownBefore) {
-            syncToClient();
-        }
-        return accepted;
+        return process.acceptKineticAir(size, amount, simulate);
     }
 
     @Override
     public long stored(EnergyType type) {
         return switch (type) {
             case HEAT -> process.thermal().totalStoredHeat();
-            case AIR -> process.visibleAirUnits();
+            case AIR -> process.contents().units("air");
             default -> 0L;
         };
     }
@@ -499,10 +490,6 @@ public class CrucibleBlockEntity extends BlockEntity
 
     public Map<String, Integer> composition() {
         return process.composition();
-    }
-
-    public Map<String, Integer> displayComposition() {
-        return process.displayComposition();
     }
 
     public int totalUnits() {

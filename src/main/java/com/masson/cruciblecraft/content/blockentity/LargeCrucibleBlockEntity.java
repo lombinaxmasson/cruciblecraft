@@ -159,12 +159,8 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         int previousCooldown = crucible.process.thermal().cooldownTicks();
         long previousAir = crucible.process.steelmaking().storedAir();
         int previousReactionTicks = crucible.process.steelmaking().reactionTicks();
-        int shownAir = crucible.process.visibleAirUnits();
         PortStoreSync.pullInputs(crucible);
         crucible.tickProcess(level);
-        if (crucible.process.visibleAirUnits() != shownAir) {
-            crucible.syncToClient();
-        }
         PortStoreSync.pushOutputs(crucible);
         boolean processChanged = Float.compare(
                         previousTemperature,
@@ -830,19 +826,14 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         if (type == EnergyType.CU) {
             return process.thermal().queueCooling(size, amount, simulate);
         }
-        int shownBefore = process.visibleAirUnits();
-        long accepted = process.acceptKineticAir(size, amount, simulate);
-        if (!simulate && accepted > 0L && process.visibleAirUnits() != shownBefore) {
-            syncToClient();
-        }
-        return accepted;
+        return process.acceptKineticAir(size, amount, simulate);
     }
 
     @Override
     public long stored(EnergyType type) {
         return switch (type) {
             case HEAT -> process.thermal().totalStoredHeat();
-            case AIR -> process.visibleAirUnits();
+            case AIR -> process.contents().units("air");
             default -> 0L;
         };
     }

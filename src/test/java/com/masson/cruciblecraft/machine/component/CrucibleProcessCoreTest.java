@@ -101,38 +101,54 @@ class CrucibleProcessCoreTest {
     }
 
     @Test
-    void kineticInputBecomesVisibleAirWithoutASteelCharge() {
+    void kineticAirLastsOnlyUntilTheContentPass() {
         CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
         int ingot = MaterialPrefixes.INGOT.units();
         assertEquals(20L, core.acceptKineticAir(1L, 20L, true));
         assertEquals(0, core.contents().units("air"));
         assertEquals(1_000L, core.acceptKineticAir(1L, 1_000L, false));
         assertEquals(ingot, core.contents().units("air"));
-        assertEquals(ingot, core.visibleAirUnits());
-        assertEquals(ingot, core.displayComposition().get("air"));
         CrucibleProcessCore.TickOutcome stripped = core.advance(0L, true);
         assertTrue(!stripped.destroysHost());
         assertEquals(0, core.contents().units("air"));
-        assertEquals(ingot, core.visibleAirUnits());
-        assertEquals(ingot, core.displayComposition().get("air"));
-        core.advance(0L, true);
-        assertEquals(0, core.visibleAirUnits());
-        assertFalse(core.displayComposition().containsKey("air"));
+        assertFalse(core.composition().containsKey("air"));
+        assertFalse(core.clientTag().getCompound("composition").contains("air"));
     }
 
     @Test
-    void kineticAirAlloysMoltenWroughtIronIntoSteel() {
+    void kineticShortfallDoesNotSurviveTheContentPass() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        int ingot = MaterialPrefixes.INGOT.units();
+        core.acceptKineticAir(1L, 600L, false);
+        core.acceptKineticAir(1L, 600L, false);
+        assertEquals(ingot, core.contents().units("air"));
+        core.advance(0L, true);
+        assertEquals(0, core.contents().units("air"));
+        core.acceptKineticAir(1L, 600L, false);
+        core.advance(0L, true);
+        core.acceptKineticAir(1L, 600L, false);
+        assertEquals(0, core.contents().units("air"));
+    }
+
+    @Test
+    void kineticAirAlloysOnlyAFullIngotPresentThisPass() {
         CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
         int ingot = MaterialPrefixes.INGOT.units();
         core.contents().replace(Map.of("wrought_iron", ingot));
         heatAbove(core, "steel");
-        assertEquals(1_000L, core.acceptKineticAir(1L, 1_000L, false));
-        CrucibleProcessCore.TickOutcome outcome = core.advance(0L, true);
-        assertTrue(!outcome.destroysHost());
+        core.acceptKineticAir(1L, 20L, false);
+        core.advance(0L, true);
+        assertEquals(0, core.contents().units("steel"));
+        assertEquals(ingot, core.contents().units("wrought_iron"));
+        assertEquals(0, core.contents().units("air"));
+        core.acceptKineticAir(1L, 980L, false);
+        core.acceptKineticAir(1L, 20L, false);
+        core.advance(0L, true);
         assertEquals(ingot, core.contents().units("steel"));
         assertEquals(0, core.contents().units("wrought_iron"));
         assertEquals(0, core.contents().units("air"));
-        assertEquals(ingot, core.displayComposition().get("air"));
+        core.advance(0L, true);
+        assertEquals(ingot, core.contents().units("steel"));
     }
 
     @Test

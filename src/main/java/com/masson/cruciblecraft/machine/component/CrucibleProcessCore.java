@@ -1,6 +1,5 @@
 package com.masson.cruciblecraft.machine.component;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -58,9 +57,8 @@ public final class CrucibleProcessCore {
     private static final int KINETIC_UNITS_PER_INGOT = 1_000;
     private static final String AIR = "air";
 
+    /** KU not yet turned into a whole material unit. Cleared with leftover air. */
     private int airKuRemainder;
-    private int visibleAirUnits;
-    private boolean kineticSinceLastTick;
 
     private final int maxIngots;
     private final double heatResistanceBonus;
@@ -157,11 +155,13 @@ public final class CrucibleProcessCore {
                 steelMutated = steelmaking.tick(contents, temperature).immediateMutation()
                         || steelMutated;
             }
+            // GT6 deletes leftover MT.Air in this same pass, so fractional KU dies with it.
+            airKuRemainder = 0;
         }
         previousTemperature = thermal.authoritativeTemperature();
         if (acidDestroyed || explodeRadius > 0.0F) {
             contents.clear();
-            closeKineticWindow(true);
+            airKuRemainder = 0;
             return new TickOutcome(false, true, boiled, acidDestroyed, explodeRadius);
         }
         thermal.advance(
@@ -171,10 +171,9 @@ public final class CrucibleProcessCore {
             if (authoritative) {
                 contents.clear();
             }
-            closeKineticWindow(true);
+            airKuRemainder = 0;
             return new TickOutcome(true, true, boiled, false, 0.0F);
         }
-        closeKineticWindow(false);
         return new TickOutcome(false, boiled || steelMutated, boiled, false, 0.0F);
     }
 
@@ -224,11 +223,10 @@ public final class CrucibleProcessCore {
     }
 
     /**
-     * GT6 crucible {@code doInject} for KU: the packet is always accepted, and
-     * {@code size * amount * U/1000} of air is added to the contents when it fits.
-     * Oxygen in the overworld is unconditional. The steelmaking batch is not
-     * required. Leftover air is removed by the content loop; {@link #visibleAirUnits()}
-     * keeps the amount that entered so the surface and tooltip still show it.
+     * GT6 crucible {@code doInject} for KU. The packet is accepted. Every 1000 KU
+     * adds one ingot of air when it fits. The content pass alloys, then deletes
+     * leftover air and any KU short of the next ingot. The next pass only sees
+     * KU that arrives after this one.
      */
     public long acceptKineticAir(long size, long amount, boolean simulate) {
         if (frozen() || size == 0L || amount <= 0L) {
@@ -240,26 +238,18 @@ public final class CrucibleProcessCore {
         long kinetic = EnergyPackets.units(size, amount);
         int ingot = MaterialPrefixes.INGOT.units();
         long product = scaleKineticProduct(kinetic, ingot, airKuRemainder);
-        long whole = product / KINETIC_UNITS_PER_INGOT;
-        airKuRemainder = (int) (product % KINETIC_UNITS_PER_INGOT);
-        int room = Math.max(0, maxUnits() - totalUnits());
-        int add = whole >= room ? room : (int) whole;
+        long perIngot = (long) KINETIC_UNITS_PER_INGOT * ingot;
+        long ingots = product / perIngot;
+        airKuRemainder = (int) (product % perIngot);
+        int roomIngots = Math.max(0, maxUnits() - totalUnits()) / ingot;
+        int addIngots = ingots >= roomIngots ? roomIngots : (int) ingots;
+        int add = addIngots * ingot;
         if (add > 0 && MaterialCatalog.contains(AIR)) {
             applyAdditions(Map.of(AIR, add), authoritativeTemperature());
-        }
-        kineticSinceLastTick = true;
-        visibleAirUnits = Math.max(visibleAirUnits, contents.units(AIR));
-        if (add == 0) {
+        } else {
             onMutation.run();
         }
         return amount;
-    }
-
-    private void closeKineticWindow(boolean destroyed) {
-        if (destroyed || !kineticSinceLastTick) {
-            visibleAirUnits = 0;
-        }
-        kineticSinceLastTick = false;
     }
 
     private static long scaleKineticProduct(long kinetic, int ingotUnits, int remainder) {
@@ -270,22 +260,6 @@ public final class CrucibleProcessCore {
             return Long.MAX_VALUE;
         }
         return remainder + kinetic * ingotUnits;
-    }
-
-    public int visibleAirUnits() {
-        return visibleAirUnits;
-    }
-
-    public Map<String, Integer> displayComposition() {
-        int stored = contents.units(AIR);
-        int shown = Math.max(stored, visibleAirUnits);
-        if (shown == stored) {
-            return contents.composition();
-        }
-        LinkedHashMap<String, Integer> shownContents =
-                new LinkedHashMap<>(contents.composition());
-        shownContents.put(AIR, shown);
-        return Map.copyOf(shownContents);
     }
 
     public SteelmakingController.InjectionResult insertAir(long air) {
@@ -514,7 +488,7 @@ public final class CrucibleProcessCore {
     public CompoundTag clientTag() {
         CompoundTag tag = new CompoundTag();
         CompoundTag savedComposition = new CompoundTag();
-        displayComposition().forEach(savedComposition::putInt);
+        contents.composition().forEach(savedComposition::putInt);
         tag.put("composition", savedComposition);
         tag.putString("casing_material_id", casing.persistedMaterialId());
         tag.putFloat("temperature", thermal.authoritativeTemperature());
@@ -552,13 +526,8 @@ public final class CrucibleProcessCore {
                 tag.getLong("stored_air"),
                 tag.getInt("steel_batch_iron_units"),
                 tag.getInt("steel_reaction_ticks"));
-        airKuRemainder = Math.max(0, Math.min(
-                KINETIC_UNITS_PER_INGOT - 1,
-                tag.getInt("air_ku_remainder")));
-        if (clientUpdate) {
-            visibleAirUnits = contents.units(AIR);
-            kineticSinceLastTick = false;
-        }
+        int maxRemainder = KINETIC_UNITS_PER_INGOT * MaterialPrefixes.INGOT.units() - 1;
+        airKuRemainder = Math.max(0, Math.min(maxRemainder, tag.getInt("air_ku_remainder")));
     }
 
     public void applyAdditions(Map<String, Integer> additions, float inputTemperature) {

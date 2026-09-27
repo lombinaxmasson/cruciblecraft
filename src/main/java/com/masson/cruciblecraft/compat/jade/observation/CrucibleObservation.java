@@ -91,13 +91,11 @@ public record CrucibleObservation(
         data.putFloat(TEMPERATURE_C, crucible.temperatureCelsius());
         data.putFloat(MELTDOWN_C, crucible.casingMaxTemperature());
         data.putLong(BUFFERED_HU, crucible.bufferedHeatHu());
-        Map<String, Integer> shown = crucible.displayComposition();
-        int shownUnits = shown.values().stream().mapToInt(Integer::intValue).sum();
-        data.putFloat(FILL, shownUnits / (float) Math.max(1, CrucibleBlockEntity.maxUnits()));
+        data.putFloat(FILL, crucible.fillFraction());
         data.putString(RENDER, crucible.renderState());
         data.putBoolean(ACTIVE, crucible.processActive());
-        data.put(METALS, writeMetals(shown));
-        data.putInt(UNITS, shownUnits);
+        data.put(METALS, writeMetals(crucible.composition()));
+        data.putInt(UNITS, crucible.totalUnits());
         data.putInt(MAX_UNITS, CrucibleBlockEntity.maxUnits());
         data.putBoolean(CACHE, crucible.hasCacheSlot());
     }
