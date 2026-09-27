@@ -1,10 +1,15 @@
 {
   "required": true,
   "package": "com.masson.cruciblecraft.mixin",
+  "plugin": "com.masson.cruciblecraft.mixin.CrucibleCraftMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "GenericPacketSplitterSizeLimitsMixin",
     "ItemStackMixin"
+  ],
+  "client": [
+    "RemiStackGroupFields",
+    "RemiStackGroupLockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
