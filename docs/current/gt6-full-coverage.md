@@ -23,7 +23,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 1652 demand pairs | openable 96，gated_unresolved 1207，ungated 规模 3298（规模，非待办） |
-| Capability | 127 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 110，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 6，`partial` 26，`unreviewed` 28，`unset` 64 |
+| Capability | 128 | `frozen:accepted` 2，`frozen:paused` 12，`runtime_ready:accepted` 110，`runtime_ready:active` 1，`runtime_ready:paused` 3；survival_access `blocked` 3，`not_applicable` 6，`partial` 27，`unreviewed` 28，`unset` 64 |
 | Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
@@ -572,7 +572,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 - `skipped`：0
 - `ungated_generated_flag_pairs`：3298
 
-## 12. Capability（127）
+## 12. Capability（128）
 
 | capability | maturity | workflow | survival_access |
 | --- | --- | --- | --- |
@@ -585,6 +585,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `content/gt6-eu-cable-acquisition` | runtime_ready | accepted | — |
 | `content/gt6-eu-missing-wire-gauges-runtime` | runtime_ready | accepted | — |
 | `content/gt6-eu-wire-cable-runtime` | runtime_ready | accepted | — |
+| `content/gt6-fluid-barrel` | runtime_ready | active | partial |
 | `content/gt6-fluid-combo-pipe-runtime` | runtime_ready | accepted | — |
 | `content/gt6-fluid-dangerous-media-runtime` | runtime_ready | accepted | — |
 | `content/gt6-fluid-pipe-acquisition` | runtime_ready | accepted | — |

@@ -719,11 +719,12 @@
     },
     "cc_recipe_rows": 561126,
     "cc_material_rule_files": 98,
-    "capability_count": 127,
+    "capability_count": 128,
     "capability_states": {
       "frozen:accepted": 2,
       "frozen:paused": 12,
       "runtime_ready:accepted": 110,
+      "runtime_ready:active": 1,
       "runtime_ready:paused": 3
     },
     "blocker_count": 62,
@@ -853,6 +854,15 @@
       "survival_access": null,
       "wave_slug": "content/gt6-eu-wire-cable-runtime",
       "path": "tools/capabilities/content/gt6-eu-wire-cable-runtime/capability.json"
+    },
+    {
+      "slug": "content/gt6-fluid-barrel",
+      "title": "GT6 fluid storage tanks",
+      "maturity": "runtime_ready",
+      "workflow": "active",
+      "survival_access": "partial",
+      "wave_slug": "content/gt6-fluid-barrel",
+      "path": "tools/capabilities/content/gt6-fluid-barrel/capability.json"
     },
     {
       "slug": "content/gt6-fluid-combo-pipe-runtime",
