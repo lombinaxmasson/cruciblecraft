@@ -74,6 +74,7 @@ final class LargeCrucibleHullRenderer {
         return LargeCrucibleHosts.horizontalFacing(state);
     }
 
+    /** Vertex order faces the side normal. {@code entityCutout} culls the back. */
     private static void box(
             VertexConsumer vertices,
             PoseStack poseStack,
@@ -89,27 +90,27 @@ final class LargeCrucibleHullRenderer {
             Set<Direction> faces) {
         if (faces.contains(Direction.DOWN)) {
             quad(vertices, poseStack, packedLight, tint, facing, Direction.DOWN,
-                    x0, y0, z1, x1, y0, z1, x1, y0, z0, x0, y0, z0);
+                    x0, y0, z0, x1, y0, z0, x1, y0, z1, x0, y0, z1);
         }
         if (faces.contains(Direction.UP)) {
             quad(vertices, poseStack, packedLight, tint, facing, Direction.UP,
-                    x0, y1, z0, x1, y1, z0, x1, y1, z1, x0, y1, z1);
+                    x0, y1, z0, x0, y1, z1, x1, y1, z1, x1, y1, z0);
         }
         if (faces.contains(Direction.NORTH)) {
             quad(vertices, poseStack, packedLight, tint, facing, Direction.NORTH,
-                    x1, y1, z0, x0, y1, z0, x0, y0, z0, x1, y0, z0);
+                    x1, y1, z0, x1, y0, z0, x0, y0, z0, x0, y1, z0);
         }
         if (faces.contains(Direction.SOUTH)) {
             quad(vertices, poseStack, packedLight, tint, facing, Direction.SOUTH,
-                    x0, y1, z1, x1, y1, z1, x1, y0, z1, x0, y0, z1);
+                    x0, y1, z1, x0, y0, z1, x1, y0, z1, x1, y1, z1);
         }
         if (faces.contains(Direction.WEST)) {
             quad(vertices, poseStack, packedLight, tint, facing, Direction.WEST,
-                    x0, y1, z0, x0, y1, z1, x0, y0, z1, x0, y0, z0);
+                    x0, y1, z0, x0, y0, z0, x0, y0, z1, x0, y1, z1);
         }
         if (faces.contains(Direction.EAST)) {
             quad(vertices, poseStack, packedLight, tint, facing, Direction.EAST,
-                    x1, y1, z1, x1, y1, z0, x1, y0, z0, x1, y0, z1);
+                    x1, y1, z1, x1, y0, z1, x1, y0, z0, x1, y1, z0);
         }
     }
 
