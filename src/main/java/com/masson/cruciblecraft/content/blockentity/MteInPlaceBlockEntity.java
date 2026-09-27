@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
+import com.masson.cruciblecraft.fusion.FusionHatchRole;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.remainder.BatBoxEngine;
 import com.masson.cruciblecraft.energy.remainder.BatteryItemEnergy;
@@ -162,6 +163,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     private BlockPos steamTurbineHost;
     private SteamTurbineHatchRole steamTurbineRole;
     private Direction steamTurbineOutward = Direction.NORTH;
+    private BlockPos fusionHost;
+    private FusionHatchRole fusionRole;
+    private Direction fusionOutward = Direction.NORTH;
+    private BlockPos logisticsController;
     private BlockPos largeHexHost;
     private BlockPos mixerController;
     private ResourceLocation mixerStructure;
@@ -296,6 +301,105 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             return turbine;
         }
         return null;
+    }
+
+    public void bindFusion(
+            BlockPos controller, FusionHatchRole role, Direction outward) {
+        BlockPos immutable = controller.immutable();
+        Direction face = outward == null ? Direction.NORTH : outward;
+        if (!immutable.equals(fusionHost)
+                || fusionRole != role
+                || fusionOutward != face) {
+            fusionHost = immutable;
+            fusionRole = role;
+            fusionOutward = face;
+            setChanged();
+            invalidateGasTurbineCaps();
+        }
+    }
+
+    public void unbindFusion() {
+        FusionReactorBlockEntity host = fusionReactor();
+        if (fusionHost != null || fusionRole != null) {
+            fusionHost = null;
+            fusionRole = null;
+            setChanged();
+            invalidateGasTurbineCaps();
+        }
+        if (host != null) {
+            host.requestStructureCheck();
+        }
+    }
+
+    public FusionHatchRole fusionRole() {
+        return fusionRole;
+    }
+
+    public Direction fusionOutward() {
+        return fusionOutward;
+    }
+
+    public boolean forwardsFusionEnergy(Direction side) {
+        return fusionRole == FusionHatchRole.ENERGY_IN
+                || fusionRole == FusionHatchRole.ENERGY_OUT;
+    }
+
+    public void bindLogisticsCore(BlockPos controller) {
+        BlockPos immutable = controller == null ? null : controller.immutable();
+        if (immutable == null
+                ? logisticsController != null
+                : !immutable.equals(logisticsController)) {
+            logisticsController = immutable;
+            setChanged();
+            invalidateGasTurbineCaps();
+        }
+    }
+
+    public void unbindLogisticsCore() {
+        bindLogisticsCore(null);
+    }
+
+    public BlockPos logisticsController() {
+        return logisticsController;
+    }
+
+    private FusionReactorBlockEntity fusionReactor() {
+        if (level == null || fusionHost == null || fusionRole == null) {
+            return null;
+        }
+        if (level.getBlockEntity(fusionHost)
+                instanceof FusionReactorBlockEntity reactor
+                && reactor.formed()) {
+            return reactor;
+        }
+        return null;
+    }
+
+    private LogisticsCoreBlockEntity logisticsCore() {
+        if (level == null || logisticsController == null) {
+            return null;
+        }
+        if (level.getBlockEntity(logisticsController)
+                instanceof LogisticsCoreBlockEntity core) {
+            return core;
+        }
+        return null;
+    }
+
+    private IItemHandler fusionItems() {
+        if (fusionRole != FusionHatchRole.ITEM_FLUID) {
+            return null;
+        }
+        FusionReactorBlockEntity host = fusionReactor();
+        return host == null ? null : host.items(Direction.NORTH);
+    }
+
+    private IFluidHandler fusionFluids() {
+        if (fusionRole != FusionHatchRole.ITEM_FLUID) {
+            return null;
+        }
+        FusionReactorBlockEntity host = fusionReactor();
+        return host == null ? null : host.fluids(Direction.NORTH);
     }
 
     public boolean forwardsGasTurbineEnergy(Direction side) {
@@ -929,6 +1033,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     }
 
     public IFluidHandler fluidHandler(Direction side) {
+        if (fusionRole != null) {
+            return fusionFluids();
+        }
         if (bathingPot != null) {
             return bathingPot.fluidHandler(
                     getBlockState().getValue(MteInPlaceBlock.FACING), side);
@@ -1013,6 +1120,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     }
 
     public IItemHandler itemHandler(Direction side) {
+        if (fusionRole != null) {
+            return fusionItems();
+        }
         if (bathingPot != null) {
             return bathingPot.itemHandler(
                     getBlockState().getValue(MteInPlaceBlock.FACING), side);
@@ -1345,6 +1455,20 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (batBox != null) {
             return batteryBoxHandles(type, side);
         }
+        if (fusionRole != null) {
+            FusionReactorBlockEntity host = fusionReactor();
+            if (host == null) {
+                return false;
+            }
+            return switch (fusionRole) {
+                case ENERGY_IN -> type == EnergyType.TIME || type == EnergyType.LU;
+                case ENERGY_OUT -> type == EnergyType.ELECTRIC;
+                case ITEM_FLUID -> false;
+            };
+        }
+        if (logisticsController != null) {
+            return type == EnergyType.ELECTRIC && logisticsCore() != null;
+        }
         if (forwardsLargeDynamoEnergy(side)) {
             return type == EnergyType.ELECTRIC;
         }
@@ -1418,6 +1542,14 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (batBox != null) {
             return type == EnergyType.ELECTRIC ? batBox.buffer() : 0L;
         }
+        if (fusionRole != null) {
+            FusionReactorBlockEntity host = fusionReactor();
+            return host == null ? 0L : host.stored(type);
+        }
+        LogisticsCoreBlockEntity logistics = logisticsCore();
+        if (logistics != null) {
+            return logistics.stored(type);
+        }
         if (gasTurbineRole != null || steamTurbineRole != null) {
             return 0L;
         }
@@ -1462,6 +1594,14 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     public long capacity(EnergyType type) {
         if (batBox != null) {
             return type == EnergyType.ELECTRIC ? batBox.networkCapacity() : 0L;
+        }
+        if (fusionRole != null) {
+            FusionReactorBlockEntity host = fusionReactor();
+            return host == null ? 0L : host.capacity(type);
+        }
+        LogisticsCoreBlockEntity logistics = logisticsCore();
+        if (logistics != null) {
+            return logistics.capacity(type);
         }
         if (gasTurbineRole != null || steamTurbineRole != null) {
             return 0L;
@@ -1571,6 +1711,14 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (batBox != null) {
             return batteryBoxOutput(type, side);
         }
+        if (fusionRole == FusionHatchRole.ENERGY_OUT
+                && type == EnergyType.ELECTRIC) {
+            FusionReactorBlockEntity host = fusionReactor();
+            return host == null ? 0L : host.outputSize(type, fusionOutward);
+        }
+        if (fusionRole != null) {
+            return 0L;
+        }
         if (forwardsLargeDynamoEnergy(side)) {
             LargeDynamoBlockEntity host = boundLargeDynamo();
             return host == null ? 0L : host.hatchOutputSize(type, side);
@@ -1607,6 +1755,20 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             boolean simulate) {
         if (batBox != null) {
             return insertBatteryBox(type, size, amount, side, simulate);
+        }
+        if (fusionRole != null) {
+            if (fusionRole != FusionHatchRole.ENERGY_IN
+                    || (type != EnergyType.TIME && type != EnergyType.LU)) {
+                return 0L;
+            }
+            FusionReactorBlockEntity host = fusionReactor();
+            return host == null
+                    ? 0L
+                    : host.insert(type, size, amount, side, simulate);
+        }
+        LogisticsCoreBlockEntity logistics = logisticsCore();
+        if (logistics != null) {
+            return logistics.insert(type, size, amount, side, simulate);
         }
         if (gasTurbineRole != null
                 || steamTurbineRole != null
@@ -1689,6 +1851,16 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             Direction side,
             boolean simulate) {
         if (batBox != null) {
+            return 0L;
+        }
+        if (fusionRole == FusionHatchRole.ENERGY_OUT
+                && type == EnergyType.ELECTRIC) {
+            FusionReactorBlockEntity host = fusionReactor();
+            return host == null
+                    ? 0L
+                    : host.extract(type, size, maxAmount, fusionOutward, simulate);
+        }
+        if (fusionRole != null || logisticsController != null) {
             return 0L;
         }
         if (forwardsLargeDynamoEnergy(side)) {
@@ -1787,6 +1959,14 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         tag.putInt("ExplosionPrevention", steamExplosionPrevention);
         tag.putBoolean("FaucetAutoPull", faucetAutoPull);
         tag.put("distilled", distilled.writeToNBT(registries, new CompoundTag()));
+        if (fusionHost != null && fusionRole != null) {
+            tag.putLong("fus.controller", fusionHost.asLong());
+            tag.putString("fus.role", fusionRole.name());
+            tag.putString("fus.outward", fusionOutward.getSerializedName());
+        }
+        if (logisticsController != null) {
+            tag.putLong("log.controller", logisticsController.asLong());
+        }
         if (gasTurbineHost != null && gasTurbineRole != null) {
             tag.putLong("lgt.controller", gasTurbineHost.asLong());
             tag.putString("lgt.role", gasTurbineRole.name());
@@ -1847,6 +2027,23 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         if (tag.contains("distilled")) {
             distilled.readFromNBT(registries, tag.getCompound("distilled"));
         }
+        if (tag.contains("fus.controller") && tag.contains("fus.role")) {
+            fusionHost = BlockPos.of(tag.getLong("fus.controller"));
+            try {
+                fusionRole = FusionHatchRole.valueOf(tag.getString("fus.role"));
+            } catch (IllegalArgumentException ignored) {
+                fusionRole = null;
+                fusionHost = null;
+            }
+            Direction fusionFace = Direction.byName(tag.getString("fus.outward"));
+            fusionOutward = fusionFace == null ? Direction.NORTH : fusionFace;
+        } else {
+            fusionHost = null;
+            fusionRole = null;
+        }
+        logisticsController = tag.contains("log.controller")
+                ? BlockPos.of(tag.getLong("log.controller"))
+                : null;
         if (tag.contains("lgt.controller") && tag.contains("lgt.role")) {
             gasTurbineHost = BlockPos.of(tag.getLong("lgt.controller"));
             try {

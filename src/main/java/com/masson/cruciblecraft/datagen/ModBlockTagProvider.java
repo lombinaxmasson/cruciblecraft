@@ -67,7 +67,6 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.TANK_3X3X3.getKey(),
                 ModBlocks.LARGE_CRUCIBLE.getKey(),
                 ModBlocks.LOGISTICS_CORE.getKey(),
-                ModBlocks.GALVANIZED_STEEL_WALL.getKey(),
                 ModBlocks.VENTILATION_UNIT.getKey(),
                 ModBlocks.VERSATILE_PROCESSOR_UNIT.getKey(),
                 ModBlocks.LOGIC_PROCESSOR_UNIT.getKey(),
@@ -87,9 +86,7 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.GT_HOSTED_ORE.getKey(),
                 ModBlocks.GT_BROKEN_ORE.getKey(),
                 ModBlocks.REACTOR_CORE_1X1.getKey(),
-                ModBlocks.REACTOR_CORE_2X2.getKey(),
-                ModBlocks.TUNGSTENSTEEL_WALL.getKey(),
-                ModBlocks.STAINLESS_STEEL_WALL.getKey());
+                ModBlocks.REACTOR_CORE_2X2.getKey());
         stone.add(ModBlocks.BRONZE_CRUSHER.getKey());
         stone.add(ModBlocks.GT_SMALL_ORE.getKey());
         stone.add(ModBlocks.GT_HOSTED_ORE.getKey());

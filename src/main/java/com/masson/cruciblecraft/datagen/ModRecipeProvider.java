@@ -1563,11 +1563,6 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_hopper", has(Items.HOPPER))
                 .save(output, id("logistics_generic_dump_cover"));
         addDisplayCpuRecipes(output);
-        addFusionWallRecipe(
-                output,
-                "steel_galvanized",
-                ModItems.GALVANIZED_STEEL_WALL.get(),
-                "galvanized_steel_wall");
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC, ModItems.LOGISTICS_CORE.get())
                 .pattern("CCC")
@@ -4173,49 +4168,20 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private static void addFusionPartRecipes(RecipeOutput output) {
-        addFusionWallRecipe(
-                output,
-                "stainless_steel",
-                ModItems.STAINLESS_STEEL_WALL.get(),
-                "stainless_steel_wall");
-        addFusionWallRecipe(
-                output,
-                "tungstensteel",
-                ModItems.TUNGSTENSTEEL_WALL.get(),
-                "tungstensteel_wall");
         Item emitter = ModItems.technologicalPart("compact_force_field_emitter_iv").get();
+        Item tungstensteelWall = ModItems.mteInPlaceItemsById()
+                .get(ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "tungstensteel/wall"))
+                .get();
         output.accept(
                 id("machines/fusion_reactor"),
                 new ShapedCatalystRecipe(
                         List.of("FFF", "FMF", "FFF"),
                         Map.of(
                                 "F", Ingredient.of(emitter),
-                                "M", Ingredient.of(ModItems.TUNGSTENSTEEL_WALL.get())),
+                                "M", Ingredient.of(tungstensteelWall)),
                         Map.of(),
                         new ItemStack(ModItems.FUSION_REACTOR.get())),
-                null);
-    }
-
-    private static void addFusionWallRecipe(
-            RecipeOutput output,
-            String material,
-            Item result,
-            String path) {
-        var plate = MaterialLookup.ingredient(material, MaterialPrefixes.PLATE);
-        if (plate.isEmpty()) {
-            return;
-        }
-        output.accept(
-                id(path),
-                new ShapedCatalystRecipe(
-                        List.of("wPP", "hPP", "   "),
-                        Map.of("P", plate.orElseThrow()),
-                        Map.of(
-                                "w",
-                                CraftingTools.of(ModItems.MATERIAL_WRENCH.get()),
-                                "h",
-                                CraftingTools.of(ModItems.SMITHING_HAMMER.get())),
-                        new ItemStack(result)),
                 null);
     }
 

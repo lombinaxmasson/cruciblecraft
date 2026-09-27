@@ -247,7 +247,6 @@ public class ModLanguageProvider extends LanguageProvider {
                             ModItems.machineCover(entry.itemPath()),
                             entry.chinese()));
             addBlock(ModBlocks.LOGISTICS_CORE, "物流核心");
-            addBlock(ModBlocks.GALVANIZED_STEEL_WALL, "镀锌钢墙");
             addBlock(ModBlocks.VENTILATION_UNIT, "通风单元");
             addBlock(ModBlocks.VERSATILE_PROCESSOR_UNIT, "通用处理器单元");
             addBlock(ModBlocks.LOGIC_PROCESSOR_UNIT, "逻辑处理器单元");
@@ -284,9 +283,9 @@ public class ModLanguageProvider extends LanguageProvider {
             add("tooltip.cruciblecraft.fusion.structure", "结构：");
             add("tooltip.cruciblecraft.fusion.1", "组装说明见界面中的手册。");
             add("tooltip.cruciblecraft.fusion.2",
-                    "144 个铱线圈，576 块普通钨钢墙，50 个通风单元。");
+                    "144 个铱线圈，576 块钨钢壁，50 个通风单元。");
             add("tooltip.cruciblecraft.fusion.3",
-                    "36 块普通不锈钢墙，53 块镀锌钢墙。");
+                    "36 块不锈钢壁，53 块镀锌钢壁。");
             add("tooltip.cruciblecraft.fusion.4",
                     "3 个通用、12 个逻辑、12 个控制四核处理单元。");
             add("tooltip.cruciblecraft.fusion.5", "电能从电力接口输出");
@@ -320,8 +319,6 @@ public class ModLanguageProvider extends LanguageProvider {
             add("item.cruciblecraft.reactor_core_1x1", "反应堆芯 1×1");
             addBlock(ModBlocks.REACTOR_CORE_2X2, "反应堆芯 2×2");
             add("item.cruciblecraft.reactor_core_2x2", "反应堆芯 2×2");
-            addBlock(ModBlocks.TUNGSTENSTEEL_WALL, "钨钢墙");
-            addBlock(ModBlocks.STAINLESS_STEEL_WALL, "不锈钢墙");
             addReactorRodNames();
             addTechnologicalPartNames();
             addGtTreeNames();
@@ -833,9 +830,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add("tooltip.cruciblecraft.fusion.1",
                 "For Assembly Instructions read the Manual in the GUI.");
         add("tooltip.cruciblecraft.fusion.2",
-                "144 Iridium Coils, 576 Regular Tungstensteel Walls, 50 Ventilation Units.");
+                "144 Iridium Coils, 576 Tungstensteel Walls, 50 Ventilation Units.");
         add("tooltip.cruciblecraft.fusion.3",
-                "36 Regular Stainless Steel Walls, 53 Galvanized Steel Walls.");
+                "36 Stainless Steel Walls, 53 Galvanized Steel Walls.");
         add("tooltip.cruciblecraft.fusion.4",
                 "3 Versatile, 12 Logic and 12 Control Quadcore Processing Units.");
         add("tooltip.cruciblecraft.fusion.5", "Energy Output at the Electric Interfaces");
@@ -863,8 +860,6 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.cruciblecraft.reactor_core_1x1", "Reactor Core 1x1");
         addBlock(ModBlocks.REACTOR_CORE_2X2, "Reactor Core 2x2");
         add("item.cruciblecraft.reactor_core_2x2", "Reactor Core 2x2");
-        addBlock(ModBlocks.TUNGSTENSTEEL_WALL, "Tungstensteel Wall");
-        addBlock(ModBlocks.STAINLESS_STEEL_WALL, "Stainless Steel Wall");
         addReactorRodNames();
         addTechnologicalPartNames();
         addGtTreeNames();
@@ -1189,7 +1184,6 @@ public class ModLanguageProvider extends LanguageProvider {
                         ModItems.machineCover(entry.itemPath()),
                         entry.english()));
         addBlock(ModBlocks.LOGISTICS_CORE, "Logistics Core");
-        addBlock(ModBlocks.GALVANIZED_STEEL_WALL, "Galvanized Steel Wall");
         addBlock(ModBlocks.VENTILATION_UNIT, "Ventilation Unit");
         addBlock(ModBlocks.VERSATILE_PROCESSOR_UNIT, "Versatile Processor Unit");
         addBlock(ModBlocks.LOGIC_PROCESSOR_UNIT, "Logic Processor Unit");

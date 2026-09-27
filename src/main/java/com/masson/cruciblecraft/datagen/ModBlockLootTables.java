@@ -62,7 +62,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.TANK_3X3X3.get());
         dropSelf(ModBlocks.LARGE_CRUCIBLE.get());
         dropSelf(ModBlocks.LOGISTICS_CORE.get());
-        dropSelf(ModBlocks.GALVANIZED_STEEL_WALL.get());
         dropSelf(ModBlocks.VENTILATION_UNIT.get());
         dropSelf(ModBlocks.VERSATILE_PROCESSOR_UNIT.get());
         dropSelf(ModBlocks.LOGIC_PROCESSOR_UNIT.get());
@@ -123,8 +122,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.BEDROCK_DRILL_HEAD.get());
         dropSelf(ModBlocks.REACTOR_CORE_1X1.get());
         dropSelf(ModBlocks.REACTOR_CORE_2X2.get());
-        dropSelf(ModBlocks.TUNGSTENSTEEL_WALL.get());
-        dropSelf(ModBlocks.STAINLESS_STEEL_WALL.get());
         for (var species : com.masson.cruciblecraft.worldgen.tree.prep.GtTreeSpecies.ALL) {
             dropSelf(ModBlocks.treeSapling(species).get());
             dropSelf(ModBlocks.treeLog(species).get());
@@ -276,7 +273,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.TANK_3X3X3.get(),
                 ModBlocks.LARGE_CRUCIBLE.get(),
                 ModBlocks.LOGISTICS_CORE.get(),
-                ModBlocks.GALVANIZED_STEEL_WALL.get(),
                 ModBlocks.VENTILATION_UNIT.get(),
                 ModBlocks.VERSATILE_PROCESSOR_UNIT.get(),
                 ModBlocks.LOGIC_PROCESSOR_UNIT.get(),
@@ -302,9 +298,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.BEDROCK_DRILL.get(),
                 ModBlocks.BEDROCK_DRILL_HEAD.get(),
                 ModBlocks.REACTOR_CORE_1X1.get(),
-                ModBlocks.REACTOR_CORE_2X2.get(),
-                ModBlocks.TUNGSTENSTEEL_WALL.get(),
-                ModBlocks.STAINLESS_STEEL_WALL.get());
+                ModBlocks.REACTOR_CORE_2X2.get());
         ModBlocks.converterBlocksById().forEach((id, holder) -> {
             if (!HANDWRITTEN_CONVERTER_LOOT.contains(id.getPath())) {
                 blocks.add(holder.get());

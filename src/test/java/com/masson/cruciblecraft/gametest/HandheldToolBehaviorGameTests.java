@@ -265,10 +265,10 @@ public final class HandheldToolBehaviorGameTests {
                 ModBlocks.VERSATILE_PROCESSOR_UNIT.get().asItem(),
                 64));
         player.getInventory().add(new ItemStack(
-                ModBlocks.GALVANIZED_STEEL_WALL.get().asItem(),
+                ModBlocks.mteBlock("multiblock/galvanized_steel_wall").asItem(),
                 64));
         player.getInventory().add(new ItemStack(
-                ModBlocks.GALVANIZED_STEEL_WALL.get().asItem(),
+                ModBlocks.mteBlock("multiblock/galvanized_steel_wall").asItem(),
                 1));
 
         helper.assertTrue(
@@ -280,11 +280,11 @@ public final class HandheldToolBehaviorGameTests {
                 "fusion special adapter did not fill a processor cell");
         helper.assertTrue(
                 helper.getBlockState(POS.south()).is(
-                        ModBlocks.GALVANIZED_STEEL_WALL.get()),
+                        ModBlocks.mteBlock("multiblock/galvanized_steel_wall")),
                 "fusion special adapter did not use the production galvanized wall");
         helper.assertTrue(
                 helper.getBlockState(POS.south()).is(
-                        ModBlocks.GALVANIZED_STEEL_WALL.get()),
+                        ModBlocks.mteBlock("multiblock/galvanized_steel_wall")),
                 "fusion special adapter used the wrong galvanized wall block");
         player.discard();
         helper.succeed();

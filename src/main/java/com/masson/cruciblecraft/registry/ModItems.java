@@ -294,12 +294,6 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem(
                     "reactor_core_2x2",
                     ModBlocks.REACTOR_CORE_2X2);
-    public static final DeferredItem<BlockItem> TUNGSTENSTEEL_WALL =
-            ITEMS.registerSimpleBlockItem(
-                    "tungstensteel_wall", ModBlocks.TUNGSTENSTEEL_WALL);
-    public static final DeferredItem<BlockItem> STAINLESS_STEEL_WALL =
-            ITEMS.registerSimpleBlockItem(
-                    "stainless_steel_wall", ModBlocks.STAINLESS_STEEL_WALL);
     public static final DeferredItem<ZpmModuleItem> ZERO_POINT_MODULE =
             ITEMS.register(
                     "zero_point_module",
@@ -384,9 +378,6 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> LOGISTICS_CORE =
             ITEMS.registerSimpleBlockItem(
                     "logistics_core", ModBlocks.LOGISTICS_CORE);
-    public static final DeferredItem<BlockItem> GALVANIZED_STEEL_WALL =
-            ITEMS.registerSimpleBlockItem(
-                    "galvanized_steel_wall", ModBlocks.GALVANIZED_STEEL_WALL);
     public static final DeferredItem<BlockItem> VENTILATION_UNIT =
             ITEMS.registerSimpleBlockItem(
                     "ventilation_unit", ModBlocks.VENTILATION_UNIT);

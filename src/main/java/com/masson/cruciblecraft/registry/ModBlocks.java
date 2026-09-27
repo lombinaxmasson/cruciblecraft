@@ -61,14 +61,12 @@ import com.masson.cruciblecraft.content.block.LargeBoilerBlock;
 import com.masson.cruciblecraft.content.block.LargeCrucibleBlock;
 import com.masson.cruciblecraft.content.block.LaserEngraverBlock;
 import com.masson.cruciblecraft.content.block.FusionReactorBlock;
-import com.masson.cruciblecraft.content.block.FusionHullBlock;
 import com.masson.cruciblecraft.energy.bedrockdrill.BedrockDrillBlock;
 import com.masson.cruciblecraft.energy.bedrockdrill.BedrockDrillHeadBlock;
 import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerBlock;
 import com.masson.cruciblecraft.content.block.ReactorCoreBlock;
 import com.masson.cruciblecraft.content.block.LogisticsCoreBlock;
 import com.masson.cruciblecraft.content.block.LogisticsCorePartBlock;
-import com.masson.cruciblecraft.content.block.LogisticsCoreWallBlock;
 import com.masson.cruciblecraft.content.block.TankBlock;
 import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
@@ -364,14 +362,6 @@ public final class ModBlocks {
             BLOCKS.register(
                     "reactor_core_2x2",
                     () -> new ReactorCoreBlock(4, machineProperties()));
-    public static final DeferredBlock<FusionHullBlock> TUNGSTENSTEEL_WALL =
-            BLOCKS.register(
-                    "tungstensteel_wall",
-                    () -> new FusionHullBlock(
-                            machineProperties().strength(12.5F, 12.5F)));
-    public static final DeferredBlock<Block> STAINLESS_STEEL_WALL =
-            BLOCKS.registerSimpleBlock(
-                    "stainless_steel_wall", machineProperties());
 
     public static final DeferredBlock<ZpmModuleBlock> ZERO_POINT_MODULE =
             BLOCKS.register(
@@ -493,10 +483,6 @@ public final class ModBlocks {
             LOGISTICS_CORE = BLOCKS.register(
                     "logistics_core",
                     () -> new LogisticsCoreBlock(machineProperties()));
-    public static final DeferredBlock<LogisticsCoreWallBlock>
-            GALVANIZED_STEEL_WALL = BLOCKS.register(
-                    "galvanized_steel_wall",
-                    () -> new LogisticsCoreWallBlock(machineProperties()));
     public static final DeferredBlock<LogisticsCorePartBlock>
             VENTILATION_UNIT = BLOCKS.register(
                     "ventilation_unit",
@@ -1871,6 +1857,15 @@ public final class ModBlocks {
     public static Map<ResourceLocation, DeferredBlock<MteInPlaceBlock>>
             mteInPlaceBlocksById() {
         return MTE_INPLACE_BLOCKS;
+    }
+
+    public static Block mteBlock(String path) {
+        var holder = MTE_INPLACE_BLOCKS.get(
+                ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, path));
+        if (holder == null) {
+            throw new IllegalStateException("Missing in-place MTE block " + path);
+        }
+        return holder.get();
     }
 
     public static Block[] mteInPlaceBlockArray() {

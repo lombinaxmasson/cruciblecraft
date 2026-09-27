@@ -334,13 +334,13 @@ public final class SpecialMultiblockBuilderAdapter
             public List<MultiblockBuildCell> cells(
                     Level level,
                     MultiblockBuilderTarget target) {
-                Block galvanized = ModBlocks.GALVANIZED_STEEL_WALL.get();
+                Block galvanized = ModBlocks.mteBlock("multiblock/galvanized_steel_wall");
                 Block ventilation = ModBlocks.VENTILATION_UNIT.get();
                 Block versatile = ModBlocks.VERSATILE_PROCESSOR_UNIT.get();
                 Block logic = ModBlocks.LOGIC_PROCESSOR_UNIT.get();
                 Block control = ModBlocks.CONTROL_PROCESSOR_UNIT.get();
-                Block tungsten = ModBlocks.TUNGSTENSTEEL_WALL.get();
-                Block stainless = ModBlocks.STAINLESS_STEEL_WALL.get();
+                Block tungsten = ModBlocks.mteBlock("tungstensteel/wall");
+                Block stainless = ModBlocks.mteBlock("stainless_steel/wall");
                 Block coil = CoilHosts.block(CoilHosts.IRIDIUM);
                 Map<BlockPos, MultiblockBuildCell> cells =
                         new LinkedHashMap<>();
@@ -522,7 +522,7 @@ public final class SpecialMultiblockBuilderAdapter
                 BlockPos center = LogisticsCoreStructure.center(
                         target.controller(),
                         target.facing());
-                Block wall = ModBlocks.GALVANIZED_STEEL_WALL.get();
+                Block wall = ModBlocks.mteBlock("multiblock/galvanized_steel_wall");
                 Block vent = ModBlocks.VENTILATION_UNIT.get();
                 List<Block> inner = List.of(
                         wall,

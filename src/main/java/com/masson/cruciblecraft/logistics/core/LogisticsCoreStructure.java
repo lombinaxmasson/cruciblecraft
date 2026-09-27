@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.masson.cruciblecraft.content.block.LogisticsCoreBlock;
-import com.masson.cruciblecraft.content.blockentity.LogisticsCoreWallBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -125,8 +125,8 @@ public final class LogisticsCoreStructure {
             Level level, BlockPos controller, List<BlockPos> walls) {
         for (BlockPos wall : walls) {
             if (level.getBlockEntity(wall)
-                    instanceof LogisticsCoreWallBlockEntity be) {
-                be.bindController(controller);
+                    instanceof MteInPlaceBlockEntity be) {
+                be.bindLogisticsCore(controller);
             }
         }
     }
@@ -134,8 +134,8 @@ public final class LogisticsCoreStructure {
     public static void unbindWalls(Level level, List<BlockPos> walls) {
         for (BlockPos wall : walls) {
             if (level.getBlockEntity(wall)
-                    instanceof LogisticsCoreWallBlockEntity be) {
-                be.unbind();
+                    instanceof MteInPlaceBlockEntity be) {
+                be.unbindLogisticsCore();
             }
         }
     }

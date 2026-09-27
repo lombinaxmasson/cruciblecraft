@@ -34,7 +34,6 @@ public final class LogisticsCoreBlockColor {
     public static Block[] tintedBlocks() {
         return new Block[] {
             ModBlocks.LOGISTICS_CORE.get(),
-            ModBlocks.GALVANIZED_STEEL_WALL.get(),
             ModBlocks.VENTILATION_UNIT.get(),
             ModBlocks.VERSATILE_PROCESSOR_UNIT.get(),
             ModBlocks.LOGIC_PROCESSOR_UNIT.get(),

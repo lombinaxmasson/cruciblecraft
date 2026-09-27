@@ -66,10 +66,8 @@ import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LaserEngraverBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FusionReactorBlockEntity;
-import com.masson.cruciblecraft.content.blockentity.FusionHullBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ReactorCoreBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LogisticsCoreBlockEntity;
-import com.masson.cruciblecraft.content.blockentity.LogisticsCoreWallBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MultiblockPortBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.RotationalAxleBlockEntity;
@@ -328,16 +326,6 @@ public final class ModBlockEntities {
                                     LogisticsCoreBlockEntity::new,
                                     ModBlocks.LOGISTICS_CORE.get())
                                     .build(null));
-    public static final DeferredHolder<
-            BlockEntityType<?>,
-            BlockEntityType<LogisticsCoreWallBlockEntity>>
-                    LOGISTICS_CORE_WALL = BLOCK_ENTITIES.register(
-                            "logistics_core_wall",
-                            () -> BlockEntityType.Builder.of(
-                                    LogisticsCoreWallBlockEntity::new,
-                                    ModBlocks.GALVANIZED_STEEL_WALL.get())
-                                    .build(null));
-
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CeramicMoldBlockEntity>>
             CERAMIC_MOLD = BLOCK_ENTITIES.register(
                     "ceramic_mold",
@@ -527,15 +515,6 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     FusionReactorBlockEntity::new,
                                     ModBlocks.FUSION_REACTOR.get()).build(null));
-    public static final DeferredHolder<
-            BlockEntityType<?>,
-            BlockEntityType<FusionHullBlockEntity>>
-                    FUSION_HULL = BLOCK_ENTITIES.register(
-                            "fusion_hull",
-                            () -> BlockEntityType.Builder.of(
-                                    FusionHullBlockEntity::new,
-                                    ModBlocks.TUNGSTENSTEEL_WALL.get())
-                                    .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
             BlockEntityType<ReactorCoreBlockEntity>>

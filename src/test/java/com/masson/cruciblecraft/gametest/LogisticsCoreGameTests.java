@@ -89,7 +89,8 @@ public final class LogisticsCoreGameTests {
         BlockPos controller = placeCheapestCube(helper);
         helper.setBlock(
                 centerOf(controller),
-                ModBlocks.GALVANIZED_STEEL_WALL.get().defaultBlockState());
+                ModBlocks.mteBlock("multiblock/galvanized_steel_wall")
+                        .defaultBlockState());
         helper.startSequence()
                 .thenIdle(1)
                 .thenExecute(() -> helper.assertTrue(
@@ -237,13 +238,13 @@ public final class LogisticsCoreGameTests {
                                         ? ModBlocks.VERSATILE_PROCESSOR_UNIT
                                                 .get()
                                                 .defaultBlockState()
-                                        : ModBlocks.GALVANIZED_STEEL_WALL
-                                                .get()
+                                        : ModBlocks.mteBlock(
+                                                "multiblock/galvanized_steel_wall")
                                                 .defaultBlockState());
                         case WALL -> helper.setBlock(
                                 pos,
-                                ModBlocks.GALVANIZED_STEEL_WALL
-                                        .get()
+                                ModBlocks.mteBlock(
+                                        "multiblock/galvanized_steel_wall")
                                         .defaultBlockState());
                         case VENT -> helper.setBlock(
                                 pos,

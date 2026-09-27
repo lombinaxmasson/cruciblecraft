@@ -161,10 +161,6 @@ public final class ModCapabilities {
                 ENERGY,
                 ModBlockEntities.LOGISTICS_CORE.get(),
                 (blockEntity, side) -> blockEntity);
-        event.registerBlockEntity(
-                ENERGY,
-                ModBlockEntities.LOGISTICS_CORE_WALL.get(),
-                (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.CRUSHER.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
                 ENERGY, ModBlockEntities.PROCESSING_MACHINE.get(),
@@ -334,18 +330,6 @@ public final class ModCapabilities {
                 (blockEntity, side) -> blockEntity.items(side));
         event.registerBlockEntity(
                 ENERGY,
-                ModBlockEntities.FUSION_HULL.get(),
-                (blockEntity, side) -> blockEntity);
-        event.registerBlockEntity(
-                Capabilities.FluidHandler.BLOCK,
-                ModBlockEntities.FUSION_HULL.get(),
-                (blockEntity, side) -> blockEntity.fluids());
-        event.registerBlockEntity(
-                Capabilities.ItemHandler.BLOCK,
-                ModBlockEntities.FUSION_HULL.get(),
-                (blockEntity, side) -> blockEntity.items());
-        event.registerBlockEntity(
-                ENERGY,
                 ModBlockEntities.QUANTUM_ENERGIZER.get(),
                 (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
@@ -380,6 +364,12 @@ public final class ModCapabilities {
                 ENERGY,
                 ModBlockEntities.MTE_INPLACE.get(),
                 (blockEntity, side) -> {
+                    if (blockEntity.forwardsFusionEnergy(side)) {
+                        return blockEntity;
+                    }
+                    if (blockEntity.logisticsController() != null) {
+                        return blockEntity;
+                    }
                     if (blockEntity.forwardsGasTurbineEnergy(side)) {
                         return blockEntity;
                     }

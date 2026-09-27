@@ -137,7 +137,7 @@ class LargeCrucibleBlockEntityTest {
         int machinesFill = tabs.indexOf("private static void fillMachines");
         String machinesBody = tabs.substring(machinesFill, building);
         String buildingBody = tabs.substring(building);
-        assertTrue(machinesBody.contains("STAINLESS_STEEL_WALL"));
+        assertFalse(machinesBody.contains("STAINLESS_STEEL_WALL"));
         assertTrue(tabs.contains("CRUCIBLE_FOUNDRY"));
         assertFalse(buildingBody.contains("STAINLESS_STEEL_WALL"));
         assertFalse(buildingBody.contains("GALVANIZED_STEEL_WALL"));

@@ -64,18 +64,17 @@ class LogisticsCoreResourceTest {
         assertEquals(
                 "cruciblecraft:block/logistics_core",
                 north.get("model").getAsString());
-        JsonObject wall = json(GENERATED.resolve(
-                "assets/cruciblecraft/blockstates/galvanized_steel_wall.json"));
+        JsonObject wall = json(ROOT.resolve(
+                "assets/cruciblecraft/blockstates/multiblock/galvanized_steel_wall.json"));
         assertEquals(
-                "cruciblecraft:block/galvanized_steel_wall",
+                "cruciblecraft:block/large_crucible_wall",
                 wall.getAsJsonObject("variants")
-                        .getAsJsonObject("")
+                        .getAsJsonObject("facing=north")
                         .get("model")
                         .getAsString());
-        String wallModel = Files.readString(GENERATED.resolve(
-                "assets/cruciblecraft/models/block/"
-                        + "galvanized_steel_wall.json"));
-        assertTrue(wallModel.contains("gt6_import/galvanized_steel_wall"));
+        String wallModel = Files.readString(ROOT.resolve(
+                "assets/cruciblecraft/models/block/large_crucible_wall.json"));
+        assertTrue(wallModel.contains("gt6_import/multiblockparts/metalwall"));
         assertFalse(wallModel.contains("multiblock_energy_input_port"));
         assertFalse(wallModel.contains("multiblock_casing"));
     }

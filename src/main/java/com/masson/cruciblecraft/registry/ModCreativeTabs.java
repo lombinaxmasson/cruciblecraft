@@ -227,9 +227,6 @@ public final class ModCreativeTabs {
         output.accept(ModItems.LARGE_FERMENTER.get());
         output.accept(ModItems.DISTILLATION_TOWER.get());
         output.accept(ModItems.CRYO_DISTILLATION_TOWER.get());
-        output.accept(ModItems.GALVANIZED_STEEL_WALL.get());
-        output.accept(ModItems.TUNGSTENSTEEL_WALL.get());
-        output.accept(ModItems.STAINLESS_STEEL_WALL.get());
         MteInPlaceCatalog.specs().forEach(spec -> {
             if (!machinesTabMte(spec)) {
                 return;

@@ -152,15 +152,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(ModBlocks.LARGE_CRUCIBLE.get(), largeCrucible);
         configuredLogisticsCore();
         simpleBlockWithItem(
-                ModBlocks.GALVANIZED_STEEL_WALL.get(),
-                logisticsPartModel("galvanized_steel_wall"));
-        simpleBlockWithItem(
-                ModBlocks.TUNGSTENSTEEL_WALL.get(),
-                logisticsPartModel("tungstensteel_wall"));
-        simpleBlockWithItem(
-                ModBlocks.STAINLESS_STEEL_WALL.get(),
-                logisticsPartModel("stainless_steel_wall"));
-        simpleBlockWithItem(
                 ModBlocks.VENTILATION_UNIT.get(),
                 logisticsPartModel("ventilation_unit"));
         simpleBlockWithItem(

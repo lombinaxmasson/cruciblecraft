@@ -291,7 +291,7 @@ public final class FusionStructure {
                     } else if (pos.equals(controller)) {
                         continue;
                     } else if (radius > 6 || plus) {
-                        if (!is(level, pos, ModBlocks.GALVANIZED_STEEL_WALL.get())) {
+                        if (!is(level, pos, ModBlocks.mteBlock("multiblock/galvanized_steel_wall"))) {
                             return false;
                         }
                     } else if (!is(level, pos, ModBlocks.VENTILATION_UNIT.get())) {
@@ -304,50 +304,50 @@ public final class FusionStructure {
             return false;
         }
         if (facing != Direction.WEST
-                && (!is(level, center.offset(-3, 0, 0), ModBlocks.GALVANIZED_STEEL_WALL.get())
-                        || !is(level, center.offset(-4, 0, 0), ModBlocks.GALVANIZED_STEEL_WALL.get()))) {
+                && (!is(level, center.offset(-3, 0, 0), ModBlocks.mteBlock("multiblock/galvanized_steel_wall"))
+                        || !is(level, center.offset(-4, 0, 0), ModBlocks.mteBlock("multiblock/galvanized_steel_wall")))) {
             return false;
         }
         if (facing != Direction.EAST
-                && (!is(level, center.offset(3, 0, 0), ModBlocks.GALVANIZED_STEEL_WALL.get())
-                        || !is(level, center.offset(4, 0, 0), ModBlocks.GALVANIZED_STEEL_WALL.get()))) {
+                && (!is(level, center.offset(3, 0, 0), ModBlocks.mteBlock("multiblock/galvanized_steel_wall"))
+                        || !is(level, center.offset(4, 0, 0), ModBlocks.mteBlock("multiblock/galvanized_steel_wall")))) {
             return false;
         }
         if (facing != Direction.NORTH
-                && (!is(level, center.offset(0, 0, -3), ModBlocks.GALVANIZED_STEEL_WALL.get())
-                        || !is(level, center.offset(0, 0, -4), ModBlocks.GALVANIZED_STEEL_WALL.get()))) {
+                && (!is(level, center.offset(0, 0, -3), ModBlocks.mteBlock("multiblock/galvanized_steel_wall"))
+                        || !is(level, center.offset(0, 0, -4), ModBlocks.mteBlock("multiblock/galvanized_steel_wall")))) {
             return false;
         }
         if (facing != Direction.SOUTH
-                && (!is(level, center.offset(0, 0, 3), ModBlocks.GALVANIZED_STEEL_WALL.get())
-                        || !is(level, center.offset(0, 0, 4), ModBlocks.GALVANIZED_STEEL_WALL.get()))) {
+                && (!is(level, center.offset(0, 0, 3), ModBlocks.mteBlock("multiblock/galvanized_steel_wall"))
+                        || !is(level, center.offset(0, 0, 4), ModBlocks.mteBlock("multiblock/galvanized_steel_wall")))) {
             return false;
         }
         BlockPos origin = center.offset(-9, 0, -9);
         for (int i = 0; i < 19; i++) {
             for (int j = 0; j < 19; j++) {
                 if (occupied(0, i, j)) {
-                    if (!is(level, origin.offset(i, -1, j), ModBlocks.TUNGSTENSTEEL_WALL.get())
-                            || !is(level, origin.offset(i, 0, j), ModBlocks.TUNGSTENSTEEL_WALL.get())
-                            || !is(level, origin.offset(i, 1, j), ModBlocks.TUNGSTENSTEEL_WALL.get())) {
+                    if (!is(level, origin.offset(i, -1, j), ModBlocks.mteBlock("tungstensteel/wall"))
+                            || !is(level, origin.offset(i, 0, j), ModBlocks.mteBlock("tungstensteel/wall"))
+                            || !is(level, origin.offset(i, 1, j), ModBlocks.mteBlock("tungstensteel/wall"))) {
                         return false;
                     }
                 }
                 if (occupied(1, i, j)) {
-                    if (!is(level, origin.offset(i, -2, j), ModBlocks.TUNGSTENSTEEL_WALL.get())
-                            || !is(level, origin.offset(i, -1, j), ModBlocks.TUNGSTENSTEEL_WALL.get())
+                    if (!is(level, origin.offset(i, -2, j), ModBlocks.mteBlock("tungstensteel/wall"))
+                            || !is(level, origin.offset(i, -1, j), ModBlocks.mteBlock("tungstensteel/wall"))
                             || !is(level, origin.offset(i, 0, j), CoilHosts.block(CoilHosts.IRIDIUM))
-                            || !is(level, origin.offset(i, 1, j), ModBlocks.TUNGSTENSTEEL_WALL.get())
-                            || !is(level, origin.offset(i, 2, j), ModBlocks.TUNGSTENSTEEL_WALL.get())) {
+                            || !is(level, origin.offset(i, 1, j), ModBlocks.mteBlock("tungstensteel/wall"))
+                            || !is(level, origin.offset(i, 2, j), ModBlocks.mteBlock("tungstensteel/wall"))) {
                         return false;
                     }
                 }
                 if (occupied(2, i, j)) {
-                    if (!is(level, origin.offset(i, -2, j), ModBlocks.TUNGSTENSTEEL_WALL.get())
+                    if (!is(level, origin.offset(i, -2, j), ModBlocks.mteBlock("tungstensteel/wall"))
                             || !is(level, origin.offset(i, -1, j), CoilHosts.block(CoilHosts.IRIDIUM))
-                            || !is(level, origin.offset(i, 0, j), ModBlocks.STAINLESS_STEEL_WALL.get())
+                            || !is(level, origin.offset(i, 0, j), ModBlocks.mteBlock("stainless_steel/wall"))
                             || !is(level, origin.offset(i, 1, j), CoilHosts.block(CoilHosts.IRIDIUM))
-                            || !is(level, origin.offset(i, 2, j), ModBlocks.TUNGSTENSTEEL_WALL.get())) {
+                            || !is(level, origin.offset(i, 2, j), ModBlocks.mteBlock("tungstensteel/wall"))) {
                         return false;
                     }
                 }

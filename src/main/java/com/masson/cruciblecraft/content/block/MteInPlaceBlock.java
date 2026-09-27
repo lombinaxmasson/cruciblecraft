@@ -7,6 +7,8 @@ import org.jetbrains.annotations.Nullable;
 import com.masson.cruciblecraft.api.tool.ToolAction;
 import com.masson.cruciblecraft.api.tool.ToolInteractable;
 import com.masson.cruciblecraft.api.tool.ToolResult;
+import com.masson.cruciblecraft.logistics.core.LogisticsCorePart;
+import com.masson.cruciblecraft.logistics.core.LogisticsCoreTagged;
 import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MatterFabricatorBlockEntity;
 import com.masson.cruciblecraft.energy.largedynamo.LargeDynamoBlockEntity;
@@ -92,7 +94,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  * a {@code PipeCover}.
  */
 public final class MteInPlaceBlock extends Block
-        implements EntityBlock, ToolInteractable {
+        implements EntityBlock, ToolInteractable, LogisticsCoreTagged {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final BooleanProperty FAST = BooleanProperty.create("fast");
@@ -188,6 +190,15 @@ public final class MteInPlaceBlock extends Block
 
     public MteInPlaceSpec spec() {
         return spec;
+    }
+
+    @Override
+    public LogisticsCorePart corePart() {
+        if (spec != null
+                && "multiblock/galvanized_steel_wall".equals(spec.registryPath())) {
+            return LogisticsCorePart.WALL;
+        }
+        return null;
     }
 
     @Override
@@ -1065,6 +1076,7 @@ public final class MteInPlaceBlock extends Block
             } else if (level.getBlockEntity(pos) instanceof CoinageMoldBlockEntity coinage) {
                 coinage.dropContents();
             } else if (level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity host) {
+                host.unbindFusion();
                 host.dropContents();
             }
         }

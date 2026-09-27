@@ -319,13 +319,13 @@ public final class DisplayCpuGameTests {
                                         ? ModBlocks.VERSATILE_PROCESSOR_UNIT
                                                 .get()
                                                 .defaultBlockState()
-                                        : ModBlocks.GALVANIZED_STEEL_WALL
-                                                .get()
+                                        : ModBlocks.mteBlock(
+                                                "multiblock/galvanized_steel_wall")
                                                 .defaultBlockState());
                         case WALL -> helper.setBlock(
                                 pos,
-                                ModBlocks.GALVANIZED_STEEL_WALL
-                                        .get()
+                                ModBlocks.mteBlock(
+                                        "multiblock/galvanized_steel_wall")
                                         .defaultBlockState());
                         case VENT -> helper.setBlock(
                                 pos,

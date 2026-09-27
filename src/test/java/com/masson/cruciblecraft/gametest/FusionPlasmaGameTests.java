@@ -2,7 +2,7 @@ package com.masson.cruciblecraft.gametest;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.block.FusionReactorBlock;
-import com.masson.cruciblecraft.content.blockentity.FusionHullBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FusionReactorBlockEntity;
 import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerBlock;
 import com.masson.cruciblecraft.energy.quantum.QuantumEnergizerBlockEntity;
@@ -406,7 +406,7 @@ public final class FusionPlasmaGameTests {
                 pos,
                 ModBlocks.FUSION_REACTOR.get().defaultBlockState()
                         .setValue(FusionReactorBlock.FACING, Direction.NORTH));
-        helper.setBlock(wall, ModBlocks.TUNGSTENSTEEL_WALL.get());
+        helper.setBlock(wall, ModBlocks.mteBlock("tungstensteel/wall"));
         FusionReactorBlockEntity reactor = helper.getBlockEntity(pos);
         reactor.forceFormedForTest();
         reactor.bindHatchForTest(
@@ -441,7 +441,7 @@ public final class FusionPlasmaGameTests {
                                 true)
                         == 1L,
                 "Controller TIME insert must still work after hatch rebind");
-        FusionHullBlockEntity hull = helper.getBlockEntity(wall);
+        MteInPlaceBlockEntity hull = helper.getBlockEntity(wall);
         helper.assertTrue(
                 hull.insert(EnergyType.TIME, 32L, 1L, Direction.EAST, false) == 1L,
                 "Glass-ring fusion wall did not accept TU");
@@ -517,7 +517,7 @@ public final class FusionPlasmaGameTests {
                 pos,
                 ModBlocks.FUSION_REACTOR.get().defaultBlockState()
                         .setValue(FusionReactorBlock.FACING, Direction.NORTH));
-        helper.setBlock(wall, ModBlocks.TUNGSTENSTEEL_WALL.get());
+        helper.setBlock(wall, ModBlocks.mteBlock("tungstensteel/wall"));
         var transformerBlock = ModBlocks.transformerBlocksById().get(
                 id("electric_transformer_ev_iv"));
         helper.assertTrue(
@@ -563,7 +563,7 @@ public final class FusionPlasmaGameTests {
                 pos,
                 ModBlocks.FUSION_REACTOR.get().defaultBlockState()
                         .setValue(FusionReactorBlock.FACING, Direction.NORTH));
-        helper.setBlock(wall, ModBlocks.TUNGSTENSTEEL_WALL.get());
+        helper.setBlock(wall, ModBlocks.mteBlock("tungstensteel/wall"));
         FusionReactorBlockEntity reactor = helper.getBlockEntity(pos);
         reactor.bindHatchForTest(
                 helper.absolutePos(wall),
@@ -574,9 +574,9 @@ public final class FusionPlasmaGameTests {
         saved.putBoolean("gt.formed", true);
         saved.putBoolean("gt.force_formed", false);
         reactor.loadWithComponents(saved, registries);
-        FusionHullBlockEntity hull = helper.getBlockEntity(wall);
+        MteInPlaceBlockEntity hull = helper.getBlockEntity(wall);
         helper.assertTrue(
-                hull.role() == FusionHatchRole.ITEM_FLUID,
+                hull.fusionRole() == FusionHatchRole.ITEM_FLUID,
                 "Fusion wall was not bound before the structure check");
         FusionReactorBlockEntity.serverTick(
                 helper.getLevel(),
@@ -587,7 +587,7 @@ public final class FusionPlasmaGameTests {
                 !reactor.formed(),
                 "Bare fusion controller stayed formed after a failed structure check");
         helper.assertTrue(
-                hull.role() == null,
+                hull.fusionRole() == null,
                 "Failed fusion structure left the tungstensteel wall bound");
         var fluids = helper.getLevel().getCapability(
                 net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.BLOCK,

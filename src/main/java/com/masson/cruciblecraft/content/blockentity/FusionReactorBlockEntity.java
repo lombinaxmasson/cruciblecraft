@@ -452,8 +452,8 @@ public final class FusionReactorBlockEntity
         if (level == null || !level.hasChunkAt(pos)) {
             return;
         }
-        if (level.getBlockEntity(pos) instanceof FusionHullBlockEntity hull) {
-            hull.bind(worldPosition, role, outward);
+        if (level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity hull) {
+            hull.bindFusion(worldPosition, role, outward);
             boundHatches.add(pos.immutable());
         }
     }
@@ -462,8 +462,8 @@ public final class FusionReactorBlockEntity
         boundHatches.remove(pos);
         if (level != null
                 && level.hasChunkAt(pos)
-                && level.getBlockEntity(pos) instanceof FusionHullBlockEntity hull) {
-            hull.unbind();
+                && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity hull) {
+            hull.unbindFusion();
         }
     }
 
@@ -474,9 +474,9 @@ public final class FusionReactorBlockEntity
         for (Direction outward : ENERGY_OUT_ORDER) {
             for (BlockPos pos : boundHatches) {
                 if (!(level.getBlockEntity(pos)
-                        instanceof FusionHullBlockEntity hull)
-                        || hull.role() != FusionHatchRole.ENERGY_OUT
-                        || hull.outward() != outward) {
+                        instanceof MteInPlaceBlockEntity hull)
+                        || hull.fusionRole() != FusionHatchRole.ENERGY_OUT
+                        || hull.fusionOutward() != outward) {
                     continue;
                 }
                 if (EnergyEmitter.pushToSide(

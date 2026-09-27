@@ -1,26 +1,49 @@
 {
   "variants": {
-    "facing=down": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part",
+    "facing=down,formed=false": {
+      "model": "cruciblecraft:block/large_crucible",
       "x": 90
     },
-    "facing=east": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part",
+    "facing=down,formed=true": {
+      "model": "cruciblecraft:block/large_crucible",
+      "x": 90
+    },
+    "facing=east,formed=false": {
+      "model": "cruciblecraft:block/large_crucible",
       "y": 90
     },
-    "facing=north": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part"
+    "facing=east,formed=true": {
+      "model": "cruciblecraft:block/large_crucible",
+      "y": 90
     },
-    "facing=south": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part",
+    "facing=north,formed=false": {
+      "model": "cruciblecraft:block/large_crucible"
+    },
+    "facing=north,formed=true": {
+      "model": "cruciblecraft:block/large_crucible"
+    },
+    "facing=south,formed=false": {
+      "model": "cruciblecraft:block/large_crucible",
       "y": 180
     },
-    "facing=up": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part",
+    "facing=south,formed=true": {
+      "model": "cruciblecraft:block/large_crucible",
+      "y": 180
+    },
+    "facing=up,formed=false": {
+      "model": "cruciblecraft:block/large_crucible",
       "x": 270
     },
-    "facing=west": {
-      "model": "cruciblecraft:block/mte_inplace_multiblock_part",
+    "facing=up,formed=true": {
+      "model": "cruciblecraft:block/large_crucible",
+      "x": 270
+    },
+    "facing=west,formed=false": {
+      "model": "cruciblecraft:block/large_crucible",
+      "y": 270
+    },
+    "facing=west,formed=true": {
+      "model": "cruciblecraft:block/large_crucible",
       "y": 270
     }
   }
