@@ -7,13 +7,24 @@ import com.masson.cruciblecraft.energy.EnergyPackets;
  *
  * <p>Recipe power is stored as units, so a recipe whose {@code abs(eut)} is
  * larger than the emitted packet never loses the remainder.
+ *
+ * <p>GT6 burning-box {@code mEnergy} is an uncapped {@code long}. Use
+ * {@link #unbounded(long)} for those hosts so a fuel whose HU does not
+ * fit a CC-only buffer is still consumed.
  */
 public final class FuelGeneratorEnergy {
+    /** Sentinel matching GT6 generator {@code mEnergy} (uncapped {@code long}). */
+    public static final long UNBOUNDED = Long.MAX_VALUE;
+
     private final long packetSize;
     private final long capacity;
     private long stored;
     private long generated;
     private long extracted;
+
+    public static FuelGeneratorEnergy unbounded(long packetSize) {
+        return new FuelGeneratorEnergy(packetSize, UNBOUNDED);
+    }
 
     public FuelGeneratorEnergy(long packetSize, long capacity) {
         if (packetSize <= 0L || capacity < packetSize) {
@@ -24,8 +35,18 @@ public final class FuelGeneratorEnergy {
         this.capacity = capacity;
     }
 
+    public boolean unbounded() {
+        return capacity == UNBOUNDED;
+    }
+
     public boolean canGenerate(long units) {
-        return units > 0L && units <= capacity - stored;
+        if (units <= 0L) {
+            return false;
+        }
+        if (unbounded()) {
+            return stored < UNBOUNDED;
+        }
+        return units <= capacity - stored;
     }
 
     public void generate(long units) {
@@ -33,7 +54,9 @@ public final class FuelGeneratorEnergy {
             throw new IllegalStateException(
                     "Simulated generator energy room disappeared");
         }
-        stored += units;
+        stored = unbounded()
+                ? EnergyPackets.add(stored, units)
+                : stored + units;
         generated = EnergyPackets.add(generated, units);
     }
 
@@ -70,7 +93,9 @@ public final class FuelGeneratorEnergy {
         if (state == null) {
             throw new NullPointerException("state");
         }
-        stored = Math.max(0L, Math.min(capacity, state.stored()));
+        stored = unbounded()
+                ? Math.max(0L, state.stored())
+                : Math.max(0L, Math.min(capacity, state.stored()));
         generated = Math.max(0L, state.generated());
         extracted = Math.max(0L, state.extracted());
     }

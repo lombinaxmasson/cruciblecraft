@@ -75,11 +75,7 @@ public final class FluidBedBurningBoxBlockEntity extends BlockEntity
                     "Fluid-bed burning box requires a catalog block");
         }
         profile = host.converterProfile();
-        energy = new FuelGeneratorEnergy(
-                profile.outputPacket().size(),
-                Math.max(
-                        profile.outputPacket().size(),
-                        profile.outputCapacity()));
+        energy = FuelGeneratorEnergy.unbounded(profile.outputPacket().size());
         input = new FluidTank(
                 Math.max(1, profile.inputCapacity()),
                 stack -> ModRecipeMaps.FUELS_FLUIDBED.hasFluidCandidate(

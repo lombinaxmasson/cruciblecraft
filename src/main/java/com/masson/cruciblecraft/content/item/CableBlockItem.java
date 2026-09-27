@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.content.block.CableBlock;
-import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
-
 import com.masson.cruciblecraft.content.block.Gt6StyleConnections;
+import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
+import com.masson.cruciblecraft.energy.converter.FurnaceFuelAdapter;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -15,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.state.BlockState;
 
 /** Material-form block item retaining the former generated item identity. */
@@ -51,6 +52,12 @@ public final class CableBlockItem extends BlockItem
     @Override
     public Component getName(ItemStack stack) {
         return materialFormName();
+    }
+
+    @Override
+    public int getBurnTime(ItemStack stack, RecipeType<?> recipeType) {
+        return FurnaceFuelAdapter.itemBurnTime(
+                stack, super.getBurnTime(stack, recipeType));
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.content.block.Gt6StyleConnections;
 import com.masson.cruciblecraft.content.block.RedstoneWireBlock;
 import com.masson.cruciblecraft.content.redstonewire.RedstoneWireKind;
+import com.masson.cruciblecraft.energy.converter.FurnaceFuelAdapter;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
@@ -54,6 +56,12 @@ public final class RedstoneWireBlockItem extends BlockItem
     public Component getName(ItemStack stack) {
         return CatalogDisplayNames.itemName(
                 getDescriptionId(stack), kind.langEn(), kind.langZh());
+    }
+
+    @Override
+    public int getBurnTime(ItemStack stack, RecipeType<?> recipeType) {
+        return FurnaceFuelAdapter.itemBurnTime(
+                stack, super.getBurnTime(stack, recipeType));
     }
 
     @Override

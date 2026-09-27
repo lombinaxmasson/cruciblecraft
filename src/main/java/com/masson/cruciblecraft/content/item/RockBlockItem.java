@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.content.block.RockBlock;
+import com.masson.cruciblecraft.energy.converter.FurnaceFuelAdapter;
 import com.masson.cruciblecraft.localization.RockFormNames;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 
@@ -11,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.crafting.RecipeType;
 
 /** Placeable GT6 {@code OP.rockGt} item; sneak places, standing click picks up. */
 public final class RockBlockItem extends PebbleBlockItem implements MaterialFormItem {
@@ -31,6 +33,12 @@ public final class RockBlockItem extends PebbleBlockItem implements MaterialForm
     @Override
     public Component getName(ItemStack stack) {
         return materialFormName();
+    }
+
+    @Override
+    public int getBurnTime(ItemStack stack, RecipeType<?> recipeType) {
+        return FurnaceFuelAdapter.itemBurnTime(
+                stack, super.getBurnTime(stack, recipeType));
     }
 
     @Override

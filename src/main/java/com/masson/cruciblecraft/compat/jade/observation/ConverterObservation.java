@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterHost;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
+import com.masson.cruciblecraft.machine.generation.FuelGeneratorEnergy;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -179,7 +180,10 @@ public record ConverterObservation(
                     continue;
                 }
                 data.putLong(BUFFER_STORED, handler.stored(type));
-                data.putLong(BUFFER_CAP, handler.capacity(type));
+                long capacity = handler.capacity(type);
+                if (capacity != FuelGeneratorEnergy.UNBOUNDED) {
+                    data.putLong(BUFFER_CAP, capacity);
+                }
                 return;
             }
         }

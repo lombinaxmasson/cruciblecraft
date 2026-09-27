@@ -63,11 +63,7 @@ public final class SolidBurningBoxBlockEntity extends BlockEntity
                     "Solid burning box requires a catalog block");
         }
         profile = host.converterProfile();
-        energy = new FuelGeneratorEnergy(
-                profile.outputPacket().size(),
-                Math.max(
-                        profile.outputPacket().size(),
-                        profile.outputCapacity()));
+        energy = FuelGeneratorEnergy.unbounded(profile.outputPacket().size());
     }
 
     public static void serverTick(

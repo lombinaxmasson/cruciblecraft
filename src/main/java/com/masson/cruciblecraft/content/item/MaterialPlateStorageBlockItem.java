@@ -3,10 +3,12 @@ package com.masson.cruciblecraft.content.item;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.MaterialPlateStorageBlock;
+import com.masson.cruciblecraft.energy.converter.FurnaceFuelAdapter;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
 
 /** Plate-storage block item that keeps the generated material-form identity. */
 public final class MaterialPlateStorageBlockItem extends BlockItem
@@ -32,5 +34,11 @@ public final class MaterialPlateStorageBlockItem extends BlockItem
     @Override
     public Component getName(ItemStack stack) {
         return materialFormName();
+    }
+
+    @Override
+    public int getBurnTime(ItemStack stack, RecipeType<?> recipeType) {
+        return FurnaceFuelAdapter.itemBurnTime(
+                stack, super.getBurnTime(stack, recipeType));
     }
 }

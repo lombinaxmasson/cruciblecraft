@@ -453,6 +453,8 @@ final class EnergyConverterProfiles {
             EnergyConverterTierCatalog.Entry tier) {
         int hu = Math.max(1, tier.nbtOutput());
         Integer efficiency = clampedEfficiency(tier.efficiencyBps(), 5_000);
+        // GT6 MultiTileEntityGeneratorSolid mEnergy is uncapped; 0 here
+        // means the catalog does not invent a consume-time HU buffer.
         return burning(
                 kind,
                 tier,
@@ -462,7 +464,7 @@ final class EnergyConverterProfiles {
                 hu,
                 efficiency,
                 64,
-                scale(288_000, 24, hu),
+                0,
                 0);
     }
 
@@ -511,6 +513,7 @@ final class EnergyConverterProfiles {
             EnergyConverterTierCatalog.Entry tier) {
         int hu = Math.max(1, tier.nbtOutput());
         Integer efficiency = clampedEfficiency(tier.efficiencyBps(), 7_500);
+        // GT6 MultiTileEntityGeneratorFluidBed mEnergy is uncapped.
         return burning(
                 kind,
                 tier,
@@ -520,7 +523,7 @@ final class EnergyConverterProfiles {
                 hu,
                 efficiency,
                 scale(16_000, 24, hu),
-                scale(288_000, 24, hu),
+                0,
                 scale(16_000, 24, hu));
     }
 
@@ -562,7 +565,7 @@ final class EnergyConverterProfiles {
                                 + "_HU; CURRENT_HEAT_IDENTITY_REQUIRED"),
                 null,
                 Math.max(1, inputCapacity),
-                Math.max(hu, energyCapacity));
+                Math.max(0, energyCapacity));
     }
 
     private static EnergyConverterProfile.Source source(

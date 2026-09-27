@@ -14,11 +14,15 @@ import net.minecraft.world.item.crafting.RecipeType;
 public final class FurnaceFuelAdapter {
     private FurnaceFuelAdapter() {}
 
+    public static int itemBurnTime(ItemStack stack, int vanilla) {
+        return Math.max(Math.max(0, vanilla), FurnaceFuelTicks.ticks(stack));
+    }
+
     public static int burnTime(ItemStack stack) {
         if (stack.isEmpty()) {
             return 0;
         }
-        return Math.max(0, stack.getBurnTime(RecipeType.SMELTING));
+        return itemBurnTime(stack, stack.getBurnTime(RecipeType.SMELTING));
     }
 
     public static boolean isFuel(ItemStack stack) {
@@ -30,10 +34,22 @@ public final class FurnaceFuelAdapter {
         if (burn <= 0) {
             return 0L;
         }
+        return heatUnits(burn, efficiencyBps);
+    }
+
+    public static long heatUnits(int burnTicks, Integer efficiencyBps) {
+        if (burnTicks <= 0) {
+            return 0L;
+        }
         int bps = efficiencyBps == null || efficiencyBps <= 0
                 ? 10_000
                 : Math.min(10_000, efficiencyBps);
-        return Math.max(1L, (long) burn * bps / 10_000L);
+        return Math.max(
+                1L,
+                (long) burnTicks
+                        * FurnaceFuelTicks.EU_PER_FURNACE_TICK
+                        * bps
+                        / 10_000L);
     }
 
     public static ItemStack ashFor(ItemStack fuel) {

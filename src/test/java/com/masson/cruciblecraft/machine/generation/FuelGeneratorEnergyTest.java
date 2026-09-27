@@ -72,4 +72,17 @@ class FuelGeneratorEnergyTest {
         assertEquals(24L, energy.extracted());
         assertEquals(24L, energy.generated());
     }
+
+    @Test
+    void unboundedMatchesGt6BurningBoxAccumulator() {
+        FuelGeneratorEnergy energy = FuelGeneratorEnergy.unbounded(1L);
+        assertTrue(energy.unbounded());
+        assertTrue(energy.canGenerate(540_000L));
+        energy.generate(540_000L);
+        energy.generate(800_000L);
+        assertEquals(1_340_000L, energy.stored());
+        energy.restore(new FuelGeneratorEnergy.State(
+                2_000_000L, 2_000_000L, 0L));
+        assertEquals(2_000_000L, energy.stored());
+    }
 }

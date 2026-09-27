@@ -25,6 +25,7 @@ import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
 import com.masson.cruciblecraft.energy.converter.EnergyConverterTierCatalog;
+import com.masson.cruciblecraft.energy.converter.FurnaceFuelAdapter;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
@@ -183,6 +184,10 @@ public final class EnergyConverterCatalogGameTests {
         helper.assertTrue(
                 box.insertFuel(new ItemStack(Items.COAL)),
                 "Solid burning box rejected coal");
+        helper.assertTrue(
+                FurnaceFuelAdapter.heatUnits(new ItemStack(Items.COAL), 7_500)
+                        == 30_000L,
+                "Coal HU is not GT6 1600 furnace ticks times 25 at 75%");
         box.ignite();
         helper.startSequence()
                 .thenIdle(2)
@@ -953,6 +958,48 @@ public final class EnergyConverterCatalogGameTests {
         helper.assertTrue(
                 be.tank().isEmpty() && be.distilledTank().isEmpty(),
                 "Second plunger click did not trash large-turbine DistW");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void solidBurningBoxAcceptsCokeFamily(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.BRONZE_BURNING_BOX_SOLID.get()
+                        .defaultBlockState()
+                        .setValue(SolidBurningBoxBlock.FACING, Direction.EAST));
+        SolidBurningBoxBlockEntity box = helper.getBlockEntity(pos);
+        ItemStack gem = MaterialLookup.tryStack(
+                "coal_coke", MaterialPrefixes.GEM, 1)
+                .orElse(ItemStack.EMPTY);
+        ItemStack dust = MaterialLookup.tryStack(
+                "coal_coke", MaterialPrefixes.DUST, 1)
+                .orElse(ItemStack.EMPTY);
+        ItemStack block = MaterialLookup.tryStack(
+                "coal_coke", MaterialPrefixes.BLOCK, 1)
+                .orElse(ItemStack.EMPTY);
+        ItemStack petCoke = MaterialLookup.tryStack(
+                "petroleum_coke", MaterialPrefixes.GEM, 1)
+                .orElse(ItemStack.EMPTY);
+        helper.assertTrue(
+                !gem.isEmpty()
+                        && FurnaceFuelAdapter.isFuel(gem)
+                        && FurnaceFuelAdapter.heatUnits(gem, 7_500)
+                                == 60_000L,
+                "Coal coke gem is not a 3200-tick GT6 furnace fuel");
+        helper.assertTrue(
+                !dust.isEmpty() && FurnaceFuelAdapter.isFuel(dust),
+                "Coal coke dust is not furnace fuel");
+        helper.assertTrue(
+                !block.isEmpty() && FurnaceFuelAdapter.isFuel(block),
+                "Coal coke block is not furnace fuel");
+        helper.assertTrue(
+                !petCoke.isEmpty() && FurnaceFuelAdapter.isFuel(petCoke),
+                "Petroleum coke gem is not furnace fuel");
+        helper.assertTrue(
+                box.insertFuel(gem),
+                "Solid burning box rejected coal coke");
         helper.succeed();
     }
 
