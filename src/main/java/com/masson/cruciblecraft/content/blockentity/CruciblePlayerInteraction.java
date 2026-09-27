@@ -120,7 +120,7 @@ public final class CruciblePlayerInteraction {
                 return InteractionResult.SUCCESS;
             }
         }
-        String contents = process.composition().entrySet().stream()
+        String contents = process.displayComposition().entrySet().stream()
                 .map(entry -> entry.getKey() + ": " + entry.getValue() + " u")
                 .collect(Collectors.joining(", "));
         player.displayClientMessage(

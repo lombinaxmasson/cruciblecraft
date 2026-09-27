@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
-import com.masson.cruciblecraft.air.AirOutputModel;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
@@ -14,7 +13,6 @@ import com.masson.cruciblecraft.content.block.SmelteryHosts;
 import com.masson.cruciblecraft.content.mold.CruciblePour;
 import com.masson.cruciblecraft.content.mold.MoldHost;
 import com.masson.cruciblecraft.content.sensor.TemperatureHost;
-import com.masson.cruciblecraft.energy.EnergyPackets;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.heat.TemperatureDamage;
@@ -116,9 +114,13 @@ public class CrucibleBlockEntity extends BlockEntity
         int previousCooldown = crucible.process.thermal().cooldownTicks();
         long previousAir = crucible.process.steelmaking().storedAir();
         int previousReactionTicks = crucible.process.steelmaking().reactionTicks();
+        int shownAir = crucible.process.visibleAirUnits();
         boolean meltedDown = incomingEnergy == 0L && crucible.isThermallyQuiescent()
                 ? false
                 : crucible.advance(incomingEnergy, true);
+        if (crucible.process.visibleAirUnits() != shownAir) {
+            crucible.syncToClient();
+        }
         if (meltedDown) {
             return;
         }
@@ -279,20 +281,10 @@ public class CrucibleBlockEntity extends BlockEntity
             }
             return accepted;
         }
-        if (level == null || !level.getBlockState(worldPosition.above()).isAir()) {
-            return 0L;
-        }
-        SteelmakingController.InjectionResult acceptance = process.previewAirInjection();
-        if (!acceptsAir(acceptance)) {
-            return 0L;
-        }
-        long room = Math.max(
-                0L,
-                AirOutputModel.MAX_STORED_AIR - process.steelmaking().storedAir());
-        long accepted = Math.min(amount, EnergyPackets.packetsForUnits(size, room));
-        if (!simulate && accepted > 0L) {
-            process.insertAir(EnergyPackets.units(size, accepted));
-            checkpoint.markDirty();
+        int shownBefore = process.visibleAirUnits();
+        long accepted = process.acceptKineticAir(size, amount, simulate);
+        if (!simulate && accepted > 0L && process.visibleAirUnits() != shownBefore) {
+            syncToClient();
         }
         return accepted;
     }
@@ -301,7 +293,7 @@ public class CrucibleBlockEntity extends BlockEntity
     public long stored(EnergyType type) {
         return switch (type) {
             case HEAT -> process.thermal().totalStoredHeat();
-            case AIR -> Math.max(0L, process.steelmaking().storedAir());
+            case AIR -> process.visibleAirUnits();
             default -> 0L;
         };
     }
@@ -310,7 +302,7 @@ public class CrucibleBlockEntity extends BlockEntity
     public long capacity(EnergyType type) {
         return switch (type) {
             case HEAT -> HEAT_DISPLAY_CAPACITY;
-            case AIR -> AirOutputModel.MAX_STORED_AIR;
+            case AIR -> maxUnits();
             default -> 0L;
         };
     }
@@ -507,6 +499,10 @@ public class CrucibleBlockEntity extends BlockEntity
 
     public Map<String, Integer> composition() {
         return process.composition();
+    }
+
+    public Map<String, Integer> displayComposition() {
+        return process.displayComposition();
     }
 
     public int totalUnits() {

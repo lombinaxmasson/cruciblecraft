@@ -101,6 +101,51 @@ class CrucibleProcessCoreTest {
     }
 
     @Test
+    void kineticInputBecomesVisibleAirWithoutASteelCharge() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        int ingot = MaterialPrefixes.INGOT.units();
+        assertEquals(20L, core.acceptKineticAir(1L, 20L, true));
+        assertEquals(0, core.contents().units("air"));
+        assertEquals(1_000L, core.acceptKineticAir(1L, 1_000L, false));
+        assertEquals(ingot, core.contents().units("air"));
+        assertEquals(ingot, core.visibleAirUnits());
+        assertEquals(ingot, core.displayComposition().get("air"));
+        CrucibleProcessCore.TickOutcome stripped = core.advance(0L, true);
+        assertTrue(!stripped.destroysHost());
+        assertEquals(0, core.contents().units("air"));
+        assertEquals(ingot, core.visibleAirUnits());
+        assertEquals(ingot, core.displayComposition().get("air"));
+        core.advance(0L, true);
+        assertEquals(0, core.visibleAirUnits());
+        assertFalse(core.displayComposition().containsKey("air"));
+    }
+
+    @Test
+    void kineticAirAlloysMoltenWroughtIronIntoSteel() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        int ingot = MaterialPrefixes.INGOT.units();
+        core.contents().replace(Map.of("wrought_iron", ingot));
+        heatAbove(core, "steel");
+        assertEquals(1_000L, core.acceptKineticAir(1L, 1_000L, false));
+        CrucibleProcessCore.TickOutcome outcome = core.advance(0L, true);
+        assertTrue(!outcome.destroysHost());
+        assertEquals(ingot, core.contents().units("steel"));
+        assertEquals(0, core.contents().units("wrought_iron"));
+        assertEquals(0, core.contents().units("air"));
+        assertEquals(ingot, core.displayComposition().get("air"));
+    }
+
+    @Test
+    void fullCrucibleStillAcceptsKineticWithoutOverflowing() {
+        CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
+        assertEquals(InsertResult.SUCCESS, fillIngots(core, 16));
+        int units = core.totalUnits();
+        assertEquals(5L, core.acceptKineticAir(10L, 5L, false));
+        assertEquals(units, core.totalUnits());
+        assertEquals(0, core.contents().units("air"));
+    }
+
+    @Test
     void alloyTickConvertsLeftoverBronzeCharge() {
         CrucibleProcessCore core = CrucibleProcessCore.singleBlock();
         int ingot = MaterialPrefixes.INGOT.units();

@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
-import com.masson.cruciblecraft.air.AirOutputModel;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
@@ -33,7 +32,6 @@ import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator;
 import com.masson.cruciblecraft.content.multiblock.PluginQuarantinePolicy;
-import com.masson.cruciblecraft.energy.EnergyPackets;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.heat.TemperatureDamage;
@@ -161,8 +159,12 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         int previousCooldown = crucible.process.thermal().cooldownTicks();
         long previousAir = crucible.process.steelmaking().storedAir();
         int previousReactionTicks = crucible.process.steelmaking().reactionTicks();
+        int shownAir = crucible.process.visibleAirUnits();
         PortStoreSync.pullInputs(crucible);
         crucible.tickProcess(level);
+        if (crucible.process.visibleAirUnits() != shownAir) {
+            crucible.syncToClient();
+        }
         PortStoreSync.pushOutputs(crucible);
         boolean processChanged = Float.compare(
                         previousTemperature,
@@ -579,6 +581,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
             checkpoint.markSyncPending();
             if (level != null && !level.isClientSide) {
                 invalidateCrucibleCapabilities();
+                syncToClient();
             }
         }
     }
@@ -827,21 +830,10 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
         if (type == EnergyType.CU) {
             return process.thermal().queueCooling(size, amount, simulate);
         }
-        if (level == null || !level.getBlockState(worldPosition.above()).isAir()) {
-            return 0L;
-        }
-        SteelmakingController.InjectionResult acceptance =
-                process.previewAirInjection();
-        if (acceptance != SteelmakingController.InjectionResult.STARTED
-                && acceptance != SteelmakingController.InjectionResult.CONTINUED) {
-            return 0L;
-        }
-        long room = Math.max(
-                0L,
-                AirOutputModel.MAX_STORED_AIR - process.storedAir());
-        long accepted = Math.min(amount, EnergyPackets.packetsForUnits(size, room));
-        if (!simulate && accepted > 0L) {
-            process.insertAir(EnergyPackets.units(size, accepted));
+        int shownBefore = process.visibleAirUnits();
+        long accepted = process.acceptKineticAir(size, amount, simulate);
+        if (!simulate && accepted > 0L && process.visibleAirUnits() != shownBefore) {
+            syncToClient();
         }
         return accepted;
     }
@@ -850,7 +842,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
     public long stored(EnergyType type) {
         return switch (type) {
             case HEAT -> process.thermal().totalStoredHeat();
-            case AIR -> Math.max(0L, process.storedAir());
+            case AIR -> process.visibleAirUnits();
             default -> 0L;
         };
     }
@@ -859,7 +851,7 @@ public final class LargeCrucibleBlockEntity extends BlockEntity
     public long capacity(EnergyType type) {
         return switch (type) {
             case HEAT -> CrucibleProcessCore.HEAT_DISPLAY_CAPACITY;
-            case AIR -> AirOutputModel.MAX_STORED_AIR;
+            case AIR -> process.maxUnits();
             default -> 0L;
         };
     }
