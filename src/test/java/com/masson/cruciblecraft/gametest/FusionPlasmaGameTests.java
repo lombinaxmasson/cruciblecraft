@@ -23,6 +23,7 @@ import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTest;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -551,6 +552,50 @@ public final class FusionPlasmaGameTests {
         helper.assertTrue(
                 reactor.outputAmount(0) == 500 && reactor.outputAmount(1) == 500,
                 "Deuterium split did not finish after the EU push tick");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void brokenStructureUnbindsFusionHatches(GameTestHelper helper) {
+        BlockPos pos = new BlockPos(2, 1, 2);
+        BlockPos wall = new BlockPos(3, 1, 2);
+        helper.setBlock(
+                pos,
+                ModBlocks.FUSION_REACTOR.get().defaultBlockState()
+                        .setValue(FusionReactorBlock.FACING, Direction.NORTH));
+        helper.setBlock(wall, ModBlocks.TUNGSTENSTEEL_WALL.get());
+        FusionReactorBlockEntity reactor = helper.getBlockEntity(pos);
+        reactor.bindHatchForTest(
+                helper.absolutePos(wall),
+                FusionHatchRole.ITEM_FLUID,
+                Direction.EAST);
+        var registries = helper.getLevel().registryAccess();
+        CompoundTag saved = reactor.saveWithoutMetadata(registries);
+        saved.putBoolean("gt.formed", true);
+        saved.putBoolean("gt.force_formed", false);
+        reactor.loadWithComponents(saved, registries);
+        FusionHullBlockEntity hull = helper.getBlockEntity(wall);
+        helper.assertTrue(
+                hull.role() == FusionHatchRole.ITEM_FLUID,
+                "Fusion wall was not bound before the structure check");
+        FusionReactorBlockEntity.serverTick(
+                helper.getLevel(),
+                helper.absolutePos(pos),
+                helper.getBlockState(pos),
+                reactor);
+        helper.assertTrue(
+                !reactor.formed(),
+                "Bare fusion controller stayed formed after a failed structure check");
+        helper.assertTrue(
+                hull.role() == null,
+                "Failed fusion structure left the tungstensteel wall bound");
+        var fluids = helper.getLevel().getCapability(
+                net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.BLOCK,
+                helper.absolutePos(wall),
+                Direction.EAST);
+        helper.assertTrue(
+                fluids == null,
+                "Unbound fusion wall still exposes a fluid handler");
         helper.succeed();
     }
 

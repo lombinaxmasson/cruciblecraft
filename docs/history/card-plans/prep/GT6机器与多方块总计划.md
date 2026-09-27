@@ -82,7 +82,7 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 | --- | --- | --- |
 | `matter_fabricator` = `identity_only` | `MteInPlaceKind.MATTER_FABRICATOR`、`MatterFabricatorStructure`（5×5×5 致密铅 + 锇线圈）、`ModMultiblockControllers.LARGE_MATTER_FABRICATOR`。`machines/gt6-coil-hosts` 的 note 点名 massfab 17199，`CoilHostGameTests` 断言成形 | 不新开主机卡。对账扫描仍写 identity_only 时修扫描，不重做结构 |
 | `MultiTileEntityEngineRotation` = `runtime_code_uncarded` | `RotationEngineCatalog`（9 台）和 `MteInPlaceBlockEntity.convertRotationEngine`。GameTest：`rotationEngineConvertsRuToKu`、`rotationEngineSoftHammerStopsInput`。身份在已关的 `content/gt6-mte-drive-runtime` | 不新开传动卡。该卡 `required_test_ids` 没列这两条，所以覆盖表没认 |
-| `MultiTileEntityQuantumEnergizerLaser` = `identity_only` | `QuantumEnergizerCatalog` 已注册物品。行为挂在暂停的 `energy/fusion-quantum`（测试 id `quantumEnergizerConvertsLuToQu`） | 跟第 4 节 PUV 链，不单开 |
+| `MultiTileEntityQuantumEnergizerLaser` = `identity_only` | `QuantumEnergizerCatalog` 已注册物品。行为挂在已关的 `energy/fusion-quantum`（测试 id `quantumEnergizerConvertsLuToQu`） | 跟第 4 节 PUV 链，不单开 |
 
 `gt.recipe.massfab` 仍是 0% 已证明（891 行缺 `neutralmatter`）。那是流体与 PUV 链的事，不是再做一台物质制造机。
 
@@ -137,11 +137,11 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 
 这些卡已经签发。本总计划只标明它们和上面 7 张的关系：上面 7 张不插进这条链，也不改它们的 slug。
 
-PUV / OMEGA 链（[PUV2OMEGA科技线详细计划](PUV2OMEGA科技线详细计划.md)）是 GT6 注册内容，不是 CC 高压扩展。代码已在。大型热交换器和蒸汽涡轮已关卡。其余四张仍 `frozen` / `paused`，只因为还没按 unique-active 关卡：
+PUV / OMEGA 链（[PUV2OMEGA科技线详细计划](PUV2OMEGA科技线详细计划.md)）是 GT6 注册内容，不是 CC 高压扩展。代码已在。大型热交换器、蒸汽涡轮和聚变已关卡。其余仍 `frozen` / `paused`，只因为还没按 unique-active 关卡：
 
 1. `energy/large-heat-exchanger`（17197）已关 `runtime_ready` / `accepted`，`survival_access=unreviewed`
 2. `energy/steam-turbine`（15 台单机 + 4 台大型 17211–17214）已关 `runtime_ready` / `accepted`，`survival_access=unreviewed`。依赖大型热交换器
-3. `energy/fusion-quantum`（聚变 17198 + LU→QU 充能激光）。依赖蒸汽涡轮。改 `EnergyType` 的落地不走 prep 实施
+3. `energy/fusion-quantum`（聚变 17198 + LU→QU 充能激光）已关 `runtime_ready` / `accepted`，`survival_access=unreviewed`。依赖蒸汽涡轮。改 `EnergyType` 的落地不走 prep 实施
 4. `energy/quantum-massfab`（物质制造器 17199；中子素生存链才是 `CC_EXTENSION`，因为 `MT.Neutronium` 是 `unused` 桩）。依赖聚变
 5. `content/puv-omega-parts`、`machines/puv-omega-matrix`（`IL` 的 PUV2–OMEGA；`VN[14]` 源名 XV）
 

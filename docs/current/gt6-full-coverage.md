@@ -16,14 +16,14 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 80.0%**（565619）；身份就绪 86.0%；按机器平均 61.0%（73 台，完成 15，未开始 15） |
 | 配方源行逐行分类 | 720841 源行 | 已证明 565619（78.5%）；部分一致 3064（0.4%）；缺配方 39032（5.4%）；缺身份 89908（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
 | 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_only` 8，`runtime_paused` 1，`bounded_subset` 40，`runtime_accepted` 33，`full_replay` 11 |
-| 多方块控制器 | 30 canonical kinds | `runtime_paused` 3，`runtime_accepted` 27 |
+| 多方块控制器 | 30 canonical kinds | `runtime_paused` 2，`runtime_accepted` 28 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
 | 能量身份 | 20 identities | 有 CC `EnergyType` 10，无 10 |
 | 物品/流体生成域 | 25 domains | `deferred_with_reason` 3，`in_scope` 16，`out_of_scope` 6（冻结分母） |
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 1652 demand pairs | openable 96，gated_unresolved 1207，ungated 规模 3298（规模，非待办） |
-| Capability | 130 | `frozen:accepted` 2，`frozen:paused` 7，`runtime_ready:accepted` 117，`runtime_ready:paused` 4；survival_access `blocked` 3，`not_applicable` 7，`partial` 29，`unreviewed` 29，`unset` 62 |
+| Capability | 130 | `frozen:accepted` 2，`frozen:paused` 6，`runtime_ready:accepted` 118，`runtime_ready:paused` 4；survival_access `blocked` 3，`not_applicable` 7，`partial` 29，`unreviewed` 30，`unset` 61 |
 | Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
@@ -383,7 +383,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | GT6 控制器 | 分母 | CC 证据 | 交付深度 |
 | --- | --- | --- | --- |
 | `fermenter` | deferred_with_reason | machines/large-fermenter（frozen/paused，survival=partial） | `runtime_paused` |
-| `fusion_reactor` | out_of_scope | energy/fusion-quantum（frozen/paused，survival=unset） | `runtime_paused` |
 | `large_boiler` | in_scope | machines/large-boiler（runtime_ready/paused，survival=partial） | `runtime_paused` |
 | `autoclave` | deferred_with_reason | machines/large-autoclave（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `bath` | deferred_with_reason | machines/large-bathing-vat（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
@@ -396,6 +395,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `cryo_distillation_tower` | deferred_with_reason | machines/distillation-tower（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `distillation_tower` | in_scope | machines/distillation-tower（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `electrolyzer` | deferred_with_reason | machines/large-electrolyzer（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
+| `fusion_reactor` | out_of_scope | energy/fusion-quantum（runtime_ready/accepted，survival=unreviewed） | `runtime_accepted` |
 | `implosion_compressor` | deferred_with_reason | machines/implosion-compressor（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `large_dynamo` | deferred_with_reason | machines/gt6-coil-hosts（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `large_heat_exchanger` | deferred_with_reason | energy/large-heat-exchanger（runtime_ready/accepted，survival=unreviewed） | `runtime_accepted` |
@@ -626,7 +626,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `energy/converter-catalog` | runtime_ready | accepted | unreviewed |
 | `energy/cooler` | runtime_ready | paused | unreviewed |
 | `energy/flux-converters` | runtime_ready | paused | unreviewed |
-| `energy/fusion-quantum` | frozen | paused | — |
+| `energy/fusion-quantum` | runtime_ready | accepted | unreviewed |
 | `energy/gt6-laser-magnet-zpm-converters` | runtime_ready | accepted | partial |
 | `energy/gt6-remainder-devices` | runtime_ready | accepted | partial |
 | `energy/heat-exchangers` | runtime_ready | accepted | unreviewed |
@@ -748,7 +748,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 这些是旧冻结分母当年标的 `out_of_scope`（“third-stage excluded axis”）。本页以完整 GT6 为目标，它们不能默认算作“不用做”，需要逐项决定：真正移植、明确作为设计排除，或确认 GT6 本身未使用。
 
 - 配方图：`gt.recipe.anvil`（9228 行）、`gt.recipe.cruciblealloying`（414 行）
-- 多方块控制器：`bedrock_drill`（CC：`runtime_accepted`）、`fusion_reactor`（CC：`runtime_paused`）、`lightning_rod`（CC：`runtime_accepted`）、`matter_fabricator`（CC：`runtime_accepted`）、`von_da_graagg`（CC：`runtime_accepted`）
+- 多方块控制器：`bedrock_drill`（CC：`runtime_accepted`）、`fusion_reactor`（CC：`runtime_accepted`）、`lightning_rod`（CC：`runtime_accepted`）、`matter_fabricator`（CC：`runtime_accepted`）、`von_da_graagg`（CC：`runtime_accepted`）
 - 盖板：`asphalt`、`crafting`、`drain`、`logistics_display_cpu_control`、`logistics_display_cpu_conversion`、`logistics_display_cpu_logic`、`logistics_display_cpu_storage`、`texture_canvas`、`texture_multi`、`texture_simple`
 - 能量身份：`REDSTONE_FLUX`、`MINECRAFT_JOULES`、`VIS_ORDO`、`VIS_AER`、`VIS_AQUA`、`VIS_TERRA`、`VIS_IGNIS`、`VIS_PERDITIO`
 - 物品/流体生成域：`ITEMGENERATOR.ARMORS`、`ITEMGENERATOR.EMPTY`、`ITEMGENERATOR.GASES`、`ITEMGENERATOR.LIQUID`、`ITEMGENERATOR.PLANTS`、`ITEMGENERATOR.PROJECTILES`
