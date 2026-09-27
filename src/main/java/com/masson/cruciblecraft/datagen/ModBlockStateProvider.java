@@ -5,7 +5,6 @@ import com.masson.cruciblecraft.content.block.DistillationTowerParts;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
-import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.AutomaticHammerBlock;
 import com.masson.cruciblecraft.content.block.ExplosiveBlock;
@@ -64,27 +63,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(
                 ModBlocks.FIREBRICK.get(),
                 firebrick);
-        var anvil = models().getExistingFile(modLoc("block/anvil"));
-        var anvilMetallic = models().getExistingFile(modLoc("block/anvil_metallic"));
-        getVariantBuilder(ModBlocks.ANVIL.get()).forAllStates(state -> {
-            Direction facing = state.getValue(AnvilBlock.FACING);
-            int y = switch (facing) {
-                case SOUTH -> 180;
-                case WEST -> 270;
-                case EAST -> 90;
-                default -> 0;
-            };
-            return ConfiguredModel.builder()
-                    .modelFile(state.getValue(AnvilBlock.METALLIC) ? anvilMetallic : anvil)
-                    .rotationY(y)
-                    .build();
-        });
-        itemModels().getBuilder("anvil")
-                .parent(anvil)
-                .override()
-                .predicate(modLoc("metallic"), 1)
-                .model(anvilMetallic)
-                .end();
         configuredMachine("coke_oven", ModBlocks.COKE_OVEN.get());
         simpleBlockWithItem(
                 ModBlocks.MULTIBLOCK_CASING.get(),

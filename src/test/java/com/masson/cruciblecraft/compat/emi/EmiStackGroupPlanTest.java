@@ -349,7 +349,7 @@ class EmiStackGroupPlanTest {
                 mold, "cruciblecraft:foundry/mold_steel"));
         EmiStackGroupPlan.ExactGroup anvil = byPath.get("misc_tool/anvil");
         assertNotNull(anvil);
-        assertTrue(EmiStackGroupPlan.matchesAny(anvil, "cruciblecraft:anvil"));
+        assertFalse(EmiStackGroupPlan.matchesAny(anvil, "cruciblecraft:anvil"));
         assertTrue(EmiStackGroupPlan.matchesAny(
                 anvil, "cruciblecraft:steel/anvil"));
         assertFalse(EmiStackGroupPlan.matchesAny(

@@ -82,8 +82,7 @@ public final class AnvilHosts {
     }
 
     public static boolean isAnvil(Block block) {
-        return block instanceof AnvilBlock
-                || (block instanceof MteInPlaceBlock inplace && isAnvil(inplace.spec()));
+        return block instanceof MteInPlaceBlock inplace && isAnvil(inplace.spec());
     }
 
     public static boolean isHammer(ItemStack stack) {
@@ -134,18 +133,11 @@ public final class AnvilHosts {
         return iconset(materialId(spec));
     }
 
-    public static boolean metallic(String materialId) {
-        return iconset(materialId) == Iconset.METALLIC;
-    }
-
     public static VoxelShape shape(Direction facing) {
         return facing.getAxis() == Direction.Axis.X ? EAST_WEST : NORTH_SOUTH;
     }
 
     public static Direction horizontalFacing(BlockState state) {
-        if (state.hasProperty(AnvilBlock.FACING)) {
-            return state.getValue(AnvilBlock.FACING);
-        }
         if (state.hasProperty(MteInPlaceBlock.FACING)) {
             Direction facing = state.getValue(MteInPlaceBlock.FACING);
             return facing.getAxis().isHorizontal() ? facing : Direction.NORTH;

@@ -59,13 +59,10 @@ import com.masson.cruciblecraft.content.item.CableBlockItem;
 import com.masson.cruciblecraft.content.item.ReactorRodItem;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
-import com.masson.cruciblecraft.content.block.AnvilHosts;
-import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.material.MaterialColors;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.content.item.GtIndicatorFlowerItem;
-import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMenus;
@@ -105,15 +102,6 @@ public class ClientSetup {
     static void onClientSetup(FMLClientSetupEvent event) {
         CrucibleCraft.LOGGER.info("CrucibleCraft client setup");
         event.enqueueWork(() -> {
-            ItemProperties.register(
-                    ModItems.ANVIL.get(),
-                    ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "metallic"),
-                    (stack, level, entity, seed) -> {
-                        String material = stack.getOrDefault(
-                                ModComponents.MACHINE_MATERIAL.get(),
-                                MachineMaterialRules.DEFAULT_ANVIL_MATERIAL);
-                        return AnvilHosts.metallic(material) ? 1.0F : 0.0F;
-                    });
             ItemProperties.register(
                     ModItems.GT_INDICATOR_FLOWER.get(),
                     ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "flower"),

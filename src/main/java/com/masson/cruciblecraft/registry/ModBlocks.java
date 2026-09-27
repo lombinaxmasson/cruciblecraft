@@ -11,7 +11,6 @@ import java.util.function.Supplier;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
-import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.AnvilHosts;
 import com.masson.cruciblecraft.content.block.CoinageMoldHosts;
 import com.masson.cruciblecraft.content.block.FoundryHosts;
@@ -373,15 +372,6 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> STAINLESS_STEEL_WALL =
             BLOCKS.registerSimpleBlock(
                     "stainless_steel_wall", machineProperties());
-
-    public static final DeferredBlock<AnvilBlock> ANVIL = BLOCKS.register(
-            "anvil",
-            () -> new AnvilBlock(BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.STONE)
-                    .strength(1.0F, 6.0F)
-                    .requiresCorrectToolForDrops()
-                    .noOcclusion()
-                    .sound(SoundType.STONE)));
 
     public static final DeferredBlock<ZpmModuleBlock> ZERO_POINT_MODULE =
             BLOCKS.register(
@@ -1914,7 +1904,6 @@ public final class ModBlocks {
 
     public static Block[] anvilBlockArray() {
         java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
-        blocks.add(ANVIL.get());
         MTE_INPLACE_BLOCKS.values().forEach(holder -> {
             if (AnvilHosts.isAnvil(holder.get().spec())) {
                 blocks.add(holder.get());

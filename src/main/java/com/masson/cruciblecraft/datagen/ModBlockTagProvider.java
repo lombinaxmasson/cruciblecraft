@@ -76,7 +76,6 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.CONVERSION_PROCESSOR_UNIT.getKey(),
                 ModBlocks.FLUID_DEPOSIT_EXTRACTOR.getKey(),
                 ModBlocks.FIREBRICK.getKey(),
-                ModBlocks.ANVIL.getKey(),
                 ModBlocks.COKE_OVEN.getKey(),
                 ModBlocks.LU_FIBER_CABLE.getKey(),
                 ModBlocks.LASER_ENGRAVER.getKey(),

@@ -35,9 +35,6 @@ public final class MteMiscToolRuntimeGameTests {
                         "stone/anvil") != Items.ANVIL
                         && ((CatalogNamedBlockItem) MteInPlaceGameTestSupport.item(
                                 "stone/anvil")).getBlock()
-                                != ModBlocks.ANVIL.get()
-                        && ((CatalogNamedBlockItem) MteInPlaceGameTestSupport.item(
-                                "stone/anvil")).getBlock()
                                 != Blocks.ANVIL,
                 "stone/anvil aliased an anvil");
         helper.succeed();

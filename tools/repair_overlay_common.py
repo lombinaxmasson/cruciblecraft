@@ -509,7 +509,7 @@ def second_list_rows() -> list[dict[str, Any]]:
     anvil_set = "ANVIL_MATERIALS = Set.of(" in rules
     hammer_set = "HAMMER_MATERIALS = Set.of(" in rules
     crucible_tab = 'machineVariant(ModItems.CRUCIBLE.get(), "ceramic")' in tabs
-    anvil_tab = 'machineVariant(ModItems.ANVIL.get(), "stone")' in tabs
+    anvil_tab = "AnvilHosts.isAnvil(spec)" in tabs
     alias_blocks = count_matches(blocks, r'tieredProcessing\("')
     alias_items = count_matches(items, r'tieredProcessingItem\("')
     casing_constants = count_matches(items, r"_MACHINE_CASING =")

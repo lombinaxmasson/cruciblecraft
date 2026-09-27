@@ -32,8 +32,6 @@ import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.content.item.MaterialToolItem;
 import com.masson.cruciblecraft.content.item.ToolDisplayPlan;
-import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
-import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.machine.ToolMaterialRules.ToolKind;
 import com.masson.cruciblecraft.recipe.crafting.WorkbenchToolRecipePlan;
 
@@ -64,7 +62,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
             EmiStack.of(ModBlocks.steelSmeltingCrucible().get()));
     public static final EmiRecipeCategory ANVIL = internCategory(
             id("anvil"),
-            EmiStack.of(ModBlocks.ANVIL.get()));
+            EmiStack.of(ModBlocks.anvilBlockArray()[0]));
     public static final EmiRecipeCategory COKE_OVEN = internCategory(
             id("coke_oven"),
             EmiStack.of(ModBlocks.COKE_OVEN.get()));
@@ -97,8 +95,8 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
             for (Block smeltery : ModBlocks.crucibleBlockArray()) {
                 registry.addWorkstation(CRUCIBLE, EmiStack.of(smeltery));
             }
-            for (String material : List.of("stone", "iron", "bronze", "steel")) {
-                registry.addWorkstation(ANVIL, EmiStacks.ofItem(anvilVariant(material)));
+            for (Block anvil : ModBlocks.anvilBlockArray()) {
+                registry.addWorkstation(ANVIL, EmiStack.of(anvil));
             }
             registry.addWorkstation(COKE_OVEN, EmiStack.of(ModBlocks.COKE_OVEN.get()));
             registry.addWorkstation(CRUSHER, EmiStack.of(ModBlocks.BRONZE_CRUSHER.get()));
@@ -651,11 +649,16 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     }
 
     private static ItemStack anvilVariant(String material) {
-        ItemStack stack = new ItemStack(ModItems.ANVIL.get());
-        stack.set(ModComponents.MACHINE_MATERIAL, material);
-        long max = MachineMaterialRules.anvilMaxDurability(material);
-        stack.set(ModComponents.MACHINE_DURABILITY, new MachineDurabilityComponent(max, max));
-        return stack;
+        String path = switch (material) {
+            case "stone" -> "stone/anvil";
+            case "bronze" -> "bronze/anvil";
+            default -> "steel/anvil";
+        };
+        return ModItems.mteInPlaceItemsById()
+                .get(ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, path))
+                .get()
+                .getDefaultInstance();
     }
 
     private static long elapsedMillis(long started) {

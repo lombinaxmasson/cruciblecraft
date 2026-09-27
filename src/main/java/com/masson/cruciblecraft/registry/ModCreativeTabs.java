@@ -21,9 +21,6 @@ import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
 import com.masson.cruciblecraft.content.mold.CeramicMoldCatalog;
-import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
-import com.masson.cruciblecraft.machine.MachineMaterialRules;
-import com.masson.cruciblecraft.machine.processing.DeviceMaterialCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceCatalog;
 import com.masson.cruciblecraft.content.mte.MteInPlaceKind;
 import com.masson.cruciblecraft.content.mte.MteInPlaceSpec;
@@ -125,7 +122,7 @@ public final class ModCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> METALS_GEMS =
             materialTab(
                     MaterialCreativeTab.METALS_GEMS,
-                    () -> machineVariant(ModItems.ANVIL.get(), "iron"));
+                    ModCreativeTabs::anvilIcon);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PLATES =
             materialTab(
                     MaterialCreativeTab.PLATES,
@@ -210,10 +207,6 @@ public final class ModCreativeTabs {
     private static void fillMachines(
             CreativeModeTab.ItemDisplayParameters parameters,
             CreativeModeTab.Output output) {
-        DeviceMaterialCatalog.require(MachineMaterialRules.Device.ANVIL)
-                .creativeVisible()
-                .forEach(material -> output.accept(
-                        machineVariant(ModItems.ANVIL.get(), material.materialId())));
         output.accept(ModItems.COKE_OVEN.get());
         acceptCeramicMolds(output);
         output.accept(ModItems.MULTIBLOCK_CASING.get());
@@ -681,14 +674,12 @@ public final class ModCreativeTabs {
                 Map<MaterialCreativeTab, List<String>> plan) {}
     }
 
-    private static ItemStack machineVariant(Item item, String materialId) {
-        ItemStack stack = new ItemStack(item);
-        stack.set(ModComponents.MACHINE_MATERIAL, materialId);
-        if (item == ModItems.ANVIL.get()) {
-            long max = MachineMaterialRules.anvilMaxDurability(materialId);
-            stack.set(ModComponents.MACHINE_DURABILITY, new MachineDurabilityComponent(max, max));
-        }
-        return stack;
+    private static ItemStack anvilIcon() {
+        return ModItems.mteInPlaceItemsById()
+                .get(ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "steel/anvil"))
+                .get()
+                .getDefaultInstance();
     }
 
     private ModCreativeTabs() {}

@@ -89,7 +89,6 @@ import com.masson.cruciblecraft.content.item.MaterialFlintAndTinderItem;
 import com.masson.cruciblecraft.content.item.MaterialGemPickItem;
 import com.masson.cruciblecraft.content.item.MaterialHoeItem;
 import com.masson.cruciblecraft.content.item.MaterialKnifeItem;
-import com.masson.cruciblecraft.content.item.MaterialMachineBlockItem;
 import com.masson.cruciblecraft.content.item.LargeCrucibleBlockItem;
 import com.masson.cruciblecraft.content.item.MaterialMonkeyWrenchItem;
 import com.masson.cruciblecraft.content.item.MaterialPickaxeItem;
@@ -125,7 +124,6 @@ import com.masson.cruciblecraft.content.item.PipeCoverItem;
 import com.masson.cruciblecraft.content.item.SmithingHammerItem;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.item.UnknownMaterialItem;
-import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
 import com.masson.cruciblecraft.content.mold.CeramicMoldCatalog;
 import com.masson.cruciblecraft.content.mold.MoldRecipes;
 import com.masson.cruciblecraft.content.mold.MoldShape;
@@ -302,12 +300,6 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> STAINLESS_STEEL_WALL =
             ITEMS.registerSimpleBlockItem(
                     "stainless_steel_wall", ModBlocks.STAINLESS_STEEL_WALL);
-    public static final DeferredItem<MaterialMachineBlockItem> ANVIL = ITEMS.register(
-            "anvil",
-            () -> new MaterialMachineBlockItem(
-                    ModBlocks.ANVIL.get(),
-                    Device.ANVIL,
-                    new Item.Properties()));
     public static final DeferredItem<ZpmModuleItem> ZERO_POINT_MODULE =
             ITEMS.register(
                     "zero_point_module",

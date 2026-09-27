@@ -138,7 +138,8 @@ public final class Gt6PrefixRegularBulkGameTests {
                     .get(ResourceLocation.fromNamespaceAndPath(
                             "cruciblecraft", "laser_welder"))
                     .get();
-            case "anvil_bend_big", "anvil_bend_small" -> ModBlocks.ANVIL.get();
+            case "anvil_bend_big", "anvil_bend_small" ->
+                    ModBlocks.mteInPlaceBlocksById().get(id("steel/anvil")).get();
             default -> null;
         };
     }

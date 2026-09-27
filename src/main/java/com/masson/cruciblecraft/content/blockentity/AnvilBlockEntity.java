@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
-import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.AnvilHosts;
 import com.masson.cruciblecraft.heat.HeatComponent;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
@@ -270,7 +269,6 @@ public final class AnvilBlockEntity extends BlockEntity {
         this.durability = savedDurability == null
                 ? expectedMax
                 : Math.min(savedDurability.current(), this.maxDurability);
-        syncMetallicState();
         setChangedAndSync();
     }
 
@@ -447,7 +445,6 @@ public final class AnvilBlockEntity extends BlockEntity {
                 ? tag.getLong("durability")
                 : maxDurability;
         durability = Math.max(0L, Math.min(savedDurability, maxDurability));
-        syncMetallicState();
     }
 
     @Override
@@ -493,24 +490,9 @@ public final class AnvilBlockEntity extends BlockEntity {
         durability = maxDurability;
     }
 
-    private void syncMetallicState() {
-        if (level == null || level.isClientSide) {
-            return;
-        }
-        BlockState state = getBlockState();
-        if (!state.hasProperty(AnvilBlock.METALLIC)) {
-            return;
-        }
-        boolean metallic = AnvilHosts.metallic(materialId);
-        if (state.getValue(AnvilBlock.METALLIC) != metallic) {
-            level.setBlock(worldPosition, state.setValue(AnvilBlock.METALLIC, metallic), Block.UPDATE_CLIENTS);
-        }
-    }
-
     private void setChangedAndSync() {
         setChanged();
         if (level != null && !level.isClientSide) {
-            syncMetallicState();
             BlockState state = getBlockState();
             level.sendBlockUpdated(worldPosition, state, state, Block.UPDATE_CLIENTS);
         }

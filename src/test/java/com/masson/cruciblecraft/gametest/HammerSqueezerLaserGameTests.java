@@ -285,7 +285,7 @@ public final class HammerSqueezerLaserGameTests {
     public static void automaticHammerStrikesAnvilFromAbove(
             GameTestHelper helper) {
         BlockPos anvilPos = POS.below();
-        helper.setBlock(anvilPos, ModBlocks.ANVIL.get().defaultBlockState());
+        helper.setBlock(anvilPos, anvilBlock().defaultBlockState());
         helper.setBlock(
                 POS,
                 ModBlocks.STEEL_AUTOMATIC_HAMMER.get()
@@ -293,7 +293,7 @@ public final class HammerSqueezerLaserGameTests {
                         .setValue(AutomaticHammerBlock.FACING, Direction.DOWN));
         AnvilBlockEntity anvil = helper.getBlockEntity(anvilPos);
         AutomaticHammerBlockEntity hammer = helper.getBlockEntity(POS);
-        anvil.setMaterialId("iron");
+        anvil.setMaterialId("steel");
         helper.assertTrue(
                 anvil.insertOrMerge(0, MaterialLookup.stack("iron", MaterialPrefixes.INGOT)) > 0,
                 "Anvil rejected the iron ingot");
@@ -332,7 +332,7 @@ public final class HammerSqueezerLaserGameTests {
     public static void automaticHammerSideHitDoesNotUseAnvilRecipes(
             GameTestHelper helper) {
         BlockPos anvilPos = POS.relative(Direction.NORTH);
-        helper.setBlock(anvilPos, ModBlocks.ANVIL.get().defaultBlockState());
+        helper.setBlock(anvilPos, anvilBlock().defaultBlockState());
         helper.setBlock(
                 POS,
                 ModBlocks.STEEL_AUTOMATIC_HAMMER.get()
@@ -340,7 +340,7 @@ public final class HammerSqueezerLaserGameTests {
                         .setValue(AutomaticHammerBlock.FACING, Direction.NORTH));
         AnvilBlockEntity anvil = helper.getBlockEntity(anvilPos);
         AutomaticHammerBlockEntity hammer = helper.getBlockEntity(POS);
-        anvil.setMaterialId("iron");
+        anvil.setMaterialId("steel");
         ItemStack ingot = MaterialLookup.stack("iron", MaterialPrefixes.INGOT);
         helper.assertTrue(
                 anvil.insertOrMerge(0, ingot.copy()) > 0,
@@ -374,7 +374,7 @@ public final class HammerSqueezerLaserGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
     public static void automaticHammerSideHitBendsPlate(GameTestHelper helper) {
         BlockPos anvilPos = POS.relative(Direction.NORTH);
-        helper.setBlock(anvilPos, ModBlocks.ANVIL.get().defaultBlockState());
+        helper.setBlock(anvilPos, anvilBlock().defaultBlockState());
         helper.setBlock(
                 POS,
                 ModBlocks.STEEL_AUTOMATIC_HAMMER.get()
@@ -382,7 +382,7 @@ public final class HammerSqueezerLaserGameTests {
                         .setValue(AutomaticHammerBlock.FACING, Direction.NORTH));
         AnvilBlockEntity anvil = helper.getBlockEntity(anvilPos);
         AutomaticHammerBlockEntity hammer = helper.getBlockEntity(POS);
-        anvil.setMaterialId("iron");
+        anvil.setMaterialId("steel");
         ItemStack plate = MaterialLookup.stack("iron", MaterialPrefixes.PLATE);
         helper.assertTrue(
                 anvil.insertOrMerge(0, plate.copy()) > 0,
@@ -810,5 +810,9 @@ public final class HammerSqueezerLaserGameTests {
 
     private static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath("cruciblecraft", path);
+    }
+
+    private static Block anvilBlock() {
+        return ModBlocks.mteInPlaceBlocksById().get(id("steel/anvil")).get();
     }
 }

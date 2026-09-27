@@ -258,7 +258,6 @@ public class ModLanguageProvider extends LanguageProvider {
                     "空（容量 %s mB）");
             add("tooltip.cruciblecraft.portable_fluid_tank.contents",
                     "%s：%s/%s mB");
-            addBlock(ModBlocks.ANVIL, "锻造砧");
             addBlock(ModBlocks.CERAMIC_MOLD, "陶瓷模具");
             addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "黏土坩埚");
             addItem(ModItems.RAW_CERAMIC_BOWL, "黏土碗");
@@ -817,7 +816,6 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.cruciblecraft.gas_cell.filled", "%s Gas Cell");
         add("itemGroup.cruciblecraft.misc", "Crucible Craft: Miscellaneous");
         addBlock(ModBlocks.FIREBRICK, "Firebrick");
-        addBlock(ModBlocks.ANVIL, "Smithing Anvil");
         addBlock(ModBlocks.CERAMIC_MOLD, "Ceramic Mold");
         addBlock(ModBlocks.GAS_CLOUD, "Gas Cloud");
         addBlock(ModBlocks.SUBSURFACE_FLUID_DEPOSIT, "Subsurface Fluid Deposit");

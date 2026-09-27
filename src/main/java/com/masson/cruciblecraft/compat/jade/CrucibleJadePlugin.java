@@ -3,7 +3,6 @@ package com.masson.cruciblecraft.compat.jade;
 import java.util.Locale;
 
 import com.masson.cruciblecraft.CrucibleCraft;
-import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
@@ -156,7 +155,6 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 TransformerComponentProvider.INSTANCE, TransformerBlock.class);
         registration.registerBlockComponent(
                 SteamEngineComponentProvider.INSTANCE, SteamEngineBlock.class);
-        registration.registerBlockComponent(AnvilComponentProvider.INSTANCE, AnvilBlock.class);
         registration.registerBlockComponent(AnvilComponentProvider.INSTANCE, MteInPlaceBlock.class);
         registration.registerBlockComponent(CokeOvenComponentProvider.INSTANCE, CokeOvenBlock.class);
         registration.registerBlockComponent(CeramicMoldComponentProvider.INSTANCE, CeramicMoldBlock.class);

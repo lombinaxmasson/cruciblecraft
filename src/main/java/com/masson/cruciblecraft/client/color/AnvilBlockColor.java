@@ -3,9 +3,7 @@ package com.masson.cruciblecraft.client.color;
 import com.masson.cruciblecraft.content.block.AnvilHosts;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
-import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.registry.ModBlocks;
-import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -41,15 +39,11 @@ public final class AnvilBlockColor {
         if (block instanceof MteInPlaceBlock inplace && AnvilHosts.isAnvil(inplace.spec())) {
             return AnvilHosts.colorRgb(AnvilHosts.materialId(inplace.spec()));
         }
-        String material = stack.getOrDefault(
-                ModComponents.MACHINE_MATERIAL.get(),
-                MachineMaterialRules.DEFAULT_ANVIL_MATERIAL);
-        return AnvilHosts.colorRgb(material);
+        return AnvilHosts.STONE_COLOR;
     }
 
     public static Block[] tintedBlocks() {
         java.util.ArrayList<Block> blocks = new java.util.ArrayList<>();
-        blocks.add(ModBlocks.ANVIL.get());
         ModBlocks.mteInPlaceBlocksById().values().forEach(holder -> {
             if (AnvilHosts.isAnvil(holder.get().spec())) {
                 blocks.add(holder.get());

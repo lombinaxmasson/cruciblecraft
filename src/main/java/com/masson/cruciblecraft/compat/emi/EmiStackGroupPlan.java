@@ -355,7 +355,6 @@ public final class EmiStackGroupPlan {
                 "hopper/queue_hopper",
                 hopperIds(HopperKind.QUEUE_HOPPER));
         List<String> anvils = new ArrayList<>();
-        anvils.add("cruciblecraft:anvil");
         anvils.addAll(mteIds(AnvilHosts::isAnvil));
         addIfMany(groups, "misc_tool/anvil", anvils);
         addIfMany(

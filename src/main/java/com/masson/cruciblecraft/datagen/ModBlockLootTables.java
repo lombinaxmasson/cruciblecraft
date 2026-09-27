@@ -38,7 +38,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.FIREBRICK.get());
-        dropSelf(ModBlocks.ANVIL.get());
         dropSelf(ModBlocks.COKE_OVEN.get());
         dropSelf(ModBlocks.MULTIBLOCK_CASING.get());
         dropSelf(ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
@@ -253,7 +252,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         java.util.Collections.addAll(
                 blocks,
                 ModBlocks.FIREBRICK.get(),
-                ModBlocks.ANVIL.get(),
                 ModBlocks.COKE_OVEN.get(),
                 ModBlocks.MULTIBLOCK_CASING.get(),
                 ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get(),

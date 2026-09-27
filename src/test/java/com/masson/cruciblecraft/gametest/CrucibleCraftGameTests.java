@@ -22,7 +22,6 @@ import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
-import com.masson.cruciblecraft.content.block.AnvilBlock;
 import com.masson.cruciblecraft.content.block.DistillationTowerParts;
 import com.masson.cruciblecraft.content.block.LargeCrucibleHosts;
 import com.masson.cruciblecraft.content.block.MteInPlaceBlock;
@@ -2818,7 +2817,11 @@ public final class CrucibleCraftGameTests {
     public static void materialRuleAnvilRecipeLoadsAndExecutes(
             GameTestHelper helper) {
         BlockPos pos = new BlockPos(3, 2, 3);
-        helper.setBlock(pos, ModBlocks.ANVIL.get());
+        helper.setBlock(
+                pos,
+                ModBlocks.mteInPlaceBlocksById()
+                        .get(MteInPlaceGameTestSupport.id("stone/anvil"))
+                        .get());
         AnvilBlockEntity anvil = helper.getBlockEntity(pos);
         ItemStack ingot = material("iron", MaterialPrefixes.INGOT, 1);
         ItemStack expectedPlate = material("iron", MaterialPrefixes.PLATE, 1);
@@ -2851,11 +2854,13 @@ public final class CrucibleCraftGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void liveAnvilUsesGt6Collision(GameTestHelper helper) {
         BlockPos pos = new BlockPos(3, 2, 3);
-        helper.setBlock(pos, ModBlocks.ANVIL.get().defaultBlockState());
+        helper.setBlock(
+                pos,
+                ModBlocks.mteInPlaceBlocksById()
+                        .get(MteInPlaceGameTestSupport.id("steel/anvil"))
+                        .get()
+                        .defaultBlockState());
         var state = helper.getBlockState(pos);
-        helper.assertFalse(
-                state.getValue(AnvilBlock.METALLIC),
-                "live anvil defaulted to the metallic iconset");
         var box = state.getShape(helper.getLevel(), pos).bounds();
         helper.assertTrue(
                 box.minX == 0.0

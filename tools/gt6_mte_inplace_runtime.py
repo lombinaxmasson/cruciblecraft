@@ -1818,10 +1818,6 @@ def _render_game_test(domain: str) -> str:
                 "                        && ((CatalogNamedBlockItem) "
                 "MteInPlaceGameTestSupport.item(",
                 f"                                \"{row['path']}\")).getBlock()",
-                "                                != ModBlocks.ANVIL.get()",
-                "                        && ((CatalogNamedBlockItem) "
-                "MteInPlaceGameTestSupport.item(",
-                f"                                \"{row['path']}\")).getBlock()",
                 "                                != Blocks.ANVIL,",
                 f"                \"{row['path']} aliased an anvil\");",
             ]
