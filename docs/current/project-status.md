@@ -7,7 +7,7 @@
 
 ## Unique active
 
-`content/gt6-fluid-barrel`（GT6 fluid barrels and drums，`workflow=active`，`maturity=runtime_ready`）；计划 [GT6流体桶与鼓详细计划](../history/card-plans/active/GT6流体桶与鼓详细计划.md)。
+`content/gt6-fluid-barrel`（GT6 fluid storage tanks，`workflow=active`，`maturity=runtime_ready`）；计划 [GT6流体储罐详细计划](../history/card-plans/active/GT6流体储罐详细计划.md)。
 
 ## Prep（不占落地锁）
 
