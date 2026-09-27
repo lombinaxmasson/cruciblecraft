@@ -40,8 +40,12 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
     private KineticBuffer kinetic;
     private final PerTickEnergyBudget outputBudget = new PerTickEnergyBudget();
     private final CheckpointTracker checkpoint = new CheckpointTracker();
-    private String status = "no_steam";
+    private String status = "ready";
     private boolean stopped;
+    /** GT6 {@code mState}, sampled once per second. */
+    private int engineState;
+    /** GT6 {@code mActive}: emitting this tick, not merely holding steam. */
+    private boolean active;
 
     public SteamEngineBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.STEAM_ENGINE.get(), pos, state);
@@ -67,10 +71,12 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
     public static void serverTick(Level level, BlockPos pos, BlockState state, SteamEngineBlockEntity engine) {
         engine.tickCovers();
         engine.convertSteam();
+        engine.refreshEngineState(level.getGameTime());
         engine.emitKinetic(level, pos, state);
         engine.checkSteamVentStop();
         engine.bleedIfStopped();
         engine.pushDistilledExhaust();
+        engine.publishStatus();
         long phaseKey = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
         if (engine.checkpoint.shouldSync(false, level.getGameTime(), phaseKey, 20)) {
             engine.syncToClient();
@@ -80,12 +86,10 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
 
     private void convertSteam() {
         if (stopped) {
-            setStatus("stopped");
             return;
         }
         int batches = SteamConversion.engineBatches(steam.getFluidAmount());
         if (batches <= 0) {
-            setStatus("no_steam");
             return;
         }
         int steamUsed = batches * SteamConversion.ENGINE_STEAM_PER_BATCH;
@@ -109,8 +113,24 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
                 SteamConversion.distilledExhaust(waterReturned),
                 IFluidHandler.FluidAction.EXECUTE);
         kinetic.addConverted(produced);
-        setStatus("running");
         markMutation();
+    }
+
+    /**
+     * GT6 samples {@code mState} only on {@code SYNC_SECOND}
+     * ({@code server time % 20 == 0}), after steam has been converted and
+     * before the output packet is chosen.
+     */
+    private void refreshEngineState(long gameTime) {
+        if (gameTime % 20L != 0L) {
+            return;
+        }
+        int next = SteamEngineKuCurve.visualState(
+                kinetic.stored(), profile.outputCapacity());
+        if (engineState != next) {
+            engineState = next;
+            markMutation();
+        }
     }
 
     /**
@@ -126,14 +146,14 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
         if (overflow > 0L) {
             kinetic.discard(overflow);
         }
-        if (SteamEngineKuCurve.visualState(
-                kinetic.stored(), profile.outputCapacity()) <= 30) {
+        if (!SteamEngineKuCurve.ventsWhenFull(engineState)) {
+            engineState = 31;
             markMutation();
             return;
         }
         steam.setFluid(FluidStack.EMPTY);
         stopped = true;
-        setStatus("overloaded");
+        active = false;
         if (level != null && !level.isClientSide) {
             level.playSound(
                     null,
@@ -208,14 +228,12 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
      * always {@code mEnergy -= tOutput} even when the neighbor took nothing.
      */
     private void emitKinetic(Level level, BlockPos pos, BlockState state) {
-        if (stopped) {
-            return;
-        }
         long rate = currentOutputRate();
-        if (!SteamEngineKuCurve.activelyEmitting(
+        active = !stopped && SteamEngineKuCurve.activelyEmitting(
                 kinetic.stored(),
                 rate,
-                profile.outputPacket().size())) {
+                profile.outputPacket().size());
+        if (!active) {
             return;
         }
         Direction output = state.getValue(SteamEngineBlock.FACING);
@@ -242,9 +260,20 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
     }
     public long currentOutputRate() {
         return SteamEngineKuCurve.outputKu(
-                profile.outputPacket().size(),
-                SteamEngineKuCurve.visualState(
-                        kinetic.stored(), profile.outputCapacity()));
+                profile.outputPacket().size(), engineState);
+    }
+
+    /** KU actually leaving the engine. Idle and stopped engines report 0. */
+    public long observedOutputRate() {
+        return active ? currentOutputRate() : 0L;
+    }
+
+    public boolean active() {
+        return active;
+    }
+
+    public int engineState() {
+        return engineState;
     }
 
     private long maxOutputRate() {
@@ -284,9 +313,10 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
         boolean nextStopped = !on;
         if (stopped != nextStopped) {
             stopped = nextStopped;
-            setStatus(stopped
-                    ? "stopped"
-                    : (steam.isEmpty() ? "no_steam" : "running"));
+            if (stopped) {
+                active = false;
+            }
+            setStatus(stopped ? "stopped" : "ready");
             markMutation();
         }
         return !stopped;
@@ -401,6 +431,8 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
         tag.putInt("stroke_sign", kinetic.strokeSign());
         tag.putString("status", status);
         tag.putBoolean("stopped", stopped);
+        tag.putInt("engine_state", engineState);
+        tag.putBoolean("active", active);
     }
     @Override protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
@@ -420,10 +452,9 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
                 tag.getLong("kinetic"),
                 tag.getInt("stroke_sign"));
         stopped = tag.getBoolean("stopped");
-        status = tag.getString("status");
-        if (status.isBlank()) {
-            status = stopped ? "stopped" : (steam.isEmpty() ? "no_steam" : "running");
-        }
+        engineState = storedEngineState(tag);
+        active = tag.getBoolean("active") && !stopped;
+        status = normalizeStatus(tag.getString("status"));
     }
 
     @Override public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
@@ -438,6 +469,8 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
         tag.putInt("stroke_sign", kinetic.strokeSign());
         tag.putString("status", status);
         tag.putBoolean("stopped", stopped);
+        tag.putInt("engine_state", engineState);
+        tag.putBoolean("active", active);
         saveCoverNbt(tag, registries);
         return tag;
     }
@@ -476,10 +509,9 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
                 tag.getLong("kinetic"),
                 tag.getInt("stroke_sign"));
         stopped = tag.getBoolean("stopped");
-        status = tag.getString("status");
-        if (status.isBlank()) {
-            status = stopped ? "stopped" : (steam.isEmpty() ? "no_steam" : "running");
-        }
+        engineState = storedEngineState(tag);
+        active = tag.getBoolean("active") && !stopped;
+        status = normalizeStatus(tag.getString("status"));
         loadCoverNbt(tag, registries);
     }
     @Override public ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -504,6 +536,30 @@ public final class SteamEngineBlockEntity extends MachineCoverHostBlockEntity
                     getBlockState(),
                     Block.UPDATE_CLIENTS);
         }
+    }
+
+    private void publishStatus() {
+        if (stopped) {
+            active = false;
+        }
+        setStatus(stopped ? "stopped" : active ? "running" : "ready");
+    }
+
+    private int storedEngineState(CompoundTag tag) {
+        if (tag.contains("engine_state")) {
+            return Math.max(0, Math.min(31, tag.getInt("engine_state")));
+        }
+        return SteamEngineKuCurve.visualState(
+                kinetic.stored(), profile.outputCapacity());
+    }
+
+    private String normalizeStatus(String stored) {
+        if (stored == null || stored.isBlank()
+                || "no_steam".equals(stored)
+                || "overloaded".equals(stored)) {
+            return stopped ? "stopped" : "ready";
+        }
+        return stored;
     }
 
     private void setStatus(String next) {

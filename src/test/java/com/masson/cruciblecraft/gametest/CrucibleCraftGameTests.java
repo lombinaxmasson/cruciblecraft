@@ -122,6 +122,7 @@ import com.masson.cruciblecraft.registry.ModMultiblockControllers;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.steam.SteamConversion;
+import com.masson.cruciblecraft.steam.SteamEngineKuCurve;
 import com.masson.cruciblecraft.worldgen.LargeVeinConfiguration;
 import com.masson.cruciblecraft.worldgen.LargeVeinLayout;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
@@ -1695,7 +1696,12 @@ public final class CrucibleCraftGameTests {
                             "Engine steam execute did not commit");
                     CompoundTag engineTag =
                             engine.saveWithoutMetadata(registries);
-                    engineTag.putLong("kinetic", engine.kineticCapacity() / 2L);
+                    long primed = engine.kineticCapacity() / 2L;
+                    engineTag.putLong("kinetic", primed);
+                    engineTag.putInt(
+                            "engine_state",
+                            SteamEngineKuCurve.visualState(
+                                    primed, engine.kineticCapacity()));
                     engineTag.putInt("stroke_sign", 1);
                     engine.loadWithComponents(engineTag, registries);
                 })
@@ -11335,7 +11341,12 @@ public final class CrucibleCraftGameTests {
             GameTestHelper helper, SteamEngineBlockEntity engine) {
         var registries = helper.getLevel().registryAccess();
         CompoundTag tag = engine.saveWithoutMetadata(registries);
-        tag.putLong("kinetic", engine.kineticCapacity() * 24L / 32L);
+        long primed = engine.kineticCapacity() * 24L / 32L;
+        tag.putLong("kinetic", primed);
+        tag.putInt(
+                "engine_state",
+                SteamEngineKuCurve.visualState(
+                        primed, engine.kineticCapacity()));
         tag.putInt("stroke_sign", 1);
         engine.loadWithComponents(tag, registries);
     }

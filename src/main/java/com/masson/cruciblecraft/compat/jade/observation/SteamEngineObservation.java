@@ -42,7 +42,7 @@ public record SteamEngineObservation(
         long nominal = Math.max(1L, profile.outputPacket().size());
         data.putLong(OUTPUT_MIN, Math.max(1L, nominal / 2L));
         data.putLong(OUTPUT_MAX, Math.max(1L, nominal * 2L));
-        data.putLong(OUTPUT_RATE, engine.currentOutputRate());
+        data.putLong(OUTPUT_RATE, engine.observedOutputRate());
     }
 
     private static ObservationField<Long> longField(

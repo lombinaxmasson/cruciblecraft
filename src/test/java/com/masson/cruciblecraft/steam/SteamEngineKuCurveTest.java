@@ -24,8 +24,17 @@ class SteamEngineKuCurveTest {
     @Test
     void visualStateTracksStoredOverCapacity() {
         assertEquals(0, SteamEngineKuCurve.visualState(0L, 1_024L));
+        assertEquals(1, SteamEngineKuCurve.visualState(1L, 1_024L));
         assertEquals(7, SteamEngineKuCurve.visualState(224L, 1_024L));
         assertEquals(15, SteamEngineKuCurve.visualState(480L, 1_024L));
         assertEquals(31, SteamEngineKuCurve.visualState(1_024L, 1_024L));
+        assertEquals(31, SteamEngineKuCurve.visualState(23_999L, 24_000L));
+    }
+
+    @Test
+    void fullBufferVentsOnlyAfterTheLatchedStateIsAlreadyHot() {
+        assertFalse(SteamEngineKuCurve.ventsWhenFull(26));
+        assertFalse(SteamEngineKuCurve.ventsWhenFull(30));
+        assertTrue(SteamEngineKuCurve.ventsWhenFull(31));
     }
 }

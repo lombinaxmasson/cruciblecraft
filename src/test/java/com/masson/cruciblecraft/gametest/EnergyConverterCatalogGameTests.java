@@ -462,7 +462,7 @@ public final class EnergyConverterCatalogGameTests {
                         && engine.stored()
                                 >= SteamConversion.KU_PER_ENGINE_BATCH
                         && engine.exhaustAmount() == 0
-                        && "running".equals(engine.status()),
+                        && "ready".equals(engine.status()),
                 "Isolated steam engine did not trash unpushed DistW");
         helper.succeed();
     }
