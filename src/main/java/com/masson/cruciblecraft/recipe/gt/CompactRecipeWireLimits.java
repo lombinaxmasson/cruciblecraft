@@ -5,12 +5,14 @@ package com.masson.cruciblecraft.recipe.gt;
  * packet limits; they keep one RecipeHolder well below the 2 MiB NBT accounter.
  */
 public final class CompactRecipeWireLimits {
-    public static final int WIRE_VERSION = 4;
+    /** 5: known component types use a one-byte code instead of a resource location. */
+    public static final int WIRE_VERSION = 5;
     public static final byte WIRE_FORM_INLINE = 0;
     public static final byte WIRE_FORM_MATRIX_V1 = 1;
     public static final int MAX_RECIPE_ENTRY_WIRE_BYTES = 524_288;
     public static final int DECODE_RELATIONS_CEILING = 4_096;
     public static final int MAX_IO_PER_RELATION = 16;
+    public static final int MAX_BLOCK_STATE_PROPERTIES = 16;
     public static final int MAX_DICTIONARY_ENTRIES = 8_192;
     public static final int MAX_TRANSPORT_FRAGMENTS = 256;
     public static final int MAX_SEMANTIC_DIGEST_LENGTH = 64;

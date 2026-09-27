@@ -33,6 +33,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -649,6 +650,20 @@ final class CompactGTRecipeFamilyGeneratedSupport {
                     components.get("cruciblecraft:fireproof").getAsInt());
             indexed = true;
         }
+        if (components != null && components.has("cruciblecraft:ore_material")) {
+            predicate.expect(
+                    ModComponents.ORE_MATERIAL.get(),
+                    components.get("cruciblecraft:ore_material").getAsString());
+            indexed = true;
+        }
+        if (components != null && components.has("minecraft:block_state")) {
+            predicate.expect(
+                    DataComponents.BLOCK_STATE,
+                    BlockItemStateProperties.CODEC
+                            .parse(JsonOps.INSTANCE, components.get("minecraft:block_state"))
+                            .getOrThrow());
+            indexed = true;
+        }
         if (indexed) {
             return DataComponentIngredient.of(false, predicate.build(), item);
         }
@@ -698,6 +713,7 @@ final class CompactGTRecipeFamilyGeneratedSupport {
             bindStringComponent(ModComponents.PREFIX_MATERIAL);
             bindStringComponent(ModComponents.TOOL_MATERIAL);
             bindStringComponent(ModComponents.MACHINE_MATERIAL);
+            bindStringComponent(ModComponents.ORE_MATERIAL);
         }
     }
 

@@ -47,8 +47,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class CompactGTRecipeFamilySyncSizeTest {
     /** Committed compact RecipeHolders under recipe_generated, excluding off-tree bath waves. */
-    private static final int EXPECTED_COMMITTED_COMPACT_ENTRIES = 14070;
-    private static final int EXPECTED_LARGE_JSON_ENTRIES = 35;
+    private static final int EXPECTED_COMMITTED_COMPACT_ENTRIES = 14828;
+    private static final int EXPECTED_LARGE_JSON_ENTRIES = 40;
     private static final int EXPECTED_SANDING_FRAGMENTS = 9;
     private static final int EXPECTED_SANDING_RELATIONS = 7_637;
     private static final long ONE_MIB = 1024L * 1024L;
@@ -70,6 +70,56 @@ class CompactGTRecipeFamilySyncSizeTest {
         assertSame(
                 CompactGTRecipeFamilyStreamCodec.INSTANCE,
                 serializer.streamCodec());
+    }
+
+    @Test
+    void oreHostBulkFamiliesStayUnderWireCeiling() throws IOException {
+        List<Path> files = new ArrayList<>();
+        for (String directory : List.of(
+                "src/recipe_generated/resources/data/cruciblecraft/recipe/crusher/prefix_regular",
+                "src/recipe_generated/resources/data/cruciblecraft/recipe/sifter/prefix_regular")) {
+            try (Stream<Path> paths = Files.list(Path.of(directory))) {
+                paths.filter(path -> path.getFileName().toString().endsWith(".json"))
+                        .sorted()
+                        .forEach(files::add);
+            }
+        }
+        List<String> report = new ArrayList<>();
+        int maxBytes = 0;
+        String maxFamily = "";
+        for (Path path : files) {
+            CompactRecipeFamilySource source =
+                    CompactGTRecipeFamilyGeneratedSupport.sourceFromGenerated(
+                            path, readJson(path), registries);
+            RegistryFriendlyByteBuf buffer = buffer();
+            String familyId = source.definition().familyId();
+            try {
+                serializer.streamCodec().encode(
+                        buffer, new CompactGTRecipeFamilyEntry(source.definition()));
+            } catch (EncoderException failure) {
+                report.add(familyId + " FAIL " + failure.getMessage());
+                continue;
+            }
+            int wireBytes = buffer.writerIndex();
+            if (wireBytes > maxBytes) {
+                maxBytes = wireBytes;
+                maxFamily = familyId;
+            }
+            if (wireBytes > CompactRecipeWireLimits.MAX_RECIPE_ENTRY_WIRE_BYTES) {
+                report.add(familyId + " bytes=" + wireBytes);
+                continue;
+            }
+            serializer.streamCodec().decode(buffer);
+            if (buffer.readableBytes() != 0) {
+                report.add(familyId + " leftover=" + buffer.readableBytes());
+            }
+        }
+        String summary = String.join("\n", report)
+                + "\nmax " + maxBytes + " at " + maxFamily;
+        assertTrue(report.isEmpty(), summary);
+        assertTrue(
+                maxBytes > 0 && maxBytes <= CompactRecipeWireLimits.MAX_RECIPE_ENTRY_WIRE_BYTES,
+                summary);
     }
 
     @Test

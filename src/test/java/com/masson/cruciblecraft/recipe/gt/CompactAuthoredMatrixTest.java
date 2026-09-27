@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.recipe.gt;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -8,21 +9,29 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.test.MinecraftTestBootstrap;
 
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponentPredicate;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import net.neoforged.neoforge.network.connection.ConnectionType;
 
 import io.netty.buffer.Unpooled;
+import io.netty.handler.codec.EncoderException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -152,6 +161,92 @@ class CompactAuthoredMatrixTest {
         assertEquals(
                 original.definition().authoredRelations().get(1).stableId(),
                 decoded.definition().authoredRelations().get(1).stableId());
+    }
+
+    @Test
+    void brokenOreHostStateRoundTripsOnMatrixWire() {
+        CompactGTRecipeFamilyGeneratedSupport.installPrefixMaterialRouting();
+        BlockItemStateProperties state = new BlockItemStateProperties(Map.of(
+                "flower", "tungstus",
+                "host", "granite_black"));
+        Ingredient input = DataComponentIngredient.of(
+                false,
+                DataComponentPredicate.builder()
+                        .expect(ModComponents.ORE_MATERIAL.get(), "actinium")
+                        .expect(DataComponents.BLOCK_STATE, state)
+                        .build(),
+                Items.COBBLESTONE);
+        ItemStack output = new ItemStack(Items.GRAVEL);
+        output.set(DataComponents.BLOCK_STATE, state);
+        CompactGTRecipeFamilyEntry original = new CompactGTRecipeFamilyEntry(
+                new CompactGTRecipeFamilyDefinition(
+                        "gt.recipe.crusher#block_state",
+                        ModRecipeMaps.CRUSHER.id(),
+                        "3703e40308c8c030763fd6297dea8b210d2a77b1",
+                        List.of(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.of(new CompactGTRecipeFamilyDefinition.AuthoredMatrixV1(
+                                shared(),
+                                new CompactGTRecipeFamilyDefinition.MatrixDicts(
+                                        List.of(List.of(input)),
+                                        List.of(List.of(output)),
+                                        List.of(new CompactGTRecipeFamilyDefinition.FluidIo(
+                                                List.of(), List.of()))),
+                                List.of(new CompactGTRecipeFamilyDefinition.MatrixRow(
+                                        0, 0, 0, id("crusher/block_state"), 0))))));
+        CompactGTRecipeFamilySerializer serializer = new CompactGTRecipeFamilySerializer();
+        RegistryFriendlyByteBuf buffer = new RegistryFriendlyByteBuf(
+                Unpooled.buffer(), registries, ConnectionType.NEOFORGE);
+        serializer.streamCodec().encode(buffer, original);
+        CompactGTRecipeFamilyEntry decoded = serializer.streamCodec().decode(buffer);
+        assertEquals(0, buffer.readableBytes());
+
+        Ingredient decodedInput = decoded.definition().matrix().orElseThrow()
+                .dicts().itemInputs().getFirst().getFirst();
+        DataComponentIngredient components = assertInstanceOf(
+                DataComponentIngredient.class, decodedInput.getCustomIngredient());
+        assertFalse(components.isStrict());
+        assertEquals(
+                "actinium",
+                components.components().asPatch()
+                        .get(ModComponents.ORE_MATERIAL.get())
+                        .orElseThrow());
+        assertEquals(
+                state,
+                components.components().asPatch()
+                        .get(DataComponents.BLOCK_STATE)
+                        .orElseThrow());
+        assertEquals(
+                state,
+                decoded.definition().matrix().orElseThrow()
+                        .dicts().itemOutputs().getFirst().getFirst()
+                        .get(DataComponents.BLOCK_STATE));
+    }
+
+    @Test
+    void blockStatePropertyCeilingStaysBounded() {
+        CompactGTRecipeFamilyGeneratedSupport.installPrefixMaterialRouting();
+        Map<String, String> properties = new LinkedHashMap<>();
+        for (int index = 0;
+                index < CompactRecipeWireLimits.MAX_BLOCK_STATE_PROPERTIES + 1;
+                index++) {
+            properties.put("host_" + index, "stone");
+        }
+        Ingredient input = DataComponentIngredient.of(
+                false,
+                DataComponentPredicate.builder()
+                        .expect(
+                                DataComponents.BLOCK_STATE,
+                                new BlockItemStateProperties(properties))
+                        .build(),
+                Items.COBBLESTONE);
+        RegistryFriendlyByteBuf buffer = new RegistryFriendlyByteBuf(
+                Unpooled.buffer(), registries, ConnectionType.NEOFORGE);
+        EncoderException thrown = assertThrows(
+                EncoderException.class,
+                () -> CompactRecipeWireValues.encodeIngredient(buffer, input));
+        assertTrue(thrown.getMessage().contains("block state"));
     }
 
     private static CompactGTRecipeFamilyDefinition matrixDefinition() {

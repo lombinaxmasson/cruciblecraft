@@ -1,7 +1,9 @@
 package com.masson.cruciblecraft.recipe.gt;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.google.gson.JsonObject;
@@ -26,6 +28,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
@@ -45,6 +48,29 @@ final class CompactRecipeWireValues {
     private static final byte COMPONENT_INT = 0;
     private static final byte COMPONENT_TEXT = 1;
     private static final byte COMPONENT_STRING = 2;
+    private static final byte COMPONENT_BLOCK_STATE = 3;
+    private static final byte TYPE_NAMED = 0;
+    private static final byte TYPE_BLOCK_STATE = 1;
+    private static final byte TYPE_ORE_MATERIAL = 2;
+    private static final byte TYPE_PREFIX_MATERIAL = 3;
+    private static final byte TYPE_TOOL_MATERIAL = 4;
+    private static final byte TYPE_MACHINE_MATERIAL = 5;
+    private static final byte TYPE_CIRCUIT_CONFIG = 6;
+    private static final byte TYPE_FIREPROOF = 7;
+    private static final ResourceLocation BLOCK_STATE_ID =
+            ResourceLocation.withDefaultNamespace("block_state");
+    private static final ResourceLocation ORE_MATERIAL_ID =
+            ResourceLocation.fromNamespaceAndPath("cruciblecraft", "ore_material");
+    private static final ResourceLocation PREFIX_MATERIAL_ID =
+            ResourceLocation.fromNamespaceAndPath("cruciblecraft", "prefix_material");
+    private static final ResourceLocation TOOL_MATERIAL_ID =
+            ResourceLocation.fromNamespaceAndPath("cruciblecraft", "tool_material");
+    private static final ResourceLocation MACHINE_MATERIAL_ID =
+            ResourceLocation.fromNamespaceAndPath("cruciblecraft", "machine_material");
+    private static final ResourceLocation CIRCUIT_CONFIG_ID =
+            ResourceLocation.fromNamespaceAndPath("cruciblecraft", "circuit_config");
+    private static final ResourceLocation FIREPROOF_ID =
+            ResourceLocation.fromNamespaceAndPath("cruciblecraft", "fireproof");
 
     private CompactRecipeWireValues() {}
 
@@ -214,9 +240,52 @@ final class CompactRecipeWireValues {
             if (typeId == null) {
                 throw new EncoderException("Unregistered data component type");
             }
-            ResourceLocation.STREAM_CODEC.encode(buffer, typeId);
+            int known = knownTypeCode(typeId);
+            buffer.writeByte(known);
+            if (known == TYPE_NAMED) {
+                ResourceLocation.STREAM_CODEC.encode(buffer, typeId);
+            }
             encodeComponentValue(buffer, entry.value());
         }
+    }
+
+    private static int knownTypeCode(ResourceLocation typeId) {
+        if (BLOCK_STATE_ID.equals(typeId)) {
+            return TYPE_BLOCK_STATE;
+        }
+        if (ORE_MATERIAL_ID.equals(typeId)) {
+            return TYPE_ORE_MATERIAL;
+        }
+        if (PREFIX_MATERIAL_ID.equals(typeId)) {
+            return TYPE_PREFIX_MATERIAL;
+        }
+        if (TOOL_MATERIAL_ID.equals(typeId)) {
+            return TYPE_TOOL_MATERIAL;
+        }
+        if (MACHINE_MATERIAL_ID.equals(typeId)) {
+            return TYPE_MACHINE_MATERIAL;
+        }
+        if (CIRCUIT_CONFIG_ID.equals(typeId)) {
+            return TYPE_CIRCUIT_CONFIG;
+        }
+        if (FIREPROOF_ID.equals(typeId)) {
+            return TYPE_FIREPROOF;
+        }
+        return TYPE_NAMED;
+    }
+
+    private static ResourceLocation knownTypeId(int code) {
+        return switch (code) {
+            case TYPE_BLOCK_STATE -> BLOCK_STATE_ID;
+            case TYPE_ORE_MATERIAL -> ORE_MATERIAL_ID;
+            case TYPE_PREFIX_MATERIAL -> PREFIX_MATERIAL_ID;
+            case TYPE_TOOL_MATERIAL -> TOOL_MATERIAL_ID;
+            case TYPE_MACHINE_MATERIAL -> MACHINE_MATERIAL_ID;
+            case TYPE_CIRCUIT_CONFIG -> CIRCUIT_CONFIG_ID;
+            case TYPE_FIREPROOF -> FIREPROOF_ID;
+            default -> throw new DecoderException(
+                    "Unknown compact component type code " + code);
+        };
     }
 
     private static DataComponentPatch decodePatch(RegistryFriendlyByteBuf buffer) {
@@ -226,7 +295,10 @@ final class CompactRecipeWireValues {
         }
         DataComponentPatch.Builder builder = DataComponentPatch.builder();
         for (int index = 0; index < count; index++) {
-            ResourceLocation typeId = ResourceLocation.STREAM_CODEC.decode(buffer);
+            int known = buffer.readUnsignedByte();
+            ResourceLocation typeId = known == TYPE_NAMED
+                    ? ResourceLocation.STREAM_CODEC.decode(buffer)
+                    : knownTypeId(known);
             DataComponentType<?> type = BuiltInRegistries.DATA_COMPONENT_TYPE.get(typeId);
             if (type == null) {
                 throw new DecoderException("Unknown data component type " + typeId);
@@ -262,8 +334,62 @@ final class CompactRecipeWireValues {
                     CompactRecipeWireLimits.MAX_SELECTED_SOURCE_LENGTH);
             return;
         }
+        if (value instanceof BlockItemStateProperties state) {
+            buffer.writeByte(COMPONENT_BLOCK_STATE);
+            encodeBlockState(buffer, state);
+            return;
+        }
         throw new EncoderException(
                 "Unsupported compact component value " + value.getClass().getName());
+    }
+
+    private static void encodeBlockState(
+            RegistryFriendlyByteBuf buffer, BlockItemStateProperties state) {
+        List<Map.Entry<String, String>> entries =
+                new ArrayList<>(state.properties().entrySet());
+        entries.sort(Map.Entry.comparingByKey());
+        if (entries.size() > CompactRecipeWireLimits.MAX_BLOCK_STATE_PROPERTIES) {
+            throw new EncoderException(
+                    "Compact block state property count "
+                            + entries.size()
+                            + " exceeds "
+                            + CompactRecipeWireLimits.MAX_BLOCK_STATE_PROPERTIES);
+        }
+        buffer.writeVarInt(entries.size());
+        for (Map.Entry<String, String> entry : entries) {
+            if (entry.getKey() == null
+                    || entry.getKey().isEmpty()
+                    || entry.getValue() == null) {
+                throw new EncoderException("Compact block state property is blank");
+            }
+            buffer.writeUtf(
+                    entry.getKey(), CompactRecipeWireLimits.MAX_SELECTED_SOURCE_LENGTH);
+            buffer.writeUtf(
+                    entry.getValue(), CompactRecipeWireLimits.MAX_SELECTED_SOURCE_LENGTH);
+        }
+    }
+
+    private static BlockItemStateProperties decodeBlockState(
+            RegistryFriendlyByteBuf buffer) {
+        int count = buffer.readVarInt();
+        if (count < 0 || count > CompactRecipeWireLimits.MAX_BLOCK_STATE_PROPERTIES) {
+            throw new DecoderException(
+                    "Compact block state property count " + count + " exceeds "
+                            + CompactRecipeWireLimits.MAX_BLOCK_STATE_PROPERTIES);
+        }
+        Map<String, String> properties = new LinkedHashMap<>();
+        for (int index = 0; index < count; index++) {
+            String key = buffer.readUtf(CompactRecipeWireLimits.MAX_SELECTED_SOURCE_LENGTH);
+            String value = buffer.readUtf(CompactRecipeWireLimits.MAX_SELECTED_SOURCE_LENGTH);
+            if (key.isEmpty()) {
+                throw new DecoderException("Compact block state property name is blank");
+            }
+            if (properties.put(key, value) != null) {
+                throw new DecoderException(
+                        "Duplicate compact block state property " + key);
+            }
+        }
+        return new BlockItemStateProperties(Map.copyOf(properties));
     }
 
     private static Object decodeComponentValue(RegistryFriendlyByteBuf buffer) {
@@ -274,6 +400,7 @@ final class CompactRecipeWireValues {
                     CompactRecipeWireLimits.MAX_SELECTED_SOURCE_LENGTH));
             case COMPONENT_STRING -> buffer.readUtf(
                     CompactRecipeWireLimits.MAX_SELECTED_SOURCE_LENGTH);
+            case COMPONENT_BLOCK_STATE -> decodeBlockState(buffer);
             default -> throw new DecoderException(
                     "Unknown compact component kind: " + kind);
         };
