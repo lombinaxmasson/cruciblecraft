@@ -722,8 +722,8 @@
     "capability_count": 130,
     "capability_states": {
       "frozen:accepted": 2,
-      "frozen:paused": 9,
-      "runtime_ready:accepted": 115,
+      "frozen:paused": 8,
+      "runtime_ready:accepted": 116,
       "runtime_ready:paused": 4
     },
     "blocker_count": 62,
@@ -1271,9 +1271,9 @@
     {
       "slug": "energy/large-heat-exchanger",
       "title": "Large Heat Exchanger 17197",
-      "maturity": "frozen",
-      "workflow": "paused",
-      "survival_access": null,
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "unreviewed",
       "wave_slug": "energy/large-heat-exchanger",
       "path": "tools/capabilities/energy/large-heat-exchanger/capability.json"
     },
@@ -2483,7 +2483,7 @@
       "count": 4,
       "root_cause_class": "missing_form",
       "blocks_maturity": "player_complete",
-      "title": "LuV–OMEGA 紧凑零件已落地（CC 扩展，非原版 PUV2+）"
+      "title": "LuV–OMEGA 紧凑零件已落地（GT6 IL，含 PUV2–OMEGA）"
     },
     {
       "id": "obtain/mte-inplace-runtime",
@@ -17981,9 +17981,9 @@
         {
           "slug": "energy/large-heat-exchanger",
           "title": "Large Heat Exchanger 17197",
-          "maturity": "frozen",
-          "workflow": "paused",
-          "survival_access": null,
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "unreviewed",
           "wave_slug": "energy/large-heat-exchanger",
           "path": "tools/capabilities/energy/large-heat-exchanger/capability.json"
         }
@@ -17993,9 +17993,9 @@
           {
             "slug": "energy/large-heat-exchanger",
             "title": "Large Heat Exchanger 17197",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": null,
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "unreviewed",
             "wave_slug": "energy/large-heat-exchanger",
             "path": "tools/capabilities/energy/large-heat-exchanger/capability.json"
           }
@@ -18013,7 +18013,7 @@
         "data_file_count": 1,
         "structure_files": []
       },
-      "delivery_depth": "runtime_paused"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_id": "large_turbine_gas",
@@ -24127,7 +24127,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks; closed machines/large-autoclave",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks; closed machines/large-autoclave; closed energy/large-heat-exchanger",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -24160,7 +24160,8 @@
       "capability close energy/gt6-remainder-devices (major)",
       "capability close content/gt6-fluid-barrel (major)",
       "capability close machines/gt6-multiblock-tanks (major)",
-      "capability close machines/large-autoclave (major)"
+      "capability close machines/large-autoclave (major)",
+      "capability close energy/large-heat-exchanger (major)"
     ],
     "accepted": null
   }

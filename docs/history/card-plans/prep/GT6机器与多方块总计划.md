@@ -137,13 +137,13 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 
 这些卡已经签发。本总计划只标明它们和上面 7 张的关系：上面 7 张不插进这条链，也不改它们的 slug。
 
-PUV / OMEGA 链（[PUV2OMEGA科技线详细计划](PUV2OMEGA科技线详细计划.md)），代码已在，全部 `frozen` / `paused`：
+PUV / OMEGA 链（[PUV2OMEGA科技线详细计划](PUV2OMEGA科技线详细计划.md)）是 GT6 注册内容，不是 CC 高压扩展。代码已在。大型热交换器已关卡。其余五张仍 `frozen` / `paused`，只因为还没按 unique-active 关卡：
 
-1. `energy/large-heat-exchanger`（17197）
+1. `energy/large-heat-exchanger`（17197）已关 `runtime_ready` / `accepted`，`survival_access=unreviewed`
 2. `energy/steam-turbine`（15 台单机 + 4 台大型 17211–17214）。依赖大型热交换器
-3. `energy/fusion-quantum`（聚变 17198 + LU→QU 充能激光）。依赖蒸汽涡轮。工作流写明改 `EnergyType` 的卡不走 prep 实施
-4. `energy/quantum-massfab`（中子素链，`CC_EXTENSION`）。依赖聚变
-5. `content/puv-omega-parts`、`machines/puv-omega-matrix`
+3. `energy/fusion-quantum`（聚变 17198 + LU→QU 充能激光）。依赖蒸汽涡轮。改 `EnergyType` 的落地不走 prep 实施
+4. `energy/quantum-massfab`（物质制造器 17199；中子素生存链才是 `CC_EXTENSION`，因为 `MT.Neutronium` 是 `unused` 桩）。依赖聚变
+5. `content/puv-omega-parts`、`machines/puv-omega-matrix`（`IL` 的 PUV2–OMEGA；`VN[14]` 源名 XV）
 
 另外三张 prep，获得或能量边界已经写明：
 

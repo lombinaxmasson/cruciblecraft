@@ -2650,6 +2650,16 @@ public class ModLanguageProvider extends LanguageProvider {
         add(
                 "tooltip.cruciblecraft.heat_exchanger.efficiency",
                 chinese ? "效率 %s%%" : "Efficiency %s%%");
+        add(
+                "tooltip.cruciblecraft.large_heat_exchanger.input",
+                chinese
+                        ? "底圈致密钨壁输入热流体"
+                        : "Bottom ring of Dense Tungsten Walls accepts hot fluid");
+        add(
+                "tooltip.cruciblecraft.large_heat_exchanger.output",
+                chinese
+                        ? "废液从主机底面排出"
+                        : "Waste fluid leaves through the bottom of the controller");
         HeatExchangerCatalog.profiles().forEach(profile -> {
             String path = profile.id().getPath();
             String name = chinese ? profile.langZh() : profile.langEn();

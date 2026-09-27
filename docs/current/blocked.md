@@ -859,7 +859,7 @@ C 先审计分母。D 不是任务。同类条目仍不得相加。
 
 ### `material-form/luv-puv1-parts`
 
-- 标题：LuV–OMEGA 紧凑零件已落地（CC 扩展，非原版 PUV2+）
+- 标题：LuV–OMEGA 紧凑零件已落地（GT6 IL，含 PUV2–OMEGA）
 - 状态：`resolved`
 - 根因：`missing_form` / `missing_high_voltage_technological_parts`
 - 数量：4 tiers

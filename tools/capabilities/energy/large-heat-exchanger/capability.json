@@ -2,8 +2,8 @@
   "schema_version": 2,
   "slug": "energy/large-heat-exchanger",
   "title": "Large Heat Exchanger 17197",
-  "maturity": "frozen",
-  "workflow": "paused",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
   "owned_paths": [
     "src/main/java/com/masson/cruciblecraft/energy/largeheatexchanger/**",
     "src/main/resources/data/cruciblecraft/large_heat_exchanger.json",
@@ -24,7 +24,11 @@
   "required_test_ids": [
     "largeHexFormsAndEmitsHu",
     "largeHexReloadPreservesTanks",
-    "largeHexIsSurvivalCraftable"
+    "largeHexIsSurvivalCraftable",
+    "largeHexBottomRingAcceptsHotFluid",
+    "largeHexStructureOnlyCellsRejectFluid",
+    "largeHexExhaustLeavesControllerBottom",
+    "largeHexBrokenWallUnbindsInput"
   ],
   "identity_disposition": [
     {
@@ -37,5 +41,6 @@
       "reason": "GT6 MultiTileEntityLargeHeatExchanger 17197. Not the eight single-block HEX rows."
     }
   ],
-  "note": "3x3x2 world-axis HEX. unique_active_wave stays null until this card is the unique active."
+  "note": "3x3x2 world-axis HEX. Bottom ring 18024 is ONLY_ITEM_FLUID_ENERGY_IN. Waste leaves the controller bottom. Top center 18024 and transmitters are NOTHING.",
+  "survival_access": "unreviewed"
 }

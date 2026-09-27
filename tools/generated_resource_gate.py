@@ -51,14 +51,6 @@ HAND_BREAKABLE_PREFIXES = (
     "glass/",
     "glow_glass/",
 )
-MAIN_RESOURCE_AUTHORITATIVE = frozenset(
-    {
-        "assets/cruciblecraft/blockstates/multiblock/distillation_tower_part.json",
-        "assets/cruciblecraft/blockstates/multiblock/heat_transmitter.json",
-        "assets/cruciblecraft/models/item/multiblock/distillation_tower_part.json",
-        "assets/cruciblecraft/models/item/multiblock/heat_transmitter.json",
-    }
-)
 def python_owned_generated_prefixes() -> tuple[str, ...]:
     prefixes = {
         "assets/cruciblecraft/models/gt_block/",
@@ -120,10 +112,7 @@ def excluded_resource_rel(rel: str) -> bool:
         return True
     if rel == ".cache" or rel.startswith(".cache/") or "/.cache/" in rel:
         return True
-    return (
-        rel.startswith(ROASTER_RECOVERY_PREFIX)
-        or rel in MAIN_RESOURCE_AUTHORITATIVE
-    )
+    return rel.startswith(ROASTER_RECOVERY_PREFIX)
 
 
 def duplicate_resource_relative_paths() -> list[str]:

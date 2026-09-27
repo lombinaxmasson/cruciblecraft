@@ -10,10 +10,13 @@ import com.masson.cruciblecraft.registry.ModBlocks;
 
 /**
  * GT6 {@code checkStructure2}: 3x3x2 world-axis, controller at bottom center.
- * Bottom ring is eight dense tungsten walls; top is eight heat transmitters
- * around a center wall.
+ * The bottom ring is eight 18024 walls bound as
+ * {@code ONLY_ITEM_FLUID_ENERGY_IN}. The top center is 18024
+ * {@code NOTHING}. The eight 18101 transmitters are {@code NOTHING}; HU is
+ * inserted into the block above each of them.
  */
 public final class LargeHeatExchangerStructure {
+    public static final Vec3i TOP_CENTER = new Vec3i(0, 1, 0);
     private static final Vec3i[] BOTTOM_WALLS = {
         new Vec3i(-1, 0, -1), new Vec3i(0, 0, -1), new Vec3i(1, 0, -1),
         new Vec3i(-1, 0, 0), new Vec3i(1, 0, 0),
@@ -26,6 +29,10 @@ public final class LargeHeatExchangerStructure {
     };
 
     private LargeHeatExchangerStructure() {}
+
+    public static Vec3i[] bottomWalls() {
+        return BOTTOM_WALLS;
+    }
 
     public static Vec3i[] transmitters() {
         return TRANSMITTERS;
@@ -43,7 +50,7 @@ public final class LargeHeatExchangerStructure {
                 return false;
             }
         }
-        if (!level.getBlockState(controller.above()).is(wall)) {
+        if (!level.getBlockState(controller.offset(TOP_CENTER)).is(wall)) {
             return false;
         }
         for (Vec3i offset : TRANSMITTERS) {

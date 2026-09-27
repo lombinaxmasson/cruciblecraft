@@ -1,8 +1,11 @@
 package com.masson.cruciblecraft.energy.largeheatexchanger;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.content.blockentity.MteInPlaceBlockEntity;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.machine.generation.FuelGeneratorEnergy;
@@ -30,8 +33,9 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
 /**
- * 3x3x2 large HEX. HU is split over the eight transmitters and inserted
- * upward from each transmitter into the block above it.
+ * 3x3x2 large HEX. The bottom ring of 18024 walls fills the hot-fluid tank.
+ * Waste leaves through the controller's bottom face. HU is split over the
+ * eight transmitters and inserted upward into the block above each one.
  */
 public final class LargeHeatExchangerBlockEntity extends BlockEntity
         implements IEnergyHandler {
@@ -42,6 +46,7 @@ public final class LargeHeatExchangerBlockEntity extends BlockEntity
     private final FluidTank output;
     private final IFluidHandler inputView = new InputHandler();
     private final IFluidHandler outputView = new OutputHandler();
+    private final Set<BlockPos> boundInputs = new LinkedHashSet<>();
     private String status = "idle";
     private boolean formed;
     private boolean clientSyncPending;
@@ -80,12 +85,19 @@ public final class LargeHeatExchangerBlockEntity extends BlockEntity
             BlockState state,
             LargeHeatExchangerBlockEntity exchanger) {
         exchanger.formed = LargeHeatExchangerStructure.check(level, pos);
+        exchanger.refreshInputHatches();
         if (exchanger.formed && exchanger.energy.stored() >= 8L) {
             exchanger.emitFromTransmitters();
         }
         if (exchanger.formed) {
             exchanger.consumeHotFluid();
             exchanger.pushExhaust();
+        }
+        if (exchanger.formed
+                && exchanger.energy.stored() > 0L
+                && exchanger.energy.stored() < 8L) {
+            exchanger.energy.discardUnits(exchanger.energy.stored());
+            exchanger.markPersistentMutation();
         }
         exchanger.updateLitState();
         exchanger.flushClientSync(level.getGameTime());
@@ -189,6 +201,69 @@ public final class LargeHeatExchangerBlockEntity extends BlockEntity
                 neighbor, outputView, output.getFluidAmount(), true);
         if (!moved.isEmpty()) {
             markPersistentMutation();
+        }
+    }
+
+    /**
+     * Bottom-ring 18024, GT6 {@code ONLY_ITEM_FLUID_ENERGY_IN}. Fill only.
+     * The controller has no item inventory and does not accept energy, so
+     * the live hatch surface is the hot-fluid tank.
+     */
+    public IFluidHandler hatchInput() {
+        return formed ? inputView : null;
+    }
+
+    @Override
+    public void setRemoved() {
+        unbindInputHatches();
+        super.setRemoved();
+    }
+
+    private void refreshInputHatches() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        if (!formed) {
+            unbindInputHatches();
+            return;
+        }
+        Set<BlockPos> desired = new LinkedHashSet<>();
+        for (Vec3i offset : LargeHeatExchangerStructure.bottomWalls()) {
+            desired.add(worldPosition.offset(offset).immutable());
+        }
+        for (BlockPos pos : desired) {
+            if (!level.hasChunkAt(pos)) {
+                continue;
+            }
+            if (level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity wall) {
+                wall.bindLargeHeatExchanger(worldPosition);
+                boundInputs.add(pos.immutable());
+            }
+        }
+        for (BlockPos previous : List.copyOf(boundInputs)) {
+            if (!desired.contains(previous)) {
+                unbindInput(previous);
+            }
+        }
+    }
+
+    private void unbindInputHatches() {
+        for (BlockPos previous : List.copyOf(boundInputs)) {
+            unbindInput(previous);
+        }
+    }
+
+    /** The wall block is going away; drop the binding without touching it. */
+    public void releaseInputHatch(BlockPos pos) {
+        boundInputs.remove(pos);
+    }
+
+    private void unbindInput(BlockPos pos) {
+        boundInputs.remove(pos);
+        if (level != null
+                && level.hasChunkAt(pos)
+                && level.getBlockEntity(pos) instanceof MteInPlaceBlockEntity wall) {
+            wall.unbindLargeHeatExchanger(worldPosition);
         }
     }
 

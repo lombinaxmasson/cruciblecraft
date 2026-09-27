@@ -32,5 +32,11 @@ public final class LargeHeatExchangerBlockItem extends BlockItem {
                         "tooltip.cruciblecraft.heat_exchanger.efficiency",
                         profile.efficiencyBps() / 100)
                 .withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable(
+                        "tooltip.cruciblecraft.large_heat_exchanger.input")
+                .withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable(
+                        "tooltip.cruciblecraft.large_heat_exchanger.output")
+                .withStyle(ChatFormatting.GRAY));
     }
 }

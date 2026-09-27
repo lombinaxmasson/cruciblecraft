@@ -138,8 +138,8 @@ src/test/java/com/masson/cruciblecraft/gametest/
 
 - 27 个是主机或主机身份；
 - 23 个是部件、端口或 MTE 身份；
-- 32 个条目属于当前 accepted runtime；
-- 5 个有明确的 frozen/paused 能力卡；
+- 34 个条目属于当前 accepted runtime；
+- 3 个有明确的 frozen/paused 能力卡；
 - 0 个仍停留在“已有主机/结构代码但尚未进入 accepted 能力账本”；
 - 10 个只有身份或部件；
 - 3 个目前没有大型主机。
@@ -181,25 +181,21 @@ src/test/java/com/masson/cruciblecraft/gametest/
 - `tools/capabilities/energy/large-gas-turbine/capability.json`
 - `tools/capabilities/content/gt6-mte-multiblock-runtime/capability.json`
 
-### 4.2 有代码但暂停：5 个条目
+### 4.2 有代码但暂停：3 个条目
 
-- Large Autoclave；
 - Large Fermenter；
-- Large Heat Exchanger；
 - Fusion Reactor；
 - Steam Turbine Main Housing。
 
 对应能力卡分别位于：
 
 ```text
-tools/capabilities/machines/large-autoclave/
 tools/capabilities/machines/large-fermenter/
-tools/capabilities/energy/large-heat-exchanger/
 tools/capabilities/energy/fusion-quantum/
 tools/capabilities/energy/steam-turbine/
 ```
 
-这些项目不能标成“缺失”，因为代码、结构、资源或测试已经存在；也不能标成“已完成”，因为当前声明仍是 `frozen/paused`。Large Electrolyzer 已离开这组：`machines/large-electrolyzer` 是 `runtime_ready` / `accepted`，`survival_access` 仍是 `partial`。
+这些项目不能标成“缺失”，因为代码、结构、资源或测试已经存在；也不能标成“已完成”，因为当前声明仍是 `frozen/paused`。Large Electrolyzer 已离开这组：`machines/large-electrolyzer` 是 `runtime_ready` / `accepted`，`survival_access` 仍是 `partial`。Large Autoclave 同样已离开：`machines/large-autoclave` 是 `runtime_ready` / `accepted`。Large Heat Exchanger 已离开：`energy/large-heat-exchanger` 是 `runtime_ready` / `accepted`，`survival_access` 仍是 `unreviewed`。
 
 ### 4.3 当前工作树已有主机代码，已按独立 capability 收束：11 个条目
 

@@ -60,6 +60,7 @@ import com.masson.cruciblecraft.energy.drive.RotationEngineCatalog;
 import com.masson.cruciblecraft.energy.drive.RotationEngineConversion;
 import com.masson.cruciblecraft.energy.largedynamo.LargeDynamoBlockEntity;
 import com.masson.cruciblecraft.energy.largegasturbine.LargeGasTurbineBlockEntity;
+import com.masson.cruciblecraft.energy.largeheatexchanger.LargeHeatExchangerBlockEntity;
 import com.masson.cruciblecraft.energy.largegasturbine.LargeTurbineHatchRole;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineCatalog;
 import com.masson.cruciblecraft.energy.steam.SteamTurbineConversion;
@@ -161,6 +162,7 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     private BlockPos steamTurbineHost;
     private SteamTurbineHatchRole steamTurbineRole;
     private Direction steamTurbineOutward = Direction.NORTH;
+    private BlockPos largeHexHost;
     private BlockPos mixerController;
     private ResourceLocation mixerStructure;
     private PortType mixerPortType;
@@ -451,6 +453,35 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         return host == null ? null : host.hatchFluids(steamTurbineRole);
     }
 
+    public void bindLargeHeatExchanger(BlockPos controller) {
+        BlockPos immutable = controller.immutable();
+        if (!immutable.equals(largeHexHost)) {
+            largeHexHost = immutable;
+            setChanged();
+            invalidateGasTurbineCaps();
+        }
+    }
+
+    public void unbindLargeHeatExchanger(BlockPos controller) {
+        if (controller.equals(largeHexHost)) {
+            largeHexHost = null;
+            setChanged();
+            invalidateGasTurbineCaps();
+        }
+    }
+
+    public IFluidHandler largeHeatExchangerFluids() {
+        if (level == null || largeHexHost == null || !level.hasChunkAt(largeHexHost)) {
+            return null;
+        }
+        if (level.getBlockEntity(largeHexHost)
+                instanceof LargeHeatExchangerBlockEntity exchanger
+                && exchanger.formed()) {
+            return exchanger.hatchInput();
+        }
+        return null;
+    }
+
     public IFluidHandler hatchFluids(SteamTurbineHatchRole role) {
         if (role == null) {
             return null;
@@ -467,6 +498,18 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
     public void setRemoved() {
         unbindSteamHatches();
         unbindSteamTurbine();
+        if (largeHexHost != null) {
+            BlockPos host = largeHexHost;
+            largeHexHost = null;
+            setChanged();
+            invalidateGasTurbineCaps();
+            if (level != null
+                    && level.hasChunkAt(host)
+                    && level.getBlockEntity(host)
+                            instanceof LargeHeatExchangerBlockEntity exchanger) {
+                exchanger.releaseInputHatch(worldPosition);
+            }
+        }
         super.setRemoved();
     }
 
@@ -901,6 +944,10 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
         }
         if (steamTurbineRole != null) {
             return steamTurbineFluids();
+        }
+        IFluidHandler largeHex = largeHeatExchangerFluids();
+        if (largeHex != null) {
+            return largeHex;
         }
         IFluidHandler implosion = ImplosionCompressorWalls.fluids(this);
         if (implosion != null) {
@@ -1754,6 +1801,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             tag.putString("st.role", steamTurbineRole.name());
             tag.putString("st.outward", steamTurbineOutward.getSerializedName());
         }
+        if (largeHexHost != null) {
+            tag.putLong("lhex.controller", largeHexHost.asLong());
+        }
         if (mixerController != null && mixerStructure != null
                 && mixerPortType != null) {
             tag.putLong("mixer.controller", mixerController.asLong());
@@ -1833,6 +1883,9 @@ public final class MteInPlaceBlockEntity extends MachineCoverHostBlockEntity
             steamTurbineHost = null;
             steamTurbineRole = null;
         }
+        largeHexHost = tag.contains("lhex.controller")
+                ? BlockPos.of(tag.getLong("lhex.controller"))
+                : null;
         mixerController = null;
         mixerStructure = null;
         mixerPortType = null;

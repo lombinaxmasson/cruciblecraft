@@ -183,8 +183,10 @@ def render_status(ledger: dict[str, Any] | None = None) -> str:
             "",
             f"## frozen（{len(frozen)}）",
             "",
-            "分母已冻。`paused` 的 PUV/OMEGA 六张代码已在 `src/main`，是 CC 扩展，"
-            "不是原版高压线。地牢是结构载体，房间内容仍 blocked。",
+            "分母已冻。仍 `paused` 的 PUV/OMEGA 卡代码已在 `src/main`，"
+            "机器和 PUV2–OMEGA 零件是 GT6 注册内容，停在这里是因为还没关卡。"
+            "中性物质 bootstrap 和 `MT.Neutronium` 生存链才是 `CC_EXTENSION`。"
+            "地牢是结构载体，房间内容仍 blocked。",
             "",
         ]
     )
