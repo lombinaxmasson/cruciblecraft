@@ -107,12 +107,12 @@ public final class ModMultiblockPlugins {
                     SHARED_PORT_SUPPLY);
 
     /** bulk fluid storage with bidirectional ports, no recipe
-     * transaction, no energy. Consumed by the 3x3x3 tank. */
+     * transaction, no energy. Consumed by both hollow-cube tanks. */
     public static final ResourceLocation STORAGE_HOST =
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "storage_host");
 
-    /** Plugin set persisted and resolved by the 3x3x3 tank controller. */
+    /** Plugin set persisted and resolved by both tank controllers. */
     public static final List<ResourceLocation> TANK_PLUGINS =
             List.of(STORAGE_HOST, SHARED_PORT_SUPPLY);
 

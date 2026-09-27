@@ -572,7 +572,7 @@ gas/acid/plasma/magic proof；`TankBlockEntity` 仍维护控制器 tank，
 - 导电流体、超材料熔点流体和木罐 non-simple 流体拒绝；
 - 超温熔毁、结构破坏/危险流体清空；
 - 按水平面、气体和重力方向执行自动输出，堵塞时不丢液；
-- 5×5×5 Tank 仍是 post-1_0 独立项。
+- 5×5×5 金属罐（17042–17047、17062–17067）与 3×3×3 共用 `TankBlockEntity`。结构是 `tank_5x5x5.json`：内部 3×3×3 空气，97 个墙端口。没有木制 5×5×5，也没有别的边长。
 
 GT6 profile 的 source revision 与容量证据保存在
 `TankControllerProfiles` 和结构 JSON 的 `source` 字段中；不得再引入

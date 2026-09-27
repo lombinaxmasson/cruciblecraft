@@ -40,9 +40,9 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 /**
- * GT6 3x3x3 fluid storage controller. The controller identity is one of the
- * Small Tank Main Valve MTEs; all twenty-five matching wall cells bridge one
- * profile-sized tank and never create twenty-five independent supplies.
+ * GT6 hollow-cube fluid storage controller. Small valves form a 3×3×3 shell
+ * and large valves form a 5×5×5 shell. Every wall cell bridges the one
+ * profile-sized tank.
  */
 public final class TankBlockEntity extends BlockEntity
         implements MultiblockControllerBinding, MultiblockPortHost, IFluidHandler {
@@ -128,7 +128,7 @@ public final class TankBlockEntity extends BlockEntity
             Level level,
             BlockPos pos,
             BlockState state) {
-        var definition = MultiblockStructureCatalog.find(STRUCTURE_ID);
+        var definition = MultiblockStructureCatalog.find(structureId());
         if (definition.isEmpty()) {
             clearBindings();
             lastValidation = null;
@@ -146,13 +146,13 @@ public final class TankBlockEntity extends BlockEntity
         }
         lastValidation = validation;
         boundPorts = MultiblockPortAggregator.refresh(
-                level, pos, STRUCTURE_ID, validation, boundPorts);
+                level, pos, structureId(), validation, boundPorts);
         updateStructureValid(validation.valid());
     }
 
     private boolean profileMatches(
             MultiblockStructureValidator.ValidationResult validation) {
-        if (validation.ports().size() != 25) {
+        if (profile == null || validation.ports().size() != profile.wallPorts()) {
             return false;
         }
         for (MultiblockStructureValidator.MatchedPort port
@@ -286,7 +286,7 @@ public final class TankBlockEntity extends BlockEntity
 
     @Override
     public ResourceLocation structureId() {
-        return STRUCTURE_ID;
+        return profile == null ? STRUCTURE_ID : profile.structureId();
     }
 
     @Override
@@ -385,10 +385,11 @@ public final class TankBlockEntity extends BlockEntity
     private void meltdown(Level level) {
         discardFluid();
         clearBindings();
-        BlockPos center = worldPosition.relative(facing(getBlockState()));
-        for (int x = -1; x <= 1; x++) {
-            for (int y = -1; y <= 1; y++) {
-                for (int z = -1; z <= 1; z++) {
+        int radius = profile == null ? 1 : profile.radius();
+        BlockPos center = interiorCenter();
+        for (int x = -radius; x <= radius; x++) {
+            for (int y = -radius; y <= radius; y++) {
+                for (int z = -radius; z <= radius; z++) {
                     level.setBlock(
                             center.offset(x, y, z),
                             CrucibleWorldHazards.meltdownLavaState(),
@@ -396,6 +397,18 @@ public final class TankBlockEntity extends BlockEntity
                 }
             }
         }
+    }
+
+    /** GT6 {@code getOffsetN(facing, radius)}. The structure anchor is authored for north. */
+    private BlockPos interiorCenter() {
+        Direction facing = facing(getBlockState());
+        var definition = MultiblockStructureCatalog.find(structureId());
+        if (definition.isPresent()
+                && definition.get().anchors().containsKey("center")) {
+            return definition.get().anchor("center", worldPosition, facing);
+        }
+        int steps = profile == null ? 1 : profile.radius();
+        return worldPosition.relative(facing.getOpposite(), steps);
     }
 
     private static Profile profileFor(BlockState state) {

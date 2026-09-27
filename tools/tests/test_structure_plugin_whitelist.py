@@ -21,6 +21,7 @@ ALLOWED_CONSUMERS = {
     "large_boiler_tungstensteel",
     "large_boiler_adamantium",
     "tank_3x3x3",
+    "tank_5x5x5",
     "large_crucible",
 }
 

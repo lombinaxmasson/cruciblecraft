@@ -2730,6 +2730,37 @@
     },
     {
       "depends_on": [
+        "content/gt6-mte-multiblock-runtime"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "docs/history/card-plans/active/GT6多方块储罐详细计划.md",
+        "docs/history/card-plans/closed/GT6多方块储罐详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/TankBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/TankFluidSafety.java",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/TankControllerProfiles.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/tank_3x3x3.json",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/tank_5x5x5.json",
+        "src/main/resources/data/cruciblecraft/tags/block/tank_3x3x3_controllers.json",
+        "src/main/resources/data/cruciblecraft/tags/block/tank_3x3x3_walls.json",
+        "src/main/resources/data/cruciblecraft/tags/block/tank_5x5x5_controllers.json",
+        "src/test/java/com/masson/cruciblecraft/content/multiblock/TankControllerProfilesTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/Tank5x5GameTests.java",
+        "tools/capabilities/machines/gt6-multiblock-tanks/**",
+        "tools/tests/test_gt6_multiblock_tanks.py"
+      ],
+      "path": "tools/capabilities/machines/gt6-multiblock-tanks/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "machines/gt6-multiblock-tanks",
+      "survival_access": "partial",
+      "title": "GT6 Multiblock Tanks 17001-17067",
+      "workflow": "active"
+    },
+    {
+      "depends_on": [
         "machines/cluster-mill"
       ],
       "maturity": "runtime_ready",
@@ -2959,7 +2990,7 @@
       "slug": "machines/large-boiler",
       "survival_access": "partial",
       "title": "Large Boiler 17201-17205",
-      "workflow": "active"
+      "workflow": "paused"
     },
     {
       "depends_on": [
@@ -4427,7 +4458,7 @@
       "workflow": "accepted"
     }
   ],
-  "capability_count": 130,
+  "capability_count": 131,
   "declared_player_complete": [],
   "generated_by": "tools/build_capability_ledger.py",
   "impact": {
@@ -4607,6 +4638,7 @@
       "machines/bedrock-drill",
       "machines/coke-oven",
       "machines/gt6-coil-hosts",
+      "machines/gt6-multiblock-tanks",
       "machines/implosion-compressor",
       "machines/large-autoclave",
       "machines/large-boiler",
@@ -5525,6 +5557,9 @@
       "machines/gt6-coil-hosts",
       "machines/large-oven"
     ],
+    "machines/gt6-multiblock-tanks": [
+      "machines/gt6-multiblock-tanks"
+    ],
     "machines/hammer-squeezer-laser": [
       "machines/hammer-squeezer-laser",
       "machines/large-squeezer"
@@ -5863,6 +5898,7 @@
       "machines/bedrock-drill",
       "machines/coke-oven",
       "machines/gt6-coil-hosts",
+      "machines/gt6-multiblock-tanks",
       "machines/implosion-compressor",
       "machines/large-autoclave",
       "machines/large-bathing-vat",
@@ -6005,6 +6041,7 @@
       "machines/distillation-tower",
       "machines/gt6-basic-machine-batch",
       "machines/gt6-coil-hosts",
+      "machines/gt6-multiblock-tanks",
       "machines/hammer-squeezer-laser",
       "machines/implosion-compressor",
       "machines/injector",
@@ -6069,5 +6106,5 @@
   },
   "progress_rule": "runtime_ready is the close maturity; survival_access is independent and does not gate close; playtest is a project-level human cycle",
   "schema_version": 2,
-  "unique_active_slug": "machines/large-boiler"
+  "unique_active_slug": "machines/gt6-multiblock-tanks"
 }

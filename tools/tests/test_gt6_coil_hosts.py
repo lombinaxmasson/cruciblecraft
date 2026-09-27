@@ -30,5 +30,4 @@ class CoilHostLandingTest(unittest.TestCase):
         self.assertEqual("accepted", capability["workflow"])
         self.assertEqual("runtime_ready", capability["maturity"])
         self.assertNotEqual(SLUG, compiled["unique_active_slug"])
-        self.assertIsNone(compiled["unique_active_slug"])
         self.assertIsNone(ledger.load_card_plan_index()["active"].get(SLUG))

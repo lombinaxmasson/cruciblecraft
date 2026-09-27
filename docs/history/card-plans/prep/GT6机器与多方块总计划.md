@@ -103,18 +103,20 @@ landing_depends_on           = 当前 unique-active `content/gt6-fluid-barrel` �
 | --- | --- | --- | --- | --- |
 | 0 | 机器账本检查 | `portfolio/gt6-machine-ledger-audit` | 已关文书和后来的行为脱节。例：`energy/converter-catalog` 仍写蒸汽机动力学未做、青铜固定 12 KU/t；代码已是 `SteamEngineKuCurve`（名义 12，行程 6–24）、正负行程、满汽停机排气。大型电解 / 高压釜 / 发酵器的计划在 `closed/`，capability 仍是 `paused` | 只改账本。能按现有合同关掉的暂停卡改成 accepted。文书落后于代码的，补 note、测试 id 和已关计划末尾的读法修订。对不上的留在下面的序号，本卡不改机器行为 |
 | 1 | 大型锅炉 | `machines/large-boiler` | `LargeBoilerBlock` / `LargeBoilerBlockEntity`，五份结构 JSON（不锈钢、殷瓦、钛、钨钢、精金）。另有 `MteInPlaceKind.LARGE_BOILER`。无 capability。覆盖表 `runtime_code_uncarded` | 确认专用锅炉与 MTE inplace 是同一后端。按 GT6 逐档核对蒸汽输出、HU/水/蒸汽容量、进水出汽坐标、结垢、凿子清垢、过满与结构损坏。关 `runtime_ready` |
-| 2 | 3×3×3 储罐 | `machines/tank-3x3x3` | `TankBlockEntity`、`TankControllerProfiles`、`tank_3x3x3.json`。活控制器是 GT6 阀门 MTE。旧 `cruciblecraft:tank_3x3x3` 只留存档壳，不再成形。无 capability。覆盖表 `runtime_code_uncarded` | 给活阀门建卡：同材质墙、分档容量、气体/酸/等离子/魔法 proof、危险流体、自动输出方向。不把旧壳再做成第二台储罐。不含 5×5×5 |
+| 2 | 多方块储罐 | `machines/gt6-multiblock-tanks` | 3×3×3 已能成形。5×5×5 原先只有 catalog 身份 | 两套固定空心方块共用阀门合同。3×3×3 含木。5×5×5 只有金属和致密金属。不加别的边长 |
 | 3 | 大型电解机 | `machines/large-electrolyzer` | 已有。`frozen` / `paused`，`survival_access=partial`。结构 3×3×2，底进顶出，EU 512–4096，并行 16 | 重新占 unique-active，跑现有 profile。按 capability note 修失败项后 accepted。不导入缺形态行，不开形态 |
 | 4 | 大型高压釜 | `machines/large-autoclave` | 已有。`frozen` / `paused`。3×3×3 空心 18022，TU 1–16，并行 16。note 写明曾让出 unique-active，代码留下 | 同第 3 张。不把单方块高压釜 22004 折进来 |
 | 5 | 大型发酵器 | `machines/large-fermenter` | 已有。`frozen` / `paused`。5×5×3，HU，并行 256。`LargeFermenterAutoOutput` 已写背面偏移，固定坐标仍缺 GameTest | 补输出坐标/堵塞/重载测试后 accepted。不导入 6435 行 dump。缺流体留在流体卡 |
 | 6 | 单方块发酵机 | `machines/fermenter` | 无主机。GT6 22003，不锈钢，HU 16–64，图 `RM.Fermenter`。网格 `wMh` / `PPP` / `BCB`（`Loader_MultiTileEntities.java` 1654） | 第 5 张关了再开，避免两张卡同时改发酵图。获得格逐格 `gt6_resolve`。缺的零件保持 blocked |
-| 7 | 5×5×5 金属储罐 | `machines/tank-5x5x5` | 只有 catalog 身份（`MultiTileEntityTank5x5x5Metal`）。无结构 JSON、无成形 | 第 2 张的阀门/容量合同复用后再做。不在 3×3×3 卡里顺手加 |
+| 7 | 5×5×5 金属储罐 | 并入第 2 张 | GT6 没有边长滑杆，只有 3×3×3 和 5×5×5 两套空心方块 | 不再单独占锁。`machines/tank-5x5x5` 不建卡 |
 
 第 0 张若已经把第 3、4 或 5 张收成 accepted，那一张不再单独占落地锁。检查卡写明「还缺测试」的，仍按原序号做。
 
 2026-09-27 账本检查：第 3 张 `machines/large-electrolyzer` 已 `accepted`，不再占落地锁。第 4 张高压釜、第 5 张发酵器仍按原序号。第 1、2、6、7 张在占上 unique-active 时才写详细计划。
 
-2026-09-27 大型锅炉：第 1 张 `machines/large-boiler` 占这一次 unique-active。详细计划在 [大型锅炉详细计划](../active/大型锅炉详细计划.md)。
+2026-09-27 大型锅炉：第 1 张 `machines/large-boiler` 曾占 unique-active，现为 `runtime_ready` / `paused`。详细计划在 [大型锅炉详细计划](../closed/大型锅炉详细计划.md)。GameTest 还没当关闭门跑过，所以不是 accepted。
+
+2026-09-27 多方块储罐：第 2 张 `machines/gt6-multiblock-tanks` 占这一次 unique-active，并收进第 7 张。GT6 只有 3×3×3 和 5×5×5 两套固定空心方块，没有连续边长。详细计划在 [GT6 多方块储罐详细计划](../active/GT6多方块储罐详细计划.md)。
 
 大型锅炉的逐档缺口清单在大型机器快照 §5.8.1。那一节的旧容量数字（8,000 mB 水）是历史快照，以当前 `LargeBoilerTier` 为准，再和 GT6 逐项对。
 
@@ -156,5 +158,5 @@ PUV / OMEGA 链（[PUV2OMEGA科技线详细计划](PUV2OMEGA科技线详细计�
 - `gt.recipe.anvil`、`gt.recipe.cruciblealloying` 的旧排除决策。
 - toolhead、bumblelyzer、byproduct、trees 等整图 `display_only`。
 - 在机器卡上顺手开材料形态，或用 stand-in 把 `player_complete` 涂绿。
-- 把 5×5×5 储罐、单方块发酵机、扫描视觉塞进锅炉或 3×3×3 那张卡。
+- 把单方块发酵机、扫描视觉塞进锅炉或储罐卡。储罐只做 GT6 的两套固定空心方块，不加别的边长。
 - 管/缆切片 C，以及流体储罐卡已经声明不做的杯、壶、电池、保温瓶。

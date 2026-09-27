@@ -51,6 +51,7 @@
     "test_large_processing_parts",
     "test_large_electrolyzer",
     "test_large_boiler",
+    "test_gt6_multiblock_tanks",
     "test_large_oven",
     "test_large_fermenter",
     "test_large_autoclave",
@@ -1698,6 +1699,25 @@
       ],
       "test_modules": [
         "test_large_boiler"
+      ]
+    },
+    {
+      "paths": [
+        "docs/history/card-plans/active/GT6多方块储罐详细计划.md",
+        "docs/history/card-plans/closed/GT6多方块储罐详细计划.md",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/TankBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/TankFluidSafety.java",
+        "src/main/java/com/masson/cruciblecraft/content/multiblock/TankControllerProfiles.java",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/tank_3x3x3.json",
+        "src/main/resources/data/cruciblecraft/multiblock_structures/tank_5x5x5.json",
+        "src/main/resources/data/cruciblecraft/tags/block/tank_5x5x5_controllers.json",
+        "src/test/java/com/masson/cruciblecraft/content/multiblock/TankControllerProfilesTest.java",
+        "src/test/java/com/masson/cruciblecraft/gametest/Tank5x5GameTests.java",
+        "tools/capabilities/machines/gt6-multiblock-tanks/**",
+        "tools/tests/test_gt6_multiblock_tanks.py"
+      ],
+      "test_modules": [
+        "test_gt6_multiblock_tanks"
       ]
     }
   ]

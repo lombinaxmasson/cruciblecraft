@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "slug": "machines/gt6-multiblock-tanks",
+  "title": "GT6 Multiblock Tanks 17001-17067",
+  "maturity": "runtime_ready",
+  "workflow": "active",
+  "survival_access": "partial",
+  "owned_paths": [
+    "docs/history/card-plans/active/GT6多方块储罐详细计划.md",
+    "docs/history/card-plans/closed/GT6多方块储罐详细计划.md",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/TankBlockEntity.java",
+    "src/main/java/com/masson/cruciblecraft/content/blockentity/TankFluidSafety.java",
+    "src/main/java/com/masson/cruciblecraft/content/multiblock/TankControllerProfiles.java",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/tank_3x3x3.json",
+    "src/main/resources/data/cruciblecraft/multiblock_structures/tank_5x5x5.json",
+    "src/main/resources/data/cruciblecraft/tags/block/tank_3x3x3_controllers.json",
+    "src/main/resources/data/cruciblecraft/tags/block/tank_3x3x3_walls.json",
+    "src/main/resources/data/cruciblecraft/tags/block/tank_5x5x5_controllers.json",
+    "src/test/java/com/masson/cruciblecraft/content/multiblock/TankControllerProfilesTest.java",
+    "src/test/java/com/masson/cruciblecraft/gametest/Tank5x5GameTests.java",
+    "tools/capabilities/machines/gt6-multiblock-tanks/**",
+    "tools/tests/test_gt6_multiblock_tanks.py"
+  ],
+  "depends_on": [
+    "content/gt6-mte-multiblock-runtime"
+  ],
+  "profiles": [
+    "capability-runtime"
+  ],
+  "wave_slug": "machines/gt6-multiblock-tanks",
+  "player_signoff": null,
+  "required_test_ids": [
+    "tank3x3x3Formation",
+    "tank3x3x3Fidelity",
+    "tank3x3x3PortSupplySingleHost",
+    "tank3x3x3ProfileAndWallBinding",
+    "tank3x3x3VerticalFormation",
+    "tank3x3x3TemperatureMeltdown",
+    "tank3x3x3AcidFailure",
+    "tank3x3x3Teardown",
+    "tank3x3x3OutputJam",
+    "tank3x3x3PowerLoss",
+    "tank3x3x3Reload",
+    "tank3x3x3SaveQuarantine",
+    "tank5x5x5Fidelity",
+    "tank5x5x5BareControllerDoesNotForm",
+    "tank5x5x5Formation",
+    "tank5x5x5DenseAdamantiumForms",
+    "tank5x5x5Teardown"
+  ],
+  "identity_disposition": [
+    {
+      "semantic_key": "machine:tank_3x3x3:17001",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:wood/tank_main_valve",
+        "cruciblecraft:multiblock/small_stainless_steel_tank_main_valve",
+        "cruciblecraft:multiblock/small_invar_tank_main_valve",
+        "cruciblecraft:multiblock/small_titanium_tank_main_valve",
+        "cruciblecraft:multiblock/small_tungstensteel_tank_main_valve",
+        "cruciblecraft:multiblock/small_tungsten_tank_main_valve",
+        "cruciblecraft:multiblock/small_adamantium_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_stainless_steel_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_invar_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_titanium_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_tungstensteel_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_tungsten_tank_main_valve",
+        "cruciblecraft:multiblock/small_dense_adamantium_tank_main_valve"
+      ],
+      "reason": "GT6 MultiTileEntityTank3x3x3 wood 17001 and metal 17002-17007 plus dense 17022-17027. One air cell. Legacy cruciblecraft:tank_3x3x3 does not form."
+    },
+    {
+      "semantic_key": "machine:tank_5x5x5:17042",
+      "disposition": "new_distinct",
+      "runtime_ids": [
+        "cruciblecraft:multiblock/large_stainless_steel_tank_main_valve",
+        "cruciblecraft:multiblock/large_invar_tank_main_valve",
+        "cruciblecraft:multiblock/large_titanium_tank_main_valve",
+        "cruciblecraft:multiblock/large_tungstensteel_tank_main_valve",
+        "cruciblecraft:multiblock/large_tungsten_tank_main_valve",
+        "cruciblecraft:multiblock/large_adamantium_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_stainless_steel_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_invar_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_titanium_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_tungstensteel_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_tungsten_tank_main_valve",
+        "cruciblecraft:multiblock/large_dense_adamantium_tank_main_valve"
+      ],
+      "reason": "GT6 MultiTileEntityTank5x5x5Metal 17042-17047 and dense 17062-17067. Inner 3x3x3 air. No wood. Same TankBlockEntity as the 3x3x3 valves."
+    }
+  ],
+  "note": "GT6 has two fixed hollow cubes, not a size slider. 3x3x3 is one air cell and 25 wall ports. 5x5x5 is a 3x3x3 air core and 97 wall ports. Both share TankBlockEntity, proof flags, auto-output, and one fluid tank. Interior center is getOffsetN(facing, radius). No tank extender, no single-block steam boiler tanks 1200-1262, no other spans. No stand-in ingredients. No placeholder art. No form-open. No ItemEntity worldgen obtain. Close at runtime_ready."
+}

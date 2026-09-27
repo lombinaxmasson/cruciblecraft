@@ -7,7 +7,7 @@
 
 ## Unique active
 
-`machines/large-boiler`（Large Boiler 17201-17205，`workflow=active`，`maturity=runtime_ready`）；计划 [大型锅炉详细计划](../history/card-plans/active/大型锅炉详细计划.md)。
+`machines/gt6-multiblock-tanks`（GT6 Multiblock Tanks 17001-17067，`workflow=active`，`maturity=runtime_ready`）；计划 [GT6 多方块储罐详细计划](../history/card-plans/active/GT6多方块储罐详细计划.md)。
 
 ## Prep（不占落地锁）
 
@@ -154,12 +154,13 @@ Retired catalog scatter obtain and abolished player_complete. First real project
 - `worldgen/gt-surface-rocks` — GT Surface Rocks — [GT6 地表石子保真](../history/card-plans/closed/GT6地表石子保真详细计划.md)
 - `worldgen/gt-trees` — GT Trees — [GT 树详细计划](../history/card-plans/closed/GT树详细计划.md)
 
-## runtime_ready paused（3）
+## runtime_ready paused（4）
 
 已有运行时代码或机制证据，但 workflow 仍暂停，不能视为 accepted。
 
 - `energy/cooler` — Electric and Flux Coolers — [冷却器详细计划](../history/card-plans/prep/冷却器详细计划.md)
 - `energy/flux-converters` — Flux FE to GU Converters — [通量转换器详细计划](../history/card-plans/prep/通量转换器详细计划.md)
+- `machines/large-boiler` — Large Boiler 17201-17205 — [大型锅炉详细计划](../history/card-plans/closed/大型锅炉详细计划.md)
 - `worldgen/gt-small-ores` — GT Small Ores — [GT6 小矿世界生成](../history/card-plans/prep/GT6小矿世界生成详细计划.md)
 
 ## frozen（13）
