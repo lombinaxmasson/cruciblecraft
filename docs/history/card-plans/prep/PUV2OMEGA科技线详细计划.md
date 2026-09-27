@@ -55,7 +55,7 @@ source_revision              = 3703e40308c8c030763fd6297dea8b210d2a77b1
 
 `MultiTileEntityLargeHeatExchanger` 17197。`NBT_OUTPUT=16384` HU，packet size 1，8 个 18101 顶部分流。底 8×18024 + 控制器；顶 8×18101 + 中心 18024。配方 `"DDD","PMP","DDD"`。
 
-`energy/large-heat-exchanger` 已关 `runtime_ready` / `accepted`，`survival_access=unreviewed`。底圈 18024 是输入舱，废液从主机底面出。蒸汽涡轮及后面几张仍停在 prep，没有开 unique-active。
+`energy/large-heat-exchanger` 已关 `runtime_ready` / `accepted`，`survival_access=unreviewed`。底圈 18024 是输入舱，废液从主机底面出。`energy/steam-turbine` 已关 `runtime_ready` / `accepted`，`survival_access=unreviewed`。聚变及后面几张仍停在 prep，没有开 unique-active。
 
 ## 不接管
 

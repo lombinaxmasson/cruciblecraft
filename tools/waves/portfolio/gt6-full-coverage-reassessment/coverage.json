@@ -722,8 +722,8 @@
     "capability_count": 130,
     "capability_states": {
       "frozen:accepted": 2,
-      "frozen:paused": 8,
-      "runtime_ready:accepted": 116,
+      "frozen:paused": 7,
+      "runtime_ready:accepted": 117,
       "runtime_ready:paused": 4
     },
     "blocker_count": 62,
@@ -1316,9 +1316,9 @@
     {
       "slug": "energy/steam-turbine",
       "title": "Steam Turbines STEAM to RU",
-      "maturity": "frozen",
-      "workflow": "paused",
-      "survival_access": null,
+      "maturity": "runtime_ready",
+      "workflow": "accepted",
+      "survival_access": "unreviewed",
       "wave_slug": "energy/steam-turbine",
       "path": "tools/capabilities/energy/steam-turbine/capability.json"
     },
@@ -16089,8 +16089,10 @@
         "owner_attributed": [
           "energy/converter-catalog"
         ],
-        "java_files": [],
-        "java_file_count": 0,
+        "java_files": [
+          "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterProfiles.java"
+        ],
+        "java_file_count": 1,
         "data_files": [
           "src/main/resources/data/cruciblecraft/energy_converter_kinds.json",
           "src/main/resources/data/cruciblecraft/energy_converter_tiers.json"
@@ -17066,9 +17068,9 @@
           {
             "slug": "energy/steam-turbine",
             "title": "Steam Turbines STEAM to RU",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": null,
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "unreviewed",
             "wave_slug": "energy/steam-turbine",
             "path": "tools/capabilities/energy/steam-turbine/capability.json"
           }
@@ -17087,7 +17089,7 @@
         ],
         "data_file_count": 2
       },
-      "delivery_depth": "runtime_paused"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_key": "MultiTileEntityZPMDechargerEU|NONE|accepts:QU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
@@ -18079,9 +18081,9 @@
         {
           "slug": "energy/steam-turbine",
           "title": "Steam Turbines STEAM to RU",
-          "maturity": "frozen",
-          "workflow": "paused",
-          "survival_access": null,
+          "maturity": "runtime_ready",
+          "workflow": "accepted",
+          "survival_access": "unreviewed",
           "wave_slug": "energy/steam-turbine",
           "path": "tools/capabilities/energy/steam-turbine/capability.json"
         }
@@ -18091,9 +18093,9 @@
           {
             "slug": "energy/steam-turbine",
             "title": "Steam Turbines STEAM to RU",
-            "maturity": "frozen",
-            "workflow": "paused",
-            "survival_access": null,
+            "maturity": "runtime_ready",
+            "workflow": "accepted",
+            "survival_access": "unreviewed",
             "wave_slug": "energy/steam-turbine",
             "path": "tools/capabilities/energy/steam-turbine/capability.json"
           }
@@ -18113,7 +18115,7 @@
         "data_file_count": 2,
         "structure_files": []
       },
-      "delivery_depth": "runtime_paused"
+      "delivery_depth": "runtime_accepted"
     },
     {
       "canonical_id": "lightning_rod",
@@ -24127,7 +24129,7 @@
     "id": "2026-09-15-obtain-reset",
     "status": "pending",
     "opened_at": "2026-09-15",
-    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks; closed machines/large-autoclave; closed energy/large-heat-exchanger",
+    "reason": "Retired catalog scatter obtain and abolished player_complete. First real project playtest is required.; closed content/gt6-crucible-mold-interaction; closed content/gt6-foundry-art; closed worldgen/gt-surface-rocks; closed worldgen/gt-stone-layer-rocks; closed registry/prefix-material-component; Opened unique-active registry/hybrid-material-identity: public 16 prefixes are unique Items again; closed registry/hybrid-material-identity; Opened unique-active content/gt6-storage-art: GT6 kind-level storage textures on live barrels/boxes/lockers; closed content/gt6-storage-art; closed machines/bath; closed machines/hammer-squeezer-laser; closed machines/distillation-tower; closed energy/large-gas-turbine; GT6 rubber tree sap, hole harvest, coagulator latex to nugget, and rubber-log squeezer; closed machines/large-processing-parts; closed machines/implosion-compressor; closed fluid/gt6-missing-fluids; closed recipe/gt6-bulk-capacity; closed recipe/gt6-extruder-bulk; closed recipe/gt6-extruder-remainder; closed recipe/gt6-prefix-regular-bulk; closed recipe/gt6-chemical-misc-bulk; closed machines/gt6-basic-machine-batch; Opened unique-active recipe/gt6-steamcracking-bulk: import the whole gt.recipe.steamcracking map; closed recipe/gt6-steamcracking-bulk; closed energy/gt6-laser-magnet-zpm-converters; closed energy/gt6-remainder-devices; closed content/gt6-fluid-barrel; closed machines/gt6-multiblock-tanks; closed machines/large-autoclave; closed energy/large-heat-exchanger; closed energy/steam-turbine",
     "scope": [
       "worldgen: removed eight fake catalog scatters (six ItemEntity, stone dump, block-object dump)",
       "maturity: former player_complete claims are runtime_ready; survival_access is unreviewed",
@@ -24161,7 +24163,8 @@
       "capability close content/gt6-fluid-barrel (major)",
       "capability close machines/gt6-multiblock-tanks (major)",
       "capability close machines/large-autoclave (major)",
-      "capability close energy/large-heat-exchanger (major)"
+      "capability close energy/large-heat-exchanger (major)",
+      "capability close energy/steam-turbine (major)"
     ],
     "accepted": null
   }

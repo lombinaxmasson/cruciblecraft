@@ -58,10 +58,10 @@
   [blocked.md](blocked.md) 与
   [`leftover_later.json`](../../tools/waves/portfolio/source-capability-map-r0/leftover_later.json)，
   不要从归档缺口长文倒推
-- 例外：PUV / OMEGA 还有五张 `frozen`+`paused`，因为还没按 unique-active 关卡。
-  `src/main` 已有代码，对象是 GT6：蒸汽涡轮、聚变 17198、充能激光、物质制造器 17199，
-  以及 `IL` 的 PUV2–OMEGA 零件（`VN[14]` 在源里叫 XV）。大型热交换器 17197 已关
-  `runtime_ready`。禁止写成「尚未签发」，
+- 例外：PUV / OMEGA 还有四张 `frozen`+`paused`，因为还没按 unique-active 关卡。
+  `src/main` 已有代码，对象是 GT6：聚变 17198、充能激光、物质制造器 17199，
+  以及 `IL` 的 PUV2–OMEGA 零件（`VN[14]` 在源里叫 XV）。大型热交换器 17197
+  和蒸汽涡轮已关 `runtime_ready`。禁止写成「尚未签发」，
   也禁止写成「整条链是 CC 扩展」。链里单独标 `CC_EXTENSION` 的只有中性物质 bootstrap，
   以及 `MT.Neutronium` 为 `unused` 桩时的生存链。它们列在
   [project-status.md](project-status.md) 的 frozen 表。

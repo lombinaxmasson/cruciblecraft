@@ -2,10 +2,10 @@
   "schema_version": 2,
   "slug": "energy/steam-turbine",
   "title": "Steam Turbines STEAM to RU",
-  "maturity": "frozen",
-  "workflow": "paused",
+  "maturity": "runtime_ready",
+  "workflow": "accepted",
   "owned_paths": [
-    "src/main/java/com/masson/cruciblecraft/energy/steamturbine/**",
+    "src/main/java/com/masson/cruciblecraft/energy/steam/**",
     "src/main/resources/data/cruciblecraft/steam_turbines.json",
     "src/test/java/com/masson/cruciblecraft/gametest/SteamTurbineGameTests.java",
     "tools/capabilities/energy/steam-turbine/**"
@@ -21,13 +21,17 @@
   "player_signoff": null,
   "required_test_ids": [
     "fifteenSinglesConvertSteamToRu",
+    "fluidPipeFeedsSmallSteamTurbine",
     "largeHousingsRequireStructure",
     "distilledWaterRecovery",
     "singlePushesDistilledToSides",
     "wallHatchRolesMatchGt6",
     "wallHatchesForwardIo",
+    "fluidPipeFeedsFormedLargeSteamTurbine",
     "energyOutPushesRu",
-    "softHammerStopsLargeConversion"
+    "softHammerStopsLargeConversion",
+    "steamTurbineRecipesExist",
+    "brokenWallUnbindsSteamHatches"
   ],
   "identity_disposition": [
     {
@@ -40,5 +44,6 @@
       "reason": "GT6 MultiTileEntityTurbineSteam 15 rows plus LargeTurbineSteam 17211-17214. Not HEX, KU steam engine, or dummy consumeSteam."
     }
   ],
-  "note": "STEAM_PER_EU=2. Singles 200 steam/water push DistW to sides then trash. Large 170 DistW tank with void excess. Converter NBT_WASTE_ENERGY, double-tick RU credit, far-wall ONLY_ENERGY_OUT / frontal ONLY_FLUID."
+  "note": "STEAM_PER_EU=2. Singles 200 steam/water push DistW to sides then trash. Large 170 DistW tank with void excess. Converter NBT_WASTE_ENERGY, double-tick RU credit, far-wall ONLY_ENERGY_OUT / frontal ONLY_FLUID.",
+  "survival_access": "unreviewed"
 }

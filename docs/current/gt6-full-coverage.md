@@ -15,15 +15,15 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | 配方图 | 95 maps / 720841 源行 | `denominator_only` 13，`runtime_only` 4，`bounded_subset` 49，`full_replay` 13，`empty_source` 14，`legacy_exclusion_pending` 2 |
 | **配方移植进度** | 目标 706958 源行（720841 − 决策排除 13883） | **已证明 80.0%**（565619）；身份就绪 86.0%；按机器平均 61.0%（73 台，完成 15，未开始 15） |
 | 配方源行逐行分类 | 720841 源行 | 已证明 565619（78.5%）；部分一致 3064（0.4%）；缺配方 39032（5.4%）；缺身份 89908（12.5%）；展示用 13576（1.9%）；旧排除待决策 9642（1.3%）（互斥，合计等于分母） |
-| 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_only` 8，`runtime_paused` 2，`bounded_subset` 40，`runtime_accepted` 32，`full_replay` 11 |
-| 多方块控制器 | 30 canonical kinds | `runtime_paused` 4，`runtime_accepted` 26 |
+| 机器 kind | 96 canonical kinds | `denominator_only` 2，`identity_only` 1，`runtime_only` 8，`runtime_paused` 1，`bounded_subset` 40，`runtime_accepted` 33，`full_replay` 11 |
+| 多方块控制器 | 30 canonical kinds | `runtime_paused` 3，`runtime_accepted` 27 |
 | 盖板 | 47 canonical kinds | 有 CC live id 35，无 12 |
 | 能量身份 | 20 identities | 有 CC `EnergyType` 10，无 10 |
 | 物品/流体生成域 | 25 domains | `deferred_with_reason` 3，`in_scope` 16，`out_of_scope` 6（冻结分母） |
 | 材料前缀 | 452 canonical prefixes | `deferred_with_reason` 271，`in_scope` 55，`out_of_scope` 126；CC live 已映射 153（冻结分母记 55） |
 | MTE 身份 | 1817 identities | `identity_only` 746，`inplace_runtime` 788，`realized_natively` 283 |
 | 材料形态需求 | 1652 demand pairs | openable 96，gated_unresolved 1207，ungated 规模 3298（规模，非待办） |
-| Capability | 130 | `frozen:accepted` 2，`frozen:paused` 8，`runtime_ready:accepted` 116，`runtime_ready:paused` 4；survival_access `blocked` 3，`not_applicable` 7，`partial` 29，`unreviewed` 28，`unset` 63 |
+| Capability | 130 | `frozen:accepted` 2，`frozen:paused` 7，`runtime_ready:accepted` 117，`runtime_ready:paused` 4；survival_access `blocked` 3，`not_applicable` 7，`partial` 29，`unreviewed` 29，`unset` 62 |
 | Blocker | 62 | `open` 29，`out_of_scope` 6，`partial` 2，`resolved` 20，`superseded` 5 |
 | 项目试玩 | `2026-09-15-obtain-reset` | `pending` |
 
@@ -291,7 +291,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntityBasicMachineElectric` | RM.Plantalyzer | EU→NONE | in_scope | 5 | 5 | cruciblecraft:plantalyzer | `runtime_only` |
 | `MultiTileEntityBasicMachineElectric` | RM.Printer | EU→NONE | in_scope | 5 | 5 | cruciblecraft:printer | `runtime_only` |
 | `MultiTileEntityCoolerElectric` | — | EU→CU | in_scope | 5 | 5 | energy/cooler（runtime_ready/paused） | `runtime_paused` |
-| `MultiTileEntityTurbineSteam` | — | STEAM→RU | in_scope | 15 | 15 | energy/steam-turbine（frozen/paused） | `runtime_paused` |
 | `MultiTileEntityBasicMachine` | RM.Autoclave | TU→NONE | in_scope | 1 | 1 | cruciblecraft:autoclave | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Bath | TU→NONE | in_scope | 1 | 1 | cruciblecraft:bath | `bounded_subset` |
 | `MultiTileEntityBasicMachine` | RM.Centrifuge | RU→NONE | in_scope | 4 | 4 | cruciblecraft:centrifuge | `bounded_subset` |
@@ -362,6 +361,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `MultiTileEntitySolarPanelElectric` | — | NONE→EU | in_scope | 2 | 2 | energy/gt6-remainder-devices（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityTransformerElectric` | — | EU→EU | in_scope | 9 | 9 | content/puv-omega-parts（frozen/paused）, energy/transformers（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityTransformerRotation` | — | RU→RU | in_scope | 13 | 13 | energy/transformers（runtime_ready/accepted） | `runtime_accepted` |
+| `MultiTileEntityTurbineSteam` | — | STEAM→RU | in_scope | 15 | 15 | energy/steam-turbine（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityZPMDechargerEU` | — | QU→EU | in_scope | 1 | 1 | energy/converter-catalog（runtime_ready/accepted）, energy/gt6-laser-magnet-zpm-converters（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityZPMDechargerQU` | — | QU→QU | deferred_with_reason | 1 | 1 | energy/converter-catalog（runtime_ready/accepted）, energy/gt6-laser-magnet-zpm-converters（runtime_ready/accepted） | `runtime_accepted` |
 | `MultiTileEntityBasicMachine` | RM.BurnMixer | RU→NONE | in_scope | 4 | 4 | cruciblecraft:burn_mixer | `full_replay` |
@@ -385,7 +385,6 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `fermenter` | deferred_with_reason | machines/large-fermenter（frozen/paused，survival=partial） | `runtime_paused` |
 | `fusion_reactor` | out_of_scope | energy/fusion-quantum（frozen/paused，survival=unset） | `runtime_paused` |
 | `large_boiler` | in_scope | machines/large-boiler（runtime_ready/paused，survival=partial） | `runtime_paused` |
-| `large_turbine_steam` | deferred_with_reason | energy/steam-turbine（frozen/paused，survival=unset） | `runtime_paused` |
 | `autoclave` | deferred_with_reason | machines/large-autoclave（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `bath` | deferred_with_reason | machines/large-bathing-vat（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `bedrock_drill` | out_of_scope | machines/bedrock-drill（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
@@ -401,6 +400,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `large_dynamo` | deferred_with_reason | machines/gt6-coil-hosts（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `large_heat_exchanger` | deferred_with_reason | energy/large-heat-exchanger（runtime_ready/accepted，survival=unreviewed） | `runtime_accepted` |
 | `large_turbine_gas` | deferred_with_reason | energy/large-gas-turbine（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
+| `large_turbine_steam` | deferred_with_reason | energy/steam-turbine（runtime_ready/accepted，survival=unreviewed） | `runtime_accepted` |
 | `lightning_rod` | out_of_scope | machines/gt6-coil-hosts（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
 | `logistics_core` | deferred_with_reason | logistics/logistics-core（runtime_ready/accepted，survival=unreviewed） | `runtime_accepted` |
 | `matter_fabricator` | out_of_scope | machines/gt6-coil-hosts（runtime_ready/accepted，survival=partial） | `runtime_accepted` |
@@ -636,7 +636,7 @@ GT6 source revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`。
 | `energy/nuclear-fission-observation-safety` | runtime_ready | accepted | unreviewed |
 | `energy/nuclear-fission-survival` | runtime_ready | accepted | unreviewed |
 | `energy/quantum-massfab` | frozen | paused | — |
-| `energy/steam-turbine` | frozen | paused | — |
+| `energy/steam-turbine` | runtime_ready | accepted | unreviewed |
 | `energy/transformers` | runtime_ready | accepted | unreviewed |
 | `fluid/gt6-missing-fluids` | runtime_ready | accepted | blocked |
 | `localization/language-key-display-name-normalization` | runtime_ready | accepted | — |

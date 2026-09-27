@@ -25,6 +25,7 @@ import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -315,6 +316,38 @@ public final class SteamTurbineGameTests {
         helper.assertTrue(
                 turbine.tank().getFluidAmount() == 12_288,
                 "Stopped large steam turbine still dumped steam");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void steamTurbineRecipesExist(GameTestHelper helper) {
+        helper.assertTrue(
+                helper.getLevel().getRecipeManager()
+                        .byKey(id("steam/turbine_bronze"))
+                        .isPresent(),
+                "Missing bronze steam turbine survival recipe");
+        helper.assertTrue(
+                helper.getLevel().getRecipeManager()
+                        .byKey(id("magnalium/steam_turbine_main_housing"))
+                        .isPresent(),
+                "Missing magnalium large steam turbine housing recipe");
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void brokenWallUnbindsSteamHatches(GameTestHelper helper) {
+        MteInPlaceBlockEntity turbine = placeFormed(helper);
+        BlockPos front = CONTROLLER.above();
+        BlockPos broken = CONTROLLER.relative(Direction.NORTH);
+        helper.assertTrue(
+                fillWall(helper, front, steam(1)) == 1,
+                "Frontal wall did not accept steam before the break");
+        helper.setBlock(broken, Blocks.AIR.defaultBlockState());
+        tick(helper, CONTROLLER);
+        helper.assertTrue(!turbine.formed(), "Large steam turbine stayed formed with a missing wall");
+        helper.assertTrue(
+                fillWall(helper, front, steam(1)) == 0,
+                "Frontal wall stayed a steam hatch after the structure broke");
         helper.succeed();
     }
 
